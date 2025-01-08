@@ -31,6 +31,16 @@ memmove:                                ! @memmove
 	ba .LBB0_1
 	nop
 .LBB0_1:
+	sethi %hi(__llvm_gcov_ctr), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr)]
 	sethi %hi(.L__profc_memmove), %i0
 	add %i0, %lo(.L__profc_memmove), %i0
 	ldd [%i0+8], %i4
@@ -80,6 +90,17 @@ memmove:                                ! @memmove
 	ba .LBB0_4
 	stb %i1, [%i0+-1]
 .LBB0_4:                                !   in Loop: Header=BB0_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	ba .LBB0_2
@@ -116,6 +137,17 @@ memmove:                                ! @memmove
 	ba .LBB0_9
 	nop
 .LBB0_9:                                !   in Loop: Header=BB0_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_memmove), %i0
 	add %i0, %lo(.L__profc_memmove), %i0
 	ldd [%i0+32], %i4
@@ -142,11 +174,31 @@ memmove:                                ! @memmove
 	ba .LBB0_8
 	st %i0, [%fp+-12]
 .LBB0_11:
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB0_12
-	nop
+	std %i2, [%i0+24]
 .LBB0_12:
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB0_13
-	nop
+	std %i2, [%i0+32]
 .LBB0_13:
 	ld [%fp+-4], %i0
 	ret
@@ -190,6 +242,16 @@ memccpy:                                ! @memccpy
 	ba .LBB1_2
 	nop
 .LBB1_2:                                !   in Loop: Header=BB1_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.1)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.1)]
 	sethi %hi(.L__profc_memccpy), %i0
 	add %i0, %lo(.L__profc_memccpy), %i0
 	ldd [%i0+16], %i4
@@ -229,6 +291,17 @@ memccpy:                                ! @memccpy
 	nop
 .LBB1_5:                                !   in Loop: Header=BB1_1 Depth=1
 	ld [%fp+-52], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.1), %i1
+	add %i1, %lo(__llvm_gcov_ctr.1), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_memccpy), %i1
 	add %i1, %lo(.L__profc_memccpy), %i1
 	ldd [%i1+24], %i4
@@ -264,6 +337,17 @@ memccpy:                                ! @memccpy
 	ba .LBB1_8
 	std %i2, [%i0+8]
 .LBB1_8:                                !   in Loop: Header=BB1_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	add %i0, %lo(__llvm_gcov_ctr.1), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-20], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-20]
@@ -282,6 +366,17 @@ memccpy:                                ! @memccpy
 	ba .LBB1_10
 	nop
 .LBB1_10:
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	add %i0, %lo(__llvm_gcov_ctr.1), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_memccpy), %i0
 	add %i0, %lo(.L__profc_memccpy), %i0
 	ldd [%i0+32], %i4
@@ -298,6 +393,17 @@ memccpy:                                ! @memccpy
 	ba .LBB1_12
 	st %i0, [%fp+-4]
 .LBB1_11:
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	add %i0, %lo(__llvm_gcov_ctr.1), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ba .LBB1_12
 	st %g0, [%fp+-4]
 .LBB1_12:
@@ -340,6 +446,16 @@ memchr:                                 ! @memchr
 	ba .LBB2_2
 	nop
 .LBB2_2:                                !   in Loop: Header=BB2_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.2)]
 	sethi %hi(.L__profc_memchr), %i0
 	add %i0, %lo(.L__profc_memchr), %i0
 	ldd [%i0+16], %i4
@@ -377,6 +493,17 @@ memchr:                                 ! @memchr
 	nop
 .LBB2_5:                                !   in Loop: Header=BB2_1 Depth=1
 	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.2), %i1
+	add %i1, %lo(__llvm_gcov_ctr.2), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_memchr), %i1
 	add %i1, %lo(.L__profc_memchr), %i1
 	ldd [%i1+24], %i4
@@ -412,6 +539,17 @@ memchr:                                 ! @memchr
 	ba .LBB2_8
 	std %i2, [%i0+8]
 .LBB2_8:                                !   in Loop: Header=BB2_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-16]
@@ -427,6 +565,17 @@ memchr:                                 ! @memchr
 	ba .LBB2_10
 	nop
 .LBB2_10:
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_memchr), %i0
 	add %i0, %lo(.L__profc_memchr), %i0
 	ldd [%i0+32], %i4
@@ -442,6 +591,17 @@ memchr:                                 ! @memchr
 	ba .LBB2_12
 	st %i0, [%fp+-44]
 .LBB2_11:
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB2_12
 	st %i0, [%fp+-44]
@@ -485,6 +645,16 @@ memcmp:                                 ! @memcmp
 	ba .LBB3_2
 	nop
 .LBB3_2:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.3)]
 	sethi %hi(.L__profc_memcmp), %i0
 	add %i0, %lo(.L__profc_memcmp), %i0
 	ldd [%i0+16], %i4
@@ -523,6 +693,17 @@ memcmp:                                 ! @memcmp
 	nop
 .LBB3_5:                                !   in Loop: Header=BB3_1 Depth=1
 	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.3), %i1
+	add %i1, %lo(__llvm_gcov_ctr.3), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_memcmp), %i1
 	add %i1, %lo(.L__profc_memcmp), %i1
 	ldd [%i1+24], %i4
@@ -558,6 +739,17 @@ memcmp:                                 ! @memcmp
 	ba .LBB3_8
 	std %i2, [%i0+8]
 .LBB3_8:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -576,6 +768,17 @@ memcmp:                                 ! @memcmp
 	ba .LBB3_10
 	nop
 .LBB3_10:
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_memcmp), %i0
 	add %i0, %lo(.L__profc_memcmp), %i0
 	ldd [%i0+32], %i4
@@ -595,6 +798,17 @@ memcmp:                                 ! @memcmp
 	ba .LBB3_12
 	st %i0, [%fp+-48]
 .LBB3_11:
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB3_12
 	st %i0, [%fp+-48]
@@ -611,6 +825,16 @@ memcmp:                                 ! @memcmp
 memcpy:                                 ! @memcpy
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.4), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.4)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.4)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -658,6 +882,17 @@ memcpy:                                 ! @memcpy
 	ba .LBB4_3
 	stb %i1, [%i0]
 .LBB4_3:                                !   in Loop: Header=BB4_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	ba .LBB4_1
@@ -723,6 +958,16 @@ memrchr:                                ! @memrchr
 	ba .LBB5_3
 	nop
 .LBB5_3:
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.5)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.5)]
 	sethi %hi(.L__profc_memrchr), %i0
 	add %i0, %lo(.L__profc_memrchr), %i0
 	ldd [%i0+16], %i4
@@ -740,9 +985,30 @@ memrchr:                                ! @memrchr
 	ba .LBB5_6
 	st %i0, [%fp+-4]
 .LBB5_4:                                !   in Loop: Header=BB5_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB5_1
-	nop
+	std %i2, [%i0+8]
 .LBB5_5:
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB5_6
 	st %g0, [%fp+-4]
 .LBB5_6:
@@ -758,6 +1024,16 @@ memrchr:                                ! @memrchr
 memset:                                 ! @memset
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.6), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.6)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.6)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -798,6 +1074,17 @@ memset:                                 ! @memset
 	ba .LBB6_3
 	stb %i1, [%i0]
 .LBB6_3:                                !   in Loop: Header=BB6_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.6), %i0
+	add %i0, %lo(__llvm_gcov_ctr.6), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -818,6 +1105,16 @@ memset:                                 ! @memset
 stpcpy:                                 ! @stpcpy
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.7), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.7)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.7)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_stpcpy), %i0
@@ -855,6 +1152,17 @@ stpcpy:                                 ! @stpcpy
 	ba .LBB7_3
 	std %i2, [%i0+8]
 .LBB7_3:                                !   in Loop: Header=BB7_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-8]
@@ -875,6 +1183,16 @@ stpcpy:                                 ! @stpcpy
 strchrnul:                              ! @strchrnul
 ! %bb.0:
 	save %sp, -128, %sp
+	sethi %hi(__llvm_gcov_ctr.8), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.8)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.8)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_strchrnul), %i0
@@ -900,6 +1218,17 @@ strchrnul:                              ! @strchrnul
 	ba .LBB8_2
 	nop
 .LBB8_2:                                !   in Loop: Header=BB8_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.8), %i0
+	add %i0, %lo(__llvm_gcov_ctr.8), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strchrnul), %i0
 	add %i0, %lo(.L__profc_strchrnul), %i0
 	ldd [%i0+16], %i4
@@ -937,6 +1266,17 @@ strchrnul:                              ! @strchrnul
 	nop
 .LBB8_5:                                !   in Loop: Header=BB8_1 Depth=1
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.8), %i1
+	add %i1, %lo(__llvm_gcov_ctr.8), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_strchrnul), %i1
 	add %i1, %lo(.L__profc_strchrnul), %i1
 	ldd [%i1+24], %i4
@@ -972,6 +1312,17 @@ strchrnul:                              ! @strchrnul
 	ba .LBB8_8
 	std %i2, [%i0+8]
 .LBB8_8:                                !   in Loop: Header=BB8_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.8), %i0
+	add %i0, %lo(__llvm_gcov_ctr.8), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB8_1
@@ -1003,6 +1354,17 @@ strchr:                                 ! @strchr
 	ba .LBB9_2
 	std %i2, [%i0+%lo(.L__profc_strchr)]
 .LBB9_1:                                !   in Loop: Header=BB9_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	add %i0, %lo(__llvm_gcov_ctr.9), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strchr), %i0
 	add %i0, %lo(.L__profc_strchr), %i0
 	ldd [%i0+8], %i4
@@ -1025,6 +1387,16 @@ strchr:                                 ! @strchr
 	ba .LBB9_3
 	nop
 .LBB9_3:
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.9)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.9)]
 	sethi %hi(.L__profc_strchr), %i0
 	add %i0, %lo(.L__profc_strchr), %i0
 	ldd [%i0+16], %i4
@@ -1053,6 +1425,17 @@ strchr:                                 ! @strchr
 	ba .LBB9_6
 	nop
 .LBB9_6:
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	add %i0, %lo(__llvm_gcov_ctr.9), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB9_7
 	st %g0, [%fp+-4]
 .LBB9_7:
@@ -1068,6 +1451,16 @@ strchr:                                 ! @strchr
 strcmp:                                 ! @strcmp
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.10), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.10)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.10)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_strcmp), %i0
@@ -1093,6 +1486,17 @@ strcmp:                                 ! @strcmp
 	ba .LBB10_2
 	nop
 .LBB10_2:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strcmp), %i0
 	add %i0, %lo(.L__profc_strcmp), %i0
 	ldd [%i0+16], %i4
@@ -1127,6 +1531,17 @@ strcmp:                                 ! @strcmp
 	nop
 .LBB10_5:                               !   in Loop: Header=BB10_1 Depth=1
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.10), %i1
+	add %i1, %lo(__llvm_gcov_ctr.10), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_strcmp), %i1
 	add %i1, %lo(.L__profc_strcmp), %i1
 	ldd [%i1+24], %i4
@@ -1162,6 +1577,17 @@ strcmp:                                 ! @strcmp
 	ba .LBB10_8
 	std %i2, [%i0+8]
 .LBB10_8:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-4]
@@ -1186,6 +1612,16 @@ strcmp:                                 ! @strcmp
 strlen:                                 ! @strlen
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.11), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.11)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.11)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_strlen), %i0
 	ldd [%i0+%lo(.L__profc_strlen)], %i4
@@ -1222,6 +1658,17 @@ strlen:                                 ! @strlen
 	ba .LBB11_3
 	std %i2, [%i0+8]
 .LBB11_3:                               !   in Loop: Header=BB11_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB11_1
@@ -1266,6 +1713,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_1
 	nop
 .LBB12_1:
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i0
 	ldd [%i0+8], %i4
@@ -1280,8 +1738,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_16
 	st %g0, [%fp+-4]
 .LBB12_2:
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.12)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB12_3
-	nop
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.12)]
 .LBB12_3:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-20], %i0
 	ldub [%i0], %i1
@@ -1292,6 +1759,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_4
 	nop
 .LBB12_4:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i0
 	ldd [%i0+56], %i4
@@ -1312,6 +1790,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_5
 	nop
 .LBB12_5:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i0
 	ldd [%i0+64], %i4
@@ -1344,6 +1833,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_7
 	nop
 .LBB12_7:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i0
 	ldd [%i0+48], %i4
@@ -1395,6 +1895,17 @@ strncmp:                                ! @strncmp
 	nop
 .LBB12_11:                              !   in Loop: Header=BB12_3 Depth=1
 	ld [%fp+-48], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.12), %i1
+	add %i1, %lo(__llvm_gcov_ctr.12), %i1
+	ldd [%i1+40], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+40]
 	sethi %hi(.L__profc_strncmp), %i1
 	add %i1, %lo(.L__profc_strncmp), %i1
 	ldd [%i1+32], %i4
@@ -1430,6 +1941,17 @@ strncmp:                                ! @strncmp
 	ba .LBB12_14
 	std %i2, [%i0+16]
 .LBB12_14:                              !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-20], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -1461,6 +1983,16 @@ strncmp:                                ! @strncmp
 swab:                                   ! @swab
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.13), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.13)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.13)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -1514,6 +2046,17 @@ swab:                                   ! @swab
 	ba .LBB13_3
 	st %i0, [%fp+-16]
 .LBB13_3:                               !   in Loop: Header=BB13_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.13), %i0
+	add %i0, %lo(__llvm_gcov_ctr.13), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -2, %i0
 	ba .LBB13_1
@@ -1530,6 +2073,16 @@ swab:                                   ! @swab
 isalpha:                                ! @isalpha
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.14), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.14)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.14)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isalpha), %i0
 	ldd [%i0+%lo(.L__profc_isalpha)], %i4
@@ -1566,6 +2119,16 @@ isalpha:                                ! @isalpha
 isascii:                                ! @isascii
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.15), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.15)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.15)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isascii), %i0
 	ldd [%i0+%lo(.L__profc_isascii)], %i4
@@ -1601,6 +2164,16 @@ isascii:                                ! @isascii
 isblank:                                ! @isblank
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.16), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.16)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.16)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isblank), %i0
 	ldd [%i0+%lo(.L__profc_isblank)], %i4
@@ -1620,6 +2193,17 @@ isblank:                                ! @isblank
 	ba .LBB16_1
 	nop
 .LBB16_1:
+	sethi %hi(__llvm_gcov_ctr.16), %i0
+	add %i0, %lo(__llvm_gcov_ctr.16), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_isblank), %i0
 	add %i0, %lo(.L__profc_isblank), %i0
 	ldd [%i0+8], %i4
@@ -1653,6 +2237,17 @@ isblank:                                ! @isblank
 	nop
 .LBB16_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.16), %i1
+	add %i1, %lo(__llvm_gcov_ctr.16), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_isblank), %i1
 	add %i1, %lo(.L__profc_isblank), %i1
 	ldd [%i1+16], %i4
@@ -1680,6 +2275,16 @@ isblank:                                ! @isblank
 iscntrl:                                ! @iscntrl
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.17), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.17)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.17)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_iscntrl), %i0
 	ldd [%i0+%lo(.L__profc_iscntrl)], %i4
@@ -1699,6 +2304,17 @@ iscntrl:                                ! @iscntrl
 	ba .LBB17_1
 	nop
 .LBB17_1:
+	sethi %hi(__llvm_gcov_ctr.17), %i0
+	add %i0, %lo(__llvm_gcov_ctr.17), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_iscntrl), %i0
 	add %i0, %lo(.L__profc_iscntrl), %i0
 	ldd [%i0+8], %i4
@@ -1732,6 +2348,17 @@ iscntrl:                                ! @iscntrl
 	nop
 .LBB17_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.17), %i1
+	add %i1, %lo(__llvm_gcov_ctr.17), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_iscntrl), %i1
 	add %i1, %lo(.L__profc_iscntrl), %i1
 	ldd [%i1+16], %i4
@@ -1759,6 +2386,16 @@ iscntrl:                                ! @iscntrl
 isdigit:                                ! @isdigit
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.18), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.18)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.18)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isdigit), %i0
 	ldd [%i0+%lo(.L__profc_isdigit)], %i4
@@ -1794,6 +2431,16 @@ isdigit:                                ! @isdigit
 isgraph:                                ! @isgraph
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.19), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.19)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.19)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isgraph), %i0
 	ldd [%i0+%lo(.L__profc_isgraph)], %i4
@@ -1829,6 +2476,16 @@ isgraph:                                ! @isgraph
 islower:                                ! @islower
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.20), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.20)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.20)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_islower), %i0
 	ldd [%i0+%lo(.L__profc_islower)], %i4
@@ -1864,6 +2521,16 @@ islower:                                ! @islower
 isprint:                                ! @isprint
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.21), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.21)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.21)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isprint), %i0
 	ldd [%i0+%lo(.L__profc_isprint)], %i4
@@ -1899,6 +2566,16 @@ isprint:                                ! @isprint
 isspace:                                ! @isspace
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.22), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.22)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.22)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isspace), %i0
 	ldd [%i0+%lo(.L__profc_isspace)], %i4
@@ -1918,6 +2595,17 @@ isspace:                                ! @isspace
 	ba .LBB22_1
 	nop
 .LBB22_1:
+	sethi %hi(__llvm_gcov_ctr.22), %i0
+	add %i0, %lo(__llvm_gcov_ctr.22), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_isspace), %i0
 	add %i0, %lo(.L__profc_isspace), %i0
 	ldd [%i0+8], %i4
@@ -1952,6 +2640,17 @@ isspace:                                ! @isspace
 	nop
 .LBB22_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.22), %i1
+	add %i1, %lo(__llvm_gcov_ctr.22), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_isspace), %i1
 	add %i1, %lo(.L__profc_isspace), %i1
 	ldd [%i1+16], %i4
@@ -1979,6 +2678,16 @@ isspace:                                ! @isspace
 isupper:                                ! @isupper
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.23), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.23)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.23)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_isupper), %i0
 	ldd [%i0+%lo(.L__profc_isupper)], %i4
@@ -2014,6 +2723,16 @@ isupper:                                ! @isupper
 iswcntrl:                               ! @iswcntrl
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.24), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.24)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.24)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	ldd [%i0+%lo(.L__profc_iswcntrl)], %i4
@@ -2033,6 +2752,17 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB24_1
 	nop
 .LBB24_1:
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i0
 	ldd [%i0+40], %i4
@@ -2053,6 +2783,17 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB24_2
 	nop
 .LBB24_2:
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i0
 	ldd [%i0+48], %i4
@@ -2088,6 +2829,17 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB24_4
 	nop
 .LBB24_4:
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i0
 	ldd [%i0+32], %i4
@@ -2137,6 +2889,17 @@ iswcntrl:                               ! @iswcntrl
 	nop
 .LBB24_8:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.24), %i1
+	add %i1, %lo(__llvm_gcov_ctr.24), %i1
+	ldd [%i1+32], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+32]
 	sethi %hi(.L__profc_iswcntrl), %i1
 	add %i1, %lo(.L__profc_iswcntrl), %i1
 	ldd [%i1+16], %i4
@@ -2164,6 +2927,16 @@ iswcntrl:                               ! @iswcntrl
 iswdigit:                               ! @iswdigit
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.25), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.25)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.25)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_iswdigit), %i0
 	ldd [%i0+%lo(.L__profc_iswdigit)], %i4
@@ -2217,6 +2990,16 @@ iswprint:                               ! @iswprint
 	ba .LBB26_1
 	nop
 .LBB26_1:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.26)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.26)]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+8], %i4
@@ -2254,6 +3037,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_5
 	nop
 .LBB26_5:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+40], %i4
@@ -2277,6 +3071,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_6
 	nop
 .LBB26_6:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+48], %i4
@@ -2325,6 +3130,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_10
 	std %i2, [%i0+32]
 .LBB26_9:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+16], %i4
@@ -2352,6 +3168,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_11
 	nop
 .LBB26_11:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+64], %i4
@@ -2386,6 +3213,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_14
 	std %i2, [%i0+72]
 .LBB26_13:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i0
 	ldd [%i0+56], %i4
@@ -2400,6 +3238,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_15
 	st %g0, [%fp+-4]
 .LBB26_14:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	mov	1, %i0
 	ba .LBB26_15
 	st %i0, [%fp+-4]
@@ -2416,6 +3265,16 @@ iswprint:                               ! @iswprint
 iswxdigit:                              ! @iswxdigit
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.27), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.27)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.27)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_iswxdigit), %i0
 	ldd [%i0+%lo(.L__profc_iswxdigit)], %i4
@@ -2436,6 +3295,17 @@ iswxdigit:                              ! @iswxdigit
 	ba .LBB27_1
 	nop
 .LBB27_1:
+	sethi %hi(__llvm_gcov_ctr.27), %i0
+	add %i0, %lo(__llvm_gcov_ctr.27), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_iswxdigit), %i0
 	add %i0, %lo(.L__profc_iswxdigit), %i0
 	ldd [%i0+8], %i4
@@ -2471,6 +3341,17 @@ iswxdigit:                              ! @iswxdigit
 	nop
 .LBB27_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.27), %i1
+	add %i1, %lo(__llvm_gcov_ctr.27), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_iswxdigit), %i1
 	add %i1, %lo(.L__profc_iswxdigit), %i1
 	ldd [%i1+16], %i4
@@ -2498,6 +3379,16 @@ iswxdigit:                              ! @iswxdigit
 toascii:                                ! @toascii
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.28), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.28)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.28)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_toascii), %i0
 	ldd [%i0+%lo(.L__profc_toascii)], %i4
@@ -2596,6 +3487,16 @@ fdim:                                   ! @fdim
 	ba .LBB29_7
 	nop
 .LBB29_7:
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.29)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.29)]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i0
 	ldd [%i0+8], %i4
@@ -2661,6 +3562,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_15
 	nop
 .LBB29_15:
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i0
 	ldd [%i0+16], %i4
@@ -2689,6 +3601,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_17
 	nop
 .LBB29_17:
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i0
 	ldd [%i0+24], %i4
@@ -2713,6 +3636,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_19
 	st %i0, [%fp+-108]
 .LBB29_18:
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	mov	%g0, %i0
 	mov	%i0, %i1
 	st %i1, [%fp+-112]                      ! 4-byte Folded Spill
@@ -2765,6 +3699,16 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_1
 	nop
 .LBB30_1:
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.30)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.30)]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i0
 	ldd [%i0+8], %i4
@@ -2791,6 +3735,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_3
 	nop
 .LBB30_3:
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	add %i0, %lo(__llvm_gcov_ctr.30), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i0
 	ldd [%i0+16], %i4
@@ -2815,6 +3770,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_5
 	nop
 .LBB30_5:
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	add %i0, %lo(__llvm_gcov_ctr.30), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i0
 	ldd [%i0+24], %i4
@@ -2833,6 +3799,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_7
 	st %i0, [%fp+-16]
 .LBB30_6:
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	add %i0, %lo(__llvm_gcov_ctr.30), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	mov	%g0, %i0
 	ba .LBB30_7
 	st %i0, [%fp+-16]
@@ -2927,6 +3904,16 @@ fmax:                                   ! @fmax
 	ba .LBB31_7
 	nop
 .LBB31_7:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.31)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.31)]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i0
 	ldd [%i0+8], %i4
@@ -2992,6 +3979,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_15
 	nop
 .LBB31_15:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i0
 	ldd [%i0+16], %i4
@@ -3041,6 +4039,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_18
 	nop
 .LBB31_18:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i0
 	ldd [%i0+32], %i4
@@ -3059,6 +4068,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_20
 	st %i0, [%fp+-108]
 .LBB31_19:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3087,6 +4107,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_22
 	nop
 .LBB31_22:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i0
 	ldd [%i0+40], %i4
@@ -3105,6 +4136,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_24
 	st %i0, [%fp+-116]
 .LBB31_23:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3158,6 +4200,16 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_1
 	nop
 .LBB32_1:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.32)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.32)]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i0
 	ldd [%i0+8], %i4
@@ -3184,6 +4236,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_3
 	nop
 .LBB32_3:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i0
 	ldd [%i0+16], %i4
@@ -3227,6 +4290,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_6
 	nop
 .LBB32_6:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i0
 	ldd [%i0+32], %i4
@@ -3242,6 +4316,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_8
 	st %i0, [%fp+-16]
 .LBB32_7:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	ba .LBB32_8
 	st %i0, [%fp+-16]
@@ -3259,6 +4344,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_10
 	nop
 .LBB32_10:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i0
 	ldd [%i0+40], %i4
@@ -3274,6 +4370,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_12
 	st %i0, [%fp+-20]
 .LBB32_11:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	ba .LBB32_12
 	st %i0, [%fp+-20]
@@ -3368,6 +4475,16 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_7
 	nop
 .LBB33_7:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.33)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.33)]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i0
 	ldd [%i0+8], %i4
@@ -3433,6 +4550,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_15
 	nop
 .LBB33_15:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i0
 	ldd [%i0+16], %i4
@@ -3482,6 +4610,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_18
 	nop
 .LBB33_18:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i0
 	ldd [%i0+32], %i4
@@ -3500,6 +4639,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_20
 	st %i0, [%fp+-108]
 .LBB33_19:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3528,6 +4678,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_22
 	nop
 .LBB33_22:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i0
 	ldd [%i0+40], %i4
@@ -3546,6 +4707,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_24
 	st %i0, [%fp+-116]
 .LBB33_23:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3648,6 +4820,16 @@ fmin:                                   ! @fmin
 	ba .LBB34_7
 	nop
 .LBB34_7:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.34)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.34)]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i0
 	ldd [%i0+8], %i4
@@ -3713,6 +4895,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_15
 	nop
 .LBB34_15:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i0
 	ldd [%i0+16], %i4
@@ -3762,6 +4955,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_18
 	nop
 .LBB34_18:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i0
 	ldd [%i0+32], %i4
@@ -3780,6 +4984,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_20
 	st %i0, [%fp+-108]
 .LBB34_19:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3808,6 +5023,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_22
 	nop
 .LBB34_22:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i0
 	ldd [%i0+40], %i4
@@ -3826,6 +5052,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_24
 	st %i0, [%fp+-116]
 .LBB34_23:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3879,6 +5116,16 @@ fminf:                                  ! @fminf
 	ba .LBB35_1
 	nop
 .LBB35_1:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.35)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.35)]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i0
 	ldd [%i0+8], %i4
@@ -3905,6 +5152,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_3
 	nop
 .LBB35_3:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i0
 	ldd [%i0+16], %i4
@@ -3948,6 +5206,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_6
 	nop
 .LBB35_6:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i0
 	ldd [%i0+32], %i4
@@ -3963,6 +5232,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_8
 	st %i0, [%fp+-16]
 .LBB35_7:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-12], %i0
 	ba .LBB35_8
 	st %i0, [%fp+-16]
@@ -3980,6 +5260,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_10
 	nop
 .LBB35_10:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i0
 	ldd [%i0+40], %i4
@@ -3995,6 +5286,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_12
 	st %i0, [%fp+-20]
 .LBB35_11:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-12], %i0
 	ba .LBB35_12
 	st %i0, [%fp+-20]
@@ -4089,6 +5391,16 @@ fminl:                                  ! @fminl
 	ba .LBB36_7
 	nop
 .LBB36_7:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.36)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.36)]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i0
 	ldd [%i0+8], %i4
@@ -4154,6 +5466,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_15
 	nop
 .LBB36_15:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i0
 	ldd [%i0+16], %i4
@@ -4203,6 +5526,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_18
 	nop
 .LBB36_18:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i0
 	ldd [%i0+32], %i4
@@ -4221,6 +5555,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_20
 	st %i0, [%fp+-108]
 .LBB36_19:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -4249,6 +5594,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_22
 	nop
 .LBB36_22:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i0
 	ldd [%i0+40], %i4
@@ -4267,6 +5623,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_24
 	st %i0, [%fp+-116]
 .LBB36_23:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -4295,6 +5662,16 @@ fminl:                                  ! @fminl
 l64a:                                   ! @l64a
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.37), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.37)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.37)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_l64a), %i0
 	ldd [%i0+%lo(.L__profc_l64a)], %i4
@@ -4340,6 +5717,17 @@ l64a:                                   ! @l64a
 	ba .LBB37_3
 	stb %i1, [%i0]
 .LBB37_3:                               !   in Loop: Header=BB37_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-8]
@@ -4363,6 +5751,16 @@ l64a:                                   ! @l64a
 srand:                                  ! @srand
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.38), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.38)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.38)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_srand), %i0
 	ldd [%i0+%lo(.L__profc_srand)], %i4
@@ -4393,6 +5791,16 @@ srand:                                  ! @srand
 rand:                                   ! @rand
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.39), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.39)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.39)]
 	sethi %hi(.L__profc_rand), %i0
 	ldd [%i0+%lo(.L__profc_rand)], %i4
 	mov	%i4, %i2
@@ -4460,6 +5868,17 @@ insque:                                 ! @insque
 	ba .LBB40_1
 	nop
 .LBB40_1:
+	sethi %hi(__llvm_gcov_ctr.40), %i0
+	add %i0, %lo(__llvm_gcov_ctr.40), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_insque), %i0
 	add %i0, %lo(.L__profc_insque), %i0
 	ldd [%i0+8], %i4
@@ -4477,6 +5896,16 @@ insque:                                 ! @insque
 	ba .LBB40_4
 	st %g0, [%i0]
 .LBB40_2:
+	sethi %hi(__llvm_gcov_ctr.40), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.40)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.40)]
 	ld [%fp+-16], %i0
 	ld [%i0], %i1
 	ld [%fp+-12], %i0
@@ -4495,6 +5924,17 @@ insque:                                 ! @insque
 	ba .LBB40_3
 	nop
 .LBB40_3:
+	sethi %hi(__llvm_gcov_ctr.40), %i0
+	add %i0, %lo(__llvm_gcov_ctr.40), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_insque), %i0
 	add %i0, %lo(.L__profc_insque), %i0
 	ldd [%i0+16], %i4
@@ -4522,6 +5962,16 @@ insque:                                 ! @insque
 remque:                                 ! @remque
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.41), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.41)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.41)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_remque), %i0
 	ldd [%i0+%lo(.L__profc_remque)], %i4
@@ -4543,6 +5993,17 @@ remque:                                 ! @remque
 	ba .LBB41_1
 	nop
 .LBB41_1:
+	sethi %hi(__llvm_gcov_ctr.41), %i0
+	add %i0, %lo(__llvm_gcov_ctr.41), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_remque), %i0
 	add %i0, %lo(.L__profc_remque), %i0
 	ldd [%i0+8], %i4
@@ -4568,6 +6029,17 @@ remque:                                 ! @remque
 	ba .LBB41_3
 	nop
 .LBB41_3:
+	sethi %hi(__llvm_gcov_ctr.41), %i0
+	add %i0, %lo(__llvm_gcov_ctr.41), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_remque), %i0
 	add %i0, %lo(.L__profc_remque), %i0
 	ldd [%i0+16], %i4
@@ -4655,6 +6127,16 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_3:
 	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.42)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i1
+	addcc %i3, 1, %i3
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i3, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.42)]
 	sethi %hi(.L__profc_lsearch), %i0
 	add %i0, %lo(.L__profc_lsearch), %i0
 	ldd [%i0+16], %i4
@@ -4676,12 +6158,34 @@ lsearch:                                ! @lsearch
 	ba .LBB42_5
 	nop
 .LBB42_5:                               !   in Loop: Header=BB42_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-36], %i0
 	add %i0, 1, %i0
 	ba .LBB42_1
 	st %i0, [%fp+-36]
 .LBB42_6:
 	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i1
+	addcc %i3, 1, %i3
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i3, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+16]
 	ld [%fp+-32], %i0
 	add %i0, 1, %i1
 	ld [%fp+-16], %i0
@@ -4768,6 +6272,16 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_3:
 	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.43)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i1
+	addcc %i3, 1, %i3
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i3, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.43)]
 	sethi %hi(.L__profc_lfind), %i0
 	add %i0, %lo(.L__profc_lfind), %i0
 	ldd [%i0+16], %i4
@@ -4789,11 +6303,33 @@ lfind:                                  ! @lfind
 	ba .LBB43_5
 	nop
 .LBB43_5:                               !   in Loop: Header=BB43_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-36], %i0
 	add %i0, 1, %i0
 	ba .LBB43_1
 	st %i0, [%fp+-36]
 .LBB43_6:
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB43_7
 	st %g0, [%fp+-4]
 .LBB43_7:
@@ -4827,6 +6363,16 @@ abs:                                    ! @abs
 	ba .LBB44_1
 	nop
 .LBB44_1:
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.44)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.44)]
 	sethi %hi(.L__profc_abs), %i0
 	add %i0, %lo(.L__profc_abs), %i0
 	ldd [%i0+8], %i4
@@ -4842,6 +6388,17 @@ abs:                                    ! @abs
 	ba .LBB44_3
 	st %i0, [%fp+-8]
 .LBB44_2:
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4884,6 +6441,16 @@ atoi:                                   ! @atoi
 	ba .LBB45_2
 	nop
 .LBB45_2:                               !   in Loop: Header=BB45_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.45)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.45)]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i0
 	ldd [%i0+8], %i4
@@ -4915,6 +6482,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_5
 	nop
 .LBB45_5:
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i0
 	ldd [%i0+24], %i4
@@ -4930,6 +6508,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_7
 	st %i0, [%fp+-12]
 .LBB45_6:
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i0
 	ldd [%i0+32], %i4
@@ -4970,6 +6559,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_10
 	nop
 .LBB45_10:                              !   in Loop: Header=BB45_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i0
 	ldd [%i0+40], %i4
@@ -4999,6 +6599,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_12
 	nop
 .LBB45_12:
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i0
 	ldd [%i0+48], %i4
@@ -5014,6 +6625,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_14
 	st %i0, [%fp+-20]
 .LBB45_13:
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -5056,6 +6678,16 @@ atol:                                   ! @atol
 	ba .LBB46_2
 	nop
 .LBB46_2:                               !   in Loop: Header=BB46_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.46)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.46)]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i0
 	ldd [%i0+8], %i4
@@ -5087,6 +6719,17 @@ atol:                                   ! @atol
 	ba .LBB46_5
 	nop
 .LBB46_5:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i0
 	ldd [%i0+24], %i4
@@ -5102,6 +6745,17 @@ atol:                                   ! @atol
 	ba .LBB46_7
 	st %i0, [%fp+-12]
 .LBB46_6:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i0
 	ldd [%i0+32], %i4
@@ -5142,6 +6796,17 @@ atol:                                   ! @atol
 	ba .LBB46_10
 	nop
 .LBB46_10:                              !   in Loop: Header=BB46_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i0
 	ldd [%i0+40], %i4
@@ -5171,6 +6836,17 @@ atol:                                   ! @atol
 	ba .LBB46_12
 	nop
 .LBB46_12:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i0
 	ldd [%i0+48], %i4
@@ -5186,6 +6862,17 @@ atol:                                   ! @atol
 	ba .LBB46_14
 	st %i0, [%fp+-20]
 .LBB46_13:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -5233,6 +6920,16 @@ atoll:                                  ! @atoll
 	ba .LBB47_2
 	nop
 .LBB47_2:                               !   in Loop: Header=BB47_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.47)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.47)]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i0
 	ldd [%i0+8], %i4
@@ -5264,6 +6961,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_5
 	nop
 .LBB47_5:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i0
 	ldd [%i0+24], %i4
@@ -5279,6 +6987,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_7
 	st %i0, [%fp+-20]
 .LBB47_6:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i0
 	ldd [%i0+32], %i4
@@ -5319,6 +7038,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_10
 	nop
 .LBB47_10:                              !   in Loop: Header=BB47_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i0
 	ldd [%i0+40], %i4
@@ -5358,6 +7088,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_12
 	nop
 .LBB47_12:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i0
 	ldd [%i0+48], %i4
@@ -5376,6 +7117,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_14
 	st %i0, [%fp+-28]
 .LBB47_13:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i2, %i1
 	mov	%i3, %i2
@@ -5453,6 +7205,17 @@ bsearch:                                ! @bsearch
 	ba .LBB48_3
 	nop
 .LBB48_3:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_bsearch), %i0
 	add %i0, %lo(.L__profc_bsearch), %i0
 	ldd [%i0+16], %i4
@@ -5498,16 +7261,47 @@ bsearch:                                ! @bsearch
 	ba .LBB48_7
 	st %i0, [%fp+-16]
 .LBB48_6:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-28], %i0
 	ba .LBB48_10
 	st %i0, [%fp+-4]
 .LBB48_7:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB48_8
-	nop
+	std %i2, [%i0+24]
 .LBB48_8:                               !   in Loop: Header=BB48_1 Depth=1
 	ba .LBB48_1
 	nop
 .LBB48_9:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.48)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.48)]
 	ba .LBB48_10
 	st %g0, [%fp+-4]
 .LBB48_10:
@@ -5583,6 +7377,16 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_3
 	nop
 .LBB49_3:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.49)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.49)]
 	sethi %hi(.L__profc_bsearch_r), %i0
 	add %i0, %lo(.L__profc_bsearch_r), %i0
 	ldd [%i0+16], %i4
@@ -5605,6 +7409,17 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_5
 	nop
 .LBB49_5:                               !   in Loop: Header=BB49_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_bsearch_r), %i0
 	add %i0, %lo(.L__profc_bsearch_r), %i0
 	ldd [%i0+24], %i4
@@ -5628,11 +7443,33 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_7
 	nop
 .LBB49_7:                               !   in Loop: Header=BB49_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-36], %i0
 	sra %i0, 1, %i0
 	ba .LBB49_1
 	st %i0, [%fp+-36]
 .LBB49_8:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ba .LBB49_9
 	st %g0, [%fp+-4]
 .LBB49_9:
@@ -5652,6 +7489,16 @@ div:                                    ! @div
 	mov	%i0, %i3
 	ld [%fp+64], %i1
 	mov	%i1, %i0
+	sethi %hi(__llvm_gcov_ctr.50), %i4
+	ldd [%i4+%lo(__llvm_gcov_ctr.50)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i5
+	addcc %g2, 1, %g4
+	addxcc %i5, 0, %i5
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i5, %g3
+	std %g2, [%i4+%lo(__llvm_gcov_ctr.50)]
 	st %i3, [%fp+-4]
 	st %i2, [%fp+-8]
 	sethi %hi(.L__profc_div), %i2
@@ -5750,6 +7597,16 @@ imaxabs:                                ! @imaxabs
 	ba .LBB51_7
 	nop
 .LBB51_7:
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.51)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.51)]
 	sethi %hi(.L__profc_imaxabs), %i0
 	add %i0, %lo(.L__profc_imaxabs), %i0
 	ldd [%i0+8], %i4
@@ -5768,6 +7625,17 @@ imaxabs:                                ! @imaxabs
 	ba .LBB51_9
 	st %i0, [%fp+-44]
 .LBB51_8:
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i2
 	mov	%i2, %i1
 	mov	%i3, %i2
@@ -5801,6 +7669,16 @@ imaxdiv:                                ! @imaxdiv
                                         ! kill: def $i2 killed $i5
                                         ! kill: def $i2 killed $g2
                                         ! kill: def $i2 killed $g3
+	sethi %hi(__llvm_gcov_ctr.52), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.52)], %l0
+	mov	%l0, %g4
+	mov	%l1, %i3
+	addcc %g4, 1, %g4
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $l0_l1
+	mov	%g4, %l0
+	mov	%i3, %l1
+	std %l0, [%i2+%lo(__llvm_gcov_ctr.52)]
                                         ! implicit-def: $i2_i3
 	mov	%g3, %i2
 	mov	%g2, %i3
@@ -5870,6 +7748,16 @@ labs:                                   ! @labs
 	ba .LBB53_1
 	nop
 .LBB53_1:
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.53)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.53)]
 	sethi %hi(.L__profc_labs), %i0
 	add %i0, %lo(.L__profc_labs), %i0
 	ldd [%i0+8], %i4
@@ -5885,6 +7773,17 @@ labs:                                   ! @labs
 	ba .LBB53_3
 	st %i0, [%fp+-8]
 .LBB53_2:
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	add %i0, %lo(__llvm_gcov_ctr.53), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -5907,6 +7806,16 @@ ldiv:                                   ! @ldiv
 	mov	%i0, %i3
 	ld [%fp+64], %i1
 	mov	%i1, %i0
+	sethi %hi(__llvm_gcov_ctr.54), %i4
+	ldd [%i4+%lo(__llvm_gcov_ctr.54)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i5
+	addcc %g2, 1, %g4
+	addxcc %i5, 0, %i5
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i5, %g3
+	std %g2, [%i4+%lo(__llvm_gcov_ctr.54)]
 	st %i3, [%fp+-4]
 	st %i2, [%fp+-8]
 	sethi %hi(.L__profc_ldiv), %i2
@@ -6005,6 +7914,16 @@ llabs:                                  ! @llabs
 	ba .LBB55_7
 	nop
 .LBB55_7:
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.55)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.55)]
 	sethi %hi(.L__profc_llabs), %i0
 	add %i0, %lo(.L__profc_llabs), %i0
 	ldd [%i0+8], %i4
@@ -6023,6 +7942,17 @@ llabs:                                  ! @llabs
 	ba .LBB55_9
 	st %i0, [%fp+-44]
 .LBB55_8:
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	add %i0, %lo(__llvm_gcov_ctr.55), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i2
 	mov	%i2, %i1
 	mov	%i3, %i2
@@ -6056,6 +7986,16 @@ lldiv:                                  ! @lldiv
                                         ! kill: def $i2 killed $i5
                                         ! kill: def $i2 killed $g2
                                         ! kill: def $i2 killed $g3
+	sethi %hi(__llvm_gcov_ctr.56), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.56)], %l0
+	mov	%l0, %g4
+	mov	%l1, %i3
+	addcc %g4, 1, %g4
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $l0_l1
+	mov	%g4, %l0
+	mov	%i3, %l1
+	std %l0, [%i2+%lo(__llvm_gcov_ctr.56)]
                                         ! implicit-def: $i2_i3
 	mov	%g3, %i2
 	mov	%g2, %i3
@@ -6130,6 +8070,16 @@ wcschr:                                 ! @wcschr
 	ba .LBB57_2
 	nop
 .LBB57_2:                               !   in Loop: Header=BB57_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.57)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.57)]
 	sethi %hi(.L__profc_wcschr), %i0
 	add %i0, %lo(.L__profc_wcschr), %i0
 	ldd [%i0+16], %i4
@@ -6167,6 +8117,17 @@ wcschr:                                 ! @wcschr
 	nop
 .LBB57_5:                               !   in Loop: Header=BB57_1 Depth=1
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.57), %i1
+	add %i1, %lo(__llvm_gcov_ctr.57), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_wcschr), %i1
 	add %i1, %lo(.L__profc_wcschr), %i1
 	ldd [%i1+24], %i4
@@ -6202,6 +8163,17 @@ wcschr:                                 ! @wcschr
 	ba .LBB57_8
 	std %i2, [%i0+8]
 .LBB57_8:                               !   in Loop: Header=BB57_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
 	ba .LBB57_1
@@ -6215,6 +8187,17 @@ wcschr:                                 ! @wcschr
 	ba .LBB57_10
 	nop
 .LBB57_10:
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_wcschr), %i0
 	add %i0, %lo(.L__profc_wcschr), %i0
 	ldd [%i0+32], %i4
@@ -6230,6 +8213,17 @@ wcschr:                                 ! @wcschr
 	ba .LBB57_12
 	st %i0, [%fp+-36]
 .LBB57_11:
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB57_12
 	st %i0, [%fp+-36]
@@ -6271,6 +8265,16 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB58_2
 	nop
 .LBB58_2:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.58)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.58)]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i0
 	ldd [%i0+32], %i4
@@ -6291,6 +8295,17 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB58_3
 	nop
 .LBB58_3:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i0
 	ldd [%i0+40], %i4
@@ -6338,6 +8353,17 @@ wcscmp:                                 ! @wcscmp
 	nop
 .LBB58_7:                               !   in Loop: Header=BB58_1 Depth=1
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.58), %i1
+	add %i1, %lo(__llvm_gcov_ctr.58), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_wcscmp), %i1
 	add %i1, %lo(.L__profc_wcscmp), %i1
 	ldd [%i1+24], %i4
@@ -6373,6 +8399,17 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB58_10
 	std %i2, [%i0+8]
 .LBB58_10:                              !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
 	st %i0, [%fp+-4]
@@ -6391,6 +8428,17 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB58_12
 	nop
 .LBB58_12:
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i0
 	ldd [%i0+48], %i4
@@ -6406,6 +8454,17 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB58_16
 	st %i0, [%fp+-32]
 .LBB58_13:
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
@@ -6436,6 +8495,16 @@ wcscmp:                                 ! @wcscmp
 wcscpy:                                 ! @wcscpy
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.59), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.59)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.59)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_wcscpy), %i0
@@ -6466,6 +8535,17 @@ wcscpy:                                 ! @wcscpy
 	ba .LBB59_2
 	nop
 .LBB59_2:                               !   in Loop: Header=BB59_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wcscpy), %i0
 	add %i0, %lo(.L__profc_wcscpy), %i0
 	ldd [%i0+8], %i4
@@ -6491,6 +8571,16 @@ wcscpy:                                 ! @wcscpy
 wcslen:                                 ! @wcslen
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.60), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.60)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.60)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_wcslen), %i0
 	ldd [%i0+%lo(.L__profc_wcslen)], %i4
@@ -6527,6 +8617,17 @@ wcslen:                                 ! @wcslen
 	ba .LBB60_3
 	std %i2, [%i0+8]
 .LBB60_3:                               !   in Loop: Header=BB60_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
 	ba .LBB60_1
@@ -6570,6 +8671,16 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_2
 	nop
 .LBB61_2:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.61)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.61)]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i0
 	ldd [%i0+48], %i4
@@ -6592,6 +8703,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_3
 	nop
 .LBB61_3:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i0
 	ldd [%i0+56], %i4
@@ -6625,6 +8747,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_5
 	nop
 .LBB61_5:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i0
 	ldd [%i0+40], %i4
@@ -6672,6 +8805,17 @@ wcsncmp:                                ! @wcsncmp
 	nop
 .LBB61_9:                               !   in Loop: Header=BB61_1 Depth=1
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.61), %i1
+	add %i1, %lo(__llvm_gcov_ctr.61), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
 	sethi %hi(.L__profc_wcsncmp), %i1
 	add %i1, %lo(.L__profc_wcsncmp), %i1
 	ldd [%i1+24], %i4
@@ -6707,6 +8851,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_12
 	std %i2, [%i0+8]
 .LBB61_12:                              !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -6746,6 +8901,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_15
 	nop
 .LBB61_15:
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i0
 	ldd [%i0+72], %i4
@@ -6761,6 +8927,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_19
 	st %i0, [%fp+-36]
 .LBB61_16:
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
@@ -6783,6 +8960,17 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB61_21
 	st %i0, [%fp+-48]
 .LBB61_20:
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	mov	%g0, %i0
 	ba .LBB61_21
 	st %i0, [%fp+-48]
@@ -6822,6 +9010,16 @@ wmemchr:                                ! @wmemchr
 	ba .LBB62_2
 	nop
 .LBB62_2:                               !   in Loop: Header=BB62_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.62)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.62)]
 	sethi %hi(.L__profc_wmemchr), %i0
 	add %i0, %lo(.L__profc_wmemchr), %i0
 	ldd [%i0+16], %i4
@@ -6859,6 +9057,17 @@ wmemchr:                                ! @wmemchr
 	nop
 .LBB62_5:                               !   in Loop: Header=BB62_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.62), %i1
+	add %i1, %lo(__llvm_gcov_ctr.62), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_wmemchr), %i1
 	add %i1, %lo(.L__profc_wmemchr), %i1
 	ldd [%i1+24], %i4
@@ -6894,6 +9103,17 @@ wmemchr:                                ! @wmemchr
 	ba .LBB62_8
 	std %i2, [%i0+8]
 .LBB62_8:                               !   in Loop: Header=BB62_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -6909,6 +9129,17 @@ wmemchr:                                ! @wmemchr
 	ba .LBB62_10
 	nop
 .LBB62_10:
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_wmemchr), %i0
 	add %i0, %lo(.L__profc_wmemchr), %i0
 	ldd [%i0+32], %i4
@@ -6924,6 +9155,17 @@ wmemchr:                                ! @wmemchr
 	ba .LBB62_12
 	st %i0, [%fp+-40]
 .LBB62_11:
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB62_12
 	st %i0, [%fp+-40]
@@ -6963,6 +9205,16 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB63_2
 	nop
 .LBB63_2:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.63)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.63)]
 	sethi %hi(.L__profc_wmemcmp), %i0
 	add %i0, %lo(.L__profc_wmemcmp), %i0
 	ldd [%i0+16], %i4
@@ -7001,6 +9253,17 @@ wmemcmp:                                ! @wmemcmp
 	nop
 .LBB63_5:                               !   in Loop: Header=BB63_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.63), %i1
+	add %i1, %lo(__llvm_gcov_ctr.63), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_wmemcmp), %i1
 	add %i1, %lo(.L__profc_wmemcmp), %i1
 	ldd [%i1+24], %i4
@@ -7036,6 +9299,17 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB63_8
 	std %i2, [%i0+8]
 .LBB63_8:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -7075,6 +9349,17 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB63_11
 	nop
 .LBB63_11:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_wmemcmp), %i0
 	add %i0, %lo(.L__profc_wmemcmp), %i0
 	ldd [%i0+40], %i4
@@ -7090,6 +9375,17 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB63_15
 	st %i0, [%fp+-40]
 .LBB63_12:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
@@ -7112,6 +9408,17 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB63_17
 	st %i0, [%fp+-52]
 .LBB63_16:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	mov	%g0, %i0
 	ba .LBB63_17
 	st %i0, [%fp+-52]
@@ -7128,6 +9435,16 @@ wmemcmp:                                ! @wmemcmp
 wmemcpy:                                ! @wmemcpy
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.64), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.64)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.64)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -7153,6 +9470,17 @@ wmemcpy:                                ! @wmemcpy
 	ba .LBB64_2
 	nop
 .LBB64_2:                               !   in Loop: Header=BB64_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wmemcpy), %i0
 	add %i0, %lo(.L__profc_wmemcpy), %i0
 	ldd [%i0+8], %i4
@@ -7209,6 +9537,16 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_1
 	nop
 .LBB65_1:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.65)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.65)]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i0
 	ldd [%i0+8], %i4
@@ -7235,6 +9573,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_3
 	nop
 .LBB65_3:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i0
 	ldd [%i0+16], %i4
@@ -7256,6 +9605,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_5
 	nop
 .LBB65_5:                               !   in Loop: Header=BB65_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i0
 	ldd [%i0+24], %i4
@@ -7289,6 +9649,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_9
 	nop
 .LBB65_9:                               !   in Loop: Header=BB65_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i0
 	ldd [%i0+32], %i4
@@ -7310,8 +9681,18 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_8
 	st %i1, [%i0]
 .LBB65_10:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB65_11
-	nop
+	std %i2, [%i0+32]
 .LBB65_11:
 	ld [%fp+-20], %i0
 	ba .LBB65_12
@@ -7329,6 +9710,16 @@ wmemmove:                               ! @wmemmove
 wmemset:                                ! @wmemset
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.66), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.66)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.66)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -7354,6 +9745,17 @@ wmemset:                                ! @wmemset
 	ba .LBB66_2
 	nop
 .LBB66_2:                               !   in Loop: Header=BB66_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.66), %i0
+	add %i0, %lo(__llvm_gcov_ctr.66), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_wmemset), %i0
 	add %i0, %lo(.L__profc_wmemset), %i0
 	ldd [%i0+8], %i4
@@ -7409,6 +9811,16 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_1
 	nop
 .LBB67_1:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.67)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.67)]
 	sethi %hi(.L__profc_bcopy), %i0
 	add %i0, %lo(.L__profc_bcopy), %i0
 	ldd [%i0+8], %i4
@@ -7458,6 +9870,17 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_4
 	stb %i1, [%i0+-1]
 .LBB67_4:                               !   in Loop: Header=BB67_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	ba .LBB67_2
@@ -7494,6 +9917,17 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_9
 	nop
 .LBB67_9:                               !   in Loop: Header=BB67_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_bcopy), %i0
 	add %i0, %lo(.L__profc_bcopy), %i0
 	ldd [%i0+32], %i4
@@ -7520,11 +9954,31 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_8
 	st %i0, [%fp+-12]
 .LBB67_11:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB67_12
-	nop
+	std %i2, [%i0+24]
 .LBB67_12:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB67_13
-	nop
+	std %i2, [%i0+32]
 .LBB67_13:
 	ret
 	restore
@@ -7541,6 +9995,16 @@ rotl64:                                 ! @rotl64
 	mov	%i0, %i4
                                         ! kill: def $i1 killed $i3
                                         ! kill: def $i0 killed $i4
+	sethi %hi(__llvm_gcov_ctr.68), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.68)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i1
+	addcc %i5, 1, %i5
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%i5, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.68)]
                                         ! implicit-def: $i0_i1
 	mov	%i4, %i0
 	mov	%i3, %i1
@@ -7594,6 +10058,16 @@ rotr64:                                 ! @rotr64
 	mov	%i0, %i4
                                         ! kill: def $i1 killed $i3
                                         ! kill: def $i0 killed $i4
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.69)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i1
+	addcc %i5, 1, %i5
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%i5, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.69)]
                                         ! implicit-def: $i0_i1
 	mov	%i4, %i0
 	mov	%i3, %i1
@@ -7643,6 +10117,16 @@ rotr64:                                 ! @rotr64
 rotl32:                                 ! @rotl32
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.70), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.70)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.70)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotl32), %i0
@@ -7673,6 +10157,16 @@ rotl32:                                 ! @rotl32
 rotr32:                                 ! @rotr32
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.71), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.71)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.71)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotr32), %i0
@@ -7703,6 +10197,16 @@ rotr32:                                 ! @rotr32
 rotl_sz:                                ! @rotl_sz
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.72), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.72)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.72)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotl_sz), %i0
@@ -7733,6 +10237,16 @@ rotl_sz:                                ! @rotl_sz
 rotr_sz:                                ! @rotr_sz
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.73), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.73)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.73)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotr_sz), %i0
@@ -7764,6 +10278,16 @@ rotl16:                                 ! @rotl16
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.74), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.74)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.74)]
 	sth %i0, [%fp+-2]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotl16), %i0
@@ -7797,6 +10321,16 @@ rotr16:                                 ! @rotr16
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.75), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.75)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.75)]
 	sth %i0, [%fp+-2]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotr16), %i0
@@ -7830,6 +10364,16 @@ rotl8:                                  ! @rotl8
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.76), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.76)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.76)]
 	stb %i0, [%fp+-1]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotl8), %i0
@@ -7862,6 +10406,16 @@ rotr8:                                  ! @rotr8
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.77), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.77)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.77)]
 	stb %i0, [%fp+-1]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_rotr8), %i0
@@ -7894,6 +10448,16 @@ bswap_16:                               ! @bswap_16
 ! %bb.0:
 	save %sp, -96, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.78), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.78)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.78)]
 	sth %i0, [%fp+-2]
 	sethi %hi(.L__profc_bswap_16), %i0
 	ldd [%i0+%lo(.L__profc_bswap_16)], %i4
@@ -7928,6 +10492,16 @@ bswap_16:                               ! @bswap_16
 bswap_32:                               ! @bswap_32
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.79), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.79)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.79)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_bswap_32), %i0
 	ldd [%i0+%lo(.L__profc_bswap_32)], %i4
@@ -7971,6 +10545,16 @@ bswap_64:                               ! @bswap_64
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.80), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.80)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.80)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -8081,6 +10665,16 @@ ffs:                                    ! @ffs
 	ba .LBB81_3
 	nop
 .LBB81_3:
+	sethi %hi(__llvm_gcov_ctr.81), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.81)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.81)]
 	sethi %hi(.L__profc_ffs), %i0
 	add %i0, %lo(.L__profc_ffs), %i0
 	ldd [%i0+16], %i4
@@ -8100,11 +10694,33 @@ ffs:                                    ! @ffs
 	ba .LBB81_5
 	nop
 .LBB81_5:                               !   in Loop: Header=BB81_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.81), %i0
+	add %i0, %lo(__llvm_gcov_ctr.81), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB81_1
 	st %i0, [%fp+-12]
 .LBB81_6:
+	sethi %hi(__llvm_gcov_ctr.81), %i0
+	add %i0, %lo(__llvm_gcov_ctr.81), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB81_7
 	st %g0, [%fp+-4]
 .LBB81_7:
@@ -8138,6 +10754,17 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB82_1
 	nop
 .LBB82_1:
+	sethi %hi(__llvm_gcov_ctr.82), %i0
+	add %i0, %lo(__llvm_gcov_ctr.82), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_libiberty_ffs), %i0
 	add %i0, %lo(.L__profc_libiberty_ffs), %i0
 	ldd [%i0+8], %i4
@@ -8152,6 +10779,16 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB82_7
 	st %g0, [%fp+-4]
 .LBB82_2:
+	sethi %hi(__llvm_gcov_ctr.82), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.82)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.82)]
 	mov	1, %i0
 	ba .LBB82_3
 	st %i0, [%fp+-12]
@@ -8180,6 +10817,17 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB82_5
 	st %i0, [%fp+-8]
 .LBB82_5:                               !   in Loop: Header=BB82_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.82), %i0
+	add %i0, %lo(__llvm_gcov_ctr.82), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB82_3
@@ -8202,6 +10850,16 @@ gl_isinff:                              ! @gl_isinff
 ! %bb.0:
 	save %sp, -120, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.83), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.83)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.83)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc_gl_isinff), %i0
 	ldd [%i0+%lo(.L__profc_gl_isinff)], %i4
@@ -8224,6 +10882,17 @@ gl_isinff:                              ! @gl_isinff
 	ba .LBB83_1
 	nop
 .LBB83_1:
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_gl_isinff), %i0
 	add %i0, %lo(.L__profc_gl_isinff), %i0
 	ldd [%i0+8], %i4
@@ -8260,6 +10929,17 @@ gl_isinff:                              ! @gl_isinff
 	nop
 .LBB83_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.83), %i1
+	add %i1, %lo(__llvm_gcov_ctr.83), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinff), %i1
 	add %i1, %lo(.L__profc_gl_isinff), %i1
 	ldd [%i1+16], %i4
@@ -8291,6 +10971,16 @@ gl_isinfd:                              ! @gl_isinfd
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.84)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.84)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -8319,6 +11009,17 @@ gl_isinfd:                              ! @gl_isinfd
 	ba .LBB84_1
 	nop
 .LBB84_1:
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_gl_isinfd), %i0
 	add %i0, %lo(.L__profc_gl_isinfd), %i0
 	ldd [%i0+8], %i4
@@ -8358,6 +11059,17 @@ gl_isinfd:                              ! @gl_isinfd
 	nop
 .LBB84_4:
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.84), %i1
+	add %i1, %lo(__llvm_gcov_ctr.84), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinfd), %i1
 	add %i1, %lo(.L__profc_gl_isinfd), %i1
 	ldd [%i1+16], %i4
@@ -8389,6 +11101,16 @@ gl_isinfl:                              ! @gl_isinfl
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.85), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.85)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.85)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -8417,6 +11139,17 @@ gl_isinfl:                              ! @gl_isinfl
 	ba .LBB85_1
 	nop
 .LBB85_1:
+	sethi %hi(__llvm_gcov_ctr.85), %i0
+	add %i0, %lo(__llvm_gcov_ctr.85), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_gl_isinfl), %i0
 	add %i0, %lo(.L__profc_gl_isinfl), %i0
 	ldd [%i0+8], %i4
@@ -8456,6 +11189,17 @@ gl_isinfl:                              ! @gl_isinfl
 	nop
 .LBB85_4:
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.85), %i1
+	add %i1, %lo(__llvm_gcov_ctr.85), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinfl), %i1
 	add %i1, %lo(.L__profc_gl_isinfl), %i1
 	ldd [%i1+16], %i4
@@ -8483,6 +11227,16 @@ gl_isinfl:                              ! @gl_isinfl
 _Qp_itoq:                               ! @_Qp_itoq
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.86), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.86)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.86)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc__Qp_itoq), %i0
@@ -8514,6 +11268,16 @@ ldexpf:                                 ! @ldexpf
 ! %bb.0:
 	save %sp, -120, %sp
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.87), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.87)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.87)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_ldexpf), %i0
@@ -8536,6 +11300,17 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB87_1
 	nop
 .LBB87_1:
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i0
 	ldd [%i0+16], %i4
@@ -8559,6 +11334,17 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB87_2
 	nop
 .LBB87_2:
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i0
 	ldd [%i0+24], %i4
@@ -8630,6 +11416,17 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB87_7
 	nop
 .LBB87_7:                               !   in Loop: Header=BB87_6 Depth=1
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i0
 	ldd [%i0+48], %i4
@@ -8672,6 +11469,17 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB87_11
 	std %i2, [%i0+56]
 .LBB87_10:                              !   in Loop: Header=BB87_6 Depth=1
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-12], %o1
 	call __mulsf3
 	mov	%o1, %o0
@@ -8697,6 +11505,16 @@ ldexp:                                  ! @ldexp
 	mov	%i0, %i4
                                         ! kill: def $i1 killed $i3
                                         ! kill: def $i0 killed $i4
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.88)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i1
+	addcc %i5, 1, %i5
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%i5, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.88)]
                                         ! implicit-def: $i0_i1
 	mov	%i4, %i0
 	mov	%i3, %i1
@@ -8762,6 +11580,17 @@ ldexp:                                  ! @ldexp
 	ba .LBB88_7
 	nop
 .LBB88_7:
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i0
 	ldd [%i0+16], %i4
@@ -8790,6 +11619,17 @@ ldexp:                                  ! @ldexp
 	ba .LBB88_8
 	nop
 .LBB88_8:
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i0
 	ldd [%i0+24], %i4
@@ -8865,6 +11705,17 @@ ldexp:                                  ! @ldexp
 	ba .LBB88_13
 	nop
 .LBB88_13:                              !   in Loop: Header=BB88_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i0
 	ldd [%i0+48], %i4
@@ -8914,6 +11765,17 @@ ldexp:                                  ! @ldexp
 	ba .LBB88_17
 	std %i2, [%i0+56]
 .LBB88_16:                              !   in Loop: Header=BB88_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -8946,6 +11808,16 @@ ldexpl:                                 ! @ldexpl
 	mov	%i0, %i4
                                         ! kill: def $i1 killed $i3
                                         ! kill: def $i0 killed $i4
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.89)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i1
+	addcc %i5, 1, %i5
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%i5, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.89)]
                                         ! implicit-def: $i0_i1
 	mov	%i4, %i0
 	mov	%i3, %i1
@@ -9011,6 +11883,17 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB89_7
 	nop
 .LBB89_7:
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i0
 	ldd [%i0+16], %i4
@@ -9039,6 +11922,17 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB89_8
 	nop
 .LBB89_8:
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i0
 	ldd [%i0+24], %i4
@@ -9114,6 +12008,17 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB89_13
 	nop
 .LBB89_13:                              !   in Loop: Header=BB89_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i0
 	ldd [%i0+48], %i4
@@ -9163,6 +12068,17 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB89_17
 	std %i2, [%i0+56]
 .LBB89_16:                              !   in Loop: Header=BB89_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -9191,6 +12107,16 @@ ldexpl:                                 ! @ldexpl
 memxor:                                 ! @memxor
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.90), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.90)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.90)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -9240,6 +12166,17 @@ memxor:                                 ! @memxor
 	ba .LBB90_3
 	stb %i1, [%i0]
 .LBB90_3:                               !   in Loop: Header=BB90_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	ba .LBB90_1
@@ -9285,6 +12222,16 @@ strncat:                                ! @strncat
 	ba .LBB91_2
 	nop
 .LBB91_2:                               !   in Loop: Header=BB91_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.91)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.91)]
 	sethi %hi(.L__profc_strncat), %i0
 	add %i0, %lo(.L__profc_strncat), %i0
 	ldd [%i0+16], %i4
@@ -9321,6 +12268,17 @@ strncat:                                ! @strncat
 	nop
 .LBB91_5:                               !   in Loop: Header=BB91_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.91), %i1
+	add %i1, %lo(__llvm_gcov_ctr.91), %i1
+	ldd [%i1+8], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+8]
 	sethi %hi(.L__profc_strncat), %i1
 	add %i1, %lo(.L__profc_strncat), %i1
 	ldd [%i1+24], %i4
@@ -9356,6 +12314,17 @@ strncat:                                ! @strncat
 	ba .LBB91_8
 	std %i2, [%i0+8]
 .LBB91_8:                               !   in Loop: Header=BB91_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-8]
@@ -9367,6 +12336,17 @@ strncat:                                ! @strncat
 	ba .LBB91_1
 	st %i0, [%fp+-12]
 .LBB91_9:
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
 	bne	.LBB91_11
@@ -9374,6 +12354,17 @@ strncat:                                ! @strncat
 	ba .LBB91_10
 	nop
 .LBB91_10:
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_strncat), %i0
 	add %i0, %lo(.L__profc_strncat), %i0
 	ldd [%i0+32], %i4
@@ -9402,6 +12393,16 @@ strncat:                                ! @strncat
 strnlen:                                ! @strnlen
 ! %bb.0:
 	save %sp, -128, %sp
+	sethi %hi(__llvm_gcov_ctr.92), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.92)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.92)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_strnlen), %i0
@@ -9426,6 +12427,17 @@ strnlen:                                ! @strnlen
 	ba .LBB92_2
 	nop
 .LBB92_2:                               !   in Loop: Header=BB92_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.92), %i0
+	add %i0, %lo(__llvm_gcov_ctr.92), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strnlen), %i0
 	add %i0, %lo(.L__profc_strnlen), %i0
 	ldd [%i0+16], %i4
@@ -9461,6 +12473,17 @@ strnlen:                                ! @strnlen
 	nop
 .LBB92_5:                               !   in Loop: Header=BB92_1 Depth=1
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.92), %i1
+	add %i1, %lo(__llvm_gcov_ctr.92), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_strnlen), %i1
 	add %i1, %lo(.L__profc_strnlen), %i1
 	ldd [%i1+24], %i4
@@ -9496,6 +12519,17 @@ strnlen:                                ! @strnlen
 	ba .LBB92_8
 	std %i2, [%i0+8]
 .LBB92_8:                               !   in Loop: Header=BB92_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.92), %i0
+	add %i0, %lo(__llvm_gcov_ctr.92), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB92_1
@@ -9583,6 +12617,17 @@ strpbrk:                                ! @strpbrk
 	ba .LBB93_5
 	nop
 .LBB93_5:
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strpbrk), %i0
 	add %i0, %lo(.L__profc_strpbrk), %i0
 	ldd [%i0+24], %i4
@@ -9598,14 +12643,45 @@ strpbrk:                                ! @strpbrk
 	ba .LBB93_9
 	st %i0, [%fp+-4]
 .LBB93_6:                               !   in Loop: Header=BB93_3 Depth=2
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB93_3
-	nop
+	std %i2, [%i0+16]
 .LBB93_7:                               !   in Loop: Header=BB93_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	ba .LBB93_1
 	st %i0, [%fp+-8]
 .LBB93_8:
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.93)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.93)]
 	ba .LBB93_9
 	st %g0, [%fp+-4]
 .LBB93_9:
@@ -9621,6 +12697,16 @@ strpbrk:                                ! @strpbrk
 strrchr:                                ! @strrchr
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.94), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.94)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.94)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc_strrchr), %i0
@@ -9636,6 +12722,17 @@ strrchr:                                ! @strrchr
 	ba .LBB94_2
 	st %g0, [%fp+-12]
 .LBB94_1:                               !   in Loop: Header=BB94_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_strrchr), %i0
 	add %i0, %lo(.L__profc_strrchr), %i0
 	ldd [%i0+8], %i4
@@ -9658,6 +12755,17 @@ strrchr:                                ! @strrchr
 	ba .LBB94_3
 	nop
 .LBB94_3:                               !   in Loop: Header=BB94_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strrchr), %i0
 	add %i0, %lo(.L__profc_strrchr), %i0
 	ldd [%i0+16], %i4
@@ -9722,6 +12830,16 @@ strstr:                                 ! @strstr
 	ba .LBB95_1
 	nop
 .LBB95_1:
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.95)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.95)]
 	sethi %hi(.L__profc_strstr), %i0
 	add %i0, %lo(.L__profc_strstr), %i0
 	ldd [%i0+8], %i4
@@ -9771,6 +12889,17 @@ strstr:                                 ! @strstr
 	ba .LBB95_5
 	nop
 .LBB95_5:
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_strstr), %i0
 	add %i0, %lo(.L__profc_strstr), %i0
 	ldd [%i0+24], %i4
@@ -9789,11 +12918,33 @@ strstr:                                 ! @strstr
 	ba .LBB95_7
 	nop
 .LBB95_7:                               !   in Loop: Header=BB95_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	ba .LBB95_3
 	st %i0, [%fp+-16]
 .LBB95_8:
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ba .LBB95_9
 	st %g0, [%fp+-4]
 .LBB95_9:
@@ -9845,6 +12996,16 @@ copysign:                               ! @copysign
 	ba .LBB96_1
 	nop
 .LBB96_1:
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.96)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.96)]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i0
 	ldd [%i0+24], %i4
@@ -9868,6 +13029,17 @@ copysign:                               ! @copysign
 	ba .LBB96_2
 	nop
 .LBB96_2:
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i0
 	ldd [%i0+32], %i4
@@ -9904,6 +13076,17 @@ copysign:                               ! @copysign
 	ba .LBB96_4
 	nop
 .LBB96_4:
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i0
 	ldd [%i0+40], %i4
@@ -9927,6 +13110,17 @@ copysign:                               ! @copysign
 	ba .LBB96_5
 	nop
 .LBB96_5:
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i0
 	ldd [%i0+48], %i4
@@ -9962,6 +13156,17 @@ copysign:                               ! @copysign
 	ba .LBB96_8
 	std %i0, [%fp+-8]
 .LBB96_7:
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-16], %i0
 	ba .LBB96_8
 	std %i0, [%fp+-8]
@@ -10006,6 +13211,16 @@ memmem:                                 ! @memmem
 	ba .LBB97_1
 	nop
 .LBB97_1:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.97)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.97)]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i0
 	ldd [%i0+8], %i4
@@ -10029,6 +13244,17 @@ memmem:                                 ! @memmem
 	ba .LBB97_3
 	nop
 .LBB97_3:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i0
 	ldd [%i0+16], %i4
@@ -10076,6 +13302,17 @@ memmem:                                 ! @memmem
 	ba .LBB97_7
 	nop
 .LBB97_7:                               !   in Loop: Header=BB97_5 Depth=1
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i0
 	ldd [%i0+40], %i4
@@ -10100,6 +13337,17 @@ memmem:                                 ! @memmem
 	ba .LBB97_8
 	nop
 .LBB97_8:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i0
 	ldd [%i0+48], %i4
@@ -10131,11 +13379,33 @@ memmem:                                 ! @memmem
 	ba .LBB97_11
 	nop
 .LBB97_11:                              !   in Loop: Header=BB97_5 Depth=1
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-24], %i0
 	add %i0, 1, %i0
 	ba .LBB97_5
 	st %i0, [%fp+-24]
 .LBB97_12:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ba .LBB97_13
 	st %g0, [%fp+-4]
 .LBB97_13:
@@ -10151,6 +13421,16 @@ memmem:                                 ! @memmem
 mempcpy:                                ! @mempcpy
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.98), %i3
+	ldd [%i3+%lo(__llvm_gcov_ctr.98)], %g2
+	mov	%g2, %i5
+	mov	%g3, %i4
+	addcc %i5, 1, %g3
+	addxcc %i4, 0, %g2
+                                        ! implicit-def: $i4_i5
+	mov	%g3, %i4
+	mov	%g2, %i5
+	std %i4, [%i3+%lo(__llvm_gcov_ctr.98)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
@@ -10214,6 +13494,16 @@ frexp:                                  ! @frexp
 	ba .LBB99_1
 	nop
 .LBB99_1:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.99)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.99)]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+8], %i4
@@ -10250,6 +13540,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_3
 	nop
 .LBB99_3:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+16], %i4
@@ -10275,6 +13576,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_5
 	nop
 .LBB99_5:                               !   in Loop: Header=BB99_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+24], %i4
@@ -10316,6 +13628,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_8
 	nop
 .LBB99_8:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+40], %i4
@@ -10377,6 +13700,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_12
 	nop
 .LBB99_12:                              !   in Loop: Header=BB99_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+56], %i4
@@ -10403,11 +13737,31 @@ frexp:                                  ! @frexp
 	ba .LBB99_11
 	std %i0, [%fp+-8]
 .LBB99_13:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB99_14
-	nop
+	std %i2, [%i0+40]
 .LBB99_14:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB99_15
-	nop
+	std %i2, [%i0+48]
 .LBB99_15:
 	ld [%fp+-20], %i1
 	ld [%fp+-12], %i0
@@ -10419,6 +13773,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_16
 	nop
 .LBB99_16:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i0
 	ldd [%i0+64], %i4
@@ -10460,6 +13825,16 @@ __muldi3:                               ! @__muldi3
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i1 killed $i4
                                         ! kill: def $i0 killed $i5
+	sethi %hi(__llvm_gcov_ctr.100), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.100)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i1
+	addcc %g2, 1, %g4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.100)]
                                         ! implicit-def: $i0_i1
 	mov	%i5, %i0
 	mov	%i4, %i1
@@ -10517,6 +13892,17 @@ __muldi3:                               ! @__muldi3
 	ba .LBB100_3
 	nop
 .LBB100_3:                              !   in Loop: Header=BB100_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.100), %i0
+	add %i0, %lo(__llvm_gcov_ctr.100), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___muldi3), %i0
 	add %i0, %lo(.L__profc___muldi3), %i0
 	ldd [%i0+16], %i4
@@ -10542,6 +13928,17 @@ __muldi3:                               ! @__muldi3
 	ba .LBB100_4
 	std %i0, [%fp+-24]
 .LBB100_4:                              !   in Loop: Header=BB100_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.100), %i0
+	add %i0, %lo(__llvm_gcov_ctr.100), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i1
 	mov	%i2, %i0
@@ -10606,6 +14003,16 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_2
 	nop
 .LBB101_2:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.101)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.101)]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i0
 	ldd [%i0+32], %i4
@@ -10625,6 +14032,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_3
 	nop
 .LBB101_3:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i0
 	ldd [%i0+40], %i4
@@ -10673,6 +14091,17 @@ udivmodsi4:                             ! @udivmodsi4
 	nop
 .LBB101_7:                              !   in Loop: Header=BB101_1 Depth=1
 	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.101), %i1
+	add %i1, %lo(__llvm_gcov_ctr.101), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc_udivmodsi4), %i1
 	add %i1, %lo(.L__profc_udivmodsi4), %i1
 	ldd [%i1+24], %i4
@@ -10695,6 +14124,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_9
 	nop
 .LBB101_9:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i0
 	ldd [%i0+8], %i4
@@ -10743,6 +14183,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_13
 	nop
 .LBB101_13:                             !   in Loop: Header=BB101_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i0
 	ldd [%i0+56], %i4
@@ -10764,6 +14215,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_14
 	st %i0, [%fp+-24]
 .LBB101_14:                             !   in Loop: Header=BB101_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -10779,6 +14241,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_16
 	nop
 .LBB101_16:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i0
 	ldd [%i0+64], %i4
@@ -10794,6 +14267,17 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB101_18
 	st %i0, [%fp+-4]
 .LBB101_17:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-24], %i0
 	ba .LBB101_18
 	st %i0, [%fp+-4]
@@ -10829,6 +14313,16 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB102_1
 	nop
 .LBB102_1:
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.102)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.102)]
 	sethi %hi(.L__profc___clrsbqi2), %i0
 	add %i0, %lo(.L__profc___clrsbqi2), %i0
 	ldd [%i0+8], %i4
@@ -10852,6 +14346,17 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB102_3
 	nop
 .LBB102_3:
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___clrsbqi2), %i0
 	add %i0, %lo(.L__profc___clrsbqi2), %i0
 	ldd [%i0+16], %i4
@@ -10867,6 +14372,17 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB102_5
 	st %i0, [%fp+-4]
 .LBB102_4:
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldsb [%fp+-5], %i0
 	sll %i0, 8, %i0
 	srl %i0, 1, %i1
@@ -10946,6 +14462,16 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB103_1
 	nop
 .LBB103_1:
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.103)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.103)]
 	sethi %hi(.L__profc___clrsbdi2), %i0
 	add %i0, %lo(.L__profc___clrsbdi2), %i0
 	ldd [%i0+8], %i4
@@ -10978,6 +14504,17 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB103_3
 	nop
 .LBB103_3:
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___clrsbdi2), %i0
 	add %i0, %lo(.L__profc___clrsbdi2), %i0
 	ldd [%i0+16], %i4
@@ -10993,6 +14530,17 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB103_7
 	st %i0, [%fp+-4]
 .LBB103_4:
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	mov	%i0, %i2
                                         ! kill: def $i1 killed $i1 killed $i0_i1
@@ -11082,6 +14630,16 @@ __clrsbdi2:                             ! @__clrsbdi2
 __mulsi3:                               ! @__mulsi3
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.104), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.104)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.104)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___mulsi3), %i0
@@ -11123,6 +14681,17 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB104_3
 	nop
 .LBB104_3:                              !   in Loop: Header=BB104_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mulsi3), %i0
 	add %i0, %lo(.L__profc___mulsi3), %i0
 	ldd [%i0+16], %i4
@@ -11140,6 +14709,17 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB104_4
 	st %i0, [%fp+-12]
 .LBB104_4:                              !   in Loop: Header=BB104_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-4]
@@ -11191,6 +14771,16 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_1
 	nop
 .LBB105_1:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.105)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.105)]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i0
 	ldd [%i0+16], %i4
@@ -11266,6 +14856,17 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_6
 	std %i2, [%i0+%i1]
 .LBB105_6:                              !   in Loop: Header=BB105_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	ba .LBB105_4
@@ -11282,6 +14883,17 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_9
 	nop
 .LBB105_9:                              !   in Loop: Header=BB105_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i0
 	ldd [%i0+40], %i4
@@ -11303,8 +14915,18 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_8
 	st %i0, [%fp+-24]
 .LBB105_10:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB105_15
-	nop
+	std %i2, [%i0+24]
 .LBB105_11:
 	ba .LBB105_12
 	nop
@@ -11317,6 +14939,17 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_13
 	nop
 .LBB105_13:                             !   in Loop: Header=BB105_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i0
 	ldd [%i0+48], %i4
@@ -11335,8 +14968,18 @@ __cmovd:                                ! @__cmovd
 	ba .LBB105_12
 	stb %i2, [%i0+%i1]
 .LBB105_14:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB105_15
-	nop
+	std %i2, [%i0+40]
 .LBB105_15:
 	ret
 	restore
@@ -11377,6 +15020,16 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_1
 	nop
 .LBB106_1:
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.106)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.106)]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i0
 	ldd [%i0+16], %i4
@@ -11452,6 +15105,17 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_6
 	sth %i2, [%i0+%i1]
 .LBB106_6:                              !   in Loop: Header=BB106_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	ba .LBB106_4
@@ -11465,6 +15129,17 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_8
 	nop
 .LBB106_8:
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i0
 	ldd [%i0+40], %i4
@@ -11484,8 +15159,18 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_9
 	stb %i2, [%i0+%i1]
 .LBB106_9:
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB106_14
-	nop
+	std %i2, [%i0+24]
 .LBB106_10:
 	ba .LBB106_11
 	nop
@@ -11498,6 +15183,17 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_12
 	nop
 .LBB106_12:                             !   in Loop: Header=BB106_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i0
 	ldd [%i0+48], %i4
@@ -11516,8 +15212,18 @@ __cmovh:                                ! @__cmovh
 	ba .LBB106_11
 	stb %i2, [%i0+%i1]
 .LBB106_13:
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB106_14
-	nop
+	std %i2, [%i0+40]
 .LBB106_14:
 	ret
 	restore
@@ -11561,6 +15267,16 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_1
 	nop
 .LBB107_1:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.107)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.107)]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i0
 	ldd [%i0+16], %i4
@@ -11636,6 +15352,17 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_6
 	st %i2, [%i0+%i1]
 .LBB107_6:                              !   in Loop: Header=BB107_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	ba .LBB107_4
@@ -11652,6 +15379,17 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_9
 	nop
 .LBB107_9:                              !   in Loop: Header=BB107_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i0
 	ldd [%i0+40], %i4
@@ -11673,8 +15411,18 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_8
 	st %i0, [%fp+-24]
 .LBB107_10:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB107_15
-	nop
+	std %i2, [%i0+24]
 .LBB107_11:
 	ba .LBB107_12
 	nop
@@ -11687,6 +15435,17 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_13
 	nop
 .LBB107_13:                             !   in Loop: Header=BB107_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i0
 	ldd [%i0+48], %i4
@@ -11705,8 +15464,18 @@ __cmovw:                                ! @__cmovw
 	ba .LBB107_12
 	stb %i2, [%i0+%i1]
 .LBB107_14:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB107_15
-	nop
+	std %i2, [%i0+40]
 .LBB107_15:
 	ret
 	restore
@@ -11719,6 +15488,16 @@ __cmovw:                                ! @__cmovw
 __modi:                                 ! @__modi
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.108), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.108)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.108)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___modi), %i0
@@ -11749,6 +15528,16 @@ __modi:                                 ! @__modi
 __uitod:                                ! @__uitod
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.109), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.109)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.109)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___uitod), %i0
 	ldd [%i0+%lo(.L__profc___uitod)], %i4
@@ -11774,6 +15563,16 @@ __uitod:                                ! @__uitod
 __uitof:                                ! @__uitof
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.110), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.110)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.110)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___uitof), %i0
 	ldd [%i0+%lo(.L__profc___uitof)], %i4
@@ -11802,6 +15601,16 @@ __ulltod:                               ! @__ulltod
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.111), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.111)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.111)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -11836,6 +15645,16 @@ __ulltof:                               ! @__ulltof
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.112), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.112)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.112)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -11865,6 +15684,16 @@ __ulltof:                               ! @__ulltof
 __umodi:                                ! @__umodi
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.113), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.113)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.113)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___umodi), %i0
@@ -11895,6 +15724,16 @@ __clzhi2:                               ! @__clzhi2
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.114), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.114)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.114)]
 	sth %i0, [%fp+-2]
 	sethi %hi(.L__profc___clzhi2), %i0
 	ldd [%i0+%lo(.L__profc___clzhi2)], %i4
@@ -11939,6 +15778,17 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB114_3
 	nop
 .LBB114_3:
+	sethi %hi(__llvm_gcov_ctr.114), %i0
+	add %i0, %lo(__llvm_gcov_ctr.114), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___clzhi2), %i0
 	add %i0, %lo(.L__profc___clzhi2), %i0
 	ldd [%i0+16], %i4
@@ -11955,6 +15805,17 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB114_5
 	nop
 .LBB114_5:                              !   in Loop: Header=BB114_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.114), %i0
+	add %i0, %lo(__llvm_gcov_ctr.114), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	ba .LBB114_1
@@ -11973,6 +15834,16 @@ __ctzhi2:                               ! @__ctzhi2
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.115), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.115)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.115)]
 	sth %i0, [%fp+-2]
 	sethi %hi(.L__profc___ctzhi2), %i0
 	ldd [%i0+%lo(.L__profc___ctzhi2)], %i4
@@ -12015,6 +15886,17 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB115_3
 	nop
 .LBB115_3:
+	sethi %hi(__llvm_gcov_ctr.115), %i0
+	add %i0, %lo(__llvm_gcov_ctr.115), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___ctzhi2), %i0
 	add %i0, %lo(.L__profc___ctzhi2), %i0
 	ldd [%i0+16], %i4
@@ -12031,6 +15913,17 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB115_5
 	nop
 .LBB115_5:                              !   in Loop: Header=BB115_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.115), %i0
+	add %i0, %lo(__llvm_gcov_ctr.115), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	ba .LBB115_1
@@ -12069,6 +15962,16 @@ __fixunssfsi:                           ! @__fixunssfsi
 	ba .LBB116_1
 	nop
 .LBB116_1:
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.116)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.116)]
 	sethi %hi(.L__profc___fixunssfsi), %i0
 	add %i0, %lo(.L__profc___fixunssfsi), %i0
 	ldd [%i0+8], %i4
@@ -12090,6 +15993,17 @@ __fixunssfsi:                           ! @__fixunssfsi
 	ba .LBB116_3
 	st %i0, [%fp+-4]
 .LBB116_2:
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	add %i0, %lo(__llvm_gcov_ctr.116), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	call __fixsfsi
 	ld [%fp+-8], %o0
 	ba .LBB116_3
@@ -12108,6 +16022,16 @@ __parityhi2:                            ! @__parityhi2
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.117), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.117)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.117)]
 	sth %i0, [%fp+-2]
 	sethi %hi(.L__profc___parityhi2), %i0
 	ldd [%i0+%lo(.L__profc___parityhi2)], %i4
@@ -12151,6 +16075,17 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB117_3
 	nop
 .LBB117_3:                              !   in Loop: Header=BB117_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___parityhi2), %i0
 	add %i0, %lo(.L__profc___parityhi2), %i0
 	ldd [%i0+16], %i4
@@ -12170,6 +16105,17 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB117_5
 	nop
 .LBB117_5:                              !   in Loop: Header=BB117_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	ba .LBB117_1
@@ -12189,6 +16135,16 @@ __popcounthi2:                          ! @__popcounthi2
 ! %bb.0:
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.118), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.118)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.118)]
 	sth %i0, [%fp+-2]
 	sethi %hi(.L__profc___popcounthi2), %i0
 	ldd [%i0+%lo(.L__profc___popcounthi2)], %i4
@@ -12232,6 +16188,17 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB118_3
 	nop
 .LBB118_3:                              !   in Loop: Header=BB118_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___popcounthi2), %i0
 	add %i0, %lo(.L__profc___popcounthi2), %i0
 	ldd [%i0+16], %i4
@@ -12251,6 +16218,17 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB118_5
 	nop
 .LBB118_5:                              !   in Loop: Header=BB118_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	ba .LBB118_1
@@ -12268,6 +16246,16 @@ __popcounthi2:                          ! @__popcounthi2
 __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.119), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.119)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.119)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___mulsi3_iq2000), %i0
@@ -12309,6 +16297,17 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB119_3
 	nop
 .LBB119_3:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mulsi3_iq2000), %i0
 	add %i0, %lo(.L__profc___mulsi3_iq2000), %i0
 	ldd [%i0+16], %i4
@@ -12326,6 +16325,17 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB119_4
 	st %i0, [%fp+-12]
 .LBB119_4:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-4]
@@ -12366,6 +16376,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_1
 	nop
 .LBB120_1:
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mulsi3_lm32), %i0
 	add %i0, %lo(.L__profc___mulsi3_lm32), %i0
 	ldd [%i0+8], %i4
@@ -12380,8 +16401,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_8
 	st %g0, [%fp+-4]
 .LBB120_2:
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.120)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB120_3
-	nop
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.120)]
 .LBB120_3:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
@@ -12409,6 +16439,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_5
 	nop
 .LBB120_5:                              !   in Loop: Header=BB120_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___mulsi3_lm32), %i0
 	add %i0, %lo(.L__profc___mulsi3_lm32), %i0
 	ldd [%i0+24], %i4
@@ -12426,6 +16467,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_6
 	st %i0, [%fp+-16]
 .LBB120_6:                              !   in Loop: Header=BB120_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+-8]
@@ -12477,6 +16529,16 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_2
 	nop
 .LBB121_2:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.121)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.121)]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i0
 	ldd [%i0+32], %i4
@@ -12496,6 +16558,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_3
 	nop
 .LBB121_3:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i0
 	ldd [%i0+40], %i4
@@ -12544,6 +16617,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	nop
 .LBB121_7:                              !   in Loop: Header=BB121_1 Depth=1
 	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.121), %i1
+	add %i1, %lo(__llvm_gcov_ctr.121), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodsi4), %i1
 	add %i1, %lo(.L__profc___udivmodsi4), %i1
 	ldd [%i1+24], %i4
@@ -12566,6 +16650,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_9
 	nop
 .LBB121_9:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i0
 	ldd [%i0+8], %i4
@@ -12614,6 +16709,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_13
 	nop
 .LBB121_13:                             !   in Loop: Header=BB121_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i0
 	ldd [%i0+56], %i4
@@ -12635,6 +16741,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_14
 	st %i0, [%fp+-24]
 .LBB121_14:                             !   in Loop: Header=BB121_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -12650,6 +16767,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_16
 	nop
 .LBB121_16:
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i0
 	ldd [%i0+64], %i4
@@ -12665,6 +16793,17 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB121_18
 	st %i0, [%fp+-4]
 .LBB121_17:
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-24], %i0
 	ba .LBB121_18
 	st %i0, [%fp+-4]
@@ -12704,6 +16843,16 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB122_1
 	nop
 .LBB122_1:
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.122)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.122)]
 	sethi %hi(.L__profc___mspabi_cmpf), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpf), %i0
 	ldd [%i0+8], %i4
@@ -12728,6 +16877,17 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB122_3
 	nop
 .LBB122_3:
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mspabi_cmpf), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpf), %i0
 	ldd [%i0+16], %i4
@@ -12743,6 +16903,17 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB122_5
 	st %i0, [%fp+-4]
 .LBB122_4:
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB122_5
 	st %g0, [%fp+-4]
 .LBB122_5:
@@ -12795,6 +16966,16 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB123_1
 	nop
 .LBB123_1:
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.123)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.123)]
 	sethi %hi(.L__profc___mspabi_cmpd), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpd), %i0
 	ldd [%i0+8], %i4
@@ -12823,6 +17004,17 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB123_3
 	nop
 .LBB123_3:
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mspabi_cmpd), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpd), %i0
 	ldd [%i0+16], %i4
@@ -12838,6 +17030,17 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB123_5
 	st %i0, [%fp+-4]
 .LBB123_4:
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ba .LBB123_5
 	st %g0, [%fp+-4]
 .LBB123_5:
@@ -12853,6 +17056,16 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 __mspabi_mpysll:                        ! @__mspabi_mpysll
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.124), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.124)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.124)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___mspabi_mpysll), %i0
@@ -12880,6 +17093,16 @@ __mspabi_mpysll:                        ! @__mspabi_mpysll
 __mspabi_mpyull:                        ! @__mspabi_mpyull
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.125), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.125)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.125)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___mspabi_mpyull), %i0
@@ -12928,6 +17151,16 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_1
 	nop
 .LBB126_1:
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.126)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.126)]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i0
 	ldd [%i0+8], %i4
@@ -12959,6 +17192,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_4
 	nop
 .LBB126_4:                              !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i0
 	ldd [%i0+24], %i4
@@ -12992,6 +17236,17 @@ __mulhi3:                               ! @__mulhi3
 	nop
 .LBB126_7:                              !   in Loop: Header=BB126_3 Depth=1
 	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.126), %i1
+	add %i1, %lo(__llvm_gcov_ctr.126), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc___mulhi3), %i1
 	add %i1, %lo(.L__profc___mulhi3), %i1
 	ldd [%i1+32], %i4
@@ -13033,6 +17288,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_10
 	nop
 .LBB126_10:                             !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i0
 	ldd [%i0+40], %i4
@@ -13058,6 +17324,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_12
 	st %i0, [%fp+-8]
 .LBB126_12:                             !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldub [%fp+-9], %i0
 	add %i0, 1, %i0
 	ba .LBB126_3
@@ -13070,6 +17347,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_14
 	nop
 .LBB126_14:
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i0
 	ldd [%i0+48], %i4
@@ -13087,6 +17375,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_16
 	st %i0, [%fp+-44]
 .LBB126_15:
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-20], %i0
 	ba .LBB126_16
 	st %i0, [%fp+-44]
@@ -13103,6 +17402,16 @@ __mulhi3:                               ! @__mulhi3
 __divsi3:                               ! @__divsi3
 ! %bb.0:
 	save %sp, -128, %sp
+	sethi %hi(__llvm_gcov_ctr.127), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.127)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.127)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___divsi3), %i0
@@ -13123,6 +17432,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_1
 	nop
 .LBB127_1:
+	sethi %hi(__llvm_gcov_ctr.127), %i0
+	add %i0, %lo(__llvm_gcov_ctr.127), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i0
 	ldd [%i0+8], %i4
@@ -13159,6 +17479,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_5
 	nop
 .LBB127_5:
+	sethi %hi(__llvm_gcov_ctr.127), %i0
+	add %i0, %lo(__llvm_gcov_ctr.127), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i0
 	ldd [%i0+16], %i4
@@ -13200,6 +17531,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_9
 	nop
 .LBB127_9:
+	sethi %hi(__llvm_gcov_ctr.127), %i0
+	add %i0, %lo(__llvm_gcov_ctr.127), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i0
 	ldd [%i0+24], %i4
@@ -13229,6 +17571,16 @@ __divsi3:                               ! @__divsi3
 __modsi3:                               ! @__modsi3
 ! %bb.0:
 	save %sp, -112, %sp
+	sethi %hi(__llvm_gcov_ctr.128), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.128)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.128)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___modsi3), %i0
@@ -13249,6 +17601,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_1
 	nop
 .LBB128_1:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i0
 	ldd [%i0+8], %i4
@@ -13275,6 +17638,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_3
 	nop
 .LBB128_3:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i0
 	ldd [%i0+16], %i4
@@ -13304,6 +17678,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_5
 	nop
 .LBB128_5:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i0
 	ldd [%i0+24], %i4
@@ -13363,6 +17748,16 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_2
 	nop
 .LBB129_2:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.129)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.129)]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i0
 	ldd [%i0+32], %i4
@@ -13382,6 +17777,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_3
 	nop
 .LBB129_3:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i0
 	ldd [%i0+40], %i4
@@ -13430,6 +17836,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	nop
 .LBB129_7:                              !   in Loop: Header=BB129_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.129), %i1
+	add %i1, %lo(__llvm_gcov_ctr.129), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodhi4), %i1
 	add %i1, %lo(.L__profc___udivmodhi4), %i1
 	ldd [%i1+24], %i4
@@ -13452,6 +17869,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_9
 	nop
 .LBB129_9:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i0
 	ldd [%i0+8], %i4
@@ -13500,6 +17928,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_13
 	nop
 .LBB129_13:                             !   in Loop: Header=BB129_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i0
 	ldd [%i0+56], %i4
@@ -13521,6 +17960,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_14
 	sth %i0, [%fp+-16]
 .LBB129_14:                             !   in Loop: Header=BB129_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	lduh [%fp+-14], %i0
 	srl %i0, 1, %i0
 	sth %i0, [%fp+-14]
@@ -13536,6 +17986,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_16
 	nop
 .LBB129_16:
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i0
 	ldd [%i0+64], %i4
@@ -13551,6 +18012,17 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB129_18
 	sth %i0, [%fp+-2]
 .LBB129_17:
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	lduh [%fp+-16], %i0
 	ba .LBB129_18
 	sth %i0, [%fp+-2]
@@ -13594,6 +18066,16 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_2
 	nop
 .LBB130_2:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.130)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.130)]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
 	ldd [%i0+32], %i4
@@ -13613,6 +18095,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_3
 	nop
 .LBB130_3:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
 	ldd [%i0+40], %i4
@@ -13661,6 +18154,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	nop
 .LBB130_7:                              !   in Loop: Header=BB130_1 Depth=1
 	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.130), %i1
+	add %i1, %lo(__llvm_gcov_ctr.130), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i1
 	add %i1, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	ldd [%i1+24], %i4
@@ -13683,6 +18187,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_9
 	nop
 .LBB130_9:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
 	ldd [%i0+8], %i4
@@ -13731,6 +18246,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_13
 	nop
 .LBB130_13:                             !   in Loop: Header=BB130_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
 	ldd [%i0+56], %i4
@@ -13752,6 +18278,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_14
 	st %i0, [%fp+-24]
 .LBB130_14:                             !   in Loop: Header=BB130_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -13767,6 +18304,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_16
 	nop
 .LBB130_16:
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
 	ldd [%i0+64], %i4
@@ -13782,6 +18330,17 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB130_18
 	st %i0, [%fp+-4]
 .LBB130_17:
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-24], %i0
 	ba .LBB130_18
 	st %i0, [%fp+-4]
@@ -13829,6 +18388,16 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB131_1
 	nop
 .LBB131_1:
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.131)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.131)]
 	sethi %hi(.L__profc___ashldi3), %i0
 	add %i0, %lo(.L__profc___ashldi3), %i0
 	ldd [%i0+8], %i4
@@ -13857,6 +18426,17 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB131_3
 	nop
 .LBB131_3:
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___ashldi3), %i0
 	add %i0, %lo(.L__profc___ashldi3), %i0
 	ldd [%i0+16], %i4
@@ -13872,6 +18452,17 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB131_6
 	std %i0, [%fp+-8]
 .LBB131_4:
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-32], %i0
 	ld [%fp+-20], %i1
 	sll %i0, %i1, %i0
@@ -13939,6 +18530,16 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB132_1
 	nop
 .LBB132_1:
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.132)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.132)]
 	sethi %hi(.L__profc___ashrdi3), %i0
 	add %i0, %lo(.L__profc___ashrdi3), %i0
 	ldd [%i0+8], %i4
@@ -13971,6 +18572,17 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB132_3
 	nop
 .LBB132_3:
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___ashrdi3), %i0
 	add %i0, %lo(.L__profc___ashrdi3), %i0
 	ldd [%i0+16], %i4
@@ -13986,6 +18598,17 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB132_6
 	std %i0, [%fp+-8]
 .LBB132_4:
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	add %fp, -32, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i1
@@ -14026,6 +18649,16 @@ __bswapdi2:                             ! @__bswapdi2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.133)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.133)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -14075,6 +18708,16 @@ __bswapdi2:                             ! @__bswapdi2
 __bswapsi2:                             ! @__bswapsi2
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_ctr.134), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.134)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.134)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___bswapsi2), %i0
 	ldd [%i0+%lo(.L__profc___bswapsi2)], %i4
@@ -14110,6 +18753,16 @@ __bswapsi2:                             ! @__bswapsi2
 __clzsi2:                               ! @__clzsi2
 ! %bb.0:
 	save %sp, -152, %sp
+	sethi %hi(__llvm_gcov_ctr.135), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.135)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.135)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___clzsi2), %i0
 	ldd [%i0+%lo(.L__profc___clzsi2)], %i4
@@ -14292,6 +18945,16 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_1
 	nop
 .LBB136_1:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.136)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.136)]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i0
 	ldd [%i0+8], %i4
@@ -14318,6 +18981,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_3
 	nop
 .LBB136_3:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i0
 	ldd [%i0+16], %i4
@@ -14341,6 +19015,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_5
 	nop
 .LBB136_5:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i0
 	ldd [%i0+24], %i4
@@ -14363,6 +19048,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_7
 	nop
 .LBB136_7:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i0
 	ldd [%i0+32], %i4
@@ -14378,6 +19074,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_9
 	st %i0, [%fp+-4]
 .LBB136_8:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	1, %i0
 	ba .LBB136_9
 	st %i0, [%fp+-4]
@@ -14400,6 +19107,16 @@ __aeabi_lcmp:                           ! @__aeabi_lcmp
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i1 killed $i4
                                         ! kill: def $i0 killed $i5
+	sethi %hi(__llvm_gcov_ctr.137), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.137)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i1
+	addcc %g2, 1, %g4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.137)]
                                         ! implicit-def: $i0_i1
 	mov	%i5, %i0
 	mov	%i4, %i1
@@ -14436,6 +19153,16 @@ __aeabi_lcmp:                           ! @__aeabi_lcmp
 __ctzsi2:                               ! @__ctzsi2
 ! %bb.0:
 	save %sp, -136, %sp
+	sethi %hi(__llvm_gcov_ctr.138), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.138)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.138)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___ctzsi2), %i0
 	ldd [%i0+%lo(.L__profc___ctzsi2)], %i4
@@ -14585,6 +19312,16 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB139_1
 	nop
 .LBB139_1:
+	sethi %hi(__llvm_gcov_ctr.139), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.139)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.139)]
 	sethi %hi(.L__profc___lshrdi3), %i0
 	add %i0, %lo(.L__profc___lshrdi3), %i0
 	ldd [%i0+8], %i4
@@ -14615,6 +19352,17 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB139_3
 	nop
 .LBB139_3:
+	sethi %hi(__llvm_gcov_ctr.139), %i0
+	add %i0, %lo(__llvm_gcov_ctr.139), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___lshrdi3), %i0
 	add %i0, %lo(.L__profc___lshrdi3), %i0
 	ldd [%i0+16], %i4
@@ -14630,6 +19378,17 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB139_6
 	std %i0, [%fp+-8]
 .LBB139_4:
+	sethi %hi(__llvm_gcov_ctr.139), %i0
+	add %i0, %lo(__llvm_gcov_ctr.139), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	add %fp, -32, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i1
@@ -14666,6 +19425,16 @@ __lshrdi3:                              ! @__lshrdi3
 __muldsi3:                              ! @__muldsi3
 ! %bb.0:
 	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr.140), %i2
+	ldd [%i2+%lo(__llvm_gcov_ctr.140)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(__llvm_gcov_ctr.140)]
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	sethi %hi(.L__profc___muldsi3), %i0
@@ -14757,6 +19526,16 @@ __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i1 killed $i4
                                         ! kill: def $i0 killed $i5
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.141)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i1
+	addcc %g2, 1, %g4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.141)]
                                         ! implicit-def: $i0_i1
 	mov	%i5, %i0
 	mov	%i4, %i1
@@ -14819,6 +19598,16 @@ __negdi2:                               ! @__negdi2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.142), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.142)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.142)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -14854,6 +19643,16 @@ __paritydi2:                            ! @__paritydi2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.143)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.143)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -14905,6 +19704,16 @@ __paritydi2:                            ! @__paritydi2
 __paritysi2:                            ! @__paritysi2
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.144), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.144)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.144)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___paritysi2), %i0
 	ldd [%i0+%lo(.L__profc___paritysi2)], %i4
@@ -14951,6 +19760,16 @@ __popcountdi2:                          ! @__popcountdi2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i0 killed $i3
+	sethi %hi(__llvm_gcov_ctr.145), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.145)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i1
+	addcc %i4, 1, %g2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+%lo(__llvm_gcov_ctr.145)]
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -15040,6 +19859,16 @@ __popcountdi2:                          ! @__popcountdi2
 __popcountsi2:                          ! @__popcountsi2
 ! %bb.0:
 	save %sp, -104, %sp
+	sethi %hi(__llvm_gcov_ctr.146), %i1
+	ldd [%i1+%lo(__llvm_gcov_ctr.146)], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+%lo(__llvm_gcov_ctr.146)]
 	st %i0, [%fp+-4]
 	sethi %hi(.L__profc___popcountsi2), %i0
 	ldd [%i0+%lo(.L__profc___popcountsi2)], %i4
@@ -15142,6 +19971,16 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_2
 	nop
 .LBB147_2:                              !   in Loop: Header=BB147_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.147)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.147)]
 	sethi %hi(.L__profc___powidf2), %i0
 	add %i0, %lo(.L__profc___powidf2), %i0
 	ldd [%i0+16], %i4
@@ -15191,6 +20030,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_6
 	std %i2, [%i0+24]
 .LBB147_5:                              !   in Loop: Header=BB147_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -15210,6 +20060,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_7
 	nop
 .LBB147_7:
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___powidf2), %i0
 	add %i0, %lo(.L__profc___powidf2), %i0
 	ldd [%i0+32], %i4
@@ -15231,6 +20092,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_9
 	st %o1, [%fp+-28]
 .LBB147_8:
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -15290,6 +20162,16 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_2
 	nop
 .LBB148_2:                              !   in Loop: Header=BB148_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.148)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.148)]
 	sethi %hi(.L__profc___powisf2), %i0
 	add %i0, %lo(.L__profc___powisf2), %i0
 	ldd [%i0+16], %i4
@@ -15332,6 +20214,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_6
 	std %i2, [%i0+24]
 .LBB148_5:                              !   in Loop: Header=BB148_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %o1
 	call __mulsf3
 	mov	%o1, %o0
@@ -15345,6 +20238,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_7
 	nop
 .LBB148_7:
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___powisf2), %i0
 	add %i0, %lo(.L__profc___powisf2), %i0
 	ldd [%i0+32], %i4
@@ -15362,6 +20266,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_9
 	st %o0, [%fp+-20]
 .LBB148_8:
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-16], %i0
 	ba .LBB148_9
 	st %i0, [%fp+-20]
@@ -15418,6 +20333,16 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_1
 	nop
 .LBB149_1:
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.149)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.149)]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i0
 	ldd [%i0+8], %i4
@@ -15444,6 +20369,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_3
 	nop
 .LBB149_3:
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i0
 	ldd [%i0+16], %i4
@@ -15467,6 +20403,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_5
 	nop
 .LBB149_5:
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i0
 	ldd [%i0+24], %i4
@@ -15489,6 +20436,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_7
 	nop
 .LBB149_7:
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i0
 	ldd [%i0+32], %i4
@@ -15504,6 +20462,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_9
 	st %i0, [%fp+-4]
 .LBB149_8:
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	1, %i0
 	ba .LBB149_9
 	st %i0, [%fp+-4]
@@ -15526,6 +20495,16 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i1 killed $i4
                                         ! kill: def $i0 killed $i5
+	sethi %hi(__llvm_gcov_ctr.150), %i0
+	ldd [%i0+%lo(__llvm_gcov_ctr.150)], %l0
+	mov	%l0, %g2
+	mov	%l1, %i1
+	addcc %g2, 1, %g4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $g2_g3
+	mov	%g4, %g2
+	mov	%i1, %g3
+	std %g2, [%i0+%lo(__llvm_gcov_ctr.150)]
                                         ! implicit-def: $i0_i1
 	mov	%i5, %i0
 	mov	%i4, %i1
@@ -15556,6 +20535,764 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
                                         ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   ! @__llvm_gcov_writeout
+! %bb.0:
+	save %sp, -120, %sp
+	mov	%g0, %i0
+	st %i0, [%fp+-4]                        ! 4-byte Folded Spill
+.LBB151_1:                              ! =>This Loop Header: Depth=1
+                                        !     Child Loop BB151_2 Depth 2
+	ld [%fp+-4], %i0                        ! 4-byte Folded Reload
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	smul %i0, 24, %i2
+	sethi %hi(__llvm_internal_gcov_emit_file_info), %i0
+	add %i0, %lo(__llvm_internal_gcov_emit_file_info), %i1
+	add %i1, %i2, %i0
+	ld [%i1+%i2], %o0
+	ld [%i0+4], %o1
+	call llvm_gcda_start_file
+	ld [%i0+8], %o2
+	ld [%i0+12], %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
+	ld [%i0+16], %i2
+	st %i2, [%fp+-16]                       ! 4-byte Folded Spill
+	ld [%i0+20], %i0
+	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
+	mov	%g0, %i0
+	cmp	%i1, 1
+	bl	.LBB151_3
+	st %i0, [%fp+-8]
+	ba .LBB151_2
+	nop
+.LBB151_2:                              !   Parent Loop BB151_1 Depth=1
+                                        ! =>  This Inner Loop Header: Depth=2
+	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-12], %i3                       ! 4-byte Folded Reload
+	ld [%fp+-16], %i4                       ! 4-byte Folded Reload
+	smul %i0, 12, %i5
+	add %i4, %i5, %i2
+	ld [%i4+%i5], %o0
+	ld [%i2+4], %o1
+	call llvm_gcda_emit_function
+	ld [%i2+8], %o2
+	sll %i0, 3, %i4
+	add %i3, %i4, %i2
+	ld [%i3+%i4], %o0
+	call llvm_gcda_emit_arcs
+	ld [%i2+4], %o1
+	add %i0, 1, %i0
+	cmp	%i0, %i1
+	bl	.LBB151_2
+	st %i0, [%fp+-8]
+	ba .LBB151_3
+	nop
+.LBB151_3:                              !   in Loop: Header=BB151_1 Depth=1
+	call llvm_gcda_summary_info
+	ld [%fp+-24], %i0
+	call llvm_gcda_end_file
+	nop
+	add %i0, 1, %i0
+	cmp	%i0, 1
+	bl	.LBB151_1
+	st %i0, [%fp+-4]
+	ba .LBB151_4
+	nop
+.LBB151_4:
+	ret
+	restore
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      ! @__llvm_gcov_reset
+! %bb.0:
+	save %sp, -120, %sp
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %o0
+	mov	%g0, %i1
+	mov	40, %o2
+	st %o2, [%fp+-4]                        ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	add %i0, %lo(__llvm_gcov_ctr.1), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %o0
+	mov	16, %o2
+	st %o2, [%fp+-24]                       ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %o0
+	mov	24, %o2
+	st %o2, [%fp+-12]                       ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.6), %i0
+	add %i0, %lo(__llvm_gcov_ctr.6), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.8), %i0
+	add %i0, %lo(__llvm_gcov_ctr.8), %o0
+	mov	32, %o2
+	st %o2, [%fp+-8]                        ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	add %i0, %lo(__llvm_gcov_ctr.9), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %o0
+	mov	56, %o2
+	st %o2, [%fp+-20]                       ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.13), %i0
+	add %i0, %lo(__llvm_gcov_ctr.13), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	mov	%g0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.14)]
+	sethi %hi(__llvm_gcov_ctr.15), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.15)]
+	sethi %hi(__llvm_gcov_ctr.16), %i0
+	add %i0, %lo(__llvm_gcov_ctr.16), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.17), %i0
+	add %i0, %lo(__llvm_gcov_ctr.17), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.18), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.18)]
+	sethi %hi(__llvm_gcov_ctr.19), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.19)]
+	sethi %hi(__llvm_gcov_ctr.20), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.20)]
+	sethi %hi(__llvm_gcov_ctr.21), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.21)]
+	sethi %hi(__llvm_gcov_ctr.22), %i0
+	add %i0, %lo(__llvm_gcov_ctr.22), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.23), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.23)]
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-20], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.25), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.25)]
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.27), %i0
+	add %i0, %lo(__llvm_gcov_ctr.27), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.28)]
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	add %i0, %lo(__llvm_gcov_ctr.30), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %o0
+	mov	48, %o2
+	st %o2, [%fp+-28]                       ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.38)]
+	sethi %hi(__llvm_gcov_ctr.39), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.39)]
+	sethi %hi(__llvm_gcov_ctr.40), %i0
+	add %i0, %lo(__llvm_gcov_ctr.40), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.41), %i0
+	add %i0, %lo(__llvm_gcov_ctr.41), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.50)]
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.52), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.52)]
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	add %i0, %lo(__llvm_gcov_ctr.53), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.54), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.54)]
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	add %i0, %lo(__llvm_gcov_ctr.55), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.56), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.56)]
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %o0
+	mov	64, %o2
+	st %o2, [%fp+-16]                       ! 4-byte Folded Spill
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.66), %i0
+	add %i0, %lo(__llvm_gcov_ctr.66), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.68), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.68)]
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.69)]
+	sethi %hi(__llvm_gcov_ctr.70), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.70)]
+	sethi %hi(__llvm_gcov_ctr.71), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.71)]
+	sethi %hi(__llvm_gcov_ctr.72), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.72)]
+	sethi %hi(__llvm_gcov_ctr.73), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.73)]
+	sethi %hi(__llvm_gcov_ctr.74), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.74)]
+	sethi %hi(__llvm_gcov_ctr.75), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.75)]
+	sethi %hi(__llvm_gcov_ctr.76), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.76)]
+	sethi %hi(__llvm_gcov_ctr.77), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.77)]
+	sethi %hi(__llvm_gcov_ctr.78), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.78)]
+	sethi %hi(__llvm_gcov_ctr.79), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.79)]
+	sethi %hi(__llvm_gcov_ctr.80), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.80)]
+	sethi %hi(__llvm_gcov_ctr.81), %i0
+	add %i0, %lo(__llvm_gcov_ctr.81), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.82), %i0
+	add %i0, %lo(__llvm_gcov_ctr.82), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.85), %i0
+	add %i0, %lo(__llvm_gcov_ctr.85), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.86), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.86)]
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.92), %i0
+	add %i0, %lo(__llvm_gcov_ctr.92), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-16], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.98)]
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.100), %i0
+	add %i0, %lo(__llvm_gcov_ctr.100), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-16], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-28], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.108)]
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.109)]
+	sethi %hi(__llvm_gcov_ctr.110), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.110)]
+	sethi %hi(__llvm_gcov_ctr.111), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.111)]
+	sethi %hi(__llvm_gcov_ctr.112), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.112)]
+	sethi %hi(__llvm_gcov_ctr.113), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.113)]
+	sethi %hi(__llvm_gcov_ctr.114), %i0
+	add %i0, %lo(__llvm_gcov_ctr.114), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.115), %i0
+	add %i0, %lo(__llvm_gcov_ctr.115), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-24], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	add %i0, %lo(__llvm_gcov_ctr.116), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-16], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-20], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.124), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.124)]
+	sethi %hi(__llvm_gcov_ctr.125), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.125)]
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.127), %i0
+	add %i0, %lo(__llvm_gcov_ctr.127), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-16], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-16], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.133)]
+	sethi %hi(__llvm_gcov_ctr.134), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.134)]
+	sethi %hi(__llvm_gcov_ctr.135), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.135)]
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-12], %o2                       ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.137), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.137)]
+	add %i0, %lo(__llvm_gcov_ctr.137), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.138), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.138)]
+	add %i0, %lo(__llvm_gcov_ctr.138), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.139), %i0
+	add %i0, %lo(__llvm_gcov_ctr.139), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.140), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.140)]
+	add %i0, %lo(__llvm_gcov_ctr.140), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.141)]
+	add %i0, %lo(__llvm_gcov_ctr.141), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.142), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.142)]
+	add %i0, %lo(__llvm_gcov_ctr.142), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.143)]
+	sethi %hi(__llvm_gcov_ctr.144), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.144)]
+	sethi %hi(__llvm_gcov_ctr.145), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.145)]
+	sethi %hi(__llvm_gcov_ctr.146), %i0
+	std %i2, [%i0+%lo(__llvm_gcov_ctr.146)]
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-8], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %o0
+	call memset
+	mov	%i1, %o1
+	ld [%fp+-4], %o2                        ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %o0
+	call memset
+	mov	%i1, %o1
+	sethi %hi(__llvm_gcov_ctr.150), %i0
+	stb %i1, [%i0+%lo(__llvm_gcov_ctr.150)]
+	add %i0, %lo(__llvm_gcov_ctr.150), %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	ret
+	restore
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       ! @__llvm_gcov_init
+! %bb.0:
+	save %sp, -96, %sp
+	sethi %hi(__llvm_gcov_writeout), %i0
+	add %i0, %lo(__llvm_gcov_writeout), %o0
+	sethi %hi(__llvm_gcov_reset), %i0
+	call llvm_gcov_init
+	add %i0, %lo(__llvm_gcov_reset), %o1
+	ret
+	restore
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
+                                        ! -- End function
 	.type	l64a.s,@object                  ! @l64a.s
 	.local	l64a.s
 	.comm	l64a.s,7,1
@@ -15568,6 +21305,1245 @@ digits:
 	.type	seed,@object                    ! @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         ! @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       ! @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       ! @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       ! @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       ! @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       ! @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       ! @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       ! @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       ! @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       ! @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      ! @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      ! @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      ! @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      ! @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      ! @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      ! @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      ! @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      ! @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      ! @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      ! @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      ! @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      ! @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      ! @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      ! @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      ! @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      ! @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      ! @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      ! @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      ! @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      ! @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      ! @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      ! @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      ! @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      ! @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      ! @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      ! @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      ! @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      ! @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      ! @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,@object      ! @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,@object      ! @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      ! @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      ! @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      ! @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      ! @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,@object      ! @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      ! @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      ! @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      ! @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      ! @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      ! @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      ! @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      ! @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      ! @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      ! @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      ! @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      ! @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      ! @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      ! @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      ! @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,@object      ! @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,@object      ! @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      ! @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      ! @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      ! @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      ! @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      ! @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      ! @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      ! @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      ! @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      ! @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      ! @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      ! @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      ! @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      ! @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      ! @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      ! @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      ! @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      ! @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      ! @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      ! @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      ! @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      ! @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      ! @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      ! @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      ! @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      ! @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      ! @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      ! @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      ! @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      ! @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,@object      ! @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      ! @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      ! @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      ! @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      ! @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      ! @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      ! @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      ! @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      ! @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     ! @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     ! @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     ! @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     ! @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     ! @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     ! @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     ! @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     ! @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     ! @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     ! @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     ! @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     ! @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     ! @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     ! @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     ! @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     ! @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     ! @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,@object     ! @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     ! @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     ! @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     ! @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     ! @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     ! @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     ! @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     ! @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,@object     ! @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,@object     ! @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     ! @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     ! @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     ! @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     ! @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     ! @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     ! @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     ! @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     ! @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,@object     ! @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     ! @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     ! @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     ! @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     ! @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     ! @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     ! @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     ! @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     ! @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     ! @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     ! @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     ! @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,@object     ! @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     ! @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     ! @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     ! @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,@object           ! @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-sparc32.gcda"
+	.size	.L__unnamed_1, 51
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object ! @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.word	0                               ! 0x0
+	.word	560687177                       ! 0x216b6849
+	.word	3469251760                      ! 0xcec894b0
+	.word	1                               ! 0x1
+	.word	1589591758                      ! 0x5ebf3ece
+	.word	3469251760                      ! 0xcec894b0
+	.word	2                               ! 0x2
+	.word	2176136383                      ! 0x81b534bf
+	.word	3469251760                      ! 0xcec894b0
+	.word	3                               ! 0x3
+	.word	3586625172                      ! 0xd5c78e94
+	.word	3469251760                      ! 0xcec894b0
+	.word	4                               ! 0x4
+	.word	2323119728                      ! 0x8a77fe70
+	.word	3469251760                      ! 0xcec894b0
+	.word	5                               ! 0x5
+	.word	2314569740                      ! 0x89f5880c
+	.word	3469251760                      ! 0xcec894b0
+	.word	6                               ! 0x6
+	.word	2833673551                      ! 0xa8e66d4f
+	.word	3469251760                      ! 0xcec894b0
+	.word	7                               ! 0x7
+	.word	1458633189                      ! 0x56f0f9e5
+	.word	3469251760                      ! 0xcec894b0
+	.word	8                               ! 0x8
+	.word	1190300833                      ! 0x46f28ca1
+	.word	3469251760                      ! 0xcec894b0
+	.word	9                               ! 0x9
+	.word	758327989                       ! 0x2d332ab5
+	.word	3469251760                      ! 0xcec894b0
+	.word	10                              ! 0xa
+	.word	1651479037                      ! 0x626f91fd
+	.word	3469251760                      ! 0xcec894b0
+	.word	11                              ! 0xb
+	.word	4132343275                      ! 0xf64e8deb
+	.word	3469251760                      ! 0xcec894b0
+	.word	12                              ! 0xc
+	.word	734262523                       ! 0x2bc3f4fb
+	.word	3469251760                      ! 0xcec894b0
+	.word	13                              ! 0xd
+	.word	2463424677                      ! 0x92d4e0a5
+	.word	3469251760                      ! 0xcec894b0
+	.word	14                              ! 0xe
+	.word	1419026334                      ! 0x54949f9e
+	.word	3469251760                      ! 0xcec894b0
+	.word	15                              ! 0xf
+	.word	3154471370                      ! 0xbc0569ca
+	.word	3469251760                      ! 0xcec894b0
+	.word	16                              ! 0x10
+	.word	2077973487                      ! 0x7bdb5bef
+	.word	3469251760                      ! 0xcec894b0
+	.word	17                              ! 0x11
+	.word	1474691227                      ! 0x57e6009b
+	.word	3469251760                      ! 0xcec894b0
+	.word	18                              ! 0x12
+	.word	3710986016                      ! 0xdd312720
+	.word	3469251760                      ! 0xcec894b0
+	.word	19                              ! 0x13
+	.word	1305101473                      ! 0x4dca44a1
+	.word	3469251760                      ! 0xcec894b0
+	.word	20                              ! 0x14
+	.word	3762036564                      ! 0xe03c1f54
+	.word	3469251760                      ! 0xcec894b0
+	.word	21                              ! 0x15
+	.word	477914433                       ! 0x1c7c6541
+	.word	3469251760                      ! 0xcec894b0
+	.word	22                              ! 0x16
+	.word	3923035234                      ! 0xe9d4c462
+	.word	3469251760                      ! 0xcec894b0
+	.word	23                              ! 0x17
+	.word	951651702                       ! 0x38b90d76
+	.word	3469251760                      ! 0xcec894b0
+	.word	24                              ! 0x18
+	.word	4206925919                      ! 0xfac0985f
+	.word	3469251760                      ! 0xcec894b0
+	.word	25                              ! 0x19
+	.word	32773942                        ! 0x1f41736
+	.word	3469251760                      ! 0xcec894b0
+	.word	26                              ! 0x1a
+	.word	2877267246                      ! 0xab7f9d2e
+	.word	3469251760                      ! 0xcec894b0
+	.word	27                              ! 0x1b
+	.word	860405771                       ! 0x3348c00b
+	.word	3469251760                      ! 0xcec894b0
+	.word	28                              ! 0x1c
+	.word	815674877                       ! 0x309e35fd
+	.word	3469251760                      ! 0xcec894b0
+	.word	29                              ! 0x1d
+	.word	1778838753                      ! 0x6a06ece1
+	.word	3469251760                      ! 0xcec894b0
+	.word	30                              ! 0x1e
+	.word	2718307199                      ! 0xa206137f
+	.word	3469251760                      ! 0xcec894b0
+	.word	31                              ! 0x1f
+	.word	856224820                       ! 0x3308f434
+	.word	3469251760                      ! 0xcec894b0
+	.word	32                              ! 0x20
+	.word	1111195143                      ! 0x423b7e07
+	.word	3469251760                      ! 0xcec894b0
+	.word	33                              ! 0x21
+	.word	1178414519                      ! 0x463d2db7
+	.word	3469251760                      ! 0xcec894b0
+	.word	34                              ! 0x22
+	.word	3477640633                      ! 0xcf4895b9
+	.word	3469251760                      ! 0xcec894b0
+	.word	35                              ! 0x23
+	.word	4294770115                      ! 0xfffcfdc3
+	.word	3469251760                      ! 0xcec894b0
+	.word	36                              ! 0x24
+	.word	3650660234                      ! 0xd998a78a
+	.word	3469251760                      ! 0xcec894b0
+	.word	37                              ! 0x25
+	.word	289327647                       ! 0x113eca1f
+	.word	3469251760                      ! 0xcec894b0
+	.word	38                              ! 0x26
+	.word	2093612798                      ! 0x7cc9fefe
+	.word	3469251760                      ! 0xcec894b0
+	.word	39                              ! 0x27
+	.word	4177956716                      ! 0xf9068f6c
+	.word	3469251760                      ! 0xcec894b0
+	.word	40                              ! 0x28
+	.word	3434808461                      ! 0xccbb048d
+	.word	3469251760                      ! 0xcec894b0
+	.word	41                              ! 0x29
+	.word	3206497114                      ! 0xbf1f435a
+	.word	3469251760                      ! 0xcec894b0
+	.word	42                              ! 0x2a
+	.word	1537257434                      ! 0x5ba0afda
+	.word	3469251760                      ! 0xcec894b0
+	.word	43                              ! 0x2b
+	.word	3028077325                      ! 0xb47ccb0d
+	.word	3469251760                      ! 0xcec894b0
+	.word	44                              ! 0x2c
+	.word	1369848209                      ! 0x51a63991
+	.word	3469251760                      ! 0xcec894b0
+	.word	45                              ! 0x2d
+	.word	938831176                       ! 0x37f56d48
+	.word	3469251760                      ! 0xcec894b0
+	.word	46                              ! 0x2e
+	.word	1663146323                      ! 0x63219953
+	.word	3469251760                      ! 0xcec894b0
+	.word	47                              ! 0x2f
+	.word	4111410217                      ! 0xf50f2429
+	.word	3469251760                      ! 0xcec894b0
+	.word	48                              ! 0x30
+	.word	1475378556                      ! 0x57f07d7c
+	.word	3469251760                      ! 0xcec894b0
+	.word	49                              ! 0x31
+	.word	3356195547                      ! 0xc80b7adb
+	.word	3469251760                      ! 0xcec894b0
+	.word	50                              ! 0x32
+	.word	514931786                       ! 0x1eb13c4a
+	.word	3469251760                      ! 0xcec894b0
+	.word	51                              ! 0x33
+	.word	2854034444                      ! 0xaa1d1c0c
+	.word	3469251760                      ! 0xcec894b0
+	.word	52                              ! 0x34
+	.word	2747937306                      ! 0xa3ca321a
+	.word	3469251760                      ! 0xcec894b0
+	.word	53                              ! 0x35
+	.word	4192776208                      ! 0xf9e8b010
+	.word	3469251760                      ! 0xcec894b0
+	.word	54                              ! 0x36
+	.word	984436227                       ! 0x3aad4e03
+	.word	3469251760                      ! 0xcec894b0
+	.word	55                              ! 0x37
+	.word	1477657574                      ! 0x581343e6
+	.word	3469251760                      ! 0xcec894b0
+	.word	56                              ! 0x38
+	.word	1339127973                      ! 0x4fd178a5
+	.word	3469251760                      ! 0xcec894b0
+	.word	57                              ! 0x39
+	.word	2960567906                      ! 0xb076ae62
+	.word	3469251760                      ! 0xcec894b0
+	.word	58                              ! 0x3a
+	.word	3390076872                      ! 0xca1077c8
+	.word	3469251760                      ! 0xcec894b0
+	.word	59                              ! 0x3b
+	.word	1543282230                      ! 0x5bfc9e36
+	.word	3469251760                      ! 0xcec894b0
+	.word	60                              ! 0x3c
+	.word	2934101789                      ! 0xaee2d71d
+	.word	3469251760                      ! 0xcec894b0
+	.word	61                              ! 0x3d
+	.word	3737986119                      ! 0xdecd2447
+	.word	3469251760                      ! 0xcec894b0
+	.word	62                              ! 0x3e
+	.word	49556427                        ! 0x2f42bcb
+	.word	3469251760                      ! 0xcec894b0
+	.word	63                              ! 0x3f
+	.word	234051526                       ! 0xdf357c6
+	.word	3469251760                      ! 0xcec894b0
+	.word	64                              ! 0x40
+	.word	2341800126                      ! 0x8b9508be
+	.word	3469251760                      ! 0xcec894b0
+	.word	65                              ! 0x41
+	.word	3256799948                      ! 0xc21ed2cc
+	.word	3469251760                      ! 0xcec894b0
+	.word	66                              ! 0x42
+	.word	777295480                       ! 0x2e549678
+	.word	3469251760                      ! 0xcec894b0
+	.word	67                              ! 0x43
+	.word	14040531                        ! 0xd63dd3
+	.word	3469251760                      ! 0xcec894b0
+	.word	68                              ! 0x44
+	.word	8047973                         ! 0x7acd65
+	.word	3469251760                      ! 0xcec894b0
+	.word	69                              ! 0x45
+	.word	719459161                       ! 0x2ae21359
+	.word	3469251760                      ! 0xcec894b0
+	.word	70                              ! 0x46
+	.word	243358501                       ! 0xe815b25
+	.word	3469251760                      ! 0xcec894b0
+	.word	71                              ! 0x47
+	.word	3262173932                      ! 0xc270d2ec
+	.word	3469251760                      ! 0xcec894b0
+	.word	72                              ! 0x48
+	.word	398910553                       ! 0x17c6e459
+	.word	3469251760                      ! 0xcec894b0
+	.word	73                              ! 0x49
+	.word	3354219739                      ! 0xc7ed54db
+	.word	3469251760                      ! 0xcec894b0
+	.word	74                              ! 0x4a
+	.word	2570308788                      ! 0x9933ccb4
+	.word	3469251760                      ! 0xcec894b0
+	.word	75                              ! 0x4b
+	.word	982429111                       ! 0x3a8eadb7
+	.word	3469251760                      ! 0xcec894b0
+	.word	76                              ! 0x4c
+	.word	211491241                       ! 0xc9b19a9
+	.word	3469251760                      ! 0xcec894b0
+	.word	77                              ! 0x4d
+	.word	1075683319                      ! 0x401d9ff7
+	.word	3469251760                      ! 0xcec894b0
+	.word	78                              ! 0x4e
+	.word	1886352651                      ! 0x706f750b
+	.word	3469251760                      ! 0xcec894b0
+	.word	79                              ! 0x4f
+	.word	248637203                       ! 0xed1e713
+	.word	3469251760                      ! 0xcec894b0
+	.word	80                              ! 0x50
+	.word	703327087                       ! 0x29ebeb6f
+	.word	3469251760                      ! 0xcec894b0
+	.word	81                              ! 0x51
+	.word	3690160730                      ! 0xdbf3625a
+	.word	3469251760                      ! 0xcec894b0
+	.word	82                              ! 0x52
+	.word	787048238                       ! 0x2ee9672e
+	.word	3469251760                      ! 0xcec894b0
+	.word	83                              ! 0x53
+	.word	1937497967                      ! 0x737bdf6f
+	.word	3469251760                      ! 0xcec894b0
+	.word	84                              ! 0x54
+	.word	4205062514                      ! 0xfaa42972
+	.word	3469251760                      ! 0xcec894b0
+	.word	85                              ! 0x55
+	.word	694462539                       ! 0x2964a84b
+	.word	3469251760                      ! 0xcec894b0
+	.word	86                              ! 0x56
+	.word	85970907                        ! 0x51fcfdb
+	.word	3469251760                      ! 0xcec894b0
+	.word	87                              ! 0x57
+	.word	3681984728                      ! 0xdb76a0d8
+	.word	3469251760                      ! 0xcec894b0
+	.word	88                              ! 0x58
+	.word	3620297642                      ! 0xd7c95baa
+	.word	3469251760                      ! 0xcec894b0
+	.word	89                              ! 0x59
+	.word	3394804480                      ! 0xca589b00
+	.word	3469251760                      ! 0xcec894b0
+	.word	90                              ! 0x5a
+	.word	2119330183                      ! 0x7e526987
+	.word	3469251760                      ! 0xcec894b0
+	.word	91                              ! 0x5b
+	.word	1963040266                      ! 0x75019e0a
+	.word	3469251760                      ! 0xcec894b0
+	.word	92                              ! 0x5c
+	.word	1603391838                      ! 0x5f91d15e
+	.word	3469251760                      ! 0xcec894b0
+	.word	93                              ! 0x5d
+	.word	2340921237                      ! 0x8b879f95
+	.word	3469251760                      ! 0xcec894b0
+	.word	94                              ! 0x5e
+	.word	3028177438                      ! 0xb47e521e
+	.word	3469251760                      ! 0xcec894b0
+	.word	95                              ! 0x5f
+	.word	2265525308                      ! 0x87092c3c
+	.word	3469251760                      ! 0xcec894b0
+	.word	96                              ! 0x60
+	.word	2598903994                      ! 0x9ae820ba
+	.word	3469251760                      ! 0xcec894b0
+	.word	97                              ! 0x61
+	.word	139524705                       ! 0x850fa61
+	.word	3469251760                      ! 0xcec894b0
+	.word	98                              ! 0x62
+	.word	1076410600                      ! 0x4028b8e8
+	.word	3469251760                      ! 0xcec894b0
+	.word	99                              ! 0x63
+	.word	220237413                       ! 0xd208e65
+	.word	3469251760                      ! 0xcec894b0
+	.word	100                             ! 0x64
+	.word	3913623866                      ! 0xe945293a
+	.word	3469251760                      ! 0xcec894b0
+	.word	101                             ! 0x65
+	.word	3453026372                      ! 0xcdd10044
+	.word	3469251760                      ! 0xcec894b0
+	.word	102                             ! 0x66
+	.word	2321387380                      ! 0x8a5d8f74
+	.word	3469251760                      ! 0xcec894b0
+	.word	103                             ! 0x67
+	.word	3319939363                      ! 0xc5e24123
+	.word	3469251760                      ! 0xcec894b0
+	.word	104                             ! 0x68
+	.word	398991913                       ! 0x17c82229
+	.word	3469251760                      ! 0xcec894b0
+	.word	105                             ! 0x69
+	.word	333429647                       ! 0x13dfbb8f
+	.word	3469251760                      ! 0xcec894b0
+	.word	106                             ! 0x6a
+	.word	3927133990                      ! 0xea134f26
+	.word	3469251760                      ! 0xcec894b0
+	.word	107                             ! 0x6b
+	.word	1797971294                      ! 0x6b2add5e
+	.word	3469251760                      ! 0xcec894b0
+	.word	108                             ! 0x6c
+	.word	1622314776                      ! 0x60b28f18
+	.word	3469251760                      ! 0xcec894b0
+	.word	109                             ! 0x6d
+	.word	1092862330                      ! 0x4123c17a
+	.word	3469251760                      ! 0xcec894b0
+	.word	110                             ! 0x6e
+	.word	2568657322                      ! 0x991a99aa
+	.word	3469251760                      ! 0xcec894b0
+	.word	111                             ! 0x6f
+	.word	2168129897                      ! 0x813b0969
+	.word	3469251760                      ! 0xcec894b0
+	.word	112                             ! 0x70
+	.word	2890303119                      ! 0xac46868f
+	.word	3469251760                      ! 0xcec894b0
+	.word	113                             ! 0x71
+	.word	1713332582                      ! 0x661f6166
+	.word	3469251760                      ! 0xcec894b0
+	.word	114                             ! 0x72
+	.word	2375727721                      ! 0x8d9aba69
+	.word	3469251760                      ! 0xcec894b0
+	.word	115                             ! 0x73
+	.word	3586767156                      ! 0xd5c9b934
+	.word	3469251760                      ! 0xcec894b0
+	.word	116                             ! 0x74
+	.word	2191348475                      ! 0x829d52fb
+	.word	3469251760                      ! 0xcec894b0
+	.word	117                             ! 0x75
+	.word	3910023869                      ! 0xe90e3abd
+	.word	3469251760                      ! 0xcec894b0
+	.word	118                             ! 0x76
+	.word	4189915105                      ! 0xf9bd07e1
+	.word	3469251760                      ! 0xcec894b0
+	.word	119                             ! 0x77
+	.word	2527353334                      ! 0x96a459f6
+	.word	3469251760                      ! 0xcec894b0
+	.word	120                             ! 0x78
+	.word	3429265923                      ! 0xcc667203
+	.word	3469251760                      ! 0xcec894b0
+	.word	121                             ! 0x79
+	.word	1283962724                      ! 0x4c87b764
+	.word	3469251760                      ! 0xcec894b0
+	.word	122                             ! 0x7a
+	.word	1970290990                      ! 0x7570412e
+	.word	3469251760                      ! 0xcec894b0
+	.word	123                             ! 0x7b
+	.word	2615950861                      ! 0x9bec3e0d
+	.word	3469251760                      ! 0xcec894b0
+	.word	124                             ! 0x7c
+	.word	3338450337                      ! 0xc6fcb5a1
+	.word	3469251760                      ! 0xcec894b0
+	.word	125                             ! 0x7d
+	.word	3971836509                      ! 0xecbd6a5d
+	.word	3469251760                      ! 0xcec894b0
+	.word	126                             ! 0x7e
+	.word	4260339231                      ! 0xfdef9e1f
+	.word	3469251760                      ! 0xcec894b0
+	.word	127                             ! 0x7f
+	.word	4160738226                      ! 0xf7ffd3b2
+	.word	3469251760                      ! 0xcec894b0
+	.word	128                             ! 0x80
+	.word	1309372079                      ! 0x4e0b6eaf
+	.word	3469251760                      ! 0xcec894b0
+	.word	129                             ! 0x81
+	.word	3151575564                      ! 0xbbd93a0c
+	.word	3469251760                      ! 0xcec894b0
+	.word	130                             ! 0x82
+	.word	3938977714                      ! 0xeac807b2
+	.word	3469251760                      ! 0xcec894b0
+	.word	131                             ! 0x83
+	.word	3228738087                      ! 0xc072a227
+	.word	3469251760                      ! 0xcec894b0
+	.word	132                             ! 0x84
+	.word	3135705803                      ! 0xbae712cb
+	.word	3469251760                      ! 0xcec894b0
+	.word	133                             ! 0x85
+	.word	4061147315                      ! 0xf21030b3
+	.word	3469251760                      ! 0xcec894b0
+	.word	134                             ! 0x86
+	.word	2783543715                      ! 0xa5e981a3
+	.word	3469251760                      ! 0xcec894b0
+	.word	135                             ! 0x87
+	.word	2471046843                      ! 0x93492ebb
+	.word	3469251760                      ! 0xcec894b0
+	.word	136                             ! 0x88
+	.word	260073473                       ! 0xf806801
+	.word	3469251760                      ! 0xcec894b0
+	.word	137                             ! 0x89
+	.word	1259876295                      ! 0x4b182fc7
+	.word	3469251760                      ! 0xcec894b0
+	.word	138                             ! 0x8a
+	.word	2579807359                      ! 0x99c4bc7f
+	.word	3469251760                      ! 0xcec894b0
+	.word	139                             ! 0x8b
+	.word	90061610                        ! 0x55e3b2a
+	.word	3469251760                      ! 0xcec894b0
+	.word	140                             ! 0x8c
+	.word	3598610789                      ! 0xd67e7165
+	.word	3469251760                      ! 0xcec894b0
+	.word	141                             ! 0x8d
+	.word	2351688191                      ! 0x8c2be9ff
+	.word	3469251760                      ! 0xcec894b0
+	.word	142                             ! 0x8e
+	.word	1438161982                      ! 0x55b89c3e
+	.word	3469251760                      ! 0xcec894b0
+	.word	143                             ! 0x8f
+	.word	2438880600                      ! 0x915e5d58
+	.word	3469251760                      ! 0xcec894b0
+	.word	144                             ! 0x90
+	.word	3593193962                      ! 0xd62bc9ea
+	.word	3469251760                      ! 0xcec894b0
+	.word	145                             ! 0x91
+	.word	1755082314                      ! 0x689c6e4a
+	.word	3469251760                      ! 0xcec894b0
+	.word	146                             ! 0x92
+	.word	3432612426                      ! 0xcc99824a
+	.word	3469251760                      ! 0xcec894b0
+	.word	147                             ! 0x93
+	.word	3374828335                      ! 0xc927cb2f
+	.word	3469251760                      ! 0xcec894b0
+	.word	148                             ! 0x94
+	.word	3311814731                      ! 0xc566484b
+	.word	3469251760                      ! 0xcec894b0
+	.word	149                             ! 0x95
+	.word	413908966                       ! 0x18abbfe6
+	.word	3469251760                      ! 0xcec894b0
+	.word	150                             ! 0x96
+	.word	3027808697                      ! 0xb478b1b9
+	.word	3469251760                      ! 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object ! @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.1
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.2
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.3
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.4
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.5
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.6
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.7
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.8
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.9
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.10
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.11
+	.word	7                               ! 0x7
+	.word	__llvm_gcov_ctr.12
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.13
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.14
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.15
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.16
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.17
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.18
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.19
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.20
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.21
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.22
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.23
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.24
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.25
+	.word	7                               ! 0x7
+	.word	__llvm_gcov_ctr.26
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.27
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.28
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.29
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.30
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.31
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.32
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.33
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.34
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.35
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.36
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.37
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.38
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.39
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.40
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.41
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.42
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.43
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.44
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.45
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.46
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.47
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.48
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.49
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.50
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.51
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.52
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.53
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.54
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.55
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.56
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.57
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.58
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.59
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.60
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.61
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.62
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.63
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.64
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.65
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.66
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.67
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.68
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.69
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.70
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.71
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.72
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.73
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.74
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.75
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.76
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.77
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.78
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.79
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.80
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.81
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.82
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.83
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.84
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.85
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.86
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.87
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.88
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.89
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.90
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.91
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.92
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.93
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.94
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.95
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.96
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.97
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.98
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.99
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.100
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.101
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.102
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.103
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.104
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.105
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.106
+	.word	6                               ! 0x6
+	.word	__llvm_gcov_ctr.107
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.108
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.109
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.110
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.111
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.112
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.113
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.114
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.115
+	.word	2                               ! 0x2
+	.word	__llvm_gcov_ctr.116
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.117
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.118
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.119
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.120
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.121
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.122
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.123
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.124
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.125
+	.word	7                               ! 0x7
+	.word	__llvm_gcov_ctr.126
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.127
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.128
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.129
+	.word	8                               ! 0x8
+	.word	__llvm_gcov_ctr.130
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.131
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.132
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.133
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.134
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.135
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.136
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.137
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.138
+	.word	3                               ! 0x3
+	.word	__llvm_gcov_ctr.139
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.140
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.141
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.142
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.143
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.144
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.145
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.146
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.147
+	.word	4                               ! 0x4
+	.word	__llvm_gcov_ctr.148
+	.word	5                               ! 0x5
+	.word	__llvm_gcov_ctr.149
+	.word	1                               ! 0x1
+	.word	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,@object ! @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.word	.L__unnamed_1
+	.word	875575338                       ! 0x3430382a
+	.word	3469251760                      ! 0xcec894b0
+	.word	151                             ! 0x97
+	.word	__llvm_internal_gcov_emit_function_args.0
+	.word	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.word	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       ! @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -19363,9 +26339,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

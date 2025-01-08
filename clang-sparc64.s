@@ -6,6 +6,14 @@
 make_ti:                                ! @make_ti
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr), %i2
+	add %i2, %lo(__llvm_gcov_ctr), %i3
+	sethi %hh(__llvm_gcov_ctr), %i2
+	add %i2, %hm(__llvm_gcov_ctr), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_make_ti), %i0
@@ -35,6 +43,14 @@ make_ti:                                ! @make_ti
 make_tu:                                ! @make_tu
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.1), %i2
+	add %i2, %lo(__llvm_gcov_ctr.1), %i3
+	sethi %hh(__llvm_gcov_ctr.1), %i2
+	add %i2, %hm(__llvm_gcov_ctr.1), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_make_tu), %i0
@@ -87,6 +103,14 @@ memmove:                                ! @memmove
 	ba .LBB2_1
 	nop
 .LBB2_1:
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memmove), %i0
 	add %i0, %lo(.L__profc_memmove), %i1
 	sethi %hh(.L__profc_memmove), %i0
@@ -131,6 +155,15 @@ memmove:                                ! @memmove
 	ba .LBB2_4
 	stb %i1, [%i0+-1]
 .LBB2_4:                                !   in Loop: Header=BB2_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	ba .LBB2_2
@@ -164,6 +197,15 @@ memmove:                                ! @memmove
 	ba .LBB2_9
 	nop
 .LBB2_9:                                !   in Loop: Header=BB2_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_memmove), %i0
 	add %i0, %lo(.L__profc_memmove), %i1
 	sethi %hh(.L__profc_memmove), %i0
@@ -188,11 +230,27 @@ memmove:                                ! @memmove
 	ba .LBB2_8
 	stx %i0, [%fp+2023]
 .LBB2_11:
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB2_12
-	nop
+	stx %i1, [%i0+24]
 .LBB2_12:
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
 	ba .LBB2_13
-	nop
+	stx %i1, [%i0+32]
 .LBB2_13:
 	ldx [%fp+2039], %i0
 	ret
@@ -236,6 +294,14 @@ memccpy:                                ! @memccpy
 	ba .LBB3_2
 	nop
 .LBB3_2:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i1
+	sethi %hh(__llvm_gcov_ctr.3), %i0
+	add %i0, %hm(__llvm_gcov_ctr.3), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memccpy), %i0
 	add %i0, %lo(.L__profc_memccpy), %i1
 	sethi %hh(.L__profc_memccpy), %i0
@@ -261,6 +327,15 @@ memccpy:                                ! @memccpy
 	nop
 .LBB3_3:                                !   in Loop: Header=BB3_1 Depth=1
 	ld [%fp+1983], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.3), %i1
+	add %i1, %lo(__llvm_gcov_ctr.3), %i2
+	sethi %hh(__llvm_gcov_ctr.3), %i1
+	add %i1, %hm(__llvm_gcov_ctr.3), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_memccpy), %i1
 	add %i1, %lo(.L__profc_memccpy), %i2
 	sethi %hh(.L__profc_memccpy), %i1
@@ -292,6 +367,15 @@ memccpy:                                ! @memccpy
 	ba .LBB3_6
 	stx %i1, [%i0+8]
 .LBB3_6:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i1
+	sethi %hh(__llvm_gcov_ctr.3), %i0
+	add %i0, %hm(__llvm_gcov_ctr.3), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2007], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2007]
@@ -309,6 +393,15 @@ memccpy:                                ! @memccpy
 	ba .LBB3_8
 	nop
 .LBB3_8:
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i1
+	sethi %hh(__llvm_gcov_ctr.3), %i0
+	add %i0, %hm(__llvm_gcov_ctr.3), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_memccpy), %i0
 	add %i0, %lo(.L__profc_memccpy), %i1
 	sethi %hh(.L__profc_memccpy), %i0
@@ -323,6 +416,15 @@ memccpy:                                ! @memccpy
 	ba .LBB3_10
 	stx %i0, [%fp+2039]
 .LBB3_9:
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i1
+	sethi %hh(__llvm_gcov_ctr.3), %i0
+	add %i0, %hm(__llvm_gcov_ctr.3), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ba .LBB3_10
 	stx %g0, [%fp+2039]
 .LBB3_10:
@@ -365,6 +467,14 @@ memchr:                                 ! @memchr
 	ba .LBB4_2
 	nop
 .LBB4_2:                                !   in Loop: Header=BB4_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i1
+	sethi %hh(__llvm_gcov_ctr.4), %i0
+	add %i0, %hm(__llvm_gcov_ctr.4), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memchr), %i0
 	add %i0, %lo(.L__profc_memchr), %i1
 	sethi %hh(.L__profc_memchr), %i0
@@ -388,6 +498,15 @@ memchr:                                 ! @memchr
 	nop
 .LBB4_3:                                !   in Loop: Header=BB4_1 Depth=1
 	ld [%fp+2007], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.4), %i1
+	add %i1, %lo(__llvm_gcov_ctr.4), %i2
+	sethi %hh(__llvm_gcov_ctr.4), %i1
+	add %i1, %hm(__llvm_gcov_ctr.4), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_memchr), %i1
 	add %i1, %lo(.L__profc_memchr), %i2
 	sethi %hh(.L__profc_memchr), %i1
@@ -419,6 +538,15 @@ memchr:                                 ! @memchr
 	ba .LBB4_6
 	stx %i1, [%i0+8]
 .LBB4_6:                                !   in Loop: Header=BB4_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i1
+	sethi %hh(__llvm_gcov_ctr.4), %i0
+	add %i0, %hm(__llvm_gcov_ctr.4), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2015], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2015]
@@ -433,6 +561,15 @@ memchr:                                 ! @memchr
 	ba .LBB4_8
 	nop
 .LBB4_8:
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i1
+	sethi %hh(__llvm_gcov_ctr.4), %i0
+	add %i0, %hm(__llvm_gcov_ctr.4), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_memchr), %i0
 	add %i0, %lo(.L__profc_memchr), %i1
 	sethi %hh(.L__profc_memchr), %i0
@@ -446,6 +583,15 @@ memchr:                                 ! @memchr
 	ba .LBB4_10
 	stx %i0, [%fp+1999]
 .LBB4_9:
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i1
+	sethi %hh(__llvm_gcov_ctr.4), %i0
+	add %i0, %hm(__llvm_gcov_ctr.4), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB4_10
 	stx %i0, [%fp+1999]
@@ -486,6 +632,14 @@ memcmp:                                 ! @memcmp
 	ba .LBB5_2
 	nop
 .LBB5_2:                                !   in Loop: Header=BB5_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i1
+	sethi %hh(__llvm_gcov_ctr.5), %i0
+	add %i0, %hm(__llvm_gcov_ctr.5), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memcmp), %i0
 	add %i0, %lo(.L__profc_memcmp), %i1
 	sethi %hh(.L__profc_memcmp), %i0
@@ -510,6 +664,15 @@ memcmp:                                 ! @memcmp
 	nop
 .LBB5_3:                                !   in Loop: Header=BB5_1 Depth=1
 	ld [%fp+1999], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.5), %i1
+	add %i1, %lo(__llvm_gcov_ctr.5), %i2
+	sethi %hh(__llvm_gcov_ctr.5), %i1
+	add %i1, %hm(__llvm_gcov_ctr.5), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_memcmp), %i1
 	add %i1, %lo(.L__profc_memcmp), %i2
 	sethi %hh(.L__profc_memcmp), %i1
@@ -541,6 +704,15 @@ memcmp:                                 ! @memcmp
 	ba .LBB5_6
 	stx %i1, [%i0+8]
 .LBB5_6:                                !   in Loop: Header=BB5_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i1
+	sethi %hh(__llvm_gcov_ctr.5), %i0
+	add %i0, %hm(__llvm_gcov_ctr.5), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2023]
@@ -558,6 +730,15 @@ memcmp:                                 ! @memcmp
 	ba .LBB5_8
 	nop
 .LBB5_8:
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i1
+	sethi %hh(__llvm_gcov_ctr.5), %i0
+	add %i0, %hm(__llvm_gcov_ctr.5), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_memcmp), %i0
 	add %i0, %lo(.L__profc_memcmp), %i1
 	sethi %hh(.L__profc_memcmp), %i0
@@ -575,6 +756,15 @@ memcmp:                                 ! @memcmp
 	ba .LBB5_10
 	st %i0, [%fp+1995]
 .LBB5_9:
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i1
+	sethi %hh(__llvm_gcov_ctr.5), %i0
+	add %i0, %hm(__llvm_gcov_ctr.5), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB5_10
 	st %i0, [%fp+1995]
@@ -592,6 +782,14 @@ memcmp:                                 ! @memcmp
 memcpy:                                 ! @memcpy
 ! %bb.0:
 	save %sp, -176, %sp
+	sethi %hi(__llvm_gcov_ctr.6), %i3
+	add %i3, %lo(__llvm_gcov_ctr.6), %i4
+	sethi %hh(__llvm_gcov_ctr.6), %i3
+	add %i3, %hm(__llvm_gcov_ctr.6), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	stx %i2, [%fp+2023]
@@ -634,6 +832,15 @@ memcpy:                                 ! @memcpy
 	ba .LBB6_3
 	stb %i1, [%i0]
 .LBB6_3:                                !   in Loop: Header=BB6_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.6), %i0
+	add %i0, %lo(__llvm_gcov_ctr.6), %i1
+	sethi %hh(__llvm_gcov_ctr.6), %i0
+	add %i0, %hm(__llvm_gcov_ctr.6), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	ba .LBB6_1
@@ -697,6 +904,14 @@ memrchr:                                ! @memrchr
 	ba .LBB7_3
 	nop
 .LBB7_3:
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %i1
+	sethi %hh(__llvm_gcov_ctr.7), %i0
+	add %i0, %hm(__llvm_gcov_ctr.7), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memrchr), %i0
 	add %i0, %lo(.L__profc_memrchr), %i1
 	sethi %hh(.L__profc_memrchr), %i0
@@ -712,9 +927,26 @@ memrchr:                                ! @memrchr
 	ba .LBB7_6
 	stx %i0, [%fp+2039]
 .LBB7_4:                                !   in Loop: Header=BB7_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %i1
+	sethi %hh(__llvm_gcov_ctr.7), %i0
+	add %i0, %hm(__llvm_gcov_ctr.7), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
 	ba .LBB7_1
-	nop
+	stx %i1, [%i0+8]
 .LBB7_5:
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %i1
+	sethi %hh(__llvm_gcov_ctr.7), %i0
+	add %i0, %hm(__llvm_gcov_ctr.7), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB7_6
 	stx %g0, [%fp+2039]
 .LBB7_6:
@@ -731,6 +963,14 @@ memset:                                 ! @memset
 ! %bb.0:
 	save %sp, -176, %sp
                                         ! kill: def $i3 killed $i1
+	sethi %hi(__llvm_gcov_ctr.8), %i3
+	add %i3, %lo(__llvm_gcov_ctr.8), %i4
+	sethi %hh(__llvm_gcov_ctr.8), %i3
+	add %i3, %hm(__llvm_gcov_ctr.8), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	stx %i2, [%fp+2023]
@@ -766,6 +1006,15 @@ memset:                                 ! @memset
 	ba .LBB8_3
 	stb %i1, [%i0]
 .LBB8_3:                                !   in Loop: Header=BB8_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.8), %i0
+	add %i0, %lo(__llvm_gcov_ctr.8), %i1
+	sethi %hh(__llvm_gcov_ctr.8), %i0
+	add %i0, %hm(__llvm_gcov_ctr.8), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2023]
@@ -786,6 +1035,14 @@ memset:                                 ! @memset
 stpcpy:                                 ! @stpcpy
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.9), %i2
+	add %i2, %lo(__llvm_gcov_ctr.9), %i3
+	sethi %hh(__llvm_gcov_ctr.9), %i2
+	add %i2, %hm(__llvm_gcov_ctr.9), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_stpcpy), %i0
@@ -819,6 +1076,15 @@ stpcpy:                                 ! @stpcpy
 	ba .LBB9_3
 	stx %i1, [%i0+8]
 .LBB9_3:                                !   in Loop: Header=BB9_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	add %i0, %lo(__llvm_gcov_ctr.9), %i1
+	sethi %hh(__llvm_gcov_ctr.9), %i0
+	add %i0, %hm(__llvm_gcov_ctr.9), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2031], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2031]
@@ -840,6 +1106,14 @@ strchrnul:                              ! @strchrnul
 ! %bb.0:
 	save %sp, -160, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.10), %i2
+	add %i2, %lo(__llvm_gcov_ctr.10), %i3
+	sethi %hh(__llvm_gcov_ctr.10), %i2
+	add %i2, %hm(__llvm_gcov_ctr.10), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_strchrnul), %i0
@@ -865,6 +1139,15 @@ strchrnul:                              ! @strchrnul
 	ba .LBB10_2
 	nop
 .LBB10_2:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %i1
+	sethi %hh(__llvm_gcov_ctr.10), %i0
+	add %i0, %hm(__llvm_gcov_ctr.10), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strchrnul), %i0
 	add %i0, %lo(.L__profc_strchrnul), %i1
 	sethi %hh(.L__profc_strchrnul), %i0
@@ -888,6 +1171,15 @@ strchrnul:                              ! @strchrnul
 	nop
 .LBB10_3:                               !   in Loop: Header=BB10_1 Depth=1
 	ld [%fp+2027], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.10), %i1
+	add %i1, %lo(__llvm_gcov_ctr.10), %i2
+	sethi %hh(__llvm_gcov_ctr.10), %i1
+	add %i1, %hm(__llvm_gcov_ctr.10), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_strchrnul), %i1
 	add %i1, %lo(.L__profc_strchrnul), %i2
 	sethi %hh(.L__profc_strchrnul), %i1
@@ -919,6 +1211,15 @@ strchrnul:                              ! @strchrnul
 	ba .LBB10_6
 	stx %i1, [%i0+8]
 .LBB10_6:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %i1
+	sethi %hh(__llvm_gcov_ctr.10), %i0
+	add %i0, %hm(__llvm_gcov_ctr.10), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB10_1
@@ -949,6 +1250,15 @@ strchr:                                 ! @strchr
 	ba .LBB11_2
 	stx %i2, [%i0+%i1]
 .LBB11_1:                               !   in Loop: Header=BB11_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %i1
+	sethi %hh(__llvm_gcov_ctr.11), %i0
+	add %i0, %hm(__llvm_gcov_ctr.11), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strchr), %i0
 	add %i0, %lo(.L__profc_strchr), %i1
 	sethi %hh(.L__profc_strchr), %i0
@@ -969,6 +1279,14 @@ strchr:                                 ! @strchr
 	ba .LBB11_3
 	nop
 .LBB11_3:
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %i1
+	sethi %hh(__llvm_gcov_ctr.11), %i0
+	add %i0, %hm(__llvm_gcov_ctr.11), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_strchr), %i0
 	add %i0, %lo(.L__profc_strchr), %i1
 	sethi %hh(.L__profc_strchr), %i0
@@ -995,6 +1313,15 @@ strchr:                                 ! @strchr
 	ba .LBB11_6
 	nop
 .LBB11_6:
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %i1
+	sethi %hh(__llvm_gcov_ctr.11), %i0
+	add %i0, %hm(__llvm_gcov_ctr.11), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB11_7
 	stx %g0, [%fp+2039]
 .LBB11_7:
@@ -1010,6 +1337,14 @@ strchr:                                 ! @strchr
 strcmp:                                 ! @strcmp
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.12), %i2
+	add %i2, %lo(__llvm_gcov_ctr.12), %i3
+	sethi %hh(__llvm_gcov_ctr.12), %i2
+	add %i2, %hm(__llvm_gcov_ctr.12), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_strcmp), %i0
@@ -1033,6 +1368,15 @@ strcmp:                                 ! @strcmp
 	ba .LBB12_2
 	nop
 .LBB12_2:                               !   in Loop: Header=BB12_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i1
+	sethi %hh(__llvm_gcov_ctr.12), %i0
+	add %i0, %hm(__llvm_gcov_ctr.12), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strcmp), %i0
 	add %i0, %lo(.L__profc_strcmp), %i1
 	sethi %hh(.L__profc_strcmp), %i0
@@ -1055,6 +1399,15 @@ strcmp:                                 ! @strcmp
 	nop
 .LBB12_3:                               !   in Loop: Header=BB12_1 Depth=1
 	ld [%fp+2023], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.12), %i1
+	add %i1, %lo(__llvm_gcov_ctr.12), %i2
+	sethi %hh(__llvm_gcov_ctr.12), %i1
+	add %i1, %hm(__llvm_gcov_ctr.12), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_strcmp), %i1
 	add %i1, %lo(.L__profc_strcmp), %i2
 	sethi %hh(.L__profc_strcmp), %i1
@@ -1086,6 +1439,15 @@ strcmp:                                 ! @strcmp
 	ba .LBB12_6
 	stx %i1, [%i0+8]
 .LBB12_6:                               !   in Loop: Header=BB12_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i1
+	sethi %hh(__llvm_gcov_ctr.12), %i0
+	add %i0, %hm(__llvm_gcov_ctr.12), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2039], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2039]
@@ -1111,6 +1473,14 @@ strcmp:                                 ! @strcmp
 strlen:                                 ! @strlen
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.13), %i1
+	add %i1, %lo(__llvm_gcov_ctr.13), %i2
+	sethi %hh(__llvm_gcov_ctr.13), %i1
+	add %i1, %hm(__llvm_gcov_ctr.13), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_strlen), %i0
 	add %i0, %lo(.L__profc_strlen), %i1
@@ -1143,6 +1513,15 @@ strlen:                                 ! @strlen
 	ba .LBB13_3
 	stx %i1, [%i0+8]
 .LBB13_3:                               !   in Loop: Header=BB13_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.13), %i0
+	add %i0, %lo(__llvm_gcov_ctr.13), %i1
+	sethi %hh(__llvm_gcov_ctr.13), %i0
+	add %i0, %hm(__llvm_gcov_ctr.13), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB13_1
@@ -1184,6 +1563,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_1
 	nop
 .LBB14_1:
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i1
 	sethi %hh(.L__profc_strncmp), %i0
@@ -1196,8 +1584,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_14
 	st %g0, [%fp+2043]
 .LBB14_2:
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
 	ba .LBB14_3
-	nop
+	stx %i2, [%i0+%i1]
 .LBB14_3:                               ! =>This Inner Loop Header: Depth=1
 	ldx [%fp+2007], %i0
 	ldub [%i0], %i1
@@ -1208,6 +1603,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_4
 	nop
 .LBB14_4:                               !   in Loop: Header=BB14_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i1
 	sethi %hh(.L__profc_strncmp), %i0
@@ -1226,6 +1630,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_5
 	nop
 .LBB14_5:                               !   in Loop: Header=BB14_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i1
 	sethi %hh(.L__profc_strncmp), %i0
@@ -1253,6 +1666,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_7
 	nop
 .LBB14_7:                               !   in Loop: Header=BB14_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_strncmp), %i0
 	add %i0, %lo(.L__profc_strncmp), %i1
 	sethi %hh(.L__profc_strncmp), %i0
@@ -1288,6 +1710,15 @@ strncmp:                                ! @strncmp
 	nop
 .LBB14_9:                               !   in Loop: Header=BB14_3 Depth=1
 	ld [%fp+1991], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.14), %i1
+	add %i1, %lo(__llvm_gcov_ctr.14), %i2
+	sethi %hh(__llvm_gcov_ctr.14), %i1
+	add %i1, %hm(__llvm_gcov_ctr.14), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+40], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+40]
 	sethi %hi(.L__profc_strncmp), %i1
 	add %i1, %lo(.L__profc_strncmp), %i2
 	sethi %hh(.L__profc_strncmp), %i1
@@ -1319,6 +1750,15 @@ strncmp:                                ! @strncmp
 	ba .LBB14_12
 	stx %i1, [%i0+16]
 .LBB14_12:                              !   in Loop: Header=BB14_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	ldx [%fp+2007], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2007]
@@ -1350,6 +1790,14 @@ strncmp:                                ! @strncmp
 swab:                                   ! @swab
 ! %bb.0:
 	save %sp, -176, %sp
+	sethi %hi(__llvm_gcov_ctr.15), %i3
+	add %i3, %lo(__llvm_gcov_ctr.15), %i4
+	sethi %hh(__llvm_gcov_ctr.15), %i3
+	add %i3, %hm(__llvm_gcov_ctr.15), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	stx %i2, [%fp+2023]
@@ -1399,6 +1847,15 @@ swab:                                   ! @swab
 	ba .LBB15_3
 	stx %i0, [%fp+2015]
 .LBB15_3:                               !   in Loop: Header=BB15_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.15), %i0
+	add %i0, %lo(__llvm_gcov_ctr.15), %i1
+	sethi %hh(__llvm_gcov_ctr.15), %i0
+	add %i0, %hm(__llvm_gcov_ctr.15), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -2, %i0
 	ba .LBB15_1
@@ -1416,6 +1873,14 @@ isalpha:                                ! @isalpha
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.16), %i1
+	add %i1, %lo(__llvm_gcov_ctr.16), %i2
+	sethi %hh(__llvm_gcov_ctr.16), %i1
+	add %i1, %hm(__llvm_gcov_ctr.16), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isalpha), %i0
 	add %i0, %lo(.L__profc_isalpha), %i1
@@ -1444,6 +1909,14 @@ isascii:                                ! @isascii
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.17), %i1
+	add %i1, %lo(__llvm_gcov_ctr.17), %i2
+	sethi %hh(__llvm_gcov_ctr.17), %i1
+	add %i1, %hm(__llvm_gcov_ctr.17), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isascii), %i0
 	add %i0, %lo(.L__profc_isascii), %i1
@@ -1471,6 +1944,14 @@ isblank:                                ! @isblank
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.18), %i1
+	add %i1, %lo(__llvm_gcov_ctr.18), %i2
+	sethi %hh(__llvm_gcov_ctr.18), %i1
+	add %i1, %hm(__llvm_gcov_ctr.18), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isblank), %i0
 	add %i0, %lo(.L__profc_isblank), %i1
@@ -1488,6 +1969,15 @@ isblank:                                ! @isblank
 	ba .LBB18_1
 	nop
 .LBB18_1:
+	sethi %hi(__llvm_gcov_ctr.18), %i0
+	add %i0, %lo(__llvm_gcov_ctr.18), %i1
+	sethi %hh(__llvm_gcov_ctr.18), %i0
+	add %i0, %hm(__llvm_gcov_ctr.18), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_isblank), %i0
 	add %i0, %lo(.L__profc_isblank), %i1
 	sethi %hh(.L__profc_isblank), %i0
@@ -1509,6 +1999,15 @@ isblank:                                ! @isblank
 	nop
 .LBB18_2:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.18), %i1
+	add %i1, %lo(__llvm_gcov_ctr.18), %i2
+	sethi %hh(__llvm_gcov_ctr.18), %i1
+	add %i1, %hm(__llvm_gcov_ctr.18), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_isblank), %i1
 	add %i1, %lo(.L__profc_isblank), %i2
 	sethi %hh(.L__profc_isblank), %i1
@@ -1535,6 +2034,14 @@ iscntrl:                                ! @iscntrl
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.19), %i1
+	add %i1, %lo(__llvm_gcov_ctr.19), %i2
+	sethi %hh(__llvm_gcov_ctr.19), %i1
+	add %i1, %hm(__llvm_gcov_ctr.19), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_iscntrl), %i0
 	add %i0, %lo(.L__profc_iscntrl), %i1
@@ -1552,6 +2059,15 @@ iscntrl:                                ! @iscntrl
 	ba .LBB19_1
 	nop
 .LBB19_1:
+	sethi %hi(__llvm_gcov_ctr.19), %i0
+	add %i0, %lo(__llvm_gcov_ctr.19), %i1
+	sethi %hh(__llvm_gcov_ctr.19), %i0
+	add %i0, %hm(__llvm_gcov_ctr.19), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_iscntrl), %i0
 	add %i0, %lo(.L__profc_iscntrl), %i1
 	sethi %hh(.L__profc_iscntrl), %i0
@@ -1573,6 +2089,15 @@ iscntrl:                                ! @iscntrl
 	nop
 .LBB19_2:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.19), %i1
+	add %i1, %lo(__llvm_gcov_ctr.19), %i2
+	sethi %hh(__llvm_gcov_ctr.19), %i1
+	add %i1, %hm(__llvm_gcov_ctr.19), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_iscntrl), %i1
 	add %i1, %lo(.L__profc_iscntrl), %i2
 	sethi %hh(.L__profc_iscntrl), %i1
@@ -1599,6 +2124,14 @@ isdigit:                                ! @isdigit
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.20), %i1
+	add %i1, %lo(__llvm_gcov_ctr.20), %i2
+	sethi %hh(__llvm_gcov_ctr.20), %i1
+	add %i1, %hm(__llvm_gcov_ctr.20), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isdigit), %i0
 	add %i0, %lo(.L__profc_isdigit), %i1
@@ -1626,6 +2159,14 @@ isgraph:                                ! @isgraph
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.21), %i1
+	add %i1, %lo(__llvm_gcov_ctr.21), %i2
+	sethi %hh(__llvm_gcov_ctr.21), %i1
+	add %i1, %hm(__llvm_gcov_ctr.21), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isgraph), %i0
 	add %i0, %lo(.L__profc_isgraph), %i1
@@ -1653,6 +2194,14 @@ islower:                                ! @islower
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.22), %i1
+	add %i1, %lo(__llvm_gcov_ctr.22), %i2
+	sethi %hh(__llvm_gcov_ctr.22), %i1
+	add %i1, %hm(__llvm_gcov_ctr.22), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_islower), %i0
 	add %i0, %lo(.L__profc_islower), %i1
@@ -1680,6 +2229,14 @@ isprint:                                ! @isprint
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.23), %i1
+	add %i1, %lo(__llvm_gcov_ctr.23), %i2
+	sethi %hh(__llvm_gcov_ctr.23), %i1
+	add %i1, %hm(__llvm_gcov_ctr.23), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isprint), %i0
 	add %i0, %lo(.L__profc_isprint), %i1
@@ -1707,6 +2264,14 @@ isspace:                                ! @isspace
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.24), %i1
+	add %i1, %lo(__llvm_gcov_ctr.24), %i2
+	sethi %hh(__llvm_gcov_ctr.24), %i1
+	add %i1, %hm(__llvm_gcov_ctr.24), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isspace), %i0
 	add %i0, %lo(.L__profc_isspace), %i1
@@ -1724,6 +2289,15 @@ isspace:                                ! @isspace
 	ba .LBB24_1
 	nop
 .LBB24_1:
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %i1
+	sethi %hh(__llvm_gcov_ctr.24), %i0
+	add %i0, %hm(__llvm_gcov_ctr.24), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_isspace), %i0
 	add %i0, %lo(.L__profc_isspace), %i1
 	sethi %hh(.L__profc_isspace), %i0
@@ -1746,6 +2320,15 @@ isspace:                                ! @isspace
 	nop
 .LBB24_2:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.24), %i1
+	add %i1, %lo(__llvm_gcov_ctr.24), %i2
+	sethi %hh(__llvm_gcov_ctr.24), %i1
+	add %i1, %hm(__llvm_gcov_ctr.24), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_isspace), %i1
 	add %i1, %lo(.L__profc_isspace), %i2
 	sethi %hh(.L__profc_isspace), %i1
@@ -1772,6 +2355,14 @@ isupper:                                ! @isupper
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.25), %i1
+	add %i1, %lo(__llvm_gcov_ctr.25), %i2
+	sethi %hh(__llvm_gcov_ctr.25), %i1
+	add %i1, %hm(__llvm_gcov_ctr.25), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_isupper), %i0
 	add %i0, %lo(.L__profc_isupper), %i1
@@ -1799,6 +2390,14 @@ iswcntrl:                               ! @iswcntrl
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.26), %i1
+	add %i1, %lo(__llvm_gcov_ctr.26), %i2
+	sethi %hh(__llvm_gcov_ctr.26), %i1
+	add %i1, %hm(__llvm_gcov_ctr.26), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i1
@@ -1816,6 +2415,15 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB26_1
 	nop
 .LBB26_1:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i1
+	sethi %hh(__llvm_gcov_ctr.26), %i0
+	add %i0, %hm(__llvm_gcov_ctr.26), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i1
 	sethi %hh(.L__profc_iswcntrl), %i0
@@ -1834,6 +2442,15 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB26_2
 	nop
 .LBB26_2:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i1
+	sethi %hh(__llvm_gcov_ctr.26), %i0
+	add %i0, %hm(__llvm_gcov_ctr.26), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i1
 	sethi %hh(.L__profc_iswcntrl), %i0
@@ -1865,6 +2482,15 @@ iswcntrl:                               ! @iswcntrl
 	ba .LBB26_4
 	nop
 .LBB26_4:
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i1
+	sethi %hh(__llvm_gcov_ctr.26), %i0
+	add %i0, %hm(__llvm_gcov_ctr.26), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_iswcntrl), %i0
 	add %i0, %lo(.L__profc_iswcntrl), %i1
 	sethi %hh(.L__profc_iswcntrl), %i0
@@ -1900,6 +2526,15 @@ iswcntrl:                               ! @iswcntrl
 	nop
 .LBB26_6:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.26), %i1
+	add %i1, %lo(__llvm_gcov_ctr.26), %i2
+	sethi %hh(__llvm_gcov_ctr.26), %i1
+	add %i1, %hm(__llvm_gcov_ctr.26), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+32], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+32]
 	sethi %hi(.L__profc_iswcntrl), %i1
 	add %i1, %lo(.L__profc_iswcntrl), %i2
 	sethi %hh(.L__profc_iswcntrl), %i1
@@ -1926,6 +2561,14 @@ iswdigit:                               ! @iswdigit
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.27), %i1
+	add %i1, %lo(__llvm_gcov_ctr.27), %i2
+	sethi %hh(__llvm_gcov_ctr.27), %i1
+	add %i1, %hm(__llvm_gcov_ctr.27), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_iswdigit), %i0
 	add %i0, %lo(.L__profc_iswdigit), %i1
@@ -1969,6 +2612,14 @@ iswprint:                               ! @iswprint
 	ba .LBB28_1
 	nop
 .LBB28_1:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -1996,6 +2647,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_3
 	nop
 .LBB28_3:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -2017,6 +2677,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_4
 	nop
 .LBB28_4:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -2059,6 +2728,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_8
 	stx %i1, [%i0+32]
 .LBB28_7:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -2084,6 +2762,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_9
 	nop
 .LBB28_9:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -2114,6 +2801,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_12
 	stx %i1, [%i0+72]
 .LBB28_11:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	sethi %hi(.L__profc_iswprint), %i0
 	add %i0, %lo(.L__profc_iswprint), %i1
 	sethi %hh(.L__profc_iswprint), %i0
@@ -2126,6 +2822,15 @@ iswprint:                               ! @iswprint
 	ba .LBB28_13
 	st %g0, [%fp+2043]
 .LBB28_12:
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	mov	1, %i0
 	ba .LBB28_13
 	st %i0, [%fp+2043]
@@ -2143,6 +2848,14 @@ iswxdigit:                              ! @iswxdigit
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.29), %i1
+	add %i1, %lo(__llvm_gcov_ctr.29), %i2
+	sethi %hh(__llvm_gcov_ctr.29), %i1
+	add %i1, %hm(__llvm_gcov_ctr.29), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_iswxdigit), %i0
 	add %i0, %lo(.L__profc_iswxdigit), %i1
@@ -2161,6 +2874,15 @@ iswxdigit:                              ! @iswxdigit
 	ba .LBB29_1
 	nop
 .LBB29_1:
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %i1
+	sethi %hh(__llvm_gcov_ctr.29), %i0
+	add %i0, %hm(__llvm_gcov_ctr.29), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_iswxdigit), %i0
 	add %i0, %lo(.L__profc_iswxdigit), %i1
 	sethi %hh(.L__profc_iswxdigit), %i0
@@ -2184,6 +2906,15 @@ iswxdigit:                              ! @iswxdigit
 	nop
 .LBB29_2:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.29), %i1
+	add %i1, %lo(__llvm_gcov_ctr.29), %i2
+	sethi %hh(__llvm_gcov_ctr.29), %i1
+	add %i1, %hm(__llvm_gcov_ctr.29), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_iswxdigit), %i1
 	add %i1, %lo(.L__profc_iswxdigit), %i2
 	sethi %hh(.L__profc_iswxdigit), %i1
@@ -2210,6 +2941,14 @@ toascii:                                ! @toascii
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.30), %i1
+	add %i1, %lo(__llvm_gcov_ctr.30), %i2
+	sethi %hh(__llvm_gcov_ctr.30), %i1
+	add %i1, %hm(__llvm_gcov_ctr.30), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_toascii), %i0
 	add %i0, %lo(.L__profc_toascii), %i1
@@ -2264,6 +3003,14 @@ fdim:                                   ! @fdim
 	ba .LBB31_1
 	nop
 .LBB31_1:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i1
+	sethi %hh(__llvm_gcov_ctr.31), %i0
+	add %i0, %hm(__llvm_gcov_ctr.31), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i1
 	sethi %hh(.L__profc_fdim), %i0
@@ -2297,6 +3044,15 @@ fdim:                                   ! @fdim
 	ba .LBB31_3
 	nop
 .LBB31_3:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i1
+	sethi %hh(__llvm_gcov_ctr.31), %i0
+	add %i0, %hm(__llvm_gcov_ctr.31), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i1
 	sethi %hh(.L__profc_fdim), %i0
@@ -2319,6 +3075,15 @@ fdim:                                   ! @fdim
 	ba .LBB31_5
 	nop
 .LBB31_5:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i1
+	sethi %hh(__llvm_gcov_ctr.31), %i0
+	add %i0, %hm(__llvm_gcov_ctr.31), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fdim), %i0
 	add %i0, %lo(.L__profc_fdim), %i1
 	sethi %hh(.L__profc_fdim), %i0
@@ -2335,6 +3100,15 @@ fdim:                                   ! @fdim
 	ba .LBB31_7
 	stx %i0, [%fp+2015]
 .LBB31_6:
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i1
+	sethi %hh(__llvm_gcov_ctr.31), %i0
+	add %i0, %hm(__llvm_gcov_ctr.31), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	mov	%g0, %i0
 	ba .LBB31_7
 	stx %i0, [%fp+2015]
@@ -2378,6 +3152,14 @@ fdimf:                                  ! @fdimf
 	ba .LBB32_1
 	nop
 .LBB32_1:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i1
+	sethi %hh(__llvm_gcov_ctr.32), %i0
+	add %i0, %hm(__llvm_gcov_ctr.32), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i1
 	sethi %hh(.L__profc_fdimf), %i0
@@ -2402,6 +3184,15 @@ fdimf:                                  ! @fdimf
 	ba .LBB32_3
 	nop
 .LBB32_3:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i1
+	sethi %hh(__llvm_gcov_ctr.32), %i0
+	add %i0, %hm(__llvm_gcov_ctr.32), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i1
 	sethi %hh(.L__profc_fdimf), %i0
@@ -2424,6 +3215,15 @@ fdimf:                                  ! @fdimf
 	ba .LBB32_5
 	nop
 .LBB32_5:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i1
+	sethi %hh(__llvm_gcov_ctr.32), %i0
+	add %i0, %hm(__llvm_gcov_ctr.32), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fdimf), %i0
 	add %i0, %lo(.L__profc_fdimf), %i1
 	sethi %hh(.L__profc_fdimf), %i0
@@ -2440,6 +3240,15 @@ fdimf:                                  ! @fdimf
 	ba .LBB32_7
 	st %i0, [%fp+2031]
 .LBB32_6:
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i1
+	sethi %hh(__llvm_gcov_ctr.32), %i0
+	add %i0, %hm(__llvm_gcov_ctr.32), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	mov	%g0, %i0
 	ba .LBB32_7
 	st %i0, [%fp+2031]
@@ -2492,6 +3301,14 @@ fmax:                                   ! @fmax
 	ba .LBB33_1
 	nop
 .LBB33_1:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i1
 	sethi %hh(.L__profc_fmax), %i0
@@ -2525,6 +3342,15 @@ fmax:                                   ! @fmax
 	ba .LBB33_3
 	nop
 .LBB33_3:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i1
 	sethi %hh(.L__profc_fmax), %i0
@@ -2564,6 +3390,15 @@ fmax:                                   ! @fmax
 	ba .LBB33_6
 	nop
 .LBB33_6:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i1
 	sethi %hh(.L__profc_fmax), %i0
@@ -2577,6 +3412,15 @@ fmax:                                   ! @fmax
 	ba .LBB33_8
 	stx %i0, [%fp+2015]
 .LBB33_7:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2031], %i0
 	ba .LBB33_8
 	stx %i0, [%fp+2015]
@@ -2594,6 +3438,15 @@ fmax:                                   ! @fmax
 	ba .LBB33_10
 	nop
 .LBB33_10:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fmax), %i0
 	add %i0, %lo(.L__profc_fmax), %i1
 	sethi %hh(.L__profc_fmax), %i0
@@ -2607,6 +3460,15 @@ fmax:                                   ! @fmax
 	ba .LBB33_12
 	stx %i0, [%fp+2007]
 .LBB33_11:
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2031], %i0
 	ba .LBB33_12
 	stx %i0, [%fp+2007]
@@ -2650,6 +3512,14 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_1
 	nop
 .LBB34_1:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i1
 	sethi %hh(.L__profc_fmaxf), %i0
@@ -2674,6 +3544,15 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_3
 	nop
 .LBB34_3:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i1
 	sethi %hh(.L__profc_fmaxf), %i0
@@ -2713,6 +3592,15 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_6
 	nop
 .LBB34_6:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i1
 	sethi %hh(.L__profc_fmaxf), %i0
@@ -2726,6 +3614,15 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_8
 	st %i0, [%fp+2031]
 .LBB34_7:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ld [%fp+2039], %i0
 	ba .LBB34_8
 	st %i0, [%fp+2031]
@@ -2743,6 +3640,15 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_10
 	nop
 .LBB34_10:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fmaxf), %i0
 	add %i0, %lo(.L__profc_fmaxf), %i1
 	sethi %hh(.L__profc_fmaxf), %i0
@@ -2756,6 +3662,15 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB34_12
 	st %i0, [%fp+2027]
 .LBB34_11:
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ld [%fp+2039], %i0
 	ba .LBB34_12
 	st %i0, [%fp+2027]
@@ -2827,6 +3742,14 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_1
 	nop
 .LBB35_1:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i1
 	sethi %hh(.L__profc_fmaxl), %i0
@@ -2877,6 +3800,15 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_3
 	nop
 .LBB35_3:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i1
 	sethi %hh(.L__profc_fmaxl), %i0
@@ -2922,6 +3854,15 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_6
 	nop
 .LBB35_6:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i1
 	sethi %hh(.L__profc_fmaxl), %i0
@@ -2939,6 +3880,15 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_8
 	stx %i0, [%fp+1991]
 .LBB35_7:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	add %fp, 2015, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %i0
@@ -2970,6 +3920,15 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_10
 	nop
 .LBB35_10:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fmaxl), %i0
 	add %i0, %lo(.L__profc_fmaxl), %i1
 	sethi %hh(.L__profc_fmaxl), %i0
@@ -2987,6 +3946,15 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB35_12
 	stx %i0, [%fp+1975]
 .LBB35_11:
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	add %fp, 2015, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %i0
@@ -3050,6 +4018,14 @@ fmin:                                   ! @fmin
 	ba .LBB36_1
 	nop
 .LBB36_1:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i1
 	sethi %hh(.L__profc_fmin), %i0
@@ -3083,6 +4059,15 @@ fmin:                                   ! @fmin
 	ba .LBB36_3
 	nop
 .LBB36_3:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i1
 	sethi %hh(.L__profc_fmin), %i0
@@ -3122,6 +4107,15 @@ fmin:                                   ! @fmin
 	ba .LBB36_6
 	nop
 .LBB36_6:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i1
 	sethi %hh(.L__profc_fmin), %i0
@@ -3135,6 +4129,15 @@ fmin:                                   ! @fmin
 	ba .LBB36_8
 	stx %i0, [%fp+2015]
 .LBB36_7:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2023], %i0
 	ba .LBB36_8
 	stx %i0, [%fp+2015]
@@ -3152,6 +4155,15 @@ fmin:                                   ! @fmin
 	ba .LBB36_10
 	nop
 .LBB36_10:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fmin), %i0
 	add %i0, %lo(.L__profc_fmin), %i1
 	sethi %hh(.L__profc_fmin), %i0
@@ -3165,6 +4177,15 @@ fmin:                                   ! @fmin
 	ba .LBB36_12
 	stx %i0, [%fp+2007]
 .LBB36_11:
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2023], %i0
 	ba .LBB36_12
 	stx %i0, [%fp+2007]
@@ -3208,6 +4229,14 @@ fminf:                                  ! @fminf
 	ba .LBB37_1
 	nop
 .LBB37_1:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i1
 	sethi %hh(.L__profc_fminf), %i0
@@ -3232,6 +4261,15 @@ fminf:                                  ! @fminf
 	ba .LBB37_3
 	nop
 .LBB37_3:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i1
 	sethi %hh(.L__profc_fminf), %i0
@@ -3271,6 +4309,15 @@ fminf:                                  ! @fminf
 	ba .LBB37_6
 	nop
 .LBB37_6:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i1
 	sethi %hh(.L__profc_fminf), %i0
@@ -3284,6 +4331,15 @@ fminf:                                  ! @fminf
 	ba .LBB37_8
 	st %i0, [%fp+2031]
 .LBB37_7:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ld [%fp+2035], %i0
 	ba .LBB37_8
 	st %i0, [%fp+2031]
@@ -3301,6 +4357,15 @@ fminf:                                  ! @fminf
 	ba .LBB37_10
 	nop
 .LBB37_10:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fminf), %i0
 	add %i0, %lo(.L__profc_fminf), %i1
 	sethi %hh(.L__profc_fminf), %i0
@@ -3314,6 +4379,15 @@ fminf:                                  ! @fminf
 	ba .LBB37_12
 	st %i0, [%fp+2027]
 .LBB37_11:
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ld [%fp+2035], %i0
 	ba .LBB37_12
 	st %i0, [%fp+2027]
@@ -3385,6 +4459,14 @@ fminl:                                  ! @fminl
 	ba .LBB38_1
 	nop
 .LBB38_1:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i1
 	sethi %hh(.L__profc_fminl), %i0
@@ -3435,6 +4517,15 @@ fminl:                                  ! @fminl
 	ba .LBB38_3
 	nop
 .LBB38_3:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i1
 	sethi %hh(.L__profc_fminl), %i0
@@ -3480,6 +4571,15 @@ fminl:                                  ! @fminl
 	ba .LBB38_6
 	nop
 .LBB38_6:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i1
 	sethi %hh(.L__profc_fminl), %i0
@@ -3497,6 +4597,15 @@ fminl:                                  ! @fminl
 	ba .LBB38_8
 	stx %i0, [%fp+1991]
 .LBB38_7:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	add %fp, 1999, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %i0
@@ -3528,6 +4637,15 @@ fminl:                                  ! @fminl
 	ba .LBB38_10
 	nop
 .LBB38_10:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_fminl), %i0
 	add %i0, %lo(.L__profc_fminl), %i1
 	sethi %hh(.L__profc_fminl), %i0
@@ -3545,6 +4663,15 @@ fminl:                                  ! @fminl
 	ba .LBB38_12
 	stx %i0, [%fp+1975]
 .LBB38_11:
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	add %fp, 1999, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %i0
@@ -3576,6 +4703,14 @@ fminl:                                  ! @fminl
 l64a:                                   ! @l64a
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.39), %i1
+	add %i1, %lo(__llvm_gcov_ctr.39), %i2
+	sethi %hh(__llvm_gcov_ctr.39), %i1
+	add %i1, %hm(__llvm_gcov_ctr.39), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_l64a), %i0
 	add %i0, %lo(.L__profc_l64a), %i1
@@ -3625,6 +4760,15 @@ l64a:                                   ! @l64a
 	ba .LBB39_3
 	stb %i1, [%i0]
 .LBB39_3:                               !   in Loop: Header=BB39_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.39), %i0
+	add %i0, %lo(__llvm_gcov_ctr.39), %i1
+	sethi %hh(__llvm_gcov_ctr.39), %i0
+	add %i0, %hm(__llvm_gcov_ctr.39), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2031], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2031]
@@ -3653,6 +4797,14 @@ srand:                                  ! @srand
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.40), %i1
+	add %i1, %lo(__llvm_gcov_ctr.40), %i2
+	sethi %hh(__llvm_gcov_ctr.40), %i1
+	add %i1, %hm(__llvm_gcov_ctr.40), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_srand), %i0
 	add %i0, %lo(.L__profc_srand), %i1
@@ -3682,6 +4834,14 @@ srand:                                  ! @srand
 rand:                                   ! @rand
 ! %bb.0:
 	save %sp, -128, %sp
+	sethi %hi(__llvm_gcov_ctr.41), %i0
+	add %i0, %lo(__llvm_gcov_ctr.41), %i1
+	sethi %hh(__llvm_gcov_ctr.41), %i0
+	add %i0, %hm(__llvm_gcov_ctr.41), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_rand), %i0
 	add %i0, %lo(.L__profc_rand), %i1
 	sethi %hh(.L__profc_rand), %i0
@@ -3738,6 +4898,15 @@ insque:                                 ! @insque
 	ba .LBB42_1
 	nop
 .LBB42_1:
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i1
+	sethi %hh(__llvm_gcov_ctr.42), %i0
+	add %i0, %hm(__llvm_gcov_ctr.42), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_insque), %i0
 	add %i0, %lo(.L__profc_insque), %i1
 	sethi %hh(.L__profc_insque), %i0
@@ -3753,6 +4922,14 @@ insque:                                 ! @insque
 	ba .LBB42_4
 	stx %g0, [%i0]
 .LBB42_2:
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i1
+	sethi %hh(__llvm_gcov_ctr.42), %i0
+	add %i0, %hm(__llvm_gcov_ctr.42), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	ldx [%fp+2015], %i0
 	ldx [%i0], %i1
 	ldx [%fp+2023], %i0
@@ -3770,6 +4947,15 @@ insque:                                 ! @insque
 	ba .LBB42_3
 	nop
 .LBB42_3:
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i1
+	sethi %hh(__llvm_gcov_ctr.42), %i0
+	add %i0, %hm(__llvm_gcov_ctr.42), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_insque), %i0
 	add %i0, %lo(.L__profc_insque), %i1
 	sethi %hh(.L__profc_insque), %i0
@@ -3795,6 +4981,14 @@ insque:                                 ! @insque
 remque:                                 ! @remque
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.43), %i1
+	add %i1, %lo(__llvm_gcov_ctr.43), %i2
+	sethi %hh(__llvm_gcov_ctr.43), %i1
+	add %i1, %hm(__llvm_gcov_ctr.43), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_remque), %i0
 	add %i0, %lo(.L__profc_remque), %i1
@@ -3813,6 +5007,15 @@ remque:                                 ! @remque
 	ba .LBB43_1
 	nop
 .LBB43_1:
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %i1
+	sethi %hh(__llvm_gcov_ctr.43), %i0
+	add %i0, %hm(__llvm_gcov_ctr.43), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_remque), %i0
 	add %i0, %lo(.L__profc_remque), %i1
 	sethi %hh(.L__profc_remque), %i0
@@ -3835,6 +5038,15 @@ remque:                                 ! @remque
 	ba .LBB43_3
 	nop
 .LBB43_3:
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %i1
+	sethi %hh(__llvm_gcov_ctr.43), %i0
+	add %i0, %hm(__llvm_gcov_ctr.43), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_remque), %i0
 	add %i0, %lo(.L__profc_remque), %i1
 	sethi %hh(.L__profc_remque), %i0
@@ -3916,6 +5128,14 @@ lsearch:                                ! @lsearch
 	nop
 .LBB44_3:
 	ldx [%fp+1967], %i2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %i1
+	sethi %hh(__llvm_gcov_ctr.44), %i0
+	add %i0, %hm(__llvm_gcov_ctr.44), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i0+%i1]
 	sethi %hi(.L__profc_lsearch), %i0
 	add %i0, %lo(.L__profc_lsearch), %i1
 	sethi %hh(.L__profc_lsearch), %i0
@@ -3935,12 +5155,30 @@ lsearch:                                ! @lsearch
 	ba .LBB44_5
 	nop
 .LBB44_5:                               !   in Loop: Header=BB44_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %i1
+	sethi %hh(__llvm_gcov_ctr.44), %i0
+	add %i0, %hm(__llvm_gcov_ctr.44), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+1975], %i0
 	add %i0, 1, %i0
 	ba .LBB44_1
 	stx %i0, [%fp+1975]
 .LBB44_6:
 	ldx [%fp+1967], %i2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %i1
+	sethi %hh(__llvm_gcov_ctr.44), %i0
+	add %i0, %hm(__llvm_gcov_ctr.44), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+1983], %i0
 	add %i0, 1, %i1
 	ldx [%fp+2015], %i0
@@ -4023,6 +5261,14 @@ lfind:                                  ! @lfind
 	nop
 .LBB45_3:
 	ldx [%fp+1967], %i2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i1
+	sethi %hh(__llvm_gcov_ctr.45), %i0
+	add %i0, %hm(__llvm_gcov_ctr.45), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i0+%i1]
 	sethi %hi(.L__profc_lfind), %i0
 	add %i0, %lo(.L__profc_lfind), %i1
 	sethi %hh(.L__profc_lfind), %i0
@@ -4042,11 +5288,29 @@ lfind:                                  ! @lfind
 	ba .LBB45_5
 	nop
 .LBB45_5:                               !   in Loop: Header=BB45_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i1
+	sethi %hh(__llvm_gcov_ctr.45), %i0
+	add %i0, %hm(__llvm_gcov_ctr.45), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+1975], %i0
 	add %i0, 1, %i0
 	ba .LBB45_1
 	stx %i0, [%fp+1975]
 .LBB45_6:
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i1
+	sethi %hh(__llvm_gcov_ctr.45), %i0
+	add %i0, %hm(__llvm_gcov_ctr.45), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB45_7
 	stx %g0, [%fp+2039]
 .LBB45_7:
@@ -4079,6 +5343,14 @@ abs:                                    ! @abs
 	ba .LBB46_1
 	nop
 .LBB46_1:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i1
+	sethi %hh(__llvm_gcov_ctr.46), %i0
+	add %i0, %hm(__llvm_gcov_ctr.46), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_abs), %i0
 	add %i0, %lo(.L__profc_abs), %i1
 	sethi %hh(.L__profc_abs), %i0
@@ -4092,6 +5364,15 @@ abs:                                    ! @abs
 	ba .LBB46_3
 	st %i0, [%fp+2039]
 .LBB46_2:
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i1
+	sethi %hh(__llvm_gcov_ctr.46), %i0
+	add %i0, %hm(__llvm_gcov_ctr.46), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2043], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4133,6 +5414,14 @@ atoi:                                   ! @atoi
 	ba .LBB47_2
 	nop
 .LBB47_2:                               !   in Loop: Header=BB47_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i1
 	sethi %hh(.L__profc_atoi), %i0
@@ -4162,6 +5451,15 @@ atoi:                                   ! @atoi
 	ba .LBB47_5
 	nop
 .LBB47_5:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i1
 	sethi %hh(.L__profc_atoi), %i0
@@ -4175,6 +5473,15 @@ atoi:                                   ! @atoi
 	ba .LBB47_7
 	st %i0, [%fp+2031]
 .LBB47_6:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i1
 	sethi %hh(.L__profc_atoi), %i0
@@ -4211,6 +5518,15 @@ atoi:                                   ! @atoi
 	ba .LBB47_10
 	nop
 .LBB47_10:                              !   in Loop: Header=BB47_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i1
 	sethi %hh(.L__profc_atoi), %i0
@@ -4238,6 +5554,15 @@ atoi:                                   ! @atoi
 	ba .LBB47_12
 	nop
 .LBB47_12:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_atoi), %i0
 	add %i0, %lo(.L__profc_atoi), %i1
 	sethi %hh(.L__profc_atoi), %i0
@@ -4251,6 +5576,15 @@ atoi:                                   ! @atoi
 	ba .LBB47_14
 	st %i0, [%fp+2023]
 .LBB47_13:
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ld [%fp+2035], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4292,6 +5626,14 @@ atol:                                   ! @atol
 	ba .LBB48_2
 	nop
 .LBB48_2:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i1
 	sethi %hh(.L__profc_atol), %i0
@@ -4321,6 +5663,15 @@ atol:                                   ! @atol
 	ba .LBB48_5
 	nop
 .LBB48_5:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i1
 	sethi %hh(.L__profc_atol), %i0
@@ -4334,6 +5685,15 @@ atol:                                   ! @atol
 	ba .LBB48_7
 	st %i0, [%fp+2027]
 .LBB48_6:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i1
 	sethi %hh(.L__profc_atol), %i0
@@ -4370,6 +5730,15 @@ atol:                                   ! @atol
 	ba .LBB48_10
 	nop
 .LBB48_10:                              !   in Loop: Header=BB48_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i1
 	sethi %hh(.L__profc_atol), %i0
@@ -4398,6 +5767,15 @@ atol:                                   ! @atol
 	ba .LBB48_12
 	nop
 .LBB48_12:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_atol), %i0
 	add %i0, %lo(.L__profc_atol), %i1
 	sethi %hh(.L__profc_atol), %i0
@@ -4411,6 +5789,15 @@ atol:                                   ! @atol
 	ba .LBB48_14
 	stx %i0, [%fp+2015]
 .LBB48_13:
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2031], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4451,6 +5838,14 @@ atoll:                                  ! @atoll
 	ba .LBB49_2
 	nop
 .LBB49_2:                               !   in Loop: Header=BB49_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i1
 	sethi %hh(.L__profc_atoll), %i0
@@ -4480,6 +5875,15 @@ atoll:                                  ! @atoll
 	ba .LBB49_5
 	nop
 .LBB49_5:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i1
 	sethi %hh(.L__profc_atoll), %i0
@@ -4493,6 +5897,15 @@ atoll:                                  ! @atoll
 	ba .LBB49_7
 	st %i0, [%fp+2027]
 .LBB49_6:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i1
 	sethi %hh(.L__profc_atoll), %i0
@@ -4529,6 +5942,15 @@ atoll:                                  ! @atoll
 	ba .LBB49_10
 	nop
 .LBB49_10:                              !   in Loop: Header=BB49_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i1
 	sethi %hh(.L__profc_atoll), %i0
@@ -4557,6 +5979,15 @@ atoll:                                  ! @atoll
 	ba .LBB49_12
 	nop
 .LBB49_12:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_atoll), %i0
 	add %i0, %lo(.L__profc_atoll), %i1
 	sethi %hh(.L__profc_atoll), %i0
@@ -4570,6 +6001,15 @@ atoll:                                  ! @atoll
 	ba .LBB49_14
 	stx %i0, [%fp+2015]
 .LBB49_13:
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2031], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4637,6 +6077,15 @@ bsearch:                                ! @bsearch
 	ba .LBB50_3
 	nop
 .LBB50_3:                               !   in Loop: Header=BB50_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	add %i0, %lo(__llvm_gcov_ctr.50), %i1
+	sethi %hh(__llvm_gcov_ctr.50), %i0
+	add %i0, %hm(__llvm_gcov_ctr.50), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_bsearch), %i0
 	add %i0, %lo(.L__profc_bsearch), %i1
 	sethi %hh(.L__profc_bsearch), %i0
@@ -4678,16 +6127,41 @@ bsearch:                                ! @bsearch
 	ba .LBB50_7
 	stx %i0, [%fp+2015]
 .LBB50_6:
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	add %i0, %lo(__llvm_gcov_ctr.50), %i1
+	sethi %hh(__llvm_gcov_ctr.50), %i0
+	add %i0, %hm(__llvm_gcov_ctr.50), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+1991], %i0
 	ba .LBB50_10
 	stx %i0, [%fp+2039]
 .LBB50_7:                               !   in Loop: Header=BB50_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	add %i0, %lo(__llvm_gcov_ctr.50), %i1
+	sethi %hh(__llvm_gcov_ctr.50), %i0
+	add %i0, %hm(__llvm_gcov_ctr.50), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB50_8
-	nop
+	stx %i1, [%i0+24]
 .LBB50_8:                               !   in Loop: Header=BB50_1 Depth=1
 	ba .LBB50_1
 	nop
 .LBB50_9:
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	add %i0, %lo(__llvm_gcov_ctr.50), %i1
+	sethi %hh(__llvm_gcov_ctr.50), %i0
+	add %i0, %hm(__llvm_gcov_ctr.50), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	ba .LBB50_10
 	stx %g0, [%fp+2039]
 .LBB50_10:
@@ -4760,6 +6234,14 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB51_3
 	nop
 .LBB51_3:
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i1
+	sethi %hh(__llvm_gcov_ctr.51), %i0
+	add %i0, %hm(__llvm_gcov_ctr.51), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_bsearch_r), %i0
 	add %i0, %lo(.L__profc_bsearch_r), %i1
 	sethi %hh(.L__profc_bsearch_r), %i0
@@ -4780,6 +6262,15 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB51_5
 	nop
 .LBB51_5:                               !   in Loop: Header=BB51_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i1
+	sethi %hh(__llvm_gcov_ctr.51), %i0
+	add %i0, %hm(__llvm_gcov_ctr.51), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_bsearch_r), %i0
 	add %i0, %lo(.L__profc_bsearch_r), %i1
 	sethi %hh(.L__profc_bsearch_r), %i0
@@ -4801,11 +6292,29 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB51_7
 	nop
 .LBB51_7:                               !   in Loop: Header=BB51_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i1
+	sethi %hh(__llvm_gcov_ctr.51), %i0
+	add %i0, %hm(__llvm_gcov_ctr.51), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+1979], %i0
 	sra %i0, 1, %i0
 	ba .LBB51_1
 	st %i0, [%fp+1979]
 .LBB51_8:
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i1
+	sethi %hh(__llvm_gcov_ctr.51), %i0
+	add %i0, %hm(__llvm_gcov_ctr.51), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ba .LBB51_9
 	stx %g0, [%fp+2039]
 .LBB51_9:
@@ -4823,6 +6332,14 @@ div:                                    ! @div
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.52), %i2
+	add %i2, %lo(__llvm_gcov_ctr.52), %i3
+	sethi %hh(__llvm_gcov_ctr.52), %i2
+	add %i2, %hm(__llvm_gcov_ctr.52), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2035]
 	st %i1, [%fp+2031]
 	sethi %hi(.L__profc_div), %i0
@@ -4878,6 +6395,14 @@ imaxabs:                                ! @imaxabs
 	ba .LBB53_1
 	nop
 .LBB53_1:
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	add %i0, %lo(__llvm_gcov_ctr.53), %i1
+	sethi %hh(__llvm_gcov_ctr.53), %i0
+	add %i0, %hm(__llvm_gcov_ctr.53), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_imaxabs), %i0
 	add %i0, %lo(.L__profc_imaxabs), %i1
 	sethi %hh(.L__profc_imaxabs), %i0
@@ -4891,6 +6416,15 @@ imaxabs:                                ! @imaxabs
 	ba .LBB53_3
 	stx %i0, [%fp+2031]
 .LBB53_2:
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	add %i0, %lo(__llvm_gcov_ctr.53), %i1
+	sethi %hh(__llvm_gcov_ctr.53), %i0
+	add %i0, %hm(__llvm_gcov_ctr.53), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4909,6 +6443,14 @@ imaxabs:                                ! @imaxabs
 imaxdiv:                                ! @imaxdiv
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.54), %i2
+	add %i2, %lo(__llvm_gcov_ctr.54), %i3
+	sethi %hh(__llvm_gcov_ctr.54), %i2
+	add %i2, %hm(__llvm_gcov_ctr.54), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2023]
 	stx %i1, [%fp+2015]
 	sethi %hi(.L__profc_imaxdiv), %i0
@@ -4958,6 +6500,14 @@ labs:                                   ! @labs
 	ba .LBB55_1
 	nop
 .LBB55_1:
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	add %i0, %lo(__llvm_gcov_ctr.55), %i1
+	sethi %hh(__llvm_gcov_ctr.55), %i0
+	add %i0, %hm(__llvm_gcov_ctr.55), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_labs), %i0
 	add %i0, %lo(.L__profc_labs), %i1
 	sethi %hh(.L__profc_labs), %i0
@@ -4971,6 +6521,15 @@ labs:                                   ! @labs
 	ba .LBB55_3
 	stx %i0, [%fp+2031]
 .LBB55_2:
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	add %i0, %lo(__llvm_gcov_ctr.55), %i1
+	sethi %hh(__llvm_gcov_ctr.55), %i0
+	add %i0, %hm(__llvm_gcov_ctr.55), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -4989,6 +6548,14 @@ labs:                                   ! @labs
 ldiv:                                   ! @ldiv
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.56), %i2
+	add %i2, %lo(__llvm_gcov_ctr.56), %i3
+	sethi %hh(__llvm_gcov_ctr.56), %i2
+	add %i2, %hm(__llvm_gcov_ctr.56), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2023]
 	stx %i1, [%fp+2015]
 	sethi %hi(.L__profc_ldiv), %i0
@@ -5038,6 +6605,14 @@ llabs:                                  ! @llabs
 	ba .LBB57_1
 	nop
 .LBB57_1:
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i1
+	sethi %hh(__llvm_gcov_ctr.57), %i0
+	add %i0, %hm(__llvm_gcov_ctr.57), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_llabs), %i0
 	add %i0, %lo(.L__profc_llabs), %i1
 	sethi %hh(.L__profc_llabs), %i0
@@ -5051,6 +6626,15 @@ llabs:                                  ! @llabs
 	ba .LBB57_3
 	stx %i0, [%fp+2031]
 .LBB57_2:
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i1
+	sethi %hh(__llvm_gcov_ctr.57), %i0
+	add %i0, %hm(__llvm_gcov_ctr.57), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -5069,6 +6653,14 @@ llabs:                                  ! @llabs
 lldiv:                                  ! @lldiv
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.58), %i2
+	add %i2, %lo(__llvm_gcov_ctr.58), %i3
+	sethi %hh(__llvm_gcov_ctr.58), %i2
+	add %i2, %hm(__llvm_gcov_ctr.58), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2023]
 	stx %i1, [%fp+2015]
 	sethi %hi(.L__profc_lldiv), %i0
@@ -5124,6 +6716,14 @@ wcschr:                                 ! @wcschr
 	ba .LBB59_2
 	nop
 .LBB59_2:                               !   in Loop: Header=BB59_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i1
+	sethi %hh(__llvm_gcov_ctr.59), %i0
+	add %i0, %hm(__llvm_gcov_ctr.59), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wcschr), %i0
 	add %i0, %lo(.L__profc_wcschr), %i1
 	sethi %hh(.L__profc_wcschr), %i0
@@ -5147,6 +6747,15 @@ wcschr:                                 ! @wcschr
 	nop
 .LBB59_3:                               !   in Loop: Header=BB59_1 Depth=1
 	ld [%fp+2027], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.59), %i1
+	add %i1, %lo(__llvm_gcov_ctr.59), %i2
+	sethi %hh(__llvm_gcov_ctr.59), %i1
+	add %i1, %hm(__llvm_gcov_ctr.59), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_wcschr), %i1
 	add %i1, %lo(.L__profc_wcschr), %i2
 	sethi %hh(.L__profc_wcschr), %i1
@@ -5178,6 +6787,15 @@ wcschr:                                 ! @wcschr
 	ba .LBB59_6
 	stx %i1, [%i0+8]
 .LBB59_6:                               !   in Loop: Header=BB59_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i1
+	sethi %hh(__llvm_gcov_ctr.59), %i0
+	add %i0, %hm(__llvm_gcov_ctr.59), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2039], %i0
 	add %i0, 4, %i0
 	ba .LBB59_1
@@ -5191,6 +6809,15 @@ wcschr:                                 ! @wcschr
 	ba .LBB59_8
 	nop
 .LBB59_8:
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i1
+	sethi %hh(__llvm_gcov_ctr.59), %i0
+	add %i0, %hm(__llvm_gcov_ctr.59), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_wcschr), %i0
 	add %i0, %lo(.L__profc_wcschr), %i1
 	sethi %hh(.L__profc_wcschr), %i0
@@ -5204,6 +6831,15 @@ wcschr:                                 ! @wcschr
 	ba .LBB59_10
 	stx %i0, [%fp+2015]
 .LBB59_9:
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i1
+	sethi %hh(__llvm_gcov_ctr.59), %i0
+	add %i0, %hm(__llvm_gcov_ctr.59), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB59_10
 	stx %i0, [%fp+2015]
@@ -5243,6 +6879,14 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB60_2
 	nop
 .LBB60_2:                               !   in Loop: Header=BB60_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i1
 	sethi %hh(.L__profc_wcscmp), %i0
@@ -5261,6 +6905,15 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB60_3
 	nop
 .LBB60_3:                               !   in Loop: Header=BB60_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i1
 	sethi %hh(.L__profc_wcscmp), %i0
@@ -5294,6 +6947,15 @@ wcscmp:                                 ! @wcscmp
 	nop
 .LBB60_5:                               !   in Loop: Header=BB60_1 Depth=1
 	ld [%fp+2023], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.60), %i1
+	add %i1, %lo(__llvm_gcov_ctr.60), %i2
+	sethi %hh(__llvm_gcov_ctr.60), %i1
+	add %i1, %hm(__llvm_gcov_ctr.60), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_wcscmp), %i1
 	add %i1, %lo(.L__profc_wcscmp), %i2
 	sethi %hh(.L__profc_wcscmp), %i1
@@ -5325,6 +6987,15 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB60_8
 	stx %i1, [%i0+8]
 .LBB60_8:                               !   in Loop: Header=BB60_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2039], %i0
 	add %i0, 4, %i0
 	stx %i0, [%fp+2039]
@@ -5343,6 +7014,15 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB60_10
 	nop
 .LBB60_10:
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_wcscmp), %i0
 	add %i0, %lo(.L__profc_wcscmp), %i1
 	sethi %hh(.L__profc_wcscmp), %i0
@@ -5356,6 +7036,15 @@ wcscmp:                                 ! @wcscmp
 	ba .LBB60_12
 	st %i0, [%fp+2019]
 .LBB60_11:
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2039], %i0
 	ld [%i0], %i1
 	ldx [%fp+2031], %i0
@@ -5379,6 +7068,14 @@ wcscmp:                                 ! @wcscmp
 wcscpy:                                 ! @wcscpy
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.61), %i2
+	add %i2, %lo(__llvm_gcov_ctr.61), %i3
+	sethi %hh(__llvm_gcov_ctr.61), %i2
+	add %i2, %hm(__llvm_gcov_ctr.61), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_wcscpy), %i0
@@ -5407,6 +7104,15 @@ wcscpy:                                 ! @wcscpy
 	ba .LBB61_2
 	nop
 .LBB61_2:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i1
+	sethi %hh(__llvm_gcov_ctr.61), %i0
+	add %i0, %hm(__llvm_gcov_ctr.61), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wcscpy), %i0
 	add %i0, %lo(.L__profc_wcscpy), %i1
 	sethi %hh(.L__profc_wcscpy), %i0
@@ -5430,6 +7136,14 @@ wcscpy:                                 ! @wcscpy
 wcslen:                                 ! @wcslen
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.62), %i1
+	add %i1, %lo(__llvm_gcov_ctr.62), %i2
+	sethi %hh(__llvm_gcov_ctr.62), %i1
+	add %i1, %hm(__llvm_gcov_ctr.62), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_wcslen), %i0
 	add %i0, %lo(.L__profc_wcslen), %i1
@@ -5462,6 +7176,15 @@ wcslen:                                 ! @wcslen
 	ba .LBB62_3
 	stx %i1, [%i0+8]
 .LBB62_3:                               !   in Loop: Header=BB62_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %i1
+	sethi %hh(__llvm_gcov_ctr.62), %i0
+	add %i0, %hm(__llvm_gcov_ctr.62), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %i0
 	add %i0, 4, %i0
 	ba .LBB62_1
@@ -5502,6 +7225,14 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_2
 	nop
 .LBB63_2:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i1
 	sethi %hh(.L__profc_wcsncmp), %i0
@@ -5522,6 +7253,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_3
 	nop
 .LBB63_3:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i1
 	sethi %hh(.L__profc_wcsncmp), %i0
@@ -5551,6 +7291,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_5
 	nop
 .LBB63_5:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i1
 	sethi %hh(.L__profc_wcsncmp), %i0
@@ -5584,6 +7333,15 @@ wcsncmp:                                ! @wcsncmp
 	nop
 .LBB63_7:                               !   in Loop: Header=BB63_1 Depth=1
 	ld [%fp+2015], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.63), %i1
+	add %i1, %lo(__llvm_gcov_ctr.63), %i2
+	sethi %hh(__llvm_gcov_ctr.63), %i1
+	add %i1, %hm(__llvm_gcov_ctr.63), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+24], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+24]
 	sethi %hi(.L__profc_wcsncmp), %i1
 	add %i1, %lo(.L__profc_wcsncmp), %i2
 	sethi %hh(.L__profc_wcsncmp), %i1
@@ -5615,6 +7373,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_10
 	stx %i1, [%i0+8]
 .LBB63_10:                              !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2023]
@@ -5651,6 +7418,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_13
 	nop
 .LBB63_13:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	sethi %hi(.L__profc_wcsncmp), %i0
 	add %i0, %lo(.L__profc_wcsncmp), %i1
 	sethi %hh(.L__profc_wcsncmp), %i0
@@ -5664,6 +7440,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_15
 	st %i0, [%fp+2011]
 .LBB63_14:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	ldx [%fp+2039], %i0
 	ld [%i0], %i1
 	ldx [%fp+2031], %i0
@@ -5678,6 +7463,15 @@ wcsncmp:                                ! @wcsncmp
 	ba .LBB63_17
 	st %i0, [%fp+2007]
 .LBB63_16:
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	mov	%g0, %i0
 	ba .LBB63_17
 	st %i0, [%fp+2007]
@@ -5716,6 +7510,14 @@ wmemchr:                                ! @wmemchr
 	ba .LBB64_2
 	nop
 .LBB64_2:                               !   in Loop: Header=BB64_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i1
+	sethi %hh(__llvm_gcov_ctr.64), %i0
+	add %i0, %hm(__llvm_gcov_ctr.64), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wmemchr), %i0
 	add %i0, %lo(.L__profc_wmemchr), %i1
 	sethi %hh(.L__profc_wmemchr), %i0
@@ -5739,6 +7541,15 @@ wmemchr:                                ! @wmemchr
 	nop
 .LBB64_3:                               !   in Loop: Header=BB64_1 Depth=1
 	ld [%fp+2015], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.64), %i1
+	add %i1, %lo(__llvm_gcov_ctr.64), %i2
+	sethi %hh(__llvm_gcov_ctr.64), %i1
+	add %i1, %hm(__llvm_gcov_ctr.64), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_wmemchr), %i1
 	add %i1, %lo(.L__profc_wmemchr), %i2
 	sethi %hh(.L__profc_wmemchr), %i1
@@ -5770,6 +7581,15 @@ wmemchr:                                ! @wmemchr
 	ba .LBB64_6
 	stx %i1, [%i0+8]
 .LBB64_6:                               !   in Loop: Header=BB64_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i1
+	sethi %hh(__llvm_gcov_ctr.64), %i0
+	add %i0, %hm(__llvm_gcov_ctr.64), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2023]
@@ -5784,6 +7604,15 @@ wmemchr:                                ! @wmemchr
 	ba .LBB64_8
 	nop
 .LBB64_8:
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i1
+	sethi %hh(__llvm_gcov_ctr.64), %i0
+	add %i0, %hm(__llvm_gcov_ctr.64), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_wmemchr), %i0
 	add %i0, %lo(.L__profc_wmemchr), %i1
 	sethi %hh(.L__profc_wmemchr), %i0
@@ -5797,6 +7626,15 @@ wmemchr:                                ! @wmemchr
 	ba .LBB64_10
 	stx %i0, [%fp+2007]
 .LBB64_9:
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i1
+	sethi %hh(__llvm_gcov_ctr.64), %i0
+	add %i0, %hm(__llvm_gcov_ctr.64), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	%g0, %i0
 	ba .LBB64_10
 	stx %i0, [%fp+2007]
@@ -5833,6 +7671,14 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB65_2
 	nop
 .LBB65_2:                               !   in Loop: Header=BB65_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wmemcmp), %i0
 	add %i0, %lo(.L__profc_wmemcmp), %i1
 	sethi %hh(.L__profc_wmemcmp), %i0
@@ -5857,6 +7703,15 @@ wmemcmp:                                ! @wmemcmp
 	nop
 .LBB65_3:                               !   in Loop: Header=BB65_1 Depth=1
 	ld [%fp+2015], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.65), %i1
+	add %i1, %lo(__llvm_gcov_ctr.65), %i2
+	sethi %hh(__llvm_gcov_ctr.65), %i1
+	add %i1, %hm(__llvm_gcov_ctr.65), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_wmemcmp), %i1
 	add %i1, %lo(.L__profc_wmemcmp), %i2
 	sethi %hh(.L__profc_wmemcmp), %i1
@@ -5888,6 +7743,15 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB65_6
 	stx %i1, [%i0+8]
 .LBB65_6:                               !   in Loop: Header=BB65_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	stx %i0, [%fp+2023]
@@ -5924,6 +7788,15 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB65_9
 	nop
 .LBB65_9:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_wmemcmp), %i0
 	add %i0, %lo(.L__profc_wmemcmp), %i1
 	sethi %hh(.L__profc_wmemcmp), %i0
@@ -5937,6 +7810,15 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB65_11
 	st %i0, [%fp+2011]
 .LBB65_10:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldx [%fp+2039], %i0
 	ld [%i0], %i1
 	ldx [%fp+2031], %i0
@@ -5951,6 +7833,15 @@ wmemcmp:                                ! @wmemcmp
 	ba .LBB65_13
 	st %i0, [%fp+2007]
 .LBB65_12:
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	mov	%g0, %i0
 	ba .LBB65_13
 	st %i0, [%fp+2007]
@@ -5968,6 +7859,14 @@ wmemcmp:                                ! @wmemcmp
 wmemcpy:                                ! @wmemcpy
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.66), %i3
+	add %i3, %lo(__llvm_gcov_ctr.66), %i4
+	sethi %hh(__llvm_gcov_ctr.66), %i3
+	add %i3, %hm(__llvm_gcov_ctr.66), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	stx %i2, [%fp+2023]
@@ -5990,6 +7889,15 @@ wmemcpy:                                ! @wmemcpy
 	ba .LBB66_2
 	nop
 .LBB66_2:                               !   in Loop: Header=BB66_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.66), %i0
+	add %i0, %lo(__llvm_gcov_ctr.66), %i1
+	sethi %hh(__llvm_gcov_ctr.66), %i0
+	add %i0, %hm(__llvm_gcov_ctr.66), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wmemcpy), %i0
 	add %i0, %lo(.L__profc_wmemcpy), %i1
 	sethi %hh(.L__profc_wmemcpy), %i0
@@ -6042,6 +7950,14 @@ wmemmove:                               ! @wmemmove
 	ba .LBB67_1
 	nop
 .LBB67_1:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i1
 	sethi %hh(.L__profc_wmemmove), %i0
@@ -6066,6 +7982,15 @@ wmemmove:                               ! @wmemmove
 	ba .LBB67_3
 	nop
 .LBB67_3:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i1
 	sethi %hh(.L__profc_wmemmove), %i0
@@ -6084,6 +8009,15 @@ wmemmove:                               ! @wmemmove
 	ba .LBB67_5
 	nop
 .LBB67_5:                               !   in Loop: Header=BB67_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i1
 	sethi %hh(.L__profc_wmemmove), %i0
@@ -6114,6 +8048,15 @@ wmemmove:                               ! @wmemmove
 	ba .LBB67_9
 	nop
 .LBB67_9:                               !   in Loop: Header=BB67_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_wmemmove), %i0
 	add %i0, %lo(.L__profc_wmemmove), %i1
 	sethi %hh(.L__profc_wmemmove), %i0
@@ -6133,8 +8076,16 @@ wmemmove:                               ! @wmemmove
 	ba .LBB67_8
 	st %i1, [%i0]
 .LBB67_10:
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
 	ba .LBB67_11
-	nop
+	stx %i1, [%i0+32]
 .LBB67_11:
 	ldx [%fp+2007], %i0
 	ba .LBB67_12
@@ -6153,6 +8104,14 @@ wmemset:                                ! @wmemset
 ! %bb.0:
 	save %sp, -160, %sp
                                         ! kill: def $i3 killed $i1
+	sethi %hi(__llvm_gcov_ctr.68), %i3
+	add %i3, %lo(__llvm_gcov_ctr.68), %i4
+	sethi %hh(__llvm_gcov_ctr.68), %i3
+	add %i3, %hm(__llvm_gcov_ctr.68), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	stx %i2, [%fp+2023]
@@ -6175,6 +8134,15 @@ wmemset:                                ! @wmemset
 	ba .LBB68_2
 	nop
 .LBB68_2:                               !   in Loop: Header=BB68_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.68), %i0
+	add %i0, %lo(__llvm_gcov_ctr.68), %i1
+	sethi %hh(__llvm_gcov_ctr.68), %i0
+	add %i0, %hm(__llvm_gcov_ctr.68), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_wmemset), %i0
 	add %i0, %lo(.L__profc_wmemset), %i1
 	sethi %hh(.L__profc_wmemset), %i0
@@ -6226,6 +8194,14 @@ bcopy:                                  ! @bcopy
 	ba .LBB69_1
 	nop
 .LBB69_1:
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_bcopy), %i0
 	add %i0, %lo(.L__profc_bcopy), %i1
 	sethi %hh(.L__profc_bcopy), %i0
@@ -6270,6 +8246,15 @@ bcopy:                                  ! @bcopy
 	ba .LBB69_4
 	stb %i1, [%i0+-1]
 .LBB69_4:                               !   in Loop: Header=BB69_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	ba .LBB69_2
@@ -6303,6 +8288,15 @@ bcopy:                                  ! @bcopy
 	ba .LBB69_9
 	nop
 .LBB69_9:                               !   in Loop: Header=BB69_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_bcopy), %i0
 	add %i0, %lo(.L__profc_bcopy), %i1
 	sethi %hh(.L__profc_bcopy), %i0
@@ -6327,11 +8321,27 @@ bcopy:                                  ! @bcopy
 	ba .LBB69_8
 	stx %i0, [%fp+2023]
 .LBB69_11:
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB69_12
-	nop
+	stx %i1, [%i0+24]
 .LBB69_12:
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
 	ba .LBB69_13
-	nop
+	stx %i1, [%i0+32]
 .LBB69_13:
 	ret
 	restore
@@ -6345,6 +8355,14 @@ rotl64:                                 ! @rotl64
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.70), %i2
+	add %i2, %lo(__llvm_gcov_ctr.70), %i3
+	sethi %hh(__llvm_gcov_ctr.70), %i2
+	add %i2, %hm(__llvm_gcov_ctr.70), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_rotl64), %i0
@@ -6374,6 +8392,14 @@ rotr64:                                 ! @rotr64
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.71), %i2
+	add %i2, %lo(__llvm_gcov_ctr.71), %i3
+	sethi %hh(__llvm_gcov_ctr.71), %i2
+	add %i2, %hm(__llvm_gcov_ctr.71), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_rotr64), %i0
@@ -6404,6 +8430,14 @@ rotl32:                                 ! @rotl32
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.72), %i2
+	add %i2, %lo(__llvm_gcov_ctr.72), %i3
+	sethi %hh(__llvm_gcov_ctr.72), %i2
+	add %i2, %hm(__llvm_gcov_ctr.72), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotl32), %i0
@@ -6435,6 +8469,14 @@ rotr32:                                 ! @rotr32
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.73), %i2
+	add %i2, %lo(__llvm_gcov_ctr.73), %i3
+	sethi %hh(__llvm_gcov_ctr.73), %i2
+	add %i2, %hm(__llvm_gcov_ctr.73), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotr32), %i0
@@ -6465,6 +8507,14 @@ rotl_sz:                                ! @rotl_sz
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.74), %i2
+	add %i2, %lo(__llvm_gcov_ctr.74), %i3
+	sethi %hh(__llvm_gcov_ctr.74), %i2
+	add %i2, %hm(__llvm_gcov_ctr.74), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_rotl_sz), %i0
@@ -6494,6 +8544,14 @@ rotr_sz:                                ! @rotr_sz
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.75), %i2
+	add %i2, %lo(__llvm_gcov_ctr.75), %i3
+	sethi %hh(__llvm_gcov_ctr.75), %i2
+	add %i2, %hm(__llvm_gcov_ctr.75), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_rotr_sz), %i0
@@ -6524,6 +8582,14 @@ rotl16:                                 ! @rotl16
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.76), %i2
+	add %i2, %lo(__llvm_gcov_ctr.76), %i3
+	sethi %hh(__llvm_gcov_ctr.76), %i2
+	add %i2, %hm(__llvm_gcov_ctr.76), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	sth %i0, [%fp+2045]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotl16), %i0
@@ -6557,6 +8623,14 @@ rotr16:                                 ! @rotr16
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.77), %i2
+	add %i2, %lo(__llvm_gcov_ctr.77), %i3
+	sethi %hh(__llvm_gcov_ctr.77), %i2
+	add %i2, %hm(__llvm_gcov_ctr.77), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	sth %i0, [%fp+2045]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotr16), %i0
@@ -6590,6 +8664,14 @@ rotl8:                                  ! @rotl8
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.78), %i2
+	add %i2, %lo(__llvm_gcov_ctr.78), %i3
+	sethi %hh(__llvm_gcov_ctr.78), %i2
+	add %i2, %hm(__llvm_gcov_ctr.78), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stb %i0, [%fp+2046]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotl8), %i0
@@ -6622,6 +8704,14 @@ rotr8:                                  ! @rotr8
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.79), %i2
+	add %i2, %lo(__llvm_gcov_ctr.79), %i3
+	sethi %hh(__llvm_gcov_ctr.79), %i2
+	add %i2, %hm(__llvm_gcov_ctr.79), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stb %i0, [%fp+2046]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_rotr8), %i0
@@ -6653,6 +8743,14 @@ bswap_16:                               ! @bswap_16
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.80), %i1
+	add %i1, %lo(__llvm_gcov_ctr.80), %i2
+	sethi %hh(__llvm_gcov_ctr.80), %i1
+	add %i1, %hm(__llvm_gcov_ctr.80), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	sth %i0, [%fp+2045]
 	sethi %hi(.L__profc_bswap_16), %i0
 	add %i0, %lo(.L__profc_bswap_16), %i1
@@ -6687,6 +8785,14 @@ bswap_32:                               ! @bswap_32
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.81), %i1
+	add %i1, %lo(__llvm_gcov_ctr.81), %i2
+	sethi %hh(__llvm_gcov_ctr.81), %i1
+	add %i1, %hm(__llvm_gcov_ctr.81), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_bswap_32), %i0
 	add %i0, %lo(.L__profc_bswap_32), %i1
@@ -6726,6 +8832,14 @@ bswap_64:                               ! @bswap_64
 	.register %g2, #scratch
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.82), %i1
+	add %i1, %lo(__llvm_gcov_ctr.82), %i2
+	sethi %hh(__llvm_gcov_ctr.82), %i1
+	add %i1, %hm(__llvm_gcov_ctr.82), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_bswap_64), %i0
 	add %i0, %lo(.L__profc_bswap_64), %i1
@@ -6816,6 +8930,14 @@ ffs:                                    ! @ffs
 	ba .LBB83_3
 	nop
 .LBB83_3:
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %i1
+	sethi %hh(__llvm_gcov_ctr.83), %i0
+	add %i0, %hm(__llvm_gcov_ctr.83), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_ffs), %i0
 	add %i0, %lo(.L__profc_ffs), %i1
 	sethi %hh(.L__profc_ffs), %i0
@@ -6833,11 +8955,29 @@ ffs:                                    ! @ffs
 	ba .LBB83_5
 	nop
 .LBB83_5:                               !   in Loop: Header=BB83_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %i1
+	sethi %hh(__llvm_gcov_ctr.83), %i0
+	add %i0, %hm(__llvm_gcov_ctr.83), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2035], %i0
 	add %i0, 1, %i0
 	ba .LBB83_1
 	st %i0, [%fp+2035]
 .LBB83_6:
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %i1
+	sethi %hh(__llvm_gcov_ctr.83), %i0
+	add %i0, %hm(__llvm_gcov_ctr.83), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB83_7
 	st %g0, [%fp+2043]
 .LBB83_7:
@@ -6870,6 +9010,15 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB84_1
 	nop
 .LBB84_1:
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %i1
+	sethi %hh(__llvm_gcov_ctr.84), %i0
+	add %i0, %hm(__llvm_gcov_ctr.84), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_libiberty_ffs), %i0
 	add %i0, %lo(.L__profc_libiberty_ffs), %i1
 	sethi %hh(.L__profc_libiberty_ffs), %i0
@@ -6882,6 +9031,14 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB84_7
 	st %g0, [%fp+2043]
 .LBB84_2:
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %i1
+	sethi %hh(__llvm_gcov_ctr.84), %i0
+	add %i0, %hm(__llvm_gcov_ctr.84), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	mov	1, %i0
 	ba .LBB84_3
 	st %i0, [%fp+2035]
@@ -6910,6 +9067,15 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB84_5
 	st %i0, [%fp+2039]
 .LBB84_5:                               !   in Loop: Header=BB84_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %i1
+	sethi %hh(__llvm_gcov_ctr.84), %i0
+	add %i0, %hm(__llvm_gcov_ctr.84), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2035], %i0
 	add %i0, 1, %i0
 	ba .LBB84_3
@@ -6932,6 +9098,14 @@ gl_isinff:                              ! @gl_isinff
 ! %bb.0:
 	save %sp, -192, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.85), %i1
+	add %i1, %lo(__llvm_gcov_ctr.85), %i2
+	sethi %hh(__llvm_gcov_ctr.85), %i1
+	add %i1, %hm(__llvm_gcov_ctr.85), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc_gl_isinff), %i0
 	add %i0, %lo(.L__profc_gl_isinff), %i1
@@ -6952,6 +9126,15 @@ gl_isinff:                              ! @gl_isinff
 	ba .LBB85_1
 	nop
 .LBB85_1:
+	sethi %hi(__llvm_gcov_ctr.85), %i0
+	add %i0, %lo(__llvm_gcov_ctr.85), %i1
+	sethi %hh(__llvm_gcov_ctr.85), %i0
+	add %i0, %hm(__llvm_gcov_ctr.85), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_gl_isinff), %i0
 	add %i0, %lo(.L__profc_gl_isinff), %i1
 	sethi %hh(.L__profc_gl_isinff), %i0
@@ -6976,6 +9159,15 @@ gl_isinff:                              ! @gl_isinff
 	nop
 .LBB85_2:
 	ld [%fp+2035], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.85), %i1
+	add %i1, %lo(__llvm_gcov_ctr.85), %i2
+	sethi %hh(__llvm_gcov_ctr.85), %i1
+	add %i1, %hm(__llvm_gcov_ctr.85), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinff), %i1
 	add %i1, %lo(.L__profc_gl_isinff), %i2
 	sethi %hh(.L__profc_gl_isinff), %i1
@@ -7002,6 +9194,14 @@ gl_isinfd:                              ! @gl_isinfd
 ! %bb.0:
 	save %sp, -192, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.86), %i1
+	add %i1, %lo(__llvm_gcov_ctr.86), %i2
+	sethi %hh(__llvm_gcov_ctr.86), %i1
+	add %i1, %hm(__llvm_gcov_ctr.86), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc_gl_isinfd), %i0
 	add %i0, %lo(.L__profc_gl_isinfd), %i1
@@ -7026,6 +9226,15 @@ gl_isinfd:                              ! @gl_isinfd
 	ba .LBB86_1
 	nop
 .LBB86_1:
+	sethi %hi(__llvm_gcov_ctr.86), %i0
+	add %i0, %lo(__llvm_gcov_ctr.86), %i1
+	sethi %hh(__llvm_gcov_ctr.86), %i0
+	add %i0, %hm(__llvm_gcov_ctr.86), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_gl_isinfd), %i0
 	add %i0, %lo(.L__profc_gl_isinfd), %i1
 	sethi %hh(.L__profc_gl_isinfd), %i0
@@ -7054,6 +9263,15 @@ gl_isinfd:                              ! @gl_isinfd
 	nop
 .LBB86_2:
 	ld [%fp+2031], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.86), %i1
+	add %i1, %lo(__llvm_gcov_ctr.86), %i2
+	sethi %hh(__llvm_gcov_ctr.86), %i1
+	add %i1, %hm(__llvm_gcov_ctr.86), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinfd), %i1
 	add %i1, %lo(.L__profc_gl_isinfd), %i2
 	sethi %hh(.L__profc_gl_isinfd), %i1
@@ -7083,6 +9301,14 @@ gl_isinfl:                              ! @gl_isinfl
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i3
+	sethi %hh(__llvm_gcov_ctr.87), %i0
+	add %i0, %hm(__llvm_gcov_ctr.87), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -7112,6 +9338,15 @@ gl_isinfl:                              ! @gl_isinfl
 	ba .LBB87_1
 	nop
 .LBB87_1:
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i1
+	sethi %hh(__llvm_gcov_ctr.87), %i0
+	add %i0, %hm(__llvm_gcov_ctr.87), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_gl_isinfl), %i0
 	add %i0, %lo(.L__profc_gl_isinfl), %i1
 	sethi %hh(.L__profc_gl_isinfl), %i0
@@ -7144,6 +9379,15 @@ gl_isinfl:                              ! @gl_isinfl
 	nop
 .LBB87_2:
 	ld [%fp+2023], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.87), %i1
+	add %i1, %lo(__llvm_gcov_ctr.87), %i2
+	sethi %hh(__llvm_gcov_ctr.87), %i1
+	add %i1, %hm(__llvm_gcov_ctr.87), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_gl_isinfl), %i1
 	add %i1, %lo(.L__profc_gl_isinfl), %i2
 	sethi %hh(.L__profc_gl_isinfl), %i1
@@ -7170,6 +9414,14 @@ _Qp_itoq:                               ! @_Qp_itoq
 ! %bb.0:
 	save %sp, -192, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.88), %i2
+	add %i2, %lo(__llvm_gcov_ctr.88), %i3
+	sethi %hh(__llvm_gcov_ctr.88), %i2
+	add %i2, %hm(__llvm_gcov_ctr.88), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc__Qp_itoq), %i0
@@ -7200,6 +9452,14 @@ ldexpf:                                 ! @ldexpf
 	save %sp, -208, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.89), %i2
+	add %i2, %lo(__llvm_gcov_ctr.89), %i3
+	sethi %hh(__llvm_gcov_ctr.89), %i2
+	add %i2, %hm(__llvm_gcov_ctr.89), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc_ldexpf), %i0
@@ -7220,6 +9480,15 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB89_1
 	nop
 .LBB89_1:
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i1
+	sethi %hh(__llvm_gcov_ctr.89), %i0
+	add %i0, %hm(__llvm_gcov_ctr.89), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i1
 	sethi %hh(.L__profc_ldexpf), %i0
@@ -7241,6 +9510,15 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB89_2
 	nop
 .LBB89_2:
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i1
+	sethi %hh(__llvm_gcov_ctr.89), %i0
+	add %i0, %hm(__llvm_gcov_ctr.89), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i1
 	sethi %hh(.L__profc_ldexpf), %i0
@@ -7294,6 +9572,15 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB89_5
 	nop
 .LBB89_5:                               !   in Loop: Header=BB89_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i1
+	sethi %hh(__llvm_gcov_ctr.89), %i0
+	add %i0, %hm(__llvm_gcov_ctr.89), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_ldexpf), %i0
 	add %i0, %lo(.L__profc_ldexpf), %i1
 	sethi %hh(.L__profc_ldexpf), %i0
@@ -7332,6 +9619,15 @@ ldexpf:                                 ! @ldexpf
 	ba .LBB89_9
 	stx %i1, [%i0+56]
 .LBB89_8:                               !   in Loop: Header=BB89_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i1
+	sethi %hh(__llvm_gcov_ctr.89), %i0
+	add %i0, %hm(__llvm_gcov_ctr.89), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ld [%fp+2035], %o1
 	call __mulsf3
 	mov	%o1, %o0
@@ -7355,6 +9651,14 @@ ldexp:                                  ! @ldexp
 	save %sp, -208, %sp
                                         ! kill: def $i2 killed $i0
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.90), %i2
+	add %i2, %lo(__llvm_gcov_ctr.90), %i3
+	sethi %hh(__llvm_gcov_ctr.90), %i2
+	add %i2, %hm(__llvm_gcov_ctr.90), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_ldexp), %i0
@@ -7385,6 +9689,15 @@ ldexp:                                  ! @ldexp
 	ba .LBB90_1
 	nop
 .LBB90_1:
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i1
+	sethi %hh(__llvm_gcov_ctr.90), %i0
+	add %i0, %hm(__llvm_gcov_ctr.90), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i1
 	sethi %hh(.L__profc_ldexp), %i0
@@ -7406,6 +9719,15 @@ ldexp:                                  ! @ldexp
 	ba .LBB90_2
 	nop
 .LBB90_2:
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i1
+	sethi %hh(__llvm_gcov_ctr.90), %i0
+	add %i0, %hm(__llvm_gcov_ctr.90), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i1
 	sethi %hh(.L__profc_ldexp), %i0
@@ -7467,6 +9789,15 @@ ldexp:                                  ! @ldexp
 	ba .LBB90_5
 	nop
 .LBB90_5:                               !   in Loop: Header=BB90_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i1
+	sethi %hh(__llvm_gcov_ctr.90), %i0
+	add %i0, %hm(__llvm_gcov_ctr.90), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_ldexp), %i0
 	add %i0, %lo(.L__profc_ldexp), %i1
 	sethi %hh(.L__profc_ldexp), %i0
@@ -7505,6 +9836,15 @@ ldexp:                                  ! @ldexp
 	ba .LBB90_9
 	stx %i1, [%i0+56]
 .LBB90_8:                               !   in Loop: Header=BB90_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i1
+	sethi %hh(__llvm_gcov_ctr.90), %i0
+	add %i0, %hm(__llvm_gcov_ctr.90), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldx [%fp+2023], %o1
 	call __muldf3
 	mov	%o1, %o0
@@ -7531,6 +9871,14 @@ ldexpl:                                 ! @ldexpl
                                         ! kill: def $i0 killed $i3
                                         ! kill: def $i0 killed $i1
                                         ! kill: def $i0 killed $i2
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i4
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i0+%i4]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i3, [%i0]
@@ -7573,6 +9921,15 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB91_1
 	nop
 .LBB91_1:
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i1
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i1
 	sethi %hh(.L__profc_ldexpl), %i0
@@ -7600,6 +9957,15 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB91_2
 	nop
 .LBB91_2:
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i1
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i1
 	sethi %hh(.L__profc_ldexpl), %i0
@@ -7664,6 +10030,15 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB91_5
 	nop
 .LBB91_5:                               !   in Loop: Header=BB91_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i1
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_ldexpl), %i0
 	add %i0, %lo(.L__profc_ldexpl), %i1
 	sethi %hh(.L__profc_ldexpl), %i0
@@ -7709,6 +10084,15 @@ ldexpl:                                 ! @ldexpl
 	ba .LBB91_9
 	stx %i1, [%i0+56]
 .LBB91_8:                               !   in Loop: Header=BB91_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i1
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	add %fp, 1999, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %o3
@@ -7738,6 +10122,14 @@ ldexpl:                                 ! @ldexpl
 memxor:                                 ! @memxor
 ! %bb.0:
 	save %sp, -176, %sp
+	sethi %hi(__llvm_gcov_ctr.92), %i3
+	add %i3, %lo(__llvm_gcov_ctr.92), %i4
+	sethi %hh(__llvm_gcov_ctr.92), %i3
+	add %i3, %hm(__llvm_gcov_ctr.92), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	stx %i2, [%fp+2023]
@@ -7782,6 +10174,15 @@ memxor:                                 ! @memxor
 	ba .LBB92_3
 	stb %i1, [%i0]
 .LBB92_3:                               !   in Loop: Header=BB92_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.92), %i0
+	add %i0, %lo(__llvm_gcov_ctr.92), %i1
+	sethi %hh(__llvm_gcov_ctr.92), %i0
+	add %i0, %hm(__llvm_gcov_ctr.92), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2023], %i0
 	add %i0, -1, %i0
 	ba .LBB92_1
@@ -7824,6 +10225,14 @@ strncat:                                ! @strncat
 	ba .LBB93_2
 	nop
 .LBB93_2:                               !   in Loop: Header=BB93_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i1
+	sethi %hh(__llvm_gcov_ctr.93), %i0
+	add %i0, %hm(__llvm_gcov_ctr.93), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_strncat), %i0
 	add %i0, %lo(.L__profc_strncat), %i1
 	sethi %hh(.L__profc_strncat), %i0
@@ -7848,6 +10257,15 @@ strncat:                                ! @strncat
 	nop
 .LBB93_3:                               !   in Loop: Header=BB93_1 Depth=1
 	ld [%fp+2007], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.93), %i1
+	add %i1, %lo(__llvm_gcov_ctr.93), %i2
+	sethi %hh(__llvm_gcov_ctr.93), %i1
+	add %i1, %hm(__llvm_gcov_ctr.93), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+8], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+8]
 	sethi %hi(.L__profc_strncat), %i1
 	add %i1, %lo(.L__profc_strncat), %i2
 	sethi %hh(.L__profc_strncat), %i1
@@ -7879,6 +10297,15 @@ strncat:                                ! @strncat
 	ba .LBB93_6
 	stx %i1, [%i0+8]
 .LBB93_6:                               !   in Loop: Header=BB93_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i1
+	sethi %hh(__llvm_gcov_ctr.93), %i0
+	add %i0, %hm(__llvm_gcov_ctr.93), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2031], %i0
 	add %i0, 1, %i0
 	stx %i0, [%fp+2031]
@@ -7890,12 +10317,30 @@ strncat:                                ! @strncat
 	ba .LBB93_1
 	stx %i0, [%fp+2023]
 .LBB93_7:
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i1
+	sethi %hh(__llvm_gcov_ctr.93), %i0
+	add %i0, %hm(__llvm_gcov_ctr.93), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2023], %i0
 	brnz %i0, .LBB93_9
 	nop
 	ba .LBB93_8
 	nop
 .LBB93_8:
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i1
+	sethi %hh(__llvm_gcov_ctr.93), %i0
+	add %i0, %hm(__llvm_gcov_ctr.93), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_strncat), %i0
 	add %i0, %lo(.L__profc_strncat), %i1
 	sethi %hh(.L__profc_strncat), %i0
@@ -7922,6 +10367,14 @@ strncat:                                ! @strncat
 strnlen:                                ! @strnlen
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.94), %i2
+	add %i2, %lo(__llvm_gcov_ctr.94), %i3
+	sethi %hh(__llvm_gcov_ctr.94), %i2
+	add %i2, %hm(__llvm_gcov_ctr.94), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc_strnlen), %i0
@@ -7944,6 +10397,15 @@ strnlen:                                ! @strnlen
 	ba .LBB94_2
 	nop
 .LBB94_2:                               !   in Loop: Header=BB94_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %i1
+	sethi %hh(__llvm_gcov_ctr.94), %i0
+	add %i0, %hm(__llvm_gcov_ctr.94), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strnlen), %i0
 	add %i0, %lo(.L__profc_strnlen), %i1
 	sethi %hh(.L__profc_strnlen), %i0
@@ -7967,6 +10429,15 @@ strnlen:                                ! @strnlen
 	nop
 .LBB94_3:                               !   in Loop: Header=BB94_1 Depth=1
 	ld [%fp+2015], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.94), %i1
+	add %i1, %lo(__llvm_gcov_ctr.94), %i2
+	sethi %hh(__llvm_gcov_ctr.94), %i1
+	add %i1, %hm(__llvm_gcov_ctr.94), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_strnlen), %i1
 	add %i1, %lo(.L__profc_strnlen), %i2
 	sethi %hh(.L__profc_strnlen), %i1
@@ -7998,6 +10469,15 @@ strnlen:                                ! @strnlen
 	ba .LBB94_6
 	stx %i1, [%i0+8]
 .LBB94_6:                               !   in Loop: Header=BB94_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %i1
+	sethi %hh(__llvm_gcov_ctr.94), %i0
+	add %i0, %hm(__llvm_gcov_ctr.94), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2023], %i0
 	add %i0, 1, %i0
 	ba .LBB94_1
@@ -8079,6 +10559,15 @@ strpbrk:                                ! @strpbrk
 	ba .LBB95_5
 	nop
 .LBB95_5:
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i1
+	sethi %hh(__llvm_gcov_ctr.95), %i0
+	add %i0, %hm(__llvm_gcov_ctr.95), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strpbrk), %i0
 	add %i0, %lo(.L__profc_strpbrk), %i1
 	sethi %hh(.L__profc_strpbrk), %i0
@@ -8092,14 +10581,39 @@ strpbrk:                                ! @strpbrk
 	ba .LBB95_9
 	stx %i0, [%fp+2039]
 .LBB95_6:                               !   in Loop: Header=BB95_3 Depth=2
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i1
+	sethi %hh(__llvm_gcov_ctr.95), %i0
+	add %i0, %hm(__llvm_gcov_ctr.95), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
 	ba .LBB95_3
-	nop
+	stx %i1, [%i0+16]
 .LBB95_7:                               !   in Loop: Header=BB95_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i1
+	sethi %hh(__llvm_gcov_ctr.95), %i0
+	add %i0, %hm(__llvm_gcov_ctr.95), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2031], %i0
 	add %i0, 1, %i0
 	ba .LBB95_1
 	stx %i0, [%fp+2031]
 .LBB95_8:
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i1
+	sethi %hh(__llvm_gcov_ctr.95), %i0
+	add %i0, %hm(__llvm_gcov_ctr.95), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	ba .LBB95_9
 	stx %g0, [%fp+2039]
 .LBB95_9:
@@ -8116,6 +10630,14 @@ strrchr:                                ! @strrchr
 ! %bb.0:
 	save %sp, -160, %sp
                                         ! kill: def $i2 killed $i1
+	sethi %hi(__llvm_gcov_ctr.96), %i2
+	add %i2, %lo(__llvm_gcov_ctr.96), %i3
+	sethi %hh(__llvm_gcov_ctr.96), %i2
+	add %i2, %hm(__llvm_gcov_ctr.96), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	st %i1, [%fp+2035]
 	sethi %hi(.L__profc_strrchr), %i0
@@ -8129,6 +10651,15 @@ strrchr:                                ! @strrchr
 	ba .LBB96_2
 	stx %g0, [%fp+2023]
 .LBB96_1:                               !   in Loop: Header=BB96_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i1
+	sethi %hh(__llvm_gcov_ctr.96), %i0
+	add %i0, %hm(__llvm_gcov_ctr.96), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_strrchr), %i0
 	add %i0, %lo(.L__profc_strrchr), %i1
 	sethi %hh(.L__profc_strrchr), %i0
@@ -8149,6 +10680,15 @@ strrchr:                                ! @strrchr
 	ba .LBB96_3
 	nop
 .LBB96_3:                               !   in Loop: Header=BB96_2 Depth=1
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i1
+	sethi %hh(__llvm_gcov_ctr.96), %i0
+	add %i0, %hm(__llvm_gcov_ctr.96), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strrchr), %i0
 	add %i0, %lo(.L__profc_strrchr), %i1
 	sethi %hh(.L__profc_strrchr), %i0
@@ -8208,6 +10748,14 @@ strstr:                                 ! @strstr
 	ba .LBB97_1
 	nop
 .LBB97_1:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i1
+	sethi %hh(__llvm_gcov_ctr.97), %i0
+	add %i0, %hm(__llvm_gcov_ctr.97), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_strstr), %i0
 	add %i0, %lo(.L__profc_strstr), %i1
 	sethi %hh(.L__profc_strstr), %i0
@@ -8252,6 +10800,15 @@ strstr:                                 ! @strstr
 	ba .LBB97_5
 	nop
 .LBB97_5:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i1
+	sethi %hh(__llvm_gcov_ctr.97), %i0
+	add %i0, %hm(__llvm_gcov_ctr.97), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_strstr), %i0
 	add %i0, %lo(.L__profc_strstr), %i1
 	sethi %hh(.L__profc_strstr), %i0
@@ -8268,11 +10825,29 @@ strstr:                                 ! @strstr
 	ba .LBB97_7
 	nop
 .LBB97_7:                               !   in Loop: Header=BB97_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i1
+	sethi %hh(__llvm_gcov_ctr.97), %i0
+	add %i0, %hm(__llvm_gcov_ctr.97), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2015], %i0
 	add %i0, 1, %i0
 	ba .LBB97_3
 	stx %i0, [%fp+2015]
 .LBB97_8:
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i1
+	sethi %hh(__llvm_gcov_ctr.97), %i0
+	add %i0, %hm(__llvm_gcov_ctr.97), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ba .LBB97_9
 	stx %g0, [%fp+2039]
 .LBB97_9:
@@ -8309,6 +10884,14 @@ copysign:                               ! @copysign
 	ba .LBB98_1
 	nop
 .LBB98_1:
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i1
 	sethi %hh(.L__profc_copysign), %i0
@@ -8327,6 +10910,15 @@ copysign:                               ! @copysign
 	ba .LBB98_2
 	nop
 .LBB98_2:
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i1
 	sethi %hh(.L__profc_copysign), %i0
@@ -8356,6 +10948,15 @@ copysign:                               ! @copysign
 	ba .LBB98_4
 	nop
 .LBB98_4:
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i1
 	sethi %hh(.L__profc_copysign), %i0
@@ -8374,6 +10975,15 @@ copysign:                               ! @copysign
 	ba .LBB98_5
 	nop
 .LBB98_5:
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_copysign), %i0
 	add %i0, %lo(.L__profc_copysign), %i1
 	sethi %hh(.L__profc_copysign), %i0
@@ -8405,6 +11015,15 @@ copysign:                               ! @copysign
 	ba .LBB98_8
 	stx %i0, [%fp+2039]
 .LBB98_7:
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldx [%fp+2031], %i0
 	ba .LBB98_8
 	stx %i0, [%fp+2039]
@@ -8445,6 +11064,14 @@ memmem:                                 ! @memmem
 	ba .LBB99_1
 	nop
 .LBB99_1:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i1
 	sethi %hh(.L__profc_memmem), %i0
@@ -8466,6 +11093,15 @@ memmem:                                 ! @memmem
 	ba .LBB99_3
 	nop
 .LBB99_3:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i1
 	sethi %hh(.L__profc_memmem), %i0
@@ -8509,6 +11145,15 @@ memmem:                                 ! @memmem
 	ba .LBB99_7
 	nop
 .LBB99_7:                               !   in Loop: Header=BB99_5 Depth=1
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i1
 	sethi %hh(.L__profc_memmem), %i0
@@ -8531,6 +11176,15 @@ memmem:                                 ! @memmem
 	ba .LBB99_8
 	nop
 .LBB99_8:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_memmem), %i0
 	add %i0, %lo(.L__profc_memmem), %i1
 	sethi %hh(.L__profc_memmem), %i0
@@ -8558,11 +11212,29 @@ memmem:                                 ! @memmem
 	ba .LBB99_11
 	nop
 .LBB99_11:                              !   in Loop: Header=BB99_5 Depth=1
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldx [%fp+1999], %i0
 	add %i0, 1, %i0
 	ba .LBB99_5
 	stx %i0, [%fp+1999]
 .LBB99_12:
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ba .LBB99_13
 	stx %g0, [%fp+2039]
 .LBB99_13:
@@ -8578,6 +11250,14 @@ memmem:                                 ! @memmem
 mempcpy:                                ! @mempcpy
 ! %bb.0:
 	save %sp, -208, %sp
+	sethi %hi(__llvm_gcov_ctr.100), %i3
+	add %i3, %lo(__llvm_gcov_ctr.100), %i4
+	sethi %hh(__llvm_gcov_ctr.100), %i3
+	add %i3, %hm(__llvm_gcov_ctr.100), %i3
+	sllx %i3, 32, %i3
+	ldx [%i3+%i4], %i5
+	add %i5, 1, %i5
+	stx %i5, [%i3+%i4]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	stx %i2, [%fp+2023]
@@ -8628,6 +11308,14 @@ frexp:                                  ! @frexp
 	ba .LBB101_1
 	nop
 .LBB101_1:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8664,6 +11352,15 @@ frexp:                                  ! @frexp
 	ba .LBB101_3
 	nop
 .LBB101_3:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8689,6 +11386,15 @@ frexp:                                  ! @frexp
 	ba .LBB101_5
 	nop
 .LBB101_5:                              !   in Loop: Header=BB101_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8729,6 +11435,15 @@ frexp:                                  ! @frexp
 	ba .LBB101_8
 	nop
 .LBB101_8:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8783,6 +11498,15 @@ frexp:                                  ! @frexp
 	ba .LBB101_12
 	nop
 .LBB101_12:                             !   in Loop: Header=BB101_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8801,11 +11525,27 @@ frexp:                                  ! @frexp
 	ba .LBB101_11
 	stx %o0, [%fp+2039]
 .LBB101_13:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
 	ba .LBB101_14
-	nop
+	stx %i1, [%i0+40]
 .LBB101_14:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
 	ba .LBB101_15
-	nop
+	stx %i1, [%i0+48]
 .LBB101_15:
 	ld [%fp+2023], %i1
 	ldx [%fp+2031], %i0
@@ -8817,6 +11557,15 @@ frexp:                                  ! @frexp
 	ba .LBB101_16
 	nop
 .LBB101_16:
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	sethi %hi(.L__profc_frexp), %i0
 	add %i0, %lo(.L__profc_frexp), %i1
 	sethi %hh(.L__profc_frexp), %i0
@@ -8849,6 +11598,14 @@ frexp:                                  ! @frexp
 __muldi3:                               ! @__muldi3
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.102), %i2
+	add %i2, %lo(__llvm_gcov_ctr.102), %i3
+	sethi %hh(__llvm_gcov_ctr.102), %i2
+	add %i2, %hm(__llvm_gcov_ctr.102), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___muldi3), %i0
@@ -8889,6 +11646,15 @@ __muldi3:                               ! @__muldi3
 	ba .LBB102_3
 	nop
 .LBB102_3:                              !   in Loop: Header=BB102_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %i1
+	sethi %hh(__llvm_gcov_ctr.102), %i0
+	add %i0, %hm(__llvm_gcov_ctr.102), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___muldi3), %i0
 	add %i0, %lo(.L__profc___muldi3), %i1
 	sethi %hh(.L__profc___muldi3), %i0
@@ -8904,6 +11670,15 @@ __muldi3:                               ! @__muldi3
 	ba .LBB102_4
 	stx %i0, [%fp+2023]
 .LBB102_4:                              !   in Loop: Header=BB102_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %i1
+	sethi %hh(__llvm_gcov_ctr.102), %i0
+	add %i0, %hm(__llvm_gcov_ctr.102), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2031], %i0
 	sllx %i0, 1, %i0
 	stx %i0, [%fp+2031]
@@ -8951,6 +11726,14 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_2
 	nop
 .LBB103_2:                              !   in Loop: Header=BB103_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i1
 	sethi %hh(.L__profc_udivmodsi4), %i0
@@ -8968,6 +11751,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_3
 	nop
 .LBB103_3:                              !   in Loop: Header=BB103_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i1
 	sethi %hh(.L__profc_udivmodsi4), %i0
@@ -9000,6 +11792,15 @@ udivmodsi4:                             ! @udivmodsi4
 	nop
 .LBB103_5:                              !   in Loop: Header=BB103_1 Depth=1
 	ld [%fp+2007], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.103), %i1
+	add %i1, %lo(__llvm_gcov_ctr.103), %i2
+	sethi %hh(__llvm_gcov_ctr.103), %i1
+	add %i1, %hm(__llvm_gcov_ctr.103), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc_udivmodsi4), %i1
 	add %i1, %lo(.L__profc_udivmodsi4), %i2
 	sethi %hh(.L__profc_udivmodsi4), %i1
@@ -9020,6 +11821,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_7
 	nop
 .LBB103_7:                              !   in Loop: Header=BB103_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i1
 	sethi %hh(.L__profc_udivmodsi4), %i0
@@ -9064,6 +11874,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_11
 	nop
 .LBB103_11:                             !   in Loop: Header=BB103_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i1
 	sethi %hh(.L__profc_udivmodsi4), %i0
@@ -9083,6 +11902,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_12
 	st %i0, [%fp+2015]
 .LBB103_12:                             !   in Loop: Header=BB103_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ld [%fp+2019], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+2019]
@@ -9097,6 +11925,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_14
 	nop
 .LBB103_14:
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	sethi %hi(.L__profc_udivmodsi4), %i0
 	add %i0, %lo(.L__profc_udivmodsi4), %i1
 	sethi %hh(.L__profc_udivmodsi4), %i0
@@ -9110,6 +11947,15 @@ udivmodsi4:                             ! @udivmodsi4
 	ba .LBB103_16
 	st %i0, [%fp+2043]
 .LBB103_15:
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	ld [%fp+2015], %i0
 	ba .LBB103_16
 	st %i0, [%fp+2043]
@@ -9143,6 +11989,14 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB104_1
 	nop
 .LBB104_1:
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i1
+	sethi %hh(__llvm_gcov_ctr.104), %i0
+	add %i0, %hm(__llvm_gcov_ctr.104), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___clrsbqi2), %i0
 	add %i0, %lo(.L__profc___clrsbqi2), %i1
 	sethi %hh(.L__profc___clrsbqi2), %i0
@@ -9164,6 +12018,15 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB104_3
 	nop
 .LBB104_3:
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i1
+	sethi %hh(__llvm_gcov_ctr.104), %i0
+	add %i0, %hm(__llvm_gcov_ctr.104), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___clrsbqi2), %i0
 	add %i0, %lo(.L__profc___clrsbqi2), %i1
 	sethi %hh(.L__profc___clrsbqi2), %i0
@@ -9177,6 +12040,15 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB104_5
 	st %i0, [%fp+2043]
 .LBB104_4:
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i1
+	sethi %hh(__llvm_gcov_ctr.104), %i0
+	add %i0, %hm(__llvm_gcov_ctr.104), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldsb [%fp+2042], %i0
 	sll %i0, 8, %i0
 	srl %i0, 1, %i1
@@ -9245,6 +12117,14 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB105_1
 	nop
 .LBB105_1:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i1
+	sethi %hh(__llvm_gcov_ctr.105), %i0
+	add %i0, %hm(__llvm_gcov_ctr.105), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___clrsbdi2), %i0
 	add %i0, %lo(.L__profc___clrsbdi2), %i1
 	sethi %hh(.L__profc___clrsbdi2), %i0
@@ -9265,6 +12145,15 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB105_3
 	nop
 .LBB105_3:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i1
+	sethi %hh(__llvm_gcov_ctr.105), %i0
+	add %i0, %hm(__llvm_gcov_ctr.105), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___clrsbdi2), %i0
 	add %i0, %lo(.L__profc___clrsbdi2), %i1
 	sethi %hh(.L__profc___clrsbdi2), %i0
@@ -9278,6 +12167,15 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB105_5
 	st %i0, [%fp+2043]
 .LBB105_4:
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i1
+	sethi %hh(__llvm_gcov_ctr.105), %i0
+	add %i0, %hm(__llvm_gcov_ctr.105), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+2031], %i0
 	srlx %i0, 1, %i1
 	or %i0, %i1, %i0
@@ -9344,6 +12242,14 @@ __mulsi3:                               ! @__mulsi3
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.106), %i2
+	add %i2, %lo(__llvm_gcov_ctr.106), %i3
+	sethi %hh(__llvm_gcov_ctr.106), %i2
+	add %i2, %hm(__llvm_gcov_ctr.106), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc___mulsi3), %i0
@@ -9383,6 +12289,15 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB106_3
 	nop
 .LBB106_3:                              !   in Loop: Header=BB106_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i1
+	sethi %hh(__llvm_gcov_ctr.106), %i0
+	add %i0, %hm(__llvm_gcov_ctr.106), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mulsi3), %i0
 	add %i0, %lo(.L__profc___mulsi3), %i1
 	sethi %hh(.L__profc___mulsi3), %i0
@@ -9398,6 +12313,15 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB106_4
 	st %i0, [%fp+2035]
 .LBB106_4:                              !   in Loop: Header=BB106_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i1
+	sethi %hh(__llvm_gcov_ctr.106), %i0
+	add %i0, %hm(__llvm_gcov_ctr.106), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2043], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+2043]
@@ -9448,6 +12372,14 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_1
 	nop
 .LBB107_1:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i1
 	sethi %hh(.L__profc___cmovd), %i0
@@ -9515,6 +12447,15 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_6
 	stx %i2, [%i0+%i1]
 .LBB107_6:                              !   in Loop: Header=BB107_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2023], %i0
 	add %i0, 1, %i0
 	ba .LBB107_4
@@ -9531,6 +12472,15 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_9
 	nop
 .LBB107_9:                              !   in Loop: Header=BB107_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i1
 	sethi %hh(.L__profc___cmovd), %i0
@@ -9550,8 +12500,16 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_8
 	st %i0, [%fp+2015]
 .LBB107_10:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB107_15
-	nop
+	stx %i1, [%i0+24]
 .LBB107_11:
 	ba .LBB107_12
 	nop
@@ -9564,6 +12522,15 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_13
 	nop
 .LBB107_13:                             !   in Loop: Header=BB107_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___cmovd), %i0
 	add %i0, %lo(.L__profc___cmovd), %i1
 	sethi %hh(.L__profc___cmovd), %i0
@@ -9580,8 +12547,16 @@ __cmovd:                                ! @__cmovd
 	ba .LBB107_12
 	stb %i2, [%i0+%i1]
 .LBB107_14:
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
 	ba .LBB107_15
-	nop
+	stx %i1, [%i0+40]
 .LBB107_15:
 	ret
 	restore
@@ -9621,6 +12596,14 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_1
 	nop
 .LBB108_1:
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i1
 	sethi %hh(.L__profc___cmovh), %i0
@@ -9688,6 +12671,15 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_6
 	sth %i2, [%i0+%i1]
 .LBB108_6:                              !   in Loop: Header=BB108_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2023], %i0
 	add %i0, 1, %i0
 	ba .LBB108_4
@@ -9703,6 +12695,15 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_8
 	nop
 .LBB108_8:
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i1
 	sethi %hh(.L__profc___cmovh), %i0
@@ -9721,8 +12722,16 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_9
 	stb %i2, [%i0+%i1]
 .LBB108_9:
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB108_14
-	nop
+	stx %i1, [%i0+24]
 .LBB108_10:
 	ba .LBB108_11
 	nop
@@ -9735,6 +12744,15 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_12
 	nop
 .LBB108_12:                             !   in Loop: Header=BB108_11 Depth=1
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___cmovh), %i0
 	add %i0, %lo(.L__profc___cmovh), %i1
 	sethi %hh(.L__profc___cmovh), %i0
@@ -9751,8 +12769,16 @@ __cmovh:                                ! @__cmovh
 	ba .LBB108_11
 	stb %i2, [%i0+%i1]
 .LBB108_13:
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
 	ba .LBB108_14
-	nop
+	stx %i1, [%i0+40]
 .LBB108_14:
 	ret
 	restore
@@ -9795,6 +12821,14 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_1
 	nop
 .LBB109_1:
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i1
 	sethi %hh(.L__profc___cmovw), %i0
@@ -9862,6 +12896,15 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_6
 	st %i2, [%i0+%i1]
 .LBB109_6:                              !   in Loop: Header=BB109_4 Depth=1
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2023], %i0
 	add %i0, 1, %i0
 	ba .LBB109_4
@@ -9878,6 +12921,15 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_9
 	nop
 .LBB109_9:                              !   in Loop: Header=BB109_8 Depth=1
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i1
 	sethi %hh(.L__profc___cmovw), %i0
@@ -9897,8 +12949,16 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_8
 	st %i0, [%fp+2015]
 .LBB109_10:
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
 	ba .LBB109_15
-	nop
+	stx %i1, [%i0+24]
 .LBB109_11:
 	ba .LBB109_12
 	nop
@@ -9911,6 +12971,15 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_13
 	nop
 .LBB109_13:                             !   in Loop: Header=BB109_12 Depth=1
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___cmovw), %i0
 	add %i0, %lo(.L__profc___cmovw), %i1
 	sethi %hh(.L__profc___cmovw), %i0
@@ -9927,8 +12996,16 @@ __cmovw:                                ! @__cmovw
 	ba .LBB109_12
 	stb %i2, [%i0+%i1]
 .LBB109_14:
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
 	ba .LBB109_15
-	nop
+	stx %i1, [%i0+40]
 .LBB109_15:
 	ret
 	restore
@@ -9943,6 +13020,14 @@ __modi:                                 ! @__modi
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.110), %i2
+	add %i2, %lo(__llvm_gcov_ctr.110), %i3
+	sethi %hh(__llvm_gcov_ctr.110), %i2
+	add %i2, %hm(__llvm_gcov_ctr.110), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc___modi), %i0
@@ -9973,6 +13058,14 @@ __uitod:                                ! @__uitod
 ! %bb.0:
 	save %sp, -192, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.111), %i1
+	add %i1, %lo(__llvm_gcov_ctr.111), %i2
+	sethi %hh(__llvm_gcov_ctr.111), %i1
+	add %i1, %hm(__llvm_gcov_ctr.111), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___uitod), %i0
 	add %i0, %lo(.L__profc___uitod), %i1
@@ -9996,6 +13089,14 @@ __uitof:                                ! @__uitof
 ! %bb.0:
 	save %sp, -192, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.112), %i1
+	add %i1, %lo(__llvm_gcov_ctr.112), %i2
+	sethi %hh(__llvm_gcov_ctr.112), %i1
+	add %i1, %hm(__llvm_gcov_ctr.112), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___uitof), %i0
 	add %i0, %lo(.L__profc___uitof), %i1
@@ -10018,6 +13119,14 @@ __uitof:                                ! @__uitof
 __ulltod:                               ! @__ulltod
 ! %bb.0:
 	save %sp, -192, %sp
+	sethi %hi(__llvm_gcov_ctr.113), %i1
+	add %i1, %lo(__llvm_gcov_ctr.113), %i2
+	sethi %hh(__llvm_gcov_ctr.113), %i1
+	add %i1, %hm(__llvm_gcov_ctr.113), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___ulltod), %i0
 	add %i0, %lo(.L__profc___ulltod), %i1
@@ -10040,6 +13149,14 @@ __ulltod:                               ! @__ulltod
 __ulltof:                               ! @__ulltof
 ! %bb.0:
 	save %sp, -192, %sp
+	sethi %hi(__llvm_gcov_ctr.114), %i1
+	add %i1, %lo(__llvm_gcov_ctr.114), %i2
+	sethi %hh(__llvm_gcov_ctr.114), %i1
+	add %i1, %hm(__llvm_gcov_ctr.114), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___ulltof), %i0
 	add %i0, %lo(.L__profc___ulltof), %i1
@@ -10064,6 +13181,14 @@ __umodi:                                ! @__umodi
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.115), %i2
+	add %i2, %lo(__llvm_gcov_ctr.115), %i3
+	sethi %hh(__llvm_gcov_ctr.115), %i2
+	add %i2, %hm(__llvm_gcov_ctr.115), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc___umodi), %i0
@@ -10093,6 +13218,14 @@ __clzhi2:                               ! @__clzhi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.116), %i1
+	add %i1, %lo(__llvm_gcov_ctr.116), %i2
+	sethi %hh(__llvm_gcov_ctr.116), %i1
+	add %i1, %hm(__llvm_gcov_ctr.116), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	sth %i0, [%fp+2045]
 	sethi %hi(.L__profc___clzhi2), %i0
 	add %i0, %lo(.L__profc___clzhi2), %i1
@@ -10133,6 +13266,15 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB116_3
 	nop
 .LBB116_3:
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	add %i0, %lo(__llvm_gcov_ctr.116), %i1
+	sethi %hh(__llvm_gcov_ctr.116), %i0
+	add %i0, %hm(__llvm_gcov_ctr.116), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___clzhi2), %i0
 	add %i0, %lo(.L__profc___clzhi2), %i1
 	sethi %hh(.L__profc___clzhi2), %i0
@@ -10147,6 +13289,15 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB116_5
 	nop
 .LBB116_5:                              !   in Loop: Header=BB116_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	add %i0, %lo(__llvm_gcov_ctr.116), %i1
+	sethi %hh(__llvm_gcov_ctr.116), %i0
+	add %i0, %hm(__llvm_gcov_ctr.116), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB116_1
@@ -10165,6 +13316,14 @@ __ctzhi2:                               ! @__ctzhi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.117), %i1
+	add %i1, %lo(__llvm_gcov_ctr.117), %i2
+	sethi %hh(__llvm_gcov_ctr.117), %i1
+	add %i1, %hm(__llvm_gcov_ctr.117), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	sth %i0, [%fp+2045]
 	sethi %hi(.L__profc___ctzhi2), %i0
 	add %i0, %lo(.L__profc___ctzhi2), %i1
@@ -10203,6 +13362,15 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB117_3
 	nop
 .LBB117_3:
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %i1
+	sethi %hh(__llvm_gcov_ctr.117), %i0
+	add %i0, %hm(__llvm_gcov_ctr.117), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ctzhi2), %i0
 	add %i0, %lo(.L__profc___ctzhi2), %i1
 	sethi %hh(.L__profc___ctzhi2), %i0
@@ -10217,6 +13385,15 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB117_5
 	nop
 .LBB117_5:                              !   in Loop: Header=BB117_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %i1
+	sethi %hh(__llvm_gcov_ctr.117), %i0
+	add %i0, %hm(__llvm_gcov_ctr.117), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB117_1
@@ -10253,6 +13430,14 @@ __fixunssfsi:                           ! @__fixunssfsi
 	ba .LBB118_1
 	nop
 .LBB118_1:
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %i1
+	sethi %hh(__llvm_gcov_ctr.118), %i0
+	add %i0, %hm(__llvm_gcov_ctr.118), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___fixunssfsi), %i0
 	add %i0, %lo(.L__profc___fixunssfsi), %i1
 	sethi %hh(.L__profc___fixunssfsi), %i0
@@ -10272,6 +13457,15 @@ __fixunssfsi:                           ! @__fixunssfsi
 	ba .LBB118_3
 	stx %i0, [%fp+2039]
 .LBB118_2:
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %i1
+	sethi %hh(__llvm_gcov_ctr.118), %i0
+	add %i0, %hm(__llvm_gcov_ctr.118), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	call __fixsfdi
 	ld [%fp+2035], %o0
 	ba .LBB118_3
@@ -10290,6 +13484,14 @@ __parityhi2:                            ! @__parityhi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.119), %i1
+	add %i1, %lo(__llvm_gcov_ctr.119), %i2
+	sethi %hh(__llvm_gcov_ctr.119), %i1
+	add %i1, %hm(__llvm_gcov_ctr.119), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	sth %i0, [%fp+2045]
 	sethi %hi(.L__profc___parityhi2), %i0
 	add %i0, %lo(.L__profc___parityhi2), %i1
@@ -10329,6 +13531,15 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB119_3
 	nop
 .LBB119_3:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %i1
+	sethi %hh(__llvm_gcov_ctr.119), %i0
+	add %i0, %hm(__llvm_gcov_ctr.119), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___parityhi2), %i0
 	add %i0, %lo(.L__profc___parityhi2), %i1
 	sethi %hh(.L__profc___parityhi2), %i0
@@ -10346,6 +13557,15 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB119_5
 	nop
 .LBB119_5:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %i1
+	sethi %hh(__llvm_gcov_ctr.119), %i0
+	add %i0, %hm(__llvm_gcov_ctr.119), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB119_1
@@ -10365,6 +13585,14 @@ __popcounthi2:                          ! @__popcounthi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.120), %i1
+	add %i1, %lo(__llvm_gcov_ctr.120), %i2
+	sethi %hh(__llvm_gcov_ctr.120), %i1
+	add %i1, %hm(__llvm_gcov_ctr.120), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	sth %i0, [%fp+2045]
 	sethi %hi(.L__profc___popcounthi2), %i0
 	add %i0, %lo(.L__profc___popcounthi2), %i1
@@ -10404,6 +13632,15 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB120_3
 	nop
 .LBB120_3:                              !   in Loop: Header=BB120_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i1
+	sethi %hh(__llvm_gcov_ctr.120), %i0
+	add %i0, %hm(__llvm_gcov_ctr.120), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___popcounthi2), %i0
 	add %i0, %lo(.L__profc___popcounthi2), %i1
 	sethi %hh(.L__profc___popcounthi2), %i0
@@ -10421,6 +13658,15 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB120_5
 	nop
 .LBB120_5:                              !   in Loop: Header=BB120_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i1
+	sethi %hh(__llvm_gcov_ctr.120), %i0
+	add %i0, %hm(__llvm_gcov_ctr.120), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2039], %i0
 	add %i0, 1, %i0
 	ba .LBB120_1
@@ -10440,6 +13686,14 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	save %sp, -144, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.121), %i2
+	add %i2, %lo(__llvm_gcov_ctr.121), %i3
+	sethi %hh(__llvm_gcov_ctr.121), %i2
+	add %i2, %hm(__llvm_gcov_ctr.121), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc___mulsi3_iq2000), %i0
@@ -10479,6 +13733,15 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB121_3
 	nop
 .LBB121_3:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i1
+	sethi %hh(__llvm_gcov_ctr.121), %i0
+	add %i0, %hm(__llvm_gcov_ctr.121), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mulsi3_iq2000), %i0
 	add %i0, %lo(.L__profc___mulsi3_iq2000), %i1
 	sethi %hh(.L__profc___mulsi3_iq2000), %i0
@@ -10494,6 +13757,15 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB121_4
 	st %i0, [%fp+2035]
 .LBB121_4:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i1
+	sethi %hh(__llvm_gcov_ctr.121), %i0
+	add %i0, %hm(__llvm_gcov_ctr.121), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2043], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+2043]
@@ -10534,6 +13806,15 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB122_1
 	nop
 .LBB122_1:
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i1
+	sethi %hh(__llvm_gcov_ctr.122), %i0
+	add %i0, %hm(__llvm_gcov_ctr.122), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mulsi3_lm32), %i0
 	add %i0, %lo(.L__profc___mulsi3_lm32), %i1
 	sethi %hh(.L__profc___mulsi3_lm32), %i0
@@ -10546,8 +13827,15 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB122_8
 	st %g0, [%fp+2043]
 .LBB122_2:
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i1
+	sethi %hh(__llvm_gcov_ctr.122), %i0
+	add %i0, %hm(__llvm_gcov_ctr.122), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
 	ba .LBB122_3
-	nop
+	stx %i2, [%i0+%i1]
 .LBB122_3:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+2035], %i0
 	cmp	%i0, 0
@@ -10575,6 +13863,15 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB122_5
 	nop
 .LBB122_5:                              !   in Loop: Header=BB122_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i1
+	sethi %hh(__llvm_gcov_ctr.122), %i0
+	add %i0, %hm(__llvm_gcov_ctr.122), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___mulsi3_lm32), %i0
 	add %i0, %lo(.L__profc___mulsi3_lm32), %i1
 	sethi %hh(.L__profc___mulsi3_lm32), %i0
@@ -10590,6 +13887,15 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB122_6
 	st %i0, [%fp+2031]
 .LBB122_6:                              !   in Loop: Header=BB122_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i1
+	sethi %hh(__llvm_gcov_ctr.122), %i0
+	add %i0, %hm(__llvm_gcov_ctr.122), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ld [%fp+2039], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+2039]
@@ -10642,6 +13948,14 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_2
 	nop
 .LBB123_2:                              !   in Loop: Header=BB123_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i1
 	sethi %hh(.L__profc___udivmodsi4), %i0
@@ -10659,6 +13973,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_3
 	nop
 .LBB123_3:                              !   in Loop: Header=BB123_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i1
 	sethi %hh(.L__profc___udivmodsi4), %i0
@@ -10691,6 +14014,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	nop
 .LBB123_5:                              !   in Loop: Header=BB123_1 Depth=1
 	ld [%fp+2015], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.123), %i1
+	add %i1, %lo(__llvm_gcov_ctr.123), %i2
+	sethi %hh(__llvm_gcov_ctr.123), %i1
+	add %i1, %hm(__llvm_gcov_ctr.123), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodsi4), %i1
 	add %i1, %lo(.L__profc___udivmodsi4), %i2
 	sethi %hh(.L__profc___udivmodsi4), %i1
@@ -10711,6 +14043,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_7
 	nop
 .LBB123_7:                              !   in Loop: Header=BB123_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i1
 	sethi %hh(.L__profc___udivmodsi4), %i0
@@ -10755,6 +14096,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_11
 	nop
 .LBB123_11:                             !   in Loop: Header=BB123_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i1
 	sethi %hh(.L__profc___udivmodsi4), %i0
@@ -10774,6 +14124,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_12
 	st %i0, [%fp+2023]
 .LBB123_12:                             !   in Loop: Header=BB123_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ld [%fp+2027], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+2027]
@@ -10789,6 +14148,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_14
 	nop
 .LBB123_14:
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	sethi %hi(.L__profc___udivmodsi4), %i0
 	add %i0, %lo(.L__profc___udivmodsi4), %i1
 	sethi %hh(.L__profc___udivmodsi4), %i0
@@ -10802,6 +14170,15 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ba .LBB123_16
 	st %i0, [%fp+2043]
 .LBB123_15:
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	ld [%fp+2023], %i0
 	ba .LBB123_16
 	st %i0, [%fp+2043]
@@ -10839,6 +14216,14 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB124_1
 	nop
 .LBB124_1:
+	sethi %hi(__llvm_gcov_ctr.124), %i0
+	add %i0, %lo(__llvm_gcov_ctr.124), %i1
+	sethi %hh(__llvm_gcov_ctr.124), %i0
+	add %i0, %hm(__llvm_gcov_ctr.124), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___mspabi_cmpf), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpf), %i1
 	sethi %hh(.L__profc___mspabi_cmpf), %i0
@@ -10861,6 +14246,15 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB124_3
 	nop
 .LBB124_3:
+	sethi %hi(__llvm_gcov_ctr.124), %i0
+	add %i0, %lo(__llvm_gcov_ctr.124), %i1
+	sethi %hh(__llvm_gcov_ctr.124), %i0
+	add %i0, %hm(__llvm_gcov_ctr.124), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mspabi_cmpf), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpf), %i1
 	sethi %hh(.L__profc___mspabi_cmpf), %i0
@@ -10874,6 +14268,15 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB124_5
 	st %i0, [%fp+2043]
 .LBB124_4:
+	sethi %hi(__llvm_gcov_ctr.124), %i0
+	add %i0, %lo(__llvm_gcov_ctr.124), %i1
+	sethi %hh(__llvm_gcov_ctr.124), %i0
+	add %i0, %hm(__llvm_gcov_ctr.124), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB124_5
 	st %g0, [%fp+2043]
 .LBB124_5:
@@ -10910,6 +14313,14 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB125_1
 	nop
 .LBB125_1:
+	sethi %hi(__llvm_gcov_ctr.125), %i0
+	add %i0, %lo(__llvm_gcov_ctr.125), %i1
+	sethi %hh(__llvm_gcov_ctr.125), %i0
+	add %i0, %hm(__llvm_gcov_ctr.125), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___mspabi_cmpd), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpd), %i1
 	sethi %hh(.L__profc___mspabi_cmpd), %i0
@@ -10932,6 +14343,15 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB125_3
 	nop
 .LBB125_3:
+	sethi %hi(__llvm_gcov_ctr.125), %i0
+	add %i0, %lo(__llvm_gcov_ctr.125), %i1
+	sethi %hh(__llvm_gcov_ctr.125), %i0
+	add %i0, %hm(__llvm_gcov_ctr.125), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mspabi_cmpd), %i0
 	add %i0, %lo(.L__profc___mspabi_cmpd), %i1
 	sethi %hh(.L__profc___mspabi_cmpd), %i0
@@ -10945,6 +14365,15 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB125_5
 	st %i0, [%fp+2043]
 .LBB125_4:
+	sethi %hi(__llvm_gcov_ctr.125), %i0
+	add %i0, %lo(__llvm_gcov_ctr.125), %i1
+	sethi %hh(__llvm_gcov_ctr.125), %i0
+	add %i0, %hm(__llvm_gcov_ctr.125), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ba .LBB125_5
 	st %g0, [%fp+2043]
 .LBB125_5:
@@ -10960,6 +14389,14 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 __mspabi_mpysll:                        ! @__mspabi_mpysll
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.126), %i2
+	add %i2, %lo(__llvm_gcov_ctr.126), %i3
+	sethi %hh(__llvm_gcov_ctr.126), %i2
+	add %i2, %hm(__llvm_gcov_ctr.126), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___mspabi_mpysll), %i0
@@ -10984,6 +14421,14 @@ __mspabi_mpysll:                        ! @__mspabi_mpysll
 __mspabi_mpyull:                        ! @__mspabi_mpyull
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.127), %i2
+	add %i2, %lo(__llvm_gcov_ctr.127), %i3
+	sethi %hh(__llvm_gcov_ctr.127), %i2
+	add %i2, %hm(__llvm_gcov_ctr.127), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___mspabi_mpyull), %i0
@@ -11029,6 +14474,14 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_1
 	nop
 .LBB128_1:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i1
 	sethi %hh(.L__profc___mulhi3), %i0
@@ -11058,6 +14511,15 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_4
 	nop
 .LBB128_4:                              !   in Loop: Header=BB128_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i1
 	sethi %hh(.L__profc___mulhi3), %i0
@@ -11079,6 +14541,15 @@ __mulhi3:                               ! @__mulhi3
 	nop
 .LBB128_5:                              !   in Loop: Header=BB128_3 Depth=1
 	ld [%fp+2019], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.128), %i1
+	add %i1, %lo(__llvm_gcov_ctr.128), %i2
+	sethi %hh(__llvm_gcov_ctr.128), %i1
+	add %i1, %hm(__llvm_gcov_ctr.128), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc___mulhi3), %i1
 	add %i1, %lo(.L__profc___mulhi3), %i2
 	sethi %hh(.L__profc___mulhi3), %i1
@@ -11118,6 +14589,15 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_8
 	nop
 .LBB128_8:                              !   in Loop: Header=BB128_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i1
 	sethi %hh(.L__profc___mulhi3), %i0
@@ -11141,6 +14621,15 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_10
 	st %i0, [%fp+2039]
 .LBB128_10:                             !   in Loop: Header=BB128_3 Depth=1
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	ldub [%fp+2038], %i0
 	add %i0, 1, %i0
 	ba .LBB128_3
@@ -11153,6 +14642,15 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_12
 	nop
 .LBB128_12:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	sethi %hi(.L__profc___mulhi3), %i0
 	add %i0, %lo(.L__profc___mulhi3), %i1
 	sethi %hh(.L__profc___mulhi3), %i0
@@ -11168,6 +14666,15 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB128_14
 	st %i0, [%fp+2015]
 .LBB128_13:
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	ld [%fp+2027], %i0
 	ba .LBB128_14
 	st %i0, [%fp+2015]
@@ -11185,6 +14692,14 @@ __mulhi3:                               ! @__mulhi3
 __divsi3:                               ! @__divsi3
 ! %bb.0:
 	save %sp, -208, %sp
+	sethi %hi(__llvm_gcov_ctr.129), %i2
+	add %i2, %lo(__llvm_gcov_ctr.129), %i3
+	sethi %hh(__llvm_gcov_ctr.129), %i2
+	add %i2, %hm(__llvm_gcov_ctr.129), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___divsi3), %i0
@@ -11203,6 +14718,15 @@ __divsi3:                               ! @__divsi3
 	ba .LBB129_1
 	nop
 .LBB129_1:
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i1
+	sethi %hh(__llvm_gcov_ctr.129), %i0
+	add %i0, %hm(__llvm_gcov_ctr.129), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i1
 	sethi %hh(.L__profc___divsi3), %i0
@@ -11230,6 +14754,15 @@ __divsi3:                               ! @__divsi3
 	ba .LBB129_3
 	nop
 .LBB129_3:
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i1
+	sethi %hh(__llvm_gcov_ctr.129), %i0
+	add %i0, %hm(__llvm_gcov_ctr.129), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i1
 	sethi %hh(.L__profc___divsi3), %i0
@@ -11266,6 +14799,15 @@ __divsi3:                               ! @__divsi3
 	ba .LBB129_5
 	nop
 .LBB129_5:
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i1
+	sethi %hh(__llvm_gcov_ctr.129), %i0
+	add %i0, %hm(__llvm_gcov_ctr.129), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___divsi3), %i0
 	add %i0, %lo(.L__profc___divsi3), %i1
 	sethi %hh(.L__profc___divsi3), %i0
@@ -11293,6 +14835,14 @@ __divsi3:                               ! @__divsi3
 __modsi3:                               ! @__modsi3
 ! %bb.0:
 	save %sp, -208, %sp
+	sethi %hi(__llvm_gcov_ctr.130), %i2
+	add %i2, %lo(__llvm_gcov_ctr.130), %i3
+	sethi %hh(__llvm_gcov_ctr.130), %i2
+	add %i2, %hm(__llvm_gcov_ctr.130), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___modsi3), %i0
@@ -11311,6 +14861,15 @@ __modsi3:                               ! @__modsi3
 	ba .LBB130_1
 	nop
 .LBB130_1:
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i1
+	sethi %hh(__llvm_gcov_ctr.130), %i0
+	add %i0, %hm(__llvm_gcov_ctr.130), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i1
 	sethi %hh(.L__profc___modsi3), %i0
@@ -11335,6 +14894,15 @@ __modsi3:                               ! @__modsi3
 	ba .LBB130_3
 	nop
 .LBB130_3:
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i1
+	sethi %hh(__llvm_gcov_ctr.130), %i0
+	add %i0, %hm(__llvm_gcov_ctr.130), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i1
 	sethi %hh(.L__profc___modsi3), %i0
@@ -11366,6 +14934,15 @@ __modsi3:                               ! @__modsi3
 	ba .LBB130_5
 	nop
 .LBB130_5:
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i1
+	sethi %hh(__llvm_gcov_ctr.130), %i0
+	add %i0, %hm(__llvm_gcov_ctr.130), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___modsi3), %i0
 	add %i0, %lo(.L__profc___modsi3), %i1
 	sethi %hh(.L__profc___modsi3), %i0
@@ -11422,6 +14999,14 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_2
 	nop
 .LBB131_2:                              !   in Loop: Header=BB131_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i1
 	sethi %hh(.L__profc___udivmodhi4), %i0
@@ -11439,6 +15024,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_3
 	nop
 .LBB131_3:                              !   in Loop: Header=BB131_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i1
 	sethi %hh(.L__profc___udivmodhi4), %i0
@@ -11473,6 +15067,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	nop
 .LBB131_5:                              !   in Loop: Header=BB131_1 Depth=1
 	ld [%fp+2023], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.131), %i1
+	add %i1, %lo(__llvm_gcov_ctr.131), %i2
+	sethi %hh(__llvm_gcov_ctr.131), %i1
+	add %i1, %hm(__llvm_gcov_ctr.131), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodhi4), %i1
 	add %i1, %lo(.L__profc___udivmodhi4), %i2
 	sethi %hh(.L__profc___udivmodhi4), %i1
@@ -11493,6 +15096,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_7
 	nop
 .LBB131_7:                              !   in Loop: Header=BB131_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i1
 	sethi %hh(.L__profc___udivmodhi4), %i0
@@ -11537,6 +15149,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_11
 	nop
 .LBB131_11:                             !   in Loop: Header=BB131_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i1
 	sethi %hh(.L__profc___udivmodhi4), %i0
@@ -11556,6 +15177,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_12
 	sth %i0, [%fp+2031]
 .LBB131_12:                             !   in Loop: Header=BB131_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	lduh [%fp+2033], %i0
 	srl %i0, 1, %i0
 	sth %i0, [%fp+2033]
@@ -11571,6 +15201,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_14
 	nop
 .LBB131_14:
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	sethi %hi(.L__profc___udivmodhi4), %i0
 	add %i0, %lo(.L__profc___udivmodhi4), %i1
 	sethi %hh(.L__profc___udivmodhi4), %i0
@@ -11584,6 +15223,15 @@ __udivmodhi4:                           ! @__udivmodhi4
 	ba .LBB131_16
 	sth %i0, [%fp+2045]
 .LBB131_15:
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	lduh [%fp+2031], %i0
 	ba .LBB131_16
 	sth %i0, [%fp+2045]
@@ -11626,6 +15274,14 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_2
 	nop
 .LBB132_2:                              !   in Loop: Header=BB132_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i0
@@ -11642,6 +15298,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_3
 	nop
 .LBB132_3:                              !   in Loop: Header=BB132_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i0
@@ -11674,6 +15339,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	nop
 .LBB132_5:                              !   in Loop: Header=BB132_1 Depth=1
 	ld [%fp+1991], %i0                      ! 4-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.132), %i1
+	add %i1, %lo(__llvm_gcov_ctr.132), %i2
+	sethi %hh(__llvm_gcov_ctr.132), %i1
+	add %i1, %hm(__llvm_gcov_ctr.132), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	ldx [%i1+16], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i1+16]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i1
 	add %i1, %lo(.L__profc___udivmodsi4_libgcc), %i2
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i1
@@ -11694,6 +15368,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_7
 	nop
 .LBB132_7:                              !   in Loop: Header=BB132_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i0
@@ -11737,6 +15420,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_11
 	nop
 .LBB132_11:                             !   in Loop: Header=BB132_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i0
@@ -11756,6 +15448,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_12
 	stx %i0, [%fp+1999]
 .LBB132_12:                             !   in Loop: Header=BB132_9 Depth=1
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+40], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+40]
 	ldx [%fp+2007], %i0
 	srlx %i0, 1, %i0
 	stx %i0, [%fp+2007]
@@ -11771,6 +15472,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_14
 	nop
 .LBB132_14:
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+48], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+48]
 	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
 	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i1
 	sethi %hh(.L__profc___udivmodsi4_libgcc), %i0
@@ -11784,6 +15494,15 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ba .LBB132_16
 	stx %i0, [%fp+2039]
 .LBB132_15:
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+56], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+56]
 	ldx [%fp+1999], %i0
 	ba .LBB132_16
 	stx %i0, [%fp+2039]
@@ -11825,6 +15544,14 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB133_1
 	nop
 .LBB133_1:
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	add %i0, %lo(__llvm_gcov_ctr.133), %i1
+	sethi %hh(__llvm_gcov_ctr.133), %i0
+	add %i0, %hm(__llvm_gcov_ctr.133), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ashldi3), %i0
 	add %i0, %lo(.L__profc___ashldi3), %i1
 	sethi %hh(.L__profc___ashldi3), %i0
@@ -11853,6 +15580,15 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB133_3
 	nop
 .LBB133_3:
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	add %i0, %lo(__llvm_gcov_ctr.133), %i1
+	sethi %hh(__llvm_gcov_ctr.133), %i0
+	add %i0, %hm(__llvm_gcov_ctr.133), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ashldi3), %i0
 	add %i0, %lo(.L__profc___ashldi3), %i1
 	sethi %hh(.L__profc___ashldi3), %i0
@@ -11866,6 +15602,15 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB133_6
 	stx %i0, [%fp+2039]
 .LBB133_4:
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	add %i0, %lo(__llvm_gcov_ctr.133), %i1
+	sethi %hh(__llvm_gcov_ctr.133), %i0
+	add %i0, %hm(__llvm_gcov_ctr.133), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	add %fp, 2015, %i0
 	or %i0, 4, %i1
 	ld [%i1], %i0
@@ -11937,6 +15682,14 @@ __ashlti3:                              ! @__ashlti3
 	ba .LBB134_1
 	nop
 .LBB134_1:
+	sethi %hi(__llvm_gcov_ctr.134), %i0
+	add %i0, %lo(__llvm_gcov_ctr.134), %i1
+	sethi %hh(__llvm_gcov_ctr.134), %i0
+	add %i0, %hm(__llvm_gcov_ctr.134), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ashlti3), %i0
 	add %i0, %lo(.L__profc___ashlti3), %i1
 	sethi %hh(.L__profc___ashlti3), %i0
@@ -11965,6 +15718,15 @@ __ashlti3:                              ! @__ashlti3
 	ba .LBB134_3
 	nop
 .LBB134_3:
+	sethi %hi(__llvm_gcov_ctr.134), %i0
+	add %i0, %lo(__llvm_gcov_ctr.134), %i1
+	sethi %hh(__llvm_gcov_ctr.134), %i0
+	add %i0, %hm(__llvm_gcov_ctr.134), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ashlti3), %i0
 	add %i0, %lo(.L__profc___ashlti3), %i1
 	sethi %hh(.L__profc___ashlti3), %i0
@@ -11984,6 +15746,15 @@ __ashlti3:                              ! @__ashlti3
 	ba .LBB134_6
 	stx %i0, [%fp+2031]
 .LBB134_4:
+	sethi %hi(__llvm_gcov_ctr.134), %i0
+	add %i0, %lo(__llvm_gcov_ctr.134), %i1
+	sethi %hh(__llvm_gcov_ctr.134), %i0
+	add %i0, %hm(__llvm_gcov_ctr.134), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	add %fp, 1983, %i0
 	or %i0, 8, %i1
 	ldx [%i1], %i0
@@ -12053,6 +15824,14 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB135_1
 	nop
 .LBB135_1:
+	sethi %hi(__llvm_gcov_ctr.135), %i0
+	add %i0, %lo(__llvm_gcov_ctr.135), %i1
+	sethi %hh(__llvm_gcov_ctr.135), %i0
+	add %i0, %hm(__llvm_gcov_ctr.135), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ashrdi3), %i0
 	add %i0, %lo(.L__profc___ashrdi3), %i1
 	sethi %hh(.L__profc___ashrdi3), %i0
@@ -12081,6 +15860,15 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB135_3
 	nop
 .LBB135_3:
+	sethi %hi(__llvm_gcov_ctr.135), %i0
+	add %i0, %lo(__llvm_gcov_ctr.135), %i1
+	sethi %hh(__llvm_gcov_ctr.135), %i0
+	add %i0, %hm(__llvm_gcov_ctr.135), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ashrdi3), %i0
 	add %i0, %lo(.L__profc___ashrdi3), %i1
 	sethi %hh(.L__profc___ashrdi3), %i0
@@ -12094,6 +15882,15 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB135_6
 	stx %i0, [%fp+2039]
 .LBB135_4:
+	sethi %hi(__llvm_gcov_ctr.135), %i0
+	add %i0, %lo(__llvm_gcov_ctr.135), %i1
+	sethi %hh(__llvm_gcov_ctr.135), %i0
+	add %i0, %hm(__llvm_gcov_ctr.135), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2015], %i0
 	ld [%fp+2027], %i1
 	sra %i0, %i1, %i0
@@ -12165,6 +15962,14 @@ __ashrti3:                              ! @__ashrti3
 	ba .LBB136_1
 	nop
 .LBB136_1:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i1
+	sethi %hh(__llvm_gcov_ctr.136), %i0
+	add %i0, %hm(__llvm_gcov_ctr.136), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ashrti3), %i0
 	add %i0, %lo(.L__profc___ashrti3), %i1
 	sethi %hh(.L__profc___ashrti3), %i0
@@ -12193,6 +15998,15 @@ __ashrti3:                              ! @__ashrti3
 	ba .LBB136_3
 	nop
 .LBB136_3:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i1
+	sethi %hh(__llvm_gcov_ctr.136), %i0
+	add %i0, %hm(__llvm_gcov_ctr.136), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ashrti3), %i0
 	add %i0, %lo(.L__profc___ashrti3), %i1
 	sethi %hh(.L__profc___ashrti3), %i0
@@ -12212,6 +16026,15 @@ __ashrti3:                              ! @__ashrti3
 	ba .LBB136_6
 	stx %i0, [%fp+2031]
 .LBB136_4:
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i1
+	sethi %hh(__llvm_gcov_ctr.136), %i0
+	add %i0, %hm(__llvm_gcov_ctr.136), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+1983], %i0
 	ld [%fp+2011], %i1
 	srax %i0, %i1, %i0
@@ -12256,6 +16079,14 @@ __ashrti3:                              ! @__ashrti3
 __bswapdi2:                             ! @__bswapdi2
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.137), %i1
+	add %i1, %lo(__llvm_gcov_ctr.137), %i2
+	sethi %hh(__llvm_gcov_ctr.137), %i1
+	add %i1, %hm(__llvm_gcov_ctr.137), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___bswapdi2), %i0
 	add %i0, %lo(.L__profc___bswapdi2), %i1
@@ -12314,6 +16145,14 @@ __bswapsi2:                             ! @__bswapsi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.138), %i1
+	add %i1, %lo(__llvm_gcov_ctr.138), %i2
+	sethi %hh(__llvm_gcov_ctr.138), %i1
+	add %i1, %hm(__llvm_gcov_ctr.138), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___bswapsi2), %i0
 	add %i0, %lo(.L__profc___bswapsi2), %i1
@@ -12349,6 +16188,14 @@ __clzsi2:                               ! @__clzsi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.139), %i1
+	add %i1, %lo(__llvm_gcov_ctr.139), %i2
+	sethi %hh(__llvm_gcov_ctr.139), %i1
+	add %i1, %hm(__llvm_gcov_ctr.139), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___clzsi2), %i0
 	add %i0, %lo(.L__profc___clzsi2), %i1
@@ -12455,6 +16302,14 @@ __clzti2:                               ! @__clzti2
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.140), %i0
+	add %i0, %lo(__llvm_gcov_ctr.140), %i3
+	sethi %hh(__llvm_gcov_ctr.140), %i0
+	add %i0, %hm(__llvm_gcov_ctr.140), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -12567,6 +16422,14 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB141_1
 	nop
 .LBB141_1:
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i1
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i1
 	sethi %hh(.L__profc___cmpdi2), %i0
@@ -12587,6 +16450,15 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB141_3
 	nop
 .LBB141_3:
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i1
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i1
 	sethi %hh(.L__profc___cmpdi2), %i0
@@ -12612,6 +16484,15 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB141_5
 	nop
 .LBB141_5:
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i1
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i1
 	sethi %hh(.L__profc___cmpdi2), %i0
@@ -12636,6 +16517,15 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB141_7
 	nop
 .LBB141_7:
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i1
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___cmpdi2), %i0
 	add %i0, %lo(.L__profc___cmpdi2), %i1
 	sethi %hh(.L__profc___cmpdi2), %i0
@@ -12649,6 +16539,15 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB141_9
 	st %i0, [%fp+2043]
 .LBB141_8:
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i1
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	1, %i0
 	ba .LBB141_9
 	st %i0, [%fp+2043]
@@ -12665,6 +16564,14 @@ __cmpdi2:                               ! @__cmpdi2
 __aeabi_lcmp:                           ! @__aeabi_lcmp
 ! %bb.0:
 	save %sp, -192, %sp
+	sethi %hi(__llvm_gcov_ctr.142), %i2
+	add %i2, %lo(__llvm_gcov_ctr.142), %i3
+	sethi %hh(__llvm_gcov_ctr.142), %i2
+	add %i2, %hm(__llvm_gcov_ctr.142), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___aeabi_lcmp), %i0
@@ -12732,6 +16639,14 @@ __cmpti2:                               ! @__cmpti2
 	ba .LBB143_1
 	nop
 .LBB143_1:
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i1
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___cmpti2), %i0
 	add %i0, %lo(.L__profc___cmpti2), %i1
 	sethi %hh(.L__profc___cmpti2), %i0
@@ -12752,6 +16667,15 @@ __cmpti2:                               ! @__cmpti2
 	ba .LBB143_3
 	nop
 .LBB143_3:
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i1
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___cmpti2), %i0
 	add %i0, %lo(.L__profc___cmpti2), %i1
 	sethi %hh(.L__profc___cmpti2), %i0
@@ -12777,6 +16701,15 @@ __cmpti2:                               ! @__cmpti2
 	ba .LBB143_5
 	nop
 .LBB143_5:
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i1
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___cmpti2), %i0
 	add %i0, %lo(.L__profc___cmpti2), %i1
 	sethi %hh(.L__profc___cmpti2), %i0
@@ -12801,6 +16734,15 @@ __cmpti2:                               ! @__cmpti2
 	ba .LBB143_7
 	nop
 .LBB143_7:
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i1
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___cmpti2), %i0
 	add %i0, %lo(.L__profc___cmpti2), %i1
 	sethi %hh(.L__profc___cmpti2), %i0
@@ -12814,6 +16756,15 @@ __cmpti2:                               ! @__cmpti2
 	ba .LBB143_9
 	st %i0, [%fp+2043]
 .LBB143_8:
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i1
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	1, %i0
 	ba .LBB143_9
 	st %i0, [%fp+2043]
@@ -12831,6 +16782,14 @@ __ctzsi2:                               ! @__ctzsi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.144), %i1
+	add %i1, %lo(__llvm_gcov_ctr.144), %i2
+	sethi %hh(__llvm_gcov_ctr.144), %i1
+	add %i1, %hm(__llvm_gcov_ctr.144), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___ctzsi2), %i0
 	add %i0, %lo(.L__profc___ctzsi2), %i1
@@ -12933,6 +16892,14 @@ __ctzti2:                               ! @__ctzti2
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.145), %i0
+	add %i0, %lo(__llvm_gcov_ctr.145), %i3
+	sethi %hh(__llvm_gcov_ctr.145), %i0
+	add %i0, %hm(__llvm_gcov_ctr.145), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -13042,6 +17009,15 @@ __ffsti2:                               ! @__ffsti2
 	ba .LBB146_2
 	nop
 .LBB146_2:
+	sethi %hi(__llvm_gcov_ctr.146), %i0
+	add %i0, %lo(__llvm_gcov_ctr.146), %i1
+	sethi %hh(__llvm_gcov_ctr.146), %i0
+	add %i0, %hm(__llvm_gcov_ctr.146), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ffsti2), %i0
 	add %i0, %lo(.L__profc___ffsti2), %i1
 	sethi %hh(.L__profc___ffsti2), %i0
@@ -13054,6 +17030,15 @@ __ffsti2:                               ! @__ffsti2
 	ba .LBB146_5
 	st %g0, [%fp+2043]
 .LBB146_3:
+	sethi %hi(__llvm_gcov_ctr.146), %i0
+	add %i0, %lo(__llvm_gcov_ctr.146), %i1
+	sethi %hh(__llvm_gcov_ctr.146), %i0
+	add %i0, %hm(__llvm_gcov_ctr.146), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+1999], %i0
 	mov	%g0, %i1
 	sub %i1, %i0, %i1
@@ -13077,6 +17062,14 @@ __ffsti2:                               ! @__ffsti2
 	ba .LBB146_5
 	st %i0, [%fp+2043]
 .LBB146_4:
+	sethi %hi(__llvm_gcov_ctr.146), %i0
+	add %i0, %lo(__llvm_gcov_ctr.146), %i1
+	sethi %hh(__llvm_gcov_ctr.146), %i0
+	add %i0, %hm(__llvm_gcov_ctr.146), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	add %fp, 1999, %i0
 	or %i0, 8, %i0
 	ldx [%i0], %i0
@@ -13139,6 +17132,14 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB147_1
 	nop
 .LBB147_1:
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i1
+	sethi %hh(__llvm_gcov_ctr.147), %i0
+	add %i0, %hm(__llvm_gcov_ctr.147), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___lshrdi3), %i0
 	add %i0, %lo(.L__profc___lshrdi3), %i1
 	sethi %hh(.L__profc___lshrdi3), %i0
@@ -13165,6 +17166,15 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB147_3
 	nop
 .LBB147_3:
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i1
+	sethi %hh(__llvm_gcov_ctr.147), %i0
+	add %i0, %hm(__llvm_gcov_ctr.147), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___lshrdi3), %i0
 	add %i0, %lo(.L__profc___lshrdi3), %i1
 	sethi %hh(.L__profc___lshrdi3), %i0
@@ -13178,6 +17188,15 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB147_6
 	stx %i0, [%fp+2039]
 .LBB147_4:
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i1
+	sethi %hh(__llvm_gcov_ctr.147), %i0
+	add %i0, %hm(__llvm_gcov_ctr.147), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ld [%fp+2015], %i0
 	ld [%fp+2027], %i1
 	srl %i0, %i1, %i0
@@ -13249,6 +17268,14 @@ __lshrti3:                              ! @__lshrti3
 	ba .LBB148_1
 	nop
 .LBB148_1:
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i1
+	sethi %hh(__llvm_gcov_ctr.148), %i0
+	add %i0, %hm(__llvm_gcov_ctr.148), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___lshrti3), %i0
 	add %i0, %lo(.L__profc___lshrti3), %i1
 	sethi %hh(.L__profc___lshrti3), %i0
@@ -13275,6 +17302,15 @@ __lshrti3:                              ! @__lshrti3
 	ba .LBB148_3
 	nop
 .LBB148_3:
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i1
+	sethi %hh(__llvm_gcov_ctr.148), %i0
+	add %i0, %hm(__llvm_gcov_ctr.148), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___lshrti3), %i0
 	add %i0, %lo(.L__profc___lshrti3), %i1
 	sethi %hh(.L__profc___lshrti3), %i0
@@ -13294,6 +17330,15 @@ __lshrti3:                              ! @__lshrti3
 	ba .LBB148_6
 	stx %i0, [%fp+2031]
 .LBB148_4:
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i1
+	sethi %hh(__llvm_gcov_ctr.148), %i0
+	add %i0, %hm(__llvm_gcov_ctr.148), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	ldx [%fp+1983], %i0
 	ld [%fp+2011], %i1
 	srlx %i0, %i1, %i0
@@ -13340,6 +17385,14 @@ __muldsi3:                              ! @__muldsi3
 	save %sp, -160, %sp
                                         ! kill: def $i2 killed $i1
                                         ! kill: def $i2 killed $i0
+	sethi %hi(__llvm_gcov_ctr.149), %i2
+	add %i2, %lo(__llvm_gcov_ctr.149), %i3
+	sethi %hh(__llvm_gcov_ctr.149), %i2
+	add %i2, %hm(__llvm_gcov_ctr.149), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	st %i0, [%fp+2043]
 	st %i1, [%fp+2039]
 	sethi %hi(.L__profc___muldsi3), %i0
@@ -13420,6 +17473,14 @@ __muldsi3:                              ! @__muldsi3
 __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
 ! %bb.0:
 	save %sp, -224, %sp
+	sethi %hi(__llvm_gcov_ctr.150), %i2
+	add %i2, %lo(__llvm_gcov_ctr.150), %i3
+	sethi %hh(__llvm_gcov_ctr.150), %i2
+	add %i2, %hm(__llvm_gcov_ctr.150), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___muldi3_compiler_rt), %i0
@@ -13464,6 +17525,14 @@ __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
 __mulddi3:                              ! @__mulddi3
 ! %bb.0:
 	save %sp, -192, %sp
+	sethi %hi(__llvm_gcov_ctr.151), %i2
+	add %i2, %lo(__llvm_gcov_ctr.151), %i3
+	sethi %hh(__llvm_gcov_ctr.151), %i2
+	add %i2, %hm(__llvm_gcov_ctr.151), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___mulddi3), %i0
@@ -13543,6 +17612,7 @@ __mulddi3:                              ! @__mulddi3
 	.p2align	2
 	.type	__multi3,@function
 __multi3:                               ! @__multi3
+	.register %g2, #scratch
 ! %bb.0:
 	save %sp, -256, %sp
 	mov	%i1, %i4
@@ -13550,6 +17620,14 @@ __multi3:                               ! @__multi3
                                         ! kill: def $i1 killed $i2
                                         ! kill: def $i1 killed $i4
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.152), %i1
+	add %i1, %lo(__llvm_gcov_ctr.152), %i5
+	sethi %hh(__llvm_gcov_ctr.152), %i1
+	add %i1, %hm(__llvm_gcov_ctr.152), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i5], %g2
+	add %g2, 1, %g2
+	stx %g2, [%i1+%i5]
 	add %fp, 2031, %i1
 	or %i1, 8, %i1
 	stx %i4, [%i1]
@@ -13608,6 +17686,14 @@ __multi3:                               ! @__multi3
 __negdi2:                               ! @__negdi2
 ! %bb.0:
 	save %sp, -144, %sp
+	sethi %hi(__llvm_gcov_ctr.153), %i1
+	add %i1, %lo(__llvm_gcov_ctr.153), %i2
+	sethi %hh(__llvm_gcov_ctr.153), %i1
+	add %i1, %hm(__llvm_gcov_ctr.153), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___negdi2), %i0
 	add %i0, %lo(.L__profc___negdi2), %i1
@@ -13635,6 +17721,14 @@ __negti2:                               ! @__negti2
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.154), %i0
+	add %i0, %lo(__llvm_gcov_ctr.154), %i3
+	sethi %hh(__llvm_gcov_ctr.154), %i0
+	add %i0, %hm(__llvm_gcov_ctr.154), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -13675,6 +17769,14 @@ __negti2:                               ! @__negti2
 __paritydi2:                            ! @__paritydi2
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.155), %i1
+	add %i1, %lo(__llvm_gcov_ctr.155), %i2
+	sethi %hh(__llvm_gcov_ctr.155), %i1
+	add %i1, %hm(__llvm_gcov_ctr.155), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___paritydi2), %i0
 	add %i0, %lo(.L__profc___paritydi2), %i1
@@ -13726,6 +17828,14 @@ __parityti2:                            ! @__parityti2
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.156), %i0
+	add %i0, %lo(__llvm_gcov_ctr.156), %i3
+	sethi %hh(__llvm_gcov_ctr.156), %i0
+	add %i0, %hm(__llvm_gcov_ctr.156), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -13785,6 +17895,14 @@ __paritysi2:                            ! @__paritysi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.157), %i1
+	add %i1, %lo(__llvm_gcov_ctr.157), %i2
+	sethi %hh(__llvm_gcov_ctr.157), %i1
+	add %i1, %hm(__llvm_gcov_ctr.157), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___paritysi2), %i0
 	add %i0, %lo(.L__profc___paritysi2), %i1
@@ -13826,6 +17944,14 @@ __paritysi2:                            ! @__paritysi2
 __popcountdi2:                          ! @__popcountdi2
 ! %bb.0:
 	save %sp, -160, %sp
+	sethi %hi(__llvm_gcov_ctr.158), %i1
+	add %i1, %lo(__llvm_gcov_ctr.158), %i2
+	sethi %hh(__llvm_gcov_ctr.158), %i1
+	add %i1, %hm(__llvm_gcov_ctr.158), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	stx %i0, [%fp+2039]
 	sethi %hi(.L__profc___popcountdi2), %i0
 	add %i0, %lo(.L__profc___popcountdi2), %i1
@@ -13893,6 +18019,14 @@ __popcountsi2:                          ! @__popcountsi2
 ! %bb.0:
 	save %sp, -144, %sp
                                         ! kill: def $i1 killed $i0
+	sethi %hi(__llvm_gcov_ctr.159), %i1
+	add %i1, %lo(__llvm_gcov_ctr.159), %i2
+	sethi %hh(__llvm_gcov_ctr.159), %i1
+	add %i1, %hm(__llvm_gcov_ctr.159), %i1
+	sllx %i1, 32, %i1
+	ldx [%i1+%i2], %i3
+	add %i3, 1, %i3
+	stx %i3, [%i1+%i2]
 	st %i0, [%fp+2043]
 	sethi %hi(.L__profc___popcountsi2), %i0
 	add %i0, %lo(.L__profc___popcountsi2), %i1
@@ -13952,6 +18086,14 @@ __popcountti2:                          ! @__popcountti2
 	mov	%i0, %i1
                                         ! kill: def $i0 killed $i2
                                         ! kill: def $i0 killed $i1
+	sethi %hi(__llvm_gcov_ctr.160), %i0
+	add %i0, %lo(__llvm_gcov_ctr.160), %i3
+	sethi %hh(__llvm_gcov_ctr.160), %i0
+	add %i0, %hm(__llvm_gcov_ctr.160), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i0+%i3]
 	add %fp, 2031, %i0
 	or %i0, 8, %i0
 	stx %i2, [%i0]
@@ -14120,6 +18262,14 @@ __powidf2:                              ! @__powidf2
 	ba .LBB161_2
 	nop
 .LBB161_2:                              !   in Loop: Header=BB161_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.161), %i0
+	add %i0, %lo(__llvm_gcov_ctr.161), %i1
+	sethi %hh(__llvm_gcov_ctr.161), %i0
+	add %i0, %hm(__llvm_gcov_ctr.161), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___powidf2), %i0
 	add %i0, %lo(.L__profc___powidf2), %i1
 	sethi %hh(.L__profc___powidf2), %i0
@@ -14158,6 +18308,15 @@ __powidf2:                              ! @__powidf2
 	ba .LBB161_6
 	stx %i1, [%i0+24]
 .LBB161_5:                              !   in Loop: Header=BB161_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.161), %i0
+	add %i0, %lo(__llvm_gcov_ctr.161), %i1
+	sethi %hh(__llvm_gcov_ctr.161), %i0
+	add %i0, %hm(__llvm_gcov_ctr.161), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ldx [%fp+2039], %o1
 	call __muldf3
 	mov	%o1, %o0
@@ -14171,6 +18330,15 @@ __powidf2:                              ! @__powidf2
 	ba .LBB161_7
 	nop
 .LBB161_7:
+	sethi %hi(__llvm_gcov_ctr.161), %i0
+	add %i0, %lo(__llvm_gcov_ctr.161), %i1
+	sethi %hh(__llvm_gcov_ctr.161), %i0
+	add %i0, %hm(__llvm_gcov_ctr.161), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___powidf2), %i0
 	add %i0, %lo(.L__profc___powidf2), %i1
 	sethi %hh(.L__profc___powidf2), %i0
@@ -14191,6 +18359,15 @@ __powidf2:                              ! @__powidf2
 	ba .LBB161_9
 	stx %o0, [%fp+2015]
 .LBB161_8:
+	sethi %hi(__llvm_gcov_ctr.161), %i0
+	add %i0, %lo(__llvm_gcov_ctr.161), %i1
+	sethi %hh(__llvm_gcov_ctr.161), %i0
+	add %i0, %hm(__llvm_gcov_ctr.161), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ldx [%fp+2023], %i0
 	ba .LBB161_9
 	stx %i0, [%fp+2015]
@@ -14245,6 +18422,14 @@ __powisf2:                              ! @__powisf2
 	ba .LBB162_2
 	nop
 .LBB162_2:                              !   in Loop: Header=BB162_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.162), %i0
+	add %i0, %lo(__llvm_gcov_ctr.162), %i1
+	sethi %hh(__llvm_gcov_ctr.162), %i0
+	add %i0, %hm(__llvm_gcov_ctr.162), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___powisf2), %i0
 	add %i0, %lo(.L__profc___powisf2), %i1
 	sethi %hh(.L__profc___powisf2), %i0
@@ -14283,6 +18468,15 @@ __powisf2:                              ! @__powisf2
 	ba .LBB162_6
 	stx %i1, [%i0+24]
 .LBB162_5:                              !   in Loop: Header=BB162_1 Depth=1
+	sethi %hi(__llvm_gcov_ctr.162), %i0
+	add %i0, %lo(__llvm_gcov_ctr.162), %i1
+	sethi %hh(__llvm_gcov_ctr.162), %i0
+	add %i0, %hm(__llvm_gcov_ctr.162), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	ld [%fp+2043], %o1
 	call __mulsf3
 	mov	%o1, %o0
@@ -14296,6 +18490,15 @@ __powisf2:                              ! @__powisf2
 	ba .LBB162_7
 	nop
 .LBB162_7:
+	sethi %hi(__llvm_gcov_ctr.162), %i0
+	add %i0, %lo(__llvm_gcov_ctr.162), %i1
+	sethi %hh(__llvm_gcov_ctr.162), %i0
+	add %i0, %hm(__llvm_gcov_ctr.162), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___powisf2), %i0
 	add %i0, %lo(.L__profc___powisf2), %i1
 	sethi %hh(.L__profc___powisf2), %i0
@@ -14311,6 +18514,15 @@ __powisf2:                              ! @__powisf2
 	ba .LBB162_9
 	st %o0, [%fp+2027]
 .LBB162_8:
+	sethi %hi(__llvm_gcov_ctr.162), %i0
+	add %i0, %lo(__llvm_gcov_ctr.162), %i1
+	sethi %hh(__llvm_gcov_ctr.162), %i0
+	add %i0, %hm(__llvm_gcov_ctr.162), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	ld [%fp+2031], %i0
 	ba .LBB162_9
 	st %i0, [%fp+2027]
@@ -14349,6 +18561,14 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB163_1
 	nop
 .LBB163_1:
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i1
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i1
 	sethi %hh(.L__profc___ucmpdi2), %i0
@@ -14369,6 +18589,15 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB163_3
 	nop
 .LBB163_3:
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i1
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i1
 	sethi %hh(.L__profc___ucmpdi2), %i0
@@ -14394,6 +18623,15 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB163_5
 	nop
 .LBB163_5:
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i1
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i1
 	sethi %hh(.L__profc___ucmpdi2), %i0
@@ -14418,6 +18656,15 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB163_7
 	nop
 .LBB163_7:
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i1
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___ucmpdi2), %i0
 	add %i0, %lo(.L__profc___ucmpdi2), %i1
 	sethi %hh(.L__profc___ucmpdi2), %i0
@@ -14431,6 +18678,15 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB163_9
 	st %i0, [%fp+2043]
 .LBB163_8:
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i1
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	1, %i0
 	ba .LBB163_9
 	st %i0, [%fp+2043]
@@ -14447,6 +18703,14 @@ __ucmpdi2:                              ! @__ucmpdi2
 __aeabi_ulcmp:                          ! @__aeabi_ulcmp
 ! %bb.0:
 	save %sp, -192, %sp
+	sethi %hi(__llvm_gcov_ctr.164), %i2
+	add %i2, %lo(__llvm_gcov_ctr.164), %i3
+	sethi %hh(__llvm_gcov_ctr.164), %i2
+	add %i2, %hm(__llvm_gcov_ctr.164), %i2
+	sllx %i2, 32, %i2
+	ldx [%i2+%i3], %i4
+	add %i4, 1, %i4
+	stx %i4, [%i2+%i3]
 	stx %i0, [%fp+2039]
 	stx %i1, [%fp+2031]
 	sethi %hi(.L__profc___aeabi_ulcmp), %i0
@@ -14514,6 +18778,14 @@ __ucmpti2:                              ! @__ucmpti2
 	ba .LBB165_1
 	nop
 .LBB165_1:
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	ldx [%i0+%i1], %i2
+	add %i2, 1, %i2
+	stx %i2, [%i0+%i1]
 	sethi %hi(.L__profc___ucmpti2), %i0
 	add %i0, %lo(.L__profc___ucmpti2), %i1
 	sethi %hh(.L__profc___ucmpti2), %i0
@@ -14534,6 +18806,15 @@ __ucmpti2:                              ! @__ucmpti2
 	ba .LBB165_3
 	nop
 .LBB165_3:
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+8], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+8]
 	sethi %hi(.L__profc___ucmpti2), %i0
 	add %i0, %lo(.L__profc___ucmpti2), %i1
 	sethi %hh(.L__profc___ucmpti2), %i0
@@ -14559,6 +18840,15 @@ __ucmpti2:                              ! @__ucmpti2
 	ba .LBB165_5
 	nop
 .LBB165_5:
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+16], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+16]
 	sethi %hi(.L__profc___ucmpti2), %i0
 	add %i0, %lo(.L__profc___ucmpti2), %i1
 	sethi %hh(.L__profc___ucmpti2), %i0
@@ -14583,6 +18873,15 @@ __ucmpti2:                              ! @__ucmpti2
 	ba .LBB165_7
 	nop
 .LBB165_7:
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+24], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+24]
 	sethi %hi(.L__profc___ucmpti2), %i0
 	add %i0, %lo(.L__profc___ucmpti2), %i1
 	sethi %hh(.L__profc___ucmpti2), %i0
@@ -14596,6 +18895,15 @@ __ucmpti2:                              ! @__ucmpti2
 	ba .LBB165_9
 	st %i0, [%fp+2043]
 .LBB165_8:
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %i0
+	ldx [%i0+32], %i1
+	add %i1, 1, %i1
+	stx %i1, [%i0+32]
 	mov	1, %i0
 	ba .LBB165_9
 	st %i0, [%fp+2043]
@@ -14605,6 +18913,1520 @@ __ucmpti2:                              ! @__ucmpti2
 	restore
 .Lfunc_end165:
 	.size	__ucmpti2, .Lfunc_end165-__ucmpti2
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   ! @__llvm_gcov_writeout
+	.register %g2, #scratch
+! %bb.0:
+	save %sp, -208, %sp
+	mov	%g0, %i0
+	st %i0, [%fp+2043]                      ! 4-byte Folded Spill
+.LBB166_1:                              ! =>This Loop Header: Depth=1
+                                        !     Child Loop BB166_2 Depth 2
+	ld [%fp+2043], %i0                      ! 4-byte Folded Reload
+	st %i0, [%fp+2015]                      ! 4-byte Folded Spill
+	sethi %hi(__llvm_internal_gcov_emit_file_info), %i1
+	add %i1, %lo(__llvm_internal_gcov_emit_file_info), %i2
+	sethi %hh(__llvm_internal_gcov_emit_file_info), %i1
+	add %i1, %hm(__llvm_internal_gcov_emit_file_info), %i1
+	sllx %i1, 32, %i1
+	add %i1, %i2, %i1
+	sra %i0, 0, %i0
+	mulx %i0, 40, %i2
+	add %i1, %i2, %i0
+	ldx [%i1+%i2], %o0
+	ld [%i0+8], %o1
+	call llvm_gcda_start_file
+	ld [%i0+12], %o2
+	ld [%i0+16], %i1
+	st %i1, [%fp+2019]                      ! 4-byte Folded Spill
+	ldx [%i0+24], %i2
+	stx %i2, [%fp+2023]                     ! 8-byte Folded Spill
+	ldx [%i0+32], %i0
+	stx %i0, [%fp+2031]                     ! 8-byte Folded Spill
+	mov	%g0, %i0
+	cmp	%i1, 1
+	bl %icc, .LBB166_3
+	st %i0, [%fp+2039]
+	ba .LBB166_2
+	nop
+.LBB166_2:                              !   Parent Loop BB166_1 Depth=1
+                                        ! =>  This Inner Loop Header: Depth=2
+	ld [%fp+2039], %i0                      ! 4-byte Folded Reload
+	ld [%fp+2019], %i1                      ! 4-byte Folded Reload
+	ldx [%fp+2031], %i3                     ! 8-byte Folded Reload
+	ldx [%fp+2023], %i5                     ! 8-byte Folded Reload
+	sra %i0, 0, %i2
+	mulx %i2, 12, %g2
+	add %i5, %g2, %i4
+	ld [%i5+%g2], %o0
+	ld [%i4+4], %o1
+	call llvm_gcda_emit_function
+	ld [%i4+8], %o2
+	sllx %i2, 4, %i4
+	add %i3, %i4, %i2
+	ld [%i3+%i4], %o0
+	call llvm_gcda_emit_arcs
+	ldx [%i2+8], %o1
+	add %i0, 1, %i0
+	cmp	%i0, %i1
+	bl %icc, .LBB166_2
+	st %i0, [%fp+2039]
+	ba .LBB166_3
+	nop
+.LBB166_3:                              !   in Loop: Header=BB166_1 Depth=1
+	call llvm_gcda_summary_info
+	ld [%fp+2015], %i0
+	call llvm_gcda_end_file
+	nop
+	add %i0, 1, %i0
+	cmp	%i0, 1
+	bl %icc, .LBB166_1
+	st %i0, [%fp+2043]
+	ba .LBB166_4
+	nop
+.LBB166_4:
+	ret
+	restore
+.Lfunc_end166:
+	.size	__llvm_gcov_writeout, .Lfunc_end166-__llvm_gcov_writeout
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      ! @__llvm_gcov_reset
+! %bb.0:
+	save %sp, -240, %sp
+	sethi %hi(__llvm_gcov_ctr), %i0
+	add %i0, %lo(__llvm_gcov_ctr), %i1
+	sethi %hh(__llvm_gcov_ctr), %i0
+	add %i0, %hm(__llvm_gcov_ctr), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.1), %i0
+	add %i0, %lo(__llvm_gcov_ctr.1), %i1
+	sethi %hh(__llvm_gcov_ctr.1), %i0
+	add %i0, %hm(__llvm_gcov_ctr.1), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.2), %i0
+	add %i0, %lo(__llvm_gcov_ctr.2), %i1
+	sethi %hh(__llvm_gcov_ctr.2), %i0
+	add %i0, %hm(__llvm_gcov_ctr.2), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	%g0, %o1
+	stx %o1, [%fp+2031]                     ! 8-byte Folded Spill
+	mov	40, %o2
+	call memset
+	stx %o2, [%fp+2039]
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.3), %i0
+	add %i0, %lo(__llvm_gcov_ctr.3), %i1
+	sethi %hh(__llvm_gcov_ctr.3), %i0
+	add %i0, %hm(__llvm_gcov_ctr.3), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.4), %i0
+	add %i0, %lo(__llvm_gcov_ctr.4), %i1
+	sethi %hh(__llvm_gcov_ctr.4), %i0
+	add %i0, %hm(__llvm_gcov_ctr.4), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.5), %i0
+	add %i0, %lo(__llvm_gcov_ctr.5), %i1
+	sethi %hh(__llvm_gcov_ctr.5), %i0
+	add %i0, %hm(__llvm_gcov_ctr.5), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.6), %i0
+	add %i0, %lo(__llvm_gcov_ctr.6), %i1
+	sethi %hh(__llvm_gcov_ctr.6), %i0
+	add %i0, %hm(__llvm_gcov_ctr.6), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	16, %o2
+	call memset
+	stx %o2, [%fp+1991]
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.7), %i0
+	add %i0, %lo(__llvm_gcov_ctr.7), %i1
+	sethi %hh(__llvm_gcov_ctr.7), %i0
+	add %i0, %hm(__llvm_gcov_ctr.7), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	24, %o2
+	call memset
+	stx %o2, [%fp+2015]
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.8), %i0
+	add %i0, %lo(__llvm_gcov_ctr.8), %i1
+	sethi %hh(__llvm_gcov_ctr.8), %i0
+	add %i0, %hm(__llvm_gcov_ctr.8), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.9), %i0
+	add %i0, %lo(__llvm_gcov_ctr.9), %i1
+	sethi %hh(__llvm_gcov_ctr.9), %i0
+	add %i0, %hm(__llvm_gcov_ctr.9), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.10), %i0
+	add %i0, %lo(__llvm_gcov_ctr.10), %i1
+	sethi %hh(__llvm_gcov_ctr.10), %i0
+	add %i0, %hm(__llvm_gcov_ctr.10), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	32, %o2
+	call memset
+	stx %o2, [%fp+2023]
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.11), %i0
+	add %i0, %lo(__llvm_gcov_ctr.11), %i1
+	sethi %hh(__llvm_gcov_ctr.11), %i0
+	add %i0, %hm(__llvm_gcov_ctr.11), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.12), %i0
+	add %i0, %lo(__llvm_gcov_ctr.12), %i1
+	sethi %hh(__llvm_gcov_ctr.12), %i0
+	add %i0, %hm(__llvm_gcov_ctr.12), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.13), %i0
+	add %i0, %lo(__llvm_gcov_ctr.13), %i1
+	sethi %hh(__llvm_gcov_ctr.13), %i0
+	add %i0, %hm(__llvm_gcov_ctr.13), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.14), %i0
+	add %i0, %lo(__llvm_gcov_ctr.14), %i1
+	sethi %hh(__llvm_gcov_ctr.14), %i0
+	add %i0, %hm(__llvm_gcov_ctr.14), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	56, %o2
+	call memset
+	stx %o2, [%fp+1999]
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.15), %i0
+	add %i0, %lo(__llvm_gcov_ctr.15), %i1
+	sethi %hh(__llvm_gcov_ctr.15), %i0
+	add %i0, %hm(__llvm_gcov_ctr.15), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.16), %i0
+	add %i0, %lo(__llvm_gcov_ctr.16), %i1
+	sethi %hh(__llvm_gcov_ctr.16), %i0
+	add %i0, %hm(__llvm_gcov_ctr.16), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.17), %i0
+	add %i0, %lo(__llvm_gcov_ctr.17), %i1
+	sethi %hh(__llvm_gcov_ctr.17), %i0
+	add %i0, %hm(__llvm_gcov_ctr.17), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.18), %i0
+	add %i0, %lo(__llvm_gcov_ctr.18), %i1
+	sethi %hh(__llvm_gcov_ctr.18), %i0
+	add %i0, %hm(__llvm_gcov_ctr.18), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.19), %i0
+	add %i0, %lo(__llvm_gcov_ctr.19), %i1
+	sethi %hh(__llvm_gcov_ctr.19), %i0
+	add %i0, %hm(__llvm_gcov_ctr.19), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.20), %i0
+	add %i0, %lo(__llvm_gcov_ctr.20), %i1
+	sethi %hh(__llvm_gcov_ctr.20), %i0
+	add %i0, %hm(__llvm_gcov_ctr.20), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.21), %i0
+	add %i0, %lo(__llvm_gcov_ctr.21), %i1
+	sethi %hh(__llvm_gcov_ctr.21), %i0
+	add %i0, %hm(__llvm_gcov_ctr.21), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.22), %i0
+	add %i0, %lo(__llvm_gcov_ctr.22), %i1
+	sethi %hh(__llvm_gcov_ctr.22), %i0
+	add %i0, %hm(__llvm_gcov_ctr.22), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.23), %i0
+	add %i0, %lo(__llvm_gcov_ctr.23), %i1
+	sethi %hh(__llvm_gcov_ctr.23), %i0
+	add %i0, %hm(__llvm_gcov_ctr.23), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.24), %i0
+	add %i0, %lo(__llvm_gcov_ctr.24), %i1
+	sethi %hh(__llvm_gcov_ctr.24), %i0
+	add %i0, %hm(__llvm_gcov_ctr.24), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.25), %i0
+	add %i0, %lo(__llvm_gcov_ctr.25), %i1
+	sethi %hh(__llvm_gcov_ctr.25), %i0
+	add %i0, %hm(__llvm_gcov_ctr.25), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.26), %i0
+	add %i0, %lo(__llvm_gcov_ctr.26), %i1
+	sethi %hh(__llvm_gcov_ctr.26), %i0
+	add %i0, %hm(__llvm_gcov_ctr.26), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1999], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.27), %i0
+	add %i0, %lo(__llvm_gcov_ctr.27), %i1
+	sethi %hh(__llvm_gcov_ctr.27), %i0
+	add %i0, %hm(__llvm_gcov_ctr.27), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.28), %i0
+	add %i0, %lo(__llvm_gcov_ctr.28), %i1
+	sethi %hh(__llvm_gcov_ctr.28), %i0
+	add %i0, %hm(__llvm_gcov_ctr.28), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.29), %i0
+	add %i0, %lo(__llvm_gcov_ctr.29), %i1
+	sethi %hh(__llvm_gcov_ctr.29), %i0
+	add %i0, %hm(__llvm_gcov_ctr.29), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.30), %i0
+	add %i0, %lo(__llvm_gcov_ctr.30), %i1
+	sethi %hh(__llvm_gcov_ctr.30), %i0
+	add %i0, %hm(__llvm_gcov_ctr.30), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.31), %i0
+	add %i0, %lo(__llvm_gcov_ctr.31), %i1
+	sethi %hh(__llvm_gcov_ctr.31), %i0
+	add %i0, %hm(__llvm_gcov_ctr.31), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.32), %i0
+	add %i0, %lo(__llvm_gcov_ctr.32), %i1
+	sethi %hh(__llvm_gcov_ctr.32), %i0
+	add %i0, %hm(__llvm_gcov_ctr.32), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.33), %i0
+	add %i0, %lo(__llvm_gcov_ctr.33), %i1
+	sethi %hh(__llvm_gcov_ctr.33), %i0
+	add %i0, %hm(__llvm_gcov_ctr.33), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	48, %o2
+	call memset
+	stx %o2, [%fp+1983]
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.34), %i0
+	add %i0, %lo(__llvm_gcov_ctr.34), %i1
+	sethi %hh(__llvm_gcov_ctr.34), %i0
+	add %i0, %hm(__llvm_gcov_ctr.34), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.35), %i0
+	add %i0, %lo(__llvm_gcov_ctr.35), %i1
+	sethi %hh(__llvm_gcov_ctr.35), %i0
+	add %i0, %hm(__llvm_gcov_ctr.35), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.36), %i0
+	add %i0, %lo(__llvm_gcov_ctr.36), %i1
+	sethi %hh(__llvm_gcov_ctr.36), %i0
+	add %i0, %hm(__llvm_gcov_ctr.36), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.37), %i0
+	add %i0, %lo(__llvm_gcov_ctr.37), %i1
+	sethi %hh(__llvm_gcov_ctr.37), %i0
+	add %i0, %hm(__llvm_gcov_ctr.37), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.38), %i0
+	add %i0, %lo(__llvm_gcov_ctr.38), %i1
+	sethi %hh(__llvm_gcov_ctr.38), %i0
+	add %i0, %hm(__llvm_gcov_ctr.38), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.39), %i0
+	add %i0, %lo(__llvm_gcov_ctr.39), %i1
+	sethi %hh(__llvm_gcov_ctr.39), %i0
+	add %i0, %hm(__llvm_gcov_ctr.39), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.40), %i0
+	add %i0, %lo(__llvm_gcov_ctr.40), %i1
+	sethi %hh(__llvm_gcov_ctr.40), %i0
+	add %i0, %hm(__llvm_gcov_ctr.40), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.41), %i0
+	add %i0, %lo(__llvm_gcov_ctr.41), %i1
+	sethi %hh(__llvm_gcov_ctr.41), %i0
+	add %i0, %hm(__llvm_gcov_ctr.41), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.42), %i0
+	add %i0, %lo(__llvm_gcov_ctr.42), %i1
+	sethi %hh(__llvm_gcov_ctr.42), %i0
+	add %i0, %hm(__llvm_gcov_ctr.42), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.43), %i0
+	add %i0, %lo(__llvm_gcov_ctr.43), %i1
+	sethi %hh(__llvm_gcov_ctr.43), %i0
+	add %i0, %hm(__llvm_gcov_ctr.43), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.44), %i0
+	add %i0, %lo(__llvm_gcov_ctr.44), %i1
+	sethi %hh(__llvm_gcov_ctr.44), %i0
+	add %i0, %hm(__llvm_gcov_ctr.44), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.45), %i0
+	add %i0, %lo(__llvm_gcov_ctr.45), %i1
+	sethi %hh(__llvm_gcov_ctr.45), %i0
+	add %i0, %hm(__llvm_gcov_ctr.45), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.46), %i0
+	add %i0, %lo(__llvm_gcov_ctr.46), %i1
+	sethi %hh(__llvm_gcov_ctr.46), %i0
+	add %i0, %hm(__llvm_gcov_ctr.46), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.47), %i0
+	add %i0, %lo(__llvm_gcov_ctr.47), %i1
+	sethi %hh(__llvm_gcov_ctr.47), %i0
+	add %i0, %hm(__llvm_gcov_ctr.47), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.48), %i0
+	add %i0, %lo(__llvm_gcov_ctr.48), %i1
+	sethi %hh(__llvm_gcov_ctr.48), %i0
+	add %i0, %hm(__llvm_gcov_ctr.48), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.49), %i0
+	add %i0, %lo(__llvm_gcov_ctr.49), %i1
+	sethi %hh(__llvm_gcov_ctr.49), %i0
+	add %i0, %hm(__llvm_gcov_ctr.49), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.50), %i0
+	add %i0, %lo(__llvm_gcov_ctr.50), %i1
+	sethi %hh(__llvm_gcov_ctr.50), %i0
+	add %i0, %hm(__llvm_gcov_ctr.50), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.51), %i0
+	add %i0, %lo(__llvm_gcov_ctr.51), %i1
+	sethi %hh(__llvm_gcov_ctr.51), %i0
+	add %i0, %hm(__llvm_gcov_ctr.51), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.52), %i0
+	add %i0, %lo(__llvm_gcov_ctr.52), %i1
+	sethi %hh(__llvm_gcov_ctr.52), %i0
+	add %i0, %hm(__llvm_gcov_ctr.52), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.53), %i0
+	add %i0, %lo(__llvm_gcov_ctr.53), %i1
+	sethi %hh(__llvm_gcov_ctr.53), %i0
+	add %i0, %hm(__llvm_gcov_ctr.53), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.54), %i0
+	add %i0, %lo(__llvm_gcov_ctr.54), %i1
+	sethi %hh(__llvm_gcov_ctr.54), %i0
+	add %i0, %hm(__llvm_gcov_ctr.54), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.55), %i0
+	add %i0, %lo(__llvm_gcov_ctr.55), %i1
+	sethi %hh(__llvm_gcov_ctr.55), %i0
+	add %i0, %hm(__llvm_gcov_ctr.55), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.56), %i0
+	add %i0, %lo(__llvm_gcov_ctr.56), %i1
+	sethi %hh(__llvm_gcov_ctr.56), %i0
+	add %i0, %hm(__llvm_gcov_ctr.56), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.57), %i0
+	add %i0, %lo(__llvm_gcov_ctr.57), %i1
+	sethi %hh(__llvm_gcov_ctr.57), %i0
+	add %i0, %hm(__llvm_gcov_ctr.57), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.58), %i0
+	add %i0, %lo(__llvm_gcov_ctr.58), %i1
+	sethi %hh(__llvm_gcov_ctr.58), %i0
+	add %i0, %hm(__llvm_gcov_ctr.58), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.59), %i0
+	add %i0, %lo(__llvm_gcov_ctr.59), %i1
+	sethi %hh(__llvm_gcov_ctr.59), %i0
+	add %i0, %hm(__llvm_gcov_ctr.59), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.60), %i0
+	add %i0, %lo(__llvm_gcov_ctr.60), %i1
+	sethi %hh(__llvm_gcov_ctr.60), %i0
+	add %i0, %hm(__llvm_gcov_ctr.60), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.61), %i0
+	add %i0, %lo(__llvm_gcov_ctr.61), %i1
+	sethi %hh(__llvm_gcov_ctr.61), %i0
+	add %i0, %hm(__llvm_gcov_ctr.61), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.62), %i0
+	add %i0, %lo(__llvm_gcov_ctr.62), %i1
+	sethi %hh(__llvm_gcov_ctr.62), %i0
+	add %i0, %hm(__llvm_gcov_ctr.62), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.63), %i0
+	add %i0, %lo(__llvm_gcov_ctr.63), %i1
+	sethi %hh(__llvm_gcov_ctr.63), %i0
+	add %i0, %hm(__llvm_gcov_ctr.63), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	mov	64, %o2
+	call memset
+	stx %o2, [%fp+2007]
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.64), %i0
+	add %i0, %lo(__llvm_gcov_ctr.64), %i1
+	sethi %hh(__llvm_gcov_ctr.64), %i0
+	add %i0, %hm(__llvm_gcov_ctr.64), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.65), %i0
+	add %i0, %lo(__llvm_gcov_ctr.65), %i1
+	sethi %hh(__llvm_gcov_ctr.65), %i0
+	add %i0, %hm(__llvm_gcov_ctr.65), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.66), %i0
+	add %i0, %lo(__llvm_gcov_ctr.66), %i1
+	sethi %hh(__llvm_gcov_ctr.66), %i0
+	add %i0, %hm(__llvm_gcov_ctr.66), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.67), %i0
+	add %i0, %lo(__llvm_gcov_ctr.67), %i1
+	sethi %hh(__llvm_gcov_ctr.67), %i0
+	add %i0, %hm(__llvm_gcov_ctr.67), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.68), %i0
+	add %i0, %lo(__llvm_gcov_ctr.68), %i1
+	sethi %hh(__llvm_gcov_ctr.68), %i0
+	add %i0, %hm(__llvm_gcov_ctr.68), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.69), %i0
+	add %i0, %lo(__llvm_gcov_ctr.69), %i1
+	sethi %hh(__llvm_gcov_ctr.69), %i0
+	add %i0, %hm(__llvm_gcov_ctr.69), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.70), %i0
+	add %i0, %lo(__llvm_gcov_ctr.70), %i1
+	sethi %hh(__llvm_gcov_ctr.70), %i0
+	add %i0, %hm(__llvm_gcov_ctr.70), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.71), %i0
+	add %i0, %lo(__llvm_gcov_ctr.71), %i1
+	sethi %hh(__llvm_gcov_ctr.71), %i0
+	add %i0, %hm(__llvm_gcov_ctr.71), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.72), %i0
+	add %i0, %lo(__llvm_gcov_ctr.72), %i1
+	sethi %hh(__llvm_gcov_ctr.72), %i0
+	add %i0, %hm(__llvm_gcov_ctr.72), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.73), %i0
+	add %i0, %lo(__llvm_gcov_ctr.73), %i1
+	sethi %hh(__llvm_gcov_ctr.73), %i0
+	add %i0, %hm(__llvm_gcov_ctr.73), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.74), %i0
+	add %i0, %lo(__llvm_gcov_ctr.74), %i1
+	sethi %hh(__llvm_gcov_ctr.74), %i0
+	add %i0, %hm(__llvm_gcov_ctr.74), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.75), %i0
+	add %i0, %lo(__llvm_gcov_ctr.75), %i1
+	sethi %hh(__llvm_gcov_ctr.75), %i0
+	add %i0, %hm(__llvm_gcov_ctr.75), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.76), %i0
+	add %i0, %lo(__llvm_gcov_ctr.76), %i1
+	sethi %hh(__llvm_gcov_ctr.76), %i0
+	add %i0, %hm(__llvm_gcov_ctr.76), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.77), %i0
+	add %i0, %lo(__llvm_gcov_ctr.77), %i1
+	sethi %hh(__llvm_gcov_ctr.77), %i0
+	add %i0, %hm(__llvm_gcov_ctr.77), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.78), %i0
+	add %i0, %lo(__llvm_gcov_ctr.78), %i1
+	sethi %hh(__llvm_gcov_ctr.78), %i0
+	add %i0, %hm(__llvm_gcov_ctr.78), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.79), %i0
+	add %i0, %lo(__llvm_gcov_ctr.79), %i1
+	sethi %hh(__llvm_gcov_ctr.79), %i0
+	add %i0, %hm(__llvm_gcov_ctr.79), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.80), %i0
+	add %i0, %lo(__llvm_gcov_ctr.80), %i1
+	sethi %hh(__llvm_gcov_ctr.80), %i0
+	add %i0, %hm(__llvm_gcov_ctr.80), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.81), %i0
+	add %i0, %lo(__llvm_gcov_ctr.81), %i1
+	sethi %hh(__llvm_gcov_ctr.81), %i0
+	add %i0, %hm(__llvm_gcov_ctr.81), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.82), %i0
+	add %i0, %lo(__llvm_gcov_ctr.82), %i1
+	sethi %hh(__llvm_gcov_ctr.82), %i0
+	add %i0, %hm(__llvm_gcov_ctr.82), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.83), %i0
+	add %i0, %lo(__llvm_gcov_ctr.83), %i1
+	sethi %hh(__llvm_gcov_ctr.83), %i0
+	add %i0, %hm(__llvm_gcov_ctr.83), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.84), %i0
+	add %i0, %lo(__llvm_gcov_ctr.84), %i1
+	sethi %hh(__llvm_gcov_ctr.84), %i0
+	add %i0, %hm(__llvm_gcov_ctr.84), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.85), %i0
+	add %i0, %lo(__llvm_gcov_ctr.85), %i1
+	sethi %hh(__llvm_gcov_ctr.85), %i0
+	add %i0, %hm(__llvm_gcov_ctr.85), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.86), %i0
+	add %i0, %lo(__llvm_gcov_ctr.86), %i1
+	sethi %hh(__llvm_gcov_ctr.86), %i0
+	add %i0, %hm(__llvm_gcov_ctr.86), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.87), %i0
+	add %i0, %lo(__llvm_gcov_ctr.87), %i1
+	sethi %hh(__llvm_gcov_ctr.87), %i0
+	add %i0, %hm(__llvm_gcov_ctr.87), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.88), %i0
+	add %i0, %lo(__llvm_gcov_ctr.88), %i1
+	sethi %hh(__llvm_gcov_ctr.88), %i0
+	add %i0, %hm(__llvm_gcov_ctr.88), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.89), %i0
+	add %i0, %lo(__llvm_gcov_ctr.89), %i1
+	sethi %hh(__llvm_gcov_ctr.89), %i0
+	add %i0, %hm(__llvm_gcov_ctr.89), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.90), %i0
+	add %i0, %lo(__llvm_gcov_ctr.90), %i1
+	sethi %hh(__llvm_gcov_ctr.90), %i0
+	add %i0, %hm(__llvm_gcov_ctr.90), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.91), %i0
+	add %i0, %lo(__llvm_gcov_ctr.91), %i1
+	sethi %hh(__llvm_gcov_ctr.91), %i0
+	add %i0, %hm(__llvm_gcov_ctr.91), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.92), %i0
+	add %i0, %lo(__llvm_gcov_ctr.92), %i1
+	sethi %hh(__llvm_gcov_ctr.92), %i0
+	add %i0, %hm(__llvm_gcov_ctr.92), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.93), %i0
+	add %i0, %lo(__llvm_gcov_ctr.93), %i1
+	sethi %hh(__llvm_gcov_ctr.93), %i0
+	add %i0, %hm(__llvm_gcov_ctr.93), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.94), %i0
+	add %i0, %lo(__llvm_gcov_ctr.94), %i1
+	sethi %hh(__llvm_gcov_ctr.94), %i0
+	add %i0, %hm(__llvm_gcov_ctr.94), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.95), %i0
+	add %i0, %lo(__llvm_gcov_ctr.95), %i1
+	sethi %hh(__llvm_gcov_ctr.95), %i0
+	add %i0, %hm(__llvm_gcov_ctr.95), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.96), %i0
+	add %i0, %lo(__llvm_gcov_ctr.96), %i1
+	sethi %hh(__llvm_gcov_ctr.96), %i0
+	add %i0, %hm(__llvm_gcov_ctr.96), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.97), %i0
+	add %i0, %lo(__llvm_gcov_ctr.97), %i1
+	sethi %hh(__llvm_gcov_ctr.97), %i0
+	add %i0, %hm(__llvm_gcov_ctr.97), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.98), %i0
+	add %i0, %lo(__llvm_gcov_ctr.98), %i1
+	sethi %hh(__llvm_gcov_ctr.98), %i0
+	add %i0, %hm(__llvm_gcov_ctr.98), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.99), %i0
+	add %i0, %lo(__llvm_gcov_ctr.99), %i1
+	sethi %hh(__llvm_gcov_ctr.99), %i0
+	add %i0, %hm(__llvm_gcov_ctr.99), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2007], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.100), %i0
+	add %i0, %lo(__llvm_gcov_ctr.100), %i1
+	sethi %hh(__llvm_gcov_ctr.100), %i0
+	add %i0, %hm(__llvm_gcov_ctr.100), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.101), %i0
+	add %i0, %lo(__llvm_gcov_ctr.101), %i1
+	sethi %hh(__llvm_gcov_ctr.101), %i0
+	add %i0, %hm(__llvm_gcov_ctr.101), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.102), %i0
+	add %i0, %lo(__llvm_gcov_ctr.102), %i1
+	sethi %hh(__llvm_gcov_ctr.102), %i0
+	add %i0, %hm(__llvm_gcov_ctr.102), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2007], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.103), %i0
+	add %i0, %lo(__llvm_gcov_ctr.103), %i1
+	sethi %hh(__llvm_gcov_ctr.103), %i0
+	add %i0, %hm(__llvm_gcov_ctr.103), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.104), %i0
+	add %i0, %lo(__llvm_gcov_ctr.104), %i1
+	sethi %hh(__llvm_gcov_ctr.104), %i0
+	add %i0, %hm(__llvm_gcov_ctr.104), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.105), %i0
+	add %i0, %lo(__llvm_gcov_ctr.105), %i1
+	sethi %hh(__llvm_gcov_ctr.105), %i0
+	add %i0, %hm(__llvm_gcov_ctr.105), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.106), %i0
+	add %i0, %lo(__llvm_gcov_ctr.106), %i1
+	sethi %hh(__llvm_gcov_ctr.106), %i0
+	add %i0, %hm(__llvm_gcov_ctr.106), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.107), %i0
+	add %i0, %lo(__llvm_gcov_ctr.107), %i1
+	sethi %hh(__llvm_gcov_ctr.107), %i0
+	add %i0, %hm(__llvm_gcov_ctr.107), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.108), %i0
+	add %i0, %lo(__llvm_gcov_ctr.108), %i1
+	sethi %hh(__llvm_gcov_ctr.108), %i0
+	add %i0, %hm(__llvm_gcov_ctr.108), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1983], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.109), %i0
+	add %i0, %lo(__llvm_gcov_ctr.109), %i1
+	sethi %hh(__llvm_gcov_ctr.109), %i0
+	add %i0, %hm(__llvm_gcov_ctr.109), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.110), %i0
+	add %i0, %lo(__llvm_gcov_ctr.110), %i1
+	sethi %hh(__llvm_gcov_ctr.110), %i0
+	add %i0, %hm(__llvm_gcov_ctr.110), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.111), %i0
+	add %i0, %lo(__llvm_gcov_ctr.111), %i1
+	sethi %hh(__llvm_gcov_ctr.111), %i0
+	add %i0, %hm(__llvm_gcov_ctr.111), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.112), %i0
+	add %i0, %lo(__llvm_gcov_ctr.112), %i1
+	sethi %hh(__llvm_gcov_ctr.112), %i0
+	add %i0, %hm(__llvm_gcov_ctr.112), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.113), %i0
+	add %i0, %lo(__llvm_gcov_ctr.113), %i1
+	sethi %hh(__llvm_gcov_ctr.113), %i0
+	add %i0, %hm(__llvm_gcov_ctr.113), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.114), %i0
+	add %i0, %lo(__llvm_gcov_ctr.114), %i1
+	sethi %hh(__llvm_gcov_ctr.114), %i0
+	add %i0, %hm(__llvm_gcov_ctr.114), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.115), %i0
+	add %i0, %lo(__llvm_gcov_ctr.115), %i1
+	sethi %hh(__llvm_gcov_ctr.115), %i0
+	add %i0, %hm(__llvm_gcov_ctr.115), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.116), %i0
+	add %i0, %lo(__llvm_gcov_ctr.116), %i1
+	sethi %hh(__llvm_gcov_ctr.116), %i0
+	add %i0, %hm(__llvm_gcov_ctr.116), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.117), %i0
+	add %i0, %lo(__llvm_gcov_ctr.117), %i1
+	sethi %hh(__llvm_gcov_ctr.117), %i0
+	add %i0, %hm(__llvm_gcov_ctr.117), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1991], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.118), %i0
+	add %i0, %lo(__llvm_gcov_ctr.118), %i1
+	sethi %hh(__llvm_gcov_ctr.118), %i0
+	add %i0, %hm(__llvm_gcov_ctr.118), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.119), %i0
+	add %i0, %lo(__llvm_gcov_ctr.119), %i1
+	sethi %hh(__llvm_gcov_ctr.119), %i0
+	add %i0, %hm(__llvm_gcov_ctr.119), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.120), %i0
+	add %i0, %lo(__llvm_gcov_ctr.120), %i1
+	sethi %hh(__llvm_gcov_ctr.120), %i0
+	add %i0, %hm(__llvm_gcov_ctr.120), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.121), %i0
+	add %i0, %lo(__llvm_gcov_ctr.121), %i1
+	sethi %hh(__llvm_gcov_ctr.121), %i0
+	add %i0, %hm(__llvm_gcov_ctr.121), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.122), %i0
+	add %i0, %lo(__llvm_gcov_ctr.122), %i1
+	sethi %hh(__llvm_gcov_ctr.122), %i0
+	add %i0, %hm(__llvm_gcov_ctr.122), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2007], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.123), %i0
+	add %i0, %lo(__llvm_gcov_ctr.123), %i1
+	sethi %hh(__llvm_gcov_ctr.123), %i0
+	add %i0, %hm(__llvm_gcov_ctr.123), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.124), %i0
+	add %i0, %lo(__llvm_gcov_ctr.124), %i1
+	sethi %hh(__llvm_gcov_ctr.124), %i0
+	add %i0, %hm(__llvm_gcov_ctr.124), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.125), %i0
+	add %i0, %lo(__llvm_gcov_ctr.125), %i1
+	sethi %hh(__llvm_gcov_ctr.125), %i0
+	add %i0, %hm(__llvm_gcov_ctr.125), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+1999], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.126), %i0
+	add %i0, %lo(__llvm_gcov_ctr.126), %i1
+	sethi %hh(__llvm_gcov_ctr.126), %i0
+	add %i0, %hm(__llvm_gcov_ctr.126), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.127), %i0
+	add %i0, %lo(__llvm_gcov_ctr.127), %i1
+	sethi %hh(__llvm_gcov_ctr.127), %i0
+	add %i0, %hm(__llvm_gcov_ctr.127), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i1]
+	sethi %hi(__llvm_gcov_ctr.128), %i0
+	add %i0, %lo(__llvm_gcov_ctr.128), %i1
+	sethi %hh(__llvm_gcov_ctr.128), %i0
+	add %i0, %hm(__llvm_gcov_ctr.128), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.129), %i0
+	add %i0, %lo(__llvm_gcov_ctr.129), %i1
+	sethi %hh(__llvm_gcov_ctr.129), %i0
+	add %i0, %hm(__llvm_gcov_ctr.129), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.130), %i0
+	add %i0, %lo(__llvm_gcov_ctr.130), %i1
+	sethi %hh(__llvm_gcov_ctr.130), %i0
+	add %i0, %hm(__llvm_gcov_ctr.130), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2007], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.131), %i0
+	add %i0, %lo(__llvm_gcov_ctr.131), %i1
+	sethi %hh(__llvm_gcov_ctr.131), %i0
+	add %i0, %hm(__llvm_gcov_ctr.131), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2007], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.132), %i0
+	add %i0, %lo(__llvm_gcov_ctr.132), %i1
+	sethi %hh(__llvm_gcov_ctr.132), %i0
+	add %i0, %hm(__llvm_gcov_ctr.132), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.133), %i0
+	add %i0, %lo(__llvm_gcov_ctr.133), %i1
+	sethi %hh(__llvm_gcov_ctr.133), %i0
+	add %i0, %hm(__llvm_gcov_ctr.133), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.134), %i0
+	add %i0, %lo(__llvm_gcov_ctr.134), %i1
+	sethi %hh(__llvm_gcov_ctr.134), %i0
+	add %i0, %hm(__llvm_gcov_ctr.134), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.135), %i0
+	add %i0, %lo(__llvm_gcov_ctr.135), %i1
+	sethi %hh(__llvm_gcov_ctr.135), %i0
+	add %i0, %hm(__llvm_gcov_ctr.135), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.136), %i0
+	add %i0, %lo(__llvm_gcov_ctr.136), %i1
+	sethi %hh(__llvm_gcov_ctr.136), %i0
+	add %i0, %hm(__llvm_gcov_ctr.136), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.137), %i0
+	add %i0, %lo(__llvm_gcov_ctr.137), %i2
+	sethi %hh(__llvm_gcov_ctr.137), %i0
+	add %i0, %hm(__llvm_gcov_ctr.137), %i0
+	sllx %i0, 32, %i0
+	mov	%g0, %i1
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.138), %i0
+	add %i0, %lo(__llvm_gcov_ctr.138), %i2
+	sethi %hh(__llvm_gcov_ctr.138), %i0
+	add %i0, %hm(__llvm_gcov_ctr.138), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.139), %i0
+	add %i0, %lo(__llvm_gcov_ctr.139), %i2
+	sethi %hh(__llvm_gcov_ctr.139), %i0
+	add %i0, %hm(__llvm_gcov_ctr.139), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.140), %i0
+	add %i0, %lo(__llvm_gcov_ctr.140), %i2
+	sethi %hh(__llvm_gcov_ctr.140), %i0
+	add %i0, %hm(__llvm_gcov_ctr.140), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.141), %i0
+	add %i0, %lo(__llvm_gcov_ctr.141), %i2
+	sethi %hh(__llvm_gcov_ctr.141), %i0
+	add %i0, %hm(__llvm_gcov_ctr.141), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.142), %i0
+	add %i0, %lo(__llvm_gcov_ctr.142), %i2
+	sethi %hh(__llvm_gcov_ctr.142), %i0
+	add %i0, %hm(__llvm_gcov_ctr.142), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.143), %i0
+	add %i0, %lo(__llvm_gcov_ctr.143), %i2
+	sethi %hh(__llvm_gcov_ctr.143), %i0
+	add %i0, %hm(__llvm_gcov_ctr.143), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.144), %i0
+	add %i0, %lo(__llvm_gcov_ctr.144), %i2
+	sethi %hh(__llvm_gcov_ctr.144), %i0
+	add %i0, %hm(__llvm_gcov_ctr.144), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.145), %i0
+	add %i0, %lo(__llvm_gcov_ctr.145), %i2
+	sethi %hh(__llvm_gcov_ctr.145), %i0
+	add %i0, %hm(__llvm_gcov_ctr.145), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.146), %i0
+	add %i0, %lo(__llvm_gcov_ctr.146), %i2
+	sethi %hh(__llvm_gcov_ctr.146), %i0
+	add %i0, %hm(__llvm_gcov_ctr.146), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.147), %i0
+	add %i0, %lo(__llvm_gcov_ctr.147), %i2
+	sethi %hh(__llvm_gcov_ctr.147), %i0
+	add %i0, %hm(__llvm_gcov_ctr.147), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2015], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.148), %i0
+	add %i0, %lo(__llvm_gcov_ctr.148), %i2
+	sethi %hh(__llvm_gcov_ctr.148), %i0
+	add %i0, %hm(__llvm_gcov_ctr.148), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.149), %i0
+	add %i0, %lo(__llvm_gcov_ctr.149), %i2
+	sethi %hh(__llvm_gcov_ctr.149), %i0
+	add %i0, %hm(__llvm_gcov_ctr.149), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.150), %i0
+	add %i0, %lo(__llvm_gcov_ctr.150), %i2
+	sethi %hh(__llvm_gcov_ctr.150), %i0
+	add %i0, %hm(__llvm_gcov_ctr.150), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.151), %i0
+	add %i0, %lo(__llvm_gcov_ctr.151), %i2
+	sethi %hh(__llvm_gcov_ctr.151), %i0
+	add %i0, %hm(__llvm_gcov_ctr.151), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.152), %i0
+	add %i0, %lo(__llvm_gcov_ctr.152), %i2
+	sethi %hh(__llvm_gcov_ctr.152), %i0
+	add %i0, %hm(__llvm_gcov_ctr.152), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.153), %i0
+	add %i0, %lo(__llvm_gcov_ctr.153), %i2
+	sethi %hh(__llvm_gcov_ctr.153), %i0
+	add %i0, %hm(__llvm_gcov_ctr.153), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.154), %i0
+	add %i0, %lo(__llvm_gcov_ctr.154), %i2
+	sethi %hh(__llvm_gcov_ctr.154), %i0
+	add %i0, %hm(__llvm_gcov_ctr.154), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.155), %i0
+	add %i0, %lo(__llvm_gcov_ctr.155), %i2
+	sethi %hh(__llvm_gcov_ctr.155), %i0
+	add %i0, %hm(__llvm_gcov_ctr.155), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.156), %i0
+	add %i0, %lo(__llvm_gcov_ctr.156), %i2
+	sethi %hh(__llvm_gcov_ctr.156), %i0
+	add %i0, %hm(__llvm_gcov_ctr.156), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.157), %i0
+	add %i0, %lo(__llvm_gcov_ctr.157), %i2
+	sethi %hh(__llvm_gcov_ctr.157), %i0
+	add %i0, %hm(__llvm_gcov_ctr.157), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.158), %i0
+	add %i0, %lo(__llvm_gcov_ctr.158), %i2
+	sethi %hh(__llvm_gcov_ctr.158), %i0
+	add %i0, %hm(__llvm_gcov_ctr.158), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.159), %i0
+	add %i0, %lo(__llvm_gcov_ctr.159), %i2
+	sethi %hh(__llvm_gcov_ctr.159), %i0
+	add %i0, %hm(__llvm_gcov_ctr.159), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.160), %i0
+	add %i0, %lo(__llvm_gcov_ctr.160), %i2
+	sethi %hh(__llvm_gcov_ctr.160), %i0
+	add %i0, %hm(__llvm_gcov_ctr.160), %i0
+	sllx %i0, 32, %i0
+	stx %g0, [%i0+%i2]
+	sethi %hi(__llvm_gcov_ctr.161), %i0
+	add %i0, %lo(__llvm_gcov_ctr.161), %i2
+	sethi %hh(__llvm_gcov_ctr.161), %i0
+	add %i0, %hm(__llvm_gcov_ctr.161), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2023], %o2                     ! 8-byte Folded Reload
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.162), %i0
+	add %i0, %lo(__llvm_gcov_ctr.162), %i2
+	sethi %hh(__llvm_gcov_ctr.162), %i0
+	add %i0, %hm(__llvm_gcov_ctr.162), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.163), %i0
+	add %i0, %lo(__llvm_gcov_ctr.163), %i2
+	sethi %hh(__llvm_gcov_ctr.163), %i0
+	add %i0, %hm(__llvm_gcov_ctr.163), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i2, %o0
+	ldx [%fp+2031], %o1                     ! 8-byte Folded Reload
+	ldx [%fp+2039], %o2                     ! 8-byte Folded Reload
+	sethi %hi(__llvm_gcov_ctr.164), %i0
+	add %i0, %lo(__llvm_gcov_ctr.164), %i2
+	sethi %hh(__llvm_gcov_ctr.164), %i0
+	add %i0, %hm(__llvm_gcov_ctr.164), %i0
+	sllx %i0, 32, %i0
+	stb %i1, [%i0+%i2]
+	add %i0, %i2, %i0
+	stb %i1, [%i0+1]
+	stb %i1, [%i0+2]
+	stb %i1, [%i0+3]
+	stb %i1, [%i0+4]
+	stb %i1, [%i0+5]
+	stb %i1, [%i0+6]
+	stb %i1, [%i0+7]
+	sethi %hi(__llvm_gcov_ctr.165), %i0
+	add %i0, %lo(__llvm_gcov_ctr.165), %i1
+	sethi %hh(__llvm_gcov_ctr.165), %i0
+	add %i0, %hm(__llvm_gcov_ctr.165), %i0
+	sllx %i0, 32, %i0
+	call memset
+	add %i0, %i1, %o0
+	ret
+	restore
+.Lfunc_end167:
+	.size	__llvm_gcov_reset, .Lfunc_end167-__llvm_gcov_reset
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       ! @__llvm_gcov_init
+! %bb.0:
+	save %sp, -176, %sp
+	sethi %hi(__llvm_gcov_writeout), %i0
+	add %i0, %lo(__llvm_gcov_writeout), %i1
+	sethi %hh(__llvm_gcov_writeout), %i0
+	add %i0, %hm(__llvm_gcov_writeout), %i0
+	sllx %i0, 32, %i0
+	add %i0, %i1, %o0
+	sethi %hi(__llvm_gcov_reset), %i0
+	add %i0, %lo(__llvm_gcov_reset), %i1
+	sethi %hh(__llvm_gcov_reset), %i0
+	add %i0, %hm(__llvm_gcov_reset), %i0
+	sllx %i0, 32, %i0
+	call llvm_gcov_init
+	add %i0, %i1, %o1
+	ret
+	restore
+.Lfunc_end168:
+	.size	__llvm_gcov_init, .Lfunc_end168-__llvm_gcov_init
                                         ! -- End function
 	.type	l64a.s,@object                  ! @l64a.s
 	.local	l64a.s
@@ -14618,6 +20440,1532 @@ digits:
 	.type	seed,@object                    ! @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         ! @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,8,8
+	.type	__llvm_gcov_ctr.1,@object       ! @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,8,8
+	.type	__llvm_gcov_ctr.2,@object       ! @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       ! @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       ! @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,40,16
+	.type	__llvm_gcov_ctr.5,@object       ! @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,40,16
+	.type	__llvm_gcov_ctr.6,@object       ! @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       ! @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,24,16
+	.type	__llvm_gcov_ctr.8,@object       ! @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,16,8
+	.type	__llvm_gcov_ctr.9,@object       ! @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,16,8
+	.type	__llvm_gcov_ctr.10,@object      ! @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      ! @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,24,16
+	.type	__llvm_gcov_ctr.12,@object      ! @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,32,16
+	.type	__llvm_gcov_ctr.13,@object      ! @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      ! @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,56,16
+	.type	__llvm_gcov_ctr.15,@object      ! @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,16,8
+	.type	__llvm_gcov_ctr.16,@object      ! @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,8,8
+	.type	__llvm_gcov_ctr.17,@object      ! @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,8,8
+	.type	__llvm_gcov_ctr.18,@object      ! @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,24,16
+	.type	__llvm_gcov_ctr.19,@object      ! @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,24,16
+	.type	__llvm_gcov_ctr.20,@object      ! @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      ! @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      ! @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,8,8
+	.type	__llvm_gcov_ctr.23,@object      ! @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      ! @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,24,16
+	.type	__llvm_gcov_ctr.25,@object      ! @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      ! @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,40,16
+	.type	__llvm_gcov_ctr.27,@object      ! @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,8,8
+	.type	__llvm_gcov_ctr.28,@object      ! @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,56,16
+	.type	__llvm_gcov_ctr.29,@object      ! @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,24,16
+	.type	__llvm_gcov_ctr.30,@object      ! @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,8,8
+	.type	__llvm_gcov_ctr.31,@object      ! @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,32,16
+	.type	__llvm_gcov_ctr.32,@object      ! @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,32,16
+	.type	__llvm_gcov_ctr.33,@object      ! @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      ! @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      ! @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      ! @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      ! @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,48,16
+	.type	__llvm_gcov_ctr.38,@object      ! @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,48,16
+	.type	__llvm_gcov_ctr.39,@object      ! @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,16,8
+	.type	__llvm_gcov_ctr.40,@object      ! @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,8,8
+	.type	__llvm_gcov_ctr.41,@object      ! @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,8,8
+	.type	__llvm_gcov_ctr.42,@object      ! @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      ! @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      ! @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,24,16
+	.type	__llvm_gcov_ctr.45,@object      ! @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,24,16
+	.type	__llvm_gcov_ctr.46,@object      ! @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,16,8
+	.type	__llvm_gcov_ctr.47,@object      ! @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      ! @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,48,16
+	.type	__llvm_gcov_ctr.49,@object      ! @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,48,16
+	.type	__llvm_gcov_ctr.50,@object      ! @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,32,16
+	.type	__llvm_gcov_ctr.51,@object      ! @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,32,16
+	.type	__llvm_gcov_ctr.52,@object      ! @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      ! @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      ! @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      ! @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      ! @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      ! @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,8
+	.type	__llvm_gcov_ctr.58,@object      ! @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,8,8
+	.type	__llvm_gcov_ctr.59,@object      ! @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,40,16
+	.type	__llvm_gcov_ctr.60,@object      ! @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,48,16
+	.type	__llvm_gcov_ctr.61,@object      ! @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,16,8
+	.type	__llvm_gcov_ctr.62,@object      ! @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,8
+	.type	__llvm_gcov_ctr.63,@object      ! @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,64,16
+	.type	__llvm_gcov_ctr.64,@object      ! @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,40,16
+	.type	__llvm_gcov_ctr.65,@object      ! @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,48,16
+	.type	__llvm_gcov_ctr.66,@object      ! @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      ! @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      ! @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,16,8
+	.type	__llvm_gcov_ctr.69,@object      ! @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,40,16
+	.type	__llvm_gcov_ctr.70,@object      ! @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      ! @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      ! @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      ! @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      ! @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      ! @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      ! @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      ! @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      ! @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      ! @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      ! @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      ! @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,8,8
+	.type	__llvm_gcov_ctr.82,@object      ! @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,8,8
+	.type	__llvm_gcov_ctr.83,@object      ! @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      ! @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      ! @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      ! @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,24,16
+	.type	__llvm_gcov_ctr.87,@object      ! @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,24,16
+	.type	__llvm_gcov_ctr.88,@object      ! @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,8,8
+	.type	__llvm_gcov_ctr.89,@object      ! @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      ! @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,40,16
+	.type	__llvm_gcov_ctr.91,@object      ! @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      ! @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,16,8
+	.type	__llvm_gcov_ctr.93,@object      ! @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,40,16
+	.type	__llvm_gcov_ctr.94,@object      ! @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,32,16
+	.type	__llvm_gcov_ctr.95,@object      ! @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      ! @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,24,16
+	.type	__llvm_gcov_ctr.97,@object      ! @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,32,16
+	.type	__llvm_gcov_ctr.98,@object      ! @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,40,16
+	.type	__llvm_gcov_ctr.99,@object      ! @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,48,16
+	.type	__llvm_gcov_ctr.100,@object     ! @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,8,8
+	.type	__llvm_gcov_ctr.101,@object     ! @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     ! @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     ! @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,64,16
+	.type	__llvm_gcov_ctr.104,@object     ! @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     ! @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,24,16
+	.type	__llvm_gcov_ctr.106,@object     ! @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,24,16
+	.type	__llvm_gcov_ctr.107,@object     ! @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     ! @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,48,16
+	.type	__llvm_gcov_ctr.109,@object     ! @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,48,16
+	.type	__llvm_gcov_ctr.110,@object     ! @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     ! @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     ! @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     ! @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     ! @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,8,8
+	.type	__llvm_gcov_ctr.115,@object     ! @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,8,8
+	.type	__llvm_gcov_ctr.116,@object     ! @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     ! @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     ! @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,16,8
+	.type	__llvm_gcov_ctr.119,@object     ! @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     ! @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     ! @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     ! @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,32,16
+	.type	__llvm_gcov_ctr.123,@object     ! @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,64,16
+	.type	__llvm_gcov_ctr.124,@object     ! @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,24,16
+	.type	__llvm_gcov_ctr.125,@object     ! @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,24,16
+	.type	__llvm_gcov_ctr.126,@object     ! @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,8,8
+	.type	__llvm_gcov_ctr.127,@object     ! @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,8,8
+	.type	__llvm_gcov_ctr.128,@object     ! @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,56,16
+	.type	__llvm_gcov_ctr.129,@object     ! @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,32,16
+	.type	__llvm_gcov_ctr.130,@object     ! @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,32,16
+	.type	__llvm_gcov_ctr.131,@object     ! @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,64,16
+	.type	__llvm_gcov_ctr.132,@object     ! @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,64,16
+	.type	__llvm_gcov_ctr.133,@object     ! @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,24,16
+	.type	__llvm_gcov_ctr.134,@object     ! @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,24,16
+	.type	__llvm_gcov_ctr.135,@object     ! @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,24,16
+	.type	__llvm_gcov_ctr.136,@object     ! @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,24,16
+	.type	__llvm_gcov_ctr.137,@object     ! @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     ! @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     ! @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,8,8
+	.type	__llvm_gcov_ctr.140,@object     ! @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     ! @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,40,16
+	.type	__llvm_gcov_ctr.142,@object     ! @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     ! @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,40,16
+	.type	__llvm_gcov_ctr.144,@object     ! @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     ! @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     ! @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,24,16
+	.type	__llvm_gcov_ctr.147,@object     ! @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,24,16
+	.type	__llvm_gcov_ctr.148,@object     ! @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,24,16
+	.type	__llvm_gcov_ctr.149,@object     ! @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,8,8
+	.type	__llvm_gcov_ctr.150,@object     ! @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	__llvm_gcov_ctr.151,@object     ! @__llvm_gcov_ctr.151
+	.local	__llvm_gcov_ctr.151
+	.comm	__llvm_gcov_ctr.151,8,8
+	.type	__llvm_gcov_ctr.152,@object     ! @__llvm_gcov_ctr.152
+	.local	__llvm_gcov_ctr.152
+	.comm	__llvm_gcov_ctr.152,8,8
+	.type	__llvm_gcov_ctr.153,@object     ! @__llvm_gcov_ctr.153
+	.local	__llvm_gcov_ctr.153
+	.comm	__llvm_gcov_ctr.153,8,8
+	.type	__llvm_gcov_ctr.154,@object     ! @__llvm_gcov_ctr.154
+	.local	__llvm_gcov_ctr.154
+	.comm	__llvm_gcov_ctr.154,8,8
+	.type	__llvm_gcov_ctr.155,@object     ! @__llvm_gcov_ctr.155
+	.local	__llvm_gcov_ctr.155
+	.comm	__llvm_gcov_ctr.155,8,8
+	.type	__llvm_gcov_ctr.156,@object     ! @__llvm_gcov_ctr.156
+	.local	__llvm_gcov_ctr.156
+	.comm	__llvm_gcov_ctr.156,8,8
+	.type	__llvm_gcov_ctr.157,@object     ! @__llvm_gcov_ctr.157
+	.local	__llvm_gcov_ctr.157
+	.comm	__llvm_gcov_ctr.157,8,8
+	.type	__llvm_gcov_ctr.158,@object     ! @__llvm_gcov_ctr.158
+	.local	__llvm_gcov_ctr.158
+	.comm	__llvm_gcov_ctr.158,8,8
+	.type	__llvm_gcov_ctr.159,@object     ! @__llvm_gcov_ctr.159
+	.local	__llvm_gcov_ctr.159
+	.comm	__llvm_gcov_ctr.159,8,8
+	.type	__llvm_gcov_ctr.160,@object     ! @__llvm_gcov_ctr.160
+	.local	__llvm_gcov_ctr.160
+	.comm	__llvm_gcov_ctr.160,8,8
+	.type	__llvm_gcov_ctr.161,@object     ! @__llvm_gcov_ctr.161
+	.local	__llvm_gcov_ctr.161
+	.comm	__llvm_gcov_ctr.161,32,16
+	.type	__llvm_gcov_ctr.162,@object     ! @__llvm_gcov_ctr.162
+	.local	__llvm_gcov_ctr.162
+	.comm	__llvm_gcov_ctr.162,32,16
+	.type	__llvm_gcov_ctr.163,@object     ! @__llvm_gcov_ctr.163
+	.local	__llvm_gcov_ctr.163
+	.comm	__llvm_gcov_ctr.163,40,16
+	.type	__llvm_gcov_ctr.164,@object     ! @__llvm_gcov_ctr.164
+	.local	__llvm_gcov_ctr.164
+	.comm	__llvm_gcov_ctr.164,8,8
+	.type	__llvm_gcov_ctr.165,@object     ! @__llvm_gcov_ctr.165
+	.local	__llvm_gcov_ctr.165
+	.comm	__llvm_gcov_ctr.165,40,16
+	.type	.L__unnamed_1,@object           ! @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-sparc64.gcda"
+	.size	.L__unnamed_1, 51
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object ! @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.word	0                               ! 0x0
+	.word	3759012176                      ! 0xe00df950
+	.word	2102079853                      ! 0x7d4b316d
+	.word	1                               ! 0x1
+	.word	3518812481                      ! 0xd1bcd141
+	.word	2102079853                      ! 0x7d4b316d
+	.word	2                               ! 0x2
+	.word	560687177                       ! 0x216b6849
+	.word	2102079853                      ! 0x7d4b316d
+	.word	3                               ! 0x3
+	.word	1589591758                      ! 0x5ebf3ece
+	.word	2102079853                      ! 0x7d4b316d
+	.word	4                               ! 0x4
+	.word	2176136383                      ! 0x81b534bf
+	.word	2102079853                      ! 0x7d4b316d
+	.word	5                               ! 0x5
+	.word	3586625172                      ! 0xd5c78e94
+	.word	2102079853                      ! 0x7d4b316d
+	.word	6                               ! 0x6
+	.word	2323119728                      ! 0x8a77fe70
+	.word	2102079853                      ! 0x7d4b316d
+	.word	7                               ! 0x7
+	.word	2314569740                      ! 0x89f5880c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	8                               ! 0x8
+	.word	2833673551                      ! 0xa8e66d4f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	9                               ! 0x9
+	.word	1458633189                      ! 0x56f0f9e5
+	.word	2102079853                      ! 0x7d4b316d
+	.word	10                              ! 0xa
+	.word	1190300833                      ! 0x46f28ca1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	11                              ! 0xb
+	.word	758327989                       ! 0x2d332ab5
+	.word	2102079853                      ! 0x7d4b316d
+	.word	12                              ! 0xc
+	.word	1651479037                      ! 0x626f91fd
+	.word	2102079853                      ! 0x7d4b316d
+	.word	13                              ! 0xd
+	.word	4132343275                      ! 0xf64e8deb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	14                              ! 0xe
+	.word	734262523                       ! 0x2bc3f4fb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	15                              ! 0xf
+	.word	2463424677                      ! 0x92d4e0a5
+	.word	2102079853                      ! 0x7d4b316d
+	.word	16                              ! 0x10
+	.word	1419026334                      ! 0x54949f9e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	17                              ! 0x11
+	.word	3154471370                      ! 0xbc0569ca
+	.word	2102079853                      ! 0x7d4b316d
+	.word	18                              ! 0x12
+	.word	2077973487                      ! 0x7bdb5bef
+	.word	2102079853                      ! 0x7d4b316d
+	.word	19                              ! 0x13
+	.word	1474691227                      ! 0x57e6009b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	20                              ! 0x14
+	.word	3710986016                      ! 0xdd312720
+	.word	2102079853                      ! 0x7d4b316d
+	.word	21                              ! 0x15
+	.word	1305101473                      ! 0x4dca44a1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	22                              ! 0x16
+	.word	3762036564                      ! 0xe03c1f54
+	.word	2102079853                      ! 0x7d4b316d
+	.word	23                              ! 0x17
+	.word	477914433                       ! 0x1c7c6541
+	.word	2102079853                      ! 0x7d4b316d
+	.word	24                              ! 0x18
+	.word	3923035234                      ! 0xe9d4c462
+	.word	2102079853                      ! 0x7d4b316d
+	.word	25                              ! 0x19
+	.word	951651702                       ! 0x38b90d76
+	.word	2102079853                      ! 0x7d4b316d
+	.word	26                              ! 0x1a
+	.word	4206925919                      ! 0xfac0985f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	27                              ! 0x1b
+	.word	32773942                        ! 0x1f41736
+	.word	2102079853                      ! 0x7d4b316d
+	.word	28                              ! 0x1c
+	.word	2877267246                      ! 0xab7f9d2e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	29                              ! 0x1d
+	.word	860405771                       ! 0x3348c00b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	30                              ! 0x1e
+	.word	815674877                       ! 0x309e35fd
+	.word	2102079853                      ! 0x7d4b316d
+	.word	31                              ! 0x1f
+	.word	1778838753                      ! 0x6a06ece1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	32                              ! 0x20
+	.word	2718307199                      ! 0xa206137f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	33                              ! 0x21
+	.word	856224820                       ! 0x3308f434
+	.word	2102079853                      ! 0x7d4b316d
+	.word	34                              ! 0x22
+	.word	1111195143                      ! 0x423b7e07
+	.word	2102079853                      ! 0x7d4b316d
+	.word	35                              ! 0x23
+	.word	1178414519                      ! 0x463d2db7
+	.word	2102079853                      ! 0x7d4b316d
+	.word	36                              ! 0x24
+	.word	3477640633                      ! 0xcf4895b9
+	.word	2102079853                      ! 0x7d4b316d
+	.word	37                              ! 0x25
+	.word	4294770115                      ! 0xfffcfdc3
+	.word	2102079853                      ! 0x7d4b316d
+	.word	38                              ! 0x26
+	.word	3650660234                      ! 0xd998a78a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	39                              ! 0x27
+	.word	289327647                       ! 0x113eca1f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	40                              ! 0x28
+	.word	2093612798                      ! 0x7cc9fefe
+	.word	2102079853                      ! 0x7d4b316d
+	.word	41                              ! 0x29
+	.word	4177956716                      ! 0xf9068f6c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	42                              ! 0x2a
+	.word	3434808461                      ! 0xccbb048d
+	.word	2102079853                      ! 0x7d4b316d
+	.word	43                              ! 0x2b
+	.word	3206497114                      ! 0xbf1f435a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	44                              ! 0x2c
+	.word	1537257434                      ! 0x5ba0afda
+	.word	2102079853                      ! 0x7d4b316d
+	.word	45                              ! 0x2d
+	.word	3028077325                      ! 0xb47ccb0d
+	.word	2102079853                      ! 0x7d4b316d
+	.word	46                              ! 0x2e
+	.word	1369848209                      ! 0x51a63991
+	.word	2102079853                      ! 0x7d4b316d
+	.word	47                              ! 0x2f
+	.word	938831176                       ! 0x37f56d48
+	.word	2102079853                      ! 0x7d4b316d
+	.word	48                              ! 0x30
+	.word	1663146323                      ! 0x63219953
+	.word	2102079853                      ! 0x7d4b316d
+	.word	49                              ! 0x31
+	.word	4111410217                      ! 0xf50f2429
+	.word	2102079853                      ! 0x7d4b316d
+	.word	50                              ! 0x32
+	.word	1475378556                      ! 0x57f07d7c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	51                              ! 0x33
+	.word	3356195547                      ! 0xc80b7adb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	52                              ! 0x34
+	.word	514931786                       ! 0x1eb13c4a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	53                              ! 0x35
+	.word	2854034444                      ! 0xaa1d1c0c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	54                              ! 0x36
+	.word	2747937306                      ! 0xa3ca321a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	55                              ! 0x37
+	.word	4192776208                      ! 0xf9e8b010
+	.word	2102079853                      ! 0x7d4b316d
+	.word	56                              ! 0x38
+	.word	984436227                       ! 0x3aad4e03
+	.word	2102079853                      ! 0x7d4b316d
+	.word	57                              ! 0x39
+	.word	1477657574                      ! 0x581343e6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	58                              ! 0x3a
+	.word	1339127973                      ! 0x4fd178a5
+	.word	2102079853                      ! 0x7d4b316d
+	.word	59                              ! 0x3b
+	.word	2960567906                      ! 0xb076ae62
+	.word	2102079853                      ! 0x7d4b316d
+	.word	60                              ! 0x3c
+	.word	3390076872                      ! 0xca1077c8
+	.word	2102079853                      ! 0x7d4b316d
+	.word	61                              ! 0x3d
+	.word	1543282230                      ! 0x5bfc9e36
+	.word	2102079853                      ! 0x7d4b316d
+	.word	62                              ! 0x3e
+	.word	2934101789                      ! 0xaee2d71d
+	.word	2102079853                      ! 0x7d4b316d
+	.word	63                              ! 0x3f
+	.word	3737986119                      ! 0xdecd2447
+	.word	2102079853                      ! 0x7d4b316d
+	.word	64                              ! 0x40
+	.word	49556427                        ! 0x2f42bcb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	65                              ! 0x41
+	.word	234051526                       ! 0xdf357c6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	66                              ! 0x42
+	.word	2341800126                      ! 0x8b9508be
+	.word	2102079853                      ! 0x7d4b316d
+	.word	67                              ! 0x43
+	.word	3256799948                      ! 0xc21ed2cc
+	.word	2102079853                      ! 0x7d4b316d
+	.word	68                              ! 0x44
+	.word	777295480                       ! 0x2e549678
+	.word	2102079853                      ! 0x7d4b316d
+	.word	69                              ! 0x45
+	.word	14040531                        ! 0xd63dd3
+	.word	2102079853                      ! 0x7d4b316d
+	.word	70                              ! 0x46
+	.word	8047973                         ! 0x7acd65
+	.word	2102079853                      ! 0x7d4b316d
+	.word	71                              ! 0x47
+	.word	719459161                       ! 0x2ae21359
+	.word	2102079853                      ! 0x7d4b316d
+	.word	72                              ! 0x48
+	.word	243358501                       ! 0xe815b25
+	.word	2102079853                      ! 0x7d4b316d
+	.word	73                              ! 0x49
+	.word	3262173932                      ! 0xc270d2ec
+	.word	2102079853                      ! 0x7d4b316d
+	.word	74                              ! 0x4a
+	.word	398910553                       ! 0x17c6e459
+	.word	2102079853                      ! 0x7d4b316d
+	.word	75                              ! 0x4b
+	.word	3354219739                      ! 0xc7ed54db
+	.word	2102079853                      ! 0x7d4b316d
+	.word	76                              ! 0x4c
+	.word	2570308788                      ! 0x9933ccb4
+	.word	2102079853                      ! 0x7d4b316d
+	.word	77                              ! 0x4d
+	.word	982429111                       ! 0x3a8eadb7
+	.word	2102079853                      ! 0x7d4b316d
+	.word	78                              ! 0x4e
+	.word	211491241                       ! 0xc9b19a9
+	.word	2102079853                      ! 0x7d4b316d
+	.word	79                              ! 0x4f
+	.word	1075683319                      ! 0x401d9ff7
+	.word	2102079853                      ! 0x7d4b316d
+	.word	80                              ! 0x50
+	.word	1886352651                      ! 0x706f750b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	81                              ! 0x51
+	.word	248637203                       ! 0xed1e713
+	.word	2102079853                      ! 0x7d4b316d
+	.word	82                              ! 0x52
+	.word	703327087                       ! 0x29ebeb6f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	83                              ! 0x53
+	.word	3690160730                      ! 0xdbf3625a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	84                              ! 0x54
+	.word	787048238                       ! 0x2ee9672e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	85                              ! 0x55
+	.word	1937497967                      ! 0x737bdf6f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	86                              ! 0x56
+	.word	4205062514                      ! 0xfaa42972
+	.word	2102079853                      ! 0x7d4b316d
+	.word	87                              ! 0x57
+	.word	694462539                       ! 0x2964a84b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	88                              ! 0x58
+	.word	85970907                        ! 0x51fcfdb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	89                              ! 0x59
+	.word	3681984728                      ! 0xdb76a0d8
+	.word	2102079853                      ! 0x7d4b316d
+	.word	90                              ! 0x5a
+	.word	3620297642                      ! 0xd7c95baa
+	.word	2102079853                      ! 0x7d4b316d
+	.word	91                              ! 0x5b
+	.word	3394804480                      ! 0xca589b00
+	.word	2102079853                      ! 0x7d4b316d
+	.word	92                              ! 0x5c
+	.word	2119330183                      ! 0x7e526987
+	.word	2102079853                      ! 0x7d4b316d
+	.word	93                              ! 0x5d
+	.word	1963040266                      ! 0x75019e0a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	94                              ! 0x5e
+	.word	1603391838                      ! 0x5f91d15e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	95                              ! 0x5f
+	.word	2340921237                      ! 0x8b879f95
+	.word	2102079853                      ! 0x7d4b316d
+	.word	96                              ! 0x60
+	.word	3028177438                      ! 0xb47e521e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	97                              ! 0x61
+	.word	2265525308                      ! 0x87092c3c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	98                              ! 0x62
+	.word	2598903994                      ! 0x9ae820ba
+	.word	2102079853                      ! 0x7d4b316d
+	.word	99                              ! 0x63
+	.word	139524705                       ! 0x850fa61
+	.word	2102079853                      ! 0x7d4b316d
+	.word	100                             ! 0x64
+	.word	1076410600                      ! 0x4028b8e8
+	.word	2102079853                      ! 0x7d4b316d
+	.word	101                             ! 0x65
+	.word	220237413                       ! 0xd208e65
+	.word	2102079853                      ! 0x7d4b316d
+	.word	102                             ! 0x66
+	.word	3913623866                      ! 0xe945293a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	103                             ! 0x67
+	.word	3453026372                      ! 0xcdd10044
+	.word	2102079853                      ! 0x7d4b316d
+	.word	104                             ! 0x68
+	.word	2321387380                      ! 0x8a5d8f74
+	.word	2102079853                      ! 0x7d4b316d
+	.word	105                             ! 0x69
+	.word	3319939363                      ! 0xc5e24123
+	.word	2102079853                      ! 0x7d4b316d
+	.word	106                             ! 0x6a
+	.word	398991913                       ! 0x17c82229
+	.word	2102079853                      ! 0x7d4b316d
+	.word	107                             ! 0x6b
+	.word	333429647                       ! 0x13dfbb8f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	108                             ! 0x6c
+	.word	3927133990                      ! 0xea134f26
+	.word	2102079853                      ! 0x7d4b316d
+	.word	109                             ! 0x6d
+	.word	1797971294                      ! 0x6b2add5e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	110                             ! 0x6e
+	.word	1622314776                      ! 0x60b28f18
+	.word	2102079853                      ! 0x7d4b316d
+	.word	111                             ! 0x6f
+	.word	1092862330                      ! 0x4123c17a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	112                             ! 0x70
+	.word	2568657322                      ! 0x991a99aa
+	.word	2102079853                      ! 0x7d4b316d
+	.word	113                             ! 0x71
+	.word	2168129897                      ! 0x813b0969
+	.word	2102079853                      ! 0x7d4b316d
+	.word	114                             ! 0x72
+	.word	2890303119                      ! 0xac46868f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	115                             ! 0x73
+	.word	1713332582                      ! 0x661f6166
+	.word	2102079853                      ! 0x7d4b316d
+	.word	116                             ! 0x74
+	.word	2375727721                      ! 0x8d9aba69
+	.word	2102079853                      ! 0x7d4b316d
+	.word	117                             ! 0x75
+	.word	3586767156                      ! 0xd5c9b934
+	.word	2102079853                      ! 0x7d4b316d
+	.word	118                             ! 0x76
+	.word	2191348475                      ! 0x829d52fb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	119                             ! 0x77
+	.word	3910023869                      ! 0xe90e3abd
+	.word	2102079853                      ! 0x7d4b316d
+	.word	120                             ! 0x78
+	.word	4189915105                      ! 0xf9bd07e1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	121                             ! 0x79
+	.word	2527353334                      ! 0x96a459f6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	122                             ! 0x7a
+	.word	3429265923                      ! 0xcc667203
+	.word	2102079853                      ! 0x7d4b316d
+	.word	123                             ! 0x7b
+	.word	1283962724                      ! 0x4c87b764
+	.word	2102079853                      ! 0x7d4b316d
+	.word	124                             ! 0x7c
+	.word	1970290990                      ! 0x7570412e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	125                             ! 0x7d
+	.word	2615950861                      ! 0x9bec3e0d
+	.word	2102079853                      ! 0x7d4b316d
+	.word	126                             ! 0x7e
+	.word	3338450337                      ! 0xc6fcb5a1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	127                             ! 0x7f
+	.word	3971836509                      ! 0xecbd6a5d
+	.word	2102079853                      ! 0x7d4b316d
+	.word	128                             ! 0x80
+	.word	4260339231                      ! 0xfdef9e1f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	129                             ! 0x81
+	.word	4160738226                      ! 0xf7ffd3b2
+	.word	2102079853                      ! 0x7d4b316d
+	.word	130                             ! 0x82
+	.word	1309372079                      ! 0x4e0b6eaf
+	.word	2102079853                      ! 0x7d4b316d
+	.word	131                             ! 0x83
+	.word	3151575564                      ! 0xbbd93a0c
+	.word	2102079853                      ! 0x7d4b316d
+	.word	132                             ! 0x84
+	.word	3938977714                      ! 0xeac807b2
+	.word	2102079853                      ! 0x7d4b316d
+	.word	133                             ! 0x85
+	.word	3228738087                      ! 0xc072a227
+	.word	2102079853                      ! 0x7d4b316d
+	.word	134                             ! 0x86
+	.word	2262837051                      ! 0x86e0273b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	135                             ! 0x87
+	.word	3135705803                      ! 0xbae712cb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	136                             ! 0x88
+	.word	990447104                       ! 0x3b090600
+	.word	2102079853                      ! 0x7d4b316d
+	.word	137                             ! 0x89
+	.word	4061147315                      ! 0xf21030b3
+	.word	2102079853                      ! 0x7d4b316d
+	.word	138                             ! 0x8a
+	.word	2783543715                      ! 0xa5e981a3
+	.word	2102079853                      ! 0x7d4b316d
+	.word	139                             ! 0x8b
+	.word	2471046843                      ! 0x93492ebb
+	.word	2102079853                      ! 0x7d4b316d
+	.word	140                             ! 0x8c
+	.word	403058134                       ! 0x18062dd6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	141                             ! 0x8d
+	.word	260073473                       ! 0xf806801
+	.word	2102079853                      ! 0x7d4b316d
+	.word	142                             ! 0x8e
+	.word	1259876295                      ! 0x4b182fc7
+	.word	2102079853                      ! 0x7d4b316d
+	.word	143                             ! 0x8f
+	.word	2975678116                      ! 0xb15d3ea4
+	.word	2102079853                      ! 0x7d4b316d
+	.word	144                             ! 0x90
+	.word	2579807359                      ! 0x99c4bc7f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	145                             ! 0x91
+	.word	863102422                       ! 0x3371e5d6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	146                             ! 0x92
+	.word	650832017                       ! 0x26cae891
+	.word	2102079853                      ! 0x7d4b316d
+	.word	147                             ! 0x93
+	.word	90061610                        ! 0x55e3b2a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	148                             ! 0x94
+	.word	2446954539                      ! 0x91d9902b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	149                             ! 0x95
+	.word	3598610789                      ! 0xd67e7165
+	.word	2102079853                      ! 0x7d4b316d
+	.word	150                             ! 0x96
+	.word	2351688191                      ! 0x8c2be9ff
+	.word	2102079853                      ! 0x7d4b316d
+	.word	151                             ! 0x97
+	.word	1743478091                      ! 0x67eb5d4b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	152                             ! 0x98
+	.word	2798805217                      ! 0xa6d260e1
+	.word	2102079853                      ! 0x7d4b316d
+	.word	153                             ! 0x99
+	.word	1438161982                      ! 0x55b89c3e
+	.word	2102079853                      ! 0x7d4b316d
+	.word	154                             ! 0x9a
+	.word	273416875                       ! 0x104c02ab
+	.word	2102079853                      ! 0x7d4b316d
+	.word	155                             ! 0x9b
+	.word	2438880600                      ! 0x915e5d58
+	.word	2102079853                      ! 0x7d4b316d
+	.word	156                             ! 0x9c
+	.word	1284541841                      ! 0x4c908d91
+	.word	2102079853                      ! 0x7d4b316d
+	.word	157                             ! 0x9d
+	.word	3593193962                      ! 0xd62bc9ea
+	.word	2102079853                      ! 0x7d4b316d
+	.word	158                             ! 0x9e
+	.word	1755082314                      ! 0x689c6e4a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	159                             ! 0x9f
+	.word	3432612426                      ! 0xcc99824a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	160                             ! 0xa0
+	.word	1404964820                      ! 0x53be0fd4
+	.word	2102079853                      ! 0x7d4b316d
+	.word	161                             ! 0xa1
+	.word	3374828335                      ! 0xc927cb2f
+	.word	2102079853                      ! 0x7d4b316d
+	.word	162                             ! 0xa2
+	.word	3311814731                      ! 0xc566484b
+	.word	2102079853                      ! 0x7d4b316d
+	.word	163                             ! 0xa3
+	.word	413908966                       ! 0x18abbfe6
+	.word	2102079853                      ! 0x7d4b316d
+	.word	164                             ! 0xa4
+	.word	3027808697                      ! 0xb478b1b9
+	.word	2102079853                      ! 0x7d4b316d
+	.word	165                             ! 0xa5
+	.word	540762785                       ! 0x203b62a1
+	.word	2102079853                      ! 0x7d4b316d
+	.size	__llvm_internal_gcov_emit_function_args.0, 1992
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object ! @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.1
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.2
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.3
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.4
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.5
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.6
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.7
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.8
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.9
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.10
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.11
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.12
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.13
+	.word	7                               ! 0x7
+	.skip	4
+	.xword	__llvm_gcov_ctr.14
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.15
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.16
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.17
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.18
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.19
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.20
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.21
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.22
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.23
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.24
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.25
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.26
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.27
+	.word	7                               ! 0x7
+	.skip	4
+	.xword	__llvm_gcov_ctr.28
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.29
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.30
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.31
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.32
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.33
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.34
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.35
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.36
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.37
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.38
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.39
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.40
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.41
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.42
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.43
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.44
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.45
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.46
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.47
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.48
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.49
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.50
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.51
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.52
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.53
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.54
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.55
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.56
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.57
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.58
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.59
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.60
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.61
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.62
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.63
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.64
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.65
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.66
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.67
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.68
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.69
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.70
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.71
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.72
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.73
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.74
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.75
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.76
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.77
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.78
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.79
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.80
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.81
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.82
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.83
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.84
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.85
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.86
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.87
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.88
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.89
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.90
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.91
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.92
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.93
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.94
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.95
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.96
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.97
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.98
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.99
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.100
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.101
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.102
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.103
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.104
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.105
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.106
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.107
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.108
+	.word	6                               ! 0x6
+	.skip	4
+	.xword	__llvm_gcov_ctr.109
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.110
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.111
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.112
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.113
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.114
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.115
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.116
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.117
+	.word	2                               ! 0x2
+	.skip	4
+	.xword	__llvm_gcov_ctr.118
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.119
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.120
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.121
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.122
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.123
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.124
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.125
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.126
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.127
+	.word	7                               ! 0x7
+	.skip	4
+	.xword	__llvm_gcov_ctr.128
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.129
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.130
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.131
+	.word	8                               ! 0x8
+	.skip	4
+	.xword	__llvm_gcov_ctr.132
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.133
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.134
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.135
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.136
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.137
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.138
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.139
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.140
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.141
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.142
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.143
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.144
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.145
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.146
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.147
+	.word	3                               ! 0x3
+	.skip	4
+	.xword	__llvm_gcov_ctr.148
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.149
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.150
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.151
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.152
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.153
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.154
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.155
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.156
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.157
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.158
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.159
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.160
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.161
+	.word	4                               ! 0x4
+	.skip	4
+	.xword	__llvm_gcov_ctr.162
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.163
+	.word	1                               ! 0x1
+	.skip	4
+	.xword	__llvm_gcov_ctr.164
+	.word	5                               ! 0x5
+	.skip	4
+	.xword	__llvm_gcov_ctr.165
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 2656
+
+	.type	__llvm_internal_gcov_emit_file_info,@object ! @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.xword	.L__unnamed_1
+	.word	875575338                       ! 0x3430382a
+	.word	2102079853                      ! 0x7d4b316d
+	.word	166                             ! 0xa6
+	.skip	4
+	.xword	__llvm_internal_gcov_emit_function_args.0
+	.xword	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.xword	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_make_ti,@object       ! @__profc_make_ti
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
@@ -18457,9 +25805,181 @@ digits:
 	.addrsig_sym __muldsi3
 	.addrsig_sym __mulddi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
+	.addrsig_sym __llvm_gcov_ctr.151
+	.addrsig_sym __llvm_gcov_ctr.152
+	.addrsig_sym __llvm_gcov_ctr.153
+	.addrsig_sym __llvm_gcov_ctr.154
+	.addrsig_sym __llvm_gcov_ctr.155
+	.addrsig_sym __llvm_gcov_ctr.156
+	.addrsig_sym __llvm_gcov_ctr.157
+	.addrsig_sym __llvm_gcov_ctr.158
+	.addrsig_sym __llvm_gcov_ctr.159
+	.addrsig_sym __llvm_gcov_ctr.160
+	.addrsig_sym __llvm_gcov_ctr.161
+	.addrsig_sym __llvm_gcov_ctr.162
+	.addrsig_sym __llvm_gcov_ctr.163
+	.addrsig_sym __llvm_gcov_ctr.164
+	.addrsig_sym __llvm_gcov_ctr.165
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_make_ti
 	.addrsig_sym .L__profd_make_ti

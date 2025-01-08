@@ -49,6 +49,18 @@ memmove:                                # @memmove
 	bnez	$2, $BB0_6  # 16 bit inst
 	b	$BB0_1 # 16 bit inst
 $BB0_1:
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmove)
@@ -97,6 +109,17 @@ $BB0_3:                                 #   in Loop: Header=BB0_2 Depth=1
 	sb	$2, -1($3)
 	b	$BB0_4 # 16 bit inst
 $BB0_4:                                 #   in Loop: Header=BB0_2 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 8($16)
@@ -127,6 +150,17 @@ $BB0_8:                                 # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB0_11  # 16 bit inst
 	b	$BB0_9 # 16 bit inst
 $BB0_9:                                 #   in Loop: Header=BB0_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_memmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmove)
@@ -155,8 +189,30 @@ $BB0_10:                                #   in Loop: Header=BB0_8 Depth=1
 	sw	$2, 8($16)
 	b	$BB0_8 # 16 bit inst
 $BB0_11:
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB0_12 # 16 bit inst
 $BB0_12:
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	b	$BB0_13 # 16 bit inst
 $BB0_13:
 	lw	$2, 16($16)
@@ -213,6 +269,18 @@ $BB1_1:                                 # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB1_4  # 16 bit inst
 	b	$BB1_2 # 16 bit inst
 $BB1_2:                                 #   in Loop: Header=BB1_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.1)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.1)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.1)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.1)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memccpy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memccpy)
@@ -241,6 +309,17 @@ $BB1_2:                                 #   in Loop: Header=BB1_1 Depth=1
 	b	$BB1_3 # 16 bit inst
 $BB1_3:                                 #   in Loop: Header=BB1_1 Depth=1
 	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.1)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.1)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_memccpy)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_memccpy)
@@ -274,6 +353,17 @@ $BB1_5:                                 #   in Loop: Header=BB1_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB1_6 # 16 bit inst
 $BB1_6:                                 #   in Loop: Header=BB1_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.1)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.1)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 16($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 16($16)
@@ -289,6 +379,17 @@ $BB1_7:
 	beqz	$2, $BB1_9  # 16 bit inst
 	b	$BB1_8 # 16 bit inst
 $BB1_8:
+	li	$2, %hi(__llvm_gcov_ctr.1)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.1)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_memccpy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memccpy)
@@ -305,6 +406,17 @@ $BB1_8:
 	sw	$2, 32($16)
 	b	$BB1_10 # 16 bit inst
 $BB1_9:
+	li	$2, %hi(__llvm_gcov_ctr.1)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.1)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 0
 	sw	$2, 32($16)
 	b	$BB1_10 # 16 bit inst
@@ -360,6 +472,18 @@ $BB2_1:                                 # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB2_4  # 16 bit inst
 	b	$BB2_2 # 16 bit inst
 $BB2_2:                                 #   in Loop: Header=BB2_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.2)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.2)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.2)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.2)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memchr)
@@ -386,6 +510,17 @@ $BB2_2:                                 #   in Loop: Header=BB2_1 Depth=1
 	b	$BB2_3 # 16 bit inst
 $BB2_3:                                 #   in Loop: Header=BB2_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.2)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.2)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_memchr)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_memchr)
@@ -419,6 +554,17 @@ $BB2_5:                                 #   in Loop: Header=BB2_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB2_6 # 16 bit inst
 $BB2_6:                                 #   in Loop: Header=BB2_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.2)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.2)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 12($16)
@@ -431,6 +577,17 @@ $BB2_7:
 	beqz	$2, $BB2_9  # 16 bit inst
 	b	$BB2_8 # 16 bit inst
 $BB2_8:
+	li	$2, %hi(__llvm_gcov_ctr.2)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.2)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_memchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memchr)
@@ -446,6 +603,17 @@ $BB2_8:
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB2_10 # 16 bit inst
 $BB2_9:
+	li	$2, %hi(__llvm_gcov_ctr.2)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.2)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 0
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB2_10 # 16 bit inst
@@ -500,6 +668,18 @@ $BB3_1:                                 # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB3_4  # 16 bit inst
 	b	$BB3_2 # 16 bit inst
 $BB3_2:                                 #   in Loop: Header=BB3_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.3)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.3)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.3)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.3)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memcmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memcmp)
@@ -526,6 +706,17 @@ $BB3_2:                                 #   in Loop: Header=BB3_1 Depth=1
 	b	$BB3_3 # 16 bit inst
 $BB3_3:                                 #   in Loop: Header=BB3_1 Depth=1
 	lw	$2, 8($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.3)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.3)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_memcmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_memcmp)
@@ -559,6 +750,17 @@ $BB3_5:                                 #   in Loop: Header=BB3_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB3_6 # 16 bit inst
 $BB3_6:                                 #   in Loop: Header=BB3_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.3)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.3)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 24($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 24($16)
@@ -574,6 +776,17 @@ $BB3_7:
 	beqz	$2, $BB3_9  # 16 bit inst
 	b	$BB3_8 # 16 bit inst
 $BB3_8:
+	li	$2, %hi(__llvm_gcov_ctr.3)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.3)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_memcmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memcmp)
@@ -593,6 +806,17 @@ $BB3_8:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB3_10 # 16 bit inst
 $BB3_9:
+	li	$2, %hi(__llvm_gcov_ctr.3)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.3)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 0
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB3_10 # 16 bit inst
@@ -613,16 +837,30 @@ $func_end3:
 	.set	mips16
 	.ent	memcpy
 memcpy:                                 # @memcpy
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.4)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.4)
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.4)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 0($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.4)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_memcpy)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -635,13 +873,13 @@ memcpy:                                 # @memcpy
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_memcpy)($5)
 	sw	$2, 4($3)
+	lw	$2, 20($16)
+	sw	$2, 8($16)
 	lw	$2, 16($16)
 	sw	$2, 4($16)
-	lw	$2, 12($16)
-	sw	$2, 0($16)
 	b	$BB4_1 # 16 bit inst
 $BB4_1:                                 # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	beqz	$2, $BB4_4  # 16 bit inst
 	b	$BB4_2 # 16 bit inst
 $BB4_2:                                 #   in Loop: Header=BB4_1 Depth=1
@@ -656,26 +894,37 @@ $BB4_2:                                 #   in Loop: Header=BB4_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 0($16)
+	lw	$2, 4($16)
 	move	$3, $2
 	addiu	$3, 1	# 16 bit inst
-	sw	$3, 0($16)
+	sw	$3, 4($16)
 	lbu	$2, 0($2)
-	lw	$3, 4($16)
+	lw	$3, 8($16)
 	move	$4, $3
 	addiu	$4, 1	# 16 bit inst
-	sw	$4, 4($16)
+	sw	$4, 8($16)
 	sb	$2, 0($3)
 	b	$BB4_3 # 16 bit inst
 $BB4_3:                                 #   in Loop: Header=BB4_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.4)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.4)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
+	lw	$2, 12($16)
 	addiu	$2, -1	# 16 bit inst
-	sw	$2, 8($16)
+	sw	$2, 12($16)
 	b	$BB4_1 # 16 bit inst
 $BB4_4:
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	memcpy
@@ -745,6 +994,18 @@ $BB5_2:                                 #   in Loop: Header=BB5_1 Depth=1
 	btnez	$BB5_4  # 16 bit inst
 	b	$BB5_3 # 16 bit inst
 $BB5_3:
+	li	$2, %hi(__llvm_gcov_ctr.5)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.5)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.5)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.5)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memrchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memrchr)
@@ -762,8 +1023,30 @@ $BB5_3:
 	sw	$2, 16($16)
 	b	$BB5_6 # 16 bit inst
 $BB5_4:                                 #   in Loop: Header=BB5_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.5)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.5)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	b	$BB5_1 # 16 bit inst
 $BB5_5:
+	li	$2, %hi(__llvm_gcov_ctr.5)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.5)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 16($16)
 	b	$BB5_6 # 16 bit inst
@@ -784,16 +1067,30 @@ $func_end5:
 	.set	mips16
 	.ent	memset
 memset:                                 # @memset
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.6)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.6)
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.6)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 0($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.6)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_memset)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -806,11 +1103,11 @@ memset:                                 # @memset
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_memset)($5)
 	sw	$2, 4($3)
-	lw	$2, 16($16)
-	sw	$2, 4($16)
+	lw	$2, 20($16)
+	sw	$2, 8($16)
 	b	$BB6_1 # 16 bit inst
 $BB6_1:                                 # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	beqz	$2, $BB6_4  # 16 bit inst
 	b	$BB6_2 # 16 bit inst
 $BB6_2:                                 #   in Loop: Header=BB6_1 Depth=1
@@ -825,22 +1122,33 @@ $BB6_2:                                 #   in Loop: Header=BB6_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 12($16)
-	lw	$3, 4($16)
+	lw	$2, 16($16)
+	lw	$3, 8($16)
 	sb	$2, 0($3)
 	b	$BB6_3 # 16 bit inst
 $BB6_3:                                 #   in Loop: Header=BB6_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.6)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.6)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
+	lw	$2, 12($16)
 	addiu	$2, -1	# 16 bit inst
-	sw	$2, 8($16)
-	lw	$2, 4($16)
+	sw	$2, 12($16)
+	lw	$2, 8($16)
 	addiu	$2, 1	# 16 bit inst
-	sw	$2, 4($16)
+	sw	$2, 8($16)
 	b	$BB6_1 # 16 bit inst
 $BB6_4:
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	memset
@@ -855,14 +1163,26 @@ $func_end6:
 	.ent	stpcpy
 stpcpy:                                 # @stpcpy
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.7)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.7)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.7)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.7)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc_stpcpy)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -877,9 +1197,9 @@ stpcpy:                                 # @stpcpy
 	sw	$2, 4($3)
 	b	$BB7_1 # 16 bit inst
 $BB7_1:                                 # =>This Inner Loop Header: Depth=1
-	lw	$2, 4($16)
+	lw	$2, 0($16)
 	lbu	$2, 0($2)
-	lw	$3, 8($16)
+	lw	$3, 4($16)
 	sb	$2, 0($3)
 	beqz	$2, $BB7_4  # 16 bit inst
 	b	$BB7_2 # 16 bit inst
@@ -897,17 +1217,28 @@ $BB7_2:                                 #   in Loop: Header=BB7_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB7_3 # 16 bit inst
 $BB7_3:                                 #   in Loop: Header=BB7_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.7)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.7)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
+	lw	$2, 0($16)
+	addiu	$2, 1	# 16 bit inst
+	sw	$2, 0($16)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
-	lw	$2, 8($16)
-	addiu	$2, 1	# 16 bit inst
-	sw	$2, 8($16)
 	b	$BB7_1 # 16 bit inst
 $BB7_4:
-	lw	$2, 8($16)
+	lw	$2, 4($16)
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	stpcpy
@@ -922,14 +1253,26 @@ $func_end7:
 	.ent	strchrnul
 strchrnul:                              # @strchrnul
 	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
+	li	$2, %hi(__llvm_gcov_ctr.8)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.8)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.8)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.8)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc_strchrnul)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -942,18 +1285,29 @@ strchrnul:                              # @strchrnul
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_strchrnul)($5)
 	sw	$2, 4($3)
-	addiu	$2, $16, 12
+	addiu	$2, $16, 8
 	lbu	$2, 0($2)
-	sw	$2, 12($16)
+	sw	$2, 8($16)
 	b	$BB8_1 # 16 bit inst
 $BB8_1:                                 # =>This Inner Loop Header: Depth=1
-	lw	$2, 16($16)
+	lw	$2, 12($16)
 	lb	$2, 0($2)
 	li	$3, 0
-	sw	$3, 8($16)                      # 4-byte Folded Spill
+	sw	$3, 4($16)                      # 4-byte Folded Spill
 	beqz	$2, $BB8_4  # 16 bit inst
 	b	$BB8_2 # 16 bit inst
 $BB8_2:                                 #   in Loop: Header=BB8_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.8)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.8)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strchrnul)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strchrnul)
@@ -965,21 +1319,32 @@ $BB8_2:                                 #   in Loop: Header=BB8_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 16($16)
+	lw	$2, 12($16)
 	lbu	$3, 0($2)
-	lw	$4, 12($16)
+	lw	$4, 8($16)
 	move	$5, $3
 	xor	$5, $4
 	li	$2, 0
 	sltu	$2, $5
 	move	$2, $24
-	sw	$2, 4($16)                      # 4-byte Folded Spill
+	sw	$2, 0($16)                      # 4-byte Folded Spill
 	cmp	$3, $4
-	sw	$2, 8($16)                      # 4-byte Folded Spill
+	sw	$2, 4($16)                      # 4-byte Folded Spill
 	bteqz	$BB8_4  # 16 bit inst
 	b	$BB8_3 # 16 bit inst
 $BB8_3:                                 #   in Loop: Header=BB8_1 Depth=1
-	lw	$2, 4($16)                      # 4-byte Folded Reload
+	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.8)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.8)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_strchrnul)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_strchrnul)
@@ -991,10 +1356,10 @@ $BB8_3:                                 #   in Loop: Header=BB8_1 Depth=1
 	addu	$3, $3, $6
 	sw	$5, 24($4)
 	sw	$3, 28($4)
-	sw	$2, 8($16)                      # 4-byte Folded Spill
+	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB8_4 # 16 bit inst
 $BB8_4:                                 #   in Loop: Header=BB8_1 Depth=1
-	lw	$2, 8($16)                      # 4-byte Folded Reload
+	lw	$2, 4($16)                      # 4-byte Folded Reload
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB8_7  # 16 bit inst
@@ -1013,14 +1378,25 @@ $BB8_5:                                 #   in Loop: Header=BB8_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB8_6 # 16 bit inst
 $BB8_6:                                 #   in Loop: Header=BB8_1 Depth=1
-	lw	$2, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.8)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.8)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
+	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
-	sw	$2, 16($16)
+	sw	$2, 12($16)
 	b	$BB8_1 # 16 bit inst
 $BB8_7:
-	lw	$2, 16($16)
+	lw	$2, 12($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	strchrnul
@@ -1057,6 +1433,17 @@ strchr:                                 # @strchr
 	sw	$2, 4($3)
 	b	$BB9_2 # 16 bit inst
 $BB9_1:                                 #   in Loop: Header=BB9_2 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.9)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.9)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strchr)
@@ -1077,6 +1464,18 @@ $BB9_2:                                 # =>This Inner Loop Header: Depth=1
 	btnez	$BB9_4  # 16 bit inst
 	b	$BB9_3 # 16 bit inst
 $BB9_3:
+	li	$2, %hi(__llvm_gcov_ctr.9)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.9)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.9)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.9)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_strchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strchr)
@@ -1102,6 +1501,17 @@ $BB9_5:                                 #   in Loop: Header=BB9_2 Depth=1
 	bnez	$2, $BB9_1  # 16 bit inst
 	b	$BB9_6 # 16 bit inst
 $BB9_6:
+	li	$2, %hi(__llvm_gcov_ctr.9)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.9)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 8($16)
 	b	$BB9_7 # 16 bit inst
@@ -1123,14 +1533,26 @@ $func_end9:
 	.ent	strcmp
 strcmp:                                 # @strcmp
 	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
+	li	$2, %hi(__llvm_gcov_ctr.10)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.10)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.10)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.10)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc_strcmp)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -1145,16 +1567,27 @@ strcmp:                                 # @strcmp
 	sw	$2, 4($3)
 	b	$BB10_1 # 16 bit inst
 $BB10_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 16($16)
-	lb	$3, 0($2)
 	lw	$2, 12($16)
+	lb	$3, 0($2)
+	lw	$2, 8($16)
 	lb	$4, 0($2)
 	li	$2, 0
 	cmp	$3, $4
-	sw	$2, 8($16)                      # 4-byte Folded Spill
+	sw	$2, 4($16)                      # 4-byte Folded Spill
 	btnez	$BB10_4  # 16 bit inst
 	b	$BB10_2 # 16 bit inst
 $BB10_2:                                #   in Loop: Header=BB10_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.10)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.10)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strcmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strcmp)
@@ -1166,19 +1599,30 @@ $BB10_2:                                #   in Loop: Header=BB10_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 16($16)
+	lw	$2, 12($16)
 	lb	$2, 0($2)
 	li	$3, 0
 	move	$4, $2
 	xor	$4, $3
 	sltu	$3, $4
 	move	$3, $24
+	sw	$3, 0($16)                      # 4-byte Folded Spill
 	sw	$3, 4($16)                      # 4-byte Folded Spill
-	sw	$3, 8($16)                      # 4-byte Folded Spill
 	beqz	$2, $BB10_4  # 16 bit inst
 	b	$BB10_3 # 16 bit inst
 $BB10_3:                                #   in Loop: Header=BB10_1 Depth=1
-	lw	$2, 4($16)                      # 4-byte Folded Reload
+	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.10)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.10)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_strcmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_strcmp)
@@ -1190,10 +1634,10 @@ $BB10_3:                                #   in Loop: Header=BB10_1 Depth=1
 	addu	$3, $3, $6
 	sw	$5, 24($4)
 	sw	$3, 28($4)
-	sw	$2, 8($16)                      # 4-byte Folded Spill
+	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB10_4 # 16 bit inst
 $BB10_4:                                #   in Loop: Header=BB10_1 Depth=1
-	lw	$2, 8($16)                      # 4-byte Folded Reload
+	lw	$2, 4($16)                      # 4-byte Folded Reload
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB10_7  # 16 bit inst
@@ -1212,21 +1656,32 @@ $BB10_5:                                #   in Loop: Header=BB10_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB10_6 # 16 bit inst
 $BB10_6:                                #   in Loop: Header=BB10_1 Depth=1
-	lw	$2, 16($16)
-	addiu	$2, 1	# 16 bit inst
-	sw	$2, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.10)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.10)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 12($16)
+	lw	$2, 8($16)
+	addiu	$2, 1	# 16 bit inst
+	sw	$2, 8($16)
 	b	$BB10_1 # 16 bit inst
 $BB10_7:
-	lw	$2, 16($16)
+	lw	$2, 12($16)
 	lbu	$2, 0($2)
-	lw	$3, 12($16)
+	lw	$3, 8($16)
 	lbu	$3, 0($3)
 	subu	$2, $2, $3
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	strcmp
@@ -1247,6 +1702,18 @@ strlen:                                 # @strlen
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.11)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.11)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.11)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.11)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_strlen)
 	sll	$5, $2, 16
@@ -1282,6 +1749,17 @@ $BB11_2:                                #   in Loop: Header=BB11_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB11_3 # 16 bit inst
 $BB11_3:                                #   in Loop: Header=BB11_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.11)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.11)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 8($16)
@@ -1338,6 +1816,17 @@ strncmp:                                # @strncmp
 	bnez	$2, $BB12_2  # 16 bit inst
 	b	$BB12_1 # 16 bit inst
 $BB12_1:
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncmp)
@@ -1353,6 +1842,18 @@ $BB12_1:
 	sw	$2, 32($16)
 	b	$BB12_14 # 16 bit inst
 $BB12_2:
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.12)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.12)($5)
+	sw	$2, 4($3)
 	b	$BB12_3 # 16 bit inst
 $BB12_3:                                # =>This Inner Loop Header: Depth=1
 	lw	$2, 16($16)
@@ -1362,6 +1863,17 @@ $BB12_3:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB12_10
 	b	$BB12_4 # 16 bit inst
 $BB12_4:                                #   in Loop: Header=BB12_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_strncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncmp)
@@ -1377,9 +1889,20 @@ $BB12_4:                                #   in Loop: Header=BB12_3 Depth=1
 	lbu	$2, 0($2)
 	li	$3, 0
 	sw	$3, 8($16)                      # 4-byte Folded Spill
-	beqz	$2, $BB12_10  # 16 bit inst
+	beqz	$2, $BB12_10
 	b	$BB12_5 # 16 bit inst
 $BB12_5:                                #   in Loop: Header=BB12_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_strncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncmp)
@@ -1410,6 +1933,17 @@ $BB12_6:                                #   in Loop: Header=BB12_3 Depth=1
 	beqz	$2, $BB12_10  # 16 bit inst
 	b	$BB12_7 # 16 bit inst
 $BB12_7:                                #   in Loop: Header=BB12_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_strncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncmp)
@@ -1449,6 +1983,17 @@ $BB12_8:                                #   in Loop: Header=BB12_3 Depth=1
 	b	$BB12_9 # 16 bit inst
 $BB12_9:                                #   in Loop: Header=BB12_3 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.12)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.12)
+	lw	$3, 44($4)
+	lw	$5, 40($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 40($4)
+	sw	$3, 44($4)
 	li	$3, %hi($__profc_strncmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_strncmp)
@@ -1482,6 +2027,17 @@ $BB12_11:                               #   in Loop: Header=BB12_3 Depth=1
 	sw	$2, 20($3)
 	b	$BB12_12 # 16 bit inst
 $BB12_12:                               #   in Loop: Header=BB12_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.12)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	lw	$2, 16($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 16($16)
@@ -1517,16 +2073,30 @@ $func_end12:
 	.set	mips16
 	.ent	swab
 swab:                                   # @swab
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.13)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.13)
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.13)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 0($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.13)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_swab)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -1539,13 +2109,13 @@ swab:                                   # @swab
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_swab)($5)
 	sw	$2, 4($3)
+	lw	$2, 20($16)
+	sw	$2, 8($16)
 	lw	$2, 16($16)
 	sw	$2, 4($16)
-	lw	$2, 12($16)
-	sw	$2, 0($16)
 	b	$BB13_1 # 16 bit inst
 $BB13_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	slti	$2, 2 	# 16 bit inst
 	btnez	$BB13_4  # 16 bit inst
 	b	$BB13_2 # 16 bit inst
@@ -1561,29 +2131,40 @@ $BB13_2:                                #   in Loop: Header=BB13_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	lbu	$2, 1($2)
-	lw	$3, 0($16)
+	lw	$3, 4($16)
 	sb	$2, 0($3)
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	lbu	$2, 0($2)
-	lw	$3, 0($16)
+	lw	$3, 4($16)
 	sb	$2, 1($3)
-	lw	$2, 0($16)
-	addiu	$2, 2	# 16 bit inst
-	sw	$2, 0($16)
 	lw	$2, 4($16)
 	addiu	$2, 2	# 16 bit inst
 	sw	$2, 4($16)
+	lw	$2, 8($16)
+	addiu	$2, 2	# 16 bit inst
+	sw	$2, 8($16)
 	b	$BB13_3 # 16 bit inst
 $BB13_3:                                #   in Loop: Header=BB13_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.13)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.13)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
+	lw	$2, 12($16)
 	addiu	$2, -2	# 16 bit inst
-	sw	$2, 8($16)
+	sw	$2, 12($16)
 	b	$BB13_1 # 16 bit inst
 $BB13_4:
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	swab
@@ -1604,6 +2185,18 @@ isalpha:                                # @isalpha
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.14)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.14)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.14)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.14)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isalpha)
 	sll	$5, $2, 16
@@ -1645,6 +2238,18 @@ isascii:                                # @isascii
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.15)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.15)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.15)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.15)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isascii)
 	sll	$5, $2, 16
@@ -1686,6 +2291,18 @@ isblank:                                # @isblank
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.16)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.16)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.16)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.16)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_isblank)
 	sll	$5, $2, 16
@@ -1706,6 +2323,17 @@ isblank:                                # @isblank
 	bteqz	$BB16_3  # 16 bit inst
 	b	$BB16_1 # 16 bit inst
 $BB16_1:
+	li	$2, %hi(__llvm_gcov_ctr.16)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.16)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_isblank)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_isblank)
@@ -1730,6 +2358,17 @@ $BB16_1:
 	b	$BB16_2 # 16 bit inst
 $BB16_2:
 	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.16)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.16)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_isblank)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_isblank)
@@ -1769,6 +2408,18 @@ iscntrl:                                # @iscntrl
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.17)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.17)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.17)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.17)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_iscntrl)
 	sll	$5, $2, 16
@@ -1790,6 +2441,17 @@ iscntrl:                                # @iscntrl
 	bnez	$2, $BB17_3  # 16 bit inst
 	b	$BB17_1 # 16 bit inst
 $BB17_1:
+	li	$2, %hi(__llvm_gcov_ctr.17)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.17)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_iscntrl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_iscntrl)
@@ -1814,6 +2476,17 @@ $BB17_1:
 	b	$BB17_2 # 16 bit inst
 $BB17_2:
 	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.17)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.17)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_iscntrl)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_iscntrl)
@@ -1853,6 +2526,18 @@ isdigit:                                # @isdigit
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.18)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.18)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.18)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.18)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isdigit)
 	sll	$5, $2, 16
@@ -1892,6 +2577,18 @@ isgraph:                                # @isgraph
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.19)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.19)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.19)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.19)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isgraph)
 	sll	$5, $2, 16
@@ -1931,6 +2628,18 @@ islower:                                # @islower
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.20)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.20)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.20)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.20)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_islower)
 	sll	$5, $2, 16
@@ -1970,6 +2679,18 @@ isprint:                                # @isprint
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.21)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.21)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.21)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.21)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isprint)
 	sll	$5, $2, 16
@@ -2009,6 +2730,18 @@ isspace:                                # @isspace
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.22)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.22)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.22)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.22)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_isspace)
 	sll	$5, $2, 16
@@ -2029,6 +2762,17 @@ isspace:                                # @isspace
 	bteqz	$BB22_3  # 16 bit inst
 	b	$BB22_1 # 16 bit inst
 $BB22_1:
+	li	$2, %hi(__llvm_gcov_ctr.22)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.22)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_isspace)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_isspace)
@@ -2051,6 +2795,17 @@ $BB22_1:
 	b	$BB22_2 # 16 bit inst
 $BB22_2:
 	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.22)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.22)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_isspace)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_isspace)
@@ -2090,6 +2845,18 @@ isupper:                                # @isupper
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.23)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.23)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.23)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.23)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_isupper)
 	sll	$5, $2, 16
@@ -2129,6 +2896,18 @@ iswdigit:                               # @iswdigit
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.24)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.24)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.24)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.24)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_iswdigit)
 	sll	$5, $2, 16
@@ -2168,6 +2947,18 @@ iswxdigit:                              # @iswxdigit
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.25)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.25)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.25)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.25)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_iswxdigit)
 	sll	$5, $2, 16
@@ -2190,6 +2981,17 @@ iswxdigit:                              # @iswxdigit
 	bnez	$2, $BB25_3  # 16 bit inst
 	b	$BB25_1 # 16 bit inst
 $BB25_1:
+	li	$2, %hi(__llvm_gcov_ctr.25)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.25)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_iswxdigit)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_iswxdigit)
@@ -2214,6 +3016,17 @@ $BB25_1:
 	b	$BB25_2 # 16 bit inst
 $BB25_2:
 	lw	$2, 0($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.25)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.25)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_iswxdigit)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_iswxdigit)
@@ -2253,6 +3066,18 @@ toascii:                                # @toascii
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.26)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.26)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.26)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.26)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_toascii)
 	sll	$5, $2, 16
@@ -2332,6 +3157,18 @@ $BB27_2:
 	bnez	$2, $BB27_4  # 16 bit inst
 	b	$BB27_3 # 16 bit inst
 $BB27_3:
+	li	$2, %hi(__llvm_gcov_ctr.27)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.27)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.27)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.27)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fdim)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdim)
@@ -2370,6 +3207,17 @@ $BB27_6:
 	bnez	$2, $BB27_8  # 16 bit inst
 	b	$BB27_7 # 16 bit inst
 $BB27_7:
+	li	$2, %hi(__llvm_gcov_ctr.27)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.27)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fdim)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdim)
@@ -2397,6 +3245,17 @@ $BB27_8:
 	btnez	$BB27_10  # 16 bit inst
 	b	$BB27_9 # 16 bit inst
 $BB27_9:
+	li	$2, %hi(__llvm_gcov_ctr.27)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.27)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fdim)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdim)
@@ -2418,6 +3277,17 @@ $BB27_9:
 	sw	$3, 20($16)                     # 4-byte Folded Spill
 	b	$BB27_11 # 16 bit inst
 $BB27_10:
+	li	$2, %hi(__llvm_gcov_ctr.27)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.27)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, 0
 	move	$3, $2
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -2492,6 +3362,18 @@ fdimf:                                  # @fdimf
 	btnez	$BB28_2  # 16 bit inst
 	b	$BB28_1 # 16 bit inst
 $BB28_1:
+	li	$2, %hi(__llvm_gcov_ctr.28)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.28)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.28)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.28)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fdimf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdimf)
@@ -2523,6 +3405,17 @@ $BB28_2:
 	btnez	$BB28_4  # 16 bit inst
 	b	$BB28_3 # 16 bit inst
 $BB28_3:
+	li	$2, %hi(__llvm_gcov_ctr.28)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.28)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fdimf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdimf)
@@ -2546,6 +3439,17 @@ $BB28_4:
 	btnez	$BB28_6  # 16 bit inst
 	b	$BB28_5 # 16 bit inst
 $BB28_5:
+	li	$2, %hi(__llvm_gcov_ctr.28)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.28)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fdimf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fdimf)
@@ -2564,6 +3468,17 @@ $BB28_5:
 	sw	$2, 16($16)                     # 4-byte Folded Spill
 	b	$BB28_7 # 16 bit inst
 $BB28_6:
+	li	$2, %hi(__llvm_gcov_ctr.28)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.28)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, 0
 	sw	$2, 16($16)                     # 4-byte Folded Spill
 	b	$BB28_7 # 16 bit inst
@@ -2644,6 +3559,18 @@ $BB29_2:
 	bnez	$2, $BB29_4  # 16 bit inst
 	b	$BB29_3 # 16 bit inst
 $BB29_3:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.29)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.29)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fmax)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmax)
@@ -2690,6 +3617,17 @@ $BB29_6:
 	bnez	$2, $BB29_8  # 16 bit inst
 	b	$BB29_7 # 16 bit inst
 $BB29_7:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fmax)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmax)
@@ -2733,6 +3671,17 @@ $BB29_9:
 	btnez	$BB29_11  # 16 bit inst
 	b	$BB29_10 # 16 bit inst
 $BB29_10:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fmax)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmax)
@@ -2750,6 +3699,17 @@ $BB29_10:
 	sw	$2, 28($16)                     # 4-byte Folded Spill
 	b	$BB29_12 # 16 bit inst
 $BB29_11:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 60($16)
 	lw	$3, 56($16)
 	sw	$3, 24($16)                     # 4-byte Folded Spill
@@ -2775,6 +3735,17 @@ $BB29_13:
 	btnez	$BB29_15  # 16 bit inst
 	b	$BB29_14 # 16 bit inst
 $BB29_14:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fmax)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmax)
@@ -2792,6 +3763,17 @@ $BB29_14:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB29_16 # 16 bit inst
 $BB29_15:
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.29)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 60($16)
 	lw	$3, 56($16)
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -2860,6 +3842,18 @@ fmaxf:                                  # @fmaxf
 	btnez	$BB30_2  # 16 bit inst
 	b	$BB30_1 # 16 bit inst
 $BB30_1:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.30)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.30)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fmaxf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxf)
@@ -2891,6 +3885,17 @@ $BB30_2:
 	btnez	$BB30_4  # 16 bit inst
 	b	$BB30_3 # 16 bit inst
 $BB30_3:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fmaxf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxf)
@@ -2932,6 +3937,17 @@ $BB30_5:
 	btnez	$BB30_7  # 16 bit inst
 	b	$BB30_6 # 16 bit inst
 $BB30_6:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fmaxf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxf)
@@ -2947,6 +3963,17 @@ $BB30_6:
 	sw	$2, 24($16)                     # 4-byte Folded Spill
 	b	$BB30_8 # 16 bit inst
 $BB30_7:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 32($16)
 	sw	$2, 24($16)                     # 4-byte Folded Spill
 	b	$BB30_8 # 16 bit inst
@@ -2966,6 +3993,17 @@ $BB30_9:
 	btnez	$BB30_11  # 16 bit inst
 	b	$BB30_10 # 16 bit inst
 $BB30_10:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fmaxf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxf)
@@ -2981,6 +4019,17 @@ $BB30_10:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB30_12 # 16 bit inst
 $BB30_11:
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.30)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 32($16)
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB30_12 # 16 bit inst
@@ -3061,6 +4110,18 @@ $BB31_2:
 	bnez	$2, $BB31_4  # 16 bit inst
 	b	$BB31_3 # 16 bit inst
 $BB31_3:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.31)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.31)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fmaxl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxl)
@@ -3107,6 +4168,17 @@ $BB31_6:
 	bnez	$2, $BB31_8  # 16 bit inst
 	b	$BB31_7 # 16 bit inst
 $BB31_7:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fmaxl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxl)
@@ -3150,6 +4222,17 @@ $BB31_9:
 	btnez	$BB31_11  # 16 bit inst
 	b	$BB31_10 # 16 bit inst
 $BB31_10:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fmaxl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxl)
@@ -3167,6 +4250,17 @@ $BB31_10:
 	sw	$2, 28($16)                     # 4-byte Folded Spill
 	b	$BB31_12 # 16 bit inst
 $BB31_11:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 60($16)
 	lw	$3, 56($16)
 	sw	$3, 24($16)                     # 4-byte Folded Spill
@@ -3192,6 +4286,17 @@ $BB31_13:
 	btnez	$BB31_15  # 16 bit inst
 	b	$BB31_14 # 16 bit inst
 $BB31_14:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fmaxl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmaxl)
@@ -3209,6 +4314,17 @@ $BB31_14:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB31_16 # 16 bit inst
 $BB31_15:
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.31)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 60($16)
 	lw	$3, 56($16)
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -3294,6 +4410,18 @@ $BB32_2:
 	bnez	$2, $BB32_4  # 16 bit inst
 	b	$BB32_3 # 16 bit inst
 $BB32_3:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.32)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.32)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fmin)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmin)
@@ -3340,6 +4468,17 @@ $BB32_6:
 	bnez	$2, $BB32_8  # 16 bit inst
 	b	$BB32_7 # 16 bit inst
 $BB32_7:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fmin)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmin)
@@ -3383,6 +4522,17 @@ $BB32_9:
 	btnez	$BB32_11  # 16 bit inst
 	b	$BB32_10 # 16 bit inst
 $BB32_10:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fmin)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmin)
@@ -3400,6 +4550,17 @@ $BB32_10:
 	sw	$2, 28($16)                     # 4-byte Folded Spill
 	b	$BB32_12 # 16 bit inst
 $BB32_11:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 52($16)
 	lw	$3, 48($16)
 	sw	$3, 24($16)                     # 4-byte Folded Spill
@@ -3425,6 +4586,17 @@ $BB32_13:
 	btnez	$BB32_15  # 16 bit inst
 	b	$BB32_14 # 16 bit inst
 $BB32_14:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fmin)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fmin)
@@ -3442,6 +4614,17 @@ $BB32_14:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB32_16 # 16 bit inst
 $BB32_15:
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.32)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 52($16)
 	lw	$3, 48($16)
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -3510,6 +4693,18 @@ fminf:                                  # @fminf
 	btnez	$BB33_2  # 16 bit inst
 	b	$BB33_1 # 16 bit inst
 $BB33_1:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.33)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.33)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fminf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminf)
@@ -3541,6 +4736,17 @@ $BB33_2:
 	btnez	$BB33_4  # 16 bit inst
 	b	$BB33_3 # 16 bit inst
 $BB33_3:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fminf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminf)
@@ -3582,6 +4788,17 @@ $BB33_5:
 	btnez	$BB33_7  # 16 bit inst
 	b	$BB33_6 # 16 bit inst
 $BB33_6:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fminf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminf)
@@ -3597,6 +4814,17 @@ $BB33_6:
 	sw	$2, 24($16)                     # 4-byte Folded Spill
 	b	$BB33_8 # 16 bit inst
 $BB33_7:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 28($16)
 	sw	$2, 24($16)                     # 4-byte Folded Spill
 	b	$BB33_8 # 16 bit inst
@@ -3616,6 +4844,17 @@ $BB33_9:
 	btnez	$BB33_11  # 16 bit inst
 	b	$BB33_10 # 16 bit inst
 $BB33_10:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fminf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminf)
@@ -3631,6 +4870,17 @@ $BB33_10:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB33_12 # 16 bit inst
 $BB33_11:
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.33)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 28($16)
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB33_12 # 16 bit inst
@@ -3711,6 +4961,18 @@ $BB34_2:
 	bnez	$2, $BB34_4  # 16 bit inst
 	b	$BB34_3 # 16 bit inst
 $BB34_3:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.34)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.34)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_fminl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminl)
@@ -3757,6 +5019,17 @@ $BB34_6:
 	bnez	$2, $BB34_8  # 16 bit inst
 	b	$BB34_7 # 16 bit inst
 $BB34_7:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_fminl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminl)
@@ -3800,6 +5073,17 @@ $BB34_9:
 	btnez	$BB34_11  # 16 bit inst
 	b	$BB34_10 # 16 bit inst
 $BB34_10:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_fminl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminl)
@@ -3817,6 +5101,17 @@ $BB34_10:
 	sw	$2, 28($16)                     # 4-byte Folded Spill
 	b	$BB34_12 # 16 bit inst
 $BB34_11:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 52($16)
 	lw	$3, 48($16)
 	sw	$3, 24($16)                     # 4-byte Folded Spill
@@ -3842,6 +5137,17 @@ $BB34_13:
 	btnez	$BB34_15  # 16 bit inst
 	b	$BB34_14 # 16 bit inst
 $BB34_14:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_fminl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_fminl)
@@ -3859,6 +5165,17 @@ $BB34_14:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB34_16 # 16 bit inst
 $BB34_15:
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.34)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 52($16)
 	lw	$3, 48($16)
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -3895,6 +5212,18 @@ l64a:                                   # @l64a
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.35)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.35)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.35)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.35)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_l64a)
 	sll	$5, $2, 16
@@ -3943,6 +5272,17 @@ $BB35_2:                                #   in Loop: Header=BB35_1 Depth=1
 	sb	$2, 0($3)
 	b	$BB35_3 # 16 bit inst
 $BB35_3:                                #   in Loop: Header=BB35_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.35)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.35)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
@@ -3979,6 +5319,18 @@ srand:                                  # @srand
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.36)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.36)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.36)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.36)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc_srand)
 	sll	$5, $2, 16
@@ -4023,6 +5375,18 @@ rand:                                   # @rand
 	save	$16, $17, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.37)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.37)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.37)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.37)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_rand)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -4112,6 +5476,17 @@ insque:                                 # @insque
 	bnez	$2, $BB38_2  # 16 bit inst
 	b	$BB38_1 # 16 bit inst
 $BB38_1:
+	li	$2, %hi(__llvm_gcov_ctr.38)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.38)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_insque)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_insque)
@@ -4130,6 +5505,18 @@ $BB38_1:
 	sw	$2, 0($3)
 	b	$BB38_4 # 16 bit inst
 $BB38_2:
+	li	$2, %hi(__llvm_gcov_ctr.38)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.38)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.38)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.38)($5)
+	sw	$2, 4($3)
 	lw	$2, 4($16)
 	lw	$2, 0($2)
 	lw	$3, 8($16)
@@ -4145,6 +5532,17 @@ $BB38_2:
 	beqz	$2, $BB38_4  # 16 bit inst
 	b	$BB38_3 # 16 bit inst
 $BB38_3:
+	li	$2, %hi(__llvm_gcov_ctr.38)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.38)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_insque)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_insque)
@@ -4183,6 +5581,18 @@ remque:                                 # @remque
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.39)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.39)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.39)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.39)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_remque)
 	sll	$5, $2, 16
@@ -4203,6 +5613,17 @@ remque:                                 # @remque
 	beqz	$2, $BB39_2  # 16 bit inst
 	b	$BB39_1 # 16 bit inst
 $BB39_1:
+	li	$2, %hi(__llvm_gcov_ctr.39)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.39)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_remque)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_remque)
@@ -4225,6 +5646,17 @@ $BB39_2:
 	beqz	$2, $BB39_4  # 16 bit inst
 	b	$BB39_3 # 16 bit inst
 $BB39_3:
+	li	$2, %hi(__llvm_gcov_ctr.39)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.39)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_remque)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_remque)
@@ -4326,6 +5758,18 @@ $BB40_2:                                #   in Loop: Header=BB40_1 Depth=1
 	b	$BB40_3 # 16 bit inst
 $BB40_3:
 	lw	$4, 20($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.40)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.40)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.40)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.40)($6)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_lsearch)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_lsearch)
@@ -4347,12 +5791,34 @@ $BB40_3:
 $BB40_4:                                #   in Loop: Header=BB40_1 Depth=1
 	b	$BB40_5 # 16 bit inst
 $BB40_5:                                #   in Loop: Header=BB40_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.40)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.40)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 24($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 24($16)
 	b	$BB40_1 # 16 bit inst
 $BB40_6:
 	lw	$4, 20($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.40)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.40)
+	lw	$2, 20($3)
+	lw	$5, 16($3)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$5, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 28($16)
 	addiu	$2, 1	# 16 bit inst
 	lw	$3, 40($16)
@@ -4457,6 +5923,18 @@ $BB41_2:                                #   in Loop: Header=BB41_1 Depth=1
 	b	$BB41_3 # 16 bit inst
 $BB41_3:
 	lw	$4, 20($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.41)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.41)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.41)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.41)($6)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_lfind)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_lfind)
@@ -4478,11 +5956,33 @@ $BB41_3:
 $BB41_4:                                #   in Loop: Header=BB41_1 Depth=1
 	b	$BB41_5 # 16 bit inst
 $BB41_5:                                #   in Loop: Header=BB41_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.41)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.41)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 24($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 24($16)
 	b	$BB41_1 # 16 bit inst
 $BB41_6:
+	li	$2, %hi(__llvm_gcov_ctr.41)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.41)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 52($16)
 	b	$BB41_7 # 16 bit inst
@@ -4528,6 +6028,18 @@ abs:                                    # @abs
 	btnez	$BB42_2  # 16 bit inst
 	b	$BB42_1 # 16 bit inst
 $BB42_1:
+	li	$2, %hi(__llvm_gcov_ctr.42)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.42)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.42)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.42)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_abs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_abs)
@@ -4543,6 +6055,17 @@ $BB42_1:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB42_3 # 16 bit inst
 $BB42_2:
+	li	$2, %hi(__llvm_gcov_ctr.42)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.42)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	neg	$2, $2
 	sw	$2, 4($16)                      # 4-byte Folded Spill
@@ -4596,6 +6119,18 @@ $BB43_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB43_3  # 16 bit inst
 	b	$BB43_2 # 16 bit inst
 $BB43_2:                                #   in Loop: Header=BB43_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.43)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.43)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_atoi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoi)
@@ -4624,6 +6159,17 @@ $BB43_4:
 	btnez	$BB43_8  # 16 bit inst
 	b	$BB43_5 # 16 bit inst
 $BB43_5:
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_atoi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoi)
@@ -4639,6 +6185,17 @@ $BB43_5:
 	sw	$2, 28($16)
 	b	$BB43_7 # 16 bit inst
 $BB43_6:
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_atoi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoi)
@@ -4677,6 +6234,17 @@ $BB43_9:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB43_11  # 16 bit inst
 	b	$BB43_10 # 16 bit inst
 $BB43_10:                               #   in Loop: Header=BB43_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_atoi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoi)
@@ -4706,6 +6274,17 @@ $BB43_11:
 	beqz	$2, $BB43_13  # 16 bit inst
 	b	$BB43_12 # 16 bit inst
 $BB43_12:
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_atoi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoi)
@@ -4721,6 +6300,17 @@ $BB43_12:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB43_14 # 16 bit inst
 $BB43_13:
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.43)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 32($16)
 	neg	$2, $2
 	sw	$2, 20($16)                     # 4-byte Folded Spill
@@ -4774,6 +6364,18 @@ $BB44_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB44_3  # 16 bit inst
 	b	$BB44_2 # 16 bit inst
 $BB44_2:                                #   in Loop: Header=BB44_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.44)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.44)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_atol)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atol)
@@ -4802,6 +6404,17 @@ $BB44_4:
 	btnez	$BB44_8  # 16 bit inst
 	b	$BB44_5 # 16 bit inst
 $BB44_5:
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_atol)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atol)
@@ -4817,6 +6430,17 @@ $BB44_5:
 	sw	$2, 28($16)
 	b	$BB44_7 # 16 bit inst
 $BB44_6:
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_atol)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atol)
@@ -4855,6 +6479,17 @@ $BB44_9:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB44_11  # 16 bit inst
 	b	$BB44_10 # 16 bit inst
 $BB44_10:                               #   in Loop: Header=BB44_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_atol)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atol)
@@ -4884,6 +6519,17 @@ $BB44_11:
 	beqz	$2, $BB44_13  # 16 bit inst
 	b	$BB44_12 # 16 bit inst
 $BB44_12:
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_atol)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atol)
@@ -4899,6 +6545,17 @@ $BB44_12:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB44_14 # 16 bit inst
 $BB44_13:
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.44)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 32($16)
 	neg	$2, $2
 	sw	$2, 20($16)                     # 4-byte Folded Spill
@@ -4953,6 +6610,18 @@ $BB45_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB45_3  # 16 bit inst
 	b	$BB45_2 # 16 bit inst
 $BB45_2:                                #   in Loop: Header=BB45_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.45)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.45)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_atoll)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoll)
@@ -4981,6 +6650,17 @@ $BB45_4:
 	btnez	$BB45_8  # 16 bit inst
 	b	$BB45_5 # 16 bit inst
 $BB45_5:
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_atoll)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoll)
@@ -4996,6 +6676,17 @@ $BB45_5:
 	sw	$2, 28($16)
 	b	$BB45_7 # 16 bit inst
 $BB45_6:
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_atoll)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoll)
@@ -5034,6 +6725,17 @@ $BB45_9:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB45_11  # 16 bit inst
 	b	$BB45_10 # 16 bit inst
 $BB45_10:                               #   in Loop: Header=BB45_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_atoll)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoll)
@@ -5074,6 +6776,17 @@ $BB45_11:
 	beqz	$2, $BB45_13  # 16 bit inst
 	b	$BB45_12 # 16 bit inst
 $BB45_12:
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_atoll)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_atoll)
@@ -5091,6 +6804,17 @@ $BB45_12:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB45_14 # 16 bit inst
 $BB45_13:
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.45)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 36($16)
 	lw	$3, 32($16)
 	li	$4, 0
@@ -5149,7 +6873,7 @@ bsearch:                                # @bsearch
 	b	$BB46_1 # 16 bit inst
 $BB46_1:                                # =>This Inner Loop Header: Depth=1
 	lw	$2, 32($16)
-	beqz	$2, $BB46_9  # 16 bit inst
+	beqz	$2, $BB46_9
 	b	$BB46_2 # 16 bit inst
 $BB46_2:                                #   in Loop: Header=BB46_1 Depth=1
 	li	$2, %hi($__profc_bsearch)
@@ -5184,6 +6908,17 @@ $BB46_2:                                #   in Loop: Header=BB46_1 Depth=1
 	btnez	$BB46_4  # 16 bit inst
 	b	$BB46_3 # 16 bit inst
 $BB46_3:                                #   in Loop: Header=BB46_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.46)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.46)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_bsearch)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_bsearch)
@@ -5227,14 +6962,48 @@ $BB46_5:                                #   in Loop: Header=BB46_1 Depth=1
 	sw	$2, 32($16)
 	b	$BB46_7 # 16 bit inst
 $BB46_6:
+	li	$2, %hi(__llvm_gcov_ctr.46)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.46)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 24($16)
 	sw	$2, 44($16)
 	b	$BB46_10 # 16 bit inst
 $BB46_7:                                #   in Loop: Header=BB46_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.46)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.46)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB46_8 # 16 bit inst
 $BB46_8:                                #   in Loop: Header=BB46_1 Depth=1
 	b	$BB46_1 # 16 bit inst
 $BB46_9:
+	li	$2, %hi(__llvm_gcov_ctr.46)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.46)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.46)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.46)($5)
+	sw	$2, 4($3)
 	li	$2, 0
 	sw	$2, 44($16)
 	b	$BB46_10 # 16 bit inst
@@ -5287,7 +7056,7 @@ bsearch_r:                              # @bsearch_r
 	b	$BB47_1 # 16 bit inst
 $BB47_1:                                # =>This Inner Loop Header: Depth=1
 	lw	$2, 28($16)
-	beqz	$2, $BB47_8  # 16 bit inst
+	beqz	$2, $BB47_8
 	b	$BB47_2 # 16 bit inst
 $BB47_2:                                #   in Loop: Header=BB47_1 Depth=1
 	li	$2, %hi($__profc_bsearch_r)
@@ -5320,6 +7089,18 @@ $BB47_2:                                #   in Loop: Header=BB47_1 Depth=1
 	bnez	$2, $BB47_4  # 16 bit inst
 	b	$BB47_3 # 16 bit inst
 $BB47_3:
+	li	$2, %hi(__llvm_gcov_ctr.47)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.47)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.47)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.47)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_bsearch_r)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_bsearch_r)
@@ -5340,6 +7121,17 @@ $BB47_4:                                #   in Loop: Header=BB47_1 Depth=1
 	btnez	$BB47_6  # 16 bit inst
 	b	$BB47_5 # 16 bit inst
 $BB47_5:                                #   in Loop: Header=BB47_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.47)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.47)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_bsearch_r)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_bsearch_r)
@@ -5362,11 +7154,33 @@ $BB47_5:                                #   in Loop: Header=BB47_1 Depth=1
 $BB47_6:                                #   in Loop: Header=BB47_1 Depth=1
 	b	$BB47_7 # 16 bit inst
 $BB47_7:                                #   in Loop: Header=BB47_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.47)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.47)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 28($16)
 	sra	$2, $2, 1
 	sw	$2, 28($16)
 	b	$BB47_1 # 16 bit inst
 $BB47_8:
+	li	$2, %hi(__llvm_gcov_ctr.47)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.47)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, 0
 	sw	$2, 52($16)
 	b	$BB47_9 # 16 bit inst
@@ -5387,16 +7201,32 @@ $func_end47:
 	.set	mips16
 	.ent	div
 div:                                    # @div
-	.frame	$16,16,$ra
+	.frame	$16,24,$ra
 	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $17, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
 	move	$2, $4
-	sw	$5, 4($16)
-	sw	$6, 0($16)
+	sw	$2, 4($16)                      # 4-byte Folded Spill
+	li	$2, %hi(__llvm_gcov_ctr.48)
+	sll	$2, $2, 16
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	move	$7, $2
+	addiu	$7, %lo(__llvm_gcov_ctr.48)
+	lw	$3, 4($7)
+	lw	$17, %lo(__llvm_gcov_ctr.48)($2)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$2, $24
+	addu	$3, $3, $2
+	lw	$2, 0($16)                      # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.48)($2)
+	lw	$2, 4($16)                      # 4-byte Folded Reload
+	sw	$3, 4($7)
+	sw	$5, 12($16)
+	sw	$6, 8($16)
 	li	$3, %hi($__profc_div)
 	sll	$7, $3, 16
 	move	$5, $7
@@ -5409,18 +7239,18 @@ div:                                    # @div
 	addu	$3, $3, $17
 	sw	$6, %lo($__profc_div)($7)
 	sw	$3, 4($5)
-	lw	$3, 4($16)
-	lw	$5, 0($16)
+	lw	$3, 12($16)
+	lw	$5, 8($16)
 	div	$zero, $3, $5
 	mflo	$3
 	sw	$3, 0($4)
-	lw	$3, 4($16)
-	lw	$5, 0($16)
+	lw	$3, 12($16)
+	lw	$5, 8($16)
 	div	$zero, $3, $5
 	mfhi	$3
 	sw	$3, 4($4)
 	move	$sp, $16
-	restore	$16, $17, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	div
@@ -5474,6 +7304,18 @@ $BB49_2:
 	bnez	$2, $BB49_4  # 16 bit inst
 	b	$BB49_3 # 16 bit inst
 $BB49_3:
+	li	$2, %hi(__llvm_gcov_ctr.49)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.49)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.49)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.49)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_imaxabs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_imaxabs)
@@ -5491,6 +7333,17 @@ $BB49_3:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB49_5 # 16 bit inst
 $BB49_4:
+	li	$2, %hi(__llvm_gcov_ctr.49)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.49)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 20($16)
 	lw	$3, 16($16)
 	li	$4, 0
@@ -5522,23 +7375,39 @@ $func_end49:
 	.set	mips16
 	.ent	imaxdiv
 imaxdiv:                                # @imaxdiv
-	.frame	$16,56,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,72,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 56 # 16 bit inst
+	save	$16, $17, $ra, 72 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 20($16)                     # 4-byte Folded Spill
-	sw	$4, 24($16)                     # 4-byte Folded Spill
-	lw	$3, 76($16)
-	lw	$2, 72($16)
-                                        # kill: def $a0 killed $a3
-                                        # kill: def $a0 killed $a2
-	sw	$7, 44($16)
-	sw	$6, 40($16)
-	sw	$3, 36($16)
-	sw	$2, 32($16)
+	sw	$4, 28($16)                     # 4-byte Folded Spill
+	sw	$4, 32($16)                     # 4-byte Folded Spill
+	lw	$3, 92($16)
+	lw	$2, 88($16)
+	sw	$2, 24($16)                     # 4-byte Folded Spill
+                                        # kill: def $v0 killed $a3
+                                        # kill: def $v0 killed $a2
+	li	$2, %hi(__llvm_gcov_ctr.50)
+	sll	$2, $2, 16
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	move	$5, $2
+	addiu	$5, %lo(__llvm_gcov_ctr.50)
+	lw	$4, 4($5)
+	lw	$17, %lo(__llvm_gcov_ctr.50)($2)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$2, $24
+	addu	$4, $4, $2
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.50)($2)
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$4, 4($5)
+	sw	$7, 52($16)
+	sw	$6, 48($16)
+	sw	$3, 44($16)
+	sw	$2, 40($16)
 	li	$2, %hi($__profc_imaxdiv)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -5551,31 +7420,31 @@ imaxdiv:                                # @imaxdiv
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_imaxdiv)($5)
 	sw	$2, 4($3)
-	lw	$4, 40($16)
-	lw	$5, 44($16)
-	lw	$6, 32($16)
-	lw	$7, 36($16)
+	lw	$4, 48($16)
+	lw	$5, 52($16)
+	lw	$6, 40($16)
+	lw	$7, 44($16)
 	jal	__divdi3
 	nop
-	lw	$4, 20($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
 	sw	$3, 4($4)
 	sw	$2, 0($4)
-	lw	$4, 40($16)
-	lw	$5, 44($16)
-	lw	$6, 32($16)
-	lw	$7, 36($16)
+	lw	$4, 48($16)
+	lw	$5, 52($16)
+	lw	$6, 40($16)
+	lw	$7, 44($16)
 	jal	__moddi3
 	nop
-	lw	$4, 20($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
 	move	$5, $2
-	lw	$2, 24($16)                     # 4-byte Folded Reload
-	sw	$5, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 32($16)                     # 4-byte Folded Reload
+	sw	$5, 36($16)                     # 4-byte Folded Spill
 	move	$5, $3
-	lw	$3, 28($16)                     # 4-byte Folded Reload
+	lw	$3, 36($16)                     # 4-byte Folded Reload
 	sw	$5, 12($4)
 	sw	$3, 8($4)
 	move	$sp, $16
-	restore	$16, $ra, 56 # 16 bit inst
+	restore	$16, $17, $ra, 72 # 16 bit inst
 
 	jrc	$ra
 	.end	imaxdiv
@@ -5614,6 +7483,18 @@ labs:                                   # @labs
 	btnez	$BB51_2  # 16 bit inst
 	b	$BB51_1 # 16 bit inst
 $BB51_1:
+	li	$2, %hi(__llvm_gcov_ctr.51)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.51)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.51)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.51)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_labs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_labs)
@@ -5629,6 +7510,17 @@ $BB51_1:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB51_3 # 16 bit inst
 $BB51_2:
+	li	$2, %hi(__llvm_gcov_ctr.51)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.51)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	neg	$2, $2
 	sw	$2, 4($16)                      # 4-byte Folded Spill
@@ -5650,16 +7542,32 @@ $func_end51:
 	.set	mips16
 	.ent	ldiv
 ldiv:                                   # @ldiv
-	.frame	$16,16,$ra
+	.frame	$16,24,$ra
 	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $17, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
 	move	$2, $4
-	sw	$5, 4($16)
-	sw	$6, 0($16)
+	sw	$2, 4($16)                      # 4-byte Folded Spill
+	li	$2, %hi(__llvm_gcov_ctr.52)
+	sll	$2, $2, 16
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	move	$7, $2
+	addiu	$7, %lo(__llvm_gcov_ctr.52)
+	lw	$3, 4($7)
+	lw	$17, %lo(__llvm_gcov_ctr.52)($2)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$2, $24
+	addu	$3, $3, $2
+	lw	$2, 0($16)                      # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.52)($2)
+	lw	$2, 4($16)                      # 4-byte Folded Reload
+	sw	$3, 4($7)
+	sw	$5, 12($16)
+	sw	$6, 8($16)
 	li	$3, %hi($__profc_ldiv)
 	sll	$7, $3, 16
 	move	$5, $7
@@ -5672,18 +7580,18 @@ ldiv:                                   # @ldiv
 	addu	$3, $3, $17
 	sw	$6, %lo($__profc_ldiv)($7)
 	sw	$3, 4($5)
-	lw	$3, 4($16)
-	lw	$5, 0($16)
+	lw	$3, 12($16)
+	lw	$5, 8($16)
 	div	$zero, $3, $5
 	mflo	$3
 	sw	$3, 0($4)
-	lw	$3, 4($16)
-	lw	$5, 0($16)
+	lw	$3, 12($16)
+	lw	$5, 8($16)
 	div	$zero, $3, $5
 	mfhi	$3
 	sw	$3, 4($4)
 	move	$sp, $16
-	restore	$16, $17, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	ldiv
@@ -5737,6 +7645,18 @@ $BB53_2:
 	bnez	$2, $BB53_4  # 16 bit inst
 	b	$BB53_3 # 16 bit inst
 $BB53_3:
+	li	$2, %hi(__llvm_gcov_ctr.53)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.53)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.53)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.53)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_llabs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_llabs)
@@ -5754,6 +7674,17 @@ $BB53_3:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB53_5 # 16 bit inst
 $BB53_4:
+	li	$2, %hi(__llvm_gcov_ctr.53)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.53)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 20($16)
 	lw	$3, 16($16)
 	li	$4, 0
@@ -5785,23 +7716,39 @@ $func_end53:
 	.set	mips16
 	.ent	lldiv
 lldiv:                                  # @lldiv
-	.frame	$16,56,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,72,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 56 # 16 bit inst
+	save	$16, $17, $ra, 72 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 20($16)                     # 4-byte Folded Spill
-	sw	$4, 24($16)                     # 4-byte Folded Spill
-	lw	$3, 76($16)
-	lw	$2, 72($16)
-                                        # kill: def $a0 killed $a3
-                                        # kill: def $a0 killed $a2
-	sw	$7, 44($16)
-	sw	$6, 40($16)
-	sw	$3, 36($16)
-	sw	$2, 32($16)
+	sw	$4, 28($16)                     # 4-byte Folded Spill
+	sw	$4, 32($16)                     # 4-byte Folded Spill
+	lw	$3, 92($16)
+	lw	$2, 88($16)
+	sw	$2, 24($16)                     # 4-byte Folded Spill
+                                        # kill: def $v0 killed $a3
+                                        # kill: def $v0 killed $a2
+	li	$2, %hi(__llvm_gcov_ctr.54)
+	sll	$2, $2, 16
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	move	$5, $2
+	addiu	$5, %lo(__llvm_gcov_ctr.54)
+	lw	$4, 4($5)
+	lw	$17, %lo(__llvm_gcov_ctr.54)($2)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$2, $24
+	addu	$4, $4, $2
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.54)($2)
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$4, 4($5)
+	sw	$7, 52($16)
+	sw	$6, 48($16)
+	sw	$3, 44($16)
+	sw	$2, 40($16)
 	li	$2, %hi($__profc_lldiv)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -5814,31 +7761,31 @@ lldiv:                                  # @lldiv
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_lldiv)($5)
 	sw	$2, 4($3)
-	lw	$4, 40($16)
-	lw	$5, 44($16)
-	lw	$6, 32($16)
-	lw	$7, 36($16)
+	lw	$4, 48($16)
+	lw	$5, 52($16)
+	lw	$6, 40($16)
+	lw	$7, 44($16)
 	jal	__divdi3
 	nop
-	lw	$4, 20($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
 	sw	$3, 4($4)
 	sw	$2, 0($4)
-	lw	$4, 40($16)
-	lw	$5, 44($16)
-	lw	$6, 32($16)
-	lw	$7, 36($16)
+	lw	$4, 48($16)
+	lw	$5, 52($16)
+	lw	$6, 40($16)
+	lw	$7, 44($16)
 	jal	__moddi3
 	nop
-	lw	$4, 20($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
 	move	$5, $2
-	lw	$2, 24($16)                     # 4-byte Folded Reload
-	sw	$5, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 32($16)                     # 4-byte Folded Reload
+	sw	$5, 36($16)                     # 4-byte Folded Spill
 	move	$5, $3
-	lw	$3, 28($16)                     # 4-byte Folded Reload
+	lw	$3, 36($16)                     # 4-byte Folded Reload
 	sw	$5, 12($4)
 	sw	$3, 8($4)
 	move	$sp, $16
-	restore	$16, $ra, 56 # 16 bit inst
+	restore	$16, $17, $ra, 72 # 16 bit inst
 
 	jrc	$ra
 	.end	lldiv
@@ -5882,6 +7829,18 @@ $BB55_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB55_4  # 16 bit inst
 	b	$BB55_2 # 16 bit inst
 $BB55_2:                                #   in Loop: Header=BB55_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.55)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.55)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.55)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.55)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wcschr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcschr)
@@ -5908,6 +7867,17 @@ $BB55_2:                                #   in Loop: Header=BB55_1 Depth=1
 	b	$BB55_3 # 16 bit inst
 $BB55_3:                                #   in Loop: Header=BB55_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.55)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.55)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_wcschr)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_wcschr)
@@ -5941,6 +7911,17 @@ $BB55_5:                                #   in Loop: Header=BB55_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB55_6 # 16 bit inst
 $BB55_6:                                #   in Loop: Header=BB55_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.55)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.55)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 16($16)
 	addiu	$2, 4	# 16 bit inst
 	sw	$2, 16($16)
@@ -5951,6 +7932,17 @@ $BB55_7:
 	beqz	$2, $BB55_9  # 16 bit inst
 	b	$BB55_8 # 16 bit inst
 $BB55_8:
+	li	$2, %hi(__llvm_gcov_ctr.55)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.55)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_wcschr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcschr)
@@ -5966,6 +7958,17 @@ $BB55_8:
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB55_10 # 16 bit inst
 $BB55_9:
+	li	$2, %hi(__llvm_gcov_ctr.55)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.55)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 0
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB55_10 # 16 bit inst
@@ -6016,9 +8019,21 @@ $BB56_1:                                # =>This Inner Loop Header: Depth=1
 	li	$2, 0
 	cmp	$3, $4
 	sw	$2, 8($16)                      # 4-byte Folded Spill
-	btnez	$BB56_6  # 16 bit inst
+	btnez	$BB56_6
 	b	$BB56_2 # 16 bit inst
 $BB56_2:                                #   in Loop: Header=BB56_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.56)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.56)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.56)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wcscmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcscmp)
@@ -6037,6 +8052,17 @@ $BB56_2:                                #   in Loop: Header=BB56_1 Depth=1
 	beqz	$2, $BB56_6  # 16 bit inst
 	b	$BB56_3 # 16 bit inst
 $BB56_3:                                #   in Loop: Header=BB56_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.56)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wcscmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcscmp)
@@ -6074,6 +8100,17 @@ $BB56_4:                                #   in Loop: Header=BB56_1 Depth=1
 	b	$BB56_5 # 16 bit inst
 $BB56_5:                                #   in Loop: Header=BB56_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.56)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.56)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_wcscmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_wcscmp)
@@ -6107,6 +8144,17 @@ $BB56_7:                                #   in Loop: Header=BB56_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB56_8 # 16 bit inst
 $BB56_8:                                #   in Loop: Header=BB56_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.56)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 16($16)
 	addiu	$2, 4	# 16 bit inst
 	sw	$2, 16($16)
@@ -6123,6 +8171,17 @@ $BB56_9:
 	bteqz	$BB56_11  # 16 bit inst
 	b	$BB56_10 # 16 bit inst
 $BB56_10:
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.56)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_wcscmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcscmp)
@@ -6139,6 +8198,17 @@ $BB56_10:
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB56_12 # 16 bit inst
 $BB56_11:
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.56)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 16($16)
 	lw	$3, 0($2)
 	lw	$2, 12($16)
@@ -6164,15 +8234,27 @@ $func_end56:
 	.set	mips16
 	.ent	wcscpy
 wcscpy:                                 # @wcscpy
-	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,24,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.57)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.57)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.57)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.57)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc_wcscpy)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -6185,23 +8267,34 @@ wcscpy:                                 # @wcscpy
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_wcscpy)($5)
 	sw	$2, 4($3)
-	lw	$2, 8($16)
-	sw	$2, 0($16)
+	lw	$2, 12($16)
+	sw	$2, 4($16)
 	b	$BB57_1 # 16 bit inst
 $BB57_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	move	$3, $2
 	addiu	$3, 4	# 16 bit inst
-	sw	$3, 4($16)
+	sw	$3, 8($16)
 	lw	$2, 0($2)
-	lw	$3, 8($16)
+	lw	$3, 12($16)
 	move	$4, $3
 	addiu	$4, 4	# 16 bit inst
-	sw	$4, 8($16)
+	sw	$4, 12($16)
 	sw	$2, 0($3)
 	beqz	$2, $BB57_3  # 16 bit inst
 	b	$BB57_2 # 16 bit inst
 $BB57_2:                                #   in Loop: Header=BB57_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.57)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.57)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wcscpy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcscpy)
@@ -6215,9 +8308,9 @@ $BB57_2:                                #   in Loop: Header=BB57_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB57_1 # 16 bit inst
 $BB57_3:
-	lw	$2, 0($16)
+	lw	$2, 4($16)
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	wcscpy
@@ -6238,6 +8331,18 @@ wcslen:                                 # @wcslen
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.58)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.58)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.58)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.58)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_wcslen)
 	sll	$5, $2, 16
@@ -6273,6 +8378,17 @@ $BB58_2:                                #   in Loop: Header=BB58_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB58_3 # 16 bit inst
 $BB58_3:                                #   in Loop: Header=BB58_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.58)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.58)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	addiu	$2, 4	# 16 bit inst
 	sw	$2, 8($16)
@@ -6327,6 +8443,18 @@ $BB59_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB59_8
 	b	$BB59_2 # 16 bit inst
 $BB59_2:                                #   in Loop: Header=BB59_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.59)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.59)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wcsncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcsncmp)
@@ -6345,9 +8473,20 @@ $BB59_2:                                #   in Loop: Header=BB59_1 Depth=1
 	li	$2, 0
 	cmp	$3, $4
 	sw	$2, 12($16)                     # 4-byte Folded Spill
-	btnez	$BB59_8  # 16 bit inst
+	btnez	$BB59_8
 	b	$BB59_3 # 16 bit inst
 $BB59_3:                                #   in Loop: Header=BB59_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wcsncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcsncmp)
@@ -6379,6 +8518,17 @@ $BB59_4:                                #   in Loop: Header=BB59_1 Depth=1
 	beqz	$2, $BB59_8  # 16 bit inst
 	b	$BB59_5 # 16 bit inst
 $BB59_5:                                #   in Loop: Header=BB59_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_wcsncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcsncmp)
@@ -6416,6 +8566,17 @@ $BB59_6:                                #   in Loop: Header=BB59_1 Depth=1
 	b	$BB59_7 # 16 bit inst
 $BB59_7:                                #   in Loop: Header=BB59_1 Depth=1
 	lw	$2, 8($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.59)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.59)
+	lw	$3, 28($4)
+	lw	$5, 24($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 24($4)
+	sw	$3, 28($4)
 	li	$3, %hi($__profc_wcsncmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_wcsncmp)
@@ -6449,6 +8610,17 @@ $BB59_9:                                #   in Loop: Header=BB59_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB59_10 # 16 bit inst
 $BB59_10:                               #   in Loop: Header=BB59_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$2, 16($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 16($16)
@@ -6483,6 +8655,17 @@ $BB59_12:
 	bteqz	$BB59_14  # 16 bit inst
 	b	$BB59_13 # 16 bit inst
 $BB59_13:
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	li	$2, %hi($__profc_wcsncmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wcsncmp)
@@ -6499,6 +8682,17 @@ $BB59_13:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB59_15 # 16 bit inst
 $BB59_14:
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	lw	$2, 24($16)
 	lw	$3, 0($2)
 	lw	$2, 20($16)
@@ -6512,6 +8706,17 @@ $BB59_15:
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB59_17 # 16 bit inst
 $BB59_16:
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.59)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	li	$2, 0
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB59_17 # 16 bit inst
@@ -6562,6 +8767,18 @@ $BB60_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB60_4  # 16 bit inst
 	b	$BB60_2 # 16 bit inst
 $BB60_2:                                #   in Loop: Header=BB60_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.60)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.60)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.60)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.60)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wmemchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemchr)
@@ -6588,6 +8805,17 @@ $BB60_2:                                #   in Loop: Header=BB60_1 Depth=1
 	b	$BB60_3 # 16 bit inst
 $BB60_3:                                #   in Loop: Header=BB60_1 Depth=1
 	lw	$2, 8($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.60)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.60)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_wmemchr)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_wmemchr)
@@ -6621,6 +8849,17 @@ $BB60_5:                                #   in Loop: Header=BB60_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB60_6 # 16 bit inst
 $BB60_6:                                #   in Loop: Header=BB60_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.60)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.60)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 16($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 16($16)
@@ -6633,6 +8872,17 @@ $BB60_7:
 	beqz	$2, $BB60_9  # 16 bit inst
 	b	$BB60_8 # 16 bit inst
 $BB60_8:
+	li	$2, %hi(__llvm_gcov_ctr.60)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.60)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_wmemchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemchr)
@@ -6648,6 +8898,17 @@ $BB60_8:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB60_10 # 16 bit inst
 $BB60_9:
+	li	$2, %hi(__llvm_gcov_ctr.60)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.60)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 0
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB60_10 # 16 bit inst
@@ -6698,6 +8959,18 @@ $BB61_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB61_4  # 16 bit inst
 	b	$BB61_2 # 16 bit inst
 $BB61_2:                                #   in Loop: Header=BB61_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.61)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.61)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.61)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wmemcmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemcmp)
@@ -6724,6 +8997,17 @@ $BB61_2:                                #   in Loop: Header=BB61_1 Depth=1
 	b	$BB61_3 # 16 bit inst
 $BB61_3:                                #   in Loop: Header=BB61_1 Depth=1
 	lw	$2, 8($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.61)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.61)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_wmemcmp)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_wmemcmp)
@@ -6757,6 +9041,17 @@ $BB61_5:                                #   in Loop: Header=BB61_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB61_6 # 16 bit inst
 $BB61_6:                                #   in Loop: Header=BB61_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.61)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 16($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 16($16)
@@ -6791,6 +9086,17 @@ $BB61_8:
 	bteqz	$BB61_10  # 16 bit inst
 	b	$BB61_9 # 16 bit inst
 $BB61_9:
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.61)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_wmemcmp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemcmp)
@@ -6807,6 +9113,17 @@ $BB61_9:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB61_11 # 16 bit inst
 $BB61_10:
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.61)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$2, 24($16)
 	lw	$3, 0($2)
 	lw	$2, 20($16)
@@ -6820,6 +9137,17 @@ $BB61_11:
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB61_13 # 16 bit inst
 $BB61_12:
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.61)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	li	$2, 0
 	sw	$2, 0($16)                      # 4-byte Folded Spill
 	b	$BB61_13 # 16 bit inst
@@ -6840,16 +9168,30 @@ $func_end61:
 	.set	mips16
 	.ent	wmemcpy
 wmemcpy:                                # @wmemcpy
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.62)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.62)
+	sw	$2, 4($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.62)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 4($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.62)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_wmemcpy)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -6862,17 +9204,28 @@ wmemcpy:                                # @wmemcpy
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_wmemcpy)($5)
 	sw	$2, 4($3)
-	lw	$2, 16($16)
-	sw	$2, 4($16)
+	lw	$2, 20($16)
+	sw	$2, 8($16)
 	b	$BB62_1 # 16 bit inst
 $BB62_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	move	$3, $2
 	addiu	$3, -1	# 16 bit inst
-	sw	$3, 8($16)
+	sw	$3, 12($16)
 	beqz	$2, $BB62_3  # 16 bit inst
 	b	$BB62_2 # 16 bit inst
 $BB62_2:                                #   in Loop: Header=BB62_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.62)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.62)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wmemcpy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemcpy)
@@ -6884,21 +9237,21 @@ $BB62_2:                                #   in Loop: Header=BB62_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 12($16)
+	lw	$2, 16($16)
 	move	$3, $2
 	addiu	$3, 4	# 16 bit inst
-	sw	$3, 12($16)
+	sw	$3, 16($16)
 	lw	$2, 0($2)
-	lw	$3, 16($16)
+	lw	$3, 20($16)
 	move	$4, $3
 	addiu	$4, 4	# 16 bit inst
-	sw	$4, 16($16)
+	sw	$4, 20($16)
 	sw	$2, 0($3)
 	b	$BB62_1 # 16 bit inst
 $BB62_3:
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	wmemcpy
@@ -6942,6 +9295,18 @@ wmemmove:                               # @wmemmove
 	btnez	$BB63_2  # 16 bit inst
 	b	$BB63_1 # 16 bit inst
 $BB63_1:
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.63)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.63)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.63)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_wmemmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemmove)
@@ -6969,6 +9334,17 @@ $BB63_2:
 	bnez	$2, $BB63_7  # 16 bit inst
 	b	$BB63_3 # 16 bit inst
 $BB63_3:
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.63)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wmemmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemmove)
@@ -6989,6 +9365,17 @@ $BB63_4:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB63_6  # 16 bit inst
 	b	$BB63_5 # 16 bit inst
 $BB63_5:                                #   in Loop: Header=BB63_4 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.63)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_wmemmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemmove)
@@ -7021,6 +9408,17 @@ $BB63_8:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB63_10  # 16 bit inst
 	b	$BB63_9 # 16 bit inst
 $BB63_9:                                #   in Loop: Header=BB63_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.63)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_wmemmove)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemmove)
@@ -7044,6 +9442,17 @@ $BB63_9:                                #   in Loop: Header=BB63_8 Depth=1
 	sw	$2, 0($3)
 	b	$BB63_8 # 16 bit inst
 $BB63_10:
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.63)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	b	$BB63_11 # 16 bit inst
 $BB63_11:
 	lw	$2, 0($16)
@@ -7066,16 +9475,30 @@ $func_end63:
 	.set	mips16
 	.ent	wmemset
 wmemset:                                # @wmemset
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.64)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.64)
+	sw	$2, 4($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.64)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 4($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.64)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_wmemset)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7088,17 +9511,28 @@ wmemset:                                # @wmemset
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_wmemset)($5)
 	sw	$2, 4($3)
-	lw	$2, 16($16)
-	sw	$2, 4($16)
+	lw	$2, 20($16)
+	sw	$2, 8($16)
 	b	$BB64_1 # 16 bit inst
 $BB64_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	move	$3, $2
 	addiu	$3, -1	# 16 bit inst
-	sw	$3, 8($16)
+	sw	$3, 12($16)
 	beqz	$2, $BB64_3  # 16 bit inst
 	b	$BB64_2 # 16 bit inst
 $BB64_2:                                #   in Loop: Header=BB64_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.64)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.64)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_wmemset)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_wmemset)
@@ -7110,17 +9544,17 @@ $BB64_2:                                #   in Loop: Header=BB64_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 12($16)
-	lw	$3, 16($16)
+	lw	$2, 16($16)
+	lw	$3, 20($16)
 	move	$4, $3
 	addiu	$4, 4	# 16 bit inst
-	sw	$4, 16($16)
+	sw	$4, 20($16)
 	sw	$2, 0($3)
 	b	$BB64_1 # 16 bit inst
 $BB64_3:
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	wmemset
@@ -7169,6 +9603,18 @@ bcopy:                                  # @bcopy
 	bnez	$2, $BB65_6  # 16 bit inst
 	b	$BB65_1 # 16 bit inst
 $BB65_1:
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.65)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.65)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.65)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_bcopy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_bcopy)
@@ -7217,6 +9663,17 @@ $BB65_3:                                #   in Loop: Header=BB65_2 Depth=1
 	sb	$2, -1($3)
 	b	$BB65_4 # 16 bit inst
 $BB65_4:                                #   in Loop: Header=BB65_2 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.65)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 8($16)
 	addiu	$2, -1	# 16 bit inst
 	sw	$2, 8($16)
@@ -7247,6 +9704,17 @@ $BB65_8:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB65_11  # 16 bit inst
 	b	$BB65_9 # 16 bit inst
 $BB65_9:                                #   in Loop: Header=BB65_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.65)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_bcopy)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_bcopy)
@@ -7275,8 +9743,30 @@ $BB65_10:                               #   in Loop: Header=BB65_8 Depth=1
 	sw	$2, 8($16)
 	b	$BB65_8 # 16 bit inst
 $BB65_11:
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.65)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB65_12 # 16 bit inst
 $BB65_12:
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.65)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	b	$BB65_13 # 16 bit inst
 $BB65_13:
 	move	$sp, $16
@@ -7294,18 +9784,32 @@ $func_end65:
 	.set	mips16
 	.ent	rotl64
 rotl64:                                 # @rotl64
-	.frame	$16,96,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,104,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 96 # 16 bit inst
+	save	$16, $17, 104 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 84($16)
-	sw	$4, 80($16)
-	sw	$6, 76($16)
+	li	$2, %hi(__llvm_gcov_ctr.66)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.66)
+	sw	$2, 48($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.66)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 48($16)                     # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.66)($17)
+	sw	$2, 4($3)
+	sw	$5, 92($16)
+	sw	$4, 88($16)
+	sw	$6, 84($16)
 	li	$2, %hi($__profc_rotl64)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7318,55 +9822,55 @@ rotl64:                                 # @rotl64
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotl64)($5)
 	sw	$2, 4($3)
-	lw	$2, 84($16)
-	sw	$2, 44($16)                     # 4-byte Folded Spill
-	lw	$3, 80($16)
-	sw	$3, 48($16)                     # 4-byte Folded Spill
-	lw	$4, 76($16)
-	sw	$4, 52($16)                     # 4-byte Folded Spill
+	lw	$2, 92($16)
+	sw	$2, 52($16)                     # 4-byte Folded Spill
+	lw	$3, 88($16)
+	sw	$3, 56($16)                     # 4-byte Folded Spill
+	lw	$4, 84($16)
+	sw	$4, 60($16)                     # 4-byte Folded Spill
 	li	$5, 32
-	sw	$5, 56($16)                     # 4-byte Folded Spill
+	sw	$5, 64($16)                     # 4-byte Folded Spill
 	move	$2, $4
 	and	$2, $5
-	sw	$2, 60($16)                     # 4-byte Folded Spill
+	sw	$2, 68($16)                     # 4-byte Folded Spill
 	sllv	$3, $4
-	sw	$3, 64($16)                     # 4-byte Folded Spill
-	li	$3, 0
-	sw	$3, 68($16)                     # 4-byte Folded Spill
 	sw	$3, 72($16)                     # 4-byte Folded Spill
+	li	$3, 0
+	sw	$3, 76($16)                     # 4-byte Folded Spill
+	sw	$3, 80($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB66_2  # 16 bit inst
 # %bb.1:
-	lw	$2, 64($16)                     # 4-byte Folded Reload
-	sw	$2, 72($16)                     # 4-byte Folded Spill
+	lw	$2, 72($16)                     # 4-byte Folded Reload
+	sw	$2, 80($16)                     # 4-byte Folded Spill
 $BB66_2:
-	lw	$2, 60($16)                     # 4-byte Folded Reload
-	lw	$3, 64($16)                     # 4-byte Folded Reload
-	lw	$5, 48($16)                     # 4-byte Folded Reload
-	lw	$6, 52($16)                     # 4-byte Folded Reload
-	lw	$4, 44($16)                     # 4-byte Folded Reload
-	lw	$7, 72($16)                     # 4-byte Folded Reload
-	sw	$7, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 68($16)                     # 4-byte Folded Reload
+	lw	$3, 72($16)                     # 4-byte Folded Reload
+	lw	$5, 56($16)                     # 4-byte Folded Reload
+	lw	$6, 60($16)                     # 4-byte Folded Reload
+	lw	$4, 52($16)                     # 4-byte Folded Reload
+	lw	$7, 80($16)                     # 4-byte Folded Reload
+	sw	$7, 32($16)                     # 4-byte Folded Spill
 	sllv	$4, $6
 	li	$7, 31
-	sw	$7, 32($16)                     # 4-byte Folded Spill
+	sw	$7, 36($16)                     # 4-byte Folded Spill
 	xor	$6, $7
 	srl	$5, $5, 1
 	srlv	$5, $6
 	or	$4, $5
-	sw	$4, 36($16)                     # 4-byte Folded Spill
-	sw	$3, 40($16)                     # 4-byte Folded Spill
+	sw	$4, 40($16)                     # 4-byte Folded Spill
+	sw	$3, 44($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB66_4  # 16 bit inst
 # %bb.3:
-	lw	$2, 36($16)                     # 4-byte Folded Reload
-	sw	$2, 40($16)                     # 4-byte Folded Spill
+	lw	$2, 40($16)                     # 4-byte Folded Reload
+	sw	$2, 44($16)                     # 4-byte Folded Spill
 $BB66_4:
-	lw	$3, 44($16)                     # 4-byte Folded Reload
-	lw	$5, 56($16)                     # 4-byte Folded Reload
-	lw	$2, 32($16)                     # 4-byte Folded Reload
-	lw	$6, 48($16)                     # 4-byte Folded Reload
-	lw	$7, 52($16)                     # 4-byte Folded Reload
-	lw	$4, 40($16)                     # 4-byte Folded Reload
-	sw	$4, 8($16)                      # 4-byte Folded Spill
+	lw	$3, 52($16)                     # 4-byte Folded Reload
+	lw	$5, 64($16)                     # 4-byte Folded Reload
+	lw	$2, 36($16)                     # 4-byte Folded Reload
+	lw	$6, 56($16)                     # 4-byte Folded Reload
+	lw	$7, 60($16)                     # 4-byte Folded Reload
+	lw	$4, 44($16)                     # 4-byte Folded Reload
+	sw	$4, 12($16)                     # 4-byte Folded Spill
 	li	$4, 64
 	subu	$4, $4, $7
 	srlv	$6, $4
@@ -7375,36 +9879,36 @@ $BB66_4:
 	sll	$2, $3, 1
 	sllv	$2, $7
 	or	$2, $6
-	sw	$2, 12($16)                     # 4-byte Folded Spill
+	sw	$2, 16($16)                     # 4-byte Folded Spill
 	move	$2, $4
 	and	$2, $5
-	sw	$2, 16($16)                     # 4-byte Folded Spill
+	sw	$2, 20($16)                     # 4-byte Folded Spill
 	srlv	$3, $4
-	sw	$3, 20($16)                     # 4-byte Folded Spill
 	sw	$3, 24($16)                     # 4-byte Folded Spill
+	sw	$3, 28($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB66_6  # 16 bit inst
 # %bb.5:
-	lw	$2, 12($16)                     # 4-byte Folded Reload
-	sw	$2, 24($16)                     # 4-byte Folded Spill
-$BB66_6:
 	lw	$2, 16($16)                     # 4-byte Folded Reload
-	lw	$3, 68($16)                     # 4-byte Folded Reload
-	lw	$4, 24($16)                     # 4-byte Folded Reload
-	sw	$4, 0($16)                      # 4-byte Folded Spill
-	sw	$3, 4($16)                      # 4-byte Folded Spill
+	sw	$2, 28($16)                     # 4-byte Folded Spill
+$BB66_6:
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	lw	$3, 76($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
+	sw	$4, 4($16)                      # 4-byte Folded Spill
+	sw	$3, 8($16)                      # 4-byte Folded Spill
 	bnez	$2, $BB66_8  # 16 bit inst
 # %bb.7:
-	lw	$2, 20($16)                     # 4-byte Folded Reload
-	sw	$2, 4($16)                      # 4-byte Folded Spill
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$2, 8($16)                      # 4-byte Folded Spill
 $BB66_8:
-	lw	$4, 0($16)                      # 4-byte Folded Reload
-	lw	$2, 28($16)                     # 4-byte Folded Reload
-	lw	$3, 8($16)                      # 4-byte Folded Reload
-	lw	$5, 4($16)                      # 4-byte Folded Reload
+	lw	$4, 4($16)                      # 4-byte Folded Reload
+	lw	$2, 32($16)                     # 4-byte Folded Reload
+	lw	$3, 12($16)                     # 4-byte Folded Reload
+	lw	$5, 8($16)                      # 4-byte Folded Reload
 	or	$3, $5
 	or	$2, $4
 	move	$sp, $16
-	restore	$16, 96 # 16 bit inst
+	restore	$16, $17, 104 # 16 bit inst
 
 	jrc	$ra
 	.end	rotl64
@@ -7418,18 +9922,32 @@ $func_end66:
 	.set	mips16
 	.ent	rotr64
 rotr64:                                 # @rotr64
-	.frame	$16,96,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,104,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 96 # 16 bit inst
+	save	$16, $17, 104 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 84($16)
-	sw	$4, 80($16)
-	sw	$6, 76($16)
+	li	$2, %hi(__llvm_gcov_ctr.67)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.67)
+	sw	$2, 48($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.67)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 48($16)                     # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.67)($17)
+	sw	$2, 4($3)
+	sw	$5, 92($16)
+	sw	$4, 88($16)
+	sw	$6, 84($16)
 	li	$2, %hi($__profc_rotr64)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7442,55 +9960,55 @@ rotr64:                                 # @rotr64
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotr64)($5)
 	sw	$2, 4($3)
-	lw	$2, 80($16)
-	sw	$2, 44($16)                     # 4-byte Folded Spill
-	lw	$3, 84($16)
-	sw	$3, 48($16)                     # 4-byte Folded Spill
-	lw	$4, 76($16)
-	sw	$4, 52($16)                     # 4-byte Folded Spill
+	lw	$2, 88($16)
+	sw	$2, 52($16)                     # 4-byte Folded Spill
+	lw	$3, 92($16)
+	sw	$3, 56($16)                     # 4-byte Folded Spill
+	lw	$4, 84($16)
+	sw	$4, 60($16)                     # 4-byte Folded Spill
 	li	$5, 32
-	sw	$5, 56($16)                     # 4-byte Folded Spill
+	sw	$5, 64($16)                     # 4-byte Folded Spill
 	move	$2, $4
 	and	$2, $5
-	sw	$2, 60($16)                     # 4-byte Folded Spill
+	sw	$2, 68($16)                     # 4-byte Folded Spill
 	srlv	$3, $4
-	sw	$3, 64($16)                     # 4-byte Folded Spill
-	li	$3, 0
-	sw	$3, 68($16)                     # 4-byte Folded Spill
 	sw	$3, 72($16)                     # 4-byte Folded Spill
+	li	$3, 0
+	sw	$3, 76($16)                     # 4-byte Folded Spill
+	sw	$3, 80($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB67_2  # 16 bit inst
 # %bb.1:
-	lw	$2, 64($16)                     # 4-byte Folded Reload
-	sw	$2, 72($16)                     # 4-byte Folded Spill
+	lw	$2, 72($16)                     # 4-byte Folded Reload
+	sw	$2, 80($16)                     # 4-byte Folded Spill
 $BB67_2:
-	lw	$2, 60($16)                     # 4-byte Folded Reload
-	lw	$3, 64($16)                     # 4-byte Folded Reload
-	lw	$4, 48($16)                     # 4-byte Folded Reload
-	lw	$6, 52($16)                     # 4-byte Folded Reload
-	lw	$5, 44($16)                     # 4-byte Folded Reload
-	lw	$7, 72($16)                     # 4-byte Folded Reload
-	sw	$7, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 68($16)                     # 4-byte Folded Reload
+	lw	$3, 72($16)                     # 4-byte Folded Reload
+	lw	$4, 56($16)                     # 4-byte Folded Reload
+	lw	$6, 60($16)                     # 4-byte Folded Reload
+	lw	$5, 52($16)                     # 4-byte Folded Reload
+	lw	$7, 80($16)                     # 4-byte Folded Reload
+	sw	$7, 32($16)                     # 4-byte Folded Spill
 	srlv	$5, $6
 	li	$7, 31
-	sw	$7, 32($16)                     # 4-byte Folded Spill
+	sw	$7, 36($16)                     # 4-byte Folded Spill
 	xor	$6, $7
 	sll	$4, $4, 1
 	sllv	$4, $6
 	or	$4, $5
-	sw	$4, 36($16)                     # 4-byte Folded Spill
-	sw	$3, 40($16)                     # 4-byte Folded Spill
+	sw	$4, 40($16)                     # 4-byte Folded Spill
+	sw	$3, 44($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB67_4  # 16 bit inst
 # %bb.3:
-	lw	$2, 36($16)                     # 4-byte Folded Reload
-	sw	$2, 40($16)                     # 4-byte Folded Spill
+	lw	$2, 40($16)                     # 4-byte Folded Reload
+	sw	$2, 44($16)                     # 4-byte Folded Spill
 $BB67_4:
-	lw	$3, 44($16)                     # 4-byte Folded Reload
-	lw	$5, 56($16)                     # 4-byte Folded Reload
-	lw	$6, 32($16)                     # 4-byte Folded Reload
-	lw	$2, 48($16)                     # 4-byte Folded Reload
-	lw	$7, 52($16)                     # 4-byte Folded Reload
-	lw	$4, 40($16)                     # 4-byte Folded Reload
-	sw	$4, 8($16)                      # 4-byte Folded Spill
+	lw	$3, 52($16)                     # 4-byte Folded Reload
+	lw	$5, 64($16)                     # 4-byte Folded Reload
+	lw	$6, 36($16)                     # 4-byte Folded Reload
+	lw	$2, 56($16)                     # 4-byte Folded Reload
+	lw	$7, 60($16)                     # 4-byte Folded Reload
+	lw	$4, 44($16)                     # 4-byte Folded Reload
+	sw	$4, 12($16)                     # 4-byte Folded Spill
 	li	$4, 64
 	subu	$4, $4, $7
 	sllv	$2, $4
@@ -7499,36 +10017,36 @@ $BB67_4:
 	srl	$6, $3, 1
 	srlv	$6, $7
 	or	$2, $6
-	sw	$2, 12($16)                     # 4-byte Folded Spill
+	sw	$2, 16($16)                     # 4-byte Folded Spill
 	move	$2, $4
 	and	$2, $5
-	sw	$2, 16($16)                     # 4-byte Folded Spill
+	sw	$2, 20($16)                     # 4-byte Folded Spill
 	sllv	$3, $4
-	sw	$3, 20($16)                     # 4-byte Folded Spill
 	sw	$3, 24($16)                     # 4-byte Folded Spill
+	sw	$3, 28($16)                     # 4-byte Folded Spill
 	bnez	$2, $BB67_6  # 16 bit inst
 # %bb.5:
-	lw	$2, 12($16)                     # 4-byte Folded Reload
-	sw	$2, 24($16)                     # 4-byte Folded Spill
-$BB67_6:
 	lw	$2, 16($16)                     # 4-byte Folded Reload
-	lw	$3, 68($16)                     # 4-byte Folded Reload
-	lw	$4, 24($16)                     # 4-byte Folded Reload
-	sw	$4, 0($16)                      # 4-byte Folded Spill
-	sw	$3, 4($16)                      # 4-byte Folded Spill
+	sw	$2, 28($16)                     # 4-byte Folded Spill
+$BB67_6:
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	lw	$3, 76($16)                     # 4-byte Folded Reload
+	lw	$4, 28($16)                     # 4-byte Folded Reload
+	sw	$4, 4($16)                      # 4-byte Folded Spill
+	sw	$3, 8($16)                      # 4-byte Folded Spill
 	bnez	$2, $BB67_8  # 16 bit inst
 # %bb.7:
-	lw	$2, 20($16)                     # 4-byte Folded Reload
-	sw	$2, 4($16)                      # 4-byte Folded Spill
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$2, 8($16)                      # 4-byte Folded Spill
 $BB67_8:
-	lw	$4, 0($16)                      # 4-byte Folded Reload
-	lw	$3, 28($16)                     # 4-byte Folded Reload
-	lw	$2, 8($16)                      # 4-byte Folded Reload
-	lw	$5, 4($16)                      # 4-byte Folded Reload
+	lw	$4, 4($16)                      # 4-byte Folded Reload
+	lw	$3, 32($16)                     # 4-byte Folded Reload
+	lw	$2, 12($16)                     # 4-byte Folded Reload
+	lw	$5, 8($16)                      # 4-byte Folded Reload
 	or	$2, $5
 	or	$3, $4
 	move	$sp, $16
-	restore	$16, 96 # 16 bit inst
+	restore	$16, $17, 104 # 16 bit inst
 
 	jrc	$ra
 	.end	rotr64
@@ -7543,14 +10061,26 @@ $func_end67:
 	.ent	rotl32
 rotl32:                                 # @rotl32
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.68)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.68)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.68)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.68)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc_rotl32)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7563,8 +10093,8 @@ rotl32:                                 # @rotl32
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotl32)($5)
 	sw	$2, 4($3)
-	lw	$3, 8($16)
-	lw	$5, 4($16)
+	lw	$3, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	sllv	$2, $5
 	li	$4, 32
@@ -7572,7 +10102,7 @@ rotl32:                                 # @rotl32
 	srlv	$3, $4
 	or	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotl32
@@ -7587,14 +10117,26 @@ $func_end68:
 	.ent	rotr32
 rotr32:                                 # @rotr32
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.69)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.69)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.69)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.69)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc_rotr32)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7607,8 +10149,8 @@ rotr32:                                 # @rotr32
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotr32)($5)
 	sw	$2, 4($3)
-	lw	$3, 8($16)
-	lw	$5, 4($16)
+	lw	$3, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	srlv	$2, $5
 	li	$4, 32
@@ -7616,7 +10158,7 @@ rotr32:                                 # @rotr32
 	sllv	$3, $4
 	or	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotr32
@@ -7631,14 +10173,26 @@ $func_end69:
 	.ent	rotl_sz
 rotl_sz:                                # @rotl_sz
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.70)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.70)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.70)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.70)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc_rotl_sz)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7651,8 +10205,8 @@ rotl_sz:                                # @rotl_sz
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotl_sz)($5)
 	sw	$2, 4($3)
-	lw	$3, 8($16)
-	lw	$5, 4($16)
+	lw	$3, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	sllv	$2, $5
 	li	$4, 32
@@ -7660,7 +10214,7 @@ rotl_sz:                                # @rotl_sz
 	srlv	$3, $4
 	or	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotl_sz
@@ -7675,14 +10229,26 @@ $func_end70:
 	.ent	rotr_sz
 rotr_sz:                                # @rotr_sz
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.71)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.71)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.71)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.71)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc_rotr_sz)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -7695,8 +10261,8 @@ rotr_sz:                                # @rotr_sz
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_rotr_sz)($5)
 	sw	$2, 4($3)
-	lw	$3, 8($16)
-	lw	$5, 4($16)
+	lw	$3, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	srlv	$2, $5
 	li	$4, 32
@@ -7704,7 +10270,7 @@ rotr_sz:                                # @rotr_sz
 	sllv	$3, $4
 	or	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotr_sz
@@ -7719,16 +10285,28 @@ $func_end71:
 	.ent	rotl16
 rotl16:                                 # @rotl16
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
-	addiu	$2, $16, 10
+	li	$2, %hi(__llvm_gcov_ctr.72)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.72)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.72)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.72)($7)
+	sw	$2, 4($3)
+	addiu	$2, $16, 6
 	sh	$4, 0($2)
-	sw	$5, 4($16)
+	sw	$5, 0($16)
 	li	$3, %hi($__profc_rotl16)
 	sll	$6, $3, 16
 	move	$4, $6
@@ -7742,7 +10320,7 @@ rotl16:                                 # @rotl16
 	sw	$5, %lo($__profc_rotl16)($6)
 	sw	$3, 4($4)
 	lhu	$3, 0($2)
-	lw	$5, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	sllv	$2, $5
 	li	$4, 16
@@ -7752,7 +10330,7 @@ rotl16:                                 # @rotl16
 	li	$3, 65535
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotl16
@@ -7767,16 +10345,28 @@ $func_end72:
 	.ent	rotr16
 rotr16:                                 # @rotr16
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
-	addiu	$2, $16, 10
+	li	$2, %hi(__llvm_gcov_ctr.73)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.73)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.73)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.73)($7)
+	sw	$2, 4($3)
+	addiu	$2, $16, 6
 	sh	$4, 0($2)
-	sw	$5, 4($16)
+	sw	$5, 0($16)
 	li	$3, %hi($__profc_rotr16)
 	sll	$6, $3, 16
 	move	$4, $6
@@ -7790,7 +10380,7 @@ rotr16:                                 # @rotr16
 	sw	$5, %lo($__profc_rotr16)($6)
 	sw	$3, 4($4)
 	lhu	$3, 0($2)
-	lw	$5, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	srlv	$2, $5
 	li	$4, 16
@@ -7800,7 +10390,7 @@ rotr16:                                 # @rotr16
 	li	$3, 65535
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotr16
@@ -7815,16 +10405,28 @@ $func_end73:
 	.ent	rotl8
 rotl8:                                  # @rotl8
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
-	addiu	$2, $16, 11
+	li	$2, %hi(__llvm_gcov_ctr.74)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.74)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.74)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.74)($7)
+	sw	$2, 4($3)
+	addiu	$2, $16, 7
 	sb	$4, 0($2)
-	sw	$5, 4($16)
+	sw	$5, 0($16)
 	li	$3, %hi($__profc_rotl8)
 	sll	$6, $3, 16
 	move	$4, $6
@@ -7838,7 +10440,7 @@ rotl8:                                  # @rotl8
 	sw	$5, %lo($__profc_rotl8)($6)
 	sw	$3, 4($4)
 	lbu	$3, 0($2)
-	lw	$5, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	sllv	$2, $5
 	li	$4, 8
@@ -7848,7 +10450,7 @@ rotl8:                                  # @rotl8
 	li	$3, 255
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotl8
@@ -7863,16 +10465,28 @@ $func_end74:
 	.ent	rotr8
 rotr8:                                  # @rotr8
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
-	addiu	$2, $16, 11
+	li	$2, %hi(__llvm_gcov_ctr.75)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.75)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.75)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.75)($7)
+	sw	$2, 4($3)
+	addiu	$2, $16, 7
 	sb	$4, 0($2)
-	sw	$5, 4($16)
+	sw	$5, 0($16)
 	li	$3, %hi($__profc_rotr8)
 	sll	$6, $3, 16
 	move	$4, $6
@@ -7886,7 +10500,7 @@ rotr8:                                  # @rotr8
 	sw	$5, %lo($__profc_rotr8)($6)
 	sw	$3, 4($4)
 	lbu	$3, 0($2)
-	lw	$5, 4($16)
+	lw	$5, 0($16)
 	move	$2, $3
 	srlv	$2, $5
 	li	$4, 8
@@ -7896,7 +10510,7 @@ rotr8:                                  # @rotr8
 	li	$3, 255
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	rotr8
@@ -7918,6 +10532,18 @@ bswap_16:                               # @bswap_16
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.76)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.76)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.76)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.76)($6)
+	sw	$2, 4($3)
 	addiu	$3, $16, 2
 	sh	$4, 0($3)
 	li	$2, %hi($__profc_bswap_16)
@@ -7968,6 +10594,18 @@ bswap_32:                               # @bswap_32
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.77)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.77)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.77)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.77)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc_bswap_32)
 	sll	$5, $2, 16
@@ -8024,6 +10662,18 @@ bswap_64:                               # @bswap_64
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.78)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.78)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.78)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.78)($7)
+	sw	$2, 4($3)
 	sw	$5, 36($16)
 	sw	$4, 32($16)
 	li	$2, %hi($__profc_bswap_64)
@@ -8160,6 +10810,18 @@ $BB79_2:                                #   in Loop: Header=BB79_1 Depth=1
 	beqz	$2, $BB79_4  # 16 bit inst
 	b	$BB79_3 # 16 bit inst
 $BB79_3:
+	li	$2, %hi(__llvm_gcov_ctr.79)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.79)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.79)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.79)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_ffs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ffs)
@@ -8178,11 +10840,33 @@ $BB79_3:
 $BB79_4:                                #   in Loop: Header=BB79_1 Depth=1
 	b	$BB79_5 # 16 bit inst
 $BB79_5:                                #   in Loop: Header=BB79_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.79)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.79)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 0($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 0($16)
 	b	$BB79_1 # 16 bit inst
 $BB79_6:
+	li	$2, %hi(__llvm_gcov_ctr.79)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.79)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 8($16)
 	b	$BB79_7 # 16 bit inst
@@ -8227,6 +10911,17 @@ libiberty_ffs:                          # @libiberty_ffs
 	bnez	$2, $BB80_2  # 16 bit inst
 	b	$BB80_1 # 16 bit inst
 $BB80_1:
+	li	$2, %hi(__llvm_gcov_ctr.80)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.80)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_libiberty_ffs)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_libiberty_ffs)
@@ -8242,6 +10937,18 @@ $BB80_1:
 	sw	$2, 8($16)
 	b	$BB80_7 # 16 bit inst
 $BB80_2:
+	li	$2, %hi(__llvm_gcov_ctr.80)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.80)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.80)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.80)($5)
+	sw	$2, 4($3)
 	li	$2, 1
 	sw	$2, 0($16)
 	b	$BB80_3 # 16 bit inst
@@ -8269,6 +10976,17 @@ $BB80_4:                                #   in Loop: Header=BB80_3 Depth=1
 	sw	$2, 4($16)
 	b	$BB80_5 # 16 bit inst
 $BB80_5:                                #   in Loop: Header=BB80_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.80)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.80)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 0($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 0($16)
@@ -8302,6 +11020,18 @@ gl_isinff:                              # @gl_isinff
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.81)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.81)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.81)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.81)($6)
+	sw	$2, 4($3)
 	sw	$4, 28($16)
 	li	$2, %hi($__profc_gl_isinff)
 	sll	$5, $2, 16
@@ -8330,6 +11060,17 @@ gl_isinff:                              # @gl_isinff
 	btnez	$BB81_3  # 16 bit inst
 	b	$BB81_1 # 16 bit inst
 $BB81_1:
+	li	$2, %hi(__llvm_gcov_ctr.81)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.81)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_gl_isinff)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_gl_isinff)
@@ -8360,6 +11101,17 @@ $BB81_1:
 	b	$BB81_2 # 16 bit inst
 $BB81_2:
 	lw	$2, 20($16)                     # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.81)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.81)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_gl_isinff)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_gl_isinff)
@@ -8392,15 +11144,27 @@ $func_end81:
 	.set	mips16
 	.ent	gl_isinfd
 gl_isinfd:                              # @gl_isinfd
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,48,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 48 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.82)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.82)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.82)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.82)($7)
+	sw	$2, 4($3)
 	sw	$5, 28($16)
 	sw	$4, 24($16)
 	li	$2, %hi($__profc_gl_isinfd)
@@ -8433,6 +11197,17 @@ gl_isinfd:                              # @gl_isinfd
 	btnez	$BB82_3  # 16 bit inst
 	b	$BB82_1 # 16 bit inst
 $BB82_1:
+	li	$2, %hi(__llvm_gcov_ctr.82)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.82)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_gl_isinfd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_gl_isinfd)
@@ -8466,6 +11241,17 @@ $BB82_1:
 	b	$BB82_2 # 16 bit inst
 $BB82_2:
 	lw	$2, 16($16)                     # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.82)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.82)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_gl_isinfd)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_gl_isinfd)
@@ -8484,7 +11270,7 @@ $BB82_3:
 	li	$3, 1
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 48 # 16 bit inst
 
 	jrc	$ra
 	.end	gl_isinfd
@@ -8498,15 +11284,27 @@ $func_end82:
 	.set	mips16
 	.ent	gl_isinfl
 gl_isinfl:                              # @gl_isinfl
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,48,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 48 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.83)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.83)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.83)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.83)($7)
+	sw	$2, 4($3)
 	sw	$5, 28($16)
 	sw	$4, 24($16)
 	li	$2, %hi($__profc_gl_isinfl)
@@ -8539,6 +11337,17 @@ gl_isinfl:                              # @gl_isinfl
 	btnez	$BB83_3  # 16 bit inst
 	b	$BB83_1 # 16 bit inst
 $BB83_1:
+	li	$2, %hi(__llvm_gcov_ctr.83)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.83)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_gl_isinfl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_gl_isinfl)
@@ -8572,6 +11381,17 @@ $BB83_1:
 	b	$BB83_2 # 16 bit inst
 $BB83_2:
 	lw	$2, 16($16)                     # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.83)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.83)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_gl_isinfl)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_gl_isinfl)
@@ -8590,7 +11410,7 @@ $BB83_3:
 	li	$3, 1
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 48 # 16 bit inst
 
 	jrc	$ra
 	.end	gl_isinfl
@@ -8604,15 +11424,27 @@ $func_end83:
 	.set	mips16
 	.ent	_Qp_itoq
 _Qp_itoq:                               # @_Qp_itoq
-	.frame	$16,32,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,40,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 32 # 16 bit inst
+	save	$16, $17, $ra, 40 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 20($16)
-	sw	$5, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.84)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.84)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.84)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.84)($7)
+	sw	$2, 4($3)
+	sw	$4, 24($16)
+	sw	$5, 20($16)
 	li	$2, %hi($__profc__Qp_itoq)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -8625,15 +11457,15 @@ _Qp_itoq:                               # @_Qp_itoq
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc__Qp_itoq)($5)
 	sw	$2, 4($3)
-	lw	$4, 16($16)
+	lw	$4, 20($16)
 	jal	__floatsidf
 	nop
 	move	$4, $3
-	lw	$3, 20($16)
+	lw	$3, 24($16)
 	sw	$4, 4($3)
 	sw	$2, 0($3)
 	move	$sp, $16
-	restore	$16, $ra, 32 # 16 bit inst
+	restore	$16, $17, $ra, 40 # 16 bit inst
 
 	jrc	$ra
 	.end	_Qp_itoq
@@ -8648,15 +11480,27 @@ $func_end84:
 	.ent	ldexpf
 ldexpf:                                 # @ldexpf
 	.frame	$16,56,$ra
-	.mask 	0x80010000,-4
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 56 # 16 bit inst
+	save	$16, $17, $ra, 56 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
-	sw	$4, 44($16)
-	sw	$5, 40($16)
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.85)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.85)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.85)($7)
+	sw	$2, 4($3)
+	sw	$4, 40($16)
+	sw	$5, 36($16)
 	li	$2, %hi($__profc_ldexpf)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -8669,7 +11513,7 @@ ldexpf:                                 # @ldexpf
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_ldexpf)($5)
 	sw	$2, 4($3)
-	lw	$3, 44($16)
+	lw	$3, 40($16)
 	lw	$2, 1f
 	b	2f
 	.align	2
@@ -8685,6 +11529,17 @@ ldexpf:                                 # @ldexpf
 	btnez	$BB85_12
 	b	$BB85_1 # 16 bit inst
 $BB85_1:
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.85)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_ldexpf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpf)
@@ -8696,18 +11551,29 @@ $BB85_1:
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$5, 44($16)
-	sw	$5, 32($16)                     # 4-byte Folded Spill
+	lw	$5, 40($16)
+	sw	$5, 28($16)                     # 4-byte Folded Spill
 	move	$4, $5
 	jal	__addsf3
 	nop
-	lw	$5, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 28($16)                     # 4-byte Folded Reload
 	move	$4, $2
 	jal	__eqsf2
 	nop
 	beqz	$2, $BB85_12
 	b	$BB85_2 # 16 bit inst
 $BB85_2:
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.85)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_ldexpf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpf)
@@ -8724,7 +11590,7 @@ $BB85_3:
 	li	$2, %hi($__profc_ldexpf)
 	sll	$4, $2, 16
 	addiu	$4, %lo($__profc_ldexpf)
-	sw	$4, 20($16)                     # 4-byte Folded Spill
+	sw	$4, 16($16)                     # 4-byte Folded Spill
 	lw	$2, 12($4)
 	lw	$3, 8($4)
 	addiu	$3, 1	# 16 bit inst
@@ -8733,7 +11599,7 @@ $BB85_3:
 	addu	$2, $2, $5
 	sw	$3, 8($4)
 	sw	$2, 12($4)
-	lw	$3, 40($16)
+	lw	$3, 36($16)
 	srl	$5, $3, 31
 	lw	$2, 36($4)
 	lw	$6, 32($4)
@@ -8748,21 +11614,21 @@ $BB85_3:
 	.align	2
 1: 	.word	1073741824
 2:
-	sw	$2, 24($16)                     # 4-byte Folded Spill
+	sw	$2, 20($16)                     # 4-byte Folded Spill
 	lw	$2, 1f
 	b	2f
 	.align	2
 1: 	.word	1056964608
 2:
 	slti	$3, 0
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 	btnez	$BB85_5  # 16 bit inst
 # %bb.4:
-	lw	$2, 24($16)                     # 4-byte Folded Reload
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 $BB85_5:
-	lw	$2, 28($16)                     # 4-byte Folded Reload
-	sw	$2, 36($16)
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$2, 32($16)
 	b	$BB85_6 # 16 bit inst
 $BB85_6:                                # =>This Inner Loop Header: Depth=1
 	li	$2, %hi($__profc_ldexpf)
@@ -8776,7 +11642,7 @@ $BB85_6:                                # =>This Inner Loop Header: Depth=1
 	addu	$2, $2, $5
 	sw	$4, 40($3)
 	sw	$2, 44($3)
-	lw	$2, 40($16)
+	lw	$2, 36($16)
 	srl	$3, $2, 31
 	addu	$3, $2, $3
 	move	$4, $zero
@@ -8786,6 +11652,17 @@ $BB85_6:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB85_8  # 16 bit inst
 	b	$BB85_7 # 16 bit inst
 $BB85_7:                                #   in Loop: Header=BB85_6 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.85)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_ldexpf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpf)
@@ -8797,19 +11674,19 @@ $BB85_7:                                #   in Loop: Header=BB85_6 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 48($3)
 	sw	$2, 52($3)
-	lw	$5, 36($16)
-	lw	$4, 44($16)
+	lw	$5, 32($16)
+	lw	$4, 40($16)
 	jal	__mulsf3
 	nop
-	sw	$2, 44($16)
+	sw	$2, 40($16)
 	b	$BB85_8 # 16 bit inst
 $BB85_8:                                #   in Loop: Header=BB85_6 Depth=1
-	lw	$2, 40($16)
+	lw	$2, 36($16)
 	srl	$3, $2, 31
 	addu	$2, $2, $3
 	sra	$2, $2, 1
-	sw	$2, 40($16)
-	lw	$2, 40($16)
+	sw	$2, 36($16)
+	lw	$2, 36($16)
 	bnez	$2, $BB85_10  # 16 bit inst
 	b	$BB85_9 # 16 bit inst
 $BB85_9:
@@ -8826,18 +11703,29 @@ $BB85_9:
 	sw	$2, 60($3)
 	b	$BB85_11 # 16 bit inst
 $BB85_10:                               #   in Loop: Header=BB85_6 Depth=1
-	lw	$5, 36($16)
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.85)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
+	lw	$5, 32($16)
 	move	$4, $5
 	jal	__mulsf3
 	nop
-	sw	$2, 36($16)
+	sw	$2, 32($16)
 	b	$BB85_6 # 16 bit inst
 $BB85_11:
 	b	$BB85_12 # 16 bit inst
 $BB85_12:
-	lw	$2, 44($16)
+	lw	$2, 40($16)
 	move	$sp, $16
-	restore	$16, $ra, 56 # 16 bit inst
+	restore	$16, $17, $ra, 56 # 16 bit inst
 
 	jrc	$ra
 	.end	ldexpf
@@ -8851,15 +11739,29 @@ $func_end85:
 	.set	mips16
 	.ent	ldexp
 ldexp:                                  # @ldexp
-	.frame	$16,80,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,88,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 80 # 16 bit inst
+	save	$16, $17, $ra, 88 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.86)
+	sw	$2, 36($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.86)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 36($16)                     # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.86)($17)
+	sw	$2, 4($3)
 	sw	$5, 68($16)
 	sw	$4, 64($16)
 	sw	$6, 60($16)
@@ -8906,6 +11808,17 @@ $BB86_2:
 	bnez	$2, $BB86_14
 	b	$BB86_3 # 16 bit inst
 $BB86_3:
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.86)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_ldexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexp)
@@ -8918,15 +11831,15 @@ $BB86_3:
 	sw	$4, 16($3)
 	sw	$2, 20($3)
 	lw	$6, 64($16)
-	sw	$6, 32($16)                     # 4-byte Folded Spill
+	sw	$6, 28($16)                     # 4-byte Folded Spill
 	lw	$7, 68($16)
-	sw	$7, 36($16)                     # 4-byte Folded Spill
+	sw	$7, 32($16)                     # 4-byte Folded Spill
 	move	$4, $6
 	move	$5, $7
 	jal	__adddf3
 	nop
-	lw	$6, 32($16)                     # 4-byte Folded Reload
-	lw	$7, 36($16)                     # 4-byte Folded Reload
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$7, 32($16)                     # 4-byte Folded Reload
 	move	$4, $2
 	move	$5, $3
 	jal	__eqdf2
@@ -8934,6 +11847,17 @@ $BB86_3:
 	beqz	$2, $BB86_14
 	b	$BB86_4 # 16 bit inst
 $BB86_4:
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.86)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_ldexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexp)
@@ -8950,7 +11874,7 @@ $BB86_5:
 	li	$2, %hi($__profc_ldexp)
 	sll	$4, $2, 16
 	addiu	$4, %lo($__profc_ldexp)
-	sw	$4, 20($16)                     # 4-byte Folded Spill
+	sw	$4, 16($16)                     # 4-byte Folded Spill
 	lw	$2, 12($4)
 	lw	$3, 8($4)
 	addiu	$3, 1	# 16 bit inst
@@ -8974,20 +11898,20 @@ $BB86_5:
 	.align	2
 1: 	.word	1073741824
 2:
-	sw	$2, 24($16)                     # 4-byte Folded Spill
+	sw	$2, 20($16)                     # 4-byte Folded Spill
 	lw	$2, 1f
 	b	2f
 	.align	2
 1: 	.word	1071644672
 2:
 	slti	$3, 0
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 	btnez	$BB86_7  # 16 bit inst
 # %bb.6:
-	lw	$2, 24($16)                     # 4-byte Folded Reload
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 $BB86_7:
-	lw	$2, 28($16)                     # 4-byte Folded Reload
+	lw	$2, 24($16)                     # 4-byte Folded Reload
 	sw	$2, 52($16)
 	li	$2, 0
 	sw	$2, 48($16)
@@ -9014,6 +11938,17 @@ $BB86_8:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB86_10  # 16 bit inst
 	b	$BB86_9 # 16 bit inst
 $BB86_9:                                #   in Loop: Header=BB86_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.86)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_ldexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexp)
@@ -9057,6 +11992,17 @@ $BB86_11:
 	sw	$2, 60($3)
 	b	$BB86_13 # 16 bit inst
 $BB86_12:                               #   in Loop: Header=BB86_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.86)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$6, 48($16)
 	lw	$7, 52($16)
 	move	$4, $6
@@ -9072,7 +12018,7 @@ $BB86_14:
 	lw	$2, 64($16)
 	lw	$3, 68($16)
 	move	$sp, $16
-	restore	$16, $ra, 80 # 16 bit inst
+	restore	$16, $17, $ra, 88 # 16 bit inst
 
 	jrc	$ra
 	.end	ldexp
@@ -9086,15 +12032,29 @@ $func_end86:
 	.set	mips16
 	.ent	ldexpl
 ldexpl:                                 # @ldexpl
-	.frame	$16,80,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,88,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 80 # 16 bit inst
+	save	$16, $17, $ra, 88 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.87)
+	sw	$2, 36($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.87)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 36($16)                     # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.87)($17)
+	sw	$2, 4($3)
 	sw	$5, 68($16)
 	sw	$4, 64($16)
 	sw	$6, 60($16)
@@ -9141,6 +12101,17 @@ $BB87_2:
 	bnez	$2, $BB87_14
 	b	$BB87_3 # 16 bit inst
 $BB87_3:
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.87)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_ldexpl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpl)
@@ -9153,15 +12124,15 @@ $BB87_3:
 	sw	$4, 16($3)
 	sw	$2, 20($3)
 	lw	$6, 64($16)
-	sw	$6, 32($16)                     # 4-byte Folded Spill
+	sw	$6, 28($16)                     # 4-byte Folded Spill
 	lw	$7, 68($16)
-	sw	$7, 36($16)                     # 4-byte Folded Spill
+	sw	$7, 32($16)                     # 4-byte Folded Spill
 	move	$4, $6
 	move	$5, $7
 	jal	__adddf3
 	nop
-	lw	$6, 32($16)                     # 4-byte Folded Reload
-	lw	$7, 36($16)                     # 4-byte Folded Reload
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$7, 32($16)                     # 4-byte Folded Reload
 	move	$4, $2
 	move	$5, $3
 	jal	__eqdf2
@@ -9169,6 +12140,17 @@ $BB87_3:
 	beqz	$2, $BB87_14
 	b	$BB87_4 # 16 bit inst
 $BB87_4:
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.87)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_ldexpl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpl)
@@ -9185,7 +12167,7 @@ $BB87_5:
 	li	$2, %hi($__profc_ldexpl)
 	sll	$4, $2, 16
 	addiu	$4, %lo($__profc_ldexpl)
-	sw	$4, 20($16)                     # 4-byte Folded Spill
+	sw	$4, 16($16)                     # 4-byte Folded Spill
 	lw	$2, 12($4)
 	lw	$3, 8($4)
 	addiu	$3, 1	# 16 bit inst
@@ -9209,20 +12191,20 @@ $BB87_5:
 	.align	2
 1: 	.word	1073741824
 2:
-	sw	$2, 24($16)                     # 4-byte Folded Spill
+	sw	$2, 20($16)                     # 4-byte Folded Spill
 	lw	$2, 1f
 	b	2f
 	.align	2
 1: 	.word	1071644672
 2:
 	slti	$3, 0
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 	btnez	$BB87_7  # 16 bit inst
 # %bb.6:
-	lw	$2, 24($16)                     # 4-byte Folded Reload
-	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 24($16)                     # 4-byte Folded Spill
 $BB87_7:
-	lw	$2, 28($16)                     # 4-byte Folded Reload
+	lw	$2, 24($16)                     # 4-byte Folded Reload
 	sw	$2, 52($16)
 	li	$2, 0
 	sw	$2, 48($16)
@@ -9249,6 +12231,17 @@ $BB87_8:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB87_10  # 16 bit inst
 	b	$BB87_9 # 16 bit inst
 $BB87_9:                                #   in Loop: Header=BB87_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.87)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_ldexpl)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_ldexpl)
@@ -9292,6 +12285,17 @@ $BB87_11:
 	sw	$2, 60($3)
 	b	$BB87_13 # 16 bit inst
 $BB87_12:                               #   in Loop: Header=BB87_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.87)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$6, 48($16)
 	lw	$7, 52($16)
 	move	$4, $6
@@ -9307,7 +12311,7 @@ $BB87_14:
 	lw	$2, 64($16)
 	lw	$3, 68($16)
 	move	$sp, $16
-	restore	$16, $ra, 80 # 16 bit inst
+	restore	$16, $17, $ra, 88 # 16 bit inst
 
 	jrc	$ra
 	.end	ldexpl
@@ -9321,16 +12325,30 @@ $func_end87:
 	.set	mips16
 	.ent	memxor
 memxor:                                 # @memxor
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
-	sw	$6, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.88)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.88)
+	sw	$2, 0($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.88)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 0($16)                      # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.88)($17)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
+	sw	$6, 12($16)
 	li	$2, %hi($__profc_memxor)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -9343,13 +12361,13 @@ memxor:                                 # @memxor
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_memxor)($5)
 	sw	$2, 4($3)
-	lw	$2, 12($16)
-	sw	$2, 4($16)
 	lw	$2, 16($16)
-	sw	$2, 0($16)
+	sw	$2, 8($16)
+	lw	$2, 20($16)
+	sw	$2, 4($16)
 	b	$BB88_1 # 16 bit inst
 $BB88_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	beqz	$2, $BB88_4  # 16 bit inst
 	b	$BB88_2 # 16 bit inst
 $BB88_2:                                #   in Loop: Header=BB88_1 Depth=1
@@ -9364,28 +12382,39 @@ $BB88_2:                                #   in Loop: Header=BB88_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 4($16)
+	lw	$2, 8($16)
 	move	$3, $2
 	addiu	$3, 1	# 16 bit inst
-	sw	$3, 4($16)
+	sw	$3, 8($16)
 	lbu	$4, 0($2)
-	lw	$3, 0($16)
+	lw	$3, 4($16)
 	move	$2, $3
 	addiu	$2, 1	# 16 bit inst
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	lbu	$2, 0($3)
 	xor	$2, $4
 	sb	$2, 0($3)
 	b	$BB88_3 # 16 bit inst
 $BB88_3:                                #   in Loop: Header=BB88_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.88)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.88)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
+	lw	$2, 12($16)
 	addiu	$2, -1	# 16 bit inst
-	sw	$2, 8($16)
+	sw	$2, 12($16)
 	b	$BB88_1 # 16 bit inst
 $BB88_4:
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	memxor
@@ -9437,6 +12466,18 @@ $BB89_1:                                # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB89_4  # 16 bit inst
 	b	$BB89_2 # 16 bit inst
 $BB89_2:                                #   in Loop: Header=BB89_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.89)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.89)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.89)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.89)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_strncat)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncat)
@@ -9463,6 +12504,17 @@ $BB89_2:                                #   in Loop: Header=BB89_1 Depth=1
 	b	$BB89_3 # 16 bit inst
 $BB89_3:                                #   in Loop: Header=BB89_1 Depth=1
 	lw	$2, 20($16)                     # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.89)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.89)
+	lw	$3, 12($4)
+	lw	$5, 8($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 8($4)
+	sw	$3, 12($4)
 	li	$3, %hi($__profc_strncat)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_strncat)
@@ -9496,6 +12548,17 @@ $BB89_5:                                #   in Loop: Header=BB89_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB89_6 # 16 bit inst
 $BB89_6:                                #   in Loop: Header=BB89_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.89)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.89)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 40($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 40($16)
@@ -9507,10 +12570,32 @@ $BB89_6:                                #   in Loop: Header=BB89_1 Depth=1
 	sw	$2, 36($16)
 	b	$BB89_1 # 16 bit inst
 $BB89_7:
+	li	$2, %hi(__llvm_gcov_ctr.89)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.89)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 36($16)
 	bnez	$2, $BB89_9  # 16 bit inst
 	b	$BB89_8 # 16 bit inst
 $BB89_8:
+	li	$2, %hi(__llvm_gcov_ctr.89)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.89)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_strncat)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strncat)
@@ -9543,15 +12628,27 @@ $func_end89:
 	.set	mips16
 	.ent	strnlen
 strnlen:                                # @strnlen
-	.frame	$16,24,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,32,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 24 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 16($16)
-	sw	$5, 12($16)
+	li	$2, %hi(__llvm_gcov_ctr.90)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.90)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.90)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.90)($7)
+	sw	$2, 4($3)
+	sw	$4, 20($16)
+	sw	$5, 16($16)
 	li	$2, %hi($__profc_strnlen)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -9565,20 +12662,31 @@ strnlen:                                # @strnlen
 	sw	$4, %lo($__profc_strnlen)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 8($16)
+	sw	$2, 12($16)
 	b	$BB90_1 # 16 bit inst
 $BB90_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
-	lw	$3, 12($16)
+	lw	$2, 12($16)
+	lw	$3, 16($16)
 	sltu	$2, $3
 	move	$2, $24
 	li	$3, 1
 	xor	$2, $3
 	li	$3, 0
-	sw	$3, 4($16)                      # 4-byte Folded Spill
+	sw	$3, 8($16)                      # 4-byte Folded Spill
 	bnez	$2, $BB90_4  # 16 bit inst
 	b	$BB90_2 # 16 bit inst
 $BB90_2:                                #   in Loop: Header=BB90_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.90)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.90)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strnlen)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strnlen)
@@ -9590,8 +12698,8 @@ $BB90_2:                                #   in Loop: Header=BB90_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 16($16)
-	lw	$3, 8($16)
+	lw	$2, 20($16)
+	lw	$3, 12($16)
 	addu	$2, $2, $3
 	lb	$2, 0($2)
 	li	$3, 0
@@ -9599,12 +12707,23 @@ $BB90_2:                                #   in Loop: Header=BB90_1 Depth=1
 	xor	$4, $3
 	sltu	$3, $4
 	move	$3, $24
-	sw	$3, 0($16)                      # 4-byte Folded Spill
 	sw	$3, 4($16)                      # 4-byte Folded Spill
+	sw	$3, 8($16)                      # 4-byte Folded Spill
 	beqz	$2, $BB90_4  # 16 bit inst
 	b	$BB90_3 # 16 bit inst
 $BB90_3:                                #   in Loop: Header=BB90_1 Depth=1
-	lw	$2, 0($16)                      # 4-byte Folded Reload
+	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.90)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.90)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_strnlen)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_strnlen)
@@ -9616,10 +12735,10 @@ $BB90_3:                                #   in Loop: Header=BB90_1 Depth=1
 	addu	$3, $3, $6
 	sw	$5, 24($4)
 	sw	$3, 28($4)
-	sw	$2, 4($16)                      # 4-byte Folded Spill
+	sw	$2, 8($16)                      # 4-byte Folded Spill
 	b	$BB90_4 # 16 bit inst
 $BB90_4:                                #   in Loop: Header=BB90_1 Depth=1
-	lw	$2, 4($16)                      # 4-byte Folded Reload
+	lw	$2, 8($16)                      # 4-byte Folded Reload
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB90_7  # 16 bit inst
@@ -9638,14 +12757,25 @@ $BB90_5:                                #   in Loop: Header=BB90_1 Depth=1
 	sw	$2, 12($3)
 	b	$BB90_6 # 16 bit inst
 $BB90_6:                                #   in Loop: Header=BB90_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.90)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.90)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
+	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
-	sw	$2, 8($16)
+	sw	$2, 12($16)
 	b	$BB90_1 # 16 bit inst
 $BB90_7:
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	move	$sp, $16
-	restore	$16, 24 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	strnlen
@@ -9685,7 +12815,7 @@ $BB91_1:                                # =>This Loop Header: Depth=1
                                         #     Child Loop BB91_3 Depth 2
 	lw	$2, 12($16)
 	lb	$2, 0($2)
-	beqz	$2, $BB91_8  # 16 bit inst
+	beqz	$2, $BB91_8
 	b	$BB91_2 # 16 bit inst
 $BB91_2:                                #   in Loop: Header=BB91_1 Depth=1
 	li	$2, %hi($__profc_strpbrk)
@@ -9731,6 +12861,17 @@ $BB91_4:                                #   in Loop: Header=BB91_3 Depth=2
 	btnez	$BB91_6  # 16 bit inst
 	b	$BB91_5 # 16 bit inst
 $BB91_5:
+	li	$2, %hi(__llvm_gcov_ctr.91)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.91)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strpbrk)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strpbrk)
@@ -9746,13 +12887,47 @@ $BB91_5:
 	sw	$2, 16($16)
 	b	$BB91_9 # 16 bit inst
 $BB91_6:                                #   in Loop: Header=BB91_3 Depth=2
+	li	$2, %hi(__llvm_gcov_ctr.91)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.91)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	b	$BB91_3 # 16 bit inst
 $BB91_7:                                #   in Loop: Header=BB91_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.91)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.91)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 12($16)
 	b	$BB91_1 # 16 bit inst
 $BB91_8:
+	li	$2, %hi(__llvm_gcov_ctr.91)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.91)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.91)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.91)($5)
+	sw	$2, 4($3)
 	li	$2, 0
 	sw	$2, 16($16)
 	b	$BB91_9 # 16 bit inst
@@ -9773,15 +12948,27 @@ $func_end91:
 	.set	mips16
 	.ent	strrchr
 strrchr:                                # @strrchr
-	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,24,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.92)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.92)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.92)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.92)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc_strrchr)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -9795,9 +12982,20 @@ strrchr:                                # @strrchr
 	sw	$4, %lo($__profc_strrchr)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	b	$BB92_2 # 16 bit inst
 $BB92_1:                                #   in Loop: Header=BB92_2 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.92)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.92)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_strrchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strrchr)
@@ -9811,13 +13009,24 @@ $BB92_1:                                #   in Loop: Header=BB92_2 Depth=1
 	sw	$2, 12($3)
 	b	$BB92_2 # 16 bit inst
 $BB92_2:                                # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	lb	$2, 0($2)
-	lw	$3, 4($16)
+	lw	$3, 8($16)
 	cmp	$2, $3
 	btnez	$BB92_4  # 16 bit inst
 	b	$BB92_3 # 16 bit inst
 $BB92_3:                                #   in Loop: Header=BB92_2 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.92)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.92)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strrchr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strrchr)
@@ -9829,23 +13038,23 @@ $BB92_3:                                #   in Loop: Header=BB92_2 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 8($16)
-	sw	$2, 0($16)
+	lw	$2, 12($16)
+	sw	$2, 4($16)
 	b	$BB92_4 # 16 bit inst
 $BB92_4:                                #   in Loop: Header=BB92_2 Depth=1
 	b	$BB92_5 # 16 bit inst
 $BB92_5:                                #   in Loop: Header=BB92_2 Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	move	$3, $2
 	addiu	$3, 1	# 16 bit inst
-	sw	$3, 8($16)
+	sw	$3, 12($16)
 	lbu	$2, 0($2)
 	bnez	$2, $BB92_1  # 16 bit inst
 	b	$BB92_6 # 16 bit inst
 $BB92_6:
-	lw	$2, 0($16)
+	lw	$2, 4($16)
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	strrchr
@@ -9890,6 +13099,18 @@ strstr:                                 # @strstr
 	bnez	$2, $BB93_2  # 16 bit inst
 	b	$BB93_1 # 16 bit inst
 $BB93_1:
+	li	$2, %hi(__llvm_gcov_ctr.93)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.93)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.93)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.93)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_strstr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strstr)
@@ -9935,6 +13156,17 @@ $BB93_4:                                #   in Loop: Header=BB93_3 Depth=1
 	bnez	$2, $BB93_6  # 16 bit inst
 	b	$BB93_5 # 16 bit inst
 $BB93_5:
+	li	$2, %hi(__llvm_gcov_ctr.93)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.93)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_strstr)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_strstr)
@@ -9952,11 +13184,33 @@ $BB93_5:
 $BB93_6:                                #   in Loop: Header=BB93_3 Depth=1
 	b	$BB93_7 # 16 bit inst
 $BB93_7:                                #   in Loop: Header=BB93_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.93)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.93)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 24($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 24($16)
 	b	$BB93_3 # 16 bit inst
 $BB93_8:
+	li	$2, %hi(__llvm_gcov_ctr.93)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.93)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, 0
 	sw	$2, 36($16)
 	b	$BB93_9 # 16 bit inst
@@ -10017,6 +13271,18 @@ copysign:                               # @copysign
 	btnez	$BB94_3  # 16 bit inst
 	b	$BB94_1 # 16 bit inst
 $BB94_1:
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.94)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.94)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.94)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_copysign)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_copysign)
@@ -10038,6 +13304,17 @@ $BB94_1:
 	btnez	$BB94_3  # 16 bit inst
 	b	$BB94_2 # 16 bit inst
 $BB94_2:
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.94)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_copysign)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_copysign)
@@ -10072,6 +13349,17 @@ $BB94_3:
 	btnez	$BB94_7  # 16 bit inst
 	b	$BB94_4 # 16 bit inst
 $BB94_4:
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.94)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_copysign)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_copysign)
@@ -10096,6 +13384,17 @@ $BB94_4:
 	btnez	$BB94_7  # 16 bit inst
 	b	$BB94_5 # 16 bit inst
 $BB94_5:
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.94)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_copysign)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_copysign)
@@ -10132,6 +13431,17 @@ $BB94_6:
 	sw	$2, 36($16)
 	b	$BB94_8 # 16 bit inst
 $BB94_7:
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.94)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$2, 24($16)
 	lw	$3, 28($16)
 	sw	$3, 36($16)
@@ -10188,6 +13498,18 @@ memmem:                                 # @memmem
 	bnez	$2, $BB95_2  # 16 bit inst
 	b	$BB95_1 # 16 bit inst
 $BB95_1:
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.95)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.95)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_memmem)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmem)
@@ -10212,6 +13534,17 @@ $BB95_2:
 	bnez	$2, $BB95_4  # 16 bit inst
 	b	$BB95_3 # 16 bit inst
 $BB95_3:
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_memmem)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmem)
@@ -10235,7 +13568,7 @@ $BB95_5:                                # =>This Inner Loop Header: Depth=1
 	lw	$2, 20($16)
 	sltu	$2, $3
 	move	$2, $24
-	bnez	$2, $BB95_12  # 16 bit inst
+	bnez	$2, $BB95_12
 	b	$BB95_6 # 16 bit inst
 $BB95_6:                                #   in Loop: Header=BB95_5 Depth=1
 	li	$2, %hi($__profc_memmem)
@@ -10257,6 +13590,17 @@ $BB95_6:                                #   in Loop: Header=BB95_5 Depth=1
 	btnez	$BB95_10  # 16 bit inst
 	b	$BB95_7 # 16 bit inst
 $BB95_7:                                #   in Loop: Header=BB95_5 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_memmem)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmem)
@@ -10279,6 +13623,17 @@ $BB95_7:                                #   in Loop: Header=BB95_5 Depth=1
 	bnez	$2, $BB95_10  # 16 bit inst
 	b	$BB95_8 # 16 bit inst
 $BB95_8:
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_memmem)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_memmem)
@@ -10309,11 +13664,33 @@ $BB95_9:
 $BB95_10:                               #   in Loop: Header=BB95_5 Depth=1
 	b	$BB95_11 # 16 bit inst
 $BB95_11:                               #   in Loop: Header=BB95_5 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	lw	$2, 24($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 24($16)
 	b	$BB95_5 # 16 bit inst
 $BB95_12:
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.95)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	li	$2, 0
 	sw	$2, 44($16)
 	b	$BB95_13 # 16 bit inst
@@ -10334,16 +13711,30 @@ $func_end95:
 	.set	mips16
 	.ent	mempcpy
 mempcpy:                                # @mempcpy
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,48,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 48 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 28($16)
-	sw	$5, 24($16)
-	sw	$6, 20($16)
+	li	$2, %hi(__llvm_gcov_ctr.96)
+	sll	$17, $2, 16
+	move	$2, $17
+	addiu	$2, %lo(__llvm_gcov_ctr.96)
+	sw	$2, 16($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$7, %lo(__llvm_gcov_ctr.96)($17)
+	addiu	$7, 1	# 16 bit inst
+	sltiu	$7, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 16($16)                     # 4-byte Folded Reload
+	sw	$7, %lo(__llvm_gcov_ctr.96)($17)
+	sw	$2, 4($3)
+	sw	$4, 32($16)
+	sw	$5, 28($16)
+	sw	$6, 24($16)
 	li	$2, %hi($__profc_mempcpy)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -10356,18 +13747,18 @@ mempcpy:                                # @mempcpy
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc_mempcpy)($5)
 	sw	$2, 4($3)
-	lw	$4, 28($16)
-	sw	$4, 16($16)                     # 4-byte Folded Spill
-	lw	$5, 24($16)
-	lw	$6, 20($16)
+	lw	$4, 32($16)
+	sw	$4, 20($16)                     # 4-byte Folded Spill
+	lw	$5, 28($16)
+	lw	$6, 24($16)
 	jal	memcpy
 	nop
                                         # kill: def $v1 killed $v0
-	lw	$2, 16($16)                     # 4-byte Folded Reload
-	lw	$3, 20($16)
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	lw	$3, 24($16)
 	addu	$2, $2, $3
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 48 # 16 bit inst
 
 	jrc	$ra
 	.end	mempcpy
@@ -10420,6 +13811,18 @@ frexp:                                  # @frexp
 	btnez	$BB97_2  # 16 bit inst
 	b	$BB97_1 # 16 bit inst
 $BB97_1:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.97)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.97)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10457,6 +13860,17 @@ $BB97_2:
 	btnez	$BB97_7  # 16 bit inst
 	b	$BB97_3 # 16 bit inst
 $BB97_3:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10484,6 +13898,17 @@ $BB97_4:                                # =>This Inner Loop Header: Depth=1
 	btnez	$BB97_6  # 16 bit inst
 	b	$BB97_5 # 16 bit inst
 $BB97_5:                                #   in Loop: Header=BB97_4 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10528,9 +13953,20 @@ $BB97_7:
 	move	$2, $zero
 	addiu	$2, -1
 	slt	$2, $3
-	btnez	$BB97_14  # 16 bit inst
+	btnez	$BB97_14
 	b	$BB97_8 # 16 bit inst
 $BB97_8:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10548,7 +13984,7 @@ $BB97_8:
 	move	$6, $7
 	jal	__eqdf2
 	nop
-	beqz	$2, $BB97_14  # 16 bit inst
+	beqz	$2, $BB97_14
 	b	$BB97_9 # 16 bit inst
 $BB97_9:
 	li	$2, %hi($__profc_frexp)
@@ -10594,6 +14030,17 @@ $BB97_11:                               # =>This Inner Loop Header: Depth=1
 	btnez	$BB97_13  # 16 bit inst
 	b	$BB97_12 # 16 bit inst
 $BB97_12:                               #   in Loop: Header=BB97_11 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10618,8 +14065,30 @@ $BB97_12:                               #   in Loop: Header=BB97_11 Depth=1
 	sw	$2, 32($16)
 	b	$BB97_11 # 16 bit inst
 $BB97_13:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	b	$BB97_14 # 16 bit inst
 $BB97_14:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	b	$BB97_15 # 16 bit inst
 $BB97_15:
 	lw	$2, 20($16)
@@ -10629,6 +14098,17 @@ $BB97_15:
 	beqz	$2, $BB97_17  # 16 bit inst
 	b	$BB97_16 # 16 bit inst
 $BB97_16:
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.97)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	li	$2, %hi($__profc_frexp)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_frexp)
@@ -10667,21 +14147,39 @@ $func_end97:
 	.set	mips16
 	.ent	__muldi3
 __muldi3:                               # @__muldi3
-	.frame	$16,40,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,56,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 40 # 16 bit inst
+	save	$16, $17, 56 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a3
                                         # kill: def $v0 killed $a2
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 28($16)
-	sw	$4, 24($16)
-	sw	$7, 20($16)
-	sw	$6, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.98)
+	sll	$3, $2, 16
+	sw	$3, 8($16)                      # 4-byte Folded Spill
+	move	$2, $3
+	addiu	$2, %lo(__llvm_gcov_ctr.98)
+	sw	$2, 4($16)                      # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$17, %lo(__llvm_gcov_ctr.98)($3)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 4($16)                      # 4-byte Folded Reload
+	sw	$2, 12($16)                     # 4-byte Folded Spill
+	lw	$2, 8($16)                      # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.98)($2)
+	lw	$2, 12($16)                     # 4-byte Folded Reload
+	sw	$2, 4($3)
+	sw	$5, 44($16)
+	sw	$4, 40($16)
+	sw	$7, 36($16)
+	sw	$6, 32($16)
 	li	$2, %hi($__profc___muldi3)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -10695,18 +14193,18 @@ __muldi3:                               # @__muldi3
 	sw	$4, %lo($__profc___muldi3)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 12($16)
-	sw	$2, 8($16)
-	lw	$2, 24($16)
-	lw	$3, 28($16)
-	sw	$3, 4($16)
-	sw	$2, 0($16)
+	sw	$2, 28($16)
+	sw	$2, 24($16)
+	lw	$2, 40($16)
+	lw	$3, 44($16)
+	sw	$3, 20($16)
+	sw	$2, 16($16)
 	b	$BB98_1 # 16 bit inst
 $BB98_1:                                # =>This Inner Loop Header: Depth=1
-	lw	$3, 4($16)
-	lw	$2, 0($16)
+	lw	$3, 20($16)
+	lw	$2, 16($16)
 	or	$2, $3
-	beqz	$2, $BB98_5  # 16 bit inst
+	beqz	$2, $BB98_5
 	b	$BB98_2 # 16 bit inst
 $BB98_2:                                #   in Loop: Header=BB98_1 Depth=1
 	li	$2, %hi($__profc___muldi3)
@@ -10720,13 +14218,24 @@ $BB98_2:                                #   in Loop: Header=BB98_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	addiu	$2, $16, 0
+	addiu	$2, $16, 16
 	lbu	$2, 0($2)
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB98_4  # 16 bit inst
 	b	$BB98_3 # 16 bit inst
 $BB98_3:                                #   in Loop: Header=BB98_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.98)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.98)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___muldi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___muldi3)
@@ -10738,41 +14247,52 @@ $BB98_3:                                #   in Loop: Header=BB98_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$3, 16($16)
-	lw	$5, 20($16)
-	lw	$4, 8($16)
-	lw	$2, 12($16)
+	lw	$3, 32($16)
+	lw	$5, 36($16)
+	lw	$4, 24($16)
+	lw	$2, 28($16)
 	addu	$2, $2, $5
 	addu	$3, $4, $3
 	sltu	$3, $4
 	move	$4, $24
 	addu	$2, $2, $4
-	sw	$3, 8($16)
-	sw	$2, 12($16)
+	sw	$3, 24($16)
+	sw	$2, 28($16)
 	b	$BB98_4 # 16 bit inst
 $BB98_4:                                #   in Loop: Header=BB98_1 Depth=1
-	lw	$2, 20($16)
-	lw	$3, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.98)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.98)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
+	lw	$2, 36($16)
+	lw	$3, 32($16)
 	srl	$4, $3, 31
 	sll	$2, $2, 1
 	or	$2, $4
 	sll	$3, $3, 1
-	sw	$3, 16($16)
-	sw	$2, 20($16)
-	lw	$2, 0($16)
-	lw	$3, 4($16)
+	sw	$3, 32($16)
+	sw	$2, 36($16)
+	lw	$2, 16($16)
+	lw	$3, 20($16)
 	sll	$4, $3, 31
 	srl	$2, $2, 1
 	or	$2, $4
 	srl	$3, $3, 1
-	sw	$3, 4($16)
-	sw	$2, 0($16)
+	sw	$3, 20($16)
+	sw	$2, 16($16)
 	b	$BB98_1 # 16 bit inst
 $BB98_5:
-	lw	$2, 8($16)
-	lw	$3, 12($16)
+	lw	$2, 24($16)
+	lw	$3, 28($16)
 	move	$sp, $16
-	restore	$16, 40 # 16 bit inst
+	restore	$16, $17, 56 # 16 bit inst
 
 	jrc	$ra
 	.end	__muldi3
@@ -10822,9 +14342,21 @@ $BB99_1:                                # =>This Inner Loop Header: Depth=1
 	xor	$2, $3
 	li	$3, 0
 	sw	$3, 8($16)                      # 4-byte Folded Spill
-	bnez	$2, $BB99_6  # 16 bit inst
+	bnez	$2, $BB99_6
 	b	$BB99_2 # 16 bit inst
 $BB99_2:                                #   in Loop: Header=BB99_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.99)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.99)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc_udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_udivmodsi4)
@@ -10842,6 +14374,17 @@ $BB99_2:                                #   in Loop: Header=BB99_1 Depth=1
 	beqz	$2, $BB99_6  # 16 bit inst
 	b	$BB99_3 # 16 bit inst
 $BB99_3:                                #   in Loop: Header=BB99_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc_udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_udivmodsi4)
@@ -10881,6 +14424,17 @@ $BB99_4:                                #   in Loop: Header=BB99_1 Depth=1
 	b	$BB99_5 # 16 bit inst
 $BB99_5:                                #   in Loop: Header=BB99_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.99)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.99)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc_udivmodsi4)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc_udivmodsi4)
@@ -10901,6 +14455,17 @@ $BB99_6:                                #   in Loop: Header=BB99_1 Depth=1
 	beqz	$2, $BB99_8  # 16 bit inst
 	b	$BB99_7 # 16 bit inst
 $BB99_7:                                #   in Loop: Header=BB99_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc_udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_udivmodsi4)
@@ -10944,6 +14509,17 @@ $BB99_10:                               #   in Loop: Header=BB99_9 Depth=1
 	bnez	$2, $BB99_12  # 16 bit inst
 	b	$BB99_11 # 16 bit inst
 $BB99_11:                               #   in Loop: Header=BB99_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc_udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_udivmodsi4)
@@ -10965,6 +14541,17 @@ $BB99_11:                               #   in Loop: Header=BB99_9 Depth=1
 	sw	$2, 12($16)
 	b	$BB99_12 # 16 bit inst
 $BB99_12:                               #   in Loop: Header=BB99_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 16($16)
 	srl	$2, $2, 1
 	sw	$2, 16($16)
@@ -10977,6 +14564,17 @@ $BB99_13:
 	beqz	$2, $BB99_15  # 16 bit inst
 	b	$BB99_14 # 16 bit inst
 $BB99_14:
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	li	$2, %hi($__profc_udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc_udivmodsi4)
@@ -10992,6 +14590,17 @@ $BB99_14:
 	sw	$2, 32($16)
 	b	$BB99_16 # 16 bit inst
 $BB99_15:
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.99)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	lw	$2, 12($16)
 	sw	$2, 32($16)
 	b	$BB99_16 # 16 bit inst
@@ -11041,6 +14650,18 @@ __clrsbqi2:                             # @__clrsbqi2
 	btnez	$BB100_2  # 16 bit inst
 	b	$BB100_1 # 16 bit inst
 $BB100_1:
+	li	$2, %hi(__llvm_gcov_ctr.100)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.100)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.100)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.100)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___clrsbqi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___clrsbqi2)
@@ -11063,6 +14684,17 @@ $BB100_2:
 	bnez	$2, $BB100_4  # 16 bit inst
 	b	$BB100_3 # 16 bit inst
 $BB100_3:
+	li	$2, %hi(__llvm_gcov_ctr.100)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.100)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___clrsbqi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___clrsbqi2)
@@ -11078,6 +14710,17 @@ $BB100_3:
 	sw	$2, 8($16)
 	b	$BB100_5 # 16 bit inst
 $BB100_4:
+	li	$2, %hi(__llvm_gcov_ctr.100)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.100)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	addiu	$2, $16, 7
 	lb	$2, 0($2)
 	sll	$2, $2, 8
@@ -11178,6 +14821,18 @@ __clrsbdi2:                             # @__clrsbdi2
 	btnez	$BB101_2  # 16 bit inst
 	b	$BB101_1 # 16 bit inst
 $BB101_1:
+	li	$2, %hi(__llvm_gcov_ctr.101)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.101)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.101)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.101)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___clrsbdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___clrsbdi2)
@@ -11203,6 +14858,17 @@ $BB101_2:
 	bnez	$2, $BB101_4  # 16 bit inst
 	b	$BB101_3 # 16 bit inst
 $BB101_3:
+	li	$2, %hi(__llvm_gcov_ctr.101)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.101)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___clrsbdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___clrsbdi2)
@@ -11218,6 +14884,17 @@ $BB101_3:
 	sw	$2, 28($16)
 	b	$BB101_7 # 16 bit inst
 $BB101_4:
+	li	$2, %hi(__llvm_gcov_ctr.101)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.101)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$4, 16($16)
 	lw	$2, 20($16)
 	sw	$2, 0($16)                      # 4-byte Folded Spill
@@ -11323,15 +15000,27 @@ $func_end101:
 	.set	mips16
 	.ent	__mulsi3
 __mulsi3:                               # @__mulsi3
-	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,24,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.102)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.102)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.102)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.102)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc___mulsi3)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -11345,10 +15034,10 @@ __mulsi3:                               # @__mulsi3
 	sw	$4, %lo($__profc___mulsi3)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	b	$BB102_1 # 16 bit inst
 $BB102_1:                               # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	beqz	$2, $BB102_5  # 16 bit inst
 	b	$BB102_2 # 16 bit inst
 $BB102_2:                               #   in Loop: Header=BB102_1 Depth=1
@@ -11363,13 +15052,24 @@ $BB102_2:                               #   in Loop: Header=BB102_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	addiu	$2, $16, 8
+	addiu	$2, $16, 12
 	lbu	$2, 0($2)
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB102_4  # 16 bit inst
 	b	$BB102_3 # 16 bit inst
 $BB102_3:                               #   in Loop: Header=BB102_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.102)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.102)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mulsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulsi3)
@@ -11381,23 +15081,34 @@ $BB102_3:                               #   in Loop: Header=BB102_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$3, 4($16)
-	lw	$2, 0($16)
+	lw	$3, 8($16)
+	lw	$2, 4($16)
 	addu	$2, $2, $3
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	b	$BB102_4 # 16 bit inst
 $BB102_4:                               #   in Loop: Header=BB102_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.102)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.102)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
+	lw	$2, 12($16)
 	srl	$2, $2, 1
-	sw	$2, 8($16)
-	lw	$2, 4($16)
+	sw	$2, 12($16)
+	lw	$2, 8($16)
 	sll	$2, $2, 1
-	sw	$2, 4($16)
+	sw	$2, 8($16)
 	b	$BB102_1 # 16 bit inst
 $BB102_5:
-	lw	$2, 0($16)
+	lw	$2, 4($16)
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	__mulsi3
@@ -11452,6 +15163,18 @@ __cmovd:                                # @__cmovd
 	bnez	$2, $BB103_3  # 16 bit inst
 	b	$BB103_1 # 16 bit inst
 $BB103_1:
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.103)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.103)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___cmovd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovd)
@@ -11532,6 +15255,17 @@ $BB103_5:                               #   in Loop: Header=BB103_4 Depth=1
 	sw	$2, 0($3)
 	b	$BB103_6 # 16 bit inst
 $BB103_6:                               #   in Loop: Header=BB103_4 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 20($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 20($16)
@@ -11548,6 +15282,17 @@ $BB103_8:                               # =>This Inner Loop Header: Depth=1
 	bnez	$2, $BB103_10  # 16 bit inst
 	b	$BB103_9 # 16 bit inst
 $BB103_9:                               #   in Loop: Header=BB103_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___cmovd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovd)
@@ -11571,6 +15316,17 @@ $BB103_9:                               #   in Loop: Header=BB103_8 Depth=1
 	sw	$2, 12($16)
 	b	$BB103_8 # 16 bit inst
 $BB103_10:
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB103_15 # 16 bit inst
 $BB103_11:
 	b	$BB103_12 # 16 bit inst
@@ -11582,6 +15338,17 @@ $BB103_12:                              # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB103_14  # 16 bit inst
 	b	$BB103_13 # 16 bit inst
 $BB103_13:                              #   in Loop: Header=BB103_12 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___cmovd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovd)
@@ -11602,6 +15369,17 @@ $BB103_13:                              #   in Loop: Header=BB103_12 Depth=1
 	sb	$2, 0($3)
 	b	$BB103_12 # 16 bit inst
 $BB103_14:
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.103)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	b	$BB103_15 # 16 bit inst
 $BB103_15:
 	move	$sp, $16
@@ -11655,6 +15433,18 @@ __cmovh:                                # @__cmovh
 	bnez	$2, $BB104_3  # 16 bit inst
 	b	$BB104_1 # 16 bit inst
 $BB104_1:
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.104)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.104)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___cmovh)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovh)
@@ -11733,6 +15523,17 @@ $BB104_5:                               #   in Loop: Header=BB104_4 Depth=1
 	sh	$2, 0($3)
 	b	$BB104_6 # 16 bit inst
 $BB104_6:                               #   in Loop: Header=BB104_4 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 12($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 12($16)
@@ -11745,6 +15546,17 @@ $BB104_7:
 	beqz	$2, $BB104_9  # 16 bit inst
 	b	$BB104_8 # 16 bit inst
 $BB104_8:
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___cmovh)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovh)
@@ -11766,6 +15578,17 @@ $BB104_8:
 	sb	$2, 0($3)
 	b	$BB104_9 # 16 bit inst
 $BB104_9:
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB104_14 # 16 bit inst
 $BB104_10:
 	b	$BB104_11 # 16 bit inst
@@ -11777,6 +15600,17 @@ $BB104_11:                              # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB104_13  # 16 bit inst
 	b	$BB104_12 # 16 bit inst
 $BB104_12:                              #   in Loop: Header=BB104_11 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___cmovh)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovh)
@@ -11797,6 +15631,17 @@ $BB104_12:                              #   in Loop: Header=BB104_11 Depth=1
 	sb	$2, 0($3)
 	b	$BB104_11 # 16 bit inst
 $BB104_13:
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.104)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	b	$BB104_14 # 16 bit inst
 $BB104_14:
 	move	$sp, $16
@@ -11855,6 +15700,18 @@ __cmovw:                                # @__cmovw
 	bnez	$2, $BB105_3  # 16 bit inst
 	b	$BB105_1 # 16 bit inst
 $BB105_1:
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.105)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.105)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___cmovw)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovw)
@@ -11933,6 +15790,17 @@ $BB105_5:                               #   in Loop: Header=BB105_4 Depth=1
 	sw	$2, 0($3)
 	b	$BB105_6 # 16 bit inst
 $BB105_6:                               #   in Loop: Header=BB105_4 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$2, 20($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 20($16)
@@ -11949,6 +15817,17 @@ $BB105_8:                               # =>This Inner Loop Header: Depth=1
 	bnez	$2, $BB105_10  # 16 bit inst
 	b	$BB105_9 # 16 bit inst
 $BB105_9:                               #   in Loop: Header=BB105_8 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___cmovw)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovw)
@@ -11972,6 +15851,17 @@ $BB105_9:                               #   in Loop: Header=BB105_8 Depth=1
 	sw	$2, 12($16)
 	b	$BB105_8 # 16 bit inst
 $BB105_10:
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	b	$BB105_15 # 16 bit inst
 $BB105_11:
 	b	$BB105_12 # 16 bit inst
@@ -11983,6 +15873,17 @@ $BB105_12:                              # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB105_14  # 16 bit inst
 	b	$BB105_13 # 16 bit inst
 $BB105_13:                              #   in Loop: Header=BB105_12 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___cmovw)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmovw)
@@ -12003,6 +15904,17 @@ $BB105_13:                              #   in Loop: Header=BB105_12 Depth=1
 	sb	$2, 0($3)
 	b	$BB105_12 # 16 bit inst
 $BB105_14:
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.105)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	b	$BB105_15 # 16 bit inst
 $BB105_15:
 	move	$sp, $16
@@ -12021,14 +15933,26 @@ $func_end105:
 	.ent	__modi
 __modi:                                 # @__modi
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.106)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.106)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.106)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.106)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc___modi)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -12041,12 +15965,12 @@ __modi:                                 # @__modi
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___modi)($5)
 	sw	$2, 4($3)
-	lw	$2, 8($16)
-	lw	$3, 4($16)
+	lw	$2, 4($16)
+	lw	$3, 0($16)
 	div	$zero, $2, $3
 	mfhi	$2
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__modi
@@ -12067,6 +15991,18 @@ __uitod:                                # @__uitod
 	save	$16, $ra, 32 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.107)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.107)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.107)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.107)($6)
+	sw	$2, 4($3)
 	sw	$4, 20($16)
 	li	$2, %hi($__profc___uitod)
 	sll	$5, $2, 16
@@ -12105,6 +16041,18 @@ __uitof:                                # @__uitof
 	save	$16, $ra, 32 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.108)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.108)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.108)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.108)($6)
+	sw	$2, 4($3)
 	sw	$4, 20($16)
 	li	$2, %hi($__profc___uitof)
 	sll	$5, $2, 16
@@ -12136,15 +16084,27 @@ $func_end108:
 	.set	mips16
 	.ent	__ulltod
 __ulltod:                               # @__ulltod
-	.frame	$16,32,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,40,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 32 # 16 bit inst
+	save	$16, $17, $ra, 40 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.109)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.109)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.109)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.109)($7)
+	sw	$2, 4($3)
 	sw	$5, 20($16)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___ulltod)
@@ -12164,7 +16124,7 @@ __ulltod:                               # @__ulltod
 	jal	__floatundidf
 	nop
 	move	$sp, $16
-	restore	$16, $ra, 32 # 16 bit inst
+	restore	$16, $17, $ra, 40 # 16 bit inst
 
 	jrc	$ra
 	.end	__ulltod
@@ -12178,15 +16138,27 @@ $func_end109:
 	.set	mips16
 	.ent	__ulltof
 __ulltof:                               # @__ulltof
-	.frame	$16,32,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,40,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 32 # 16 bit inst
+	save	$16, $17, $ra, 40 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.110)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.110)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.110)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.110)($7)
+	sw	$2, 4($3)
 	sw	$5, 20($16)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___ulltof)
@@ -12206,7 +16178,7 @@ __ulltof:                               # @__ulltof
 	jal	__floatundisf
 	nop
 	move	$sp, $16
-	restore	$16, $ra, 32 # 16 bit inst
+	restore	$16, $17, $ra, 40 # 16 bit inst
 
 	jrc	$ra
 	.end	__ulltof
@@ -12221,14 +16193,26 @@ $func_end110:
 	.ent	__umodi
 __umodi:                                # @__umodi
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.111)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.111)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.111)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.111)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc___umodi)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -12241,12 +16225,12 @@ __umodi:                                # @__umodi
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___umodi)($5)
 	sw	$2, 4($3)
-	lw	$2, 8($16)
-	lw	$3, 4($16)
+	lw	$2, 4($16)
+	lw	$3, 0($16)
 	divu	$zero, $2, $3
 	mfhi	$2
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__umodi
@@ -12268,6 +16252,18 @@ __clzhi2:                               # @__clzhi2
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.112)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.112)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.112)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.112)($6)
+	sw	$2, 4($3)
 	addiu	$2, $16, 10
 	sh	$4, 0($2)
 	li	$2, %hi($__profc___clzhi2)
@@ -12314,6 +16310,17 @@ $BB112_2:                               #   in Loop: Header=BB112_1 Depth=1
 	beqz	$2, $BB112_4  # 16 bit inst
 	b	$BB112_3 # 16 bit inst
 $BB112_3:
+	li	$2, %hi(__llvm_gcov_ctr.112)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.112)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___clzhi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___clzhi2)
@@ -12329,6 +16336,17 @@ $BB112_3:
 $BB112_4:                               #   in Loop: Header=BB112_1 Depth=1
 	b	$BB112_5 # 16 bit inst
 $BB112_5:                               #   in Loop: Header=BB112_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.112)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.112)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
@@ -12358,6 +16376,18 @@ __ctzhi2:                               # @__ctzhi2
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.113)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.113)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.113)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.113)($6)
+	sw	$2, 4($3)
 	addiu	$2, $16, 10
 	sh	$4, 0($2)
 	li	$2, %hi($__profc___ctzhi2)
@@ -12402,6 +16432,17 @@ $BB113_2:                               #   in Loop: Header=BB113_1 Depth=1
 	beqz	$2, $BB113_4  # 16 bit inst
 	b	$BB113_3 # 16 bit inst
 $BB113_3:
+	li	$2, %hi(__llvm_gcov_ctr.113)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.113)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___ctzhi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ctzhi2)
@@ -12417,6 +16458,17 @@ $BB113_3:
 $BB113_4:                               #   in Loop: Header=BB113_1 Depth=1
 	b	$BB113_5 # 16 bit inst
 $BB113_5:                               #   in Loop: Header=BB113_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.113)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.113)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
@@ -12471,6 +16523,18 @@ __fixunssfsi:                           # @__fixunssfsi
 	btnez	$BB114_2  # 16 bit inst
 	b	$BB114_1 # 16 bit inst
 $BB114_1:
+	li	$2, %hi(__llvm_gcov_ctr.114)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.114)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.114)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.114)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___fixunssfsi)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___fixunssfsi)
@@ -12498,6 +16562,17 @@ $BB114_1:
 	sw	$2, 20($16)
 	b	$BB114_3 # 16 bit inst
 $BB114_2:
+	li	$2, %hi(__llvm_gcov_ctr.114)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.114)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$4, 16($16)
 	jal	__fixsfsi
 	nop
@@ -12528,6 +16603,18 @@ __parityhi2:                            # @__parityhi2
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.115)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.115)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.115)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.115)($6)
+	sw	$2, 4($3)
 	addiu	$2, $16, 10
 	sh	$4, 0($2)
 	li	$2, %hi($__profc___parityhi2)
@@ -12573,6 +16660,17 @@ $BB115_2:                               #   in Loop: Header=BB115_1 Depth=1
 	beqz	$2, $BB115_4  # 16 bit inst
 	b	$BB115_3 # 16 bit inst
 $BB115_3:                               #   in Loop: Header=BB115_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.115)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.115)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___parityhi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___parityhi2)
@@ -12591,6 +16689,17 @@ $BB115_3:                               #   in Loop: Header=BB115_1 Depth=1
 $BB115_4:                               #   in Loop: Header=BB115_1 Depth=1
 	b	$BB115_5 # 16 bit inst
 $BB115_5:                               #   in Loop: Header=BB115_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.115)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.115)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
@@ -12622,6 +16731,18 @@ __popcounthi2:                          # @__popcounthi2
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.116)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.116)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.116)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.116)($6)
+	sw	$2, 4($3)
 	addiu	$2, $16, 10
 	sh	$4, 0($2)
 	li	$2, %hi($__profc___popcounthi2)
@@ -12667,6 +16788,17 @@ $BB116_2:                               #   in Loop: Header=BB116_1 Depth=1
 	beqz	$2, $BB116_4  # 16 bit inst
 	b	$BB116_3 # 16 bit inst
 $BB116_3:                               #   in Loop: Header=BB116_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.116)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.116)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___popcounthi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___popcounthi2)
@@ -12685,6 +16817,17 @@ $BB116_3:                               #   in Loop: Header=BB116_1 Depth=1
 $BB116_4:                               #   in Loop: Header=BB116_1 Depth=1
 	b	$BB116_5 # 16 bit inst
 $BB116_5:                               #   in Loop: Header=BB116_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.116)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.116)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 4($16)
 	addiu	$2, 1	# 16 bit inst
 	sw	$2, 4($16)
@@ -12706,15 +16849,27 @@ $func_end116:
 	.set	mips16
 	.ent	__mulsi3_iq2000
 __mulsi3_iq2000:                        # @__mulsi3_iq2000
-	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.frame	$16,24,$ra
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 24 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.117)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.117)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.117)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.117)($7)
+	sw	$2, 4($3)
+	sw	$4, 12($16)
+	sw	$5, 8($16)
 	li	$2, %hi($__profc___mulsi3_iq2000)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -12728,10 +16883,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	sw	$4, %lo($__profc___mulsi3_iq2000)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	b	$BB117_1 # 16 bit inst
 $BB117_1:                               # =>This Inner Loop Header: Depth=1
-	lw	$2, 8($16)
+	lw	$2, 12($16)
 	beqz	$2, $BB117_5  # 16 bit inst
 	b	$BB117_2 # 16 bit inst
 $BB117_2:                               #   in Loop: Header=BB117_1 Depth=1
@@ -12746,13 +16901,24 @@ $BB117_2:                               #   in Loop: Header=BB117_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	addiu	$2, $16, 8
+	addiu	$2, $16, 12
 	lbu	$2, 0($2)
 	li	$3, 1
 	and	$2, $3
 	beqz	$2, $BB117_4  # 16 bit inst
 	b	$BB117_3 # 16 bit inst
 $BB117_3:                               #   in Loop: Header=BB117_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.117)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.117)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mulsi3_iq2000)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulsi3_iq2000)
@@ -12764,23 +16930,34 @@ $BB117_3:                               #   in Loop: Header=BB117_1 Depth=1
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$3, 4($16)
-	lw	$2, 0($16)
+	lw	$3, 8($16)
+	lw	$2, 4($16)
 	addu	$2, $2, $3
-	sw	$2, 0($16)
+	sw	$2, 4($16)
 	b	$BB117_4 # 16 bit inst
 $BB117_4:                               #   in Loop: Header=BB117_1 Depth=1
-	lw	$2, 8($16)
+	li	$2, %hi(__llvm_gcov_ctr.117)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.117)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
+	lw	$2, 12($16)
 	srl	$2, $2, 1
-	sw	$2, 8($16)
-	lw	$2, 4($16)
+	sw	$2, 12($16)
+	lw	$2, 8($16)
 	sll	$2, $2, 1
-	sw	$2, 4($16)
+	sw	$2, 8($16)
 	b	$BB117_1 # 16 bit inst
 $BB117_5:
-	lw	$2, 0($16)
+	lw	$2, 4($16)
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 24 # 16 bit inst
 
 	jrc	$ra
 	.end	__mulsi3_iq2000
@@ -12821,6 +16998,17 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	bnez	$2, $BB118_2  # 16 bit inst
 	b	$BB118_1 # 16 bit inst
 $BB118_1:
+	li	$2, %hi(__llvm_gcov_ctr.118)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.118)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mulsi3_lm32)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulsi3_lm32)
@@ -12836,6 +17024,18 @@ $BB118_1:
 	sw	$2, 16($16)
 	b	$BB118_8 # 16 bit inst
 $BB118_2:
+	li	$2, %hi(__llvm_gcov_ctr.118)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.118)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.118)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.118)($5)
+	sw	$2, 4($3)
 	b	$BB118_3 # 16 bit inst
 $BB118_3:                               # =>This Inner Loop Header: Depth=1
 	lw	$2, 8($16)
@@ -12860,6 +17060,17 @@ $BB118_4:                               #   in Loop: Header=BB118_3 Depth=1
 	beqz	$2, $BB118_6  # 16 bit inst
 	b	$BB118_5 # 16 bit inst
 $BB118_5:                               #   in Loop: Header=BB118_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.118)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.118)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___mulsi3_lm32)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulsi3_lm32)
@@ -12877,6 +17088,17 @@ $BB118_5:                               #   in Loop: Header=BB118_3 Depth=1
 	sw	$2, 4($16)
 	b	$BB118_6 # 16 bit inst
 $BB118_6:                               #   in Loop: Header=BB118_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.118)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.118)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 12($16)
 	sll	$2, $2, 1
 	sw	$2, 12($16)
@@ -12941,9 +17163,21 @@ $BB119_1:                               # =>This Inner Loop Header: Depth=1
 	xor	$2, $3
 	li	$3, 0
 	sw	$3, 8($16)                      # 4-byte Folded Spill
-	bnez	$2, $BB119_6  # 16 bit inst
+	bnez	$2, $BB119_6
 	b	$BB119_2 # 16 bit inst
 $BB119_2:                               #   in Loop: Header=BB119_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.119)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.119)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4)
@@ -12961,6 +17195,17 @@ $BB119_2:                               #   in Loop: Header=BB119_1 Depth=1
 	beqz	$2, $BB119_6  # 16 bit inst
 	b	$BB119_3 # 16 bit inst
 $BB119_3:                               #   in Loop: Header=BB119_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4)
@@ -13000,6 +17245,17 @@ $BB119_4:                               #   in Loop: Header=BB119_1 Depth=1
 	b	$BB119_5 # 16 bit inst
 $BB119_5:                               #   in Loop: Header=BB119_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.119)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.119)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc___udivmodsi4)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc___udivmodsi4)
@@ -13020,6 +17276,17 @@ $BB119_6:                               #   in Loop: Header=BB119_1 Depth=1
 	beqz	$2, $BB119_8  # 16 bit inst
 	b	$BB119_7 # 16 bit inst
 $BB119_7:                               #   in Loop: Header=BB119_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4)
@@ -13063,6 +17330,17 @@ $BB119_10:                              #   in Loop: Header=BB119_9 Depth=1
 	bnez	$2, $BB119_12  # 16 bit inst
 	b	$BB119_11 # 16 bit inst
 $BB119_11:                              #   in Loop: Header=BB119_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4)
@@ -13084,6 +17362,17 @@ $BB119_11:                              #   in Loop: Header=BB119_9 Depth=1
 	sw	$2, 12($16)
 	b	$BB119_12 # 16 bit inst
 $BB119_12:                              #   in Loop: Header=BB119_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 16($16)
 	srl	$2, $2, 1
 	sw	$2, 16($16)
@@ -13096,6 +17385,17 @@ $BB119_13:
 	beqz	$2, $BB119_15  # 16 bit inst
 	b	$BB119_14 # 16 bit inst
 $BB119_14:
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	li	$2, %hi($__profc___udivmodsi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4)
@@ -13111,6 +17411,17 @@ $BB119_14:
 	sw	$2, 32($16)
 	b	$BB119_16 # 16 bit inst
 $BB119_15:
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.119)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	lw	$2, 12($16)
 	sw	$2, 32($16)
 	b	$BB119_16 # 16 bit inst
@@ -13165,6 +17476,18 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	btnez	$BB120_2  # 16 bit inst
 	b	$BB120_1 # 16 bit inst
 $BB120_1:
+	li	$2, %hi(__llvm_gcov_ctr.120)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.120)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.120)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.120)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___mspabi_cmpf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mspabi_cmpf)
@@ -13189,6 +17512,17 @@ $BB120_2:
 	btnez	$BB120_4  # 16 bit inst
 	b	$BB120_3 # 16 bit inst
 $BB120_3:
+	li	$2, %hi(__llvm_gcov_ctr.120)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.120)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mspabi_cmpf)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mspabi_cmpf)
@@ -13204,6 +17538,17 @@ $BB120_3:
 	sw	$2, 28($16)
 	b	$BB120_5 # 16 bit inst
 $BB120_4:
+	li	$2, %hi(__llvm_gcov_ctr.120)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.120)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 28($16)
 	b	$BB120_5 # 16 bit inst
@@ -13264,6 +17609,18 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	btnez	$BB121_2  # 16 bit inst
 	b	$BB121_1 # 16 bit inst
 $BB121_1:
+	li	$2, %hi(__llvm_gcov_ctr.121)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.121)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.121)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.121)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___mspabi_cmpd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mspabi_cmpd)
@@ -13290,6 +17647,17 @@ $BB121_2:
 	btnez	$BB121_4  # 16 bit inst
 	b	$BB121_3 # 16 bit inst
 $BB121_3:
+	li	$2, %hi(__llvm_gcov_ctr.121)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.121)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mspabi_cmpd)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mspabi_cmpd)
@@ -13305,6 +17673,17 @@ $BB121_3:
 	sw	$2, 36($16)
 	b	$BB121_5 # 16 bit inst
 $BB121_4:
+	li	$2, %hi(__llvm_gcov_ctr.121)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.121)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, 0
 	sw	$2, 36($16)
 	b	$BB121_5 # 16 bit inst
@@ -13326,14 +17705,26 @@ $func_end121:
 	.ent	__mspabi_mpysll
 __mspabi_mpysll:                        # @__mspabi_mpysll
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.122)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.122)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.122)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.122)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc___mspabi_mpysll)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -13346,13 +17737,13 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___mspabi_mpysll)($5)
 	sw	$2, 4($3)
-	lw	$2, 8($16)
-	lw	$3, 4($16)
+	lw	$2, 4($16)
+	lw	$3, 0($16)
 	mult	$2, $3
 	mflo	$2
 	mfhi	$3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__mspabi_mpysll
@@ -13367,14 +17758,26 @@ $func_end122:
 	.ent	__mspabi_mpyull
 __mspabi_mpyull:                        # @__mspabi_mpyull
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 8($16)
-	sw	$5, 4($16)
+	li	$2, %hi(__llvm_gcov_ctr.123)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.123)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.123)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.123)($7)
+	sw	$2, 4($3)
+	sw	$4, 4($16)
+	sw	$5, 0($16)
 	li	$2, %hi($__profc___mspabi_mpyull)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -13387,13 +17790,13 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___mspabi_mpyull)($5)
 	sw	$2, 4($3)
-	lw	$2, 8($16)
-	lw	$3, 4($16)
+	lw	$2, 4($16)
+	lw	$3, 0($16)
 	multu	$2, $3
 	mflo	$2
 	mfhi	$3
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__mspabi_mpyull
@@ -13438,6 +17841,18 @@ __mulhi3:                               # @__mulhi3
 	btnez	$BB124_2  # 16 bit inst
 	b	$BB124_1 # 16 bit inst
 $BB124_1:
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.124)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.124)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___mulhi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulhi3)
@@ -13467,6 +17882,17 @@ $BB124_3:                               # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB124_6  # 16 bit inst
 	b	$BB124_4 # 16 bit inst
 $BB124_4:                               #   in Loop: Header=BB124_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___mulhi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulhi3)
@@ -13491,6 +17917,17 @@ $BB124_4:                               #   in Loop: Header=BB124_3 Depth=1
 	b	$BB124_5 # 16 bit inst
 $BB124_5:                               #   in Loop: Header=BB124_3 Depth=1
 	lw	$2, 8($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.124)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.124)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc___mulhi3)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc___mulhi3)
@@ -13529,6 +17966,17 @@ $BB124_7:                               #   in Loop: Header=BB124_3 Depth=1
 	beqz	$2, $BB124_9  # 16 bit inst
 	b	$BB124_8 # 16 bit inst
 $BB124_8:                               #   in Loop: Header=BB124_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___mulhi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulhi3)
@@ -13554,6 +18002,17 @@ $BB124_9:                               #   in Loop: Header=BB124_3 Depth=1
 	sw	$2, 28($16)
 	b	$BB124_10 # 16 bit inst
 $BB124_10:                              #   in Loop: Header=BB124_3 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	addiu	$3, $16, 27
 	lbu	$2, 0($3)
 	addiu	$2, 1	# 16 bit inst
@@ -13564,6 +18023,17 @@ $BB124_11:
 	beqz	$2, $BB124_13  # 16 bit inst
 	b	$BB124_12 # 16 bit inst
 $BB124_12:
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	li	$2, %hi($__profc___mulhi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___mulhi3)
@@ -13580,6 +18050,17 @@ $BB124_12:
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB124_14 # 16 bit inst
 $BB124_13:
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.124)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	lw	$2, 16($16)
 	sw	$2, 4($16)                      # 4-byte Folded Spill
 	b	$BB124_14 # 16 bit inst
@@ -13600,15 +18081,27 @@ $func_end124:
 	.set	mips16
 	.ent	__divsi3
 __divsi3:                               # @__divsi3
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,48,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 48 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 28($16)
-	sw	$5, 24($16)
+	li	$2, %hi(__llvm_gcov_ctr.125)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.125)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.125)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.125)($7)
+	sw	$2, 4($3)
+	sw	$4, 32($16)
+	sw	$5, 28($16)
 	li	$2, %hi($__profc___divsi3)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -13622,14 +18115,25 @@ __divsi3:                               # @__divsi3
 	sw	$4, %lo($__profc___divsi3)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 20($16)
-	lw	$3, 28($16)
+	sw	$2, 24($16)
+	lw	$3, 32($16)
 	move	$2, $zero
 	addiu	$2, -1
 	slt	$2, $3
 	btnez	$BB125_2  # 16 bit inst
 	b	$BB125_1 # 16 bit inst
 $BB125_1:
+	li	$2, %hi(__llvm_gcov_ctr.125)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.125)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___divsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___divsi3)
@@ -13641,22 +18145,33 @@ $BB125_1:
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 28($16)
+	lw	$2, 32($16)
 	neg	$2, $2
-	sw	$2, 28($16)
-	lw	$2, 20($16)
+	sw	$2, 32($16)
+	lw	$2, 24($16)
 	sltiu	$2, 1 	# 16 bit inst
 	move	$2, $24
-	sw	$2, 20($16)
+	sw	$2, 24($16)
 	b	$BB125_2 # 16 bit inst
 $BB125_2:
-	lw	$3, 24($16)
+	lw	$3, 28($16)
 	move	$2, $zero
 	addiu	$2, -1
 	slt	$2, $3
 	btnez	$BB125_4  # 16 bit inst
 	b	$BB125_3 # 16 bit inst
 $BB125_3:
+	li	$2, %hi(__llvm_gcov_ctr.125)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.125)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___divsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___divsi3)
@@ -13668,25 +18183,36 @@ $BB125_3:
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 24($16)
+	lw	$2, 28($16)
 	neg	$2, $2
-	sw	$2, 24($16)
-	lw	$2, 20($16)
+	sw	$2, 28($16)
+	lw	$2, 24($16)
 	sltiu	$2, 1 	# 16 bit inst
 	move	$2, $24
-	sw	$2, 20($16)
+	sw	$2, 24($16)
 	b	$BB125_4 # 16 bit inst
 $BB125_4:
-	lw	$4, 28($16)
-	lw	$5, 24($16)
+	lw	$4, 32($16)
+	lw	$5, 28($16)
 	li	$6, 0
 	jal	__udivmodsi4
 	nop
-	sw	$2, 16($16)
-	lw	$2, 20($16)
+	sw	$2, 20($16)
+	lw	$2, 24($16)
 	beqz	$2, $BB125_6  # 16 bit inst
 	b	$BB125_5 # 16 bit inst
 $BB125_5:
+	li	$2, %hi(__llvm_gcov_ctr.125)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.125)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___divsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___divsi3)
@@ -13698,14 +18224,14 @@ $BB125_5:
 	addu	$2, $2, $5
 	sw	$4, 24($3)
 	sw	$2, 28($3)
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	neg	$2, $2
-	sw	$2, 16($16)
+	sw	$2, 20($16)
 	b	$BB125_6 # 16 bit inst
 $BB125_6:
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 48 # 16 bit inst
 
 	jrc	$ra
 	.end	__divsi3
@@ -13719,15 +18245,27 @@ $func_end125:
 	.set	mips16
 	.ent	__modsi3
 __modsi3:                               # @__modsi3
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,48,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 48 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 28($16)
-	sw	$5, 24($16)
+	li	$2, %hi(__llvm_gcov_ctr.126)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.126)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.126)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.126)($7)
+	sw	$2, 4($3)
+	sw	$4, 32($16)
+	sw	$5, 28($16)
 	li	$2, %hi($__profc___modsi3)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -13741,14 +18279,25 @@ __modsi3:                               # @__modsi3
 	sw	$4, %lo($__profc___modsi3)($5)
 	sw	$2, 4($3)
 	li	$2, 0
-	sw	$2, 20($16)
-	lw	$3, 28($16)
+	sw	$2, 24($16)
+	lw	$3, 32($16)
 	move	$2, $zero
 	addiu	$2, -1
 	slt	$2, $3
 	btnez	$BB126_2  # 16 bit inst
 	b	$BB126_1 # 16 bit inst
 $BB126_1:
+	li	$2, %hi(__llvm_gcov_ctr.126)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.126)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___modsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___modsi3)
@@ -13760,20 +18309,31 @@ $BB126_1:
 	addu	$2, $2, $5
 	sw	$4, 8($3)
 	sw	$2, 12($3)
-	lw	$2, 28($16)
+	lw	$2, 32($16)
 	neg	$2, $2
-	sw	$2, 28($16)
+	sw	$2, 32($16)
 	li	$2, 1
-	sw	$2, 20($16)
+	sw	$2, 24($16)
 	b	$BB126_2 # 16 bit inst
 $BB126_2:
-	lw	$3, 24($16)
+	lw	$3, 28($16)
 	move	$2, $zero
 	addiu	$2, -1
 	slt	$2, $3
 	btnez	$BB126_4  # 16 bit inst
 	b	$BB126_3 # 16 bit inst
 $BB126_3:
+	li	$2, %hi(__llvm_gcov_ctr.126)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.126)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___modsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___modsi3)
@@ -13785,21 +18345,32 @@ $BB126_3:
 	addu	$2, $2, $5
 	sw	$4, 16($3)
 	sw	$2, 20($3)
-	lw	$2, 24($16)
+	lw	$2, 28($16)
 	neg	$2, $2
-	sw	$2, 24($16)
+	sw	$2, 28($16)
 	b	$BB126_4 # 16 bit inst
 $BB126_4:
-	lw	$4, 28($16)
-	lw	$5, 24($16)
+	lw	$4, 32($16)
+	lw	$5, 28($16)
 	li	$6, 1
 	jal	__udivmodsi4
 	nop
-	sw	$2, 16($16)
-	lw	$2, 20($16)
+	sw	$2, 20($16)
+	lw	$2, 24($16)
 	beqz	$2, $BB126_6  # 16 bit inst
 	b	$BB126_5 # 16 bit inst
 $BB126_5:
+	li	$2, %hi(__llvm_gcov_ctr.126)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.126)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___modsi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___modsi3)
@@ -13811,14 +18382,14 @@ $BB126_5:
 	addu	$2, $2, $5
 	sw	$4, 24($3)
 	sw	$2, 28($3)
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	neg	$2, $2
-	sw	$2, 16($16)
+	sw	$2, 20($16)
 	b	$BB126_6 # 16 bit inst
 $BB126_6:
-	lw	$2, 16($16)
+	lw	$2, 20($16)
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 48 # 16 bit inst
 
 	jrc	$ra
 	.end	__modsi3
@@ -13873,9 +18444,21 @@ $BB127_1:                               # =>This Inner Loop Header: Depth=1
 	li	$2, 0
 	slt	$3, $4
 	sw	$2, 8($16)                      # 4-byte Folded Spill
-	bteqz	$BB127_6  # 16 bit inst
+	bteqz	$BB127_6
 	b	$BB127_2 # 16 bit inst
 $BB127_2:                               #   in Loop: Header=BB127_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.127)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.127)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___udivmodhi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodhi4)
@@ -13894,6 +18477,17 @@ $BB127_2:                               #   in Loop: Header=BB127_1 Depth=1
 	beqz	$2, $BB127_6  # 16 bit inst
 	b	$BB127_3 # 16 bit inst
 $BB127_3:                               #   in Loop: Header=BB127_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___udivmodhi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodhi4)
@@ -13930,6 +18524,17 @@ $BB127_4:                               #   in Loop: Header=BB127_1 Depth=1
 	b	$BB127_5 # 16 bit inst
 $BB127_5:                               #   in Loop: Header=BB127_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.127)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.127)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc___udivmodhi4)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc___udivmodhi4)
@@ -13950,6 +18555,17 @@ $BB127_6:                               #   in Loop: Header=BB127_1 Depth=1
 	beqz	$2, $BB127_8  # 16 bit inst
 	b	$BB127_7 # 16 bit inst
 $BB127_7:                               #   in Loop: Header=BB127_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___udivmodhi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodhi4)
@@ -13997,6 +18613,17 @@ $BB127_10:                              #   in Loop: Header=BB127_9 Depth=1
 	btnez	$BB127_12  # 16 bit inst
 	b	$BB127_11 # 16 bit inst
 $BB127_11:                              #   in Loop: Header=BB127_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___udivmodhi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodhi4)
@@ -14022,6 +18649,17 @@ $BB127_11:                              #   in Loop: Header=BB127_9 Depth=1
 	sh	$2, 0($3)
 	b	$BB127_12 # 16 bit inst
 $BB127_12:                              #   in Loop: Header=BB127_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	addiu	$3, $16, 14
 	lhu	$2, 0($3)
 	srl	$2, $2, 1
@@ -14036,6 +18674,17 @@ $BB127_13:
 	beqz	$2, $BB127_15  # 16 bit inst
 	b	$BB127_14 # 16 bit inst
 $BB127_14:
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	li	$2, %hi($__profc___udivmodhi4)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodhi4)
@@ -14053,6 +18702,17 @@ $BB127_14:
 	sh	$2, 0($3)
 	b	$BB127_16 # 16 bit inst
 $BB127_15:
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.127)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	addiu	$2, $16, 12
 	lhu	$2, 0($2)
 	addiu	$3, $16, 26
@@ -14112,9 +18772,21 @@ $BB128_1:                               # =>This Inner Loop Header: Depth=1
 	xor	$2, $3
 	li	$3, 0
 	sw	$3, 8($16)                      # 4-byte Folded Spill
-	bnez	$2, $BB128_6  # 16 bit inst
+	bnez	$2, $BB128_6
 	b	$BB128_2 # 16 bit inst
 $BB128_2:                               #   in Loop: Header=BB128_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.128)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.128)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___udivmodsi4_libgcc)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4_libgcc)
@@ -14132,6 +18804,17 @@ $BB128_2:                               #   in Loop: Header=BB128_1 Depth=1
 	beqz	$2, $BB128_6  # 16 bit inst
 	b	$BB128_3 # 16 bit inst
 $BB128_3:                               #   in Loop: Header=BB128_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___udivmodsi4_libgcc)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4_libgcc)
@@ -14171,6 +18854,17 @@ $BB128_4:                               #   in Loop: Header=BB128_1 Depth=1
 	b	$BB128_5 # 16 bit inst
 $BB128_5:                               #   in Loop: Header=BB128_1 Depth=1
 	lw	$2, 4($16)                      # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.128)
+	sll	$4, $3, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.128)
+	lw	$3, 20($4)
+	lw	$5, 16($4)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$3, $3, $6
+	sw	$5, 16($4)
+	sw	$3, 20($4)
 	li	$3, %hi($__profc___udivmodsi4_libgcc)
 	sll	$4, $3, 16
 	addiu	$4, %lo($__profc___udivmodsi4_libgcc)
@@ -14191,6 +18885,17 @@ $BB128_6:                               #   in Loop: Header=BB128_1 Depth=1
 	beqz	$2, $BB128_8  # 16 bit inst
 	b	$BB128_7 # 16 bit inst
 $BB128_7:                               #   in Loop: Header=BB128_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___udivmodsi4_libgcc)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4_libgcc)
@@ -14234,6 +18939,17 @@ $BB128_10:                              #   in Loop: Header=BB128_9 Depth=1
 	bnez	$2, $BB128_12  # 16 bit inst
 	b	$BB128_11 # 16 bit inst
 $BB128_11:                              #   in Loop: Header=BB128_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, %hi($__profc___udivmodsi4_libgcc)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4_libgcc)
@@ -14255,6 +18971,17 @@ $BB128_11:                              #   in Loop: Header=BB128_9 Depth=1
 	sw	$2, 12($16)
 	b	$BB128_12 # 16 bit inst
 $BB128_12:                              #   in Loop: Header=BB128_9 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 44($3)
+	lw	$4, 40($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 40($3)
+	sw	$2, 44($3)
 	lw	$2, 16($16)
 	srl	$2, $2, 1
 	sw	$2, 16($16)
@@ -14267,6 +18994,17 @@ $BB128_13:
 	beqz	$2, $BB128_15  # 16 bit inst
 	b	$BB128_14 # 16 bit inst
 $BB128_14:
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 52($3)
+	lw	$4, 48($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 48($3)
+	sw	$2, 52($3)
 	li	$2, %hi($__profc___udivmodsi4_libgcc)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___udivmodsi4_libgcc)
@@ -14282,6 +19020,17 @@ $BB128_14:
 	sw	$2, 32($16)
 	b	$BB128_16 # 16 bit inst
 $BB128_15:
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.128)
+	lw	$2, 60($3)
+	lw	$4, 56($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 56($3)
+	sw	$2, 60($3)
 	lw	$2, 12($16)
 	sw	$2, 32($16)
 	b	$BB128_16 # 16 bit inst
@@ -14338,6 +19087,18 @@ __ashldi3:                              # @__ashldi3
 	beqz	$2, $BB129_2  # 16 bit inst
 	b	$BB129_1 # 16 bit inst
 $BB129_1:
+	li	$2, %hi(__llvm_gcov_ctr.129)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.129)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.129)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.129)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___ashldi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ashldi3)
@@ -14362,6 +19123,17 @@ $BB129_2:
 	bnez	$2, $BB129_4  # 16 bit inst
 	b	$BB129_3 # 16 bit inst
 $BB129_3:
+	li	$2, %hi(__llvm_gcov_ctr.129)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.129)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___ashldi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ashldi3)
@@ -14379,6 +19151,17 @@ $BB129_3:
 	sw	$2, 32($16)
 	b	$BB129_6 # 16 bit inst
 $BB129_4:
+	li	$2, %hi(__llvm_gcov_ctr.129)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.129)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 8($16)
 	lw	$3, 20($16)
 	sllv	$2, $3
@@ -14453,6 +19236,18 @@ __ashrdi3:                              # @__ashrdi3
 	beqz	$2, $BB130_2  # 16 bit inst
 	b	$BB130_1 # 16 bit inst
 $BB130_1:
+	li	$2, %hi(__llvm_gcov_ctr.130)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.130)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.130)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.130)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___ashrdi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ashrdi3)
@@ -14478,6 +19273,17 @@ $BB130_2:
 	bnez	$2, $BB130_4  # 16 bit inst
 	b	$BB130_3 # 16 bit inst
 $BB130_3:
+	li	$2, %hi(__llvm_gcov_ctr.130)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.130)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___ashrdi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ashrdi3)
@@ -14495,6 +19301,17 @@ $BB130_3:
 	sw	$2, 32($16)
 	b	$BB130_6 # 16 bit inst
 $BB130_4:
+	li	$2, %hi(__llvm_gcov_ctr.130)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.130)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 12($16)
 	lw	$3, 20($16)
 	srav	$2, $3
@@ -14534,14 +19351,26 @@ $func_end130:
 	.ent	__bswapdi2
 __bswapdi2:                             # @__bswapdi2
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.131)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.131)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.131)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.131)($7)
+	sw	$2, 4($3)
 	sw	$5, 4($16)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc___bswapdi2)
@@ -14587,7 +19416,7 @@ __bswapdi2:                             # @__bswapdi2
 	sll	$4, $4, 24
 	or	$3, $4
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__bswapdi2
@@ -14608,6 +19437,18 @@ __bswapsi2:                             # @__bswapsi2
 	save	$16, 8 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.132)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.132)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.132)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.132)($6)
+	sw	$2, 4($3)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc___bswapsi2)
 	sll	$5, $2, 16
@@ -14661,6 +19502,18 @@ __clzsi2:                               # @__clzsi2
 	save	$16, 24 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.133)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.133)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.133)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.133)($6)
+	sw	$2, 4($3)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___clzsi2)
 	sll	$5, $2, 16
@@ -14806,6 +19659,18 @@ __cmpdi2:                               # @__cmpdi2
 	bteqz	$BB134_2  # 16 bit inst
 	b	$BB134_1 # 16 bit inst
 $BB134_1:
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.134)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.134)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.134)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___cmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmpdi2)
@@ -14827,6 +19692,17 @@ $BB134_2:
 	bteqz	$BB134_4  # 16 bit inst
 	b	$BB134_3 # 16 bit inst
 $BB134_3:
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.134)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___cmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmpdi2)
@@ -14851,6 +19727,17 @@ $BB134_4:
 	bnez	$2, $BB134_6  # 16 bit inst
 	b	$BB134_5 # 16 bit inst
 $BB134_5:
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.134)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___cmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmpdi2)
@@ -14875,6 +19762,17 @@ $BB134_6:
 	bnez	$2, $BB134_8  # 16 bit inst
 	b	$BB134_7 # 16 bit inst
 $BB134_7:
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.134)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___cmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___cmpdi2)
@@ -14890,6 +19788,17 @@ $BB134_7:
 	sw	$2, 32($16)
 	b	$BB134_9 # 16 bit inst
 $BB134_8:
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.134)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 1
 	sw	$2, 32($16)
 	b	$BB134_9 # 16 bit inst
@@ -14910,21 +19819,39 @@ $func_end134:
 	.set	mips16
 	.ent	__aeabi_lcmp
 __aeabi_lcmp:                           # @__aeabi_lcmp
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,64,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 64 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a3
                                         # kill: def $v0 killed $a2
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 28($16)
-	sw	$4, 24($16)
-	sw	$7, 20($16)
-	sw	$6, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.135)
+	sll	$3, $2, 16
+	sw	$3, 24($16)                     # 4-byte Folded Spill
+	move	$2, $3
+	addiu	$2, %lo(__llvm_gcov_ctr.135)
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$17, %lo(__llvm_gcov_ctr.135)($3)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.135)($2)
+	lw	$2, 28($16)                     # 4-byte Folded Reload
+	sw	$2, 4($3)
+	sw	$5, 44($16)
+	sw	$4, 40($16)
+	sw	$7, 36($16)
+	sw	$6, 32($16)
 	li	$2, %hi($__profc___aeabi_lcmp)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -14937,15 +19864,15 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___aeabi_lcmp)($5)
 	sw	$2, 4($3)
-	lw	$5, 28($16)
-	lw	$4, 24($16)
-	lw	$7, 20($16)
-	lw	$6, 16($16)
+	lw	$5, 44($16)
+	lw	$4, 40($16)
+	lw	$7, 36($16)
+	lw	$6, 32($16)
 	jal	__cmpdi2
 	nop
 	addiu	$2, -1	# 16 bit inst
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 64 # 16 bit inst
 
 	jrc	$ra
 	.end	__aeabi_lcmp
@@ -14966,6 +19893,18 @@ __ctzsi2:                               # @__ctzsi2
 	save	$16, 24 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.136)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.136)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.136)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.136)($6)
+	sw	$2, 4($3)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___ctzsi2)
 	sll	$5, $2, 16
@@ -15100,6 +20039,18 @@ __lshrdi3:                              # @__lshrdi3
 	beqz	$2, $BB137_2  # 16 bit inst
 	b	$BB137_1 # 16 bit inst
 $BB137_1:
+	li	$2, %hi(__llvm_gcov_ctr.137)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.137)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.137)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.137)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___lshrdi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___lshrdi3)
@@ -15124,6 +20075,17 @@ $BB137_2:
 	bnez	$2, $BB137_4  # 16 bit inst
 	b	$BB137_3 # 16 bit inst
 $BB137_3:
+	li	$2, %hi(__llvm_gcov_ctr.137)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.137)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___lshrdi3)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___lshrdi3)
@@ -15141,6 +20103,17 @@ $BB137_3:
 	sw	$2, 32($16)
 	b	$BB137_6 # 16 bit inst
 $BB137_4:
+	li	$2, %hi(__llvm_gcov_ctr.137)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.137)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	lw	$2, 12($16)
 	lw	$3, 20($16)
 	srlv	$2, $3
@@ -15180,14 +20153,26 @@ $func_end137:
 	.ent	__muldsi3
 __muldsi3:                              # @__muldsi3
 	.frame	$16,40,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 40 # 16 bit inst
+	save	$16, $17, 40 # 16 bit inst
 
 	move	$16, $sp
-	sw	$4, 32($16)
-	sw	$5, 28($16)
+	li	$2, %hi(__llvm_gcov_ctr.138)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.138)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.138)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.138)($7)
+	sw	$2, 4($3)
+	sw	$4, 28($16)
+	sw	$5, 24($16)
 	li	$2, %hi($__profc___muldsi3)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -15204,9 +20189,9 @@ __muldsi3:                              # @__muldsi3
 	sw	$2, 12($16)
 	li	$2, 65535
 	sw	$2, 8($16)
-	addiu	$2, $16, 32
+	addiu	$2, $16, 28
 	lhu	$4, 0($2)
-	addiu	$3, $16, 28
+	addiu	$3, $16, 24
 	lhu	$5, 0($3)
 	mult	$4, $5
 	mflo	$4
@@ -15261,7 +20246,7 @@ __muldsi3:                              # @__muldsi3
 	lw	$2, 16($16)
 	lw	$3, 20($16)
 	move	$sp, $16
-	restore	$16, 40 # 16 bit inst
+	restore	$16, $17, 40 # 16 bit inst
 
 	jrc	$ra
 	.end	__muldsi3
@@ -15275,21 +20260,39 @@ $func_end138:
 	.set	mips16
 	.ent	__muldi3_compiler_rt
 __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
-	.frame	$16,64,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,88,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 64 # 16 bit inst
+	save	$16, $17, $ra, 88 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a3
                                         # kill: def $v0 killed $a2
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 52($16)
-	sw	$4, 48($16)
-	sw	$7, 44($16)
-	sw	$6, 40($16)
+	li	$2, %hi(__llvm_gcov_ctr.139)
+	sll	$3, $2, 16
+	sw	$3, 24($16)                     # 4-byte Folded Spill
+	move	$2, $3
+	addiu	$2, %lo(__llvm_gcov_ctr.139)
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$17, %lo(__llvm_gcov_ctr.139)($3)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.139)($2)
+	lw	$2, 28($16)                     # 4-byte Folded Reload
+	sw	$2, 4($3)
+	sw	$5, 68($16)
+	sw	$4, 64($16)
+	sw	$7, 60($16)
+	sw	$6, 56($16)
 	li	$2, %hi($__profc___muldi3_compiler_rt)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -15302,36 +20305,36 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___muldi3_compiler_rt)($5)
 	sw	$2, 4($3)
-	lw	$2, 48($16)
-	lw	$3, 52($16)
-	sw	$3, 36($16)
-	sw	$2, 32($16)
-	lw	$2, 40($16)
-	lw	$3, 44($16)
-	sw	$3, 28($16)
-	sw	$2, 24($16)
-	lw	$4, 32($16)
-	lw	$5, 24($16)
+	lw	$2, 64($16)
+	lw	$3, 68($16)
+	sw	$3, 52($16)
+	sw	$2, 48($16)
+	lw	$2, 56($16)
+	lw	$3, 60($16)
+	sw	$3, 44($16)
+	sw	$2, 40($16)
+	lw	$4, 48($16)
+	lw	$5, 40($16)
 	jal	__muldsi3
 	nop
-	sw	$3, 20($16)
-	sw	$2, 16($16)
-	lw	$2, 36($16)
-	lw	$3, 24($16)
+	sw	$3, 36($16)
+	sw	$2, 32($16)
+	lw	$2, 52($16)
+	lw	$3, 40($16)
 	mult	$2, $3
 	mflo	$2
-	lw	$3, 32($16)
-	lw	$4, 28($16)
+	lw	$3, 48($16)
+	lw	$4, 44($16)
 	mult	$3, $4
 	mflo	$3
 	addu	$3, $2, $3
-	lw	$2, 20($16)
+	lw	$2, 36($16)
 	addu	$2, $2, $3
-	sw	$2, 20($16)
-	lw	$2, 16($16)
-	lw	$3, 20($16)
+	sw	$2, 36($16)
+	lw	$2, 32($16)
+	lw	$3, 36($16)
 	move	$sp, $16
-	restore	$16, $ra, 64 # 16 bit inst
+	restore	$16, $17, $ra, 88 # 16 bit inst
 
 	jrc	$ra
 	.end	__muldi3_compiler_rt
@@ -15346,14 +20349,26 @@ $func_end139:
 	.ent	__negdi2
 __negdi2:                               # @__negdi2
 	.frame	$16,16,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 16 # 16 bit inst
+	save	$16, $17, 16 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.140)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.140)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.140)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.140)($7)
+	sw	$2, 4($3)
 	sw	$5, 4($16)
 	sw	$4, 0($16)
 	li	$2, %hi($__profc___negdi2)
@@ -15379,7 +20394,7 @@ __negdi2:                               # @__negdi2
 	neg	$3, $3
 	neg	$2, $2
 	move	$sp, $16
-	restore	$16, 16 # 16 bit inst
+	restore	$16, $17, 16 # 16 bit inst
 
 	jrc	$ra
 	.end	__negdi2
@@ -15394,14 +20409,26 @@ $func_end140:
 	.ent	__paritydi2
 __paritydi2:                            # @__paritydi2
 	.frame	$16,32,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 32 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.141)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.141)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.141)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.141)($7)
+	sw	$2, 4($3)
 	sw	$5, 20($16)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___paritydi2)
@@ -15444,7 +20471,7 @@ __paritydi2:                            # @__paritydi2
 	li	$3, 1
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 32 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	__paritydi2
@@ -15465,6 +20492,18 @@ __paritysi2:                            # @__paritysi2
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.142)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.142)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.142)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.142)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc___paritysi2)
 	sll	$5, $2, 16
@@ -15515,14 +20554,26 @@ $func_end142:
 	.ent	__popcountdi2
 __popcountdi2:                          # @__popcountdi2
 	.frame	$16,32,$ra
-	.mask 	0x00010000,-4
+	.mask 	0x00030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, 32 # 16 bit inst
+	save	$16, $17, 32 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
+	li	$2, %hi(__llvm_gcov_ctr.143)
+	sll	$7, $2, 16
+	move	$3, $7
+	addiu	$3, %lo(__llvm_gcov_ctr.143)
+	lw	$2, 4($3)
+	lw	$6, %lo(__llvm_gcov_ctr.143)($7)
+	addiu	$6, 1	# 16 bit inst
+	sltiu	$6, 1 	# 16 bit inst
+	move	$17, $24
+	addu	$2, $2, $17
+	sw	$6, %lo(__llvm_gcov_ctr.143)($7)
+	sw	$2, 4($3)
 	sw	$5, 20($16)
 	sw	$4, 16($16)
 	li	$2, %hi($__profc___popcountdi2)
@@ -15613,7 +20664,7 @@ __popcountdi2:                          # @__popcountdi2
 	li	$3, 127
 	and	$2, $3
 	move	$sp, $16
-	restore	$16, 32 # 16 bit inst
+	restore	$16, $17, 32 # 16 bit inst
 
 	jrc	$ra
 	.end	__popcountdi2
@@ -15634,6 +20685,18 @@ __popcountsi2:                          # @__popcountsi2
 	save	$16, 16 # 16 bit inst
 
 	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr.144)
+	sll	$6, $2, 16
+	move	$3, $6
+	addiu	$3, %lo(__llvm_gcov_ctr.144)
+	lw	$2, 4($3)
+	lw	$5, %lo(__llvm_gcov_ctr.144)($6)
+	addiu	$5, 1	# 16 bit inst
+	sltiu	$5, 1 	# 16 bit inst
+	move	$7, $24
+	addu	$2, $2, $7
+	sw	$5, %lo(__llvm_gcov_ctr.144)($6)
+	sw	$2, 4($3)
 	sw	$4, 8($16)
 	li	$2, %hi($__profc___popcountsi2)
 	sll	$5, $2, 16
@@ -15759,6 +20822,18 @@ $BB145_1:                               # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB145_3  # 16 bit inst
 	b	$BB145_2 # 16 bit inst
 $BB145_2:                               #   in Loop: Header=BB145_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.145)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.145)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.145)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.145)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___powidf2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___powidf2)
@@ -15802,6 +20877,17 @@ $BB145_4:
 	sw	$2, 28($3)
 	b	$BB145_6 # 16 bit inst
 $BB145_5:                               #   in Loop: Header=BB145_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.145)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.145)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$6, 40($16)
 	lw	$7, 44($16)
 	move	$4, $6
@@ -15816,6 +20902,17 @@ $BB145_6:
 	beqz	$2, $BB145_8  # 16 bit inst
 	b	$BB145_7 # 16 bit inst
 $BB145_7:
+	li	$2, %hi(__llvm_gcov_ctr.145)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.145)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___powidf2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___powidf2)
@@ -15841,6 +20938,17 @@ $BB145_7:
 	sw	$3, 20($16)                     # 4-byte Folded Spill
 	b	$BB145_9 # 16 bit inst
 $BB145_8:
+	li	$2, %hi(__llvm_gcov_ctr.145)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.145)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 28($16)
 	lw	$3, 24($16)
 	sw	$3, 16($16)                     # 4-byte Folded Spill
@@ -15915,6 +21023,18 @@ $BB146_1:                               # =>This Inner Loop Header: Depth=1
 	beqz	$2, $BB146_3  # 16 bit inst
 	b	$BB146_2 # 16 bit inst
 $BB146_2:                               #   in Loop: Header=BB146_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.146)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.146)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.146)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.146)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___powisf2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___powisf2)
@@ -15955,6 +21075,17 @@ $BB146_4:
 	sw	$2, 28($3)
 	b	$BB146_6 # 16 bit inst
 $BB146_5:                               #   in Loop: Header=BB146_1 Depth=1
+	li	$2, %hi(__llvm_gcov_ctr.146)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.146)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	lw	$5, 36($16)
 	move	$4, $5
 	jal	__mulsf3
@@ -15966,6 +21097,17 @@ $BB146_6:
 	beqz	$2, $BB146_8  # 16 bit inst
 	b	$BB146_7 # 16 bit inst
 $BB146_7:
+	li	$2, %hi(__llvm_gcov_ctr.146)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.146)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___powisf2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___powisf2)
@@ -15988,6 +21130,17 @@ $BB146_7:
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB146_9 # 16 bit inst
 $BB146_8:
+	li	$2, %hi(__llvm_gcov_ctr.146)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.146)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	lw	$2, 24($16)
 	sw	$2, 20($16)                     # 4-byte Folded Spill
 	b	$BB146_9 # 16 bit inst
@@ -16052,6 +21205,18 @@ __ucmpdi2:                              # @__ucmpdi2
 	bnez	$2, $BB147_2  # 16 bit inst
 	b	$BB147_1 # 16 bit inst
 $BB147_1:
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$5, $2, 16
+	move	$3, $5
+	addiu	$3, %lo(__llvm_gcov_ctr.147)
+	lw	$2, 4($3)
+	lw	$4, %lo(__llvm_gcov_ctr.147)($5)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$6, $24
+	addu	$2, $2, $6
+	sw	$4, %lo(__llvm_gcov_ctr.147)($5)
+	sw	$2, 4($3)
 	li	$2, %hi($__profc___ucmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ucmpdi2)
@@ -16076,6 +21241,17 @@ $BB147_2:
 	bnez	$2, $BB147_4  # 16 bit inst
 	b	$BB147_3 # 16 bit inst
 $BB147_3:
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.147)
+	lw	$2, 12($3)
+	lw	$4, 8($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 8($3)
+	sw	$2, 12($3)
 	li	$2, %hi($__profc___ucmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ucmpdi2)
@@ -16100,6 +21276,17 @@ $BB147_4:
 	bnez	$2, $BB147_6  # 16 bit inst
 	b	$BB147_5 # 16 bit inst
 $BB147_5:
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.147)
+	lw	$2, 20($3)
+	lw	$4, 16($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 16($3)
+	sw	$2, 20($3)
 	li	$2, %hi($__profc___ucmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ucmpdi2)
@@ -16124,6 +21311,17 @@ $BB147_6:
 	bnez	$2, $BB147_8  # 16 bit inst
 	b	$BB147_7 # 16 bit inst
 $BB147_7:
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.147)
+	lw	$2, 28($3)
+	lw	$4, 24($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 24($3)
+	sw	$2, 28($3)
 	li	$2, %hi($__profc___ucmpdi2)
 	sll	$3, $2, 16
 	addiu	$3, %lo($__profc___ucmpdi2)
@@ -16139,6 +21337,17 @@ $BB147_7:
 	sw	$2, 32($16)
 	b	$BB147_9 # 16 bit inst
 $BB147_8:
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$3, $2, 16
+	addiu	$3, %lo(__llvm_gcov_ctr.147)
+	lw	$2, 36($3)
+	lw	$4, 32($3)
+	addiu	$4, 1	# 16 bit inst
+	sltiu	$4, 1 	# 16 bit inst
+	move	$5, $24
+	addu	$2, $2, $5
+	sw	$4, 32($3)
+	sw	$2, 36($3)
 	li	$2, 1
 	sw	$2, 32($16)
 	b	$BB147_9 # 16 bit inst
@@ -16159,21 +21368,39 @@ $func_end147:
 	.set	mips16
 	.ent	__aeabi_ulcmp
 __aeabi_ulcmp:                          # @__aeabi_ulcmp
-	.frame	$16,40,$ra
-	.mask 	0x80010000,-4
+	.frame	$16,64,$ra
+	.mask 	0x80030000,-4
 	.fmask	0x00000000,0
 # %bb.0:
-	save	$16, $ra, 40 # 16 bit inst
+	save	$16, $17, $ra, 64 # 16 bit inst
 
 	move	$16, $sp
                                         # kill: def $v0 killed $a3
                                         # kill: def $v0 killed $a2
                                         # kill: def $v0 killed $a1
                                         # kill: def $v0 killed $a0
-	sw	$5, 28($16)
-	sw	$4, 24($16)
-	sw	$7, 20($16)
-	sw	$6, 16($16)
+	li	$2, %hi(__llvm_gcov_ctr.148)
+	sll	$3, $2, 16
+	sw	$3, 24($16)                     # 4-byte Folded Spill
+	move	$2, $3
+	addiu	$2, %lo(__llvm_gcov_ctr.148)
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	lw	$2, 4($2)
+	lw	$17, %lo(__llvm_gcov_ctr.148)($3)
+	addiu	$17, 1	# 16 bit inst
+	sltiu	$17, 1 	# 16 bit inst
+	move	$3, $24
+	addu	$2, $2, $3
+	lw	$3, 20($16)                     # 4-byte Folded Reload
+	sw	$2, 28($16)                     # 4-byte Folded Spill
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	sw	$17, %lo(__llvm_gcov_ctr.148)($2)
+	lw	$2, 28($16)                     # 4-byte Folded Reload
+	sw	$2, 4($3)
+	sw	$5, 44($16)
+	sw	$4, 40($16)
+	sw	$7, 36($16)
+	sw	$6, 32($16)
 	li	$2, %hi($__profc___aeabi_ulcmp)
 	sll	$5, $2, 16
 	move	$3, $5
@@ -16186,20 +21413,2713 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	addu	$2, $2, $6
 	sw	$4, %lo($__profc___aeabi_ulcmp)($5)
 	sw	$2, 4($3)
-	lw	$5, 28($16)
-	lw	$4, 24($16)
-	lw	$7, 20($16)
-	lw	$6, 16($16)
+	lw	$5, 44($16)
+	lw	$4, 40($16)
+	lw	$7, 36($16)
+	lw	$6, 32($16)
 	jal	__ucmpdi2
 	nop
 	addiu	$2, -1	# 16 bit inst
 	move	$sp, $16
-	restore	$16, $ra, 40 # 16 bit inst
+	restore	$16, $17, $ra, 64 # 16 bit inst
 
 	jrc	$ra
 	.end	__aeabi_ulcmp
 $func_end148:
 	.size	__aeabi_ulcmp, ($func_end148)-__aeabi_ulcmp
+                                        # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+	.set	nomicromips
+	.set	mips16
+	.ent	__llvm_gcov_writeout
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+	.frame	$16,56,$ra
+	.mask 	0x80010000,-4
+	.fmask	0x00000000,0
+# %bb.0:
+	save	$16, $ra, 56 # 16 bit inst
+
+	move	$16, $sp
+	li	$2, 0
+	sw	$2, 44($16)                     # 4-byte Folded Spill
+	b	$BB149_1 # 16 bit inst
+$BB149_1:                               # =>This Loop Header: Depth=1
+                                        #     Child Loop BB149_2 Depth 2
+	lw	$2, 44($16)                     # 4-byte Folded Reload
+	sw	$2, 20($16)                     # 4-byte Folded Spill
+	li	$3, 24
+	mult	$2, $3
+	mflo	$3
+	li	$2, %hi(__llvm_internal_gcov_emit_file_info)
+	sll	$2, $2, 16
+	addiu	$2, %lo(__llvm_internal_gcov_emit_file_info)
+	addu	$2, $2, $3
+	sw	$2, 24($16)                     # 4-byte Folded Spill
+	lw	$4, 0($2)
+	lw	$5, 4($2)
+	lw	$6, 8($2)
+	jal	llvm_gcda_start_file
+	nop
+	lw	$2, 24($16)                     # 4-byte Folded Reload
+	lw	$3, 12($2)
+	sw	$3, 28($16)                     # 4-byte Folded Spill
+	lw	$4, 16($2)
+	sw	$4, 32($16)                     # 4-byte Folded Spill
+	lw	$2, 20($2)
+	sw	$2, 36($16)                     # 4-byte Folded Spill
+	li	$2, 0
+	slti	$3, 1 	# 16 bit inst
+	sw	$2, 40($16)                     # 4-byte Folded Spill
+	btnez	$BB149_3  # 16 bit inst
+	b	$BB149_2 # 16 bit inst
+$BB149_2:                               #   Parent Loop BB149_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	lw	$3, 40($16)                     # 4-byte Folded Reload
+	lw	$2, 32($16)                     # 4-byte Folded Reload
+	sw	$3, 16($16)                     # 4-byte Folded Spill
+	li	$4, 12
+	mult	$3, $4
+	mflo	$3
+	addu	$2, $2, $3
+	lw	$4, 0($2)
+	lw	$5, 4($2)
+	lw	$6, 8($2)
+	jal	llvm_gcda_emit_function
+	nop
+	lw	$2, 36($16)                     # 4-byte Folded Reload
+	lw	$3, 16($16)                     # 4-byte Folded Reload
+	sll	$3, $3, 3
+	addu	$2, $2, $3
+	lw	$4, 0($2)
+	lw	$5, 4($2)
+	jal	llvm_gcda_emit_arcs
+	nop
+	lw	$2, 16($16)                     # 4-byte Folded Reload
+	lw	$3, 28($16)                     # 4-byte Folded Reload
+	addiu	$2, 1	# 16 bit inst
+	slt	$2, $3
+	sw	$2, 40($16)                     # 4-byte Folded Spill
+	btnez	$BB149_2  # 16 bit inst
+	b	$BB149_3 # 16 bit inst
+$BB149_3:                               #   in Loop: Header=BB149_1 Depth=1
+	jal	llvm_gcda_summary_info
+	nop
+	jal	llvm_gcda_end_file
+	nop
+	lw	$2, 20($16)                     # 4-byte Folded Reload
+	addiu	$2, 1	# 16 bit inst
+	slti	$2, 1 	# 16 bit inst
+	sw	$2, 44($16)                     # 4-byte Folded Spill
+	btnez	$BB149_1  # 16 bit inst
+	b	$BB149_4 # 16 bit inst
+$BB149_4:
+	move	$sp, $16
+	restore	$16, $ra, 56 # 16 bit inst
+
+	jrc	$ra
+	.end	__llvm_gcov_writeout
+$func_end149:
+	.size	__llvm_gcov_writeout, ($func_end149)-__llvm_gcov_writeout
+                                        # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+	.set	nomicromips
+	.set	mips16
+	.ent	__llvm_gcov_reset
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+	.frame	$16,48,$ra
+	.mask 	0x80010000,-4
+	.fmask	0x00000000,0
+# %bb.0:
+	save	$16, $ra, 48 # 16 bit inst
+
+	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_ctr)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr)
+	li	$5, 0
+	sw	$5, 36($16)                     # 4-byte Folded Spill
+	li	$6, 40
+	sw	$6, 32($16)                     # 4-byte Folded Spill
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.1)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.1)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.2)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.2)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.3)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.3)
+	jal	memset
+	nop
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.4)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.4)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.4)($2)
+	li	$2, %hi(__llvm_gcov_ctr.5)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.5)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.5)($2)
+	li	$2, %hi(__llvm_gcov_ctr.6)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.6)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.6)($2)
+	li	$2, %hi(__llvm_gcov_ctr.7)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.7)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.7)($2)
+	li	$2, %hi(__llvm_gcov_ctr.8)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.8)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.8)($2)
+	li	$2, %hi(__llvm_gcov_ctr.9)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.9)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.9)($2)
+	li	$2, %hi(__llvm_gcov_ctr.10)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.10)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.10)($2)
+	li	$2, %hi(__llvm_gcov_ctr.11)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.11)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.11)($2)
+	li	$2, %hi(__llvm_gcov_ctr.12)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.12)
+	li	$6, 56
+	sw	$6, 24($16)                     # 4-byte Folded Spill
+	jal	memset
+	nop
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.13)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.13)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.13)($2)
+	li	$2, %hi(__llvm_gcov_ctr.14)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.14)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.14)($2)
+	li	$2, %hi(__llvm_gcov_ctr.15)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.15)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.15)($2)
+	li	$2, %hi(__llvm_gcov_ctr.16)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.16)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.16)($2)
+	li	$2, %hi(__llvm_gcov_ctr.17)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.17)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.17)($2)
+	li	$2, %hi(__llvm_gcov_ctr.18)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.18)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.18)($2)
+	li	$2, %hi(__llvm_gcov_ctr.19)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.19)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.19)($2)
+	li	$2, %hi(__llvm_gcov_ctr.20)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.20)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.20)($2)
+	li	$2, %hi(__llvm_gcov_ctr.21)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.21)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.21)($2)
+	li	$2, %hi(__llvm_gcov_ctr.22)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.22)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.22)($2)
+	li	$2, %hi(__llvm_gcov_ctr.23)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.23)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.23)($2)
+	li	$2, %hi(__llvm_gcov_ctr.24)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.24)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.24)($2)
+	li	$2, %hi(__llvm_gcov_ctr.25)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.25)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.25)($2)
+	li	$2, %hi(__llvm_gcov_ctr.26)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.26)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.26)($2)
+	li	$2, %hi(__llvm_gcov_ctr.27)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.27)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.27)($2)
+	li	$2, %hi(__llvm_gcov_ctr.28)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.28)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.28)($2)
+	li	$2, %hi(__llvm_gcov_ctr.29)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.29)
+	li	$6, 48
+	sw	$6, 20($16)                     # 4-byte Folded Spill
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.30)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.30)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.31)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.31)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.32)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.32)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.33)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.33)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.34)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.34)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.35)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.35)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.35)($2)
+	li	$2, %hi(__llvm_gcov_ctr.36)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.36)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.36)($2)
+	li	$2, %hi(__llvm_gcov_ctr.37)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.37)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.37)($2)
+	li	$2, %hi(__llvm_gcov_ctr.38)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.38)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.38)($2)
+	li	$2, %hi(__llvm_gcov_ctr.39)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.39)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.39)($2)
+	li	$2, %hi(__llvm_gcov_ctr.40)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.40)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.40)($2)
+	li	$2, %hi(__llvm_gcov_ctr.41)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.41)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.41)($2)
+	li	$2, %hi(__llvm_gcov_ctr.42)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.42)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.42)($2)
+	li	$2, %hi(__llvm_gcov_ctr.43)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.43)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.44)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.44)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.45)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.45)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.46)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.46)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.46)($2)
+	li	$2, %hi(__llvm_gcov_ctr.47)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.47)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.47)($2)
+	li	$2, %hi(__llvm_gcov_ctr.48)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.48)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.48)($2)
+	li	$2, %hi(__llvm_gcov_ctr.49)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.49)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.49)($2)
+	li	$2, %hi(__llvm_gcov_ctr.50)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.50)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.50)($2)
+	li	$2, %hi(__llvm_gcov_ctr.51)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.51)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.51)($2)
+	li	$2, %hi(__llvm_gcov_ctr.52)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.52)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.52)($2)
+	li	$2, %hi(__llvm_gcov_ctr.53)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.53)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.53)($2)
+	li	$2, %hi(__llvm_gcov_ctr.54)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.54)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.54)($2)
+	li	$2, %hi(__llvm_gcov_ctr.55)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.55)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.56)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.56)
+	jal	memset
+	nop
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.57)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.57)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.57)($2)
+	li	$2, %hi(__llvm_gcov_ctr.58)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.58)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.58)($2)
+	li	$2, %hi(__llvm_gcov_ctr.59)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.59)
+	li	$6, 64
+	sw	$6, 28($16)                     # 4-byte Folded Spill
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.60)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.60)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.61)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.61)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.62)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.62)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.62)($2)
+	li	$2, %hi(__llvm_gcov_ctr.63)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.63)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.64)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.64)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.64)($2)
+	li	$2, %hi(__llvm_gcov_ctr.65)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.65)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.66)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.66)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.66)($2)
+	li	$2, %hi(__llvm_gcov_ctr.67)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.67)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.67)($2)
+	li	$2, %hi(__llvm_gcov_ctr.68)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.68)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.68)($2)
+	li	$2, %hi(__llvm_gcov_ctr.69)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.69)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.69)($2)
+	li	$2, %hi(__llvm_gcov_ctr.70)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.70)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.70)($2)
+	li	$2, %hi(__llvm_gcov_ctr.71)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.71)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.71)($2)
+	li	$2, %hi(__llvm_gcov_ctr.72)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.72)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.72)($2)
+	li	$2, %hi(__llvm_gcov_ctr.73)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.73)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.73)($2)
+	li	$2, %hi(__llvm_gcov_ctr.74)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.74)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.74)($2)
+	li	$2, %hi(__llvm_gcov_ctr.75)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.75)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.75)($2)
+	li	$2, %hi(__llvm_gcov_ctr.76)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.76)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.76)($2)
+	li	$2, %hi(__llvm_gcov_ctr.77)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.77)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.77)($2)
+	li	$2, %hi(__llvm_gcov_ctr.78)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.78)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.78)($2)
+	li	$2, %hi(__llvm_gcov_ctr.79)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.79)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.79)($2)
+	li	$2, %hi(__llvm_gcov_ctr.80)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.80)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.80)($2)
+	li	$2, %hi(__llvm_gcov_ctr.81)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.81)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.81)($2)
+	li	$2, %hi(__llvm_gcov_ctr.82)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.82)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.82)($2)
+	li	$2, %hi(__llvm_gcov_ctr.83)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.83)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.83)($2)
+	li	$2, %hi(__llvm_gcov_ctr.84)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.84)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.84)($2)
+	li	$2, %hi(__llvm_gcov_ctr.85)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.85)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.86)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.86)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.87)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.87)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.88)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.88)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.88)($2)
+	li	$2, %hi(__llvm_gcov_ctr.89)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.89)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.90)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.90)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.90)($2)
+	li	$2, %hi(__llvm_gcov_ctr.91)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.91)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.91)($2)
+	li	$2, %hi(__llvm_gcov_ctr.92)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.92)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.92)($2)
+	li	$2, %hi(__llvm_gcov_ctr.93)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.93)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.93)($2)
+	li	$2, %hi(__llvm_gcov_ctr.94)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.94)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.95)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.95)
+	jal	memset
+	nop
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.96)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.96)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.96)($2)
+	li	$2, %hi(__llvm_gcov_ctr.97)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.97)
+	jal	memset
+	nop
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.98)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.98)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.98)($2)
+	li	$2, %hi(__llvm_gcov_ctr.99)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.99)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.100)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.100)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.100)($2)
+	li	$2, %hi(__llvm_gcov_ctr.101)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.101)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.101)($2)
+	li	$2, %hi(__llvm_gcov_ctr.102)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.102)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.102)($2)
+	li	$2, %hi(__llvm_gcov_ctr.103)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.103)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.104)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.104)
+	jal	memset
+	nop
+	lw	$6, 20($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.105)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.105)
+	jal	memset
+	nop
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.106)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.106)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.106)($2)
+	li	$2, %hi(__llvm_gcov_ctr.107)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.107)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.107)($2)
+	li	$2, %hi(__llvm_gcov_ctr.108)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.108)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.108)($2)
+	li	$2, %hi(__llvm_gcov_ctr.109)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.109)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.109)($2)
+	li	$2, %hi(__llvm_gcov_ctr.110)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.110)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.110)($2)
+	li	$2, %hi(__llvm_gcov_ctr.111)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.111)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.111)($2)
+	li	$2, %hi(__llvm_gcov_ctr.112)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.112)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.112)($2)
+	li	$2, %hi(__llvm_gcov_ctr.113)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.113)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.113)($2)
+	li	$2, %hi(__llvm_gcov_ctr.114)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.114)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.114)($2)
+	li	$2, %hi(__llvm_gcov_ctr.115)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.115)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.115)($2)
+	li	$2, %hi(__llvm_gcov_ctr.116)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.116)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.116)($2)
+	li	$2, %hi(__llvm_gcov_ctr.117)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.117)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.117)($2)
+	li	$2, %hi(__llvm_gcov_ctr.118)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.118)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.118)($2)
+	li	$2, %hi(__llvm_gcov_ctr.119)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.119)
+	jal	memset
+	nop
+	lw	$6, 24($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.120)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.120)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.120)($2)
+	li	$2, %hi(__llvm_gcov_ctr.121)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.121)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.121)($2)
+	li	$2, %hi(__llvm_gcov_ctr.122)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.122)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.122)($2)
+	li	$2, %hi(__llvm_gcov_ctr.123)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.123)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.123)($2)
+	li	$2, %hi(__llvm_gcov_ctr.124)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.124)
+	jal	memset
+	nop
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.125)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.125)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.125)($2)
+	li	$2, %hi(__llvm_gcov_ctr.126)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.126)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.126)($2)
+	li	$2, %hi(__llvm_gcov_ctr.127)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.127)
+	jal	memset
+	nop
+	lw	$6, 28($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.128)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.128)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.129)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.129)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.129)($2)
+	li	$2, %hi(__llvm_gcov_ctr.130)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.130)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.130)($2)
+	li	$2, %hi(__llvm_gcov_ctr.131)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.131)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.131)($2)
+	li	$2, %hi(__llvm_gcov_ctr.132)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.132)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.132)($2)
+	li	$2, %hi(__llvm_gcov_ctr.133)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.133)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.133)($2)
+	li	$2, %hi(__llvm_gcov_ctr.134)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.134)
+	jal	memset
+	nop
+	lw	$6, 32($16)                     # 4-byte Folded Reload
+	lw	$5, 36($16)                     # 4-byte Folded Reload
+	li	$2, %hi(__llvm_gcov_ctr.135)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.135)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.135)($2)
+	li	$2, %hi(__llvm_gcov_ctr.136)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.136)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.136)($2)
+	li	$2, %hi(__llvm_gcov_ctr.137)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.137)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.137)($2)
+	li	$2, %hi(__llvm_gcov_ctr.138)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.138)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.138)($2)
+	li	$2, %hi(__llvm_gcov_ctr.139)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.139)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.139)($2)
+	li	$2, %hi(__llvm_gcov_ctr.140)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.140)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.140)($2)
+	li	$2, %hi(__llvm_gcov_ctr.141)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.141)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.141)($2)
+	li	$2, %hi(__llvm_gcov_ctr.142)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.142)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.142)($2)
+	li	$2, %hi(__llvm_gcov_ctr.143)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.143)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.143)($2)
+	li	$2, %hi(__llvm_gcov_ctr.144)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.144)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.144)($2)
+	li	$2, %hi(__llvm_gcov_ctr.145)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.145)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.145)($2)
+	li	$2, %hi(__llvm_gcov_ctr.146)
+	sll	$2, $2, 16
+	move	$3, $2
+	addiu	$3, %lo(__llvm_gcov_ctr.146)
+	sb	$5, 31($3)
+	sb	$5, 30($3)
+	sb	$5, 29($3)
+	sb	$5, 28($3)
+	sb	$5, 27($3)
+	sb	$5, 26($3)
+	sb	$5, 25($3)
+	sb	$5, 24($3)
+	sb	$5, 23($3)
+	sb	$5, 22($3)
+	sb	$5, 21($3)
+	sb	$5, 20($3)
+	sb	$5, 19($3)
+	sb	$5, 18($3)
+	sb	$5, 17($3)
+	sb	$5, 16($3)
+	sb	$5, 15($3)
+	sb	$5, 14($3)
+	sb	$5, 13($3)
+	sb	$5, 12($3)
+	sb	$5, 11($3)
+	sb	$5, 10($3)
+	sb	$5, 9($3)
+	sb	$5, 8($3)
+	sb	$5, 7($3)
+	sb	$5, 6($3)
+	sb	$5, 5($3)
+	sb	$5, 4($3)
+	sb	$5, 3($3)
+	sb	$5, 2($3)
+	sb	$5, 1($3)
+	sb	$5, %lo(__llvm_gcov_ctr.146)($2)
+	li	$2, %hi(__llvm_gcov_ctr.147)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_ctr.147)
+	jal	memset
+	nop
+                                        # kill: def $v1 killed $v0
+	lw	$2, 36($16)                     # 4-byte Folded Reload
+	li	$3, %hi(__llvm_gcov_ctr.148)
+	sll	$3, $3, 16
+	move	$4, $3
+	addiu	$4, %lo(__llvm_gcov_ctr.148)
+	sb	$2, 7($4)
+	sb	$2, 6($4)
+	sb	$2, 5($4)
+	sb	$2, 4($4)
+	sb	$2, 3($4)
+	sb	$2, 2($4)
+	sb	$2, 1($4)
+	sb	$2, %lo(__llvm_gcov_ctr.148)($3)
+	move	$sp, $16
+	restore	$16, $ra, 48 # 16 bit inst
+
+	jrc	$ra
+	.end	__llvm_gcov_reset
+$func_end150:
+	.size	__llvm_gcov_reset, ($func_end150)-__llvm_gcov_reset
+                                        # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+	.set	nomicromips
+	.set	mips16
+	.ent	__llvm_gcov_init
+__llvm_gcov_init:                       # @__llvm_gcov_init
+	.frame	$16,24,$ra
+	.mask 	0x80010000,-4
+	.fmask	0x00000000,0
+# %bb.0:
+	save	$16, $ra, 24 # 16 bit inst
+
+	move	$16, $sp
+	li	$2, %hi(__llvm_gcov_writeout)
+	sll	$4, $2, 16
+	addiu	$4, %lo(__llvm_gcov_writeout)
+	li	$2, %hi(__llvm_gcov_reset)
+	sll	$5, $2, 16
+	addiu	$5, %lo(__llvm_gcov_reset)
+	jal	llvm_gcov_init
+	nop
+	move	$sp, $16
+	restore	$16, $ra, 24 # 16 bit inst
+
+	jrc	$ra
+	.end	__llvm_gcov_init
+$func_end151:
+	.size	__llvm_gcov_init, ($func_end151)-__llvm_gcov_init
                                         # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.local	l64a.s
@@ -16213,6 +24133,1229 @@ digits:
 	.type	seed,@object                    # @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,8,8
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,24,16
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,8,8
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,32,16
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,32,16
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,48,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,48,16
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,16,8
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,8,8
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,8,8
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,24,16
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,24,16
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,16,8
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,48,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,48,16
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,32,16
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,32,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,8,8
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,16,8
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,40,16
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,48,16
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,8
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,16,8
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,64,16
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,40,16
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,48,16
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,8
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,40,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,8,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,8,8
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,24,16
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,24,16
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,8,8
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,40,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,40,16
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,16,8
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,32,16
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,32,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,24,16
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,40,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,48,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,8,8
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,64,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,24,16
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,24,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,48,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,48,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,8,8
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,8,8
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,24,16
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,24,16
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,16,8
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,32,16
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,64,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,8,8
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,8,8
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,56,16
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,32,16
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,32,16
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,64,16
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,64,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,24,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,24,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,8,8
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,8,8
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,40,16
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,8,8
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,24,16
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,8,8
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,32,16
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,32,16
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,40,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,8,8
+	.type	$__unnamed_1,@object            # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+$__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-mips16.gcda"
+	.size	$__unnamed_1, 50
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.4byte	0                               # 0x0
+	.4byte	560687177                       # 0x216b6849
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	1                               # 0x1
+	.4byte	1589591758                      # 0x5ebf3ece
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	2                               # 0x2
+	.4byte	2176136383                      # 0x81b534bf
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	3                               # 0x3
+	.4byte	3586625172                      # 0xd5c78e94
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	4                               # 0x4
+	.4byte	2323119728                      # 0x8a77fe70
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	5                               # 0x5
+	.4byte	2314569740                      # 0x89f5880c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	6                               # 0x6
+	.4byte	2833673551                      # 0xa8e66d4f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	7                               # 0x7
+	.4byte	1458633189                      # 0x56f0f9e5
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	8                               # 0x8
+	.4byte	1190300833                      # 0x46f28ca1
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	9                               # 0x9
+	.4byte	758327989                       # 0x2d332ab5
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	10                              # 0xa
+	.4byte	1651479037                      # 0x626f91fd
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	11                              # 0xb
+	.4byte	4132343275                      # 0xf64e8deb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	12                              # 0xc
+	.4byte	734262523                       # 0x2bc3f4fb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	13                              # 0xd
+	.4byte	2463424677                      # 0x92d4e0a5
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	14                              # 0xe
+	.4byte	1419026334                      # 0x54949f9e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	15                              # 0xf
+	.4byte	3154471370                      # 0xbc0569ca
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	16                              # 0x10
+	.4byte	2077973487                      # 0x7bdb5bef
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	17                              # 0x11
+	.4byte	1474691227                      # 0x57e6009b
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	18                              # 0x12
+	.4byte	3710986016                      # 0xdd312720
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	19                              # 0x13
+	.4byte	1305101473                      # 0x4dca44a1
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	20                              # 0x14
+	.4byte	3762036564                      # 0xe03c1f54
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	21                              # 0x15
+	.4byte	477914433                       # 0x1c7c6541
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	22                              # 0x16
+	.4byte	3923035234                      # 0xe9d4c462
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	23                              # 0x17
+	.4byte	951651702                       # 0x38b90d76
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	24                              # 0x18
+	.4byte	32773942                        # 0x1f41736
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	25                              # 0x19
+	.4byte	860405771                       # 0x3348c00b
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	26                              # 0x1a
+	.4byte	815674877                       # 0x309e35fd
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	27                              # 0x1b
+	.4byte	1778838753                      # 0x6a06ece1
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	28                              # 0x1c
+	.4byte	2718307199                      # 0xa206137f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	29                              # 0x1d
+	.4byte	856224820                       # 0x3308f434
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	30                              # 0x1e
+	.4byte	1111195143                      # 0x423b7e07
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	31                              # 0x1f
+	.4byte	1178414519                      # 0x463d2db7
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	32                              # 0x20
+	.4byte	3477640633                      # 0xcf4895b9
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	33                              # 0x21
+	.4byte	4294770115                      # 0xfffcfdc3
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	34                              # 0x22
+	.4byte	3650660234                      # 0xd998a78a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	35                              # 0x23
+	.4byte	289327647                       # 0x113eca1f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	36                              # 0x24
+	.4byte	2093612798                      # 0x7cc9fefe
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	37                              # 0x25
+	.4byte	4177956716                      # 0xf9068f6c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	38                              # 0x26
+	.4byte	3434808461                      # 0xccbb048d
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	39                              # 0x27
+	.4byte	3206497114                      # 0xbf1f435a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	40                              # 0x28
+	.4byte	1537257434                      # 0x5ba0afda
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	41                              # 0x29
+	.4byte	3028077325                      # 0xb47ccb0d
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	42                              # 0x2a
+	.4byte	1369848209                      # 0x51a63991
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	43                              # 0x2b
+	.4byte	938831176                       # 0x37f56d48
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	44                              # 0x2c
+	.4byte	1663146323                      # 0x63219953
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	45                              # 0x2d
+	.4byte	4111410217                      # 0xf50f2429
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	46                              # 0x2e
+	.4byte	1475378556                      # 0x57f07d7c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	47                              # 0x2f
+	.4byte	3356195547                      # 0xc80b7adb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	48                              # 0x30
+	.4byte	514931786                       # 0x1eb13c4a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	49                              # 0x31
+	.4byte	2854034444                      # 0xaa1d1c0c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	50                              # 0x32
+	.4byte	2747937306                      # 0xa3ca321a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	51                              # 0x33
+	.4byte	4192776208                      # 0xf9e8b010
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	52                              # 0x34
+	.4byte	984436227                       # 0x3aad4e03
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	53                              # 0x35
+	.4byte	1477657574                      # 0x581343e6
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	54                              # 0x36
+	.4byte	1339127973                      # 0x4fd178a5
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	55                              # 0x37
+	.4byte	2960567906                      # 0xb076ae62
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	56                              # 0x38
+	.4byte	3390076872                      # 0xca1077c8
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	57                              # 0x39
+	.4byte	1543282230                      # 0x5bfc9e36
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	58                              # 0x3a
+	.4byte	2934101789                      # 0xaee2d71d
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	59                              # 0x3b
+	.4byte	3737986119                      # 0xdecd2447
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	60                              # 0x3c
+	.4byte	49556427                        # 0x2f42bcb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	61                              # 0x3d
+	.4byte	234051526                       # 0xdf357c6
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	62                              # 0x3e
+	.4byte	2341800126                      # 0x8b9508be
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	63                              # 0x3f
+	.4byte	3256799948                      # 0xc21ed2cc
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	64                              # 0x40
+	.4byte	777295480                       # 0x2e549678
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	65                              # 0x41
+	.4byte	14040531                        # 0xd63dd3
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	66                              # 0x42
+	.4byte	8047973                         # 0x7acd65
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	67                              # 0x43
+	.4byte	719459161                       # 0x2ae21359
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	68                              # 0x44
+	.4byte	243358501                       # 0xe815b25
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	69                              # 0x45
+	.4byte	3262173932                      # 0xc270d2ec
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	70                              # 0x46
+	.4byte	398910553                       # 0x17c6e459
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	71                              # 0x47
+	.4byte	3354219739                      # 0xc7ed54db
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	72                              # 0x48
+	.4byte	2570308788                      # 0x9933ccb4
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	73                              # 0x49
+	.4byte	982429111                       # 0x3a8eadb7
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	74                              # 0x4a
+	.4byte	211491241                       # 0xc9b19a9
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	75                              # 0x4b
+	.4byte	1075683319                      # 0x401d9ff7
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	76                              # 0x4c
+	.4byte	1886352651                      # 0x706f750b
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	77                              # 0x4d
+	.4byte	248637203                       # 0xed1e713
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	78                              # 0x4e
+	.4byte	703327087                       # 0x29ebeb6f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	79                              # 0x4f
+	.4byte	3690160730                      # 0xdbf3625a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	80                              # 0x50
+	.4byte	787048238                       # 0x2ee9672e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	81                              # 0x51
+	.4byte	1937497967                      # 0x737bdf6f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	82                              # 0x52
+	.4byte	4205062514                      # 0xfaa42972
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	83                              # 0x53
+	.4byte	694462539                       # 0x2964a84b
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	84                              # 0x54
+	.4byte	85970907                        # 0x51fcfdb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	85                              # 0x55
+	.4byte	3681984728                      # 0xdb76a0d8
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	86                              # 0x56
+	.4byte	3620297642                      # 0xd7c95baa
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	87                              # 0x57
+	.4byte	3394804480                      # 0xca589b00
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	88                              # 0x58
+	.4byte	2119330183                      # 0x7e526987
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	89                              # 0x59
+	.4byte	1963040266                      # 0x75019e0a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	90                              # 0x5a
+	.4byte	1603391838                      # 0x5f91d15e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	91                              # 0x5b
+	.4byte	2340921237                      # 0x8b879f95
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	92                              # 0x5c
+	.4byte	3028177438                      # 0xb47e521e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	93                              # 0x5d
+	.4byte	2265525308                      # 0x87092c3c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	94                              # 0x5e
+	.4byte	2598903994                      # 0x9ae820ba
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	95                              # 0x5f
+	.4byte	139524705                       # 0x850fa61
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	96                              # 0x60
+	.4byte	1076410600                      # 0x4028b8e8
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	97                              # 0x61
+	.4byte	220237413                       # 0xd208e65
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	98                              # 0x62
+	.4byte	3913623866                      # 0xe945293a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	99                              # 0x63
+	.4byte	3453026372                      # 0xcdd10044
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	100                             # 0x64
+	.4byte	2321387380                      # 0x8a5d8f74
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	101                             # 0x65
+	.4byte	3319939363                      # 0xc5e24123
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	102                             # 0x66
+	.4byte	398991913                       # 0x17c82229
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	103                             # 0x67
+	.4byte	333429647                       # 0x13dfbb8f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	104                             # 0x68
+	.4byte	3927133990                      # 0xea134f26
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	105                             # 0x69
+	.4byte	1797971294                      # 0x6b2add5e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	106                             # 0x6a
+	.4byte	1622314776                      # 0x60b28f18
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	107                             # 0x6b
+	.4byte	1092862330                      # 0x4123c17a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	108                             # 0x6c
+	.4byte	2568657322                      # 0x991a99aa
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	109                             # 0x6d
+	.4byte	2168129897                      # 0x813b0969
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	110                             # 0x6e
+	.4byte	2890303119                      # 0xac46868f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	111                             # 0x6f
+	.4byte	1713332582                      # 0x661f6166
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	112                             # 0x70
+	.4byte	2375727721                      # 0x8d9aba69
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	113                             # 0x71
+	.4byte	3586767156                      # 0xd5c9b934
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	114                             # 0x72
+	.4byte	2191348475                      # 0x829d52fb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	115                             # 0x73
+	.4byte	3910023869                      # 0xe90e3abd
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	116                             # 0x74
+	.4byte	4189915105                      # 0xf9bd07e1
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	117                             # 0x75
+	.4byte	2527353334                      # 0x96a459f6
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	118                             # 0x76
+	.4byte	3429265923                      # 0xcc667203
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	119                             # 0x77
+	.4byte	1283962724                      # 0x4c87b764
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	120                             # 0x78
+	.4byte	1970290990                      # 0x7570412e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	121                             # 0x79
+	.4byte	2615950861                      # 0x9bec3e0d
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	122                             # 0x7a
+	.4byte	3338450337                      # 0xc6fcb5a1
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	123                             # 0x7b
+	.4byte	3971836509                      # 0xecbd6a5d
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	124                             # 0x7c
+	.4byte	4260339231                      # 0xfdef9e1f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	125                             # 0x7d
+	.4byte	4160738226                      # 0xf7ffd3b2
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	126                             # 0x7e
+	.4byte	1309372079                      # 0x4e0b6eaf
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	127                             # 0x7f
+	.4byte	3151575564                      # 0xbbd93a0c
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	128                             # 0x80
+	.4byte	3938977714                      # 0xeac807b2
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	129                             # 0x81
+	.4byte	3228738087                      # 0xc072a227
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	130                             # 0x82
+	.4byte	3135705803                      # 0xbae712cb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	131                             # 0x83
+	.4byte	4061147315                      # 0xf21030b3
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	132                             # 0x84
+	.4byte	2783543715                      # 0xa5e981a3
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	133                             # 0x85
+	.4byte	2471046843                      # 0x93492ebb
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	134                             # 0x86
+	.4byte	260073473                       # 0xf806801
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	135                             # 0x87
+	.4byte	1259876295                      # 0x4b182fc7
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	136                             # 0x88
+	.4byte	2579807359                      # 0x99c4bc7f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	137                             # 0x89
+	.4byte	90061610                        # 0x55e3b2a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	138                             # 0x8a
+	.4byte	3598610789                      # 0xd67e7165
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	139                             # 0x8b
+	.4byte	2351688191                      # 0x8c2be9ff
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	140                             # 0x8c
+	.4byte	1438161982                      # 0x55b89c3e
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	141                             # 0x8d
+	.4byte	2438880600                      # 0x915e5d58
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	142                             # 0x8e
+	.4byte	3593193962                      # 0xd62bc9ea
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	143                             # 0x8f
+	.4byte	1755082314                      # 0x689c6e4a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	144                             # 0x90
+	.4byte	3432612426                      # 0xcc99824a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	145                             # 0x91
+	.4byte	3374828335                      # 0xc927cb2f
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	146                             # 0x92
+	.4byte	3311814731                      # 0xc566484b
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	147                             # 0x93
+	.4byte	413908966                       # 0x18abbfe6
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	148                             # 0x94
+	.4byte	3027808697                      # 0xb478b1b9
+	.4byte	3144195120                      # 0xbb689c30
+	.size	__llvm_internal_gcov_emit_function_args.0, 1788
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.1
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.2
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.3
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.4
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.5
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.6
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.7
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.8
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.9
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.10
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.11
+	.4byte	7                               # 0x7
+	.4byte	__llvm_gcov_ctr.12
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.13
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.14
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.15
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.16
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.17
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.18
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.19
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.20
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.21
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.22
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.23
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.24
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.25
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.26
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.27
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.28
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.29
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.30
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.31
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.32
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.33
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.34
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.35
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.36
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.37
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.38
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.39
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.40
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.41
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.42
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.43
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.44
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.45
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.46
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.47
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.48
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.49
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.50
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.51
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.52
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.53
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.54
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.55
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.56
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.57
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.58
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.59
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.60
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.61
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.62
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.63
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.64
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.65
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.66
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.67
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.68
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.69
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.70
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.71
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.72
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.73
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.74
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.75
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.76
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.77
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.78
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.79
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.80
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.81
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.82
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.83
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.84
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.85
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.86
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.87
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.88
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.89
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.90
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.91
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.92
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.93
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.94
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.95
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.96
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.97
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.98
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.99
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.100
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.101
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.102
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.103
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.104
+	.4byte	6                               # 0x6
+	.4byte	__llvm_gcov_ctr.105
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.106
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.107
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.108
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.109
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.110
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.111
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.112
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.113
+	.4byte	2                               # 0x2
+	.4byte	__llvm_gcov_ctr.114
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.115
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.116
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.117
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.118
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.119
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.120
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.121
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.122
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.123
+	.4byte	7                               # 0x7
+	.4byte	__llvm_gcov_ctr.124
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.125
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.126
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.127
+	.4byte	8                               # 0x8
+	.4byte	__llvm_gcov_ctr.128
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.129
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.130
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.131
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.132
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.133
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.134
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.135
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.136
+	.4byte	3                               # 0x3
+	.4byte	__llvm_gcov_ctr.137
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.138
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.139
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.140
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.141
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.142
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.143
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.144
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.145
+	.4byte	4                               # 0x4
+	.4byte	__llvm_gcov_ctr.146
+	.4byte	5                               # 0x5
+	.4byte	__llvm_gcov_ctr.147
+	.4byte	1                               # 0x1
+	.4byte	__llvm_gcov_ctr.148
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1192
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.4byte	($__unnamed_1)
+	.4byte	875575338                       # 0x3430382a
+	.4byte	3144195120                      # 0xbb689c30
+	.4byte	149                             # 0x95
+	.4byte	__llvm_internal_gcov_emit_function_args.0
+	.4byte	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.4byte	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	$__profc_memmove,@object        # @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -19660,9 +28803,164 @@ $__llvm_prf_nm:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym $__profc_memmove
 	.addrsig_sym $__profd_memmove

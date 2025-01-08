@@ -63,10 +63,19 @@ memmove:                                // @memmove
 	}
 .LBB0_1:
 	{
-		r1:0 = memd(##.L__profc_memmove+8)
+		r1:0 = memd(##__llvm_gcov_ctr)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmove+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -156,6 +165,18 @@ memmove:                                // @memmove
 	}
 .LBB0_4:                                //   in Loop: Header=BB0_2 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -218,10 +239,19 @@ memmove:                                // @memmove
 	}
 .LBB0_9:                                //   in Loop: Header=BB0_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_memmove+32)
+		r1:0 = memd(##__llvm_gcov_ctr+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmove+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -271,9 +301,33 @@ memmove:                                // @memmove
 	}
 .LBB0_11:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr+24) = r1:0
+	}
+	{
 		jump .LBB0_12
 	}
 .LBB0_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr+32) = r1:0
+	}
 	{
 		jump .LBB0_13
 	}
@@ -364,10 +418,19 @@ memccpy:                                // @memccpy
 	}
 .LBB1_2:                                //   in Loop: Header=BB1_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_memccpy+16)
+		r1:0 = memd(##__llvm_gcov_ctr.1)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.1) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memccpy+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -422,10 +485,19 @@ memccpy:                                // @memccpy
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_memccpy+24)
+		r1:0 = memd(##__llvm_gcov_ctr.1+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.1+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memccpy+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -473,6 +545,18 @@ memccpy:                                // @memccpy
 	}
 .LBB1_6:                                //   in Loop: Header=BB1_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.1+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.1+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-20)
 	}
 	{
@@ -517,10 +601,19 @@ memccpy:                                // @memccpy
 	}
 .LBB1_8:
 	{
-		r1:0 = memd(##.L__profc_memccpy+32)
+		r1:0 = memd(##__llvm_gcov_ctr.1+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.1+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memccpy+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -541,6 +634,18 @@ memccpy:                                // @memccpy
 		jump .LBB1_10
 	}
 .LBB1_9:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.1+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.1+32) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -628,10 +733,19 @@ memchr:                                 // @memchr
 	}
 .LBB2_2:                                //   in Loop: Header=BB2_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_memchr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.2)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.2) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memchr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -680,10 +794,19 @@ memchr:                                 // @memchr
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_memchr+24)
+		r1:0 = memd(##__llvm_gcov_ctr.2+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.2+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memchr+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -731,6 +854,18 @@ memchr:                                 // @memchr
 	}
 .LBB2_6:                                //   in Loop: Header=BB2_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.2+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.2+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -766,10 +901,19 @@ memchr:                                 // @memchr
 	}
 .LBB2_8:
 	{
-		r1:0 = memd(##.L__profc_memchr+32)
+		r1:0 = memd(##__llvm_gcov_ctr.2+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.2+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memchr+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -787,6 +931,18 @@ memchr:                                 // @memchr
 		jump .LBB2_10
 	}
 .LBB2_9:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.2+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.2+32) = r1:0
+	}
 	{
 		r0 = #0
 	}
@@ -874,10 +1030,19 @@ memcmp:                                 // @memcmp
 	}
 .LBB3_2:                                //   in Loop: Header=BB3_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_memcmp+16)
+		r1:0 = memd(##__llvm_gcov_ctr.3)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.3) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memcmp+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -929,10 +1094,19 @@ memcmp:                                 // @memcmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_memcmp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.3+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.3+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memcmp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -980,6 +1154,18 @@ memcmp:                                 // @memcmp
 	}
 .LBB3_6:                                //   in Loop: Header=BB3_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.3+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.3+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -1024,10 +1210,19 @@ memcmp:                                 // @memcmp
 	}
 .LBB3_8:
 	{
-		r1:0 = memd(##.L__profc_memcmp+32)
+		r1:0 = memd(##__llvm_gcov_ctr.3+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.3+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memcmp+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1058,6 +1253,18 @@ memcmp:                                 // @memcmp
 	}
 .LBB3_9:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.3+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.3+32) = r1:0
+	}
+	{
 		r0 = #0
 	}
 	{
@@ -1085,19 +1292,37 @@ memcpy:                                 // @memcpy
 		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-24) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.4)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.4) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_memcpy)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1174,6 +1399,18 @@ memcpy:                                 // @memcpy
 		jump .LBB4_3
 	}
 .LBB4_3:                                //   in Loop: Header=BB4_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.4+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.4+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -1298,10 +1535,19 @@ memrchr:                                // @memrchr
 	}
 .LBB5_3:
 	{
-		r1:0 = memd(##.L__profc_memrchr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.5)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.5) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memrchr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1326,9 +1572,33 @@ memrchr:                                // @memrchr
 	}
 .LBB5_4:                                //   in Loop: Header=BB5_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.5+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.5+8) = r1:0
+	}
+	{
 		jump .LBB5_1
 	}
 .LBB5_5:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.5+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.5+16) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -1357,19 +1627,37 @@ memset:                                 // @memset
 		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-24) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.6)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.6) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_memset)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1426,6 +1714,18 @@ memset:                                 // @memset
 	}
 .LBB6_3:                                //   in Loop: Header=BB6_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.6+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.6+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -1465,6 +1765,18 @@ stpcpy:                                 // @stpcpy
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.7)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.7) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -1472,9 +1784,6 @@ stpcpy:                                 // @stpcpy
 	}
 	{
 		r1:0 = memd(##.L__profc_stpcpy)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1525,6 +1834,18 @@ stpcpy:                                 // @stpcpy
 	}
 .LBB7_3:                                //   in Loop: Header=BB7_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.7+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.7+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-8)
 	}
 	{
@@ -1564,6 +1885,18 @@ strchrnul:                              // @strchrnul
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.8) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -1571,9 +1904,6 @@ strchrnul:                              // @strchrnul
 	}
 	{
 		r1:0 = memd(##.L__profc_strchrnul)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1617,10 +1947,19 @@ strchrnul:                              // @strchrnul
 	}
 .LBB8_2:                                //   in Loop: Header=BB8_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strchrnul+16)
+		r1:0 = memd(##__llvm_gcov_ctr.8+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.8+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strchrnul+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1669,10 +2008,19 @@ strchrnul:                              // @strchrnul
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_strchrnul+24)
+		r1:0 = memd(##__llvm_gcov_ctr.8+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.8+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strchrnul+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1719,6 +2067,18 @@ strchrnul:                              // @strchrnul
 		jump .LBB8_6
 	}
 .LBB8_6:                                //   in Loop: Header=BB8_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.8+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.8+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -1772,10 +2132,19 @@ strchr:                                 // @strchr
 	}
 .LBB9_1:                                //   in Loop: Header=BB9_2 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strchr+8)
+		r1:0 = memd(##__llvm_gcov_ctr.9+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.9+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strchr+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1810,10 +2179,19 @@ strchr:                                 // @strchr
 	}
 .LBB9_3:
 	{
-		r1:0 = memd(##.L__profc_strchr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.9)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.9) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strchr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1861,6 +2239,18 @@ strchr:                                 // @strchr
 	}
 .LBB9_6:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.9+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.9+16) = r1:0
+	}
+	{
 		r0 = add(r30,#-4)
 	}
 	{
@@ -1888,6 +2278,18 @@ strcmp:                                 // @strcmp
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.10)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.10) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -1895,9 +2297,6 @@ strcmp:                                 // @strcmp
 	}
 	{
 		r1:0 = memd(##.L__profc_strcmp)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1944,10 +2343,19 @@ strcmp:                                 // @strcmp
 	}
 .LBB10_2:                               //   in Loop: Header=BB10_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strcmp+16)
+		r1:0 = memd(##__llvm_gcov_ctr.10+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.10+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strcmp+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -1993,10 +2401,19 @@ strcmp:                                 // @strcmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_strcmp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.10+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.10+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strcmp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2043,6 +2460,18 @@ strcmp:                                 // @strcmp
 		jump .LBB10_6
 	}
 .LBB10_6:                               //   in Loop: Header=BB10_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.10+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.10+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -2095,13 +2524,22 @@ strlen:                                 // @strlen
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.11)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.11) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_strlen)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2151,6 +2589,18 @@ strlen:                                 // @strlen
 		jump .LBB11_3
 	}
 .LBB11_3:                               //   in Loop: Header=BB11_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.11+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.11+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -2243,10 +2693,19 @@ strncmp:                                // @strncmp
 	}
 .LBB12_1:
 	{
-		r1:0 = memd(##.L__profc_strncmp+8)
+		r1:0 = memd(##__llvm_gcov_ctr.12+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncmp+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2264,6 +2723,18 @@ strncmp:                                // @strncmp
 		jump .LBB12_14
 	}
 .LBB12_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.12)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12) = r1:0
+	}
 	{
 		jump .LBB12_3
 	}
@@ -2294,10 +2765,19 @@ strncmp:                                // @strncmp
 	}
 .LBB12_4:                               //   in Loop: Header=BB12_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strncmp+56)
+		r1:0 = memd(##__llvm_gcov_ctr.12+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncmp+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2331,10 +2811,19 @@ strncmp:                                // @strncmp
 	}
 .LBB12_5:                               //   in Loop: Header=BB12_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strncmp+64)
+		r1:0 = memd(##__llvm_gcov_ctr.12+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncmp+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2381,10 +2870,19 @@ strncmp:                                // @strncmp
 	}
 .LBB12_7:                               //   in Loop: Header=BB12_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strncmp+48)
+		r1:0 = memd(##__llvm_gcov_ctr.12+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncmp+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2452,10 +2950,19 @@ strncmp:                                // @strncmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_strncmp+32)
+		r1:0 = memd(##__llvm_gcov_ctr.12+40)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+40) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncmp+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2502,6 +3009,18 @@ strncmp:                                // @strncmp
 		jump .LBB12_12
 	}
 .LBB12_12:                              //   in Loop: Header=BB12_3 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.12+48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.12+48) = r1:0
+	}
 	{
 		r0 = memw(r30+#-20)
 	}
@@ -2573,19 +3092,37 @@ swab:                                   // @swab
 		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-24) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.13)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.13) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_swab)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2684,6 +3221,18 @@ swab:                                   // @swab
 	}
 .LBB13_3:                               //   in Loop: Header=BB13_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.13+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.13+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -2711,13 +3260,22 @@ isalpha:                                // @isalpha
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.14)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.14) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isalpha)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2758,13 +3316,22 @@ isascii:                                // @isascii
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.15)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.15) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isascii)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2796,13 +3363,22 @@ isblank:                                // @isblank
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.16) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isblank)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2833,10 +3409,19 @@ isblank:                                // @isblank
 	}
 .LBB16_1:
 	{
-		r1:0 = memd(##.L__profc_isblank+8)
+		r1:0 = memd(##__llvm_gcov_ctr.16+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.16+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_isblank+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2879,10 +3464,19 @@ isblank:                                // @isblank
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_isblank+16)
+		r1:0 = memd(##__llvm_gcov_ctr.16+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.16+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_isblank+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2924,13 +3518,22 @@ iscntrl:                                // @iscntrl
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.17)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.17) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_iscntrl)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -2964,10 +3567,19 @@ iscntrl:                                // @iscntrl
 	}
 .LBB17_1:
 	{
-		r1:0 = memd(##.L__profc_iscntrl+8)
+		r1:0 = memd(##__llvm_gcov_ctr.17+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.17+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iscntrl+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3010,10 +3622,19 @@ iscntrl:                                // @iscntrl
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_iscntrl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.17+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.17+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iscntrl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3055,13 +3676,22 @@ isdigit:                                // @isdigit
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.18)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.18) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isdigit)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3099,13 +3729,22 @@ isgraph:                                // @isgraph
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.19)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.19) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isgraph)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3143,13 +3782,22 @@ islower:                                // @islower
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.20)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.20) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_islower)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3187,13 +3835,22 @@ isprint:                                // @isprint
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.21)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.21) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isprint)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3231,13 +3888,22 @@ isspace:                                // @isspace
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.22)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.22) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isspace)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3268,10 +3934,19 @@ isspace:                                // @isspace
 	}
 .LBB22_1:
 	{
-		r1:0 = memd(##.L__profc_isspace+8)
+		r1:0 = memd(##__llvm_gcov_ctr.22+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.22+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_isspace+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3320,10 +3995,19 @@ isspace:                                // @isspace
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_isspace+16)
+		r1:0 = memd(##__llvm_gcov_ctr.22+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.22+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_isspace+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3365,13 +4049,22 @@ isupper:                                // @isupper
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.23)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.23) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_isupper)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3409,13 +4102,22 @@ iswcntrl:                               // @iswcntrl
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.24) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_iswcntrl)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3449,10 +4151,19 @@ iswcntrl:                               // @iswcntrl
 	}
 .LBB24_1:
 	{
-		r1:0 = memd(##.L__profc_iswcntrl+40)
+		r1:0 = memd(##__llvm_gcov_ctr.24+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.24+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswcntrl+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3489,10 +4200,19 @@ iswcntrl:                               // @iswcntrl
 	}
 .LBB24_2:
 	{
-		r1:0 = memd(##.L__profc_iswcntrl+48)
+		r1:0 = memd(##__llvm_gcov_ctr.24+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.24+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswcntrl+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3545,10 +4265,19 @@ iswcntrl:                               // @iswcntrl
 	}
 .LBB24_4:
 	{
-		r1:0 = memd(##.L__profc_iswcntrl+32)
+		r1:0 = memd(##__llvm_gcov_ctr.24+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.24+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswcntrl+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3613,10 +4342,19 @@ iswcntrl:                               // @iswcntrl
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_iswcntrl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.24+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.24+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswcntrl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3658,13 +4396,22 @@ iswdigit:                               // @iswdigit
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.25)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.25) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_iswdigit)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3730,10 +4477,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_1:
 	{
-		r1:0 = memd(##.L__profc_iswprint+8)
+		r1:0 = memd(##__llvm_gcov_ctr.26)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3780,10 +4536,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_3:
 	{
-		r1:0 = memd(##.L__profc_iswprint+40)
+		r1:0 = memd(##__llvm_gcov_ctr.26+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3811,10 +4576,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_4:
 	{
-		r1:0 = memd(##.L__profc_iswprint+48)
+		r1:0 = memd(##__llvm_gcov_ctr.26+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3874,10 +4648,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_7:
 	{
-		r1:0 = memd(##.L__profc_iswprint+16)
+		r1:0 = memd(##__llvm_gcov_ctr.26+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3912,10 +4695,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_9:
 	{
-		r1:0 = memd(##.L__profc_iswprint+64)
+		r1:0 = memd(##__llvm_gcov_ctr.26+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3956,10 +4748,19 @@ iswprint:                               // @iswprint
 	}
 .LBB26_11:
 	{
-		r1:0 = memd(##.L__profc_iswprint+56)
+		r1:0 = memd(##__llvm_gcov_ctr.26+40)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+40) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswprint+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -3977,6 +4778,18 @@ iswprint:                               // @iswprint
 		jump .LBB26_13
 	}
 .LBB26_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.26+48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.26+48) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -4005,13 +4818,22 @@ iswxdigit:                              // @iswxdigit
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.27)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.27) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_iswxdigit)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4048,10 +4870,19 @@ iswxdigit:                              // @iswxdigit
 	}
 .LBB27_1:
 	{
-		r1:0 = memd(##.L__profc_iswxdigit+8)
+		r1:0 = memd(##__llvm_gcov_ctr.27+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.27+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswxdigit+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4103,10 +4934,19 @@ iswxdigit:                              // @iswxdigit
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_iswxdigit+16)
+		r1:0 = memd(##__llvm_gcov_ctr.27+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.27+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_iswxdigit+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4148,13 +4988,22 @@ toascii:                                // @toascii
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.28)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.28) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_toascii)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4217,10 +5066,19 @@ fdim:                                   // @fdim
 	}
 .LBB29_1:
 	{
-		r1:0 = memd(##.L__profc_fdim+8)
+		r1:0 = memd(##__llvm_gcov_ctr.29)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.29) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdim+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4255,10 +5113,19 @@ fdim:                                   // @fdim
 	}
 .LBB29_3:
 	{
-		r1:0 = memd(##.L__profc_fdim+16)
+		r1:0 = memd(##__llvm_gcov_ctr.29+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.29+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdim+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4299,10 +5166,19 @@ fdim:                                   // @fdim
 	}
 .LBB29_5:
 	{
-		r1:0 = memd(##.L__profc_fdim+24)
+		r1:0 = memd(##__llvm_gcov_ctr.29+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.29+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdim+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4326,6 +5202,18 @@ fdim:                                   // @fdim
 		jump .LBB29_7
 	}
 .LBB29_6:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.29+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.29+24) = r1:0
+	}
 	{
 		r1:0 = CONST64(#0)
 	}
@@ -4398,10 +5286,19 @@ fdimf:                                  // @fdimf
 	}
 .LBB30_1:
 	{
-		r1:0 = memd(##.L__profc_fdimf+8)
+		r1:0 = memd(##__llvm_gcov_ctr.30)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.30) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdimf+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4436,10 +5333,19 @@ fdimf:                                  // @fdimf
 	}
 .LBB30_3:
 	{
-		r1:0 = memd(##.L__profc_fdimf+16)
+		r1:0 = memd(##__llvm_gcov_ctr.30+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.30+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdimf+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4480,10 +5386,19 @@ fdimf:                                  // @fdimf
 	}
 .LBB30_5:
 	{
-		r1:0 = memd(##.L__profc_fdimf+24)
+		r1:0 = memd(##__llvm_gcov_ctr.30+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.30+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fdimf+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4507,6 +5422,18 @@ fdimf:                                  // @fdimf
 		jump .LBB30_7
 	}
 .LBB30_6:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.30+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.30+24) = r1:0
+	}
 	{
 		r0 = #0
 	}
@@ -4579,10 +5506,19 @@ fmax:                                   // @fmax
 	}
 .LBB31_1:
 	{
-		r1:0 = memd(##.L__profc_fmax+8)
+		r1:0 = memd(##__llvm_gcov_ctr.31)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmax+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4617,10 +5553,19 @@ fmax:                                   // @fmax
 	}
 .LBB31_3:
 	{
-		r1:0 = memd(##.L__profc_fmax+16)
+		r1:0 = memd(##__llvm_gcov_ctr.31+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmax+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4692,10 +5637,19 @@ fmax:                                   // @fmax
 	}
 .LBB31_6:
 	{
-		r1:0 = memd(##.L__profc_fmax+32)
+		r1:0 = memd(##__llvm_gcov_ctr.31+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmax+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4713,6 +5667,18 @@ fmax:                                   // @fmax
 		jump .LBB31_8
 	}
 .LBB31_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.31+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31+24) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -4756,10 +5722,19 @@ fmax:                                   // @fmax
 	}
 .LBB31_10:
 	{
-		r1:0 = memd(##.L__profc_fmax+40)
+		r1:0 = memd(##__llvm_gcov_ctr.31+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmax+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4777,6 +5752,18 @@ fmax:                                   // @fmax
 		jump .LBB31_12
 	}
 .LBB31_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.31+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.31+40) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -4849,10 +5836,19 @@ fmaxf:                                  // @fmaxf
 	}
 .LBB32_1:
 	{
-		r1:0 = memd(##.L__profc_fmaxf+8)
+		r1:0 = memd(##__llvm_gcov_ctr.32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxf+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4887,10 +5883,19 @@ fmaxf:                                  // @fmaxf
 	}
 .LBB32_3:
 	{
-		r1:0 = memd(##.L__profc_fmaxf+16)
+		r1:0 = memd(##__llvm_gcov_ctr.32+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxf+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4956,10 +5961,19 @@ fmaxf:                                  // @fmaxf
 	}
 .LBB32_6:
 	{
-		r1:0 = memd(##.L__profc_fmaxf+32)
+		r1:0 = memd(##__llvm_gcov_ctr.32+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxf+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -4977,6 +5991,18 @@ fmaxf:                                  // @fmaxf
 		jump .LBB32_8
 	}
 .LBB32_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.32+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -5020,10 +6046,19 @@ fmaxf:                                  // @fmaxf
 	}
 .LBB32_10:
 	{
-		r1:0 = memd(##.L__profc_fmaxf+40)
+		r1:0 = memd(##__llvm_gcov_ctr.32+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxf+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5041,6 +6076,18 @@ fmaxf:                                  // @fmaxf
 		jump .LBB32_12
 	}
 .LBB32_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.32+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.32+40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -5113,10 +6160,19 @@ fmaxl:                                  // @fmaxl
 	}
 .LBB33_1:
 	{
-		r1:0 = memd(##.L__profc_fmaxl+8)
+		r1:0 = memd(##__llvm_gcov_ctr.33)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxl+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5151,10 +6207,19 @@ fmaxl:                                  // @fmaxl
 	}
 .LBB33_3:
 	{
-		r1:0 = memd(##.L__profc_fmaxl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.33+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5226,10 +6291,19 @@ fmaxl:                                  // @fmaxl
 	}
 .LBB33_6:
 	{
-		r1:0 = memd(##.L__profc_fmaxl+32)
+		r1:0 = memd(##__llvm_gcov_ctr.33+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxl+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5247,6 +6321,18 @@ fmaxl:                                  // @fmaxl
 		jump .LBB33_8
 	}
 .LBB33_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.33+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33+24) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -5290,10 +6376,19 @@ fmaxl:                                  // @fmaxl
 	}
 .LBB33_10:
 	{
-		r1:0 = memd(##.L__profc_fmaxl+40)
+		r1:0 = memd(##__llvm_gcov_ctr.33+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmaxl+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5311,6 +6406,18 @@ fmaxl:                                  // @fmaxl
 		jump .LBB33_12
 	}
 .LBB33_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.33+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.33+40) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -5383,10 +6490,19 @@ fmin:                                   // @fmin
 	}
 .LBB34_1:
 	{
-		r1:0 = memd(##.L__profc_fmin+8)
+		r1:0 = memd(##__llvm_gcov_ctr.34)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmin+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5421,10 +6537,19 @@ fmin:                                   // @fmin
 	}
 .LBB34_3:
 	{
-		r1:0 = memd(##.L__profc_fmin+16)
+		r1:0 = memd(##__llvm_gcov_ctr.34+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmin+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5496,10 +6621,19 @@ fmin:                                   // @fmin
 	}
 .LBB34_6:
 	{
-		r1:0 = memd(##.L__profc_fmin+32)
+		r1:0 = memd(##__llvm_gcov_ctr.34+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmin+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5517,6 +6651,18 @@ fmin:                                   // @fmin
 		jump .LBB34_8
 	}
 .LBB34_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.34+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34+24) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-24)
 	}
@@ -5560,10 +6706,19 @@ fmin:                                   // @fmin
 	}
 .LBB34_10:
 	{
-		r1:0 = memd(##.L__profc_fmin+40)
+		r1:0 = memd(##__llvm_gcov_ctr.34+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fmin+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5581,6 +6736,18 @@ fmin:                                   // @fmin
 		jump .LBB34_12
 	}
 .LBB34_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.34+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.34+40) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-24)
 	}
@@ -5653,10 +6820,19 @@ fminf:                                  // @fminf
 	}
 .LBB35_1:
 	{
-		r1:0 = memd(##.L__profc_fminf+8)
+		r1:0 = memd(##__llvm_gcov_ctr.35)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminf+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5691,10 +6867,19 @@ fminf:                                  // @fminf
 	}
 .LBB35_3:
 	{
-		r1:0 = memd(##.L__profc_fminf+16)
+		r1:0 = memd(##__llvm_gcov_ctr.35+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminf+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5760,10 +6945,19 @@ fminf:                                  // @fminf
 	}
 .LBB35_6:
 	{
-		r1:0 = memd(##.L__profc_fminf+32)
+		r1:0 = memd(##__llvm_gcov_ctr.35+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminf+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5781,6 +6975,18 @@ fminf:                                  // @fminf
 		jump .LBB35_8
 	}
 .LBB35_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.35+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -5824,10 +7030,19 @@ fminf:                                  // @fminf
 	}
 .LBB35_10:
 	{
-		r1:0 = memd(##.L__profc_fminf+40)
+		r1:0 = memd(##__llvm_gcov_ctr.35+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminf+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5845,6 +7060,18 @@ fminf:                                  // @fminf
 		jump .LBB35_12
 	}
 .LBB35_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.35+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.35+40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -5917,10 +7144,19 @@ fminl:                                  // @fminl
 	}
 .LBB36_1:
 	{
-		r1:0 = memd(##.L__profc_fminl+8)
+		r1:0 = memd(##__llvm_gcov_ctr.36)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminl+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -5955,10 +7191,19 @@ fminl:                                  // @fminl
 	}
 .LBB36_3:
 	{
-		r1:0 = memd(##.L__profc_fminl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.36+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6030,10 +7275,19 @@ fminl:                                  // @fminl
 	}
 .LBB36_6:
 	{
-		r1:0 = memd(##.L__profc_fminl+32)
+		r1:0 = memd(##__llvm_gcov_ctr.36+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminl+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6051,6 +7305,18 @@ fminl:                                  // @fminl
 		jump .LBB36_8
 	}
 .LBB36_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.36+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36+24) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-24)
 	}
@@ -6094,10 +7360,19 @@ fminl:                                  // @fminl
 	}
 .LBB36_10:
 	{
-		r1:0 = memd(##.L__profc_fminl+40)
+		r1:0 = memd(##__llvm_gcov_ctr.36+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_fminl+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6115,6 +7390,18 @@ fminl:                                  // @fminl
 		jump .LBB36_12
 	}
 .LBB36_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.36+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.36+40) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-24)
 	}
@@ -6153,13 +7440,22 @@ l64a:                                   // @l64a
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.37)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.37) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_l64a)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6228,6 +7524,18 @@ l64a:                                   // @l64a
 	}
 .LBB37_3:                               //   in Loop: Header=BB37_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.37+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.37+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-8)
 	}
 	{
@@ -6273,13 +7581,22 @@ srand:                                  // @srand
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.38)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.38) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_srand)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6314,10 +7631,19 @@ rand:                                   // @rand
 		allocframe(r29,#0):raw
 	}
 	{
-		r1:0 = memd(##.L__profc_rand)
+		r1:0 = memd(##__llvm_gcov_ctr.39)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.39) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_rand)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6431,10 +7757,19 @@ insque:                                 // @insque
 	}
 .LBB40_1:
 	{
-		r1:0 = memd(##.L__profc_insque+8)
+		r1:0 = memd(##__llvm_gcov_ctr.40+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.40+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_insque+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6458,6 +7793,18 @@ insque:                                 // @insque
 		jump .LBB40_4
 	}
 .LBB40_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-16)
 	}
@@ -6505,10 +7852,19 @@ insque:                                 // @insque
 	}
 .LBB40_3:
 	{
-		r1:0 = memd(##.L__profc_insque+16)
+		r1:0 = memd(##__llvm_gcov_ctr.40+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.40+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_insque+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6544,13 +7900,22 @@ remque:                                 // @remque
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.41)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.41) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_remque)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6581,10 +7946,19 @@ remque:                                 // @remque
 	}
 .LBB41_1:
 	{
-		r1:0 = memd(##.L__profc_remque+8)
+		r1:0 = memd(##__llvm_gcov_ctr.41+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.41+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_remque+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6625,10 +7999,19 @@ remque:                                 // @remque
 	}
 .LBB41_3:
 	{
-		r1:0 = memd(##.L__profc_remque+16)
+		r1:0 = memd(##__llvm_gcov_ctr.41+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.41+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_remque+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -6793,10 +8176,19 @@ lsearch:                                // @lsearch
 		r2 = memw(r30+#-40)
 	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_lsearch+16)
+		r1:0 = memd(##__llvm_gcov_ctr.42)
 	}
 	{
 		r5:4 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r5:4)
+	}
+	{
+		memd(##__llvm_gcov_ctr.42) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_lsearch+16)
 	}
 	{
 		r1:0 = add(r1:0,r5:4)
@@ -6825,6 +8217,18 @@ lsearch:                                // @lsearch
 	}
 .LBB42_5:                               //   in Loop: Header=BB42_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.42+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.42+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-36)
 	}
 	{
@@ -6840,6 +8244,18 @@ lsearch:                                // @lsearch
 	{
 		r2 = memw(r30+#-40)
 	}                                       // 4-byte Folded Reload
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.42+16)
+	}
+	{
+		r5:4 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r5:4)
+	}
+	{
+		memd(##__llvm_gcov_ctr.42+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-32)
 	}
@@ -7030,10 +8446,19 @@ lfind:                                  // @lfind
 		r2 = memw(r30+#-40)
 	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_lfind+16)
+		r1:0 = memd(##__llvm_gcov_ctr.43)
 	}
 	{
 		r5:4 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r5:4)
+	}
+	{
+		memd(##__llvm_gcov_ctr.43) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_lfind+16)
 	}
 	{
 		r1:0 = add(r1:0,r5:4)
@@ -7062,6 +8487,18 @@ lfind:                                  // @lfind
 	}
 .LBB43_5:                               //   in Loop: Header=BB43_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.43+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.43+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-36)
 	}
 	{
@@ -7074,6 +8511,18 @@ lfind:                                  // @lfind
 		jump .LBB43_1
 	}
 .LBB43_6:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.43+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.43+16) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -7133,10 +8582,19 @@ abs:                                    // @abs
 	}
 .LBB44_1:
 	{
-		r1:0 = memd(##.L__profc_abs+8)
+		r1:0 = memd(##__llvm_gcov_ctr.44)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.44) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_abs+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7154,6 +8612,18 @@ abs:                                    // @abs
 		jump .LBB44_3
 	}
 .LBB44_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.44+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.44+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -7235,10 +8705,19 @@ atoi:                                   // @atoi
 	}
 .LBB45_2:                               //   in Loop: Header=BB45_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atoi+8)
+		r1:0 = memd(##__llvm_gcov_ctr.45)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoi+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7295,10 +8774,19 @@ atoi:                                   // @atoi
 	}
 .LBB45_4:
 	{
-		r1:0 = memd(##.L__profc_atoi+24)
+		r1:0 = memd(##__llvm_gcov_ctr.45+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoi+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7317,10 +8805,19 @@ atoi:                                   // @atoi
 	}
 .LBB45_5:
 	{
-		r1:0 = memd(##.L__profc_atoi+32)
+		r1:0 = memd(##__llvm_gcov_ctr.45+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoi+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7381,10 +8878,19 @@ atoi:                                   // @atoi
 	}
 .LBB45_9:                               //   in Loop: Header=BB45_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atoi+40)
+		r1:0 = memd(##__llvm_gcov_ctr.45+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoi+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7434,10 +8940,19 @@ atoi:                                   // @atoi
 	}
 .LBB45_11:
 	{
-		r1:0 = memd(##.L__profc_atoi+48)
+		r1:0 = memd(##__llvm_gcov_ctr.45+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoi+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7455,6 +8970,18 @@ atoi:                                   // @atoi
 		jump .LBB45_13
 	}
 .LBB45_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.45+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.45+40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -7536,10 +9063,19 @@ atol:                                   // @atol
 	}
 .LBB46_2:                               //   in Loop: Header=BB46_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atol+8)
+		r1:0 = memd(##__llvm_gcov_ctr.46)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atol+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7596,10 +9132,19 @@ atol:                                   // @atol
 	}
 .LBB46_4:
 	{
-		r1:0 = memd(##.L__profc_atol+24)
+		r1:0 = memd(##__llvm_gcov_ctr.46+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atol+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7618,10 +9163,19 @@ atol:                                   // @atol
 	}
 .LBB46_5:
 	{
-		r1:0 = memd(##.L__profc_atol+32)
+		r1:0 = memd(##__llvm_gcov_ctr.46+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atol+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7682,10 +9236,19 @@ atol:                                   // @atol
 	}
 .LBB46_9:                               //   in Loop: Header=BB46_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atol+40)
+		r1:0 = memd(##__llvm_gcov_ctr.46+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atol+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7735,10 +9298,19 @@ atol:                                   // @atol
 	}
 .LBB46_11:
 	{
-		r1:0 = memd(##.L__profc_atol+48)
+		r1:0 = memd(##__llvm_gcov_ctr.46+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atol+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7756,6 +9328,18 @@ atol:                                   // @atol
 		jump .LBB46_13
 	}
 .LBB46_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.46+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.46+40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -7837,10 +9421,19 @@ atoll:                                  // @atoll
 	}
 .LBB47_2:                               //   in Loop: Header=BB47_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atoll+8)
+		r1:0 = memd(##__llvm_gcov_ctr.47)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoll+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7897,10 +9490,19 @@ atoll:                                  // @atoll
 	}
 .LBB47_4:
 	{
-		r1:0 = memd(##.L__profc_atoll+24)
+		r1:0 = memd(##__llvm_gcov_ctr.47+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoll+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7919,10 +9521,19 @@ atoll:                                  // @atoll
 	}
 .LBB47_5:
 	{
-		r1:0 = memd(##.L__profc_atoll+32)
+		r1:0 = memd(##__llvm_gcov_ctr.47+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoll+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -7983,10 +9594,19 @@ atoll:                                  // @atoll
 	}
 .LBB47_9:                               //   in Loop: Header=BB47_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_atoll+40)
+		r1:0 = memd(##__llvm_gcov_ctr.47+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoll+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8069,10 +9689,19 @@ atoll:                                  // @atoll
 	}
 .LBB47_11:
 	{
-		r1:0 = memd(##.L__profc_atoll+48)
+		r1:0 = memd(##__llvm_gcov_ctr.47+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_atoll+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8090,6 +9719,18 @@ atoll:                                  // @atoll
 		jump .LBB47_13
 	}
 .LBB47_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.47+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.47+40) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -8223,10 +9864,19 @@ bsearch:                                // @bsearch
 	}
 .LBB48_3:                               //   in Loop: Header=BB48_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_bsearch+16)
+		r1:0 = memd(##__llvm_gcov_ctr.48+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.48+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_bsearch+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8307,6 +9957,18 @@ bsearch:                                // @bsearch
 	}
 .LBB48_6:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.48+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.48+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-28)
 	}
 	{
@@ -8317,6 +9979,18 @@ bsearch:                                // @bsearch
 	}
 .LBB48_7:                               //   in Loop: Header=BB48_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.48+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.48+24) = r1:0
+	}
+	{
 		jump .LBB48_8
 	}
 .LBB48_8:                               //   in Loop: Header=BB48_1 Depth=1
@@ -8324,6 +9998,18 @@ bsearch:                                // @bsearch
 		jump .LBB48_1
 	}
 .LBB48_9:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.48) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -8475,10 +10161,19 @@ bsearch_r:                              // @bsearch_r
 	}
 .LBB49_3:
 	{
-		r1:0 = memd(##.L__profc_bsearch_r+16)
+		r1:0 = memd(##__llvm_gcov_ctr.49)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.49) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_bsearch_r+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8513,10 +10208,19 @@ bsearch_r:                              // @bsearch_r
 	}
 .LBB49_5:                               //   in Loop: Header=BB49_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_bsearch_r+24)
+		r1:0 = memd(##__llvm_gcov_ctr.49+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.49+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_bsearch_r+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8554,6 +10258,18 @@ bsearch_r:                              // @bsearch_r
 	}
 .LBB49_7:                               //   in Loop: Header=BB49_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.49+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.49+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-36)
 	}
 	{
@@ -8566,6 +10282,18 @@ bsearch_r:                              // @bsearch_r
 		jump .LBB49_1
 	}
 .LBB49_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.49+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.49+24) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -8594,6 +10322,18 @@ div:                                    // @div
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.50)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.50) = r5:4
+	}
+	{
 		memw(r30+#-12) = r0
 	}
 	{
@@ -8601,9 +10341,6 @@ div:                                    // @div
 	}
 	{
 		r1:0 = memd(##.L__profc_div)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8687,10 +10424,19 @@ imaxabs:                                // @imaxabs
 	}
 .LBB51_1:
 	{
-		r1:0 = memd(##.L__profc_imaxabs+8)
+		r1:0 = memd(##__llvm_gcov_ctr.51)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.51) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_imaxabs+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8708,6 +10454,18 @@ imaxabs:                                // @imaxabs
 		jump .LBB51_3
 	}
 .LBB51_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.51+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.51+8) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-8)
 	}
@@ -8736,22 +10494,40 @@ imaxabs:                                // @imaxabs
 imaxdiv:                                // @imaxdiv
 // %bb.0:
 	{
-		allocframe(r29,#24):raw
+		allocframe(r29,#32):raw
 	}
 	{
-		memw(r30+#-20) = r0
+		memd(r30+#-32) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r2 = r0
+	}
+	{
+		r1:0 = memd(r30+#-32)
+	}                                       // 8-byte Folded Reload
+	{
+		memw(r30+#-20) = r2
 	}                                       // 4-byte Folded Spill
 	{
-		memd(r30+#-8) = r3:2
+		r7:6 = memd(##__llvm_gcov_ctr.52)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.52) = r7:6
+	}
+	{
+		memd(r30+#-8) = r1:0
 	}
 	{
 		memd(r30+#-16) = r5:4
 	}
 	{
 		r1:0 = memd(##.L__profc_imaxdiv)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8841,10 +10617,19 @@ labs:                                   // @labs
 	}
 .LBB53_1:
 	{
-		r1:0 = memd(##.L__profc_labs+8)
+		r1:0 = memd(##__llvm_gcov_ctr.53)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.53) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_labs+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8862,6 +10647,18 @@ labs:                                   // @labs
 		jump .LBB53_3
 	}
 .LBB53_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.53+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.53+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -8893,6 +10690,18 @@ ldiv:                                   // @ldiv
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.54)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.54) = r5:4
+	}
+	{
 		memw(r30+#-12) = r0
 	}
 	{
@@ -8900,9 +10709,6 @@ ldiv:                                   // @ldiv
 	}
 	{
 		r1:0 = memd(##.L__profc_ldiv)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -8986,10 +10792,19 @@ llabs:                                  // @llabs
 	}
 .LBB55_1:
 	{
-		r1:0 = memd(##.L__profc_llabs+8)
+		r1:0 = memd(##__llvm_gcov_ctr.55)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.55) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_llabs+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9007,6 +10822,18 @@ llabs:                                  // @llabs
 		jump .LBB55_3
 	}
 .LBB55_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.55+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.55+8) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-8)
 	}
@@ -9035,22 +10862,40 @@ llabs:                                  // @llabs
 lldiv:                                  // @lldiv
 // %bb.0:
 	{
-		allocframe(r29,#24):raw
+		allocframe(r29,#32):raw
 	}
 	{
-		memw(r30+#-20) = r0
+		memd(r30+#-32) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r2 = r0
+	}
+	{
+		r1:0 = memd(r30+#-32)
+	}                                       // 8-byte Folded Reload
+	{
+		memw(r30+#-20) = r2
 	}                                       // 4-byte Folded Spill
 	{
-		memd(r30+#-8) = r3:2
+		r7:6 = memd(##__llvm_gcov_ctr.56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.56) = r7:6
+	}
+	{
+		memd(r30+#-8) = r1:0
 	}
 	{
 		memd(r30+#-16) = r5:4
 	}
 	{
 		r1:0 = memd(##.L__profc_lldiv)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9156,10 +11001,19 @@ wcschr:                                 // @wcschr
 	}
 .LBB57_2:                               //   in Loop: Header=BB57_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcschr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.57)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.57) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcschr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9208,10 +11062,19 @@ wcschr:                                 // @wcschr
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_wcschr+24)
+		r1:0 = memd(##__llvm_gcov_ctr.57+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.57+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcschr+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9259,6 +11122,18 @@ wcschr:                                 // @wcschr
 	}
 .LBB57_6:                               //   in Loop: Header=BB57_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.57+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.57+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-4)
 	}
 	{
@@ -9288,10 +11163,19 @@ wcschr:                                 // @wcschr
 	}
 .LBB57_8:
 	{
-		r1:0 = memd(##.L__profc_wcschr+32)
+		r1:0 = memd(##__llvm_gcov_ctr.57+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.57+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcschr+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9309,6 +11193,18 @@ wcschr:                                 // @wcschr
 		jump .LBB57_10
 	}
 .LBB57_9:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.57+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.57+32) = r1:0
+	}
 	{
 		r0 = #0
 	}
@@ -9393,10 +11289,19 @@ wcscmp:                                 // @wcscmp
 	}
 .LBB58_2:                               //   in Loop: Header=BB58_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcscmp+32)
+		r1:0 = memd(##__llvm_gcov_ctr.58)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcscmp+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9430,10 +11335,19 @@ wcscmp:                                 // @wcscmp
 	}
 .LBB58_3:                               //   in Loop: Header=BB58_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcscmp+40)
+		r1:0 = memd(##__llvm_gcov_ctr.58+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcscmp+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9495,10 +11409,19 @@ wcscmp:                                 // @wcscmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_wcscmp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.58+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcscmp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9545,6 +11468,18 @@ wcscmp:                                 // @wcscmp
 		jump .LBB58_8
 	}
 .LBB58_8:                               //   in Loop: Header=BB58_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.58+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -9593,10 +11528,19 @@ wcscmp:                                 // @wcscmp
 	}
 .LBB58_10:
 	{
-		r1:0 = memd(##.L__profc_wcscmp+48)
+		r1:0 = memd(##__llvm_gcov_ctr.58+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcscmp+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9614,6 +11558,18 @@ wcscmp:                                 // @wcscmp
 		jump .LBB58_12
 	}
 .LBB58_11:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.58+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.58+40) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -9657,6 +11613,18 @@ wcscpy:                                 // @wcscpy
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.59)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.59) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -9664,9 +11632,6 @@ wcscpy:                                 // @wcscpy
 	}
 	{
 		r1:0 = memd(##.L__profc_wcscpy)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9719,10 +11684,19 @@ wcscpy:                                 // @wcscpy
 	}
 .LBB59_2:                               //   in Loop: Header=BB59_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcscpy+8)
+		r1:0 = memd(##__llvm_gcov_ctr.59+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.59+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcscpy+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9752,13 +11726,22 @@ wcslen:                                 // @wcslen
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.60)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.60) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_wcslen)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9808,6 +11791,18 @@ wcslen:                                 // @wcslen
 		jump .LBB60_3
 	}
 .LBB60_3:                               //   in Loop: Header=BB60_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.60+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.60+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -9895,10 +11890,19 @@ wcsncmp:                                // @wcsncmp
 	}
 .LBB61_2:                               //   in Loop: Header=BB61_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcsncmp+48)
+		r1:0 = memd(##__llvm_gcov_ctr.61)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcsncmp+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9941,10 +11945,19 @@ wcsncmp:                                // @wcsncmp
 	}
 .LBB61_3:                               //   in Loop: Header=BB61_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcsncmp+56)
+		r1:0 = memd(##__llvm_gcov_ctr.61+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcsncmp+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -9994,10 +12007,19 @@ wcsncmp:                                // @wcsncmp
 	}
 .LBB61_5:                               //   in Loop: Header=BB61_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wcsncmp+40)
+		r1:0 = memd(##__llvm_gcov_ctr.61+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcsncmp+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10059,10 +12081,19 @@ wcsncmp:                                // @wcsncmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_wcsncmp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.61+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcsncmp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10109,6 +12140,18 @@ wcsncmp:                                // @wcsncmp
 		jump .LBB61_10
 	}
 .LBB61_10:                              //   in Loop: Header=BB61_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.61+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+32) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -10191,10 +12234,19 @@ wcsncmp:                                // @wcsncmp
 	}
 .LBB61_13:
 	{
-		r1:0 = memd(##.L__profc_wcsncmp+72)
+		r1:0 = memd(##__llvm_gcov_ctr.61+40)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+40) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wcsncmp+72)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10212,6 +12264,18 @@ wcsncmp:                                // @wcsncmp
 		jump .LBB61_15
 	}
 .LBB61_14:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.61+48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+48) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -10247,6 +12311,18 @@ wcsncmp:                                // @wcsncmp
 		jump .LBB61_17
 	}
 .LBB61_16:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.61+56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.61+56) = r1:0
+	}
 	{
 		r0 = #0
 	}
@@ -10322,10 +12398,19 @@ wmemchr:                                // @wmemchr
 	}
 .LBB62_2:                               //   in Loop: Header=BB62_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemchr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.62)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.62) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemchr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10374,10 +12459,19 @@ wmemchr:                                // @wmemchr
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_wmemchr+24)
+		r1:0 = memd(##__llvm_gcov_ctr.62+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.62+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemchr+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10425,6 +12519,18 @@ wmemchr:                                // @wmemchr
 	}
 .LBB62_6:                               //   in Loop: Header=BB62_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.62+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.62+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -10460,10 +12566,19 @@ wmemchr:                                // @wmemchr
 	}
 .LBB62_8:
 	{
-		r1:0 = memd(##.L__profc_wmemchr+32)
+		r1:0 = memd(##__llvm_gcov_ctr.62+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.62+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemchr+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10481,6 +12596,18 @@ wmemchr:                                // @wmemchr
 		jump .LBB62_10
 	}
 .LBB62_9:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.62+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.62+32) = r1:0
+	}
 	{
 		r0 = #0
 	}
@@ -10556,10 +12683,19 @@ wmemcmp:                                // @wmemcmp
 	}
 .LBB63_2:                               //   in Loop: Header=BB63_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemcmp+16)
+		r1:0 = memd(##__llvm_gcov_ctr.63)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemcmp+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10611,10 +12747,19 @@ wmemcmp:                                // @wmemcmp
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_wmemcmp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.63+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemcmp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10661,6 +12806,18 @@ wmemcmp:                                // @wmemcmp
 		jump .LBB63_6
 	}
 .LBB63_6:                               //   in Loop: Header=BB63_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.63+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -10743,10 +12900,19 @@ wmemcmp:                                // @wmemcmp
 	}
 .LBB63_9:
 	{
-		r1:0 = memd(##.L__profc_wmemcmp+40)
+		r1:0 = memd(##__llvm_gcov_ctr.63+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemcmp+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10764,6 +12930,18 @@ wmemcmp:                                // @wmemcmp
 		jump .LBB63_11
 	}
 .LBB63_10:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.63+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63+32) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -10800,6 +12978,18 @@ wmemcmp:                                // @wmemcmp
 	}
 .LBB63_12:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.63+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.63+40) = r1:0
+	}
+	{
 		r0 = #0
 	}
 	{
@@ -10824,22 +13014,40 @@ wmemcmp:                                // @wmemcmp
 wmemcpy:                                // @wmemcpy
 // %bb.0:
 	{
-		allocframe(r29,#16):raw
+		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-20) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.64)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.64) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_wmemcpy)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10877,10 +13085,19 @@ wmemcpy:                                // @wmemcpy
 	}
 .LBB64_2:                               //   in Loop: Header=BB64_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemcpy+8)
+		r1:0 = memd(##__llvm_gcov_ctr.64+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.64+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemcpy+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -10980,10 +13197,19 @@ wmemmove:                               // @wmemmove
 	}
 .LBB65_1:
 	{
-		r1:0 = memd(##.L__profc_wmemmove+8)
+		r1:0 = memd(##__llvm_gcov_ctr.65)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.65) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemmove+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11030,10 +13256,19 @@ wmemmove:                               // @wmemmove
 	}
 .LBB65_3:
 	{
-		r1:0 = memd(##.L__profc_wmemmove+16)
+		r1:0 = memd(##__llvm_gcov_ctr.65+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.65+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemmove+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11065,10 +13300,19 @@ wmemmove:                               // @wmemmove
 	}
 .LBB65_5:                               //   in Loop: Header=BB65_4 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemmove+24)
+		r1:0 = memd(##__llvm_gcov_ctr.65+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.65+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemmove+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11123,10 +13367,19 @@ wmemmove:                               // @wmemmove
 	}
 .LBB65_9:                               //   in Loop: Header=BB65_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemmove+32)
+		r1:0 = memd(##__llvm_gcov_ctr.65+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.65+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemmove+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11163,6 +13416,18 @@ wmemmove:                               // @wmemmove
 	}
 .LBB65_10:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.65+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.65+32) = r1:0
+	}
+	{
 		jump .LBB65_11
 	}
 .LBB65_11:
@@ -11191,22 +13456,40 @@ wmemmove:                               // @wmemmove
 wmemset:                                // @wmemset
 // %bb.0:
 	{
-		allocframe(r29,#16):raw
+		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-20) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.66)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.66) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_wmemset)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11244,10 +13527,19 @@ wmemset:                                // @wmemset
 	}
 .LBB66_2:                               //   in Loop: Header=BB66_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_wmemset+8)
+		r1:0 = memd(##__llvm_gcov_ctr.66+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.66+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_wmemset+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11344,10 +13636,19 @@ bcopy:                                  // @bcopy
 	}
 .LBB67_1:
 	{
-		r1:0 = memd(##.L__profc_bcopy+8)
+		r1:0 = memd(##__llvm_gcov_ctr.67)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.67) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_bcopy+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11437,6 +13738,18 @@ bcopy:                                  // @bcopy
 	}
 .LBB67_4:                               //   in Loop: Header=BB67_2 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.67+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.67+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -11499,10 +13812,19 @@ bcopy:                                  // @bcopy
 	}
 .LBB67_9:                               //   in Loop: Header=BB67_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc_bcopy+32)
+		r1:0 = memd(##__llvm_gcov_ctr.67+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.67+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_bcopy+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11552,9 +13874,33 @@ bcopy:                                  // @bcopy
 	}
 .LBB67_11:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.67+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.67+24) = r1:0
+	}
+	{
 		jump .LBB67_12
 	}
 .LBB67_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.67+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.67+32) = r1:0
+	}
 	{
 		jump .LBB67_13
 	}
@@ -11574,16 +13920,34 @@ rotl64:                                 // @rotl64
 		allocframe(r29,#16):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memw(r30+#-16) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memw(r30+#-12) = r2
-	}
+		r0 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_rotl64)
+		r7:6 = memd(##__llvm_gcov_ctr.68)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.68) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memw(r30+#-12) = r0
+	}
+	{
+		r1:0 = memd(##.L__profc_rotl64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11621,16 +13985,34 @@ rotr64:                                 // @rotr64
 		allocframe(r29,#16):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memw(r30+#-16) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memw(r30+#-12) = r2
-	}
+		r0 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_rotr64)
+		r7:6 = memd(##__llvm_gcov_ctr.69)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.69) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memw(r30+#-12) = r0
+	}
+	{
+		r1:0 = memd(##.L__profc_rotr64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11668,6 +14050,18 @@ rotl32:                                 // @rotl32
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.70)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.70) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -11675,9 +14069,6 @@ rotl32:                                 // @rotl32
 	}
 	{
 		r1:0 = memd(##.L__profc_rotl32)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11718,6 +14109,18 @@ rotr32:                                 // @rotr32
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.71)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.71) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -11725,9 +14128,6 @@ rotr32:                                 // @rotr32
 	}
 	{
 		r1:0 = memd(##.L__profc_rotr32)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11765,6 +14165,18 @@ rotl_sz:                                // @rotl_sz
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.72)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.72) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -11772,9 +14184,6 @@ rotl_sz:                                // @rotl_sz
 	}
 	{
 		r1:0 = memd(##.L__profc_rotl_sz)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11815,6 +14224,18 @@ rotr_sz:                                // @rotr_sz
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.73)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.73) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -11822,9 +14243,6 @@ rotr_sz:                                // @rotr_sz
 	}
 	{
 		r1:0 = memd(##.L__profc_rotr_sz)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11865,6 +14283,18 @@ rotl16:                                 // @rotl16
 		r2 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.74)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.74) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
@@ -11872,9 +14302,6 @@ rotl16:                                 // @rotl16
 	}
 	{
 		r1:0 = memd(##.L__profc_rotl16)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11918,6 +14345,18 @@ rotr16:                                 // @rotr16
 		r2 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.75)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.75) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
@@ -11925,9 +14364,6 @@ rotr16:                                 // @rotr16
 	}
 	{
 		r1:0 = memd(##.L__profc_rotr16)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -11971,6 +14407,18 @@ rotl8:                                  // @rotl8
 		r2 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.76)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.76) = r5:4
+	}
+	{
 		memb(r30+#-1) = r0
 	}
 	{
@@ -11978,9 +14426,6 @@ rotl8:                                  // @rotl8
 	}
 	{
 		r1:0 = memd(##.L__profc_rotl8)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12024,6 +14469,18 @@ rotr8:                                  // @rotr8
 		r2 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.77)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.77) = r5:4
+	}
+	{
 		memb(r30+#-1) = r0
 	}
 	{
@@ -12031,9 +14488,6 @@ rotr8:                                  // @rotr8
 	}
 	{
 		r1:0 = memd(##.L__profc_rotr8)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12077,13 +14531,22 @@ bswap_16:                               // @bswap_16
 		r1 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.78)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.78) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_bswap_16)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12136,13 +14599,22 @@ bswap_32:                               // @bswap_32
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.79)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.79) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_bswap_32)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12207,13 +14679,22 @@ bswap_64:                               // @bswap_64
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.80)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.80) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc_bswap_64)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12374,10 +14855,19 @@ ffs:                                    // @ffs
 	}
 .LBB81_3:
 	{
-		r1:0 = memd(##.L__profc_ffs+16)
+		r1:0 = memd(##__llvm_gcov_ctr.81)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.81) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ffs+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12403,6 +14893,18 @@ ffs:                                    // @ffs
 	}
 .LBB81_5:                               //   in Loop: Header=BB81_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.81+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.81+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -12415,6 +14917,18 @@ ffs:                                    // @ffs
 		jump .LBB81_1
 	}
 .LBB81_6:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.81+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.81+16) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -12474,10 +14988,19 @@ libiberty_ffs:                          // @libiberty_ffs
 	}
 .LBB82_1:
 	{
-		r1:0 = memd(##.L__profc_libiberty_ffs+8)
+		r1:0 = memd(##__llvm_gcov_ctr.82+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.82+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_libiberty_ffs+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12495,6 +15018,18 @@ libiberty_ffs:                          // @libiberty_ffs
 		jump .LBB82_7
 	}
 .LBB82_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.82)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.82) = r1:0
+	}
 	{
 		r0 = add(r30,#-12)
 	}
@@ -12544,6 +15079,18 @@ libiberty_ffs:                          // @libiberty_ffs
 	}
 .LBB82_5:                               //   in Loop: Header=BB82_3 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.82+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.82+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -12584,13 +15131,22 @@ gl_isinff:                              // @gl_isinff
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.83)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.83) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_gl_isinff)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12624,10 +15180,19 @@ gl_isinff:                              // @gl_isinff
 	}
 .LBB83_1:
 	{
-		r1:0 = memd(##.L__profc_gl_isinff+8)
+		r1:0 = memd(##__llvm_gcov_ctr.83+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.83+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinff+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12673,10 +15238,19 @@ gl_isinff:                              // @gl_isinff
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_gl_isinff+16)
+		r1:0 = memd(##__llvm_gcov_ctr.83+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.83+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinff+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12718,13 +15292,22 @@ gl_isinfd:                              // @gl_isinfd
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.84)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.84) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc_gl_isinfd)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12758,10 +15341,19 @@ gl_isinfd:                              // @gl_isinfd
 	}
 .LBB84_1:
 	{
-		r1:0 = memd(##.L__profc_gl_isinfd+8)
+		r1:0 = memd(##__llvm_gcov_ctr.84+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.84+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinfd+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12807,10 +15399,19 @@ gl_isinfd:                              // @gl_isinfd
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_gl_isinfd+16)
+		r1:0 = memd(##__llvm_gcov_ctr.84+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.84+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinfd+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12852,13 +15453,22 @@ gl_isinfl:                              // @gl_isinfl
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.85)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.85) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc_gl_isinfl)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12892,10 +15502,19 @@ gl_isinfl:                              // @gl_isinfl
 	}
 .LBB85_1:
 	{
-		r1:0 = memd(##.L__profc_gl_isinfl+8)
+		r1:0 = memd(##__llvm_gcov_ctr.85+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.85+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinfl+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12941,10 +15560,19 @@ gl_isinfl:                              // @gl_isinfl
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_gl_isinfl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.85+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.85+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_gl_isinfl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -12986,6 +15614,18 @@ _Qp_itoq:                               // @_Qp_itoq
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.86)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.86) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -12993,9 +15633,6 @@ _Qp_itoq:                               // @_Qp_itoq
 	}
 	{
 		r1:0 = memd(##.L__profc__Qp_itoq)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13030,6 +15667,18 @@ ldexpf:                                 // @ldexpf
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.87)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.87) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -13037,9 +15686,6 @@ ldexpf:                                 // @ldexpf
 	}
 	{
 		r1:0 = memd(##.L__profc_ldexpf)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13061,10 +15707,19 @@ ldexpf:                                 // @ldexpf
 	}
 .LBB87_1:
 	{
-		r1:0 = memd(##.L__profc_ldexpf+16)
+		r1:0 = memd(##__llvm_gcov_ctr.87+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.87+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpf+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13089,10 +15744,19 @@ ldexpf:                                 // @ldexpf
 	}
 .LBB87_2:
 	{
-		r1:0 = memd(##.L__profc_ldexpf+24)
+		r1:0 = memd(##__llvm_gcov_ctr.87+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.87+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpf+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13191,10 +15855,19 @@ ldexpf:                                 // @ldexpf
 	}
 .LBB87_5:                               //   in Loop: Header=BB87_4 Depth=1
 	{
-		r1:0 = memd(##.L__profc_ldexpf+48)
+		r1:0 = memd(##__llvm_gcov_ctr.87+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.87+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpf+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13263,6 +15936,18 @@ ldexpf:                                 // @ldexpf
 	}
 .LBB87_8:                               //   in Loop: Header=BB87_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.87+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.87+32) = r1:0
+	}
+	{
 		r0 = memw(r30+#-12)
 	}
 	{
@@ -13294,19 +15979,37 @@ ldexpf:                                 // @ldexpf
 ldexp:                                  // @ldexp
 // %bb.0:
 	{
-		allocframe(r29,#32):raw
+		allocframe(r29,#40):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memw(r30+#-28) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memw(r30+#-12) = r2
-	}
+		r0 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_ldexp)
+		r7:6 = memd(##__llvm_gcov_ctr.88)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.88) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memw(r30+#-12) = r0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexp)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13328,10 +16031,19 @@ ldexp:                                  // @ldexp
 	}
 .LBB88_1:
 	{
-		r1:0 = memd(##.L__profc_ldexp+16)
+		r1:0 = memd(##__llvm_gcov_ctr.88+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.88+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexp+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13343,7 +16055,7 @@ ldexp:                                  // @ldexp
 		r3:2 = memd(r30+#-8)
 	}
 	{
-		memd(r30+#-32) = r3:2
+		memd(r30+#-40) = r3:2
 	}                                       // 8-byte Folded Spill
 	{
 		r1:0 = combine(r3,r2)
@@ -13352,7 +16064,7 @@ ldexp:                                  // @ldexp
 		call __hexagon_adddf3
 	}
 	{
-		r3:2 = memd(r30+#-32)
+		r3:2 = memd(r30+#-40)
 	}                                       // 8-byte Folded Reload
 	{
 		p0 = dfcmp.eq(r1:0,r3:2)
@@ -13365,10 +16077,19 @@ ldexp:                                  // @ldexp
 	}
 .LBB88_2:
 	{
-		r1:0 = memd(##.L__profc_ldexp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.88+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.88+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13485,10 +16206,19 @@ ldexp:                                  // @ldexp
 	}
 .LBB88_5:                               //   in Loop: Header=BB88_4 Depth=1
 	{
-		r1:0 = memd(##.L__profc_ldexp+48)
+		r1:0 = memd(##__llvm_gcov_ctr.88+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.88+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexp+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13557,6 +16287,18 @@ ldexp:                                  // @ldexp
 	}
 .LBB88_8:                               //   in Loop: Header=BB88_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.88+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.88+32) = r1:0
+	}
+	{
 		r3:2 = memd(r30+#-24)
 	}
 	{
@@ -13591,19 +16333,37 @@ ldexp:                                  // @ldexp
 ldexpl:                                 // @ldexpl
 // %bb.0:
 	{
-		allocframe(r29,#32):raw
+		allocframe(r29,#40):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memw(r30+#-28) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memw(r30+#-12) = r2
-	}
+		r0 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc_ldexpl)
+		r7:6 = memd(##__llvm_gcov_ctr.89)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.89) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memw(r30+#-12) = r0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpl)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13625,10 +16385,19 @@ ldexpl:                                 // @ldexpl
 	}
 .LBB89_1:
 	{
-		r1:0 = memd(##.L__profc_ldexpl+16)
+		r1:0 = memd(##__llvm_gcov_ctr.89+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.89+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpl+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13640,7 +16409,7 @@ ldexpl:                                 // @ldexpl
 		r3:2 = memd(r30+#-8)
 	}
 	{
-		memd(r30+#-32) = r3:2
+		memd(r30+#-40) = r3:2
 	}                                       // 8-byte Folded Spill
 	{
 		r1:0 = combine(r3,r2)
@@ -13649,7 +16418,7 @@ ldexpl:                                 // @ldexpl
 		call __hexagon_adddf3
 	}
 	{
-		r3:2 = memd(r30+#-32)
+		r3:2 = memd(r30+#-40)
 	}                                       // 8-byte Folded Reload
 	{
 		p0 = dfcmp.eq(r1:0,r3:2)
@@ -13662,10 +16431,19 @@ ldexpl:                                 // @ldexpl
 	}
 .LBB89_2:
 	{
-		r1:0 = memd(##.L__profc_ldexpl+24)
+		r1:0 = memd(##__llvm_gcov_ctr.89+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.89+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpl+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13782,10 +16560,19 @@ ldexpl:                                 // @ldexpl
 	}
 .LBB89_5:                               //   in Loop: Header=BB89_4 Depth=1
 	{
-		r1:0 = memd(##.L__profc_ldexpl+48)
+		r1:0 = memd(##__llvm_gcov_ctr.89+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.89+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_ldexpl+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13854,6 +16641,18 @@ ldexpl:                                 // @ldexpl
 	}
 .LBB89_8:                               //   in Loop: Header=BB89_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.89+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.89+32) = r1:0
+	}
+	{
 		r3:2 = memd(r30+#-24)
 	}
 	{
@@ -13891,19 +16690,37 @@ memxor:                                 // @memxor
 		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-24) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.90)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.90) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_memxor)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -13986,6 +16803,18 @@ memxor:                                 // @memxor
 		jump .LBB90_3
 	}
 .LBB90_3:                               //   in Loop: Header=BB90_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.90+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.90+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -14085,10 +16914,19 @@ strncat:                                // @strncat
 	}
 .LBB91_2:                               //   in Loop: Header=BB91_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strncat+16)
+		r1:0 = memd(##__llvm_gcov_ctr.91)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.91) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncat+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14140,10 +16978,19 @@ strncat:                                // @strncat
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_strncat+24)
+		r1:0 = memd(##__llvm_gcov_ctr.91+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.91+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncat+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14191,6 +17038,18 @@ strncat:                                // @strncat
 	}
 .LBB91_6:                               //   in Loop: Header=BB91_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.91+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.91+24) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -14222,6 +17081,18 @@ strncat:                                // @strncat
 	}
 .LBB91_7:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.91+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.91+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-20)
 	}
 	{
@@ -14238,10 +17109,19 @@ strncat:                                // @strncat
 	}
 .LBB91_8:
 	{
-		r1:0 = memd(##.L__profc_strncat+32)
+		r1:0 = memd(##__llvm_gcov_ctr.91+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.91+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strncat+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14277,6 +17157,18 @@ strnlen:                                // @strnlen
 		allocframe(r29,#24):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.92)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.92) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -14284,9 +17176,6 @@ strnlen:                                // @strnlen
 	}
 	{
 		r1:0 = memd(##.L__profc_strnlen)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14333,10 +17222,19 @@ strnlen:                                // @strnlen
 	}
 .LBB92_2:                               //   in Loop: Header=BB92_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strnlen+16)
+		r1:0 = memd(##__llvm_gcov_ctr.92+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.92+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strnlen+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14385,10 +17283,19 @@ strnlen:                                // @strnlen
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_strnlen+24)
+		r1:0 = memd(##__llvm_gcov_ctr.92+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.92+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strnlen+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14435,6 +17342,18 @@ strnlen:                                // @strnlen
 		jump .LBB92_6
 	}
 .LBB92_6:                               //   in Loop: Header=BB92_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.92+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.92+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-12)
 	}
@@ -14587,10 +17506,19 @@ strpbrk:                                // @strpbrk
 	}
 .LBB93_5:
 	{
-		r1:0 = memd(##.L__profc_strpbrk+24)
+		r1:0 = memd(##__llvm_gcov_ctr.93+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.93+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strpbrk+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14609,9 +17537,33 @@ strpbrk:                                // @strpbrk
 	}
 .LBB93_6:                               //   in Loop: Header=BB93_3 Depth=2
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.93+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.93+16) = r1:0
+	}
+	{
 		jump .LBB93_3
 	}
 .LBB93_7:                               //   in Loop: Header=BB93_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.93+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.93+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -14625,6 +17577,18 @@ strpbrk:                                // @strpbrk
 		jump .LBB93_1
 	}
 .LBB93_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.93)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.93) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -14653,6 +17617,18 @@ strrchr:                                // @strrchr
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.94)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.94) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -14660,9 +17636,6 @@ strrchr:                                // @strrchr
 	}
 	{
 		r1:0 = memd(##.L__profc_strrchr)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14681,10 +17654,19 @@ strrchr:                                // @strrchr
 	}
 .LBB94_1:                               //   in Loop: Header=BB94_2 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strrchr+8)
+		r1:0 = memd(##__llvm_gcov_ctr.94+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.94+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strrchr+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14719,10 +17701,19 @@ strrchr:                                // @strrchr
 	}
 .LBB94_3:                               //   in Loop: Header=BB94_2 Depth=1
 	{
-		r1:0 = memd(##.L__profc_strrchr+16)
+		r1:0 = memd(##__llvm_gcov_ctr.94+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.94+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strrchr+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14836,10 +17827,19 @@ strstr:                                 // @strstr
 	}
 .LBB95_1:
 	{
-		r1:0 = memd(##.L__profc_strstr+8)
+		r1:0 = memd(##__llvm_gcov_ctr.95)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.95) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strstr+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14924,10 +17924,19 @@ strstr:                                 // @strstr
 	}
 .LBB95_5:
 	{
-		r1:0 = memd(##.L__profc_strstr+24)
+		r1:0 = memd(##__llvm_gcov_ctr.95+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.95+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_strstr+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -14950,6 +17959,18 @@ strstr:                                 // @strstr
 	}
 .LBB95_7:                               //   in Loop: Header=BB95_3 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.95+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.95+16) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -14962,6 +17983,18 @@ strstr:                                 // @strstr
 		jump .LBB95_3
 	}
 .LBB95_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.95+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.95+24) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -15030,10 +18063,19 @@ copysign:                               // @copysign
 	}
 .LBB96_1:
 	{
-		r1:0 = memd(##.L__profc_copysign+24)
+		r1:0 = memd(##__llvm_gcov_ctr.96)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.96) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_copysign+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15064,10 +18106,19 @@ copysign:                               // @copysign
 	}
 .LBB96_2:
 	{
-		r1:0 = memd(##.L__profc_copysign+32)
+		r1:0 = memd(##__llvm_gcov_ctr.96+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.96+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_copysign+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15114,10 +18165,19 @@ copysign:                               // @copysign
 	}
 .LBB96_4:
 	{
-		r1:0 = memd(##.L__profc_copysign+40)
+		r1:0 = memd(##__llvm_gcov_ctr.96+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.96+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_copysign+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15148,10 +18208,19 @@ copysign:                               // @copysign
 	}
 .LBB96_5:
 	{
-		r1:0 = memd(##.L__profc_copysign+48)
+		r1:0 = memd(##__llvm_gcov_ctr.96+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.96+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_copysign+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15197,6 +18266,18 @@ copysign:                               // @copysign
 		jump .LBB96_8
 	}
 .LBB96_7:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.96+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.96+32) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -15283,10 +18364,19 @@ memmem:                                 // @memmem
 	}
 .LBB97_1:
 	{
-		r1:0 = memd(##.L__profc_memmem+8)
+		r1:0 = memd(##__llvm_gcov_ctr.97)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmem+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15324,10 +18414,19 @@ memmem:                                 // @memmem
 	}
 .LBB97_3:
 	{
-		r1:0 = memd(##.L__profc_memmem+16)
+		r1:0 = memd(##__llvm_gcov_ctr.97+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmem+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15409,10 +18508,19 @@ memmem:                                 // @memmem
 	}
 .LBB97_7:                               //   in Loop: Header=BB97_5 Depth=1
 	{
-		r1:0 = memd(##.L__profc_memmem+40)
+		r1:0 = memd(##__llvm_gcov_ctr.97+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmem+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15455,10 +18563,19 @@ memmem:                                 // @memmem
 	}
 .LBB97_8:
 	{
-		r1:0 = memd(##.L__profc_memmem+48)
+		r1:0 = memd(##__llvm_gcov_ctr.97+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_memmem+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15497,6 +18614,18 @@ memmem:                                 // @memmem
 	}
 .LBB97_11:                              //   in Loop: Header=BB97_5 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.97+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97+32) = r1:0
+	}
+	{
 		r0 = memw(r30+#-24)
 	}
 	{
@@ -15509,6 +18638,18 @@ memmem:                                 // @memmem
 		jump .LBB97_5
 	}
 .LBB97_12:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.97+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.97+40) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -15534,22 +18675,40 @@ memmem:                                 // @memmem
 mempcpy:                                // @mempcpy
 // %bb.0:
 	{
-		allocframe(r29,#16):raw
+		allocframe(r29,#24):raw
 	}
 	{
-		memw(r30+#-4) = r0
+		memw(r30+#-20) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r4 = r0
+	}
+	{
+		r0 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r7:6 = memd(##__llvm_gcov_ctr.98)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.98) = r7:6
+	}
+	{
+		memw(r30+#-4) = r4
 	}
 	{
 		memw(r30+#-8) = r1
 	}
 	{
-		memw(r30+#-12) = r2
+		memw(r30+#-12) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc_mempcpy)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15651,10 +18810,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_1:
 	{
-		r1:0 = memd(##.L__profc_frexp+8)
+		r1:0 = memd(##__llvm_gcov_ctr.99)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15713,10 +18881,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_3:
 	{
-		r1:0 = memd(##.L__profc_frexp+16)
+		r1:0 = memd(##__llvm_gcov_ctr.99+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15751,10 +18928,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_5:                               //   in Loop: Header=BB99_4 Depth=1
 	{
-		r1:0 = memd(##.L__profc_frexp+24)
+		r1:0 = memd(##__llvm_gcov_ctr.99+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15814,10 +19000,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_8:
 	{
-		r1:0 = memd(##.L__profc_frexp+40)
+		r1:0 = memd(##__llvm_gcov_ctr.99+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15896,10 +19091,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_12:                              //   in Loop: Header=BB99_11 Depth=1
 	{
-		r1:0 = memd(##.L__profc_frexp+56)
+		r1:0 = memd(##__llvm_gcov_ctr.99+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -15933,9 +19137,33 @@ frexp:                                  // @frexp
 	}
 .LBB99_13:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.99+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+40) = r1:0
+	}
+	{
 		jump .LBB99_14
 	}
 .LBB99_14:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.99+48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+48) = r1:0
+	}
 	{
 		jump .LBB99_15
 	}
@@ -15963,10 +19191,19 @@ frexp:                                  // @frexp
 	}
 .LBB99_16:
 	{
-		r1:0 = memd(##.L__profc_frexp+64)
+		r1:0 = memd(##__llvm_gcov_ctr.99+56)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.99+56) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_frexp+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16011,19 +19248,37 @@ frexp:                                  // @frexp
 __muldi3:                               // @__muldi3
 // %bb.0:
 	{
-		allocframe(r29,#32):raw
+		allocframe(r29,#40):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memd(r30+#-40) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memd(r30+#-16) = r3:2
-	}
+		r1:0 = memd(r30+#-40)
+	}                                       // 8-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc___muldi3)
+		r7:6 = memd(##__llvm_gcov_ctr.100)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.100) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memd(r30+#-16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___muldi3)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16089,10 +19344,19 @@ __muldi3:                               // @__muldi3
 	}
 .LBB100_3:                              //   in Loop: Header=BB100_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___muldi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.100+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.100+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___muldi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16116,6 +19380,18 @@ __muldi3:                               // @__muldi3
 		jump .LBB100_4
 	}
 .LBB100_4:                              //   in Loop: Header=BB100_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.100+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.100+16) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -16221,10 +19497,19 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_2:                              //   in Loop: Header=BB101_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+32)
+		r1:0 = memd(##__llvm_gcov_ctr.101)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16255,10 +19540,19 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_3:                              //   in Loop: Header=BB101_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+40)
+		r1:0 = memd(##__llvm_gcov_ctr.101+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16317,10 +19611,19 @@ udivmodsi4:                             // @udivmodsi4
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+24)
+		r1:0 = memd(##__llvm_gcov_ctr.101+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16352,10 +19655,19 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_7:                              //   in Loop: Header=BB101_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+8)
+		r1:0 = memd(##__llvm_gcov_ctr.101+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16431,10 +19743,19 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_11:                             //   in Loop: Header=BB101_9 Depth=1
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+56)
+		r1:0 = memd(##__llvm_gcov_ctr.101+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16471,6 +19792,18 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_12:                             //   in Loop: Header=BB101_9 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.101+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+40) = r1:0
+	}
+	{
 		r0 = memw(r30+#-20)
 	}
 	{
@@ -16506,10 +19839,19 @@ udivmodsi4:                             // @udivmodsi4
 	}
 .LBB101_14:
 	{
-		r1:0 = memd(##.L__profc_udivmodsi4+64)
+		r1:0 = memd(##__llvm_gcov_ctr.101+48)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+48) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc_udivmodsi4+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16527,6 +19869,18 @@ udivmodsi4:                             // @udivmodsi4
 		jump .LBB101_16
 	}
 .LBB101_15:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.101+56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.101+56) = r1:0
+	}
 	{
 		r0 = memw(r30+#-24)
 	}
@@ -16583,10 +19937,19 @@ __clrsbqi2:                             // @__clrsbqi2
 	}
 .LBB102_1:
 	{
-		r1:0 = memd(##.L__profc___clrsbqi2+8)
+		r1:0 = memd(##__llvm_gcov_ctr.102)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.102) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___clrsbqi2+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16624,10 +19987,19 @@ __clrsbqi2:                             // @__clrsbqi2
 	}
 .LBB102_3:
 	{
-		r1:0 = memd(##.L__profc___clrsbqi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.102+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.102+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___clrsbqi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16645,6 +20017,18 @@ __clrsbqi2:                             // @__clrsbqi2
 		jump .LBB102_5
 	}
 .LBB102_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.102+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.102+16) = r1:0
+	}
 	{
 		r0 = memub(r30+#-5)
 	}
@@ -16719,10 +20103,19 @@ __clrsbdi2:                             // @__clrsbdi2
 	}
 .LBB103_1:
 	{
-		r1:0 = memd(##.L__profc___clrsbdi2+8)
+		r1:0 = memd(##__llvm_gcov_ctr.103)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.103) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___clrsbdi2+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16763,10 +20156,19 @@ __clrsbdi2:                             // @__clrsbdi2
 	}
 .LBB103_3:
 	{
-		r1:0 = memd(##.L__profc___clrsbdi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.103+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.103+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___clrsbdi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16784,6 +20186,18 @@ __clrsbdi2:                             // @__clrsbdi2
 		jump .LBB103_5
 	}
 .LBB103_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.103+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.103+16) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-16)
 	}
@@ -16827,6 +20241,18 @@ __mulsi3:                               // @__mulsi3
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.104)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.104) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -16834,9 +20260,6 @@ __mulsi3:                               // @__mulsi3
 	}
 	{
 		r1:0 = memd(##.L__profc___mulsi3)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16893,10 +20316,19 @@ __mulsi3:                               // @__mulsi3
 	}
 .LBB104_3:                              //   in Loop: Header=BB104_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___mulsi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.104+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.104+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulsi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -16920,6 +20352,18 @@ __mulsi3:                               // @__mulsi3
 		jump .LBB104_4
 	}
 .LBB104_4:                              //   in Loop: Header=BB104_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.104+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.104+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -17027,10 +20471,19 @@ __cmovd:                                // @__cmovd
 	}
 .LBB105_1:
 	{
-		r1:0 = memd(##.L__profc___cmovd+16)
+		r1:0 = memd(##__llvm_gcov_ctr.105)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovd+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17149,6 +20602,18 @@ __cmovd:                                // @__cmovd
 	}
 .LBB105_6:                              //   in Loop: Header=BB105_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.105+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -17185,10 +20650,19 @@ __cmovd:                                // @__cmovd
 	}
 .LBB105_9:                              //   in Loop: Header=BB105_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc___cmovd+40)
+		r1:0 = memd(##__llvm_gcov_ctr.105+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovd+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17225,6 +20699,18 @@ __cmovd:                                // @__cmovd
 	}
 .LBB105_10:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.105+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105+24) = r1:0
+	}
+	{
 		jump .LBB105_15
 	}
 .LBB105_11:
@@ -17252,10 +20738,19 @@ __cmovd:                                // @__cmovd
 	}
 .LBB105_13:                             //   in Loop: Header=BB105_12 Depth=1
 	{
-		r1:0 = memd(##.L__profc___cmovd+48)
+		r1:0 = memd(##__llvm_gcov_ctr.105+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovd+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17282,6 +20777,18 @@ __cmovd:                                // @__cmovd
 		jump .LBB105_12
 	}
 .LBB105_14:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.105+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.105+40) = r1:0
+	}
 	{
 		jump .LBB105_15
 	}
@@ -17359,10 +20866,19 @@ __cmovh:                                // @__cmovh
 	}
 .LBB106_1:
 	{
-		r1:0 = memd(##.L__profc___cmovh+16)
+		r1:0 = memd(##__llvm_gcov_ctr.106)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovh+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17481,6 +20997,18 @@ __cmovh:                                // @__cmovh
 	}
 .LBB106_6:                              //   in Loop: Header=BB106_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.106+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -17507,10 +21035,19 @@ __cmovh:                                // @__cmovh
 	}
 .LBB106_8:
 	{
-		r1:0 = memd(##.L__profc___cmovh+40)
+		r1:0 = memd(##__llvm_gcov_ctr.106+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovh+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17541,6 +21078,18 @@ __cmovh:                                // @__cmovh
 	}
 .LBB106_9:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.106+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106+24) = r1:0
+	}
+	{
 		jump .LBB106_14
 	}
 .LBB106_10:
@@ -17568,10 +21117,19 @@ __cmovh:                                // @__cmovh
 	}
 .LBB106_12:                             //   in Loop: Header=BB106_11 Depth=1
 	{
-		r1:0 = memd(##.L__profc___cmovh+48)
+		r1:0 = memd(##__llvm_gcov_ctr.106+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovh+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17598,6 +21156,18 @@ __cmovh:                                // @__cmovh
 		jump .LBB106_11
 	}
 .LBB106_13:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.106+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.106+40) = r1:0
+	}
 	{
 		jump .LBB106_14
 	}
@@ -17684,10 +21254,19 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_1:
 	{
-		r1:0 = memd(##.L__profc___cmovw+16)
+		r1:0 = memd(##__llvm_gcov_ctr.107)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovw+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17806,6 +21385,18 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_6:                              //   in Loop: Header=BB107_4 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.107+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-16)
 	}
 	{
@@ -17842,10 +21433,19 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_9:                              //   in Loop: Header=BB107_8 Depth=1
 	{
-		r1:0 = memd(##.L__profc___cmovw+40)
+		r1:0 = memd(##__llvm_gcov_ctr.107+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovw+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17882,6 +21482,18 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_10:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.107+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107+24) = r1:0
+	}
+	{
 		jump .LBB107_15
 	}
 .LBB107_11:
@@ -17909,10 +21521,19 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_13:                             //   in Loop: Header=BB107_12 Depth=1
 	{
-		r1:0 = memd(##.L__profc___cmovw+48)
+		r1:0 = memd(##__llvm_gcov_ctr.107+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmovw+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17940,6 +21561,18 @@ __cmovw:                                // @__cmovw
 	}
 .LBB107_14:
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.107+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.107+40) = r1:0
+	}
+	{
 		jump .LBB107_15
 	}
 .LBB107_15:
@@ -17958,6 +21591,18 @@ __modi:                                 // @__modi
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.108)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.108) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -17965,9 +21610,6 @@ __modi:                                 // @__modi
 	}
 	{
 		r1:0 = memd(##.L__profc___modi)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -17999,13 +21641,22 @@ __uitod:                                // @__uitod
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.109)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.109) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___uitod)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18034,13 +21685,22 @@ __uitof:                                // @__uitof
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.110)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.110) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___uitof)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18069,13 +21729,22 @@ __ulltod:                               // @__ulltod
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.111)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.111) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___ulltod)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18104,13 +21773,22 @@ __ulltof:                               // @__ulltof
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.112)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.112) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___ulltof)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18139,6 +21817,18 @@ __umodi:                                // @__umodi
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.113)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.113) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -18146,9 +21836,6 @@ __umodi:                                // @__umodi
 	}
 	{
 		r1:0 = memd(##.L__profc___umodi)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18183,13 +21870,22 @@ __clzhi2:                               // @__clzhi2
 		r1 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.114)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.114) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___clzhi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18252,10 +21948,19 @@ __clzhi2:                               // @__clzhi2
 	}
 .LBB114_3:
 	{
-		r1:0 = memd(##.L__profc___clzhi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.114+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.114+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___clzhi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18271,6 +21976,18 @@ __clzhi2:                               // @__clzhi2
 		jump .LBB114_5
 	}
 .LBB114_5:                              //   in Loop: Header=BB114_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.114+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.114+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -18305,13 +22022,22 @@ __ctzhi2:                               // @__ctzhi2
 		r1 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.115)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.115) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___ctzhi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18371,10 +22097,19 @@ __ctzhi2:                               // @__ctzhi2
 	}
 .LBB115_3:
 	{
-		r1:0 = memd(##.L__profc___ctzhi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.115+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.115+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ctzhi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18390,6 +22125,18 @@ __ctzhi2:                               // @__ctzhi2
 		jump .LBB115_5
 	}
 .LBB115_5:                              //   in Loop: Header=BB115_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.115+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.115+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -18458,10 +22205,19 @@ __fixunssfsi:                           // @__fixunssfsi
 	}
 .LBB116_1:
 	{
-		r1:0 = memd(##.L__profc___fixunssfsi+8)
+		r1:0 = memd(##__llvm_gcov_ctr.116)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.116) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___fixunssfsi+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18491,6 +22247,18 @@ __fixunssfsi:                           // @__fixunssfsi
 		jump .LBB116_3
 	}
 .LBB116_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.116+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.116+8) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -18525,13 +22293,22 @@ __parityhi2:                            // @__parityhi2
 		r1 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.117)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.117) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___parityhi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18597,10 +22374,19 @@ __parityhi2:                            // @__parityhi2
 	}
 .LBB117_3:                              //   in Loop: Header=BB117_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___parityhi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.117+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.117+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___parityhi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18625,6 +22411,18 @@ __parityhi2:                            // @__parityhi2
 		jump .LBB117_5
 	}
 .LBB117_5:                              //   in Loop: Header=BB117_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.117+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.117+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -18662,13 +22460,22 @@ __popcounthi2:                          // @__popcounthi2
 		r1 = r0
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.118)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.118) = r5:4
+	}
+	{
 		memh(r30+#-2) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___popcounthi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18734,10 +22541,19 @@ __popcounthi2:                          // @__popcounthi2
 	}
 .LBB118_3:                              //   in Loop: Header=BB118_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___popcounthi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.118+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.118+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___popcounthi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18762,6 +22578,18 @@ __popcounthi2:                          // @__popcounthi2
 		jump .LBB118_5
 	}
 .LBB118_5:                              //   in Loop: Header=BB118_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.118+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.118+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -18793,6 +22621,18 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.119)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.119) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -18800,9 +22640,6 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 	}
 	{
 		r1:0 = memd(##.L__profc___mulsi3_iq2000)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18859,10 +22696,19 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 	}
 .LBB119_3:                              //   in Loop: Header=BB119_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___mulsi3_iq2000+16)
+		r1:0 = memd(##__llvm_gcov_ctr.119+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.119+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulsi3_iq2000+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18886,6 +22732,18 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 		jump .LBB119_4
 	}
 .LBB119_4:                              //   in Loop: Header=BB119_1 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.119+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.119+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-4)
 	}
@@ -18966,10 +22824,19 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 	}
 .LBB120_1:
 	{
-		r1:0 = memd(##.L__profc___mulsi3_lm32+8)
+		r1:0 = memd(##__llvm_gcov_ctr.120+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.120+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulsi3_lm32+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -18987,6 +22854,18 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 		jump .LBB120_8
 	}
 .LBB120_2:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.120)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.120) = r1:0
+	}
 	{
 		jump .LBB120_3
 	}
@@ -19030,10 +22909,19 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 	}
 .LBB120_5:                              //   in Loop: Header=BB120_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc___mulsi3_lm32+24)
+		r1:0 = memd(##__llvm_gcov_ctr.120+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.120+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulsi3_lm32+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19057,6 +22945,18 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 		jump .LBB120_6
 	}
 .LBB120_6:                              //   in Loop: Header=BB120_3 Depth=1
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.120+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.120+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-8)
 	}
@@ -19172,10 +23072,19 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_2:                              //   in Loop: Header=BB121_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+32)
+		r1:0 = memd(##__llvm_gcov_ctr.121)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19206,10 +23115,19 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_3:                              //   in Loop: Header=BB121_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+40)
+		r1:0 = memd(##__llvm_gcov_ctr.121+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19268,10 +23186,19 @@ __udivmodsi4:                           // @__udivmodsi4
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+24)
+		r1:0 = memd(##__llvm_gcov_ctr.121+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19303,10 +23230,19 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_7:                              //   in Loop: Header=BB121_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+8)
+		r1:0 = memd(##__llvm_gcov_ctr.121+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19382,10 +23318,19 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_11:                             //   in Loop: Header=BB121_9 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+56)
+		r1:0 = memd(##__llvm_gcov_ctr.121+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19422,6 +23367,18 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_12:                             //   in Loop: Header=BB121_9 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.121+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+40) = r1:0
+	}
+	{
 		r0 = memw(r30+#-20)
 	}
 	{
@@ -19457,10 +23414,19 @@ __udivmodsi4:                           // @__udivmodsi4
 	}
 .LBB121_14:
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4+64)
+		r1:0 = memd(##__llvm_gcov_ctr.121+48)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+48) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19478,6 +23444,18 @@ __udivmodsi4:                           // @__udivmodsi4
 		jump .LBB121_16
 	}
 .LBB121_15:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.121+56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.121+56) = r1:0
+	}
 	{
 		r0 = memw(r30+#-24)
 	}
@@ -19546,10 +23524,19 @@ __mspabi_cmpf:                          // @__mspabi_cmpf
 	}
 .LBB122_1:
 	{
-		r1:0 = memd(##.L__profc___mspabi_cmpf+8)
+		r1:0 = memd(##__llvm_gcov_ctr.122)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.122) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mspabi_cmpf+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19590,10 +23577,19 @@ __mspabi_cmpf:                          // @__mspabi_cmpf
 	}
 .LBB122_3:
 	{
-		r1:0 = memd(##.L__profc___mspabi_cmpf+16)
+		r1:0 = memd(##__llvm_gcov_ctr.122+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.122+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mspabi_cmpf+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19611,6 +23607,18 @@ __mspabi_cmpf:                          // @__mspabi_cmpf
 		jump .LBB122_5
 	}
 .LBB122_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.122+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.122+16) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -19679,10 +23687,19 @@ __mspabi_cmpd:                          // @__mspabi_cmpd
 	}
 .LBB123_1:
 	{
-		r1:0 = memd(##.L__profc___mspabi_cmpd+8)
+		r1:0 = memd(##__llvm_gcov_ctr.123)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.123) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mspabi_cmpd+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19723,10 +23740,19 @@ __mspabi_cmpd:                          // @__mspabi_cmpd
 	}
 .LBB123_3:
 	{
-		r1:0 = memd(##.L__profc___mspabi_cmpd+16)
+		r1:0 = memd(##__llvm_gcov_ctr.123+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.123+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mspabi_cmpd+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19744,6 +23770,18 @@ __mspabi_cmpd:                          // @__mspabi_cmpd
 		jump .LBB123_5
 	}
 .LBB123_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.123+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.123+16) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -19772,6 +23810,18 @@ __mspabi_mpysll:                        // @__mspabi_mpysll
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.124)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.124) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -19779,9 +23829,6 @@ __mspabi_mpysll:                        // @__mspabi_mpysll
 	}
 	{
 		r1:0 = memd(##.L__profc___mspabi_mpysll)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19831,6 +23878,18 @@ __mspabi_mpyull:                        // @__mspabi_mpyull
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.125)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.125) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -19838,9 +23897,6 @@ __mspabi_mpyull:                        // @__mspabi_mpyull
 	}
 	{
 		r1:0 = memd(##.L__profc___mspabi_mpyull)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19915,10 +23971,19 @@ __mulhi3:                               // @__mulhi3
 	}
 .LBB126_1:
 	{
-		r1:0 = memd(##.L__profc___mulhi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.126)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulhi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -19978,10 +24043,19 @@ __mulhi3:                               // @__mulhi3
 	}
 .LBB126_4:                              //   in Loop: Header=BB126_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc___mulhi3+24)
+		r1:0 = memd(##__llvm_gcov_ctr.126+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulhi3+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20024,10 +24098,19 @@ __mulhi3:                               // @__mulhi3
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc___mulhi3+32)
+		r1:0 = memd(##__llvm_gcov_ctr.126+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulhi3+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20084,10 +24167,19 @@ __mulhi3:                               // @__mulhi3
 	}
 .LBB126_8:                              //   in Loop: Header=BB126_3 Depth=1
 	{
-		r1:0 = memd(##.L__profc___mulhi3+40)
+		r1:0 = memd(##__llvm_gcov_ctr.126+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulhi3+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20134,6 +24226,18 @@ __mulhi3:                               // @__mulhi3
 	}
 .LBB126_10:                             //   in Loop: Header=BB126_3 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.126+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+32) = r1:0
+	}
+	{
 		r0 = memub(r30+#-9)
 	}
 	{
@@ -20160,10 +24264,19 @@ __mulhi3:                               // @__mulhi3
 	}
 .LBB126_12:
 	{
-		r1:0 = memd(##.L__profc___mulhi3+48)
+		r1:0 = memd(##__llvm_gcov_ctr.126+40)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+40) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___mulhi3+48)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20184,6 +24297,18 @@ __mulhi3:                               // @__mulhi3
 		jump .LBB126_14
 	}
 .LBB126_13:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.126+48)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.126+48) = r1:0
+	}
 	{
 		r0 = memw(r30+#-20)
 	}
@@ -20212,6 +24337,18 @@ __divsi3:                               // @__divsi3
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.127)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.127) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -20219,9 +24356,6 @@ __divsi3:                               // @__divsi3
 	}
 	{
 		r1:0 = memd(##.L__profc___divsi3)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20249,10 +24383,19 @@ __divsi3:                               // @__divsi3
 	}
 .LBB127_1:
 	{
-		r1:0 = memd(##.L__profc___divsi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.127+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.127+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___divsi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20296,10 +24439,19 @@ __divsi3:                               // @__divsi3
 	}
 .LBB127_3:
 	{
-		r1:0 = memd(##.L__profc___divsi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.127+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.127+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___divsi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20358,10 +24510,19 @@ __divsi3:                               // @__divsi3
 	}
 .LBB127_5:
 	{
-		r1:0 = memd(##.L__profc___divsi3+24)
+		r1:0 = memd(##__llvm_gcov_ctr.127+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.127+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___divsi3+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20400,6 +24561,18 @@ __modsi3:                               // @__modsi3
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.128)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.128) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -20407,9 +24580,6 @@ __modsi3:                               // @__modsi3
 	}
 	{
 		r1:0 = memd(##.L__profc___modsi3)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20437,10 +24607,19 @@ __modsi3:                               // @__modsi3
 	}
 .LBB128_1:
 	{
-		r1:0 = memd(##.L__profc___modsi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.128+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.128+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___modsi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20481,10 +24660,19 @@ __modsi3:                               // @__modsi3
 	}
 .LBB128_3:
 	{
-		r1:0 = memd(##.L__profc___modsi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.128+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.128+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___modsi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20534,10 +24722,19 @@ __modsi3:                               // @__modsi3
 	}
 .LBB128_5:
 	{
-		r1:0 = memd(##.L__profc___modsi3+24)
+		r1:0 = memd(##__llvm_gcov_ctr.128+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.128+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___modsi3+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20647,10 +24844,19 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_2:                              //   in Loop: Header=BB129_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+32)
+		r1:0 = memd(##__llvm_gcov_ctr.129)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20681,10 +24887,19 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_3:                              //   in Loop: Header=BB129_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+40)
+		r1:0 = memd(##__llvm_gcov_ctr.129+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20743,10 +24958,19 @@ __udivmodhi4:                           // @__udivmodhi4
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+24)
+		r1:0 = memd(##__llvm_gcov_ctr.129+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20778,10 +25002,19 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_7:                              //   in Loop: Header=BB129_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+8)
+		r1:0 = memd(##__llvm_gcov_ctr.129+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20857,10 +25090,19 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_11:                             //   in Loop: Header=BB129_9 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+56)
+		r1:0 = memd(##__llvm_gcov_ctr.129+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20897,6 +25139,18 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_12:                             //   in Loop: Header=BB129_9 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.129+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+40) = r1:0
+	}
+	{
 		r0 = memuh(r30+#-14)
 	}
 	{
@@ -20932,10 +25186,19 @@ __udivmodhi4:                           // @__udivmodhi4
 	}
 .LBB129_14:
 	{
-		r1:0 = memd(##.L__profc___udivmodhi4+64)
+		r1:0 = memd(##__llvm_gcov_ctr.129+48)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+48) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodhi4+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -20953,6 +25216,18 @@ __udivmodhi4:                           // @__udivmodhi4
 		jump .LBB129_16
 	}
 .LBB129_15:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.129+56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.129+56) = r1:0
+	}
 	{
 		r0 = memuh(r30+#-16)
 	}
@@ -21046,10 +25321,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_2:                              //   in Loop: Header=BB130_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+32)
+		r1:0 = memd(##__llvm_gcov_ctr.130)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21080,10 +25364,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_3:                              //   in Loop: Header=BB130_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+40)
+		r1:0 = memd(##__llvm_gcov_ctr.130+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+40)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21142,10 +25435,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 		p0 = r0
 	}
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+24)
+		r1:0 = memd(##__llvm_gcov_ctr.130+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21177,10 +25479,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_7:                              //   in Loop: Header=BB130_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+8)
+		r1:0 = memd(##__llvm_gcov_ctr.130+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21256,10 +25567,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_11:                             //   in Loop: Header=BB130_9 Depth=1
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+56)
+		r1:0 = memd(##__llvm_gcov_ctr.130+32)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+32) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+56)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21296,6 +25616,18 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_12:                             //   in Loop: Header=BB130_9 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.130+40)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+40) = r1:0
+	}
+	{
 		r0 = memw(r30+#-20)
 	}
 	{
@@ -21331,10 +25663,19 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	}
 .LBB130_14:
 	{
-		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+64)
+		r1:0 = memd(##__llvm_gcov_ctr.130+48)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+48) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___udivmodsi4_libgcc+64)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21352,6 +25693,18 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 		jump .LBB130_16
 	}
 .LBB130_15:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.130+56)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.130+56) = r1:0
+	}
 	{
 		r0 = memw(r30+#-24)
 	}
@@ -21423,10 +25776,19 @@ __ashldi3:                              // @__ashldi3
 	}
 .LBB131_1:
 	{
-		r1:0 = memd(##.L__profc___ashldi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.131)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.131) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ashldi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21476,10 +25838,19 @@ __ashldi3:                              // @__ashldi3
 	}
 .LBB131_3:
 	{
-		r1:0 = memd(##.L__profc___ashldi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.131+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.131+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ashldi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21497,6 +25868,18 @@ __ashldi3:                              // @__ashldi3
 		jump .LBB131_6
 	}
 .LBB131_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.131+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.131+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-32)
 	}
@@ -21605,10 +25988,19 @@ __ashrdi3:                              // @__ashrdi3
 	}
 .LBB132_1:
 	{
-		r1:0 = memd(##.L__profc___ashrdi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.132)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.132) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ashrdi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21661,10 +26053,19 @@ __ashrdi3:                              // @__ashrdi3
 	}
 .LBB132_3:
 	{
-		r1:0 = memd(##.L__profc___ashrdi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.132+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.132+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ashrdi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21682,6 +26083,18 @@ __ashrdi3:                              // @__ashrdi3
 		jump .LBB132_6
 	}
 .LBB132_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.132+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.132+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-28)
 	}
@@ -21744,13 +26157,22 @@ __bswapdi2:                             // @__bswapdi2
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.133)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.133) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___bswapdi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21836,13 +26258,22 @@ __bswapsi2:                             // @__bswapsi2
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.134)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.134) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___bswapsi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -21886,13 +26317,22 @@ __clzsi2:                               // @__clzsi2
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.135)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.135) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___clzsi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22150,10 +26590,19 @@ __cmpdi2:                               // @__cmpdi2
 	}
 .LBB136_1:
 	{
-		r1:0 = memd(##.L__profc___cmpdi2+8)
+		r1:0 = memd(##__llvm_gcov_ctr.136)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.136) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmpdi2+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22191,10 +26640,19 @@ __cmpdi2:                               // @__cmpdi2
 	}
 .LBB136_3:
 	{
-		r1:0 = memd(##.L__profc___cmpdi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.136+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.136+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmpdi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22232,10 +26690,19 @@ __cmpdi2:                               // @__cmpdi2
 	}
 .LBB136_5:
 	{
-		r1:0 = memd(##.L__profc___cmpdi2+24)
+		r1:0 = memd(##__llvm_gcov_ctr.136+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.136+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmpdi2+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22273,10 +26740,19 @@ __cmpdi2:                               // @__cmpdi2
 	}
 .LBB136_7:
 	{
-		r1:0 = memd(##.L__profc___cmpdi2+32)
+		r1:0 = memd(##__llvm_gcov_ctr.136+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.136+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___cmpdi2+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22294,6 +26770,18 @@ __cmpdi2:                               // @__cmpdi2
 		jump .LBB136_9
 	}
 .LBB136_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.136+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.136+32) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -22319,19 +26807,37 @@ __cmpdi2:                               // @__cmpdi2
 __aeabi_lcmp:                           // @__aeabi_lcmp
 // %bb.0:
 	{
-		allocframe(r29,#16):raw
+		allocframe(r29,#24):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memd(r30+#-24) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memd(r30+#-16) = r3:2
-	}
+		r1:0 = memd(r30+#-24)
+	}                                       // 8-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc___aeabi_lcmp)
+		r7:6 = memd(##__llvm_gcov_ctr.137)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.137) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memd(r30+#-16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___aeabi_lcmp)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22366,13 +26872,22 @@ __ctzsi2:                               // @__ctzsi2
 		allocframe(r29,#16):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.138)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.138) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___ctzsi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22615,10 +27130,19 @@ __lshrdi3:                              // @__lshrdi3
 	}
 .LBB139_1:
 	{
-		r1:0 = memd(##.L__profc___lshrdi3+8)
+		r1:0 = memd(##__llvm_gcov_ctr.139)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.139) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___lshrdi3+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22668,10 +27192,19 @@ __lshrdi3:                              // @__lshrdi3
 	}
 .LBB139_3:
 	{
-		r1:0 = memd(##.L__profc___lshrdi3+16)
+		r1:0 = memd(##__llvm_gcov_ctr.139+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.139+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___lshrdi3+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22689,6 +27222,18 @@ __lshrdi3:                              // @__lshrdi3
 		jump .LBB139_6
 	}
 .LBB139_4:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.139+16)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.139+16) = r1:0
+	}
 	{
 		r0 = memw(r30+#-28)
 	}
@@ -22751,6 +27296,18 @@ __muldsi3:                              // @__muldsi3
 		allocframe(r29,#32):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.140)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.140) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
@@ -22758,9 +27315,6 @@ __muldsi3:                              // @__muldsi3
 	}
 	{
 		r1:0 = memd(##.L__profc___muldsi3)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -22918,19 +27472,37 @@ __muldsi3:                              // @__muldsi3
 __muldi3_compiler_rt:                   // @__muldi3_compiler_rt
 // %bb.0:
 	{
-		allocframe(r29,#40):raw
+		allocframe(r29,#48):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memd(r30+#-48) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memd(r30+#-16) = r3:2
-	}
+		r1:0 = memd(r30+#-48)
+	}                                       // 8-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc___muldi3_compiler_rt)
+		r7:6 = memd(##__llvm_gcov_ctr.141)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.141) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memd(r30+#-16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___muldi3_compiler_rt)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23007,13 +27579,22 @@ __negdi2:                               // @__negdi2
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.142)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.142) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___negdi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23042,13 +27623,22 @@ __paritydi2:                            // @__paritydi2
 		allocframe(r29,#24):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.143)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.143) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___paritydi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23131,13 +27721,22 @@ __paritysi2:                            // @__paritysi2
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.144)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.144) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___paritysi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23208,13 +27807,22 @@ __popcountdi2:                          // @__popcountdi2
 		allocframe(r29,#24):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.145)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.145) = r5:4
+	}
+	{
 		memd(r30+#-8) = r1:0
 	}
 	{
 		r1:0 = memd(##.L__profc___popcountdi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23321,13 +27929,22 @@ __popcountsi2:                          // @__popcountsi2
 		allocframe(r29,#8):raw
 	}
 	{
+		r5:4 = memd(##__llvm_gcov_ctr.146)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r5:4 = add(r5:4,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.146) = r5:4
+	}
+	{
 		memw(r30+#-4) = r0
 	}
 	{
 		r1:0 = memd(##.L__profc___popcountsi2)
-	}
-	{
-		r3:2 = combine(#0,#1)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23481,10 +28098,19 @@ __powidf2:                              // @__powidf2
 	}
 .LBB147_2:                              //   in Loop: Header=BB147_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___powidf2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.147)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.147) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___powidf2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23553,6 +28179,18 @@ __powidf2:                              // @__powidf2
 	}
 .LBB147_5:                              //   in Loop: Header=BB147_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.147+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.147+8) = r1:0
+	}
+	{
 		r3:2 = memd(r30+#-8)
 	}
 	{
@@ -23582,10 +28220,19 @@ __powidf2:                              // @__powidf2
 	}
 .LBB147_7:
 	{
-		r1:0 = memd(##.L__profc___powidf2+32)
+		r1:0 = memd(##__llvm_gcov_ctr.147+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.147+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___powidf2+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23609,6 +28256,18 @@ __powidf2:                              // @__powidf2
 		jump .LBB147_9
 	}
 .LBB147_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.147+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.147+24) = r1:0
+	}
 	{
 		r1:0 = memd(r30+#-24)
 	}
@@ -23699,10 +28358,19 @@ __powisf2:                              // @__powisf2
 	}
 .LBB148_2:                              //   in Loop: Header=BB148_1 Depth=1
 	{
-		r1:0 = memd(##.L__profc___powisf2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.148)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.148) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___powisf2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23771,6 +28439,18 @@ __powisf2:                              // @__powisf2
 	}
 .LBB148_5:                              //   in Loop: Header=BB148_1 Depth=1
 	{
+		r1:0 = memd(##__llvm_gcov_ctr.148+8)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.148+8) = r1:0
+	}
+	{
 		r0 = memw(r30+#-4)
 	}
 	{
@@ -23797,10 +28477,19 @@ __powisf2:                              // @__powisf2
 	}
 .LBB148_7:
 	{
-		r1:0 = memd(##.L__profc___powisf2+32)
+		r1:0 = memd(##__llvm_gcov_ctr.148+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.148+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___powisf2+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23872,6 +28561,18 @@ __powisf2:                              // @__powisf2
 		jump .LBB148_9
 	}
 .LBB148_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.148+24)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.148+24) = r1:0
+	}
 	{
 		r0 = memw(r30+#-16)
 	}
@@ -23949,10 +28650,19 @@ __ucmpdi2:                              // @__ucmpdi2
 	}
 .LBB149_1:
 	{
-		r1:0 = memd(##.L__profc___ucmpdi2+8)
+		r1:0 = memd(##__llvm_gcov_ctr.149)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.149) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ucmpdi2+8)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -23990,10 +28700,19 @@ __ucmpdi2:                              // @__ucmpdi2
 	}
 .LBB149_3:
 	{
-		r1:0 = memd(##.L__profc___ucmpdi2+16)
+		r1:0 = memd(##__llvm_gcov_ctr.149+8)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.149+8) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ucmpdi2+16)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -24031,10 +28750,19 @@ __ucmpdi2:                              // @__ucmpdi2
 	}
 .LBB149_5:
 	{
-		r1:0 = memd(##.L__profc___ucmpdi2+24)
+		r1:0 = memd(##__llvm_gcov_ctr.149+16)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.149+16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ucmpdi2+24)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -24072,10 +28800,19 @@ __ucmpdi2:                              // @__ucmpdi2
 	}
 .LBB149_7:
 	{
-		r1:0 = memd(##.L__profc___ucmpdi2+32)
+		r1:0 = memd(##__llvm_gcov_ctr.149+24)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.149+24) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___ucmpdi2+32)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -24093,6 +28830,18 @@ __ucmpdi2:                              // @__ucmpdi2
 		jump .LBB149_9
 	}
 .LBB149_8:
+	{
+		r1:0 = memd(##__llvm_gcov_ctr.149+32)
+	}
+	{
+		r3:2 = combine(#0,#1)
+	}
+	{
+		r1:0 = add(r1:0,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.149+32) = r1:0
+	}
 	{
 		r0 = add(r30,#-4)
 	}
@@ -24118,19 +28867,37 @@ __ucmpdi2:                              // @__ucmpdi2
 __aeabi_ulcmp:                          // @__aeabi_ulcmp
 // %bb.0:
 	{
-		allocframe(r29,#16):raw
+		allocframe(r29,#24):raw
 	}
 	{
-		memd(r30+#-8) = r1:0
+		memd(r30+#-24) = r3:2
+	}                                       // 8-byte Folded Spill
+	{
+		r5:4 = combine(r1,r0)
 	}
 	{
-		memd(r30+#-16) = r3:2
-	}
+		r1:0 = memd(r30+#-24)
+	}                                       // 8-byte Folded Reload
 	{
-		r1:0 = memd(##.L__profc___aeabi_ulcmp)
+		r7:6 = memd(##__llvm_gcov_ctr.150)
 	}
 	{
 		r3:2 = combine(#0,#1)
+	}
+	{
+		r7:6 = add(r7:6,r3:2)
+	}
+	{
+		memd(##__llvm_gcov_ctr.150) = r7:6
+	}
+	{
+		memd(r30+#-8) = r5:4
+	}
+	{
+		memd(r30+#-16) = r1:0
+	}
+	{
+		r1:0 = memd(##.L__profc___aeabi_ulcmp)
 	}
 	{
 		r1:0 = add(r1:0,r3:2)
@@ -24156,6 +28923,3902 @@ __aeabi_ulcmp:                          // @__aeabi_ulcmp
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
                                         // -- End function
+	.p2align	4                               // -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   // @__llvm_gcov_writeout
+// %bb.0:
+	{
+		allocframe(r29,#32):raw
+	}
+	{
+		r0 = #0
+	}
+	{
+		memw(r30+#-4) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		jump .LBB151_1
+	}
+.LBB151_1:                              // =>This Loop Header: Depth=1
+                                        //     Child Loop BB151_3 Depth 2
+	{
+		r0 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		memw(r30+#-24) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		r2 = +mpyi(r0,#24)
+	}
+	{
+		memw(r30+#-20) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r0 = memw(r2+##__llvm_internal_gcov_emit_file_info)
+	}
+	{
+		r1 = memw(r2+##__llvm_internal_gcov_emit_file_info+4)
+	}
+	{
+		r2 = memw(r2+##__llvm_internal_gcov_emit_file_info+8)
+	}
+	{
+		call llvm_gcda_start_file
+	}
+	{
+		r1 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = memw(r1+##__llvm_internal_gcov_emit_file_info+12)
+	}
+	{
+		memw(r30+#-16) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		r2 = memw(r1+##__llvm_internal_gcov_emit_file_info+16)
+	}
+	{
+		memw(r30+#-12) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		r1 = memw(r1+##__llvm_internal_gcov_emit_file_info+20)
+	}
+	{
+		memw(r30+#-8) = r1
+	}                                       // 4-byte Folded Spill
+	{
+		p0 = cmp.gt(r0,#0)
+	}
+	{
+		p0 = not(p0)
+	}
+	{
+		if (p0) jump:nt .LBB151_5
+	}
+	{
+		jump .LBB151_2
+	}
+.LBB151_2:                              //   in Loop: Header=BB151_1 Depth=1
+	{
+		r0 = #0
+	}
+	{
+		memw(r30+#-28) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		jump .LBB151_3
+	}
+.LBB151_3:                              //   Parent Loop BB151_1 Depth=1
+                                        // =>  This Inner Loop Header: Depth=2
+	{
+		r1 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		memw(r30+#-32) = r1
+	}                                       // 4-byte Folded Spill
+	{
+		r1 = +mpyi(r1,#12)
+	}
+	{
+		r2 = add(r0,r1)
+	}
+	{
+		r0 = memw(r0+r1<<#0)
+	}
+	{
+		r1 = memw(r2+#4)
+	}
+	{
+		r2 = memw(r2+#8)
+	}
+	{
+		call llvm_gcda_emit_function
+	}
+	{
+		r0 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = addasl(r0,r2,#3)
+	}
+	{
+		r0 = memw(r0+r2<<#3)
+	}
+	{
+		r1 = memw(r1+#4)
+	}
+	{
+		call llvm_gcda_emit_arcs
+	}
+	{
+		r0 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = add(r0,#1)
+	}
+	{
+		p0 = cmp.gt(r1,r0)
+	}
+	{
+		memw(r30+#-28) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		if (p0) jump:nt .LBB151_3
+	}
+	{
+		jump .LBB151_4
+	}
+.LBB151_4:                              //   in Loop: Header=BB151_1 Depth=1
+	{
+		jump .LBB151_5
+	}
+.LBB151_5:                              //   in Loop: Header=BB151_1 Depth=1
+	{
+		call llvm_gcda_summary_info
+	}
+	{
+		call llvm_gcda_end_file
+	}
+	{
+		r0 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = add(r0,#1)
+	}
+	{
+		p0 = cmp.gt(r0,#0)
+	}
+	{
+		p0 = not(p0)
+	}
+	{
+		memw(r30+#-4) = r0
+	}                                       // 4-byte Folded Spill
+	{
+		if (p0) jump:nt .LBB151_1
+	}
+	{
+		jump .LBB151_6
+	}
+.LBB151_6:
+	{
+		r31:30 = dealloc_return(r30):raw
+	}
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+                                        // -- End function
+	.p2align	4                               // -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      // @__llvm_gcov_reset
+// %bb.0:
+	{
+		allocframe(r29,#32):raw
+	}
+	{
+		r1:0 = combine(#0,##__llvm_gcov_ctr)
+	}
+	{
+		memw(r30+#-8) = r1
+	}                                       // 4-byte Folded Spill
+	{
+		r2 = #40
+	}
+	{
+		memw(r30+#-4) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.1
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.2
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.3
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.4
+	}
+	{
+		r2 = #16
+	}
+	{
+		memw(r30+#-28) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.5
+	}
+	{
+		r2 = #24
+	}
+	{
+		memw(r30+#-16) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.6
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.7
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.8
+	}
+	{
+		r2 = #32
+	}
+	{
+		memw(r30+#-12) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.9
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.10
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.11
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.12
+	}
+	{
+		r2 = #56
+	}
+	{
+		memw(r30+#-24) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.13
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.14+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.14
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.15
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.16
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.17
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.18+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.18
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.19
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.20
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.21
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.22
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.23+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.23
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.24
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.25+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.25
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.26
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.27
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.28+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.28
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.29
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.30
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.31
+	}
+	{
+		r2 = #48
+	}
+	{
+		memw(r30+#-32) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.32
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.33
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.34
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.35
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.36
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.37
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.38+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.38
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.39
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.40
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.41
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.42
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.43
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.44
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.45
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.46
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.47
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.48
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.49
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.50+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.50
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.51
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.52+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.52
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.53
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.54+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.54
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.55
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.56+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.56
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.57
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.58
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.59
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.60
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.61
+	}
+	{
+		r2 = #64
+	}
+	{
+		memw(r30+#-20) = r2
+	}                                       // 4-byte Folded Spill
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.62
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.63
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.64
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.65
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.66
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.67
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.68+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.68
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.69
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.70
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.71
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.72
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.73
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.74
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.75
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.76
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.77
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.78
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.79
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.80
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.81
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.82
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.83
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.84
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.85
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.86+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.86
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.87
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.88
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.89
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.90
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.91
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.92
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.93
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.94
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.95
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.96
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.97
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.98+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.98
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.99
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.100
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.101
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.102
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.103
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.104
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.105
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.106
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-32)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.107
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.108+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.108
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.109
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.110
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.111
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.112
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.113
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.114
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.115
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-28)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.116
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.117
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.118
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.119
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.120
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.121
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.122
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.123
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-24)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.124+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.124
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.125
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.126
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.127
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.128
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.129
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-20)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.130
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.131
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.132
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.133+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.133
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.134
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.135
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.136
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-16)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.137+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.137
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.138
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.139
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.140+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.140
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.141
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.142
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.143
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.144
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.145
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.146
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.147
+	}
+	{
+		call memset
+	}
+	{
+		r2 = memw(r30+#-12)
+	}                                       // 4-byte Folded Reload
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.148
+	}
+	{
+		call memset
+	}
+	{
+		r1 = memw(r30+#-8)
+	}                                       // 4-byte Folded Reload
+	{
+		r2 = memw(r30+#-4)
+	}                                       // 4-byte Folded Reload
+	{
+		r0 = ##__llvm_gcov_ctr.149
+	}
+	{
+		call memset
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+7
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+6
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+5
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+4
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+3
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+2
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150+1
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r0 = ##__llvm_gcov_ctr.150
+	}
+	{
+		memb(r0+#0) = #0
+	}
+	{
+		r31:30 = dealloc_return(r30):raw
+	}
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+                                        // -- End function
+	.p2align	4                               // -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       // @__llvm_gcov_init
+// %bb.0:
+	{
+		allocframe(r29,#0):raw
+	}
+	{
+		r0 = ##__llvm_gcov_writeout
+	}
+	{
+		r1 = ##__llvm_gcov_reset
+	}
+	{
+		call llvm_gcov_init
+	}
+	{
+		r31:30 = dealloc_return(r30):raw
+	}
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
+                                        // -- End function
 	.type	l64a.s,@object                  // @l64a.s
 	.lcomm	l64a.s,7
 	.type	digits,@object                  // @digits
@@ -24167,6 +32830,1094 @@ digits:
 
 	.type	seed,@object                    // @seed
 	.lcomm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         // @__llvm_gcov_ctr
+	.lcomm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       // @__llvm_gcov_ctr.1
+	.lcomm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       // @__llvm_gcov_ctr.2
+	.lcomm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       // @__llvm_gcov_ctr.3
+	.lcomm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       // @__llvm_gcov_ctr.4
+	.lcomm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       // @__llvm_gcov_ctr.5
+	.lcomm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       // @__llvm_gcov_ctr.6
+	.lcomm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       // @__llvm_gcov_ctr.7
+	.lcomm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       // @__llvm_gcov_ctr.8
+	.lcomm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       // @__llvm_gcov_ctr.9
+	.lcomm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      // @__llvm_gcov_ctr.10
+	.lcomm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      // @__llvm_gcov_ctr.11
+	.lcomm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      // @__llvm_gcov_ctr.12
+	.lcomm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      // @__llvm_gcov_ctr.13
+	.lcomm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      // @__llvm_gcov_ctr.14
+	.lcomm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      // @__llvm_gcov_ctr.15
+	.lcomm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      // @__llvm_gcov_ctr.16
+	.lcomm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      // @__llvm_gcov_ctr.17
+	.lcomm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      // @__llvm_gcov_ctr.18
+	.lcomm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      // @__llvm_gcov_ctr.19
+	.lcomm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      // @__llvm_gcov_ctr.20
+	.lcomm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      // @__llvm_gcov_ctr.21
+	.lcomm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      // @__llvm_gcov_ctr.22
+	.lcomm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      // @__llvm_gcov_ctr.23
+	.lcomm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      // @__llvm_gcov_ctr.24
+	.lcomm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      // @__llvm_gcov_ctr.25
+	.lcomm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      // @__llvm_gcov_ctr.26
+	.lcomm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      // @__llvm_gcov_ctr.27
+	.lcomm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      // @__llvm_gcov_ctr.28
+	.lcomm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      // @__llvm_gcov_ctr.29
+	.lcomm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      // @__llvm_gcov_ctr.30
+	.lcomm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      // @__llvm_gcov_ctr.31
+	.lcomm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      // @__llvm_gcov_ctr.32
+	.lcomm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      // @__llvm_gcov_ctr.33
+	.lcomm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      // @__llvm_gcov_ctr.34
+	.lcomm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      // @__llvm_gcov_ctr.35
+	.lcomm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      // @__llvm_gcov_ctr.36
+	.lcomm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      // @__llvm_gcov_ctr.37
+	.lcomm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      // @__llvm_gcov_ctr.38
+	.lcomm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,@object      // @__llvm_gcov_ctr.39
+	.lcomm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,@object      // @__llvm_gcov_ctr.40
+	.lcomm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      // @__llvm_gcov_ctr.41
+	.lcomm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      // @__llvm_gcov_ctr.42
+	.lcomm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      // @__llvm_gcov_ctr.43
+	.lcomm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      // @__llvm_gcov_ctr.44
+	.lcomm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,@object      // @__llvm_gcov_ctr.45
+	.lcomm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      // @__llvm_gcov_ctr.46
+	.lcomm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      // @__llvm_gcov_ctr.47
+	.lcomm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      // @__llvm_gcov_ctr.48
+	.lcomm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      // @__llvm_gcov_ctr.49
+	.lcomm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      // @__llvm_gcov_ctr.50
+	.lcomm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      // @__llvm_gcov_ctr.51
+	.lcomm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      // @__llvm_gcov_ctr.52
+	.lcomm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      // @__llvm_gcov_ctr.53
+	.lcomm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      // @__llvm_gcov_ctr.54
+	.lcomm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      // @__llvm_gcov_ctr.55
+	.lcomm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      // @__llvm_gcov_ctr.56
+	.lcomm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      // @__llvm_gcov_ctr.57
+	.lcomm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      // @__llvm_gcov_ctr.58
+	.lcomm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      // @__llvm_gcov_ctr.59
+	.lcomm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,@object      // @__llvm_gcov_ctr.60
+	.lcomm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,@object      // @__llvm_gcov_ctr.61
+	.lcomm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      // @__llvm_gcov_ctr.62
+	.lcomm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      // @__llvm_gcov_ctr.63
+	.lcomm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      // @__llvm_gcov_ctr.64
+	.lcomm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      // @__llvm_gcov_ctr.65
+	.lcomm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      // @__llvm_gcov_ctr.66
+	.lcomm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      // @__llvm_gcov_ctr.67
+	.lcomm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      // @__llvm_gcov_ctr.68
+	.lcomm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      // @__llvm_gcov_ctr.69
+	.lcomm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      // @__llvm_gcov_ctr.70
+	.lcomm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      // @__llvm_gcov_ctr.71
+	.lcomm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      // @__llvm_gcov_ctr.72
+	.lcomm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      // @__llvm_gcov_ctr.73
+	.lcomm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      // @__llvm_gcov_ctr.74
+	.lcomm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      // @__llvm_gcov_ctr.75
+	.lcomm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      // @__llvm_gcov_ctr.76
+	.lcomm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      // @__llvm_gcov_ctr.77
+	.lcomm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      // @__llvm_gcov_ctr.78
+	.lcomm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      // @__llvm_gcov_ctr.79
+	.lcomm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      // @__llvm_gcov_ctr.80
+	.lcomm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      // @__llvm_gcov_ctr.81
+	.lcomm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      // @__llvm_gcov_ctr.82
+	.lcomm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      // @__llvm_gcov_ctr.83
+	.lcomm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      // @__llvm_gcov_ctr.84
+	.lcomm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      // @__llvm_gcov_ctr.85
+	.lcomm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      // @__llvm_gcov_ctr.86
+	.lcomm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      // @__llvm_gcov_ctr.87
+	.lcomm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      // @__llvm_gcov_ctr.88
+	.lcomm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      // @__llvm_gcov_ctr.89
+	.lcomm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      // @__llvm_gcov_ctr.90
+	.lcomm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,@object      // @__llvm_gcov_ctr.91
+	.lcomm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      // @__llvm_gcov_ctr.92
+	.lcomm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      // @__llvm_gcov_ctr.93
+	.lcomm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      // @__llvm_gcov_ctr.94
+	.lcomm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      // @__llvm_gcov_ctr.95
+	.lcomm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      // @__llvm_gcov_ctr.96
+	.lcomm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      // @__llvm_gcov_ctr.97
+	.lcomm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      // @__llvm_gcov_ctr.98
+	.lcomm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      // @__llvm_gcov_ctr.99
+	.lcomm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     // @__llvm_gcov_ctr.100
+	.lcomm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     // @__llvm_gcov_ctr.101
+	.lcomm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     // @__llvm_gcov_ctr.102
+	.lcomm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     // @__llvm_gcov_ctr.103
+	.lcomm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     // @__llvm_gcov_ctr.104
+	.lcomm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     // @__llvm_gcov_ctr.105
+	.lcomm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     // @__llvm_gcov_ctr.106
+	.lcomm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     // @__llvm_gcov_ctr.107
+	.lcomm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     // @__llvm_gcov_ctr.108
+	.lcomm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     // @__llvm_gcov_ctr.109
+	.lcomm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     // @__llvm_gcov_ctr.110
+	.lcomm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     // @__llvm_gcov_ctr.111
+	.lcomm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     // @__llvm_gcov_ctr.112
+	.lcomm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     // @__llvm_gcov_ctr.113
+	.lcomm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     // @__llvm_gcov_ctr.114
+	.lcomm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     // @__llvm_gcov_ctr.115
+	.lcomm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     // @__llvm_gcov_ctr.116
+	.lcomm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,@object     // @__llvm_gcov_ctr.117
+	.lcomm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     // @__llvm_gcov_ctr.118
+	.lcomm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     // @__llvm_gcov_ctr.119
+	.lcomm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     // @__llvm_gcov_ctr.120
+	.lcomm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     // @__llvm_gcov_ctr.121
+	.lcomm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     // @__llvm_gcov_ctr.122
+	.lcomm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     // @__llvm_gcov_ctr.123
+	.lcomm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     // @__llvm_gcov_ctr.124
+	.lcomm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,@object     // @__llvm_gcov_ctr.125
+	.lcomm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,@object     // @__llvm_gcov_ctr.126
+	.lcomm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     // @__llvm_gcov_ctr.127
+	.lcomm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     // @__llvm_gcov_ctr.128
+	.lcomm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     // @__llvm_gcov_ctr.129
+	.lcomm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     // @__llvm_gcov_ctr.130
+	.lcomm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     // @__llvm_gcov_ctr.131
+	.lcomm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     // @__llvm_gcov_ctr.132
+	.lcomm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     // @__llvm_gcov_ctr.133
+	.lcomm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     // @__llvm_gcov_ctr.134
+	.lcomm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,@object     // @__llvm_gcov_ctr.135
+	.lcomm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     // @__llvm_gcov_ctr.136
+	.lcomm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     // @__llvm_gcov_ctr.137
+	.lcomm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     // @__llvm_gcov_ctr.138
+	.lcomm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     // @__llvm_gcov_ctr.139
+	.lcomm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     // @__llvm_gcov_ctr.140
+	.lcomm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     // @__llvm_gcov_ctr.141
+	.lcomm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     // @__llvm_gcov_ctr.142
+	.lcomm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     // @__llvm_gcov_ctr.143
+	.lcomm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     // @__llvm_gcov_ctr.144
+	.lcomm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     // @__llvm_gcov_ctr.145
+	.lcomm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     // @__llvm_gcov_ctr.146
+	.lcomm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,@object     // @__llvm_gcov_ctr.147
+	.lcomm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     // @__llvm_gcov_ctr.148
+	.lcomm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     // @__llvm_gcov_ctr.149
+	.lcomm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     // @__llvm_gcov_ctr.150
+	.lcomm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,@object           // @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.string	"/home/gravier/tmp/some-libc-opt/clang-hexagon.gcda"
+	.size	.L__unnamed_1, 51
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object // @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.word	0                               // 0x0
+	.word	560687177                       // 0x216b6849
+	.word	3469251760                      // 0xcec894b0
+	.word	1                               // 0x1
+	.word	1589591758                      // 0x5ebf3ece
+	.word	3469251760                      // 0xcec894b0
+	.word	2                               // 0x2
+	.word	2176136383                      // 0x81b534bf
+	.word	3469251760                      // 0xcec894b0
+	.word	3                               // 0x3
+	.word	3586625172                      // 0xd5c78e94
+	.word	3469251760                      // 0xcec894b0
+	.word	4                               // 0x4
+	.word	2323119728                      // 0x8a77fe70
+	.word	3469251760                      // 0xcec894b0
+	.word	5                               // 0x5
+	.word	2314569740                      // 0x89f5880c
+	.word	3469251760                      // 0xcec894b0
+	.word	6                               // 0x6
+	.word	2833673551                      // 0xa8e66d4f
+	.word	3469251760                      // 0xcec894b0
+	.word	7                               // 0x7
+	.word	1458633189                      // 0x56f0f9e5
+	.word	3469251760                      // 0xcec894b0
+	.word	8                               // 0x8
+	.word	1190300833                      // 0x46f28ca1
+	.word	3469251760                      // 0xcec894b0
+	.word	9                               // 0x9
+	.word	758327989                       // 0x2d332ab5
+	.word	3469251760                      // 0xcec894b0
+	.word	10                              // 0xa
+	.word	1651479037                      // 0x626f91fd
+	.word	3469251760                      // 0xcec894b0
+	.word	11                              // 0xb
+	.word	4132343275                      // 0xf64e8deb
+	.word	3469251760                      // 0xcec894b0
+	.word	12                              // 0xc
+	.word	734262523                       // 0x2bc3f4fb
+	.word	3469251760                      // 0xcec894b0
+	.word	13                              // 0xd
+	.word	2463424677                      // 0x92d4e0a5
+	.word	3469251760                      // 0xcec894b0
+	.word	14                              // 0xe
+	.word	1419026334                      // 0x54949f9e
+	.word	3469251760                      // 0xcec894b0
+	.word	15                              // 0xf
+	.word	3154471370                      // 0xbc0569ca
+	.word	3469251760                      // 0xcec894b0
+	.word	16                              // 0x10
+	.word	2077973487                      // 0x7bdb5bef
+	.word	3469251760                      // 0xcec894b0
+	.word	17                              // 0x11
+	.word	1474691227                      // 0x57e6009b
+	.word	3469251760                      // 0xcec894b0
+	.word	18                              // 0x12
+	.word	3710986016                      // 0xdd312720
+	.word	3469251760                      // 0xcec894b0
+	.word	19                              // 0x13
+	.word	1305101473                      // 0x4dca44a1
+	.word	3469251760                      // 0xcec894b0
+	.word	20                              // 0x14
+	.word	3762036564                      // 0xe03c1f54
+	.word	3469251760                      // 0xcec894b0
+	.word	21                              // 0x15
+	.word	477914433                       // 0x1c7c6541
+	.word	3469251760                      // 0xcec894b0
+	.word	22                              // 0x16
+	.word	3923035234                      // 0xe9d4c462
+	.word	3469251760                      // 0xcec894b0
+	.word	23                              // 0x17
+	.word	951651702                       // 0x38b90d76
+	.word	3469251760                      // 0xcec894b0
+	.word	24                              // 0x18
+	.word	4206925919                      // 0xfac0985f
+	.word	3469251760                      // 0xcec894b0
+	.word	25                              // 0x19
+	.word	32773942                        // 0x1f41736
+	.word	3469251760                      // 0xcec894b0
+	.word	26                              // 0x1a
+	.word	2877267246                      // 0xab7f9d2e
+	.word	3469251760                      // 0xcec894b0
+	.word	27                              // 0x1b
+	.word	860405771                       // 0x3348c00b
+	.word	3469251760                      // 0xcec894b0
+	.word	28                              // 0x1c
+	.word	815674877                       // 0x309e35fd
+	.word	3469251760                      // 0xcec894b0
+	.word	29                              // 0x1d
+	.word	1778838753                      // 0x6a06ece1
+	.word	3469251760                      // 0xcec894b0
+	.word	30                              // 0x1e
+	.word	2718307199                      // 0xa206137f
+	.word	3469251760                      // 0xcec894b0
+	.word	31                              // 0x1f
+	.word	856224820                       // 0x3308f434
+	.word	3469251760                      // 0xcec894b0
+	.word	32                              // 0x20
+	.word	1111195143                      // 0x423b7e07
+	.word	3469251760                      // 0xcec894b0
+	.word	33                              // 0x21
+	.word	1178414519                      // 0x463d2db7
+	.word	3469251760                      // 0xcec894b0
+	.word	34                              // 0x22
+	.word	3477640633                      // 0xcf4895b9
+	.word	3469251760                      // 0xcec894b0
+	.word	35                              // 0x23
+	.word	4294770115                      // 0xfffcfdc3
+	.word	3469251760                      // 0xcec894b0
+	.word	36                              // 0x24
+	.word	3650660234                      // 0xd998a78a
+	.word	3469251760                      // 0xcec894b0
+	.word	37                              // 0x25
+	.word	289327647                       // 0x113eca1f
+	.word	3469251760                      // 0xcec894b0
+	.word	38                              // 0x26
+	.word	2093612798                      // 0x7cc9fefe
+	.word	3469251760                      // 0xcec894b0
+	.word	39                              // 0x27
+	.word	4177956716                      // 0xf9068f6c
+	.word	3469251760                      // 0xcec894b0
+	.word	40                              // 0x28
+	.word	3434808461                      // 0xccbb048d
+	.word	3469251760                      // 0xcec894b0
+	.word	41                              // 0x29
+	.word	3206497114                      // 0xbf1f435a
+	.word	3469251760                      // 0xcec894b0
+	.word	42                              // 0x2a
+	.word	1537257434                      // 0x5ba0afda
+	.word	3469251760                      // 0xcec894b0
+	.word	43                              // 0x2b
+	.word	3028077325                      // 0xb47ccb0d
+	.word	3469251760                      // 0xcec894b0
+	.word	44                              // 0x2c
+	.word	1369848209                      // 0x51a63991
+	.word	3469251760                      // 0xcec894b0
+	.word	45                              // 0x2d
+	.word	938831176                       // 0x37f56d48
+	.word	3469251760                      // 0xcec894b0
+	.word	46                              // 0x2e
+	.word	1663146323                      // 0x63219953
+	.word	3469251760                      // 0xcec894b0
+	.word	47                              // 0x2f
+	.word	4111410217                      // 0xf50f2429
+	.word	3469251760                      // 0xcec894b0
+	.word	48                              // 0x30
+	.word	1475378556                      // 0x57f07d7c
+	.word	3469251760                      // 0xcec894b0
+	.word	49                              // 0x31
+	.word	3356195547                      // 0xc80b7adb
+	.word	3469251760                      // 0xcec894b0
+	.word	50                              // 0x32
+	.word	514931786                       // 0x1eb13c4a
+	.word	3469251760                      // 0xcec894b0
+	.word	51                              // 0x33
+	.word	2854034444                      // 0xaa1d1c0c
+	.word	3469251760                      // 0xcec894b0
+	.word	52                              // 0x34
+	.word	2747937306                      // 0xa3ca321a
+	.word	3469251760                      // 0xcec894b0
+	.word	53                              // 0x35
+	.word	4192776208                      // 0xf9e8b010
+	.word	3469251760                      // 0xcec894b0
+	.word	54                              // 0x36
+	.word	984436227                       // 0x3aad4e03
+	.word	3469251760                      // 0xcec894b0
+	.word	55                              // 0x37
+	.word	1477657574                      // 0x581343e6
+	.word	3469251760                      // 0xcec894b0
+	.word	56                              // 0x38
+	.word	1339127973                      // 0x4fd178a5
+	.word	3469251760                      // 0xcec894b0
+	.word	57                              // 0x39
+	.word	2960567906                      // 0xb076ae62
+	.word	3469251760                      // 0xcec894b0
+	.word	58                              // 0x3a
+	.word	3390076872                      // 0xca1077c8
+	.word	3469251760                      // 0xcec894b0
+	.word	59                              // 0x3b
+	.word	1543282230                      // 0x5bfc9e36
+	.word	3469251760                      // 0xcec894b0
+	.word	60                              // 0x3c
+	.word	2934101789                      // 0xaee2d71d
+	.word	3469251760                      // 0xcec894b0
+	.word	61                              // 0x3d
+	.word	3737986119                      // 0xdecd2447
+	.word	3469251760                      // 0xcec894b0
+	.word	62                              // 0x3e
+	.word	49556427                        // 0x2f42bcb
+	.word	3469251760                      // 0xcec894b0
+	.word	63                              // 0x3f
+	.word	234051526                       // 0xdf357c6
+	.word	3469251760                      // 0xcec894b0
+	.word	64                              // 0x40
+	.word	2341800126                      // 0x8b9508be
+	.word	3469251760                      // 0xcec894b0
+	.word	65                              // 0x41
+	.word	3256799948                      // 0xc21ed2cc
+	.word	3469251760                      // 0xcec894b0
+	.word	66                              // 0x42
+	.word	777295480                       // 0x2e549678
+	.word	3469251760                      // 0xcec894b0
+	.word	67                              // 0x43
+	.word	14040531                        // 0xd63dd3
+	.word	3469251760                      // 0xcec894b0
+	.word	68                              // 0x44
+	.word	8047973                         // 0x7acd65
+	.word	3469251760                      // 0xcec894b0
+	.word	69                              // 0x45
+	.word	719459161                       // 0x2ae21359
+	.word	3469251760                      // 0xcec894b0
+	.word	70                              // 0x46
+	.word	243358501                       // 0xe815b25
+	.word	3469251760                      // 0xcec894b0
+	.word	71                              // 0x47
+	.word	3262173932                      // 0xc270d2ec
+	.word	3469251760                      // 0xcec894b0
+	.word	72                              // 0x48
+	.word	398910553                       // 0x17c6e459
+	.word	3469251760                      // 0xcec894b0
+	.word	73                              // 0x49
+	.word	3354219739                      // 0xc7ed54db
+	.word	3469251760                      // 0xcec894b0
+	.word	74                              // 0x4a
+	.word	2570308788                      // 0x9933ccb4
+	.word	3469251760                      // 0xcec894b0
+	.word	75                              // 0x4b
+	.word	982429111                       // 0x3a8eadb7
+	.word	3469251760                      // 0xcec894b0
+	.word	76                              // 0x4c
+	.word	211491241                       // 0xc9b19a9
+	.word	3469251760                      // 0xcec894b0
+	.word	77                              // 0x4d
+	.word	1075683319                      // 0x401d9ff7
+	.word	3469251760                      // 0xcec894b0
+	.word	78                              // 0x4e
+	.word	1886352651                      // 0x706f750b
+	.word	3469251760                      // 0xcec894b0
+	.word	79                              // 0x4f
+	.word	248637203                       // 0xed1e713
+	.word	3469251760                      // 0xcec894b0
+	.word	80                              // 0x50
+	.word	703327087                       // 0x29ebeb6f
+	.word	3469251760                      // 0xcec894b0
+	.word	81                              // 0x51
+	.word	3690160730                      // 0xdbf3625a
+	.word	3469251760                      // 0xcec894b0
+	.word	82                              // 0x52
+	.word	787048238                       // 0x2ee9672e
+	.word	3469251760                      // 0xcec894b0
+	.word	83                              // 0x53
+	.word	1937497967                      // 0x737bdf6f
+	.word	3469251760                      // 0xcec894b0
+	.word	84                              // 0x54
+	.word	4205062514                      // 0xfaa42972
+	.word	3469251760                      // 0xcec894b0
+	.word	85                              // 0x55
+	.word	694462539                       // 0x2964a84b
+	.word	3469251760                      // 0xcec894b0
+	.word	86                              // 0x56
+	.word	85970907                        // 0x51fcfdb
+	.word	3469251760                      // 0xcec894b0
+	.word	87                              // 0x57
+	.word	3681984728                      // 0xdb76a0d8
+	.word	3469251760                      // 0xcec894b0
+	.word	88                              // 0x58
+	.word	3620297642                      // 0xd7c95baa
+	.word	3469251760                      // 0xcec894b0
+	.word	89                              // 0x59
+	.word	3394804480                      // 0xca589b00
+	.word	3469251760                      // 0xcec894b0
+	.word	90                              // 0x5a
+	.word	2119330183                      // 0x7e526987
+	.word	3469251760                      // 0xcec894b0
+	.word	91                              // 0x5b
+	.word	1963040266                      // 0x75019e0a
+	.word	3469251760                      // 0xcec894b0
+	.word	92                              // 0x5c
+	.word	1603391838                      // 0x5f91d15e
+	.word	3469251760                      // 0xcec894b0
+	.word	93                              // 0x5d
+	.word	2340921237                      // 0x8b879f95
+	.word	3469251760                      // 0xcec894b0
+	.word	94                              // 0x5e
+	.word	3028177438                      // 0xb47e521e
+	.word	3469251760                      // 0xcec894b0
+	.word	95                              // 0x5f
+	.word	2265525308                      // 0x87092c3c
+	.word	3469251760                      // 0xcec894b0
+	.word	96                              // 0x60
+	.word	2598903994                      // 0x9ae820ba
+	.word	3469251760                      // 0xcec894b0
+	.word	97                              // 0x61
+	.word	139524705                       // 0x850fa61
+	.word	3469251760                      // 0xcec894b0
+	.word	98                              // 0x62
+	.word	1076410600                      // 0x4028b8e8
+	.word	3469251760                      // 0xcec894b0
+	.word	99                              // 0x63
+	.word	220237413                       // 0xd208e65
+	.word	3469251760                      // 0xcec894b0
+	.word	100                             // 0x64
+	.word	3913623866                      // 0xe945293a
+	.word	3469251760                      // 0xcec894b0
+	.word	101                             // 0x65
+	.word	3453026372                      // 0xcdd10044
+	.word	3469251760                      // 0xcec894b0
+	.word	102                             // 0x66
+	.word	2321387380                      // 0x8a5d8f74
+	.word	3469251760                      // 0xcec894b0
+	.word	103                             // 0x67
+	.word	3319939363                      // 0xc5e24123
+	.word	3469251760                      // 0xcec894b0
+	.word	104                             // 0x68
+	.word	398991913                       // 0x17c82229
+	.word	3469251760                      // 0xcec894b0
+	.word	105                             // 0x69
+	.word	333429647                       // 0x13dfbb8f
+	.word	3469251760                      // 0xcec894b0
+	.word	106                             // 0x6a
+	.word	3927133990                      // 0xea134f26
+	.word	3469251760                      // 0xcec894b0
+	.word	107                             // 0x6b
+	.word	1797971294                      // 0x6b2add5e
+	.word	3469251760                      // 0xcec894b0
+	.word	108                             // 0x6c
+	.word	1622314776                      // 0x60b28f18
+	.word	3469251760                      // 0xcec894b0
+	.word	109                             // 0x6d
+	.word	1092862330                      // 0x4123c17a
+	.word	3469251760                      // 0xcec894b0
+	.word	110                             // 0x6e
+	.word	2568657322                      // 0x991a99aa
+	.word	3469251760                      // 0xcec894b0
+	.word	111                             // 0x6f
+	.word	2168129897                      // 0x813b0969
+	.word	3469251760                      // 0xcec894b0
+	.word	112                             // 0x70
+	.word	2890303119                      // 0xac46868f
+	.word	3469251760                      // 0xcec894b0
+	.word	113                             // 0x71
+	.word	1713332582                      // 0x661f6166
+	.word	3469251760                      // 0xcec894b0
+	.word	114                             // 0x72
+	.word	2375727721                      // 0x8d9aba69
+	.word	3469251760                      // 0xcec894b0
+	.word	115                             // 0x73
+	.word	3586767156                      // 0xd5c9b934
+	.word	3469251760                      // 0xcec894b0
+	.word	116                             // 0x74
+	.word	2191348475                      // 0x829d52fb
+	.word	3469251760                      // 0xcec894b0
+	.word	117                             // 0x75
+	.word	3910023869                      // 0xe90e3abd
+	.word	3469251760                      // 0xcec894b0
+	.word	118                             // 0x76
+	.word	4189915105                      // 0xf9bd07e1
+	.word	3469251760                      // 0xcec894b0
+	.word	119                             // 0x77
+	.word	2527353334                      // 0x96a459f6
+	.word	3469251760                      // 0xcec894b0
+	.word	120                             // 0x78
+	.word	3429265923                      // 0xcc667203
+	.word	3469251760                      // 0xcec894b0
+	.word	121                             // 0x79
+	.word	1283962724                      // 0x4c87b764
+	.word	3469251760                      // 0xcec894b0
+	.word	122                             // 0x7a
+	.word	1970290990                      // 0x7570412e
+	.word	3469251760                      // 0xcec894b0
+	.word	123                             // 0x7b
+	.word	2615950861                      // 0x9bec3e0d
+	.word	3469251760                      // 0xcec894b0
+	.word	124                             // 0x7c
+	.word	3338450337                      // 0xc6fcb5a1
+	.word	3469251760                      // 0xcec894b0
+	.word	125                             // 0x7d
+	.word	3971836509                      // 0xecbd6a5d
+	.word	3469251760                      // 0xcec894b0
+	.word	126                             // 0x7e
+	.word	4260339231                      // 0xfdef9e1f
+	.word	3469251760                      // 0xcec894b0
+	.word	127                             // 0x7f
+	.word	4160738226                      // 0xf7ffd3b2
+	.word	3469251760                      // 0xcec894b0
+	.word	128                             // 0x80
+	.word	1309372079                      // 0x4e0b6eaf
+	.word	3469251760                      // 0xcec894b0
+	.word	129                             // 0x81
+	.word	3151575564                      // 0xbbd93a0c
+	.word	3469251760                      // 0xcec894b0
+	.word	130                             // 0x82
+	.word	3938977714                      // 0xeac807b2
+	.word	3469251760                      // 0xcec894b0
+	.word	131                             // 0x83
+	.word	3228738087                      // 0xc072a227
+	.word	3469251760                      // 0xcec894b0
+	.word	132                             // 0x84
+	.word	3135705803                      // 0xbae712cb
+	.word	3469251760                      // 0xcec894b0
+	.word	133                             // 0x85
+	.word	4061147315                      // 0xf21030b3
+	.word	3469251760                      // 0xcec894b0
+	.word	134                             // 0x86
+	.word	2783543715                      // 0xa5e981a3
+	.word	3469251760                      // 0xcec894b0
+	.word	135                             // 0x87
+	.word	2471046843                      // 0x93492ebb
+	.word	3469251760                      // 0xcec894b0
+	.word	136                             // 0x88
+	.word	260073473                       // 0xf806801
+	.word	3469251760                      // 0xcec894b0
+	.word	137                             // 0x89
+	.word	1259876295                      // 0x4b182fc7
+	.word	3469251760                      // 0xcec894b0
+	.word	138                             // 0x8a
+	.word	2579807359                      // 0x99c4bc7f
+	.word	3469251760                      // 0xcec894b0
+	.word	139                             // 0x8b
+	.word	90061610                        // 0x55e3b2a
+	.word	3469251760                      // 0xcec894b0
+	.word	140                             // 0x8c
+	.word	3598610789                      // 0xd67e7165
+	.word	3469251760                      // 0xcec894b0
+	.word	141                             // 0x8d
+	.word	2351688191                      // 0x8c2be9ff
+	.word	3469251760                      // 0xcec894b0
+	.word	142                             // 0x8e
+	.word	1438161982                      // 0x55b89c3e
+	.word	3469251760                      // 0xcec894b0
+	.word	143                             // 0x8f
+	.word	2438880600                      // 0x915e5d58
+	.word	3469251760                      // 0xcec894b0
+	.word	144                             // 0x90
+	.word	3593193962                      // 0xd62bc9ea
+	.word	3469251760                      // 0xcec894b0
+	.word	145                             // 0x91
+	.word	1755082314                      // 0x689c6e4a
+	.word	3469251760                      // 0xcec894b0
+	.word	146                             // 0x92
+	.word	3432612426                      // 0xcc99824a
+	.word	3469251760                      // 0xcec894b0
+	.word	147                             // 0x93
+	.word	3374828335                      // 0xc927cb2f
+	.word	3469251760                      // 0xcec894b0
+	.word	148                             // 0x94
+	.word	3311814731                      // 0xc566484b
+	.word	3469251760                      // 0xcec894b0
+	.word	149                             // 0x95
+	.word	413908966                       // 0x18abbfe6
+	.word	3469251760                      // 0xcec894b0
+	.word	150                             // 0x96
+	.word	3027808697                      // 0xb478b1b9
+	.word	3469251760                      // 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object // @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.1
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.2
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.3
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.4
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.5
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.6
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.7
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.8
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.9
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.10
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.11
+	.word	7                               // 0x7
+	.word	__llvm_gcov_ctr.12
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.13
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.14
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.15
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.16
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.17
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.18
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.19
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.20
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.21
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.22
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.23
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.24
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.25
+	.word	7                               // 0x7
+	.word	__llvm_gcov_ctr.26
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.27
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.28
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.29
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.30
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.31
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.32
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.33
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.34
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.35
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.36
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.37
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.38
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.39
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.40
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.41
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.42
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.43
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.44
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.45
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.46
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.47
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.48
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.49
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.50
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.51
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.52
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.53
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.54
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.55
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.56
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.57
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.58
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.59
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.60
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.61
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.62
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.63
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.64
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.65
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.66
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.67
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.68
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.69
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.70
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.71
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.72
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.73
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.74
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.75
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.76
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.77
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.78
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.79
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.80
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.81
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.82
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.83
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.84
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.85
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.86
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.87
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.88
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.89
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.90
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.91
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.92
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.93
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.94
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.95
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.96
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.97
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.98
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.99
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.100
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.101
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.102
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.103
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.104
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.105
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.106
+	.word	6                               // 0x6
+	.word	__llvm_gcov_ctr.107
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.108
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.109
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.110
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.111
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.112
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.113
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.114
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.115
+	.word	2                               // 0x2
+	.word	__llvm_gcov_ctr.116
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.117
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.118
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.119
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.120
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.121
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.122
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.123
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.124
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.125
+	.word	7                               // 0x7
+	.word	__llvm_gcov_ctr.126
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.127
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.128
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.129
+	.word	8                               // 0x8
+	.word	__llvm_gcov_ctr.130
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.131
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.132
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.133
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.134
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.135
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.136
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.137
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.138
+	.word	3                               // 0x3
+	.word	__llvm_gcov_ctr.139
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.140
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.141
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.142
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.143
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.144
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.145
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.146
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.147
+	.word	4                               // 0x4
+	.word	__llvm_gcov_ctr.148
+	.word	5                               // 0x5
+	.word	__llvm_gcov_ctr.149
+	.word	1                               // 0x1
+	.word	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,@object // @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.word	.L__unnamed_1
+	.word	875575338                       // 0x3430382a
+	.word	3469251760                      // 0xcec894b0
+	.word	151                             // 0x97
+	.word	__llvm_internal_gcov_emit_function_args.0
+	.word	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.ctors.65535,"aw",@progbits
+	.p2align	2, 0x0
+	.word	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       // @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -27962,9 +37713,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

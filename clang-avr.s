@@ -67,6 +67,30 @@ memmove:                                ; @memmove
 	brlo	.LBB0_1
 	rjmp	.LBB0_6
 .LBB0_1:
+	lds	r24, __llvm_gcov_ctr
+	lds	r25, __llvm_gcov_ctr+1
+	lds	r18, __llvm_gcov_ctr+2
+	lds	r19, __llvm_gcov_ctr+3
+	lds	r20, __llvm_gcov_ctr+4
+	lds	r21, __llvm_gcov_ctr+5
+	lds	r22, __llvm_gcov_ctr+6
+	lds	r23, __llvm_gcov_ctr+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr+7, r23
+	sts	__llvm_gcov_ctr+6, r22
+	sts	__llvm_gcov_ctr+5, r21
+	sts	__llvm_gcov_ctr+4, r20
+	sts	__llvm_gcov_ctr+3, r19
+	sts	__llvm_gcov_ctr+2, r18
+	sts	__llvm_gcov_ctr+1, r25
+	sts	__llvm_gcov_ctr, r24
 	lds	r24, __profc_memmove+8
 	lds	r25, __profc_memmove+9
 	lds	r18, __profc_memmove+10
@@ -156,6 +180,30 @@ memmove:                                ; @memmove
 	st	X, r24
 	rjmp	.LBB0_4
 .LBB0_4:                                ;   in Loop: Header=BB0_2 Depth=1
+	lds	r24, __llvm_gcov_ctr+8
+	lds	r25, __llvm_gcov_ctr+9
+	lds	r18, __llvm_gcov_ctr+10
+	lds	r19, __llvm_gcov_ctr+11
+	lds	r20, __llvm_gcov_ctr+12
+	lds	r21, __llvm_gcov_ctr+13
+	lds	r22, __llvm_gcov_ctr+14
+	lds	r23, __llvm_gcov_ctr+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr+15, r23
+	sts	__llvm_gcov_ctr+14, r22
+	sts	__llvm_gcov_ctr+13, r21
+	sts	__llvm_gcov_ctr+12, r20
+	sts	__llvm_gcov_ctr+11, r19
+	sts	__llvm_gcov_ctr+10, r18
+	sts	__llvm_gcov_ctr+9, r25
+	sts	__llvm_gcov_ctr+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 1
@@ -209,6 +257,30 @@ memmove:                                ; @memmove
 	brne	.LBB0_9
 	rjmp	.LBB0_11
 .LBB0_9:                                ;   in Loop: Header=BB0_8 Depth=1
+	lds	r24, __llvm_gcov_ctr+16
+	lds	r25, __llvm_gcov_ctr+17
+	lds	r18, __llvm_gcov_ctr+18
+	lds	r19, __llvm_gcov_ctr+19
+	lds	r20, __llvm_gcov_ctr+20
+	lds	r21, __llvm_gcov_ctr+21
+	lds	r22, __llvm_gcov_ctr+22
+	lds	r23, __llvm_gcov_ctr+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr+23, r23
+	sts	__llvm_gcov_ctr+22, r22
+	sts	__llvm_gcov_ctr+21, r21
+	sts	__llvm_gcov_ctr+20, r20
+	sts	__llvm_gcov_ctr+19, r19
+	sts	__llvm_gcov_ctr+18, r18
+	sts	__llvm_gcov_ctr+17, r25
+	sts	__llvm_gcov_ctr+16, r24
 	lds	r24, __profc_memmove+32
 	lds	r25, __profc_memmove+33
 	lds	r18, __profc_memmove+34
@@ -258,8 +330,56 @@ memmove:                                ; @memmove
 	std	Y+5, r24
 	rjmp	.LBB0_8
 .LBB0_11:
+	lds	r24, __llvm_gcov_ctr+24
+	lds	r25, __llvm_gcov_ctr+25
+	lds	r18, __llvm_gcov_ctr+26
+	lds	r19, __llvm_gcov_ctr+27
+	lds	r20, __llvm_gcov_ctr+28
+	lds	r21, __llvm_gcov_ctr+29
+	lds	r22, __llvm_gcov_ctr+30
+	lds	r23, __llvm_gcov_ctr+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr+31, r23
+	sts	__llvm_gcov_ctr+30, r22
+	sts	__llvm_gcov_ctr+29, r21
+	sts	__llvm_gcov_ctr+28, r20
+	sts	__llvm_gcov_ctr+27, r19
+	sts	__llvm_gcov_ctr+26, r18
+	sts	__llvm_gcov_ctr+25, r25
+	sts	__llvm_gcov_ctr+24, r24
 	rjmp	.LBB0_12
 .LBB0_12:
+	lds	r24, __llvm_gcov_ctr+32
+	lds	r25, __llvm_gcov_ctr+33
+	lds	r18, __llvm_gcov_ctr+34
+	lds	r19, __llvm_gcov_ctr+35
+	lds	r20, __llvm_gcov_ctr+36
+	lds	r21, __llvm_gcov_ctr+37
+	lds	r22, __llvm_gcov_ctr+38
+	lds	r23, __llvm_gcov_ctr+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr+39, r23
+	sts	__llvm_gcov_ctr+38, r22
+	sts	__llvm_gcov_ctr+37, r21
+	sts	__llvm_gcov_ctr+36, r20
+	sts	__llvm_gcov_ctr+35, r19
+	sts	__llvm_gcov_ctr+34, r18
+	sts	__llvm_gcov_ctr+33, r25
+	sts	__llvm_gcov_ctr+32, r24
 	rjmp	.LBB0_13
 .LBB0_13:
 	ldd	r24, Y+9
@@ -348,6 +468,30 @@ memccpy:                                ; @memccpy
 	brne	.LBB1_2
 	rjmp	.LBB1_6
 .LBB1_2:                                ;   in Loop: Header=BB1_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.1
+	lds	r25, __llvm_gcov_ctr.1+1
+	lds	r18, __llvm_gcov_ctr.1+2
+	lds	r19, __llvm_gcov_ctr.1+3
+	lds	r20, __llvm_gcov_ctr.1+4
+	lds	r21, __llvm_gcov_ctr.1+5
+	lds	r22, __llvm_gcov_ctr.1+6
+	lds	r23, __llvm_gcov_ctr.1+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.1+7, r23
+	sts	__llvm_gcov_ctr.1+6, r22
+	sts	__llvm_gcov_ctr.1+5, r21
+	sts	__llvm_gcov_ctr.1+4, r20
+	sts	__llvm_gcov_ctr.1+3, r19
+	sts	__llvm_gcov_ctr.1+2, r18
+	sts	__llvm_gcov_ctr.1+1, r25
+	sts	__llvm_gcov_ctr.1, r24
 	lds	r24, __profc_memccpy+16
 	lds	r25, __profc_memccpy+17
 	lds	r18, __profc_memccpy+18
@@ -412,6 +556,30 @@ memccpy:                                ; @memccpy
 	rjmp	.LBB1_3
 .LBB1_5:                                ;   in Loop: Header=BB1_1 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.1+8
+	lds	r19, __llvm_gcov_ctr.1+9
+	lds	r20, __llvm_gcov_ctr.1+10
+	lds	r21, __llvm_gcov_ctr.1+11
+	lds	r22, __llvm_gcov_ctr.1+12
+	lds	r23, __llvm_gcov_ctr.1+13
+	lds	r30, __llvm_gcov_ctr.1+14
+	lds	r31, __llvm_gcov_ctr.1+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.1+15, r31
+	sts	__llvm_gcov_ctr.1+14, r30
+	sts	__llvm_gcov_ctr.1+13, r23
+	sts	__llvm_gcov_ctr.1+12, r22
+	sts	__llvm_gcov_ctr.1+11, r21
+	sts	__llvm_gcov_ctr.1+10, r20
+	sts	__llvm_gcov_ctr.1+9, r19
+	sts	__llvm_gcov_ctr.1+8, r18
 	lds	r18, __profc_memccpy+24
 	lds	r19, __profc_memccpy+25
 	lds	r20, __profc_memccpy+26
@@ -471,6 +639,30 @@ memccpy:                                ; @memccpy
 	sts	__profc_memccpy+8, r24
 	rjmp	.LBB1_8
 .LBB1_8:                                ;   in Loop: Header=BB1_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.1+16
+	lds	r25, __llvm_gcov_ctr.1+17
+	lds	r18, __llvm_gcov_ctr.1+18
+	lds	r19, __llvm_gcov_ctr.1+19
+	lds	r20, __llvm_gcov_ctr.1+20
+	lds	r21, __llvm_gcov_ctr.1+21
+	lds	r22, __llvm_gcov_ctr.1+22
+	lds	r23, __llvm_gcov_ctr.1+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.1+23, r23
+	sts	__llvm_gcov_ctr.1+22, r22
+	sts	__llvm_gcov_ctr.1+21, r21
+	sts	__llvm_gcov_ctr.1+20, r20
+	sts	__llvm_gcov_ctr.1+19, r19
+	sts	__llvm_gcov_ctr.1+18, r18
+	sts	__llvm_gcov_ctr.1+17, r25
+	sts	__llvm_gcov_ctr.1+16, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	sbiw	r24, 1
@@ -497,6 +689,30 @@ memccpy:                                ; @memccpy
 	brne	.LBB1_10
 	rjmp	.LBB1_11
 .LBB1_10:
+	lds	r24, __llvm_gcov_ctr.1+24
+	lds	r25, __llvm_gcov_ctr.1+25
+	lds	r18, __llvm_gcov_ctr.1+26
+	lds	r19, __llvm_gcov_ctr.1+27
+	lds	r20, __llvm_gcov_ctr.1+28
+	lds	r21, __llvm_gcov_ctr.1+29
+	lds	r22, __llvm_gcov_ctr.1+30
+	lds	r23, __llvm_gcov_ctr.1+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.1+31, r23
+	sts	__llvm_gcov_ctr.1+30, r22
+	sts	__llvm_gcov_ctr.1+29, r21
+	sts	__llvm_gcov_ctr.1+28, r20
+	sts	__llvm_gcov_ctr.1+27, r19
+	sts	__llvm_gcov_ctr.1+26, r18
+	sts	__llvm_gcov_ctr.1+25, r25
+	sts	__llvm_gcov_ctr.1+24, r24
 	lds	r24, __profc_memccpy+32
 	lds	r25, __profc_memccpy+33
 	lds	r18, __profc_memccpy+34
@@ -528,6 +744,30 @@ memccpy:                                ; @memccpy
 	std	Y+21, r24
 	rjmp	.LBB1_12
 .LBB1_11:
+	lds	r24, __llvm_gcov_ctr.1+32
+	lds	r25, __llvm_gcov_ctr.1+33
+	lds	r18, __llvm_gcov_ctr.1+34
+	lds	r19, __llvm_gcov_ctr.1+35
+	lds	r20, __llvm_gcov_ctr.1+36
+	lds	r21, __llvm_gcov_ctr.1+37
+	lds	r22, __llvm_gcov_ctr.1+38
+	lds	r23, __llvm_gcov_ctr.1+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.1+39, r23
+	sts	__llvm_gcov_ctr.1+38, r22
+	sts	__llvm_gcov_ctr.1+37, r21
+	sts	__llvm_gcov_ctr.1+36, r20
+	sts	__llvm_gcov_ctr.1+35, r19
+	sts	__llvm_gcov_ctr.1+34, r18
+	sts	__llvm_gcov_ctr.1+33, r25
+	sts	__llvm_gcov_ctr.1+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+22, r25
@@ -614,6 +854,30 @@ memchr:                                 ; @memchr
 	brne	.LBB2_2
 	rjmp	.LBB2_6
 .LBB2_2:                                ;   in Loop: Header=BB2_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.2
+	lds	r25, __llvm_gcov_ctr.2+1
+	lds	r18, __llvm_gcov_ctr.2+2
+	lds	r19, __llvm_gcov_ctr.2+3
+	lds	r20, __llvm_gcov_ctr.2+4
+	lds	r21, __llvm_gcov_ctr.2+5
+	lds	r22, __llvm_gcov_ctr.2+6
+	lds	r23, __llvm_gcov_ctr.2+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.2+7, r23
+	sts	__llvm_gcov_ctr.2+6, r22
+	sts	__llvm_gcov_ctr.2+5, r21
+	sts	__llvm_gcov_ctr.2+4, r20
+	sts	__llvm_gcov_ctr.2+3, r19
+	sts	__llvm_gcov_ctr.2+2, r18
+	sts	__llvm_gcov_ctr.2+1, r25
+	sts	__llvm_gcov_ctr.2, r24
 	lds	r24, __profc_memchr+16
 	lds	r25, __profc_memchr+17
 	lds	r18, __profc_memchr+18
@@ -675,6 +939,30 @@ memchr:                                 ; @memchr
 	rjmp	.LBB2_3
 .LBB2_5:                                ;   in Loop: Header=BB2_1 Depth=1
 	ldd	r24, Y+3                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.2+8
+	lds	r19, __llvm_gcov_ctr.2+9
+	lds	r20, __llvm_gcov_ctr.2+10
+	lds	r21, __llvm_gcov_ctr.2+11
+	lds	r22, __llvm_gcov_ctr.2+12
+	lds	r23, __llvm_gcov_ctr.2+13
+	lds	r30, __llvm_gcov_ctr.2+14
+	lds	r31, __llvm_gcov_ctr.2+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.2+15, r31
+	sts	__llvm_gcov_ctr.2+14, r30
+	sts	__llvm_gcov_ctr.2+13, r23
+	sts	__llvm_gcov_ctr.2+12, r22
+	sts	__llvm_gcov_ctr.2+11, r21
+	sts	__llvm_gcov_ctr.2+10, r20
+	sts	__llvm_gcov_ctr.2+9, r19
+	sts	__llvm_gcov_ctr.2+8, r18
 	lds	r18, __profc_memchr+24
 	lds	r19, __profc_memchr+25
 	lds	r20, __profc_memchr+26
@@ -734,6 +1022,30 @@ memchr:                                 ; @memchr
 	sts	__profc_memchr+8, r24
 	rjmp	.LBB2_8
 .LBB2_8:                                ;   in Loop: Header=BB2_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.2+16
+	lds	r25, __llvm_gcov_ctr.2+17
+	lds	r18, __llvm_gcov_ctr.2+18
+	lds	r19, __llvm_gcov_ctr.2+19
+	lds	r20, __llvm_gcov_ctr.2+20
+	lds	r21, __llvm_gcov_ctr.2+21
+	lds	r22, __llvm_gcov_ctr.2+22
+	lds	r23, __llvm_gcov_ctr.2+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.2+23, r23
+	sts	__llvm_gcov_ctr.2+22, r22
+	sts	__llvm_gcov_ctr.2+21, r21
+	sts	__llvm_gcov_ctr.2+20, r20
+	sts	__llvm_gcov_ctr.2+19, r19
+	sts	__llvm_gcov_ctr.2+18, r18
+	sts	__llvm_gcov_ctr.2+17, r25
+	sts	__llvm_gcov_ctr.2+16, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -755,6 +1067,30 @@ memchr:                                 ; @memchr
 	brne	.LBB2_10
 	rjmp	.LBB2_11
 .LBB2_10:
+	lds	r24, __llvm_gcov_ctr.2+24
+	lds	r25, __llvm_gcov_ctr.2+25
+	lds	r18, __llvm_gcov_ctr.2+26
+	lds	r19, __llvm_gcov_ctr.2+27
+	lds	r20, __llvm_gcov_ctr.2+28
+	lds	r21, __llvm_gcov_ctr.2+29
+	lds	r22, __llvm_gcov_ctr.2+30
+	lds	r23, __llvm_gcov_ctr.2+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.2+31, r23
+	sts	__llvm_gcov_ctr.2+30, r22
+	sts	__llvm_gcov_ctr.2+29, r21
+	sts	__llvm_gcov_ctr.2+28, r20
+	sts	__llvm_gcov_ctr.2+27, r19
+	sts	__llvm_gcov_ctr.2+26, r18
+	sts	__llvm_gcov_ctr.2+25, r25
+	sts	__llvm_gcov_ctr.2+24, r24
 	lds	r24, __profc_memchr+32
 	lds	r25, __profc_memchr+33
 	lds	r18, __profc_memchr+34
@@ -785,6 +1121,30 @@ memchr:                                 ; @memchr
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB2_12
 .LBB2_11:
+	lds	r24, __llvm_gcov_ctr.2+32
+	lds	r25, __llvm_gcov_ctr.2+33
+	lds	r18, __llvm_gcov_ctr.2+34
+	lds	r19, __llvm_gcov_ctr.2+35
+	lds	r20, __llvm_gcov_ctr.2+36
+	lds	r21, __llvm_gcov_ctr.2+37
+	lds	r22, __llvm_gcov_ctr.2+38
+	lds	r23, __llvm_gcov_ctr.2+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.2+39, r23
+	sts	__llvm_gcov_ctr.2+38, r22
+	sts	__llvm_gcov_ctr.2+37, r21
+	sts	__llvm_gcov_ctr.2+36, r20
+	sts	__llvm_gcov_ctr.2+35, r19
+	sts	__llvm_gcov_ctr.2+34, r18
+	sts	__llvm_gcov_ctr.2+33, r25
+	sts	__llvm_gcov_ctr.2+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -871,6 +1231,30 @@ memcmp:                                 ; @memcmp
 	brne	.LBB3_2
 	rjmp	.LBB3_6
 .LBB3_2:                                ;   in Loop: Header=BB3_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.3
+	lds	r25, __llvm_gcov_ctr.3+1
+	lds	r18, __llvm_gcov_ctr.3+2
+	lds	r19, __llvm_gcov_ctr.3+3
+	lds	r20, __llvm_gcov_ctr.3+4
+	lds	r21, __llvm_gcov_ctr.3+5
+	lds	r22, __llvm_gcov_ctr.3+6
+	lds	r23, __llvm_gcov_ctr.3+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.3+7, r23
+	sts	__llvm_gcov_ctr.3+6, r22
+	sts	__llvm_gcov_ctr.3+5, r21
+	sts	__llvm_gcov_ctr.3+4, r20
+	sts	__llvm_gcov_ctr.3+3, r19
+	sts	__llvm_gcov_ctr.3+2, r18
+	sts	__llvm_gcov_ctr.3+1, r25
+	sts	__llvm_gcov_ctr.3, r24
 	lds	r24, __profc_memcmp+16
 	lds	r25, __profc_memcmp+17
 	lds	r18, __profc_memcmp+18
@@ -935,6 +1319,30 @@ memcmp:                                 ; @memcmp
 	rjmp	.LBB3_3
 .LBB3_5:                                ;   in Loop: Header=BB3_1 Depth=1
 	ldd	r24, Y+3                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.3+8
+	lds	r19, __llvm_gcov_ctr.3+9
+	lds	r20, __llvm_gcov_ctr.3+10
+	lds	r21, __llvm_gcov_ctr.3+11
+	lds	r22, __llvm_gcov_ctr.3+12
+	lds	r23, __llvm_gcov_ctr.3+13
+	lds	r30, __llvm_gcov_ctr.3+14
+	lds	r31, __llvm_gcov_ctr.3+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.3+15, r31
+	sts	__llvm_gcov_ctr.3+14, r30
+	sts	__llvm_gcov_ctr.3+13, r23
+	sts	__llvm_gcov_ctr.3+12, r22
+	sts	__llvm_gcov_ctr.3+11, r21
+	sts	__llvm_gcov_ctr.3+10, r20
+	sts	__llvm_gcov_ctr.3+9, r19
+	sts	__llvm_gcov_ctr.3+8, r18
 	lds	r18, __profc_memcmp+24
 	lds	r19, __profc_memcmp+25
 	lds	r20, __profc_memcmp+26
@@ -994,6 +1402,30 @@ memcmp:                                 ; @memcmp
 	sts	__profc_memcmp+8, r24
 	rjmp	.LBB3_8
 .LBB3_8:                                ;   in Loop: Header=BB3_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.3+16
+	lds	r25, __llvm_gcov_ctr.3+17
+	lds	r18, __llvm_gcov_ctr.3+18
+	lds	r19, __llvm_gcov_ctr.3+19
+	lds	r20, __llvm_gcov_ctr.3+20
+	lds	r21, __llvm_gcov_ctr.3+21
+	lds	r22, __llvm_gcov_ctr.3+22
+	lds	r23, __llvm_gcov_ctr.3+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.3+23, r23
+	sts	__llvm_gcov_ctr.3+22, r22
+	sts	__llvm_gcov_ctr.3+21, r21
+	sts	__llvm_gcov_ctr.3+20, r20
+	sts	__llvm_gcov_ctr.3+19, r19
+	sts	__llvm_gcov_ctr.3+18, r18
+	sts	__llvm_gcov_ctr.3+17, r25
+	sts	__llvm_gcov_ctr.3+16, r24
 	ldd	r24, Y+15
 	ldd	r25, Y+16
 	sbiw	r24, 1
@@ -1020,6 +1452,30 @@ memcmp:                                 ; @memcmp
 	brne	.LBB3_10
 	rjmp	.LBB3_11
 .LBB3_10:
+	lds	r24, __llvm_gcov_ctr.3+24
+	lds	r25, __llvm_gcov_ctr.3+25
+	lds	r18, __llvm_gcov_ctr.3+26
+	lds	r19, __llvm_gcov_ctr.3+27
+	lds	r20, __llvm_gcov_ctr.3+28
+	lds	r21, __llvm_gcov_ctr.3+29
+	lds	r22, __llvm_gcov_ctr.3+30
+	lds	r23, __llvm_gcov_ctr.3+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.3+31, r23
+	sts	__llvm_gcov_ctr.3+30, r22
+	sts	__llvm_gcov_ctr.3+29, r21
+	sts	__llvm_gcov_ctr.3+28, r20
+	sts	__llvm_gcov_ctr.3+27, r19
+	sts	__llvm_gcov_ctr.3+26, r18
+	sts	__llvm_gcov_ctr.3+25, r25
+	sts	__llvm_gcov_ctr.3+24, r24
 	lds	r24, __profc_memcmp+32
 	lds	r25, __profc_memcmp+33
 	lds	r18, __profc_memcmp+34
@@ -1058,6 +1514,30 @@ memcmp:                                 ; @memcmp
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB3_12
 .LBB3_11:
+	lds	r24, __llvm_gcov_ctr.3+32
+	lds	r25, __llvm_gcov_ctr.3+33
+	lds	r18, __llvm_gcov_ctr.3+34
+	lds	r19, __llvm_gcov_ctr.3+35
+	lds	r20, __llvm_gcov_ctr.3+36
+	lds	r21, __llvm_gcov_ctr.3+37
+	lds	r22, __llvm_gcov_ctr.3+38
+	lds	r23, __llvm_gcov_ctr.3+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.3+39, r23
+	sts	__llvm_gcov_ctr.3+38, r22
+	sts	__llvm_gcov_ctr.3+37, r21
+	sts	__llvm_gcov_ctr.3+36, r20
+	sts	__llvm_gcov_ctr.3+35, r19
+	sts	__llvm_gcov_ctr.3+34, r18
+	sts	__llvm_gcov_ctr.3+33, r25
+	sts	__llvm_gcov_ctr.3+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -1083,6 +1563,8 @@ memcmp:                                 ; @memcmp
 	.type	memcpy,@function
 memcpy:                                 ; @memcpy
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -1093,6 +1575,30 @@ memcpy:                                 ; @memcpy
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.4
+	lds	r19, __llvm_gcov_ctr.4+1
+	lds	r30, __llvm_gcov_ctr.4+2
+	lds	r31, __llvm_gcov_ctr.4+3
+	lds	r26, __llvm_gcov_ctr.4+4
+	lds	r27, __llvm_gcov_ctr.4+5
+	lds	r16, __llvm_gcov_ctr.4+6
+	lds	r17, __llvm_gcov_ctr.4+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.4+7, r17
+	sts	__llvm_gcov_ctr.4+6, r16
+	sts	__llvm_gcov_ctr.4+5, r27
+	sts	__llvm_gcov_ctr.4+4, r26
+	sts	__llvm_gcov_ctr.4+3, r31
+	sts	__llvm_gcov_ctr.4+2, r30
+	sts	__llvm_gcov_ctr.4+1, r19
+	sts	__llvm_gcov_ctr.4, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -1184,6 +1690,30 @@ memcpy:                                 ; @memcpy
 	st	X, r24
 	rjmp	.LBB4_3
 .LBB4_3:                                ;   in Loop: Header=BB4_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.4+8
+	lds	r25, __llvm_gcov_ctr.4+9
+	lds	r18, __llvm_gcov_ctr.4+10
+	lds	r19, __llvm_gcov_ctr.4+11
+	lds	r20, __llvm_gcov_ctr.4+12
+	lds	r21, __llvm_gcov_ctr.4+13
+	lds	r22, __llvm_gcov_ctr.4+14
+	lds	r23, __llvm_gcov_ctr.4+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.4+15, r23
+	sts	__llvm_gcov_ctr.4+14, r22
+	sts	__llvm_gcov_ctr.4+13, r21
+	sts	__llvm_gcov_ctr.4+12, r20
+	sts	__llvm_gcov_ctr.4+11, r19
+	sts	__llvm_gcov_ctr.4+10, r18
+	sts	__llvm_gcov_ctr.4+9, r25
+	sts	__llvm_gcov_ctr.4+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 1
@@ -1201,6 +1731,8 @@ memcpy:                                 ; @memcpy
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end4:
 	.size	memcpy, .Lfunc_end4-memcpy
@@ -1313,6 +1845,30 @@ memrchr:                                ; @memrchr
 	breq	.LBB5_3
 	rjmp	.LBB5_4
 .LBB5_3:
+	lds	r24, __llvm_gcov_ctr.5
+	lds	r25, __llvm_gcov_ctr.5+1
+	lds	r18, __llvm_gcov_ctr.5+2
+	lds	r19, __llvm_gcov_ctr.5+3
+	lds	r20, __llvm_gcov_ctr.5+4
+	lds	r21, __llvm_gcov_ctr.5+5
+	lds	r22, __llvm_gcov_ctr.5+6
+	lds	r23, __llvm_gcov_ctr.5+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.5+7, r23
+	sts	__llvm_gcov_ctr.5+6, r22
+	sts	__llvm_gcov_ctr.5+5, r21
+	sts	__llvm_gcov_ctr.5+4, r20
+	sts	__llvm_gcov_ctr.5+3, r19
+	sts	__llvm_gcov_ctr.5+2, r18
+	sts	__llvm_gcov_ctr.5+1, r25
+	sts	__llvm_gcov_ctr.5, r24
 	lds	r24, __profc_memrchr+16
 	lds	r25, __profc_memrchr+17
 	lds	r18, __profc_memrchr+18
@@ -1347,8 +1903,56 @@ memrchr:                                ; @memrchr
 	std	Y+9, r24
 	rjmp	.LBB5_6
 .LBB5_4:                                ;   in Loop: Header=BB5_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.5+8
+	lds	r25, __llvm_gcov_ctr.5+9
+	lds	r18, __llvm_gcov_ctr.5+10
+	lds	r19, __llvm_gcov_ctr.5+11
+	lds	r20, __llvm_gcov_ctr.5+12
+	lds	r21, __llvm_gcov_ctr.5+13
+	lds	r22, __llvm_gcov_ctr.5+14
+	lds	r23, __llvm_gcov_ctr.5+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.5+15, r23
+	sts	__llvm_gcov_ctr.5+14, r22
+	sts	__llvm_gcov_ctr.5+13, r21
+	sts	__llvm_gcov_ctr.5+12, r20
+	sts	__llvm_gcov_ctr.5+11, r19
+	sts	__llvm_gcov_ctr.5+10, r18
+	sts	__llvm_gcov_ctr.5+9, r25
+	sts	__llvm_gcov_ctr.5+8, r24
 	rjmp	.LBB5_1
 .LBB5_5:
+	lds	r24, __llvm_gcov_ctr.5+16
+	lds	r25, __llvm_gcov_ctr.5+17
+	lds	r18, __llvm_gcov_ctr.5+18
+	lds	r19, __llvm_gcov_ctr.5+19
+	lds	r20, __llvm_gcov_ctr.5+20
+	lds	r21, __llvm_gcov_ctr.5+21
+	lds	r22, __llvm_gcov_ctr.5+22
+	lds	r23, __llvm_gcov_ctr.5+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.5+23, r23
+	sts	__llvm_gcov_ctr.5+22, r22
+	sts	__llvm_gcov_ctr.5+21, r21
+	sts	__llvm_gcov_ctr.5+20, r20
+	sts	__llvm_gcov_ctr.5+19, r19
+	sts	__llvm_gcov_ctr.5+18, r18
+	sts	__llvm_gcov_ctr.5+17, r25
+	sts	__llvm_gcov_ctr.5+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+10, r25
@@ -1374,6 +1978,8 @@ memrchr:                                ; @memrchr
 	.type	memset,@function
 memset:                                 ; @memset
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -1384,6 +1990,30 @@ memset:                                 ; @memset
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.6
+	lds	r19, __llvm_gcov_ctr.6+1
+	lds	r30, __llvm_gcov_ctr.6+2
+	lds	r31, __llvm_gcov_ctr.6+3
+	lds	r26, __llvm_gcov_ctr.6+4
+	lds	r27, __llvm_gcov_ctr.6+5
+	lds	r16, __llvm_gcov_ctr.6+6
+	lds	r17, __llvm_gcov_ctr.6+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.6+7, r17
+	sts	__llvm_gcov_ctr.6+6, r16
+	sts	__llvm_gcov_ctr.6+5, r27
+	sts	__llvm_gcov_ctr.6+4, r26
+	sts	__llvm_gcov_ctr.6+3, r31
+	sts	__llvm_gcov_ctr.6+2, r30
+	sts	__llvm_gcov_ctr.6+1, r19
+	sts	__llvm_gcov_ctr.6, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -1459,6 +2089,30 @@ memset:                                 ; @memset
 	st	X, r24
 	rjmp	.LBB6_3
 .LBB6_3:                                ;   in Loop: Header=BB6_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.6+8
+	lds	r25, __llvm_gcov_ctr.6+9
+	lds	r18, __llvm_gcov_ctr.6+10
+	lds	r19, __llvm_gcov_ctr.6+11
+	lds	r20, __llvm_gcov_ctr.6+12
+	lds	r21, __llvm_gcov_ctr.6+13
+	lds	r22, __llvm_gcov_ctr.6+14
+	lds	r23, __llvm_gcov_ctr.6+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.6+15, r23
+	sts	__llvm_gcov_ctr.6+14, r22
+	sts	__llvm_gcov_ctr.6+13, r21
+	sts	__llvm_gcov_ctr.6+12, r20
+	sts	__llvm_gcov_ctr.6+11, r19
+	sts	__llvm_gcov_ctr.6+10, r18
+	sts	__llvm_gcov_ctr.6+9, r25
+	sts	__llvm_gcov_ctr.6+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 1
@@ -1481,6 +2135,8 @@ memset:                                 ; @memset
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end6:
 	.size	memset, .Lfunc_end6-memset
@@ -1500,6 +2156,30 @@ stpcpy:                                 ; @stpcpy
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.7
+	lds	r19, __llvm_gcov_ctr.7+1
+	lds	r20, __llvm_gcov_ctr.7+2
+	lds	r21, __llvm_gcov_ctr.7+3
+	lds	r30, __llvm_gcov_ctr.7+4
+	lds	r31, __llvm_gcov_ctr.7+5
+	lds	r26, __llvm_gcov_ctr.7+6
+	lds	r27, __llvm_gcov_ctr.7+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.7+7, r27
+	sts	__llvm_gcov_ctr.7+6, r26
+	sts	__llvm_gcov_ctr.7+5, r31
+	sts	__llvm_gcov_ctr.7+4, r30
+	sts	__llvm_gcov_ctr.7+3, r21
+	sts	__llvm_gcov_ctr.7+2, r20
+	sts	__llvm_gcov_ctr.7+1, r19
+	sts	__llvm_gcov_ctr.7, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	std	Y+2, r23
@@ -1566,6 +2246,30 @@ stpcpy:                                 ; @stpcpy
 	sts	__profc_stpcpy+8, r24
 	rjmp	.LBB7_3
 .LBB7_3:                                ;   in Loop: Header=BB7_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.7+8
+	lds	r25, __llvm_gcov_ctr.7+9
+	lds	r18, __llvm_gcov_ctr.7+10
+	lds	r19, __llvm_gcov_ctr.7+11
+	lds	r20, __llvm_gcov_ctr.7+12
+	lds	r21, __llvm_gcov_ctr.7+13
+	lds	r22, __llvm_gcov_ctr.7+14
+	lds	r23, __llvm_gcov_ctr.7+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.7+15, r23
+	sts	__llvm_gcov_ctr.7+14, r22
+	sts	__llvm_gcov_ctr.7+13, r21
+	sts	__llvm_gcov_ctr.7+12, r20
+	sts	__llvm_gcov_ctr.7+11, r19
+	sts	__llvm_gcov_ctr.7+10, r18
+	sts	__llvm_gcov_ctr.7+9, r25
+	sts	__llvm_gcov_ctr.7+8, r24
 	ldd	r24, Y+1
 	ldd	r25, Y+2
 	adiw	r24, 1
@@ -1607,6 +2311,30 @@ strchrnul:                              ; @strchrnul
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.8
+	lds	r19, __llvm_gcov_ctr.8+1
+	lds	r20, __llvm_gcov_ctr.8+2
+	lds	r21, __llvm_gcov_ctr.8+3
+	lds	r30, __llvm_gcov_ctr.8+4
+	lds	r31, __llvm_gcov_ctr.8+5
+	lds	r26, __llvm_gcov_ctr.8+6
+	lds	r27, __llvm_gcov_ctr.8+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.8+7, r27
+	sts	__llvm_gcov_ctr.8+6, r26
+	sts	__llvm_gcov_ctr.8+5, r31
+	sts	__llvm_gcov_ctr.8+4, r30
+	sts	__llvm_gcov_ctr.8+3, r21
+	sts	__llvm_gcov_ctr.8+2, r20
+	sts	__llvm_gcov_ctr.8+1, r19
+	sts	__llvm_gcov_ctr.8, r18
 	std	Y+12, r25
 	std	Y+11, r24
 	std	Y+10, r23
@@ -1650,6 +2378,30 @@ strchrnul:                              ; @strchrnul
 	brne	.LBB8_2
 	rjmp	.LBB8_6
 .LBB8_2:                                ;   in Loop: Header=BB8_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.8+8
+	lds	r25, __llvm_gcov_ctr.8+9
+	lds	r18, __llvm_gcov_ctr.8+10
+	lds	r19, __llvm_gcov_ctr.8+11
+	lds	r20, __llvm_gcov_ctr.8+12
+	lds	r21, __llvm_gcov_ctr.8+13
+	lds	r22, __llvm_gcov_ctr.8+14
+	lds	r23, __llvm_gcov_ctr.8+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.8+15, r23
+	sts	__llvm_gcov_ctr.8+14, r22
+	sts	__llvm_gcov_ctr.8+13, r21
+	sts	__llvm_gcov_ctr.8+12, r20
+	sts	__llvm_gcov_ctr.8+11, r19
+	sts	__llvm_gcov_ctr.8+10, r18
+	sts	__llvm_gcov_ctr.8+9, r25
+	sts	__llvm_gcov_ctr.8+8, r24
 	lds	r24, __profc_strchrnul+16
 	lds	r25, __profc_strchrnul+17
 	lds	r18, __profc_strchrnul+18
@@ -1711,6 +2463,30 @@ strchrnul:                              ; @strchrnul
 	rjmp	.LBB8_3
 .LBB8_5:                                ;   in Loop: Header=BB8_1 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.8+16
+	lds	r19, __llvm_gcov_ctr.8+17
+	lds	r20, __llvm_gcov_ctr.8+18
+	lds	r21, __llvm_gcov_ctr.8+19
+	lds	r22, __llvm_gcov_ctr.8+20
+	lds	r23, __llvm_gcov_ctr.8+21
+	lds	r30, __llvm_gcov_ctr.8+22
+	lds	r31, __llvm_gcov_ctr.8+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.8+23, r31
+	sts	__llvm_gcov_ctr.8+22, r30
+	sts	__llvm_gcov_ctr.8+21, r23
+	sts	__llvm_gcov_ctr.8+20, r22
+	sts	__llvm_gcov_ctr.8+19, r21
+	sts	__llvm_gcov_ctr.8+18, r20
+	sts	__llvm_gcov_ctr.8+17, r19
+	sts	__llvm_gcov_ctr.8+16, r18
 	lds	r18, __profc_strchrnul+24
 	lds	r19, __profc_strchrnul+25
 	lds	r20, __profc_strchrnul+26
@@ -1770,6 +2546,30 @@ strchrnul:                              ; @strchrnul
 	sts	__profc_strchrnul+8, r24
 	rjmp	.LBB8_8
 .LBB8_8:                                ;   in Loop: Header=BB8_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.8+24
+	lds	r25, __llvm_gcov_ctr.8+25
+	lds	r18, __llvm_gcov_ctr.8+26
+	lds	r19, __llvm_gcov_ctr.8+27
+	lds	r20, __llvm_gcov_ctr.8+28
+	lds	r21, __llvm_gcov_ctr.8+29
+	lds	r22, __llvm_gcov_ctr.8+30
+	lds	r23, __llvm_gcov_ctr.8+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.8+31, r23
+	sts	__llvm_gcov_ctr.8+30, r22
+	sts	__llvm_gcov_ctr.8+29, r21
+	sts	__llvm_gcov_ctr.8+28, r20
+	sts	__llvm_gcov_ctr.8+27, r19
+	sts	__llvm_gcov_ctr.8+26, r18
+	sts	__llvm_gcov_ctr.8+25, r25
+	sts	__llvm_gcov_ctr.8+24, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -1836,6 +2636,30 @@ strchr:                                 ; @strchr
 	sts	__profc_strchr, r24
 	rjmp	.LBB9_2
 .LBB9_1:                                ;   in Loop: Header=BB9_2 Depth=1
+	lds	r24, __llvm_gcov_ctr.9+8
+	lds	r25, __llvm_gcov_ctr.9+9
+	lds	r18, __llvm_gcov_ctr.9+10
+	lds	r19, __llvm_gcov_ctr.9+11
+	lds	r20, __llvm_gcov_ctr.9+12
+	lds	r21, __llvm_gcov_ctr.9+13
+	lds	r22, __llvm_gcov_ctr.9+14
+	lds	r23, __llvm_gcov_ctr.9+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.9+15, r23
+	sts	__llvm_gcov_ctr.9+14, r22
+	sts	__llvm_gcov_ctr.9+13, r21
+	sts	__llvm_gcov_ctr.9+12, r20
+	sts	__llvm_gcov_ctr.9+11, r19
+	sts	__llvm_gcov_ctr.9+10, r18
+	sts	__llvm_gcov_ctr.9+9, r25
+	sts	__llvm_gcov_ctr.9+8, r24
 	lds	r24, __profc_strchr+8
 	lds	r25, __profc_strchr+9
 	lds	r18, __profc_strchr+10
@@ -1875,6 +2699,30 @@ strchr:                                 ; @strchr
 	breq	.LBB9_3
 	rjmp	.LBB9_4
 .LBB9_3:
+	lds	r24, __llvm_gcov_ctr.9
+	lds	r25, __llvm_gcov_ctr.9+1
+	lds	r18, __llvm_gcov_ctr.9+2
+	lds	r19, __llvm_gcov_ctr.9+3
+	lds	r20, __llvm_gcov_ctr.9+4
+	lds	r21, __llvm_gcov_ctr.9+5
+	lds	r22, __llvm_gcov_ctr.9+6
+	lds	r23, __llvm_gcov_ctr.9+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.9+7, r23
+	sts	__llvm_gcov_ctr.9+6, r22
+	sts	__llvm_gcov_ctr.9+5, r21
+	sts	__llvm_gcov_ctr.9+4, r20
+	sts	__llvm_gcov_ctr.9+3, r19
+	sts	__llvm_gcov_ctr.9+2, r18
+	sts	__llvm_gcov_ctr.9+1, r25
+	sts	__llvm_gcov_ctr.9, r24
 	lds	r24, __profc_strchr+16
 	lds	r25, __profc_strchr+17
 	lds	r18, __profc_strchr+18
@@ -1919,6 +2767,30 @@ strchr:                                 ; @strchr
 	breq	.LBB9_6
 	rjmp	.LBB9_1
 .LBB9_6:
+	lds	r24, __llvm_gcov_ctr.9+16
+	lds	r25, __llvm_gcov_ctr.9+17
+	lds	r18, __llvm_gcov_ctr.9+18
+	lds	r19, __llvm_gcov_ctr.9+19
+	lds	r20, __llvm_gcov_ctr.9+20
+	lds	r21, __llvm_gcov_ctr.9+21
+	lds	r22, __llvm_gcov_ctr.9+22
+	lds	r23, __llvm_gcov_ctr.9+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.9+23, r23
+	sts	__llvm_gcov_ctr.9+22, r22
+	sts	__llvm_gcov_ctr.9+21, r21
+	sts	__llvm_gcov_ctr.9+20, r20
+	sts	__llvm_gcov_ctr.9+19, r19
+	sts	__llvm_gcov_ctr.9+18, r18
+	sts	__llvm_gcov_ctr.9+17, r25
+	sts	__llvm_gcov_ctr.9+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+6, r25
@@ -1954,6 +2826,30 @@ strcmp:                                 ; @strcmp
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.10
+	lds	r19, __llvm_gcov_ctr.10+1
+	lds	r20, __llvm_gcov_ctr.10+2
+	lds	r21, __llvm_gcov_ctr.10+3
+	lds	r30, __llvm_gcov_ctr.10+4
+	lds	r31, __llvm_gcov_ctr.10+5
+	lds	r26, __llvm_gcov_ctr.10+6
+	lds	r27, __llvm_gcov_ctr.10+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.10+7, r27
+	sts	__llvm_gcov_ctr.10+6, r26
+	sts	__llvm_gcov_ctr.10+5, r31
+	sts	__llvm_gcov_ctr.10+4, r30
+	sts	__llvm_gcov_ctr.10+3, r21
+	sts	__llvm_gcov_ctr.10+2, r20
+	sts	__llvm_gcov_ctr.10+1, r19
+	sts	__llvm_gcov_ctr.10, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -2005,6 +2901,30 @@ strcmp:                                 ; @strcmp
 	breq	.LBB10_2
 	rjmp	.LBB10_6
 .LBB10_2:                               ;   in Loop: Header=BB10_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.10+8
+	lds	r25, __llvm_gcov_ctr.10+9
+	lds	r18, __llvm_gcov_ctr.10+10
+	lds	r19, __llvm_gcov_ctr.10+11
+	lds	r20, __llvm_gcov_ctr.10+12
+	lds	r21, __llvm_gcov_ctr.10+13
+	lds	r22, __llvm_gcov_ctr.10+14
+	lds	r23, __llvm_gcov_ctr.10+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.10+15, r23
+	sts	__llvm_gcov_ctr.10+14, r22
+	sts	__llvm_gcov_ctr.10+13, r21
+	sts	__llvm_gcov_ctr.10+12, r20
+	sts	__llvm_gcov_ctr.10+11, r19
+	sts	__llvm_gcov_ctr.10+10, r18
+	sts	__llvm_gcov_ctr.10+9, r25
+	sts	__llvm_gcov_ctr.10+8, r24
 	lds	r24, __profc_strcmp+16
 	lds	r25, __profc_strcmp+17
 	lds	r18, __profc_strcmp+18
@@ -2063,6 +2983,30 @@ strcmp:                                 ; @strcmp
 	rjmp	.LBB10_3
 .LBB10_5:                               ;   in Loop: Header=BB10_1 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.10+16
+	lds	r19, __llvm_gcov_ctr.10+17
+	lds	r20, __llvm_gcov_ctr.10+18
+	lds	r21, __llvm_gcov_ctr.10+19
+	lds	r22, __llvm_gcov_ctr.10+20
+	lds	r23, __llvm_gcov_ctr.10+21
+	lds	r30, __llvm_gcov_ctr.10+22
+	lds	r31, __llvm_gcov_ctr.10+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.10+23, r31
+	sts	__llvm_gcov_ctr.10+22, r30
+	sts	__llvm_gcov_ctr.10+21, r23
+	sts	__llvm_gcov_ctr.10+20, r22
+	sts	__llvm_gcov_ctr.10+19, r21
+	sts	__llvm_gcov_ctr.10+18, r20
+	sts	__llvm_gcov_ctr.10+17, r19
+	sts	__llvm_gcov_ctr.10+16, r18
 	lds	r18, __profc_strcmp+24
 	lds	r19, __profc_strcmp+25
 	lds	r20, __profc_strcmp+26
@@ -2122,6 +3066,30 @@ strcmp:                                 ; @strcmp
 	sts	__profc_strcmp+8, r24
 	rjmp	.LBB10_8
 .LBB10_8:                               ;   in Loop: Header=BB10_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.10+24
+	lds	r25, __llvm_gcov_ctr.10+25
+	lds	r18, __llvm_gcov_ctr.10+26
+	lds	r19, __llvm_gcov_ctr.10+27
+	lds	r20, __llvm_gcov_ctr.10+28
+	lds	r21, __llvm_gcov_ctr.10+29
+	lds	r22, __llvm_gcov_ctr.10+30
+	lds	r23, __llvm_gcov_ctr.10+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.10+31, r23
+	sts	__llvm_gcov_ctr.10+30, r22
+	sts	__llvm_gcov_ctr.10+29, r21
+	sts	__llvm_gcov_ctr.10+28, r20
+	sts	__llvm_gcov_ctr.10+27, r19
+	sts	__llvm_gcov_ctr.10+26, r18
+	sts	__llvm_gcov_ctr.10+25, r25
+	sts	__llvm_gcov_ctr.10+24, r24
 	ldd	r24, Y+9
 	ldd	r25, Y+10
 	adiw	r24, 1
@@ -2171,6 +3139,30 @@ strlen:                                 ; @strlen
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.11
+	lds	r19, __llvm_gcov_ctr.11+1
+	lds	r20, __llvm_gcov_ctr.11+2
+	lds	r21, __llvm_gcov_ctr.11+3
+	lds	r22, __llvm_gcov_ctr.11+4
+	lds	r23, __llvm_gcov_ctr.11+5
+	lds	r30, __llvm_gcov_ctr.11+6
+	lds	r31, __llvm_gcov_ctr.11+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.11+7, r31
+	sts	__llvm_gcov_ctr.11+6, r30
+	sts	__llvm_gcov_ctr.11+5, r23
+	sts	__llvm_gcov_ctr.11+4, r22
+	sts	__llvm_gcov_ctr.11+3, r21
+	sts	__llvm_gcov_ctr.11+2, r20
+	sts	__llvm_gcov_ctr.11+1, r19
+	sts	__llvm_gcov_ctr.11, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_strlen
@@ -2236,6 +3228,30 @@ strlen:                                 ; @strlen
 	sts	__profc_strlen+8, r24
 	rjmp	.LBB11_3
 .LBB11_3:                               ;   in Loop: Header=BB11_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.11+8
+	lds	r25, __llvm_gcov_ctr.11+9
+	lds	r18, __llvm_gcov_ctr.11+10
+	lds	r19, __llvm_gcov_ctr.11+11
+	lds	r20, __llvm_gcov_ctr.11+12
+	lds	r21, __llvm_gcov_ctr.11+13
+	lds	r22, __llvm_gcov_ctr.11+14
+	lds	r23, __llvm_gcov_ctr.11+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.11+15, r23
+	sts	__llvm_gcov_ctr.11+14, r22
+	sts	__llvm_gcov_ctr.11+13, r21
+	sts	__llvm_gcov_ctr.11+12, r20
+	sts	__llvm_gcov_ctr.11+11, r19
+	sts	__llvm_gcov_ctr.11+10, r18
+	sts	__llvm_gcov_ctr.11+9, r25
+	sts	__llvm_gcov_ctr.11+8, r24
 	ldd	r24, Y+3
 	ldd	r25, Y+4
 	adiw	r24, 1
@@ -2328,6 +3344,30 @@ strncmp:                                ; @strncmp
 	breq	.LBB12_1
 	rjmp	.LBB12_2
 .LBB12_1:
+	lds	r24, __llvm_gcov_ctr.12+8
+	lds	r25, __llvm_gcov_ctr.12+9
+	lds	r18, __llvm_gcov_ctr.12+10
+	lds	r19, __llvm_gcov_ctr.12+11
+	lds	r20, __llvm_gcov_ctr.12+12
+	lds	r21, __llvm_gcov_ctr.12+13
+	lds	r22, __llvm_gcov_ctr.12+14
+	lds	r23, __llvm_gcov_ctr.12+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+15, r23
+	sts	__llvm_gcov_ctr.12+14, r22
+	sts	__llvm_gcov_ctr.12+13, r21
+	sts	__llvm_gcov_ctr.12+12, r20
+	sts	__llvm_gcov_ctr.12+11, r19
+	sts	__llvm_gcov_ctr.12+10, r18
+	sts	__llvm_gcov_ctr.12+9, r25
+	sts	__llvm_gcov_ctr.12+8, r24
 	lds	r24, __profc_strncmp+8
 	lds	r25, __profc_strncmp+9
 	lds	r18, __profc_strncmp+10
@@ -2358,6 +3398,30 @@ strncmp:                                ; @strncmp
 	std	Y+19, r24
 	rjmp	.LBB12_16
 .LBB12_2:
+	lds	r24, __llvm_gcov_ctr.12
+	lds	r25, __llvm_gcov_ctr.12+1
+	lds	r18, __llvm_gcov_ctr.12+2
+	lds	r19, __llvm_gcov_ctr.12+3
+	lds	r20, __llvm_gcov_ctr.12+4
+	lds	r21, __llvm_gcov_ctr.12+5
+	lds	r22, __llvm_gcov_ctr.12+6
+	lds	r23, __llvm_gcov_ctr.12+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+7, r23
+	sts	__llvm_gcov_ctr.12+6, r22
+	sts	__llvm_gcov_ctr.12+5, r21
+	sts	__llvm_gcov_ctr.12+4, r20
+	sts	__llvm_gcov_ctr.12+3, r19
+	sts	__llvm_gcov_ctr.12+2, r18
+	sts	__llvm_gcov_ctr.12+1, r25
+	sts	__llvm_gcov_ctr.12, r24
 	rjmp	.LBB12_3
 .LBB12_3:                               ; =>This Inner Loop Header: Depth=1
 	ldd	r26, Y+11
@@ -2369,6 +3433,30 @@ strncmp:                                ; @strncmp
 	brne	.LBB12_4
 	rjmp	.LBB12_12
 .LBB12_4:                               ;   in Loop: Header=BB12_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.12+16
+	lds	r25, __llvm_gcov_ctr.12+17
+	lds	r18, __llvm_gcov_ctr.12+18
+	lds	r19, __llvm_gcov_ctr.12+19
+	lds	r20, __llvm_gcov_ctr.12+20
+	lds	r21, __llvm_gcov_ctr.12+21
+	lds	r22, __llvm_gcov_ctr.12+22
+	lds	r23, __llvm_gcov_ctr.12+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+23, r23
+	sts	__llvm_gcov_ctr.12+22, r22
+	sts	__llvm_gcov_ctr.12+21, r21
+	sts	__llvm_gcov_ctr.12+20, r20
+	sts	__llvm_gcov_ctr.12+19, r19
+	sts	__llvm_gcov_ctr.12+18, r18
+	sts	__llvm_gcov_ctr.12+17, r25
+	sts	__llvm_gcov_ctr.12+16, r24
 	lds	r24, __profc_strncmp+56
 	lds	r25, __profc_strncmp+57
 	lds	r18, __profc_strncmp+58
@@ -2402,6 +3490,30 @@ strncmp:                                ; @strncmp
 	brne	.LBB12_5
 	rjmp	.LBB12_12
 .LBB12_5:                               ;   in Loop: Header=BB12_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.12+24
+	lds	r25, __llvm_gcov_ctr.12+25
+	lds	r18, __llvm_gcov_ctr.12+26
+	lds	r19, __llvm_gcov_ctr.12+27
+	lds	r20, __llvm_gcov_ctr.12+28
+	lds	r21, __llvm_gcov_ctr.12+29
+	lds	r22, __llvm_gcov_ctr.12+30
+	lds	r23, __llvm_gcov_ctr.12+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+31, r23
+	sts	__llvm_gcov_ctr.12+30, r22
+	sts	__llvm_gcov_ctr.12+29, r21
+	sts	__llvm_gcov_ctr.12+28, r20
+	sts	__llvm_gcov_ctr.12+27, r19
+	sts	__llvm_gcov_ctr.12+26, r18
+	sts	__llvm_gcov_ctr.12+25, r25
+	sts	__llvm_gcov_ctr.12+24, r24
 	lds	r24, __profc_strncmp+64
 	lds	r25, __profc_strncmp+65
 	lds	r18, __profc_strncmp+66
@@ -2463,6 +3575,30 @@ strncmp:                                ; @strncmp
 	brne	.LBB12_7
 	rjmp	.LBB12_12
 .LBB12_7:                               ;   in Loop: Header=BB12_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.12+32
+	lds	r25, __llvm_gcov_ctr.12+33
+	lds	r18, __llvm_gcov_ctr.12+34
+	lds	r19, __llvm_gcov_ctr.12+35
+	lds	r20, __llvm_gcov_ctr.12+36
+	lds	r21, __llvm_gcov_ctr.12+37
+	lds	r22, __llvm_gcov_ctr.12+38
+	lds	r23, __llvm_gcov_ctr.12+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+39, r23
+	sts	__llvm_gcov_ctr.12+38, r22
+	sts	__llvm_gcov_ctr.12+37, r21
+	sts	__llvm_gcov_ctr.12+36, r20
+	sts	__llvm_gcov_ctr.12+35, r19
+	sts	__llvm_gcov_ctr.12+34, r18
+	sts	__llvm_gcov_ctr.12+33, r25
+	sts	__llvm_gcov_ctr.12+32, r24
 	lds	r24, __profc_strncmp+48
 	lds	r25, __profc_strncmp+49
 	lds	r18, __profc_strncmp+50
@@ -2553,6 +3689,30 @@ strncmp:                                ; @strncmp
 	rjmp	.LBB12_9
 .LBB12_11:                              ;   in Loop: Header=BB12_3 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.12+40
+	lds	r19, __llvm_gcov_ctr.12+41
+	lds	r20, __llvm_gcov_ctr.12+42
+	lds	r21, __llvm_gcov_ctr.12+43
+	lds	r22, __llvm_gcov_ctr.12+44
+	lds	r23, __llvm_gcov_ctr.12+45
+	lds	r30, __llvm_gcov_ctr.12+46
+	lds	r31, __llvm_gcov_ctr.12+47
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.12+47, r31
+	sts	__llvm_gcov_ctr.12+46, r30
+	sts	__llvm_gcov_ctr.12+45, r23
+	sts	__llvm_gcov_ctr.12+44, r22
+	sts	__llvm_gcov_ctr.12+43, r21
+	sts	__llvm_gcov_ctr.12+42, r20
+	sts	__llvm_gcov_ctr.12+41, r19
+	sts	__llvm_gcov_ctr.12+40, r18
 	lds	r18, __profc_strncmp+32
 	lds	r19, __profc_strncmp+33
 	lds	r20, __profc_strncmp+34
@@ -2612,6 +3772,30 @@ strncmp:                                ; @strncmp
 	sts	__profc_strncmp+16, r24
 	rjmp	.LBB12_14
 .LBB12_14:                              ;   in Loop: Header=BB12_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.12+48
+	lds	r25, __llvm_gcov_ctr.12+49
+	lds	r18, __llvm_gcov_ctr.12+50
+	lds	r19, __llvm_gcov_ctr.12+51
+	lds	r20, __llvm_gcov_ctr.12+52
+	lds	r21, __llvm_gcov_ctr.12+53
+	lds	r22, __llvm_gcov_ctr.12+54
+	lds	r23, __llvm_gcov_ctr.12+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.12+55, r23
+	sts	__llvm_gcov_ctr.12+54, r22
+	sts	__llvm_gcov_ctr.12+53, r21
+	sts	__llvm_gcov_ctr.12+52, r20
+	sts	__llvm_gcov_ctr.12+51, r19
+	sts	__llvm_gcov_ctr.12+50, r18
+	sts	__llvm_gcov_ctr.12+49, r25
+	sts	__llvm_gcov_ctr.12+48, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -2662,6 +3846,8 @@ strncmp:                                ; @strncmp
 	.type	swab,@function
 swab:                                   ; @swab
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -2672,6 +3858,30 @@ swab:                                   ; @swab
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.13
+	lds	r19, __llvm_gcov_ctr.13+1
+	lds	r30, __llvm_gcov_ctr.13+2
+	lds	r31, __llvm_gcov_ctr.13+3
+	lds	r26, __llvm_gcov_ctr.13+4
+	lds	r27, __llvm_gcov_ctr.13+5
+	lds	r16, __llvm_gcov_ctr.13+6
+	lds	r17, __llvm_gcov_ctr.13+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.13+7, r17
+	sts	__llvm_gcov_ctr.13+6, r16
+	sts	__llvm_gcov_ctr.13+5, r27
+	sts	__llvm_gcov_ctr.13+4, r26
+	sts	__llvm_gcov_ctr.13+3, r31
+	sts	__llvm_gcov_ctr.13+2, r30
+	sts	__llvm_gcov_ctr.13+1, r19
+	sts	__llvm_gcov_ctr.13, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -2769,6 +3979,30 @@ swab:                                   ; @swab
 	std	Y+3, r24
 	rjmp	.LBB13_3
 .LBB13_3:                               ;   in Loop: Header=BB13_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.13+8
+	lds	r25, __llvm_gcov_ctr.13+9
+	lds	r18, __llvm_gcov_ctr.13+10
+	lds	r19, __llvm_gcov_ctr.13+11
+	lds	r20, __llvm_gcov_ctr.13+12
+	lds	r21, __llvm_gcov_ctr.13+13
+	lds	r22, __llvm_gcov_ctr.13+14
+	lds	r23, __llvm_gcov_ctr.13+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.13+15, r23
+	sts	__llvm_gcov_ctr.13+14, r22
+	sts	__llvm_gcov_ctr.13+13, r21
+	sts	__llvm_gcov_ctr.13+12, r20
+	sts	__llvm_gcov_ctr.13+11, r19
+	sts	__llvm_gcov_ctr.13+10, r18
+	sts	__llvm_gcov_ctr.13+9, r25
+	sts	__llvm_gcov_ctr.13+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 2
@@ -2784,6 +4018,8 @@ swab:                                   ; @swab
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end13:
 	.size	swab, .Lfunc_end13-swab
@@ -2803,6 +4039,30 @@ isalpha:                                ; @isalpha
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.14
+	lds	r19, __llvm_gcov_ctr.14+1
+	lds	r20, __llvm_gcov_ctr.14+2
+	lds	r21, __llvm_gcov_ctr.14+3
+	lds	r22, __llvm_gcov_ctr.14+4
+	lds	r23, __llvm_gcov_ctr.14+5
+	lds	r30, __llvm_gcov_ctr.14+6
+	lds	r31, __llvm_gcov_ctr.14+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.14+7, r31
+	sts	__llvm_gcov_ctr.14+6, r30
+	sts	__llvm_gcov_ctr.14+5, r23
+	sts	__llvm_gcov_ctr.14+4, r22
+	sts	__llvm_gcov_ctr.14+3, r21
+	sts	__llvm_gcov_ctr.14+2, r20
+	sts	__llvm_gcov_ctr.14+1, r19
+	sts	__llvm_gcov_ctr.14, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isalpha
@@ -2878,6 +4138,30 @@ isascii:                                ; @isascii
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.15
+	lds	r19, __llvm_gcov_ctr.15+1
+	lds	r20, __llvm_gcov_ctr.15+2
+	lds	r21, __llvm_gcov_ctr.15+3
+	lds	r22, __llvm_gcov_ctr.15+4
+	lds	r23, __llvm_gcov_ctr.15+5
+	lds	r30, __llvm_gcov_ctr.15+6
+	lds	r31, __llvm_gcov_ctr.15+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.15+7, r31
+	sts	__llvm_gcov_ctr.15+6, r30
+	sts	__llvm_gcov_ctr.15+5, r23
+	sts	__llvm_gcov_ctr.15+4, r22
+	sts	__llvm_gcov_ctr.15+3, r21
+	sts	__llvm_gcov_ctr.15+2, r20
+	sts	__llvm_gcov_ctr.15+1, r19
+	sts	__llvm_gcov_ctr.15, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isascii
@@ -2951,6 +4235,30 @@ isblank:                                ; @isblank
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.16
+	lds	r19, __llvm_gcov_ctr.16+1
+	lds	r20, __llvm_gcov_ctr.16+2
+	lds	r21, __llvm_gcov_ctr.16+3
+	lds	r22, __llvm_gcov_ctr.16+4
+	lds	r23, __llvm_gcov_ctr.16+5
+	lds	r30, __llvm_gcov_ctr.16+6
+	lds	r31, __llvm_gcov_ctr.16+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.16+7, r31
+	sts	__llvm_gcov_ctr.16+6, r30
+	sts	__llvm_gcov_ctr.16+5, r23
+	sts	__llvm_gcov_ctr.16+4, r22
+	sts	__llvm_gcov_ctr.16+3, r21
+	sts	__llvm_gcov_ctr.16+2, r20
+	sts	__llvm_gcov_ctr.16+1, r19
+	sts	__llvm_gcov_ctr.16, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	lds	r24, __profc_isblank
@@ -2988,6 +4296,30 @@ isblank:                                ; @isblank
 	brne	.LBB16_1
 	rjmp	.LBB16_5
 .LBB16_1:
+	lds	r24, __llvm_gcov_ctr.16+8
+	lds	r25, __llvm_gcov_ctr.16+9
+	lds	r18, __llvm_gcov_ctr.16+10
+	lds	r19, __llvm_gcov_ctr.16+11
+	lds	r20, __llvm_gcov_ctr.16+12
+	lds	r21, __llvm_gcov_ctr.16+13
+	lds	r22, __llvm_gcov_ctr.16+14
+	lds	r23, __llvm_gcov_ctr.16+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.16+15, r23
+	sts	__llvm_gcov_ctr.16+14, r22
+	sts	__llvm_gcov_ctr.16+13, r21
+	sts	__llvm_gcov_ctr.16+12, r20
+	sts	__llvm_gcov_ctr.16+11, r19
+	sts	__llvm_gcov_ctr.16+10, r18
+	sts	__llvm_gcov_ctr.16+9, r25
+	sts	__llvm_gcov_ctr.16+8, r24
 	lds	r24, __profc_isblank+8
 	lds	r25, __profc_isblank+9
 	lds	r18, __profc_isblank+10
@@ -3042,6 +4374,30 @@ isblank:                                ; @isblank
 	rjmp	.LBB16_2
 .LBB16_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.16+16
+	lds	r19, __llvm_gcov_ctr.16+17
+	lds	r20, __llvm_gcov_ctr.16+18
+	lds	r21, __llvm_gcov_ctr.16+19
+	lds	r22, __llvm_gcov_ctr.16+20
+	lds	r23, __llvm_gcov_ctr.16+21
+	lds	r30, __llvm_gcov_ctr.16+22
+	lds	r31, __llvm_gcov_ctr.16+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.16+23, r31
+	sts	__llvm_gcov_ctr.16+22, r30
+	sts	__llvm_gcov_ctr.16+21, r23
+	sts	__llvm_gcov_ctr.16+20, r22
+	sts	__llvm_gcov_ctr.16+19, r21
+	sts	__llvm_gcov_ctr.16+18, r20
+	sts	__llvm_gcov_ctr.16+17, r19
+	sts	__llvm_gcov_ctr.16+16, r18
 	lds	r18, __profc_isblank+16
 	lds	r19, __profc_isblank+17
 	lds	r20, __profc_isblank+18
@@ -3101,6 +4457,30 @@ iscntrl:                                ; @iscntrl
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.17
+	lds	r19, __llvm_gcov_ctr.17+1
+	lds	r20, __llvm_gcov_ctr.17+2
+	lds	r21, __llvm_gcov_ctr.17+3
+	lds	r22, __llvm_gcov_ctr.17+4
+	lds	r23, __llvm_gcov_ctr.17+5
+	lds	r30, __llvm_gcov_ctr.17+6
+	lds	r31, __llvm_gcov_ctr.17+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.17+7, r31
+	sts	__llvm_gcov_ctr.17+6, r30
+	sts	__llvm_gcov_ctr.17+5, r23
+	sts	__llvm_gcov_ctr.17+4, r22
+	sts	__llvm_gcov_ctr.17+3, r21
+	sts	__llvm_gcov_ctr.17+2, r20
+	sts	__llvm_gcov_ctr.17+1, r19
+	sts	__llvm_gcov_ctr.17, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	lds	r24, __profc_iscntrl
@@ -3138,6 +4518,30 @@ iscntrl:                                ; @iscntrl
 	brsh	.LBB17_1
 	rjmp	.LBB17_5
 .LBB17_1:
+	lds	r24, __llvm_gcov_ctr.17+8
+	lds	r25, __llvm_gcov_ctr.17+9
+	lds	r18, __llvm_gcov_ctr.17+10
+	lds	r19, __llvm_gcov_ctr.17+11
+	lds	r20, __llvm_gcov_ctr.17+12
+	lds	r21, __llvm_gcov_ctr.17+13
+	lds	r22, __llvm_gcov_ctr.17+14
+	lds	r23, __llvm_gcov_ctr.17+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.17+15, r23
+	sts	__llvm_gcov_ctr.17+14, r22
+	sts	__llvm_gcov_ctr.17+13, r21
+	sts	__llvm_gcov_ctr.17+12, r20
+	sts	__llvm_gcov_ctr.17+11, r19
+	sts	__llvm_gcov_ctr.17+10, r18
+	sts	__llvm_gcov_ctr.17+9, r25
+	sts	__llvm_gcov_ctr.17+8, r24
 	lds	r24, __profc_iscntrl+8
 	lds	r25, __profc_iscntrl+9
 	lds	r18, __profc_iscntrl+10
@@ -3192,6 +4596,30 @@ iscntrl:                                ; @iscntrl
 	rjmp	.LBB17_2
 .LBB17_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.17+16
+	lds	r19, __llvm_gcov_ctr.17+17
+	lds	r20, __llvm_gcov_ctr.17+18
+	lds	r21, __llvm_gcov_ctr.17+19
+	lds	r22, __llvm_gcov_ctr.17+20
+	lds	r23, __llvm_gcov_ctr.17+21
+	lds	r30, __llvm_gcov_ctr.17+22
+	lds	r31, __llvm_gcov_ctr.17+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.17+23, r31
+	sts	__llvm_gcov_ctr.17+22, r30
+	sts	__llvm_gcov_ctr.17+21, r23
+	sts	__llvm_gcov_ctr.17+20, r22
+	sts	__llvm_gcov_ctr.17+19, r21
+	sts	__llvm_gcov_ctr.17+18, r20
+	sts	__llvm_gcov_ctr.17+17, r19
+	sts	__llvm_gcov_ctr.17+16, r18
 	lds	r18, __profc_iscntrl+16
 	lds	r19, __profc_iscntrl+17
 	lds	r20, __profc_iscntrl+18
@@ -3251,6 +4679,30 @@ isdigit:                                ; @isdigit
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.18
+	lds	r19, __llvm_gcov_ctr.18+1
+	lds	r20, __llvm_gcov_ctr.18+2
+	lds	r21, __llvm_gcov_ctr.18+3
+	lds	r22, __llvm_gcov_ctr.18+4
+	lds	r23, __llvm_gcov_ctr.18+5
+	lds	r30, __llvm_gcov_ctr.18+6
+	lds	r31, __llvm_gcov_ctr.18+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.18+7, r31
+	sts	__llvm_gcov_ctr.18+6, r30
+	sts	__llvm_gcov_ctr.18+5, r23
+	sts	__llvm_gcov_ctr.18+4, r22
+	sts	__llvm_gcov_ctr.18+3, r21
+	sts	__llvm_gcov_ctr.18+2, r20
+	sts	__llvm_gcov_ctr.18+1, r19
+	sts	__llvm_gcov_ctr.18, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isdigit
@@ -3324,6 +4776,30 @@ isgraph:                                ; @isgraph
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.19
+	lds	r19, __llvm_gcov_ctr.19+1
+	lds	r20, __llvm_gcov_ctr.19+2
+	lds	r21, __llvm_gcov_ctr.19+3
+	lds	r22, __llvm_gcov_ctr.19+4
+	lds	r23, __llvm_gcov_ctr.19+5
+	lds	r30, __llvm_gcov_ctr.19+6
+	lds	r31, __llvm_gcov_ctr.19+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.19+7, r31
+	sts	__llvm_gcov_ctr.19+6, r30
+	sts	__llvm_gcov_ctr.19+5, r23
+	sts	__llvm_gcov_ctr.19+4, r22
+	sts	__llvm_gcov_ctr.19+3, r21
+	sts	__llvm_gcov_ctr.19+2, r20
+	sts	__llvm_gcov_ctr.19+1, r19
+	sts	__llvm_gcov_ctr.19, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isgraph
@@ -3397,6 +4873,30 @@ islower:                                ; @islower
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.20
+	lds	r19, __llvm_gcov_ctr.20+1
+	lds	r20, __llvm_gcov_ctr.20+2
+	lds	r21, __llvm_gcov_ctr.20+3
+	lds	r22, __llvm_gcov_ctr.20+4
+	lds	r23, __llvm_gcov_ctr.20+5
+	lds	r30, __llvm_gcov_ctr.20+6
+	lds	r31, __llvm_gcov_ctr.20+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.20+7, r31
+	sts	__llvm_gcov_ctr.20+6, r30
+	sts	__llvm_gcov_ctr.20+5, r23
+	sts	__llvm_gcov_ctr.20+4, r22
+	sts	__llvm_gcov_ctr.20+3, r21
+	sts	__llvm_gcov_ctr.20+2, r20
+	sts	__llvm_gcov_ctr.20+1, r19
+	sts	__llvm_gcov_ctr.20, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_islower
@@ -3471,6 +4971,30 @@ isprint:                                ; @isprint
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.21
+	lds	r19, __llvm_gcov_ctr.21+1
+	lds	r20, __llvm_gcov_ctr.21+2
+	lds	r21, __llvm_gcov_ctr.21+3
+	lds	r22, __llvm_gcov_ctr.21+4
+	lds	r23, __llvm_gcov_ctr.21+5
+	lds	r30, __llvm_gcov_ctr.21+6
+	lds	r31, __llvm_gcov_ctr.21+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.21+7, r31
+	sts	__llvm_gcov_ctr.21+6, r30
+	sts	__llvm_gcov_ctr.21+5, r23
+	sts	__llvm_gcov_ctr.21+4, r22
+	sts	__llvm_gcov_ctr.21+3, r21
+	sts	__llvm_gcov_ctr.21+2, r20
+	sts	__llvm_gcov_ctr.21+1, r19
+	sts	__llvm_gcov_ctr.21, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isprint
@@ -3544,6 +5068,30 @@ isspace:                                ; @isspace
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.22
+	lds	r19, __llvm_gcov_ctr.22+1
+	lds	r20, __llvm_gcov_ctr.22+2
+	lds	r21, __llvm_gcov_ctr.22+3
+	lds	r22, __llvm_gcov_ctr.22+4
+	lds	r23, __llvm_gcov_ctr.22+5
+	lds	r30, __llvm_gcov_ctr.22+6
+	lds	r31, __llvm_gcov_ctr.22+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.22+7, r31
+	sts	__llvm_gcov_ctr.22+6, r30
+	sts	__llvm_gcov_ctr.22+5, r23
+	sts	__llvm_gcov_ctr.22+4, r22
+	sts	__llvm_gcov_ctr.22+3, r21
+	sts	__llvm_gcov_ctr.22+2, r20
+	sts	__llvm_gcov_ctr.22+1, r19
+	sts	__llvm_gcov_ctr.22, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	lds	r24, __profc_isspace
@@ -3581,6 +5129,30 @@ isspace:                                ; @isspace
 	brne	.LBB22_1
 	rjmp	.LBB22_5
 .LBB22_1:
+	lds	r24, __llvm_gcov_ctr.22+8
+	lds	r25, __llvm_gcov_ctr.22+9
+	lds	r18, __llvm_gcov_ctr.22+10
+	lds	r19, __llvm_gcov_ctr.22+11
+	lds	r20, __llvm_gcov_ctr.22+12
+	lds	r21, __llvm_gcov_ctr.22+13
+	lds	r22, __llvm_gcov_ctr.22+14
+	lds	r23, __llvm_gcov_ctr.22+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.22+15, r23
+	sts	__llvm_gcov_ctr.22+14, r22
+	sts	__llvm_gcov_ctr.22+13, r21
+	sts	__llvm_gcov_ctr.22+12, r20
+	sts	__llvm_gcov_ctr.22+11, r19
+	sts	__llvm_gcov_ctr.22+10, r18
+	sts	__llvm_gcov_ctr.22+9, r25
+	sts	__llvm_gcov_ctr.22+8, r24
 	lds	r24, __profc_isspace+8
 	lds	r25, __profc_isspace+9
 	lds	r18, __profc_isspace+10
@@ -3636,6 +5208,30 @@ isspace:                                ; @isspace
 	rjmp	.LBB22_2
 .LBB22_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.22+16
+	lds	r19, __llvm_gcov_ctr.22+17
+	lds	r20, __llvm_gcov_ctr.22+18
+	lds	r21, __llvm_gcov_ctr.22+19
+	lds	r22, __llvm_gcov_ctr.22+20
+	lds	r23, __llvm_gcov_ctr.22+21
+	lds	r30, __llvm_gcov_ctr.22+22
+	lds	r31, __llvm_gcov_ctr.22+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.22+23, r31
+	sts	__llvm_gcov_ctr.22+22, r30
+	sts	__llvm_gcov_ctr.22+21, r23
+	sts	__llvm_gcov_ctr.22+20, r22
+	sts	__llvm_gcov_ctr.22+19, r21
+	sts	__llvm_gcov_ctr.22+18, r20
+	sts	__llvm_gcov_ctr.22+17, r19
+	sts	__llvm_gcov_ctr.22+16, r18
 	lds	r18, __profc_isspace+16
 	lds	r19, __profc_isspace+17
 	lds	r20, __profc_isspace+18
@@ -3695,6 +5291,30 @@ isupper:                                ; @isupper
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.23
+	lds	r19, __llvm_gcov_ctr.23+1
+	lds	r20, __llvm_gcov_ctr.23+2
+	lds	r21, __llvm_gcov_ctr.23+3
+	lds	r22, __llvm_gcov_ctr.23+4
+	lds	r23, __llvm_gcov_ctr.23+5
+	lds	r30, __llvm_gcov_ctr.23+6
+	lds	r31, __llvm_gcov_ctr.23+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.23+7, r31
+	sts	__llvm_gcov_ctr.23+6, r30
+	sts	__llvm_gcov_ctr.23+5, r23
+	sts	__llvm_gcov_ctr.23+4, r22
+	sts	__llvm_gcov_ctr.23+3, r21
+	sts	__llvm_gcov_ctr.23+2, r20
+	sts	__llvm_gcov_ctr.23+1, r19
+	sts	__llvm_gcov_ctr.23, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_isupper
@@ -3769,6 +5389,30 @@ iswcntrl:                               ; @iswcntrl
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.24
+	lds	r19, __llvm_gcov_ctr.24+1
+	lds	r20, __llvm_gcov_ctr.24+2
+	lds	r21, __llvm_gcov_ctr.24+3
+	lds	r22, __llvm_gcov_ctr.24+4
+	lds	r23, __llvm_gcov_ctr.24+5
+	lds	r30, __llvm_gcov_ctr.24+6
+	lds	r31, __llvm_gcov_ctr.24+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.24+7, r31
+	sts	__llvm_gcov_ctr.24+6, r30
+	sts	__llvm_gcov_ctr.24+5, r23
+	sts	__llvm_gcov_ctr.24+4, r22
+	sts	__llvm_gcov_ctr.24+3, r21
+	sts	__llvm_gcov_ctr.24+2, r20
+	sts	__llvm_gcov_ctr.24+1, r19
+	sts	__llvm_gcov_ctr.24, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	lds	r24, __profc_iswcntrl
@@ -3806,6 +5450,30 @@ iswcntrl:                               ; @iswcntrl
 	brsh	.LBB24_1
 	rjmp	.LBB24_9
 .LBB24_1:
+	lds	r24, __llvm_gcov_ctr.24+8
+	lds	r25, __llvm_gcov_ctr.24+9
+	lds	r18, __llvm_gcov_ctr.24+10
+	lds	r19, __llvm_gcov_ctr.24+11
+	lds	r20, __llvm_gcov_ctr.24+12
+	lds	r21, __llvm_gcov_ctr.24+13
+	lds	r22, __llvm_gcov_ctr.24+14
+	lds	r23, __llvm_gcov_ctr.24+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.24+15, r23
+	sts	__llvm_gcov_ctr.24+14, r22
+	sts	__llvm_gcov_ctr.24+13, r21
+	sts	__llvm_gcov_ctr.24+12, r20
+	sts	__llvm_gcov_ctr.24+11, r19
+	sts	__llvm_gcov_ctr.24+10, r18
+	sts	__llvm_gcov_ctr.24+9, r25
+	sts	__llvm_gcov_ctr.24+8, r24
 	lds	r24, __profc_iswcntrl+40
 	lds	r25, __profc_iswcntrl+41
 	lds	r18, __profc_iswcntrl+42
@@ -3843,6 +5511,30 @@ iswcntrl:                               ; @iswcntrl
 	brsh	.LBB24_2
 	rjmp	.LBB24_9
 .LBB24_2:
+	lds	r24, __llvm_gcov_ctr.24+16
+	lds	r25, __llvm_gcov_ctr.24+17
+	lds	r18, __llvm_gcov_ctr.24+18
+	lds	r19, __llvm_gcov_ctr.24+19
+	lds	r20, __llvm_gcov_ctr.24+20
+	lds	r21, __llvm_gcov_ctr.24+21
+	lds	r22, __llvm_gcov_ctr.24+22
+	lds	r23, __llvm_gcov_ctr.24+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.24+23, r23
+	sts	__llvm_gcov_ctr.24+22, r22
+	sts	__llvm_gcov_ctr.24+21, r21
+	sts	__llvm_gcov_ctr.24+20, r20
+	sts	__llvm_gcov_ctr.24+19, r19
+	sts	__llvm_gcov_ctr.24+18, r18
+	sts	__llvm_gcov_ctr.24+17, r25
+	sts	__llvm_gcov_ctr.24+16, r24
 	lds	r24, __profc_iswcntrl+48
 	lds	r25, __profc_iswcntrl+49
 	lds	r18, __profc_iswcntrl+50
@@ -3906,6 +5598,30 @@ iswcntrl:                               ; @iswcntrl
 	brsh	.LBB24_4
 	rjmp	.LBB24_9
 .LBB24_4:
+	lds	r24, __llvm_gcov_ctr.24+24
+	lds	r25, __llvm_gcov_ctr.24+25
+	lds	r18, __llvm_gcov_ctr.24+26
+	lds	r19, __llvm_gcov_ctr.24+27
+	lds	r20, __llvm_gcov_ctr.24+28
+	lds	r21, __llvm_gcov_ctr.24+29
+	lds	r22, __llvm_gcov_ctr.24+30
+	lds	r23, __llvm_gcov_ctr.24+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.24+31, r23
+	sts	__llvm_gcov_ctr.24+30, r22
+	sts	__llvm_gcov_ctr.24+29, r21
+	sts	__llvm_gcov_ctr.24+28, r20
+	sts	__llvm_gcov_ctr.24+27, r19
+	sts	__llvm_gcov_ctr.24+26, r18
+	sts	__llvm_gcov_ctr.24+25, r25
+	sts	__llvm_gcov_ctr.24+24, r24
 	lds	r24, __profc_iswcntrl+32
 	lds	r25, __profc_iswcntrl+33
 	lds	r18, __profc_iswcntrl+34
@@ -3987,6 +5703,30 @@ iswcntrl:                               ; @iswcntrl
 	rjmp	.LBB24_6
 .LBB24_8:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.24+32
+	lds	r19, __llvm_gcov_ctr.24+33
+	lds	r20, __llvm_gcov_ctr.24+34
+	lds	r21, __llvm_gcov_ctr.24+35
+	lds	r22, __llvm_gcov_ctr.24+36
+	lds	r23, __llvm_gcov_ctr.24+37
+	lds	r30, __llvm_gcov_ctr.24+38
+	lds	r31, __llvm_gcov_ctr.24+39
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.24+39, r31
+	sts	__llvm_gcov_ctr.24+38, r30
+	sts	__llvm_gcov_ctr.24+37, r23
+	sts	__llvm_gcov_ctr.24+36, r22
+	sts	__llvm_gcov_ctr.24+35, r21
+	sts	__llvm_gcov_ctr.24+34, r20
+	sts	__llvm_gcov_ctr.24+33, r19
+	sts	__llvm_gcov_ctr.24+32, r18
 	lds	r18, __profc_iswcntrl+16
 	lds	r19, __profc_iswcntrl+17
 	lds	r20, __profc_iswcntrl+18
@@ -4046,6 +5786,30 @@ iswdigit:                               ; @iswdigit
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.25
+	lds	r19, __llvm_gcov_ctr.25+1
+	lds	r20, __llvm_gcov_ctr.25+2
+	lds	r21, __llvm_gcov_ctr.25+3
+	lds	r22, __llvm_gcov_ctr.25+4
+	lds	r23, __llvm_gcov_ctr.25+5
+	lds	r30, __llvm_gcov_ctr.25+6
+	lds	r31, __llvm_gcov_ctr.25+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.25+7, r31
+	sts	__llvm_gcov_ctr.25+6, r30
+	sts	__llvm_gcov_ctr.25+5, r23
+	sts	__llvm_gcov_ctr.25+4, r22
+	sts	__llvm_gcov_ctr.25+3, r21
+	sts	__llvm_gcov_ctr.25+2, r20
+	sts	__llvm_gcov_ctr.25+1, r19
+	sts	__llvm_gcov_ctr.25, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_iswdigit
@@ -4154,6 +5918,30 @@ iswprint:                               ; @iswprint
 	brlo	.LBB26_1
 	rjmp	.LBB26_4
 .LBB26_1:
+	lds	r24, __llvm_gcov_ctr.26
+	lds	r25, __llvm_gcov_ctr.26+1
+	lds	r18, __llvm_gcov_ctr.26+2
+	lds	r19, __llvm_gcov_ctr.26+3
+	lds	r20, __llvm_gcov_ctr.26+4
+	lds	r21, __llvm_gcov_ctr.26+5
+	lds	r22, __llvm_gcov_ctr.26+6
+	lds	r23, __llvm_gcov_ctr.26+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+7, r23
+	sts	__llvm_gcov_ctr.26+6, r22
+	sts	__llvm_gcov_ctr.26+5, r21
+	sts	__llvm_gcov_ctr.26+4, r20
+	sts	__llvm_gcov_ctr.26+3, r19
+	sts	__llvm_gcov_ctr.26+2, r18
+	sts	__llvm_gcov_ctr.26+1, r25
+	sts	__llvm_gcov_ctr.26, r24
 	lds	r24, __profc_iswprint+8
 	lds	r25, __profc_iswprint+9
 	lds	r18, __profc_iswprint+10
@@ -4214,6 +6002,30 @@ iswprint:                               ; @iswprint
 	brsh	.LBB26_5
 	rjmp	.LBB26_9
 .LBB26_5:
+	lds	r24, __llvm_gcov_ctr.26+8
+	lds	r25, __llvm_gcov_ctr.26+9
+	lds	r18, __llvm_gcov_ctr.26+10
+	lds	r19, __llvm_gcov_ctr.26+11
+	lds	r20, __llvm_gcov_ctr.26+12
+	lds	r21, __llvm_gcov_ctr.26+13
+	lds	r22, __llvm_gcov_ctr.26+14
+	lds	r23, __llvm_gcov_ctr.26+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+15, r23
+	sts	__llvm_gcov_ctr.26+14, r22
+	sts	__llvm_gcov_ctr.26+13, r21
+	sts	__llvm_gcov_ctr.26+12, r20
+	sts	__llvm_gcov_ctr.26+11, r19
+	sts	__llvm_gcov_ctr.26+10, r18
+	sts	__llvm_gcov_ctr.26+9, r25
+	sts	__llvm_gcov_ctr.26+8, r24
 	lds	r24, __profc_iswprint+40
 	lds	r25, __profc_iswprint+41
 	lds	r18, __profc_iswprint+42
@@ -4250,6 +6062,30 @@ iswprint:                               ; @iswprint
 	brsh	.LBB26_6
 	rjmp	.LBB26_9
 .LBB26_6:
+	lds	r24, __llvm_gcov_ctr.26+16
+	lds	r25, __llvm_gcov_ctr.26+17
+	lds	r18, __llvm_gcov_ctr.26+18
+	lds	r19, __llvm_gcov_ctr.26+19
+	lds	r20, __llvm_gcov_ctr.26+20
+	lds	r21, __llvm_gcov_ctr.26+21
+	lds	r22, __llvm_gcov_ctr.26+22
+	lds	r23, __llvm_gcov_ctr.26+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+23, r23
+	sts	__llvm_gcov_ctr.26+22, r22
+	sts	__llvm_gcov_ctr.26+21, r21
+	sts	__llvm_gcov_ctr.26+20, r20
+	sts	__llvm_gcov_ctr.26+19, r19
+	sts	__llvm_gcov_ctr.26+18, r18
+	sts	__llvm_gcov_ctr.26+17, r25
+	sts	__llvm_gcov_ctr.26+16, r24
 	lds	r24, __profc_iswprint+48
 	lds	r25, __profc_iswprint+49
 	lds	r18, __profc_iswprint+50
@@ -4338,6 +6174,30 @@ iswprint:                               ; @iswprint
 	sts	__profc_iswprint+32, r24
 	rjmp	.LBB26_10
 .LBB26_9:
+	lds	r24, __llvm_gcov_ctr.26+24
+	lds	r25, __llvm_gcov_ctr.26+25
+	lds	r18, __llvm_gcov_ctr.26+26
+	lds	r19, __llvm_gcov_ctr.26+27
+	lds	r20, __llvm_gcov_ctr.26+28
+	lds	r21, __llvm_gcov_ctr.26+29
+	lds	r22, __llvm_gcov_ctr.26+30
+	lds	r23, __llvm_gcov_ctr.26+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+31, r23
+	sts	__llvm_gcov_ctr.26+30, r22
+	sts	__llvm_gcov_ctr.26+29, r21
+	sts	__llvm_gcov_ctr.26+28, r20
+	sts	__llvm_gcov_ctr.26+27, r19
+	sts	__llvm_gcov_ctr.26+26, r18
+	sts	__llvm_gcov_ctr.26+25, r25
+	sts	__llvm_gcov_ctr.26+24, r24
 	lds	r24, __profc_iswprint+16
 	lds	r25, __profc_iswprint+17
 	lds	r18, __profc_iswprint+18
@@ -4373,6 +6233,30 @@ iswprint:                               ; @iswprint
 	breq	.LBB26_11
 	rjmp	.LBB26_13
 .LBB26_11:
+	lds	r24, __llvm_gcov_ctr.26+32
+	lds	r25, __llvm_gcov_ctr.26+33
+	lds	r18, __llvm_gcov_ctr.26+34
+	lds	r19, __llvm_gcov_ctr.26+35
+	lds	r20, __llvm_gcov_ctr.26+36
+	lds	r21, __llvm_gcov_ctr.26+37
+	lds	r22, __llvm_gcov_ctr.26+38
+	lds	r23, __llvm_gcov_ctr.26+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+39, r23
+	sts	__llvm_gcov_ctr.26+38, r22
+	sts	__llvm_gcov_ctr.26+37, r21
+	sts	__llvm_gcov_ctr.26+36, r20
+	sts	__llvm_gcov_ctr.26+35, r19
+	sts	__llvm_gcov_ctr.26+34, r18
+	sts	__llvm_gcov_ctr.26+33, r25
+	sts	__llvm_gcov_ctr.26+32, r24
 	lds	r24, __profc_iswprint+64
 	lds	r25, __profc_iswprint+65
 	lds	r18, __profc_iswprint+66
@@ -4434,6 +6318,30 @@ iswprint:                               ; @iswprint
 	sts	__profc_iswprint+72, r24
 	rjmp	.LBB26_14
 .LBB26_13:
+	lds	r24, __llvm_gcov_ctr.26+40
+	lds	r25, __llvm_gcov_ctr.26+41
+	lds	r18, __llvm_gcov_ctr.26+42
+	lds	r19, __llvm_gcov_ctr.26+43
+	lds	r20, __llvm_gcov_ctr.26+44
+	lds	r21, __llvm_gcov_ctr.26+45
+	lds	r22, __llvm_gcov_ctr.26+46
+	lds	r23, __llvm_gcov_ctr.26+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+47, r23
+	sts	__llvm_gcov_ctr.26+46, r22
+	sts	__llvm_gcov_ctr.26+45, r21
+	sts	__llvm_gcov_ctr.26+44, r20
+	sts	__llvm_gcov_ctr.26+43, r19
+	sts	__llvm_gcov_ctr.26+42, r18
+	sts	__llvm_gcov_ctr.26+41, r25
+	sts	__llvm_gcov_ctr.26+40, r24
 	lds	r24, __profc_iswprint+56
 	lds	r25, __profc_iswprint+57
 	lds	r18, __profc_iswprint+58
@@ -4464,6 +6372,30 @@ iswprint:                               ; @iswprint
 	std	Y+5, r24
 	rjmp	.LBB26_15
 .LBB26_14:
+	lds	r24, __llvm_gcov_ctr.26+48
+	lds	r25, __llvm_gcov_ctr.26+49
+	lds	r18, __llvm_gcov_ctr.26+50
+	lds	r19, __llvm_gcov_ctr.26+51
+	lds	r20, __llvm_gcov_ctr.26+52
+	lds	r21, __llvm_gcov_ctr.26+53
+	lds	r22, __llvm_gcov_ctr.26+54
+	lds	r23, __llvm_gcov_ctr.26+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.26+55, r23
+	sts	__llvm_gcov_ctr.26+54, r22
+	sts	__llvm_gcov_ctr.26+53, r21
+	sts	__llvm_gcov_ctr.26+52, r20
+	sts	__llvm_gcov_ctr.26+51, r19
+	sts	__llvm_gcov_ctr.26+50, r18
+	sts	__llvm_gcov_ctr.26+49, r25
+	sts	__llvm_gcov_ctr.26+48, r24
 	ldi	r24, 1
 	ldi	r25, 0
 	std	Y+6, r25
@@ -4499,6 +6431,30 @@ iswxdigit:                              ; @iswxdigit
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.27
+	lds	r19, __llvm_gcov_ctr.27+1
+	lds	r20, __llvm_gcov_ctr.27+2
+	lds	r21, __llvm_gcov_ctr.27+3
+	lds	r22, __llvm_gcov_ctr.27+4
+	lds	r23, __llvm_gcov_ctr.27+5
+	lds	r30, __llvm_gcov_ctr.27+6
+	lds	r31, __llvm_gcov_ctr.27+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.27+7, r31
+	sts	__llvm_gcov_ctr.27+6, r30
+	sts	__llvm_gcov_ctr.27+5, r23
+	sts	__llvm_gcov_ctr.27+4, r22
+	sts	__llvm_gcov_ctr.27+3, r21
+	sts	__llvm_gcov_ctr.27+2, r20
+	sts	__llvm_gcov_ctr.27+1, r19
+	sts	__llvm_gcov_ctr.27, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	lds	r24, __profc_iswxdigit
@@ -4537,6 +6493,30 @@ iswxdigit:                              ; @iswxdigit
 	brsh	.LBB27_1
 	rjmp	.LBB27_5
 .LBB27_1:
+	lds	r24, __llvm_gcov_ctr.27+8
+	lds	r25, __llvm_gcov_ctr.27+9
+	lds	r18, __llvm_gcov_ctr.27+10
+	lds	r19, __llvm_gcov_ctr.27+11
+	lds	r20, __llvm_gcov_ctr.27+12
+	lds	r21, __llvm_gcov_ctr.27+13
+	lds	r22, __llvm_gcov_ctr.27+14
+	lds	r23, __llvm_gcov_ctr.27+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.27+15, r23
+	sts	__llvm_gcov_ctr.27+14, r22
+	sts	__llvm_gcov_ctr.27+13, r21
+	sts	__llvm_gcov_ctr.27+12, r20
+	sts	__llvm_gcov_ctr.27+11, r19
+	sts	__llvm_gcov_ctr.27+10, r18
+	sts	__llvm_gcov_ctr.27+9, r25
+	sts	__llvm_gcov_ctr.27+8, r24
 	lds	r24, __profc_iswxdigit+8
 	lds	r25, __profc_iswxdigit+9
 	lds	r18, __profc_iswxdigit+10
@@ -4594,6 +6574,30 @@ iswxdigit:                              ; @iswxdigit
 	rjmp	.LBB27_2
 .LBB27_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.27+16
+	lds	r19, __llvm_gcov_ctr.27+17
+	lds	r20, __llvm_gcov_ctr.27+18
+	lds	r21, __llvm_gcov_ctr.27+19
+	lds	r22, __llvm_gcov_ctr.27+20
+	lds	r23, __llvm_gcov_ctr.27+21
+	lds	r30, __llvm_gcov_ctr.27+22
+	lds	r31, __llvm_gcov_ctr.27+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.27+23, r31
+	sts	__llvm_gcov_ctr.27+22, r30
+	sts	__llvm_gcov_ctr.27+21, r23
+	sts	__llvm_gcov_ctr.27+20, r22
+	sts	__llvm_gcov_ctr.27+19, r21
+	sts	__llvm_gcov_ctr.27+18, r20
+	sts	__llvm_gcov_ctr.27+17, r19
+	sts	__llvm_gcov_ctr.27+16, r18
 	lds	r18, __profc_iswxdigit+16
 	lds	r19, __profc_iswxdigit+17
 	lds	r20, __profc_iswxdigit+18
@@ -4653,6 +6657,30 @@ toascii:                                ; @toascii
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.28
+	lds	r19, __llvm_gcov_ctr.28+1
+	lds	r20, __llvm_gcov_ctr.28+2
+	lds	r21, __llvm_gcov_ctr.28+3
+	lds	r22, __llvm_gcov_ctr.28+4
+	lds	r23, __llvm_gcov_ctr.28+5
+	lds	r30, __llvm_gcov_ctr.28+6
+	lds	r31, __llvm_gcov_ctr.28+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.28+7, r31
+	sts	__llvm_gcov_ctr.28+6, r30
+	sts	__llvm_gcov_ctr.28+5, r23
+	sts	__llvm_gcov_ctr.28+4, r22
+	sts	__llvm_gcov_ctr.28+3, r21
+	sts	__llvm_gcov_ctr.28+2, r20
+	sts	__llvm_gcov_ctr.28+1, r19
+	sts	__llvm_gcov_ctr.28, r18
 	std	Y+2, r25
 	std	Y+1, r24
 	lds	r24, __profc_toascii
@@ -4776,6 +6804,30 @@ fdim:                                   ; @fdim
 	std	Y+8, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB29_1
 .LBB29_3:
+	lds	r24, __llvm_gcov_ctr.29
+	lds	r25, __llvm_gcov_ctr.29+1
+	lds	r18, __llvm_gcov_ctr.29+2
+	lds	r19, __llvm_gcov_ctr.29+3
+	lds	r20, __llvm_gcov_ctr.29+4
+	lds	r21, __llvm_gcov_ctr.29+5
+	lds	r22, __llvm_gcov_ctr.29+6
+	lds	r23, __llvm_gcov_ctr.29+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.29+7, r23
+	sts	__llvm_gcov_ctr.29+6, r22
+	sts	__llvm_gcov_ctr.29+5, r21
+	sts	__llvm_gcov_ctr.29+4, r20
+	sts	__llvm_gcov_ctr.29+3, r19
+	sts	__llvm_gcov_ctr.29+2, r18
+	sts	__llvm_gcov_ctr.29+1, r25
+	sts	__llvm_gcov_ctr.29, r24
 	lds	r24, __profc_fdim+8
 	lds	r25, __profc_fdim+9
 	lds	r18, __profc_fdim+10
@@ -4840,6 +6892,30 @@ fdim:                                   ; @fdim
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB29_5
 .LBB29_7:
+	lds	r24, __llvm_gcov_ctr.29+8
+	lds	r25, __llvm_gcov_ctr.29+9
+	lds	r18, __llvm_gcov_ctr.29+10
+	lds	r19, __llvm_gcov_ctr.29+11
+	lds	r20, __llvm_gcov_ctr.29+12
+	lds	r21, __llvm_gcov_ctr.29+13
+	lds	r22, __llvm_gcov_ctr.29+14
+	lds	r23, __llvm_gcov_ctr.29+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.29+15, r23
+	sts	__llvm_gcov_ctr.29+14, r22
+	sts	__llvm_gcov_ctr.29+13, r21
+	sts	__llvm_gcov_ctr.29+12, r20
+	sts	__llvm_gcov_ctr.29+11, r19
+	sts	__llvm_gcov_ctr.29+10, r18
+	sts	__llvm_gcov_ctr.29+9, r25
+	sts	__llvm_gcov_ctr.29+8, r24
 	lds	r24, __profc_fdim+16
 	lds	r25, __profc_fdim+17
 	lds	r18, __profc_fdim+18
@@ -4889,6 +6965,30 @@ fdim:                                   ; @fdim
 	brlt	.LBB29_9
 	rjmp	.LBB29_10
 .LBB29_9:
+	lds	r24, __llvm_gcov_ctr.29+16
+	lds	r25, __llvm_gcov_ctr.29+17
+	lds	r18, __llvm_gcov_ctr.29+18
+	lds	r19, __llvm_gcov_ctr.29+19
+	lds	r20, __llvm_gcov_ctr.29+20
+	lds	r21, __llvm_gcov_ctr.29+21
+	lds	r22, __llvm_gcov_ctr.29+22
+	lds	r23, __llvm_gcov_ctr.29+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.29+23, r23
+	sts	__llvm_gcov_ctr.29+22, r22
+	sts	__llvm_gcov_ctr.29+21, r21
+	sts	__llvm_gcov_ctr.29+20, r20
+	sts	__llvm_gcov_ctr.29+19, r19
+	sts	__llvm_gcov_ctr.29+18, r18
+	sts	__llvm_gcov_ctr.29+17, r25
+	sts	__llvm_gcov_ctr.29+16, r24
 	lds	r24, __profc_fdim+24
 	lds	r25, __profc_fdim+25
 	lds	r18, __profc_fdim+26
@@ -4928,6 +7028,30 @@ fdim:                                   ; @fdim
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB29_11
 .LBB29_10:
+	lds	r24, __llvm_gcov_ctr.29+24
+	lds	r25, __llvm_gcov_ctr.29+25
+	lds	r18, __llvm_gcov_ctr.29+26
+	lds	r19, __llvm_gcov_ctr.29+27
+	lds	r20, __llvm_gcov_ctr.29+28
+	lds	r21, __llvm_gcov_ctr.29+29
+	lds	r22, __llvm_gcov_ctr.29+30
+	lds	r23, __llvm_gcov_ctr.29+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.29+31, r23
+	sts	__llvm_gcov_ctr.29+30, r22
+	sts	__llvm_gcov_ctr.29+29, r21
+	sts	__llvm_gcov_ctr.29+28, r20
+	sts	__llvm_gcov_ctr.29+27, r19
+	sts	__llvm_gcov_ctr.29+26, r18
+	sts	__llvm_gcov_ctr.29+25, r25
+	sts	__llvm_gcov_ctr.29+24, r24
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -5045,6 +7169,30 @@ fdimf:                                  ; @fdimf
 	std	Y+8, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB30_1
 .LBB30_3:
+	lds	r24, __llvm_gcov_ctr.30
+	lds	r25, __llvm_gcov_ctr.30+1
+	lds	r18, __llvm_gcov_ctr.30+2
+	lds	r19, __llvm_gcov_ctr.30+3
+	lds	r20, __llvm_gcov_ctr.30+4
+	lds	r21, __llvm_gcov_ctr.30+5
+	lds	r22, __llvm_gcov_ctr.30+6
+	lds	r23, __llvm_gcov_ctr.30+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.30+7, r23
+	sts	__llvm_gcov_ctr.30+6, r22
+	sts	__llvm_gcov_ctr.30+5, r21
+	sts	__llvm_gcov_ctr.30+4, r20
+	sts	__llvm_gcov_ctr.30+3, r19
+	sts	__llvm_gcov_ctr.30+2, r18
+	sts	__llvm_gcov_ctr.30+1, r25
+	sts	__llvm_gcov_ctr.30, r24
 	lds	r24, __profc_fdimf+8
 	lds	r25, __profc_fdimf+9
 	lds	r18, __profc_fdimf+10
@@ -5109,6 +7257,30 @@ fdimf:                                  ; @fdimf
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB30_5
 .LBB30_7:
+	lds	r24, __llvm_gcov_ctr.30+8
+	lds	r25, __llvm_gcov_ctr.30+9
+	lds	r18, __llvm_gcov_ctr.30+10
+	lds	r19, __llvm_gcov_ctr.30+11
+	lds	r20, __llvm_gcov_ctr.30+12
+	lds	r21, __llvm_gcov_ctr.30+13
+	lds	r22, __llvm_gcov_ctr.30+14
+	lds	r23, __llvm_gcov_ctr.30+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.30+15, r23
+	sts	__llvm_gcov_ctr.30+14, r22
+	sts	__llvm_gcov_ctr.30+13, r21
+	sts	__llvm_gcov_ctr.30+12, r20
+	sts	__llvm_gcov_ctr.30+11, r19
+	sts	__llvm_gcov_ctr.30+10, r18
+	sts	__llvm_gcov_ctr.30+9, r25
+	sts	__llvm_gcov_ctr.30+8, r24
 	lds	r24, __profc_fdimf+16
 	lds	r25, __profc_fdimf+17
 	lds	r18, __profc_fdimf+18
@@ -5158,6 +7330,30 @@ fdimf:                                  ; @fdimf
 	brlt	.LBB30_9
 	rjmp	.LBB30_10
 .LBB30_9:
+	lds	r24, __llvm_gcov_ctr.30+16
+	lds	r25, __llvm_gcov_ctr.30+17
+	lds	r18, __llvm_gcov_ctr.30+18
+	lds	r19, __llvm_gcov_ctr.30+19
+	lds	r20, __llvm_gcov_ctr.30+20
+	lds	r21, __llvm_gcov_ctr.30+21
+	lds	r22, __llvm_gcov_ctr.30+22
+	lds	r23, __llvm_gcov_ctr.30+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.30+23, r23
+	sts	__llvm_gcov_ctr.30+22, r22
+	sts	__llvm_gcov_ctr.30+21, r21
+	sts	__llvm_gcov_ctr.30+20, r20
+	sts	__llvm_gcov_ctr.30+19, r19
+	sts	__llvm_gcov_ctr.30+18, r18
+	sts	__llvm_gcov_ctr.30+17, r25
+	sts	__llvm_gcov_ctr.30+16, r24
 	lds	r24, __profc_fdimf+24
 	lds	r25, __profc_fdimf+25
 	lds	r18, __profc_fdimf+26
@@ -5197,6 +7393,30 @@ fdimf:                                  ; @fdimf
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB30_11
 .LBB30_10:
+	lds	r24, __llvm_gcov_ctr.30+24
+	lds	r25, __llvm_gcov_ctr.30+25
+	lds	r18, __llvm_gcov_ctr.30+26
+	lds	r19, __llvm_gcov_ctr.30+27
+	lds	r20, __llvm_gcov_ctr.30+28
+	lds	r21, __llvm_gcov_ctr.30+29
+	lds	r22, __llvm_gcov_ctr.30+30
+	lds	r23, __llvm_gcov_ctr.30+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.30+31, r23
+	sts	__llvm_gcov_ctr.30+30, r22
+	sts	__llvm_gcov_ctr.30+29, r21
+	sts	__llvm_gcov_ctr.30+28, r20
+	sts	__llvm_gcov_ctr.30+27, r19
+	sts	__llvm_gcov_ctr.30+26, r18
+	sts	__llvm_gcov_ctr.30+25, r25
+	sts	__llvm_gcov_ctr.30+24, r24
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -5314,6 +7534,30 @@ fmax:                                   ; @fmax
 	std	Y+16, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB31_1
 .LBB31_3:
+	lds	r24, __llvm_gcov_ctr.31
+	lds	r25, __llvm_gcov_ctr.31+1
+	lds	r18, __llvm_gcov_ctr.31+2
+	lds	r19, __llvm_gcov_ctr.31+3
+	lds	r20, __llvm_gcov_ctr.31+4
+	lds	r21, __llvm_gcov_ctr.31+5
+	lds	r22, __llvm_gcov_ctr.31+6
+	lds	r23, __llvm_gcov_ctr.31+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+7, r23
+	sts	__llvm_gcov_ctr.31+6, r22
+	sts	__llvm_gcov_ctr.31+5, r21
+	sts	__llvm_gcov_ctr.31+4, r20
+	sts	__llvm_gcov_ctr.31+3, r19
+	sts	__llvm_gcov_ctr.31+2, r18
+	sts	__llvm_gcov_ctr.31+1, r25
+	sts	__llvm_gcov_ctr.31, r24
 	lds	r24, __profc_fmax+8
 	lds	r25, __profc_fmax+9
 	lds	r18, __profc_fmax+10
@@ -5378,6 +7622,30 @@ fmax:                                   ; @fmax
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB31_5
 .LBB31_7:
+	lds	r24, __llvm_gcov_ctr.31+8
+	lds	r25, __llvm_gcov_ctr.31+9
+	lds	r18, __llvm_gcov_ctr.31+10
+	lds	r19, __llvm_gcov_ctr.31+11
+	lds	r20, __llvm_gcov_ctr.31+12
+	lds	r21, __llvm_gcov_ctr.31+13
+	lds	r22, __llvm_gcov_ctr.31+14
+	lds	r23, __llvm_gcov_ctr.31+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+15, r23
+	sts	__llvm_gcov_ctr.31+14, r22
+	sts	__llvm_gcov_ctr.31+13, r21
+	sts	__llvm_gcov_ctr.31+12, r20
+	sts	__llvm_gcov_ctr.31+11, r19
+	sts	__llvm_gcov_ctr.31+10, r18
+	sts	__llvm_gcov_ctr.31+9, r25
+	sts	__llvm_gcov_ctr.31+8, r24
 	lds	r24, __profc_fmax+16
 	lds	r25, __profc_fmax+17
 	lds	r18, __profc_fmax+18
@@ -5490,6 +7758,30 @@ fmax:                                   ; @fmax
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB31_10
 .LBB31_12:
+	lds	r24, __llvm_gcov_ctr.31+16
+	lds	r25, __llvm_gcov_ctr.31+17
+	lds	r18, __llvm_gcov_ctr.31+18
+	lds	r19, __llvm_gcov_ctr.31+19
+	lds	r20, __llvm_gcov_ctr.31+20
+	lds	r21, __llvm_gcov_ctr.31+21
+	lds	r22, __llvm_gcov_ctr.31+22
+	lds	r23, __llvm_gcov_ctr.31+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+23, r23
+	sts	__llvm_gcov_ctr.31+22, r22
+	sts	__llvm_gcov_ctr.31+21, r21
+	sts	__llvm_gcov_ctr.31+20, r20
+	sts	__llvm_gcov_ctr.31+19, r19
+	sts	__llvm_gcov_ctr.31+18, r18
+	sts	__llvm_gcov_ctr.31+17, r25
+	sts	__llvm_gcov_ctr.31+16, r24
 	lds	r24, __profc_fmax+32
 	lds	r25, __profc_fmax+33
 	lds	r18, __profc_fmax+34
@@ -5524,6 +7816,30 @@ fmax:                                   ; @fmax
 	std	Y+9, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB31_14
 .LBB31_13:
+	lds	r24, __llvm_gcov_ctr.31+24
+	lds	r25, __llvm_gcov_ctr.31+25
+	lds	r18, __llvm_gcov_ctr.31+26
+	lds	r19, __llvm_gcov_ctr.31+27
+	lds	r20, __llvm_gcov_ctr.31+28
+	lds	r21, __llvm_gcov_ctr.31+29
+	lds	r22, __llvm_gcov_ctr.31+30
+	lds	r23, __llvm_gcov_ctr.31+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+31, r23
+	sts	__llvm_gcov_ctr.31+30, r22
+	sts	__llvm_gcov_ctr.31+29, r21
+	sts	__llvm_gcov_ctr.31+28, r20
+	sts	__llvm_gcov_ctr.31+27, r19
+	sts	__llvm_gcov_ctr.31+26, r18
+	sts	__llvm_gcov_ctr.31+25, r25
+	sts	__llvm_gcov_ctr.31+24, r24
 	ldd	r24, Y+23
 	ldd	r25, Y+24
 	ldd	r18, Y+21
@@ -5557,6 +7873,30 @@ fmax:                                   ; @fmax
 	brmi	.LBB31_16
 	rjmp	.LBB31_17
 .LBB31_16:
+	lds	r24, __llvm_gcov_ctr.31+32
+	lds	r25, __llvm_gcov_ctr.31+33
+	lds	r18, __llvm_gcov_ctr.31+34
+	lds	r19, __llvm_gcov_ctr.31+35
+	lds	r20, __llvm_gcov_ctr.31+36
+	lds	r21, __llvm_gcov_ctr.31+37
+	lds	r22, __llvm_gcov_ctr.31+38
+	lds	r23, __llvm_gcov_ctr.31+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+39, r23
+	sts	__llvm_gcov_ctr.31+38, r22
+	sts	__llvm_gcov_ctr.31+37, r21
+	sts	__llvm_gcov_ctr.31+36, r20
+	sts	__llvm_gcov_ctr.31+35, r19
+	sts	__llvm_gcov_ctr.31+34, r18
+	sts	__llvm_gcov_ctr.31+33, r25
+	sts	__llvm_gcov_ctr.31+32, r24
 	lds	r24, __profc_fmax+40
 	lds	r25, __profc_fmax+41
 	lds	r18, __profc_fmax+42
@@ -5591,6 +7931,30 @@ fmax:                                   ; @fmax
 	std	Y+5, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB31_18
 .LBB31_17:
+	lds	r24, __llvm_gcov_ctr.31+40
+	lds	r25, __llvm_gcov_ctr.31+41
+	lds	r18, __llvm_gcov_ctr.31+42
+	lds	r19, __llvm_gcov_ctr.31+43
+	lds	r20, __llvm_gcov_ctr.31+44
+	lds	r21, __llvm_gcov_ctr.31+45
+	lds	r22, __llvm_gcov_ctr.31+46
+	lds	r23, __llvm_gcov_ctr.31+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.31+47, r23
+	sts	__llvm_gcov_ctr.31+46, r22
+	sts	__llvm_gcov_ctr.31+45, r21
+	sts	__llvm_gcov_ctr.31+44, r20
+	sts	__llvm_gcov_ctr.31+43, r19
+	sts	__llvm_gcov_ctr.31+42, r18
+	sts	__llvm_gcov_ctr.31+41, r25
+	sts	__llvm_gcov_ctr.31+40, r24
 	ldd	r24, Y+23
 	ldd	r25, Y+24
 	ldd	r18, Y+21
@@ -5708,6 +8072,30 @@ fmaxf:                                  ; @fmaxf
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB32_1
 .LBB32_3:
+	lds	r24, __llvm_gcov_ctr.32
+	lds	r25, __llvm_gcov_ctr.32+1
+	lds	r18, __llvm_gcov_ctr.32+2
+	lds	r19, __llvm_gcov_ctr.32+3
+	lds	r20, __llvm_gcov_ctr.32+4
+	lds	r21, __llvm_gcov_ctr.32+5
+	lds	r22, __llvm_gcov_ctr.32+6
+	lds	r23, __llvm_gcov_ctr.32+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+7, r23
+	sts	__llvm_gcov_ctr.32+6, r22
+	sts	__llvm_gcov_ctr.32+5, r21
+	sts	__llvm_gcov_ctr.32+4, r20
+	sts	__llvm_gcov_ctr.32+3, r19
+	sts	__llvm_gcov_ctr.32+2, r18
+	sts	__llvm_gcov_ctr.32+1, r25
+	sts	__llvm_gcov_ctr.32, r24
 	lds	r24, __profc_fmaxf+8
 	lds	r25, __profc_fmaxf+9
 	lds	r18, __profc_fmaxf+10
@@ -5772,6 +8160,30 @@ fmaxf:                                  ; @fmaxf
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB32_5
 .LBB32_7:
+	lds	r24, __llvm_gcov_ctr.32+8
+	lds	r25, __llvm_gcov_ctr.32+9
+	lds	r18, __llvm_gcov_ctr.32+10
+	lds	r19, __llvm_gcov_ctr.32+11
+	lds	r20, __llvm_gcov_ctr.32+12
+	lds	r21, __llvm_gcov_ctr.32+13
+	lds	r22, __llvm_gcov_ctr.32+14
+	lds	r23, __llvm_gcov_ctr.32+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+15, r23
+	sts	__llvm_gcov_ctr.32+14, r22
+	sts	__llvm_gcov_ctr.32+13, r21
+	sts	__llvm_gcov_ctr.32+12, r20
+	sts	__llvm_gcov_ctr.32+11, r19
+	sts	__llvm_gcov_ctr.32+10, r18
+	sts	__llvm_gcov_ctr.32+9, r25
+	sts	__llvm_gcov_ctr.32+8, r24
 	lds	r24, __profc_fmaxf+16
 	lds	r25, __profc_fmaxf+17
 	lds	r18, __profc_fmaxf+18
@@ -5884,6 +8296,30 @@ fmaxf:                                  ; @fmaxf
 	std	Y+10, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB32_10
 .LBB32_12:
+	lds	r24, __llvm_gcov_ctr.32+16
+	lds	r25, __llvm_gcov_ctr.32+17
+	lds	r18, __llvm_gcov_ctr.32+18
+	lds	r19, __llvm_gcov_ctr.32+19
+	lds	r20, __llvm_gcov_ctr.32+20
+	lds	r21, __llvm_gcov_ctr.32+21
+	lds	r22, __llvm_gcov_ctr.32+22
+	lds	r23, __llvm_gcov_ctr.32+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+23, r23
+	sts	__llvm_gcov_ctr.32+22, r22
+	sts	__llvm_gcov_ctr.32+21, r21
+	sts	__llvm_gcov_ctr.32+20, r20
+	sts	__llvm_gcov_ctr.32+19, r19
+	sts	__llvm_gcov_ctr.32+18, r18
+	sts	__llvm_gcov_ctr.32+17, r25
+	sts	__llvm_gcov_ctr.32+16, r24
 	lds	r24, __profc_fmaxf+32
 	lds	r25, __profc_fmaxf+33
 	lds	r18, __profc_fmaxf+34
@@ -5918,6 +8354,30 @@ fmaxf:                                  ; @fmaxf
 	std	Y+7, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB32_14
 .LBB32_13:
+	lds	r24, __llvm_gcov_ctr.32+24
+	lds	r25, __llvm_gcov_ctr.32+25
+	lds	r18, __llvm_gcov_ctr.32+26
+	lds	r19, __llvm_gcov_ctr.32+27
+	lds	r20, __llvm_gcov_ctr.32+28
+	lds	r21, __llvm_gcov_ctr.32+29
+	lds	r22, __llvm_gcov_ctr.32+30
+	lds	r23, __llvm_gcov_ctr.32+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+31, r23
+	sts	__llvm_gcov_ctr.32+30, r22
+	sts	__llvm_gcov_ctr.32+29, r21
+	sts	__llvm_gcov_ctr.32+28, r20
+	sts	__llvm_gcov_ctr.32+27, r19
+	sts	__llvm_gcov_ctr.32+26, r18
+	sts	__llvm_gcov_ctr.32+25, r25
+	sts	__llvm_gcov_ctr.32+24, r24
 	ldd	r24, Y+21
 	ldd	r25, Y+22
 	ldd	r18, Y+19
@@ -5951,6 +8411,30 @@ fmaxf:                                  ; @fmaxf
 	brmi	.LBB32_16
 	rjmp	.LBB32_17
 .LBB32_16:
+	lds	r24, __llvm_gcov_ctr.32+32
+	lds	r25, __llvm_gcov_ctr.32+33
+	lds	r18, __llvm_gcov_ctr.32+34
+	lds	r19, __llvm_gcov_ctr.32+35
+	lds	r20, __llvm_gcov_ctr.32+36
+	lds	r21, __llvm_gcov_ctr.32+37
+	lds	r22, __llvm_gcov_ctr.32+38
+	lds	r23, __llvm_gcov_ctr.32+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+39, r23
+	sts	__llvm_gcov_ctr.32+38, r22
+	sts	__llvm_gcov_ctr.32+37, r21
+	sts	__llvm_gcov_ctr.32+36, r20
+	sts	__llvm_gcov_ctr.32+35, r19
+	sts	__llvm_gcov_ctr.32+34, r18
+	sts	__llvm_gcov_ctr.32+33, r25
+	sts	__llvm_gcov_ctr.32+32, r24
 	lds	r24, __profc_fmaxf+40
 	lds	r25, __profc_fmaxf+41
 	lds	r18, __profc_fmaxf+42
@@ -5985,6 +8469,30 @@ fmaxf:                                  ; @fmaxf
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB32_18
 .LBB32_17:
+	lds	r24, __llvm_gcov_ctr.32+40
+	lds	r25, __llvm_gcov_ctr.32+41
+	lds	r18, __llvm_gcov_ctr.32+42
+	lds	r19, __llvm_gcov_ctr.32+43
+	lds	r20, __llvm_gcov_ctr.32+44
+	lds	r21, __llvm_gcov_ctr.32+45
+	lds	r22, __llvm_gcov_ctr.32+46
+	lds	r23, __llvm_gcov_ctr.32+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.32+47, r23
+	sts	__llvm_gcov_ctr.32+46, r22
+	sts	__llvm_gcov_ctr.32+45, r21
+	sts	__llvm_gcov_ctr.32+44, r20
+	sts	__llvm_gcov_ctr.32+43, r19
+	sts	__llvm_gcov_ctr.32+42, r18
+	sts	__llvm_gcov_ctr.32+41, r25
+	sts	__llvm_gcov_ctr.32+40, r24
 	ldd	r24, Y+21
 	ldd	r25, Y+22
 	ldd	r18, Y+19
@@ -6102,6 +8610,30 @@ fmaxl:                                  ; @fmaxl
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB33_1
 .LBB33_3:
+	lds	r24, __llvm_gcov_ctr.33
+	lds	r25, __llvm_gcov_ctr.33+1
+	lds	r18, __llvm_gcov_ctr.33+2
+	lds	r19, __llvm_gcov_ctr.33+3
+	lds	r20, __llvm_gcov_ctr.33+4
+	lds	r21, __llvm_gcov_ctr.33+5
+	lds	r22, __llvm_gcov_ctr.33+6
+	lds	r23, __llvm_gcov_ctr.33+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+7, r23
+	sts	__llvm_gcov_ctr.33+6, r22
+	sts	__llvm_gcov_ctr.33+5, r21
+	sts	__llvm_gcov_ctr.33+4, r20
+	sts	__llvm_gcov_ctr.33+3, r19
+	sts	__llvm_gcov_ctr.33+2, r18
+	sts	__llvm_gcov_ctr.33+1, r25
+	sts	__llvm_gcov_ctr.33, r24
 	lds	r24, __profc_fmaxl+8
 	lds	r25, __profc_fmaxl+9
 	lds	r18, __profc_fmaxl+10
@@ -6166,6 +8698,30 @@ fmaxl:                                  ; @fmaxl
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB33_5
 .LBB33_7:
+	lds	r24, __llvm_gcov_ctr.33+8
+	lds	r25, __llvm_gcov_ctr.33+9
+	lds	r18, __llvm_gcov_ctr.33+10
+	lds	r19, __llvm_gcov_ctr.33+11
+	lds	r20, __llvm_gcov_ctr.33+12
+	lds	r21, __llvm_gcov_ctr.33+13
+	lds	r22, __llvm_gcov_ctr.33+14
+	lds	r23, __llvm_gcov_ctr.33+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+15, r23
+	sts	__llvm_gcov_ctr.33+14, r22
+	sts	__llvm_gcov_ctr.33+13, r21
+	sts	__llvm_gcov_ctr.33+12, r20
+	sts	__llvm_gcov_ctr.33+11, r19
+	sts	__llvm_gcov_ctr.33+10, r18
+	sts	__llvm_gcov_ctr.33+9, r25
+	sts	__llvm_gcov_ctr.33+8, r24
 	lds	r24, __profc_fmaxl+16
 	lds	r25, __profc_fmaxl+17
 	lds	r18, __profc_fmaxl+18
@@ -6278,6 +8834,30 @@ fmaxl:                                  ; @fmaxl
 	std	Y+10, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB33_10
 .LBB33_12:
+	lds	r24, __llvm_gcov_ctr.33+16
+	lds	r25, __llvm_gcov_ctr.33+17
+	lds	r18, __llvm_gcov_ctr.33+18
+	lds	r19, __llvm_gcov_ctr.33+19
+	lds	r20, __llvm_gcov_ctr.33+20
+	lds	r21, __llvm_gcov_ctr.33+21
+	lds	r22, __llvm_gcov_ctr.33+22
+	lds	r23, __llvm_gcov_ctr.33+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+23, r23
+	sts	__llvm_gcov_ctr.33+22, r22
+	sts	__llvm_gcov_ctr.33+21, r21
+	sts	__llvm_gcov_ctr.33+20, r20
+	sts	__llvm_gcov_ctr.33+19, r19
+	sts	__llvm_gcov_ctr.33+18, r18
+	sts	__llvm_gcov_ctr.33+17, r25
+	sts	__llvm_gcov_ctr.33+16, r24
 	lds	r24, __profc_fmaxl+32
 	lds	r25, __profc_fmaxl+33
 	lds	r18, __profc_fmaxl+34
@@ -6312,6 +8892,30 @@ fmaxl:                                  ; @fmaxl
 	std	Y+7, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB33_14
 .LBB33_13:
+	lds	r24, __llvm_gcov_ctr.33+24
+	lds	r25, __llvm_gcov_ctr.33+25
+	lds	r18, __llvm_gcov_ctr.33+26
+	lds	r19, __llvm_gcov_ctr.33+27
+	lds	r20, __llvm_gcov_ctr.33+28
+	lds	r21, __llvm_gcov_ctr.33+29
+	lds	r22, __llvm_gcov_ctr.33+30
+	lds	r23, __llvm_gcov_ctr.33+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+31, r23
+	sts	__llvm_gcov_ctr.33+30, r22
+	sts	__llvm_gcov_ctr.33+29, r21
+	sts	__llvm_gcov_ctr.33+28, r20
+	sts	__llvm_gcov_ctr.33+27, r19
+	sts	__llvm_gcov_ctr.33+26, r18
+	sts	__llvm_gcov_ctr.33+25, r25
+	sts	__llvm_gcov_ctr.33+24, r24
 	ldd	r24, Y+21
 	ldd	r25, Y+22
 	ldd	r18, Y+19
@@ -6345,6 +8949,30 @@ fmaxl:                                  ; @fmaxl
 	brmi	.LBB33_16
 	rjmp	.LBB33_17
 .LBB33_16:
+	lds	r24, __llvm_gcov_ctr.33+32
+	lds	r25, __llvm_gcov_ctr.33+33
+	lds	r18, __llvm_gcov_ctr.33+34
+	lds	r19, __llvm_gcov_ctr.33+35
+	lds	r20, __llvm_gcov_ctr.33+36
+	lds	r21, __llvm_gcov_ctr.33+37
+	lds	r22, __llvm_gcov_ctr.33+38
+	lds	r23, __llvm_gcov_ctr.33+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+39, r23
+	sts	__llvm_gcov_ctr.33+38, r22
+	sts	__llvm_gcov_ctr.33+37, r21
+	sts	__llvm_gcov_ctr.33+36, r20
+	sts	__llvm_gcov_ctr.33+35, r19
+	sts	__llvm_gcov_ctr.33+34, r18
+	sts	__llvm_gcov_ctr.33+33, r25
+	sts	__llvm_gcov_ctr.33+32, r24
 	lds	r24, __profc_fmaxl+40
 	lds	r25, __profc_fmaxl+41
 	lds	r18, __profc_fmaxl+42
@@ -6379,6 +9007,30 @@ fmaxl:                                  ; @fmaxl
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB33_18
 .LBB33_17:
+	lds	r24, __llvm_gcov_ctr.33+40
+	lds	r25, __llvm_gcov_ctr.33+41
+	lds	r18, __llvm_gcov_ctr.33+42
+	lds	r19, __llvm_gcov_ctr.33+43
+	lds	r20, __llvm_gcov_ctr.33+44
+	lds	r21, __llvm_gcov_ctr.33+45
+	lds	r22, __llvm_gcov_ctr.33+46
+	lds	r23, __llvm_gcov_ctr.33+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.33+47, r23
+	sts	__llvm_gcov_ctr.33+46, r22
+	sts	__llvm_gcov_ctr.33+45, r21
+	sts	__llvm_gcov_ctr.33+44, r20
+	sts	__llvm_gcov_ctr.33+43, r19
+	sts	__llvm_gcov_ctr.33+42, r18
+	sts	__llvm_gcov_ctr.33+41, r25
+	sts	__llvm_gcov_ctr.33+40, r24
 	ldd	r24, Y+21
 	ldd	r25, Y+22
 	ldd	r18, Y+19
@@ -6496,6 +9148,30 @@ fmin:                                   ; @fmin
 	std	Y+16, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB34_1
 .LBB34_3:
+	lds	r24, __llvm_gcov_ctr.34
+	lds	r25, __llvm_gcov_ctr.34+1
+	lds	r18, __llvm_gcov_ctr.34+2
+	lds	r19, __llvm_gcov_ctr.34+3
+	lds	r20, __llvm_gcov_ctr.34+4
+	lds	r21, __llvm_gcov_ctr.34+5
+	lds	r22, __llvm_gcov_ctr.34+6
+	lds	r23, __llvm_gcov_ctr.34+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+7, r23
+	sts	__llvm_gcov_ctr.34+6, r22
+	sts	__llvm_gcov_ctr.34+5, r21
+	sts	__llvm_gcov_ctr.34+4, r20
+	sts	__llvm_gcov_ctr.34+3, r19
+	sts	__llvm_gcov_ctr.34+2, r18
+	sts	__llvm_gcov_ctr.34+1, r25
+	sts	__llvm_gcov_ctr.34, r24
 	lds	r24, __profc_fmin+8
 	lds	r25, __profc_fmin+9
 	lds	r18, __profc_fmin+10
@@ -6560,6 +9236,30 @@ fmin:                                   ; @fmin
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB34_5
 .LBB34_7:
+	lds	r24, __llvm_gcov_ctr.34+8
+	lds	r25, __llvm_gcov_ctr.34+9
+	lds	r18, __llvm_gcov_ctr.34+10
+	lds	r19, __llvm_gcov_ctr.34+11
+	lds	r20, __llvm_gcov_ctr.34+12
+	lds	r21, __llvm_gcov_ctr.34+13
+	lds	r22, __llvm_gcov_ctr.34+14
+	lds	r23, __llvm_gcov_ctr.34+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+15, r23
+	sts	__llvm_gcov_ctr.34+14, r22
+	sts	__llvm_gcov_ctr.34+13, r21
+	sts	__llvm_gcov_ctr.34+12, r20
+	sts	__llvm_gcov_ctr.34+11, r19
+	sts	__llvm_gcov_ctr.34+10, r18
+	sts	__llvm_gcov_ctr.34+9, r25
+	sts	__llvm_gcov_ctr.34+8, r24
 	lds	r24, __profc_fmin+16
 	lds	r25, __profc_fmin+17
 	lds	r18, __profc_fmin+18
@@ -6672,6 +9372,30 @@ fmin:                                   ; @fmin
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB34_10
 .LBB34_12:
+	lds	r24, __llvm_gcov_ctr.34+16
+	lds	r25, __llvm_gcov_ctr.34+17
+	lds	r18, __llvm_gcov_ctr.34+18
+	lds	r19, __llvm_gcov_ctr.34+19
+	lds	r20, __llvm_gcov_ctr.34+20
+	lds	r21, __llvm_gcov_ctr.34+21
+	lds	r22, __llvm_gcov_ctr.34+22
+	lds	r23, __llvm_gcov_ctr.34+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+23, r23
+	sts	__llvm_gcov_ctr.34+22, r22
+	sts	__llvm_gcov_ctr.34+21, r21
+	sts	__llvm_gcov_ctr.34+20, r20
+	sts	__llvm_gcov_ctr.34+19, r19
+	sts	__llvm_gcov_ctr.34+18, r18
+	sts	__llvm_gcov_ctr.34+17, r25
+	sts	__llvm_gcov_ctr.34+16, r24
 	lds	r24, __profc_fmin+32
 	lds	r25, __profc_fmin+33
 	lds	r18, __profc_fmin+34
@@ -6706,6 +9430,30 @@ fmin:                                   ; @fmin
 	std	Y+9, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB34_14
 .LBB34_13:
+	lds	r24, __llvm_gcov_ctr.34+24
+	lds	r25, __llvm_gcov_ctr.34+25
+	lds	r18, __llvm_gcov_ctr.34+26
+	lds	r19, __llvm_gcov_ctr.34+27
+	lds	r20, __llvm_gcov_ctr.34+28
+	lds	r21, __llvm_gcov_ctr.34+29
+	lds	r22, __llvm_gcov_ctr.34+30
+	lds	r23, __llvm_gcov_ctr.34+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+31, r23
+	sts	__llvm_gcov_ctr.34+30, r22
+	sts	__llvm_gcov_ctr.34+29, r21
+	sts	__llvm_gcov_ctr.34+28, r20
+	sts	__llvm_gcov_ctr.34+27, r19
+	sts	__llvm_gcov_ctr.34+26, r18
+	sts	__llvm_gcov_ctr.34+25, r25
+	sts	__llvm_gcov_ctr.34+24, r24
 	ldd	r24, Y+19
 	ldd	r25, Y+20
 	ldd	r18, Y+17
@@ -6739,6 +9487,30 @@ fmin:                                   ; @fmin
 	brmi	.LBB34_16
 	rjmp	.LBB34_17
 .LBB34_16:
+	lds	r24, __llvm_gcov_ctr.34+32
+	lds	r25, __llvm_gcov_ctr.34+33
+	lds	r18, __llvm_gcov_ctr.34+34
+	lds	r19, __llvm_gcov_ctr.34+35
+	lds	r20, __llvm_gcov_ctr.34+36
+	lds	r21, __llvm_gcov_ctr.34+37
+	lds	r22, __llvm_gcov_ctr.34+38
+	lds	r23, __llvm_gcov_ctr.34+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+39, r23
+	sts	__llvm_gcov_ctr.34+38, r22
+	sts	__llvm_gcov_ctr.34+37, r21
+	sts	__llvm_gcov_ctr.34+36, r20
+	sts	__llvm_gcov_ctr.34+35, r19
+	sts	__llvm_gcov_ctr.34+34, r18
+	sts	__llvm_gcov_ctr.34+33, r25
+	sts	__llvm_gcov_ctr.34+32, r24
 	lds	r24, __profc_fmin+40
 	lds	r25, __profc_fmin+41
 	lds	r18, __profc_fmin+42
@@ -6773,6 +9545,30 @@ fmin:                                   ; @fmin
 	std	Y+5, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB34_18
 .LBB34_17:
+	lds	r24, __llvm_gcov_ctr.34+40
+	lds	r25, __llvm_gcov_ctr.34+41
+	lds	r18, __llvm_gcov_ctr.34+42
+	lds	r19, __llvm_gcov_ctr.34+43
+	lds	r20, __llvm_gcov_ctr.34+44
+	lds	r21, __llvm_gcov_ctr.34+45
+	lds	r22, __llvm_gcov_ctr.34+46
+	lds	r23, __llvm_gcov_ctr.34+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.34+47, r23
+	sts	__llvm_gcov_ctr.34+46, r22
+	sts	__llvm_gcov_ctr.34+45, r21
+	sts	__llvm_gcov_ctr.34+44, r20
+	sts	__llvm_gcov_ctr.34+43, r19
+	sts	__llvm_gcov_ctr.34+42, r18
+	sts	__llvm_gcov_ctr.34+41, r25
+	sts	__llvm_gcov_ctr.34+40, r24
 	ldd	r24, Y+19
 	ldd	r25, Y+20
 	ldd	r18, Y+17
@@ -6890,6 +9686,30 @@ fminf:                                  ; @fminf
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB35_1
 .LBB35_3:
+	lds	r24, __llvm_gcov_ctr.35
+	lds	r25, __llvm_gcov_ctr.35+1
+	lds	r18, __llvm_gcov_ctr.35+2
+	lds	r19, __llvm_gcov_ctr.35+3
+	lds	r20, __llvm_gcov_ctr.35+4
+	lds	r21, __llvm_gcov_ctr.35+5
+	lds	r22, __llvm_gcov_ctr.35+6
+	lds	r23, __llvm_gcov_ctr.35+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+7, r23
+	sts	__llvm_gcov_ctr.35+6, r22
+	sts	__llvm_gcov_ctr.35+5, r21
+	sts	__llvm_gcov_ctr.35+4, r20
+	sts	__llvm_gcov_ctr.35+3, r19
+	sts	__llvm_gcov_ctr.35+2, r18
+	sts	__llvm_gcov_ctr.35+1, r25
+	sts	__llvm_gcov_ctr.35, r24
 	lds	r24, __profc_fminf+8
 	lds	r25, __profc_fminf+9
 	lds	r18, __profc_fminf+10
@@ -6954,6 +9774,30 @@ fminf:                                  ; @fminf
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB35_5
 .LBB35_7:
+	lds	r24, __llvm_gcov_ctr.35+8
+	lds	r25, __llvm_gcov_ctr.35+9
+	lds	r18, __llvm_gcov_ctr.35+10
+	lds	r19, __llvm_gcov_ctr.35+11
+	lds	r20, __llvm_gcov_ctr.35+12
+	lds	r21, __llvm_gcov_ctr.35+13
+	lds	r22, __llvm_gcov_ctr.35+14
+	lds	r23, __llvm_gcov_ctr.35+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+15, r23
+	sts	__llvm_gcov_ctr.35+14, r22
+	sts	__llvm_gcov_ctr.35+13, r21
+	sts	__llvm_gcov_ctr.35+12, r20
+	sts	__llvm_gcov_ctr.35+11, r19
+	sts	__llvm_gcov_ctr.35+10, r18
+	sts	__llvm_gcov_ctr.35+9, r25
+	sts	__llvm_gcov_ctr.35+8, r24
 	lds	r24, __profc_fminf+16
 	lds	r25, __profc_fminf+17
 	lds	r18, __profc_fminf+18
@@ -7066,6 +9910,30 @@ fminf:                                  ; @fminf
 	std	Y+10, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB35_10
 .LBB35_12:
+	lds	r24, __llvm_gcov_ctr.35+16
+	lds	r25, __llvm_gcov_ctr.35+17
+	lds	r18, __llvm_gcov_ctr.35+18
+	lds	r19, __llvm_gcov_ctr.35+19
+	lds	r20, __llvm_gcov_ctr.35+20
+	lds	r21, __llvm_gcov_ctr.35+21
+	lds	r22, __llvm_gcov_ctr.35+22
+	lds	r23, __llvm_gcov_ctr.35+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+23, r23
+	sts	__llvm_gcov_ctr.35+22, r22
+	sts	__llvm_gcov_ctr.35+21, r21
+	sts	__llvm_gcov_ctr.35+20, r20
+	sts	__llvm_gcov_ctr.35+19, r19
+	sts	__llvm_gcov_ctr.35+18, r18
+	sts	__llvm_gcov_ctr.35+17, r25
+	sts	__llvm_gcov_ctr.35+16, r24
 	lds	r24, __profc_fminf+32
 	lds	r25, __profc_fminf+33
 	lds	r18, __profc_fminf+34
@@ -7100,6 +9968,30 @@ fminf:                                  ; @fminf
 	std	Y+7, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB35_14
 .LBB35_13:
+	lds	r24, __llvm_gcov_ctr.35+24
+	lds	r25, __llvm_gcov_ctr.35+25
+	lds	r18, __llvm_gcov_ctr.35+26
+	lds	r19, __llvm_gcov_ctr.35+27
+	lds	r20, __llvm_gcov_ctr.35+28
+	lds	r21, __llvm_gcov_ctr.35+29
+	lds	r22, __llvm_gcov_ctr.35+30
+	lds	r23, __llvm_gcov_ctr.35+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+31, r23
+	sts	__llvm_gcov_ctr.35+30, r22
+	sts	__llvm_gcov_ctr.35+29, r21
+	sts	__llvm_gcov_ctr.35+28, r20
+	sts	__llvm_gcov_ctr.35+27, r19
+	sts	__llvm_gcov_ctr.35+26, r18
+	sts	__llvm_gcov_ctr.35+25, r25
+	sts	__llvm_gcov_ctr.35+24, r24
 	ldd	r24, Y+17
 	ldd	r25, Y+18
 	ldd	r18, Y+15
@@ -7133,6 +10025,30 @@ fminf:                                  ; @fminf
 	brmi	.LBB35_16
 	rjmp	.LBB35_17
 .LBB35_16:
+	lds	r24, __llvm_gcov_ctr.35+32
+	lds	r25, __llvm_gcov_ctr.35+33
+	lds	r18, __llvm_gcov_ctr.35+34
+	lds	r19, __llvm_gcov_ctr.35+35
+	lds	r20, __llvm_gcov_ctr.35+36
+	lds	r21, __llvm_gcov_ctr.35+37
+	lds	r22, __llvm_gcov_ctr.35+38
+	lds	r23, __llvm_gcov_ctr.35+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+39, r23
+	sts	__llvm_gcov_ctr.35+38, r22
+	sts	__llvm_gcov_ctr.35+37, r21
+	sts	__llvm_gcov_ctr.35+36, r20
+	sts	__llvm_gcov_ctr.35+35, r19
+	sts	__llvm_gcov_ctr.35+34, r18
+	sts	__llvm_gcov_ctr.35+33, r25
+	sts	__llvm_gcov_ctr.35+32, r24
 	lds	r24, __profc_fminf+40
 	lds	r25, __profc_fminf+41
 	lds	r18, __profc_fminf+42
@@ -7167,6 +10083,30 @@ fminf:                                  ; @fminf
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB35_18
 .LBB35_17:
+	lds	r24, __llvm_gcov_ctr.35+40
+	lds	r25, __llvm_gcov_ctr.35+41
+	lds	r18, __llvm_gcov_ctr.35+42
+	lds	r19, __llvm_gcov_ctr.35+43
+	lds	r20, __llvm_gcov_ctr.35+44
+	lds	r21, __llvm_gcov_ctr.35+45
+	lds	r22, __llvm_gcov_ctr.35+46
+	lds	r23, __llvm_gcov_ctr.35+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.35+47, r23
+	sts	__llvm_gcov_ctr.35+46, r22
+	sts	__llvm_gcov_ctr.35+45, r21
+	sts	__llvm_gcov_ctr.35+44, r20
+	sts	__llvm_gcov_ctr.35+43, r19
+	sts	__llvm_gcov_ctr.35+42, r18
+	sts	__llvm_gcov_ctr.35+41, r25
+	sts	__llvm_gcov_ctr.35+40, r24
 	ldd	r24, Y+17
 	ldd	r25, Y+18
 	ldd	r18, Y+15
@@ -7284,6 +10224,30 @@ fminl:                                  ; @fminl
 	std	Y+14, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB36_1
 .LBB36_3:
+	lds	r24, __llvm_gcov_ctr.36
+	lds	r25, __llvm_gcov_ctr.36+1
+	lds	r18, __llvm_gcov_ctr.36+2
+	lds	r19, __llvm_gcov_ctr.36+3
+	lds	r20, __llvm_gcov_ctr.36+4
+	lds	r21, __llvm_gcov_ctr.36+5
+	lds	r22, __llvm_gcov_ctr.36+6
+	lds	r23, __llvm_gcov_ctr.36+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+7, r23
+	sts	__llvm_gcov_ctr.36+6, r22
+	sts	__llvm_gcov_ctr.36+5, r21
+	sts	__llvm_gcov_ctr.36+4, r20
+	sts	__llvm_gcov_ctr.36+3, r19
+	sts	__llvm_gcov_ctr.36+2, r18
+	sts	__llvm_gcov_ctr.36+1, r25
+	sts	__llvm_gcov_ctr.36, r24
 	lds	r24, __profc_fminl+8
 	lds	r25, __profc_fminl+9
 	lds	r18, __profc_fminl+10
@@ -7348,6 +10312,30 @@ fminl:                                  ; @fminl
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB36_5
 .LBB36_7:
+	lds	r24, __llvm_gcov_ctr.36+8
+	lds	r25, __llvm_gcov_ctr.36+9
+	lds	r18, __llvm_gcov_ctr.36+10
+	lds	r19, __llvm_gcov_ctr.36+11
+	lds	r20, __llvm_gcov_ctr.36+12
+	lds	r21, __llvm_gcov_ctr.36+13
+	lds	r22, __llvm_gcov_ctr.36+14
+	lds	r23, __llvm_gcov_ctr.36+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+15, r23
+	sts	__llvm_gcov_ctr.36+14, r22
+	sts	__llvm_gcov_ctr.36+13, r21
+	sts	__llvm_gcov_ctr.36+12, r20
+	sts	__llvm_gcov_ctr.36+11, r19
+	sts	__llvm_gcov_ctr.36+10, r18
+	sts	__llvm_gcov_ctr.36+9, r25
+	sts	__llvm_gcov_ctr.36+8, r24
 	lds	r24, __profc_fminl+16
 	lds	r25, __profc_fminl+17
 	lds	r18, __profc_fminl+18
@@ -7460,6 +10448,30 @@ fminl:                                  ; @fminl
 	std	Y+10, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB36_10
 .LBB36_12:
+	lds	r24, __llvm_gcov_ctr.36+16
+	lds	r25, __llvm_gcov_ctr.36+17
+	lds	r18, __llvm_gcov_ctr.36+18
+	lds	r19, __llvm_gcov_ctr.36+19
+	lds	r20, __llvm_gcov_ctr.36+20
+	lds	r21, __llvm_gcov_ctr.36+21
+	lds	r22, __llvm_gcov_ctr.36+22
+	lds	r23, __llvm_gcov_ctr.36+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+23, r23
+	sts	__llvm_gcov_ctr.36+22, r22
+	sts	__llvm_gcov_ctr.36+21, r21
+	sts	__llvm_gcov_ctr.36+20, r20
+	sts	__llvm_gcov_ctr.36+19, r19
+	sts	__llvm_gcov_ctr.36+18, r18
+	sts	__llvm_gcov_ctr.36+17, r25
+	sts	__llvm_gcov_ctr.36+16, r24
 	lds	r24, __profc_fminl+32
 	lds	r25, __profc_fminl+33
 	lds	r18, __profc_fminl+34
@@ -7494,6 +10506,30 @@ fminl:                                  ; @fminl
 	std	Y+7, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB36_14
 .LBB36_13:
+	lds	r24, __llvm_gcov_ctr.36+24
+	lds	r25, __llvm_gcov_ctr.36+25
+	lds	r18, __llvm_gcov_ctr.36+26
+	lds	r19, __llvm_gcov_ctr.36+27
+	lds	r20, __llvm_gcov_ctr.36+28
+	lds	r21, __llvm_gcov_ctr.36+29
+	lds	r22, __llvm_gcov_ctr.36+30
+	lds	r23, __llvm_gcov_ctr.36+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+31, r23
+	sts	__llvm_gcov_ctr.36+30, r22
+	sts	__llvm_gcov_ctr.36+29, r21
+	sts	__llvm_gcov_ctr.36+28, r20
+	sts	__llvm_gcov_ctr.36+27, r19
+	sts	__llvm_gcov_ctr.36+26, r18
+	sts	__llvm_gcov_ctr.36+25, r25
+	sts	__llvm_gcov_ctr.36+24, r24
 	ldd	r24, Y+17
 	ldd	r25, Y+18
 	ldd	r18, Y+15
@@ -7527,6 +10563,30 @@ fminl:                                  ; @fminl
 	brmi	.LBB36_16
 	rjmp	.LBB36_17
 .LBB36_16:
+	lds	r24, __llvm_gcov_ctr.36+32
+	lds	r25, __llvm_gcov_ctr.36+33
+	lds	r18, __llvm_gcov_ctr.36+34
+	lds	r19, __llvm_gcov_ctr.36+35
+	lds	r20, __llvm_gcov_ctr.36+36
+	lds	r21, __llvm_gcov_ctr.36+37
+	lds	r22, __llvm_gcov_ctr.36+38
+	lds	r23, __llvm_gcov_ctr.36+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+39, r23
+	sts	__llvm_gcov_ctr.36+38, r22
+	sts	__llvm_gcov_ctr.36+37, r21
+	sts	__llvm_gcov_ctr.36+36, r20
+	sts	__llvm_gcov_ctr.36+35, r19
+	sts	__llvm_gcov_ctr.36+34, r18
+	sts	__llvm_gcov_ctr.36+33, r25
+	sts	__llvm_gcov_ctr.36+32, r24
 	lds	r24, __profc_fminl+40
 	lds	r25, __profc_fminl+41
 	lds	r18, __profc_fminl+42
@@ -7561,6 +10621,30 @@ fminl:                                  ; @fminl
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB36_18
 .LBB36_17:
+	lds	r24, __llvm_gcov_ctr.36+40
+	lds	r25, __llvm_gcov_ctr.36+41
+	lds	r18, __llvm_gcov_ctr.36+42
+	lds	r19, __llvm_gcov_ctr.36+43
+	lds	r20, __llvm_gcov_ctr.36+44
+	lds	r21, __llvm_gcov_ctr.36+45
+	lds	r22, __llvm_gcov_ctr.36+46
+	lds	r23, __llvm_gcov_ctr.36+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.36+47, r23
+	sts	__llvm_gcov_ctr.36+46, r22
+	sts	__llvm_gcov_ctr.36+45, r21
+	sts	__llvm_gcov_ctr.36+44, r20
+	sts	__llvm_gcov_ctr.36+43, r19
+	sts	__llvm_gcov_ctr.36+42, r18
+	sts	__llvm_gcov_ctr.36+41, r25
+	sts	__llvm_gcov_ctr.36+40, r24
 	ldd	r24, Y+17
 	ldd	r25, Y+18
 	ldd	r18, Y+15
@@ -7614,6 +10698,30 @@ l64a:                                   ; @l64a
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.37
+	lds	r19, __llvm_gcov_ctr.37+1
+	lds	r20, __llvm_gcov_ctr.37+2
+	lds	r21, __llvm_gcov_ctr.37+3
+	lds	r30, __llvm_gcov_ctr.37+4
+	lds	r31, __llvm_gcov_ctr.37+5
+	lds	r26, __llvm_gcov_ctr.37+6
+	lds	r27, __llvm_gcov_ctr.37+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.37+7, r27
+	sts	__llvm_gcov_ctr.37+6, r26
+	sts	__llvm_gcov_ctr.37+5, r31
+	sts	__llvm_gcov_ctr.37+4, r30
+	sts	__llvm_gcov_ctr.37+3, r21
+	sts	__llvm_gcov_ctr.37+2, r20
+	sts	__llvm_gcov_ctr.37+1, r19
+	sts	__llvm_gcov_ctr.37, r18
 	std	Y+12, r25
 	std	Y+11, r24
 	std	Y+10, r23
@@ -7721,6 +10829,30 @@ l64a:                                   ; @l64a
 	st	X, r24
 	rjmp	.LBB37_5
 .LBB37_5:                               ;   in Loop: Header=BB37_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.37+8
+	lds	r25, __llvm_gcov_ctr.37+9
+	lds	r18, __llvm_gcov_ctr.37+10
+	lds	r19, __llvm_gcov_ctr.37+11
+	lds	r20, __llvm_gcov_ctr.37+12
+	lds	r21, __llvm_gcov_ctr.37+13
+	lds	r22, __llvm_gcov_ctr.37+14
+	lds	r23, __llvm_gcov_ctr.37+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.37+15, r23
+	sts	__llvm_gcov_ctr.37+14, r22
+	sts	__llvm_gcov_ctr.37+13, r21
+	sts	__llvm_gcov_ctr.37+12, r20
+	sts	__llvm_gcov_ctr.37+11, r19
+	sts	__llvm_gcov_ctr.37+10, r18
+	sts	__llvm_gcov_ctr.37+9, r25
+	sts	__llvm_gcov_ctr.37+8, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	adiw	r24, 1
@@ -7790,6 +10922,30 @@ srand:                                  ; @srand
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.38
+	lds	r19, __llvm_gcov_ctr.38+1
+	lds	r20, __llvm_gcov_ctr.38+2
+	lds	r21, __llvm_gcov_ctr.38+3
+	lds	r22, __llvm_gcov_ctr.38+4
+	lds	r23, __llvm_gcov_ctr.38+5
+	lds	r30, __llvm_gcov_ctr.38+6
+	lds	r31, __llvm_gcov_ctr.38+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.38+7, r31
+	sts	__llvm_gcov_ctr.38+6, r30
+	sts	__llvm_gcov_ctr.38+5, r23
+	sts	__llvm_gcov_ctr.38+4, r22
+	sts	__llvm_gcov_ctr.38+3, r21
+	sts	__llvm_gcov_ctr.38+2, r20
+	sts	__llvm_gcov_ctr.38+1, r19
+	sts	__llvm_gcov_ctr.38, r18
 	std	Y+2, r25
 	std	Y+1, r24
 	lds	r24, __profc_srand
@@ -7864,6 +11020,30 @@ rand:                                   ; @rand
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r24, __llvm_gcov_ctr.39
+	lds	r25, __llvm_gcov_ctr.39+1
+	lds	r18, __llvm_gcov_ctr.39+2
+	lds	r19, __llvm_gcov_ctr.39+3
+	lds	r20, __llvm_gcov_ctr.39+4
+	lds	r21, __llvm_gcov_ctr.39+5
+	lds	r22, __llvm_gcov_ctr.39+6
+	lds	r23, __llvm_gcov_ctr.39+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.39+7, r23
+	sts	__llvm_gcov_ctr.39+6, r22
+	sts	__llvm_gcov_ctr.39+5, r21
+	sts	__llvm_gcov_ctr.39+4, r20
+	sts	__llvm_gcov_ctr.39+3, r19
+	sts	__llvm_gcov_ctr.39+2, r18
+	sts	__llvm_gcov_ctr.39+1, r25
+	sts	__llvm_gcov_ctr.39, r24
 	lds	r24, __profc_rand
 	lds	r25, __profc_rand+1
 	lds	r18, __profc_rand+2
@@ -8109,6 +11289,30 @@ lsearch:                                ; @lsearch
 .LBB40_3:
 	ldd	r22, Y+13                       ; 2-byte Folded Reload
 	ldd	r23, Y+14                       ; 2-byte Folded Reload
+	lds	r24, __llvm_gcov_ctr.40
+	lds	r25, __llvm_gcov_ctr.40+1
+	lds	r18, __llvm_gcov_ctr.40+2
+	lds	r19, __llvm_gcov_ctr.40+3
+	lds	r20, __llvm_gcov_ctr.40+4
+	lds	r21, __llvm_gcov_ctr.40+5
+	lds	r30, __llvm_gcov_ctr.40+6
+	lds	r31, __llvm_gcov_ctr.40+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.40+7, r31
+	sts	__llvm_gcov_ctr.40+6, r30
+	sts	__llvm_gcov_ctr.40+5, r21
+	sts	__llvm_gcov_ctr.40+4, r20
+	sts	__llvm_gcov_ctr.40+3, r19
+	sts	__llvm_gcov_ctr.40+2, r18
+	sts	__llvm_gcov_ctr.40+1, r25
+	sts	__llvm_gcov_ctr.40, r24
 	lds	r24, __profc_lsearch+16
 	lds	r25, __profc_lsearch+17
 	lds	r18, __profc_lsearch+18
@@ -8152,6 +11356,30 @@ lsearch:                                ; @lsearch
 .LBB40_4:                               ;   in Loop: Header=BB40_1 Depth=1
 	rjmp	.LBB40_5
 .LBB40_5:                               ;   in Loop: Header=BB40_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.40+8
+	lds	r25, __llvm_gcov_ctr.40+9
+	lds	r18, __llvm_gcov_ctr.40+10
+	lds	r19, __llvm_gcov_ctr.40+11
+	lds	r20, __llvm_gcov_ctr.40+12
+	lds	r21, __llvm_gcov_ctr.40+13
+	lds	r22, __llvm_gcov_ctr.40+14
+	lds	r23, __llvm_gcov_ctr.40+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.40+15, r23
+	sts	__llvm_gcov_ctr.40+14, r22
+	sts	__llvm_gcov_ctr.40+13, r21
+	sts	__llvm_gcov_ctr.40+12, r20
+	sts	__llvm_gcov_ctr.40+11, r19
+	sts	__llvm_gcov_ctr.40+10, r18
+	sts	__llvm_gcov_ctr.40+9, r25
+	sts	__llvm_gcov_ctr.40+8, r24
 	ldd	r24, Y+15
 	ldd	r25, Y+16
 	adiw	r24, 1
@@ -8161,6 +11389,30 @@ lsearch:                                ; @lsearch
 .LBB40_6:
 	ldd	r22, Y+13                       ; 2-byte Folded Reload
 	ldd	r23, Y+14                       ; 2-byte Folded Reload
+	lds	r24, __llvm_gcov_ctr.40+16
+	lds	r25, __llvm_gcov_ctr.40+17
+	lds	r18, __llvm_gcov_ctr.40+18
+	lds	r19, __llvm_gcov_ctr.40+19
+	lds	r20, __llvm_gcov_ctr.40+20
+	lds	r21, __llvm_gcov_ctr.40+21
+	lds	r30, __llvm_gcov_ctr.40+22
+	lds	r31, __llvm_gcov_ctr.40+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.40+23, r31
+	sts	__llvm_gcov_ctr.40+22, r30
+	sts	__llvm_gcov_ctr.40+21, r21
+	sts	__llvm_gcov_ctr.40+20, r20
+	sts	__llvm_gcov_ctr.40+19, r19
+	sts	__llvm_gcov_ctr.40+18, r18
+	sts	__llvm_gcov_ctr.40+17, r25
+	sts	__llvm_gcov_ctr.40+16, r24
 	ldd	r24, Y+17
 	ldd	r25, Y+18
 	adiw	r24, 1
@@ -8350,6 +11602,30 @@ lfind:                                  ; @lfind
 .LBB41_3:
 	ldd	r22, Y+9                        ; 2-byte Folded Reload
 	ldd	r23, Y+10                       ; 2-byte Folded Reload
+	lds	r24, __llvm_gcov_ctr.41
+	lds	r25, __llvm_gcov_ctr.41+1
+	lds	r18, __llvm_gcov_ctr.41+2
+	lds	r19, __llvm_gcov_ctr.41+3
+	lds	r20, __llvm_gcov_ctr.41+4
+	lds	r21, __llvm_gcov_ctr.41+5
+	lds	r30, __llvm_gcov_ctr.41+6
+	lds	r31, __llvm_gcov_ctr.41+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.41+7, r31
+	sts	__llvm_gcov_ctr.41+6, r30
+	sts	__llvm_gcov_ctr.41+5, r21
+	sts	__llvm_gcov_ctr.41+4, r20
+	sts	__llvm_gcov_ctr.41+3, r19
+	sts	__llvm_gcov_ctr.41+2, r18
+	sts	__llvm_gcov_ctr.41+1, r25
+	sts	__llvm_gcov_ctr.41, r24
 	lds	r24, __profc_lfind+16
 	lds	r25, __profc_lfind+17
 	lds	r18, __profc_lfind+18
@@ -8393,6 +11669,30 @@ lfind:                                  ; @lfind
 .LBB41_4:                               ;   in Loop: Header=BB41_1 Depth=1
 	rjmp	.LBB41_5
 .LBB41_5:                               ;   in Loop: Header=BB41_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.41+8
+	lds	r25, __llvm_gcov_ctr.41+9
+	lds	r18, __llvm_gcov_ctr.41+10
+	lds	r19, __llvm_gcov_ctr.41+11
+	lds	r20, __llvm_gcov_ctr.41+12
+	lds	r21, __llvm_gcov_ctr.41+13
+	lds	r22, __llvm_gcov_ctr.41+14
+	lds	r23, __llvm_gcov_ctr.41+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.41+15, r23
+	sts	__llvm_gcov_ctr.41+14, r22
+	sts	__llvm_gcov_ctr.41+13, r21
+	sts	__llvm_gcov_ctr.41+12, r20
+	sts	__llvm_gcov_ctr.41+11, r19
+	sts	__llvm_gcov_ctr.41+10, r18
+	sts	__llvm_gcov_ctr.41+9, r25
+	sts	__llvm_gcov_ctr.41+8, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -8400,6 +11700,30 @@ lfind:                                  ; @lfind
 	std	Y+11, r24
 	rjmp	.LBB41_1
 .LBB41_6:
+	lds	r24, __llvm_gcov_ctr.41+16
+	lds	r25, __llvm_gcov_ctr.41+17
+	lds	r18, __llvm_gcov_ctr.41+18
+	lds	r19, __llvm_gcov_ctr.41+19
+	lds	r20, __llvm_gcov_ctr.41+20
+	lds	r21, __llvm_gcov_ctr.41+21
+	lds	r22, __llvm_gcov_ctr.41+22
+	lds	r23, __llvm_gcov_ctr.41+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.41+23, r23
+	sts	__llvm_gcov_ctr.41+22, r22
+	sts	__llvm_gcov_ctr.41+21, r21
+	sts	__llvm_gcov_ctr.41+20, r20
+	sts	__llvm_gcov_ctr.41+19, r19
+	sts	__llvm_gcov_ctr.41+18, r18
+	sts	__llvm_gcov_ctr.41+17, r25
+	sts	__llvm_gcov_ctr.41+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+28, r25
@@ -8470,6 +11794,30 @@ abs:                                    ; @abs
 	brlt	.LBB42_1
 	rjmp	.LBB42_2
 .LBB42_1:
+	lds	r24, __llvm_gcov_ctr.42
+	lds	r25, __llvm_gcov_ctr.42+1
+	lds	r18, __llvm_gcov_ctr.42+2
+	lds	r19, __llvm_gcov_ctr.42+3
+	lds	r20, __llvm_gcov_ctr.42+4
+	lds	r21, __llvm_gcov_ctr.42+5
+	lds	r22, __llvm_gcov_ctr.42+6
+	lds	r23, __llvm_gcov_ctr.42+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.42+7, r23
+	sts	__llvm_gcov_ctr.42+6, r22
+	sts	__llvm_gcov_ctr.42+5, r21
+	sts	__llvm_gcov_ctr.42+4, r20
+	sts	__llvm_gcov_ctr.42+3, r19
+	sts	__llvm_gcov_ctr.42+2, r18
+	sts	__llvm_gcov_ctr.42+1, r25
+	sts	__llvm_gcov_ctr.42, r24
 	lds	r24, __profc_abs+8
 	lds	r25, __profc_abs+9
 	lds	r18, __profc_abs+10
@@ -8500,6 +11848,30 @@ abs:                                    ; @abs
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB42_3
 .LBB42_2:
+	lds	r24, __llvm_gcov_ctr.42+8
+	lds	r25, __llvm_gcov_ctr.42+9
+	lds	r18, __llvm_gcov_ctr.42+10
+	lds	r19, __llvm_gcov_ctr.42+11
+	lds	r20, __llvm_gcov_ctr.42+12
+	lds	r21, __llvm_gcov_ctr.42+13
+	lds	r22, __llvm_gcov_ctr.42+14
+	lds	r23, __llvm_gcov_ctr.42+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.42+15, r23
+	sts	__llvm_gcov_ctr.42+14, r22
+	sts	__llvm_gcov_ctr.42+13, r21
+	sts	__llvm_gcov_ctr.42+12, r20
+	sts	__llvm_gcov_ctr.42+11, r19
+	sts	__llvm_gcov_ctr.42+10, r18
+	sts	__llvm_gcov_ctr.42+9, r25
+	sts	__llvm_gcov_ctr.42+8, r24
 	ldd	r24, Y+3
 	ldd	r25, Y+4
 	mov	r18, r1
@@ -8589,6 +11961,30 @@ atoi:                                   ; @atoi
 	brne	.LBB43_2
 	rjmp	.LBB43_3
 .LBB43_2:                               ;   in Loop: Header=BB43_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.43
+	lds	r25, __llvm_gcov_ctr.43+1
+	lds	r18, __llvm_gcov_ctr.43+2
+	lds	r19, __llvm_gcov_ctr.43+3
+	lds	r20, __llvm_gcov_ctr.43+4
+	lds	r21, __llvm_gcov_ctr.43+5
+	lds	r22, __llvm_gcov_ctr.43+6
+	lds	r23, __llvm_gcov_ctr.43+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+7, r23
+	sts	__llvm_gcov_ctr.43+6, r22
+	sts	__llvm_gcov_ctr.43+5, r21
+	sts	__llvm_gcov_ctr.43+4, r20
+	sts	__llvm_gcov_ctr.43+3, r19
+	sts	__llvm_gcov_ctr.43+2, r18
+	sts	__llvm_gcov_ctr.43+1, r25
+	sts	__llvm_gcov_ctr.43, r24
 	lds	r24, __profc_atoi+8
 	lds	r25, __profc_atoi+9
 	lds	r18, __profc_atoi+10
@@ -8644,6 +12040,30 @@ atoi:                                   ; @atoi
 	breq	.LBB43_5
 	rjmp	.LBB43_8
 .LBB43_5:
+	lds	r24, __llvm_gcov_ctr.43+8
+	lds	r25, __llvm_gcov_ctr.43+9
+	lds	r18, __llvm_gcov_ctr.43+10
+	lds	r19, __llvm_gcov_ctr.43+11
+	lds	r20, __llvm_gcov_ctr.43+12
+	lds	r21, __llvm_gcov_ctr.43+13
+	lds	r22, __llvm_gcov_ctr.43+14
+	lds	r23, __llvm_gcov_ctr.43+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+15, r23
+	sts	__llvm_gcov_ctr.43+14, r22
+	sts	__llvm_gcov_ctr.43+13, r21
+	sts	__llvm_gcov_ctr.43+12, r20
+	sts	__llvm_gcov_ctr.43+11, r19
+	sts	__llvm_gcov_ctr.43+10, r18
+	sts	__llvm_gcov_ctr.43+9, r25
+	sts	__llvm_gcov_ctr.43+8, r24
 	lds	r24, __profc_atoi+24
 	lds	r25, __profc_atoi+25
 	lds	r18, __profc_atoi+26
@@ -8674,6 +12094,30 @@ atoi:                                   ; @atoi
 	std	Y+5, r24
 	rjmp	.LBB43_7
 .LBB43_6:
+	lds	r24, __llvm_gcov_ctr.43+16
+	lds	r25, __llvm_gcov_ctr.43+17
+	lds	r18, __llvm_gcov_ctr.43+18
+	lds	r19, __llvm_gcov_ctr.43+19
+	lds	r20, __llvm_gcov_ctr.43+20
+	lds	r21, __llvm_gcov_ctr.43+21
+	lds	r22, __llvm_gcov_ctr.43+22
+	lds	r23, __llvm_gcov_ctr.43+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+23, r23
+	sts	__llvm_gcov_ctr.43+22, r22
+	sts	__llvm_gcov_ctr.43+21, r21
+	sts	__llvm_gcov_ctr.43+20, r20
+	sts	__llvm_gcov_ctr.43+19, r19
+	sts	__llvm_gcov_ctr.43+18, r18
+	sts	__llvm_gcov_ctr.43+17, r25
+	sts	__llvm_gcov_ctr.43+16, r24
 	lds	r24, __profc_atoi+32
 	lds	r25, __profc_atoi+33
 	lds	r18, __profc_atoi+34
@@ -8749,6 +12193,30 @@ atoi:                                   ; @atoi
 	brne	.LBB43_10
 	rjmp	.LBB43_11
 .LBB43_10:                              ;   in Loop: Header=BB43_9 Depth=1
+	lds	r24, __llvm_gcov_ctr.43+24
+	lds	r25, __llvm_gcov_ctr.43+25
+	lds	r18, __llvm_gcov_ctr.43+26
+	lds	r19, __llvm_gcov_ctr.43+27
+	lds	r20, __llvm_gcov_ctr.43+28
+	lds	r21, __llvm_gcov_ctr.43+29
+	lds	r22, __llvm_gcov_ctr.43+30
+	lds	r23, __llvm_gcov_ctr.43+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+31, r23
+	sts	__llvm_gcov_ctr.43+30, r22
+	sts	__llvm_gcov_ctr.43+29, r21
+	sts	__llvm_gcov_ctr.43+28, r20
+	sts	__llvm_gcov_ctr.43+27, r19
+	sts	__llvm_gcov_ctr.43+26, r18
+	sts	__llvm_gcov_ctr.43+25, r25
+	sts	__llvm_gcov_ctr.43+24, r24
 	lds	r24, __profc_atoi+40
 	lds	r25, __profc_atoi+41
 	lds	r18, __profc_atoi+42
@@ -8805,6 +12273,30 @@ atoi:                                   ; @atoi
 	brne	.LBB43_12
 	rjmp	.LBB43_13
 .LBB43_12:
+	lds	r24, __llvm_gcov_ctr.43+32
+	lds	r25, __llvm_gcov_ctr.43+33
+	lds	r18, __llvm_gcov_ctr.43+34
+	lds	r19, __llvm_gcov_ctr.43+35
+	lds	r20, __llvm_gcov_ctr.43+36
+	lds	r21, __llvm_gcov_ctr.43+37
+	lds	r22, __llvm_gcov_ctr.43+38
+	lds	r23, __llvm_gcov_ctr.43+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+39, r23
+	sts	__llvm_gcov_ctr.43+38, r22
+	sts	__llvm_gcov_ctr.43+37, r21
+	sts	__llvm_gcov_ctr.43+36, r20
+	sts	__llvm_gcov_ctr.43+35, r19
+	sts	__llvm_gcov_ctr.43+34, r18
+	sts	__llvm_gcov_ctr.43+33, r25
+	sts	__llvm_gcov_ctr.43+32, r24
 	lds	r24, __profc_atoi+48
 	lds	r25, __profc_atoi+49
 	lds	r18, __profc_atoi+50
@@ -8835,6 +12327,30 @@ atoi:                                   ; @atoi
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB43_14
 .LBB43_13:
+	lds	r24, __llvm_gcov_ctr.43+40
+	lds	r25, __llvm_gcov_ctr.43+41
+	lds	r18, __llvm_gcov_ctr.43+42
+	lds	r19, __llvm_gcov_ctr.43+43
+	lds	r20, __llvm_gcov_ctr.43+44
+	lds	r21, __llvm_gcov_ctr.43+45
+	lds	r22, __llvm_gcov_ctr.43+46
+	lds	r23, __llvm_gcov_ctr.43+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.43+47, r23
+	sts	__llvm_gcov_ctr.43+46, r22
+	sts	__llvm_gcov_ctr.43+45, r21
+	sts	__llvm_gcov_ctr.43+44, r20
+	sts	__llvm_gcov_ctr.43+43, r19
+	sts	__llvm_gcov_ctr.43+42, r18
+	sts	__llvm_gcov_ctr.43+41, r25
+	sts	__llvm_gcov_ctr.43+40, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	mov	r18, r1
@@ -8926,6 +12442,30 @@ atol:                                   ; @atol
 	brne	.LBB44_2
 	rjmp	.LBB44_3
 .LBB44_2:                               ;   in Loop: Header=BB44_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.44
+	lds	r25, __llvm_gcov_ctr.44+1
+	lds	r18, __llvm_gcov_ctr.44+2
+	lds	r19, __llvm_gcov_ctr.44+3
+	lds	r20, __llvm_gcov_ctr.44+4
+	lds	r21, __llvm_gcov_ctr.44+5
+	lds	r22, __llvm_gcov_ctr.44+6
+	lds	r23, __llvm_gcov_ctr.44+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+7, r23
+	sts	__llvm_gcov_ctr.44+6, r22
+	sts	__llvm_gcov_ctr.44+5, r21
+	sts	__llvm_gcov_ctr.44+4, r20
+	sts	__llvm_gcov_ctr.44+3, r19
+	sts	__llvm_gcov_ctr.44+2, r18
+	sts	__llvm_gcov_ctr.44+1, r25
+	sts	__llvm_gcov_ctr.44, r24
 	lds	r24, __profc_atol+8
 	lds	r25, __profc_atol+9
 	lds	r18, __profc_atol+10
@@ -8981,6 +12521,30 @@ atol:                                   ; @atol
 	breq	.LBB44_5
 	rjmp	.LBB44_8
 .LBB44_5:
+	lds	r24, __llvm_gcov_ctr.44+8
+	lds	r25, __llvm_gcov_ctr.44+9
+	lds	r18, __llvm_gcov_ctr.44+10
+	lds	r19, __llvm_gcov_ctr.44+11
+	lds	r20, __llvm_gcov_ctr.44+12
+	lds	r21, __llvm_gcov_ctr.44+13
+	lds	r22, __llvm_gcov_ctr.44+14
+	lds	r23, __llvm_gcov_ctr.44+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+15, r23
+	sts	__llvm_gcov_ctr.44+14, r22
+	sts	__llvm_gcov_ctr.44+13, r21
+	sts	__llvm_gcov_ctr.44+12, r20
+	sts	__llvm_gcov_ctr.44+11, r19
+	sts	__llvm_gcov_ctr.44+10, r18
+	sts	__llvm_gcov_ctr.44+9, r25
+	sts	__llvm_gcov_ctr.44+8, r24
 	lds	r24, __profc_atol+24
 	lds	r25, __profc_atol+25
 	lds	r18, __profc_atol+26
@@ -9011,6 +12575,30 @@ atol:                                   ; @atol
 	std	Y+7, r24
 	rjmp	.LBB44_7
 .LBB44_6:
+	lds	r24, __llvm_gcov_ctr.44+16
+	lds	r25, __llvm_gcov_ctr.44+17
+	lds	r18, __llvm_gcov_ctr.44+18
+	lds	r19, __llvm_gcov_ctr.44+19
+	lds	r20, __llvm_gcov_ctr.44+20
+	lds	r21, __llvm_gcov_ctr.44+21
+	lds	r22, __llvm_gcov_ctr.44+22
+	lds	r23, __llvm_gcov_ctr.44+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+23, r23
+	sts	__llvm_gcov_ctr.44+22, r22
+	sts	__llvm_gcov_ctr.44+21, r21
+	sts	__llvm_gcov_ctr.44+20, r20
+	sts	__llvm_gcov_ctr.44+19, r19
+	sts	__llvm_gcov_ctr.44+18, r18
+	sts	__llvm_gcov_ctr.44+17, r25
+	sts	__llvm_gcov_ctr.44+16, r24
 	lds	r24, __profc_atol+32
 	lds	r25, __profc_atol+33
 	lds	r18, __profc_atol+34
@@ -9086,6 +12674,30 @@ atol:                                   ; @atol
 	brne	.LBB44_10
 	rjmp	.LBB44_11
 .LBB44_10:                              ;   in Loop: Header=BB44_9 Depth=1
+	lds	r24, __llvm_gcov_ctr.44+24
+	lds	r25, __llvm_gcov_ctr.44+25
+	lds	r18, __llvm_gcov_ctr.44+26
+	lds	r19, __llvm_gcov_ctr.44+27
+	lds	r20, __llvm_gcov_ctr.44+28
+	lds	r21, __llvm_gcov_ctr.44+29
+	lds	r22, __llvm_gcov_ctr.44+30
+	lds	r23, __llvm_gcov_ctr.44+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+31, r23
+	sts	__llvm_gcov_ctr.44+30, r22
+	sts	__llvm_gcov_ctr.44+29, r21
+	sts	__llvm_gcov_ctr.44+28, r20
+	sts	__llvm_gcov_ctr.44+27, r19
+	sts	__llvm_gcov_ctr.44+26, r18
+	sts	__llvm_gcov_ctr.44+25, r25
+	sts	__llvm_gcov_ctr.44+24, r24
 	lds	r24, __profc_atol+40
 	lds	r25, __profc_atol+41
 	lds	r18, __profc_atol+42
@@ -9156,6 +12768,30 @@ atol:                                   ; @atol
 	brne	.LBB44_12
 	rjmp	.LBB44_13
 .LBB44_12:
+	lds	r24, __llvm_gcov_ctr.44+32
+	lds	r25, __llvm_gcov_ctr.44+33
+	lds	r18, __llvm_gcov_ctr.44+34
+	lds	r19, __llvm_gcov_ctr.44+35
+	lds	r20, __llvm_gcov_ctr.44+36
+	lds	r21, __llvm_gcov_ctr.44+37
+	lds	r22, __llvm_gcov_ctr.44+38
+	lds	r23, __llvm_gcov_ctr.44+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+39, r23
+	sts	__llvm_gcov_ctr.44+38, r22
+	sts	__llvm_gcov_ctr.44+37, r21
+	sts	__llvm_gcov_ctr.44+36, r20
+	sts	__llvm_gcov_ctr.44+35, r19
+	sts	__llvm_gcov_ctr.44+34, r18
+	sts	__llvm_gcov_ctr.44+33, r25
+	sts	__llvm_gcov_ctr.44+32, r24
 	lds	r24, __profc_atol+48
 	lds	r25, __profc_atol+49
 	lds	r18, __profc_atol+50
@@ -9190,6 +12826,30 @@ atol:                                   ; @atol
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB44_14
 .LBB44_13:
+	lds	r24, __llvm_gcov_ctr.44+40
+	lds	r25, __llvm_gcov_ctr.44+41
+	lds	r18, __llvm_gcov_ctr.44+42
+	lds	r19, __llvm_gcov_ctr.44+43
+	lds	r20, __llvm_gcov_ctr.44+44
+	lds	r21, __llvm_gcov_ctr.44+45
+	lds	r22, __llvm_gcov_ctr.44+46
+	lds	r23, __llvm_gcov_ctr.44+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.44+47, r23
+	sts	__llvm_gcov_ctr.44+46, r22
+	sts	__llvm_gcov_ctr.44+45, r21
+	sts	__llvm_gcov_ctr.44+44, r20
+	sts	__llvm_gcov_ctr.44+43, r19
+	sts	__llvm_gcov_ctr.44+42, r18
+	sts	__llvm_gcov_ctr.44+41, r25
+	sts	__llvm_gcov_ctr.44+40, r24
 	ldd	r22, Y+9
 	ldd	r23, Y+10
 	ldd	r20, Y+11
@@ -9303,6 +12963,30 @@ atoll:                                  ; @atoll
 	brne	.LBB45_2
 	rjmp	.LBB45_3
 .LBB45_2:                               ;   in Loop: Header=BB45_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.45
+	lds	r25, __llvm_gcov_ctr.45+1
+	lds	r18, __llvm_gcov_ctr.45+2
+	lds	r19, __llvm_gcov_ctr.45+3
+	lds	r20, __llvm_gcov_ctr.45+4
+	lds	r21, __llvm_gcov_ctr.45+5
+	lds	r22, __llvm_gcov_ctr.45+6
+	lds	r23, __llvm_gcov_ctr.45+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+7, r23
+	sts	__llvm_gcov_ctr.45+6, r22
+	sts	__llvm_gcov_ctr.45+5, r21
+	sts	__llvm_gcov_ctr.45+4, r20
+	sts	__llvm_gcov_ctr.45+3, r19
+	sts	__llvm_gcov_ctr.45+2, r18
+	sts	__llvm_gcov_ctr.45+1, r25
+	sts	__llvm_gcov_ctr.45, r24
 	lds	r24, __profc_atoll+8
 	lds	r25, __profc_atoll+9
 	lds	r18, __profc_atoll+10
@@ -9358,6 +13042,30 @@ atoll:                                  ; @atoll
 	breq	.LBB45_5
 	rjmp	.LBB45_8
 .LBB45_5:
+	lds	r24, __llvm_gcov_ctr.45+8
+	lds	r25, __llvm_gcov_ctr.45+9
+	lds	r18, __llvm_gcov_ctr.45+10
+	lds	r19, __llvm_gcov_ctr.45+11
+	lds	r20, __llvm_gcov_ctr.45+12
+	lds	r21, __llvm_gcov_ctr.45+13
+	lds	r22, __llvm_gcov_ctr.45+14
+	lds	r23, __llvm_gcov_ctr.45+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+15, r23
+	sts	__llvm_gcov_ctr.45+14, r22
+	sts	__llvm_gcov_ctr.45+13, r21
+	sts	__llvm_gcov_ctr.45+12, r20
+	sts	__llvm_gcov_ctr.45+11, r19
+	sts	__llvm_gcov_ctr.45+10, r18
+	sts	__llvm_gcov_ctr.45+9, r25
+	sts	__llvm_gcov_ctr.45+8, r24
 	lds	r24, __profc_atoll+24
 	lds	r25, __profc_atoll+25
 	lds	r18, __profc_atoll+26
@@ -9388,6 +13096,30 @@ atoll:                                  ; @atoll
 	std	Y+15, r24
 	rjmp	.LBB45_7
 .LBB45_6:
+	lds	r24, __llvm_gcov_ctr.45+16
+	lds	r25, __llvm_gcov_ctr.45+17
+	lds	r18, __llvm_gcov_ctr.45+18
+	lds	r19, __llvm_gcov_ctr.45+19
+	lds	r20, __llvm_gcov_ctr.45+20
+	lds	r21, __llvm_gcov_ctr.45+21
+	lds	r22, __llvm_gcov_ctr.45+22
+	lds	r23, __llvm_gcov_ctr.45+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+23, r23
+	sts	__llvm_gcov_ctr.45+22, r22
+	sts	__llvm_gcov_ctr.45+21, r21
+	sts	__llvm_gcov_ctr.45+20, r20
+	sts	__llvm_gcov_ctr.45+19, r19
+	sts	__llvm_gcov_ctr.45+18, r18
+	sts	__llvm_gcov_ctr.45+17, r25
+	sts	__llvm_gcov_ctr.45+16, r24
 	lds	r24, __profc_atoll+32
 	lds	r25, __profc_atoll+33
 	lds	r18, __profc_atoll+34
@@ -9463,6 +13195,30 @@ atoll:                                  ; @atoll
 	brne	.LBB45_10
 	rjmp	.LBB45_11
 .LBB45_10:                              ;   in Loop: Header=BB45_9 Depth=1
+	lds	r24, __llvm_gcov_ctr.45+24
+	lds	r25, __llvm_gcov_ctr.45+25
+	lds	r18, __llvm_gcov_ctr.45+26
+	lds	r19, __llvm_gcov_ctr.45+27
+	lds	r20, __llvm_gcov_ctr.45+28
+	lds	r21, __llvm_gcov_ctr.45+29
+	lds	r22, __llvm_gcov_ctr.45+30
+	lds	r23, __llvm_gcov_ctr.45+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+31, r23
+	sts	__llvm_gcov_ctr.45+30, r22
+	sts	__llvm_gcov_ctr.45+29, r21
+	sts	__llvm_gcov_ctr.45+28, r20
+	sts	__llvm_gcov_ctr.45+27, r19
+	sts	__llvm_gcov_ctr.45+26, r18
+	sts	__llvm_gcov_ctr.45+25, r25
+	sts	__llvm_gcov_ctr.45+24, r24
 	lds	r24, __profc_atoll+40
 	lds	r25, __profc_atoll+41
 	lds	r18, __profc_atoll+42
@@ -9567,6 +13323,30 @@ atoll:                                  ; @atoll
 	brne	.LBB45_12
 	rjmp	.LBB45_13
 .LBB45_12:
+	lds	r24, __llvm_gcov_ctr.45+32
+	lds	r25, __llvm_gcov_ctr.45+33
+	lds	r18, __llvm_gcov_ctr.45+34
+	lds	r19, __llvm_gcov_ctr.45+35
+	lds	r20, __llvm_gcov_ctr.45+36
+	lds	r21, __llvm_gcov_ctr.45+37
+	lds	r22, __llvm_gcov_ctr.45+38
+	lds	r23, __llvm_gcov_ctr.45+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+39, r23
+	sts	__llvm_gcov_ctr.45+38, r22
+	sts	__llvm_gcov_ctr.45+37, r21
+	sts	__llvm_gcov_ctr.45+36, r20
+	sts	__llvm_gcov_ctr.45+35, r19
+	sts	__llvm_gcov_ctr.45+34, r18
+	sts	__llvm_gcov_ctr.45+33, r25
+	sts	__llvm_gcov_ctr.45+32, r24
 	lds	r24, __profc_atoll+48
 	lds	r25, __profc_atoll+49
 	lds	r18, __profc_atoll+50
@@ -9609,6 +13389,30 @@ atoll:                                  ; @atoll
 	std	Y+7, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB45_14
 .LBB45_13:
+	lds	r24, __llvm_gcov_ctr.45+40
+	lds	r25, __llvm_gcov_ctr.45+41
+	lds	r18, __llvm_gcov_ctr.45+42
+	lds	r19, __llvm_gcov_ctr.45+43
+	lds	r20, __llvm_gcov_ctr.45+44
+	lds	r21, __llvm_gcov_ctr.45+45
+	lds	r22, __llvm_gcov_ctr.45+46
+	lds	r23, __llvm_gcov_ctr.45+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.45+47, r23
+	sts	__llvm_gcov_ctr.45+46, r22
+	sts	__llvm_gcov_ctr.45+45, r21
+	sts	__llvm_gcov_ctr.45+44, r20
+	sts	__llvm_gcov_ctr.45+43, r19
+	sts	__llvm_gcov_ctr.45+42, r18
+	sts	__llvm_gcov_ctr.45+41, r25
+	sts	__llvm_gcov_ctr.45+40, r24
 	ldd	r20, Y+17
 	ldd	r21, Y+18
 	ldd	r18, Y+19
@@ -9790,6 +13594,30 @@ bsearch:                                ; @bsearch
 	brmi	.LBB46_3
 	rjmp	.LBB46_4
 .LBB46_3:                               ;   in Loop: Header=BB46_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.46+8
+	lds	r25, __llvm_gcov_ctr.46+9
+	lds	r18, __llvm_gcov_ctr.46+10
+	lds	r19, __llvm_gcov_ctr.46+11
+	lds	r20, __llvm_gcov_ctr.46+12
+	lds	r21, __llvm_gcov_ctr.46+13
+	lds	r22, __llvm_gcov_ctr.46+14
+	lds	r23, __llvm_gcov_ctr.46+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.46+15, r23
+	sts	__llvm_gcov_ctr.46+14, r22
+	sts	__llvm_gcov_ctr.46+13, r21
+	sts	__llvm_gcov_ctr.46+12, r20
+	sts	__llvm_gcov_ctr.46+11, r19
+	sts	__llvm_gcov_ctr.46+10, r18
+	sts	__llvm_gcov_ctr.46+9, r25
+	sts	__llvm_gcov_ctr.46+8, r24
 	lds	r24, __profc_bsearch+16
 	lds	r25, __profc_bsearch+17
 	lds	r18, __profc_bsearch+18
@@ -9877,16 +13705,88 @@ bsearch:                                ; @bsearch
 	std	Y+11, r24
 	rjmp	.LBB46_7
 .LBB46_6:
+	lds	r24, __llvm_gcov_ctr.46+16
+	lds	r25, __llvm_gcov_ctr.46+17
+	lds	r18, __llvm_gcov_ctr.46+18
+	lds	r19, __llvm_gcov_ctr.46+19
+	lds	r20, __llvm_gcov_ctr.46+20
+	lds	r21, __llvm_gcov_ctr.46+21
+	lds	r22, __llvm_gcov_ctr.46+22
+	lds	r23, __llvm_gcov_ctr.46+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.46+23, r23
+	sts	__llvm_gcov_ctr.46+22, r22
+	sts	__llvm_gcov_ctr.46+21, r21
+	sts	__llvm_gcov_ctr.46+20, r20
+	sts	__llvm_gcov_ctr.46+19, r19
+	sts	__llvm_gcov_ctr.46+18, r18
+	sts	__llvm_gcov_ctr.46+17, r25
+	sts	__llvm_gcov_ctr.46+16, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	std	Y+18, r25
 	std	Y+17, r24
 	rjmp	.LBB46_10
 .LBB46_7:                               ;   in Loop: Header=BB46_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.46+24
+	lds	r25, __llvm_gcov_ctr.46+25
+	lds	r18, __llvm_gcov_ctr.46+26
+	lds	r19, __llvm_gcov_ctr.46+27
+	lds	r20, __llvm_gcov_ctr.46+28
+	lds	r21, __llvm_gcov_ctr.46+29
+	lds	r22, __llvm_gcov_ctr.46+30
+	lds	r23, __llvm_gcov_ctr.46+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.46+31, r23
+	sts	__llvm_gcov_ctr.46+30, r22
+	sts	__llvm_gcov_ctr.46+29, r21
+	sts	__llvm_gcov_ctr.46+28, r20
+	sts	__llvm_gcov_ctr.46+27, r19
+	sts	__llvm_gcov_ctr.46+26, r18
+	sts	__llvm_gcov_ctr.46+25, r25
+	sts	__llvm_gcov_ctr.46+24, r24
 	rjmp	.LBB46_8
 .LBB46_8:                               ;   in Loop: Header=BB46_1 Depth=1
 	rjmp	.LBB46_1
 .LBB46_9:
+	lds	r24, __llvm_gcov_ctr.46
+	lds	r25, __llvm_gcov_ctr.46+1
+	lds	r18, __llvm_gcov_ctr.46+2
+	lds	r19, __llvm_gcov_ctr.46+3
+	lds	r20, __llvm_gcov_ctr.46+4
+	lds	r21, __llvm_gcov_ctr.46+5
+	lds	r22, __llvm_gcov_ctr.46+6
+	lds	r23, __llvm_gcov_ctr.46+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.46+7, r23
+	sts	__llvm_gcov_ctr.46+6, r22
+	sts	__llvm_gcov_ctr.46+5, r21
+	sts	__llvm_gcov_ctr.46+4, r20
+	sts	__llvm_gcov_ctr.46+3, r19
+	sts	__llvm_gcov_ctr.46+2, r18
+	sts	__llvm_gcov_ctr.46+1, r25
+	sts	__llvm_gcov_ctr.46, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+18, r25
@@ -10040,6 +13940,30 @@ bsearch_r:                              ; @bsearch_r
 	breq	.LBB47_3
 	rjmp	.LBB47_4
 .LBB47_3:
+	lds	r24, __llvm_gcov_ctr.47
+	lds	r25, __llvm_gcov_ctr.47+1
+	lds	r18, __llvm_gcov_ctr.47+2
+	lds	r19, __llvm_gcov_ctr.47+3
+	lds	r20, __llvm_gcov_ctr.47+4
+	lds	r21, __llvm_gcov_ctr.47+5
+	lds	r22, __llvm_gcov_ctr.47+6
+	lds	r23, __llvm_gcov_ctr.47+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.47+7, r23
+	sts	__llvm_gcov_ctr.47+6, r22
+	sts	__llvm_gcov_ctr.47+5, r21
+	sts	__llvm_gcov_ctr.47+4, r20
+	sts	__llvm_gcov_ctr.47+3, r19
+	sts	__llvm_gcov_ctr.47+2, r18
+	sts	__llvm_gcov_ctr.47+1, r25
+	sts	__llvm_gcov_ctr.47, r24
 	lds	r24, __profc_bsearch_r+16
 	lds	r25, __profc_bsearch_r+17
 	lds	r18, __profc_bsearch_r+18
@@ -10079,6 +14003,30 @@ bsearch_r:                              ; @bsearch_r
 	brlt	.LBB47_5
 	rjmp	.LBB47_6
 .LBB47_5:                               ;   in Loop: Header=BB47_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.47+8
+	lds	r25, __llvm_gcov_ctr.47+9
+	lds	r18, __llvm_gcov_ctr.47+10
+	lds	r19, __llvm_gcov_ctr.47+11
+	lds	r20, __llvm_gcov_ctr.47+12
+	lds	r21, __llvm_gcov_ctr.47+13
+	lds	r22, __llvm_gcov_ctr.47+14
+	lds	r23, __llvm_gcov_ctr.47+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.47+15, r23
+	sts	__llvm_gcov_ctr.47+14, r22
+	sts	__llvm_gcov_ctr.47+13, r21
+	sts	__llvm_gcov_ctr.47+12, r20
+	sts	__llvm_gcov_ctr.47+11, r19
+	sts	__llvm_gcov_ctr.47+10, r18
+	sts	__llvm_gcov_ctr.47+9, r25
+	sts	__llvm_gcov_ctr.47+8, r24
 	lds	r24, __profc_bsearch_r+24
 	lds	r25, __profc_bsearch_r+25
 	lds	r18, __profc_bsearch_r+26
@@ -10120,6 +14068,30 @@ bsearch_r:                              ; @bsearch_r
 .LBB47_6:                               ;   in Loop: Header=BB47_1 Depth=1
 	rjmp	.LBB47_7
 .LBB47_7:                               ;   in Loop: Header=BB47_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.47+16
+	lds	r25, __llvm_gcov_ctr.47+17
+	lds	r18, __llvm_gcov_ctr.47+18
+	lds	r19, __llvm_gcov_ctr.47+19
+	lds	r20, __llvm_gcov_ctr.47+20
+	lds	r21, __llvm_gcov_ctr.47+21
+	lds	r22, __llvm_gcov_ctr.47+22
+	lds	r23, __llvm_gcov_ctr.47+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.47+23, r23
+	sts	__llvm_gcov_ctr.47+22, r22
+	sts	__llvm_gcov_ctr.47+21, r21
+	sts	__llvm_gcov_ctr.47+20, r20
+	sts	__llvm_gcov_ctr.47+19, r19
+	sts	__llvm_gcov_ctr.47+18, r18
+	sts	__llvm_gcov_ctr.47+17, r25
+	sts	__llvm_gcov_ctr.47+16, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	asr	r25
@@ -10128,6 +14100,30 @@ bsearch_r:                              ; @bsearch_r
 	std	Y+7, r24
 	rjmp	.LBB47_1
 .LBB47_8:
+	lds	r24, __llvm_gcov_ctr.47+24
+	lds	r25, __llvm_gcov_ctr.47+25
+	lds	r18, __llvm_gcov_ctr.47+26
+	lds	r19, __llvm_gcov_ctr.47+27
+	lds	r20, __llvm_gcov_ctr.47+28
+	lds	r21, __llvm_gcov_ctr.47+29
+	lds	r22, __llvm_gcov_ctr.47+30
+	lds	r23, __llvm_gcov_ctr.47+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.47+31, r23
+	sts	__llvm_gcov_ctr.47+30, r22
+	sts	__llvm_gcov_ctr.47+29, r21
+	sts	__llvm_gcov_ctr.47+28, r20
+	sts	__llvm_gcov_ctr.47+27, r19
+	sts	__llvm_gcov_ctr.47+26, r18
+	sts	__llvm_gcov_ctr.47+25, r25
+	sts	__llvm_gcov_ctr.47+24, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+24, r25
@@ -10163,6 +14159,30 @@ div:                                    ; @div
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.48
+	lds	r19, __llvm_gcov_ctr.48+1
+	lds	r20, __llvm_gcov_ctr.48+2
+	lds	r21, __llvm_gcov_ctr.48+3
+	lds	r30, __llvm_gcov_ctr.48+4
+	lds	r31, __llvm_gcov_ctr.48+5
+	lds	r26, __llvm_gcov_ctr.48+6
+	lds	r27, __llvm_gcov_ctr.48+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.48+7, r27
+	sts	__llvm_gcov_ctr.48+6, r26
+	sts	__llvm_gcov_ctr.48+5, r31
+	sts	__llvm_gcov_ctr.48+4, r30
+	sts	__llvm_gcov_ctr.48+3, r21
+	sts	__llvm_gcov_ctr.48+2, r20
+	sts	__llvm_gcov_ctr.48+1, r19
+	sts	__llvm_gcov_ctr.48, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	std	Y+2, r23
@@ -10309,6 +14329,30 @@ imaxabs:                                ; @imaxabs
 	std	Y+16, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB49_1
 .LBB49_3:
+	lds	r24, __llvm_gcov_ctr.49
+	lds	r25, __llvm_gcov_ctr.49+1
+	lds	r18, __llvm_gcov_ctr.49+2
+	lds	r19, __llvm_gcov_ctr.49+3
+	lds	r20, __llvm_gcov_ctr.49+4
+	lds	r21, __llvm_gcov_ctr.49+5
+	lds	r22, __llvm_gcov_ctr.49+6
+	lds	r23, __llvm_gcov_ctr.49+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.49+7, r23
+	sts	__llvm_gcov_ctr.49+6, r22
+	sts	__llvm_gcov_ctr.49+5, r21
+	sts	__llvm_gcov_ctr.49+4, r20
+	sts	__llvm_gcov_ctr.49+3, r19
+	sts	__llvm_gcov_ctr.49+2, r18
+	sts	__llvm_gcov_ctr.49+1, r25
+	sts	__llvm_gcov_ctr.49, r24
 	lds	r24, __profc_imaxabs+8
 	lds	r25, __profc_imaxabs+9
 	lds	r18, __profc_imaxabs+10
@@ -10351,6 +14395,30 @@ imaxabs:                                ; @imaxabs
 	std	Y+13, r24                       ; 2-byte Folded Spill
 	rjmp	.LBB49_5
 .LBB49_4:
+	lds	r24, __llvm_gcov_ctr.49+8
+	lds	r25, __llvm_gcov_ctr.49+9
+	lds	r18, __llvm_gcov_ctr.49+10
+	lds	r19, __llvm_gcov_ctr.49+11
+	lds	r20, __llvm_gcov_ctr.49+12
+	lds	r21, __llvm_gcov_ctr.49+13
+	lds	r22, __llvm_gcov_ctr.49+14
+	lds	r23, __llvm_gcov_ctr.49+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.49+15, r23
+	sts	__llvm_gcov_ctr.49+14, r22
+	sts	__llvm_gcov_ctr.49+13, r21
+	sts	__llvm_gcov_ctr.49+12, r20
+	sts	__llvm_gcov_ctr.49+11, r19
+	sts	__llvm_gcov_ctr.49+10, r18
+	sts	__llvm_gcov_ctr.49+9, r25
+	sts	__llvm_gcov_ctr.49+8, r24
 	ldd	r20, Y+17
 	ldd	r21, Y+18
 	ldd	r18, Y+19
@@ -10438,6 +14506,42 @@ imaxdiv:                                ; @imaxdiv
                                         ; kill: def $r25r24 killed $r21r20
                                         ; kill: def $r25r24 killed $r19r18
                                         ; kill: def $r25r24 killed $r17r16
+	lds	r24, __llvm_gcov_ctr.50
+	lds	r25, __llvm_gcov_ctr.50+1
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
+	lds	r30, __llvm_gcov_ctr.50+2
+	lds	r31, __llvm_gcov_ctr.50+3
+	lds	r26, __llvm_gcov_ctr.50+4
+	lds	r27, __llvm_gcov_ctr.50+5
+	lds	r24, __llvm_gcov_ctr.50+6
+	lds	r25, __llvm_gcov_ctr.50+7
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	subi	r24, 255
+	sbci	r25, 255
+	std	Y+6, r25                        ; 2-byte Folded Spill
+	std	Y+5, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.50+7, r25
+	sts	__llvm_gcov_ctr.50+6, r24
+	ldd	r24, Y+5                        ; 2-byte Folded Reload
+	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.50+5, r27
+	sts	__llvm_gcov_ctr.50+4, r26
+	sts	__llvm_gcov_ctr.50+3, r31
+	sts	__llvm_gcov_ctr.50+2, r30
+	sts	__llvm_gcov_ctr.50+1, r25
+	sts	__llvm_gcov_ctr.50, r24
 	std	Y+24, r23
 	std	Y+23, r22
 	std	Y+22, r21
@@ -10638,6 +14742,30 @@ labs:                                   ; @labs
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB51_1
 .LBB51_3:
+	lds	r24, __llvm_gcov_ctr.51
+	lds	r25, __llvm_gcov_ctr.51+1
+	lds	r18, __llvm_gcov_ctr.51+2
+	lds	r19, __llvm_gcov_ctr.51+3
+	lds	r20, __llvm_gcov_ctr.51+4
+	lds	r21, __llvm_gcov_ctr.51+5
+	lds	r22, __llvm_gcov_ctr.51+6
+	lds	r23, __llvm_gcov_ctr.51+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.51+7, r23
+	sts	__llvm_gcov_ctr.51+6, r22
+	sts	__llvm_gcov_ctr.51+5, r21
+	sts	__llvm_gcov_ctr.51+4, r20
+	sts	__llvm_gcov_ctr.51+3, r19
+	sts	__llvm_gcov_ctr.51+2, r18
+	sts	__llvm_gcov_ctr.51+1, r25
+	sts	__llvm_gcov_ctr.51, r24
 	lds	r24, __profc_labs+8
 	lds	r25, __profc_labs+9
 	lds	r18, __profc_labs+10
@@ -10672,6 +14800,30 @@ labs:                                   ; @labs
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB51_5
 .LBB51_4:
+	lds	r24, __llvm_gcov_ctr.51+8
+	lds	r25, __llvm_gcov_ctr.51+9
+	lds	r18, __llvm_gcov_ctr.51+10
+	lds	r19, __llvm_gcov_ctr.51+11
+	lds	r20, __llvm_gcov_ctr.51+12
+	lds	r21, __llvm_gcov_ctr.51+13
+	lds	r22, __llvm_gcov_ctr.51+14
+	lds	r23, __llvm_gcov_ctr.51+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.51+15, r23
+	sts	__llvm_gcov_ctr.51+14, r22
+	sts	__llvm_gcov_ctr.51+13, r21
+	sts	__llvm_gcov_ctr.51+12, r20
+	sts	__llvm_gcov_ctr.51+11, r19
+	sts	__llvm_gcov_ctr.51+10, r18
+	sts	__llvm_gcov_ctr.51+9, r25
+	sts	__llvm_gcov_ctr.51+8, r24
 	ldd	r22, Y+7
 	ldd	r23, Y+8
 	ldd	r20, Y+9
@@ -10711,28 +14863,57 @@ labs:                                   ; @labs
 	.type	ldiv,@function
 ldiv:                                   ; @ldiv
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 16
+	sbiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.52
+	lds	r31, __llvm_gcov_ctr.52+1
+	lds	r26, __llvm_gcov_ctr.52+2
+	lds	r27, __llvm_gcov_ctr.52+3
+	lds	r16, __llvm_gcov_ctr.52+4
+	lds	r17, __llvm_gcov_ctr.52+5
+	lds	r24, __llvm_gcov_ctr.52+6
+	lds	r25, __llvm_gcov_ctr.52+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.52+7, r25
+	sts	__llvm_gcov_ctr.52+6, r24
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.52+5, r17
+	sts	__llvm_gcov_ctr.52+4, r16
+	sts	__llvm_gcov_ctr.52+3, r27
+	sts	__llvm_gcov_ctr.52+2, r26
+	sts	__llvm_gcov_ctr.52+1, r31
+	sts	__llvm_gcov_ctr.52, r30
+	std	Y+10, r25
+	std	Y+9, r24
+	std	Y+8, r23
+	std	Y+7, r22
+	std	Y+6, r21
+	std	Y+5, r20
+	std	Y+4, r19
+	std	Y+3, r18
 	lds	r24, __profc_ldiv
 	lds	r25, __profc_ldiv+1
 	lds	r18, __profc_ldiv+2
@@ -10757,41 +14938,41 @@ ldiv:                                   ; @ldiv
 	sts	__profc_ldiv+2, r18
 	sts	__profc_ldiv+1, r25
 	sts	__profc_ldiv, r24
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+7
-	ldd	r25, Y+8
-	ldd	r18, Y+1
-	ldd	r19, Y+2
-	ldd	r20, Y+3
-	ldd	r21, Y+4
+	ldd	r22, Y+7
+	ldd	r23, Y+8
+	ldd	r24, Y+9
+	ldd	r25, Y+10
+	ldd	r18, Y+3
+	ldd	r19, Y+4
+	ldd	r20, Y+5
+	ldd	r21, Y+6
 	rcall	__divmodsi4
-	std	Y+12, r21
-	std	Y+11, r20
-	std	Y+10, r19
-	std	Y+9, r18
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+7
-	ldd	r25, Y+8
-	ldd	r18, Y+1
-	ldd	r19, Y+2
-	ldd	r20, Y+3
-	ldd	r21, Y+4
+	std	Y+14, r21
+	std	Y+13, r20
+	std	Y+12, r19
+	std	Y+11, r18
+	ldd	r22, Y+7
+	ldd	r23, Y+8
+	ldd	r24, Y+9
+	ldd	r25, Y+10
+	ldd	r18, Y+3
+	ldd	r19, Y+4
+	ldd	r20, Y+5
+	ldd	r21, Y+6
 	rcall	__divmodsi4
-	std	Y+16, r25
-	std	Y+15, r24
-	std	Y+14, r23
-	std	Y+13, r22
-	ldd	r18, Y+9
-	ldd	r19, Y+10
-	ldd	r20, Y+11
-	ldd	r21, Y+12
-	ldd	r22, Y+13
-	ldd	r23, Y+14
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	adiw	r28, 16
+	std	Y+18, r25
+	std	Y+17, r24
+	std	Y+16, r23
+	std	Y+15, r22
+	ldd	r18, Y+11
+	ldd	r19, Y+12
+	ldd	r20, Y+13
+	ldd	r21, Y+14
+	ldd	r22, Y+15
+	ldd	r23, Y+16
+	ldd	r24, Y+17
+	ldd	r25, Y+18
+	adiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
@@ -10799,6 +14980,8 @@ ldiv:                                   ; @ldiv
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end52:
 	.size	ldiv, .Lfunc_end52-ldiv
@@ -10891,6 +15074,30 @@ llabs:                                  ; @llabs
 	std	Y+16, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB53_1
 .LBB53_3:
+	lds	r24, __llvm_gcov_ctr.53
+	lds	r25, __llvm_gcov_ctr.53+1
+	lds	r18, __llvm_gcov_ctr.53+2
+	lds	r19, __llvm_gcov_ctr.53+3
+	lds	r20, __llvm_gcov_ctr.53+4
+	lds	r21, __llvm_gcov_ctr.53+5
+	lds	r22, __llvm_gcov_ctr.53+6
+	lds	r23, __llvm_gcov_ctr.53+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.53+7, r23
+	sts	__llvm_gcov_ctr.53+6, r22
+	sts	__llvm_gcov_ctr.53+5, r21
+	sts	__llvm_gcov_ctr.53+4, r20
+	sts	__llvm_gcov_ctr.53+3, r19
+	sts	__llvm_gcov_ctr.53+2, r18
+	sts	__llvm_gcov_ctr.53+1, r25
+	sts	__llvm_gcov_ctr.53, r24
 	lds	r24, __profc_llabs+8
 	lds	r25, __profc_llabs+9
 	lds	r18, __profc_llabs+10
@@ -10933,6 +15140,30 @@ llabs:                                  ; @llabs
 	std	Y+13, r24                       ; 2-byte Folded Spill
 	rjmp	.LBB53_5
 .LBB53_4:
+	lds	r24, __llvm_gcov_ctr.53+8
+	lds	r25, __llvm_gcov_ctr.53+9
+	lds	r18, __llvm_gcov_ctr.53+10
+	lds	r19, __llvm_gcov_ctr.53+11
+	lds	r20, __llvm_gcov_ctr.53+12
+	lds	r21, __llvm_gcov_ctr.53+13
+	lds	r22, __llvm_gcov_ctr.53+14
+	lds	r23, __llvm_gcov_ctr.53+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.53+15, r23
+	sts	__llvm_gcov_ctr.53+14, r22
+	sts	__llvm_gcov_ctr.53+13, r21
+	sts	__llvm_gcov_ctr.53+12, r20
+	sts	__llvm_gcov_ctr.53+11, r19
+	sts	__llvm_gcov_ctr.53+10, r18
+	sts	__llvm_gcov_ctr.53+9, r25
+	sts	__llvm_gcov_ctr.53+8, r24
 	ldd	r20, Y+17
 	ldd	r21, Y+18
 	ldd	r18, Y+19
@@ -11020,6 +15251,42 @@ lldiv:                                  ; @lldiv
                                         ; kill: def $r25r24 killed $r21r20
                                         ; kill: def $r25r24 killed $r19r18
                                         ; kill: def $r25r24 killed $r17r16
+	lds	r24, __llvm_gcov_ctr.54
+	lds	r25, __llvm_gcov_ctr.54+1
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
+	lds	r30, __llvm_gcov_ctr.54+2
+	lds	r31, __llvm_gcov_ctr.54+3
+	lds	r26, __llvm_gcov_ctr.54+4
+	lds	r27, __llvm_gcov_ctr.54+5
+	lds	r24, __llvm_gcov_ctr.54+6
+	lds	r25, __llvm_gcov_ctr.54+7
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	subi	r24, 255
+	sbci	r25, 255
+	std	Y+6, r25                        ; 2-byte Folded Spill
+	std	Y+5, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.54+7, r25
+	sts	__llvm_gcov_ctr.54+6, r24
+	ldd	r24, Y+5                        ; 2-byte Folded Reload
+	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.54+5, r27
+	sts	__llvm_gcov_ctr.54+4, r26
+	sts	__llvm_gcov_ctr.54+3, r31
+	sts	__llvm_gcov_ctr.54+2, r30
+	sts	__llvm_gcov_ctr.54+1, r25
+	sts	__llvm_gcov_ctr.54, r24
 	std	Y+24, r23
 	std	Y+23, r22
 	std	Y+22, r21
@@ -11204,6 +15471,30 @@ wcschr:                                 ; @wcschr
 	brne	.LBB55_2
 	rjmp	.LBB55_6
 .LBB55_2:                               ;   in Loop: Header=BB55_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.55
+	lds	r25, __llvm_gcov_ctr.55+1
+	lds	r18, __llvm_gcov_ctr.55+2
+	lds	r19, __llvm_gcov_ctr.55+3
+	lds	r20, __llvm_gcov_ctr.55+4
+	lds	r21, __llvm_gcov_ctr.55+5
+	lds	r22, __llvm_gcov_ctr.55+6
+	lds	r23, __llvm_gcov_ctr.55+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.55+7, r23
+	sts	__llvm_gcov_ctr.55+6, r22
+	sts	__llvm_gcov_ctr.55+5, r21
+	sts	__llvm_gcov_ctr.55+4, r20
+	sts	__llvm_gcov_ctr.55+3, r19
+	sts	__llvm_gcov_ctr.55+2, r18
+	sts	__llvm_gcov_ctr.55+1, r25
+	sts	__llvm_gcov_ctr.55, r24
 	lds	r24, __profc_wcschr+16
 	lds	r25, __profc_wcschr+17
 	lds	r18, __profc_wcschr+18
@@ -11264,6 +15555,30 @@ wcschr:                                 ; @wcschr
 	rjmp	.LBB55_3
 .LBB55_5:                               ;   in Loop: Header=BB55_1 Depth=1
 	ldd	r24, Y+3                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.55+8
+	lds	r19, __llvm_gcov_ctr.55+9
+	lds	r20, __llvm_gcov_ctr.55+10
+	lds	r21, __llvm_gcov_ctr.55+11
+	lds	r22, __llvm_gcov_ctr.55+12
+	lds	r23, __llvm_gcov_ctr.55+13
+	lds	r30, __llvm_gcov_ctr.55+14
+	lds	r31, __llvm_gcov_ctr.55+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.55+15, r31
+	sts	__llvm_gcov_ctr.55+14, r30
+	sts	__llvm_gcov_ctr.55+13, r23
+	sts	__llvm_gcov_ctr.55+12, r22
+	sts	__llvm_gcov_ctr.55+11, r21
+	sts	__llvm_gcov_ctr.55+10, r20
+	sts	__llvm_gcov_ctr.55+9, r19
+	sts	__llvm_gcov_ctr.55+8, r18
 	lds	r18, __profc_wcschr+24
 	lds	r19, __profc_wcschr+25
 	lds	r20, __profc_wcschr+26
@@ -11323,6 +15638,30 @@ wcschr:                                 ; @wcschr
 	sts	__profc_wcschr+8, r24
 	rjmp	.LBB55_8
 .LBB55_8:                               ;   in Loop: Header=BB55_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.55+16
+	lds	r25, __llvm_gcov_ctr.55+17
+	lds	r18, __llvm_gcov_ctr.55+18
+	lds	r19, __llvm_gcov_ctr.55+19
+	lds	r20, __llvm_gcov_ctr.55+20
+	lds	r21, __llvm_gcov_ctr.55+21
+	lds	r22, __llvm_gcov_ctr.55+22
+	lds	r23, __llvm_gcov_ctr.55+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.55+23, r23
+	sts	__llvm_gcov_ctr.55+22, r22
+	sts	__llvm_gcov_ctr.55+21, r21
+	sts	__llvm_gcov_ctr.55+20, r20
+	sts	__llvm_gcov_ctr.55+19, r19
+	sts	__llvm_gcov_ctr.55+18, r18
+	sts	__llvm_gcov_ctr.55+17, r25
+	sts	__llvm_gcov_ctr.55+16, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 2
@@ -11341,6 +15680,30 @@ wcschr:                                 ; @wcschr
 	brne	.LBB55_10
 	rjmp	.LBB55_11
 .LBB55_10:
+	lds	r24, __llvm_gcov_ctr.55+24
+	lds	r25, __llvm_gcov_ctr.55+25
+	lds	r18, __llvm_gcov_ctr.55+26
+	lds	r19, __llvm_gcov_ctr.55+27
+	lds	r20, __llvm_gcov_ctr.55+28
+	lds	r21, __llvm_gcov_ctr.55+29
+	lds	r22, __llvm_gcov_ctr.55+30
+	lds	r23, __llvm_gcov_ctr.55+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.55+31, r23
+	sts	__llvm_gcov_ctr.55+30, r22
+	sts	__llvm_gcov_ctr.55+29, r21
+	sts	__llvm_gcov_ctr.55+28, r20
+	sts	__llvm_gcov_ctr.55+27, r19
+	sts	__llvm_gcov_ctr.55+26, r18
+	sts	__llvm_gcov_ctr.55+25, r25
+	sts	__llvm_gcov_ctr.55+24, r24
 	lds	r24, __profc_wcschr+32
 	lds	r25, __profc_wcschr+33
 	lds	r18, __profc_wcschr+34
@@ -11371,6 +15734,30 @@ wcschr:                                 ; @wcschr
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB55_12
 .LBB55_11:
+	lds	r24, __llvm_gcov_ctr.55+32
+	lds	r25, __llvm_gcov_ctr.55+33
+	lds	r18, __llvm_gcov_ctr.55+34
+	lds	r19, __llvm_gcov_ctr.55+35
+	lds	r20, __llvm_gcov_ctr.55+36
+	lds	r21, __llvm_gcov_ctr.55+37
+	lds	r22, __llvm_gcov_ctr.55+38
+	lds	r23, __llvm_gcov_ctr.55+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.55+39, r23
+	sts	__llvm_gcov_ctr.55+38, r22
+	sts	__llvm_gcov_ctr.55+37, r21
+	sts	__llvm_gcov_ctr.55+36, r20
+	sts	__llvm_gcov_ctr.55+35, r19
+	sts	__llvm_gcov_ctr.55+34, r18
+	sts	__llvm_gcov_ctr.55+33, r25
+	sts	__llvm_gcov_ctr.55+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -11451,6 +15838,30 @@ wcscmp:                                 ; @wcscmp
 	breq	.LBB56_2
 	rjmp	.LBB56_8
 .LBB56_2:                               ;   in Loop: Header=BB56_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.56
+	lds	r25, __llvm_gcov_ctr.56+1
+	lds	r18, __llvm_gcov_ctr.56+2
+	lds	r19, __llvm_gcov_ctr.56+3
+	lds	r20, __llvm_gcov_ctr.56+4
+	lds	r21, __llvm_gcov_ctr.56+5
+	lds	r22, __llvm_gcov_ctr.56+6
+	lds	r23, __llvm_gcov_ctr.56+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.56+7, r23
+	sts	__llvm_gcov_ctr.56+6, r22
+	sts	__llvm_gcov_ctr.56+5, r21
+	sts	__llvm_gcov_ctr.56+4, r20
+	sts	__llvm_gcov_ctr.56+3, r19
+	sts	__llvm_gcov_ctr.56+2, r18
+	sts	__llvm_gcov_ctr.56+1, r25
+	sts	__llvm_gcov_ctr.56, r24
 	lds	r24, __profc_wcscmp+32
 	lds	r25, __profc_wcscmp+33
 	lds	r18, __profc_wcscmp+34
@@ -11488,6 +15899,30 @@ wcscmp:                                 ; @wcscmp
 	brne	.LBB56_3
 	rjmp	.LBB56_8
 .LBB56_3:                               ;   in Loop: Header=BB56_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.56+8
+	lds	r25, __llvm_gcov_ctr.56+9
+	lds	r18, __llvm_gcov_ctr.56+10
+	lds	r19, __llvm_gcov_ctr.56+11
+	lds	r20, __llvm_gcov_ctr.56+12
+	lds	r21, __llvm_gcov_ctr.56+13
+	lds	r22, __llvm_gcov_ctr.56+14
+	lds	r23, __llvm_gcov_ctr.56+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.56+15, r23
+	sts	__llvm_gcov_ctr.56+14, r22
+	sts	__llvm_gcov_ctr.56+13, r21
+	sts	__llvm_gcov_ctr.56+12, r20
+	sts	__llvm_gcov_ctr.56+11, r19
+	sts	__llvm_gcov_ctr.56+10, r18
+	sts	__llvm_gcov_ctr.56+9, r25
+	sts	__llvm_gcov_ctr.56+8, r24
 	lds	r24, __profc_wcscmp+40
 	lds	r25, __profc_wcscmp+41
 	lds	r18, __profc_wcscmp+42
@@ -11570,6 +16005,30 @@ wcscmp:                                 ; @wcscmp
 	rjmp	.LBB56_5
 .LBB56_7:                               ;   in Loop: Header=BB56_1 Depth=1
 	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.56+16
+	lds	r19, __llvm_gcov_ctr.56+17
+	lds	r20, __llvm_gcov_ctr.56+18
+	lds	r21, __llvm_gcov_ctr.56+19
+	lds	r22, __llvm_gcov_ctr.56+20
+	lds	r23, __llvm_gcov_ctr.56+21
+	lds	r30, __llvm_gcov_ctr.56+22
+	lds	r31, __llvm_gcov_ctr.56+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.56+23, r31
+	sts	__llvm_gcov_ctr.56+22, r30
+	sts	__llvm_gcov_ctr.56+21, r23
+	sts	__llvm_gcov_ctr.56+20, r22
+	sts	__llvm_gcov_ctr.56+19, r21
+	sts	__llvm_gcov_ctr.56+18, r20
+	sts	__llvm_gcov_ctr.56+17, r19
+	sts	__llvm_gcov_ctr.56+16, r18
 	lds	r18, __profc_wcscmp+24
 	lds	r19, __profc_wcscmp+25
 	lds	r20, __profc_wcscmp+26
@@ -11629,6 +16088,30 @@ wcscmp:                                 ; @wcscmp
 	sts	__profc_wcscmp+8, r24
 	rjmp	.LBB56_10
 .LBB56_10:                              ;   in Loop: Header=BB56_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.56+24
+	lds	r25, __llvm_gcov_ctr.56+25
+	lds	r18, __llvm_gcov_ctr.56+26
+	lds	r19, __llvm_gcov_ctr.56+27
+	lds	r20, __llvm_gcov_ctr.56+28
+	lds	r21, __llvm_gcov_ctr.56+29
+	lds	r22, __llvm_gcov_ctr.56+30
+	lds	r23, __llvm_gcov_ctr.56+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.56+31, r23
+	sts	__llvm_gcov_ctr.56+30, r22
+	sts	__llvm_gcov_ctr.56+29, r21
+	sts	__llvm_gcov_ctr.56+28, r20
+	sts	__llvm_gcov_ctr.56+27, r19
+	sts	__llvm_gcov_ctr.56+26, r18
+	sts	__llvm_gcov_ctr.56+25, r25
+	sts	__llvm_gcov_ctr.56+24, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 2
@@ -11654,6 +16137,30 @@ wcscmp:                                 ; @wcscmp
 	brlt	.LBB56_12
 	rjmp	.LBB56_13
 .LBB56_12:
+	lds	r24, __llvm_gcov_ctr.56+32
+	lds	r25, __llvm_gcov_ctr.56+33
+	lds	r18, __llvm_gcov_ctr.56+34
+	lds	r19, __llvm_gcov_ctr.56+35
+	lds	r20, __llvm_gcov_ctr.56+36
+	lds	r21, __llvm_gcov_ctr.56+37
+	lds	r22, __llvm_gcov_ctr.56+38
+	lds	r23, __llvm_gcov_ctr.56+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.56+39, r23
+	sts	__llvm_gcov_ctr.56+38, r22
+	sts	__llvm_gcov_ctr.56+37, r21
+	sts	__llvm_gcov_ctr.56+36, r20
+	sts	__llvm_gcov_ctr.56+35, r19
+	sts	__llvm_gcov_ctr.56+34, r18
+	sts	__llvm_gcov_ctr.56+33, r25
+	sts	__llvm_gcov_ctr.56+32, r24
 	lds	r24, __profc_wcscmp+48
 	lds	r25, __profc_wcscmp+49
 	lds	r18, __profc_wcscmp+50
@@ -11684,6 +16191,30 @@ wcscmp:                                 ; @wcscmp
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB56_16
 .LBB56_13:
+	lds	r24, __llvm_gcov_ctr.56+40
+	lds	r25, __llvm_gcov_ctr.56+41
+	lds	r18, __llvm_gcov_ctr.56+42
+	lds	r19, __llvm_gcov_ctr.56+43
+	lds	r20, __llvm_gcov_ctr.56+44
+	lds	r21, __llvm_gcov_ctr.56+45
+	lds	r22, __llvm_gcov_ctr.56+46
+	lds	r23, __llvm_gcov_ctr.56+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.56+47, r23
+	sts	__llvm_gcov_ctr.56+46, r22
+	sts	__llvm_gcov_ctr.56+45, r21
+	sts	__llvm_gcov_ctr.56+44, r20
+	sts	__llvm_gcov_ctr.56+43, r19
+	sts	__llvm_gcov_ctr.56+42, r18
+	sts	__llvm_gcov_ctr.56+41, r25
+	sts	__llvm_gcov_ctr.56+40, r24
 	ldd	r30, Y+13
 	ldd	r31, Y+14
 	ld	r20, Z
@@ -11741,6 +16272,30 @@ wcscpy:                                 ; @wcscpy
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.57
+	lds	r19, __llvm_gcov_ctr.57+1
+	lds	r20, __llvm_gcov_ctr.57+2
+	lds	r21, __llvm_gcov_ctr.57+3
+	lds	r30, __llvm_gcov_ctr.57+4
+	lds	r31, __llvm_gcov_ctr.57+5
+	lds	r26, __llvm_gcov_ctr.57+6
+	lds	r27, __llvm_gcov_ctr.57+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.57+7, r27
+	sts	__llvm_gcov_ctr.57+6, r26
+	sts	__llvm_gcov_ctr.57+5, r31
+	sts	__llvm_gcov_ctr.57+4, r30
+	sts	__llvm_gcov_ctr.57+3, r21
+	sts	__llvm_gcov_ctr.57+2, r20
+	sts	__llvm_gcov_ctr.57+1, r19
+	sts	__llvm_gcov_ctr.57, r18
 	std	Y+6, r25
 	std	Y+5, r24
 	std	Y+4, r23
@@ -11800,6 +16355,30 @@ wcscpy:                                 ; @wcscpy
 	brne	.LBB57_2
 	rjmp	.LBB57_3
 .LBB57_2:                               ;   in Loop: Header=BB57_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.57+8
+	lds	r25, __llvm_gcov_ctr.57+9
+	lds	r18, __llvm_gcov_ctr.57+10
+	lds	r19, __llvm_gcov_ctr.57+11
+	lds	r20, __llvm_gcov_ctr.57+12
+	lds	r21, __llvm_gcov_ctr.57+13
+	lds	r22, __llvm_gcov_ctr.57+14
+	lds	r23, __llvm_gcov_ctr.57+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.57+15, r23
+	sts	__llvm_gcov_ctr.57+14, r22
+	sts	__llvm_gcov_ctr.57+13, r21
+	sts	__llvm_gcov_ctr.57+12, r20
+	sts	__llvm_gcov_ctr.57+11, r19
+	sts	__llvm_gcov_ctr.57+10, r18
+	sts	__llvm_gcov_ctr.57+9, r25
+	sts	__llvm_gcov_ctr.57+8, r24
 	lds	r24, __profc_wcscpy+8
 	lds	r25, __profc_wcscpy+9
 	lds	r18, __profc_wcscpy+10
@@ -11855,6 +16434,30 @@ wcslen:                                 ; @wcslen
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.58
+	lds	r19, __llvm_gcov_ctr.58+1
+	lds	r20, __llvm_gcov_ctr.58+2
+	lds	r21, __llvm_gcov_ctr.58+3
+	lds	r22, __llvm_gcov_ctr.58+4
+	lds	r23, __llvm_gcov_ctr.58+5
+	lds	r30, __llvm_gcov_ctr.58+6
+	lds	r31, __llvm_gcov_ctr.58+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.58+7, r31
+	sts	__llvm_gcov_ctr.58+6, r30
+	sts	__llvm_gcov_ctr.58+5, r23
+	sts	__llvm_gcov_ctr.58+4, r22
+	sts	__llvm_gcov_ctr.58+3, r21
+	sts	__llvm_gcov_ctr.58+2, r20
+	sts	__llvm_gcov_ctr.58+1, r19
+	sts	__llvm_gcov_ctr.58, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_wcslen
@@ -11924,6 +16527,30 @@ wcslen:                                 ; @wcslen
 	sts	__profc_wcslen+8, r24
 	rjmp	.LBB58_3
 .LBB58_3:                               ;   in Loop: Header=BB58_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.58+8
+	lds	r25, __llvm_gcov_ctr.58+9
+	lds	r18, __llvm_gcov_ctr.58+10
+	lds	r19, __llvm_gcov_ctr.58+11
+	lds	r20, __llvm_gcov_ctr.58+12
+	lds	r21, __llvm_gcov_ctr.58+13
+	lds	r22, __llvm_gcov_ctr.58+14
+	lds	r23, __llvm_gcov_ctr.58+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.58+15, r23
+	sts	__llvm_gcov_ctr.58+14, r22
+	sts	__llvm_gcov_ctr.58+13, r21
+	sts	__llvm_gcov_ctr.58+12, r20
+	sts	__llvm_gcov_ctr.58+11, r19
+	sts	__llvm_gcov_ctr.58+10, r18
+	sts	__llvm_gcov_ctr.58+9, r25
+	sts	__llvm_gcov_ctr.58+8, r24
 	ldd	r24, Y+3
 	ldd	r25, Y+4
 	adiw	r24, 2
@@ -12009,6 +16636,30 @@ wcsncmp:                                ; @wcsncmp
 	brne	.LBB59_2
 	rjmp	.LBB59_10
 .LBB59_2:                               ;   in Loop: Header=BB59_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.59
+	lds	r25, __llvm_gcov_ctr.59+1
+	lds	r18, __llvm_gcov_ctr.59+2
+	lds	r19, __llvm_gcov_ctr.59+3
+	lds	r20, __llvm_gcov_ctr.59+4
+	lds	r21, __llvm_gcov_ctr.59+5
+	lds	r22, __llvm_gcov_ctr.59+6
+	lds	r23, __llvm_gcov_ctr.59+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+7, r23
+	sts	__llvm_gcov_ctr.59+6, r22
+	sts	__llvm_gcov_ctr.59+5, r21
+	sts	__llvm_gcov_ctr.59+4, r20
+	sts	__llvm_gcov_ctr.59+3, r19
+	sts	__llvm_gcov_ctr.59+2, r18
+	sts	__llvm_gcov_ctr.59+1, r25
+	sts	__llvm_gcov_ctr.59, r24
 	lds	r24, __profc_wcsncmp+48
 	lds	r25, __profc_wcsncmp+49
 	lds	r18, __profc_wcsncmp+50
@@ -12048,6 +16699,30 @@ wcsncmp:                                ; @wcsncmp
 	breq	.LBB59_3
 	rjmp	.LBB59_10
 .LBB59_3:                               ;   in Loop: Header=BB59_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.59+8
+	lds	r25, __llvm_gcov_ctr.59+9
+	lds	r18, __llvm_gcov_ctr.59+10
+	lds	r19, __llvm_gcov_ctr.59+11
+	lds	r20, __llvm_gcov_ctr.59+12
+	lds	r21, __llvm_gcov_ctr.59+13
+	lds	r22, __llvm_gcov_ctr.59+14
+	lds	r23, __llvm_gcov_ctr.59+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+15, r23
+	sts	__llvm_gcov_ctr.59+14, r22
+	sts	__llvm_gcov_ctr.59+13, r21
+	sts	__llvm_gcov_ctr.59+12, r20
+	sts	__llvm_gcov_ctr.59+11, r19
+	sts	__llvm_gcov_ctr.59+10, r18
+	sts	__llvm_gcov_ctr.59+9, r25
+	sts	__llvm_gcov_ctr.59+8, r24
 	lds	r24, __profc_wcsncmp+56
 	lds	r25, __profc_wcsncmp+57
 	lds	r18, __profc_wcsncmp+58
@@ -12111,6 +16786,30 @@ wcsncmp:                                ; @wcsncmp
 	brne	.LBB59_5
 	rjmp	.LBB59_10
 .LBB59_5:                               ;   in Loop: Header=BB59_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.59+16
+	lds	r25, __llvm_gcov_ctr.59+17
+	lds	r18, __llvm_gcov_ctr.59+18
+	lds	r19, __llvm_gcov_ctr.59+19
+	lds	r20, __llvm_gcov_ctr.59+20
+	lds	r21, __llvm_gcov_ctr.59+21
+	lds	r22, __llvm_gcov_ctr.59+22
+	lds	r23, __llvm_gcov_ctr.59+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+23, r23
+	sts	__llvm_gcov_ctr.59+22, r22
+	sts	__llvm_gcov_ctr.59+21, r21
+	sts	__llvm_gcov_ctr.59+20, r20
+	sts	__llvm_gcov_ctr.59+19, r19
+	sts	__llvm_gcov_ctr.59+18, r18
+	sts	__llvm_gcov_ctr.59+17, r25
+	sts	__llvm_gcov_ctr.59+16, r24
 	lds	r24, __profc_wcsncmp+40
 	lds	r25, __profc_wcsncmp+41
 	lds	r18, __profc_wcsncmp+42
@@ -12193,6 +16892,30 @@ wcsncmp:                                ; @wcsncmp
 	rjmp	.LBB59_7
 .LBB59_9:                               ;   in Loop: Header=BB59_1 Depth=1
 	ldd	r24, Y+7                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.59+24
+	lds	r19, __llvm_gcov_ctr.59+25
+	lds	r20, __llvm_gcov_ctr.59+26
+	lds	r21, __llvm_gcov_ctr.59+27
+	lds	r22, __llvm_gcov_ctr.59+28
+	lds	r23, __llvm_gcov_ctr.59+29
+	lds	r30, __llvm_gcov_ctr.59+30
+	lds	r31, __llvm_gcov_ctr.59+31
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.59+31, r31
+	sts	__llvm_gcov_ctr.59+30, r30
+	sts	__llvm_gcov_ctr.59+29, r23
+	sts	__llvm_gcov_ctr.59+28, r22
+	sts	__llvm_gcov_ctr.59+27, r21
+	sts	__llvm_gcov_ctr.59+26, r20
+	sts	__llvm_gcov_ctr.59+25, r19
+	sts	__llvm_gcov_ctr.59+24, r18
 	lds	r18, __profc_wcsncmp+24
 	lds	r19, __profc_wcsncmp+25
 	lds	r20, __profc_wcsncmp+26
@@ -12252,6 +16975,30 @@ wcsncmp:                                ; @wcsncmp
 	sts	__profc_wcsncmp+8, r24
 	rjmp	.LBB59_12
 .LBB59_12:                              ;   in Loop: Header=BB59_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.59+32
+	lds	r25, __llvm_gcov_ctr.59+33
+	lds	r18, __llvm_gcov_ctr.59+34
+	lds	r19, __llvm_gcov_ctr.59+35
+	lds	r20, __llvm_gcov_ctr.59+36
+	lds	r21, __llvm_gcov_ctr.59+37
+	lds	r22, __llvm_gcov_ctr.59+38
+	lds	r23, __llvm_gcov_ctr.59+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+39, r23
+	sts	__llvm_gcov_ctr.59+38, r22
+	sts	__llvm_gcov_ctr.59+37, r21
+	sts	__llvm_gcov_ctr.59+36, r20
+	sts	__llvm_gcov_ctr.59+35, r19
+	sts	__llvm_gcov_ctr.59+34, r18
+	sts	__llvm_gcov_ctr.59+33, r25
+	sts	__llvm_gcov_ctr.59+32, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	sbiw	r24, 1
@@ -12315,6 +17062,30 @@ wcsncmp:                                ; @wcsncmp
 	brlt	.LBB59_15
 	rjmp	.LBB59_16
 .LBB59_15:
+	lds	r24, __llvm_gcov_ctr.59+40
+	lds	r25, __llvm_gcov_ctr.59+41
+	lds	r18, __llvm_gcov_ctr.59+42
+	lds	r19, __llvm_gcov_ctr.59+43
+	lds	r20, __llvm_gcov_ctr.59+44
+	lds	r21, __llvm_gcov_ctr.59+45
+	lds	r22, __llvm_gcov_ctr.59+46
+	lds	r23, __llvm_gcov_ctr.59+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+47, r23
+	sts	__llvm_gcov_ctr.59+46, r22
+	sts	__llvm_gcov_ctr.59+45, r21
+	sts	__llvm_gcov_ctr.59+44, r20
+	sts	__llvm_gcov_ctr.59+43, r19
+	sts	__llvm_gcov_ctr.59+42, r18
+	sts	__llvm_gcov_ctr.59+41, r25
+	sts	__llvm_gcov_ctr.59+40, r24
 	lds	r24, __profc_wcsncmp+72
 	lds	r25, __profc_wcsncmp+73
 	lds	r18, __profc_wcsncmp+74
@@ -12345,6 +17116,30 @@ wcsncmp:                                ; @wcsncmp
 	std	Y+5, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB59_19
 .LBB59_16:
+	lds	r24, __llvm_gcov_ctr.59+48
+	lds	r25, __llvm_gcov_ctr.59+49
+	lds	r18, __llvm_gcov_ctr.59+50
+	lds	r19, __llvm_gcov_ctr.59+51
+	lds	r20, __llvm_gcov_ctr.59+52
+	lds	r21, __llvm_gcov_ctr.59+53
+	lds	r22, __llvm_gcov_ctr.59+54
+	lds	r23, __llvm_gcov_ctr.59+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+55, r23
+	sts	__llvm_gcov_ctr.59+54, r22
+	sts	__llvm_gcov_ctr.59+53, r21
+	sts	__llvm_gcov_ctr.59+52, r20
+	sts	__llvm_gcov_ctr.59+51, r19
+	sts	__llvm_gcov_ctr.59+50, r18
+	sts	__llvm_gcov_ctr.59+49, r25
+	sts	__llvm_gcov_ctr.59+48, r24
 	ldd	r30, Y+17
 	ldd	r31, Y+18
 	ld	r20, Z
@@ -12379,6 +17174,30 @@ wcsncmp:                                ; @wcsncmp
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB59_21
 .LBB59_20:
+	lds	r24, __llvm_gcov_ctr.59+56
+	lds	r25, __llvm_gcov_ctr.59+57
+	lds	r18, __llvm_gcov_ctr.59+58
+	lds	r19, __llvm_gcov_ctr.59+59
+	lds	r20, __llvm_gcov_ctr.59+60
+	lds	r21, __llvm_gcov_ctr.59+61
+	lds	r22, __llvm_gcov_ctr.59+62
+	lds	r23, __llvm_gcov_ctr.59+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.59+63, r23
+	sts	__llvm_gcov_ctr.59+62, r22
+	sts	__llvm_gcov_ctr.59+61, r21
+	sts	__llvm_gcov_ctr.59+60, r20
+	sts	__llvm_gcov_ctr.59+59, r19
+	sts	__llvm_gcov_ctr.59+58, r18
+	sts	__llvm_gcov_ctr.59+57, r25
+	sts	__llvm_gcov_ctr.59+56, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -12457,6 +17276,30 @@ wmemchr:                                ; @wmemchr
 	brne	.LBB60_2
 	rjmp	.LBB60_6
 .LBB60_2:                               ;   in Loop: Header=BB60_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.60
+	lds	r25, __llvm_gcov_ctr.60+1
+	lds	r18, __llvm_gcov_ctr.60+2
+	lds	r19, __llvm_gcov_ctr.60+3
+	lds	r20, __llvm_gcov_ctr.60+4
+	lds	r21, __llvm_gcov_ctr.60+5
+	lds	r22, __llvm_gcov_ctr.60+6
+	lds	r23, __llvm_gcov_ctr.60+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.60+7, r23
+	sts	__llvm_gcov_ctr.60+6, r22
+	sts	__llvm_gcov_ctr.60+5, r21
+	sts	__llvm_gcov_ctr.60+4, r20
+	sts	__llvm_gcov_ctr.60+3, r19
+	sts	__llvm_gcov_ctr.60+2, r18
+	sts	__llvm_gcov_ctr.60+1, r25
+	sts	__llvm_gcov_ctr.60, r24
 	lds	r24, __profc_wmemchr+16
 	lds	r25, __profc_wmemchr+17
 	lds	r18, __profc_wmemchr+18
@@ -12517,6 +17360,30 @@ wmemchr:                                ; @wmemchr
 	rjmp	.LBB60_3
 .LBB60_5:                               ;   in Loop: Header=BB60_1 Depth=1
 	ldd	r24, Y+3                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.60+8
+	lds	r19, __llvm_gcov_ctr.60+9
+	lds	r20, __llvm_gcov_ctr.60+10
+	lds	r21, __llvm_gcov_ctr.60+11
+	lds	r22, __llvm_gcov_ctr.60+12
+	lds	r23, __llvm_gcov_ctr.60+13
+	lds	r30, __llvm_gcov_ctr.60+14
+	lds	r31, __llvm_gcov_ctr.60+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.60+15, r31
+	sts	__llvm_gcov_ctr.60+14, r30
+	sts	__llvm_gcov_ctr.60+13, r23
+	sts	__llvm_gcov_ctr.60+12, r22
+	sts	__llvm_gcov_ctr.60+11, r21
+	sts	__llvm_gcov_ctr.60+10, r20
+	sts	__llvm_gcov_ctr.60+9, r19
+	sts	__llvm_gcov_ctr.60+8, r18
 	lds	r18, __profc_wmemchr+24
 	lds	r19, __profc_wmemchr+25
 	lds	r20, __profc_wmemchr+26
@@ -12576,6 +17443,30 @@ wmemchr:                                ; @wmemchr
 	sts	__profc_wmemchr+8, r24
 	rjmp	.LBB60_8
 .LBB60_8:                               ;   in Loop: Header=BB60_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.60+16
+	lds	r25, __llvm_gcov_ctr.60+17
+	lds	r18, __llvm_gcov_ctr.60+18
+	lds	r19, __llvm_gcov_ctr.60+19
+	lds	r20, __llvm_gcov_ctr.60+20
+	lds	r21, __llvm_gcov_ctr.60+21
+	lds	r22, __llvm_gcov_ctr.60+22
+	lds	r23, __llvm_gcov_ctr.60+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.60+23, r23
+	sts	__llvm_gcov_ctr.60+22, r22
+	sts	__llvm_gcov_ctr.60+21, r21
+	sts	__llvm_gcov_ctr.60+20, r20
+	sts	__llvm_gcov_ctr.60+19, r19
+	sts	__llvm_gcov_ctr.60+18, r18
+	sts	__llvm_gcov_ctr.60+17, r25
+	sts	__llvm_gcov_ctr.60+16, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	sbiw	r24, 1
@@ -12597,6 +17488,30 @@ wmemchr:                                ; @wmemchr
 	brne	.LBB60_10
 	rjmp	.LBB60_11
 .LBB60_10:
+	lds	r24, __llvm_gcov_ctr.60+24
+	lds	r25, __llvm_gcov_ctr.60+25
+	lds	r18, __llvm_gcov_ctr.60+26
+	lds	r19, __llvm_gcov_ctr.60+27
+	lds	r20, __llvm_gcov_ctr.60+28
+	lds	r21, __llvm_gcov_ctr.60+29
+	lds	r22, __llvm_gcov_ctr.60+30
+	lds	r23, __llvm_gcov_ctr.60+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.60+31, r23
+	sts	__llvm_gcov_ctr.60+30, r22
+	sts	__llvm_gcov_ctr.60+29, r21
+	sts	__llvm_gcov_ctr.60+28, r20
+	sts	__llvm_gcov_ctr.60+27, r19
+	sts	__llvm_gcov_ctr.60+26, r18
+	sts	__llvm_gcov_ctr.60+25, r25
+	sts	__llvm_gcov_ctr.60+24, r24
 	lds	r24, __profc_wmemchr+32
 	lds	r25, __profc_wmemchr+33
 	lds	r18, __profc_wmemchr+34
@@ -12627,6 +17542,30 @@ wmemchr:                                ; @wmemchr
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB60_12
 .LBB60_11:
+	lds	r24, __llvm_gcov_ctr.60+32
+	lds	r25, __llvm_gcov_ctr.60+33
+	lds	r18, __llvm_gcov_ctr.60+34
+	lds	r19, __llvm_gcov_ctr.60+35
+	lds	r20, __llvm_gcov_ctr.60+36
+	lds	r21, __llvm_gcov_ctr.60+37
+	lds	r22, __llvm_gcov_ctr.60+38
+	lds	r23, __llvm_gcov_ctr.60+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.60+39, r23
+	sts	__llvm_gcov_ctr.60+38, r22
+	sts	__llvm_gcov_ctr.60+37, r21
+	sts	__llvm_gcov_ctr.60+36, r20
+	sts	__llvm_gcov_ctr.60+35, r19
+	sts	__llvm_gcov_ctr.60+34, r18
+	sts	__llvm_gcov_ctr.60+33, r25
+	sts	__llvm_gcov_ctr.60+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -12705,6 +17644,30 @@ wmemcmp:                                ; @wmemcmp
 	brne	.LBB61_2
 	rjmp	.LBB61_6
 .LBB61_2:                               ;   in Loop: Header=BB61_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.61
+	lds	r25, __llvm_gcov_ctr.61+1
+	lds	r18, __llvm_gcov_ctr.61+2
+	lds	r19, __llvm_gcov_ctr.61+3
+	lds	r20, __llvm_gcov_ctr.61+4
+	lds	r21, __llvm_gcov_ctr.61+5
+	lds	r22, __llvm_gcov_ctr.61+6
+	lds	r23, __llvm_gcov_ctr.61+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.61+7, r23
+	sts	__llvm_gcov_ctr.61+6, r22
+	sts	__llvm_gcov_ctr.61+5, r21
+	sts	__llvm_gcov_ctr.61+4, r20
+	sts	__llvm_gcov_ctr.61+3, r19
+	sts	__llvm_gcov_ctr.61+2, r18
+	sts	__llvm_gcov_ctr.61+1, r25
+	sts	__llvm_gcov_ctr.61, r24
 	lds	r24, __profc_wmemcmp+16
 	lds	r25, __profc_wmemcmp+17
 	lds	r18, __profc_wmemcmp+18
@@ -12767,6 +17730,30 @@ wmemcmp:                                ; @wmemcmp
 	rjmp	.LBB61_3
 .LBB61_5:                               ;   in Loop: Header=BB61_1 Depth=1
 	ldd	r24, Y+7                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.61+8
+	lds	r19, __llvm_gcov_ctr.61+9
+	lds	r20, __llvm_gcov_ctr.61+10
+	lds	r21, __llvm_gcov_ctr.61+11
+	lds	r22, __llvm_gcov_ctr.61+12
+	lds	r23, __llvm_gcov_ctr.61+13
+	lds	r30, __llvm_gcov_ctr.61+14
+	lds	r31, __llvm_gcov_ctr.61+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.61+15, r31
+	sts	__llvm_gcov_ctr.61+14, r30
+	sts	__llvm_gcov_ctr.61+13, r23
+	sts	__llvm_gcov_ctr.61+12, r22
+	sts	__llvm_gcov_ctr.61+11, r21
+	sts	__llvm_gcov_ctr.61+10, r20
+	sts	__llvm_gcov_ctr.61+9, r19
+	sts	__llvm_gcov_ctr.61+8, r18
 	lds	r18, __profc_wmemcmp+24
 	lds	r19, __profc_wmemcmp+25
 	lds	r20, __profc_wmemcmp+26
@@ -12826,6 +17813,30 @@ wmemcmp:                                ; @wmemcmp
 	sts	__profc_wmemcmp+8, r24
 	rjmp	.LBB61_8
 .LBB61_8:                               ;   in Loop: Header=BB61_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.61+16
+	lds	r25, __llvm_gcov_ctr.61+17
+	lds	r18, __llvm_gcov_ctr.61+18
+	lds	r19, __llvm_gcov_ctr.61+19
+	lds	r20, __llvm_gcov_ctr.61+20
+	lds	r21, __llvm_gcov_ctr.61+21
+	lds	r22, __llvm_gcov_ctr.61+22
+	lds	r23, __llvm_gcov_ctr.61+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.61+23, r23
+	sts	__llvm_gcov_ctr.61+22, r22
+	sts	__llvm_gcov_ctr.61+21, r21
+	sts	__llvm_gcov_ctr.61+20, r20
+	sts	__llvm_gcov_ctr.61+19, r19
+	sts	__llvm_gcov_ctr.61+18, r18
+	sts	__llvm_gcov_ctr.61+17, r25
+	sts	__llvm_gcov_ctr.61+16, r24
 	ldd	r24, Y+15
 	ldd	r25, Y+16
 	sbiw	r24, 1
@@ -12889,6 +17900,30 @@ wmemcmp:                                ; @wmemcmp
 	brlt	.LBB61_11
 	rjmp	.LBB61_12
 .LBB61_11:
+	lds	r24, __llvm_gcov_ctr.61+24
+	lds	r25, __llvm_gcov_ctr.61+25
+	lds	r18, __llvm_gcov_ctr.61+26
+	lds	r19, __llvm_gcov_ctr.61+27
+	lds	r20, __llvm_gcov_ctr.61+28
+	lds	r21, __llvm_gcov_ctr.61+29
+	lds	r22, __llvm_gcov_ctr.61+30
+	lds	r23, __llvm_gcov_ctr.61+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.61+31, r23
+	sts	__llvm_gcov_ctr.61+30, r22
+	sts	__llvm_gcov_ctr.61+29, r21
+	sts	__llvm_gcov_ctr.61+28, r20
+	sts	__llvm_gcov_ctr.61+27, r19
+	sts	__llvm_gcov_ctr.61+26, r18
+	sts	__llvm_gcov_ctr.61+25, r25
+	sts	__llvm_gcov_ctr.61+24, r24
 	lds	r24, __profc_wmemcmp+40
 	lds	r25, __profc_wmemcmp+41
 	lds	r18, __profc_wmemcmp+42
@@ -12919,6 +17954,30 @@ wmemcmp:                                ; @wmemcmp
 	std	Y+5, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB61_15
 .LBB61_12:
+	lds	r24, __llvm_gcov_ctr.61+32
+	lds	r25, __llvm_gcov_ctr.61+33
+	lds	r18, __llvm_gcov_ctr.61+34
+	lds	r19, __llvm_gcov_ctr.61+35
+	lds	r20, __llvm_gcov_ctr.61+36
+	lds	r21, __llvm_gcov_ctr.61+37
+	lds	r22, __llvm_gcov_ctr.61+38
+	lds	r23, __llvm_gcov_ctr.61+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.61+39, r23
+	sts	__llvm_gcov_ctr.61+38, r22
+	sts	__llvm_gcov_ctr.61+37, r21
+	sts	__llvm_gcov_ctr.61+36, r20
+	sts	__llvm_gcov_ctr.61+35, r19
+	sts	__llvm_gcov_ctr.61+34, r18
+	sts	__llvm_gcov_ctr.61+33, r25
+	sts	__llvm_gcov_ctr.61+32, r24
 	ldd	r30, Y+19
 	ldd	r31, Y+20
 	ld	r20, Z
@@ -12953,6 +18012,30 @@ wmemcmp:                                ; @wmemcmp
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB61_17
 .LBB61_16:
+	lds	r24, __llvm_gcov_ctr.61+40
+	lds	r25, __llvm_gcov_ctr.61+41
+	lds	r18, __llvm_gcov_ctr.61+42
+	lds	r19, __llvm_gcov_ctr.61+43
+	lds	r20, __llvm_gcov_ctr.61+44
+	lds	r21, __llvm_gcov_ctr.61+45
+	lds	r22, __llvm_gcov_ctr.61+46
+	lds	r23, __llvm_gcov_ctr.61+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.61+47, r23
+	sts	__llvm_gcov_ctr.61+46, r22
+	sts	__llvm_gcov_ctr.61+45, r21
+	sts	__llvm_gcov_ctr.61+44, r20
+	sts	__llvm_gcov_ctr.61+43, r19
+	sts	__llvm_gcov_ctr.61+42, r18
+	sts	__llvm_gcov_ctr.61+41, r25
+	sts	__llvm_gcov_ctr.61+40, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -12978,6 +18061,8 @@ wmemcmp:                                ; @wmemcmp
 	.type	wmemcpy,@function
 wmemcpy:                                ; @wmemcpy
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -12988,6 +18073,30 @@ wmemcpy:                                ; @wmemcpy
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.62
+	lds	r19, __llvm_gcov_ctr.62+1
+	lds	r30, __llvm_gcov_ctr.62+2
+	lds	r31, __llvm_gcov_ctr.62+3
+	lds	r26, __llvm_gcov_ctr.62+4
+	lds	r27, __llvm_gcov_ctr.62+5
+	lds	r16, __llvm_gcov_ctr.62+6
+	lds	r17, __llvm_gcov_ctr.62+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.62+7, r17
+	sts	__llvm_gcov_ctr.62+6, r16
+	sts	__llvm_gcov_ctr.62+5, r27
+	sts	__llvm_gcov_ctr.62+4, r26
+	sts	__llvm_gcov_ctr.62+3, r31
+	sts	__llvm_gcov_ctr.62+2, r30
+	sts	__llvm_gcov_ctr.62+1, r19
+	sts	__llvm_gcov_ctr.62, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	std	Y+6, r23
@@ -13038,6 +18147,30 @@ wmemcpy:                                ; @wmemcpy
 	brne	.LBB62_2
 	rjmp	.LBB62_3
 .LBB62_2:                               ;   in Loop: Header=BB62_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.62+8
+	lds	r25, __llvm_gcov_ctr.62+9
+	lds	r18, __llvm_gcov_ctr.62+10
+	lds	r19, __llvm_gcov_ctr.62+11
+	lds	r20, __llvm_gcov_ctr.62+12
+	lds	r21, __llvm_gcov_ctr.62+13
+	lds	r22, __llvm_gcov_ctr.62+14
+	lds	r23, __llvm_gcov_ctr.62+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.62+15, r23
+	sts	__llvm_gcov_ctr.62+14, r22
+	sts	__llvm_gcov_ctr.62+13, r21
+	sts	__llvm_gcov_ctr.62+12, r20
+	sts	__llvm_gcov_ctr.62+11, r19
+	sts	__llvm_gcov_ctr.62+10, r18
+	sts	__llvm_gcov_ctr.62+9, r25
+	sts	__llvm_gcov_ctr.62+8, r24
 	lds	r24, __profc_wmemcpy+8
 	lds	r25, __profc_wmemcpy+9
 	lds	r18, __profc_wmemcpy+10
@@ -13092,6 +18225,8 @@ wmemcpy:                                ; @wmemcpy
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end62:
 	.size	wmemcpy, .Lfunc_end62-wmemcpy
@@ -13154,6 +18289,30 @@ wmemmove:                               ; @wmemmove
 	breq	.LBB63_1
 	rjmp	.LBB63_2
 .LBB63_1:
+	lds	r24, __llvm_gcov_ctr.63
+	lds	r25, __llvm_gcov_ctr.63+1
+	lds	r18, __llvm_gcov_ctr.63+2
+	lds	r19, __llvm_gcov_ctr.63+3
+	lds	r20, __llvm_gcov_ctr.63+4
+	lds	r21, __llvm_gcov_ctr.63+5
+	lds	r22, __llvm_gcov_ctr.63+6
+	lds	r23, __llvm_gcov_ctr.63+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.63+7, r23
+	sts	__llvm_gcov_ctr.63+6, r22
+	sts	__llvm_gcov_ctr.63+5, r21
+	sts	__llvm_gcov_ctr.63+4, r20
+	sts	__llvm_gcov_ctr.63+3, r19
+	sts	__llvm_gcov_ctr.63+2, r18
+	sts	__llvm_gcov_ctr.63+1, r25
+	sts	__llvm_gcov_ctr.63, r24
 	lds	r24, __profc_wmemmove+8
 	lds	r25, __profc_wmemmove+9
 	lds	r18, __profc_wmemmove+10
@@ -13199,6 +18358,30 @@ wmemmove:                               ; @wmemmove
 	brlo	.LBB63_3
 	rjmp	.LBB63_7
 .LBB63_3:
+	lds	r24, __llvm_gcov_ctr.63+8
+	lds	r25, __llvm_gcov_ctr.63+9
+	lds	r18, __llvm_gcov_ctr.63+10
+	lds	r19, __llvm_gcov_ctr.63+11
+	lds	r20, __llvm_gcov_ctr.63+12
+	lds	r21, __llvm_gcov_ctr.63+13
+	lds	r22, __llvm_gcov_ctr.63+14
+	lds	r23, __llvm_gcov_ctr.63+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.63+15, r23
+	sts	__llvm_gcov_ctr.63+14, r22
+	sts	__llvm_gcov_ctr.63+13, r21
+	sts	__llvm_gcov_ctr.63+12, r20
+	sts	__llvm_gcov_ctr.63+11, r19
+	sts	__llvm_gcov_ctr.63+10, r18
+	sts	__llvm_gcov_ctr.63+9, r25
+	sts	__llvm_gcov_ctr.63+8, r24
 	lds	r24, __profc_wmemmove+16
 	lds	r25, __profc_wmemmove+17
 	lds	r18, __profc_wmemmove+18
@@ -13239,6 +18422,30 @@ wmemmove:                               ; @wmemmove
 	brne	.LBB63_5
 	rjmp	.LBB63_6
 .LBB63_5:                               ;   in Loop: Header=BB63_4 Depth=1
+	lds	r24, __llvm_gcov_ctr.63+16
+	lds	r25, __llvm_gcov_ctr.63+17
+	lds	r18, __llvm_gcov_ctr.63+18
+	lds	r19, __llvm_gcov_ctr.63+19
+	lds	r20, __llvm_gcov_ctr.63+20
+	lds	r21, __llvm_gcov_ctr.63+21
+	lds	r22, __llvm_gcov_ctr.63+22
+	lds	r23, __llvm_gcov_ctr.63+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.63+23, r23
+	sts	__llvm_gcov_ctr.63+22, r22
+	sts	__llvm_gcov_ctr.63+21, r21
+	sts	__llvm_gcov_ctr.63+20, r20
+	sts	__llvm_gcov_ctr.63+19, r19
+	sts	__llvm_gcov_ctr.63+18, r18
+	sts	__llvm_gcov_ctr.63+17, r25
+	sts	__llvm_gcov_ctr.63+16, r24
 	lds	r24, __profc_wmemmove+24
 	lds	r25, __profc_wmemmove+25
 	lds	r18, __profc_wmemmove+26
@@ -13299,6 +18506,30 @@ wmemmove:                               ; @wmemmove
 	brne	.LBB63_9
 	rjmp	.LBB63_10
 .LBB63_9:                               ;   in Loop: Header=BB63_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.63+24
+	lds	r25, __llvm_gcov_ctr.63+25
+	lds	r18, __llvm_gcov_ctr.63+26
+	lds	r19, __llvm_gcov_ctr.63+27
+	lds	r20, __llvm_gcov_ctr.63+28
+	lds	r21, __llvm_gcov_ctr.63+29
+	lds	r22, __llvm_gcov_ctr.63+30
+	lds	r23, __llvm_gcov_ctr.63+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.63+31, r23
+	sts	__llvm_gcov_ctr.63+30, r22
+	sts	__llvm_gcov_ctr.63+29, r21
+	sts	__llvm_gcov_ctr.63+28, r20
+	sts	__llvm_gcov_ctr.63+27, r19
+	sts	__llvm_gcov_ctr.63+26, r18
+	sts	__llvm_gcov_ctr.63+25, r25
+	sts	__llvm_gcov_ctr.63+24, r24
 	lds	r24, __profc_wmemmove+32
 	lds	r25, __profc_wmemmove+33
 	lds	r18, __profc_wmemmove+34
@@ -13343,6 +18574,30 @@ wmemmove:                               ; @wmemmove
 	st	Z, r24
 	rjmp	.LBB63_8
 .LBB63_10:
+	lds	r24, __llvm_gcov_ctr.63+32
+	lds	r25, __llvm_gcov_ctr.63+33
+	lds	r18, __llvm_gcov_ctr.63+34
+	lds	r19, __llvm_gcov_ctr.63+35
+	lds	r20, __llvm_gcov_ctr.63+36
+	lds	r21, __llvm_gcov_ctr.63+37
+	lds	r22, __llvm_gcov_ctr.63+38
+	lds	r23, __llvm_gcov_ctr.63+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.63+39, r23
+	sts	__llvm_gcov_ctr.63+38, r22
+	sts	__llvm_gcov_ctr.63+37, r21
+	sts	__llvm_gcov_ctr.63+36, r20
+	sts	__llvm_gcov_ctr.63+35, r19
+	sts	__llvm_gcov_ctr.63+34, r18
+	sts	__llvm_gcov_ctr.63+33, r25
+	sts	__llvm_gcov_ctr.63+32, r24
 	rjmp	.LBB63_11
 .LBB63_11:
 	ldd	r24, Y+1
@@ -13370,6 +18625,8 @@ wmemmove:                               ; @wmemmove
 	.type	wmemset,@function
 wmemset:                                ; @wmemset
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -13380,6 +18637,30 @@ wmemset:                                ; @wmemset
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.64
+	lds	r19, __llvm_gcov_ctr.64+1
+	lds	r30, __llvm_gcov_ctr.64+2
+	lds	r31, __llvm_gcov_ctr.64+3
+	lds	r26, __llvm_gcov_ctr.64+4
+	lds	r27, __llvm_gcov_ctr.64+5
+	lds	r16, __llvm_gcov_ctr.64+6
+	lds	r17, __llvm_gcov_ctr.64+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.64+7, r17
+	sts	__llvm_gcov_ctr.64+6, r16
+	sts	__llvm_gcov_ctr.64+5, r27
+	sts	__llvm_gcov_ctr.64+4, r26
+	sts	__llvm_gcov_ctr.64+3, r31
+	sts	__llvm_gcov_ctr.64+2, r30
+	sts	__llvm_gcov_ctr.64+1, r19
+	sts	__llvm_gcov_ctr.64, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	std	Y+6, r23
@@ -13430,6 +18711,30 @@ wmemset:                                ; @wmemset
 	brne	.LBB64_2
 	rjmp	.LBB64_3
 .LBB64_2:                               ;   in Loop: Header=BB64_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.64+8
+	lds	r25, __llvm_gcov_ctr.64+9
+	lds	r18, __llvm_gcov_ctr.64+10
+	lds	r19, __llvm_gcov_ctr.64+11
+	lds	r20, __llvm_gcov_ctr.64+12
+	lds	r21, __llvm_gcov_ctr.64+13
+	lds	r22, __llvm_gcov_ctr.64+14
+	lds	r23, __llvm_gcov_ctr.64+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.64+15, r23
+	sts	__llvm_gcov_ctr.64+14, r22
+	sts	__llvm_gcov_ctr.64+13, r21
+	sts	__llvm_gcov_ctr.64+12, r20
+	sts	__llvm_gcov_ctr.64+11, r19
+	sts	__llvm_gcov_ctr.64+10, r18
+	sts	__llvm_gcov_ctr.64+9, r25
+	sts	__llvm_gcov_ctr.64+8, r24
 	lds	r24, __profc_wmemset+8
 	lds	r25, __profc_wmemset+9
 	lds	r18, __profc_wmemset+10
@@ -13477,6 +18782,8 @@ wmemset:                                ; @wmemset
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end64:
 	.size	wmemset, .Lfunc_end64-wmemset
@@ -13543,6 +18850,30 @@ bcopy:                                  ; @bcopy
 	brlo	.LBB65_1
 	rjmp	.LBB65_6
 .LBB65_1:
+	lds	r24, __llvm_gcov_ctr.65
+	lds	r25, __llvm_gcov_ctr.65+1
+	lds	r18, __llvm_gcov_ctr.65+2
+	lds	r19, __llvm_gcov_ctr.65+3
+	lds	r20, __llvm_gcov_ctr.65+4
+	lds	r21, __llvm_gcov_ctr.65+5
+	lds	r22, __llvm_gcov_ctr.65+6
+	lds	r23, __llvm_gcov_ctr.65+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.65+7, r23
+	sts	__llvm_gcov_ctr.65+6, r22
+	sts	__llvm_gcov_ctr.65+5, r21
+	sts	__llvm_gcov_ctr.65+4, r20
+	sts	__llvm_gcov_ctr.65+3, r19
+	sts	__llvm_gcov_ctr.65+2, r18
+	sts	__llvm_gcov_ctr.65+1, r25
+	sts	__llvm_gcov_ctr.65, r24
 	lds	r24, __profc_bcopy+8
 	lds	r25, __profc_bcopy+9
 	lds	r18, __profc_bcopy+10
@@ -13632,6 +18963,30 @@ bcopy:                                  ; @bcopy
 	st	X, r24
 	rjmp	.LBB65_4
 .LBB65_4:                               ;   in Loop: Header=BB65_2 Depth=1
+	lds	r24, __llvm_gcov_ctr.65+8
+	lds	r25, __llvm_gcov_ctr.65+9
+	lds	r18, __llvm_gcov_ctr.65+10
+	lds	r19, __llvm_gcov_ctr.65+11
+	lds	r20, __llvm_gcov_ctr.65+12
+	lds	r21, __llvm_gcov_ctr.65+13
+	lds	r22, __llvm_gcov_ctr.65+14
+	lds	r23, __llvm_gcov_ctr.65+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.65+15, r23
+	sts	__llvm_gcov_ctr.65+14, r22
+	sts	__llvm_gcov_ctr.65+13, r21
+	sts	__llvm_gcov_ctr.65+12, r20
+	sts	__llvm_gcov_ctr.65+11, r19
+	sts	__llvm_gcov_ctr.65+10, r18
+	sts	__llvm_gcov_ctr.65+9, r25
+	sts	__llvm_gcov_ctr.65+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 1
@@ -13685,6 +19040,30 @@ bcopy:                                  ; @bcopy
 	brne	.LBB65_9
 	rjmp	.LBB65_11
 .LBB65_9:                               ;   in Loop: Header=BB65_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.65+16
+	lds	r25, __llvm_gcov_ctr.65+17
+	lds	r18, __llvm_gcov_ctr.65+18
+	lds	r19, __llvm_gcov_ctr.65+19
+	lds	r20, __llvm_gcov_ctr.65+20
+	lds	r21, __llvm_gcov_ctr.65+21
+	lds	r22, __llvm_gcov_ctr.65+22
+	lds	r23, __llvm_gcov_ctr.65+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.65+23, r23
+	sts	__llvm_gcov_ctr.65+22, r22
+	sts	__llvm_gcov_ctr.65+21, r21
+	sts	__llvm_gcov_ctr.65+20, r20
+	sts	__llvm_gcov_ctr.65+19, r19
+	sts	__llvm_gcov_ctr.65+18, r18
+	sts	__llvm_gcov_ctr.65+17, r25
+	sts	__llvm_gcov_ctr.65+16, r24
 	lds	r24, __profc_bcopy+32
 	lds	r25, __profc_bcopy+33
 	lds	r18, __profc_bcopy+34
@@ -13734,8 +19113,56 @@ bcopy:                                  ; @bcopy
 	std	Y+5, r24
 	rjmp	.LBB65_8
 .LBB65_11:
+	lds	r24, __llvm_gcov_ctr.65+24
+	lds	r25, __llvm_gcov_ctr.65+25
+	lds	r18, __llvm_gcov_ctr.65+26
+	lds	r19, __llvm_gcov_ctr.65+27
+	lds	r20, __llvm_gcov_ctr.65+28
+	lds	r21, __llvm_gcov_ctr.65+29
+	lds	r22, __llvm_gcov_ctr.65+30
+	lds	r23, __llvm_gcov_ctr.65+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.65+31, r23
+	sts	__llvm_gcov_ctr.65+30, r22
+	sts	__llvm_gcov_ctr.65+29, r21
+	sts	__llvm_gcov_ctr.65+28, r20
+	sts	__llvm_gcov_ctr.65+27, r19
+	sts	__llvm_gcov_ctr.65+26, r18
+	sts	__llvm_gcov_ctr.65+25, r25
+	sts	__llvm_gcov_ctr.65+24, r24
 	rjmp	.LBB65_12
 .LBB65_12:
+	lds	r24, __llvm_gcov_ctr.65+32
+	lds	r25, __llvm_gcov_ctr.65+33
+	lds	r18, __llvm_gcov_ctr.65+34
+	lds	r19, __llvm_gcov_ctr.65+35
+	lds	r20, __llvm_gcov_ctr.65+36
+	lds	r21, __llvm_gcov_ctr.65+37
+	lds	r22, __llvm_gcov_ctr.65+38
+	lds	r23, __llvm_gcov_ctr.65+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.65+39, r23
+	sts	__llvm_gcov_ctr.65+38, r22
+	sts	__llvm_gcov_ctr.65+37, r21
+	sts	__llvm_gcov_ctr.65+36, r20
+	sts	__llvm_gcov_ctr.65+35, r19
+	sts	__llvm_gcov_ctr.65+34, r18
+	sts	__llvm_gcov_ctr.65+33, r25
+	sts	__llvm_gcov_ctr.65+32, r24
 	rjmp	.LBB65_13
 .LBB65_13:
 	adiw	r28, 10
@@ -13763,26 +19190,65 @@ rotl64:                                 ; @rotl64
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 40
+	sbiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+40, r25
-	std	Y+39, r24
-	std	Y+38, r23
-	std	Y+37, r22
-	std	Y+36, r21
-	std	Y+35, r20
-	std	Y+34, r19
-	std	Y+33, r18
-	std	Y+32, r17
-	std	Y+31, r16
+	std	Y+29, r25                       ; 2-byte Folded Spill
+	std	Y+28, r24                       ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.66
+	lds	r31, __llvm_gcov_ctr.66+1
+	lds	r26, __llvm_gcov_ctr.66+2
+	lds	r27, __llvm_gcov_ctr.66+3
+	lds	r24, __llvm_gcov_ctr.66+4
+	lds	r25, __llvm_gcov_ctr.66+5
+	std	Y+23, r25                       ; 2-byte Folded Spill
+	std	Y+22, r24                       ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.66+6
+	lds	r25, __llvm_gcov_ctr.66+7
+	std	Y+25, r25                       ; 2-byte Folded Spill
+	std	Y+24, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+22                       ; 2-byte Folded Reload
+	ldd	r25, Y+23                       ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+27, r25                       ; 2-byte Folded Spill
+	std	Y+26, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+24                       ; 2-byte Folded Reload
+	ldd	r25, Y+25                       ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.66+7, r25
+	sts	__llvm_gcov_ctr.66+6, r24
+	ldd	r24, Y+26                       ; 2-byte Folded Reload
+	ldd	r25, Y+27                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.66+5, r25
+	sts	__llvm_gcov_ctr.66+4, r24
+	ldd	r24, Y+28                       ; 2-byte Folded Reload
+	ldd	r25, Y+29                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.66+3, r27
+	sts	__llvm_gcov_ctr.66+2, r26
+	sts	__llvm_gcov_ctr.66+1, r31
+	sts	__llvm_gcov_ctr.66, r30
+	std	Y+48, r25
+	std	Y+47, r24
+	std	Y+46, r23
+	std	Y+45, r22
+	std	Y+44, r21
+	std	Y+43, r20
+	std	Y+42, r19
+	std	Y+41, r18
+	std	Y+40, r17
+	std	Y+39, r16
 	lds	r24, __profc_rotl64
 	lds	r25, __profc_rotl64+1
 	lds	r18, __profc_rotl64+2
@@ -13807,37 +19273,37 @@ rotl64:                                 ; @rotl64
 	sts	__profc_rotl64+2, r18
 	sts	__profc_rotl64+1, r25
 	sts	__profc_rotl64, r24
-	ldd	r24, Y+39
-	ldd	r25, Y+40
-	ldd	r18, Y+37
-	ldd	r19, Y+38
-	ldd	r20, Y+35
-	ldd	r21, Y+36
-	ldd	r22, Y+33
-	ldd	r23, Y+34
-	ldd	r30, Y+31
+	ldd	r24, Y+47
+	ldd	r25, Y+48
+	ldd	r18, Y+45
+	ldd	r19, Y+46
+	ldd	r20, Y+43
+	ldd	r21, Y+44
+	ldd	r22, Y+41
+	ldd	r23, Y+42
+	ldd	r30, Y+39
 	cpi	r30, 0
-	std	Y+22, r30                       ; 1-byte Folded Spill
-	std	Y+24, r23                       ; 2-byte Folded Spill
-	std	Y+23, r22                       ; 2-byte Folded Spill
-	std	Y+26, r21                       ; 2-byte Folded Spill
-	std	Y+25, r20                       ; 2-byte Folded Spill
-	std	Y+28, r19                       ; 2-byte Folded Spill
-	std	Y+27, r18                       ; 2-byte Folded Spill
-	std	Y+30, r25                       ; 2-byte Folded Spill
-	std	Y+29, r24                       ; 2-byte Folded Spill
+	std	Y+30, r30                       ; 1-byte Folded Spill
+	std	Y+32, r23                       ; 2-byte Folded Spill
+	std	Y+31, r22                       ; 2-byte Folded Spill
+	std	Y+34, r21                       ; 2-byte Folded Spill
+	std	Y+33, r20                       ; 2-byte Folded Spill
+	std	Y+36, r19                       ; 2-byte Folded Spill
+	std	Y+35, r18                       ; 2-byte Folded Spill
+	std	Y+38, r25                       ; 2-byte Folded Spill
+	std	Y+37, r24                       ; 2-byte Folded Spill
 	brne	.LBB66_1
 	rjmp	.LBB66_2
 .LBB66_1:                               ; =>This Inner Loop Header: Depth=1
-	ldd	r24, Y+29                       ; 2-byte Folded Reload
-	ldd	r25, Y+30                       ; 2-byte Folded Reload
-	ldd	r18, Y+27                       ; 2-byte Folded Reload
-	ldd	r19, Y+28                       ; 2-byte Folded Reload
-	ldd	r20, Y+25                       ; 2-byte Folded Reload
-	ldd	r21, Y+26                       ; 2-byte Folded Reload
-	ldd	r22, Y+23                       ; 2-byte Folded Reload
-	ldd	r23, Y+24                       ; 2-byte Folded Reload
-	ldd	r30, Y+22                       ; 1-byte Folded Reload
+	ldd	r24, Y+37                       ; 2-byte Folded Reload
+	ldd	r25, Y+38                       ; 2-byte Folded Reload
+	ldd	r18, Y+35                       ; 2-byte Folded Reload
+	ldd	r19, Y+36                       ; 2-byte Folded Reload
+	ldd	r20, Y+33                       ; 2-byte Folded Reload
+	ldd	r21, Y+34                       ; 2-byte Folded Reload
+	ldd	r22, Y+31                       ; 2-byte Folded Reload
+	ldd	r23, Y+32                       ; 2-byte Folded Reload
+	ldd	r30, Y+30                       ; 1-byte Folded Reload
 	dec	r30
 	mov	r31, r1
                                         ; kill: def $r26 killed $r1
@@ -13880,26 +19346,26 @@ rotl64:                                 ; @rotl64
                                         ; kill: def $r23 killed $r23 def $r23r22
 	mov	r22, r31
 	cpi	r30, 0
-	std	Y+22, r30                       ; 1-byte Folded Spill
-	std	Y+24, r23                       ; 2-byte Folded Spill
-	std	Y+23, r22                       ; 2-byte Folded Spill
-	std	Y+26, r21                       ; 2-byte Folded Spill
-	std	Y+25, r20                       ; 2-byte Folded Spill
-	std	Y+28, r19                       ; 2-byte Folded Spill
-	std	Y+27, r18                       ; 2-byte Folded Spill
-	std	Y+30, r25                       ; 2-byte Folded Spill
-	std	Y+29, r24                       ; 2-byte Folded Spill
+	std	Y+30, r30                       ; 1-byte Folded Spill
+	std	Y+32, r23                       ; 2-byte Folded Spill
+	std	Y+31, r22                       ; 2-byte Folded Spill
+	std	Y+34, r21                       ; 2-byte Folded Spill
+	std	Y+33, r20                       ; 2-byte Folded Spill
+	std	Y+36, r19                       ; 2-byte Folded Spill
+	std	Y+35, r18                       ; 2-byte Folded Spill
+	std	Y+38, r25                       ; 2-byte Folded Spill
+	std	Y+37, r24                       ; 2-byte Folded Spill
 	breq	.LBB66_2
 	rjmp	.LBB66_1
 .LBB66_2:
-	ldd	r24, Y+23                       ; 2-byte Folded Reload
-	ldd	r25, Y+24                       ; 2-byte Folded Reload
-	ldd	r18, Y+25                       ; 2-byte Folded Reload
-	ldd	r19, Y+26                       ; 2-byte Folded Reload
-	ldd	r20, Y+27                       ; 2-byte Folded Reload
-	ldd	r21, Y+28                       ; 2-byte Folded Reload
-	ldd	r22, Y+29                       ; 2-byte Folded Reload
-	ldd	r23, Y+30                       ; 2-byte Folded Reload
+	ldd	r24, Y+31                       ; 2-byte Folded Reload
+	ldd	r25, Y+32                       ; 2-byte Folded Reload
+	ldd	r18, Y+33                       ; 2-byte Folded Reload
+	ldd	r19, Y+34                       ; 2-byte Folded Reload
+	ldd	r20, Y+35                       ; 2-byte Folded Reload
+	ldd	r21, Y+36                       ; 2-byte Folded Reload
+	ldd	r22, Y+37                       ; 2-byte Folded Reload
+	ldd	r23, Y+38                       ; 2-byte Folded Reload
 	std	Y+6, r23                        ; 2-byte Folded Spill
 	std	Y+5, r22                        ; 2-byte Folded Spill
 	std	Y+8, r21                        ; 2-byte Folded Spill
@@ -13908,15 +19374,15 @@ rotl64:                                 ; @rotl64
 	std	Y+9, r18                        ; 2-byte Folded Spill
 	std	Y+12, r25                       ; 2-byte Folded Spill
 	std	Y+11, r24                       ; 2-byte Folded Spill
-	ldd	r24, Y+39
-	ldd	r25, Y+40
-	ldd	r18, Y+37
-	ldd	r19, Y+38
-	ldd	r20, Y+35
-	ldd	r21, Y+36
-	ldd	r22, Y+33
-	ldd	r23, Y+34
-	ldd	r31, Y+31
+	ldd	r24, Y+47
+	ldd	r25, Y+48
+	ldd	r18, Y+45
+	ldd	r19, Y+46
+	ldd	r20, Y+43
+	ldd	r21, Y+44
+	ldd	r22, Y+41
+	ldd	r23, Y+42
+	ldd	r31, Y+39
 	ldi	r30, 64
 	sub	r30, r31
 	cpi	r30, 0
@@ -14019,7 +19485,7 @@ rotl64:                                 ; @rotl64
 	or	r23, r27
 	or	r24, r30
 	or	r25, r31
-	adiw	r28, 40
+	adiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
@@ -14048,26 +19514,65 @@ rotr64:                                 ; @rotr64
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 40
+	sbiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+40, r25
-	std	Y+39, r24
-	std	Y+38, r23
-	std	Y+37, r22
-	std	Y+36, r21
-	std	Y+35, r20
-	std	Y+34, r19
-	std	Y+33, r18
-	std	Y+32, r17
-	std	Y+31, r16
+	std	Y+29, r25                       ; 2-byte Folded Spill
+	std	Y+28, r24                       ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.67
+	lds	r31, __llvm_gcov_ctr.67+1
+	lds	r26, __llvm_gcov_ctr.67+2
+	lds	r27, __llvm_gcov_ctr.67+3
+	lds	r24, __llvm_gcov_ctr.67+4
+	lds	r25, __llvm_gcov_ctr.67+5
+	std	Y+23, r25                       ; 2-byte Folded Spill
+	std	Y+22, r24                       ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.67+6
+	lds	r25, __llvm_gcov_ctr.67+7
+	std	Y+25, r25                       ; 2-byte Folded Spill
+	std	Y+24, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+22                       ; 2-byte Folded Reload
+	ldd	r25, Y+23                       ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+27, r25                       ; 2-byte Folded Spill
+	std	Y+26, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+24                       ; 2-byte Folded Reload
+	ldd	r25, Y+25                       ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.67+7, r25
+	sts	__llvm_gcov_ctr.67+6, r24
+	ldd	r24, Y+26                       ; 2-byte Folded Reload
+	ldd	r25, Y+27                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.67+5, r25
+	sts	__llvm_gcov_ctr.67+4, r24
+	ldd	r24, Y+28                       ; 2-byte Folded Reload
+	ldd	r25, Y+29                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.67+3, r27
+	sts	__llvm_gcov_ctr.67+2, r26
+	sts	__llvm_gcov_ctr.67+1, r31
+	sts	__llvm_gcov_ctr.67, r30
+	std	Y+48, r25
+	std	Y+47, r24
+	std	Y+46, r23
+	std	Y+45, r22
+	std	Y+44, r21
+	std	Y+43, r20
+	std	Y+42, r19
+	std	Y+41, r18
+	std	Y+40, r17
+	std	Y+39, r16
 	lds	r24, __profc_rotr64
 	lds	r25, __profc_rotr64+1
 	lds	r18, __profc_rotr64+2
@@ -14092,37 +19597,37 @@ rotr64:                                 ; @rotr64
 	sts	__profc_rotr64+2, r18
 	sts	__profc_rotr64+1, r25
 	sts	__profc_rotr64, r24
-	ldd	r24, Y+39
-	ldd	r25, Y+40
-	ldd	r18, Y+37
-	ldd	r19, Y+38
-	ldd	r20, Y+35
-	ldd	r21, Y+36
-	ldd	r22, Y+33
-	ldd	r23, Y+34
-	ldd	r30, Y+31
+	ldd	r24, Y+47
+	ldd	r25, Y+48
+	ldd	r18, Y+45
+	ldd	r19, Y+46
+	ldd	r20, Y+43
+	ldd	r21, Y+44
+	ldd	r22, Y+41
+	ldd	r23, Y+42
+	ldd	r30, Y+39
 	cpi	r30, 0
-	std	Y+22, r30                       ; 1-byte Folded Spill
-	std	Y+24, r23                       ; 2-byte Folded Spill
-	std	Y+23, r22                       ; 2-byte Folded Spill
-	std	Y+26, r21                       ; 2-byte Folded Spill
-	std	Y+25, r20                       ; 2-byte Folded Spill
-	std	Y+28, r19                       ; 2-byte Folded Spill
-	std	Y+27, r18                       ; 2-byte Folded Spill
-	std	Y+30, r25                       ; 2-byte Folded Spill
-	std	Y+29, r24                       ; 2-byte Folded Spill
+	std	Y+30, r30                       ; 1-byte Folded Spill
+	std	Y+32, r23                       ; 2-byte Folded Spill
+	std	Y+31, r22                       ; 2-byte Folded Spill
+	std	Y+34, r21                       ; 2-byte Folded Spill
+	std	Y+33, r20                       ; 2-byte Folded Spill
+	std	Y+36, r19                       ; 2-byte Folded Spill
+	std	Y+35, r18                       ; 2-byte Folded Spill
+	std	Y+38, r25                       ; 2-byte Folded Spill
+	std	Y+37, r24                       ; 2-byte Folded Spill
 	brne	.LBB67_1
 	rjmp	.LBB67_2
 .LBB67_1:                               ; =>This Inner Loop Header: Depth=1
-	ldd	r24, Y+29                       ; 2-byte Folded Reload
-	ldd	r25, Y+30                       ; 2-byte Folded Reload
-	ldd	r18, Y+27                       ; 2-byte Folded Reload
-	ldd	r19, Y+28                       ; 2-byte Folded Reload
-	ldd	r20, Y+25                       ; 2-byte Folded Reload
-	ldd	r21, Y+26                       ; 2-byte Folded Reload
-	ldd	r22, Y+23                       ; 2-byte Folded Reload
-	ldd	r23, Y+24                       ; 2-byte Folded Reload
-	ldd	r30, Y+22                       ; 1-byte Folded Reload
+	ldd	r24, Y+37                       ; 2-byte Folded Reload
+	ldd	r25, Y+38                       ; 2-byte Folded Reload
+	ldd	r18, Y+35                       ; 2-byte Folded Reload
+	ldd	r19, Y+36                       ; 2-byte Folded Reload
+	ldd	r20, Y+33                       ; 2-byte Folded Reload
+	ldd	r21, Y+34                       ; 2-byte Folded Reload
+	ldd	r22, Y+31                       ; 2-byte Folded Reload
+	ldd	r23, Y+32                       ; 2-byte Folded Reload
+	ldd	r30, Y+30                       ; 1-byte Folded Reload
 	dec	r30
                                         ; kill: def $r31 killed $r1
 	mov	r31, r21
@@ -14165,26 +19670,26 @@ rotr64:                                 ; @rotr64
                                         ; kill: def $r24 killed $r24 def $r25r24
 	mov	r25, r31
 	cpi	r30, 0
-	std	Y+22, r30                       ; 1-byte Folded Spill
-	std	Y+24, r23                       ; 2-byte Folded Spill
-	std	Y+23, r22                       ; 2-byte Folded Spill
-	std	Y+26, r21                       ; 2-byte Folded Spill
-	std	Y+25, r20                       ; 2-byte Folded Spill
-	std	Y+28, r19                       ; 2-byte Folded Spill
-	std	Y+27, r18                       ; 2-byte Folded Spill
-	std	Y+30, r25                       ; 2-byte Folded Spill
-	std	Y+29, r24                       ; 2-byte Folded Spill
+	std	Y+30, r30                       ; 1-byte Folded Spill
+	std	Y+32, r23                       ; 2-byte Folded Spill
+	std	Y+31, r22                       ; 2-byte Folded Spill
+	std	Y+34, r21                       ; 2-byte Folded Spill
+	std	Y+33, r20                       ; 2-byte Folded Spill
+	std	Y+36, r19                       ; 2-byte Folded Spill
+	std	Y+35, r18                       ; 2-byte Folded Spill
+	std	Y+38, r25                       ; 2-byte Folded Spill
+	std	Y+37, r24                       ; 2-byte Folded Spill
 	breq	.LBB67_2
 	rjmp	.LBB67_1
 .LBB67_2:
-	ldd	r24, Y+23                       ; 2-byte Folded Reload
-	ldd	r25, Y+24                       ; 2-byte Folded Reload
-	ldd	r18, Y+25                       ; 2-byte Folded Reload
-	ldd	r19, Y+26                       ; 2-byte Folded Reload
-	ldd	r20, Y+27                       ; 2-byte Folded Reload
-	ldd	r21, Y+28                       ; 2-byte Folded Reload
-	ldd	r22, Y+29                       ; 2-byte Folded Reload
-	ldd	r23, Y+30                       ; 2-byte Folded Reload
+	ldd	r24, Y+31                       ; 2-byte Folded Reload
+	ldd	r25, Y+32                       ; 2-byte Folded Reload
+	ldd	r18, Y+33                       ; 2-byte Folded Reload
+	ldd	r19, Y+34                       ; 2-byte Folded Reload
+	ldd	r20, Y+35                       ; 2-byte Folded Reload
+	ldd	r21, Y+36                       ; 2-byte Folded Reload
+	ldd	r22, Y+37                       ; 2-byte Folded Reload
+	ldd	r23, Y+38                       ; 2-byte Folded Reload
 	std	Y+6, r23                        ; 2-byte Folded Spill
 	std	Y+5, r22                        ; 2-byte Folded Spill
 	std	Y+8, r21                        ; 2-byte Folded Spill
@@ -14193,15 +19698,15 @@ rotr64:                                 ; @rotr64
 	std	Y+9, r18                        ; 2-byte Folded Spill
 	std	Y+12, r25                       ; 2-byte Folded Spill
 	std	Y+11, r24                       ; 2-byte Folded Spill
-	ldd	r24, Y+39
-	ldd	r25, Y+40
-	ldd	r18, Y+37
-	ldd	r19, Y+38
-	ldd	r20, Y+35
-	ldd	r21, Y+36
-	ldd	r22, Y+33
-	ldd	r23, Y+34
-	ldd	r31, Y+31
+	ldd	r24, Y+47
+	ldd	r25, Y+48
+	ldd	r18, Y+45
+	ldd	r19, Y+46
+	ldd	r20, Y+43
+	ldd	r21, Y+44
+	ldd	r22, Y+41
+	ldd	r23, Y+42
+	ldd	r31, Y+39
 	ldi	r30, 64
 	sub	r30, r31
 	cpi	r30, 0
@@ -14304,7 +19809,7 @@ rotr64:                                 ; @rotr64
 	or	r23, r27
 	or	r24, r30
 	or	r25, r31
-	adiw	r28, 40
+	adiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
@@ -14325,6 +19830,8 @@ rotr64:                                 ; @rotr64
 	.type	rotl32,@function
 rotl32:                                 ; @rotl32
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -14337,6 +19844,30 @@ rotl32:                                 ; @rotl32
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.68
+	lds	r19, __llvm_gcov_ctr.68+1
+	lds	r30, __llvm_gcov_ctr.68+2
+	lds	r31, __llvm_gcov_ctr.68+3
+	lds	r26, __llvm_gcov_ctr.68+4
+	lds	r27, __llvm_gcov_ctr.68+5
+	lds	r16, __llvm_gcov_ctr.68+6
+	lds	r17, __llvm_gcov_ctr.68+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.68+7, r17
+	sts	__llvm_gcov_ctr.68+6, r16
+	sts	__llvm_gcov_ctr.68+5, r27
+	sts	__llvm_gcov_ctr.68+4, r26
+	sts	__llvm_gcov_ctr.68+3, r31
+	sts	__llvm_gcov_ctr.68+2, r30
+	sts	__llvm_gcov_ctr.68+1, r19
+	sts	__llvm_gcov_ctr.68, r18
 	std	Y+20, r25
 	std	Y+19, r24
 	std	Y+18, r23
@@ -14481,6 +20012,8 @@ rotl32:                                 ; @rotl32
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end68:
 	.size	rotl32, .Lfunc_end68-rotl32
@@ -14490,6 +20023,8 @@ rotl32:                                 ; @rotl32
 	.type	rotr32,@function
 rotr32:                                 ; @rotr32
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -14502,6 +20037,30 @@ rotr32:                                 ; @rotr32
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.69
+	lds	r19, __llvm_gcov_ctr.69+1
+	lds	r30, __llvm_gcov_ctr.69+2
+	lds	r31, __llvm_gcov_ctr.69+3
+	lds	r26, __llvm_gcov_ctr.69+4
+	lds	r27, __llvm_gcov_ctr.69+5
+	lds	r16, __llvm_gcov_ctr.69+6
+	lds	r17, __llvm_gcov_ctr.69+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.69+7, r17
+	sts	__llvm_gcov_ctr.69+6, r16
+	sts	__llvm_gcov_ctr.69+5, r27
+	sts	__llvm_gcov_ctr.69+4, r26
+	sts	__llvm_gcov_ctr.69+3, r31
+	sts	__llvm_gcov_ctr.69+2, r30
+	sts	__llvm_gcov_ctr.69+1, r19
+	sts	__llvm_gcov_ctr.69, r18
 	std	Y+20, r25
 	std	Y+19, r24
 	std	Y+18, r23
@@ -14646,6 +20205,8 @@ rotr32:                                 ; @rotr32
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end69:
 	.size	rotr32, .Lfunc_end69-rotr32
@@ -14665,6 +20226,30 @@ rotl_sz:                                ; @rotl_sz
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.70
+	lds	r19, __llvm_gcov_ctr.70+1
+	lds	r20, __llvm_gcov_ctr.70+2
+	lds	r21, __llvm_gcov_ctr.70+3
+	lds	r30, __llvm_gcov_ctr.70+4
+	lds	r31, __llvm_gcov_ctr.70+5
+	lds	r26, __llvm_gcov_ctr.70+6
+	lds	r27, __llvm_gcov_ctr.70+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.70+7, r27
+	sts	__llvm_gcov_ctr.70+6, r26
+	sts	__llvm_gcov_ctr.70+5, r31
+	sts	__llvm_gcov_ctr.70+4, r30
+	sts	__llvm_gcov_ctr.70+3, r21
+	sts	__llvm_gcov_ctr.70+2, r20
+	sts	__llvm_gcov_ctr.70+1, r19
+	sts	__llvm_gcov_ctr.70, r18
 	std	Y+27, r25
 	std	Y+26, r24
 	std	Y+25, r23
@@ -14807,6 +20392,30 @@ rotr_sz:                                ; @rotr_sz
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.71
+	lds	r19, __llvm_gcov_ctr.71+1
+	lds	r20, __llvm_gcov_ctr.71+2
+	lds	r21, __llvm_gcov_ctr.71+3
+	lds	r30, __llvm_gcov_ctr.71+4
+	lds	r31, __llvm_gcov_ctr.71+5
+	lds	r26, __llvm_gcov_ctr.71+6
+	lds	r27, __llvm_gcov_ctr.71+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.71+7, r27
+	sts	__llvm_gcov_ctr.71+6, r26
+	sts	__llvm_gcov_ctr.71+5, r31
+	sts	__llvm_gcov_ctr.71+4, r30
+	sts	__llvm_gcov_ctr.71+3, r21
+	sts	__llvm_gcov_ctr.71+2, r20
+	sts	__llvm_gcov_ctr.71+1, r19
+	sts	__llvm_gcov_ctr.71, r18
 	std	Y+27, r25
 	std	Y+26, r24
 	std	Y+25, r23
@@ -14949,6 +20558,30 @@ rotl16:                                 ; @rotl16
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.72
+	lds	r19, __llvm_gcov_ctr.72+1
+	lds	r20, __llvm_gcov_ctr.72+2
+	lds	r21, __llvm_gcov_ctr.72+3
+	lds	r30, __llvm_gcov_ctr.72+4
+	lds	r31, __llvm_gcov_ctr.72+5
+	lds	r26, __llvm_gcov_ctr.72+6
+	lds	r27, __llvm_gcov_ctr.72+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.72+7, r27
+	sts	__llvm_gcov_ctr.72+6, r26
+	sts	__llvm_gcov_ctr.72+5, r31
+	sts	__llvm_gcov_ctr.72+4, r30
+	sts	__llvm_gcov_ctr.72+3, r21
+	sts	__llvm_gcov_ctr.72+2, r20
+	sts	__llvm_gcov_ctr.72+1, r19
+	sts	__llvm_gcov_ctr.72, r18
 	std	Y+27, r25
 	std	Y+26, r24
 	std	Y+25, r23
@@ -15091,6 +20724,30 @@ rotr16:                                 ; @rotr16
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.73
+	lds	r19, __llvm_gcov_ctr.73+1
+	lds	r20, __llvm_gcov_ctr.73+2
+	lds	r21, __llvm_gcov_ctr.73+3
+	lds	r30, __llvm_gcov_ctr.73+4
+	lds	r31, __llvm_gcov_ctr.73+5
+	lds	r26, __llvm_gcov_ctr.73+6
+	lds	r27, __llvm_gcov_ctr.73+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.73+7, r27
+	sts	__llvm_gcov_ctr.73+6, r26
+	sts	__llvm_gcov_ctr.73+5, r31
+	sts	__llvm_gcov_ctr.73+4, r30
+	sts	__llvm_gcov_ctr.73+3, r21
+	sts	__llvm_gcov_ctr.73+2, r20
+	sts	__llvm_gcov_ctr.73+1, r19
+	sts	__llvm_gcov_ctr.73, r18
 	std	Y+27, r25
 	std	Y+26, r24
 	std	Y+25, r23
@@ -15233,6 +20890,30 @@ rotl8:                                  ; @rotl8
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.74
+	lds	r19, __llvm_gcov_ctr.74+1
+	lds	r20, __llvm_gcov_ctr.74+2
+	lds	r21, __llvm_gcov_ctr.74+3
+	lds	r30, __llvm_gcov_ctr.74+4
+	lds	r31, __llvm_gcov_ctr.74+5
+	lds	r26, __llvm_gcov_ctr.74+6
+	lds	r27, __llvm_gcov_ctr.74+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.74+7, r27
+	sts	__llvm_gcov_ctr.74+6, r26
+	sts	__llvm_gcov_ctr.74+5, r31
+	sts	__llvm_gcov_ctr.74+4, r30
+	sts	__llvm_gcov_ctr.74+3, r21
+	sts	__llvm_gcov_ctr.74+2, r20
+	sts	__llvm_gcov_ctr.74+1, r19
+	sts	__llvm_gcov_ctr.74, r18
 	std	Y+26, r24
 	std	Y+25, r23
 	std	Y+24, r22
@@ -15375,6 +21056,30 @@ rotr8:                                  ; @rotr8
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.75
+	lds	r19, __llvm_gcov_ctr.75+1
+	lds	r20, __llvm_gcov_ctr.75+2
+	lds	r21, __llvm_gcov_ctr.75+3
+	lds	r30, __llvm_gcov_ctr.75+4
+	lds	r31, __llvm_gcov_ctr.75+5
+	lds	r26, __llvm_gcov_ctr.75+6
+	lds	r27, __llvm_gcov_ctr.75+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.75+7, r27
+	sts	__llvm_gcov_ctr.75+6, r26
+	sts	__llvm_gcov_ctr.75+5, r31
+	sts	__llvm_gcov_ctr.75+4, r30
+	sts	__llvm_gcov_ctr.75+3, r21
+	sts	__llvm_gcov_ctr.75+2, r20
+	sts	__llvm_gcov_ctr.75+1, r19
+	sts	__llvm_gcov_ctr.75, r18
 	std	Y+26, r24
 	std	Y+25, r23
 	std	Y+24, r22
@@ -15517,6 +21222,30 @@ bswap_16:                               ; @bswap_16
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.76
+	lds	r19, __llvm_gcov_ctr.76+1
+	lds	r20, __llvm_gcov_ctr.76+2
+	lds	r21, __llvm_gcov_ctr.76+3
+	lds	r22, __llvm_gcov_ctr.76+4
+	lds	r23, __llvm_gcov_ctr.76+5
+	lds	r30, __llvm_gcov_ctr.76+6
+	lds	r31, __llvm_gcov_ctr.76+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.76+7, r31
+	sts	__llvm_gcov_ctr.76+6, r30
+	sts	__llvm_gcov_ctr.76+5, r23
+	sts	__llvm_gcov_ctr.76+4, r22
+	sts	__llvm_gcov_ctr.76+3, r21
+	sts	__llvm_gcov_ctr.76+2, r20
+	sts	__llvm_gcov_ctr.76+1, r19
+	sts	__llvm_gcov_ctr.76, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	lds	r24, __profc_bswap_16
@@ -15601,6 +21330,30 @@ bswap_32:                               ; @bswap_32
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.77
+	lds	r19, __llvm_gcov_ctr.77+1
+	lds	r20, __llvm_gcov_ctr.77+2
+	lds	r21, __llvm_gcov_ctr.77+3
+	lds	r30, __llvm_gcov_ctr.77+4
+	lds	r31, __llvm_gcov_ctr.77+5
+	lds	r26, __llvm_gcov_ctr.77+6
+	lds	r27, __llvm_gcov_ctr.77+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.77+7, r27
+	sts	__llvm_gcov_ctr.77+6, r26
+	sts	__llvm_gcov_ctr.77+5, r31
+	sts	__llvm_gcov_ctr.77+4, r30
+	sts	__llvm_gcov_ctr.77+3, r21
+	sts	__llvm_gcov_ctr.77+2, r20
+	sts	__llvm_gcov_ctr.77+1, r19
+	sts	__llvm_gcov_ctr.77, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -15752,10 +21505,37 @@ bswap_64:                               ; @bswap_64
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.78
+	lds	r31, __llvm_gcov_ctr.78+1
+	lds	r26, __llvm_gcov_ctr.78+2
+	lds	r27, __llvm_gcov_ctr.78+3
+	lds	r16, __llvm_gcov_ctr.78+4
+	lds	r17, __llvm_gcov_ctr.78+5
+	lds	r24, __llvm_gcov_ctr.78+6
+	lds	r25, __llvm_gcov_ctr.78+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.78+7, r25
+	sts	__llvm_gcov_ctr.78+6, r24
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.78+5, r17
+	sts	__llvm_gcov_ctr.78+4, r16
+	sts	__llvm_gcov_ctr.78+3, r27
+	sts	__llvm_gcov_ctr.78+2, r26
+	sts	__llvm_gcov_ctr.78+1, r31
+	sts	__llvm_gcov_ctr.78, r30
 	std	Y+32, r25
 	std	Y+31, r24
 	std	Y+30, r23
@@ -16149,6 +21929,30 @@ ffs:                                    ; @ffs
 	brne	.LBB79_6
 	rjmp	.LBB79_7
 .LBB79_6:
+	lds	r24, __llvm_gcov_ctr.79
+	lds	r25, __llvm_gcov_ctr.79+1
+	lds	r18, __llvm_gcov_ctr.79+2
+	lds	r19, __llvm_gcov_ctr.79+3
+	lds	r20, __llvm_gcov_ctr.79+4
+	lds	r21, __llvm_gcov_ctr.79+5
+	lds	r22, __llvm_gcov_ctr.79+6
+	lds	r23, __llvm_gcov_ctr.79+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.79+7, r23
+	sts	__llvm_gcov_ctr.79+6, r22
+	sts	__llvm_gcov_ctr.79+5, r21
+	sts	__llvm_gcov_ctr.79+4, r20
+	sts	__llvm_gcov_ctr.79+3, r19
+	sts	__llvm_gcov_ctr.79+2, r18
+	sts	__llvm_gcov_ctr.79+1, r25
+	sts	__llvm_gcov_ctr.79, r24
 	lds	r24, __profc_ffs+16
 	lds	r25, __profc_ffs+17
 	lds	r18, __profc_ffs+18
@@ -16182,6 +21986,30 @@ ffs:                                    ; @ffs
 .LBB79_7:                               ;   in Loop: Header=BB79_1 Depth=1
 	rjmp	.LBB79_8
 .LBB79_8:                               ;   in Loop: Header=BB79_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.79+8
+	lds	r25, __llvm_gcov_ctr.79+9
+	lds	r18, __llvm_gcov_ctr.79+10
+	lds	r19, __llvm_gcov_ctr.79+11
+	lds	r20, __llvm_gcov_ctr.79+12
+	lds	r21, __llvm_gcov_ctr.79+13
+	lds	r22, __llvm_gcov_ctr.79+14
+	lds	r23, __llvm_gcov_ctr.79+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.79+15, r23
+	sts	__llvm_gcov_ctr.79+14, r22
+	sts	__llvm_gcov_ctr.79+13, r21
+	sts	__llvm_gcov_ctr.79+12, r20
+	sts	__llvm_gcov_ctr.79+11, r19
+	sts	__llvm_gcov_ctr.79+10, r18
+	sts	__llvm_gcov_ctr.79+9, r25
+	sts	__llvm_gcov_ctr.79+8, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -16189,6 +22017,30 @@ ffs:                                    ; @ffs
 	std	Y+11, r24
 	rjmp	.LBB79_1
 .LBB79_9:
+	lds	r24, __llvm_gcov_ctr.79+16
+	lds	r25, __llvm_gcov_ctr.79+17
+	lds	r18, __llvm_gcov_ctr.79+18
+	lds	r19, __llvm_gcov_ctr.79+19
+	lds	r20, __llvm_gcov_ctr.79+20
+	lds	r21, __llvm_gcov_ctr.79+21
+	lds	r22, __llvm_gcov_ctr.79+22
+	lds	r23, __llvm_gcov_ctr.79+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.79+23, r23
+	sts	__llvm_gcov_ctr.79+22, r22
+	sts	__llvm_gcov_ctr.79+21, r21
+	sts	__llvm_gcov_ctr.79+20, r20
+	sts	__llvm_gcov_ctr.79+19, r19
+	sts	__llvm_gcov_ctr.79+18, r18
+	sts	__llvm_gcov_ctr.79+17, r25
+	sts	__llvm_gcov_ctr.79+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+16, r25
@@ -16259,6 +22111,30 @@ libiberty_ffs:                          ; @libiberty_ffs
 	breq	.LBB80_1
 	rjmp	.LBB80_2
 .LBB80_1:
+	lds	r24, __llvm_gcov_ctr.80+8
+	lds	r25, __llvm_gcov_ctr.80+9
+	lds	r18, __llvm_gcov_ctr.80+10
+	lds	r19, __llvm_gcov_ctr.80+11
+	lds	r20, __llvm_gcov_ctr.80+12
+	lds	r21, __llvm_gcov_ctr.80+13
+	lds	r22, __llvm_gcov_ctr.80+14
+	lds	r23, __llvm_gcov_ctr.80+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.80+15, r23
+	sts	__llvm_gcov_ctr.80+14, r22
+	sts	__llvm_gcov_ctr.80+13, r21
+	sts	__llvm_gcov_ctr.80+12, r20
+	sts	__llvm_gcov_ctr.80+11, r19
+	sts	__llvm_gcov_ctr.80+10, r18
+	sts	__llvm_gcov_ctr.80+9, r25
+	sts	__llvm_gcov_ctr.80+8, r24
 	lds	r24, __profc_libiberty_ffs+8
 	lds	r25, __profc_libiberty_ffs+9
 	lds	r18, __profc_libiberty_ffs+10
@@ -16289,6 +22165,30 @@ libiberty_ffs:                          ; @libiberty_ffs
 	std	Y+5, r24
 	rjmp	.LBB80_7
 .LBB80_2:
+	lds	r24, __llvm_gcov_ctr.80
+	lds	r25, __llvm_gcov_ctr.80+1
+	lds	r18, __llvm_gcov_ctr.80+2
+	lds	r19, __llvm_gcov_ctr.80+3
+	lds	r20, __llvm_gcov_ctr.80+4
+	lds	r21, __llvm_gcov_ctr.80+5
+	lds	r22, __llvm_gcov_ctr.80+6
+	lds	r23, __llvm_gcov_ctr.80+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.80+7, r23
+	sts	__llvm_gcov_ctr.80+6, r22
+	sts	__llvm_gcov_ctr.80+5, r21
+	sts	__llvm_gcov_ctr.80+4, r20
+	sts	__llvm_gcov_ctr.80+3, r19
+	sts	__llvm_gcov_ctr.80+2, r18
+	sts	__llvm_gcov_ctr.80+1, r25
+	sts	__llvm_gcov_ctr.80, r24
 	ldi	r24, 1
 	ldi	r25, 0
 	std	Y+2, r25
@@ -16333,6 +22233,30 @@ libiberty_ffs:                          ; @libiberty_ffs
 	std	Y+3, r24
 	rjmp	.LBB80_5
 .LBB80_5:                               ;   in Loop: Header=BB80_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.80+16
+	lds	r25, __llvm_gcov_ctr.80+17
+	lds	r18, __llvm_gcov_ctr.80+18
+	lds	r19, __llvm_gcov_ctr.80+19
+	lds	r20, __llvm_gcov_ctr.80+20
+	lds	r21, __llvm_gcov_ctr.80+21
+	lds	r22, __llvm_gcov_ctr.80+22
+	lds	r23, __llvm_gcov_ctr.80+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.80+23, r23
+	sts	__llvm_gcov_ctr.80+22, r22
+	sts	__llvm_gcov_ctr.80+21, r21
+	sts	__llvm_gcov_ctr.80+20, r20
+	sts	__llvm_gcov_ctr.80+19, r19
+	sts	__llvm_gcov_ctr.80+18, r18
+	sts	__llvm_gcov_ctr.80+17, r25
+	sts	__llvm_gcov_ctr.80+16, r24
 	ldd	r24, Y+1
 	ldd	r25, Y+2
 	adiw	r24, 1
@@ -16377,6 +22301,30 @@ gl_isinff:                              ; @gl_isinff
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.81
+	lds	r19, __llvm_gcov_ctr.81+1
+	lds	r20, __llvm_gcov_ctr.81+2
+	lds	r21, __llvm_gcov_ctr.81+3
+	lds	r30, __llvm_gcov_ctr.81+4
+	lds	r31, __llvm_gcov_ctr.81+5
+	lds	r26, __llvm_gcov_ctr.81+6
+	lds	r27, __llvm_gcov_ctr.81+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.81+7, r27
+	sts	__llvm_gcov_ctr.81+6, r26
+	sts	__llvm_gcov_ctr.81+5, r31
+	sts	__llvm_gcov_ctr.81+4, r30
+	sts	__llvm_gcov_ctr.81+3, r21
+	sts	__llvm_gcov_ctr.81+2, r20
+	sts	__llvm_gcov_ctr.81+1, r19
+	sts	__llvm_gcov_ctr.81, r18
 	std	Y+9, r25
 	std	Y+8, r24
 	std	Y+7, r23
@@ -16421,6 +22369,30 @@ gl_isinff:                              ; @gl_isinff
 	brpl	.LBB81_1
 	rjmp	.LBB81_5
 .LBB81_1:
+	lds	r24, __llvm_gcov_ctr.81+8
+	lds	r25, __llvm_gcov_ctr.81+9
+	lds	r18, __llvm_gcov_ctr.81+10
+	lds	r19, __llvm_gcov_ctr.81+11
+	lds	r20, __llvm_gcov_ctr.81+12
+	lds	r21, __llvm_gcov_ctr.81+13
+	lds	r22, __llvm_gcov_ctr.81+14
+	lds	r23, __llvm_gcov_ctr.81+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.81+15, r23
+	sts	__llvm_gcov_ctr.81+14, r22
+	sts	__llvm_gcov_ctr.81+13, r21
+	sts	__llvm_gcov_ctr.81+12, r20
+	sts	__llvm_gcov_ctr.81+11, r19
+	sts	__llvm_gcov_ctr.81+10, r18
+	sts	__llvm_gcov_ctr.81+9, r25
+	sts	__llvm_gcov_ctr.81+8, r24
 	lds	r24, __profc_gl_isinff+8
 	lds	r25, __profc_gl_isinff+9
 	lds	r18, __profc_gl_isinff+10
@@ -16478,6 +22450,30 @@ gl_isinff:                              ; @gl_isinff
 	rjmp	.LBB81_2
 .LBB81_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.81+16
+	lds	r19, __llvm_gcov_ctr.81+17
+	lds	r20, __llvm_gcov_ctr.81+18
+	lds	r21, __llvm_gcov_ctr.81+19
+	lds	r22, __llvm_gcov_ctr.81+20
+	lds	r23, __llvm_gcov_ctr.81+21
+	lds	r30, __llvm_gcov_ctr.81+22
+	lds	r31, __llvm_gcov_ctr.81+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.81+23, r31
+	sts	__llvm_gcov_ctr.81+22, r30
+	sts	__llvm_gcov_ctr.81+21, r23
+	sts	__llvm_gcov_ctr.81+20, r22
+	sts	__llvm_gcov_ctr.81+19, r21
+	sts	__llvm_gcov_ctr.81+18, r20
+	sts	__llvm_gcov_ctr.81+17, r19
+	sts	__llvm_gcov_ctr.81+16, r18
 	lds	r18, __profc_gl_isinff+16
 	lds	r19, __profc_gl_isinff+17
 	lds	r20, __profc_gl_isinff+18
@@ -16539,6 +22535,30 @@ gl_isinfd:                              ; @gl_isinfd
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.82
+	lds	r19, __llvm_gcov_ctr.82+1
+	lds	r20, __llvm_gcov_ctr.82+2
+	lds	r21, __llvm_gcov_ctr.82+3
+	lds	r30, __llvm_gcov_ctr.82+4
+	lds	r31, __llvm_gcov_ctr.82+5
+	lds	r26, __llvm_gcov_ctr.82+6
+	lds	r27, __llvm_gcov_ctr.82+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.82+7, r27
+	sts	__llvm_gcov_ctr.82+6, r26
+	sts	__llvm_gcov_ctr.82+5, r31
+	sts	__llvm_gcov_ctr.82+4, r30
+	sts	__llvm_gcov_ctr.82+3, r21
+	sts	__llvm_gcov_ctr.82+2, r20
+	sts	__llvm_gcov_ctr.82+1, r19
+	sts	__llvm_gcov_ctr.82, r18
 	std	Y+12, r25
 	std	Y+11, r24
 	std	Y+10, r23
@@ -16583,6 +22603,30 @@ gl_isinfd:                              ; @gl_isinfd
 	brpl	.LBB82_1
 	rjmp	.LBB82_5
 .LBB82_1:
+	lds	r24, __llvm_gcov_ctr.82+8
+	lds	r25, __llvm_gcov_ctr.82+9
+	lds	r18, __llvm_gcov_ctr.82+10
+	lds	r19, __llvm_gcov_ctr.82+11
+	lds	r20, __llvm_gcov_ctr.82+12
+	lds	r21, __llvm_gcov_ctr.82+13
+	lds	r22, __llvm_gcov_ctr.82+14
+	lds	r23, __llvm_gcov_ctr.82+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.82+15, r23
+	sts	__llvm_gcov_ctr.82+14, r22
+	sts	__llvm_gcov_ctr.82+13, r21
+	sts	__llvm_gcov_ctr.82+12, r20
+	sts	__llvm_gcov_ctr.82+11, r19
+	sts	__llvm_gcov_ctr.82+10, r18
+	sts	__llvm_gcov_ctr.82+9, r25
+	sts	__llvm_gcov_ctr.82+8, r24
 	lds	r24, __profc_gl_isinfd+8
 	lds	r25, __profc_gl_isinfd+9
 	lds	r18, __profc_gl_isinfd+10
@@ -16640,6 +22684,30 @@ gl_isinfd:                              ; @gl_isinfd
 	rjmp	.LBB82_2
 .LBB82_4:
 	ldd	r24, Y+4                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.82+16
+	lds	r19, __llvm_gcov_ctr.82+17
+	lds	r20, __llvm_gcov_ctr.82+18
+	lds	r21, __llvm_gcov_ctr.82+19
+	lds	r22, __llvm_gcov_ctr.82+20
+	lds	r23, __llvm_gcov_ctr.82+21
+	lds	r30, __llvm_gcov_ctr.82+22
+	lds	r31, __llvm_gcov_ctr.82+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.82+23, r31
+	sts	__llvm_gcov_ctr.82+22, r30
+	sts	__llvm_gcov_ctr.82+21, r23
+	sts	__llvm_gcov_ctr.82+20, r22
+	sts	__llvm_gcov_ctr.82+19, r21
+	sts	__llvm_gcov_ctr.82+18, r20
+	sts	__llvm_gcov_ctr.82+17, r19
+	sts	__llvm_gcov_ctr.82+16, r18
 	lds	r18, __profc_gl_isinfd+16
 	lds	r19, __profc_gl_isinfd+17
 	lds	r20, __profc_gl_isinfd+18
@@ -16701,6 +22769,30 @@ gl_isinfl:                              ; @gl_isinfl
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.83
+	lds	r19, __llvm_gcov_ctr.83+1
+	lds	r20, __llvm_gcov_ctr.83+2
+	lds	r21, __llvm_gcov_ctr.83+3
+	lds	r30, __llvm_gcov_ctr.83+4
+	lds	r31, __llvm_gcov_ctr.83+5
+	lds	r26, __llvm_gcov_ctr.83+6
+	lds	r27, __llvm_gcov_ctr.83+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.83+7, r27
+	sts	__llvm_gcov_ctr.83+6, r26
+	sts	__llvm_gcov_ctr.83+5, r31
+	sts	__llvm_gcov_ctr.83+4, r30
+	sts	__llvm_gcov_ctr.83+3, r21
+	sts	__llvm_gcov_ctr.83+2, r20
+	sts	__llvm_gcov_ctr.83+1, r19
+	sts	__llvm_gcov_ctr.83, r18
 	std	Y+9, r25
 	std	Y+8, r24
 	std	Y+7, r23
@@ -16745,6 +22837,30 @@ gl_isinfl:                              ; @gl_isinfl
 	brpl	.LBB83_1
 	rjmp	.LBB83_5
 .LBB83_1:
+	lds	r24, __llvm_gcov_ctr.83+8
+	lds	r25, __llvm_gcov_ctr.83+9
+	lds	r18, __llvm_gcov_ctr.83+10
+	lds	r19, __llvm_gcov_ctr.83+11
+	lds	r20, __llvm_gcov_ctr.83+12
+	lds	r21, __llvm_gcov_ctr.83+13
+	lds	r22, __llvm_gcov_ctr.83+14
+	lds	r23, __llvm_gcov_ctr.83+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.83+15, r23
+	sts	__llvm_gcov_ctr.83+14, r22
+	sts	__llvm_gcov_ctr.83+13, r21
+	sts	__llvm_gcov_ctr.83+12, r20
+	sts	__llvm_gcov_ctr.83+11, r19
+	sts	__llvm_gcov_ctr.83+10, r18
+	sts	__llvm_gcov_ctr.83+9, r25
+	sts	__llvm_gcov_ctr.83+8, r24
 	lds	r24, __profc_gl_isinfl+8
 	lds	r25, __profc_gl_isinfl+9
 	lds	r18, __profc_gl_isinfl+10
@@ -16802,6 +22918,30 @@ gl_isinfl:                              ; @gl_isinfl
 	rjmp	.LBB83_2
 .LBB83_4:
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.83+16
+	lds	r19, __llvm_gcov_ctr.83+17
+	lds	r20, __llvm_gcov_ctr.83+18
+	lds	r21, __llvm_gcov_ctr.83+19
+	lds	r22, __llvm_gcov_ctr.83+20
+	lds	r23, __llvm_gcov_ctr.83+21
+	lds	r30, __llvm_gcov_ctr.83+22
+	lds	r31, __llvm_gcov_ctr.83+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.83+23, r31
+	sts	__llvm_gcov_ctr.83+22, r30
+	sts	__llvm_gcov_ctr.83+21, r23
+	sts	__llvm_gcov_ctr.83+20, r22
+	sts	__llvm_gcov_ctr.83+19, r21
+	sts	__llvm_gcov_ctr.83+18, r20
+	sts	__llvm_gcov_ctr.83+17, r19
+	sts	__llvm_gcov_ctr.83+16, r18
 	lds	r18, __profc_gl_isinfl+16
 	lds	r19, __profc_gl_isinfl+17
 	lds	r20, __profc_gl_isinfl+18
@@ -16861,6 +23001,30 @@ _Qp_itoq:                               ; @_Qp_itoq
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.84
+	lds	r19, __llvm_gcov_ctr.84+1
+	lds	r20, __llvm_gcov_ctr.84+2
+	lds	r21, __llvm_gcov_ctr.84+3
+	lds	r30, __llvm_gcov_ctr.84+4
+	lds	r31, __llvm_gcov_ctr.84+5
+	lds	r26, __llvm_gcov_ctr.84+6
+	lds	r27, __llvm_gcov_ctr.84+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.84+7, r27
+	sts	__llvm_gcov_ctr.84+6, r26
+	sts	__llvm_gcov_ctr.84+5, r31
+	sts	__llvm_gcov_ctr.84+4, r30
+	sts	__llvm_gcov_ctr.84+3, r21
+	sts	__llvm_gcov_ctr.84+2, r20
+	sts	__llvm_gcov_ctr.84+1, r19
+	sts	__llvm_gcov_ctr.84, r18
 	std	Y+6, r25
 	std	Y+5, r24
 	std	Y+4, r23
@@ -16938,6 +23102,30 @@ ldexpf:                                 ; @ldexpf
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.85
+	lds	r19, __llvm_gcov_ctr.85+1
+	lds	r30, __llvm_gcov_ctr.85+2
+	lds	r31, __llvm_gcov_ctr.85+3
+	lds	r26, __llvm_gcov_ctr.85+4
+	lds	r27, __llvm_gcov_ctr.85+5
+	lds	r16, __llvm_gcov_ctr.85+6
+	lds	r17, __llvm_gcov_ctr.85+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.85+7, r17
+	sts	__llvm_gcov_ctr.85+6, r16
+	sts	__llvm_gcov_ctr.85+5, r27
+	sts	__llvm_gcov_ctr.85+4, r26
+	sts	__llvm_gcov_ctr.85+3, r31
+	sts	__llvm_gcov_ctr.85+2, r30
+	sts	__llvm_gcov_ctr.85+1, r19
+	sts	__llvm_gcov_ctr.85, r18
 	std	Y+22, r25
 	std	Y+21, r24
 	std	Y+20, r23
@@ -16998,6 +23186,30 @@ ldexpf:                                 ; @ldexpf
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB85_1
 .LBB85_3:
+	lds	r24, __llvm_gcov_ctr.85+8
+	lds	r25, __llvm_gcov_ctr.85+9
+	lds	r18, __llvm_gcov_ctr.85+10
+	lds	r19, __llvm_gcov_ctr.85+11
+	lds	r20, __llvm_gcov_ctr.85+12
+	lds	r21, __llvm_gcov_ctr.85+13
+	lds	r22, __llvm_gcov_ctr.85+14
+	lds	r23, __llvm_gcov_ctr.85+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.85+15, r23
+	sts	__llvm_gcov_ctr.85+14, r22
+	sts	__llvm_gcov_ctr.85+13, r21
+	sts	__llvm_gcov_ctr.85+12, r20
+	sts	__llvm_gcov_ctr.85+11, r19
+	sts	__llvm_gcov_ctr.85+10, r18
+	sts	__llvm_gcov_ctr.85+9, r25
+	sts	__llvm_gcov_ctr.85+8, r24
 	lds	r24, __profc_ldexpf+16
 	lds	r25, __profc_ldexpf+17
 	lds	r18, __profc_ldexpf+18
@@ -17044,6 +23256,30 @@ ldexpf:                                 ; @ldexpf
 	brne	.LBB85_4
 	rjmp	.LBB85_14
 .LBB85_4:
+	lds	r24, __llvm_gcov_ctr.85+16
+	lds	r25, __llvm_gcov_ctr.85+17
+	lds	r18, __llvm_gcov_ctr.85+18
+	lds	r19, __llvm_gcov_ctr.85+19
+	lds	r20, __llvm_gcov_ctr.85+20
+	lds	r21, __llvm_gcov_ctr.85+21
+	lds	r22, __llvm_gcov_ctr.85+22
+	lds	r23, __llvm_gcov_ctr.85+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.85+23, r23
+	sts	__llvm_gcov_ctr.85+22, r22
+	sts	__llvm_gcov_ctr.85+21, r21
+	sts	__llvm_gcov_ctr.85+20, r20
+	sts	__llvm_gcov_ctr.85+19, r19
+	sts	__llvm_gcov_ctr.85+18, r18
+	sts	__llvm_gcov_ctr.85+17, r25
+	sts	__llvm_gcov_ctr.85+16, r24
 	lds	r24, __profc_ldexpf+24
 	lds	r25, __profc_ldexpf+25
 	lds	r18, __profc_ldexpf+26
@@ -17212,6 +23448,30 @@ ldexpf:                                 ; @ldexpf
 	brne	.LBB85_9
 	rjmp	.LBB85_10
 .LBB85_9:                               ;   in Loop: Header=BB85_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.85+24
+	lds	r25, __llvm_gcov_ctr.85+25
+	lds	r18, __llvm_gcov_ctr.85+26
+	lds	r19, __llvm_gcov_ctr.85+27
+	lds	r20, __llvm_gcov_ctr.85+28
+	lds	r21, __llvm_gcov_ctr.85+29
+	lds	r22, __llvm_gcov_ctr.85+30
+	lds	r23, __llvm_gcov_ctr.85+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.85+31, r23
+	sts	__llvm_gcov_ctr.85+30, r22
+	sts	__llvm_gcov_ctr.85+29, r21
+	sts	__llvm_gcov_ctr.85+28, r20
+	sts	__llvm_gcov_ctr.85+27, r19
+	sts	__llvm_gcov_ctr.85+26, r18
+	sts	__llvm_gcov_ctr.85+25, r25
+	sts	__llvm_gcov_ctr.85+24, r24
 	lds	r24, __profc_ldexpf+48
 	lds	r25, __profc_ldexpf+49
 	lds	r18, __profc_ldexpf+50
@@ -17303,6 +23563,30 @@ ldexpf:                                 ; @ldexpf
 	sts	__profc_ldexpf+56, r24
 	rjmp	.LBB85_13
 .LBB85_12:                              ;   in Loop: Header=BB85_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.85+32
+	lds	r25, __llvm_gcov_ctr.85+33
+	lds	r18, __llvm_gcov_ctr.85+34
+	lds	r19, __llvm_gcov_ctr.85+35
+	lds	r20, __llvm_gcov_ctr.85+36
+	lds	r21, __llvm_gcov_ctr.85+37
+	lds	r22, __llvm_gcov_ctr.85+38
+	lds	r23, __llvm_gcov_ctr.85+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.85+39, r23
+	sts	__llvm_gcov_ctr.85+38, r22
+	sts	__llvm_gcov_ctr.85+37, r21
+	sts	__llvm_gcov_ctr.85+36, r20
+	sts	__llvm_gcov_ctr.85+35, r19
+	sts	__llvm_gcov_ctr.85+34, r18
+	sts	__llvm_gcov_ctr.85+33, r25
+	sts	__llvm_gcov_ctr.85+32, r24
 	ldd	r18, Y+13
 	ldd	r19, Y+14
 	ldd	r20, Y+15
@@ -17357,6 +23641,30 @@ ldexp:                                  ; @ldexp
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.86
+	lds	r19, __llvm_gcov_ctr.86+1
+	lds	r30, __llvm_gcov_ctr.86+2
+	lds	r31, __llvm_gcov_ctr.86+3
+	lds	r26, __llvm_gcov_ctr.86+4
+	lds	r27, __llvm_gcov_ctr.86+5
+	lds	r16, __llvm_gcov_ctr.86+6
+	lds	r17, __llvm_gcov_ctr.86+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.86+7, r17
+	sts	__llvm_gcov_ctr.86+6, r16
+	sts	__llvm_gcov_ctr.86+5, r27
+	sts	__llvm_gcov_ctr.86+4, r26
+	sts	__llvm_gcov_ctr.86+3, r31
+	sts	__llvm_gcov_ctr.86+2, r30
+	sts	__llvm_gcov_ctr.86+1, r19
+	sts	__llvm_gcov_ctr.86, r18
 	std	Y+24, r25
 	std	Y+23, r24
 	std	Y+22, r23
@@ -17417,6 +23725,30 @@ ldexp:                                  ; @ldexp
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB86_1
 .LBB86_3:
+	lds	r24, __llvm_gcov_ctr.86+8
+	lds	r25, __llvm_gcov_ctr.86+9
+	lds	r18, __llvm_gcov_ctr.86+10
+	lds	r19, __llvm_gcov_ctr.86+11
+	lds	r20, __llvm_gcov_ctr.86+12
+	lds	r21, __llvm_gcov_ctr.86+13
+	lds	r22, __llvm_gcov_ctr.86+14
+	lds	r23, __llvm_gcov_ctr.86+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.86+15, r23
+	sts	__llvm_gcov_ctr.86+14, r22
+	sts	__llvm_gcov_ctr.86+13, r21
+	sts	__llvm_gcov_ctr.86+12, r20
+	sts	__llvm_gcov_ctr.86+11, r19
+	sts	__llvm_gcov_ctr.86+10, r18
+	sts	__llvm_gcov_ctr.86+9, r25
+	sts	__llvm_gcov_ctr.86+8, r24
 	lds	r24, __profc_ldexp+16
 	lds	r25, __profc_ldexp+17
 	lds	r18, __profc_ldexp+18
@@ -17463,6 +23795,30 @@ ldexp:                                  ; @ldexp
 	brne	.LBB86_4
 	rjmp	.LBB86_14
 .LBB86_4:
+	lds	r24, __llvm_gcov_ctr.86+16
+	lds	r25, __llvm_gcov_ctr.86+17
+	lds	r18, __llvm_gcov_ctr.86+18
+	lds	r19, __llvm_gcov_ctr.86+19
+	lds	r20, __llvm_gcov_ctr.86+20
+	lds	r21, __llvm_gcov_ctr.86+21
+	lds	r22, __llvm_gcov_ctr.86+22
+	lds	r23, __llvm_gcov_ctr.86+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.86+23, r23
+	sts	__llvm_gcov_ctr.86+22, r22
+	sts	__llvm_gcov_ctr.86+21, r21
+	sts	__llvm_gcov_ctr.86+20, r20
+	sts	__llvm_gcov_ctr.86+19, r19
+	sts	__llvm_gcov_ctr.86+18, r18
+	sts	__llvm_gcov_ctr.86+17, r25
+	sts	__llvm_gcov_ctr.86+16, r24
 	lds	r24, __profc_ldexp+24
 	lds	r25, __profc_ldexp+25
 	lds	r18, __profc_ldexp+26
@@ -17631,6 +23987,30 @@ ldexp:                                  ; @ldexp
 	brne	.LBB86_9
 	rjmp	.LBB86_10
 .LBB86_9:                               ;   in Loop: Header=BB86_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.86+24
+	lds	r25, __llvm_gcov_ctr.86+25
+	lds	r18, __llvm_gcov_ctr.86+26
+	lds	r19, __llvm_gcov_ctr.86+27
+	lds	r20, __llvm_gcov_ctr.86+28
+	lds	r21, __llvm_gcov_ctr.86+29
+	lds	r22, __llvm_gcov_ctr.86+30
+	lds	r23, __llvm_gcov_ctr.86+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.86+31, r23
+	sts	__llvm_gcov_ctr.86+30, r22
+	sts	__llvm_gcov_ctr.86+29, r21
+	sts	__llvm_gcov_ctr.86+28, r20
+	sts	__llvm_gcov_ctr.86+27, r19
+	sts	__llvm_gcov_ctr.86+26, r18
+	sts	__llvm_gcov_ctr.86+25, r25
+	sts	__llvm_gcov_ctr.86+24, r24
 	lds	r24, __profc_ldexp+48
 	lds	r25, __profc_ldexp+49
 	lds	r18, __profc_ldexp+50
@@ -17722,6 +24102,30 @@ ldexp:                                  ; @ldexp
 	sts	__profc_ldexp+56, r24
 	rjmp	.LBB86_13
 .LBB86_12:                              ;   in Loop: Header=BB86_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.86+32
+	lds	r25, __llvm_gcov_ctr.86+33
+	lds	r18, __llvm_gcov_ctr.86+34
+	lds	r19, __llvm_gcov_ctr.86+35
+	lds	r20, __llvm_gcov_ctr.86+36
+	lds	r21, __llvm_gcov_ctr.86+37
+	lds	r22, __llvm_gcov_ctr.86+38
+	lds	r23, __llvm_gcov_ctr.86+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.86+39, r23
+	sts	__llvm_gcov_ctr.86+38, r22
+	sts	__llvm_gcov_ctr.86+37, r21
+	sts	__llvm_gcov_ctr.86+36, r20
+	sts	__llvm_gcov_ctr.86+35, r19
+	sts	__llvm_gcov_ctr.86+34, r18
+	sts	__llvm_gcov_ctr.86+33, r25
+	sts	__llvm_gcov_ctr.86+32, r24
 	ldd	r18, Y+13
 	ldd	r19, Y+14
 	ldd	r20, Y+15
@@ -17776,6 +24180,30 @@ ldexpl:                                 ; @ldexpl
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.87
+	lds	r19, __llvm_gcov_ctr.87+1
+	lds	r30, __llvm_gcov_ctr.87+2
+	lds	r31, __llvm_gcov_ctr.87+3
+	lds	r26, __llvm_gcov_ctr.87+4
+	lds	r27, __llvm_gcov_ctr.87+5
+	lds	r16, __llvm_gcov_ctr.87+6
+	lds	r17, __llvm_gcov_ctr.87+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.87+7, r17
+	sts	__llvm_gcov_ctr.87+6, r16
+	sts	__llvm_gcov_ctr.87+5, r27
+	sts	__llvm_gcov_ctr.87+4, r26
+	sts	__llvm_gcov_ctr.87+3, r31
+	sts	__llvm_gcov_ctr.87+2, r30
+	sts	__llvm_gcov_ctr.87+1, r19
+	sts	__llvm_gcov_ctr.87, r18
 	std	Y+22, r25
 	std	Y+21, r24
 	std	Y+20, r23
@@ -17836,6 +24264,30 @@ ldexpl:                                 ; @ldexpl
 	std	Y+12, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB87_1
 .LBB87_3:
+	lds	r24, __llvm_gcov_ctr.87+8
+	lds	r25, __llvm_gcov_ctr.87+9
+	lds	r18, __llvm_gcov_ctr.87+10
+	lds	r19, __llvm_gcov_ctr.87+11
+	lds	r20, __llvm_gcov_ctr.87+12
+	lds	r21, __llvm_gcov_ctr.87+13
+	lds	r22, __llvm_gcov_ctr.87+14
+	lds	r23, __llvm_gcov_ctr.87+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.87+15, r23
+	sts	__llvm_gcov_ctr.87+14, r22
+	sts	__llvm_gcov_ctr.87+13, r21
+	sts	__llvm_gcov_ctr.87+12, r20
+	sts	__llvm_gcov_ctr.87+11, r19
+	sts	__llvm_gcov_ctr.87+10, r18
+	sts	__llvm_gcov_ctr.87+9, r25
+	sts	__llvm_gcov_ctr.87+8, r24
 	lds	r24, __profc_ldexpl+16
 	lds	r25, __profc_ldexpl+17
 	lds	r18, __profc_ldexpl+18
@@ -17882,6 +24334,30 @@ ldexpl:                                 ; @ldexpl
 	brne	.LBB87_4
 	rjmp	.LBB87_14
 .LBB87_4:
+	lds	r24, __llvm_gcov_ctr.87+16
+	lds	r25, __llvm_gcov_ctr.87+17
+	lds	r18, __llvm_gcov_ctr.87+18
+	lds	r19, __llvm_gcov_ctr.87+19
+	lds	r20, __llvm_gcov_ctr.87+20
+	lds	r21, __llvm_gcov_ctr.87+21
+	lds	r22, __llvm_gcov_ctr.87+22
+	lds	r23, __llvm_gcov_ctr.87+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.87+23, r23
+	sts	__llvm_gcov_ctr.87+22, r22
+	sts	__llvm_gcov_ctr.87+21, r21
+	sts	__llvm_gcov_ctr.87+20, r20
+	sts	__llvm_gcov_ctr.87+19, r19
+	sts	__llvm_gcov_ctr.87+18, r18
+	sts	__llvm_gcov_ctr.87+17, r25
+	sts	__llvm_gcov_ctr.87+16, r24
 	lds	r24, __profc_ldexpl+24
 	lds	r25, __profc_ldexpl+25
 	lds	r18, __profc_ldexpl+26
@@ -18050,6 +24526,30 @@ ldexpl:                                 ; @ldexpl
 	brne	.LBB87_9
 	rjmp	.LBB87_10
 .LBB87_9:                               ;   in Loop: Header=BB87_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.87+24
+	lds	r25, __llvm_gcov_ctr.87+25
+	lds	r18, __llvm_gcov_ctr.87+26
+	lds	r19, __llvm_gcov_ctr.87+27
+	lds	r20, __llvm_gcov_ctr.87+28
+	lds	r21, __llvm_gcov_ctr.87+29
+	lds	r22, __llvm_gcov_ctr.87+30
+	lds	r23, __llvm_gcov_ctr.87+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.87+31, r23
+	sts	__llvm_gcov_ctr.87+30, r22
+	sts	__llvm_gcov_ctr.87+29, r21
+	sts	__llvm_gcov_ctr.87+28, r20
+	sts	__llvm_gcov_ctr.87+27, r19
+	sts	__llvm_gcov_ctr.87+26, r18
+	sts	__llvm_gcov_ctr.87+25, r25
+	sts	__llvm_gcov_ctr.87+24, r24
 	lds	r24, __profc_ldexpl+48
 	lds	r25, __profc_ldexpl+49
 	lds	r18, __profc_ldexpl+50
@@ -18141,6 +24641,30 @@ ldexpl:                                 ; @ldexpl
 	sts	__profc_ldexpl+56, r24
 	rjmp	.LBB87_13
 .LBB87_12:                              ;   in Loop: Header=BB87_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.87+32
+	lds	r25, __llvm_gcov_ctr.87+33
+	lds	r18, __llvm_gcov_ctr.87+34
+	lds	r19, __llvm_gcov_ctr.87+35
+	lds	r20, __llvm_gcov_ctr.87+36
+	lds	r21, __llvm_gcov_ctr.87+37
+	lds	r22, __llvm_gcov_ctr.87+38
+	lds	r23, __llvm_gcov_ctr.87+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.87+39, r23
+	sts	__llvm_gcov_ctr.87+38, r22
+	sts	__llvm_gcov_ctr.87+37, r21
+	sts	__llvm_gcov_ctr.87+36, r20
+	sts	__llvm_gcov_ctr.87+35, r19
+	sts	__llvm_gcov_ctr.87+34, r18
+	sts	__llvm_gcov_ctr.87+33, r25
+	sts	__llvm_gcov_ctr.87+32, r24
 	ldd	r18, Y+13
 	ldd	r19, Y+14
 	ldd	r20, Y+15
@@ -18181,6 +24705,8 @@ ldexpl:                                 ; @ldexpl
 	.type	memxor,@function
 memxor:                                 ; @memxor
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -18191,6 +24717,30 @@ memxor:                                 ; @memxor
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.88
+	lds	r19, __llvm_gcov_ctr.88+1
+	lds	r30, __llvm_gcov_ctr.88+2
+	lds	r31, __llvm_gcov_ctr.88+3
+	lds	r26, __llvm_gcov_ctr.88+4
+	lds	r27, __llvm_gcov_ctr.88+5
+	lds	r16, __llvm_gcov_ctr.88+6
+	lds	r17, __llvm_gcov_ctr.88+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.88+7, r17
+	sts	__llvm_gcov_ctr.88+6, r16
+	sts	__llvm_gcov_ctr.88+5, r27
+	sts	__llvm_gcov_ctr.88+4, r26
+	sts	__llvm_gcov_ctr.88+3, r31
+	sts	__llvm_gcov_ctr.88+2, r30
+	sts	__llvm_gcov_ctr.88+1, r19
+	sts	__llvm_gcov_ctr.88, r18
 	std	Y+10, r25
 	std	Y+9, r24
 	std	Y+8, r23
@@ -18286,6 +24836,30 @@ memxor:                                 ; @memxor
 	st	X, r24
 	rjmp	.LBB88_3
 .LBB88_3:                               ;   in Loop: Header=BB88_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.88+8
+	lds	r25, __llvm_gcov_ctr.88+9
+	lds	r18, __llvm_gcov_ctr.88+10
+	lds	r19, __llvm_gcov_ctr.88+11
+	lds	r20, __llvm_gcov_ctr.88+12
+	lds	r21, __llvm_gcov_ctr.88+13
+	lds	r22, __llvm_gcov_ctr.88+14
+	lds	r23, __llvm_gcov_ctr.88+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.88+15, r23
+	sts	__llvm_gcov_ctr.88+14, r22
+	sts	__llvm_gcov_ctr.88+13, r21
+	sts	__llvm_gcov_ctr.88+12, r20
+	sts	__llvm_gcov_ctr.88+11, r19
+	sts	__llvm_gcov_ctr.88+10, r18
+	sts	__llvm_gcov_ctr.88+9, r25
+	sts	__llvm_gcov_ctr.88+8, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	sbiw	r24, 1
@@ -18303,6 +24877,8 @@ memxor:                                 ; @memxor
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end88:
 	.size	memxor, .Lfunc_end88-memxor
@@ -18378,6 +24954,30 @@ strncat:                                ; @strncat
 	brne	.LBB89_2
 	rjmp	.LBB89_6
 .LBB89_2:                               ;   in Loop: Header=BB89_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.89
+	lds	r25, __llvm_gcov_ctr.89+1
+	lds	r18, __llvm_gcov_ctr.89+2
+	lds	r19, __llvm_gcov_ctr.89+3
+	lds	r20, __llvm_gcov_ctr.89+4
+	lds	r21, __llvm_gcov_ctr.89+5
+	lds	r22, __llvm_gcov_ctr.89+6
+	lds	r23, __llvm_gcov_ctr.89+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.89+7, r23
+	sts	__llvm_gcov_ctr.89+6, r22
+	sts	__llvm_gcov_ctr.89+5, r21
+	sts	__llvm_gcov_ctr.89+4, r20
+	sts	__llvm_gcov_ctr.89+3, r19
+	sts	__llvm_gcov_ctr.89+2, r18
+	sts	__llvm_gcov_ctr.89+1, r25
+	sts	__llvm_gcov_ctr.89, r24
 	lds	r24, __profc_strncat+16
 	lds	r25, __profc_strncat+17
 	lds	r18, __profc_strncat+18
@@ -18439,6 +25039,30 @@ strncat:                                ; @strncat
 	rjmp	.LBB89_3
 .LBB89_5:                               ;   in Loop: Header=BB89_1 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.89+8
+	lds	r19, __llvm_gcov_ctr.89+9
+	lds	r20, __llvm_gcov_ctr.89+10
+	lds	r21, __llvm_gcov_ctr.89+11
+	lds	r22, __llvm_gcov_ctr.89+12
+	lds	r23, __llvm_gcov_ctr.89+13
+	lds	r30, __llvm_gcov_ctr.89+14
+	lds	r31, __llvm_gcov_ctr.89+15
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.89+15, r31
+	sts	__llvm_gcov_ctr.89+14, r30
+	sts	__llvm_gcov_ctr.89+13, r23
+	sts	__llvm_gcov_ctr.89+12, r22
+	sts	__llvm_gcov_ctr.89+11, r21
+	sts	__llvm_gcov_ctr.89+10, r20
+	sts	__llvm_gcov_ctr.89+9, r19
+	sts	__llvm_gcov_ctr.89+8, r18
 	lds	r18, __profc_strncat+24
 	lds	r19, __profc_strncat+25
 	lds	r20, __profc_strncat+26
@@ -18498,6 +25122,30 @@ strncat:                                ; @strncat
 	sts	__profc_strncat+8, r24
 	rjmp	.LBB89_8
 .LBB89_8:                               ;   in Loop: Header=BB89_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.89+24
+	lds	r25, __llvm_gcov_ctr.89+25
+	lds	r18, __llvm_gcov_ctr.89+26
+	lds	r19, __llvm_gcov_ctr.89+27
+	lds	r20, __llvm_gcov_ctr.89+28
+	lds	r21, __llvm_gcov_ctr.89+29
+	lds	r22, __llvm_gcov_ctr.89+30
+	lds	r23, __llvm_gcov_ctr.89+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.89+31, r23
+	sts	__llvm_gcov_ctr.89+30, r22
+	sts	__llvm_gcov_ctr.89+29, r21
+	sts	__llvm_gcov_ctr.89+28, r20
+	sts	__llvm_gcov_ctr.89+27, r19
+	sts	__llvm_gcov_ctr.89+26, r18
+	sts	__llvm_gcov_ctr.89+25, r25
+	sts	__llvm_gcov_ctr.89+24, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 1
@@ -18515,6 +25163,30 @@ strncat:                                ; @strncat
 	std	Y+11, r24
 	rjmp	.LBB89_1
 .LBB89_9:
+	lds	r24, __llvm_gcov_ctr.89+16
+	lds	r25, __llvm_gcov_ctr.89+17
+	lds	r18, __llvm_gcov_ctr.89+18
+	lds	r19, __llvm_gcov_ctr.89+19
+	lds	r20, __llvm_gcov_ctr.89+20
+	lds	r21, __llvm_gcov_ctr.89+21
+	lds	r22, __llvm_gcov_ctr.89+22
+	lds	r23, __llvm_gcov_ctr.89+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.89+23, r23
+	sts	__llvm_gcov_ctr.89+22, r22
+	sts	__llvm_gcov_ctr.89+21, r21
+	sts	__llvm_gcov_ctr.89+20, r20
+	sts	__llvm_gcov_ctr.89+19, r19
+	sts	__llvm_gcov_ctr.89+18, r18
+	sts	__llvm_gcov_ctr.89+17, r25
+	sts	__llvm_gcov_ctr.89+16, r24
 	ldd	r18, Y+11
 	ldd	r19, Y+12
 	mov	r25, r18
@@ -18524,6 +25196,30 @@ strncat:                                ; @strncat
 	breq	.LBB89_10
 	rjmp	.LBB89_11
 .LBB89_10:
+	lds	r24, __llvm_gcov_ctr.89+32
+	lds	r25, __llvm_gcov_ctr.89+33
+	lds	r18, __llvm_gcov_ctr.89+34
+	lds	r19, __llvm_gcov_ctr.89+35
+	lds	r20, __llvm_gcov_ctr.89+36
+	lds	r21, __llvm_gcov_ctr.89+37
+	lds	r22, __llvm_gcov_ctr.89+38
+	lds	r23, __llvm_gcov_ctr.89+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.89+39, r23
+	sts	__llvm_gcov_ctr.89+38, r22
+	sts	__llvm_gcov_ctr.89+37, r21
+	sts	__llvm_gcov_ctr.89+36, r20
+	sts	__llvm_gcov_ctr.89+35, r19
+	sts	__llvm_gcov_ctr.89+34, r18
+	sts	__llvm_gcov_ctr.89+33, r25
+	sts	__llvm_gcov_ctr.89+32, r24
 	lds	r24, __profc_strncat+32
 	lds	r25, __profc_strncat+33
 	lds	r18, __profc_strncat+34
@@ -18583,6 +25279,30 @@ strnlen:                                ; @strnlen
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.90
+	lds	r19, __llvm_gcov_ctr.90+1
+	lds	r20, __llvm_gcov_ctr.90+2
+	lds	r21, __llvm_gcov_ctr.90+3
+	lds	r30, __llvm_gcov_ctr.90+4
+	lds	r31, __llvm_gcov_ctr.90+5
+	lds	r26, __llvm_gcov_ctr.90+6
+	lds	r27, __llvm_gcov_ctr.90+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.90+7, r27
+	sts	__llvm_gcov_ctr.90+6, r26
+	sts	__llvm_gcov_ctr.90+5, r31
+	sts	__llvm_gcov_ctr.90+4, r30
+	sts	__llvm_gcov_ctr.90+3, r21
+	sts	__llvm_gcov_ctr.90+2, r20
+	sts	__llvm_gcov_ctr.90+1, r19
+	sts	__llvm_gcov_ctr.90, r18
 	std	Y+12, r25
 	std	Y+11, r24
 	std	Y+10, r23
@@ -18628,6 +25348,30 @@ strnlen:                                ; @strnlen
 	brlo	.LBB90_2
 	rjmp	.LBB90_6
 .LBB90_2:                               ;   in Loop: Header=BB90_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.90+8
+	lds	r25, __llvm_gcov_ctr.90+9
+	lds	r18, __llvm_gcov_ctr.90+10
+	lds	r19, __llvm_gcov_ctr.90+11
+	lds	r20, __llvm_gcov_ctr.90+12
+	lds	r21, __llvm_gcov_ctr.90+13
+	lds	r22, __llvm_gcov_ctr.90+14
+	lds	r23, __llvm_gcov_ctr.90+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.90+15, r23
+	sts	__llvm_gcov_ctr.90+14, r22
+	sts	__llvm_gcov_ctr.90+13, r21
+	sts	__llvm_gcov_ctr.90+12, r20
+	sts	__llvm_gcov_ctr.90+11, r19
+	sts	__llvm_gcov_ctr.90+10, r18
+	sts	__llvm_gcov_ctr.90+9, r25
+	sts	__llvm_gcov_ctr.90+8, r24
 	lds	r24, __profc_strnlen+16
 	lds	r25, __profc_strnlen+17
 	lds	r18, __profc_strnlen+18
@@ -18690,6 +25434,30 @@ strnlen:                                ; @strnlen
 	rjmp	.LBB90_3
 .LBB90_5:                               ;   in Loop: Header=BB90_1 Depth=1
 	ldd	r24, Y+1                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.90+16
+	lds	r19, __llvm_gcov_ctr.90+17
+	lds	r20, __llvm_gcov_ctr.90+18
+	lds	r21, __llvm_gcov_ctr.90+19
+	lds	r22, __llvm_gcov_ctr.90+20
+	lds	r23, __llvm_gcov_ctr.90+21
+	lds	r30, __llvm_gcov_ctr.90+22
+	lds	r31, __llvm_gcov_ctr.90+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.90+23, r31
+	sts	__llvm_gcov_ctr.90+22, r30
+	sts	__llvm_gcov_ctr.90+21, r23
+	sts	__llvm_gcov_ctr.90+20, r22
+	sts	__llvm_gcov_ctr.90+19, r21
+	sts	__llvm_gcov_ctr.90+18, r20
+	sts	__llvm_gcov_ctr.90+17, r19
+	sts	__llvm_gcov_ctr.90+16, r18
 	lds	r18, __profc_strnlen+24
 	lds	r19, __profc_strnlen+25
 	lds	r20, __profc_strnlen+26
@@ -18749,6 +25517,30 @@ strnlen:                                ; @strnlen
 	sts	__profc_strnlen+8, r24
 	rjmp	.LBB90_8
 .LBB90_8:                               ;   in Loop: Header=BB90_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.90+24
+	lds	r25, __llvm_gcov_ctr.90+25
+	lds	r18, __llvm_gcov_ctr.90+26
+	lds	r19, __llvm_gcov_ctr.90+27
+	lds	r20, __llvm_gcov_ctr.90+28
+	lds	r21, __llvm_gcov_ctr.90+29
+	lds	r22, __llvm_gcov_ctr.90+30
+	lds	r23, __llvm_gcov_ctr.90+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.90+31, r23
+	sts	__llvm_gcov_ctr.90+30, r22
+	sts	__llvm_gcov_ctr.90+29, r21
+	sts	__llvm_gcov_ctr.90+28, r20
+	sts	__llvm_gcov_ctr.90+27, r19
+	sts	__llvm_gcov_ctr.90+26, r18
+	sts	__llvm_gcov_ctr.90+25, r25
+	sts	__llvm_gcov_ctr.90+24, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	adiw	r24, 1
@@ -18907,6 +25699,30 @@ strpbrk:                                ; @strpbrk
 	breq	.LBB91_5
 	rjmp	.LBB91_6
 .LBB91_5:
+	lds	r24, __llvm_gcov_ctr.91+8
+	lds	r25, __llvm_gcov_ctr.91+9
+	lds	r18, __llvm_gcov_ctr.91+10
+	lds	r19, __llvm_gcov_ctr.91+11
+	lds	r20, __llvm_gcov_ctr.91+12
+	lds	r21, __llvm_gcov_ctr.91+13
+	lds	r22, __llvm_gcov_ctr.91+14
+	lds	r23, __llvm_gcov_ctr.91+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.91+15, r23
+	sts	__llvm_gcov_ctr.91+14, r22
+	sts	__llvm_gcov_ctr.91+13, r21
+	sts	__llvm_gcov_ctr.91+12, r20
+	sts	__llvm_gcov_ctr.91+11, r19
+	sts	__llvm_gcov_ctr.91+10, r18
+	sts	__llvm_gcov_ctr.91+9, r25
+	sts	__llvm_gcov_ctr.91+8, r24
 	lds	r24, __profc_strpbrk+24
 	lds	r25, __profc_strpbrk+25
 	lds	r18, __profc_strpbrk+26
@@ -18937,8 +25753,56 @@ strpbrk:                                ; @strpbrk
 	std	Y+7, r24
 	rjmp	.LBB91_9
 .LBB91_6:                               ;   in Loop: Header=BB91_3 Depth=2
+	lds	r24, __llvm_gcov_ctr.91+16
+	lds	r25, __llvm_gcov_ctr.91+17
+	lds	r18, __llvm_gcov_ctr.91+18
+	lds	r19, __llvm_gcov_ctr.91+19
+	lds	r20, __llvm_gcov_ctr.91+20
+	lds	r21, __llvm_gcov_ctr.91+21
+	lds	r22, __llvm_gcov_ctr.91+22
+	lds	r23, __llvm_gcov_ctr.91+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.91+23, r23
+	sts	__llvm_gcov_ctr.91+22, r22
+	sts	__llvm_gcov_ctr.91+21, r21
+	sts	__llvm_gcov_ctr.91+20, r20
+	sts	__llvm_gcov_ctr.91+19, r19
+	sts	__llvm_gcov_ctr.91+18, r18
+	sts	__llvm_gcov_ctr.91+17, r25
+	sts	__llvm_gcov_ctr.91+16, r24
 	rjmp	.LBB91_3
 .LBB91_7:                               ;   in Loop: Header=BB91_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.91+24
+	lds	r25, __llvm_gcov_ctr.91+25
+	lds	r18, __llvm_gcov_ctr.91+26
+	lds	r19, __llvm_gcov_ctr.91+27
+	lds	r20, __llvm_gcov_ctr.91+28
+	lds	r21, __llvm_gcov_ctr.91+29
+	lds	r22, __llvm_gcov_ctr.91+30
+	lds	r23, __llvm_gcov_ctr.91+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.91+31, r23
+	sts	__llvm_gcov_ctr.91+30, r22
+	sts	__llvm_gcov_ctr.91+29, r21
+	sts	__llvm_gcov_ctr.91+28, r20
+	sts	__llvm_gcov_ctr.91+27, r19
+	sts	__llvm_gcov_ctr.91+26, r18
+	sts	__llvm_gcov_ctr.91+25, r25
+	sts	__llvm_gcov_ctr.91+24, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	adiw	r24, 1
@@ -18946,6 +25810,30 @@ strpbrk:                                ; @strpbrk
 	std	Y+5, r24
 	rjmp	.LBB91_1
 .LBB91_8:
+	lds	r24, __llvm_gcov_ctr.91
+	lds	r25, __llvm_gcov_ctr.91+1
+	lds	r18, __llvm_gcov_ctr.91+2
+	lds	r19, __llvm_gcov_ctr.91+3
+	lds	r20, __llvm_gcov_ctr.91+4
+	lds	r21, __llvm_gcov_ctr.91+5
+	lds	r22, __llvm_gcov_ctr.91+6
+	lds	r23, __llvm_gcov_ctr.91+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.91+7, r23
+	sts	__llvm_gcov_ctr.91+6, r22
+	sts	__llvm_gcov_ctr.91+5, r21
+	sts	__llvm_gcov_ctr.91+4, r20
+	sts	__llvm_gcov_ctr.91+3, r19
+	sts	__llvm_gcov_ctr.91+2, r18
+	sts	__llvm_gcov_ctr.91+1, r25
+	sts	__llvm_gcov_ctr.91, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+8, r25
@@ -18981,6 +25869,30 @@ strrchr:                                ; @strrchr
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.92
+	lds	r19, __llvm_gcov_ctr.92+1
+	lds	r20, __llvm_gcov_ctr.92+2
+	lds	r21, __llvm_gcov_ctr.92+3
+	lds	r30, __llvm_gcov_ctr.92+4
+	lds	r31, __llvm_gcov_ctr.92+5
+	lds	r26, __llvm_gcov_ctr.92+6
+	lds	r27, __llvm_gcov_ctr.92+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.92+7, r27
+	sts	__llvm_gcov_ctr.92+6, r26
+	sts	__llvm_gcov_ctr.92+5, r31
+	sts	__llvm_gcov_ctr.92+4, r30
+	sts	__llvm_gcov_ctr.92+3, r21
+	sts	__llvm_gcov_ctr.92+2, r20
+	sts	__llvm_gcov_ctr.92+1, r19
+	sts	__llvm_gcov_ctr.92, r18
 	std	Y+6, r25
 	std	Y+5, r24
 	std	Y+4, r23
@@ -19015,6 +25927,30 @@ strrchr:                                ; @strrchr
 	std	Y+1, r24
 	rjmp	.LBB92_2
 .LBB92_1:                               ;   in Loop: Header=BB92_2 Depth=1
+	lds	r24, __llvm_gcov_ctr.92+16
+	lds	r25, __llvm_gcov_ctr.92+17
+	lds	r18, __llvm_gcov_ctr.92+18
+	lds	r19, __llvm_gcov_ctr.92+19
+	lds	r20, __llvm_gcov_ctr.92+20
+	lds	r21, __llvm_gcov_ctr.92+21
+	lds	r22, __llvm_gcov_ctr.92+22
+	lds	r23, __llvm_gcov_ctr.92+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.92+23, r23
+	sts	__llvm_gcov_ctr.92+22, r22
+	sts	__llvm_gcov_ctr.92+21, r21
+	sts	__llvm_gcov_ctr.92+20, r20
+	sts	__llvm_gcov_ctr.92+19, r19
+	sts	__llvm_gcov_ctr.92+18, r18
+	sts	__llvm_gcov_ctr.92+17, r25
+	sts	__llvm_gcov_ctr.92+16, r24
 	lds	r24, __profc_strrchr+8
 	lds	r25, __profc_strrchr+9
 	lds	r18, __profc_strrchr+10
@@ -19054,6 +25990,30 @@ strrchr:                                ; @strrchr
 	breq	.LBB92_3
 	rjmp	.LBB92_4
 .LBB92_3:                               ;   in Loop: Header=BB92_2 Depth=1
+	lds	r24, __llvm_gcov_ctr.92+8
+	lds	r25, __llvm_gcov_ctr.92+9
+	lds	r18, __llvm_gcov_ctr.92+10
+	lds	r19, __llvm_gcov_ctr.92+11
+	lds	r20, __llvm_gcov_ctr.92+12
+	lds	r21, __llvm_gcov_ctr.92+13
+	lds	r22, __llvm_gcov_ctr.92+14
+	lds	r23, __llvm_gcov_ctr.92+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.92+15, r23
+	sts	__llvm_gcov_ctr.92+14, r22
+	sts	__llvm_gcov_ctr.92+13, r21
+	sts	__llvm_gcov_ctr.92+12, r20
+	sts	__llvm_gcov_ctr.92+11, r19
+	sts	__llvm_gcov_ctr.92+10, r18
+	sts	__llvm_gcov_ctr.92+9, r25
+	sts	__llvm_gcov_ctr.92+8, r24
 	lds	r24, __profc_strrchr+16
 	lds	r25, __profc_strrchr+17
 	lds	r18, __profc_strrchr+18
@@ -19173,6 +26133,30 @@ strstr:                                 ; @strstr
 	breq	.LBB93_1
 	rjmp	.LBB93_2
 .LBB93_1:
+	lds	r24, __llvm_gcov_ctr.93
+	lds	r25, __llvm_gcov_ctr.93+1
+	lds	r18, __llvm_gcov_ctr.93+2
+	lds	r19, __llvm_gcov_ctr.93+3
+	lds	r20, __llvm_gcov_ctr.93+4
+	lds	r21, __llvm_gcov_ctr.93+5
+	lds	r22, __llvm_gcov_ctr.93+6
+	lds	r23, __llvm_gcov_ctr.93+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.93+7, r23
+	sts	__llvm_gcov_ctr.93+6, r22
+	sts	__llvm_gcov_ctr.93+5, r21
+	sts	__llvm_gcov_ctr.93+4, r20
+	sts	__llvm_gcov_ctr.93+3, r19
+	sts	__llvm_gcov_ctr.93+2, r18
+	sts	__llvm_gcov_ctr.93+1, r25
+	sts	__llvm_gcov_ctr.93, r24
 	lds	r24, __profc_strstr+8
 	lds	r25, __profc_strstr+9
 	lds	r18, __profc_strstr+10
@@ -19266,6 +26250,30 @@ strstr:                                 ; @strstr
 	breq	.LBB93_5
 	rjmp	.LBB93_6
 .LBB93_5:
+	lds	r24, __llvm_gcov_ctr.93+8
+	lds	r25, __llvm_gcov_ctr.93+9
+	lds	r18, __llvm_gcov_ctr.93+10
+	lds	r19, __llvm_gcov_ctr.93+11
+	lds	r20, __llvm_gcov_ctr.93+12
+	lds	r21, __llvm_gcov_ctr.93+13
+	lds	r22, __llvm_gcov_ctr.93+14
+	lds	r23, __llvm_gcov_ctr.93+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.93+15, r23
+	sts	__llvm_gcov_ctr.93+14, r22
+	sts	__llvm_gcov_ctr.93+13, r21
+	sts	__llvm_gcov_ctr.93+12, r20
+	sts	__llvm_gcov_ctr.93+11, r19
+	sts	__llvm_gcov_ctr.93+10, r18
+	sts	__llvm_gcov_ctr.93+9, r25
+	sts	__llvm_gcov_ctr.93+8, r24
 	lds	r24, __profc_strstr+24
 	lds	r25, __profc_strstr+25
 	lds	r18, __profc_strstr+26
@@ -19298,6 +26306,30 @@ strstr:                                 ; @strstr
 .LBB93_6:                               ;   in Loop: Header=BB93_3 Depth=1
 	rjmp	.LBB93_7
 .LBB93_7:                               ;   in Loop: Header=BB93_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.93+16
+	lds	r25, __llvm_gcov_ctr.93+17
+	lds	r18, __llvm_gcov_ctr.93+18
+	lds	r19, __llvm_gcov_ctr.93+19
+	lds	r20, __llvm_gcov_ctr.93+20
+	lds	r21, __llvm_gcov_ctr.93+21
+	lds	r22, __llvm_gcov_ctr.93+22
+	lds	r23, __llvm_gcov_ctr.93+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.93+23, r23
+	sts	__llvm_gcov_ctr.93+22, r22
+	sts	__llvm_gcov_ctr.93+21, r21
+	sts	__llvm_gcov_ctr.93+20, r20
+	sts	__llvm_gcov_ctr.93+19, r19
+	sts	__llvm_gcov_ctr.93+18, r18
+	sts	__llvm_gcov_ctr.93+17, r25
+	sts	__llvm_gcov_ctr.93+16, r24
 	ldd	r24, Y+3
 	ldd	r25, Y+4
 	adiw	r24, 1
@@ -19305,6 +26337,30 @@ strstr:                                 ; @strstr
 	std	Y+3, r24
 	rjmp	.LBB93_3
 .LBB93_8:
+	lds	r24, __llvm_gcov_ctr.93+24
+	lds	r25, __llvm_gcov_ctr.93+25
+	lds	r18, __llvm_gcov_ctr.93+26
+	lds	r19, __llvm_gcov_ctr.93+27
+	lds	r20, __llvm_gcov_ctr.93+28
+	lds	r21, __llvm_gcov_ctr.93+29
+	lds	r22, __llvm_gcov_ctr.93+30
+	lds	r23, __llvm_gcov_ctr.93+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.93+31, r23
+	sts	__llvm_gcov_ctr.93+30, r22
+	sts	__llvm_gcov_ctr.93+29, r21
+	sts	__llvm_gcov_ctr.93+28, r20
+	sts	__llvm_gcov_ctr.93+27, r19
+	sts	__llvm_gcov_ctr.93+26, r18
+	sts	__llvm_gcov_ctr.93+25, r25
+	sts	__llvm_gcov_ctr.93+24, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+10, r25
@@ -19389,6 +26445,30 @@ copysign:                               ; @copysign
 	brmi	.LBB94_1
 	rjmp	.LBB94_3
 .LBB94_1:
+	lds	r24, __llvm_gcov_ctr.94
+	lds	r25, __llvm_gcov_ctr.94+1
+	lds	r18, __llvm_gcov_ctr.94+2
+	lds	r19, __llvm_gcov_ctr.94+3
+	lds	r20, __llvm_gcov_ctr.94+4
+	lds	r21, __llvm_gcov_ctr.94+5
+	lds	r22, __llvm_gcov_ctr.94+6
+	lds	r23, __llvm_gcov_ctr.94+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.94+7, r23
+	sts	__llvm_gcov_ctr.94+6, r22
+	sts	__llvm_gcov_ctr.94+5, r21
+	sts	__llvm_gcov_ctr.94+4, r20
+	sts	__llvm_gcov_ctr.94+3, r19
+	sts	__llvm_gcov_ctr.94+2, r18
+	sts	__llvm_gcov_ctr.94+1, r25
+	sts	__llvm_gcov_ctr.94, r24
 	lds	r24, __profc_copysign+24
 	lds	r25, __profc_copysign+25
 	lds	r18, __profc_copysign+26
@@ -19428,6 +26508,30 @@ copysign:                               ; @copysign
 	brlt	.LBB94_2
 	rjmp	.LBB94_3
 .LBB94_2:
+	lds	r24, __llvm_gcov_ctr.94+8
+	lds	r25, __llvm_gcov_ctr.94+9
+	lds	r18, __llvm_gcov_ctr.94+10
+	lds	r19, __llvm_gcov_ctr.94+11
+	lds	r20, __llvm_gcov_ctr.94+12
+	lds	r21, __llvm_gcov_ctr.94+13
+	lds	r22, __llvm_gcov_ctr.94+14
+	lds	r23, __llvm_gcov_ctr.94+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.94+15, r23
+	sts	__llvm_gcov_ctr.94+14, r22
+	sts	__llvm_gcov_ctr.94+13, r21
+	sts	__llvm_gcov_ctr.94+12, r20
+	sts	__llvm_gcov_ctr.94+11, r19
+	sts	__llvm_gcov_ctr.94+10, r18
+	sts	__llvm_gcov_ctr.94+9, r25
+	sts	__llvm_gcov_ctr.94+8, r24
 	lds	r24, __profc_copysign+32
 	lds	r25, __profc_copysign+33
 	lds	r18, __profc_copysign+34
@@ -19493,6 +26597,30 @@ copysign:                               ; @copysign
 	brlt	.LBB94_4
 	rjmp	.LBB94_7
 .LBB94_4:
+	lds	r24, __llvm_gcov_ctr.94+16
+	lds	r25, __llvm_gcov_ctr.94+17
+	lds	r18, __llvm_gcov_ctr.94+18
+	lds	r19, __llvm_gcov_ctr.94+19
+	lds	r20, __llvm_gcov_ctr.94+20
+	lds	r21, __llvm_gcov_ctr.94+21
+	lds	r22, __llvm_gcov_ctr.94+22
+	lds	r23, __llvm_gcov_ctr.94+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.94+23, r23
+	sts	__llvm_gcov_ctr.94+22, r22
+	sts	__llvm_gcov_ctr.94+21, r21
+	sts	__llvm_gcov_ctr.94+20, r20
+	sts	__llvm_gcov_ctr.94+19, r19
+	sts	__llvm_gcov_ctr.94+18, r18
+	sts	__llvm_gcov_ctr.94+17, r25
+	sts	__llvm_gcov_ctr.94+16, r24
 	lds	r24, __profc_copysign+40
 	lds	r25, __profc_copysign+41
 	lds	r18, __profc_copysign+42
@@ -19530,6 +26658,30 @@ copysign:                               ; @copysign
 	brmi	.LBB94_5
 	rjmp	.LBB94_7
 .LBB94_5:
+	lds	r24, __llvm_gcov_ctr.94+24
+	lds	r25, __llvm_gcov_ctr.94+25
+	lds	r18, __llvm_gcov_ctr.94+26
+	lds	r19, __llvm_gcov_ctr.94+27
+	lds	r20, __llvm_gcov_ctr.94+28
+	lds	r21, __llvm_gcov_ctr.94+29
+	lds	r22, __llvm_gcov_ctr.94+30
+	lds	r23, __llvm_gcov_ctr.94+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.94+31, r23
+	sts	__llvm_gcov_ctr.94+30, r22
+	sts	__llvm_gcov_ctr.94+29, r21
+	sts	__llvm_gcov_ctr.94+28, r20
+	sts	__llvm_gcov_ctr.94+27, r19
+	sts	__llvm_gcov_ctr.94+26, r18
+	sts	__llvm_gcov_ctr.94+25, r25
+	sts	__llvm_gcov_ctr.94+24, r24
 	lds	r24, __profc_copysign+48
 	lds	r25, __profc_copysign+49
 	lds	r18, __profc_copysign+50
@@ -19594,6 +26746,30 @@ copysign:                               ; @copysign
 	std	Y+11, r24
 	rjmp	.LBB94_8
 .LBB94_7:
+	lds	r24, __llvm_gcov_ctr.94+32
+	lds	r25, __llvm_gcov_ctr.94+33
+	lds	r18, __llvm_gcov_ctr.94+34
+	lds	r19, __llvm_gcov_ctr.94+35
+	lds	r20, __llvm_gcov_ctr.94+36
+	lds	r21, __llvm_gcov_ctr.94+37
+	lds	r22, __llvm_gcov_ctr.94+38
+	lds	r23, __llvm_gcov_ctr.94+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.94+39, r23
+	sts	__llvm_gcov_ctr.94+38, r22
+	sts	__llvm_gcov_ctr.94+37, r21
+	sts	__llvm_gcov_ctr.94+36, r20
+	sts	__llvm_gcov_ctr.94+35, r19
+	sts	__llvm_gcov_ctr.94+34, r18
+	sts	__llvm_gcov_ctr.94+33, r25
+	sts	__llvm_gcov_ctr.94+32, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	ldd	r18, Y+7
@@ -19688,6 +26864,30 @@ memmem:                                 ; @memmem
 	breq	.LBB95_1
 	rjmp	.LBB95_2
 .LBB95_1:
+	lds	r24, __llvm_gcov_ctr.95
+	lds	r25, __llvm_gcov_ctr.95+1
+	lds	r18, __llvm_gcov_ctr.95+2
+	lds	r19, __llvm_gcov_ctr.95+3
+	lds	r20, __llvm_gcov_ctr.95+4
+	lds	r21, __llvm_gcov_ctr.95+5
+	lds	r22, __llvm_gcov_ctr.95+6
+	lds	r23, __llvm_gcov_ctr.95+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+7, r23
+	sts	__llvm_gcov_ctr.95+6, r22
+	sts	__llvm_gcov_ctr.95+5, r21
+	sts	__llvm_gcov_ctr.95+4, r20
+	sts	__llvm_gcov_ctr.95+3, r19
+	sts	__llvm_gcov_ctr.95+2, r18
+	sts	__llvm_gcov_ctr.95+1, r25
+	sts	__llvm_gcov_ctr.95, r24
 	lds	r24, __profc_memmem+8
 	lds	r25, __profc_memmem+9
 	lds	r18, __profc_memmem+10
@@ -19727,6 +26927,30 @@ memmem:                                 ; @memmem
 	brlo	.LBB95_3
 	rjmp	.LBB95_4
 .LBB95_3:
+	lds	r24, __llvm_gcov_ctr.95+8
+	lds	r25, __llvm_gcov_ctr.95+9
+	lds	r18, __llvm_gcov_ctr.95+10
+	lds	r19, __llvm_gcov_ctr.95+11
+	lds	r20, __llvm_gcov_ctr.95+12
+	lds	r21, __llvm_gcov_ctr.95+13
+	lds	r22, __llvm_gcov_ctr.95+14
+	lds	r23, __llvm_gcov_ctr.95+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+15, r23
+	sts	__llvm_gcov_ctr.95+14, r22
+	sts	__llvm_gcov_ctr.95+13, r21
+	sts	__llvm_gcov_ctr.95+12, r20
+	sts	__llvm_gcov_ctr.95+11, r19
+	sts	__llvm_gcov_ctr.95+10, r18
+	sts	__llvm_gcov_ctr.95+9, r25
+	sts	__llvm_gcov_ctr.95+8, r24
 	lds	r24, __profc_memmem+16
 	lds	r25, __profc_memmem+17
 	lds	r18, __profc_memmem+18
@@ -19813,6 +27037,30 @@ memmem:                                 ; @memmem
 	breq	.LBB95_7
 	rjmp	.LBB95_10
 .LBB95_7:                               ;   in Loop: Header=BB95_5 Depth=1
+	lds	r24, __llvm_gcov_ctr.95+16
+	lds	r25, __llvm_gcov_ctr.95+17
+	lds	r18, __llvm_gcov_ctr.95+18
+	lds	r19, __llvm_gcov_ctr.95+19
+	lds	r20, __llvm_gcov_ctr.95+20
+	lds	r21, __llvm_gcov_ctr.95+21
+	lds	r22, __llvm_gcov_ctr.95+22
+	lds	r23, __llvm_gcov_ctr.95+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+23, r23
+	sts	__llvm_gcov_ctr.95+22, r22
+	sts	__llvm_gcov_ctr.95+21, r21
+	sts	__llvm_gcov_ctr.95+20, r20
+	sts	__llvm_gcov_ctr.95+19, r19
+	sts	__llvm_gcov_ctr.95+18, r18
+	sts	__llvm_gcov_ctr.95+17, r25
+	sts	__llvm_gcov_ctr.95+16, r24
 	lds	r24, __profc_memmem+40
 	lds	r25, __profc_memmem+41
 	lds	r18, __profc_memmem+42
@@ -19860,6 +27108,30 @@ memmem:                                 ; @memmem
 	breq	.LBB95_8
 	rjmp	.LBB95_10
 .LBB95_8:
+	lds	r24, __llvm_gcov_ctr.95+24
+	lds	r25, __llvm_gcov_ctr.95+25
+	lds	r18, __llvm_gcov_ctr.95+26
+	lds	r19, __llvm_gcov_ctr.95+27
+	lds	r20, __llvm_gcov_ctr.95+28
+	lds	r21, __llvm_gcov_ctr.95+29
+	lds	r22, __llvm_gcov_ctr.95+30
+	lds	r23, __llvm_gcov_ctr.95+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+31, r23
+	sts	__llvm_gcov_ctr.95+30, r22
+	sts	__llvm_gcov_ctr.95+29, r21
+	sts	__llvm_gcov_ctr.95+28, r20
+	sts	__llvm_gcov_ctr.95+27, r19
+	sts	__llvm_gcov_ctr.95+26, r18
+	sts	__llvm_gcov_ctr.95+25, r25
+	sts	__llvm_gcov_ctr.95+24, r24
 	lds	r24, __profc_memmem+48
 	lds	r25, __profc_memmem+49
 	lds	r18, __profc_memmem+50
@@ -19918,6 +27190,30 @@ memmem:                                 ; @memmem
 .LBB95_10:                              ;   in Loop: Header=BB95_5 Depth=1
 	rjmp	.LBB95_11
 .LBB95_11:                              ;   in Loop: Header=BB95_5 Depth=1
+	lds	r24, __llvm_gcov_ctr.95+32
+	lds	r25, __llvm_gcov_ctr.95+33
+	lds	r18, __llvm_gcov_ctr.95+34
+	lds	r19, __llvm_gcov_ctr.95+35
+	lds	r20, __llvm_gcov_ctr.95+36
+	lds	r21, __llvm_gcov_ctr.95+37
+	lds	r22, __llvm_gcov_ctr.95+38
+	lds	r23, __llvm_gcov_ctr.95+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+39, r23
+	sts	__llvm_gcov_ctr.95+38, r22
+	sts	__llvm_gcov_ctr.95+37, r21
+	sts	__llvm_gcov_ctr.95+36, r20
+	sts	__llvm_gcov_ctr.95+35, r19
+	sts	__llvm_gcov_ctr.95+34, r18
+	sts	__llvm_gcov_ctr.95+33, r25
+	sts	__llvm_gcov_ctr.95+32, r24
 	ldd	r24, Y+3
 	ldd	r25, Y+4
 	adiw	r24, 1
@@ -19925,6 +27221,30 @@ memmem:                                 ; @memmem
 	std	Y+3, r24
 	rjmp	.LBB95_5
 .LBB95_12:
+	lds	r24, __llvm_gcov_ctr.95+40
+	lds	r25, __llvm_gcov_ctr.95+41
+	lds	r18, __llvm_gcov_ctr.95+42
+	lds	r19, __llvm_gcov_ctr.95+43
+	lds	r20, __llvm_gcov_ctr.95+44
+	lds	r21, __llvm_gcov_ctr.95+45
+	lds	r22, __llvm_gcov_ctr.95+46
+	lds	r23, __llvm_gcov_ctr.95+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.95+47, r23
+	sts	__llvm_gcov_ctr.95+46, r22
+	sts	__llvm_gcov_ctr.95+45, r21
+	sts	__llvm_gcov_ctr.95+44, r20
+	sts	__llvm_gcov_ctr.95+43, r19
+	sts	__llvm_gcov_ctr.95+42, r18
+	sts	__llvm_gcov_ctr.95+41, r25
+	sts	__llvm_gcov_ctr.95+40, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+14, r25
@@ -19950,6 +27270,8 @@ memmem:                                 ; @memmem
 	.type	mempcpy,@function
 mempcpy:                                ; @mempcpy
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
@@ -19960,6 +27282,30 @@ mempcpy:                                ; @mempcpy
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.96
+	lds	r19, __llvm_gcov_ctr.96+1
+	lds	r30, __llvm_gcov_ctr.96+2
+	lds	r31, __llvm_gcov_ctr.96+3
+	lds	r26, __llvm_gcov_ctr.96+4
+	lds	r27, __llvm_gcov_ctr.96+5
+	lds	r16, __llvm_gcov_ctr.96+6
+	lds	r17, __llvm_gcov_ctr.96+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sts	__llvm_gcov_ctr.96+7, r17
+	sts	__llvm_gcov_ctr.96+6, r16
+	sts	__llvm_gcov_ctr.96+5, r27
+	sts	__llvm_gcov_ctr.96+4, r26
+	sts	__llvm_gcov_ctr.96+3, r31
+	sts	__llvm_gcov_ctr.96+2, r30
+	sts	__llvm_gcov_ctr.96+1, r19
+	sts	__llvm_gcov_ctr.96, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	std	Y+6, r23
@@ -20014,6 +27360,8 @@ mempcpy:                                ; @mempcpy
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end96:
 	.size	mempcpy, .Lfunc_end96-mempcpy
@@ -20082,6 +27430,30 @@ frexp:                                  ; @frexp
 	brmi	.LBB97_1
 	rjmp	.LBB97_2
 .LBB97_1:
+	lds	r24, __llvm_gcov_ctr.97
+	lds	r25, __llvm_gcov_ctr.97+1
+	lds	r18, __llvm_gcov_ctr.97+2
+	lds	r19, __llvm_gcov_ctr.97+3
+	lds	r20, __llvm_gcov_ctr.97+4
+	lds	r21, __llvm_gcov_ctr.97+5
+	lds	r22, __llvm_gcov_ctr.97+6
+	lds	r23, __llvm_gcov_ctr.97+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+7, r23
+	sts	__llvm_gcov_ctr.97+6, r22
+	sts	__llvm_gcov_ctr.97+5, r21
+	sts	__llvm_gcov_ctr.97+4, r20
+	sts	__llvm_gcov_ctr.97+3, r19
+	sts	__llvm_gcov_ctr.97+2, r18
+	sts	__llvm_gcov_ctr.97+1, r25
+	sts	__llvm_gcov_ctr.97, r24
 	lds	r24, __profc_frexp+8
 	lds	r25, __profc_frexp+9
 	lds	r18, __profc_frexp+10
@@ -20133,6 +27505,30 @@ frexp:                                  ; @frexp
 	brpl	.LBB97_3
 	rjmp	.LBB97_7
 .LBB97_3:
+	lds	r24, __llvm_gcov_ctr.97+8
+	lds	r25, __llvm_gcov_ctr.97+9
+	lds	r18, __llvm_gcov_ctr.97+10
+	lds	r19, __llvm_gcov_ctr.97+11
+	lds	r20, __llvm_gcov_ctr.97+12
+	lds	r21, __llvm_gcov_ctr.97+13
+	lds	r22, __llvm_gcov_ctr.97+14
+	lds	r23, __llvm_gcov_ctr.97+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+15, r23
+	sts	__llvm_gcov_ctr.97+14, r22
+	sts	__llvm_gcov_ctr.97+13, r21
+	sts	__llvm_gcov_ctr.97+12, r20
+	sts	__llvm_gcov_ctr.97+11, r19
+	sts	__llvm_gcov_ctr.97+10, r18
+	sts	__llvm_gcov_ctr.97+9, r25
+	sts	__llvm_gcov_ctr.97+8, r24
 	lds	r24, __profc_frexp+16
 	lds	r25, __profc_frexp+17
 	lds	r18, __profc_frexp+18
@@ -20172,6 +27568,30 @@ frexp:                                  ; @frexp
 	brpl	.LBB97_5
 	rjmp	.LBB97_6
 .LBB97_5:                               ;   in Loop: Header=BB97_4 Depth=1
+	lds	r24, __llvm_gcov_ctr.97+16
+	lds	r25, __llvm_gcov_ctr.97+17
+	lds	r18, __llvm_gcov_ctr.97+18
+	lds	r19, __llvm_gcov_ctr.97+19
+	lds	r20, __llvm_gcov_ctr.97+20
+	lds	r21, __llvm_gcov_ctr.97+21
+	lds	r22, __llvm_gcov_ctr.97+22
+	lds	r23, __llvm_gcov_ctr.97+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+23, r23
+	sts	__llvm_gcov_ctr.97+22, r22
+	sts	__llvm_gcov_ctr.97+21, r21
+	sts	__llvm_gcov_ctr.97+20, r20
+	sts	__llvm_gcov_ctr.97+19, r19
+	sts	__llvm_gcov_ctr.97+18, r18
+	sts	__llvm_gcov_ctr.97+17, r25
+	sts	__llvm_gcov_ctr.97+16, r24
 	lds	r24, __profc_frexp+24
 	lds	r25, __profc_frexp+25
 	lds	r18, __profc_frexp+26
@@ -20231,6 +27651,30 @@ frexp:                                  ; @frexp
 	brmi	.LBB97_8
 	rjmp	.LBB97_14
 .LBB97_8:
+	lds	r24, __llvm_gcov_ctr.97+24
+	lds	r25, __llvm_gcov_ctr.97+25
+	lds	r18, __llvm_gcov_ctr.97+26
+	lds	r19, __llvm_gcov_ctr.97+27
+	lds	r20, __llvm_gcov_ctr.97+28
+	lds	r21, __llvm_gcov_ctr.97+29
+	lds	r22, __llvm_gcov_ctr.97+30
+	lds	r23, __llvm_gcov_ctr.97+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+31, r23
+	sts	__llvm_gcov_ctr.97+30, r22
+	sts	__llvm_gcov_ctr.97+29, r21
+	sts	__llvm_gcov_ctr.97+28, r20
+	sts	__llvm_gcov_ctr.97+27, r19
+	sts	__llvm_gcov_ctr.97+26, r18
+	sts	__llvm_gcov_ctr.97+25, r25
+	sts	__llvm_gcov_ctr.97+24, r24
 	lds	r24, __profc_frexp+40
 	lds	r25, __profc_frexp+41
 	lds	r18, __profc_frexp+42
@@ -20333,6 +27777,30 @@ frexp:                                  ; @frexp
 	brmi	.LBB97_12
 	rjmp	.LBB97_13
 .LBB97_12:                              ;   in Loop: Header=BB97_11 Depth=1
+	lds	r24, __llvm_gcov_ctr.97+32
+	lds	r25, __llvm_gcov_ctr.97+33
+	lds	r18, __llvm_gcov_ctr.97+34
+	lds	r19, __llvm_gcov_ctr.97+35
+	lds	r20, __llvm_gcov_ctr.97+36
+	lds	r21, __llvm_gcov_ctr.97+37
+	lds	r22, __llvm_gcov_ctr.97+38
+	lds	r23, __llvm_gcov_ctr.97+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+39, r23
+	sts	__llvm_gcov_ctr.97+38, r22
+	sts	__llvm_gcov_ctr.97+37, r21
+	sts	__llvm_gcov_ctr.97+36, r20
+	sts	__llvm_gcov_ctr.97+35, r19
+	sts	__llvm_gcov_ctr.97+34, r18
+	sts	__llvm_gcov_ctr.97+33, r25
+	sts	__llvm_gcov_ctr.97+32, r24
 	lds	r24, __profc_frexp+56
 	lds	r25, __profc_frexp+57
 	lds	r18, __profc_frexp+58
@@ -20377,8 +27845,56 @@ frexp:                                  ; @frexp
 	std	Y+9, r22
 	rjmp	.LBB97_11
 .LBB97_13:
+	lds	r24, __llvm_gcov_ctr.97+40
+	lds	r25, __llvm_gcov_ctr.97+41
+	lds	r18, __llvm_gcov_ctr.97+42
+	lds	r19, __llvm_gcov_ctr.97+43
+	lds	r20, __llvm_gcov_ctr.97+44
+	lds	r21, __llvm_gcov_ctr.97+45
+	lds	r22, __llvm_gcov_ctr.97+46
+	lds	r23, __llvm_gcov_ctr.97+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+47, r23
+	sts	__llvm_gcov_ctr.97+46, r22
+	sts	__llvm_gcov_ctr.97+45, r21
+	sts	__llvm_gcov_ctr.97+44, r20
+	sts	__llvm_gcov_ctr.97+43, r19
+	sts	__llvm_gcov_ctr.97+42, r18
+	sts	__llvm_gcov_ctr.97+41, r25
+	sts	__llvm_gcov_ctr.97+40, r24
 	rjmp	.LBB97_14
 .LBB97_14:
+	lds	r24, __llvm_gcov_ctr.97+48
+	lds	r25, __llvm_gcov_ctr.97+49
+	lds	r18, __llvm_gcov_ctr.97+50
+	lds	r19, __llvm_gcov_ctr.97+51
+	lds	r20, __llvm_gcov_ctr.97+52
+	lds	r21, __llvm_gcov_ctr.97+53
+	lds	r22, __llvm_gcov_ctr.97+54
+	lds	r23, __llvm_gcov_ctr.97+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+55, r23
+	sts	__llvm_gcov_ctr.97+54, r22
+	sts	__llvm_gcov_ctr.97+53, r21
+	sts	__llvm_gcov_ctr.97+52, r20
+	sts	__llvm_gcov_ctr.97+51, r19
+	sts	__llvm_gcov_ctr.97+50, r18
+	sts	__llvm_gcov_ctr.97+49, r25
+	sts	__llvm_gcov_ctr.97+48, r24
 	rjmp	.LBB97_15
 .LBB97_15:
 	ldd	r24, Y+3
@@ -20396,6 +27912,30 @@ frexp:                                  ; @frexp
 	brne	.LBB97_16
 	rjmp	.LBB97_17
 .LBB97_16:
+	lds	r24, __llvm_gcov_ctr.97+56
+	lds	r25, __llvm_gcov_ctr.97+57
+	lds	r18, __llvm_gcov_ctr.97+58
+	lds	r19, __llvm_gcov_ctr.97+59
+	lds	r20, __llvm_gcov_ctr.97+60
+	lds	r21, __llvm_gcov_ctr.97+61
+	lds	r22, __llvm_gcov_ctr.97+62
+	lds	r23, __llvm_gcov_ctr.97+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.97+63, r23
+	sts	__llvm_gcov_ctr.97+62, r22
+	sts	__llvm_gcov_ctr.97+61, r21
+	sts	__llvm_gcov_ctr.97+60, r20
+	sts	__llvm_gcov_ctr.97+59, r19
+	sts	__llvm_gcov_ctr.97+58, r18
+	sts	__llvm_gcov_ctr.97+57, r25
+	sts	__llvm_gcov_ctr.97+56, r24
 	lds	r24, __profc_frexp+64
 	lds	r25, __profc_frexp+65
 	lds	r18, __profc_frexp+66
@@ -20459,36 +27999,75 @@ __muldi3:                               ; @__muldi3
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 40
+	sbiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+16, r25                       ; 2-byte Folded Spill
+	std	Y+15, r24                       ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r17r16
                                         ; kill: def $r31r30 killed $r15r14
                                         ; kill: def $r31r30 killed $r13r12
                                         ; kill: def $r31r30 killed $r11r10
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+40, r25
-	std	Y+39, r24
-	std	Y+38, r23
-	std	Y+37, r22
-	std	Y+36, r21
-	std	Y+35, r20
-	std	Y+34, r19
-	std	Y+33, r18
-	std	Y+32, r17
-	std	Y+31, r16
-	std	Y+30, r15
-	std	Y+29, r14
-	std	Y+28, r13
-	std	Y+27, r12
-	std	Y+26, r11
-	std	Y+25, r10
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.98
+	lds	r31, __llvm_gcov_ctr.98+1
+	lds	r26, __llvm_gcov_ctr.98+2
+	lds	r27, __llvm_gcov_ctr.98+3
+	lds	r24, __llvm_gcov_ctr.98+4
+	lds	r25, __llvm_gcov_ctr.98+5
+	std	Y+10, r25                       ; 2-byte Folded Spill
+	std	Y+9, r24                        ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.98+6
+	lds	r25, __llvm_gcov_ctr.98+7
+	std	Y+12, r25                       ; 2-byte Folded Spill
+	std	Y+11, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+9                        ; 2-byte Folded Reload
+	ldd	r25, Y+10                       ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+14, r25                       ; 2-byte Folded Spill
+	std	Y+13, r24                       ; 2-byte Folded Spill
+	ldd	r24, Y+11                       ; 2-byte Folded Reload
+	ldd	r25, Y+12                       ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.98+7, r25
+	sts	__llvm_gcov_ctr.98+6, r24
+	ldd	r24, Y+13                       ; 2-byte Folded Reload
+	ldd	r25, Y+14                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.98+5, r25
+	sts	__llvm_gcov_ctr.98+4, r24
+	ldd	r24, Y+15                       ; 2-byte Folded Reload
+	ldd	r25, Y+16                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.98+3, r27
+	sts	__llvm_gcov_ctr.98+2, r26
+	sts	__llvm_gcov_ctr.98+1, r31
+	sts	__llvm_gcov_ctr.98, r30
+	std	Y+48, r25
+	std	Y+47, r24
+	std	Y+46, r23
+	std	Y+45, r22
+	std	Y+44, r21
+	std	Y+43, r20
+	std	Y+42, r19
+	std	Y+41, r18
+	std	Y+40, r17
+	std	Y+39, r16
+	std	Y+38, r15
+	std	Y+37, r14
+	std	Y+36, r13
+	std	Y+35, r12
+	std	Y+34, r11
+	std	Y+33, r10
 	lds	r24, __profc___muldi3
 	lds	r25, __profc___muldi3+1
 	lds	r18, __profc___muldi3+2
@@ -20515,40 +28094,40 @@ __muldi3:                               ; @__muldi3
 	sts	__profc___muldi3, r24
 	ldi	r24, 0
 	ldi	r25, 0
-	std	Y+24, r25
-	std	Y+23, r24
-	std	Y+22, r25
-	std	Y+21, r24
-	std	Y+20, r25
-	std	Y+19, r24
+	std	Y+32, r25
+	std	Y+31, r24
+	std	Y+30, r25
+	std	Y+29, r24
+	std	Y+28, r25
+	std	Y+27, r24
+	std	Y+26, r25
+	std	Y+25, r24
+	ldd	r24, Y+41
+	ldd	r25, Y+42
+	ldd	r18, Y+43
+	ldd	r19, Y+44
+	ldd	r20, Y+45
+	ldd	r21, Y+46
+	ldd	r22, Y+47
+	ldd	r23, Y+48
+	std	Y+24, r23
+	std	Y+23, r22
+	std	Y+22, r21
+	std	Y+21, r20
+	std	Y+20, r19
+	std	Y+19, r18
 	std	Y+18, r25
 	std	Y+17, r24
-	ldd	r24, Y+33
-	ldd	r25, Y+34
-	ldd	r18, Y+35
-	ldd	r19, Y+36
-	ldd	r20, Y+37
-	ldd	r21, Y+38
-	ldd	r22, Y+39
-	ldd	r23, Y+40
-	std	Y+16, r23
-	std	Y+15, r22
-	std	Y+14, r21
-	std	Y+13, r20
-	std	Y+12, r19
-	std	Y+11, r18
-	std	Y+10, r25
-	std	Y+9, r24
 	rjmp	.LBB98_1
 .LBB98_1:                               ; =>This Inner Loop Header: Depth=1
-	ldd	r30, Y+11
-	ldd	r31, Y+12
-	ldd	r22, Y+13
-	ldd	r23, Y+14
-	ldd	r18, Y+15
-	ldd	r19, Y+16
-	ldd	r24, Y+9
-	ldd	r25, Y+10
+	ldd	r30, Y+19
+	ldd	r31, Y+20
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r18, Y+23
+	ldd	r19, Y+24
+	ldd	r24, Y+17
+	ldd	r25, Y+18
 	mov	r26, r24
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	ldi	r20, 0
@@ -20602,12 +28181,36 @@ __muldi3:                               ; @__muldi3
 	sts	__profc___muldi3+10, r18
 	sts	__profc___muldi3+9, r25
 	sts	__profc___muldi3+8, r24
-	ldd	r24, Y+9
+	ldd	r24, Y+17
 	andi	r24, 1
 	cpi	r24, 0
 	brne	.LBB98_5
 	rjmp	.LBB98_6
 .LBB98_5:                               ;   in Loop: Header=BB98_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.98+8
+	lds	r25, __llvm_gcov_ctr.98+9
+	lds	r18, __llvm_gcov_ctr.98+10
+	lds	r19, __llvm_gcov_ctr.98+11
+	lds	r20, __llvm_gcov_ctr.98+12
+	lds	r21, __llvm_gcov_ctr.98+13
+	lds	r22, __llvm_gcov_ctr.98+14
+	lds	r23, __llvm_gcov_ctr.98+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.98+15, r23
+	sts	__llvm_gcov_ctr.98+14, r22
+	sts	__llvm_gcov_ctr.98+13, r21
+	sts	__llvm_gcov_ctr.98+12, r20
+	sts	__llvm_gcov_ctr.98+11, r19
+	sts	__llvm_gcov_ctr.98+10, r18
+	sts	__llvm_gcov_ctr.98+9, r25
+	sts	__llvm_gcov_ctr.98+8, r24
 	lds	r24, __profc___muldi3+16
 	lds	r25, __profc___muldi3+17
 	lds	r18, __profc___muldi3+18
@@ -20632,22 +28235,22 @@ __muldi3:                               ; @__muldi3
 	sts	__profc___muldi3+18, r18
 	sts	__profc___muldi3+17, r25
 	sts	__profc___muldi3+16, r24
-	ldd	r14, Y+25
-	ldd	r15, Y+26
-	ldd	r16, Y+27
-	ldd	r17, Y+28
-	ldd	r26, Y+29
-	ldd	r27, Y+30
-	ldd	r30, Y+31
-	ldd	r31, Y+32
-	ldd	r24, Y+17
-	ldd	r25, Y+18
-	ldd	r18, Y+19
-	ldd	r19, Y+20
-	ldd	r20, Y+21
-	ldd	r21, Y+22
-	ldd	r22, Y+23
-	ldd	r23, Y+24
+	ldd	r14, Y+33
+	ldd	r15, Y+34
+	ldd	r16, Y+35
+	ldd	r17, Y+36
+	ldd	r26, Y+37
+	ldd	r27, Y+38
+	ldd	r30, Y+39
+	ldd	r31, Y+40
+	ldd	r24, Y+25
+	ldd	r25, Y+26
+	ldd	r18, Y+27
+	ldd	r19, Y+28
+	ldd	r20, Y+29
+	ldd	r21, Y+30
+	ldd	r22, Y+31
+	ldd	r23, Y+32
 	add	r24, r14
 	adc	r25, r15
 	adc	r18, r16
@@ -20656,24 +28259,48 @@ __muldi3:                               ; @__muldi3
 	adc	r21, r27
 	adc	r22, r30
 	adc	r23, r31
-	std	Y+24, r23
-	std	Y+23, r22
-	std	Y+22, r21
-	std	Y+21, r20
-	std	Y+20, r19
-	std	Y+19, r18
-	std	Y+18, r25
-	std	Y+17, r24
+	std	Y+32, r23
+	std	Y+31, r22
+	std	Y+30, r21
+	std	Y+29, r20
+	std	Y+28, r19
+	std	Y+27, r18
+	std	Y+26, r25
+	std	Y+25, r24
 	rjmp	.LBB98_6
 .LBB98_6:                               ;   in Loop: Header=BB98_1 Depth=1
-	ldd	r18, Y+31
-	ldd	r19, Y+32
-	ldd	r24, Y+29
-	ldd	r25, Y+30
-	ldd	r22, Y+27
-	ldd	r23, Y+28
-	ldd	r20, Y+25
-	ldd	r21, Y+26
+	lds	r24, __llvm_gcov_ctr.98+16
+	lds	r25, __llvm_gcov_ctr.98+17
+	lds	r18, __llvm_gcov_ctr.98+18
+	lds	r19, __llvm_gcov_ctr.98+19
+	lds	r20, __llvm_gcov_ctr.98+20
+	lds	r21, __llvm_gcov_ctr.98+21
+	lds	r22, __llvm_gcov_ctr.98+22
+	lds	r23, __llvm_gcov_ctr.98+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.98+23, r23
+	sts	__llvm_gcov_ctr.98+22, r22
+	sts	__llvm_gcov_ctr.98+21, r21
+	sts	__llvm_gcov_ctr.98+20, r20
+	sts	__llvm_gcov_ctr.98+19, r19
+	sts	__llvm_gcov_ctr.98+18, r18
+	sts	__llvm_gcov_ctr.98+17, r25
+	sts	__llvm_gcov_ctr.98+16, r24
+	ldd	r18, Y+39
+	ldd	r19, Y+40
+	ldd	r24, Y+37
+	ldd	r25, Y+38
+	ldd	r22, Y+35
+	ldd	r23, Y+36
+	ldd	r20, Y+33
+	ldd	r21, Y+34
 	mov	r17, r1
                                         ; kill: def $r30 killed $r1
 	mov	r30, r23
@@ -20714,22 +28341,22 @@ __muldi3:                               ; @__muldi3
 	mov	r22, r20
                                         ; kill: def $r21 killed $r21 def $r21r20
 	mov	r20, r30
-	std	Y+28, r23
-	std	Y+27, r22
-	std	Y+26, r21
-	std	Y+25, r20
-	std	Y+32, r19
-	std	Y+31, r18
-	std	Y+30, r25
-	std	Y+29, r24
-	ldd	r18, Y+11
-	ldd	r19, Y+12
-	ldd	r24, Y+9
-	ldd	r25, Y+10
-	ldd	r22, Y+15
-	ldd	r23, Y+16
-	ldd	r20, Y+13
-	ldd	r21, Y+14
+	std	Y+36, r23
+	std	Y+35, r22
+	std	Y+34, r21
+	std	Y+33, r20
+	std	Y+40, r19
+	std	Y+39, r18
+	std	Y+38, r25
+	std	Y+37, r24
+	ldd	r18, Y+19
+	ldd	r19, Y+20
+	ldd	r24, Y+17
+	ldd	r25, Y+18
+	ldd	r22, Y+23
+	ldd	r23, Y+24
+	ldd	r20, Y+21
+	ldd	r21, Y+22
 	mov	r17, r1
                                         ; kill: def $r30 killed $r1
 	mov	r30, r20
@@ -20770,25 +28397,25 @@ __muldi3:                               ; @__muldi3
 	mov	r21, r23
                                         ; kill: def $r22 killed $r22 def $r23r22
 	mov	r23, r30
-	std	Y+16, r23
-	std	Y+15, r22
-	std	Y+14, r21
-	std	Y+13, r20
-	std	Y+12, r19
-	std	Y+11, r18
-	std	Y+10, r25
-	std	Y+9, r24
+	std	Y+24, r23
+	std	Y+23, r22
+	std	Y+22, r21
+	std	Y+21, r20
+	std	Y+20, r19
+	std	Y+19, r18
+	std	Y+18, r25
+	std	Y+17, r24
 	rjmp	.LBB98_1
 .LBB98_7:
-	ldd	r18, Y+17
-	ldd	r19, Y+18
-	ldd	r20, Y+19
-	ldd	r21, Y+20
-	ldd	r22, Y+21
-	ldd	r23, Y+22
-	ldd	r24, Y+23
-	ldd	r25, Y+24
-	adiw	r28, 40
+	ldd	r18, Y+25
+	ldd	r19, Y+26
+	ldd	r20, Y+27
+	ldd	r21, Y+28
+	ldd	r22, Y+29
+	ldd	r23, Y+30
+	ldd	r24, Y+31
+	ldd	r25, Y+32
+	adiw	r28, 48
 	in	r0, 63
 	cli
 	out	62, r29
@@ -20902,6 +28529,30 @@ udivmodsi4:                             ; @udivmodsi4
 	std	Y+18, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB99_2
 .LBB99_4:                               ;   in Loop: Header=BB99_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.99
+	lds	r25, __llvm_gcov_ctr.99+1
+	lds	r18, __llvm_gcov_ctr.99+2
+	lds	r19, __llvm_gcov_ctr.99+3
+	lds	r20, __llvm_gcov_ctr.99+4
+	lds	r21, __llvm_gcov_ctr.99+5
+	lds	r22, __llvm_gcov_ctr.99+6
+	lds	r23, __llvm_gcov_ctr.99+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+7, r23
+	sts	__llvm_gcov_ctr.99+6, r22
+	sts	__llvm_gcov_ctr.99+5, r21
+	sts	__llvm_gcov_ctr.99+4, r20
+	sts	__llvm_gcov_ctr.99+3, r19
+	sts	__llvm_gcov_ctr.99+2, r18
+	sts	__llvm_gcov_ctr.99+1, r25
+	sts	__llvm_gcov_ctr.99, r24
 	lds	r24, __profc_udivmodsi4+32
 	lds	r25, __profc_udivmodsi4+33
 	lds	r18, __profc_udivmodsi4+34
@@ -20957,6 +28608,30 @@ udivmodsi4:                             ; @udivmodsi4
 	std	Y+15, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB99_5
 .LBB99_7:                               ;   in Loop: Header=BB99_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.99+8
+	lds	r25, __llvm_gcov_ctr.99+9
+	lds	r18, __llvm_gcov_ctr.99+10
+	lds	r19, __llvm_gcov_ctr.99+11
+	lds	r20, __llvm_gcov_ctr.99+12
+	lds	r21, __llvm_gcov_ctr.99+13
+	lds	r22, __llvm_gcov_ctr.99+14
+	lds	r23, __llvm_gcov_ctr.99+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+15, r23
+	sts	__llvm_gcov_ctr.99+14, r22
+	sts	__llvm_gcov_ctr.99+13, r21
+	sts	__llvm_gcov_ctr.99+12, r20
+	sts	__llvm_gcov_ctr.99+11, r19
+	sts	__llvm_gcov_ctr.99+10, r18
+	sts	__llvm_gcov_ctr.99+9, r25
+	sts	__llvm_gcov_ctr.99+8, r24
 	lds	r24, __profc_udivmodsi4+40
 	lds	r25, __profc_udivmodsi4+41
 	lds	r18, __profc_udivmodsi4+42
@@ -21062,6 +28737,30 @@ udivmodsi4:                             ; @udivmodsi4
 	rjmp	.LBB99_9
 .LBB99_13:                              ;   in Loop: Header=BB99_1 Depth=1
 	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.99+16
+	lds	r19, __llvm_gcov_ctr.99+17
+	lds	r20, __llvm_gcov_ctr.99+18
+	lds	r21, __llvm_gcov_ctr.99+19
+	lds	r22, __llvm_gcov_ctr.99+20
+	lds	r23, __llvm_gcov_ctr.99+21
+	lds	r30, __llvm_gcov_ctr.99+22
+	lds	r31, __llvm_gcov_ctr.99+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.99+23, r31
+	sts	__llvm_gcov_ctr.99+22, r30
+	sts	__llvm_gcov_ctr.99+21, r23
+	sts	__llvm_gcov_ctr.99+20, r22
+	sts	__llvm_gcov_ctr.99+19, r21
+	sts	__llvm_gcov_ctr.99+18, r20
+	sts	__llvm_gcov_ctr.99+17, r19
+	sts	__llvm_gcov_ctr.99+16, r18
 	lds	r18, __profc_udivmodsi4+24
 	lds	r19, __profc_udivmodsi4+25
 	lds	r20, __profc_udivmodsi4+26
@@ -21095,6 +28794,30 @@ udivmodsi4:                             ; @udivmodsi4
 	brne	.LBB99_15
 	rjmp	.LBB99_16
 .LBB99_15:                              ;   in Loop: Header=BB99_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.99+24
+	lds	r25, __llvm_gcov_ctr.99+25
+	lds	r18, __llvm_gcov_ctr.99+26
+	lds	r19, __llvm_gcov_ctr.99+27
+	lds	r20, __llvm_gcov_ctr.99+28
+	lds	r21, __llvm_gcov_ctr.99+29
+	lds	r22, __llvm_gcov_ctr.99+30
+	lds	r23, __llvm_gcov_ctr.99+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+31, r23
+	sts	__llvm_gcov_ctr.99+30, r22
+	sts	__llvm_gcov_ctr.99+29, r21
+	sts	__llvm_gcov_ctr.99+28, r20
+	sts	__llvm_gcov_ctr.99+27, r19
+	sts	__llvm_gcov_ctr.99+26, r18
+	sts	__llvm_gcov_ctr.99+25, r25
+	sts	__llvm_gcov_ctr.99+24, r24
 	lds	r24, __profc_udivmodsi4+8
 	lds	r25, __profc_udivmodsi4+9
 	lds	r18, __profc_udivmodsi4+10
@@ -21247,6 +28970,30 @@ udivmodsi4:                             ; @udivmodsi4
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB99_21
 .LBB99_23:                              ;   in Loop: Header=BB99_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.99+32
+	lds	r25, __llvm_gcov_ctr.99+33
+	lds	r18, __llvm_gcov_ctr.99+34
+	lds	r19, __llvm_gcov_ctr.99+35
+	lds	r20, __llvm_gcov_ctr.99+36
+	lds	r21, __llvm_gcov_ctr.99+37
+	lds	r22, __llvm_gcov_ctr.99+38
+	lds	r23, __llvm_gcov_ctr.99+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+39, r23
+	sts	__llvm_gcov_ctr.99+38, r22
+	sts	__llvm_gcov_ctr.99+37, r21
+	sts	__llvm_gcov_ctr.99+36, r20
+	sts	__llvm_gcov_ctr.99+35, r19
+	sts	__llvm_gcov_ctr.99+34, r18
+	sts	__llvm_gcov_ctr.99+33, r25
+	sts	__llvm_gcov_ctr.99+32, r24
 	lds	r24, __profc_udivmodsi4+56
 	lds	r25, __profc_udivmodsi4+57
 	lds	r18, __profc_udivmodsi4+58
@@ -21305,6 +29052,30 @@ udivmodsi4:                             ; @udivmodsi4
 	std	Y+19, r24
 	rjmp	.LBB99_24
 .LBB99_24:                              ;   in Loop: Header=BB99_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.99+40
+	lds	r25, __llvm_gcov_ctr.99+41
+	lds	r18, __llvm_gcov_ctr.99+42
+	lds	r19, __llvm_gcov_ctr.99+43
+	lds	r20, __llvm_gcov_ctr.99+44
+	lds	r21, __llvm_gcov_ctr.99+45
+	lds	r22, __llvm_gcov_ctr.99+46
+	lds	r23, __llvm_gcov_ctr.99+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+47, r23
+	sts	__llvm_gcov_ctr.99+46, r22
+	sts	__llvm_gcov_ctr.99+45, r21
+	sts	__llvm_gcov_ctr.99+44, r20
+	sts	__llvm_gcov_ctr.99+43, r19
+	sts	__llvm_gcov_ctr.99+42, r18
+	sts	__llvm_gcov_ctr.99+41, r25
+	sts	__llvm_gcov_ctr.99+40, r24
 	ldd	r18, Y+25
 	ldd	r19, Y+26
 	ldd	r24, Y+23
@@ -21358,6 +29129,30 @@ udivmodsi4:                             ; @udivmodsi4
 	brne	.LBB99_26
 	rjmp	.LBB99_27
 .LBB99_26:
+	lds	r24, __llvm_gcov_ctr.99+48
+	lds	r25, __llvm_gcov_ctr.99+49
+	lds	r18, __llvm_gcov_ctr.99+50
+	lds	r19, __llvm_gcov_ctr.99+51
+	lds	r20, __llvm_gcov_ctr.99+52
+	lds	r21, __llvm_gcov_ctr.99+53
+	lds	r22, __llvm_gcov_ctr.99+54
+	lds	r23, __llvm_gcov_ctr.99+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+55, r23
+	sts	__llvm_gcov_ctr.99+54, r22
+	sts	__llvm_gcov_ctr.99+53, r21
+	sts	__llvm_gcov_ctr.99+52, r20
+	sts	__llvm_gcov_ctr.99+51, r19
+	sts	__llvm_gcov_ctr.99+50, r18
+	sts	__llvm_gcov_ctr.99+49, r25
+	sts	__llvm_gcov_ctr.99+48, r24
 	lds	r24, __profc_udivmodsi4+64
 	lds	r25, __profc_udivmodsi4+65
 	lds	r18, __profc_udivmodsi4+66
@@ -21392,6 +29187,30 @@ udivmodsi4:                             ; @udivmodsi4
 	std	Y+37, r24
 	rjmp	.LBB99_28
 .LBB99_27:
+	lds	r24, __llvm_gcov_ctr.99+56
+	lds	r25, __llvm_gcov_ctr.99+57
+	lds	r18, __llvm_gcov_ctr.99+58
+	lds	r19, __llvm_gcov_ctr.99+59
+	lds	r20, __llvm_gcov_ctr.99+60
+	lds	r21, __llvm_gcov_ctr.99+61
+	lds	r22, __llvm_gcov_ctr.99+62
+	lds	r23, __llvm_gcov_ctr.99+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.99+63, r23
+	sts	__llvm_gcov_ctr.99+62, r22
+	sts	__llvm_gcov_ctr.99+61, r21
+	sts	__llvm_gcov_ctr.99+60, r20
+	sts	__llvm_gcov_ctr.99+59, r19
+	sts	__llvm_gcov_ctr.99+58, r18
+	sts	__llvm_gcov_ctr.99+57, r25
+	sts	__llvm_gcov_ctr.99+56, r24
 	ldd	r24, Y+19
 	ldd	r25, Y+20
 	ldd	r18, Y+21
@@ -21467,6 +29286,30 @@ __clrsbqi2:                             ; @__clrsbqi2
 	brmi	.LBB100_1
 	rjmp	.LBB100_2
 .LBB100_1:
+	lds	r24, __llvm_gcov_ctr.100
+	lds	r25, __llvm_gcov_ctr.100+1
+	lds	r18, __llvm_gcov_ctr.100+2
+	lds	r19, __llvm_gcov_ctr.100+3
+	lds	r20, __llvm_gcov_ctr.100+4
+	lds	r21, __llvm_gcov_ctr.100+5
+	lds	r22, __llvm_gcov_ctr.100+6
+	lds	r23, __llvm_gcov_ctr.100+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.100+7, r23
+	sts	__llvm_gcov_ctr.100+6, r22
+	sts	__llvm_gcov_ctr.100+5, r21
+	sts	__llvm_gcov_ctr.100+4, r20
+	sts	__llvm_gcov_ctr.100+3, r19
+	sts	__llvm_gcov_ctr.100+2, r18
+	sts	__llvm_gcov_ctr.100+1, r25
+	sts	__llvm_gcov_ctr.100, r24
 	lds	r24, __profc___clrsbqi2+8
 	lds	r25, __profc___clrsbqi2+9
 	lds	r18, __profc___clrsbqi2+10
@@ -21501,6 +29344,30 @@ __clrsbqi2:                             ; @__clrsbqi2
 	breq	.LBB100_3
 	rjmp	.LBB100_4
 .LBB100_3:
+	lds	r24, __llvm_gcov_ctr.100+8
+	lds	r25, __llvm_gcov_ctr.100+9
+	lds	r18, __llvm_gcov_ctr.100+10
+	lds	r19, __llvm_gcov_ctr.100+11
+	lds	r20, __llvm_gcov_ctr.100+12
+	lds	r21, __llvm_gcov_ctr.100+13
+	lds	r22, __llvm_gcov_ctr.100+14
+	lds	r23, __llvm_gcov_ctr.100+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.100+15, r23
+	sts	__llvm_gcov_ctr.100+14, r22
+	sts	__llvm_gcov_ctr.100+13, r21
+	sts	__llvm_gcov_ctr.100+12, r20
+	sts	__llvm_gcov_ctr.100+11, r19
+	sts	__llvm_gcov_ctr.100+10, r18
+	sts	__llvm_gcov_ctr.100+9, r25
+	sts	__llvm_gcov_ctr.100+8, r24
 	lds	r24, __profc___clrsbqi2+16
 	lds	r25, __profc___clrsbqi2+17
 	lds	r18, __profc___clrsbqi2+18
@@ -21531,6 +29398,30 @@ __clrsbqi2:                             ; @__clrsbqi2
 	std	Y+4, r24
 	rjmp	.LBB100_5
 .LBB100_4:
+	lds	r24, __llvm_gcov_ctr.100+16
+	lds	r25, __llvm_gcov_ctr.100+17
+	lds	r18, __llvm_gcov_ctr.100+18
+	lds	r19, __llvm_gcov_ctr.100+19
+	lds	r20, __llvm_gcov_ctr.100+20
+	lds	r21, __llvm_gcov_ctr.100+21
+	lds	r22, __llvm_gcov_ctr.100+22
+	lds	r23, __llvm_gcov_ctr.100+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.100+23, r23
+	sts	__llvm_gcov_ctr.100+22, r22
+	sts	__llvm_gcov_ctr.100+21, r21
+	sts	__llvm_gcov_ctr.100+20, r20
+	sts	__llvm_gcov_ctr.100+19, r19
+	sts	__llvm_gcov_ctr.100+18, r18
+	sts	__llvm_gcov_ctr.100+17, r25
+	sts	__llvm_gcov_ctr.100+16, r24
 	ldd	r24, Y+3
                                         ; implicit-def: $r19r18
 	mov	r18, r24
@@ -21702,6 +29593,30 @@ __clrsbdi2:                             ; @__clrsbdi2
 	std	Y+30, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB101_1
 .LBB101_3:
+	lds	r24, __llvm_gcov_ctr.101
+	lds	r25, __llvm_gcov_ctr.101+1
+	lds	r18, __llvm_gcov_ctr.101+2
+	lds	r19, __llvm_gcov_ctr.101+3
+	lds	r20, __llvm_gcov_ctr.101+4
+	lds	r21, __llvm_gcov_ctr.101+5
+	lds	r22, __llvm_gcov_ctr.101+6
+	lds	r23, __llvm_gcov_ctr.101+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.101+7, r23
+	sts	__llvm_gcov_ctr.101+6, r22
+	sts	__llvm_gcov_ctr.101+5, r21
+	sts	__llvm_gcov_ctr.101+4, r20
+	sts	__llvm_gcov_ctr.101+3, r19
+	sts	__llvm_gcov_ctr.101+2, r18
+	sts	__llvm_gcov_ctr.101+1, r25
+	sts	__llvm_gcov_ctr.101, r24
 	lds	r24, __profc___clrsbdi2+8
 	lds	r25, __profc___clrsbdi2+9
 	lds	r18, __profc___clrsbdi2+10
@@ -21789,6 +29704,30 @@ __clrsbdi2:                             ; @__clrsbdi2
 	std	Y+28, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB101_5
 .LBB101_7:
+	lds	r24, __llvm_gcov_ctr.101+8
+	lds	r25, __llvm_gcov_ctr.101+9
+	lds	r18, __llvm_gcov_ctr.101+10
+	lds	r19, __llvm_gcov_ctr.101+11
+	lds	r20, __llvm_gcov_ctr.101+12
+	lds	r21, __llvm_gcov_ctr.101+13
+	lds	r22, __llvm_gcov_ctr.101+14
+	lds	r23, __llvm_gcov_ctr.101+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.101+15, r23
+	sts	__llvm_gcov_ctr.101+14, r22
+	sts	__llvm_gcov_ctr.101+13, r21
+	sts	__llvm_gcov_ctr.101+12, r20
+	sts	__llvm_gcov_ctr.101+11, r19
+	sts	__llvm_gcov_ctr.101+10, r18
+	sts	__llvm_gcov_ctr.101+9, r25
+	sts	__llvm_gcov_ctr.101+8, r24
 	lds	r24, __profc___clrsbdi2+16
 	lds	r25, __profc___clrsbdi2+17
 	lds	r18, __profc___clrsbdi2+18
@@ -21819,6 +29758,30 @@ __clrsbdi2:                             ; @__clrsbdi2
 	std	Y+43, r24
 	rjmp	.LBB101_17
 .LBB101_8:
+	lds	r24, __llvm_gcov_ctr.101+16
+	lds	r25, __llvm_gcov_ctr.101+17
+	lds	r18, __llvm_gcov_ctr.101+18
+	lds	r19, __llvm_gcov_ctr.101+19
+	lds	r20, __llvm_gcov_ctr.101+20
+	lds	r21, __llvm_gcov_ctr.101+21
+	lds	r22, __llvm_gcov_ctr.101+22
+	lds	r23, __llvm_gcov_ctr.101+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.101+23, r23
+	sts	__llvm_gcov_ctr.101+22, r22
+	sts	__llvm_gcov_ctr.101+21, r21
+	sts	__llvm_gcov_ctr.101+20, r20
+	sts	__llvm_gcov_ctr.101+19, r19
+	sts	__llvm_gcov_ctr.101+18, r18
+	sts	__llvm_gcov_ctr.101+17, r25
+	sts	__llvm_gcov_ctr.101+16, r24
 	ldd	r24, Y+33
 	ldd	r25, Y+34
 	std	Y+16, r25                       ; 2-byte Folded Spill
@@ -22250,6 +30213,30 @@ __mulsi3:                               ; @__mulsi3
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.102
+	lds	r19, __llvm_gcov_ctr.102+1
+	lds	r20, __llvm_gcov_ctr.102+2
+	lds	r21, __llvm_gcov_ctr.102+3
+	lds	r30, __llvm_gcov_ctr.102+4
+	lds	r31, __llvm_gcov_ctr.102+5
+	lds	r26, __llvm_gcov_ctr.102+6
+	lds	r27, __llvm_gcov_ctr.102+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.102+7, r27
+	sts	__llvm_gcov_ctr.102+6, r26
+	sts	__llvm_gcov_ctr.102+5, r31
+	sts	__llvm_gcov_ctr.102+4, r30
+	sts	__llvm_gcov_ctr.102+3, r21
+	sts	__llvm_gcov_ctr.102+2, r20
+	sts	__llvm_gcov_ctr.102+1, r19
+	sts	__llvm_gcov_ctr.102, r18
 	std	Y+6, r25
 	std	Y+5, r24
 	std	Y+4, r23
@@ -22323,6 +30310,30 @@ __mulsi3:                               ; @__mulsi3
 	brne	.LBB102_3
 	rjmp	.LBB102_4
 .LBB102_3:                              ;   in Loop: Header=BB102_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.102+8
+	lds	r25, __llvm_gcov_ctr.102+9
+	lds	r18, __llvm_gcov_ctr.102+10
+	lds	r19, __llvm_gcov_ctr.102+11
+	lds	r20, __llvm_gcov_ctr.102+12
+	lds	r21, __llvm_gcov_ctr.102+13
+	lds	r22, __llvm_gcov_ctr.102+14
+	lds	r23, __llvm_gcov_ctr.102+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.102+15, r23
+	sts	__llvm_gcov_ctr.102+14, r22
+	sts	__llvm_gcov_ctr.102+13, r21
+	sts	__llvm_gcov_ctr.102+12, r20
+	sts	__llvm_gcov_ctr.102+11, r19
+	sts	__llvm_gcov_ctr.102+10, r18
+	sts	__llvm_gcov_ctr.102+9, r25
+	sts	__llvm_gcov_ctr.102+8, r24
 	lds	r24, __profc___mulsi3+16
 	lds	r25, __profc___mulsi3+17
 	lds	r18, __profc___mulsi3+18
@@ -22357,6 +30368,30 @@ __mulsi3:                               ; @__mulsi3
 	std	Y+1, r24
 	rjmp	.LBB102_4
 .LBB102_4:                              ;   in Loop: Header=BB102_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.102+16
+	lds	r25, __llvm_gcov_ctr.102+17
+	lds	r18, __llvm_gcov_ctr.102+18
+	lds	r19, __llvm_gcov_ctr.102+19
+	lds	r20, __llvm_gcov_ctr.102+20
+	lds	r21, __llvm_gcov_ctr.102+21
+	lds	r22, __llvm_gcov_ctr.102+22
+	lds	r23, __llvm_gcov_ctr.102+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.102+23, r23
+	sts	__llvm_gcov_ctr.102+22, r22
+	sts	__llvm_gcov_ctr.102+21, r21
+	sts	__llvm_gcov_ctr.102+20, r20
+	sts	__llvm_gcov_ctr.102+19, r19
+	sts	__llvm_gcov_ctr.102+18, r18
+	sts	__llvm_gcov_ctr.102+17, r25
+	sts	__llvm_gcov_ctr.102+16, r24
 	ldd	r24, Y+5
 	ldd	r25, Y+6
 	lsr	r25
@@ -22462,6 +30497,30 @@ __cmovd:                                ; @__cmovd
 	brsh	.LBB103_1
 	rjmp	.LBB103_3
 .LBB103_1:
+	lds	r24, __llvm_gcov_ctr.103
+	lds	r25, __llvm_gcov_ctr.103+1
+	lds	r18, __llvm_gcov_ctr.103+2
+	lds	r19, __llvm_gcov_ctr.103+3
+	lds	r20, __llvm_gcov_ctr.103+4
+	lds	r21, __llvm_gcov_ctr.103+5
+	lds	r22, __llvm_gcov_ctr.103+6
+	lds	r23, __llvm_gcov_ctr.103+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+7, r23
+	sts	__llvm_gcov_ctr.103+6, r22
+	sts	__llvm_gcov_ctr.103+5, r21
+	sts	__llvm_gcov_ctr.103+4, r20
+	sts	__llvm_gcov_ctr.103+3, r19
+	sts	__llvm_gcov_ctr.103+2, r18
+	sts	__llvm_gcov_ctr.103+1, r25
+	sts	__llvm_gcov_ctr.103, r24
 	lds	r24, __profc___cmovd+16
 	lds	r25, __profc___cmovd+17
 	lds	r18, __profc___cmovd+18
@@ -22638,6 +30697,30 @@ __cmovd:                                ; @__cmovd
 	st	Z, r24
 	rjmp	.LBB103_6
 .LBB103_6:                              ;   in Loop: Header=BB103_4 Depth=1
+	lds	r24, __llvm_gcov_ctr.103+8
+	lds	r25, __llvm_gcov_ctr.103+9
+	lds	r18, __llvm_gcov_ctr.103+10
+	lds	r19, __llvm_gcov_ctr.103+11
+	lds	r20, __llvm_gcov_ctr.103+12
+	lds	r21, __llvm_gcov_ctr.103+13
+	lds	r22, __llvm_gcov_ctr.103+14
+	lds	r23, __llvm_gcov_ctr.103+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+15, r23
+	sts	__llvm_gcov_ctr.103+14, r22
+	sts	__llvm_gcov_ctr.103+13, r21
+	sts	__llvm_gcov_ctr.103+12, r20
+	sts	__llvm_gcov_ctr.103+11, r19
+	sts	__llvm_gcov_ctr.103+10, r18
+	sts	__llvm_gcov_ctr.103+9, r25
+	sts	__llvm_gcov_ctr.103+8, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 1
@@ -22656,6 +30739,30 @@ __cmovd:                                ; @__cmovd
 	brlo	.LBB103_9
 	rjmp	.LBB103_10
 .LBB103_9:                              ;   in Loop: Header=BB103_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.103+16
+	lds	r25, __llvm_gcov_ctr.103+17
+	lds	r18, __llvm_gcov_ctr.103+18
+	lds	r19, __llvm_gcov_ctr.103+19
+	lds	r20, __llvm_gcov_ctr.103+20
+	lds	r21, __llvm_gcov_ctr.103+21
+	lds	r22, __llvm_gcov_ctr.103+22
+	lds	r23, __llvm_gcov_ctr.103+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+23, r23
+	sts	__llvm_gcov_ctr.103+22, r22
+	sts	__llvm_gcov_ctr.103+21, r21
+	sts	__llvm_gcov_ctr.103+20, r20
+	sts	__llvm_gcov_ctr.103+19, r19
+	sts	__llvm_gcov_ctr.103+18, r18
+	sts	__llvm_gcov_ctr.103+17, r25
+	sts	__llvm_gcov_ctr.103+16, r24
 	lds	r24, __profc___cmovd+40
 	lds	r25, __profc___cmovd+41
 	lds	r18, __profc___cmovd+42
@@ -22699,6 +30806,30 @@ __cmovd:                                ; @__cmovd
 	std	Y+9, r24
 	rjmp	.LBB103_8
 .LBB103_10:
+	lds	r24, __llvm_gcov_ctr.103+24
+	lds	r25, __llvm_gcov_ctr.103+25
+	lds	r18, __llvm_gcov_ctr.103+26
+	lds	r19, __llvm_gcov_ctr.103+27
+	lds	r20, __llvm_gcov_ctr.103+28
+	lds	r21, __llvm_gcov_ctr.103+29
+	lds	r22, __llvm_gcov_ctr.103+30
+	lds	r23, __llvm_gcov_ctr.103+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+31, r23
+	sts	__llvm_gcov_ctr.103+30, r22
+	sts	__llvm_gcov_ctr.103+29, r21
+	sts	__llvm_gcov_ctr.103+28, r20
+	sts	__llvm_gcov_ctr.103+27, r19
+	sts	__llvm_gcov_ctr.103+26, r18
+	sts	__llvm_gcov_ctr.103+25, r25
+	sts	__llvm_gcov_ctr.103+24, r24
 	rjmp	.LBB103_15
 .LBB103_11:
 	rjmp	.LBB103_12
@@ -22717,6 +30848,30 @@ __cmovd:                                ; @__cmovd
 	brne	.LBB103_13
 	rjmp	.LBB103_14
 .LBB103_13:                             ;   in Loop: Header=BB103_12 Depth=1
+	lds	r24, __llvm_gcov_ctr.103+32
+	lds	r25, __llvm_gcov_ctr.103+33
+	lds	r18, __llvm_gcov_ctr.103+34
+	lds	r19, __llvm_gcov_ctr.103+35
+	lds	r20, __llvm_gcov_ctr.103+36
+	lds	r21, __llvm_gcov_ctr.103+37
+	lds	r22, __llvm_gcov_ctr.103+38
+	lds	r23, __llvm_gcov_ctr.103+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+39, r23
+	sts	__llvm_gcov_ctr.103+38, r22
+	sts	__llvm_gcov_ctr.103+37, r21
+	sts	__llvm_gcov_ctr.103+36, r20
+	sts	__llvm_gcov_ctr.103+35, r19
+	sts	__llvm_gcov_ctr.103+34, r18
+	sts	__llvm_gcov_ctr.103+33, r25
+	sts	__llvm_gcov_ctr.103+32, r24
 	lds	r24, __profc___cmovd+48
 	lds	r25, __profc___cmovd+49
 	lds	r18, __profc___cmovd+50
@@ -22755,6 +30910,30 @@ __cmovd:                                ; @__cmovd
 	st	X, r24
 	rjmp	.LBB103_12
 .LBB103_14:
+	lds	r24, __llvm_gcov_ctr.103+40
+	lds	r25, __llvm_gcov_ctr.103+41
+	lds	r18, __llvm_gcov_ctr.103+42
+	lds	r19, __llvm_gcov_ctr.103+43
+	lds	r20, __llvm_gcov_ctr.103+44
+	lds	r21, __llvm_gcov_ctr.103+45
+	lds	r22, __llvm_gcov_ctr.103+46
+	lds	r23, __llvm_gcov_ctr.103+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.103+47, r23
+	sts	__llvm_gcov_ctr.103+46, r22
+	sts	__llvm_gcov_ctr.103+45, r21
+	sts	__llvm_gcov_ctr.103+44, r20
+	sts	__llvm_gcov_ctr.103+43, r19
+	sts	__llvm_gcov_ctr.103+42, r18
+	sts	__llvm_gcov_ctr.103+41, r25
+	sts	__llvm_gcov_ctr.103+40, r24
 	rjmp	.LBB103_15
 .LBB103_15:
 	adiw	r28, 20
@@ -22837,6 +31016,30 @@ __cmovh:                                ; @__cmovh
 	brsh	.LBB104_1
 	rjmp	.LBB104_3
 .LBB104_1:
+	lds	r24, __llvm_gcov_ctr.104
+	lds	r25, __llvm_gcov_ctr.104+1
+	lds	r18, __llvm_gcov_ctr.104+2
+	lds	r19, __llvm_gcov_ctr.104+3
+	lds	r20, __llvm_gcov_ctr.104+4
+	lds	r21, __llvm_gcov_ctr.104+5
+	lds	r22, __llvm_gcov_ctr.104+6
+	lds	r23, __llvm_gcov_ctr.104+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+7, r23
+	sts	__llvm_gcov_ctr.104+6, r22
+	sts	__llvm_gcov_ctr.104+5, r21
+	sts	__llvm_gcov_ctr.104+4, r20
+	sts	__llvm_gcov_ctr.104+3, r19
+	sts	__llvm_gcov_ctr.104+2, r18
+	sts	__llvm_gcov_ctr.104+1, r25
+	sts	__llvm_gcov_ctr.104, r24
 	lds	r24, __profc___cmovh+16
 	lds	r25, __profc___cmovh+17
 	lds	r18, __profc___cmovh+18
@@ -22981,6 +31184,30 @@ __cmovh:                                ; @__cmovh
 	st	Z, r24
 	rjmp	.LBB104_6
 .LBB104_6:                              ;   in Loop: Header=BB104_4 Depth=1
+	lds	r24, __llvm_gcov_ctr.104+8
+	lds	r25, __llvm_gcov_ctr.104+9
+	lds	r18, __llvm_gcov_ctr.104+10
+	lds	r19, __llvm_gcov_ctr.104+11
+	lds	r20, __llvm_gcov_ctr.104+12
+	lds	r21, __llvm_gcov_ctr.104+13
+	lds	r22, __llvm_gcov_ctr.104+14
+	lds	r23, __llvm_gcov_ctr.104+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+15, r23
+	sts	__llvm_gcov_ctr.104+14, r22
+	sts	__llvm_gcov_ctr.104+13, r21
+	sts	__llvm_gcov_ctr.104+12, r20
+	sts	__llvm_gcov_ctr.104+11, r19
+	sts	__llvm_gcov_ctr.104+10, r18
+	sts	__llvm_gcov_ctr.104+9, r25
+	sts	__llvm_gcov_ctr.104+8, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	adiw	r24, 1
@@ -22994,6 +31221,30 @@ __cmovh:                                ; @__cmovh
 	brne	.LBB104_8
 	rjmp	.LBB104_9
 .LBB104_8:
+	lds	r24, __llvm_gcov_ctr.104+16
+	lds	r25, __llvm_gcov_ctr.104+17
+	lds	r18, __llvm_gcov_ctr.104+18
+	lds	r19, __llvm_gcov_ctr.104+19
+	lds	r20, __llvm_gcov_ctr.104+20
+	lds	r21, __llvm_gcov_ctr.104+21
+	lds	r22, __llvm_gcov_ctr.104+22
+	lds	r23, __llvm_gcov_ctr.104+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+23, r23
+	sts	__llvm_gcov_ctr.104+22, r22
+	sts	__llvm_gcov_ctr.104+21, r21
+	sts	__llvm_gcov_ctr.104+20, r20
+	sts	__llvm_gcov_ctr.104+19, r19
+	sts	__llvm_gcov_ctr.104+18, r18
+	sts	__llvm_gcov_ctr.104+17, r25
+	sts	__llvm_gcov_ctr.104+16, r24
 	lds	r24, __profc___cmovh+40
 	lds	r25, __profc___cmovh+41
 	lds	r18, __profc___cmovh+42
@@ -23033,6 +31284,30 @@ __cmovh:                                ; @__cmovh
 	st	X, r24
 	rjmp	.LBB104_9
 .LBB104_9:
+	lds	r24, __llvm_gcov_ctr.104+24
+	lds	r25, __llvm_gcov_ctr.104+25
+	lds	r18, __llvm_gcov_ctr.104+26
+	lds	r19, __llvm_gcov_ctr.104+27
+	lds	r20, __llvm_gcov_ctr.104+28
+	lds	r21, __llvm_gcov_ctr.104+29
+	lds	r22, __llvm_gcov_ctr.104+30
+	lds	r23, __llvm_gcov_ctr.104+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+31, r23
+	sts	__llvm_gcov_ctr.104+30, r22
+	sts	__llvm_gcov_ctr.104+29, r21
+	sts	__llvm_gcov_ctr.104+28, r20
+	sts	__llvm_gcov_ctr.104+27, r19
+	sts	__llvm_gcov_ctr.104+26, r18
+	sts	__llvm_gcov_ctr.104+25, r25
+	sts	__llvm_gcov_ctr.104+24, r24
 	rjmp	.LBB104_14
 .LBB104_10:
 	rjmp	.LBB104_11
@@ -23051,6 +31326,30 @@ __cmovh:                                ; @__cmovh
 	brne	.LBB104_12
 	rjmp	.LBB104_13
 .LBB104_12:                             ;   in Loop: Header=BB104_11 Depth=1
+	lds	r24, __llvm_gcov_ctr.104+32
+	lds	r25, __llvm_gcov_ctr.104+33
+	lds	r18, __llvm_gcov_ctr.104+34
+	lds	r19, __llvm_gcov_ctr.104+35
+	lds	r20, __llvm_gcov_ctr.104+36
+	lds	r21, __llvm_gcov_ctr.104+37
+	lds	r22, __llvm_gcov_ctr.104+38
+	lds	r23, __llvm_gcov_ctr.104+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+39, r23
+	sts	__llvm_gcov_ctr.104+38, r22
+	sts	__llvm_gcov_ctr.104+37, r21
+	sts	__llvm_gcov_ctr.104+36, r20
+	sts	__llvm_gcov_ctr.104+35, r19
+	sts	__llvm_gcov_ctr.104+34, r18
+	sts	__llvm_gcov_ctr.104+33, r25
+	sts	__llvm_gcov_ctr.104+32, r24
 	lds	r24, __profc___cmovh+48
 	lds	r25, __profc___cmovh+49
 	lds	r18, __profc___cmovh+50
@@ -23089,6 +31388,30 @@ __cmovh:                                ; @__cmovh
 	st	X, r24
 	rjmp	.LBB104_11
 .LBB104_13:
+	lds	r24, __llvm_gcov_ctr.104+40
+	lds	r25, __llvm_gcov_ctr.104+41
+	lds	r18, __llvm_gcov_ctr.104+42
+	lds	r19, __llvm_gcov_ctr.104+43
+	lds	r20, __llvm_gcov_ctr.104+44
+	lds	r21, __llvm_gcov_ctr.104+45
+	lds	r22, __llvm_gcov_ctr.104+46
+	lds	r23, __llvm_gcov_ctr.104+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.104+47, r23
+	sts	__llvm_gcov_ctr.104+46, r22
+	sts	__llvm_gcov_ctr.104+45, r21
+	sts	__llvm_gcov_ctr.104+44, r20
+	sts	__llvm_gcov_ctr.104+43, r19
+	sts	__llvm_gcov_ctr.104+42, r18
+	sts	__llvm_gcov_ctr.104+41, r25
+	sts	__llvm_gcov_ctr.104+40, r24
 	rjmp	.LBB104_14
 .LBB104_14:
 	adiw	r28, 14
@@ -23178,6 +31501,30 @@ __cmovw:                                ; @__cmovw
 	brsh	.LBB105_1
 	rjmp	.LBB105_3
 .LBB105_1:
+	lds	r24, __llvm_gcov_ctr.105
+	lds	r25, __llvm_gcov_ctr.105+1
+	lds	r18, __llvm_gcov_ctr.105+2
+	lds	r19, __llvm_gcov_ctr.105+3
+	lds	r20, __llvm_gcov_ctr.105+4
+	lds	r21, __llvm_gcov_ctr.105+5
+	lds	r22, __llvm_gcov_ctr.105+6
+	lds	r23, __llvm_gcov_ctr.105+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+7, r23
+	sts	__llvm_gcov_ctr.105+6, r22
+	sts	__llvm_gcov_ctr.105+5, r21
+	sts	__llvm_gcov_ctr.105+4, r20
+	sts	__llvm_gcov_ctr.105+3, r19
+	sts	__llvm_gcov_ctr.105+2, r18
+	sts	__llvm_gcov_ctr.105+1, r25
+	sts	__llvm_gcov_ctr.105, r24
 	lds	r24, __profc___cmovw+16
 	lds	r25, __profc___cmovw+17
 	lds	r18, __profc___cmovw+18
@@ -23322,6 +31669,30 @@ __cmovw:                                ; @__cmovw
 	st	Z, r24
 	rjmp	.LBB105_6
 .LBB105_6:                              ;   in Loop: Header=BB105_4 Depth=1
+	lds	r24, __llvm_gcov_ctr.105+8
+	lds	r25, __llvm_gcov_ctr.105+9
+	lds	r18, __llvm_gcov_ctr.105+10
+	lds	r19, __llvm_gcov_ctr.105+11
+	lds	r20, __llvm_gcov_ctr.105+12
+	lds	r21, __llvm_gcov_ctr.105+13
+	lds	r22, __llvm_gcov_ctr.105+14
+	lds	r23, __llvm_gcov_ctr.105+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+15, r23
+	sts	__llvm_gcov_ctr.105+14, r22
+	sts	__llvm_gcov_ctr.105+13, r21
+	sts	__llvm_gcov_ctr.105+12, r20
+	sts	__llvm_gcov_ctr.105+11, r19
+	sts	__llvm_gcov_ctr.105+10, r18
+	sts	__llvm_gcov_ctr.105+9, r25
+	sts	__llvm_gcov_ctr.105+8, r24
 	ldd	r24, Y+9
 	ldd	r25, Y+10
 	adiw	r24, 1
@@ -23340,6 +31711,30 @@ __cmovw:                                ; @__cmovw
 	brlo	.LBB105_9
 	rjmp	.LBB105_10
 .LBB105_9:                              ;   in Loop: Header=BB105_8 Depth=1
+	lds	r24, __llvm_gcov_ctr.105+16
+	lds	r25, __llvm_gcov_ctr.105+17
+	lds	r18, __llvm_gcov_ctr.105+18
+	lds	r19, __llvm_gcov_ctr.105+19
+	lds	r20, __llvm_gcov_ctr.105+20
+	lds	r21, __llvm_gcov_ctr.105+21
+	lds	r22, __llvm_gcov_ctr.105+22
+	lds	r23, __llvm_gcov_ctr.105+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+23, r23
+	sts	__llvm_gcov_ctr.105+22, r22
+	sts	__llvm_gcov_ctr.105+21, r21
+	sts	__llvm_gcov_ctr.105+20, r20
+	sts	__llvm_gcov_ctr.105+19, r19
+	sts	__llvm_gcov_ctr.105+18, r18
+	sts	__llvm_gcov_ctr.105+17, r25
+	sts	__llvm_gcov_ctr.105+16, r24
 	lds	r24, __profc___cmovw+40
 	lds	r25, __profc___cmovw+41
 	lds	r18, __profc___cmovw+42
@@ -23383,6 +31778,30 @@ __cmovw:                                ; @__cmovw
 	std	Y+5, r24
 	rjmp	.LBB105_8
 .LBB105_10:
+	lds	r24, __llvm_gcov_ctr.105+24
+	lds	r25, __llvm_gcov_ctr.105+25
+	lds	r18, __llvm_gcov_ctr.105+26
+	lds	r19, __llvm_gcov_ctr.105+27
+	lds	r20, __llvm_gcov_ctr.105+28
+	lds	r21, __llvm_gcov_ctr.105+29
+	lds	r22, __llvm_gcov_ctr.105+30
+	lds	r23, __llvm_gcov_ctr.105+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+31, r23
+	sts	__llvm_gcov_ctr.105+30, r22
+	sts	__llvm_gcov_ctr.105+29, r21
+	sts	__llvm_gcov_ctr.105+28, r20
+	sts	__llvm_gcov_ctr.105+27, r19
+	sts	__llvm_gcov_ctr.105+26, r18
+	sts	__llvm_gcov_ctr.105+25, r25
+	sts	__llvm_gcov_ctr.105+24, r24
 	rjmp	.LBB105_15
 .LBB105_11:
 	rjmp	.LBB105_12
@@ -23401,6 +31820,30 @@ __cmovw:                                ; @__cmovw
 	brne	.LBB105_13
 	rjmp	.LBB105_14
 .LBB105_13:                             ;   in Loop: Header=BB105_12 Depth=1
+	lds	r24, __llvm_gcov_ctr.105+32
+	lds	r25, __llvm_gcov_ctr.105+33
+	lds	r18, __llvm_gcov_ctr.105+34
+	lds	r19, __llvm_gcov_ctr.105+35
+	lds	r20, __llvm_gcov_ctr.105+36
+	lds	r21, __llvm_gcov_ctr.105+37
+	lds	r22, __llvm_gcov_ctr.105+38
+	lds	r23, __llvm_gcov_ctr.105+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+39, r23
+	sts	__llvm_gcov_ctr.105+38, r22
+	sts	__llvm_gcov_ctr.105+37, r21
+	sts	__llvm_gcov_ctr.105+36, r20
+	sts	__llvm_gcov_ctr.105+35, r19
+	sts	__llvm_gcov_ctr.105+34, r18
+	sts	__llvm_gcov_ctr.105+33, r25
+	sts	__llvm_gcov_ctr.105+32, r24
 	lds	r24, __profc___cmovw+48
 	lds	r25, __profc___cmovw+49
 	lds	r18, __profc___cmovw+50
@@ -23439,6 +31882,30 @@ __cmovw:                                ; @__cmovw
 	st	X, r24
 	rjmp	.LBB105_12
 .LBB105_14:
+	lds	r24, __llvm_gcov_ctr.105+40
+	lds	r25, __llvm_gcov_ctr.105+41
+	lds	r18, __llvm_gcov_ctr.105+42
+	lds	r19, __llvm_gcov_ctr.105+43
+	lds	r20, __llvm_gcov_ctr.105+44
+	lds	r21, __llvm_gcov_ctr.105+45
+	lds	r22, __llvm_gcov_ctr.105+46
+	lds	r23, __llvm_gcov_ctr.105+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.105+47, r23
+	sts	__llvm_gcov_ctr.105+46, r22
+	sts	__llvm_gcov_ctr.105+45, r21
+	sts	__llvm_gcov_ctr.105+44, r20
+	sts	__llvm_gcov_ctr.105+43, r19
+	sts	__llvm_gcov_ctr.105+42, r18
+	sts	__llvm_gcov_ctr.105+41, r25
+	sts	__llvm_gcov_ctr.105+40, r24
 	rjmp	.LBB105_15
 .LBB105_15:
 	adiw	r28, 16
@@ -23468,6 +31935,30 @@ __modi:                                 ; @__modi
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.106
+	lds	r19, __llvm_gcov_ctr.106+1
+	lds	r20, __llvm_gcov_ctr.106+2
+	lds	r21, __llvm_gcov_ctr.106+3
+	lds	r30, __llvm_gcov_ctr.106+4
+	lds	r31, __llvm_gcov_ctr.106+5
+	lds	r26, __llvm_gcov_ctr.106+6
+	lds	r27, __llvm_gcov_ctr.106+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.106+7, r27
+	sts	__llvm_gcov_ctr.106+6, r26
+	sts	__llvm_gcov_ctr.106+5, r31
+	sts	__llvm_gcov_ctr.106+4, r30
+	sts	__llvm_gcov_ctr.106+3, r21
+	sts	__llvm_gcov_ctr.106+2, r20
+	sts	__llvm_gcov_ctr.106+1, r19
+	sts	__llvm_gcov_ctr.106, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	std	Y+2, r23
@@ -23528,6 +32019,30 @@ __uitod:                                ; @__uitod
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.107
+	lds	r19, __llvm_gcov_ctr.107+1
+	lds	r20, __llvm_gcov_ctr.107+2
+	lds	r21, __llvm_gcov_ctr.107+3
+	lds	r22, __llvm_gcov_ctr.107+4
+	lds	r23, __llvm_gcov_ctr.107+5
+	lds	r30, __llvm_gcov_ctr.107+6
+	lds	r31, __llvm_gcov_ctr.107+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.107+7, r31
+	sts	__llvm_gcov_ctr.107+6, r30
+	sts	__llvm_gcov_ctr.107+5, r23
+	sts	__llvm_gcov_ctr.107+4, r22
+	sts	__llvm_gcov_ctr.107+3, r21
+	sts	__llvm_gcov_ctr.107+2, r20
+	sts	__llvm_gcov_ctr.107+1, r19
+	sts	__llvm_gcov_ctr.107, r18
 	std	Y+2, r25
 	std	Y+1, r24
 	lds	r24, __profc___uitod
@@ -23586,6 +32101,30 @@ __uitof:                                ; @__uitof
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.108
+	lds	r19, __llvm_gcov_ctr.108+1
+	lds	r20, __llvm_gcov_ctr.108+2
+	lds	r21, __llvm_gcov_ctr.108+3
+	lds	r22, __llvm_gcov_ctr.108+4
+	lds	r23, __llvm_gcov_ctr.108+5
+	lds	r30, __llvm_gcov_ctr.108+6
+	lds	r31, __llvm_gcov_ctr.108+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.108+7, r31
+	sts	__llvm_gcov_ctr.108+6, r30
+	sts	__llvm_gcov_ctr.108+5, r23
+	sts	__llvm_gcov_ctr.108+4, r22
+	sts	__llvm_gcov_ctr.108+3, r21
+	sts	__llvm_gcov_ctr.108+2, r20
+	sts	__llvm_gcov_ctr.108+1, r19
+	sts	__llvm_gcov_ctr.108, r18
 	std	Y+2, r25
 	std	Y+1, r24
 	lds	r24, __profc___uitof
@@ -23634,28 +32173,57 @@ __uitof:                                ; @__uitof
 	.type	__ulltod,@function
 __ulltod:                               ; @__ulltod
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 12
+	sbiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.109
+	lds	r31, __llvm_gcov_ctr.109+1
+	lds	r26, __llvm_gcov_ctr.109+2
+	lds	r27, __llvm_gcov_ctr.109+3
+	lds	r16, __llvm_gcov_ctr.109+4
+	lds	r17, __llvm_gcov_ctr.109+5
+	lds	r24, __llvm_gcov_ctr.109+6
+	lds	r25, __llvm_gcov_ctr.109+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.109+7, r25
+	sts	__llvm_gcov_ctr.109+6, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.109+5, r17
+	sts	__llvm_gcov_ctr.109+4, r16
+	sts	__llvm_gcov_ctr.109+3, r27
+	sts	__llvm_gcov_ctr.109+2, r26
+	sts	__llvm_gcov_ctr.109+1, r31
+	sts	__llvm_gcov_ctr.109, r30
+	std	Y+16, r25
+	std	Y+15, r24
+	std	Y+14, r23
+	std	Y+13, r22
+	std	Y+12, r21
+	std	Y+11, r20
+	std	Y+10, r19
+	std	Y+9, r18
 	lds	r24, __profc___ulltod
 	lds	r25, __profc___ulltod+1
 	lds	r18, __profc___ulltod+2
@@ -23680,16 +32248,16 @@ __ulltod:                               ; @__ulltod
 	sts	__profc___ulltod+2, r18
 	sts	__profc___ulltod+1, r25
 	sts	__profc___ulltod, r24
-	ldd	r18, Y+1
-	ldd	r19, Y+2
-	ldd	r20, Y+3
-	ldd	r21, Y+4
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+7
-	ldd	r25, Y+8
+	ldd	r18, Y+9
+	ldd	r19, Y+10
+	ldd	r20, Y+11
+	ldd	r21, Y+12
+	ldd	r22, Y+13
+	ldd	r23, Y+14
+	ldd	r24, Y+15
+	ldd	r25, Y+16
 	rcall	__floatundisf
-	adiw	r28, 12
+	adiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
@@ -23697,6 +32265,8 @@ __ulltod:                               ; @__ulltod
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end109:
 	.size	__ulltod, .Lfunc_end109-__ulltod
@@ -23706,28 +32276,57 @@ __ulltod:                               ; @__ulltod
 	.type	__ulltof,@function
 __ulltof:                               ; @__ulltof
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 12
+	sbiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.110
+	lds	r31, __llvm_gcov_ctr.110+1
+	lds	r26, __llvm_gcov_ctr.110+2
+	lds	r27, __llvm_gcov_ctr.110+3
+	lds	r16, __llvm_gcov_ctr.110+4
+	lds	r17, __llvm_gcov_ctr.110+5
+	lds	r24, __llvm_gcov_ctr.110+6
+	lds	r25, __llvm_gcov_ctr.110+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.110+7, r25
+	sts	__llvm_gcov_ctr.110+6, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.110+5, r17
+	sts	__llvm_gcov_ctr.110+4, r16
+	sts	__llvm_gcov_ctr.110+3, r27
+	sts	__llvm_gcov_ctr.110+2, r26
+	sts	__llvm_gcov_ctr.110+1, r31
+	sts	__llvm_gcov_ctr.110, r30
+	std	Y+16, r25
+	std	Y+15, r24
+	std	Y+14, r23
+	std	Y+13, r22
+	std	Y+12, r21
+	std	Y+11, r20
+	std	Y+10, r19
+	std	Y+9, r18
 	lds	r24, __profc___ulltof
 	lds	r25, __profc___ulltof+1
 	lds	r18, __profc___ulltof+2
@@ -23752,16 +32351,16 @@ __ulltof:                               ; @__ulltof
 	sts	__profc___ulltof+2, r18
 	sts	__profc___ulltof+1, r25
 	sts	__profc___ulltof, r24
-	ldd	r18, Y+1
-	ldd	r19, Y+2
-	ldd	r20, Y+3
-	ldd	r21, Y+4
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+7
-	ldd	r25, Y+8
+	ldd	r18, Y+9
+	ldd	r19, Y+10
+	ldd	r20, Y+11
+	ldd	r21, Y+12
+	ldd	r22, Y+13
+	ldd	r23, Y+14
+	ldd	r24, Y+15
+	ldd	r25, Y+16
 	rcall	__floatundisf
-	adiw	r28, 12
+	adiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
@@ -23769,6 +32368,8 @@ __ulltof:                               ; @__ulltof
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end110:
 	.size	__ulltof, .Lfunc_end110-__ulltof
@@ -23788,6 +32389,30 @@ __umodi:                                ; @__umodi
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.111
+	lds	r19, __llvm_gcov_ctr.111+1
+	lds	r20, __llvm_gcov_ctr.111+2
+	lds	r21, __llvm_gcov_ctr.111+3
+	lds	r30, __llvm_gcov_ctr.111+4
+	lds	r31, __llvm_gcov_ctr.111+5
+	lds	r26, __llvm_gcov_ctr.111+6
+	lds	r27, __llvm_gcov_ctr.111+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.111+7, r27
+	sts	__llvm_gcov_ctr.111+6, r26
+	sts	__llvm_gcov_ctr.111+5, r31
+	sts	__llvm_gcov_ctr.111+4, r30
+	sts	__llvm_gcov_ctr.111+3, r21
+	sts	__llvm_gcov_ctr.111+2, r20
+	sts	__llvm_gcov_ctr.111+1, r19
+	sts	__llvm_gcov_ctr.111, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	std	Y+2, r23
@@ -23848,6 +32473,30 @@ __clzhi2:                               ; @__clzhi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.112
+	lds	r19, __llvm_gcov_ctr.112+1
+	lds	r20, __llvm_gcov_ctr.112+2
+	lds	r21, __llvm_gcov_ctr.112+3
+	lds	r22, __llvm_gcov_ctr.112+4
+	lds	r23, __llvm_gcov_ctr.112+5
+	lds	r30, __llvm_gcov_ctr.112+6
+	lds	r31, __llvm_gcov_ctr.112+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.112+7, r31
+	sts	__llvm_gcov_ctr.112+6, r30
+	sts	__llvm_gcov_ctr.112+5, r23
+	sts	__llvm_gcov_ctr.112+4, r22
+	sts	__llvm_gcov_ctr.112+3, r21
+	sts	__llvm_gcov_ctr.112+2, r20
+	sts	__llvm_gcov_ctr.112+1, r19
+	sts	__llvm_gcov_ctr.112, r18
 	std	Y+14, r25
 	std	Y+13, r24
 	lds	r24, __profc___clzhi2
@@ -23966,6 +32615,30 @@ __clzhi2:                               ; @__clzhi2
 	brne	.LBB112_6
 	rjmp	.LBB112_7
 .LBB112_6:
+	lds	r24, __llvm_gcov_ctr.112+8
+	lds	r25, __llvm_gcov_ctr.112+9
+	lds	r18, __llvm_gcov_ctr.112+10
+	lds	r19, __llvm_gcov_ctr.112+11
+	lds	r20, __llvm_gcov_ctr.112+12
+	lds	r21, __llvm_gcov_ctr.112+13
+	lds	r22, __llvm_gcov_ctr.112+14
+	lds	r23, __llvm_gcov_ctr.112+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.112+15, r23
+	sts	__llvm_gcov_ctr.112+14, r22
+	sts	__llvm_gcov_ctr.112+13, r21
+	sts	__llvm_gcov_ctr.112+12, r20
+	sts	__llvm_gcov_ctr.112+11, r19
+	sts	__llvm_gcov_ctr.112+10, r18
+	sts	__llvm_gcov_ctr.112+9, r25
+	sts	__llvm_gcov_ctr.112+8, r24
 	lds	r24, __profc___clzhi2+16
 	lds	r25, __profc___clzhi2+17
 	lds	r18, __profc___clzhi2+18
@@ -23994,6 +32667,30 @@ __clzhi2:                               ; @__clzhi2
 .LBB112_7:                              ;   in Loop: Header=BB112_1 Depth=1
 	rjmp	.LBB112_8
 .LBB112_8:                              ;   in Loop: Header=BB112_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.112+16
+	lds	r25, __llvm_gcov_ctr.112+17
+	lds	r18, __llvm_gcov_ctr.112+18
+	lds	r19, __llvm_gcov_ctr.112+19
+	lds	r20, __llvm_gcov_ctr.112+20
+	lds	r21, __llvm_gcov_ctr.112+21
+	lds	r22, __llvm_gcov_ctr.112+22
+	lds	r23, __llvm_gcov_ctr.112+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.112+23, r23
+	sts	__llvm_gcov_ctr.112+22, r22
+	sts	__llvm_gcov_ctr.112+21, r21
+	sts	__llvm_gcov_ctr.112+20, r20
+	sts	__llvm_gcov_ctr.112+19, r19
+	sts	__llvm_gcov_ctr.112+18, r18
+	sts	__llvm_gcov_ctr.112+17, r25
+	sts	__llvm_gcov_ctr.112+16, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -24030,6 +32727,30 @@ __ctzhi2:                               ; @__ctzhi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.113
+	lds	r19, __llvm_gcov_ctr.113+1
+	lds	r20, __llvm_gcov_ctr.113+2
+	lds	r21, __llvm_gcov_ctr.113+3
+	lds	r22, __llvm_gcov_ctr.113+4
+	lds	r23, __llvm_gcov_ctr.113+5
+	lds	r30, __llvm_gcov_ctr.113+6
+	lds	r31, __llvm_gcov_ctr.113+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.113+7, r31
+	sts	__llvm_gcov_ctr.113+6, r30
+	sts	__llvm_gcov_ctr.113+5, r23
+	sts	__llvm_gcov_ctr.113+4, r22
+	sts	__llvm_gcov_ctr.113+3, r21
+	sts	__llvm_gcov_ctr.113+2, r20
+	sts	__llvm_gcov_ctr.113+1, r19
+	sts	__llvm_gcov_ctr.113, r18
 	std	Y+14, r25
 	std	Y+13, r24
 	lds	r24, __profc___ctzhi2
@@ -24146,6 +32867,30 @@ __ctzhi2:                               ; @__ctzhi2
 	brne	.LBB113_6
 	rjmp	.LBB113_7
 .LBB113_6:
+	lds	r24, __llvm_gcov_ctr.113+8
+	lds	r25, __llvm_gcov_ctr.113+9
+	lds	r18, __llvm_gcov_ctr.113+10
+	lds	r19, __llvm_gcov_ctr.113+11
+	lds	r20, __llvm_gcov_ctr.113+12
+	lds	r21, __llvm_gcov_ctr.113+13
+	lds	r22, __llvm_gcov_ctr.113+14
+	lds	r23, __llvm_gcov_ctr.113+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.113+15, r23
+	sts	__llvm_gcov_ctr.113+14, r22
+	sts	__llvm_gcov_ctr.113+13, r21
+	sts	__llvm_gcov_ctr.113+12, r20
+	sts	__llvm_gcov_ctr.113+11, r19
+	sts	__llvm_gcov_ctr.113+10, r18
+	sts	__llvm_gcov_ctr.113+9, r25
+	sts	__llvm_gcov_ctr.113+8, r24
 	lds	r24, __profc___ctzhi2+16
 	lds	r25, __profc___ctzhi2+17
 	lds	r18, __profc___ctzhi2+18
@@ -24174,6 +32919,30 @@ __ctzhi2:                               ; @__ctzhi2
 .LBB113_7:                              ;   in Loop: Header=BB113_1 Depth=1
 	rjmp	.LBB113_8
 .LBB113_8:                              ;   in Loop: Header=BB113_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.113+16
+	lds	r25, __llvm_gcov_ctr.113+17
+	lds	r18, __llvm_gcov_ctr.113+18
+	lds	r19, __llvm_gcov_ctr.113+19
+	lds	r20, __llvm_gcov_ctr.113+20
+	lds	r21, __llvm_gcov_ctr.113+21
+	lds	r22, __llvm_gcov_ctr.113+22
+	lds	r23, __llvm_gcov_ctr.113+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.113+23, r23
+	sts	__llvm_gcov_ctr.113+22, r22
+	sts	__llvm_gcov_ctr.113+21, r21
+	sts	__llvm_gcov_ctr.113+20, r20
+	sts	__llvm_gcov_ctr.113+19, r19
+	sts	__llvm_gcov_ctr.113+18, r18
+	sts	__llvm_gcov_ctr.113+17, r25
+	sts	__llvm_gcov_ctr.113+16, r24
 	ldd	r24, Y+11
 	ldd	r25, Y+12
 	adiw	r24, 1
@@ -24253,6 +33022,30 @@ __fixunssfsi:                           ; @__fixunssfsi
 	brpl	.LBB114_1
 	rjmp	.LBB114_2
 .LBB114_1:
+	lds	r24, __llvm_gcov_ctr.114
+	lds	r25, __llvm_gcov_ctr.114+1
+	lds	r18, __llvm_gcov_ctr.114+2
+	lds	r19, __llvm_gcov_ctr.114+3
+	lds	r20, __llvm_gcov_ctr.114+4
+	lds	r21, __llvm_gcov_ctr.114+5
+	lds	r22, __llvm_gcov_ctr.114+6
+	lds	r23, __llvm_gcov_ctr.114+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.114+7, r23
+	sts	__llvm_gcov_ctr.114+6, r22
+	sts	__llvm_gcov_ctr.114+5, r21
+	sts	__llvm_gcov_ctr.114+4, r20
+	sts	__llvm_gcov_ctr.114+3, r19
+	sts	__llvm_gcov_ctr.114+2, r18
+	sts	__llvm_gcov_ctr.114+1, r25
+	sts	__llvm_gcov_ctr.114, r24
 	lds	r24, __profc___fixunssfsi+8
 	lds	r25, __profc___fixunssfsi+9
 	lds	r18, __profc___fixunssfsi+10
@@ -24297,6 +33090,30 @@ __fixunssfsi:                           ; @__fixunssfsi
 	std	Y+5, r22
 	rjmp	.LBB114_3
 .LBB114_2:
+	lds	r24, __llvm_gcov_ctr.114+8
+	lds	r25, __llvm_gcov_ctr.114+9
+	lds	r18, __llvm_gcov_ctr.114+10
+	lds	r19, __llvm_gcov_ctr.114+11
+	lds	r20, __llvm_gcov_ctr.114+12
+	lds	r21, __llvm_gcov_ctr.114+13
+	lds	r22, __llvm_gcov_ctr.114+14
+	lds	r23, __llvm_gcov_ctr.114+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.114+15, r23
+	sts	__llvm_gcov_ctr.114+14, r22
+	sts	__llvm_gcov_ctr.114+13, r21
+	sts	__llvm_gcov_ctr.114+12, r20
+	sts	__llvm_gcov_ctr.114+11, r19
+	sts	__llvm_gcov_ctr.114+10, r18
+	sts	__llvm_gcov_ctr.114+9, r25
+	sts	__llvm_gcov_ctr.114+8, r24
 	ldd	r22, Y+1
 	ldd	r23, Y+2
 	ldd	r24, Y+3
@@ -24339,6 +33156,30 @@ __parityhi2:                            ; @__parityhi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.115
+	lds	r19, __llvm_gcov_ctr.115+1
+	lds	r20, __llvm_gcov_ctr.115+2
+	lds	r21, __llvm_gcov_ctr.115+3
+	lds	r22, __llvm_gcov_ctr.115+4
+	lds	r23, __llvm_gcov_ctr.115+5
+	lds	r30, __llvm_gcov_ctr.115+6
+	lds	r31, __llvm_gcov_ctr.115+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.115+7, r31
+	sts	__llvm_gcov_ctr.115+6, r30
+	sts	__llvm_gcov_ctr.115+5, r23
+	sts	__llvm_gcov_ctr.115+4, r22
+	sts	__llvm_gcov_ctr.115+3, r21
+	sts	__llvm_gcov_ctr.115+2, r20
+	sts	__llvm_gcov_ctr.115+1, r19
+	sts	__llvm_gcov_ctr.115, r18
 	std	Y+16, r25
 	std	Y+15, r24
 	lds	r24, __profc___parityhi2
@@ -24457,6 +33298,30 @@ __parityhi2:                            ; @__parityhi2
 	brne	.LBB115_6
 	rjmp	.LBB115_7
 .LBB115_6:                              ;   in Loop: Header=BB115_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.115+8
+	lds	r25, __llvm_gcov_ctr.115+9
+	lds	r18, __llvm_gcov_ctr.115+10
+	lds	r19, __llvm_gcov_ctr.115+11
+	lds	r20, __llvm_gcov_ctr.115+12
+	lds	r21, __llvm_gcov_ctr.115+13
+	lds	r22, __llvm_gcov_ctr.115+14
+	lds	r23, __llvm_gcov_ctr.115+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.115+15, r23
+	sts	__llvm_gcov_ctr.115+14, r22
+	sts	__llvm_gcov_ctr.115+13, r21
+	sts	__llvm_gcov_ctr.115+12, r20
+	sts	__llvm_gcov_ctr.115+11, r19
+	sts	__llvm_gcov_ctr.115+10, r18
+	sts	__llvm_gcov_ctr.115+9, r25
+	sts	__llvm_gcov_ctr.115+8, r24
 	lds	r24, __profc___parityhi2+16
 	lds	r25, __profc___parityhi2+17
 	lds	r18, __profc___parityhi2+18
@@ -24490,6 +33355,30 @@ __parityhi2:                            ; @__parityhi2
 .LBB115_7:                              ;   in Loop: Header=BB115_1 Depth=1
 	rjmp	.LBB115_8
 .LBB115_8:                              ;   in Loop: Header=BB115_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.115+16
+	lds	r25, __llvm_gcov_ctr.115+17
+	lds	r18, __llvm_gcov_ctr.115+18
+	lds	r19, __llvm_gcov_ctr.115+19
+	lds	r20, __llvm_gcov_ctr.115+20
+	lds	r21, __llvm_gcov_ctr.115+21
+	lds	r22, __llvm_gcov_ctr.115+22
+	lds	r23, __llvm_gcov_ctr.115+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.115+23, r23
+	sts	__llvm_gcov_ctr.115+22, r22
+	sts	__llvm_gcov_ctr.115+21, r21
+	sts	__llvm_gcov_ctr.115+20, r20
+	sts	__llvm_gcov_ctr.115+19, r19
+	sts	__llvm_gcov_ctr.115+18, r18
+	sts	__llvm_gcov_ctr.115+17, r25
+	sts	__llvm_gcov_ctr.115+16, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 1
@@ -24528,6 +33417,30 @@ __popcounthi2:                          ; @__popcounthi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	lds	r18, __llvm_gcov_ctr.116
+	lds	r19, __llvm_gcov_ctr.116+1
+	lds	r20, __llvm_gcov_ctr.116+2
+	lds	r21, __llvm_gcov_ctr.116+3
+	lds	r22, __llvm_gcov_ctr.116+4
+	lds	r23, __llvm_gcov_ctr.116+5
+	lds	r30, __llvm_gcov_ctr.116+6
+	lds	r31, __llvm_gcov_ctr.116+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.116+7, r31
+	sts	__llvm_gcov_ctr.116+6, r30
+	sts	__llvm_gcov_ctr.116+5, r23
+	sts	__llvm_gcov_ctr.116+4, r22
+	sts	__llvm_gcov_ctr.116+3, r21
+	sts	__llvm_gcov_ctr.116+2, r20
+	sts	__llvm_gcov_ctr.116+1, r19
+	sts	__llvm_gcov_ctr.116, r18
 	std	Y+16, r25
 	std	Y+15, r24
 	lds	r24, __profc___popcounthi2
@@ -24646,6 +33559,30 @@ __popcounthi2:                          ; @__popcounthi2
 	brne	.LBB116_6
 	rjmp	.LBB116_7
 .LBB116_6:                              ;   in Loop: Header=BB116_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.116+8
+	lds	r25, __llvm_gcov_ctr.116+9
+	lds	r18, __llvm_gcov_ctr.116+10
+	lds	r19, __llvm_gcov_ctr.116+11
+	lds	r20, __llvm_gcov_ctr.116+12
+	lds	r21, __llvm_gcov_ctr.116+13
+	lds	r22, __llvm_gcov_ctr.116+14
+	lds	r23, __llvm_gcov_ctr.116+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.116+15, r23
+	sts	__llvm_gcov_ctr.116+14, r22
+	sts	__llvm_gcov_ctr.116+13, r21
+	sts	__llvm_gcov_ctr.116+12, r20
+	sts	__llvm_gcov_ctr.116+11, r19
+	sts	__llvm_gcov_ctr.116+10, r18
+	sts	__llvm_gcov_ctr.116+9, r25
+	sts	__llvm_gcov_ctr.116+8, r24
 	lds	r24, __profc___popcounthi2+16
 	lds	r25, __profc___popcounthi2+17
 	lds	r18, __profc___popcounthi2+18
@@ -24679,6 +33616,30 @@ __popcounthi2:                          ; @__popcounthi2
 .LBB116_7:                              ;   in Loop: Header=BB116_1 Depth=1
 	rjmp	.LBB116_8
 .LBB116_8:                              ;   in Loop: Header=BB116_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.116+16
+	lds	r25, __llvm_gcov_ctr.116+17
+	lds	r18, __llvm_gcov_ctr.116+18
+	lds	r19, __llvm_gcov_ctr.116+19
+	lds	r20, __llvm_gcov_ctr.116+20
+	lds	r21, __llvm_gcov_ctr.116+21
+	lds	r22, __llvm_gcov_ctr.116+22
+	lds	r23, __llvm_gcov_ctr.116+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.116+23, r23
+	sts	__llvm_gcov_ctr.116+22, r22
+	sts	__llvm_gcov_ctr.116+21, r21
+	sts	__llvm_gcov_ctr.116+20, r20
+	sts	__llvm_gcov_ctr.116+19, r19
+	sts	__llvm_gcov_ctr.116+18, r18
+	sts	__llvm_gcov_ctr.116+17, r25
+	sts	__llvm_gcov_ctr.116+16, r24
 	ldd	r24, Y+13
 	ldd	r25, Y+14
 	adiw	r24, 1
@@ -24705,28 +33666,57 @@ __popcounthi2:                          ; @__popcounthi2
 	.type	__mulsi3_iq2000,@function
 __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 14
+	sbiw	r28, 16
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+14, r25
-	std	Y+13, r24
-	std	Y+12, r23
-	std	Y+11, r22
-	std	Y+10, r21
-	std	Y+9, r20
-	std	Y+8, r19
-	std	Y+7, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.117
+	lds	r31, __llvm_gcov_ctr.117+1
+	lds	r26, __llvm_gcov_ctr.117+2
+	lds	r27, __llvm_gcov_ctr.117+3
+	lds	r16, __llvm_gcov_ctr.117+4
+	lds	r17, __llvm_gcov_ctr.117+5
+	lds	r24, __llvm_gcov_ctr.117+6
+	lds	r25, __llvm_gcov_ctr.117+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.117+7, r25
+	sts	__llvm_gcov_ctr.117+6, r24
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.117+5, r17
+	sts	__llvm_gcov_ctr.117+4, r16
+	sts	__llvm_gcov_ctr.117+3, r27
+	sts	__llvm_gcov_ctr.117+2, r26
+	sts	__llvm_gcov_ctr.117+1, r31
+	sts	__llvm_gcov_ctr.117, r30
+	std	Y+16, r25
+	std	Y+15, r24
+	std	Y+14, r23
+	std	Y+13, r22
+	std	Y+12, r21
+	std	Y+11, r20
+	std	Y+10, r19
+	std	Y+9, r18
 	lds	r24, __profc___mulsi3_iq2000
 	lds	r25, __profc___mulsi3_iq2000+1
 	lds	r18, __profc___mulsi3_iq2000+2
@@ -24753,16 +33743,16 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	sts	__profc___mulsi3_iq2000, r24
 	ldi	r24, 0
 	ldi	r25, 0
+	std	Y+8, r25
+	std	Y+7, r24
 	std	Y+6, r25
 	std	Y+5, r24
-	std	Y+4, r25
-	std	Y+3, r24
 	rjmp	.LBB117_1
 .LBB117_1:                              ; =>This Inner Loop Header: Depth=1
-	ldd	r18, Y+13
-	ldd	r19, Y+14
-	ldd	r24, Y+11
-	ldd	r25, Y+12
+	ldd	r18, Y+15
+	ldd	r19, Y+16
+	ldd	r24, Y+13
+	ldd	r25, Y+14
 	mov	r22, r24
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	ldi	r20, 0
@@ -24812,12 +33802,36 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	sts	__profc___mulsi3_iq2000+10, r18
 	sts	__profc___mulsi3_iq2000+9, r25
 	sts	__profc___mulsi3_iq2000+8, r24
-	ldd	r24, Y+11
+	ldd	r24, Y+13
 	andi	r24, 1
 	cpi	r24, 0
 	brne	.LBB117_5
 	rjmp	.LBB117_6
 .LBB117_5:                              ;   in Loop: Header=BB117_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.117+8
+	lds	r25, __llvm_gcov_ctr.117+9
+	lds	r18, __llvm_gcov_ctr.117+10
+	lds	r19, __llvm_gcov_ctr.117+11
+	lds	r20, __llvm_gcov_ctr.117+12
+	lds	r21, __llvm_gcov_ctr.117+13
+	lds	r22, __llvm_gcov_ctr.117+14
+	lds	r23, __llvm_gcov_ctr.117+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.117+15, r23
+	sts	__llvm_gcov_ctr.117+14, r22
+	sts	__llvm_gcov_ctr.117+13, r21
+	sts	__llvm_gcov_ctr.117+12, r20
+	sts	__llvm_gcov_ctr.117+11, r19
+	sts	__llvm_gcov_ctr.117+10, r18
+	sts	__llvm_gcov_ctr.117+9, r25
+	sts	__llvm_gcov_ctr.117+8, r24
 	lds	r24, __profc___mulsi3_iq2000+16
 	lds	r25, __profc___mulsi3_iq2000+17
 	lds	r18, __profc___mulsi3_iq2000+18
@@ -24842,28 +33856,52 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	sts	__profc___mulsi3_iq2000+18, r18
 	sts	__profc___mulsi3_iq2000+17, r25
 	sts	__profc___mulsi3_iq2000+16, r24
-	ldd	r22, Y+7
-	ldd	r23, Y+8
-	ldd	r20, Y+9
-	ldd	r21, Y+10
-	ldd	r24, Y+3
-	ldd	r25, Y+4
-	ldd	r18, Y+5
-	ldd	r19, Y+6
+	ldd	r22, Y+9
+	ldd	r23, Y+10
+	ldd	r20, Y+11
+	ldd	r21, Y+12
+	ldd	r24, Y+5
+	ldd	r25, Y+6
+	ldd	r18, Y+7
+	ldd	r19, Y+8
 	add	r24, r22
 	adc	r25, r23
 	adc	r18, r20
 	adc	r19, r21
-	std	Y+6, r19
-	std	Y+5, r18
-	std	Y+4, r25
-	std	Y+3, r24
+	std	Y+8, r19
+	std	Y+7, r18
+	std	Y+6, r25
+	std	Y+5, r24
 	rjmp	.LBB117_6
 .LBB117_6:                              ;   in Loop: Header=BB117_1 Depth=1
-	ldd	r18, Y+13
-	ldd	r19, Y+14
-	ldd	r24, Y+11
-	ldd	r25, Y+12
+	lds	r24, __llvm_gcov_ctr.117+16
+	lds	r25, __llvm_gcov_ctr.117+17
+	lds	r18, __llvm_gcov_ctr.117+18
+	lds	r19, __llvm_gcov_ctr.117+19
+	lds	r20, __llvm_gcov_ctr.117+20
+	lds	r21, __llvm_gcov_ctr.117+21
+	lds	r22, __llvm_gcov_ctr.117+22
+	lds	r23, __llvm_gcov_ctr.117+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.117+23, r23
+	sts	__llvm_gcov_ctr.117+22, r22
+	sts	__llvm_gcov_ctr.117+21, r21
+	sts	__llvm_gcov_ctr.117+20, r20
+	sts	__llvm_gcov_ctr.117+19, r19
+	sts	__llvm_gcov_ctr.117+18, r18
+	sts	__llvm_gcov_ctr.117+17, r25
+	sts	__llvm_gcov_ctr.117+16, r24
+	ldd	r18, Y+15
+	ldd	r19, Y+16
+	ldd	r24, Y+13
+	ldd	r25, Y+14
                                         ; kill: def $r20 killed $r1
 	mov	r20, r19
 	lsr	r20
@@ -24877,14 +33915,14 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	mov	r25, r19
                                         ; kill: def $r18 killed $r18 def $r19r18
 	mov	r19, r20
-	std	Y+14, r19
-	std	Y+13, r18
-	std	Y+12, r25
-	std	Y+11, r24
-	ldd	r18, Y+9
-	ldd	r19, Y+10
-	ldd	r24, Y+7
-	ldd	r25, Y+8
+	std	Y+16, r19
+	std	Y+15, r18
+	std	Y+14, r25
+	std	Y+13, r24
+	ldd	r18, Y+11
+	ldd	r19, Y+12
+	ldd	r24, Y+9
+	ldd	r25, Y+10
                                         ; kill: def $r20 killed $r1
 	mov	r20, r24
 	lsl	r20
@@ -24898,17 +33936,17 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	mov	r18, r24
                                         ; kill: def $r25 killed $r25 def $r25r24
 	mov	r24, r20
-	std	Y+10, r19
-	std	Y+9, r18
-	std	Y+8, r25
-	std	Y+7, r24
+	std	Y+12, r19
+	std	Y+11, r18
+	std	Y+10, r25
+	std	Y+9, r24
 	rjmp	.LBB117_1
 .LBB117_7:
-	ldd	r22, Y+3
-	ldd	r23, Y+4
-	ldd	r24, Y+5
-	ldd	r25, Y+6
-	adiw	r28, 14
+	ldd	r22, Y+5
+	ldd	r23, Y+6
+	ldd	r24, Y+7
+	ldd	r25, Y+8
+	adiw	r28, 16
 	in	r0, 63
 	cli
 	out	62, r29
@@ -24916,6 +33954,8 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end117:
 	.size	__mulsi3_iq2000, .Lfunc_end117-__mulsi3_iq2000
@@ -25004,6 +34044,30 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	std	Y+4, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB118_1
 .LBB118_3:
+	lds	r24, __llvm_gcov_ctr.118+8
+	lds	r25, __llvm_gcov_ctr.118+9
+	lds	r18, __llvm_gcov_ctr.118+10
+	lds	r19, __llvm_gcov_ctr.118+11
+	lds	r20, __llvm_gcov_ctr.118+12
+	lds	r21, __llvm_gcov_ctr.118+13
+	lds	r22, __llvm_gcov_ctr.118+14
+	lds	r23, __llvm_gcov_ctr.118+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.118+15, r23
+	sts	__llvm_gcov_ctr.118+14, r22
+	sts	__llvm_gcov_ctr.118+13, r21
+	sts	__llvm_gcov_ctr.118+12, r20
+	sts	__llvm_gcov_ctr.118+11, r19
+	sts	__llvm_gcov_ctr.118+10, r18
+	sts	__llvm_gcov_ctr.118+9, r25
+	sts	__llvm_gcov_ctr.118+8, r24
 	lds	r24, __profc___mulsi3_lm32+8
 	lds	r25, __profc___mulsi3_lm32+9
 	lds	r18, __profc___mulsi3_lm32+10
@@ -25036,6 +34100,30 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	std	Y+17, r24
 	rjmp	.LBB118_12
 .LBB118_4:
+	lds	r24, __llvm_gcov_ctr.118
+	lds	r25, __llvm_gcov_ctr.118+1
+	lds	r18, __llvm_gcov_ctr.118+2
+	lds	r19, __llvm_gcov_ctr.118+3
+	lds	r20, __llvm_gcov_ctr.118+4
+	lds	r21, __llvm_gcov_ctr.118+5
+	lds	r22, __llvm_gcov_ctr.118+6
+	lds	r23, __llvm_gcov_ctr.118+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.118+7, r23
+	sts	__llvm_gcov_ctr.118+6, r22
+	sts	__llvm_gcov_ctr.118+5, r21
+	sts	__llvm_gcov_ctr.118+4, r20
+	sts	__llvm_gcov_ctr.118+3, r19
+	sts	__llvm_gcov_ctr.118+2, r18
+	sts	__llvm_gcov_ctr.118+1, r25
+	sts	__llvm_gcov_ctr.118, r24
 	rjmp	.LBB118_5
 .LBB118_5:                              ; =>This Inner Loop Header: Depth=1
 	ldd	r18, Y+11
@@ -25097,6 +34185,30 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	brne	.LBB118_9
 	rjmp	.LBB118_10
 .LBB118_9:                              ;   in Loop: Header=BB118_5 Depth=1
+	lds	r24, __llvm_gcov_ctr.118+16
+	lds	r25, __llvm_gcov_ctr.118+17
+	lds	r18, __llvm_gcov_ctr.118+18
+	lds	r19, __llvm_gcov_ctr.118+19
+	lds	r20, __llvm_gcov_ctr.118+20
+	lds	r21, __llvm_gcov_ctr.118+21
+	lds	r22, __llvm_gcov_ctr.118+22
+	lds	r23, __llvm_gcov_ctr.118+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.118+23, r23
+	sts	__llvm_gcov_ctr.118+22, r22
+	sts	__llvm_gcov_ctr.118+21, r21
+	sts	__llvm_gcov_ctr.118+20, r20
+	sts	__llvm_gcov_ctr.118+19, r19
+	sts	__llvm_gcov_ctr.118+18, r18
+	sts	__llvm_gcov_ctr.118+17, r25
+	sts	__llvm_gcov_ctr.118+16, r24
 	lds	r24, __profc___mulsi3_lm32+24
 	lds	r25, __profc___mulsi3_lm32+25
 	lds	r18, __profc___mulsi3_lm32+26
@@ -25139,6 +34251,30 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	std	Y+5, r24
 	rjmp	.LBB118_10
 .LBB118_10:                             ;   in Loop: Header=BB118_5 Depth=1
+	lds	r24, __llvm_gcov_ctr.118+24
+	lds	r25, __llvm_gcov_ctr.118+25
+	lds	r18, __llvm_gcov_ctr.118+26
+	lds	r19, __llvm_gcov_ctr.118+27
+	lds	r20, __llvm_gcov_ctr.118+28
+	lds	r21, __llvm_gcov_ctr.118+29
+	lds	r22, __llvm_gcov_ctr.118+30
+	lds	r23, __llvm_gcov_ctr.118+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.118+31, r23
+	sts	__llvm_gcov_ctr.118+30, r22
+	sts	__llvm_gcov_ctr.118+29, r21
+	sts	__llvm_gcov_ctr.118+28, r20
+	sts	__llvm_gcov_ctr.118+27, r19
+	sts	__llvm_gcov_ctr.118+26, r18
+	sts	__llvm_gcov_ctr.118+25, r25
+	sts	__llvm_gcov_ctr.118+24, r24
 	ldd	r18, Y+15
 	ldd	r19, Y+16
 	ldd	r24, Y+13
@@ -25307,6 +34443,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	std	Y+18, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB119_2
 .LBB119_4:                              ;   in Loop: Header=BB119_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.119
+	lds	r25, __llvm_gcov_ctr.119+1
+	lds	r18, __llvm_gcov_ctr.119+2
+	lds	r19, __llvm_gcov_ctr.119+3
+	lds	r20, __llvm_gcov_ctr.119+4
+	lds	r21, __llvm_gcov_ctr.119+5
+	lds	r22, __llvm_gcov_ctr.119+6
+	lds	r23, __llvm_gcov_ctr.119+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+7, r23
+	sts	__llvm_gcov_ctr.119+6, r22
+	sts	__llvm_gcov_ctr.119+5, r21
+	sts	__llvm_gcov_ctr.119+4, r20
+	sts	__llvm_gcov_ctr.119+3, r19
+	sts	__llvm_gcov_ctr.119+2, r18
+	sts	__llvm_gcov_ctr.119+1, r25
+	sts	__llvm_gcov_ctr.119, r24
 	lds	r24, __profc___udivmodsi4+32
 	lds	r25, __profc___udivmodsi4+33
 	lds	r18, __profc___udivmodsi4+34
@@ -25362,6 +34522,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	std	Y+15, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB119_5
 .LBB119_7:                              ;   in Loop: Header=BB119_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.119+8
+	lds	r25, __llvm_gcov_ctr.119+9
+	lds	r18, __llvm_gcov_ctr.119+10
+	lds	r19, __llvm_gcov_ctr.119+11
+	lds	r20, __llvm_gcov_ctr.119+12
+	lds	r21, __llvm_gcov_ctr.119+13
+	lds	r22, __llvm_gcov_ctr.119+14
+	lds	r23, __llvm_gcov_ctr.119+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+15, r23
+	sts	__llvm_gcov_ctr.119+14, r22
+	sts	__llvm_gcov_ctr.119+13, r21
+	sts	__llvm_gcov_ctr.119+12, r20
+	sts	__llvm_gcov_ctr.119+11, r19
+	sts	__llvm_gcov_ctr.119+10, r18
+	sts	__llvm_gcov_ctr.119+9, r25
+	sts	__llvm_gcov_ctr.119+8, r24
 	lds	r24, __profc___udivmodsi4+40
 	lds	r25, __profc___udivmodsi4+41
 	lds	r18, __profc___udivmodsi4+42
@@ -25467,6 +34651,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	rjmp	.LBB119_9
 .LBB119_13:                             ;   in Loop: Header=BB119_1 Depth=1
 	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.119+16
+	lds	r19, __llvm_gcov_ctr.119+17
+	lds	r20, __llvm_gcov_ctr.119+18
+	lds	r21, __llvm_gcov_ctr.119+19
+	lds	r22, __llvm_gcov_ctr.119+20
+	lds	r23, __llvm_gcov_ctr.119+21
+	lds	r30, __llvm_gcov_ctr.119+22
+	lds	r31, __llvm_gcov_ctr.119+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.119+23, r31
+	sts	__llvm_gcov_ctr.119+22, r30
+	sts	__llvm_gcov_ctr.119+21, r23
+	sts	__llvm_gcov_ctr.119+20, r22
+	sts	__llvm_gcov_ctr.119+19, r21
+	sts	__llvm_gcov_ctr.119+18, r20
+	sts	__llvm_gcov_ctr.119+17, r19
+	sts	__llvm_gcov_ctr.119+16, r18
 	lds	r18, __profc___udivmodsi4+24
 	lds	r19, __profc___udivmodsi4+25
 	lds	r20, __profc___udivmodsi4+26
@@ -25500,6 +34708,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	brne	.LBB119_15
 	rjmp	.LBB119_16
 .LBB119_15:                             ;   in Loop: Header=BB119_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.119+24
+	lds	r25, __llvm_gcov_ctr.119+25
+	lds	r18, __llvm_gcov_ctr.119+26
+	lds	r19, __llvm_gcov_ctr.119+27
+	lds	r20, __llvm_gcov_ctr.119+28
+	lds	r21, __llvm_gcov_ctr.119+29
+	lds	r22, __llvm_gcov_ctr.119+30
+	lds	r23, __llvm_gcov_ctr.119+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+31, r23
+	sts	__llvm_gcov_ctr.119+30, r22
+	sts	__llvm_gcov_ctr.119+29, r21
+	sts	__llvm_gcov_ctr.119+28, r20
+	sts	__llvm_gcov_ctr.119+27, r19
+	sts	__llvm_gcov_ctr.119+26, r18
+	sts	__llvm_gcov_ctr.119+25, r25
+	sts	__llvm_gcov_ctr.119+24, r24
 	lds	r24, __profc___udivmodsi4+8
 	lds	r25, __profc___udivmodsi4+9
 	lds	r18, __profc___udivmodsi4+10
@@ -25652,6 +34884,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB119_21
 .LBB119_23:                             ;   in Loop: Header=BB119_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.119+32
+	lds	r25, __llvm_gcov_ctr.119+33
+	lds	r18, __llvm_gcov_ctr.119+34
+	lds	r19, __llvm_gcov_ctr.119+35
+	lds	r20, __llvm_gcov_ctr.119+36
+	lds	r21, __llvm_gcov_ctr.119+37
+	lds	r22, __llvm_gcov_ctr.119+38
+	lds	r23, __llvm_gcov_ctr.119+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+39, r23
+	sts	__llvm_gcov_ctr.119+38, r22
+	sts	__llvm_gcov_ctr.119+37, r21
+	sts	__llvm_gcov_ctr.119+36, r20
+	sts	__llvm_gcov_ctr.119+35, r19
+	sts	__llvm_gcov_ctr.119+34, r18
+	sts	__llvm_gcov_ctr.119+33, r25
+	sts	__llvm_gcov_ctr.119+32, r24
 	lds	r24, __profc___udivmodsi4+56
 	lds	r25, __profc___udivmodsi4+57
 	lds	r18, __profc___udivmodsi4+58
@@ -25710,6 +34966,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	std	Y+19, r24
 	rjmp	.LBB119_24
 .LBB119_24:                             ;   in Loop: Header=BB119_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.119+40
+	lds	r25, __llvm_gcov_ctr.119+41
+	lds	r18, __llvm_gcov_ctr.119+42
+	lds	r19, __llvm_gcov_ctr.119+43
+	lds	r20, __llvm_gcov_ctr.119+44
+	lds	r21, __llvm_gcov_ctr.119+45
+	lds	r22, __llvm_gcov_ctr.119+46
+	lds	r23, __llvm_gcov_ctr.119+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+47, r23
+	sts	__llvm_gcov_ctr.119+46, r22
+	sts	__llvm_gcov_ctr.119+45, r21
+	sts	__llvm_gcov_ctr.119+44, r20
+	sts	__llvm_gcov_ctr.119+43, r19
+	sts	__llvm_gcov_ctr.119+42, r18
+	sts	__llvm_gcov_ctr.119+41, r25
+	sts	__llvm_gcov_ctr.119+40, r24
 	ldd	r18, Y+25
 	ldd	r19, Y+26
 	ldd	r24, Y+23
@@ -25763,6 +35043,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	brne	.LBB119_26
 	rjmp	.LBB119_27
 .LBB119_26:
+	lds	r24, __llvm_gcov_ctr.119+48
+	lds	r25, __llvm_gcov_ctr.119+49
+	lds	r18, __llvm_gcov_ctr.119+50
+	lds	r19, __llvm_gcov_ctr.119+51
+	lds	r20, __llvm_gcov_ctr.119+52
+	lds	r21, __llvm_gcov_ctr.119+53
+	lds	r22, __llvm_gcov_ctr.119+54
+	lds	r23, __llvm_gcov_ctr.119+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+55, r23
+	sts	__llvm_gcov_ctr.119+54, r22
+	sts	__llvm_gcov_ctr.119+53, r21
+	sts	__llvm_gcov_ctr.119+52, r20
+	sts	__llvm_gcov_ctr.119+51, r19
+	sts	__llvm_gcov_ctr.119+50, r18
+	sts	__llvm_gcov_ctr.119+49, r25
+	sts	__llvm_gcov_ctr.119+48, r24
 	lds	r24, __profc___udivmodsi4+64
 	lds	r25, __profc___udivmodsi4+65
 	lds	r18, __profc___udivmodsi4+66
@@ -25797,6 +35101,30 @@ __udivmodsi4:                           ; @__udivmodsi4
 	std	Y+37, r24
 	rjmp	.LBB119_28
 .LBB119_27:
+	lds	r24, __llvm_gcov_ctr.119+56
+	lds	r25, __llvm_gcov_ctr.119+57
+	lds	r18, __llvm_gcov_ctr.119+58
+	lds	r19, __llvm_gcov_ctr.119+59
+	lds	r20, __llvm_gcov_ctr.119+60
+	lds	r21, __llvm_gcov_ctr.119+61
+	lds	r22, __llvm_gcov_ctr.119+62
+	lds	r23, __llvm_gcov_ctr.119+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.119+63, r23
+	sts	__llvm_gcov_ctr.119+62, r22
+	sts	__llvm_gcov_ctr.119+61, r21
+	sts	__llvm_gcov_ctr.119+60, r20
+	sts	__llvm_gcov_ctr.119+59, r19
+	sts	__llvm_gcov_ctr.119+58, r18
+	sts	__llvm_gcov_ctr.119+57, r25
+	sts	__llvm_gcov_ctr.119+56, r24
 	ldd	r24, Y+19
 	ldd	r25, Y+20
 	ldd	r18, Y+21
@@ -25887,6 +35215,30 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	brmi	.LBB120_1
 	rjmp	.LBB120_2
 .LBB120_1:
+	lds	r24, __llvm_gcov_ctr.120
+	lds	r25, __llvm_gcov_ctr.120+1
+	lds	r18, __llvm_gcov_ctr.120+2
+	lds	r19, __llvm_gcov_ctr.120+3
+	lds	r20, __llvm_gcov_ctr.120+4
+	lds	r21, __llvm_gcov_ctr.120+5
+	lds	r22, __llvm_gcov_ctr.120+6
+	lds	r23, __llvm_gcov_ctr.120+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.120+7, r23
+	sts	__llvm_gcov_ctr.120+6, r22
+	sts	__llvm_gcov_ctr.120+5, r21
+	sts	__llvm_gcov_ctr.120+4, r20
+	sts	__llvm_gcov_ctr.120+3, r19
+	sts	__llvm_gcov_ctr.120+2, r18
+	sts	__llvm_gcov_ctr.120+1, r25
+	sts	__llvm_gcov_ctr.120, r24
 	lds	r24, __profc___mspabi_cmpf+8
 	lds	r25, __profc___mspabi_cmpf+9
 	lds	r18, __profc___mspabi_cmpf+10
@@ -25932,6 +35284,30 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	brlt	.LBB120_3
 	rjmp	.LBB120_4
 .LBB120_3:
+	lds	r24, __llvm_gcov_ctr.120+8
+	lds	r25, __llvm_gcov_ctr.120+9
+	lds	r18, __llvm_gcov_ctr.120+10
+	lds	r19, __llvm_gcov_ctr.120+11
+	lds	r20, __llvm_gcov_ctr.120+12
+	lds	r21, __llvm_gcov_ctr.120+13
+	lds	r22, __llvm_gcov_ctr.120+14
+	lds	r23, __llvm_gcov_ctr.120+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.120+15, r23
+	sts	__llvm_gcov_ctr.120+14, r22
+	sts	__llvm_gcov_ctr.120+13, r21
+	sts	__llvm_gcov_ctr.120+12, r20
+	sts	__llvm_gcov_ctr.120+11, r19
+	sts	__llvm_gcov_ctr.120+10, r18
+	sts	__llvm_gcov_ctr.120+9, r25
+	sts	__llvm_gcov_ctr.120+8, r24
 	lds	r24, __profc___mspabi_cmpf+16
 	lds	r25, __profc___mspabi_cmpf+17
 	lds	r18, __profc___mspabi_cmpf+18
@@ -25962,6 +35338,30 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	std	Y+9, r24
 	rjmp	.LBB120_5
 .LBB120_4:
+	lds	r24, __llvm_gcov_ctr.120+16
+	lds	r25, __llvm_gcov_ctr.120+17
+	lds	r18, __llvm_gcov_ctr.120+18
+	lds	r19, __llvm_gcov_ctr.120+19
+	lds	r20, __llvm_gcov_ctr.120+20
+	lds	r21, __llvm_gcov_ctr.120+21
+	lds	r22, __llvm_gcov_ctr.120+22
+	lds	r23, __llvm_gcov_ctr.120+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.120+23, r23
+	sts	__llvm_gcov_ctr.120+22, r22
+	sts	__llvm_gcov_ctr.120+21, r21
+	sts	__llvm_gcov_ctr.120+20, r20
+	sts	__llvm_gcov_ctr.120+19, r19
+	sts	__llvm_gcov_ctr.120+18, r18
+	sts	__llvm_gcov_ctr.120+17, r25
+	sts	__llvm_gcov_ctr.120+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+10, r25
@@ -26046,6 +35446,30 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	brmi	.LBB121_1
 	rjmp	.LBB121_2
 .LBB121_1:
+	lds	r24, __llvm_gcov_ctr.121
+	lds	r25, __llvm_gcov_ctr.121+1
+	lds	r18, __llvm_gcov_ctr.121+2
+	lds	r19, __llvm_gcov_ctr.121+3
+	lds	r20, __llvm_gcov_ctr.121+4
+	lds	r21, __llvm_gcov_ctr.121+5
+	lds	r22, __llvm_gcov_ctr.121+6
+	lds	r23, __llvm_gcov_ctr.121+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.121+7, r23
+	sts	__llvm_gcov_ctr.121+6, r22
+	sts	__llvm_gcov_ctr.121+5, r21
+	sts	__llvm_gcov_ctr.121+4, r20
+	sts	__llvm_gcov_ctr.121+3, r19
+	sts	__llvm_gcov_ctr.121+2, r18
+	sts	__llvm_gcov_ctr.121+1, r25
+	sts	__llvm_gcov_ctr.121, r24
 	lds	r24, __profc___mspabi_cmpd+8
 	lds	r25, __profc___mspabi_cmpd+9
 	lds	r18, __profc___mspabi_cmpd+10
@@ -26091,6 +35515,30 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	brlt	.LBB121_3
 	rjmp	.LBB121_4
 .LBB121_3:
+	lds	r24, __llvm_gcov_ctr.121+8
+	lds	r25, __llvm_gcov_ctr.121+9
+	lds	r18, __llvm_gcov_ctr.121+10
+	lds	r19, __llvm_gcov_ctr.121+11
+	lds	r20, __llvm_gcov_ctr.121+12
+	lds	r21, __llvm_gcov_ctr.121+13
+	lds	r22, __llvm_gcov_ctr.121+14
+	lds	r23, __llvm_gcov_ctr.121+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.121+15, r23
+	sts	__llvm_gcov_ctr.121+14, r22
+	sts	__llvm_gcov_ctr.121+13, r21
+	sts	__llvm_gcov_ctr.121+12, r20
+	sts	__llvm_gcov_ctr.121+11, r19
+	sts	__llvm_gcov_ctr.121+10, r18
+	sts	__llvm_gcov_ctr.121+9, r25
+	sts	__llvm_gcov_ctr.121+8, r24
 	lds	r24, __profc___mspabi_cmpd+16
 	lds	r25, __profc___mspabi_cmpd+17
 	lds	r18, __profc___mspabi_cmpd+18
@@ -26121,6 +35569,30 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	std	Y+11, r24
 	rjmp	.LBB121_5
 .LBB121_4:
+	lds	r24, __llvm_gcov_ctr.121+16
+	lds	r25, __llvm_gcov_ctr.121+17
+	lds	r18, __llvm_gcov_ctr.121+18
+	lds	r19, __llvm_gcov_ctr.121+19
+	lds	r20, __llvm_gcov_ctr.121+20
+	lds	r21, __llvm_gcov_ctr.121+21
+	lds	r22, __llvm_gcov_ctr.121+22
+	lds	r23, __llvm_gcov_ctr.121+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.121+23, r23
+	sts	__llvm_gcov_ctr.121+22, r22
+	sts	__llvm_gcov_ctr.121+21, r21
+	sts	__llvm_gcov_ctr.121+20, r20
+	sts	__llvm_gcov_ctr.121+19, r19
+	sts	__llvm_gcov_ctr.121+18, r18
+	sts	__llvm_gcov_ctr.121+17, r25
+	sts	__llvm_gcov_ctr.121+16, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+12, r25
@@ -26158,24 +35630,51 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 8
+	sbiw	r28, 10
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.122
+	lds	r31, __llvm_gcov_ctr.122+1
+	lds	r26, __llvm_gcov_ctr.122+2
+	lds	r27, __llvm_gcov_ctr.122+3
+	lds	r16, __llvm_gcov_ctr.122+4
+	lds	r17, __llvm_gcov_ctr.122+5
+	lds	r24, __llvm_gcov_ctr.122+6
+	lds	r25, __llvm_gcov_ctr.122+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.122+7, r25
+	sts	__llvm_gcov_ctr.122+6, r24
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.122+5, r17
+	sts	__llvm_gcov_ctr.122+4, r16
+	sts	__llvm_gcov_ctr.122+3, r27
+	sts	__llvm_gcov_ctr.122+2, r26
+	sts	__llvm_gcov_ctr.122+1, r31
+	sts	__llvm_gcov_ctr.122, r30
+	std	Y+10, r25
+	std	Y+9, r24
+	std	Y+8, r23
+	std	Y+7, r22
+	std	Y+6, r21
+	std	Y+5, r20
+	std	Y+4, r19
+	std	Y+3, r18
 	lds	r24, __profc___mspabi_mpysll
 	lds	r25, __profc___mspabi_mpysll+1
 	lds	r18, __profc___mspabi_mpysll+2
@@ -26200,10 +35699,10 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	sts	__profc___mspabi_mpysll+2, r18
 	sts	__profc___mspabi_mpysll+1, r25
 	sts	__profc___mspabi_mpysll, r24
-	ldd	r20, Y+7
-	ldd	r21, Y+8
-	ldd	r18, Y+5
-	ldd	r19, Y+6
+	ldd	r20, Y+9
+	ldd	r21, Y+10
+	ldd	r18, Y+7
+	ldd	r19, Y+8
                                         ; kill: def $r24 killed $r1
                                         ; kill: def $r24 killed $r1
 	mov	r24, r21
@@ -26213,10 +35712,10 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	mov	r23, r30
 	mov	r24, r30
 	mov	r25, r30
-	ldd	r12, Y+3
-	ldd	r13, Y+4
-	ldd	r10, Y+1
-	ldd	r11, Y+2
+	ldd	r12, Y+5
+	ldd	r13, Y+6
+	ldd	r10, Y+3
+	ldd	r11, Y+4
                                         ; kill: def $r30 killed $r1
                                         ; kill: def $r30 killed $r1
 	mov	r30, r13
@@ -26227,7 +35726,7 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	mov	r16, r30
 	mov	r17, r30
 	rcall	__muldi3
-	adiw	r28, 8
+	adiw	r28, 10
 	in	r0, 63
 	cli
 	out	62, r29
@@ -26264,24 +35763,51 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 8
+	sbiw	r28, 10
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.123
+	lds	r31, __llvm_gcov_ctr.123+1
+	lds	r26, __llvm_gcov_ctr.123+2
+	lds	r27, __llvm_gcov_ctr.123+3
+	lds	r16, __llvm_gcov_ctr.123+4
+	lds	r17, __llvm_gcov_ctr.123+5
+	lds	r24, __llvm_gcov_ctr.123+6
+	lds	r25, __llvm_gcov_ctr.123+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.123+7, r25
+	sts	__llvm_gcov_ctr.123+6, r24
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.123+5, r17
+	sts	__llvm_gcov_ctr.123+4, r16
+	sts	__llvm_gcov_ctr.123+3, r27
+	sts	__llvm_gcov_ctr.123+2, r26
+	sts	__llvm_gcov_ctr.123+1, r31
+	sts	__llvm_gcov_ctr.123, r30
+	std	Y+10, r25
+	std	Y+9, r24
+	std	Y+8, r23
+	std	Y+7, r22
+	std	Y+6, r21
+	std	Y+5, r20
+	std	Y+4, r19
+	std	Y+3, r18
 	lds	r24, __profc___mspabi_mpyull
 	lds	r25, __profc___mspabi_mpyull+1
 	lds	r18, __profc___mspabi_mpyull+2
@@ -26306,14 +35832,14 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	sts	__profc___mspabi_mpyull+2, r18
 	sts	__profc___mspabi_mpyull+1, r25
 	sts	__profc___mspabi_mpyull, r24
-	ldd	r18, Y+5
-	ldd	r19, Y+6
-	ldd	r20, Y+7
-	ldd	r21, Y+8
-	ldd	r10, Y+1
-	ldd	r11, Y+2
-	ldd	r12, Y+3
-	ldd	r13, Y+4
+	ldd	r18, Y+7
+	ldd	r19, Y+8
+	ldd	r20, Y+9
+	ldd	r21, Y+10
+	ldd	r10, Y+3
+	ldd	r11, Y+4
+	ldd	r12, Y+5
+	ldd	r13, Y+6
 	ldi	r16, 0
 	ldi	r17, 0
 	mov	r22, r16
@@ -26323,7 +35849,7 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	mov	r14, r16
 	mov	r15, r17
 	rcall	__muldi3
-	adiw	r28, 8
+	adiw	r28, 10
 	in	r0, 63
 	cli
 	out	62, r29
@@ -26399,6 +35925,30 @@ __mulhi3:                               ; @__mulhi3
 	brmi	.LBB124_1
 	rjmp	.LBB124_2
 .LBB124_1:
+	lds	r24, __llvm_gcov_ctr.124
+	lds	r25, __llvm_gcov_ctr.124+1
+	lds	r18, __llvm_gcov_ctr.124+2
+	lds	r19, __llvm_gcov_ctr.124+3
+	lds	r20, __llvm_gcov_ctr.124+4
+	lds	r21, __llvm_gcov_ctr.124+5
+	lds	r22, __llvm_gcov_ctr.124+6
+	lds	r23, __llvm_gcov_ctr.124+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+7, r23
+	sts	__llvm_gcov_ctr.124+6, r22
+	sts	__llvm_gcov_ctr.124+5, r21
+	sts	__llvm_gcov_ctr.124+4, r20
+	sts	__llvm_gcov_ctr.124+3, r19
+	sts	__llvm_gcov_ctr.124+2, r18
+	sts	__llvm_gcov_ctr.124+1, r25
+	sts	__llvm_gcov_ctr.124, r24
 	lds	r24, __profc___mulhi3+8
 	lds	r25, __profc___mulhi3+9
 	lds	r18, __profc___mulhi3+10
@@ -26452,6 +36002,30 @@ __mulhi3:                               ; @__mulhi3
 	brne	.LBB124_4
 	rjmp	.LBB124_8
 .LBB124_4:                              ;   in Loop: Header=BB124_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.124+8
+	lds	r25, __llvm_gcov_ctr.124+9
+	lds	r18, __llvm_gcov_ctr.124+10
+	lds	r19, __llvm_gcov_ctr.124+11
+	lds	r20, __llvm_gcov_ctr.124+12
+	lds	r21, __llvm_gcov_ctr.124+13
+	lds	r22, __llvm_gcov_ctr.124+14
+	lds	r23, __llvm_gcov_ctr.124+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+15, r23
+	sts	__llvm_gcov_ctr.124+14, r22
+	sts	__llvm_gcov_ctr.124+13, r21
+	sts	__llvm_gcov_ctr.124+12, r20
+	sts	__llvm_gcov_ctr.124+11, r19
+	sts	__llvm_gcov_ctr.124+10, r18
+	sts	__llvm_gcov_ctr.124+9, r25
+	sts	__llvm_gcov_ctr.124+8, r24
 	lds	r24, __profc___mulhi3+24
 	lds	r25, __profc___mulhi3+25
 	lds	r18, __profc___mulhi3+26
@@ -26508,6 +36082,30 @@ __mulhi3:                               ; @__mulhi3
 	rjmp	.LBB124_5
 .LBB124_7:                              ;   in Loop: Header=BB124_3 Depth=1
 	ldd	r24, Y+3                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.124+16
+	lds	r19, __llvm_gcov_ctr.124+17
+	lds	r20, __llvm_gcov_ctr.124+18
+	lds	r21, __llvm_gcov_ctr.124+19
+	lds	r22, __llvm_gcov_ctr.124+20
+	lds	r23, __llvm_gcov_ctr.124+21
+	lds	r30, __llvm_gcov_ctr.124+22
+	lds	r31, __llvm_gcov_ctr.124+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.124+23, r31
+	sts	__llvm_gcov_ctr.124+22, r30
+	sts	__llvm_gcov_ctr.124+21, r23
+	sts	__llvm_gcov_ctr.124+20, r22
+	sts	__llvm_gcov_ctr.124+19, r21
+	sts	__llvm_gcov_ctr.124+18, r20
+	sts	__llvm_gcov_ctr.124+17, r19
+	sts	__llvm_gcov_ctr.124+16, r18
 	lds	r18, __profc___mulhi3+32
 	lds	r19, __profc___mulhi3+33
 	lds	r20, __profc___mulhi3+34
@@ -26571,6 +36169,30 @@ __mulhi3:                               ; @__mulhi3
 	brne	.LBB124_10
 	rjmp	.LBB124_11
 .LBB124_10:                             ;   in Loop: Header=BB124_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.124+24
+	lds	r25, __llvm_gcov_ctr.124+25
+	lds	r18, __llvm_gcov_ctr.124+26
+	lds	r19, __llvm_gcov_ctr.124+27
+	lds	r20, __llvm_gcov_ctr.124+28
+	lds	r21, __llvm_gcov_ctr.124+29
+	lds	r22, __llvm_gcov_ctr.124+30
+	lds	r23, __llvm_gcov_ctr.124+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+31, r23
+	sts	__llvm_gcov_ctr.124+30, r22
+	sts	__llvm_gcov_ctr.124+29, r21
+	sts	__llvm_gcov_ctr.124+28, r20
+	sts	__llvm_gcov_ctr.124+27, r19
+	sts	__llvm_gcov_ctr.124+26, r18
+	sts	__llvm_gcov_ctr.124+25, r25
+	sts	__llvm_gcov_ctr.124+24, r24
 	lds	r24, __profc___mulhi3+40
 	lds	r25, __profc___mulhi3+41
 	lds	r18, __profc___mulhi3+42
@@ -26619,6 +36241,30 @@ __mulhi3:                               ; @__mulhi3
 	std	Y+14, r24
 	rjmp	.LBB124_12
 .LBB124_12:                             ;   in Loop: Header=BB124_3 Depth=1
+	lds	r24, __llvm_gcov_ctr.124+32
+	lds	r25, __llvm_gcov_ctr.124+33
+	lds	r18, __llvm_gcov_ctr.124+34
+	lds	r19, __llvm_gcov_ctr.124+35
+	lds	r20, __llvm_gcov_ctr.124+36
+	lds	r21, __llvm_gcov_ctr.124+37
+	lds	r22, __llvm_gcov_ctr.124+38
+	lds	r23, __llvm_gcov_ctr.124+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+39, r23
+	sts	__llvm_gcov_ctr.124+38, r22
+	sts	__llvm_gcov_ctr.124+37, r21
+	sts	__llvm_gcov_ctr.124+36, r20
+	sts	__llvm_gcov_ctr.124+35, r19
+	sts	__llvm_gcov_ctr.124+34, r18
+	sts	__llvm_gcov_ctr.124+33, r25
+	sts	__llvm_gcov_ctr.124+32, r24
 	ldd	r24, Y+13
 	inc	r24
 	std	Y+13, r24
@@ -26633,6 +36279,30 @@ __mulhi3:                               ; @__mulhi3
 	brne	.LBB124_14
 	rjmp	.LBB124_15
 .LBB124_14:
+	lds	r24, __llvm_gcov_ctr.124+40
+	lds	r25, __llvm_gcov_ctr.124+41
+	lds	r18, __llvm_gcov_ctr.124+42
+	lds	r19, __llvm_gcov_ctr.124+43
+	lds	r20, __llvm_gcov_ctr.124+44
+	lds	r21, __llvm_gcov_ctr.124+45
+	lds	r22, __llvm_gcov_ctr.124+46
+	lds	r23, __llvm_gcov_ctr.124+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+47, r23
+	sts	__llvm_gcov_ctr.124+46, r22
+	sts	__llvm_gcov_ctr.124+45, r21
+	sts	__llvm_gcov_ctr.124+44, r20
+	sts	__llvm_gcov_ctr.124+43, r19
+	sts	__llvm_gcov_ctr.124+42, r18
+	sts	__llvm_gcov_ctr.124+41, r25
+	sts	__llvm_gcov_ctr.124+40, r24
 	lds	r24, __profc___mulhi3+48
 	lds	r25, __profc___mulhi3+49
 	lds	r18, __profc___mulhi3+50
@@ -26667,6 +36337,30 @@ __mulhi3:                               ; @__mulhi3
 	std	Y+1, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB124_16
 .LBB124_15:
+	lds	r24, __llvm_gcov_ctr.124+48
+	lds	r25, __llvm_gcov_ctr.124+49
+	lds	r18, __llvm_gcov_ctr.124+50
+	lds	r19, __llvm_gcov_ctr.124+51
+	lds	r20, __llvm_gcov_ctr.124+52
+	lds	r21, __llvm_gcov_ctr.124+53
+	lds	r22, __llvm_gcov_ctr.124+54
+	lds	r23, __llvm_gcov_ctr.124+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.124+55, r23
+	sts	__llvm_gcov_ctr.124+54, r22
+	sts	__llvm_gcov_ctr.124+53, r21
+	sts	__llvm_gcov_ctr.124+52, r20
+	sts	__llvm_gcov_ctr.124+51, r19
+	sts	__llvm_gcov_ctr.124+50, r18
+	sts	__llvm_gcov_ctr.124+49, r25
+	sts	__llvm_gcov_ctr.124+48, r24
 	ldd	r24, Y+9
 	ldd	r25, Y+10
 	std	Y+2, r25                        ; 2-byte Folded Spill
@@ -26698,24 +36392,51 @@ __divsi3:                               ; @__divsi3
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 22
+	sbiw	r28, 24
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+22, r25
-	std	Y+21, r24
-	std	Y+20, r23
-	std	Y+19, r22
-	std	Y+18, r21
-	std	Y+17, r20
-	std	Y+16, r19
-	std	Y+15, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.125
+	lds	r31, __llvm_gcov_ctr.125+1
+	lds	r26, __llvm_gcov_ctr.125+2
+	lds	r27, __llvm_gcov_ctr.125+3
+	lds	r16, __llvm_gcov_ctr.125+4
+	lds	r17, __llvm_gcov_ctr.125+5
+	lds	r24, __llvm_gcov_ctr.125+6
+	lds	r25, __llvm_gcov_ctr.125+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.125+7, r25
+	sts	__llvm_gcov_ctr.125+6, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.125+5, r17
+	sts	__llvm_gcov_ctr.125+4, r16
+	sts	__llvm_gcov_ctr.125+3, r27
+	sts	__llvm_gcov_ctr.125+2, r26
+	sts	__llvm_gcov_ctr.125+1, r31
+	sts	__llvm_gcov_ctr.125, r30
+	std	Y+24, r25
+	std	Y+23, r24
+	std	Y+22, r23
+	std	Y+21, r22
+	std	Y+20, r21
+	std	Y+19, r20
+	std	Y+18, r19
+	std	Y+17, r18
 	lds	r24, __profc___divsi3
 	lds	r25, __profc___divsi3+1
 	lds	r18, __profc___divsi3+2
@@ -26742,29 +36463,53 @@ __divsi3:                               ; @__divsi3
 	sts	__profc___divsi3, r24
 	ldi	r24, 0
 	ldi	r25, 0
-	std	Y+14, r25
-	std	Y+13, r24
-	ldd	r24, Y+21
-	ldd	r25, Y+22
+	std	Y+16, r25
+	std	Y+15, r24
+	ldd	r24, Y+23
+	ldd	r25, Y+24
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
-	std	Y+7, r24                        ; 1-byte Folded Spill
+	std	Y+9, r24                        ; 1-byte Folded Spill
 	ldi	r24, 1
 	tst	r25
-	std	Y+8, r24                        ; 1-byte Folded Spill
+	std	Y+10, r24                       ; 1-byte Folded Spill
 	brpl	.LBB125_1
 	rjmp	.LBB125_2
 .LBB125_1:
-	ldd	r24, Y+8                        ; 1-byte Folded Reload
+	ldd	r24, Y+10                       ; 1-byte Folded Reload
 	andi	r24, 1
 	cpi	r24, 0
 	breq	.LBB125_3
 	rjmp	.LBB125_6
 .LBB125_2:
-	ldd	r24, Y+7                        ; 1-byte Folded Reload
-	std	Y+8, r24                        ; 1-byte Folded Spill
+	ldd	r24, Y+9                        ; 1-byte Folded Reload
+	std	Y+10, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB125_1
 .LBB125_3:
+	lds	r24, __llvm_gcov_ctr.125+8
+	lds	r25, __llvm_gcov_ctr.125+9
+	lds	r18, __llvm_gcov_ctr.125+10
+	lds	r19, __llvm_gcov_ctr.125+11
+	lds	r20, __llvm_gcov_ctr.125+12
+	lds	r21, __llvm_gcov_ctr.125+13
+	lds	r22, __llvm_gcov_ctr.125+14
+	lds	r23, __llvm_gcov_ctr.125+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.125+15, r23
+	sts	__llvm_gcov_ctr.125+14, r22
+	sts	__llvm_gcov_ctr.125+13, r21
+	sts	__llvm_gcov_ctr.125+12, r20
+	sts	__llvm_gcov_ctr.125+11, r19
+	sts	__llvm_gcov_ctr.125+10, r18
+	sts	__llvm_gcov_ctr.125+9, r25
+	sts	__llvm_gcov_ctr.125+8, r24
 	lds	r24, __profc___divsi3+8
 	lds	r25, __profc___divsi3+9
 	lds	r18, __profc___divsi3+10
@@ -26789,10 +36534,10 @@ __divsi3:                               ; @__divsi3
 	sts	__profc___divsi3+10, r18
 	sts	__profc___divsi3+9, r25
 	sts	__profc___divsi3+8, r24
-	ldd	r22, Y+19
-	ldd	r23, Y+20
-	ldd	r20, Y+21
-	ldd	r21, Y+22
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r20, Y+23
+	ldd	r21, Y+24
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -26801,12 +36546,12 @@ __divsi3:                               ; @__divsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+22, r19
-	std	Y+21, r18
-	std	Y+20, r25
-	std	Y+19, r24
-	ldd	r24, Y+13
-	ldd	r25, Y+14
+	std	Y+24, r19
+	std	Y+23, r18
+	std	Y+22, r25
+	std	Y+21, r24
+	ldd	r24, Y+15
+	ldd	r25, Y+16
 	mov	r18, r24
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
@@ -26820,8 +36565,8 @@ __divsi3:                               ; @__divsi3
 .LBB125_4:
 	ldd	r24, Y+6                        ; 1-byte Folded Reload
 	clr	r25
-	std	Y+14, r25
-	std	Y+13, r24
+	std	Y+16, r25
+	std	Y+15, r24
 	rjmp	.LBB125_6
 	rjmp	.LBB125_6
 .LBB125_5:
@@ -26829,8 +36574,8 @@ __divsi3:                               ; @__divsi3
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB125_4
 .LBB125_6:
-	ldd	r24, Y+17
-	ldd	r25, Y+18
+	ldd	r24, Y+19
+	ldd	r25, Y+20
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
 	std	Y+3, r24                        ; 1-byte Folded Spill
@@ -26850,6 +36595,30 @@ __divsi3:                               ; @__divsi3
 	std	Y+4, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB125_7
 .LBB125_9:
+	lds	r24, __llvm_gcov_ctr.125+16
+	lds	r25, __llvm_gcov_ctr.125+17
+	lds	r18, __llvm_gcov_ctr.125+18
+	lds	r19, __llvm_gcov_ctr.125+19
+	lds	r20, __llvm_gcov_ctr.125+20
+	lds	r21, __llvm_gcov_ctr.125+21
+	lds	r22, __llvm_gcov_ctr.125+22
+	lds	r23, __llvm_gcov_ctr.125+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.125+23, r23
+	sts	__llvm_gcov_ctr.125+22, r22
+	sts	__llvm_gcov_ctr.125+21, r21
+	sts	__llvm_gcov_ctr.125+20, r20
+	sts	__llvm_gcov_ctr.125+19, r19
+	sts	__llvm_gcov_ctr.125+18, r18
+	sts	__llvm_gcov_ctr.125+17, r25
+	sts	__llvm_gcov_ctr.125+16, r24
 	lds	r24, __profc___divsi3+16
 	lds	r25, __profc___divsi3+17
 	lds	r18, __profc___divsi3+18
@@ -26874,10 +36643,10 @@ __divsi3:                               ; @__divsi3
 	sts	__profc___divsi3+18, r18
 	sts	__profc___divsi3+17, r25
 	sts	__profc___divsi3+16, r24
-	ldd	r22, Y+15
-	ldd	r23, Y+16
-	ldd	r20, Y+17
-	ldd	r21, Y+18
+	ldd	r22, Y+17
+	ldd	r23, Y+18
+	ldd	r20, Y+19
+	ldd	r21, Y+20
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -26886,12 +36655,12 @@ __divsi3:                               ; @__divsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+18, r19
-	std	Y+17, r18
-	std	Y+16, r25
-	std	Y+15, r24
-	ldd	r24, Y+13
-	ldd	r25, Y+14
+	std	Y+20, r19
+	std	Y+19, r18
+	std	Y+18, r25
+	std	Y+17, r24
+	ldd	r24, Y+15
+	ldd	r25, Y+16
 	mov	r18, r24
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
@@ -26905,8 +36674,8 @@ __divsi3:                               ; @__divsi3
 .LBB125_10:
 	ldd	r24, Y+2                        ; 1-byte Folded Reload
 	clr	r25
-	std	Y+14, r25
-	std	Y+13, r24
+	std	Y+16, r25
+	std	Y+15, r24
 	rjmp	.LBB125_12
 	rjmp	.LBB125_12
 .LBB125_11:
@@ -26914,23 +36683,23 @@ __divsi3:                               ; @__divsi3
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB125_10
 .LBB125_12:
-	ldd	r24, Y+21
-	ldd	r25, Y+22
-	ldd	r22, Y+19
-	ldd	r23, Y+20
-	ldd	r20, Y+17
-	ldd	r21, Y+18
-	ldd	r18, Y+15
-	ldd	r19, Y+16
+	ldd	r24, Y+23
+	ldd	r25, Y+24
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r20, Y+19
+	ldd	r21, Y+20
+	ldd	r18, Y+17
+	ldd	r19, Y+18
 	ldi	r16, 0
 	ldi	r17, 0
 	rcall	__udivmodsi4
-	std	Y+12, r25
-	std	Y+11, r24
-	std	Y+10, r23
-	std	Y+9, r22
-	ldd	r18, Y+13
-	ldd	r19, Y+14
+	std	Y+14, r25
+	std	Y+13, r24
+	std	Y+12, r23
+	std	Y+11, r22
+	ldd	r18, Y+15
+	ldd	r19, Y+16
 	mov	r25, r18
 	mov	r24, r19
 	cp	r25, r1
@@ -26938,6 +36707,30 @@ __divsi3:                               ; @__divsi3
 	brne	.LBB125_13
 	rjmp	.LBB125_14
 .LBB125_13:
+	lds	r24, __llvm_gcov_ctr.125+24
+	lds	r25, __llvm_gcov_ctr.125+25
+	lds	r18, __llvm_gcov_ctr.125+26
+	lds	r19, __llvm_gcov_ctr.125+27
+	lds	r20, __llvm_gcov_ctr.125+28
+	lds	r21, __llvm_gcov_ctr.125+29
+	lds	r22, __llvm_gcov_ctr.125+30
+	lds	r23, __llvm_gcov_ctr.125+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.125+31, r23
+	sts	__llvm_gcov_ctr.125+30, r22
+	sts	__llvm_gcov_ctr.125+29, r21
+	sts	__llvm_gcov_ctr.125+28, r20
+	sts	__llvm_gcov_ctr.125+27, r19
+	sts	__llvm_gcov_ctr.125+26, r18
+	sts	__llvm_gcov_ctr.125+25, r25
+	sts	__llvm_gcov_ctr.125+24, r24
 	lds	r24, __profc___divsi3+24
 	lds	r25, __profc___divsi3+25
 	lds	r18, __profc___divsi3+26
@@ -26962,10 +36755,10 @@ __divsi3:                               ; @__divsi3
 	sts	__profc___divsi3+26, r18
 	sts	__profc___divsi3+25, r25
 	sts	__profc___divsi3+24, r24
-	ldd	r22, Y+9
-	ldd	r23, Y+10
-	ldd	r20, Y+11
-	ldd	r21, Y+12
+	ldd	r22, Y+11
+	ldd	r23, Y+12
+	ldd	r20, Y+13
+	ldd	r21, Y+14
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -26974,17 +36767,17 @@ __divsi3:                               ; @__divsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+12, r19
-	std	Y+11, r18
-	std	Y+10, r25
-	std	Y+9, r24
+	std	Y+14, r19
+	std	Y+13, r18
+	std	Y+12, r25
+	std	Y+11, r24
 	rjmp	.LBB125_14
 .LBB125_14:
-	ldd	r22, Y+9
-	ldd	r23, Y+10
-	ldd	r24, Y+11
-	ldd	r25, Y+12
-	adiw	r28, 22
+	ldd	r22, Y+11
+	ldd	r23, Y+12
+	ldd	r24, Y+13
+	ldd	r25, Y+14
+	adiw	r28, 24
 	in	r0, 63
 	cli
 	out	62, r29
@@ -27009,24 +36802,51 @@ __modsi3:                               ; @__modsi3
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 18
+	sbiw	r28, 20
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+18, r25
-	std	Y+17, r24
-	std	Y+16, r23
-	std	Y+15, r22
-	std	Y+14, r21
-	std	Y+13, r20
-	std	Y+12, r19
-	std	Y+11, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.126
+	lds	r31, __llvm_gcov_ctr.126+1
+	lds	r26, __llvm_gcov_ctr.126+2
+	lds	r27, __llvm_gcov_ctr.126+3
+	lds	r16, __llvm_gcov_ctr.126+4
+	lds	r17, __llvm_gcov_ctr.126+5
+	lds	r24, __llvm_gcov_ctr.126+6
+	lds	r25, __llvm_gcov_ctr.126+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.126+7, r25
+	sts	__llvm_gcov_ctr.126+6, r24
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.126+5, r17
+	sts	__llvm_gcov_ctr.126+4, r16
+	sts	__llvm_gcov_ctr.126+3, r27
+	sts	__llvm_gcov_ctr.126+2, r26
+	sts	__llvm_gcov_ctr.126+1, r31
+	sts	__llvm_gcov_ctr.126, r30
+	std	Y+20, r25
+	std	Y+19, r24
+	std	Y+18, r23
+	std	Y+17, r22
+	std	Y+16, r21
+	std	Y+15, r20
+	std	Y+14, r19
+	std	Y+13, r18
 	lds	r24, __profc___modsi3
 	lds	r25, __profc___modsi3+1
 	lds	r18, __profc___modsi3+2
@@ -27053,29 +36873,53 @@ __modsi3:                               ; @__modsi3
 	sts	__profc___modsi3, r24
 	ldi	r24, 0
 	ldi	r25, 0
-	std	Y+10, r25
-	std	Y+9, r24
-	ldd	r24, Y+17
-	ldd	r25, Y+18
+	std	Y+12, r25
+	std	Y+11, r24
+	ldd	r24, Y+19
+	ldd	r25, Y+20
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
-	std	Y+3, r24                        ; 1-byte Folded Spill
+	std	Y+5, r24                        ; 1-byte Folded Spill
 	ldi	r24, 1
 	tst	r25
-	std	Y+4, r24                        ; 1-byte Folded Spill
+	std	Y+6, r24                        ; 1-byte Folded Spill
 	brpl	.LBB126_1
 	rjmp	.LBB126_2
 .LBB126_1:
-	ldd	r24, Y+4                        ; 1-byte Folded Reload
+	ldd	r24, Y+6                        ; 1-byte Folded Reload
 	andi	r24, 1
 	cpi	r24, 0
 	breq	.LBB126_3
 	rjmp	.LBB126_4
 .LBB126_2:
-	ldd	r24, Y+3                        ; 1-byte Folded Reload
-	std	Y+4, r24                        ; 1-byte Folded Spill
+	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB126_1
 .LBB126_3:
+	lds	r24, __llvm_gcov_ctr.126+8
+	lds	r25, __llvm_gcov_ctr.126+9
+	lds	r18, __llvm_gcov_ctr.126+10
+	lds	r19, __llvm_gcov_ctr.126+11
+	lds	r20, __llvm_gcov_ctr.126+12
+	lds	r21, __llvm_gcov_ctr.126+13
+	lds	r22, __llvm_gcov_ctr.126+14
+	lds	r23, __llvm_gcov_ctr.126+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.126+15, r23
+	sts	__llvm_gcov_ctr.126+14, r22
+	sts	__llvm_gcov_ctr.126+13, r21
+	sts	__llvm_gcov_ctr.126+12, r20
+	sts	__llvm_gcov_ctr.126+11, r19
+	sts	__llvm_gcov_ctr.126+10, r18
+	sts	__llvm_gcov_ctr.126+9, r25
+	sts	__llvm_gcov_ctr.126+8, r24
 	lds	r24, __profc___modsi3+8
 	lds	r25, __profc___modsi3+9
 	lds	r18, __profc___modsi3+10
@@ -27100,10 +36944,10 @@ __modsi3:                               ; @__modsi3
 	sts	__profc___modsi3+10, r18
 	sts	__profc___modsi3+9, r25
 	sts	__profc___modsi3+8, r24
-	ldd	r22, Y+15
-	ldd	r23, Y+16
-	ldd	r20, Y+17
-	ldd	r21, Y+18
+	ldd	r22, Y+17
+	ldd	r23, Y+18
+	ldd	r20, Y+19
+	ldd	r21, Y+20
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -27112,18 +36956,18 @@ __modsi3:                               ; @__modsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+18, r19
-	std	Y+17, r18
-	std	Y+16, r25
-	std	Y+15, r24
+	std	Y+20, r19
+	std	Y+19, r18
+	std	Y+18, r25
+	std	Y+17, r24
 	ldi	r24, 1
 	ldi	r25, 0
-	std	Y+10, r25
-	std	Y+9, r24
+	std	Y+12, r25
+	std	Y+11, r24
 	rjmp	.LBB126_4
 .LBB126_4:
-	ldd	r24, Y+13
-	ldd	r25, Y+14
+	ldd	r24, Y+15
+	ldd	r25, Y+16
                                         ; kill: def $r25 killed $r25 killed $r25r24
 	mov	r24, r1
 	std	Y+1, r24                        ; 1-byte Folded Spill
@@ -27143,6 +36987,30 @@ __modsi3:                               ; @__modsi3
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB126_5
 .LBB126_7:
+	lds	r24, __llvm_gcov_ctr.126+16
+	lds	r25, __llvm_gcov_ctr.126+17
+	lds	r18, __llvm_gcov_ctr.126+18
+	lds	r19, __llvm_gcov_ctr.126+19
+	lds	r20, __llvm_gcov_ctr.126+20
+	lds	r21, __llvm_gcov_ctr.126+21
+	lds	r22, __llvm_gcov_ctr.126+22
+	lds	r23, __llvm_gcov_ctr.126+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.126+23, r23
+	sts	__llvm_gcov_ctr.126+22, r22
+	sts	__llvm_gcov_ctr.126+21, r21
+	sts	__llvm_gcov_ctr.126+20, r20
+	sts	__llvm_gcov_ctr.126+19, r19
+	sts	__llvm_gcov_ctr.126+18, r18
+	sts	__llvm_gcov_ctr.126+17, r25
+	sts	__llvm_gcov_ctr.126+16, r24
 	lds	r24, __profc___modsi3+16
 	lds	r25, __profc___modsi3+17
 	lds	r18, __profc___modsi3+18
@@ -27167,10 +37035,10 @@ __modsi3:                               ; @__modsi3
 	sts	__profc___modsi3+18, r18
 	sts	__profc___modsi3+17, r25
 	sts	__profc___modsi3+16, r24
-	ldd	r22, Y+11
-	ldd	r23, Y+12
-	ldd	r20, Y+13
-	ldd	r21, Y+14
+	ldd	r22, Y+13
+	ldd	r23, Y+14
+	ldd	r20, Y+15
+	ldd	r21, Y+16
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -27179,29 +37047,29 @@ __modsi3:                               ; @__modsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+14, r19
-	std	Y+13, r18
-	std	Y+12, r25
-	std	Y+11, r24
+	std	Y+16, r19
+	std	Y+15, r18
+	std	Y+14, r25
+	std	Y+13, r24
 	rjmp	.LBB126_8
 .LBB126_8:
-	ldd	r24, Y+17
-	ldd	r25, Y+18
-	ldd	r22, Y+15
-	ldd	r23, Y+16
-	ldd	r20, Y+13
-	ldd	r21, Y+14
-	ldd	r18, Y+11
-	ldd	r19, Y+12
+	ldd	r24, Y+19
+	ldd	r25, Y+20
+	ldd	r22, Y+17
+	ldd	r23, Y+18
+	ldd	r20, Y+15
+	ldd	r21, Y+16
+	ldd	r18, Y+13
+	ldd	r19, Y+14
 	ldi	r16, 1
 	ldi	r17, 0
 	rcall	__udivmodsi4
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	ldd	r18, Y+9
-	ldd	r19, Y+10
+	std	Y+10, r25
+	std	Y+9, r24
+	std	Y+8, r23
+	std	Y+7, r22
+	ldd	r18, Y+11
+	ldd	r19, Y+12
 	mov	r25, r18
 	mov	r24, r19
 	cp	r25, r1
@@ -27209,6 +37077,30 @@ __modsi3:                               ; @__modsi3
 	brne	.LBB126_9
 	rjmp	.LBB126_10
 .LBB126_9:
+	lds	r24, __llvm_gcov_ctr.126+24
+	lds	r25, __llvm_gcov_ctr.126+25
+	lds	r18, __llvm_gcov_ctr.126+26
+	lds	r19, __llvm_gcov_ctr.126+27
+	lds	r20, __llvm_gcov_ctr.126+28
+	lds	r21, __llvm_gcov_ctr.126+29
+	lds	r22, __llvm_gcov_ctr.126+30
+	lds	r23, __llvm_gcov_ctr.126+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.126+31, r23
+	sts	__llvm_gcov_ctr.126+30, r22
+	sts	__llvm_gcov_ctr.126+29, r21
+	sts	__llvm_gcov_ctr.126+28, r20
+	sts	__llvm_gcov_ctr.126+27, r19
+	sts	__llvm_gcov_ctr.126+26, r18
+	sts	__llvm_gcov_ctr.126+25, r25
+	sts	__llvm_gcov_ctr.126+24, r24
 	lds	r24, __profc___modsi3+24
 	lds	r25, __profc___modsi3+25
 	lds	r18, __profc___modsi3+26
@@ -27233,10 +37125,10 @@ __modsi3:                               ; @__modsi3
 	sts	__profc___modsi3+26, r18
 	sts	__profc___modsi3+25, r25
 	sts	__profc___modsi3+24, r24
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r20, Y+7
-	ldd	r21, Y+8
+	ldd	r22, Y+7
+	ldd	r23, Y+8
+	ldd	r20, Y+9
+	ldd	r21, Y+10
 	ldi	r18, 0
 	ldi	r19, 0
 	mov	r24, r18
@@ -27245,17 +37137,17 @@ __modsi3:                               ; @__modsi3
 	sbc	r25, r23
 	sbc	r18, r20
 	sbc	r19, r21
-	std	Y+8, r19
-	std	Y+7, r18
-	std	Y+6, r25
-	std	Y+5, r24
+	std	Y+10, r19
+	std	Y+9, r18
+	std	Y+8, r25
+	std	Y+7, r24
 	rjmp	.LBB126_10
 .LBB126_10:
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+7
-	ldd	r25, Y+8
-	adiw	r28, 18
+	ldd	r22, Y+7
+	ldd	r23, Y+8
+	ldd	r24, Y+9
+	ldd	r25, Y+10
+	adiw	r28, 20
 	in	r0, 63
 	cli
 	out	62, r29
@@ -27335,6 +37227,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	brlo	.LBB127_2
 	rjmp	.LBB127_8
 .LBB127_2:                              ;   in Loop: Header=BB127_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.127
+	lds	r25, __llvm_gcov_ctr.127+1
+	lds	r18, __llvm_gcov_ctr.127+2
+	lds	r19, __llvm_gcov_ctr.127+3
+	lds	r20, __llvm_gcov_ctr.127+4
+	lds	r21, __llvm_gcov_ctr.127+5
+	lds	r22, __llvm_gcov_ctr.127+6
+	lds	r23, __llvm_gcov_ctr.127+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+7, r23
+	sts	__llvm_gcov_ctr.127+6, r22
+	sts	__llvm_gcov_ctr.127+5, r21
+	sts	__llvm_gcov_ctr.127+4, r20
+	sts	__llvm_gcov_ctr.127+3, r19
+	sts	__llvm_gcov_ctr.127+2, r18
+	sts	__llvm_gcov_ctr.127+1, r25
+	sts	__llvm_gcov_ctr.127, r24
 	lds	r24, __profc___udivmodhi4+32
 	lds	r25, __profc___udivmodhi4+33
 	lds	r18, __profc___udivmodhi4+34
@@ -27370,6 +37286,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	brne	.LBB127_3
 	rjmp	.LBB127_8
 .LBB127_3:                              ;   in Loop: Header=BB127_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.127+8
+	lds	r25, __llvm_gcov_ctr.127+9
+	lds	r18, __llvm_gcov_ctr.127+10
+	lds	r19, __llvm_gcov_ctr.127+11
+	lds	r20, __llvm_gcov_ctr.127+12
+	lds	r21, __llvm_gcov_ctr.127+13
+	lds	r22, __llvm_gcov_ctr.127+14
+	lds	r23, __llvm_gcov_ctr.127+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+15, r23
+	sts	__llvm_gcov_ctr.127+14, r22
+	sts	__llvm_gcov_ctr.127+13, r21
+	sts	__llvm_gcov_ctr.127+12, r20
+	sts	__llvm_gcov_ctr.127+11, r19
+	sts	__llvm_gcov_ctr.127+10, r18
+	sts	__llvm_gcov_ctr.127+9, r25
+	sts	__llvm_gcov_ctr.127+8, r24
 	lds	r24, __profc___udivmodhi4+40
 	lds	r25, __profc___udivmodhi4+41
 	lds	r18, __profc___udivmodhi4+42
@@ -27450,6 +37390,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	rjmp	.LBB127_5
 .LBB127_7:                              ;   in Loop: Header=BB127_1 Depth=1
 	ldd	r24, Y+2                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.127+16
+	lds	r19, __llvm_gcov_ctr.127+17
+	lds	r20, __llvm_gcov_ctr.127+18
+	lds	r21, __llvm_gcov_ctr.127+19
+	lds	r22, __llvm_gcov_ctr.127+20
+	lds	r23, __llvm_gcov_ctr.127+21
+	lds	r30, __llvm_gcov_ctr.127+22
+	lds	r31, __llvm_gcov_ctr.127+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.127+23, r31
+	sts	__llvm_gcov_ctr.127+22, r30
+	sts	__llvm_gcov_ctr.127+21, r23
+	sts	__llvm_gcov_ctr.127+20, r22
+	sts	__llvm_gcov_ctr.127+19, r21
+	sts	__llvm_gcov_ctr.127+18, r20
+	sts	__llvm_gcov_ctr.127+17, r19
+	sts	__llvm_gcov_ctr.127+16, r18
 	lds	r18, __profc___udivmodhi4+24
 	lds	r19, __profc___udivmodhi4+25
 	lds	r20, __profc___udivmodhi4+26
@@ -27483,6 +37447,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	brne	.LBB127_9
 	rjmp	.LBB127_10
 .LBB127_9:                              ;   in Loop: Header=BB127_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.127+24
+	lds	r25, __llvm_gcov_ctr.127+25
+	lds	r18, __llvm_gcov_ctr.127+26
+	lds	r19, __llvm_gcov_ctr.127+27
+	lds	r20, __llvm_gcov_ctr.127+28
+	lds	r21, __llvm_gcov_ctr.127+29
+	lds	r22, __llvm_gcov_ctr.127+30
+	lds	r23, __llvm_gcov_ctr.127+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+31, r23
+	sts	__llvm_gcov_ctr.127+30, r22
+	sts	__llvm_gcov_ctr.127+29, r21
+	sts	__llvm_gcov_ctr.127+28, r20
+	sts	__llvm_gcov_ctr.127+27, r19
+	sts	__llvm_gcov_ctr.127+26, r18
+	sts	__llvm_gcov_ctr.127+25, r25
+	sts	__llvm_gcov_ctr.127+24, r24
 	lds	r24, __profc___udivmodhi4+8
 	lds	r25, __profc___udivmodhi4+9
 	lds	r18, __profc___udivmodhi4+10
@@ -27565,6 +37553,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	brsh	.LBB127_13
 	rjmp	.LBB127_14
 .LBB127_13:                             ;   in Loop: Header=BB127_11 Depth=1
+	lds	r24, __llvm_gcov_ctr.127+32
+	lds	r25, __llvm_gcov_ctr.127+33
+	lds	r18, __llvm_gcov_ctr.127+34
+	lds	r19, __llvm_gcov_ctr.127+35
+	lds	r20, __llvm_gcov_ctr.127+36
+	lds	r21, __llvm_gcov_ctr.127+37
+	lds	r22, __llvm_gcov_ctr.127+38
+	lds	r23, __llvm_gcov_ctr.127+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+39, r23
+	sts	__llvm_gcov_ctr.127+38, r22
+	sts	__llvm_gcov_ctr.127+37, r21
+	sts	__llvm_gcov_ctr.127+36, r20
+	sts	__llvm_gcov_ctr.127+35, r19
+	sts	__llvm_gcov_ctr.127+34, r18
+	sts	__llvm_gcov_ctr.127+33, r25
+	sts	__llvm_gcov_ctr.127+32, r24
 	lds	r24, __profc___udivmodhi4+56
 	lds	r25, __profc___udivmodhi4+57
 	lds	r18, __profc___udivmodhi4+58
@@ -27607,6 +37619,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	std	Y+7, r24
 	rjmp	.LBB127_14
 .LBB127_14:                             ;   in Loop: Header=BB127_11 Depth=1
+	lds	r24, __llvm_gcov_ctr.127+40
+	lds	r25, __llvm_gcov_ctr.127+41
+	lds	r18, __llvm_gcov_ctr.127+42
+	lds	r19, __llvm_gcov_ctr.127+43
+	lds	r20, __llvm_gcov_ctr.127+44
+	lds	r21, __llvm_gcov_ctr.127+45
+	lds	r22, __llvm_gcov_ctr.127+46
+	lds	r23, __llvm_gcov_ctr.127+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+47, r23
+	sts	__llvm_gcov_ctr.127+46, r22
+	sts	__llvm_gcov_ctr.127+45, r21
+	sts	__llvm_gcov_ctr.127+44, r20
+	sts	__llvm_gcov_ctr.127+43, r19
+	sts	__llvm_gcov_ctr.127+42, r18
+	sts	__llvm_gcov_ctr.127+41, r25
+	sts	__llvm_gcov_ctr.127+40, r24
 	ldd	r24, Y+9
 	ldd	r25, Y+10
 	lsr	r25
@@ -27630,6 +37666,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	brne	.LBB127_16
 	rjmp	.LBB127_17
 .LBB127_16:
+	lds	r24, __llvm_gcov_ctr.127+48
+	lds	r25, __llvm_gcov_ctr.127+49
+	lds	r18, __llvm_gcov_ctr.127+50
+	lds	r19, __llvm_gcov_ctr.127+51
+	lds	r20, __llvm_gcov_ctr.127+52
+	lds	r21, __llvm_gcov_ctr.127+53
+	lds	r22, __llvm_gcov_ctr.127+54
+	lds	r23, __llvm_gcov_ctr.127+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+55, r23
+	sts	__llvm_gcov_ctr.127+54, r22
+	sts	__llvm_gcov_ctr.127+53, r21
+	sts	__llvm_gcov_ctr.127+52, r20
+	sts	__llvm_gcov_ctr.127+51, r19
+	sts	__llvm_gcov_ctr.127+50, r18
+	sts	__llvm_gcov_ctr.127+49, r25
+	sts	__llvm_gcov_ctr.127+48, r24
 	lds	r24, __profc___udivmodhi4+64
 	lds	r25, __profc___udivmodhi4+65
 	lds	r18, __profc___udivmodhi4+66
@@ -27660,6 +37720,30 @@ __udivmodhi4:                           ; @__udivmodhi4
 	std	Y+17, r24
 	rjmp	.LBB127_18
 .LBB127_17:
+	lds	r24, __llvm_gcov_ctr.127+56
+	lds	r25, __llvm_gcov_ctr.127+57
+	lds	r18, __llvm_gcov_ctr.127+58
+	lds	r19, __llvm_gcov_ctr.127+59
+	lds	r20, __llvm_gcov_ctr.127+60
+	lds	r21, __llvm_gcov_ctr.127+61
+	lds	r22, __llvm_gcov_ctr.127+62
+	lds	r23, __llvm_gcov_ctr.127+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.127+63, r23
+	sts	__llvm_gcov_ctr.127+62, r22
+	sts	__llvm_gcov_ctr.127+61, r21
+	sts	__llvm_gcov_ctr.127+60, r20
+	sts	__llvm_gcov_ctr.127+59, r19
+	sts	__llvm_gcov_ctr.127+58, r18
+	sts	__llvm_gcov_ctr.127+57, r25
+	sts	__llvm_gcov_ctr.127+56, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	std	Y+18, r25
@@ -27778,6 +37862,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	std	Y+18, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB128_2
 .LBB128_4:                              ;   in Loop: Header=BB128_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.128
+	lds	r25, __llvm_gcov_ctr.128+1
+	lds	r18, __llvm_gcov_ctr.128+2
+	lds	r19, __llvm_gcov_ctr.128+3
+	lds	r20, __llvm_gcov_ctr.128+4
+	lds	r21, __llvm_gcov_ctr.128+5
+	lds	r22, __llvm_gcov_ctr.128+6
+	lds	r23, __llvm_gcov_ctr.128+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+7, r23
+	sts	__llvm_gcov_ctr.128+6, r22
+	sts	__llvm_gcov_ctr.128+5, r21
+	sts	__llvm_gcov_ctr.128+4, r20
+	sts	__llvm_gcov_ctr.128+3, r19
+	sts	__llvm_gcov_ctr.128+2, r18
+	sts	__llvm_gcov_ctr.128+1, r25
+	sts	__llvm_gcov_ctr.128, r24
 	lds	r24, __profc___udivmodsi4_libgcc+32
 	lds	r25, __profc___udivmodsi4_libgcc+33
 	lds	r18, __profc___udivmodsi4_libgcc+34
@@ -27833,6 +37941,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	std	Y+15, r24                       ; 1-byte Folded Spill
 	rjmp	.LBB128_5
 .LBB128_7:                              ;   in Loop: Header=BB128_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.128+8
+	lds	r25, __llvm_gcov_ctr.128+9
+	lds	r18, __llvm_gcov_ctr.128+10
+	lds	r19, __llvm_gcov_ctr.128+11
+	lds	r20, __llvm_gcov_ctr.128+12
+	lds	r21, __llvm_gcov_ctr.128+13
+	lds	r22, __llvm_gcov_ctr.128+14
+	lds	r23, __llvm_gcov_ctr.128+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+15, r23
+	sts	__llvm_gcov_ctr.128+14, r22
+	sts	__llvm_gcov_ctr.128+13, r21
+	sts	__llvm_gcov_ctr.128+12, r20
+	sts	__llvm_gcov_ctr.128+11, r19
+	sts	__llvm_gcov_ctr.128+10, r18
+	sts	__llvm_gcov_ctr.128+9, r25
+	sts	__llvm_gcov_ctr.128+8, r24
 	lds	r24, __profc___udivmodsi4_libgcc+40
 	lds	r25, __profc___udivmodsi4_libgcc+41
 	lds	r18, __profc___udivmodsi4_libgcc+42
@@ -27938,6 +38070,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	rjmp	.LBB128_9
 .LBB128_13:                             ;   in Loop: Header=BB128_1 Depth=1
 	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	lds	r18, __llvm_gcov_ctr.128+16
+	lds	r19, __llvm_gcov_ctr.128+17
+	lds	r20, __llvm_gcov_ctr.128+18
+	lds	r21, __llvm_gcov_ctr.128+19
+	lds	r22, __llvm_gcov_ctr.128+20
+	lds	r23, __llvm_gcov_ctr.128+21
+	lds	r30, __llvm_gcov_ctr.128+22
+	lds	r31, __llvm_gcov_ctr.128+23
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sts	__llvm_gcov_ctr.128+23, r31
+	sts	__llvm_gcov_ctr.128+22, r30
+	sts	__llvm_gcov_ctr.128+21, r23
+	sts	__llvm_gcov_ctr.128+20, r22
+	sts	__llvm_gcov_ctr.128+19, r21
+	sts	__llvm_gcov_ctr.128+18, r20
+	sts	__llvm_gcov_ctr.128+17, r19
+	sts	__llvm_gcov_ctr.128+16, r18
 	lds	r18, __profc___udivmodsi4_libgcc+24
 	lds	r19, __profc___udivmodsi4_libgcc+25
 	lds	r20, __profc___udivmodsi4_libgcc+26
@@ -27971,6 +38127,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	brne	.LBB128_15
 	rjmp	.LBB128_16
 .LBB128_15:                             ;   in Loop: Header=BB128_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.128+24
+	lds	r25, __llvm_gcov_ctr.128+25
+	lds	r18, __llvm_gcov_ctr.128+26
+	lds	r19, __llvm_gcov_ctr.128+27
+	lds	r20, __llvm_gcov_ctr.128+28
+	lds	r21, __llvm_gcov_ctr.128+29
+	lds	r22, __llvm_gcov_ctr.128+30
+	lds	r23, __llvm_gcov_ctr.128+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+31, r23
+	sts	__llvm_gcov_ctr.128+30, r22
+	sts	__llvm_gcov_ctr.128+29, r21
+	sts	__llvm_gcov_ctr.128+28, r20
+	sts	__llvm_gcov_ctr.128+27, r19
+	sts	__llvm_gcov_ctr.128+26, r18
+	sts	__llvm_gcov_ctr.128+25, r25
+	sts	__llvm_gcov_ctr.128+24, r24
 	lds	r24, __profc___udivmodsi4_libgcc+8
 	lds	r25, __profc___udivmodsi4_libgcc+9
 	lds	r18, __profc___udivmodsi4_libgcc+10
@@ -28123,6 +38303,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB128_21
 .LBB128_23:                             ;   in Loop: Header=BB128_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.128+32
+	lds	r25, __llvm_gcov_ctr.128+33
+	lds	r18, __llvm_gcov_ctr.128+34
+	lds	r19, __llvm_gcov_ctr.128+35
+	lds	r20, __llvm_gcov_ctr.128+36
+	lds	r21, __llvm_gcov_ctr.128+37
+	lds	r22, __llvm_gcov_ctr.128+38
+	lds	r23, __llvm_gcov_ctr.128+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+39, r23
+	sts	__llvm_gcov_ctr.128+38, r22
+	sts	__llvm_gcov_ctr.128+37, r21
+	sts	__llvm_gcov_ctr.128+36, r20
+	sts	__llvm_gcov_ctr.128+35, r19
+	sts	__llvm_gcov_ctr.128+34, r18
+	sts	__llvm_gcov_ctr.128+33, r25
+	sts	__llvm_gcov_ctr.128+32, r24
 	lds	r24, __profc___udivmodsi4_libgcc+56
 	lds	r25, __profc___udivmodsi4_libgcc+57
 	lds	r18, __profc___udivmodsi4_libgcc+58
@@ -28181,6 +38385,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	std	Y+19, r24
 	rjmp	.LBB128_24
 .LBB128_24:                             ;   in Loop: Header=BB128_17 Depth=1
+	lds	r24, __llvm_gcov_ctr.128+40
+	lds	r25, __llvm_gcov_ctr.128+41
+	lds	r18, __llvm_gcov_ctr.128+42
+	lds	r19, __llvm_gcov_ctr.128+43
+	lds	r20, __llvm_gcov_ctr.128+44
+	lds	r21, __llvm_gcov_ctr.128+45
+	lds	r22, __llvm_gcov_ctr.128+46
+	lds	r23, __llvm_gcov_ctr.128+47
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+47, r23
+	sts	__llvm_gcov_ctr.128+46, r22
+	sts	__llvm_gcov_ctr.128+45, r21
+	sts	__llvm_gcov_ctr.128+44, r20
+	sts	__llvm_gcov_ctr.128+43, r19
+	sts	__llvm_gcov_ctr.128+42, r18
+	sts	__llvm_gcov_ctr.128+41, r25
+	sts	__llvm_gcov_ctr.128+40, r24
 	ldd	r18, Y+25
 	ldd	r19, Y+26
 	ldd	r24, Y+23
@@ -28234,6 +38462,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	brne	.LBB128_26
 	rjmp	.LBB128_27
 .LBB128_26:
+	lds	r24, __llvm_gcov_ctr.128+48
+	lds	r25, __llvm_gcov_ctr.128+49
+	lds	r18, __llvm_gcov_ctr.128+50
+	lds	r19, __llvm_gcov_ctr.128+51
+	lds	r20, __llvm_gcov_ctr.128+52
+	lds	r21, __llvm_gcov_ctr.128+53
+	lds	r22, __llvm_gcov_ctr.128+54
+	lds	r23, __llvm_gcov_ctr.128+55
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+55, r23
+	sts	__llvm_gcov_ctr.128+54, r22
+	sts	__llvm_gcov_ctr.128+53, r21
+	sts	__llvm_gcov_ctr.128+52, r20
+	sts	__llvm_gcov_ctr.128+51, r19
+	sts	__llvm_gcov_ctr.128+50, r18
+	sts	__llvm_gcov_ctr.128+49, r25
+	sts	__llvm_gcov_ctr.128+48, r24
 	lds	r24, __profc___udivmodsi4_libgcc+64
 	lds	r25, __profc___udivmodsi4_libgcc+65
 	lds	r18, __profc___udivmodsi4_libgcc+66
@@ -28268,6 +38520,30 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	std	Y+37, r24
 	rjmp	.LBB128_28
 .LBB128_27:
+	lds	r24, __llvm_gcov_ctr.128+56
+	lds	r25, __llvm_gcov_ctr.128+57
+	lds	r18, __llvm_gcov_ctr.128+58
+	lds	r19, __llvm_gcov_ctr.128+59
+	lds	r20, __llvm_gcov_ctr.128+60
+	lds	r21, __llvm_gcov_ctr.128+61
+	lds	r22, __llvm_gcov_ctr.128+62
+	lds	r23, __llvm_gcov_ctr.128+63
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.128+63, r23
+	sts	__llvm_gcov_ctr.128+62, r22
+	sts	__llvm_gcov_ctr.128+61, r21
+	sts	__llvm_gcov_ctr.128+60, r20
+	sts	__llvm_gcov_ctr.128+59, r19
+	sts	__llvm_gcov_ctr.128+58, r18
+	sts	__llvm_gcov_ctr.128+57, r25
+	sts	__llvm_gcov_ctr.128+56, r24
 	ldd	r24, Y+19
 	ldd	r25, Y+20
 	ldd	r18, Y+21
@@ -28374,6 +38650,30 @@ __ashldi3:                              ; @__ashldi3
 	brne	.LBB129_1
 	rjmp	.LBB129_4
 .LBB129_1:
+	lds	r24, __llvm_gcov_ctr.129
+	lds	r25, __llvm_gcov_ctr.129+1
+	lds	r18, __llvm_gcov_ctr.129+2
+	lds	r19, __llvm_gcov_ctr.129+3
+	lds	r20, __llvm_gcov_ctr.129+4
+	lds	r21, __llvm_gcov_ctr.129+5
+	lds	r22, __llvm_gcov_ctr.129+6
+	lds	r23, __llvm_gcov_ctr.129+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.129+7, r23
+	sts	__llvm_gcov_ctr.129+6, r22
+	sts	__llvm_gcov_ctr.129+5, r21
+	sts	__llvm_gcov_ctr.129+4, r20
+	sts	__llvm_gcov_ctr.129+3, r19
+	sts	__llvm_gcov_ctr.129+2, r18
+	sts	__llvm_gcov_ctr.129+1, r25
+	sts	__llvm_gcov_ctr.129, r24
 	lds	r24, __profc___ashldi3+8
 	lds	r25, __profc___ashldi3+9
 	lds	r18, __profc___ashldi3+10
@@ -28467,6 +38767,30 @@ __ashldi3:                              ; @__ashldi3
 	breq	.LBB129_5
 	rjmp	.LBB129_6
 .LBB129_5:
+	lds	r24, __llvm_gcov_ctr.129+8
+	lds	r25, __llvm_gcov_ctr.129+9
+	lds	r18, __llvm_gcov_ctr.129+10
+	lds	r19, __llvm_gcov_ctr.129+11
+	lds	r20, __llvm_gcov_ctr.129+12
+	lds	r21, __llvm_gcov_ctr.129+13
+	lds	r22, __llvm_gcov_ctr.129+14
+	lds	r23, __llvm_gcov_ctr.129+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.129+15, r23
+	sts	__llvm_gcov_ctr.129+14, r22
+	sts	__llvm_gcov_ctr.129+13, r21
+	sts	__llvm_gcov_ctr.129+12, r20
+	sts	__llvm_gcov_ctr.129+11, r19
+	sts	__llvm_gcov_ctr.129+10, r18
+	sts	__llvm_gcov_ctr.129+9, r25
+	sts	__llvm_gcov_ctr.129+8, r24
 	lds	r24, __profc___ashldi3+16
 	lds	r25, __profc___ashldi3+17
 	lds	r18, __profc___ashldi3+18
@@ -28521,6 +38845,30 @@ __ashldi3:                              ; @__ashldi3
 	std	Y+61, r24
 	rjmp	.LBB129_14
 .LBB129_6:
+	lds	r24, __llvm_gcov_ctr.129+16
+	lds	r25, __llvm_gcov_ctr.129+17
+	lds	r18, __llvm_gcov_ctr.129+18
+	lds	r19, __llvm_gcov_ctr.129+19
+	lds	r20, __llvm_gcov_ctr.129+20
+	lds	r21, __llvm_gcov_ctr.129+21
+	lds	r22, __llvm_gcov_ctr.129+22
+	lds	r23, __llvm_gcov_ctr.129+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.129+23, r23
+	sts	__llvm_gcov_ctr.129+22, r22
+	sts	__llvm_gcov_ctr.129+21, r21
+	sts	__llvm_gcov_ctr.129+20, r20
+	sts	__llvm_gcov_ctr.129+19, r19
+	sts	__llvm_gcov_ctr.129+18, r18
+	sts	__llvm_gcov_ctr.129+17, r25
+	sts	__llvm_gcov_ctr.129+16, r24
 	ldd	r24, Y+39
 	ldd	r25, Y+40
 	ldd	r18, Y+37
@@ -28826,6 +39174,30 @@ __ashrdi3:                              ; @__ashrdi3
 	brne	.LBB130_1
 	rjmp	.LBB130_4
 .LBB130_1:
+	lds	r24, __llvm_gcov_ctr.130
+	lds	r25, __llvm_gcov_ctr.130+1
+	lds	r18, __llvm_gcov_ctr.130+2
+	lds	r19, __llvm_gcov_ctr.130+3
+	lds	r20, __llvm_gcov_ctr.130+4
+	lds	r21, __llvm_gcov_ctr.130+5
+	lds	r22, __llvm_gcov_ctr.130+6
+	lds	r23, __llvm_gcov_ctr.130+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.130+7, r23
+	sts	__llvm_gcov_ctr.130+6, r22
+	sts	__llvm_gcov_ctr.130+5, r21
+	sts	__llvm_gcov_ctr.130+4, r20
+	sts	__llvm_gcov_ctr.130+3, r19
+	sts	__llvm_gcov_ctr.130+2, r18
+	sts	__llvm_gcov_ctr.130+1, r25
+	sts	__llvm_gcov_ctr.130, r24
 	lds	r24, __profc___ashrdi3+8
 	lds	r25, __profc___ashrdi3+9
 	lds	r18, __profc___ashrdi3+10
@@ -28930,6 +39302,30 @@ __ashrdi3:                              ; @__ashrdi3
 	breq	.LBB130_5
 	rjmp	.LBB130_6
 .LBB130_5:
+	lds	r24, __llvm_gcov_ctr.130+8
+	lds	r25, __llvm_gcov_ctr.130+9
+	lds	r18, __llvm_gcov_ctr.130+10
+	lds	r19, __llvm_gcov_ctr.130+11
+	lds	r20, __llvm_gcov_ctr.130+12
+	lds	r21, __llvm_gcov_ctr.130+13
+	lds	r22, __llvm_gcov_ctr.130+14
+	lds	r23, __llvm_gcov_ctr.130+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.130+15, r23
+	sts	__llvm_gcov_ctr.130+14, r22
+	sts	__llvm_gcov_ctr.130+13, r21
+	sts	__llvm_gcov_ctr.130+12, r20
+	sts	__llvm_gcov_ctr.130+11, r19
+	sts	__llvm_gcov_ctr.130+10, r18
+	sts	__llvm_gcov_ctr.130+9, r25
+	sts	__llvm_gcov_ctr.130+8, r24
 	lds	r24, __profc___ashrdi3+16
 	lds	r25, __profc___ashrdi3+17
 	lds	r18, __profc___ashrdi3+18
@@ -28984,6 +39380,30 @@ __ashrdi3:                              ; @__ashrdi3
 	std	Y+61, r24
 	rjmp	.LBB130_14
 .LBB130_6:
+	lds	r24, __llvm_gcov_ctr.130+16
+	lds	r25, __llvm_gcov_ctr.130+17
+	lds	r18, __llvm_gcov_ctr.130+18
+	lds	r19, __llvm_gcov_ctr.130+19
+	lds	r20, __llvm_gcov_ctr.130+20
+	lds	r21, __llvm_gcov_ctr.130+21
+	lds	r22, __llvm_gcov_ctr.130+22
+	lds	r23, __llvm_gcov_ctr.130+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.130+23, r23
+	sts	__llvm_gcov_ctr.130+22, r22
+	sts	__llvm_gcov_ctr.130+21, r21
+	sts	__llvm_gcov_ctr.130+20, r20
+	sts	__llvm_gcov_ctr.130+19, r19
+	sts	__llvm_gcov_ctr.130+18, r18
+	sts	__llvm_gcov_ctr.130+17, r25
+	sts	__llvm_gcov_ctr.130+16, r24
 	ldd	r24, Y+43
 	ldd	r25, Y+44
 	ldd	r18, Y+41
@@ -29235,10 +39655,37 @@ __bswapdi2:                             ; @__bswapdi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.131
+	lds	r31, __llvm_gcov_ctr.131+1
+	lds	r26, __llvm_gcov_ctr.131+2
+	lds	r27, __llvm_gcov_ctr.131+3
+	lds	r16, __llvm_gcov_ctr.131+4
+	lds	r17, __llvm_gcov_ctr.131+5
+	lds	r24, __llvm_gcov_ctr.131+6
+	lds	r25, __llvm_gcov_ctr.131+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.131+7, r25
+	sts	__llvm_gcov_ctr.131+6, r24
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.131+5, r17
+	sts	__llvm_gcov_ctr.131+4, r16
+	sts	__llvm_gcov_ctr.131+3, r27
+	sts	__llvm_gcov_ctr.131+2, r26
+	sts	__llvm_gcov_ctr.131+1, r31
+	sts	__llvm_gcov_ctr.131, r30
 	std	Y+16, r25
 	std	Y+15, r24
 	std	Y+14, r23
@@ -29444,6 +39891,30 @@ __bswapsi2:                             ; @__bswapsi2
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.132
+	lds	r19, __llvm_gcov_ctr.132+1
+	lds	r20, __llvm_gcov_ctr.132+2
+	lds	r21, __llvm_gcov_ctr.132+3
+	lds	r30, __llvm_gcov_ctr.132+4
+	lds	r31, __llvm_gcov_ctr.132+5
+	lds	r26, __llvm_gcov_ctr.132+6
+	lds	r27, __llvm_gcov_ctr.132+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.132+7, r27
+	sts	__llvm_gcov_ctr.132+6, r26
+	sts	__llvm_gcov_ctr.132+5, r31
+	sts	__llvm_gcov_ctr.132+4, r30
+	sts	__llvm_gcov_ctr.132+3, r21
+	sts	__llvm_gcov_ctr.132+2, r20
+	sts	__llvm_gcov_ctr.132+1, r19
+	sts	__llvm_gcov_ctr.132, r18
 	std	Y+4, r25
 	std	Y+3, r24
 	std	Y+2, r23
@@ -29544,6 +40015,30 @@ __clzsi2:                               ; @__clzsi2
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.133
+	lds	r19, __llvm_gcov_ctr.133+1
+	lds	r20, __llvm_gcov_ctr.133+2
+	lds	r21, __llvm_gcov_ctr.133+3
+	lds	r30, __llvm_gcov_ctr.133+4
+	lds	r31, __llvm_gcov_ctr.133+5
+	lds	r26, __llvm_gcov_ctr.133+6
+	lds	r27, __llvm_gcov_ctr.133+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.133+7, r27
+	sts	__llvm_gcov_ctr.133+6, r26
+	sts	__llvm_gcov_ctr.133+5, r31
+	sts	__llvm_gcov_ctr.133+4, r30
+	sts	__llvm_gcov_ctr.133+3, r21
+	sts	__llvm_gcov_ctr.133+2, r20
+	sts	__llvm_gcov_ctr.133+1, r19
+	sts	__llvm_gcov_ctr.133, r18
 	std	Y+58, r25
 	std	Y+57, r24
 	std	Y+56, r23
@@ -30247,6 +40742,30 @@ __cmpdi2:                               ; @__cmpdi2
 	std	Y+8, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB134_1
 .LBB134_3:
+	lds	r24, __llvm_gcov_ctr.134
+	lds	r25, __llvm_gcov_ctr.134+1
+	lds	r18, __llvm_gcov_ctr.134+2
+	lds	r19, __llvm_gcov_ctr.134+3
+	lds	r20, __llvm_gcov_ctr.134+4
+	lds	r21, __llvm_gcov_ctr.134+5
+	lds	r22, __llvm_gcov_ctr.134+6
+	lds	r23, __llvm_gcov_ctr.134+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.134+7, r23
+	sts	__llvm_gcov_ctr.134+6, r22
+	sts	__llvm_gcov_ctr.134+5, r21
+	sts	__llvm_gcov_ctr.134+4, r20
+	sts	__llvm_gcov_ctr.134+3, r19
+	sts	__llvm_gcov_ctr.134+2, r18
+	sts	__llvm_gcov_ctr.134+1, r25
+	sts	__llvm_gcov_ctr.134, r24
 	lds	r24, __profc___cmpdi2+8
 	lds	r25, __profc___cmpdi2+9
 	lds	r18, __profc___cmpdi2+10
@@ -30308,6 +40827,30 @@ __cmpdi2:                               ; @__cmpdi2
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB134_5
 .LBB134_7:
+	lds	r24, __llvm_gcov_ctr.134+8
+	lds	r25, __llvm_gcov_ctr.134+9
+	lds	r18, __llvm_gcov_ctr.134+10
+	lds	r19, __llvm_gcov_ctr.134+11
+	lds	r20, __llvm_gcov_ctr.134+12
+	lds	r21, __llvm_gcov_ctr.134+13
+	lds	r22, __llvm_gcov_ctr.134+14
+	lds	r23, __llvm_gcov_ctr.134+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.134+15, r23
+	sts	__llvm_gcov_ctr.134+14, r22
+	sts	__llvm_gcov_ctr.134+13, r21
+	sts	__llvm_gcov_ctr.134+12, r20
+	sts	__llvm_gcov_ctr.134+11, r19
+	sts	__llvm_gcov_ctr.134+10, r18
+	sts	__llvm_gcov_ctr.134+9, r25
+	sts	__llvm_gcov_ctr.134+8, r24
 	lds	r24, __profc___cmpdi2+16
 	lds	r25, __profc___cmpdi2+17
 	lds	r18, __profc___cmpdi2+18
@@ -30371,6 +40914,30 @@ __cmpdi2:                               ; @__cmpdi2
 	std	Y+4, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB134_9
 .LBB134_11:
+	lds	r24, __llvm_gcov_ctr.134+16
+	lds	r25, __llvm_gcov_ctr.134+17
+	lds	r18, __llvm_gcov_ctr.134+18
+	lds	r19, __llvm_gcov_ctr.134+19
+	lds	r20, __llvm_gcov_ctr.134+20
+	lds	r21, __llvm_gcov_ctr.134+21
+	lds	r22, __llvm_gcov_ctr.134+22
+	lds	r23, __llvm_gcov_ctr.134+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.134+23, r23
+	sts	__llvm_gcov_ctr.134+22, r22
+	sts	__llvm_gcov_ctr.134+21, r21
+	sts	__llvm_gcov_ctr.134+20, r20
+	sts	__llvm_gcov_ctr.134+19, r19
+	sts	__llvm_gcov_ctr.134+18, r18
+	sts	__llvm_gcov_ctr.134+17, r25
+	sts	__llvm_gcov_ctr.134+16, r24
 	lds	r24, __profc___cmpdi2+24
 	lds	r25, __profc___cmpdi2+25
 	lds	r18, __profc___cmpdi2+26
@@ -30432,6 +40999,30 @@ __cmpdi2:                               ; @__cmpdi2
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB134_13
 .LBB134_15:
+	lds	r24, __llvm_gcov_ctr.134+24
+	lds	r25, __llvm_gcov_ctr.134+25
+	lds	r18, __llvm_gcov_ctr.134+26
+	lds	r19, __llvm_gcov_ctr.134+27
+	lds	r20, __llvm_gcov_ctr.134+28
+	lds	r21, __llvm_gcov_ctr.134+29
+	lds	r22, __llvm_gcov_ctr.134+30
+	lds	r23, __llvm_gcov_ctr.134+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.134+31, r23
+	sts	__llvm_gcov_ctr.134+30, r22
+	sts	__llvm_gcov_ctr.134+29, r21
+	sts	__llvm_gcov_ctr.134+28, r20
+	sts	__llvm_gcov_ctr.134+27, r19
+	sts	__llvm_gcov_ctr.134+26, r18
+	sts	__llvm_gcov_ctr.134+25, r25
+	sts	__llvm_gcov_ctr.134+24, r24
 	lds	r24, __profc___cmpdi2+32
 	lds	r25, __profc___cmpdi2+33
 	lds	r18, __profc___cmpdi2+34
@@ -30466,6 +41057,30 @@ __cmpdi2:                               ; @__cmpdi2
 	std	Y+41, r24
 	rjmp	.LBB134_17
 .LBB134_16:
+	lds	r24, __llvm_gcov_ctr.134+32
+	lds	r25, __llvm_gcov_ctr.134+33
+	lds	r18, __llvm_gcov_ctr.134+34
+	lds	r19, __llvm_gcov_ctr.134+35
+	lds	r20, __llvm_gcov_ctr.134+36
+	lds	r21, __llvm_gcov_ctr.134+37
+	lds	r22, __llvm_gcov_ctr.134+38
+	lds	r23, __llvm_gcov_ctr.134+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.134+39, r23
+	sts	__llvm_gcov_ctr.134+38, r22
+	sts	__llvm_gcov_ctr.134+37, r21
+	sts	__llvm_gcov_ctr.134+36, r20
+	sts	__llvm_gcov_ctr.134+35, r19
+	sts	__llvm_gcov_ctr.134+34, r18
+	sts	__llvm_gcov_ctr.134+33, r25
+	sts	__llvm_gcov_ctr.134+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+44, r25
@@ -30509,36 +41124,75 @@ __aeabi_lcmp:                           ; @__aeabi_lcmp
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 20
+	sbiw	r28, 28
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r17r16
                                         ; kill: def $r31r30 killed $r15r14
                                         ; kill: def $r31r30 killed $r13r12
                                         ; kill: def $r31r30 killed $r11r10
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+16, r25
-	std	Y+15, r24
-	std	Y+14, r23
-	std	Y+13, r22
-	std	Y+12, r21
-	std	Y+11, r20
-	std	Y+10, r19
-	std	Y+9, r18
-	std	Y+8, r17
-	std	Y+7, r16
-	std	Y+6, r15
-	std	Y+5, r14
-	std	Y+4, r13
-	std	Y+3, r12
-	std	Y+2, r11
-	std	Y+1, r10
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.135
+	lds	r31, __llvm_gcov_ctr.135+1
+	lds	r26, __llvm_gcov_ctr.135+2
+	lds	r27, __llvm_gcov_ctr.135+3
+	lds	r24, __llvm_gcov_ctr.135+4
+	lds	r25, __llvm_gcov_ctr.135+5
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.135+6
+	lds	r25, __llvm_gcov_ctr.135+7
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+6, r25                        ; 2-byte Folded Spill
+	std	Y+5, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.135+7, r25
+	sts	__llvm_gcov_ctr.135+6, r24
+	ldd	r24, Y+5                        ; 2-byte Folded Reload
+	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.135+5, r25
+	sts	__llvm_gcov_ctr.135+4, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.135+3, r27
+	sts	__llvm_gcov_ctr.135+2, r26
+	sts	__llvm_gcov_ctr.135+1, r31
+	sts	__llvm_gcov_ctr.135, r30
+	std	Y+24, r25
+	std	Y+23, r24
+	std	Y+22, r23
+	std	Y+21, r22
+	std	Y+20, r21
+	std	Y+19, r20
+	std	Y+18, r19
+	std	Y+17, r18
+	std	Y+16, r17
+	std	Y+15, r16
+	std	Y+14, r15
+	std	Y+13, r14
+	std	Y+12, r13
+	std	Y+11, r12
+	std	Y+10, r11
+	std	Y+9, r10
 	lds	r24, __profc___aeabi_lcmp
 	lds	r25, __profc___aeabi_lcmp+1
 	lds	r18, __profc___aeabi_lcmp+2
@@ -30563,28 +41217,28 @@ __aeabi_lcmp:                           ; @__aeabi_lcmp
 	sts	__profc___aeabi_lcmp+2, r18
 	sts	__profc___aeabi_lcmp+1, r25
 	sts	__profc___aeabi_lcmp, r24
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	ldd	r22, Y+13
-	ldd	r23, Y+14
-	ldd	r20, Y+11
-	ldd	r21, Y+12
-	ldd	r18, Y+9
-	ldd	r19, Y+10
-	ldd	r16, Y+7
-	ldd	r17, Y+8
-	ldd	r14, Y+5
-	ldd	r15, Y+6
-	ldd	r12, Y+3
-	ldd	r13, Y+4
-	ldd	r10, Y+1
-	ldd	r11, Y+2
+	ldd	r24, Y+23
+	ldd	r25, Y+24
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r20, Y+19
+	ldd	r21, Y+20
+	ldd	r18, Y+17
+	ldd	r19, Y+18
+	ldd	r16, Y+15
+	ldd	r17, Y+16
+	ldd	r14, Y+13
+	ldd	r15, Y+14
+	ldd	r12, Y+11
+	ldd	r13, Y+12
+	ldd	r10, Y+9
+	ldd	r11, Y+10
 	rcall	__cmpdi2
 	subi	r22, 1
 	sbci	r23, 0
 	sbci	r24, 0
 	sbci	r25, 0
-	adiw	r28, 20
+	adiw	r28, 28
 	in	r0, 63
 	cli
 	out	62, r29
@@ -30621,6 +41275,30 @@ __ctzsi2:                               ; @__ctzsi2
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.136
+	lds	r19, __llvm_gcov_ctr.136+1
+	lds	r20, __llvm_gcov_ctr.136+2
+	lds	r21, __llvm_gcov_ctr.136+3
+	lds	r30, __llvm_gcov_ctr.136+4
+	lds	r31, __llvm_gcov_ctr.136+5
+	lds	r26, __llvm_gcov_ctr.136+6
+	lds	r27, __llvm_gcov_ctr.136+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.136+7, r27
+	sts	__llvm_gcov_ctr.136+6, r26
+	sts	__llvm_gcov_ctr.136+5, r31
+	sts	__llvm_gcov_ctr.136+4, r30
+	sts	__llvm_gcov_ctr.136+3, r21
+	sts	__llvm_gcov_ctr.136+2, r20
+	sts	__llvm_gcov_ctr.136+1, r19
+	sts	__llvm_gcov_ctr.136, r18
 	std	Y+48, r25
 	std	Y+47, r24
 	std	Y+46, r23
@@ -31240,6 +41918,30 @@ __lshrdi3:                              ; @__lshrdi3
 	brne	.LBB137_1
 	rjmp	.LBB137_4
 .LBB137_1:
+	lds	r24, __llvm_gcov_ctr.137
+	lds	r25, __llvm_gcov_ctr.137+1
+	lds	r18, __llvm_gcov_ctr.137+2
+	lds	r19, __llvm_gcov_ctr.137+3
+	lds	r20, __llvm_gcov_ctr.137+4
+	lds	r21, __llvm_gcov_ctr.137+5
+	lds	r22, __llvm_gcov_ctr.137+6
+	lds	r23, __llvm_gcov_ctr.137+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.137+7, r23
+	sts	__llvm_gcov_ctr.137+6, r22
+	sts	__llvm_gcov_ctr.137+5, r21
+	sts	__llvm_gcov_ctr.137+4, r20
+	sts	__llvm_gcov_ctr.137+3, r19
+	sts	__llvm_gcov_ctr.137+2, r18
+	sts	__llvm_gcov_ctr.137+1, r25
+	sts	__llvm_gcov_ctr.137, r24
 	lds	r24, __profc___lshrdi3+8
 	lds	r25, __profc___lshrdi3+9
 	lds	r18, __profc___lshrdi3+10
@@ -31333,6 +42035,30 @@ __lshrdi3:                              ; @__lshrdi3
 	breq	.LBB137_5
 	rjmp	.LBB137_6
 .LBB137_5:
+	lds	r24, __llvm_gcov_ctr.137+8
+	lds	r25, __llvm_gcov_ctr.137+9
+	lds	r18, __llvm_gcov_ctr.137+10
+	lds	r19, __llvm_gcov_ctr.137+11
+	lds	r20, __llvm_gcov_ctr.137+12
+	lds	r21, __llvm_gcov_ctr.137+13
+	lds	r22, __llvm_gcov_ctr.137+14
+	lds	r23, __llvm_gcov_ctr.137+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.137+15, r23
+	sts	__llvm_gcov_ctr.137+14, r22
+	sts	__llvm_gcov_ctr.137+13, r21
+	sts	__llvm_gcov_ctr.137+12, r20
+	sts	__llvm_gcov_ctr.137+11, r19
+	sts	__llvm_gcov_ctr.137+10, r18
+	sts	__llvm_gcov_ctr.137+9, r25
+	sts	__llvm_gcov_ctr.137+8, r24
 	lds	r24, __profc___lshrdi3+16
 	lds	r25, __profc___lshrdi3+17
 	lds	r18, __profc___lshrdi3+18
@@ -31387,6 +42113,30 @@ __lshrdi3:                              ; @__lshrdi3
 	std	Y+61, r24
 	rjmp	.LBB137_14
 .LBB137_6:
+	lds	r24, __llvm_gcov_ctr.137+16
+	lds	r25, __llvm_gcov_ctr.137+17
+	lds	r18, __llvm_gcov_ctr.137+18
+	lds	r19, __llvm_gcov_ctr.137+19
+	lds	r20, __llvm_gcov_ctr.137+20
+	lds	r21, __llvm_gcov_ctr.137+21
+	lds	r22, __llvm_gcov_ctr.137+22
+	lds	r23, __llvm_gcov_ctr.137+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.137+23, r23
+	sts	__llvm_gcov_ctr.137+22, r22
+	sts	__llvm_gcov_ctr.137+21, r21
+	sts	__llvm_gcov_ctr.137+20, r20
+	sts	__llvm_gcov_ctr.137+19, r19
+	sts	__llvm_gcov_ctr.137+18, r18
+	sts	__llvm_gcov_ctr.137+17, r25
+	sts	__llvm_gcov_ctr.137+16, r24
 	ldd	r24, Y+43
 	ldd	r25, Y+44
 	ldd	r18, Y+41
@@ -31617,28 +42367,57 @@ __lshrdi3:                              ; @__lshrdi3
 	.type	__muldsi3,@function
 __muldsi3:                              ; @__muldsi3
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 28
+	sbiw	r28, 30
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r21r20
                                         ; kill: def $r31r30 killed $r19r18
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-	std	Y+28, r25
-	std	Y+27, r24
-	std	Y+26, r23
-	std	Y+25, r22
-	std	Y+24, r21
-	std	Y+23, r20
-	std	Y+22, r19
-	std	Y+21, r18
+                                        ; kill: def $r25r24 killed $r23r22
+	lds	r30, __llvm_gcov_ctr.138
+	lds	r31, __llvm_gcov_ctr.138+1
+	lds	r26, __llvm_gcov_ctr.138+2
+	lds	r27, __llvm_gcov_ctr.138+3
+	lds	r16, __llvm_gcov_ctr.138+4
+	lds	r17, __llvm_gcov_ctr.138+5
+	lds	r24, __llvm_gcov_ctr.138+6
+	lds	r25, __llvm_gcov_ctr.138+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.138+7, r25
+	sts	__llvm_gcov_ctr.138+6, r24
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.138+5, r17
+	sts	__llvm_gcov_ctr.138+4, r16
+	sts	__llvm_gcov_ctr.138+3, r27
+	sts	__llvm_gcov_ctr.138+2, r26
+	sts	__llvm_gcov_ctr.138+1, r31
+	sts	__llvm_gcov_ctr.138, r30
+	std	Y+30, r25
+	std	Y+29, r24
+	std	Y+28, r23
+	std	Y+27, r22
+	std	Y+26, r21
+	std	Y+25, r20
+	std	Y+24, r19
+	std	Y+23, r18
 	lds	r24, __profc___muldsi3
 	lds	r25, __profc___muldsi3+1
 	lds	r18, __profc___muldsi3+2
@@ -31665,141 +42444,18 @@ __muldsi3:                              ; @__muldsi3
 	sts	__profc___muldsi3, r24
 	ldi	r24, 16
 	ldi	r25, 0
-	std	Y+12, r25
-	std	Y+11, r24
+	std	Y+14, r25
+	std	Y+13, r24
 	ldi	r20, 0
 	ldi	r21, 0
-	std	Y+2, r21                        ; 2-byte Folded Spill
-	std	Y+1, r20                        ; 2-byte Folded Spill
-	std	Y+10, r21
-	std	Y+9, r20
+	std	Y+4, r21                        ; 2-byte Folded Spill
+	std	Y+3, r20                        ; 2-byte Folded Spill
+	std	Y+12, r21
+	std	Y+11, r20
 	ldi	r24, 255
 	ldi	r25, 255
-	std	Y+8, r25
-	std	Y+7, r24
-	ldd	r22, Y+25
-	ldd	r23, Y+26
-	ldd	r18, Y+21
-	ldd	r19, Y+22
-	mov	r24, r20
-	mov	r25, r21
-	rcall	__mulsi3
-	ldd	r20, Y+1                        ; 2-byte Folded Reload
-	ldd	r21, Y+2                        ; 2-byte Folded Reload
-	std	Y+16, r25
-	std	Y+15, r24
-	std	Y+14, r23
-	std	Y+13, r22
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	std	Y+6, r21
-	std	Y+5, r20
-	std	Y+4, r25
-	std	Y+3, r24
-	std	Y+16, r21
-	std	Y+15, r20
-	ldd	r22, Y+27
-	ldd	r23, Y+28
-	ldd	r18, Y+21
-	ldd	r19, Y+22
-	mov	r24, r20
-	mov	r25, r21
-	rcall	__mulsi3
-	ldd	r20, Y+1                        ; 2-byte Folded Reload
-	ldd	r21, Y+2                        ; 2-byte Folded Reload
-	mov	r30, r22
-	mov	r31, r23
-	mov	r22, r24
-	mov	r23, r25
-	ldd	r24, Y+3
-	ldd	r25, Y+4
-	ldd	r18, Y+5
-	ldd	r19, Y+6
-	add	r24, r30
-	adc	r25, r31
-	adc	r18, r22
-	adc	r19, r23
-	std	Y+6, r19
-	std	Y+5, r18
-	std	Y+4, r25
-	std	Y+3, r24
-	ldd	r22, Y+3
-	ldd	r23, Y+4
-	ldd	r18, Y+13
-	ldd	r19, Y+14
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	add	r24, r22
-	adc	r25, r23
-	std	Y+14, r19
-	std	Y+13, r18
-	std	Y+16, r25
-	std	Y+15, r24
-	ldd	r24, Y+5
-	ldd	r25, Y+6
-	std	Y+20, r21
-	std	Y+19, r20
-	std	Y+18, r25
-	std	Y+17, r24
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	std	Y+6, r21
-	std	Y+5, r20
-	std	Y+4, r25
-	std	Y+3, r24
-	std	Y+16, r21
-	std	Y+15, r20
-	ldd	r22, Y+23
-	ldd	r23, Y+24
-	ldd	r18, Y+25
-	ldd	r19, Y+26
-	mov	r24, r20
-	mov	r25, r21
-	rcall	__mulsi3
-	ldd	r20, Y+1                        ; 2-byte Folded Reload
-	ldd	r21, Y+2                        ; 2-byte Folded Reload
-	mov	r30, r22
-	mov	r31, r23
-	mov	r22, r24
-	mov	r23, r25
-	ldd	r24, Y+3
-	ldd	r25, Y+4
-	ldd	r18, Y+5
-	ldd	r19, Y+6
-	add	r24, r30
-	adc	r25, r31
-	adc	r18, r22
-	adc	r19, r23
-	std	Y+6, r19
-	std	Y+5, r18
-	std	Y+4, r25
-	std	Y+3, r24
-	ldd	r22, Y+3
-	ldd	r23, Y+4
-	ldd	r18, Y+13
-	ldd	r19, Y+14
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	add	r24, r22
-	adc	r25, r23
-	std	Y+14, r19
-	std	Y+13, r18
-	std	Y+16, r25
-	std	Y+15, r24
-	ldd	r22, Y+5
-	ldd	r23, Y+6
-	ldd	r24, Y+17
-	ldd	r25, Y+18
-	ldd	r18, Y+19
-	ldd	r19, Y+20
-	add	r24, r22
-	adc	r25, r23
-	adc	r18, r20
-	adc	r19, r21
-	std	Y+20, r19
-	std	Y+19, r18
-	std	Y+18, r25
-	std	Y+17, r24
+	std	Y+10, r25
+	std	Y+9, r24
 	ldd	r22, Y+27
 	ldd	r23, Y+28
 	ldd	r18, Y+23
@@ -31807,29 +42463,152 @@ __muldsi3:                              ; @__muldsi3
 	mov	r24, r20
 	mov	r25, r21
 	rcall	__mulsi3
-	mov	r20, r24
-	mov	r21, r25
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	std	Y+18, r25
+	std	Y+17, r24
+	std	Y+16, r23
+	std	Y+15, r22
 	ldd	r24, Y+17
 	ldd	r25, Y+18
-	ldd	r18, Y+19
-	ldd	r19, Y+20
+	std	Y+8, r21
+	std	Y+7, r20
+	std	Y+6, r25
+	std	Y+5, r24
+	std	Y+18, r21
+	std	Y+17, r20
+	ldd	r22, Y+29
+	ldd	r23, Y+30
+	ldd	r18, Y+23
+	ldd	r19, Y+24
+	mov	r24, r20
+	mov	r25, r21
+	rcall	__mulsi3
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	mov	r30, r22
+	mov	r31, r23
+	mov	r22, r24
+	mov	r23, r25
+	ldd	r24, Y+5
+	ldd	r25, Y+6
+	ldd	r18, Y+7
+	ldd	r19, Y+8
+	add	r24, r30
+	adc	r25, r31
+	adc	r18, r22
+	adc	r19, r23
+	std	Y+8, r19
+	std	Y+7, r18
+	std	Y+6, r25
+	std	Y+5, r24
+	ldd	r22, Y+5
+	ldd	r23, Y+6
+	ldd	r18, Y+15
+	ldd	r19, Y+16
+	ldd	r24, Y+17
+	ldd	r25, Y+18
+	add	r24, r22
+	adc	r25, r23
+	std	Y+16, r19
+	std	Y+15, r18
+	std	Y+18, r25
+	std	Y+17, r24
+	ldd	r24, Y+7
+	ldd	r25, Y+8
+	std	Y+22, r21
+	std	Y+21, r20
+	std	Y+20, r25
+	std	Y+19, r24
+	ldd	r24, Y+17
+	ldd	r25, Y+18
+	std	Y+8, r21
+	std	Y+7, r20
+	std	Y+6, r25
+	std	Y+5, r24
+	std	Y+18, r21
+	std	Y+17, r20
+	ldd	r22, Y+25
+	ldd	r23, Y+26
+	ldd	r18, Y+27
+	ldd	r19, Y+28
+	mov	r24, r20
+	mov	r25, r21
+	rcall	__mulsi3
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	mov	r30, r22
+	mov	r31, r23
+	mov	r22, r24
+	mov	r23, r25
+	ldd	r24, Y+5
+	ldd	r25, Y+6
+	ldd	r18, Y+7
+	ldd	r19, Y+8
+	add	r24, r30
+	adc	r25, r31
+	adc	r18, r22
+	adc	r19, r23
+	std	Y+8, r19
+	std	Y+7, r18
+	std	Y+6, r25
+	std	Y+5, r24
+	ldd	r22, Y+5
+	ldd	r23, Y+6
+	ldd	r18, Y+15
+	ldd	r19, Y+16
+	ldd	r24, Y+17
+	ldd	r25, Y+18
+	add	r24, r22
+	adc	r25, r23
+	std	Y+16, r19
+	std	Y+15, r18
+	std	Y+18, r25
+	std	Y+17, r24
+	ldd	r22, Y+7
+	ldd	r23, Y+8
+	ldd	r24, Y+19
+	ldd	r25, Y+20
+	ldd	r18, Y+21
+	ldd	r19, Y+22
 	add	r24, r22
 	adc	r25, r23
 	adc	r18, r20
 	adc	r19, r21
-	std	Y+20, r19
-	std	Y+19, r18
-	std	Y+18, r25
-	std	Y+17, r24
-	ldd	r18, Y+13
-	ldd	r19, Y+14
-	ldd	r20, Y+15
-	ldd	r21, Y+16
-	ldd	r22, Y+17
-	ldd	r23, Y+18
+	std	Y+22, r19
+	std	Y+21, r18
+	std	Y+20, r25
+	std	Y+19, r24
+	ldd	r22, Y+29
+	ldd	r23, Y+30
+	ldd	r18, Y+25
+	ldd	r19, Y+26
+	mov	r24, r20
+	mov	r25, r21
+	rcall	__mulsi3
+	mov	r20, r24
+	mov	r21, r25
 	ldd	r24, Y+19
 	ldd	r25, Y+20
-	adiw	r28, 28
+	ldd	r18, Y+21
+	ldd	r19, Y+22
+	add	r24, r22
+	adc	r25, r23
+	adc	r18, r20
+	adc	r19, r21
+	std	Y+22, r19
+	std	Y+21, r18
+	std	Y+20, r25
+	std	Y+19, r24
+	ldd	r18, Y+15
+	ldd	r19, Y+16
+	ldd	r20, Y+17
+	ldd	r21, Y+18
+	ldd	r22, Y+19
+	ldd	r23, Y+20
+	ldd	r24, Y+21
+	ldd	r25, Y+22
+	adiw	r28, 30
 	in	r0, 63
 	cli
 	out	62, r29
@@ -31837,6 +42616,8 @@ __muldsi3:                              ; @__muldsi3
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end138:
 	.size	__muldsi3, .Lfunc_end138-__muldsi3
@@ -31850,36 +42631,75 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 52
+	sbiw	r28, 60
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+12, r25                       ; 2-byte Folded Spill
+	std	Y+11, r24                       ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r17r16
                                         ; kill: def $r31r30 killed $r15r14
                                         ; kill: def $r31r30 killed $r13r12
                                         ; kill: def $r31r30 killed $r11r10
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+48, r25
-	std	Y+47, r24
-	std	Y+46, r23
-	std	Y+45, r22
-	std	Y+44, r21
-	std	Y+43, r20
-	std	Y+42, r19
-	std	Y+41, r18
-	std	Y+40, r17
-	std	Y+39, r16
-	std	Y+38, r15
-	std	Y+37, r14
-	std	Y+36, r13
-	std	Y+35, r12
-	std	Y+34, r11
-	std	Y+33, r10
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.139
+	lds	r31, __llvm_gcov_ctr.139+1
+	lds	r26, __llvm_gcov_ctr.139+2
+	lds	r27, __llvm_gcov_ctr.139+3
+	lds	r24, __llvm_gcov_ctr.139+4
+	lds	r25, __llvm_gcov_ctr.139+5
+	std	Y+6, r25                        ; 2-byte Folded Spill
+	std	Y+5, r24                        ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.139+6
+	lds	r25, __llvm_gcov_ctr.139+7
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+5                        ; 2-byte Folded Reload
+	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+10, r25                       ; 2-byte Folded Spill
+	std	Y+9, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.139+7, r25
+	sts	__llvm_gcov_ctr.139+6, r24
+	ldd	r24, Y+9                        ; 2-byte Folded Reload
+	ldd	r25, Y+10                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.139+5, r25
+	sts	__llvm_gcov_ctr.139+4, r24
+	ldd	r24, Y+11                       ; 2-byte Folded Reload
+	ldd	r25, Y+12                       ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.139+3, r27
+	sts	__llvm_gcov_ctr.139+2, r26
+	sts	__llvm_gcov_ctr.139+1, r31
+	sts	__llvm_gcov_ctr.139, r30
+	std	Y+56, r25
+	std	Y+55, r24
+	std	Y+54, r23
+	std	Y+53, r22
+	std	Y+52, r21
+	std	Y+51, r20
+	std	Y+50, r19
+	std	Y+49, r18
+	std	Y+48, r17
+	std	Y+47, r16
+	std	Y+46, r15
+	std	Y+45, r14
+	std	Y+44, r13
+	std	Y+43, r12
+	std	Y+42, r11
+	std	Y+41, r10
 	lds	r24, __profc___muldi3_compiler_rt
 	lds	r25, __profc___muldi3_compiler_rt+1
 	lds	r18, __profc___muldi3_compiler_rt+2
@@ -31904,6 +42724,22 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	sts	__profc___muldi3_compiler_rt+2, r18
 	sts	__profc___muldi3_compiler_rt+1, r25
 	sts	__profc___muldi3_compiler_rt, r24
+	ldd	r24, Y+49
+	ldd	r25, Y+50
+	ldd	r18, Y+51
+	ldd	r19, Y+52
+	ldd	r20, Y+53
+	ldd	r21, Y+54
+	ldd	r22, Y+55
+	ldd	r23, Y+56
+	std	Y+40, r23
+	std	Y+39, r22
+	std	Y+38, r21
+	std	Y+37, r20
+	std	Y+36, r19
+	std	Y+35, r18
+	std	Y+34, r25
+	std	Y+33, r24
 	ldd	r24, Y+41
 	ldd	r25, Y+42
 	ldd	r18, Y+43
@@ -31920,92 +42756,76 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	std	Y+27, r18
 	std	Y+26, r25
 	std	Y+25, r24
-	ldd	r24, Y+33
-	ldd	r25, Y+34
-	ldd	r18, Y+35
-	ldd	r19, Y+36
-	ldd	r20, Y+37
-	ldd	r21, Y+38
-	ldd	r22, Y+39
-	ldd	r23, Y+40
-	std	Y+24, r23
-	std	Y+23, r22
-	std	Y+22, r21
-	std	Y+21, r20
-	std	Y+20, r19
-	std	Y+19, r18
-	std	Y+18, r25
-	std	Y+17, r24
-	ldd	r24, Y+27
-	ldd	r25, Y+28
-	ldd	r22, Y+25
-	ldd	r23, Y+26
-	ldd	r20, Y+19
-	ldd	r21, Y+20
-	ldd	r18, Y+17
-	ldd	r19, Y+18
+	ldd	r24, Y+35
+	ldd	r25, Y+36
+	ldd	r22, Y+33
+	ldd	r23, Y+34
+	ldd	r20, Y+27
+	ldd	r21, Y+28
+	ldd	r18, Y+25
+	ldd	r19, Y+26
 	rcall	__muldsi3
-	std	Y+16, r25
-	std	Y+15, r24
-	std	Y+14, r23
-	std	Y+13, r22
-	std	Y+12, r21
-	std	Y+11, r20
-	std	Y+10, r19
-	std	Y+9, r18
-	ldd	r22, Y+29
-	ldd	r23, Y+30
-	ldd	r24, Y+31
-	ldd	r25, Y+32
-	ldd	r18, Y+17
-	ldd	r19, Y+18
-	ldd	r20, Y+19
-	ldd	r21, Y+20
+	std	Y+24, r25
+	std	Y+23, r24
+	std	Y+22, r23
+	std	Y+21, r22
+	std	Y+20, r21
+	std	Y+19, r20
+	std	Y+18, r19
+	std	Y+17, r18
+	ldd	r22, Y+37
+	ldd	r23, Y+38
+	ldd	r24, Y+39
+	ldd	r25, Y+40
+	ldd	r18, Y+25
+	ldd	r19, Y+26
+	ldd	r20, Y+27
+	ldd	r21, Y+28
 	rcall	__mulsi3
-	std	Y+8, r23                        ; 2-byte Folded Spill
-	std	Y+7, r22                        ; 2-byte Folded Spill
-	std	Y+6, r25                        ; 2-byte Folded Spill
-	std	Y+5, r24                        ; 2-byte Folded Spill
-	ldd	r22, Y+25
-	ldd	r23, Y+26
-	ldd	r24, Y+27
-	ldd	r25, Y+28
-	ldd	r18, Y+21
-	ldd	r19, Y+22
-	ldd	r20, Y+23
-	ldd	r21, Y+24
+	std	Y+16, r23                       ; 2-byte Folded Spill
+	std	Y+15, r22                       ; 2-byte Folded Spill
+	std	Y+14, r25                       ; 2-byte Folded Spill
+	std	Y+13, r24                       ; 2-byte Folded Spill
+	ldd	r22, Y+33
+	ldd	r23, Y+34
+	ldd	r24, Y+35
+	ldd	r25, Y+36
+	ldd	r18, Y+29
+	ldd	r19, Y+30
+	ldd	r20, Y+31
+	ldd	r21, Y+32
 	rcall	__mulsi3
-	ldd	r20, Y+5                        ; 2-byte Folded Reload
-	ldd	r21, Y+6                        ; 2-byte Folded Reload
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
 	mov	r18, r22
 	mov	r19, r23
-	ldd	r22, Y+7                        ; 2-byte Folded Reload
-	ldd	r23, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 2-byte Folded Reload
+	ldd	r23, Y+16                       ; 2-byte Folded Reload
 	add	r22, r18
 	adc	r23, r19
 	adc	r20, r24
 	adc	r21, r25
-	ldd	r24, Y+13
-	ldd	r25, Y+14
-	ldd	r18, Y+15
-	ldd	r19, Y+16
+	ldd	r24, Y+21
+	ldd	r25, Y+22
+	ldd	r18, Y+23
+	ldd	r19, Y+24
 	add	r24, r22
 	adc	r25, r23
 	adc	r18, r20
 	adc	r19, r21
-	std	Y+16, r19
-	std	Y+15, r18
-	std	Y+14, r25
-	std	Y+13, r24
-	ldd	r18, Y+9
-	ldd	r19, Y+10
-	ldd	r20, Y+11
-	ldd	r21, Y+12
-	ldd	r22, Y+13
-	ldd	r23, Y+14
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	adiw	r28, 52
+	std	Y+24, r19
+	std	Y+23, r18
+	std	Y+22, r25
+	std	Y+21, r24
+	ldd	r18, Y+17
+	ldd	r19, Y+18
+	ldd	r20, Y+19
+	ldd	r21, Y+20
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r24, Y+23
+	ldd	r25, Y+24
+	adiw	r28, 60
 	in	r0, 63
 	cli
 	out	62, r29
@@ -32022,28 +42842,57 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	.type	__negdi2,@function
 __negdi2:                               ; @__negdi2
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 12
+	sbiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+8, r25
-	std	Y+7, r24
-	std	Y+6, r23
-	std	Y+5, r22
-	std	Y+4, r21
-	std	Y+3, r20
-	std	Y+2, r19
-	std	Y+1, r18
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.140
+	lds	r31, __llvm_gcov_ctr.140+1
+	lds	r26, __llvm_gcov_ctr.140+2
+	lds	r27, __llvm_gcov_ctr.140+3
+	lds	r16, __llvm_gcov_ctr.140+4
+	lds	r17, __llvm_gcov_ctr.140+5
+	lds	r24, __llvm_gcov_ctr.140+6
+	lds	r25, __llvm_gcov_ctr.140+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.140+7, r25
+	sts	__llvm_gcov_ctr.140+6, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.140+5, r17
+	sts	__llvm_gcov_ctr.140+4, r16
+	sts	__llvm_gcov_ctr.140+3, r27
+	sts	__llvm_gcov_ctr.140+2, r26
+	sts	__llvm_gcov_ctr.140+1, r31
+	sts	__llvm_gcov_ctr.140, r30
+	std	Y+16, r25
+	std	Y+15, r24
+	std	Y+14, r23
+	std	Y+13, r22
+	std	Y+12, r21
+	std	Y+11, r20
+	std	Y+10, r19
+	std	Y+9, r18
 	lds	r24, __profc___negdi2
 	lds	r25, __profc___negdi2+1
 	lds	r18, __profc___negdi2+2
@@ -32068,14 +42917,14 @@ __negdi2:                               ; @__negdi2
 	sts	__profc___negdi2+2, r18
 	sts	__profc___negdi2+1, r25
 	sts	__profc___negdi2, r24
-	ldd	r20, Y+1
-	ldd	r21, Y+2
-	ldd	r22, Y+3
-	ldd	r23, Y+4
-	ldd	r26, Y+5
-	ldd	r27, Y+6
-	ldd	r30, Y+7
-	ldd	r31, Y+8
+	ldd	r20, Y+9
+	ldd	r21, Y+10
+	ldd	r22, Y+11
+	ldd	r23, Y+12
+	ldd	r26, Y+13
+	ldd	r27, Y+14
+	ldd	r30, Y+15
+	ldd	r31, Y+16
 	ldi	r24, 0
 	ldi	r25, 0
 	mov	r18, r24
@@ -32092,7 +42941,7 @@ __negdi2:                               ; @__negdi2
 	sbc	r23, r27
 	sbc	r24, r30
 	sbc	r25, r31
-	adiw	r28, 12
+	adiw	r28, 18
 	in	r0, 63
 	cli
 	out	62, r29
@@ -32100,6 +42949,8 @@ __negdi2:                               ; @__negdi2
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end140:
 	.size	__negdi2, .Lfunc_end140-__negdi2
@@ -32109,20 +42960,49 @@ __negdi2:                               ; @__negdi2
 	.type	__paritydi2,@function
 __paritydi2:                            ; @__paritydi2
 ; %bb.0:
+	push	r16
+	push	r17
 	push	r28
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 36
+	sbiw	r28, 34
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
+	std	Y+7, r25                        ; 2-byte Folded Spill
+	std	Y+6, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.141
+	lds	r31, __llvm_gcov_ctr.141+1
+	lds	r26, __llvm_gcov_ctr.141+2
+	lds	r27, __llvm_gcov_ctr.141+3
+	lds	r16, __llvm_gcov_ctr.141+4
+	lds	r17, __llvm_gcov_ctr.141+5
+	lds	r24, __llvm_gcov_ctr.141+6
+	lds	r25, __llvm_gcov_ctr.141+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.141+7, r25
+	sts	__llvm_gcov_ctr.141+6, r24
+	ldd	r24, Y+6                        ; 2-byte Folded Reload
+	ldd	r25, Y+7                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.141+5, r17
+	sts	__llvm_gcov_ctr.141+4, r16
+	sts	__llvm_gcov_ctr.141+3, r27
+	sts	__llvm_gcov_ctr.141+2, r26
+	sts	__llvm_gcov_ctr.141+1, r31
+	sts	__llvm_gcov_ctr.141, r30
 	std	Y+32, r25
 	std	Y+31, r24
 	std	Y+30, r23
@@ -32260,9 +43140,9 @@ __paritydi2:                            ; @__paritydi2
 	std	Y+11, r24                       ; 2-byte Folded Spill
 	rjmp	.LBB141_2
 .LBB141_1:                              ;   in Loop: Header=BB141_2 Depth=1
-	ldd	r18, Y+7                        ; 1-byte Folded Reload
-	ldd	r24, Y+5                        ; 2-byte Folded Reload
-	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	ldd	r18, Y+5                        ; 1-byte Folded Reload
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
 	lsr	r25
 	ror	r24
 	mov	r20, r24
@@ -32278,19 +43158,19 @@ __paritydi2:                            ; @__paritydi2
 	ldd	r24, Y+10                       ; 1-byte Folded Reload
 	ldd	r20, Y+11                       ; 2-byte Folded Reload
 	ldd	r21, Y+12                       ; 2-byte Folded Reload
-	std	Y+4, r21                        ; 2-byte Folded Spill
-	std	Y+3, r20                        ; 2-byte Folded Spill
-	std	Y+6, r19                        ; 2-byte Folded Spill
-	std	Y+5, r18                        ; 2-byte Folded Spill
+	std	Y+2, r21                        ; 2-byte Folded Spill
+	std	Y+1, r20                        ; 2-byte Folded Spill
+	std	Y+4, r19                        ; 2-byte Folded Spill
+	std	Y+3, r18                        ; 2-byte Folded Spill
 	dec	r24
-	std	Y+7, r24                        ; 1-byte Folded Spill
+	std	Y+5, r24                        ; 1-byte Folded Spill
 	brpl	.LBB141_1
 ; %bb.3:
-	ldd	r24, Y+3                        ; 2-byte Folded Reload
-	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
 	andi	r24, 1
 	andi	r25, 0
-	adiw	r28, 36
+	adiw	r28, 34
 	in	r0, 63
 	cli
 	out	62, r29
@@ -32298,6 +43178,8 @@ __paritydi2:                            ; @__paritydi2
 	out	61, r28
 	pop	r29
 	pop	r28
+	pop	r17
+	pop	r16
 	ret
 .Lfunc_end141:
 	.size	__paritydi2, .Lfunc_end141-__paritydi2
@@ -32319,6 +43201,30 @@ __paritysi2:                            ; @__paritysi2
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.142
+	lds	r19, __llvm_gcov_ctr.142+1
+	lds	r20, __llvm_gcov_ctr.142+2
+	lds	r21, __llvm_gcov_ctr.142+3
+	lds	r30, __llvm_gcov_ctr.142+4
+	lds	r31, __llvm_gcov_ctr.142+5
+	lds	r26, __llvm_gcov_ctr.142+6
+	lds	r27, __llvm_gcov_ctr.142+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.142+7, r27
+	sts	__llvm_gcov_ctr.142+6, r26
+	sts	__llvm_gcov_ctr.142+5, r31
+	sts	__llvm_gcov_ctr.142+4, r30
+	sts	__llvm_gcov_ctr.142+3, r21
+	sts	__llvm_gcov_ctr.142+2, r20
+	sts	__llvm_gcov_ctr.142+1, r19
+	sts	__llvm_gcov_ctr.142, r18
 	std	Y+18, r25
 	std	Y+17, r24
 	std	Y+16, r23
@@ -32490,10 +43396,37 @@ __popcountdi2:                          ; @__popcountdi2
 	out	62, r29
 	out	63, r0
 	out	61, r28
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.143
+	lds	r31, __llvm_gcov_ctr.143+1
+	lds	r26, __llvm_gcov_ctr.143+2
+	lds	r27, __llvm_gcov_ctr.143+3
+	lds	r16, __llvm_gcov_ctr.143+4
+	lds	r17, __llvm_gcov_ctr.143+5
+	lds	r24, __llvm_gcov_ctr.143+6
+	lds	r25, __llvm_gcov_ctr.143+7
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r16, 255
+	sbci	r17, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.143+7, r25
+	sts	__llvm_gcov_ctr.143+6, r24
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.143+5, r17
+	sts	__llvm_gcov_ctr.143+4, r16
+	sts	__llvm_gcov_ctr.143+3, r27
+	sts	__llvm_gcov_ctr.143+2, r26
+	sts	__llvm_gcov_ctr.143+1, r31
+	sts	__llvm_gcov_ctr.143, r30
 	std	Y+32, r25
 	std	Y+31, r24
 	std	Y+30, r23
@@ -32887,6 +43820,30 @@ __popcountsi2:                          ; @__popcountsi2
 	out	61, r28
                                         ; kill: def $r19r18 killed $r25r24
                                         ; kill: def $r19r18 killed $r23r22
+	lds	r18, __llvm_gcov_ctr.144
+	lds	r19, __llvm_gcov_ctr.144+1
+	lds	r20, __llvm_gcov_ctr.144+2
+	lds	r21, __llvm_gcov_ctr.144+3
+	lds	r30, __llvm_gcov_ctr.144+4
+	lds	r31, __llvm_gcov_ctr.144+5
+	lds	r26, __llvm_gcov_ctr.144+6
+	lds	r27, __llvm_gcov_ctr.144+7
+	subi	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sts	__llvm_gcov_ctr.144+7, r27
+	sts	__llvm_gcov_ctr.144+6, r26
+	sts	__llvm_gcov_ctr.144+5, r31
+	sts	__llvm_gcov_ctr.144+4, r30
+	sts	__llvm_gcov_ctr.144+3, r21
+	sts	__llvm_gcov_ctr.144+2, r20
+	sts	__llvm_gcov_ctr.144+1, r19
+	sts	__llvm_gcov_ctr.144, r18
 	std	Y+8, r25
 	std	Y+7, r24
 	std	Y+6, r23
@@ -33165,6 +44122,30 @@ __powidf2:                              ; @__powidf2
 	brne	.LBB145_2
 	rjmp	.LBB145_3
 .LBB145_2:                              ;   in Loop: Header=BB145_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.145
+	lds	r25, __llvm_gcov_ctr.145+1
+	lds	r18, __llvm_gcov_ctr.145+2
+	lds	r19, __llvm_gcov_ctr.145+3
+	lds	r20, __llvm_gcov_ctr.145+4
+	lds	r21, __llvm_gcov_ctr.145+5
+	lds	r22, __llvm_gcov_ctr.145+6
+	lds	r23, __llvm_gcov_ctr.145+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.145+7, r23
+	sts	__llvm_gcov_ctr.145+6, r22
+	sts	__llvm_gcov_ctr.145+5, r21
+	sts	__llvm_gcov_ctr.145+4, r20
+	sts	__llvm_gcov_ctr.145+3, r19
+	sts	__llvm_gcov_ctr.145+2, r18
+	sts	__llvm_gcov_ctr.145+1, r25
+	sts	__llvm_gcov_ctr.145, r24
 	lds	r24, __profc___powidf2+16
 	lds	r25, __profc___powidf2+17
 	lds	r18, __profc___powidf2+18
@@ -33256,6 +44237,30 @@ __powidf2:                              ; @__powidf2
 	sts	__profc___powidf2+24, r24
 	rjmp	.LBB145_6
 .LBB145_5:                              ;   in Loop: Header=BB145_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.145+8
+	lds	r25, __llvm_gcov_ctr.145+9
+	lds	r18, __llvm_gcov_ctr.145+10
+	lds	r19, __llvm_gcov_ctr.145+11
+	lds	r20, __llvm_gcov_ctr.145+12
+	lds	r21, __llvm_gcov_ctr.145+13
+	lds	r22, __llvm_gcov_ctr.145+14
+	lds	r23, __llvm_gcov_ctr.145+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.145+15, r23
+	sts	__llvm_gcov_ctr.145+14, r22
+	sts	__llvm_gcov_ctr.145+13, r21
+	sts	__llvm_gcov_ctr.145+12, r20
+	sts	__llvm_gcov_ctr.145+11, r19
+	sts	__llvm_gcov_ctr.145+10, r18
+	sts	__llvm_gcov_ctr.145+9, r25
+	sts	__llvm_gcov_ctr.145+8, r24
 	ldd	r18, Y+13
 	ldd	r19, Y+14
 	ldd	r20, Y+15
@@ -33280,6 +44285,30 @@ __powidf2:                              ; @__powidf2
 	brne	.LBB145_7
 	rjmp	.LBB145_8
 .LBB145_7:
+	lds	r24, __llvm_gcov_ctr.145+16
+	lds	r25, __llvm_gcov_ctr.145+17
+	lds	r18, __llvm_gcov_ctr.145+18
+	lds	r19, __llvm_gcov_ctr.145+19
+	lds	r20, __llvm_gcov_ctr.145+20
+	lds	r21, __llvm_gcov_ctr.145+21
+	lds	r22, __llvm_gcov_ctr.145+22
+	lds	r23, __llvm_gcov_ctr.145+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.145+23, r23
+	sts	__llvm_gcov_ctr.145+22, r22
+	sts	__llvm_gcov_ctr.145+21, r21
+	sts	__llvm_gcov_ctr.145+20, r20
+	sts	__llvm_gcov_ctr.145+19, r19
+	sts	__llvm_gcov_ctr.145+18, r18
+	sts	__llvm_gcov_ctr.145+17, r25
+	sts	__llvm_gcov_ctr.145+16, r24
 	lds	r24, __profc___powidf2+32
 	lds	r25, __profc___powidf2+33
 	lds	r18, __profc___powidf2+34
@@ -33319,6 +44348,30 @@ __powidf2:                              ; @__powidf2
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB145_9
 .LBB145_8:
+	lds	r24, __llvm_gcov_ctr.145+24
+	lds	r25, __llvm_gcov_ctr.145+25
+	lds	r18, __llvm_gcov_ctr.145+26
+	lds	r19, __llvm_gcov_ctr.145+27
+	lds	r20, __llvm_gcov_ctr.145+28
+	lds	r21, __llvm_gcov_ctr.145+29
+	lds	r22, __llvm_gcov_ctr.145+30
+	lds	r23, __llvm_gcov_ctr.145+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.145+31, r23
+	sts	__llvm_gcov_ctr.145+30, r22
+	sts	__llvm_gcov_ctr.145+29, r21
+	sts	__llvm_gcov_ctr.145+28, r20
+	sts	__llvm_gcov_ctr.145+27, r19
+	sts	__llvm_gcov_ctr.145+26, r18
+	sts	__llvm_gcov_ctr.145+25, r25
+	sts	__llvm_gcov_ctr.145+24, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	ldd	r18, Y+5
@@ -33443,6 +44496,30 @@ __powisf2:                              ; @__powisf2
 	brne	.LBB146_2
 	rjmp	.LBB146_3
 .LBB146_2:                              ;   in Loop: Header=BB146_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.146
+	lds	r25, __llvm_gcov_ctr.146+1
+	lds	r18, __llvm_gcov_ctr.146+2
+	lds	r19, __llvm_gcov_ctr.146+3
+	lds	r20, __llvm_gcov_ctr.146+4
+	lds	r21, __llvm_gcov_ctr.146+5
+	lds	r22, __llvm_gcov_ctr.146+6
+	lds	r23, __llvm_gcov_ctr.146+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.146+7, r23
+	sts	__llvm_gcov_ctr.146+6, r22
+	sts	__llvm_gcov_ctr.146+5, r21
+	sts	__llvm_gcov_ctr.146+4, r20
+	sts	__llvm_gcov_ctr.146+3, r19
+	sts	__llvm_gcov_ctr.146+2, r18
+	sts	__llvm_gcov_ctr.146+1, r25
+	sts	__llvm_gcov_ctr.146, r24
 	lds	r24, __profc___powisf2+16
 	lds	r25, __profc___powisf2+17
 	lds	r18, __profc___powisf2+18
@@ -33534,6 +44611,30 @@ __powisf2:                              ; @__powisf2
 	sts	__profc___powisf2+24, r24
 	rjmp	.LBB146_6
 .LBB146_5:                              ;   in Loop: Header=BB146_1 Depth=1
+	lds	r24, __llvm_gcov_ctr.146+8
+	lds	r25, __llvm_gcov_ctr.146+9
+	lds	r18, __llvm_gcov_ctr.146+10
+	lds	r19, __llvm_gcov_ctr.146+11
+	lds	r20, __llvm_gcov_ctr.146+12
+	lds	r21, __llvm_gcov_ctr.146+13
+	lds	r22, __llvm_gcov_ctr.146+14
+	lds	r23, __llvm_gcov_ctr.146+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.146+15, r23
+	sts	__llvm_gcov_ctr.146+14, r22
+	sts	__llvm_gcov_ctr.146+13, r21
+	sts	__llvm_gcov_ctr.146+12, r20
+	sts	__llvm_gcov_ctr.146+11, r19
+	sts	__llvm_gcov_ctr.146+10, r18
+	sts	__llvm_gcov_ctr.146+9, r25
+	sts	__llvm_gcov_ctr.146+8, r24
 	ldd	r18, Y+13
 	ldd	r19, Y+14
 	ldd	r20, Y+15
@@ -33558,6 +44659,30 @@ __powisf2:                              ; @__powisf2
 	brne	.LBB146_7
 	rjmp	.LBB146_8
 .LBB146_7:
+	lds	r24, __llvm_gcov_ctr.146+16
+	lds	r25, __llvm_gcov_ctr.146+17
+	lds	r18, __llvm_gcov_ctr.146+18
+	lds	r19, __llvm_gcov_ctr.146+19
+	lds	r20, __llvm_gcov_ctr.146+20
+	lds	r21, __llvm_gcov_ctr.146+21
+	lds	r22, __llvm_gcov_ctr.146+22
+	lds	r23, __llvm_gcov_ctr.146+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.146+23, r23
+	sts	__llvm_gcov_ctr.146+22, r22
+	sts	__llvm_gcov_ctr.146+21, r21
+	sts	__llvm_gcov_ctr.146+20, r20
+	sts	__llvm_gcov_ctr.146+19, r19
+	sts	__llvm_gcov_ctr.146+18, r18
+	sts	__llvm_gcov_ctr.146+17, r25
+	sts	__llvm_gcov_ctr.146+16, r24
 	lds	r24, __profc___powisf2+32
 	lds	r25, __profc___powisf2+33
 	lds	r18, __profc___powisf2+34
@@ -33597,6 +44722,30 @@ __powisf2:                              ; @__powisf2
 	std	Y+3, r24                        ; 2-byte Folded Spill
 	rjmp	.LBB146_9
 .LBB146_8:
+	lds	r24, __llvm_gcov_ctr.146+24
+	lds	r25, __llvm_gcov_ctr.146+25
+	lds	r18, __llvm_gcov_ctr.146+26
+	lds	r19, __llvm_gcov_ctr.146+27
+	lds	r20, __llvm_gcov_ctr.146+28
+	lds	r21, __llvm_gcov_ctr.146+29
+	lds	r22, __llvm_gcov_ctr.146+30
+	lds	r23, __llvm_gcov_ctr.146+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.146+31, r23
+	sts	__llvm_gcov_ctr.146+30, r22
+	sts	__llvm_gcov_ctr.146+29, r21
+	sts	__llvm_gcov_ctr.146+28, r20
+	sts	__llvm_gcov_ctr.146+27, r19
+	sts	__llvm_gcov_ctr.146+26, r18
+	sts	__llvm_gcov_ctr.146+25, r25
+	sts	__llvm_gcov_ctr.146+24, r24
 	ldd	r24, Y+7
 	ldd	r25, Y+8
 	ldd	r18, Y+5
@@ -33747,6 +44896,30 @@ __ucmpdi2:                              ; @__ucmpdi2
 	std	Y+8, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB147_1
 .LBB147_3:
+	lds	r24, __llvm_gcov_ctr.147
+	lds	r25, __llvm_gcov_ctr.147+1
+	lds	r18, __llvm_gcov_ctr.147+2
+	lds	r19, __llvm_gcov_ctr.147+3
+	lds	r20, __llvm_gcov_ctr.147+4
+	lds	r21, __llvm_gcov_ctr.147+5
+	lds	r22, __llvm_gcov_ctr.147+6
+	lds	r23, __llvm_gcov_ctr.147+7
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.147+7, r23
+	sts	__llvm_gcov_ctr.147+6, r22
+	sts	__llvm_gcov_ctr.147+5, r21
+	sts	__llvm_gcov_ctr.147+4, r20
+	sts	__llvm_gcov_ctr.147+3, r19
+	sts	__llvm_gcov_ctr.147+2, r18
+	sts	__llvm_gcov_ctr.147+1, r25
+	sts	__llvm_gcov_ctr.147, r24
 	lds	r24, __profc___ucmpdi2+8
 	lds	r25, __profc___ucmpdi2+9
 	lds	r18, __profc___ucmpdi2+10
@@ -33808,6 +44981,30 @@ __ucmpdi2:                              ; @__ucmpdi2
 	std	Y+6, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB147_5
 .LBB147_7:
+	lds	r24, __llvm_gcov_ctr.147+8
+	lds	r25, __llvm_gcov_ctr.147+9
+	lds	r18, __llvm_gcov_ctr.147+10
+	lds	r19, __llvm_gcov_ctr.147+11
+	lds	r20, __llvm_gcov_ctr.147+12
+	lds	r21, __llvm_gcov_ctr.147+13
+	lds	r22, __llvm_gcov_ctr.147+14
+	lds	r23, __llvm_gcov_ctr.147+15
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.147+15, r23
+	sts	__llvm_gcov_ctr.147+14, r22
+	sts	__llvm_gcov_ctr.147+13, r21
+	sts	__llvm_gcov_ctr.147+12, r20
+	sts	__llvm_gcov_ctr.147+11, r19
+	sts	__llvm_gcov_ctr.147+10, r18
+	sts	__llvm_gcov_ctr.147+9, r25
+	sts	__llvm_gcov_ctr.147+8, r24
 	lds	r24, __profc___ucmpdi2+16
 	lds	r25, __profc___ucmpdi2+17
 	lds	r18, __profc___ucmpdi2+18
@@ -33871,6 +45068,30 @@ __ucmpdi2:                              ; @__ucmpdi2
 	std	Y+4, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB147_9
 .LBB147_11:
+	lds	r24, __llvm_gcov_ctr.147+16
+	lds	r25, __llvm_gcov_ctr.147+17
+	lds	r18, __llvm_gcov_ctr.147+18
+	lds	r19, __llvm_gcov_ctr.147+19
+	lds	r20, __llvm_gcov_ctr.147+20
+	lds	r21, __llvm_gcov_ctr.147+21
+	lds	r22, __llvm_gcov_ctr.147+22
+	lds	r23, __llvm_gcov_ctr.147+23
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.147+23, r23
+	sts	__llvm_gcov_ctr.147+22, r22
+	sts	__llvm_gcov_ctr.147+21, r21
+	sts	__llvm_gcov_ctr.147+20, r20
+	sts	__llvm_gcov_ctr.147+19, r19
+	sts	__llvm_gcov_ctr.147+18, r18
+	sts	__llvm_gcov_ctr.147+17, r25
+	sts	__llvm_gcov_ctr.147+16, r24
 	lds	r24, __profc___ucmpdi2+24
 	lds	r25, __profc___ucmpdi2+25
 	lds	r18, __profc___ucmpdi2+26
@@ -33932,6 +45153,30 @@ __ucmpdi2:                              ; @__ucmpdi2
 	std	Y+2, r24                        ; 1-byte Folded Spill
 	rjmp	.LBB147_13
 .LBB147_15:
+	lds	r24, __llvm_gcov_ctr.147+24
+	lds	r25, __llvm_gcov_ctr.147+25
+	lds	r18, __llvm_gcov_ctr.147+26
+	lds	r19, __llvm_gcov_ctr.147+27
+	lds	r20, __llvm_gcov_ctr.147+28
+	lds	r21, __llvm_gcov_ctr.147+29
+	lds	r22, __llvm_gcov_ctr.147+30
+	lds	r23, __llvm_gcov_ctr.147+31
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.147+31, r23
+	sts	__llvm_gcov_ctr.147+30, r22
+	sts	__llvm_gcov_ctr.147+29, r21
+	sts	__llvm_gcov_ctr.147+28, r20
+	sts	__llvm_gcov_ctr.147+27, r19
+	sts	__llvm_gcov_ctr.147+26, r18
+	sts	__llvm_gcov_ctr.147+25, r25
+	sts	__llvm_gcov_ctr.147+24, r24
 	lds	r24, __profc___ucmpdi2+32
 	lds	r25, __profc___ucmpdi2+33
 	lds	r18, __profc___ucmpdi2+34
@@ -33966,6 +45211,30 @@ __ucmpdi2:                              ; @__ucmpdi2
 	std	Y+41, r24
 	rjmp	.LBB147_17
 .LBB147_16:
+	lds	r24, __llvm_gcov_ctr.147+32
+	lds	r25, __llvm_gcov_ctr.147+33
+	lds	r18, __llvm_gcov_ctr.147+34
+	lds	r19, __llvm_gcov_ctr.147+35
+	lds	r20, __llvm_gcov_ctr.147+36
+	lds	r21, __llvm_gcov_ctr.147+37
+	lds	r22, __llvm_gcov_ctr.147+38
+	lds	r23, __llvm_gcov_ctr.147+39
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	sbci	r22, 255
+	sbci	r23, 255
+	sts	__llvm_gcov_ctr.147+39, r23
+	sts	__llvm_gcov_ctr.147+38, r22
+	sts	__llvm_gcov_ctr.147+37, r21
+	sts	__llvm_gcov_ctr.147+36, r20
+	sts	__llvm_gcov_ctr.147+35, r19
+	sts	__llvm_gcov_ctr.147+34, r18
+	sts	__llvm_gcov_ctr.147+33, r25
+	sts	__llvm_gcov_ctr.147+32, r24
 	ldi	r24, 0
 	ldi	r25, 0
 	std	Y+44, r25
@@ -34009,36 +45278,75 @@ __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 	push	r29
 	in	r28, 61
 	in	r29, 62
-	sbiw	r28, 20
+	sbiw	r28, 28
 	in	r0, 63
 	cli
 	out	62, r29
 	out	63, r0
 	out	61, r28
+	std	Y+8, r25                        ; 2-byte Folded Spill
+	std	Y+7, r24                        ; 2-byte Folded Spill
                                         ; kill: def $r31r30 killed $r17r16
                                         ; kill: def $r31r30 killed $r15r14
                                         ; kill: def $r31r30 killed $r13r12
                                         ; kill: def $r31r30 killed $r11r10
-                                        ; kill: def $r31r30 killed $r25r24
-                                        ; kill: def $r31r30 killed $r23r22
-                                        ; kill: def $r31r30 killed $r21r20
-                                        ; kill: def $r31r30 killed $r19r18
-	std	Y+16, r25
-	std	Y+15, r24
-	std	Y+14, r23
-	std	Y+13, r22
-	std	Y+12, r21
-	std	Y+11, r20
-	std	Y+10, r19
-	std	Y+9, r18
-	std	Y+8, r17
-	std	Y+7, r16
-	std	Y+6, r15
-	std	Y+5, r14
-	std	Y+4, r13
-	std	Y+3, r12
-	std	Y+2, r11
-	std	Y+1, r10
+                                        ; kill: def $r25r24 killed $r23r22
+                                        ; kill: def $r25r24 killed $r21r20
+                                        ; kill: def $r25r24 killed $r19r18
+	lds	r30, __llvm_gcov_ctr.148
+	lds	r31, __llvm_gcov_ctr.148+1
+	lds	r26, __llvm_gcov_ctr.148+2
+	lds	r27, __llvm_gcov_ctr.148+3
+	lds	r24, __llvm_gcov_ctr.148+4
+	lds	r25, __llvm_gcov_ctr.148+5
+	std	Y+2, r25                        ; 2-byte Folded Spill
+	std	Y+1, r24                        ; 2-byte Folded Spill
+	lds	r24, __llvm_gcov_ctr.148+6
+	lds	r25, __llvm_gcov_ctr.148+7
+	std	Y+4, r25                        ; 2-byte Folded Spill
+	std	Y+3, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	subi	r30, 255
+	sbci	r31, 255
+	sbci	r26, 255
+	sbci	r27, 255
+	sbci	r24, 255
+	sbci	r25, 255
+	std	Y+6, r25                        ; 2-byte Folded Spill
+	std	Y+5, r24                        ; 2-byte Folded Spill
+	ldd	r24, Y+3                        ; 2-byte Folded Reload
+	ldd	r25, Y+4                        ; 2-byte Folded Reload
+	sbci	r24, 255
+	sbci	r25, 255
+	sts	__llvm_gcov_ctr.148+7, r25
+	sts	__llvm_gcov_ctr.148+6, r24
+	ldd	r24, Y+5                        ; 2-byte Folded Reload
+	ldd	r25, Y+6                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.148+5, r25
+	sts	__llvm_gcov_ctr.148+4, r24
+	ldd	r24, Y+7                        ; 2-byte Folded Reload
+	ldd	r25, Y+8                        ; 2-byte Folded Reload
+	sts	__llvm_gcov_ctr.148+3, r27
+	sts	__llvm_gcov_ctr.148+2, r26
+	sts	__llvm_gcov_ctr.148+1, r31
+	sts	__llvm_gcov_ctr.148, r30
+	std	Y+24, r25
+	std	Y+23, r24
+	std	Y+22, r23
+	std	Y+21, r22
+	std	Y+20, r21
+	std	Y+19, r20
+	std	Y+18, r19
+	std	Y+17, r18
+	std	Y+16, r17
+	std	Y+15, r16
+	std	Y+14, r15
+	std	Y+13, r14
+	std	Y+12, r13
+	std	Y+11, r12
+	std	Y+10, r11
+	std	Y+9, r10
 	lds	r24, __profc___aeabi_ulcmp
 	lds	r25, __profc___aeabi_ulcmp+1
 	lds	r18, __profc___aeabi_ulcmp+2
@@ -34063,28 +45371,28 @@ __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 	sts	__profc___aeabi_ulcmp+2, r18
 	sts	__profc___aeabi_ulcmp+1, r25
 	sts	__profc___aeabi_ulcmp, r24
-	ldd	r24, Y+15
-	ldd	r25, Y+16
-	ldd	r22, Y+13
-	ldd	r23, Y+14
-	ldd	r20, Y+11
-	ldd	r21, Y+12
-	ldd	r18, Y+9
-	ldd	r19, Y+10
-	ldd	r16, Y+7
-	ldd	r17, Y+8
-	ldd	r14, Y+5
-	ldd	r15, Y+6
-	ldd	r12, Y+3
-	ldd	r13, Y+4
-	ldd	r10, Y+1
-	ldd	r11, Y+2
+	ldd	r24, Y+23
+	ldd	r25, Y+24
+	ldd	r22, Y+21
+	ldd	r23, Y+22
+	ldd	r20, Y+19
+	ldd	r21, Y+20
+	ldd	r18, Y+17
+	ldd	r19, Y+18
+	ldd	r16, Y+15
+	ldd	r17, Y+16
+	ldd	r14, Y+13
+	ldd	r15, Y+14
+	ldd	r12, Y+11
+	ldd	r13, Y+12
+	ldd	r10, Y+9
+	ldd	r11, Y+10
 	rcall	__ucmpdi2
 	subi	r22, 1
 	sbci	r23, 0
 	sbci	r24, 0
 	sbci	r25, 0
-	adiw	r28, 20
+	adiw	r28, 28
 	in	r0, 63
 	cli
 	out	62, r29
@@ -34104,6 +45412,1388 @@ __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 .Lfunc_end148:
 	.size	__aeabi_ulcmp, .Lfunc_end148-__aeabi_ulcmp
                                         ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   ; @__llvm_gcov_writeout
+; %bb.0:
+	push	r14
+	push	r15
+	push	r16
+	push	r17
+	push	r28
+	push	r29
+	in	r28, 61
+	in	r29, 62
+	sbiw	r28, 52
+	in	r0, 63
+	cli
+	out	62, r29
+	out	63, r0
+	out	61, r28
+	ldi	r18, 0
+	ldi	r19, 0
+	mov	r24, r18
+	mov	r25, r19
+	std	Y+50, r19                       ; 2-byte Folded Spill
+	std	Y+49, r18                       ; 2-byte Folded Spill
+	std	Y+52, r25                       ; 2-byte Folded Spill
+	std	Y+51, r24                       ; 2-byte Folded Spill
+	rjmp	.LBB149_1
+.LBB149_1:                              ; =>This Loop Header: Depth=1
+                                        ;     Child Loop BB149_4 Depth 2
+	ldd	r24, Y+49                       ; 2-byte Folded Reload
+	ldd	r25, Y+50                       ; 2-byte Folded Reload
+	ldd	r18, Y+51                       ; 2-byte Folded Reload
+	ldd	r19, Y+52                       ; 2-byte Folded Reload
+	std	Y+26, r19                       ; 2-byte Folded Spill
+	std	Y+25, r18                       ; 2-byte Folded Spill
+	std	Y+28, r25                       ; 2-byte Folded Spill
+	std	Y+27, r24                       ; 2-byte Folded Spill
+	ldi	r22, 18
+	ldi	r23, 0
+	rcall	__mulhi3
+	mov	r30, r24
+	mov	r31, r25
+	std	Y+40, r31                       ; 2-byte Folded Spill
+	std	Y+39, r30                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info))
+	ld	r24, Z
+	ldd	r25, Z+1
+	ldd	r30, Y+39                       ; 2-byte Folded Reload
+	ldd	r31, Y+40                       ; 2-byte Folded Reload
+	mov	r18, r30
+	mov	r19, r31
+	subi	r18, lo8(-(__llvm_internal_gcov_emit_file_info+2))
+	sbci	r19, hi8(-(__llvm_internal_gcov_emit_file_info+2))
+	std	Y+30, r19                       ; 2-byte Folded Spill
+	std	Y+29, r18                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info+4))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info+4))
+	ld	r22, Z
+	ldd	r23, Z+1
+	ldd	r30, Y+29                       ; 2-byte Folded Reload
+	ldd	r31, Y+30                       ; 2-byte Folded Reload
+	ld	r20, Z
+	ldd	r21, Z+1
+	ldd	r30, Y+39                       ; 2-byte Folded Reload
+	ldd	r31, Y+40                       ; 2-byte Folded Reload
+	mov	r18, r30
+	mov	r19, r31
+	subi	r18, lo8(-(__llvm_internal_gcov_emit_file_info+6))
+	sbci	r19, hi8(-(__llvm_internal_gcov_emit_file_info+6))
+	std	Y+32, r19                       ; 2-byte Folded Spill
+	std	Y+31, r18                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info+8))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info+8))
+	ld	r18, Z
+	ldd	r19, Z+1
+	ldd	r30, Y+31                       ; 2-byte Folded Reload
+	ldd	r31, Y+32                       ; 2-byte Folded Reload
+	ld	r16, Z
+	ldd	r17, Z+1
+	rcall	llvm_gcda_start_file
+	ldd	r30, Y+39                       ; 2-byte Folded Reload
+	ldd	r31, Y+40                       ; 2-byte Folded Reload
+	mov	r24, r30
+	mov	r25, r31
+	subi	r24, lo8(-(__llvm_internal_gcov_emit_file_info+10))
+	sbci	r25, hi8(-(__llvm_internal_gcov_emit_file_info+10))
+	std	Y+34, r25                       ; 2-byte Folded Spill
+	std	Y+33, r24                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info+12))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info+12))
+	ld	r20, Z
+	ldd	r21, Z+1
+	ldd	r30, Y+33                       ; 2-byte Folded Reload
+	ldd	r31, Y+34                       ; 2-byte Folded Reload
+	std	Y+36, r21                       ; 2-byte Folded Spill
+	std	Y+35, r20                       ; 2-byte Folded Spill
+	ld	r24, Z
+	ldd	r25, Z+1
+	ldd	r30, Y+39                       ; 2-byte Folded Reload
+	ldd	r31, Y+40                       ; 2-byte Folded Reload
+	std	Y+38, r25                       ; 2-byte Folded Spill
+	std	Y+37, r24                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info+14))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info+14))
+	ld	r18, Z
+	ldd	r19, Z+1
+	ldd	r30, Y+39                       ; 2-byte Folded Reload
+	ldd	r31, Y+40                       ; 2-byte Folded Reload
+	std	Y+42, r19                       ; 2-byte Folded Spill
+	std	Y+41, r18                       ; 2-byte Folded Spill
+	subi	r30, lo8(-(__llvm_internal_gcov_emit_file_info+16))
+	sbci	r31, hi8(-(__llvm_internal_gcov_emit_file_info+16))
+	ld	r18, Z
+	ldd	r19, Z+1
+	std	Y+44, r19                       ; 2-byte Folded Spill
+	std	Y+43, r18                       ; 2-byte Folded Spill
+	mov	r22, r24
+	ldi	r18, 0
+	ldi	r19, 0
+	std	Y+46, r19                       ; 2-byte Folded Spill
+	std	Y+45, r18                       ; 2-byte Folded Spill
+	mov	r24, r1
+	std	Y+47, r24                       ; 1-byte Folded Spill
+	ldi	r24, 1
+	cp	r1, r22
+	cpc	r1, r25
+	cpc	r18, r20
+	cpc	r19, r21
+	std	Y+48, r24                       ; 1-byte Folded Spill
+	brge	.LBB149_2
+	rjmp	.LBB149_3
+.LBB149_2:                              ;   in Loop: Header=BB149_1 Depth=1
+	ldd	r18, Y+45                       ; 2-byte Folded Reload
+	ldd	r19, Y+46                       ; 2-byte Folded Reload
+	ldd	r20, Y+48                       ; 1-byte Folded Reload
+	andi	r20, 1
+	mov	r24, r18
+	mov	r25, r19
+	cpi	r20, 0
+	std	Y+22, r19                       ; 2-byte Folded Spill
+	std	Y+21, r18                       ; 2-byte Folded Spill
+	std	Y+24, r25                       ; 2-byte Folded Spill
+	std	Y+23, r24                       ; 2-byte Folded Spill
+	breq	.LBB149_4
+	rjmp	.LBB149_7
+.LBB149_3:                              ;   in Loop: Header=BB149_1 Depth=1
+	ldd	r24, Y+47                       ; 1-byte Folded Reload
+	std	Y+48, r24                       ; 1-byte Folded Spill
+	rjmp	.LBB149_2
+.LBB149_4:                              ;   Parent Loop BB149_1 Depth=1
+                                        ; =>  This Inner Loop Header: Depth=2
+	ldd	r24, Y+21                       ; 2-byte Folded Reload
+	ldd	r25, Y+22                       ; 2-byte Folded Reload
+	ldd	r18, Y+23                       ; 2-byte Folded Reload
+	ldd	r19, Y+24                       ; 2-byte Folded Reload
+	std	Y+14, r19                       ; 2-byte Folded Spill
+	std	Y+13, r18                       ; 2-byte Folded Spill
+	std	Y+12, r25                       ; 2-byte Folded Spill
+	std	Y+11, r24                       ; 2-byte Folded Spill
+	ldi	r22, 12
+	ldi	r23, 0
+	rcall	__mulhi3
+	ldd	r30, Y+41                       ; 2-byte Folded Reload
+	ldd	r31, Y+42                       ; 2-byte Folded Reload
+	add	r30, r24
+	adc	r31, r25
+	std	Y+8, r31                        ; 2-byte Folded Spill
+	std	Y+7, r30                        ; 2-byte Folded Spill
+	ldd	r24, Z+2
+	ldd	r25, Z+3
+	ldd	r30, Y+7                        ; 2-byte Folded Reload
+	ldd	r31, Y+8                        ; 2-byte Folded Reload
+	ld	r22, Z
+	ldd	r23, Z+1
+	ldd	r30, Y+7                        ; 2-byte Folded Reload
+	ldd	r31, Y+8                        ; 2-byte Folded Reload
+	ldd	r20, Z+6
+	ldd	r21, Z+7
+	ldd	r30, Y+7                        ; 2-byte Folded Reload
+	ldd	r31, Y+8                        ; 2-byte Folded Reload
+	ldd	r18, Z+4
+	ldd	r19, Z+5
+	ldd	r30, Y+7                        ; 2-byte Folded Reload
+	ldd	r31, Y+8                        ; 2-byte Folded Reload
+	ldd	r16, Z+10
+	ldd	r17, Z+11
+	ldd	r30, Y+7                        ; 2-byte Folded Reload
+	ldd	r31, Y+8                        ; 2-byte Folded Reload
+	ldd	r14, Z+8
+	ldd	r15, Z+9
+	rcall	llvm_gcda_emit_function
+	ldd	r24, Y+11                       ; 2-byte Folded Reload
+	ldd	r25, Y+12                       ; 2-byte Folded Reload
+	ldi	r22, 6
+	ldi	r23, 0
+	rcall	__mulhi3
+	ldd	r30, Y+43                       ; 2-byte Folded Reload
+	ldd	r31, Y+44                       ; 2-byte Folded Reload
+	add	r30, r24
+	adc	r31, r25
+	std	Y+10, r31                       ; 2-byte Folded Spill
+	std	Y+9, r30                        ; 2-byte Folded Spill
+	ldd	r24, Z+2
+	ldd	r25, Z+3
+	ldd	r30, Y+9                        ; 2-byte Folded Reload
+	ldd	r31, Y+10                       ; 2-byte Folded Reload
+	ld	r22, Z
+	ldd	r23, Z+1
+	ldd	r30, Y+9                        ; 2-byte Folded Reload
+	ldd	r31, Y+10                       ; 2-byte Folded Reload
+	ldd	r20, Z+4
+	ldd	r21, Z+5
+	rcall	llvm_gcda_emit_arcs
+	ldd	r22, Y+11                       ; 2-byte Folded Reload
+	ldd	r23, Y+12                       ; 2-byte Folded Reload
+	ldd	r18, Y+13                       ; 2-byte Folded Reload
+	ldd	r19, Y+14                       ; 2-byte Folded Reload
+	ldd	r20, Y+35                       ; 2-byte Folded Reload
+	ldd	r21, Y+36                       ; 2-byte Folded Reload
+	ldd	r30, Y+37                       ; 2-byte Folded Reload
+	ldd	r31, Y+38                       ; 2-byte Folded Reload
+	subi	r22, 255
+	sbci	r23, 255
+	sbci	r18, 255
+	sbci	r19, 255
+	mov	r24, r18
+	mov	r25, r19
+	std	Y+16, r25                       ; 2-byte Folded Spill
+	std	Y+15, r24                       ; 2-byte Folded Spill
+	mov	r24, r22
+	mov	r25, r23
+	std	Y+18, r25                       ; 2-byte Folded Spill
+	std	Y+17, r24                       ; 2-byte Folded Spill
+	mov	r24, r1
+	std	Y+19, r24                       ; 1-byte Folded Spill
+	ldi	r24, 1
+	cp	r22, r30
+	cpc	r23, r31
+	cpc	r18, r20
+	cpc	r19, r21
+	std	Y+20, r24                       ; 1-byte Folded Spill
+	brlt	.LBB149_5
+	rjmp	.LBB149_6
+.LBB149_5:                              ;   in Loop: Header=BB149_4 Depth=2
+	ldd	r24, Y+15                       ; 2-byte Folded Reload
+	ldd	r25, Y+16                       ; 2-byte Folded Reload
+	ldd	r18, Y+17                       ; 2-byte Folded Reload
+	ldd	r19, Y+18                       ; 2-byte Folded Reload
+	ldd	r20, Y+20                       ; 1-byte Folded Reload
+	andi	r20, 1
+	cpi	r20, 0
+	std	Y+22, r19                       ; 2-byte Folded Spill
+	std	Y+21, r18                       ; 2-byte Folded Spill
+	std	Y+24, r25                       ; 2-byte Folded Spill
+	std	Y+23, r24                       ; 2-byte Folded Spill
+	breq	.LBB149_7
+	rjmp	.LBB149_4
+.LBB149_6:                              ;   in Loop: Header=BB149_4 Depth=2
+	ldd	r24, Y+19                       ; 1-byte Folded Reload
+	std	Y+20, r24                       ; 1-byte Folded Spill
+	rjmp	.LBB149_5
+.LBB149_7:                              ;   in Loop: Header=BB149_1 Depth=1
+	rcall	llvm_gcda_summary_info
+	rcall	llvm_gcda_end_file
+	ldd	r24, Y+27                       ; 2-byte Folded Reload
+	ldd	r25, Y+28                       ; 2-byte Folded Reload
+	ldd	r20, Y+25                       ; 2-byte Folded Reload
+	ldd	r21, Y+26                       ; 2-byte Folded Reload
+	subi	r24, 255
+	sbci	r25, 255
+	sbci	r20, 255
+	sbci	r21, 255
+	mov	r18, r20
+	mov	r19, r21
+	std	Y+2, r19                        ; 2-byte Folded Spill
+	std	Y+1, r18                        ; 2-byte Folded Spill
+	mov	r18, r24
+	mov	r19, r25
+	std	Y+4, r19                        ; 2-byte Folded Spill
+	std	Y+3, r18                        ; 2-byte Folded Spill
+	mov	r22, r24
+                                        ; kill: def $r25 killed $r25 killed $r25r24
+	ldi	r18, 0
+	ldi	r19, 0
+	mov	r24, r1
+	std	Y+5, r24                        ; 1-byte Folded Spill
+	ldi	r24, 1
+	cp	r1, r22
+	cpc	r1, r25
+	cpc	r18, r20
+	cpc	r19, r21
+	std	Y+6, r24                        ; 1-byte Folded Spill
+	brge	.LBB149_8
+	rjmp	.LBB149_9
+.LBB149_8:                              ;   in Loop: Header=BB149_1 Depth=1
+	ldd	r24, Y+1                        ; 2-byte Folded Reload
+	ldd	r25, Y+2                        ; 2-byte Folded Reload
+	ldd	r18, Y+3                        ; 2-byte Folded Reload
+	ldd	r19, Y+4                        ; 2-byte Folded Reload
+	ldd	r20, Y+6                        ; 1-byte Folded Reload
+	andi	r20, 1
+	cpi	r20, 0
+	std	Y+50, r19                       ; 2-byte Folded Spill
+	std	Y+49, r18                       ; 2-byte Folded Spill
+	std	Y+52, r25                       ; 2-byte Folded Spill
+	std	Y+51, r24                       ; 2-byte Folded Spill
+	breq	.LBB149_10
+	rjmp	.LBB149_1
+.LBB149_9:                              ;   in Loop: Header=BB149_1 Depth=1
+	ldd	r24, Y+5                        ; 1-byte Folded Reload
+	std	Y+6, r24                        ; 1-byte Folded Spill
+	rjmp	.LBB149_8
+.LBB149_10:
+	adiw	r28, 52
+	in	r0, 63
+	cli
+	out	62, r29
+	out	63, r0
+	out	61, r28
+	pop	r29
+	pop	r28
+	pop	r17
+	pop	r16
+	pop	r15
+	pop	r14
+	ret
+.Lfunc_end149:
+	.size	__llvm_gcov_writeout, .Lfunc_end149-__llvm_gcov_writeout
+                                        ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      ; @__llvm_gcov_reset
+; %bb.0:
+	push	r28
+	push	r29
+	in	r28, 61
+	in	r29, 62
+	sbiw	r28, 15
+	in	r0, 63
+	cli
+	out	62, r29
+	out	63, r0
+	out	61, r28
+	ldi	r24, lo8(__llvm_gcov_ctr)
+	ldi	r25, hi8(__llvm_gcov_ctr)
+	mov	r22, r1
+	std	Y+15, r22                       ; 1-byte Folded Spill
+	ldi	r20, 40
+	ldi	r21, 0
+	std	Y+14, r21                       ; 2-byte Folded Spill
+	std	Y+13, r20                       ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.1)
+	ldi	r25, hi8(__llvm_gcov_ctr.1)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.2)
+	ldi	r25, hi8(__llvm_gcov_ctr.2)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.3)
+	ldi	r25, hi8(__llvm_gcov_ctr.3)
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.4)
+	ldi	r25, hi8(__llvm_gcov_ctr.4)
+	ldi	r20, 16
+	ldi	r21, 0
+	std	Y+4, r21                        ; 2-byte Folded Spill
+	std	Y+3, r20                        ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.5)
+	ldi	r25, hi8(__llvm_gcov_ctr.5)
+	ldi	r20, 24
+	ldi	r21, 0
+	std	Y+10, r21                       ; 2-byte Folded Spill
+	std	Y+9, r20                        ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.6)
+	ldi	r25, hi8(__llvm_gcov_ctr.6)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.7)
+	ldi	r25, hi8(__llvm_gcov_ctr.7)
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.8)
+	ldi	r25, hi8(__llvm_gcov_ctr.8)
+	ldi	r20, 32
+	ldi	r21, 0
+	std	Y+12, r21                       ; 2-byte Folded Spill
+	std	Y+11, r20                       ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.9)
+	ldi	r25, hi8(__llvm_gcov_ctr.9)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.10)
+	ldi	r25, hi8(__llvm_gcov_ctr.10)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.11)
+	ldi	r25, hi8(__llvm_gcov_ctr.11)
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.12)
+	ldi	r25, hi8(__llvm_gcov_ctr.12)
+	ldi	r20, 56
+	ldi	r21, 0
+	std	Y+6, r21                        ; 2-byte Folded Spill
+	std	Y+5, r20                        ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.13)
+	ldi	r25, hi8(__llvm_gcov_ctr.13)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.14+7, r22
+	sts	__llvm_gcov_ctr.14+6, r22
+	sts	__llvm_gcov_ctr.14+5, r22
+	sts	__llvm_gcov_ctr.14+4, r22
+	sts	__llvm_gcov_ctr.14+3, r22
+	sts	__llvm_gcov_ctr.14+2, r22
+	sts	__llvm_gcov_ctr.14+1, r22
+	sts	__llvm_gcov_ctr.14, r22
+	sts	__llvm_gcov_ctr.15+7, r22
+	sts	__llvm_gcov_ctr.15+6, r22
+	sts	__llvm_gcov_ctr.15+5, r22
+	sts	__llvm_gcov_ctr.15+4, r22
+	sts	__llvm_gcov_ctr.15+3, r22
+	sts	__llvm_gcov_ctr.15+2, r22
+	sts	__llvm_gcov_ctr.15+1, r22
+	sts	__llvm_gcov_ctr.15, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.16)
+	ldi	r25, hi8(__llvm_gcov_ctr.16)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.17)
+	ldi	r25, hi8(__llvm_gcov_ctr.17)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.18+7, r22
+	sts	__llvm_gcov_ctr.18+6, r22
+	sts	__llvm_gcov_ctr.18+5, r22
+	sts	__llvm_gcov_ctr.18+4, r22
+	sts	__llvm_gcov_ctr.18+3, r22
+	sts	__llvm_gcov_ctr.18+2, r22
+	sts	__llvm_gcov_ctr.18+1, r22
+	sts	__llvm_gcov_ctr.18, r22
+	sts	__llvm_gcov_ctr.19+7, r22
+	sts	__llvm_gcov_ctr.19+6, r22
+	sts	__llvm_gcov_ctr.19+5, r22
+	sts	__llvm_gcov_ctr.19+4, r22
+	sts	__llvm_gcov_ctr.19+3, r22
+	sts	__llvm_gcov_ctr.19+2, r22
+	sts	__llvm_gcov_ctr.19+1, r22
+	sts	__llvm_gcov_ctr.19, r22
+	sts	__llvm_gcov_ctr.20+7, r22
+	sts	__llvm_gcov_ctr.20+6, r22
+	sts	__llvm_gcov_ctr.20+5, r22
+	sts	__llvm_gcov_ctr.20+4, r22
+	sts	__llvm_gcov_ctr.20+3, r22
+	sts	__llvm_gcov_ctr.20+2, r22
+	sts	__llvm_gcov_ctr.20+1, r22
+	sts	__llvm_gcov_ctr.20, r22
+	sts	__llvm_gcov_ctr.21+7, r22
+	sts	__llvm_gcov_ctr.21+6, r22
+	sts	__llvm_gcov_ctr.21+5, r22
+	sts	__llvm_gcov_ctr.21+4, r22
+	sts	__llvm_gcov_ctr.21+3, r22
+	sts	__llvm_gcov_ctr.21+2, r22
+	sts	__llvm_gcov_ctr.21+1, r22
+	sts	__llvm_gcov_ctr.21, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.22)
+	ldi	r25, hi8(__llvm_gcov_ctr.22)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.23+7, r22
+	sts	__llvm_gcov_ctr.23+6, r22
+	sts	__llvm_gcov_ctr.23+5, r22
+	sts	__llvm_gcov_ctr.23+4, r22
+	sts	__llvm_gcov_ctr.23+3, r22
+	sts	__llvm_gcov_ctr.23+2, r22
+	sts	__llvm_gcov_ctr.23+1, r22
+	sts	__llvm_gcov_ctr.23, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.24)
+	ldi	r25, hi8(__llvm_gcov_ctr.24)
+	rcall	memset
+	ldd	r20, Y+5                        ; 2-byte Folded Reload
+	ldd	r21, Y+6                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.25+7, r22
+	sts	__llvm_gcov_ctr.25+6, r22
+	sts	__llvm_gcov_ctr.25+5, r22
+	sts	__llvm_gcov_ctr.25+4, r22
+	sts	__llvm_gcov_ctr.25+3, r22
+	sts	__llvm_gcov_ctr.25+2, r22
+	sts	__llvm_gcov_ctr.25+1, r22
+	sts	__llvm_gcov_ctr.25, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.26)
+	ldi	r25, hi8(__llvm_gcov_ctr.26)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.27)
+	ldi	r25, hi8(__llvm_gcov_ctr.27)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.28+7, r22
+	sts	__llvm_gcov_ctr.28+6, r22
+	sts	__llvm_gcov_ctr.28+5, r22
+	sts	__llvm_gcov_ctr.28+4, r22
+	sts	__llvm_gcov_ctr.28+3, r22
+	sts	__llvm_gcov_ctr.28+2, r22
+	sts	__llvm_gcov_ctr.28+1, r22
+	sts	__llvm_gcov_ctr.28, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.29)
+	ldi	r25, hi8(__llvm_gcov_ctr.29)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.30)
+	ldi	r25, hi8(__llvm_gcov_ctr.30)
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.31)
+	ldi	r25, hi8(__llvm_gcov_ctr.31)
+	ldi	r20, 48
+	ldi	r21, 0
+	std	Y+2, r21                        ; 2-byte Folded Spill
+	std	Y+1, r20                        ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.32)
+	ldi	r25, hi8(__llvm_gcov_ctr.32)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.33)
+	ldi	r25, hi8(__llvm_gcov_ctr.33)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.34)
+	ldi	r25, hi8(__llvm_gcov_ctr.34)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.35)
+	ldi	r25, hi8(__llvm_gcov_ctr.35)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.36)
+	ldi	r25, hi8(__llvm_gcov_ctr.36)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.37)
+	ldi	r25, hi8(__llvm_gcov_ctr.37)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.38+7, r22
+	sts	__llvm_gcov_ctr.38+6, r22
+	sts	__llvm_gcov_ctr.38+5, r22
+	sts	__llvm_gcov_ctr.38+4, r22
+	sts	__llvm_gcov_ctr.38+3, r22
+	sts	__llvm_gcov_ctr.38+2, r22
+	sts	__llvm_gcov_ctr.38+1, r22
+	sts	__llvm_gcov_ctr.38, r22
+	sts	__llvm_gcov_ctr.39+7, r22
+	sts	__llvm_gcov_ctr.39+6, r22
+	sts	__llvm_gcov_ctr.39+5, r22
+	sts	__llvm_gcov_ctr.39+4, r22
+	sts	__llvm_gcov_ctr.39+3, r22
+	sts	__llvm_gcov_ctr.39+2, r22
+	sts	__llvm_gcov_ctr.39+1, r22
+	sts	__llvm_gcov_ctr.39, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.40)
+	ldi	r25, hi8(__llvm_gcov_ctr.40)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.41)
+	ldi	r25, hi8(__llvm_gcov_ctr.41)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.42)
+	ldi	r25, hi8(__llvm_gcov_ctr.42)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.43)
+	ldi	r25, hi8(__llvm_gcov_ctr.43)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.44)
+	ldi	r25, hi8(__llvm_gcov_ctr.44)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.45)
+	ldi	r25, hi8(__llvm_gcov_ctr.45)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.46)
+	ldi	r25, hi8(__llvm_gcov_ctr.46)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.47)
+	ldi	r25, hi8(__llvm_gcov_ctr.47)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.48+7, r22
+	sts	__llvm_gcov_ctr.48+6, r22
+	sts	__llvm_gcov_ctr.48+5, r22
+	sts	__llvm_gcov_ctr.48+4, r22
+	sts	__llvm_gcov_ctr.48+3, r22
+	sts	__llvm_gcov_ctr.48+2, r22
+	sts	__llvm_gcov_ctr.48+1, r22
+	sts	__llvm_gcov_ctr.48, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.49)
+	ldi	r25, hi8(__llvm_gcov_ctr.49)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.50+7, r22
+	sts	__llvm_gcov_ctr.50+6, r22
+	sts	__llvm_gcov_ctr.50+5, r22
+	sts	__llvm_gcov_ctr.50+4, r22
+	sts	__llvm_gcov_ctr.50+3, r22
+	sts	__llvm_gcov_ctr.50+2, r22
+	sts	__llvm_gcov_ctr.50+1, r22
+	sts	__llvm_gcov_ctr.50, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.51)
+	ldi	r25, hi8(__llvm_gcov_ctr.51)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.52+7, r22
+	sts	__llvm_gcov_ctr.52+6, r22
+	sts	__llvm_gcov_ctr.52+5, r22
+	sts	__llvm_gcov_ctr.52+4, r22
+	sts	__llvm_gcov_ctr.52+3, r22
+	sts	__llvm_gcov_ctr.52+2, r22
+	sts	__llvm_gcov_ctr.52+1, r22
+	sts	__llvm_gcov_ctr.52, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.53)
+	ldi	r25, hi8(__llvm_gcov_ctr.53)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.54+7, r22
+	sts	__llvm_gcov_ctr.54+6, r22
+	sts	__llvm_gcov_ctr.54+5, r22
+	sts	__llvm_gcov_ctr.54+4, r22
+	sts	__llvm_gcov_ctr.54+3, r22
+	sts	__llvm_gcov_ctr.54+2, r22
+	sts	__llvm_gcov_ctr.54+1, r22
+	sts	__llvm_gcov_ctr.54, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.55)
+	ldi	r25, hi8(__llvm_gcov_ctr.55)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.56)
+	ldi	r25, hi8(__llvm_gcov_ctr.56)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.57)
+	ldi	r25, hi8(__llvm_gcov_ctr.57)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.58)
+	ldi	r25, hi8(__llvm_gcov_ctr.58)
+	rcall	memset
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.59)
+	ldi	r25, hi8(__llvm_gcov_ctr.59)
+	ldi	r20, 64
+	ldi	r21, 0
+	std	Y+8, r21                        ; 2-byte Folded Spill
+	std	Y+7, r20                        ; 2-byte Folded Spill
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.60)
+	ldi	r25, hi8(__llvm_gcov_ctr.60)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.61)
+	ldi	r25, hi8(__llvm_gcov_ctr.61)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.62)
+	ldi	r25, hi8(__llvm_gcov_ctr.62)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.63)
+	ldi	r25, hi8(__llvm_gcov_ctr.63)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.64)
+	ldi	r25, hi8(__llvm_gcov_ctr.64)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.65)
+	ldi	r25, hi8(__llvm_gcov_ctr.65)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.66+7, r22
+	sts	__llvm_gcov_ctr.66+6, r22
+	sts	__llvm_gcov_ctr.66+5, r22
+	sts	__llvm_gcov_ctr.66+4, r22
+	sts	__llvm_gcov_ctr.66+3, r22
+	sts	__llvm_gcov_ctr.66+2, r22
+	sts	__llvm_gcov_ctr.66+1, r22
+	sts	__llvm_gcov_ctr.66, r22
+	sts	__llvm_gcov_ctr.67+7, r22
+	sts	__llvm_gcov_ctr.67+6, r22
+	sts	__llvm_gcov_ctr.67+5, r22
+	sts	__llvm_gcov_ctr.67+4, r22
+	sts	__llvm_gcov_ctr.67+3, r22
+	sts	__llvm_gcov_ctr.67+2, r22
+	sts	__llvm_gcov_ctr.67+1, r22
+	sts	__llvm_gcov_ctr.67, r22
+	sts	__llvm_gcov_ctr.68+7, r22
+	sts	__llvm_gcov_ctr.68+6, r22
+	sts	__llvm_gcov_ctr.68+5, r22
+	sts	__llvm_gcov_ctr.68+4, r22
+	sts	__llvm_gcov_ctr.68+3, r22
+	sts	__llvm_gcov_ctr.68+2, r22
+	sts	__llvm_gcov_ctr.68+1, r22
+	sts	__llvm_gcov_ctr.68, r22
+	sts	__llvm_gcov_ctr.69+7, r22
+	sts	__llvm_gcov_ctr.69+6, r22
+	sts	__llvm_gcov_ctr.69+5, r22
+	sts	__llvm_gcov_ctr.69+4, r22
+	sts	__llvm_gcov_ctr.69+3, r22
+	sts	__llvm_gcov_ctr.69+2, r22
+	sts	__llvm_gcov_ctr.69+1, r22
+	sts	__llvm_gcov_ctr.69, r22
+	sts	__llvm_gcov_ctr.70+7, r22
+	sts	__llvm_gcov_ctr.70+6, r22
+	sts	__llvm_gcov_ctr.70+5, r22
+	sts	__llvm_gcov_ctr.70+4, r22
+	sts	__llvm_gcov_ctr.70+3, r22
+	sts	__llvm_gcov_ctr.70+2, r22
+	sts	__llvm_gcov_ctr.70+1, r22
+	sts	__llvm_gcov_ctr.70, r22
+	sts	__llvm_gcov_ctr.71+7, r22
+	sts	__llvm_gcov_ctr.71+6, r22
+	sts	__llvm_gcov_ctr.71+5, r22
+	sts	__llvm_gcov_ctr.71+4, r22
+	sts	__llvm_gcov_ctr.71+3, r22
+	sts	__llvm_gcov_ctr.71+2, r22
+	sts	__llvm_gcov_ctr.71+1, r22
+	sts	__llvm_gcov_ctr.71, r22
+	sts	__llvm_gcov_ctr.72+7, r22
+	sts	__llvm_gcov_ctr.72+6, r22
+	sts	__llvm_gcov_ctr.72+5, r22
+	sts	__llvm_gcov_ctr.72+4, r22
+	sts	__llvm_gcov_ctr.72+3, r22
+	sts	__llvm_gcov_ctr.72+2, r22
+	sts	__llvm_gcov_ctr.72+1, r22
+	sts	__llvm_gcov_ctr.72, r22
+	sts	__llvm_gcov_ctr.73+7, r22
+	sts	__llvm_gcov_ctr.73+6, r22
+	sts	__llvm_gcov_ctr.73+5, r22
+	sts	__llvm_gcov_ctr.73+4, r22
+	sts	__llvm_gcov_ctr.73+3, r22
+	sts	__llvm_gcov_ctr.73+2, r22
+	sts	__llvm_gcov_ctr.73+1, r22
+	sts	__llvm_gcov_ctr.73, r22
+	sts	__llvm_gcov_ctr.74+7, r22
+	sts	__llvm_gcov_ctr.74+6, r22
+	sts	__llvm_gcov_ctr.74+5, r22
+	sts	__llvm_gcov_ctr.74+4, r22
+	sts	__llvm_gcov_ctr.74+3, r22
+	sts	__llvm_gcov_ctr.74+2, r22
+	sts	__llvm_gcov_ctr.74+1, r22
+	sts	__llvm_gcov_ctr.74, r22
+	sts	__llvm_gcov_ctr.75+7, r22
+	sts	__llvm_gcov_ctr.75+6, r22
+	sts	__llvm_gcov_ctr.75+5, r22
+	sts	__llvm_gcov_ctr.75+4, r22
+	sts	__llvm_gcov_ctr.75+3, r22
+	sts	__llvm_gcov_ctr.75+2, r22
+	sts	__llvm_gcov_ctr.75+1, r22
+	sts	__llvm_gcov_ctr.75, r22
+	sts	__llvm_gcov_ctr.76+7, r22
+	sts	__llvm_gcov_ctr.76+6, r22
+	sts	__llvm_gcov_ctr.76+5, r22
+	sts	__llvm_gcov_ctr.76+4, r22
+	sts	__llvm_gcov_ctr.76+3, r22
+	sts	__llvm_gcov_ctr.76+2, r22
+	sts	__llvm_gcov_ctr.76+1, r22
+	sts	__llvm_gcov_ctr.76, r22
+	sts	__llvm_gcov_ctr.77+7, r22
+	sts	__llvm_gcov_ctr.77+6, r22
+	sts	__llvm_gcov_ctr.77+5, r22
+	sts	__llvm_gcov_ctr.77+4, r22
+	sts	__llvm_gcov_ctr.77+3, r22
+	sts	__llvm_gcov_ctr.77+2, r22
+	sts	__llvm_gcov_ctr.77+1, r22
+	sts	__llvm_gcov_ctr.77, r22
+	sts	__llvm_gcov_ctr.78+7, r22
+	sts	__llvm_gcov_ctr.78+6, r22
+	sts	__llvm_gcov_ctr.78+5, r22
+	sts	__llvm_gcov_ctr.78+4, r22
+	sts	__llvm_gcov_ctr.78+3, r22
+	sts	__llvm_gcov_ctr.78+2, r22
+	sts	__llvm_gcov_ctr.78+1, r22
+	sts	__llvm_gcov_ctr.78, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.79)
+	ldi	r25, hi8(__llvm_gcov_ctr.79)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.80)
+	ldi	r25, hi8(__llvm_gcov_ctr.80)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.81)
+	ldi	r25, hi8(__llvm_gcov_ctr.81)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.82)
+	ldi	r25, hi8(__llvm_gcov_ctr.82)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.83)
+	ldi	r25, hi8(__llvm_gcov_ctr.83)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.84+7, r22
+	sts	__llvm_gcov_ctr.84+6, r22
+	sts	__llvm_gcov_ctr.84+5, r22
+	sts	__llvm_gcov_ctr.84+4, r22
+	sts	__llvm_gcov_ctr.84+3, r22
+	sts	__llvm_gcov_ctr.84+2, r22
+	sts	__llvm_gcov_ctr.84+1, r22
+	sts	__llvm_gcov_ctr.84, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.85)
+	ldi	r25, hi8(__llvm_gcov_ctr.85)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.86)
+	ldi	r25, hi8(__llvm_gcov_ctr.86)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.87)
+	ldi	r25, hi8(__llvm_gcov_ctr.87)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.88)
+	ldi	r25, hi8(__llvm_gcov_ctr.88)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.89)
+	ldi	r25, hi8(__llvm_gcov_ctr.89)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.90)
+	ldi	r25, hi8(__llvm_gcov_ctr.90)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.91)
+	ldi	r25, hi8(__llvm_gcov_ctr.91)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.92)
+	ldi	r25, hi8(__llvm_gcov_ctr.92)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.93)
+	ldi	r25, hi8(__llvm_gcov_ctr.93)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.94)
+	ldi	r25, hi8(__llvm_gcov_ctr.94)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.95)
+	ldi	r25, hi8(__llvm_gcov_ctr.95)
+	rcall	memset
+	ldd	r20, Y+7                        ; 2-byte Folded Reload
+	ldd	r21, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.96+7, r22
+	sts	__llvm_gcov_ctr.96+6, r22
+	sts	__llvm_gcov_ctr.96+5, r22
+	sts	__llvm_gcov_ctr.96+4, r22
+	sts	__llvm_gcov_ctr.96+3, r22
+	sts	__llvm_gcov_ctr.96+2, r22
+	sts	__llvm_gcov_ctr.96+1, r22
+	sts	__llvm_gcov_ctr.96, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.97)
+	ldi	r25, hi8(__llvm_gcov_ctr.97)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.98)
+	ldi	r25, hi8(__llvm_gcov_ctr.98)
+	rcall	memset
+	ldd	r20, Y+7                        ; 2-byte Folded Reload
+	ldd	r21, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.99)
+	ldi	r25, hi8(__llvm_gcov_ctr.99)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.100)
+	ldi	r25, hi8(__llvm_gcov_ctr.100)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.101)
+	ldi	r25, hi8(__llvm_gcov_ctr.101)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.102)
+	ldi	r25, hi8(__llvm_gcov_ctr.102)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.103)
+	ldi	r25, hi8(__llvm_gcov_ctr.103)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.104)
+	ldi	r25, hi8(__llvm_gcov_ctr.104)
+	rcall	memset
+	ldd	r20, Y+1                        ; 2-byte Folded Reload
+	ldd	r21, Y+2                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.105)
+	ldi	r25, hi8(__llvm_gcov_ctr.105)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.106+7, r22
+	sts	__llvm_gcov_ctr.106+6, r22
+	sts	__llvm_gcov_ctr.106+5, r22
+	sts	__llvm_gcov_ctr.106+4, r22
+	sts	__llvm_gcov_ctr.106+3, r22
+	sts	__llvm_gcov_ctr.106+2, r22
+	sts	__llvm_gcov_ctr.106+1, r22
+	sts	__llvm_gcov_ctr.106, r22
+	sts	__llvm_gcov_ctr.107+7, r22
+	sts	__llvm_gcov_ctr.107+6, r22
+	sts	__llvm_gcov_ctr.107+5, r22
+	sts	__llvm_gcov_ctr.107+4, r22
+	sts	__llvm_gcov_ctr.107+3, r22
+	sts	__llvm_gcov_ctr.107+2, r22
+	sts	__llvm_gcov_ctr.107+1, r22
+	sts	__llvm_gcov_ctr.107, r22
+	sts	__llvm_gcov_ctr.108+7, r22
+	sts	__llvm_gcov_ctr.108+6, r22
+	sts	__llvm_gcov_ctr.108+5, r22
+	sts	__llvm_gcov_ctr.108+4, r22
+	sts	__llvm_gcov_ctr.108+3, r22
+	sts	__llvm_gcov_ctr.108+2, r22
+	sts	__llvm_gcov_ctr.108+1, r22
+	sts	__llvm_gcov_ctr.108, r22
+	sts	__llvm_gcov_ctr.109+7, r22
+	sts	__llvm_gcov_ctr.109+6, r22
+	sts	__llvm_gcov_ctr.109+5, r22
+	sts	__llvm_gcov_ctr.109+4, r22
+	sts	__llvm_gcov_ctr.109+3, r22
+	sts	__llvm_gcov_ctr.109+2, r22
+	sts	__llvm_gcov_ctr.109+1, r22
+	sts	__llvm_gcov_ctr.109, r22
+	sts	__llvm_gcov_ctr.110+7, r22
+	sts	__llvm_gcov_ctr.110+6, r22
+	sts	__llvm_gcov_ctr.110+5, r22
+	sts	__llvm_gcov_ctr.110+4, r22
+	sts	__llvm_gcov_ctr.110+3, r22
+	sts	__llvm_gcov_ctr.110+2, r22
+	sts	__llvm_gcov_ctr.110+1, r22
+	sts	__llvm_gcov_ctr.110, r22
+	sts	__llvm_gcov_ctr.111+7, r22
+	sts	__llvm_gcov_ctr.111+6, r22
+	sts	__llvm_gcov_ctr.111+5, r22
+	sts	__llvm_gcov_ctr.111+4, r22
+	sts	__llvm_gcov_ctr.111+3, r22
+	sts	__llvm_gcov_ctr.111+2, r22
+	sts	__llvm_gcov_ctr.111+1, r22
+	sts	__llvm_gcov_ctr.111, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.112)
+	ldi	r25, hi8(__llvm_gcov_ctr.112)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.113)
+	ldi	r25, hi8(__llvm_gcov_ctr.113)
+	rcall	memset
+	ldd	r20, Y+3                        ; 2-byte Folded Reload
+	ldd	r21, Y+4                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.114)
+	ldi	r25, hi8(__llvm_gcov_ctr.114)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.115)
+	ldi	r25, hi8(__llvm_gcov_ctr.115)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.116)
+	ldi	r25, hi8(__llvm_gcov_ctr.116)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.117)
+	ldi	r25, hi8(__llvm_gcov_ctr.117)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.118)
+	ldi	r25, hi8(__llvm_gcov_ctr.118)
+	rcall	memset
+	ldd	r20, Y+7                        ; 2-byte Folded Reload
+	ldd	r21, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.119)
+	ldi	r25, hi8(__llvm_gcov_ctr.119)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.120)
+	ldi	r25, hi8(__llvm_gcov_ctr.120)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.121)
+	ldi	r25, hi8(__llvm_gcov_ctr.121)
+	rcall	memset
+	ldd	r20, Y+5                        ; 2-byte Folded Reload
+	ldd	r21, Y+6                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.122+7, r22
+	sts	__llvm_gcov_ctr.122+6, r22
+	sts	__llvm_gcov_ctr.122+5, r22
+	sts	__llvm_gcov_ctr.122+4, r22
+	sts	__llvm_gcov_ctr.122+3, r22
+	sts	__llvm_gcov_ctr.122+2, r22
+	sts	__llvm_gcov_ctr.122+1, r22
+	sts	__llvm_gcov_ctr.122, r22
+	sts	__llvm_gcov_ctr.123+7, r22
+	sts	__llvm_gcov_ctr.123+6, r22
+	sts	__llvm_gcov_ctr.123+5, r22
+	sts	__llvm_gcov_ctr.123+4, r22
+	sts	__llvm_gcov_ctr.123+3, r22
+	sts	__llvm_gcov_ctr.123+2, r22
+	sts	__llvm_gcov_ctr.123+1, r22
+	sts	__llvm_gcov_ctr.123, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.124)
+	ldi	r25, hi8(__llvm_gcov_ctr.124)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.125)
+	ldi	r25, hi8(__llvm_gcov_ctr.125)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.126)
+	ldi	r25, hi8(__llvm_gcov_ctr.126)
+	rcall	memset
+	ldd	r20, Y+7                        ; 2-byte Folded Reload
+	ldd	r21, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.127)
+	ldi	r25, hi8(__llvm_gcov_ctr.127)
+	rcall	memset
+	ldd	r20, Y+7                        ; 2-byte Folded Reload
+	ldd	r21, Y+8                        ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.128)
+	ldi	r25, hi8(__llvm_gcov_ctr.128)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.129)
+	ldi	r25, hi8(__llvm_gcov_ctr.129)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.130)
+	ldi	r25, hi8(__llvm_gcov_ctr.130)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.131+7, r22
+	sts	__llvm_gcov_ctr.131+6, r22
+	sts	__llvm_gcov_ctr.131+5, r22
+	sts	__llvm_gcov_ctr.131+4, r22
+	sts	__llvm_gcov_ctr.131+3, r22
+	sts	__llvm_gcov_ctr.131+2, r22
+	sts	__llvm_gcov_ctr.131+1, r22
+	sts	__llvm_gcov_ctr.131, r22
+	sts	__llvm_gcov_ctr.132+7, r22
+	sts	__llvm_gcov_ctr.132+6, r22
+	sts	__llvm_gcov_ctr.132+5, r22
+	sts	__llvm_gcov_ctr.132+4, r22
+	sts	__llvm_gcov_ctr.132+3, r22
+	sts	__llvm_gcov_ctr.132+2, r22
+	sts	__llvm_gcov_ctr.132+1, r22
+	sts	__llvm_gcov_ctr.132, r22
+	sts	__llvm_gcov_ctr.133+7, r22
+	sts	__llvm_gcov_ctr.133+6, r22
+	sts	__llvm_gcov_ctr.133+5, r22
+	sts	__llvm_gcov_ctr.133+4, r22
+	sts	__llvm_gcov_ctr.133+3, r22
+	sts	__llvm_gcov_ctr.133+2, r22
+	sts	__llvm_gcov_ctr.133+1, r22
+	sts	__llvm_gcov_ctr.133, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.134)
+	ldi	r25, hi8(__llvm_gcov_ctr.134)
+	rcall	memset
+	ldd	r20, Y+9                        ; 2-byte Folded Reload
+	ldd	r21, Y+10                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.135+7, r22
+	sts	__llvm_gcov_ctr.135+6, r22
+	sts	__llvm_gcov_ctr.135+5, r22
+	sts	__llvm_gcov_ctr.135+4, r22
+	sts	__llvm_gcov_ctr.135+3, r22
+	sts	__llvm_gcov_ctr.135+2, r22
+	sts	__llvm_gcov_ctr.135+1, r22
+	sts	__llvm_gcov_ctr.135, r22
+	sts	__llvm_gcov_ctr.136+7, r22
+	sts	__llvm_gcov_ctr.136+6, r22
+	sts	__llvm_gcov_ctr.136+5, r22
+	sts	__llvm_gcov_ctr.136+4, r22
+	sts	__llvm_gcov_ctr.136+3, r22
+	sts	__llvm_gcov_ctr.136+2, r22
+	sts	__llvm_gcov_ctr.136+1, r22
+	sts	__llvm_gcov_ctr.136, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.137)
+	ldi	r25, hi8(__llvm_gcov_ctr.137)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.138+7, r22
+	sts	__llvm_gcov_ctr.138+6, r22
+	sts	__llvm_gcov_ctr.138+5, r22
+	sts	__llvm_gcov_ctr.138+4, r22
+	sts	__llvm_gcov_ctr.138+3, r22
+	sts	__llvm_gcov_ctr.138+2, r22
+	sts	__llvm_gcov_ctr.138+1, r22
+	sts	__llvm_gcov_ctr.138, r22
+	sts	__llvm_gcov_ctr.139+7, r22
+	sts	__llvm_gcov_ctr.139+6, r22
+	sts	__llvm_gcov_ctr.139+5, r22
+	sts	__llvm_gcov_ctr.139+4, r22
+	sts	__llvm_gcov_ctr.139+3, r22
+	sts	__llvm_gcov_ctr.139+2, r22
+	sts	__llvm_gcov_ctr.139+1, r22
+	sts	__llvm_gcov_ctr.139, r22
+	sts	__llvm_gcov_ctr.140+7, r22
+	sts	__llvm_gcov_ctr.140+6, r22
+	sts	__llvm_gcov_ctr.140+5, r22
+	sts	__llvm_gcov_ctr.140+4, r22
+	sts	__llvm_gcov_ctr.140+3, r22
+	sts	__llvm_gcov_ctr.140+2, r22
+	sts	__llvm_gcov_ctr.140+1, r22
+	sts	__llvm_gcov_ctr.140, r22
+	sts	__llvm_gcov_ctr.141+7, r22
+	sts	__llvm_gcov_ctr.141+6, r22
+	sts	__llvm_gcov_ctr.141+5, r22
+	sts	__llvm_gcov_ctr.141+4, r22
+	sts	__llvm_gcov_ctr.141+3, r22
+	sts	__llvm_gcov_ctr.141+2, r22
+	sts	__llvm_gcov_ctr.141+1, r22
+	sts	__llvm_gcov_ctr.141, r22
+	sts	__llvm_gcov_ctr.142+7, r22
+	sts	__llvm_gcov_ctr.142+6, r22
+	sts	__llvm_gcov_ctr.142+5, r22
+	sts	__llvm_gcov_ctr.142+4, r22
+	sts	__llvm_gcov_ctr.142+3, r22
+	sts	__llvm_gcov_ctr.142+2, r22
+	sts	__llvm_gcov_ctr.142+1, r22
+	sts	__llvm_gcov_ctr.142, r22
+	sts	__llvm_gcov_ctr.143+7, r22
+	sts	__llvm_gcov_ctr.143+6, r22
+	sts	__llvm_gcov_ctr.143+5, r22
+	sts	__llvm_gcov_ctr.143+4, r22
+	sts	__llvm_gcov_ctr.143+3, r22
+	sts	__llvm_gcov_ctr.143+2, r22
+	sts	__llvm_gcov_ctr.143+1, r22
+	sts	__llvm_gcov_ctr.143, r22
+	sts	__llvm_gcov_ctr.144+7, r22
+	sts	__llvm_gcov_ctr.144+6, r22
+	sts	__llvm_gcov_ctr.144+5, r22
+	sts	__llvm_gcov_ctr.144+4, r22
+	sts	__llvm_gcov_ctr.144+3, r22
+	sts	__llvm_gcov_ctr.144+2, r22
+	sts	__llvm_gcov_ctr.144+1, r22
+	sts	__llvm_gcov_ctr.144, r22
+	ldi	r24, lo8(__llvm_gcov_ctr.145)
+	ldi	r25, hi8(__llvm_gcov_ctr.145)
+	rcall	memset
+	ldd	r20, Y+11                       ; 2-byte Folded Reload
+	ldd	r21, Y+12                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.146)
+	ldi	r25, hi8(__llvm_gcov_ctr.146)
+	rcall	memset
+	ldd	r20, Y+13                       ; 2-byte Folded Reload
+	ldd	r21, Y+14                       ; 2-byte Folded Reload
+	ldd	r22, Y+15                       ; 1-byte Folded Reload
+	ldi	r24, lo8(__llvm_gcov_ctr.147)
+	ldi	r25, hi8(__llvm_gcov_ctr.147)
+	rcall	memset
+                                        ; kill: def $r19r18 killed $r25r24
+	ldd	r24, Y+15                       ; 1-byte Folded Reload
+	sts	__llvm_gcov_ctr.148+7, r24
+	sts	__llvm_gcov_ctr.148+6, r24
+	sts	__llvm_gcov_ctr.148+5, r24
+	sts	__llvm_gcov_ctr.148+4, r24
+	sts	__llvm_gcov_ctr.148+3, r24
+	sts	__llvm_gcov_ctr.148+2, r24
+	sts	__llvm_gcov_ctr.148+1, r24
+	sts	__llvm_gcov_ctr.148, r24
+	adiw	r28, 15
+	in	r0, 63
+	cli
+	out	62, r29
+	out	63, r0
+	out	61, r28
+	pop	r29
+	pop	r28
+	ret
+.Lfunc_end150:
+	.size	__llvm_gcov_reset, .Lfunc_end150-__llvm_gcov_reset
+                                        ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       ; @__llvm_gcov_init
+; %bb.0:
+	ldi	r24, pm_lo8(__llvm_gcov_writeout)
+	ldi	r25, pm_hi8(__llvm_gcov_writeout)
+	ldi	r22, pm_lo8(__llvm_gcov_reset)
+	ldi	r23, pm_hi8(__llvm_gcov_reset)
+	rcall	llvm_gcov_init
+	ret
+.Lfunc_end151:
+	.size	__llvm_gcov_init, .Lfunc_end151-__llvm_gcov_init
+                                        ; -- End function
 	; Declaring this symbol tells the CRT that it should
 	;copy all variables from program memory to RAM on startup
 	.globl	__do_copy_data
@@ -34122,6 +46812,1232 @@ digits:
 	.type	seed,@object                    ; @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         ; @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       ; @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       ; @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       ; @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       ; @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,1
+	.type	__llvm_gcov_ctr.5,@object       ; @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       ; @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,1
+	.type	__llvm_gcov_ctr.7,@object       ; @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,1
+	.type	__llvm_gcov_ctr.8,@object       ; @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       ; @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      ; @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      ; @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,1
+	.type	__llvm_gcov_ctr.12,@object      ; @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      ; @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,1
+	.type	__llvm_gcov_ctr.14,@object      ; @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,1
+	.type	__llvm_gcov_ctr.15,@object      ; @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,1
+	.type	__llvm_gcov_ctr.16,@object      ; @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      ; @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      ; @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,1
+	.type	__llvm_gcov_ctr.19,@object      ; @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,1
+	.type	__llvm_gcov_ctr.20,@object      ; @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,1
+	.type	__llvm_gcov_ctr.21,@object      ; @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,1
+	.type	__llvm_gcov_ctr.22,@object      ; @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      ; @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,1
+	.type	__llvm_gcov_ctr.24,@object      ; @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      ; @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,1
+	.type	__llvm_gcov_ctr.26,@object      ; @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      ; @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      ; @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,1
+	.type	__llvm_gcov_ctr.29,@object      ; @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      ; @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      ; @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      ; @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      ; @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      ; @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      ; @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      ; @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      ; @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,1
+	.type	__llvm_gcov_ctr.38,@object      ; @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,1
+	.type	__llvm_gcov_ctr.39,@object      ; @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,1
+	.type	__llvm_gcov_ctr.40,@object      ; @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      ; @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      ; @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,16,1
+	.type	__llvm_gcov_ctr.43,@object      ; @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,48,16
+	.type	__llvm_gcov_ctr.44,@object      ; @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,48,16
+	.type	__llvm_gcov_ctr.45,@object      ; @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      ; @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,32,16
+	.type	__llvm_gcov_ctr.47,@object      ; @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,32,16
+	.type	__llvm_gcov_ctr.48,@object      ; @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,8,1
+	.type	__llvm_gcov_ctr.49,@object      ; @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,16,1
+	.type	__llvm_gcov_ctr.50,@object      ; @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,1
+	.type	__llvm_gcov_ctr.51,@object      ; @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,1
+	.type	__llvm_gcov_ctr.52,@object      ; @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,1
+	.type	__llvm_gcov_ctr.53,@object      ; @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,1
+	.type	__llvm_gcov_ctr.54,@object      ; @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,1
+	.type	__llvm_gcov_ctr.55,@object      ; @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,40,16
+	.type	__llvm_gcov_ctr.56,@object      ; @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,48,16
+	.type	__llvm_gcov_ctr.57,@object      ; @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,1
+	.type	__llvm_gcov_ctr.58,@object      ; @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,16,1
+	.type	__llvm_gcov_ctr.59,@object      ; @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,64,16
+	.type	__llvm_gcov_ctr.60,@object      ; @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,40,16
+	.type	__llvm_gcov_ctr.61,@object      ; @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,48,16
+	.type	__llvm_gcov_ctr.62,@object      ; @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,1
+	.type	__llvm_gcov_ctr.63,@object      ; @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,40,16
+	.type	__llvm_gcov_ctr.64,@object      ; @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,1
+	.type	__llvm_gcov_ctr.65,@object      ; @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      ; @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,8,1
+	.type	__llvm_gcov_ctr.67,@object      ; @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,8,1
+	.type	__llvm_gcov_ctr.68,@object      ; @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,1
+	.type	__llvm_gcov_ctr.69,@object      ; @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,1
+	.type	__llvm_gcov_ctr.70,@object      ; @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,1
+	.type	__llvm_gcov_ctr.71,@object      ; @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,1
+	.type	__llvm_gcov_ctr.72,@object      ; @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,1
+	.type	__llvm_gcov_ctr.73,@object      ; @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,1
+	.type	__llvm_gcov_ctr.74,@object      ; @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,1
+	.type	__llvm_gcov_ctr.75,@object      ; @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,1
+	.type	__llvm_gcov_ctr.76,@object      ; @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,1
+	.type	__llvm_gcov_ctr.77,@object      ; @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,1
+	.type	__llvm_gcov_ctr.78,@object      ; @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,1
+	.type	__llvm_gcov_ctr.79,@object      ; @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,24,16
+	.type	__llvm_gcov_ctr.80,@object      ; @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,24,16
+	.type	__llvm_gcov_ctr.81,@object      ; @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      ; @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      ; @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      ; @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,8,1
+	.type	__llvm_gcov_ctr.85,@object      ; @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,40,16
+	.type	__llvm_gcov_ctr.86,@object      ; @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,40,16
+	.type	__llvm_gcov_ctr.87,@object      ; @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      ; @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,16,1
+	.type	__llvm_gcov_ctr.89,@object      ; @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      ; @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,32,16
+	.type	__llvm_gcov_ctr.91,@object      ; @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,32,16
+	.type	__llvm_gcov_ctr.92,@object      ; @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,24,16
+	.type	__llvm_gcov_ctr.93,@object      ; @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      ; @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,40,16
+	.type	__llvm_gcov_ctr.95,@object      ; @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,48,16
+	.type	__llvm_gcov_ctr.96,@object      ; @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,8,1
+	.type	__llvm_gcov_ctr.97,@object      ; @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,64,16
+	.type	__llvm_gcov_ctr.98,@object      ; @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,24,16
+	.type	__llvm_gcov_ctr.99,@object      ; @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     ; @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     ; @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,24,16
+	.type	__llvm_gcov_ctr.102,@object     ; @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     ; @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,48,16
+	.type	__llvm_gcov_ctr.104,@object     ; @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,48,16
+	.type	__llvm_gcov_ctr.105,@object     ; @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     ; @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,8,1
+	.type	__llvm_gcov_ctr.107,@object     ; @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,8,1
+	.type	__llvm_gcov_ctr.108,@object     ; @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,1
+	.type	__llvm_gcov_ctr.109,@object     ; @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,1
+	.type	__llvm_gcov_ctr.110,@object     ; @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,1
+	.type	__llvm_gcov_ctr.111,@object     ; @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,1
+	.type	__llvm_gcov_ctr.112,@object     ; @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,24,16
+	.type	__llvm_gcov_ctr.113,@object     ; @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,24,16
+	.type	__llvm_gcov_ctr.114,@object     ; @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,16,1
+	.type	__llvm_gcov_ctr.115,@object     ; @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     ; @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     ; @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     ; @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,32,16
+	.type	__llvm_gcov_ctr.119,@object     ; @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,64,16
+	.type	__llvm_gcov_ctr.120,@object     ; @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     ; @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     ; @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,8,1
+	.type	__llvm_gcov_ctr.123,@object     ; @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,8,1
+	.type	__llvm_gcov_ctr.124,@object     ; @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,56,16
+	.type	__llvm_gcov_ctr.125,@object     ; @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,32,16
+	.type	__llvm_gcov_ctr.126,@object     ; @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,32,16
+	.type	__llvm_gcov_ctr.127,@object     ; @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,64,16
+	.type	__llvm_gcov_ctr.128,@object     ; @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,64,16
+	.type	__llvm_gcov_ctr.129,@object     ; @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,24,16
+	.type	__llvm_gcov_ctr.130,@object     ; @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,24,16
+	.type	__llvm_gcov_ctr.131,@object     ; @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,8,1
+	.type	__llvm_gcov_ctr.132,@object     ; @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,8,1
+	.type	__llvm_gcov_ctr.133,@object     ; @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,1
+	.type	__llvm_gcov_ctr.134,@object     ; @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,40,16
+	.type	__llvm_gcov_ctr.135,@object     ; @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,1
+	.type	__llvm_gcov_ctr.136,@object     ; @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,8,1
+	.type	__llvm_gcov_ctr.137,@object     ; @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,24,16
+	.type	__llvm_gcov_ctr.138,@object     ; @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,1
+	.type	__llvm_gcov_ctr.139,@object     ; @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,8,1
+	.type	__llvm_gcov_ctr.140,@object     ; @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,1
+	.type	__llvm_gcov_ctr.141,@object     ; @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,1
+	.type	__llvm_gcov_ctr.142,@object     ; @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,1
+	.type	__llvm_gcov_ctr.143,@object     ; @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,1
+	.type	__llvm_gcov_ctr.144,@object     ; @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,1
+	.type	__llvm_gcov_ctr.145,@object     ; @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,32,16
+	.type	__llvm_gcov_ctr.146,@object     ; @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,32,16
+	.type	__llvm_gcov_ctr.147,@object     ; @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,40,16
+	.type	__llvm_gcov_ctr.148,@object     ; @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,8,1
+	.type	__unnamed_1,@object             ; @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-avr.gcda"
+	.size	__unnamed_1, 47
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object ; @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               ; 0x0
+	.long	560687177                       ; 0x216b6849
+	.long	1790149680                      ; 0x6ab38430
+	.long	1                               ; 0x1
+	.long	1589591758                      ; 0x5ebf3ece
+	.long	1790149680                      ; 0x6ab38430
+	.long	2                               ; 0x2
+	.long	2176136383                      ; 0x81b534bf
+	.long	1790149680                      ; 0x6ab38430
+	.long	3                               ; 0x3
+	.long	3586625172                      ; 0xd5c78e94
+	.long	1790149680                      ; 0x6ab38430
+	.long	4                               ; 0x4
+	.long	2323119728                      ; 0x8a77fe70
+	.long	1790149680                      ; 0x6ab38430
+	.long	5                               ; 0x5
+	.long	2314569740                      ; 0x89f5880c
+	.long	1790149680                      ; 0x6ab38430
+	.long	6                               ; 0x6
+	.long	2833673551                      ; 0xa8e66d4f
+	.long	1790149680                      ; 0x6ab38430
+	.long	7                               ; 0x7
+	.long	1458633189                      ; 0x56f0f9e5
+	.long	1790149680                      ; 0x6ab38430
+	.long	8                               ; 0x8
+	.long	1190300833                      ; 0x46f28ca1
+	.long	1790149680                      ; 0x6ab38430
+	.long	9                               ; 0x9
+	.long	758327989                       ; 0x2d332ab5
+	.long	1790149680                      ; 0x6ab38430
+	.long	10                              ; 0xa
+	.long	1651479037                      ; 0x626f91fd
+	.long	1790149680                      ; 0x6ab38430
+	.long	11                              ; 0xb
+	.long	4132343275                      ; 0xf64e8deb
+	.long	1790149680                      ; 0x6ab38430
+	.long	12                              ; 0xc
+	.long	734262523                       ; 0x2bc3f4fb
+	.long	1790149680                      ; 0x6ab38430
+	.long	13                              ; 0xd
+	.long	2463424677                      ; 0x92d4e0a5
+	.long	1790149680                      ; 0x6ab38430
+	.long	14                              ; 0xe
+	.long	1419026334                      ; 0x54949f9e
+	.long	1790149680                      ; 0x6ab38430
+	.long	15                              ; 0xf
+	.long	3154471370                      ; 0xbc0569ca
+	.long	1790149680                      ; 0x6ab38430
+	.long	16                              ; 0x10
+	.long	2077973487                      ; 0x7bdb5bef
+	.long	1790149680                      ; 0x6ab38430
+	.long	17                              ; 0x11
+	.long	1474691227                      ; 0x57e6009b
+	.long	1790149680                      ; 0x6ab38430
+	.long	18                              ; 0x12
+	.long	3710986016                      ; 0xdd312720
+	.long	1790149680                      ; 0x6ab38430
+	.long	19                              ; 0x13
+	.long	1305101473                      ; 0x4dca44a1
+	.long	1790149680                      ; 0x6ab38430
+	.long	20                              ; 0x14
+	.long	3762036564                      ; 0xe03c1f54
+	.long	1790149680                      ; 0x6ab38430
+	.long	21                              ; 0x15
+	.long	477914433                       ; 0x1c7c6541
+	.long	1790149680                      ; 0x6ab38430
+	.long	22                              ; 0x16
+	.long	3923035234                      ; 0xe9d4c462
+	.long	1790149680                      ; 0x6ab38430
+	.long	23                              ; 0x17
+	.long	951651702                       ; 0x38b90d76
+	.long	1790149680                      ; 0x6ab38430
+	.long	24                              ; 0x18
+	.long	4206925919                      ; 0xfac0985f
+	.long	1790149680                      ; 0x6ab38430
+	.long	25                              ; 0x19
+	.long	32773942                        ; 0x1f41736
+	.long	1790149680                      ; 0x6ab38430
+	.long	26                              ; 0x1a
+	.long	2877267246                      ; 0xab7f9d2e
+	.long	1790149680                      ; 0x6ab38430
+	.long	27                              ; 0x1b
+	.long	860405771                       ; 0x3348c00b
+	.long	1790149680                      ; 0x6ab38430
+	.long	28                              ; 0x1c
+	.long	815674877                       ; 0x309e35fd
+	.long	1790149680                      ; 0x6ab38430
+	.long	29                              ; 0x1d
+	.long	1778838753                      ; 0x6a06ece1
+	.long	1790149680                      ; 0x6ab38430
+	.long	30                              ; 0x1e
+	.long	2718307199                      ; 0xa206137f
+	.long	1790149680                      ; 0x6ab38430
+	.long	31                              ; 0x1f
+	.long	856224820                       ; 0x3308f434
+	.long	1790149680                      ; 0x6ab38430
+	.long	32                              ; 0x20
+	.long	1111195143                      ; 0x423b7e07
+	.long	1790149680                      ; 0x6ab38430
+	.long	33                              ; 0x21
+	.long	1178414519                      ; 0x463d2db7
+	.long	1790149680                      ; 0x6ab38430
+	.long	34                              ; 0x22
+	.long	3477640633                      ; 0xcf4895b9
+	.long	1790149680                      ; 0x6ab38430
+	.long	35                              ; 0x23
+	.long	4294770115                      ; 0xfffcfdc3
+	.long	1790149680                      ; 0x6ab38430
+	.long	36                              ; 0x24
+	.long	3650660234                      ; 0xd998a78a
+	.long	1790149680                      ; 0x6ab38430
+	.long	37                              ; 0x25
+	.long	289327647                       ; 0x113eca1f
+	.long	1790149680                      ; 0x6ab38430
+	.long	38                              ; 0x26
+	.long	2093612798                      ; 0x7cc9fefe
+	.long	1790149680                      ; 0x6ab38430
+	.long	39                              ; 0x27
+	.long	4177956716                      ; 0xf9068f6c
+	.long	1790149680                      ; 0x6ab38430
+	.long	40                              ; 0x28
+	.long	1537257434                      ; 0x5ba0afda
+	.long	1790149680                      ; 0x6ab38430
+	.long	41                              ; 0x29
+	.long	3028077325                      ; 0xb47ccb0d
+	.long	1790149680                      ; 0x6ab38430
+	.long	42                              ; 0x2a
+	.long	1369848209                      ; 0x51a63991
+	.long	1790149680                      ; 0x6ab38430
+	.long	43                              ; 0x2b
+	.long	938831176                       ; 0x37f56d48
+	.long	1790149680                      ; 0x6ab38430
+	.long	44                              ; 0x2c
+	.long	1663146323                      ; 0x63219953
+	.long	1790149680                      ; 0x6ab38430
+	.long	45                              ; 0x2d
+	.long	4111410217                      ; 0xf50f2429
+	.long	1790149680                      ; 0x6ab38430
+	.long	46                              ; 0x2e
+	.long	1475378556                      ; 0x57f07d7c
+	.long	1790149680                      ; 0x6ab38430
+	.long	47                              ; 0x2f
+	.long	3356195547                      ; 0xc80b7adb
+	.long	1790149680                      ; 0x6ab38430
+	.long	48                              ; 0x30
+	.long	514931786                       ; 0x1eb13c4a
+	.long	1790149680                      ; 0x6ab38430
+	.long	49                              ; 0x31
+	.long	2854034444                      ; 0xaa1d1c0c
+	.long	1790149680                      ; 0x6ab38430
+	.long	50                              ; 0x32
+	.long	2747937306                      ; 0xa3ca321a
+	.long	1790149680                      ; 0x6ab38430
+	.long	51                              ; 0x33
+	.long	4192776208                      ; 0xf9e8b010
+	.long	1790149680                      ; 0x6ab38430
+	.long	52                              ; 0x34
+	.long	984436227                       ; 0x3aad4e03
+	.long	1790149680                      ; 0x6ab38430
+	.long	53                              ; 0x35
+	.long	1477657574                      ; 0x581343e6
+	.long	1790149680                      ; 0x6ab38430
+	.long	54                              ; 0x36
+	.long	1339127973                      ; 0x4fd178a5
+	.long	1790149680                      ; 0x6ab38430
+	.long	55                              ; 0x37
+	.long	2960567906                      ; 0xb076ae62
+	.long	1790149680                      ; 0x6ab38430
+	.long	56                              ; 0x38
+	.long	3390076872                      ; 0xca1077c8
+	.long	1790149680                      ; 0x6ab38430
+	.long	57                              ; 0x39
+	.long	1543282230                      ; 0x5bfc9e36
+	.long	1790149680                      ; 0x6ab38430
+	.long	58                              ; 0x3a
+	.long	2934101789                      ; 0xaee2d71d
+	.long	1790149680                      ; 0x6ab38430
+	.long	59                              ; 0x3b
+	.long	3737986119                      ; 0xdecd2447
+	.long	1790149680                      ; 0x6ab38430
+	.long	60                              ; 0x3c
+	.long	49556427                        ; 0x2f42bcb
+	.long	1790149680                      ; 0x6ab38430
+	.long	61                              ; 0x3d
+	.long	234051526                       ; 0xdf357c6
+	.long	1790149680                      ; 0x6ab38430
+	.long	62                              ; 0x3e
+	.long	2341800126                      ; 0x8b9508be
+	.long	1790149680                      ; 0x6ab38430
+	.long	63                              ; 0x3f
+	.long	3256799948                      ; 0xc21ed2cc
+	.long	1790149680                      ; 0x6ab38430
+	.long	64                              ; 0x40
+	.long	777295480                       ; 0x2e549678
+	.long	1790149680                      ; 0x6ab38430
+	.long	65                              ; 0x41
+	.long	14040531                        ; 0xd63dd3
+	.long	1790149680                      ; 0x6ab38430
+	.long	66                              ; 0x42
+	.long	8047973                         ; 0x7acd65
+	.long	1790149680                      ; 0x6ab38430
+	.long	67                              ; 0x43
+	.long	719459161                       ; 0x2ae21359
+	.long	1790149680                      ; 0x6ab38430
+	.long	68                              ; 0x44
+	.long	243358501                       ; 0xe815b25
+	.long	1790149680                      ; 0x6ab38430
+	.long	69                              ; 0x45
+	.long	3262173932                      ; 0xc270d2ec
+	.long	1790149680                      ; 0x6ab38430
+	.long	70                              ; 0x46
+	.long	398910553                       ; 0x17c6e459
+	.long	1790149680                      ; 0x6ab38430
+	.long	71                              ; 0x47
+	.long	3354219739                      ; 0xc7ed54db
+	.long	1790149680                      ; 0x6ab38430
+	.long	72                              ; 0x48
+	.long	2570308788                      ; 0x9933ccb4
+	.long	1790149680                      ; 0x6ab38430
+	.long	73                              ; 0x49
+	.long	982429111                       ; 0x3a8eadb7
+	.long	1790149680                      ; 0x6ab38430
+	.long	74                              ; 0x4a
+	.long	211491241                       ; 0xc9b19a9
+	.long	1790149680                      ; 0x6ab38430
+	.long	75                              ; 0x4b
+	.long	1075683319                      ; 0x401d9ff7
+	.long	1790149680                      ; 0x6ab38430
+	.long	76                              ; 0x4c
+	.long	1886352651                      ; 0x706f750b
+	.long	1790149680                      ; 0x6ab38430
+	.long	77                              ; 0x4d
+	.long	248637203                       ; 0xed1e713
+	.long	1790149680                      ; 0x6ab38430
+	.long	78                              ; 0x4e
+	.long	703327087                       ; 0x29ebeb6f
+	.long	1790149680                      ; 0x6ab38430
+	.long	79                              ; 0x4f
+	.long	3690160730                      ; 0xdbf3625a
+	.long	1790149680                      ; 0x6ab38430
+	.long	80                              ; 0x50
+	.long	787048238                       ; 0x2ee9672e
+	.long	1790149680                      ; 0x6ab38430
+	.long	81                              ; 0x51
+	.long	1937497967                      ; 0x737bdf6f
+	.long	1790149680                      ; 0x6ab38430
+	.long	82                              ; 0x52
+	.long	4205062514                      ; 0xfaa42972
+	.long	1790149680                      ; 0x6ab38430
+	.long	83                              ; 0x53
+	.long	694462539                       ; 0x2964a84b
+	.long	1790149680                      ; 0x6ab38430
+	.long	84                              ; 0x54
+	.long	85970907                        ; 0x51fcfdb
+	.long	1790149680                      ; 0x6ab38430
+	.long	85                              ; 0x55
+	.long	3681984728                      ; 0xdb76a0d8
+	.long	1790149680                      ; 0x6ab38430
+	.long	86                              ; 0x56
+	.long	3620297642                      ; 0xd7c95baa
+	.long	1790149680                      ; 0x6ab38430
+	.long	87                              ; 0x57
+	.long	3394804480                      ; 0xca589b00
+	.long	1790149680                      ; 0x6ab38430
+	.long	88                              ; 0x58
+	.long	2119330183                      ; 0x7e526987
+	.long	1790149680                      ; 0x6ab38430
+	.long	89                              ; 0x59
+	.long	1963040266                      ; 0x75019e0a
+	.long	1790149680                      ; 0x6ab38430
+	.long	90                              ; 0x5a
+	.long	1603391838                      ; 0x5f91d15e
+	.long	1790149680                      ; 0x6ab38430
+	.long	91                              ; 0x5b
+	.long	2340921237                      ; 0x8b879f95
+	.long	1790149680                      ; 0x6ab38430
+	.long	92                              ; 0x5c
+	.long	3028177438                      ; 0xb47e521e
+	.long	1790149680                      ; 0x6ab38430
+	.long	93                              ; 0x5d
+	.long	2265525308                      ; 0x87092c3c
+	.long	1790149680                      ; 0x6ab38430
+	.long	94                              ; 0x5e
+	.long	2598903994                      ; 0x9ae820ba
+	.long	1790149680                      ; 0x6ab38430
+	.long	95                              ; 0x5f
+	.long	139524705                       ; 0x850fa61
+	.long	1790149680                      ; 0x6ab38430
+	.long	96                              ; 0x60
+	.long	1076410600                      ; 0x4028b8e8
+	.long	1790149680                      ; 0x6ab38430
+	.long	97                              ; 0x61
+	.long	220237413                       ; 0xd208e65
+	.long	1790149680                      ; 0x6ab38430
+	.long	98                              ; 0x62
+	.long	3913623866                      ; 0xe945293a
+	.long	1790149680                      ; 0x6ab38430
+	.long	99                              ; 0x63
+	.long	3453026372                      ; 0xcdd10044
+	.long	1790149680                      ; 0x6ab38430
+	.long	100                             ; 0x64
+	.long	2321387380                      ; 0x8a5d8f74
+	.long	1790149680                      ; 0x6ab38430
+	.long	101                             ; 0x65
+	.long	3319939363                      ; 0xc5e24123
+	.long	1790149680                      ; 0x6ab38430
+	.long	102                             ; 0x66
+	.long	398991913                       ; 0x17c82229
+	.long	1790149680                      ; 0x6ab38430
+	.long	103                             ; 0x67
+	.long	333429647                       ; 0x13dfbb8f
+	.long	1790149680                      ; 0x6ab38430
+	.long	104                             ; 0x68
+	.long	3927133990                      ; 0xea134f26
+	.long	1790149680                      ; 0x6ab38430
+	.long	105                             ; 0x69
+	.long	1797971294                      ; 0x6b2add5e
+	.long	1790149680                      ; 0x6ab38430
+	.long	106                             ; 0x6a
+	.long	1622314776                      ; 0x60b28f18
+	.long	1790149680                      ; 0x6ab38430
+	.long	107                             ; 0x6b
+	.long	1092862330                      ; 0x4123c17a
+	.long	1790149680                      ; 0x6ab38430
+	.long	108                             ; 0x6c
+	.long	2568657322                      ; 0x991a99aa
+	.long	1790149680                      ; 0x6ab38430
+	.long	109                             ; 0x6d
+	.long	2168129897                      ; 0x813b0969
+	.long	1790149680                      ; 0x6ab38430
+	.long	110                             ; 0x6e
+	.long	2890303119                      ; 0xac46868f
+	.long	1790149680                      ; 0x6ab38430
+	.long	111                             ; 0x6f
+	.long	1713332582                      ; 0x661f6166
+	.long	1790149680                      ; 0x6ab38430
+	.long	112                             ; 0x70
+	.long	2375727721                      ; 0x8d9aba69
+	.long	1790149680                      ; 0x6ab38430
+	.long	113                             ; 0x71
+	.long	3586767156                      ; 0xd5c9b934
+	.long	1790149680                      ; 0x6ab38430
+	.long	114                             ; 0x72
+	.long	2191348475                      ; 0x829d52fb
+	.long	1790149680                      ; 0x6ab38430
+	.long	115                             ; 0x73
+	.long	3910023869                      ; 0xe90e3abd
+	.long	1790149680                      ; 0x6ab38430
+	.long	116                             ; 0x74
+	.long	4189915105                      ; 0xf9bd07e1
+	.long	1790149680                      ; 0x6ab38430
+	.long	117                             ; 0x75
+	.long	2527353334                      ; 0x96a459f6
+	.long	1790149680                      ; 0x6ab38430
+	.long	118                             ; 0x76
+	.long	3429265923                      ; 0xcc667203
+	.long	1790149680                      ; 0x6ab38430
+	.long	119                             ; 0x77
+	.long	1283962724                      ; 0x4c87b764
+	.long	1790149680                      ; 0x6ab38430
+	.long	120                             ; 0x78
+	.long	1970290990                      ; 0x7570412e
+	.long	1790149680                      ; 0x6ab38430
+	.long	121                             ; 0x79
+	.long	2615950861                      ; 0x9bec3e0d
+	.long	1790149680                      ; 0x6ab38430
+	.long	122                             ; 0x7a
+	.long	3338450337                      ; 0xc6fcb5a1
+	.long	1790149680                      ; 0x6ab38430
+	.long	123                             ; 0x7b
+	.long	3971836509                      ; 0xecbd6a5d
+	.long	1790149680                      ; 0x6ab38430
+	.long	124                             ; 0x7c
+	.long	4260339231                      ; 0xfdef9e1f
+	.long	1790149680                      ; 0x6ab38430
+	.long	125                             ; 0x7d
+	.long	4160738226                      ; 0xf7ffd3b2
+	.long	1790149680                      ; 0x6ab38430
+	.long	126                             ; 0x7e
+	.long	1309372079                      ; 0x4e0b6eaf
+	.long	1790149680                      ; 0x6ab38430
+	.long	127                             ; 0x7f
+	.long	3151575564                      ; 0xbbd93a0c
+	.long	1790149680                      ; 0x6ab38430
+	.long	128                             ; 0x80
+	.long	3938977714                      ; 0xeac807b2
+	.long	1790149680                      ; 0x6ab38430
+	.long	129                             ; 0x81
+	.long	3228738087                      ; 0xc072a227
+	.long	1790149680                      ; 0x6ab38430
+	.long	130                             ; 0x82
+	.long	3135705803                      ; 0xbae712cb
+	.long	1790149680                      ; 0x6ab38430
+	.long	131                             ; 0x83
+	.long	4061147315                      ; 0xf21030b3
+	.long	1790149680                      ; 0x6ab38430
+	.long	132                             ; 0x84
+	.long	2783543715                      ; 0xa5e981a3
+	.long	1790149680                      ; 0x6ab38430
+	.long	133                             ; 0x85
+	.long	2471046843                      ; 0x93492ebb
+	.long	1790149680                      ; 0x6ab38430
+	.long	134                             ; 0x86
+	.long	260073473                       ; 0xf806801
+	.long	1790149680                      ; 0x6ab38430
+	.long	135                             ; 0x87
+	.long	1259876295                      ; 0x4b182fc7
+	.long	1790149680                      ; 0x6ab38430
+	.long	136                             ; 0x88
+	.long	2579807359                      ; 0x99c4bc7f
+	.long	1790149680                      ; 0x6ab38430
+	.long	137                             ; 0x89
+	.long	90061610                        ; 0x55e3b2a
+	.long	1790149680                      ; 0x6ab38430
+	.long	138                             ; 0x8a
+	.long	3598610789                      ; 0xd67e7165
+	.long	1790149680                      ; 0x6ab38430
+	.long	139                             ; 0x8b
+	.long	2351688191                      ; 0x8c2be9ff
+	.long	1790149680                      ; 0x6ab38430
+	.long	140                             ; 0x8c
+	.long	1438161982                      ; 0x55b89c3e
+	.long	1790149680                      ; 0x6ab38430
+	.long	141                             ; 0x8d
+	.long	2438880600                      ; 0x915e5d58
+	.long	1790149680                      ; 0x6ab38430
+	.long	142                             ; 0x8e
+	.long	3593193962                      ; 0xd62bc9ea
+	.long	1790149680                      ; 0x6ab38430
+	.long	143                             ; 0x8f
+	.long	1755082314                      ; 0x689c6e4a
+	.long	1790149680                      ; 0x6ab38430
+	.long	144                             ; 0x90
+	.long	3432612426                      ; 0xcc99824a
+	.long	1790149680                      ; 0x6ab38430
+	.long	145                             ; 0x91
+	.long	3374828335                      ; 0xc927cb2f
+	.long	1790149680                      ; 0x6ab38430
+	.long	146                             ; 0x92
+	.long	3311814731                      ; 0xc566484b
+	.long	1790149680                      ; 0x6ab38430
+	.long	147                             ; 0x93
+	.long	413908966                       ; 0x18abbfe6
+	.long	1790149680                      ; 0x6ab38430
+	.long	148                             ; 0x94
+	.long	3027808697                      ; 0xb478b1b9
+	.long	1790149680                      ; 0x6ab38430
+	.size	__llvm_internal_gcov_emit_function_args.0, 1788
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object ; @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.1
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.2
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.3
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.4
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.5
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.6
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.7
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.8
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.9
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.10
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.11
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.12
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.13
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.14
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.15
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.16
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.17
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.18
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.19
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.20
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.21
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.22
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.23
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.24
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.25
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.26
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.27
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.28
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.29
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.30
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.31
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.32
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.33
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.34
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.35
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.36
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.37
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.38
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.39
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.40
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.41
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.42
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.43
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.44
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.45
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.46
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.47
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.48
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.49
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.50
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.51
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.52
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.53
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.54
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.55
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.56
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.57
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.58
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.59
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.60
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.61
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.62
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.63
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.64
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.65
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.66
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.67
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.68
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.69
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.70
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.71
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.72
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.73
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.74
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.75
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.76
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.77
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.78
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.79
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.80
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.81
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.82
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.83
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.84
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.85
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.86
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.87
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.88
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.89
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.90
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.91
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.92
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.93
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.94
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.95
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.96
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.97
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.98
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.99
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.100
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.101
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.102
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.103
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.104
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.105
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.106
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.107
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.108
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.109
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.110
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.111
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.112
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.113
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.114
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.115
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.116
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.117
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.118
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.119
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.120
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.121
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.122
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.123
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.124
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.125
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.126
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.127
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.128
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.129
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.130
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.131
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.132
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.133
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.134
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.135
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.136
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.137
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.138
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.139
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.140
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.141
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.142
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.143
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.144
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.145
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.146
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.147
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.148
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 894
+
+	.type	__llvm_internal_gcov_emit_file_info,@object ; @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.short	__unnamed_1
+	.long	875575338                       ; 0x3430382a
+	.long	1790149680                      ; 0x6ab38430
+	.long	149                             ; 0x95
+	.short	__llvm_internal_gcov_emit_function_args.0
+	.short	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 18
+
+	.section	.ctors.65535,"aw",@progbits
+	; Emitting these undefined symbol references causes us to link the libgcc code that runs our constructors/destructors
+	; This matches GCC's behavior
+	.globl	__do_global_ctors
+	.globl	__do_global_dtors
+	.short	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	__profc_memmove,@object         ; @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -37418,9 +51334,164 @@ __llvm_prf_nm:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym __profc_memmove
 	.addrsig_sym __profd_memmove

@@ -21,6 +21,10 @@ memmove:                                # @memmove
 	if r1 >= r2 goto LBB0_6
 	goto LBB0_1
 LBB0_1:
+	r2 = __llvm_gcov_ctr ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memmove ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -55,6 +59,10 @@ LBB0_3:                                 #   in Loop: Header=BB0_2 Depth=1
 	*(u8 *)(r2 - 1) = r1
 	goto LBB0_4
 LBB0_4:                                 #   in Loop: Header=BB0_2 Depth=1
+	r2 = __llvm_gcov_ctr ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -77,6 +85,10 @@ LBB0_8:                                 # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB0_11
 	goto LBB0_9
 LBB0_9:                                 #   in Loop: Header=BB0_8 Depth=1
+	r2 = __llvm_gcov_ctr ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_memmove ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -98,8 +110,16 @@ LBB0_10:                                #   in Loop: Header=BB0_8 Depth=1
 	*(u64 *)(r10 - 24) = r1
 	goto LBB0_8
 LBB0_11:
+	r2 = __llvm_gcov_ctr ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	goto LBB0_12
 LBB0_12:
+	r2 = __llvm_gcov_ctr ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	goto LBB0_13
 LBB0_13:
 	r0 = *(u64 *)(r10 - 8)
@@ -136,6 +156,10 @@ LBB1_1:                                 # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB1_4
 	goto LBB1_2
 LBB1_2:                                 #   in Loop: Header=BB1_1 Depth=1
+	r2 = __llvm_gcov_ctr.1 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memccpy ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -165,6 +189,10 @@ LBB1_12:                                #   in Loop: Header=BB1_1 Depth=1
 	goto LBB1_3
 LBB1_3:                                 #   in Loop: Header=BB1_1 Depth=1
 	r1 = *(u64 *)(r10 - 104)
+	r3 = __llvm_gcov_ctr.1 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_memccpy ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -183,6 +211,10 @@ LBB1_5:                                 #   in Loop: Header=BB1_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB1_6
 LBB1_6:                                 #   in Loop: Header=BB1_1 Depth=1
+	r2 = __llvm_gcov_ctr.1 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 40)
 	r1 += -1
 	*(u64 *)(r10 - 40) = r1
@@ -198,6 +230,10 @@ LBB1_7:
 	if r1 == 0 goto LBB1_9
 	goto LBB1_8
 LBB1_8:
+	r2 = __llvm_gcov_ctr.1 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_memccpy ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -207,6 +243,10 @@ LBB1_8:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB1_10
 LBB1_9:
+	r2 = __llvm_gcov_ctr.1 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB1_10
@@ -242,6 +282,10 @@ LBB2_1:                                 # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB2_4
 	goto LBB2_2
 LBB2_2:                                 #   in Loop: Header=BB2_1 Depth=1
+	r2 = __llvm_gcov_ctr.2 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memchr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -269,6 +313,10 @@ LBB2_12:                                #   in Loop: Header=BB2_1 Depth=1
 	goto LBB2_3
 LBB2_3:                                 #   in Loop: Header=BB2_1 Depth=1
 	r1 = *(u64 *)(r10 - 80)
+	r3 = __llvm_gcov_ctr.2 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_memchr ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -287,6 +335,10 @@ LBB2_5:                                 #   in Loop: Header=BB2_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB2_6
 LBB2_6:                                 #   in Loop: Header=BB2_1 Depth=1
+	r2 = __llvm_gcov_ctr.2 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 32)
 	r1 += 1
 	*(u64 *)(r10 - 32) = r1
@@ -299,6 +351,10 @@ LBB2_7:
 	if r1 == 0 goto LBB2_9
 	goto LBB2_8
 LBB2_8:
+	r2 = __llvm_gcov_ctr.2 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_memchr ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -307,6 +363,10 @@ LBB2_8:
 	*(u64 *)(r10 - 88) = r1
 	goto LBB2_10
 LBB2_9:
+	r2 = __llvm_gcov_ctr.2 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 0
 	*(u64 *)(r10 - 88) = r1
 	goto LBB2_10
@@ -340,6 +400,10 @@ LBB3_1:                                 # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB3_4
 	goto LBB3_2
 LBB3_2:                                 #   in Loop: Header=BB3_1 Depth=1
+	r2 = __llvm_gcov_ctr.3 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memcmp ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -368,6 +432,10 @@ LBB3_12:                                #   in Loop: Header=BB3_1 Depth=1
 	goto LBB3_3
 LBB3_3:                                 #   in Loop: Header=BB3_1 Depth=1
 	r1 = *(u64 *)(r10 - 88)
+	r3 = __llvm_gcov_ctr.3 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_memcmp ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -386,6 +454,10 @@ LBB3_5:                                 #   in Loop: Header=BB3_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB3_6
 LBB3_6:                                 #   in Loop: Header=BB3_1 Depth=1
+	r2 = __llvm_gcov_ctr.3 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -401,6 +473,10 @@ LBB3_7:
 	if r1 == 0 goto LBB3_9
 	goto LBB3_8
 LBB3_8:
+	r2 = __llvm_gcov_ctr.3 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_memcmp ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -413,6 +489,10 @@ LBB3_8:
 	*(u64 *)(r10 - 96) = r1
 	goto LBB3_10
 LBB3_9:
+	r2 = __llvm_gcov_ctr.3 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 0
 	*(u64 *)(r10 - 96) = r1
 	goto LBB3_10
@@ -461,6 +541,10 @@ LBB4_2:                                 #   in Loop: Header=BB4_1 Depth=1
 	if r1 != r2 goto LBB4_4
 	goto LBB4_3
 LBB4_3:
+	r2 = __llvm_gcov_ctr.4 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memrchr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -471,8 +555,16 @@ LBB4_3:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB4_6
 LBB4_4:                                 #   in Loop: Header=BB4_1 Depth=1
+	r2 = __llvm_gcov_ctr.4 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	goto LBB4_1
 LBB4_5:
+	r2 = __llvm_gcov_ctr.4 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB4_6
@@ -487,6 +579,10 @@ LBB4_6:
 	.type	stpcpy,@function
 stpcpy:                                 # @stpcpy
 # %bb.0:
+	r4 = __llvm_gcov_ctr.5 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc_stpcpy ll
@@ -508,6 +604,10 @@ LBB5_2:                                 #   in Loop: Header=BB5_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB5_3
 LBB5_3:                                 #   in Loop: Header=BB5_1 Depth=1
+	r2 = __llvm_gcov_ctr.5 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 += 1
 	*(u64 *)(r10 - 16) = r1
@@ -527,6 +627,10 @@ LBB5_4:
 strchrnul:                              # @strchrnul
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.6 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_strchrnul ll
@@ -547,6 +651,10 @@ LBB6_1:                                 # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB6_4
 	goto LBB6_2
 LBB6_2:                                 #   in Loop: Header=BB6_1 Depth=1
+	r2 = __llvm_gcov_ctr.6 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strchrnul ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -574,6 +682,10 @@ LBB6_9:                                 #   in Loop: Header=BB6_1 Depth=1
 	goto LBB6_3
 LBB6_3:                                 #   in Loop: Header=BB6_1 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.6 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_strchrnul ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -592,6 +704,10 @@ LBB6_5:                                 #   in Loop: Header=BB6_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB6_6
 LBB6_6:                                 #   in Loop: Header=BB6_1 Depth=1
+	r2 = __llvm_gcov_ctr.6 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 += 1
 	*(u64 *)(r10 - 8) = r1
@@ -616,6 +732,10 @@ strchr:                                 # @strchr
 	*(u64 *)(r2 + 0) = r1
 	goto LBB7_2
 LBB7_1:                                 #   in Loop: Header=BB7_2 Depth=1
+	r2 = __llvm_gcov_ctr.7 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strchr ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -632,6 +752,10 @@ LBB7_2:                                 # =>This Inner Loop Header: Depth=1
 	if r1 != r2 goto LBB7_4
 	goto LBB7_3
 LBB7_3:
+	r2 = __llvm_gcov_ctr.7 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_strchr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -650,6 +774,10 @@ LBB7_5:                                 #   in Loop: Header=BB7_2 Depth=1
 	if r1 != 0 goto LBB7_1
 	goto LBB7_6
 LBB7_6:
+	r2 = __llvm_gcov_ctr.7 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB7_7
@@ -664,6 +792,10 @@ LBB7_7:
 	.type	strcmp,@function
 strcmp:                                 # @strcmp
 # %bb.0:
+	r4 = __llvm_gcov_ctr.8 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc_strcmp ll
@@ -685,6 +817,10 @@ LBB8_1:                                 # =>This Inner Loop Header: Depth=1
 	if r1 != r2 goto LBB8_4
 	goto LBB8_2
 LBB8_2:                                 #   in Loop: Header=BB8_1 Depth=1
+	r2 = __llvm_gcov_ctr.8 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strcmp ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -711,6 +847,10 @@ LBB8_9:                                 #   in Loop: Header=BB8_1 Depth=1
 	goto LBB8_3
 LBB8_3:                                 #   in Loop: Header=BB8_1 Depth=1
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.8 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_strcmp ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -729,6 +869,10 @@ LBB8_5:                                 #   in Loop: Header=BB8_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB8_6
 LBB8_6:                                 #   in Loop: Header=BB8_1 Depth=1
+	r2 = __llvm_gcov_ctr.8 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 += 1
 	*(u64 *)(r10 - 8) = r1
@@ -751,6 +895,10 @@ LBB8_7:
 	.type	strlen,@function
 strlen:                                 # @strlen
 # %bb.0:
+	r3 = __llvm_gcov_ctr.9 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc_strlen ll
 	r1 = *(u64 *)(r2 + 0)
@@ -771,6 +919,10 @@ LBB9_2:                                 #   in Loop: Header=BB9_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB9_3
 LBB9_3:                                 #   in Loop: Header=BB9_1 Depth=1
+	r2 = __llvm_gcov_ctr.9 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 += 1
 	*(u64 *)(r10 - 8) = r1
@@ -806,6 +958,10 @@ strncmp:                                # @strncmp
 	if r1 != 0 goto LBB10_2
 	goto LBB10_1
 LBB10_1:
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strncmp ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -814,6 +970,10 @@ LBB10_1:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB10_14
 LBB10_2:
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	goto LBB10_3
 LBB10_3:                                # =>This Inner Loop Header: Depth=1
 	r1 = *(u64 *)(r10 - 40)
@@ -823,6 +983,10 @@ LBB10_3:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB10_10
 	goto LBB10_4
 LBB10_4:                                #   in Loop: Header=BB10_3 Depth=1
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_strncmp ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -834,6 +998,10 @@ LBB10_4:                                #   in Loop: Header=BB10_3 Depth=1
 	if r1 == 0 goto LBB10_10
 	goto LBB10_5
 LBB10_5:                                #   in Loop: Header=BB10_3 Depth=1
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_strncmp ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -850,6 +1018,10 @@ LBB10_6:                                #   in Loop: Header=BB10_3 Depth=1
 	if r1 == 0 goto LBB10_10
 	goto LBB10_7
 LBB10_7:                                #   in Loop: Header=BB10_3 Depth=1
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_strncmp ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -884,6 +1056,10 @@ LBB10_16:                               #   in Loop: Header=BB10_3 Depth=1
 	goto LBB10_9
 LBB10_9:                                #   in Loop: Header=BB10_3 Depth=1
 	r1 = *(u64 *)(r10 - 96)
+	r3 = __llvm_gcov_ctr.10 ll
+	r2 = *(u64 *)(r3 + 40)
+	r2 += 1
+	*(u64 *)(r3 + 40) = r2
 	r3 = .L__profc_strncmp ll
 	r2 = *(u64 *)(r3 + 32)
 	r2 += 1
@@ -902,6 +1078,10 @@ LBB10_11:                               #   in Loop: Header=BB10_3 Depth=1
 	*(u64 *)(r2 + 16) = r1
 	goto LBB10_12
 LBB10_12:                               #   in Loop: Header=BB10_3 Depth=1
+	r2 = __llvm_gcov_ctr.10 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r1 = *(u64 *)(r10 - 40)
 	r1 += 1
 	*(u64 *)(r10 - 40) = r1
@@ -931,6 +1111,10 @@ LBB10_14:
 	.type	swab,@function
 swab:                                   # @swab
 # %bb.0:
+	r5 = __llvm_gcov_ctr.11 ll
+	r4 = *(u64 *)(r5 + 0)
+	r4 += 1
+	*(u64 *)(r5 + 0) = r4
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	*(u64 *)(r10 - 24) = r3
@@ -969,6 +1153,10 @@ LBB11_2:                                #   in Loop: Header=BB11_1 Depth=1
 	*(u64 *)(r10 - 32) = r1
 	goto LBB11_3
 LBB11_3:                                #   in Loop: Header=BB11_1 Depth=1
+	r2 = __llvm_gcov_ctr.11 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -2
 	*(u64 *)(r10 - 24) = r1
@@ -984,6 +1172,10 @@ LBB11_4:
 isalpha:                                # @isalpha
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.12 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isalpha ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1015,6 +1207,10 @@ LBB12_2:
 isascii:                                # @isascii
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.13 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isascii ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1043,6 +1239,10 @@ LBB13_2:
 isblank:                                # @isblank
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.14 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isblank ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1054,6 +1254,10 @@ isblank:                                # @isblank
 	if r1 == 32 goto LBB14_3
 	goto LBB14_1
 LBB14_1:
+	r2 = __llvm_gcov_ctr.14 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_isblank ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1077,6 +1281,10 @@ LBB14_5:
 	goto LBB14_2
 LBB14_2:
 	r1 = *(u64 *)(r10 - 48)
+	r3 = __llvm_gcov_ctr.14 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_isblank ll
 	r2 = *(u64 *)(r3 + 16)
 	r2 += 1
@@ -1096,6 +1304,10 @@ LBB14_3:
 iscntrl:                                # @iscntrl
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.15 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_iscntrl ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1108,6 +1320,10 @@ iscntrl:                                # @iscntrl
 	if r1 > r2 goto LBB15_3
 	goto LBB15_1
 LBB15_1:
+	r2 = __llvm_gcov_ctr.15 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_iscntrl ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1131,6 +1347,10 @@ LBB15_5:
 	goto LBB15_2
 LBB15_2:
 	r1 = *(u64 *)(r10 - 48)
+	r3 = __llvm_gcov_ctr.15 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_iscntrl ll
 	r2 = *(u64 *)(r3 + 16)
 	r2 += 1
@@ -1150,6 +1370,10 @@ LBB15_3:
 isdigit:                                # @isdigit
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.16 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isdigit ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1180,6 +1404,10 @@ LBB16_2:
 isgraph:                                # @isgraph
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.17 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isgraph ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1210,6 +1438,10 @@ LBB17_2:
 islower:                                # @islower
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.18 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_islower ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1240,6 +1472,10 @@ LBB18_2:
 isprint:                                # @isprint
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.19 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isprint ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1270,6 +1506,10 @@ LBB19_2:
 isspace:                                # @isspace
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.20 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isspace ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1281,6 +1521,10 @@ isspace:                                # @isspace
 	if r1 == 32 goto LBB20_3
 	goto LBB20_1
 LBB20_1:
+	r2 = __llvm_gcov_ctr.20 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_isspace ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1310,6 +1554,10 @@ LBB20_5:
 	goto LBB20_2
 LBB20_2:
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.20 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_isspace ll
 	r2 = *(u64 *)(r3 + 16)
 	r2 += 1
@@ -1329,6 +1577,10 @@ LBB20_3:
 isupper:                                # @isupper
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.21 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_isupper ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1359,6 +1611,10 @@ LBB21_2:
 iswcntrl:                               # @iswcntrl
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.22 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_iswcntrl ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1371,6 +1627,10 @@ iswcntrl:                               # @iswcntrl
 	if r1 > r2 goto LBB22_7
 	goto LBB22_1
 LBB22_1:
+	r2 = __llvm_gcov_ctr.22 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_iswcntrl ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -1385,6 +1645,10 @@ LBB22_1:
 	if r1 > r2 goto LBB22_7
 	goto LBB22_2
 LBB22_2:
+	r2 = __llvm_gcov_ctr.22 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_iswcntrl ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -1405,6 +1669,10 @@ LBB22_3:
 	if r1 > r2 goto LBB22_7
 	goto LBB22_4
 LBB22_4:
+	r2 = __llvm_gcov_ctr.22 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_iswcntrl ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -1440,6 +1708,10 @@ LBB22_9:
 	goto LBB22_6
 LBB22_6:
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.22 ll
+	r2 = *(u64 *)(r3 + 32)
+	r2 += 1
+	*(u64 *)(r3 + 32) = r2
 	r3 = .L__profc_iswcntrl ll
 	r2 = *(u64 *)(r3 + 16)
 	r2 += 1
@@ -1459,6 +1731,10 @@ LBB22_7:
 iswdigit:                               # @iswdigit
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.23 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_iswdigit ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1498,6 +1774,10 @@ iswprint:                               # @iswprint
 	if r1 > 254 goto LBB24_2
 	goto LBB24_1
 LBB24_1:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1523,6 +1803,10 @@ LBB24_2:
 	if r1 > r2 goto LBB24_7
 	goto LBB24_3
 LBB24_3:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -1535,6 +1819,10 @@ LBB24_3:
 	if r1 > r2 goto LBB24_7
 	goto LBB24_4
 LBB24_4:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -1559,6 +1847,10 @@ LBB24_6:
 	*(u64 *)(r2 + 32) = r1
 	goto LBB24_8
 LBB24_7:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -1574,6 +1866,10 @@ LBB24_8:
 	if r1 > 1048579 goto LBB24_11
 	goto LBB24_9
 LBB24_9:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -1589,6 +1885,10 @@ LBB24_10:
 	*(u64 *)(r2 + 72) = r1
 	goto LBB24_12
 LBB24_11:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r2 = .L__profc_iswprint ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -1597,6 +1897,10 @@ LBB24_11:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB24_13
 LBB24_12:
+	r2 = __llvm_gcov_ctr.24 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r1 = 1
 	*(u32 *)(r10 - 4) = r1
 	goto LBB24_13
@@ -1612,6 +1916,10 @@ LBB24_13:
 iswxdigit:                              # @iswxdigit
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.25 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_iswxdigit ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1627,6 +1935,10 @@ iswxdigit:                              # @iswxdigit
 	if r1 > r2 goto LBB25_3
 	goto LBB25_1
 LBB25_1:
+	r2 = __llvm_gcov_ctr.25 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_iswxdigit ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1657,6 +1969,10 @@ LBB25_5:
 	goto LBB25_2
 LBB25_2:
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.25 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_iswxdigit ll
 	r2 = *(u64 *)(r3 + 16)
 	r2 += 1
@@ -1676,6 +1992,10 @@ LBB25_3:
 toascii:                                # @toascii
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.26 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_toascii ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1692,6 +2012,10 @@ toascii:                                # @toascii
 	.type	l64a,@function
 l64a:                                   # @l64a
 # %bb.0:
+	r3 = __llvm_gcov_ctr.27 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc_l64a ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1720,6 +2044,10 @@ LBB27_2:                                #   in Loop: Header=BB27_1 Depth=1
 	*(u8 *)(r2 + 0) = r1
 	goto LBB27_3
 LBB27_3:                                #   in Loop: Header=BB27_1 Depth=1
+	r2 = __llvm_gcov_ctr.27 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 += 1
 	*(u64 *)(r10 - 16) = r1
@@ -1742,6 +2070,10 @@ LBB27_4:
 srand:                                  # @srand
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.28 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_srand ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1762,6 +2094,10 @@ srand:                                  # @srand
 	.type	rand,@function
 rand:                                   # @rand
 # %bb.0:
+	r2 = __llvm_gcov_ctr.29 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_rand ll
 	r1 = *(u64 *)(r2 + 0)
 	r1 += 1
@@ -1797,6 +2133,10 @@ insque:                                 # @insque
 	if r1 != 0 goto LBB30_2
 	goto LBB30_1
 LBB30_1:
+	r2 = __llvm_gcov_ctr.30 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_insque ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1808,6 +2148,10 @@ LBB30_1:
 	*(u64 *)(r2 + 0) = r1
 	goto LBB30_4
 LBB30_2:
+	r2 = __llvm_gcov_ctr.30 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r1 = *(u64 *)(r10 - 32)
 	r1 = *(u64 *)(r1 + 0)
 	r2 = *(u64 *)(r10 - 24)
@@ -1823,6 +2167,10 @@ LBB30_2:
 	if r1 == 0 goto LBB30_4
 	goto LBB30_3
 LBB30_3:
+	r2 = __llvm_gcov_ctr.30 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_insque ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -1841,6 +2189,10 @@ LBB30_4:
 	.type	remque,@function
 remque:                                 # @remque
 # %bb.0:
+	r3 = __llvm_gcov_ctr.31 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc_remque ll
 	r1 = *(u64 *)(r2 + 0)
@@ -1853,6 +2205,10 @@ remque:                                 # @remque
 	if r1 == 0 goto LBB31_2
 	goto LBB31_1
 LBB31_1:
+	r2 = __llvm_gcov_ctr.31 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_remque ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1868,6 +2224,10 @@ LBB31_2:
 	if r1 == 0 goto LBB31_4
 	goto LBB31_3
 LBB31_3:
+	r2 = __llvm_gcov_ctr.31 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_remque ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -1900,6 +2260,10 @@ abs:                                    # @abs
 	if r1 s> r2 goto LBB32_2
 	goto LBB32_1
 LBB32_1:
+	r2 = __llvm_gcov_ctr.32 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_abs ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1908,6 +2272,10 @@ LBB32_1:
 	*(u64 *)(r10 - 16) = r1
 	goto LBB32_3
 LBB32_2:
+	r2 = __llvm_gcov_ctr.32 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u32 *)(r10 - 4)
 	r1 = -r1
 	*(u64 *)(r10 - 16) = r1
@@ -1944,6 +2312,10 @@ LBB33_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB33_3
 	goto LBB33_2
 LBB33_2:                                #   in Loop: Header=BB33_1 Depth=1
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_atoi ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -1967,6 +2339,10 @@ LBB33_14:
 	if r1 != 45 goto LBB33_7
 	goto LBB33_4
 LBB33_4:
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_atoi ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -1975,6 +2351,10 @@ LBB33_4:
 	*(u32 *)(r10 - 16) = r1
 	goto LBB33_6
 LBB33_5:
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_atoi ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2003,6 +2383,10 @@ LBB33_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB33_10
 	goto LBB33_9
 LBB33_9:                                #   in Loop: Header=BB33_8 Depth=1
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_atoi ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -2025,6 +2409,10 @@ LBB33_10:
 	if r1 == 0 goto LBB33_12
 	goto LBB33_11
 LBB33_11:
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_atoi ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -2033,6 +2421,10 @@ LBB33_11:
 	*(u64 *)(r10 - 32) = r1
 	goto LBB33_13
 LBB33_12:
+	r2 = __llvm_gcov_ctr.33 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u32 *)(r10 - 12)
 	r1 = -r1
 	*(u64 *)(r10 - 32) = r1
@@ -2069,6 +2461,10 @@ LBB34_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB34_3
 	goto LBB34_2
 LBB34_2:                                #   in Loop: Header=BB34_1 Depth=1
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_atol ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2092,6 +2488,10 @@ LBB34_14:
 	if r1 != 45 goto LBB34_7
 	goto LBB34_4
 LBB34_4:
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_atol ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -2100,6 +2500,10 @@ LBB34_4:
 	*(u32 *)(r10 - 20) = r1
 	goto LBB34_6
 LBB34_5:
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_atol ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2128,6 +2532,10 @@ LBB34_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB34_10
 	goto LBB34_9
 LBB34_9:                                #   in Loop: Header=BB34_8 Depth=1
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_atol ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -2150,6 +2558,10 @@ LBB34_10:
 	if r1 == 0 goto LBB34_12
 	goto LBB34_11
 LBB34_11:
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_atol ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -2158,6 +2570,10 @@ LBB34_11:
 	*(u64 *)(r10 - 40) = r1
 	goto LBB34_13
 LBB34_12:
+	r2 = __llvm_gcov_ctr.34 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 = -r1
 	*(u64 *)(r10 - 40) = r1
@@ -2194,6 +2610,10 @@ LBB35_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB35_3
 	goto LBB35_2
 LBB35_2:                                #   in Loop: Header=BB35_1 Depth=1
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_atoll ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2217,6 +2637,10 @@ LBB35_14:
 	if r1 != 45 goto LBB35_7
 	goto LBB35_4
 LBB35_4:
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_atoll ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -2225,6 +2649,10 @@ LBB35_4:
 	*(u32 *)(r10 - 20) = r1
 	goto LBB35_6
 LBB35_5:
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_atoll ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2253,6 +2681,10 @@ LBB35_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB35_10
 	goto LBB35_9
 LBB35_9:                                #   in Loop: Header=BB35_8 Depth=1
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_atoll ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -2275,6 +2707,10 @@ LBB35_10:
 	if r1 == 0 goto LBB35_12
 	goto LBB35_11
 LBB35_11:
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_atoll ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -2283,6 +2719,10 @@ LBB35_11:
 	*(u64 *)(r10 - 40) = r1
 	goto LBB35_13
 LBB35_12:
+	r2 = __llvm_gcov_ctr.35 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 = -r1
 	*(u64 *)(r10 - 40) = r1
@@ -2308,6 +2748,10 @@ imaxabs:                                # @imaxabs
 	if r1 s> r2 goto LBB36_2
 	goto LBB36_1
 LBB36_1:
+	r2 = __llvm_gcov_ctr.36 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_imaxabs ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2316,6 +2760,10 @@ LBB36_1:
 	*(u64 *)(r10 - 16) = r1
 	goto LBB36_3
 LBB36_2:
+	r2 = __llvm_gcov_ctr.36 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = -r1
 	*(u64 *)(r10 - 16) = r1
@@ -2341,6 +2789,10 @@ labs:                                   # @labs
 	if r1 s> r2 goto LBB37_2
 	goto LBB37_1
 LBB37_1:
+	r2 = __llvm_gcov_ctr.37 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_labs ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2349,6 +2801,10 @@ LBB37_1:
 	*(u64 *)(r10 - 16) = r1
 	goto LBB37_3
 LBB37_2:
+	r2 = __llvm_gcov_ctr.37 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = -r1
 	*(u64 *)(r10 - 16) = r1
@@ -2374,6 +2830,10 @@ llabs:                                  # @llabs
 	if r1 s> r2 goto LBB38_2
 	goto LBB38_1
 LBB38_1:
+	r2 = __llvm_gcov_ctr.38 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_llabs ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2382,6 +2842,10 @@ LBB38_1:
 	*(u64 *)(r10 - 16) = r1
 	goto LBB38_3
 LBB38_2:
+	r2 = __llvm_gcov_ctr.38 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = -r1
 	*(u64 *)(r10 - 16) = r1
@@ -2413,6 +2877,10 @@ LBB39_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB39_4
 	goto LBB39_2
 LBB39_2:                                #   in Loop: Header=BB39_1 Depth=1
+	r2 = __llvm_gcov_ctr.39 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wcschr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -2440,6 +2908,10 @@ LBB39_12:                               #   in Loop: Header=BB39_1 Depth=1
 	goto LBB39_3
 LBB39_3:                                #   in Loop: Header=BB39_1 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.39 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_wcschr ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -2458,6 +2930,10 @@ LBB39_5:                                #   in Loop: Header=BB39_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB39_6
 LBB39_6:                                #   in Loop: Header=BB39_1 Depth=1
+	r2 = __llvm_gcov_ctr.39 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 += 4
 	*(u64 *)(r10 - 8) = r1
@@ -2468,6 +2944,10 @@ LBB39_7:
 	if r1 == 0 goto LBB39_9
 	goto LBB39_8
 LBB39_8:
+	r2 = __llvm_gcov_ctr.39 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_wcschr ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2476,6 +2956,10 @@ LBB39_8:
 	*(u64 *)(r10 - 72) = r1
 	goto LBB39_10
 LBB39_9:
+	r2 = __llvm_gcov_ctr.39 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 0
 	*(u64 *)(r10 - 72) = r1
 	goto LBB39_10
@@ -2507,6 +2991,10 @@ LBB40_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 != r2 goto LBB40_6
 	goto LBB40_2
 LBB40_2:                                #   in Loop: Header=BB40_1 Depth=1
+	r2 = __llvm_gcov_ctr.40 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wcscmp ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2518,6 +3006,10 @@ LBB40_2:                                #   in Loop: Header=BB40_1 Depth=1
 	if r1 == 0 goto LBB40_6
 	goto LBB40_3
 LBB40_3:                                #   in Loop: Header=BB40_1 Depth=1
+	r2 = __llvm_gcov_ctr.40 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_wcscmp ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -2548,6 +3040,10 @@ LBB40_14:                               #   in Loop: Header=BB40_1 Depth=1
 	goto LBB40_5
 LBB40_5:                                #   in Loop: Header=BB40_1 Depth=1
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.40 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_wcscmp ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -2566,6 +3062,10 @@ LBB40_7:                                #   in Loop: Header=BB40_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB40_8
 LBB40_8:                                #   in Loop: Header=BB40_1 Depth=1
+	r2 = __llvm_gcov_ctr.40 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 += 4
 	*(u64 *)(r10 - 8) = r1
@@ -2585,6 +3085,10 @@ LBB40_9:
 	if r1 s>= r2 goto LBB40_11
 	goto LBB40_10
 LBB40_10:
+	r2 = __llvm_gcov_ctr.40 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_wcscmp ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -2593,6 +3097,10 @@ LBB40_10:
 	*(u64 *)(r10 - 64) = r1
 	goto LBB40_12
 LBB40_11:
+	r2 = __llvm_gcov_ctr.40 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = *(u32 *)(r1 + 0)
 	r1 <<= 32
@@ -2624,6 +3132,10 @@ LBB40_12:
 	.type	wcscpy,@function
 wcscpy:                                 # @wcscpy
 # %bb.0:
+	r4 = __llvm_gcov_ctr.41 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc_wcscpy ll
@@ -2647,6 +3159,10 @@ LBB41_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB41_3
 	goto LBB41_2
 LBB41_2:                                #   in Loop: Header=BB41_1 Depth=1
+	r2 = __llvm_gcov_ctr.41 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_wcscpy ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -2678,6 +3194,10 @@ LBB42_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB42_8
 	goto LBB42_2
 LBB42_2:                                #   in Loop: Header=BB42_1 Depth=1
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wcsncmp ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -2691,6 +3211,10 @@ LBB42_2:                                #   in Loop: Header=BB42_1 Depth=1
 	if r1 != r2 goto LBB42_8
 	goto LBB42_3
 LBB42_3:                                #   in Loop: Header=BB42_1 Depth=1
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_wcsncmp ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -2708,6 +3232,10 @@ LBB42_4:                                #   in Loop: Header=BB42_1 Depth=1
 	if r1 == 0 goto LBB42_8
 	goto LBB42_5
 LBB42_5:                                #   in Loop: Header=BB42_1 Depth=1
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_wcsncmp ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -2738,6 +3266,10 @@ LBB42_19:                               #   in Loop: Header=BB42_1 Depth=1
 	goto LBB42_7
 LBB42_7:                                #   in Loop: Header=BB42_1 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.42 ll
+	r2 = *(u64 *)(r3 + 24)
+	r2 += 1
+	*(u64 *)(r3 + 24) = r2
 	r3 = .L__profc_wcsncmp ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -2756,6 +3288,10 @@ LBB42_9:                                #   in Loop: Header=BB42_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB42_10
 LBB42_10:                               #   in Loop: Header=BB42_1 Depth=1
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -2786,6 +3322,10 @@ LBB42_12:
 	if r1 s>= r2 goto LBB42_14
 	goto LBB42_13
 LBB42_13:
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r2 = .L__profc_wcsncmp ll
 	r1 = *(u64 *)(r2 + 72)
 	r1 += 1
@@ -2794,6 +3334,10 @@ LBB42_13:
 	*(u64 *)(r10 - 72) = r1
 	goto LBB42_15
 LBB42_14:
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = *(u32 *)(r1 + 0)
 	r1 <<= 32
@@ -2819,6 +3363,10 @@ LBB42_15:
 	*(u64 *)(r10 - 96) = r1
 	goto LBB42_17
 LBB42_16:
+	r2 = __llvm_gcov_ctr.42 ll
+	r1 = *(u64 *)(r2 + 56)
+	r1 += 1
+	*(u64 *)(r2 + 56) = r1
 	r1 = 0
 	*(u64 *)(r10 - 96) = r1
 	goto LBB42_17
@@ -2849,6 +3397,10 @@ LBB43_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB43_4
 	goto LBB43_2
 LBB43_2:                                #   in Loop: Header=BB43_1 Depth=1
+	r2 = __llvm_gcov_ctr.43 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wmemchr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -2876,6 +3428,10 @@ LBB43_12:                               #   in Loop: Header=BB43_1 Depth=1
 	goto LBB43_3
 LBB43_3:                                #   in Loop: Header=BB43_1 Depth=1
 	r1 = *(u64 *)(r10 - 72)
+	r3 = __llvm_gcov_ctr.43 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_wmemchr ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -2894,6 +3450,10 @@ LBB43_5:                                #   in Loop: Header=BB43_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB43_6
 LBB43_6:                                #   in Loop: Header=BB43_1 Depth=1
+	r2 = __llvm_gcov_ctr.43 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -2906,6 +3466,10 @@ LBB43_7:
 	if r1 == 0 goto LBB43_9
 	goto LBB43_8
 LBB43_8:
+	r2 = __llvm_gcov_ctr.43 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_wmemchr ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -2914,6 +3478,10 @@ LBB43_8:
 	*(u64 *)(r10 - 80) = r1
 	goto LBB43_10
 LBB43_9:
+	r2 = __llvm_gcov_ctr.43 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 0
 	*(u64 *)(r10 - 80) = r1
 	goto LBB43_10
@@ -2943,6 +3511,10 @@ LBB44_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB44_4
 	goto LBB44_2
 LBB44_2:                                #   in Loop: Header=BB44_1 Depth=1
+	r2 = __llvm_gcov_ctr.44 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wmemcmp ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -2971,6 +3543,10 @@ LBB44_15:                               #   in Loop: Header=BB44_1 Depth=1
 	goto LBB44_3
 LBB44_3:                                #   in Loop: Header=BB44_1 Depth=1
 	r1 = *(u64 *)(r10 - 72)
+	r3 = __llvm_gcov_ctr.44 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_wmemcmp ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -2989,6 +3565,10 @@ LBB44_5:                                #   in Loop: Header=BB44_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB44_6
 LBB44_6:                                #   in Loop: Header=BB44_1 Depth=1
+	r2 = __llvm_gcov_ctr.44 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -3019,6 +3599,10 @@ LBB44_8:
 	if r1 s>= r2 goto LBB44_10
 	goto LBB44_9
 LBB44_9:
+	r2 = __llvm_gcov_ctr.44 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_wmemcmp ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -3027,6 +3611,10 @@ LBB44_9:
 	*(u64 *)(r10 - 80) = r1
 	goto LBB44_11
 LBB44_10:
+	r2 = __llvm_gcov_ctr.44 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = *(u64 *)(r10 - 8)
 	r1 = *(u32 *)(r1 + 0)
 	r1 <<= 32
@@ -3052,6 +3640,10 @@ LBB44_11:
 	*(u64 *)(r10 - 104) = r1
 	goto LBB44_13
 LBB44_12:
+	r2 = __llvm_gcov_ctr.44 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = 0
 	*(u64 *)(r10 - 104) = r1
 	goto LBB44_13
@@ -3080,6 +3672,10 @@ wmemmove:                               # @wmemmove
 	if r1 != r2 goto LBB45_2
 	goto LBB45_1
 LBB45_1:
+	r2 = __llvm_gcov_ctr.45 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_wmemmove ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -3096,6 +3692,10 @@ LBB45_2:
 	if r1 >= r2 goto LBB45_7
 	goto LBB45_3
 LBB45_3:
+	r2 = __llvm_gcov_ctr.45 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_wmemmove ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -3109,6 +3709,10 @@ LBB45_4:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB45_6
 	goto LBB45_5
 LBB45_5:                                #   in Loop: Header=BB45_4 Depth=1
+	r2 = __llvm_gcov_ctr.45 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_wmemmove ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -3134,6 +3738,10 @@ LBB45_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB45_10
 	goto LBB45_9
 LBB45_9:                                #   in Loop: Header=BB45_8 Depth=1
+	r2 = __llvm_gcov_ctr.45 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_wmemmove ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -3150,6 +3758,10 @@ LBB45_9:                                #   in Loop: Header=BB45_8 Depth=1
 	*(u32 *)(r2 + 0) = r1
 	goto LBB45_8
 LBB45_10:
+	r2 = __llvm_gcov_ctr.45 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	goto LBB45_11
 LBB45_11:
 	r1 = *(u64 *)(r10 - 40)
@@ -3167,6 +3779,10 @@ LBB45_12:
 wmemset:                                # @wmemset
 # %bb.0:
                                         # kill: def $r4 killed $r2
+	r5 = __llvm_gcov_ctr.46 ll
+	r4 = *(u64 *)(r5 + 0)
+	r4 += 1
+	*(u64 *)(r5 + 0) = r4
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	*(u64 *)(r10 - 24) = r3
@@ -3185,6 +3801,10 @@ LBB46_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB46_3
 	goto LBB46_2
 LBB46_2:                                #   in Loop: Header=BB46_1 Depth=1
+	r2 = __llvm_gcov_ctr.46 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_wmemset ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -3223,6 +3843,10 @@ bcopy:                                  # @bcopy
 	if r1 >= r2 goto LBB47_6
 	goto LBB47_1
 LBB47_1:
+	r2 = __llvm_gcov_ctr.47 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_bcopy ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -3257,6 +3881,10 @@ LBB47_3:                                #   in Loop: Header=BB47_2 Depth=1
 	*(u8 *)(r2 - 1) = r1
 	goto LBB47_4
 LBB47_4:                                #   in Loop: Header=BB47_2 Depth=1
+	r2 = __llvm_gcov_ctr.47 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -3279,6 +3907,10 @@ LBB47_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB47_11
 	goto LBB47_9
 LBB47_9:                                #   in Loop: Header=BB47_8 Depth=1
+	r2 = __llvm_gcov_ctr.47 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_bcopy ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -3300,8 +3932,16 @@ LBB47_10:                               #   in Loop: Header=BB47_8 Depth=1
 	*(u64 *)(r10 - 24) = r1
 	goto LBB47_8
 LBB47_11:
+	r2 = __llvm_gcov_ctr.47 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	goto LBB47_12
 LBB47_12:
+	r2 = __llvm_gcov_ctr.47 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	goto LBB47_13
 LBB47_13:
 	exit
@@ -3314,6 +3954,10 @@ LBB47_13:
 rotl64:                                 # @rotl64
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.48 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_rotl64 ll
@@ -3340,6 +3984,10 @@ rotl64:                                 # @rotl64
 rotr64:                                 # @rotr64
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.49 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_rotr64 ll
@@ -3367,6 +4015,10 @@ rotl32:                                 # @rotl32
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.50 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotl32 ll
@@ -3394,6 +4046,10 @@ rotr32:                                 # @rotr32
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.51 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotr32 ll
@@ -3420,6 +4076,10 @@ rotr32:                                 # @rotr32
 rotl_sz:                                # @rotl_sz
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.52 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_rotl_sz ll
@@ -3449,6 +4109,10 @@ rotl_sz:                                # @rotl_sz
 rotr_sz:                                # @rotr_sz
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.53 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_rotr_sz ll
@@ -3479,6 +4143,10 @@ rotl16:                                 # @rotl16
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.54 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u16 *)(r10 - 2) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotl16 ll
@@ -3507,6 +4175,10 @@ rotr16:                                 # @rotr16
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.55 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u16 *)(r10 - 2) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotr16 ll
@@ -3535,6 +4207,10 @@ rotl8:                                  # @rotl8
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.56 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u8 *)(r10 - 1) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotl8 ll
@@ -3563,6 +4239,10 @@ rotr8:                                  # @rotr8
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.57 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u8 *)(r10 - 1) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc_rotr8 ll
@@ -3590,6 +4270,10 @@ rotr8:                                  # @rotr8
 bswap_16:                               # @bswap_16
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.58 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u16 *)(r10 - 2) = r1
 	r2 = .L__profc_bswap_16 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -3617,6 +4301,10 @@ bswap_16:                               # @bswap_16
 bswap_32:                               # @bswap_32
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.59 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc_bswap_32 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -3657,6 +4345,10 @@ bswap_32:                               # @bswap_32
 	.type	bswap_64,@function
 bswap_64:                               # @bswap_64
 # %bb.0:
+	r3 = __llvm_gcov_ctr.60 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc_bswap_64 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -3738,6 +4430,10 @@ LBB61_2:                                #   in Loop: Header=BB61_1 Depth=1
 	if r1 == 0 goto LBB61_4
 	goto LBB61_3
 LBB61_3:
+	r2 = __llvm_gcov_ctr.61 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_ffs ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -3749,11 +4445,19 @@ LBB61_3:
 LBB61_4:                                #   in Loop: Header=BB61_1 Depth=1
 	goto LBB61_5
 LBB61_5:                                #   in Loop: Header=BB61_1 Depth=1
+	r2 = __llvm_gcov_ctr.61 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u32 *)(r10 - 12)
 	r1 += 1
 	*(u32 *)(r10 - 12) = r1
 	goto LBB61_1
 LBB61_6:
+	r2 = __llvm_gcov_ctr.61 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = 0
 	*(u32 *)(r10 - 4) = r1
 	goto LBB61_7
@@ -3778,6 +4482,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	if r1 != 0 goto LBB62_2
 	goto LBB62_1
 LBB62_1:
+	r2 = __llvm_gcov_ctr.62 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_libiberty_ffs ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -3786,6 +4494,10 @@ LBB62_1:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB62_7
 LBB62_2:
+	r2 = __llvm_gcov_ctr.62 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r1 = 1
 	*(u32 *)(r10 - 12) = r1
 	goto LBB62_3
@@ -3806,6 +4518,10 @@ LBB62_4:                                #   in Loop: Header=BB62_3 Depth=1
 	*(u32 *)(r10 - 8) = r1
 	goto LBB62_5
 LBB62_5:                                #   in Loop: Header=BB62_3 Depth=1
+	r2 = __llvm_gcov_ctr.62 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 12)
 	r1 += 1
 	*(u32 *)(r10 - 12) = r1
@@ -3825,6 +4541,10 @@ LBB62_7:
 	.type	memxor,@function
 memxor:                                 # @memxor
 # %bb.0:
+	r5 = __llvm_gcov_ctr.63 ll
+	r4 = *(u64 *)(r5 + 0)
+	r4 += 1
+	*(u64 *)(r5 + 0) = r4
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	*(u64 *)(r10 - 24) = r3
@@ -3860,6 +4580,10 @@ LBB63_2:                                #   in Loop: Header=BB63_1 Depth=1
 	*(u8 *)(r2 + 0) = r1
 	goto LBB63_3
 LBB63_3:                                #   in Loop: Header=BB63_1 Depth=1
+	r2 = __llvm_gcov_ctr.63 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += -1
 	*(u64 *)(r10 - 24) = r1
@@ -3896,6 +4620,10 @@ LBB64_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB64_4
 	goto LBB64_2
 LBB64_2:                                #   in Loop: Header=BB64_1 Depth=1
+	r2 = __llvm_gcov_ctr.64 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_strncat ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -3924,6 +4652,10 @@ LBB64_11:                               #   in Loop: Header=BB64_1 Depth=1
 	goto LBB64_3
 LBB64_3:                                #   in Loop: Header=BB64_1 Depth=1
 	r1 = *(u64 *)(r10 - 80)
+	r3 = __llvm_gcov_ctr.64 ll
+	r2 = *(u64 *)(r3 + 8)
+	r2 += 1
+	*(u64 *)(r3 + 8) = r2
 	r3 = .L__profc_strncat ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -3942,6 +4674,10 @@ LBB64_5:                                #   in Loop: Header=BB64_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB64_6
 LBB64_6:                                #   in Loop: Header=BB64_1 Depth=1
+	r2 = __llvm_gcov_ctr.64 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 += 1
 	*(u64 *)(r10 - 16) = r1
@@ -3953,10 +4689,18 @@ LBB64_6:                                #   in Loop: Header=BB64_1 Depth=1
 	*(u64 *)(r10 - 24) = r1
 	goto LBB64_1
 LBB64_7:
+	r2 = __llvm_gcov_ctr.64 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 24)
 	if r1 != 0 goto LBB64_9
 	goto LBB64_8
 LBB64_8:
+	r2 = __llvm_gcov_ctr.64 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_strncat ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -3976,6 +4720,10 @@ LBB64_9:
 	.type	strnlen,@function
 strnlen:                                # @strnlen
 # %bb.0:
+	r4 = __llvm_gcov_ctr.65 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc_strnlen ll
@@ -3993,6 +4741,10 @@ LBB65_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB65_4
 	goto LBB65_2
 LBB65_2:                                #   in Loop: Header=BB65_1 Depth=1
+	r2 = __llvm_gcov_ctr.65 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strnlen ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4021,6 +4773,10 @@ LBB65_9:                                #   in Loop: Header=BB65_1 Depth=1
 	goto LBB65_3
 LBB65_3:                                #   in Loop: Header=BB65_1 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.65 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_strnlen ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -4039,6 +4795,10 @@ LBB65_5:                                #   in Loop: Header=BB65_1 Depth=1
 	*(u64 *)(r2 + 8) = r1
 	goto LBB65_6
 LBB65_6:                                #   in Loop: Header=BB65_1 Depth=1
+	r2 = __llvm_gcov_ctr.65 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 24)
 	r1 += 1
 	*(u64 *)(r10 - 24) = r1
@@ -4104,6 +4864,10 @@ LBB66_4:                                #   in Loop: Header=BB66_3 Depth=2
 	if r1 != r2 goto LBB66_6
 	goto LBB66_5
 LBB66_5:
+	r2 = __llvm_gcov_ctr.66 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strpbrk ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -4112,13 +4876,25 @@ LBB66_5:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB66_9
 LBB66_6:                                #   in Loop: Header=BB66_3 Depth=2
+	r2 = __llvm_gcov_ctr.66 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	goto LBB66_3
 LBB66_7:                                #   in Loop: Header=BB66_1 Depth=1
+	r2 = __llvm_gcov_ctr.66 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 += 1
 	*(u64 *)(r10 - 16) = r1
 	goto LBB66_1
 LBB66_8:
+	r2 = __llvm_gcov_ctr.66 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB66_9
@@ -4134,6 +4910,10 @@ LBB66_9:
 strrchr:                                # @strrchr
 # %bb.0:
                                         # kill: def $r3 killed $r2
+	r4 = __llvm_gcov_ctr.67 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u32 *)(r10 - 12) = r2
 	r2 = .L__profc_strrchr ll
@@ -4144,6 +4924,10 @@ strrchr:                                # @strrchr
 	*(u64 *)(r10 - 24) = r1
 	goto LBB67_2
 LBB67_1:                                #   in Loop: Header=BB67_2 Depth=1
+	r2 = __llvm_gcov_ctr.67 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_strrchr ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4160,6 +4944,10 @@ LBB67_2:                                # =>This Inner Loop Header: Depth=1
 	if r1 != r2 goto LBB67_4
 	goto LBB67_3
 LBB67_3:                                #   in Loop: Header=BB67_2 Depth=1
+	r2 = __llvm_gcov_ctr.67 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strrchr ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4203,6 +4991,10 @@ strstr:                                 # @strstr
 	if r1 != 0 goto LBB68_2
 	goto LBB68_1
 LBB68_1:
+	r2 = __llvm_gcov_ctr.68 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_strstr ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4237,6 +5029,10 @@ LBB68_4:                                #   in Loop: Header=BB68_3 Depth=1
 	if r1 != 0 goto LBB68_6
 	goto LBB68_5
 LBB68_5:
+	r2 = __llvm_gcov_ctr.68 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_strstr ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -4247,11 +5043,19 @@ LBB68_5:
 LBB68_6:                                #   in Loop: Header=BB68_3 Depth=1
 	goto LBB68_7
 LBB68_7:                                #   in Loop: Header=BB68_3 Depth=1
+	r2 = __llvm_gcov_ctr.68 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 32)
 	r1 += 1
 	*(u64 *)(r10 - 32) = r1
 	goto LBB68_3
 LBB68_8:
+	r2 = __llvm_gcov_ctr.68 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB68_9
@@ -4284,6 +5088,10 @@ memmem:                                 # @memmem
 	if r1 != 0 goto LBB69_2
 	goto LBB69_1
 LBB69_1:
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_memmem ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4297,6 +5105,10 @@ LBB69_2:
 	if r1 >= r2 goto LBB69_4
 	goto LBB69_3
 LBB69_3:
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_memmem ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4329,6 +5141,10 @@ LBB69_6:                                #   in Loop: Header=BB69_5 Depth=1
 	if r1 != r2 goto LBB69_10
 	goto LBB69_7
 LBB69_7:                                #   in Loop: Header=BB69_5 Depth=1
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc_memmem ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -4346,6 +5162,10 @@ LBB69_7:                                #   in Loop: Header=BB69_5 Depth=1
 	if r1 != 0 goto LBB69_10
 	goto LBB69_8
 LBB69_8:
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_memmem ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -4362,11 +5182,19 @@ LBB69_9:
 LBB69_10:                               #   in Loop: Header=BB69_5 Depth=1
 	goto LBB69_11
 LBB69_11:                               #   in Loop: Header=BB69_5 Depth=1
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = *(u64 *)(r10 - 48)
 	r1 += 1
 	*(u64 *)(r10 - 48) = r1
 	goto LBB69_5
 LBB69_12:
+	r2 = __llvm_gcov_ctr.69 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = 0
 	*(u64 *)(r10 - 8) = r1
 	goto LBB69_13
@@ -4381,6 +5209,10 @@ LBB69_13:
 	.type	__muldi3,@function
 __muldi3:                               # @__muldi3
 # %bb.0:
+	r4 = __llvm_gcov_ctr.70 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___muldi3 ll
@@ -4406,6 +5238,10 @@ LBB70_2:                                #   in Loop: Header=BB70_1 Depth=1
 	if r1 == 0 goto LBB70_4
 	goto LBB70_3
 LBB70_3:                                #   in Loop: Header=BB70_1 Depth=1
+	r2 = __llvm_gcov_ctr.70 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___muldi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4416,6 +5252,10 @@ LBB70_3:                                #   in Loop: Header=BB70_1 Depth=1
 	*(u64 *)(r10 - 24) = r1
 	goto LBB70_4
 LBB70_4:                                #   in Loop: Header=BB70_1 Depth=1
+	r2 = __llvm_gcov_ctr.70 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u64 *)(r10 - 16)
 	r1 <<= 1
 	*(u64 *)(r10 - 16) = r1
@@ -4456,6 +5296,10 @@ LBB71_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB71_6
 	goto LBB71_2
 LBB71_2:                                #   in Loop: Header=BB71_1 Depth=1
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc_udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -4466,6 +5310,10 @@ LBB71_2:                                #   in Loop: Header=BB71_1 Depth=1
 	if r1 == 0 goto LBB71_6
 	goto LBB71_3
 LBB71_3:                                #   in Loop: Header=BB71_1 Depth=1
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc_udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -4497,6 +5345,10 @@ LBB71_18:                               #   in Loop: Header=BB71_1 Depth=1
 	goto LBB71_5
 LBB71_5:                                #   in Loop: Header=BB71_1 Depth=1
 	r1 = *(u64 *)(r10 - 72)
+	r3 = __llvm_gcov_ctr.71 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc_udivmodsi4 ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -4509,6 +5361,10 @@ LBB71_6:                                #   in Loop: Header=BB71_1 Depth=1
 	if r1 == 0 goto LBB71_8
 	goto LBB71_7
 LBB71_7:                                #   in Loop: Header=BB71_1 Depth=1
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc_udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4536,6 +5392,10 @@ LBB71_10:                               #   in Loop: Header=BB71_9 Depth=1
 	if r1 > r2 goto LBB71_12
 	goto LBB71_11
 LBB71_11:                               #   in Loop: Header=BB71_9 Depth=1
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc_udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -4550,6 +5410,10 @@ LBB71_11:                               #   in Loop: Header=BB71_9 Depth=1
 	*(u32 *)(r10 - 32) = r1
 	goto LBB71_12
 LBB71_12:                               #   in Loop: Header=BB71_9 Depth=1
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u32 *)(r10 - 28)
 	r1 >>= 1
 	*(u32 *)(r10 - 28) = r1
@@ -4562,6 +5426,10 @@ LBB71_13:
 	if r1 == 0 goto LBB71_15
 	goto LBB71_14
 LBB71_14:
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r2 = .L__profc_udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -4570,6 +5438,10 @@ LBB71_14:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB71_16
 LBB71_15:
+	r2 = __llvm_gcov_ctr.71 ll
+	r1 = *(u64 *)(r2 + 56)
+	r1 += 1
+	*(u64 *)(r2 + 56) = r1
 	r1 = *(u32 *)(r10 - 32)
 	*(u32 *)(r10 - 4) = r1
 	goto LBB71_16
@@ -4596,6 +5468,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	if r1 s> -1 goto LBB72_2
 	goto LBB72_1
 LBB72_1:
+	r2 = __llvm_gcov_ctr.72 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___clrsbqi2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4611,6 +5487,10 @@ LBB72_2:
 	if r1 != 0 goto LBB72_4
 	goto LBB72_3
 LBB72_3:
+	r2 = __llvm_gcov_ctr.72 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___clrsbqi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4619,6 +5499,10 @@ LBB72_3:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB72_5
 LBB72_4:
+	r2 = __llvm_gcov_ctr.72 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u8 *)(r10 - 5)
 	r1 <<= 56
 	r1 s>>= 56
@@ -4690,6 +5574,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	if r1 s> -1 goto LBB73_2
 	goto LBB73_1
 LBB73_1:
+	r2 = __llvm_gcov_ctr.73 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___clrsbdi2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -4703,6 +5591,10 @@ LBB73_2:
 	if r1 != 0 goto LBB73_4
 	goto LBB73_3
 LBB73_3:
+	r2 = __llvm_gcov_ctr.73 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___clrsbdi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4711,6 +5603,10 @@ LBB73_3:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB73_5
 LBB73_4:
+	r2 = __llvm_gcov_ctr.73 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = *(u64 *)(r10 - 16)
 	r1 = r2
 	r1 >>= 1
@@ -4768,6 +5664,10 @@ __mulsi3:                               # @__mulsi3
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.74 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc___mulsi3 ll
@@ -4791,6 +5691,10 @@ LBB74_2:                                #   in Loop: Header=BB74_1 Depth=1
 	if r1 == 0 goto LBB74_4
 	goto LBB74_3
 LBB74_3:                                #   in Loop: Header=BB74_1 Depth=1
+	r2 = __llvm_gcov_ctr.74 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___mulsi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4801,6 +5705,10 @@ LBB74_3:                                #   in Loop: Header=BB74_1 Depth=1
 	*(u32 *)(r10 - 12) = r1
 	goto LBB74_4
 LBB74_4:                                #   in Loop: Header=BB74_1 Depth=1
+	r2 = __llvm_gcov_ctr.74 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 4)
 	r1 >>= 1
 	*(u32 *)(r10 - 4) = r1
@@ -4843,6 +5751,10 @@ __cmovd:                                # @__cmovd
 	if r1 > r2 goto LBB75_3
 	goto LBB75_1
 LBB75_1:
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___cmovd ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -4887,6 +5799,10 @@ LBB75_5:                                #   in Loop: Header=BB75_4 Depth=1
 	*(u64 *)(r2 + 0) = r1
 	goto LBB75_6
 LBB75_6:                                #   in Loop: Header=BB75_4 Depth=1
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u32 *)(r10 - 24)
 	r1 += 1
 	*(u32 *)(r10 - 24) = r1
@@ -4899,6 +5815,10 @@ LBB75_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB75_10
 	goto LBB75_9
 LBB75_9:                                #   in Loop: Header=BB75_8 Depth=1
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___cmovd ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -4915,6 +5835,10 @@ LBB75_9:                                #   in Loop: Header=BB75_8 Depth=1
 	*(u32 *)(r10 - 32) = r1
 	goto LBB75_8
 LBB75_10:
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	goto LBB75_15
 LBB75_11:
 	goto LBB75_12
@@ -4926,6 +5850,10 @@ LBB75_12:                               # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB75_14
 	goto LBB75_13
 LBB75_13:                               #   in Loop: Header=BB75_12 Depth=1
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___cmovd ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -4939,6 +5867,10 @@ LBB75_13:                               #   in Loop: Header=BB75_12 Depth=1
 	*(u8 *)(r2 + 0) = r1
 	goto LBB75_12
 LBB75_14:
+	r2 = __llvm_gcov_ctr.75 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	goto LBB75_15
 LBB75_15:
 	exit
@@ -4970,6 +5902,10 @@ __cmovh:                                # @__cmovh
 	if r1 > r2 goto LBB76_3
 	goto LBB76_1
 LBB76_1:
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___cmovh ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5014,6 +5950,10 @@ LBB76_5:                                #   in Loop: Header=BB76_4 Depth=1
 	*(u16 *)(r2 + 0) = r1
 	goto LBB76_6
 LBB76_6:                                #   in Loop: Header=BB76_4 Depth=1
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u32 *)(r10 - 24)
 	r1 += 1
 	*(u32 *)(r10 - 24) = r1
@@ -5024,6 +5964,10 @@ LBB76_7:
 	if r1 == 0 goto LBB76_9
 	goto LBB76_8
 LBB76_8:
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___cmovh ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -5040,6 +5984,10 @@ LBB76_8:
 	*(u8 *)(r2 + 0) = r1
 	goto LBB76_9
 LBB76_9:
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	goto LBB76_14
 LBB76_10:
 	goto LBB76_11
@@ -5051,6 +5999,10 @@ LBB76_11:                               # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB76_13
 	goto LBB76_12
 LBB76_12:                               #   in Loop: Header=BB76_11 Depth=1
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___cmovh ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -5064,6 +6016,10 @@ LBB76_12:                               #   in Loop: Header=BB76_11 Depth=1
 	*(u8 *)(r2 + 0) = r1
 	goto LBB76_11
 LBB76_13:
+	r2 = __llvm_gcov_ctr.76 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	goto LBB76_14
 LBB76_14:
 	exit
@@ -5099,6 +6055,10 @@ __cmovw:                                # @__cmovw
 	if r1 > r2 goto LBB77_3
 	goto LBB77_1
 LBB77_1:
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___cmovw ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5143,6 +6103,10 @@ LBB77_5:                                #   in Loop: Header=BB77_4 Depth=1
 	*(u32 *)(r2 + 0) = r1
 	goto LBB77_6
 LBB77_6:                                #   in Loop: Header=BB77_4 Depth=1
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r1 = *(u32 *)(r10 - 24)
 	r1 += 1
 	*(u32 *)(r10 - 24) = r1
@@ -5155,6 +6119,10 @@ LBB77_8:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB77_10
 	goto LBB77_9
 LBB77_9:                                #   in Loop: Header=BB77_8 Depth=1
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___cmovw ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -5171,6 +6139,10 @@ LBB77_9:                                #   in Loop: Header=BB77_8 Depth=1
 	*(u32 *)(r10 - 32) = r1
 	goto LBB77_8
 LBB77_10:
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	goto LBB77_15
 LBB77_11:
 	goto LBB77_12
@@ -5182,6 +6154,10 @@ LBB77_12:                               # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB77_14
 	goto LBB77_13
 LBB77_13:                               #   in Loop: Header=BB77_12 Depth=1
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___cmovw ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -5195,6 +6171,10 @@ LBB77_13:                               #   in Loop: Header=BB77_12 Depth=1
 	*(u8 *)(r2 + 0) = r1
 	goto LBB77_12
 LBB77_14:
+	r2 = __llvm_gcov_ctr.77 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	goto LBB77_15
 LBB77_15:
 	exit
@@ -5208,6 +6188,10 @@ __umodi:                                # @__umodi
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.78 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc___umodi ll
@@ -5227,6 +6211,10 @@ __umodi:                                # @__umodi
 __clzhi2:                               # @__clzhi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.79 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u16 *)(r10 - 2) = r1
 	r2 = .L__profc___clzhi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -5257,6 +6245,10 @@ LBB79_2:                                #   in Loop: Header=BB79_1 Depth=1
 	if r1 == 0 goto LBB79_4
 	goto LBB79_3
 LBB79_3:
+	r2 = __llvm_gcov_ctr.79 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___clzhi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5265,6 +6257,10 @@ LBB79_3:
 LBB79_4:                                #   in Loop: Header=BB79_1 Depth=1
 	goto LBB79_5
 LBB79_5:                                #   in Loop: Header=BB79_1 Depth=1
+	r2 = __llvm_gcov_ctr.79 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 8)
 	r1 += 1
 	*(u32 *)(r10 - 8) = r1
@@ -5281,6 +6277,10 @@ LBB79_6:
 __ctzhi2:                               # @__ctzhi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.80 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u16 *)(r10 - 2) = r1
 	r2 = .L__profc___ctzhi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -5307,6 +6307,10 @@ LBB80_2:                                #   in Loop: Header=BB80_1 Depth=1
 	if r1 == 0 goto LBB80_4
 	goto LBB80_3
 LBB80_3:
+	r2 = __llvm_gcov_ctr.80 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ctzhi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5315,6 +6319,10 @@ LBB80_3:
 LBB80_4:                                #   in Loop: Header=BB80_1 Depth=1
 	goto LBB80_5
 LBB80_5:                                #   in Loop: Header=BB80_1 Depth=1
+	r2 = __llvm_gcov_ctr.80 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 8)
 	r1 += 1
 	*(u32 *)(r10 - 8) = r1
@@ -5331,6 +6339,10 @@ LBB80_6:
 __parityhi2:                            # @__parityhi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.81 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u16 *)(r10 - 2) = r1
 	r2 = .L__profc___parityhi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -5358,6 +6370,10 @@ LBB81_2:                                #   in Loop: Header=BB81_1 Depth=1
 	if r1 == 0 goto LBB81_4
 	goto LBB81_3
 LBB81_3:                                #   in Loop: Header=BB81_1 Depth=1
+	r2 = __llvm_gcov_ctr.81 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___parityhi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5369,6 +6385,10 @@ LBB81_3:                                #   in Loop: Header=BB81_1 Depth=1
 LBB81_4:                                #   in Loop: Header=BB81_1 Depth=1
 	goto LBB81_5
 LBB81_5:                                #   in Loop: Header=BB81_1 Depth=1
+	r2 = __llvm_gcov_ctr.81 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 8)
 	r1 += 1
 	*(u32 *)(r10 - 8) = r1
@@ -5386,6 +6406,10 @@ LBB81_6:
 __popcounthi2:                          # @__popcounthi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.82 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u16 *)(r10 - 2) = r1
 	r2 = .L__profc___popcounthi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -5413,6 +6437,10 @@ LBB82_2:                                #   in Loop: Header=BB82_1 Depth=1
 	if r1 == 0 goto LBB82_4
 	goto LBB82_3
 LBB82_3:                                #   in Loop: Header=BB82_1 Depth=1
+	r2 = __llvm_gcov_ctr.82 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___popcounthi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5424,6 +6452,10 @@ LBB82_3:                                #   in Loop: Header=BB82_1 Depth=1
 LBB82_4:                                #   in Loop: Header=BB82_1 Depth=1
 	goto LBB82_5
 LBB82_5:                                #   in Loop: Header=BB82_1 Depth=1
+	r2 = __llvm_gcov_ctr.82 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 8)
 	r1 += 1
 	*(u32 *)(r10 - 8) = r1
@@ -5441,6 +6473,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.83 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc___mulsi3_iq2000 ll
@@ -5464,6 +6500,10 @@ LBB83_2:                                #   in Loop: Header=BB83_1 Depth=1
 	if r1 == 0 goto LBB83_4
 	goto LBB83_3
 LBB83_3:                                #   in Loop: Header=BB83_1 Depth=1
+	r2 = __llvm_gcov_ctr.83 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___mulsi3_iq2000 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5474,6 +6514,10 @@ LBB83_3:                                #   in Loop: Header=BB83_1 Depth=1
 	*(u32 *)(r10 - 12) = r1
 	goto LBB83_4
 LBB83_4:                                #   in Loop: Header=BB83_1 Depth=1
+	r2 = __llvm_gcov_ctr.83 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 4)
 	r1 >>= 1
 	*(u32 *)(r10 - 4) = r1
@@ -5506,6 +6550,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	if r1 != 0 goto LBB84_2
 	goto LBB84_1
 LBB84_1:
+	r2 = __llvm_gcov_ctr.84 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___mulsi3_lm32 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -5514,6 +6562,10 @@ LBB84_1:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB84_8
 LBB84_2:
+	r2 = __llvm_gcov_ctr.84 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	goto LBB84_3
 LBB84_3:                                # =>This Inner Loop Header: Depth=1
 	r1 = *(u32 *)(r10 - 12)
@@ -5529,6 +6581,10 @@ LBB84_4:                                #   in Loop: Header=BB84_3 Depth=1
 	if r1 == 0 goto LBB84_6
 	goto LBB84_5
 LBB84_5:                                #   in Loop: Header=BB84_3 Depth=1
+	r2 = __llvm_gcov_ctr.84 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___mulsi3_lm32 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -5539,6 +6595,10 @@ LBB84_5:                                #   in Loop: Header=BB84_3 Depth=1
 	*(u32 *)(r10 - 16) = r1
 	goto LBB84_6
 LBB84_6:                                #   in Loop: Header=BB84_3 Depth=1
+	r2 = __llvm_gcov_ctr.84 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r1 = *(u32 *)(r10 - 8)
 	r1 <<= 1
 	*(u32 *)(r10 - 8) = r1
@@ -5584,6 +6644,10 @@ LBB85_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB85_6
 	goto LBB85_2
 LBB85_2:                                #   in Loop: Header=BB85_1 Depth=1
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -5594,6 +6658,10 @@ LBB85_2:                                #   in Loop: Header=BB85_1 Depth=1
 	if r1 == 0 goto LBB85_6
 	goto LBB85_3
 LBB85_3:                                #   in Loop: Header=BB85_1 Depth=1
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -5625,6 +6693,10 @@ LBB85_18:                               #   in Loop: Header=BB85_1 Depth=1
 	goto LBB85_5
 LBB85_5:                                #   in Loop: Header=BB85_1 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.85 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc___udivmodsi4 ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -5637,6 +6709,10 @@ LBB85_6:                                #   in Loop: Header=BB85_1 Depth=1
 	if r1 == 0 goto LBB85_8
 	goto LBB85_7
 LBB85_7:                                #   in Loop: Header=BB85_1 Depth=1
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -5664,6 +6740,10 @@ LBB85_10:                               #   in Loop: Header=BB85_9 Depth=1
 	if r1 > r2 goto LBB85_12
 	goto LBB85_11
 LBB85_11:                               #   in Loop: Header=BB85_9 Depth=1
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -5678,6 +6758,10 @@ LBB85_11:                               #   in Loop: Header=BB85_9 Depth=1
 	*(u32 *)(r10 - 24) = r1
 	goto LBB85_12
 LBB85_12:                               #   in Loop: Header=BB85_9 Depth=1
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u32 *)(r10 - 20)
 	r1 >>= 1
 	*(u32 *)(r10 - 20) = r1
@@ -5690,6 +6774,10 @@ LBB85_13:
 	if r1 == 0 goto LBB85_15
 	goto LBB85_14
 LBB85_14:
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r2 = .L__profc___udivmodsi4 ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -5698,6 +6786,10 @@ LBB85_14:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB85_16
 LBB85_15:
+	r2 = __llvm_gcov_ctr.85 ll
+	r1 = *(u64 *)(r2 + 56)
+	r1 += 1
+	*(u64 *)(r2 + 56) = r1
 	r1 = *(u32 *)(r10 - 24)
 	*(u32 *)(r10 - 4) = r1
 	goto LBB85_16
@@ -5712,6 +6804,10 @@ LBB85_16:
 	.type	__mspabi_mpysll,@function
 __mspabi_mpysll:                        # @__mspabi_mpysll
 # %bb.0:
+	r4 = __llvm_gcov_ctr.86 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___mspabi_mpysll ll
@@ -5730,6 +6826,10 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	.type	__mspabi_mpyull,@function
 __mspabi_mpyull:                        # @__mspabi_mpyull
 # %bb.0:
+	r4 = __llvm_gcov_ctr.87 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___mspabi_mpyull ll
@@ -5765,6 +6865,10 @@ __mulhi3:                               # @__mulhi3
 	if r1 s> -1 goto LBB88_2
 	goto LBB88_1
 LBB88_1:
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___mulhi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -5786,6 +6890,10 @@ LBB88_3:                                # =>This Inner Loop Header: Depth=1
 	if r1 == 0 goto LBB88_6
 	goto LBB88_4
 LBB88_4:                                #   in Loop: Header=BB88_3 Depth=1
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___mulhi3 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -5812,6 +6920,10 @@ LBB88_16:                               #   in Loop: Header=BB88_3 Depth=1
 	goto LBB88_5
 LBB88_5:                                #   in Loop: Header=BB88_3 Depth=1
 	r1 = *(u64 *)(r10 - 64)
+	r3 = __llvm_gcov_ctr.88 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc___mulhi3 ll
 	r2 = *(u64 *)(r3 + 32)
 	r2 += 1
@@ -5833,6 +6945,10 @@ LBB88_7:                                #   in Loop: Header=BB88_3 Depth=1
 	if r1 == 0 goto LBB88_9
 	goto LBB88_8
 LBB88_8:                                #   in Loop: Header=BB88_3 Depth=1
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___mulhi3 ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -5853,6 +6969,10 @@ LBB88_9:                                #   in Loop: Header=BB88_3 Depth=1
 	*(u32 *)(r10 - 8) = r1
 	goto LBB88_10
 LBB88_10:                               #   in Loop: Header=BB88_3 Depth=1
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = *(u8 *)(r10 - 9)
 	r1 += 1
 	*(u8 *)(r10 - 9) = r1
@@ -5862,6 +6982,10 @@ LBB88_11:
 	if r1 == 0 goto LBB88_13
 	goto LBB88_12
 LBB88_12:
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r2 = .L__profc___mulhi3 ll
 	r1 = *(u64 *)(r2 + 48)
 	r1 += 1
@@ -5871,6 +6995,10 @@ LBB88_12:
 	*(u64 *)(r10 - 72) = r1
 	goto LBB88_14
 LBB88_13:
+	r2 = __llvm_gcov_ctr.88 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r1 = *(u32 *)(r10 - 20)
 	*(u64 *)(r10 - 72) = r1
 	goto LBB88_14
@@ -5885,6 +7013,10 @@ LBB88_14:
 	.type	__divsi3,@function
 __divsi3:                               # @__divsi3
 # %bb.0:
+	r4 = __llvm_gcov_ctr.89 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___divsi3 ll
@@ -5897,6 +7029,10 @@ __divsi3:                               # @__divsi3
 	if r1 s> -1 goto LBB89_2
 	goto LBB89_1
 LBB89_1:
+	r2 = __llvm_gcov_ctr.89 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___divsi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -5922,6 +7058,10 @@ LBB89_2:
 	if r1 s> -1 goto LBB89_4
 	goto LBB89_3
 LBB89_3:
+	r2 = __llvm_gcov_ctr.89 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___divsi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -5955,6 +7095,10 @@ LBB89_4:
 	if r1 == 0 goto LBB89_6
 	goto LBB89_5
 LBB89_5:
+	r2 = __llvm_gcov_ctr.89 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___divsi3 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -5974,6 +7118,10 @@ LBB89_6:
 	.type	__modsi3,@function
 __modsi3:                               # @__modsi3
 # %bb.0:
+	r4 = __llvm_gcov_ctr.90 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___modsi3 ll
@@ -5986,6 +7134,10 @@ __modsi3:                               # @__modsi3
 	if r1 s> -1 goto LBB90_2
 	goto LBB90_1
 LBB90_1:
+	r2 = __llvm_gcov_ctr.90 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___modsi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6001,6 +7153,10 @@ LBB90_2:
 	if r1 s> -1 goto LBB90_4
 	goto LBB90_3
 LBB90_3:
+	r2 = __llvm_gcov_ctr.90 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___modsi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -6022,6 +7178,10 @@ LBB90_4:
 	if r1 == 0 goto LBB90_6
 	goto LBB90_5
 LBB90_5:
+	r2 = __llvm_gcov_ctr.90 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___modsi3 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -6064,6 +7224,10 @@ LBB91_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 s>= r2 goto LBB91_6
 	goto LBB91_2
 LBB91_2:                                #   in Loop: Header=BB91_1 Depth=1
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___udivmodhi4 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -6074,6 +7238,10 @@ LBB91_2:                                #   in Loop: Header=BB91_1 Depth=1
 	if r1 == 0 goto LBB91_6
 	goto LBB91_3
 LBB91_3:                                #   in Loop: Header=BB91_1 Depth=1
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___udivmodhi4 ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -6104,6 +7272,10 @@ LBB91_18:                               #   in Loop: Header=BB91_1 Depth=1
 	goto LBB91_5
 LBB91_5:                                #   in Loop: Header=BB91_1 Depth=1
 	r1 = *(u64 *)(r10 - 56)
+	r3 = __llvm_gcov_ctr.91 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc___udivmodhi4 ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -6116,6 +7288,10 @@ LBB91_6:                                #   in Loop: Header=BB91_1 Depth=1
 	if r1 == 0 goto LBB91_8
 	goto LBB91_7
 LBB91_7:                                #   in Loop: Header=BB91_1 Depth=1
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___udivmodhi4 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6143,6 +7319,10 @@ LBB91_10:                               #   in Loop: Header=BB91_9 Depth=1
 	if r1 s> r2 goto LBB91_12
 	goto LBB91_11
 LBB91_11:                               #   in Loop: Header=BB91_9 Depth=1
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___udivmodhi4 ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -6157,6 +7337,10 @@ LBB91_11:                               #   in Loop: Header=BB91_9 Depth=1
 	*(u16 *)(r10 - 16) = r1
 	goto LBB91_12
 LBB91_12:                               #   in Loop: Header=BB91_9 Depth=1
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u16 *)(r10 - 14)
 	r1 >>= 1
 	*(u16 *)(r10 - 14) = r1
@@ -6169,6 +7353,10 @@ LBB91_13:
 	if r1 == 0 goto LBB91_15
 	goto LBB91_14
 LBB91_14:
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r2 = .L__profc___udivmodhi4 ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -6177,6 +7365,10 @@ LBB91_14:
 	*(u16 *)(r10 - 2) = r1
 	goto LBB91_16
 LBB91_15:
+	r2 = __llvm_gcov_ctr.91 ll
+	r1 = *(u64 *)(r2 + 56)
+	r1 += 1
+	*(u64 *)(r2 + 56) = r1
 	r1 = *(u16 *)(r10 - 16)
 	*(u16 *)(r10 - 2) = r1
 	goto LBB91_16
@@ -6212,6 +7404,10 @@ LBB92_1:                                # =>This Inner Loop Header: Depth=1
 	if r1 >= r2 goto LBB92_6
 	goto LBB92_2
 LBB92_2:                                #   in Loop: Header=BB92_1 Depth=1
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___udivmodsi4_libgcc ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -6222,6 +7418,10 @@ LBB92_2:                                #   in Loop: Header=BB92_1 Depth=1
 	if r1 == 0 goto LBB92_6
 	goto LBB92_3
 LBB92_3:                                #   in Loop: Header=BB92_1 Depth=1
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___udivmodsi4_libgcc ll
 	r1 = *(u64 *)(r2 + 40)
 	r1 += 1
@@ -6253,6 +7453,10 @@ LBB92_18:                               #   in Loop: Header=BB92_1 Depth=1
 	goto LBB92_5
 LBB92_5:                                #   in Loop: Header=BB92_1 Depth=1
 	r1 = *(u64 *)(r10 - 88)
+	r3 = __llvm_gcov_ctr.92 ll
+	r2 = *(u64 *)(r3 + 16)
+	r2 += 1
+	*(u64 *)(r3 + 16) = r2
 	r3 = .L__profc___udivmodsi4_libgcc ll
 	r2 = *(u64 *)(r3 + 24)
 	r2 += 1
@@ -6265,6 +7469,10 @@ LBB92_6:                                #   in Loop: Header=BB92_1 Depth=1
 	if r1 == 0 goto LBB92_8
 	goto LBB92_7
 LBB92_7:                                #   in Loop: Header=BB92_1 Depth=1
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___udivmodsi4_libgcc ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6292,6 +7500,10 @@ LBB92_10:                               #   in Loop: Header=BB92_9 Depth=1
 	if r1 > r2 goto LBB92_12
 	goto LBB92_11
 LBB92_11:                               #   in Loop: Header=BB92_9 Depth=1
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r2 = .L__profc___udivmodsi4_libgcc ll
 	r1 = *(u64 *)(r2 + 56)
 	r1 += 1
@@ -6306,6 +7518,10 @@ LBB92_11:                               #   in Loop: Header=BB92_9 Depth=1
 	*(u64 *)(r10 - 48) = r1
 	goto LBB92_12
 LBB92_12:                               #   in Loop: Header=BB92_9 Depth=1
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 40)
+	r1 += 1
+	*(u64 *)(r2 + 40) = r1
 	r1 = *(u64 *)(r10 - 40)
 	r1 >>= 1
 	*(u64 *)(r10 - 40) = r1
@@ -6318,6 +7534,10 @@ LBB92_13:
 	if r1 == 0 goto LBB92_15
 	goto LBB92_14
 LBB92_14:
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 48)
+	r1 += 1
+	*(u64 *)(r2 + 48) = r1
 	r2 = .L__profc___udivmodsi4_libgcc ll
 	r1 = *(u64 *)(r2 + 64)
 	r1 += 1
@@ -6326,6 +7546,10 @@ LBB92_14:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB92_16
 LBB92_15:
+	r2 = __llvm_gcov_ctr.92 ll
+	r1 = *(u64 *)(r2 + 56)
+	r1 += 1
+	*(u64 *)(r2 + 56) = r1
 	r1 = *(u64 *)(r10 - 48)
 	*(u64 *)(r10 - 8) = r1
 	goto LBB92_16
@@ -6356,6 +7580,10 @@ __ashldi3:                              # @__ashldi3
 	if r1 == 0 goto LBB93_2
 	goto LBB93_1
 LBB93_1:
+	r2 = __llvm_gcov_ctr.93 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___ashldi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6375,6 +7603,10 @@ LBB93_2:
 	if r1 != 0 goto LBB93_4
 	goto LBB93_3
 LBB93_3:
+	r2 = __llvm_gcov_ctr.93 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ashldi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -6383,6 +7615,10 @@ LBB93_3:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB93_6
 LBB93_4:
+	r2 = __llvm_gcov_ctr.93 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 32)
 	r2 = *(u32 *)(r10 - 20)
 	r1 <<= r2
@@ -6430,6 +7666,10 @@ __ashrdi3:                              # @__ashrdi3
 	if r1 == 0 goto LBB94_2
 	goto LBB94_1
 LBB94_1:
+	r2 = __llvm_gcov_ctr.94 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___ashrdi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6454,6 +7694,10 @@ LBB94_2:
 	if r1 != 0 goto LBB94_4
 	goto LBB94_3
 LBB94_3:
+	r2 = __llvm_gcov_ctr.94 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ashrdi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -6462,6 +7706,10 @@ LBB94_3:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB94_6
 LBB94_4:
+	r2 = __llvm_gcov_ctr.94 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 28)
 	r1 <<= 32
 	r1 s>>= 32
@@ -6495,6 +7743,10 @@ LBB94_6:
 	.type	__bswapdi2,@function
 __bswapdi2:                             # @__bswapdi2
 # %bb.0:
+	r3 = __llvm_gcov_ctr.95 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc___bswapdi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -6543,6 +7795,10 @@ __bswapdi2:                             # @__bswapdi2
 __bswapsi2:                             # @__bswapsi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.96 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc___bswapsi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -6571,6 +7827,10 @@ __bswapsi2:                             # @__bswapsi2
 __clzsi2:                               # @__clzsi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.97 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc___clzsi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -6707,6 +7967,10 @@ __clzti2:                               # @__clzti2
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.98 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r2
 	*(u64 *)(r10 - 16) = r1
 	r2 = .L__profc___clzti2 ll
@@ -6806,6 +8070,10 @@ __cmpdi2:                               # @__cmpdi2
 	if r1 s>= r2 goto LBB99_2
 	goto LBB99_1
 LBB99_1:
+	r2 = __llvm_gcov_ctr.99 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___cmpdi2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6823,6 +8091,10 @@ LBB99_2:
 	if r1 s>= r2 goto LBB99_4
 	goto LBB99_3
 LBB99_3:
+	r2 = __llvm_gcov_ctr.99 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___cmpdi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -6836,6 +8108,10 @@ LBB99_4:
 	if r1 >= r2 goto LBB99_6
 	goto LBB99_5
 LBB99_5:
+	r2 = __llvm_gcov_ctr.99 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___cmpdi2 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -6849,6 +8125,10 @@ LBB99_6:
 	if r1 >= r2 goto LBB99_8
 	goto LBB99_7
 LBB99_7:
+	r2 = __llvm_gcov_ctr.99 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___cmpdi2 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -6857,6 +8137,10 @@ LBB99_7:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB99_9
 LBB99_8:
+	r2 = __llvm_gcov_ctr.99 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 1
 	*(u32 *)(r10 - 4) = r1
 	goto LBB99_9
@@ -6871,6 +8155,10 @@ LBB99_9:
 	.type	__aeabi_lcmp,@function
 __aeabi_lcmp:                           # @__aeabi_lcmp
 # %bb.0:
+	r4 = __llvm_gcov_ctr.100 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___aeabi_lcmp ll
@@ -6915,6 +8203,10 @@ __cmpti2:                               # @__cmpti2
 	if r1 s>= r2 goto LBB101_2
 	goto LBB101_1
 LBB101_1:
+	r2 = __llvm_gcov_ctr.101 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___cmpti2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -6928,6 +8220,10 @@ LBB101_2:
 	if r1 s>= r2 goto LBB101_4
 	goto LBB101_3
 LBB101_3:
+	r2 = __llvm_gcov_ctr.101 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___cmpti2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -6941,6 +8237,10 @@ LBB101_4:
 	if r1 >= r2 goto LBB101_6
 	goto LBB101_5
 LBB101_5:
+	r2 = __llvm_gcov_ctr.101 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___cmpti2 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -6954,6 +8254,10 @@ LBB101_6:
 	if r1 >= r2 goto LBB101_8
 	goto LBB101_7
 LBB101_7:
+	r2 = __llvm_gcov_ctr.101 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___cmpti2 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -6962,6 +8266,10 @@ LBB101_7:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB101_9
 LBB101_8:
+	r2 = __llvm_gcov_ctr.101 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 1
 	*(u32 *)(r10 - 4) = r1
 	goto LBB101_9
@@ -6977,6 +8285,10 @@ LBB101_9:
 __ctzsi2:                               # @__ctzsi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.102 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc___ctzsi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7093,6 +8405,10 @@ __ctzti2:                               # @__ctzti2
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.103 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r2
 	*(u64 *)(r10 - 16) = r1
 	r2 = .L__profc___ctzti2 ll
@@ -7172,6 +8488,10 @@ LBB104_1:
 	if r1 != 0 goto LBB104_3
 	goto LBB104_2
 LBB104_2:
+	r2 = __llvm_gcov_ctr.104 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ffsti2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -7180,6 +8500,10 @@ LBB104_2:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB104_5
 LBB104_3:
+	r2 = __llvm_gcov_ctr.104 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = *(u64 *)(r10 - 40)
 	r1 = r2
 	r1 = -r1
@@ -7194,6 +8518,10 @@ LBB104_3:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB104_5
 LBB104_4:
+	r2 = __llvm_gcov_ctr.104 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = *(u64 *)(r10 - 48)
 	r1 = r2
 	r1 = -r1
@@ -7234,6 +8562,10 @@ __lshrdi3:                              # @__lshrdi3
 	if r1 == 0 goto LBB105_2
 	goto LBB105_1
 LBB105_1:
+	r2 = __llvm_gcov_ctr.105 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___lshrdi3 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -7253,6 +8585,10 @@ LBB105_2:
 	if r1 != 0 goto LBB105_4
 	goto LBB105_3
 LBB105_3:
+	r2 = __llvm_gcov_ctr.105 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___lshrdi3 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -7261,6 +8597,10 @@ LBB105_3:
 	*(u64 *)(r10 - 8) = r1
 	goto LBB105_6
 LBB105_4:
+	r2 = __llvm_gcov_ctr.105 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r1 = *(u32 *)(r10 - 28)
 	r2 = *(u32 *)(r10 - 20)
 	r1 >>= r2
@@ -7294,6 +8634,10 @@ __muldsi3:                              # @__muldsi3
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.106 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u32 *)(r10 - 4) = r1
 	*(u32 *)(r10 - 8) = r2
 	r2 = .L__profc___muldsi3 ll
@@ -7374,6 +8718,10 @@ __muldsi3:                              # @__muldsi3
 	.type	__muldi3_compiler_rt,@function
 __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 # %bb.0:
+	r4 = __llvm_gcov_ctr.107 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___muldi3_compiler_rt ll
@@ -7408,6 +8756,10 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	.type	__negdi2,@function
 __negdi2:                               # @__negdi2
 # %bb.0:
+	r3 = __llvm_gcov_ctr.108 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc___negdi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7424,6 +8776,10 @@ __negdi2:                               # @__negdi2
 	.type	__paritydi2,@function
 __paritydi2:                            # @__paritydi2
 # %bb.0:
+	r3 = __llvm_gcov_ctr.109 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc___paritydi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7466,6 +8822,10 @@ __parityti2:                            # @__parityti2
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.110 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r2
 	*(u64 *)(r10 - 16) = r1
 	r2 = .L__profc___parityti2 ll
@@ -7514,6 +8874,10 @@ __parityti2:                            # @__parityti2
 __paritysi2:                            # @__paritysi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.111 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc___paritysi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7550,6 +8914,10 @@ __paritysi2:                            # @__paritysi2
 	.type	__popcountdi2,@function
 __popcountdi2:                          # @__popcountdi2
 # %bb.0:
+	r3 = __llvm_gcov_ctr.112 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u64 *)(r10 - 8) = r1
 	r2 = .L__profc___popcountdi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7604,6 +8972,10 @@ __popcountdi2:                          # @__popcountdi2
 __popcountsi2:                          # @__popcountsi2
 # %bb.0:
                                         # kill: def $r2 killed $r1
+	r3 = __llvm_gcov_ctr.113 ll
+	r2 = *(u64 *)(r3 + 0)
+	r2 += 1
+	*(u64 *)(r3 + 0) = r2
 	*(u32 *)(r10 - 4) = r1
 	r2 = .L__profc___popcountsi2 ll
 	r1 = *(u64 *)(r2 + 0)
@@ -7651,6 +9023,10 @@ __popcountti2:                          # @__popcountti2
 # %bb.0:
                                         # kill: def $r3 killed $r2
                                         # kill: def $r3 killed $r1
+	r4 = __llvm_gcov_ctr.114 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r2
 	*(u64 *)(r10 - 16) = r1
 	r2 = .L__profc___popcountti2 ll
@@ -7798,6 +9174,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	if r1 >= r2 goto LBB115_2
 	goto LBB115_1
 LBB115_1:
+	r2 = __llvm_gcov_ctr.115 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___ucmpdi2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -7811,6 +9191,10 @@ LBB115_2:
 	if r1 >= r2 goto LBB115_4
 	goto LBB115_3
 LBB115_3:
+	r2 = __llvm_gcov_ctr.115 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ucmpdi2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -7824,6 +9208,10 @@ LBB115_4:
 	if r1 >= r2 goto LBB115_6
 	goto LBB115_5
 LBB115_5:
+	r2 = __llvm_gcov_ctr.115 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___ucmpdi2 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -7837,6 +9225,10 @@ LBB115_6:
 	if r1 >= r2 goto LBB115_8
 	goto LBB115_7
 LBB115_7:
+	r2 = __llvm_gcov_ctr.115 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___ucmpdi2 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -7845,6 +9237,10 @@ LBB115_7:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB115_9
 LBB115_8:
+	r2 = __llvm_gcov_ctr.115 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 1
 	*(u32 *)(r10 - 4) = r1
 	goto LBB115_9
@@ -7859,6 +9255,10 @@ LBB115_9:
 	.type	__aeabi_ulcmp,@function
 __aeabi_ulcmp:                          # @__aeabi_ulcmp
 # %bb.0:
+	r4 = __llvm_gcov_ctr.116 ll
+	r3 = *(u64 *)(r4 + 0)
+	r3 += 1
+	*(u64 *)(r4 + 0) = r3
 	*(u64 *)(r10 - 8) = r1
 	*(u64 *)(r10 - 16) = r2
 	r2 = .L__profc___aeabi_ulcmp ll
@@ -7903,6 +9303,10 @@ __ucmpti2:                              # @__ucmpti2
 	if r1 >= r2 goto LBB117_2
 	goto LBB117_1
 LBB117_1:
+	r2 = __llvm_gcov_ctr.117 ll
+	r1 = *(u64 *)(r2 + 0)
+	r1 += 1
+	*(u64 *)(r2 + 0) = r1
 	r2 = .L__profc___ucmpti2 ll
 	r1 = *(u64 *)(r2 + 8)
 	r1 += 1
@@ -7916,6 +9320,10 @@ LBB117_2:
 	if r1 >= r2 goto LBB117_4
 	goto LBB117_3
 LBB117_3:
+	r2 = __llvm_gcov_ctr.117 ll
+	r1 = *(u64 *)(r2 + 8)
+	r1 += 1
+	*(u64 *)(r2 + 8) = r1
 	r2 = .L__profc___ucmpti2 ll
 	r1 = *(u64 *)(r2 + 16)
 	r1 += 1
@@ -7929,6 +9337,10 @@ LBB117_4:
 	if r1 >= r2 goto LBB117_6
 	goto LBB117_5
 LBB117_5:
+	r2 = __llvm_gcov_ctr.117 ll
+	r1 = *(u64 *)(r2 + 16)
+	r1 += 1
+	*(u64 *)(r2 + 16) = r1
 	r2 = .L__profc___ucmpti2 ll
 	r1 = *(u64 *)(r2 + 24)
 	r1 += 1
@@ -7942,6 +9354,10 @@ LBB117_6:
 	if r1 >= r2 goto LBB117_8
 	goto LBB117_7
 LBB117_7:
+	r2 = __llvm_gcov_ctr.117 ll
+	r1 = *(u64 *)(r2 + 24)
+	r1 += 1
+	*(u64 *)(r2 + 24) = r1
 	r2 = .L__profc___ucmpti2 ll
 	r1 = *(u64 *)(r2 + 32)
 	r1 += 1
@@ -7950,6 +9366,10 @@ LBB117_7:
 	*(u32 *)(r10 - 4) = r1
 	goto LBB117_9
 LBB117_8:
+	r2 = __llvm_gcov_ctr.117 ll
+	r1 = *(u64 *)(r2 + 32)
+	r1 += 1
+	*(u64 *)(r2 + 32) = r1
 	r1 = 1
 	*(u32 *)(r10 - 4) = r1
 	goto LBB117_9
@@ -7958,6 +9378,583 @@ LBB117_9:
 	exit
 .Lfunc_end117:
 	.size	__ucmpti2, .Lfunc_end117-__ucmpti2
+                                        # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+# %bb.0:
+	r1 = 0
+	*(u64 *)(r10 - 8) = r1
+LBB118_1:                               # =>This Loop Header: Depth=1
+                                        #     Child Loop BB118_2 Depth 2
+	r1 = *(u64 *)(r10 - 8)
+	*(u64 *)(r10 - 56) = r1
+	r1 <<= 32
+	r1 s>>= 32
+	r1 *= 40
+	r3 = __llvm_internal_gcov_emit_file_info ll
+	r3 += r1
+	*(u64 *)(r10 - 48) = r3
+	r1 = *(u64 *)(r3 + 0)
+	r2 = *(u32 *)(r3 + 8)
+	r3 = *(u32 *)(r3 + 12)
+	call llvm_gcda_start_file
+	r1 = *(u64 *)(r10 - 48)
+	r3 = 0
+	r2 = *(u64 *)(r1 + 32)
+	*(u64 *)(r10 - 40) = r2
+	r2 = *(u64 *)(r1 + 24)
+	*(u64 *)(r10 - 32) = r2
+	r2 = *(u32 *)(r1 + 16)
+	r2 <<= 32
+	r2 s>>= 32
+	*(u64 *)(r10 - 24) = r2
+	r1 = 1
+	*(u64 *)(r10 - 16) = r3
+	if r1 s> r2 goto LBB118_3
+	goto LBB118_2
+LBB118_2:                               #   Parent Loop BB118_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	r2 = *(u64 *)(r10 - 16)
+	r1 = *(u64 *)(r10 - 32)
+	r2 <<= 32
+	*(u64 *)(r10 - 64) = r2
+	r2 s>>= 32
+	*(u64 *)(r10 - 72) = r2
+	r2 *= 12
+	r1 += r2
+	r3 = *(u32 *)(r1 + 8)
+	r2 = *(u32 *)(r1 + 4)
+	r1 = *(u32 *)(r1 + 0)
+	call llvm_gcda_emit_function
+	r2 = *(u64 *)(r10 - 72)
+	r1 = *(u64 *)(r10 - 40)
+	r2 <<= 4
+	r1 += r2
+	r2 = *(u64 *)(r1 + 8)
+	r1 = *(u32 *)(r1 + 0)
+	call llvm_gcda_emit_arcs
+	r2 = *(u64 *)(r10 - 64)
+	r1 = *(u64 *)(r10 - 24)
+	r3 = 4294967296 ll
+	r2 += r3
+	r2 s>>= 32
+	r3 = r2
+	*(u64 *)(r10 - 16) = r3
+	if r1 s> r2 goto LBB118_2
+	goto LBB118_3
+LBB118_3:                               #   in Loop: Header=BB118_1 Depth=1
+	r1 = *(u64 *)(r10 - 56)
+	r1 <<= 32
+	r2 = 4294967296 ll
+	r1 += r2
+	r1 s>>= 32
+	*(u64 *)(r10 - 80) = r1
+	call llvm_gcda_summary_info
+	call llvm_gcda_end_file
+	r2 = *(u64 *)(r10 - 80)
+	r1 = 1
+	r3 = r2
+	*(u64 *)(r10 - 8) = r3
+	if r1 s> r2 goto LBB118_1
+	goto LBB118_4
+LBB118_4:
+	exit
+.Lfunc_end118:
+	.size	__llvm_gcov_writeout, .Lfunc_end118-__llvm_gcov_writeout
+                                        # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+# %bb.0:
+	r2 = __llvm_gcov_ctr ll
+	r1 = 0
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.1 ll
+	*(u64 *)(r2 + 0) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 32) = r1
+	r2 = __llvm_gcov_ctr.2 ll
+	*(u64 *)(r2 + 0) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 32) = r1
+	r2 = __llvm_gcov_ctr.3 ll
+	*(u64 *)(r2 + 0) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 32) = r1
+	r2 = __llvm_gcov_ctr.4 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.5 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.6 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.7 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.8 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.9 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.10 ll
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.11 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.12 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.13 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.14 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.15 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.16 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.17 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.18 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.19 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.20 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.21 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.22 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.23 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.24 ll
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.25 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.26 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.27 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.28 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.29 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.30 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.31 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.32 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.33 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.34 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.35 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.36 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.37 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.38 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.39 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.40 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.41 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.42 ll
+	*(u64 *)(r2 + 56) = r1
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.43 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.44 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.45 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.46 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.47 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.48 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.49 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.50 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.51 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.52 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.53 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.54 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.55 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.56 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.57 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.58 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.59 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.60 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.61 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.62 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.63 ll
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.64 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.65 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.66 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.67 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.68 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.69 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.70 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.71 ll
+	*(u64 *)(r2 + 56) = r1
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.72 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.73 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.74 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.75 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.76 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.77 ll
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.78 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.79 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.80 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.81 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.82 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.83 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.84 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.85 ll
+	*(u64 *)(r2 + 56) = r1
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.86 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.87 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.88 ll
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.89 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.90 ll
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.91 ll
+	*(u64 *)(r2 + 56) = r1
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.92 ll
+	*(u64 *)(r2 + 56) = r1
+	*(u64 *)(r2 + 48) = r1
+	*(u64 *)(r2 + 40) = r1
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.93 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.94 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.95 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.96 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.97 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.98 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.99 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.100 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.101 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.102 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.103 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.104 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.105 ll
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.106 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.107 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.108 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.109 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.110 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.111 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.112 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.113 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.114 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.115 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.116 ll
+	*(u64 *)(r2 + 0) = r1
+	r2 = __llvm_gcov_ctr.117 ll
+	*(u64 *)(r2 + 32) = r1
+	*(u64 *)(r2 + 24) = r1
+	*(u64 *)(r2 + 16) = r1
+	*(u64 *)(r2 + 8) = r1
+	*(u64 *)(r2 + 0) = r1
+	exit
+.Lfunc_end119:
+	.size	__llvm_gcov_reset, .Lfunc_end119-__llvm_gcov_reset
+                                        # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+# %bb.0:
+	r1 = __llvm_gcov_writeout ll
+	r2 = __llvm_gcov_reset ll
+	call llvm_gcov_init
+	exit
+.Lfunc_end120:
+	.size	__llvm_gcov_init, .Lfunc_end120-__llvm_gcov_init
                                         # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.local	l64a.s
@@ -7971,6 +9968,1100 @@ digits:
 	.type	seed,@object                    # @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,24,16
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,16,8
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,32,16
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,24,16
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,16,8
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,56,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,8,8
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,8,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,24,16
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,24,16
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,8,8
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,8,8
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,24,16
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,40,16
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,56,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,24,16
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,8,8
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,16,8
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,8,8
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,24,16
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,24,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,16,8
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,16,8
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,16,8
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,40,16
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,48,16
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,16,8
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,64,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,40,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,48,16
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,40,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,16,8
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,40,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,8,8
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,8,8
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,8,8
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,8,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,8,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,8,8
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,8,8
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,8,8
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,8,8
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,24,16
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,24,16
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,16,8
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,40,16
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,32,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,32,16
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,24,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,32,16
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,48,16
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,24,16
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,64,16
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,24,16
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,24,16
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,24,16
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,48,16
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,48,16
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,48,16
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,24,16
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,24,16
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,32,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,64,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,8,8
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,56,16
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,32,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,32,16
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,64,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,64,16
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,24,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,8,8
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,8,8
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,8,8
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,40,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,8,8
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,40,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,8,8
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,8,8
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,24,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,8,8
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,8,8
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,8,8
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,40,16
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,8,8
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,40,16
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-bpf.gcda"
+	.size	.L__unnamed_1, 47
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               # 0x0
+	.long	560687177                       # 0x216b6849
+	.long	742410342                       # 0x2c404866
+	.long	1                               # 0x1
+	.long	1589591758                      # 0x5ebf3ece
+	.long	742410342                       # 0x2c404866
+	.long	2                               # 0x2
+	.long	2176136383                      # 0x81b534bf
+	.long	742410342                       # 0x2c404866
+	.long	3                               # 0x3
+	.long	3586625172                      # 0xd5c78e94
+	.long	742410342                       # 0x2c404866
+	.long	4                               # 0x4
+	.long	2314569740                      # 0x89f5880c
+	.long	742410342                       # 0x2c404866
+	.long	5                               # 0x5
+	.long	1458633189                      # 0x56f0f9e5
+	.long	742410342                       # 0x2c404866
+	.long	6                               # 0x6
+	.long	1190300833                      # 0x46f28ca1
+	.long	742410342                       # 0x2c404866
+	.long	7                               # 0x7
+	.long	758327989                       # 0x2d332ab5
+	.long	742410342                       # 0x2c404866
+	.long	8                               # 0x8
+	.long	1651479037                      # 0x626f91fd
+	.long	742410342                       # 0x2c404866
+	.long	9                               # 0x9
+	.long	4132343275                      # 0xf64e8deb
+	.long	742410342                       # 0x2c404866
+	.long	10                              # 0xa
+	.long	734262523                       # 0x2bc3f4fb
+	.long	742410342                       # 0x2c404866
+	.long	11                              # 0xb
+	.long	2463424677                      # 0x92d4e0a5
+	.long	742410342                       # 0x2c404866
+	.long	12                              # 0xc
+	.long	1419026334                      # 0x54949f9e
+	.long	742410342                       # 0x2c404866
+	.long	13                              # 0xd
+	.long	3154471370                      # 0xbc0569ca
+	.long	742410342                       # 0x2c404866
+	.long	14                              # 0xe
+	.long	2077973487                      # 0x7bdb5bef
+	.long	742410342                       # 0x2c404866
+	.long	15                              # 0xf
+	.long	1474691227                      # 0x57e6009b
+	.long	742410342                       # 0x2c404866
+	.long	16                              # 0x10
+	.long	3710986016                      # 0xdd312720
+	.long	742410342                       # 0x2c404866
+	.long	17                              # 0x11
+	.long	1305101473                      # 0x4dca44a1
+	.long	742410342                       # 0x2c404866
+	.long	18                              # 0x12
+	.long	3762036564                      # 0xe03c1f54
+	.long	742410342                       # 0x2c404866
+	.long	19                              # 0x13
+	.long	477914433                       # 0x1c7c6541
+	.long	742410342                       # 0x2c404866
+	.long	20                              # 0x14
+	.long	3923035234                      # 0xe9d4c462
+	.long	742410342                       # 0x2c404866
+	.long	21                              # 0x15
+	.long	951651702                       # 0x38b90d76
+	.long	742410342                       # 0x2c404866
+	.long	22                              # 0x16
+	.long	4206925919                      # 0xfac0985f
+	.long	742410342                       # 0x2c404866
+	.long	23                              # 0x17
+	.long	32773942                        # 0x1f41736
+	.long	742410342                       # 0x2c404866
+	.long	24                              # 0x18
+	.long	2877267246                      # 0xab7f9d2e
+	.long	742410342                       # 0x2c404866
+	.long	25                              # 0x19
+	.long	860405771                       # 0x3348c00b
+	.long	742410342                       # 0x2c404866
+	.long	26                              # 0x1a
+	.long	815674877                       # 0x309e35fd
+	.long	742410342                       # 0x2c404866
+	.long	27                              # 0x1b
+	.long	289327647                       # 0x113eca1f
+	.long	742410342                       # 0x2c404866
+	.long	28                              # 0x1c
+	.long	2093612798                      # 0x7cc9fefe
+	.long	742410342                       # 0x2c404866
+	.long	29                              # 0x1d
+	.long	4177956716                      # 0xf9068f6c
+	.long	742410342                       # 0x2c404866
+	.long	30                              # 0x1e
+	.long	3434808461                      # 0xccbb048d
+	.long	742410342                       # 0x2c404866
+	.long	31                              # 0x1f
+	.long	3206497114                      # 0xbf1f435a
+	.long	742410342                       # 0x2c404866
+	.long	32                              # 0x20
+	.long	1369848209                      # 0x51a63991
+	.long	742410342                       # 0x2c404866
+	.long	33                              # 0x21
+	.long	938831176                       # 0x37f56d48
+	.long	742410342                       # 0x2c404866
+	.long	34                              # 0x22
+	.long	1663146323                      # 0x63219953
+	.long	742410342                       # 0x2c404866
+	.long	35                              # 0x23
+	.long	4111410217                      # 0xf50f2429
+	.long	742410342                       # 0x2c404866
+	.long	36                              # 0x24
+	.long	2854034444                      # 0xaa1d1c0c
+	.long	742410342                       # 0x2c404866
+	.long	37                              # 0x25
+	.long	4192776208                      # 0xf9e8b010
+	.long	742410342                       # 0x2c404866
+	.long	38                              # 0x26
+	.long	1477657574                      # 0x581343e6
+	.long	742410342                       # 0x2c404866
+	.long	39                              # 0x27
+	.long	2960567906                      # 0xb076ae62
+	.long	742410342                       # 0x2c404866
+	.long	40                              # 0x28
+	.long	3390076872                      # 0xca1077c8
+	.long	742410342                       # 0x2c404866
+	.long	41                              # 0x29
+	.long	1543282230                      # 0x5bfc9e36
+	.long	742410342                       # 0x2c404866
+	.long	42                              # 0x2a
+	.long	3737986119                      # 0xdecd2447
+	.long	742410342                       # 0x2c404866
+	.long	43                              # 0x2b
+	.long	49556427                        # 0x2f42bcb
+	.long	742410342                       # 0x2c404866
+	.long	44                              # 0x2c
+	.long	234051526                       # 0xdf357c6
+	.long	742410342                       # 0x2c404866
+	.long	45                              # 0x2d
+	.long	3256799948                      # 0xc21ed2cc
+	.long	742410342                       # 0x2c404866
+	.long	46                              # 0x2e
+	.long	777295480                       # 0x2e549678
+	.long	742410342                       # 0x2c404866
+	.long	47                              # 0x2f
+	.long	14040531                        # 0xd63dd3
+	.long	742410342                       # 0x2c404866
+	.long	48                              # 0x30
+	.long	8047973                         # 0x7acd65
+	.long	742410342                       # 0x2c404866
+	.long	49                              # 0x31
+	.long	719459161                       # 0x2ae21359
+	.long	742410342                       # 0x2c404866
+	.long	50                              # 0x32
+	.long	243358501                       # 0xe815b25
+	.long	742410342                       # 0x2c404866
+	.long	51                              # 0x33
+	.long	3262173932                      # 0xc270d2ec
+	.long	742410342                       # 0x2c404866
+	.long	52                              # 0x34
+	.long	398910553                       # 0x17c6e459
+	.long	742410342                       # 0x2c404866
+	.long	53                              # 0x35
+	.long	3354219739                      # 0xc7ed54db
+	.long	742410342                       # 0x2c404866
+	.long	54                              # 0x36
+	.long	2570308788                      # 0x9933ccb4
+	.long	742410342                       # 0x2c404866
+	.long	55                              # 0x37
+	.long	982429111                       # 0x3a8eadb7
+	.long	742410342                       # 0x2c404866
+	.long	56                              # 0x38
+	.long	211491241                       # 0xc9b19a9
+	.long	742410342                       # 0x2c404866
+	.long	57                              # 0x39
+	.long	1075683319                      # 0x401d9ff7
+	.long	742410342                       # 0x2c404866
+	.long	58                              # 0x3a
+	.long	1886352651                      # 0x706f750b
+	.long	742410342                       # 0x2c404866
+	.long	59                              # 0x3b
+	.long	248637203                       # 0xed1e713
+	.long	742410342                       # 0x2c404866
+	.long	60                              # 0x3c
+	.long	703327087                       # 0x29ebeb6f
+	.long	742410342                       # 0x2c404866
+	.long	61                              # 0x3d
+	.long	3690160730                      # 0xdbf3625a
+	.long	742410342                       # 0x2c404866
+	.long	62                              # 0x3e
+	.long	787048238                       # 0x2ee9672e
+	.long	742410342                       # 0x2c404866
+	.long	63                              # 0x3f
+	.long	2119330183                      # 0x7e526987
+	.long	742410342                       # 0x2c404866
+	.long	64                              # 0x40
+	.long	1963040266                      # 0x75019e0a
+	.long	742410342                       # 0x2c404866
+	.long	65                              # 0x41
+	.long	1603391838                      # 0x5f91d15e
+	.long	742410342                       # 0x2c404866
+	.long	66                              # 0x42
+	.long	2340921237                      # 0x8b879f95
+	.long	742410342                       # 0x2c404866
+	.long	67                              # 0x43
+	.long	3028177438                      # 0xb47e521e
+	.long	742410342                       # 0x2c404866
+	.long	68                              # 0x44
+	.long	2265525308                      # 0x87092c3c
+	.long	742410342                       # 0x2c404866
+	.long	69                              # 0x45
+	.long	139524705                       # 0x850fa61
+	.long	742410342                       # 0x2c404866
+	.long	70                              # 0x46
+	.long	3913623866                      # 0xe945293a
+	.long	742410342                       # 0x2c404866
+	.long	71                              # 0x47
+	.long	3453026372                      # 0xcdd10044
+	.long	742410342                       # 0x2c404866
+	.long	72                              # 0x48
+	.long	2321387380                      # 0x8a5d8f74
+	.long	742410342                       # 0x2c404866
+	.long	73                              # 0x49
+	.long	3319939363                      # 0xc5e24123
+	.long	742410342                       # 0x2c404866
+	.long	74                              # 0x4a
+	.long	398991913                       # 0x17c82229
+	.long	742410342                       # 0x2c404866
+	.long	75                              # 0x4b
+	.long	333429647                       # 0x13dfbb8f
+	.long	742410342                       # 0x2c404866
+	.long	76                              # 0x4c
+	.long	3927133990                      # 0xea134f26
+	.long	742410342                       # 0x2c404866
+	.long	77                              # 0x4d
+	.long	1797971294                      # 0x6b2add5e
+	.long	742410342                       # 0x2c404866
+	.long	78                              # 0x4e
+	.long	1713332582                      # 0x661f6166
+	.long	742410342                       # 0x2c404866
+	.long	79                              # 0x4f
+	.long	2375727721                      # 0x8d9aba69
+	.long	742410342                       # 0x2c404866
+	.long	80                              # 0x50
+	.long	3586767156                      # 0xd5c9b934
+	.long	742410342                       # 0x2c404866
+	.long	81                              # 0x51
+	.long	3910023869                      # 0xe90e3abd
+	.long	742410342                       # 0x2c404866
+	.long	82                              # 0x52
+	.long	4189915105                      # 0xf9bd07e1
+	.long	742410342                       # 0x2c404866
+	.long	83                              # 0x53
+	.long	2527353334                      # 0x96a459f6
+	.long	742410342                       # 0x2c404866
+	.long	84                              # 0x54
+	.long	3429265923                      # 0xcc667203
+	.long	742410342                       # 0x2c404866
+	.long	85                              # 0x55
+	.long	1283962724                      # 0x4c87b764
+	.long	742410342                       # 0x2c404866
+	.long	86                              # 0x56
+	.long	3338450337                      # 0xc6fcb5a1
+	.long	742410342                       # 0x2c404866
+	.long	87                              # 0x57
+	.long	3971836509                      # 0xecbd6a5d
+	.long	742410342                       # 0x2c404866
+	.long	88                              # 0x58
+	.long	4260339231                      # 0xfdef9e1f
+	.long	742410342                       # 0x2c404866
+	.long	89                              # 0x59
+	.long	4160738226                      # 0xf7ffd3b2
+	.long	742410342                       # 0x2c404866
+	.long	90                              # 0x5a
+	.long	1309372079                      # 0x4e0b6eaf
+	.long	742410342                       # 0x2c404866
+	.long	91                              # 0x5b
+	.long	3151575564                      # 0xbbd93a0c
+	.long	742410342                       # 0x2c404866
+	.long	92                              # 0x5c
+	.long	3938977714                      # 0xeac807b2
+	.long	742410342                       # 0x2c404866
+	.long	93                              # 0x5d
+	.long	3228738087                      # 0xc072a227
+	.long	742410342                       # 0x2c404866
+	.long	94                              # 0x5e
+	.long	3135705803                      # 0xbae712cb
+	.long	742410342                       # 0x2c404866
+	.long	95                              # 0x5f
+	.long	4061147315                      # 0xf21030b3
+	.long	742410342                       # 0x2c404866
+	.long	96                              # 0x60
+	.long	2783543715                      # 0xa5e981a3
+	.long	742410342                       # 0x2c404866
+	.long	97                              # 0x61
+	.long	2471046843                      # 0x93492ebb
+	.long	742410342                       # 0x2c404866
+	.long	98                              # 0x62
+	.long	403058134                       # 0x18062dd6
+	.long	742410342                       # 0x2c404866
+	.long	99                              # 0x63
+	.long	260073473                       # 0xf806801
+	.long	742410342                       # 0x2c404866
+	.long	100                             # 0x64
+	.long	1259876295                      # 0x4b182fc7
+	.long	742410342                       # 0x2c404866
+	.long	101                             # 0x65
+	.long	2975678116                      # 0xb15d3ea4
+	.long	742410342                       # 0x2c404866
+	.long	102                             # 0x66
+	.long	2579807359                      # 0x99c4bc7f
+	.long	742410342                       # 0x2c404866
+	.long	103                             # 0x67
+	.long	863102422                       # 0x3371e5d6
+	.long	742410342                       # 0x2c404866
+	.long	104                             # 0x68
+	.long	650832017                       # 0x26cae891
+	.long	742410342                       # 0x2c404866
+	.long	105                             # 0x69
+	.long	90061610                        # 0x55e3b2a
+	.long	742410342                       # 0x2c404866
+	.long	106                             # 0x6a
+	.long	3598610789                      # 0xd67e7165
+	.long	742410342                       # 0x2c404866
+	.long	107                             # 0x6b
+	.long	2351688191                      # 0x8c2be9ff
+	.long	742410342                       # 0x2c404866
+	.long	108                             # 0x6c
+	.long	1438161982                      # 0x55b89c3e
+	.long	742410342                       # 0x2c404866
+	.long	109                             # 0x6d
+	.long	2438880600                      # 0x915e5d58
+	.long	742410342                       # 0x2c404866
+	.long	110                             # 0x6e
+	.long	1284541841                      # 0x4c908d91
+	.long	742410342                       # 0x2c404866
+	.long	111                             # 0x6f
+	.long	3593193962                      # 0xd62bc9ea
+	.long	742410342                       # 0x2c404866
+	.long	112                             # 0x70
+	.long	1755082314                      # 0x689c6e4a
+	.long	742410342                       # 0x2c404866
+	.long	113                             # 0x71
+	.long	3432612426                      # 0xcc99824a
+	.long	742410342                       # 0x2c404866
+	.long	114                             # 0x72
+	.long	1404964820                      # 0x53be0fd4
+	.long	742410342                       # 0x2c404866
+	.long	115                             # 0x73
+	.long	413908966                       # 0x18abbfe6
+	.long	742410342                       # 0x2c404866
+	.long	116                             # 0x74
+	.long	3027808697                      # 0xb478b1b9
+	.long	742410342                       # 0x2c404866
+	.long	117                             # 0x75
+	.long	540762785                       # 0x203b62a1
+	.long	742410342                       # 0x2c404866
+	.size	__llvm_internal_gcov_emit_function_args.0, 1416
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.1
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.2
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.3
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.4
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.5
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.6
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.7
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.8
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.9
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.10
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.11
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.12
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.13
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.14
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.15
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.16
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.17
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.18
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.19
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.20
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.21
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.22
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.23
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.24
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.25
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.26
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.27
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.28
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.29
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.30
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.31
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.32
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.33
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.34
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.35
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.36
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.37
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.38
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.39
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.40
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.41
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.42
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.43
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.44
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.45
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.46
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.47
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.48
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.49
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.50
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.51
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.52
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.53
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.54
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.55
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.56
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.57
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.58
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.59
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.60
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.61
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.62
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.63
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.64
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.65
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.66
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.67
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.68
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.69
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.70
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.71
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.72
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.73
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.74
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.75
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.76
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.77
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.78
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.79
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.80
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.81
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.82
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.83
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.84
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.85
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.86
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.87
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.88
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.89
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.90
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.91
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.92
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.93
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.94
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.95
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.96
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.97
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.98
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.99
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.100
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.101
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.102
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.103
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.104
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.105
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.106
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.107
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.108
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.109
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.110
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.111
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.112
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.113
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.114
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.115
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.116
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.117
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1888
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.quad	.L__unnamed_1
+	.long	875575338                       # 0x3430382a
+	.long	742410342                       # 0x2c404866
+	.long	118                             # 0x76
+	.zero	4
+	.quad	__llvm_internal_gcov_emit_function_args.0
+	.quad	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.quad	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       # @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -10703,9 +13794,133 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

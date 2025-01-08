@@ -13,6 +13,10 @@ make_ti:                                # @make_ti
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc_make_ti
@@ -87,6 +91,10 @@ make_tu:                                # @make_tu
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.1
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc_make_tu
@@ -176,6 +184,10 @@ memmove:                                # @memmove
 	cmp	rax, qword ptr [rbp - 32]
 	jae	.LBB2_6
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.2
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmove+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -205,6 +217,10 @@ memmove:                                # @memmove
 	mov	qword ptr [rbp - 32], rdx
 	mov	byte ptr [rax - 1], cl
 # %bb.4:                                #   in Loop: Header=BB2_2 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.2+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -224,6 +240,10 @@ memmove:                                # @memmove
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB2_11
 # %bb.9:                                #   in Loop: Header=BB2_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.2+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmove+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -244,9 +264,15 @@ memmove:                                # @memmove
 	mov	qword ptr [rbp - 24], rax
 	jmp	.LBB2_8
 .LBB2_11:
-	jmp	.LBB2_12
+	movabs	rax, offset __llvm_gcov_ctr.2+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB2_12:
-	jmp	.LBB2_13
+	movabs	rax, offset __llvm_gcov_ctr.2+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB2_13:
 	mov	rax, qword ptr [rbp - 8]
 	pop	rbp
@@ -331,6 +357,10 @@ memccpy:                                # @memccpy
 	mov	byte ptr [rbp - 57], al         # 1-byte Spill
 	je	.LBB3_4
 # %bb.2:                                #   in Loop: Header=BB3_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.3
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memccpy+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -349,6 +379,10 @@ memccpy:                                # @memccpy
 	jmp	.LBB3_4
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	mov	al, byte ptr [rbp - 58]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.3+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_memccpy+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -365,6 +399,10 @@ memccpy:                                # @memccpy
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB3_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.3+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 40]
 	add	rax, -1
 	mov	qword ptr [rbp - 40], rax
@@ -379,6 +417,10 @@ memccpy:                                # @memccpy
 	cmp	qword ptr [rbp - 40], 0
 	je	.LBB3_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.3+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memccpy+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -388,6 +430,10 @@ memccpy:                                # @memccpy
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB3_10
 .LBB3_9:
+	movabs	rax, offset __llvm_gcov_ctr.3+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB3_10:
 	mov	rax, qword ptr [rbp - 8]
@@ -470,6 +516,10 @@ memchr:                                 # @memchr
 	mov	byte ptr [rbp - 33], al         # 1-byte Spill
 	je	.LBB4_4
 # %bb.2:                                #   in Loop: Header=BB4_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.4
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memchr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -485,6 +535,10 @@ memchr:                                 # @memchr
 	jmp	.LBB4_4
 .LBB4_3:                                #   in Loop: Header=BB4_1 Depth=1
 	mov	al, byte ptr [rbp - 34]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.4+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_memchr+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -501,6 +555,10 @@ memchr:                                 # @memchr
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB4_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.4+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 32]
 	add	rax, 1
 	mov	qword ptr [rbp - 32], rax
@@ -512,6 +570,10 @@ memchr:                                 # @memchr
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB4_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.4+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memchr+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -520,10 +582,13 @@ memchr:                                 # @memchr
 	mov	qword ptr [rbp - 48], rax       # 8-byte Spill
 	jmp	.LBB4_10
 .LBB4_9:
+	movabs	rax, offset __llvm_gcov_ctr.4+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	mov	qword ptr [rbp - 48], rax       # 8-byte Spill
-	jmp	.LBB4_10
 .LBB4_10:
 	mov	rax, qword ptr [rbp - 48]       # 8-byte Reload
 	pop	rbp
@@ -603,6 +668,10 @@ memcmp:                                 # @memcmp
 	mov	byte ptr [rbp - 41], al         # 1-byte Spill
 	je	.LBB5_4
 # %bb.2:                                #   in Loop: Header=BB5_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.5
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memcmp+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -620,6 +689,10 @@ memcmp:                                 # @memcmp
 	jmp	.LBB5_4
 .LBB5_3:                                #   in Loop: Header=BB5_1 Depth=1
 	mov	al, byte ptr [rbp - 42]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.5+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_memcmp+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -636,6 +709,10 @@ memcmp:                                 # @memcmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB5_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.5+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -650,6 +727,10 @@ memcmp:                                 # @memcmp
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB5_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.5+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memcmp+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -662,9 +743,12 @@ memcmp:                                 # @memcmp
 	mov	dword ptr [rbp - 48], eax       # 4-byte Spill
 	jmp	.LBB5_10
 .LBB5_9:
+	movabs	rax, offset __llvm_gcov_ctr.5+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
 	mov	dword ptr [rbp - 48], eax       # 4-byte Spill
-	jmp	.LBB5_10
 .LBB5_10:
 	mov	eax, dword ptr [rbp - 48]       # 4-byte Reload
 	pop	rbp
@@ -726,6 +810,10 @@ memcpy:                                 # @memcpy
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.6
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	mov	qword ptr [rbp - 24], rdx
@@ -756,6 +844,10 @@ memcpy:                                 # @memcpy
 	mov	qword ptr [rbp - 32], rdx
 	mov	byte ptr [rax], cl
 # %bb.3:                                #   in Loop: Header=BB6_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.6+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -852,6 +944,10 @@ memrchr:                                # @memrchr
 	cmp	eax, dword ptr [rbp - 20]
 	jne	.LBB7_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.7
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memrchr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -861,8 +957,16 @@ memrchr:                                # @memrchr
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB7_6
 .LBB7_4:                                #   in Loop: Header=BB7_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.7+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	jmp	.LBB7_1
 .LBB7_5:
+	movabs	rax, offset __llvm_gcov_ctr.7+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB7_6:
 	mov	rax, qword ptr [rbp - 8]
@@ -925,6 +1029,10 @@ memset:                                 # @memset
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	mov	qword ptr [rbp - 24], rdx
@@ -947,6 +1055,10 @@ memset:                                 # @memset
 	mov	rax, qword ptr [rbp - 32]
 	mov	byte ptr [rax], cl
 # %bb.3:                                #   in Loop: Header=BB8_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.8+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -1015,6 +1127,10 @@ stpcpy:                                 # @stpcpy
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.9
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc_stpcpy
@@ -1034,6 +1150,10 @@ stpcpy:                                 # @stpcpy
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.3:                                #   in Loop: Header=BB9_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.9+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	add	rax, 1
 	mov	qword ptr [rbp - 16], rax
@@ -1102,6 +1222,10 @@ strchrnul:                              # @strchrnul
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.10
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_strchrnul
@@ -1121,6 +1245,10 @@ strchrnul:                              # @strchrnul
 	mov	byte ptr [rbp - 13], al         # 1-byte Spill
 	je	.LBB10_4
 # %bb.2:                                #   in Loop: Header=BB10_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.10+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strchrnul+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1136,6 +1264,10 @@ strchrnul:                              # @strchrnul
 	jmp	.LBB10_4
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	mov	al, byte ptr [rbp - 14]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.10+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_strchrnul+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -1152,6 +1284,10 @@ strchrnul:                              # @strchrnul
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB10_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.10+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 1
 	mov	qword ptr [rbp - 8], rax
@@ -1225,6 +1361,10 @@ strchr:                                 # @strchr
 	mov	qword ptr [rax], rcx
 	jmp	.LBB11_2
 .LBB11_1:                               #   in Loop: Header=BB11_2 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.11+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strchr+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1235,6 +1375,10 @@ strchr:                                 # @strchr
 	cmp	eax, dword ptr [rbp - 20]
 	jne	.LBB11_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.11
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strchr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1252,6 +1396,10 @@ strchr:                                 # @strchr
 	cmp	byte ptr [rax], 0
 	jne	.LBB11_1
 # %bb.6:
+	movabs	rax, offset __llvm_gcov_ctr.11+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB11_7:
 	mov	rax, qword ptr [rbp - 8]
@@ -1314,6 +1462,10 @@ strcmp:                                 # @strcmp
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.12
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc_strcmp
@@ -1331,6 +1483,10 @@ strcmp:                                 # @strcmp
 	mov	byte ptr [rbp - 17], al         # 1-byte Spill
 	jne	.LBB12_4
 # %bb.2:                                #   in Loop: Header=BB12_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.12+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strcmp+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1346,6 +1502,10 @@ strcmp:                                 # @strcmp
 	jmp	.LBB12_4
 .LBB12_3:                               #   in Loop: Header=BB12_1 Depth=1
 	mov	al, byte ptr [rbp - 18]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.12+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_strcmp+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -1362,6 +1522,10 @@ strcmp:                                 # @strcmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB12_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.12+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 1
 	mov	qword ptr [rbp - 8], rax
@@ -1434,6 +1598,10 @@ strlen:                                 # @strlen
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.13
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc_strlen
 	mov	rcx, qword ptr [rax]
@@ -1451,6 +1619,10 @@ strlen:                                 # @strlen
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.3:                                #   in Loop: Header=BB13_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.13+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 1
 	mov	qword ptr [rbp - 8], rax
@@ -1536,6 +1708,10 @@ strncmp:                                # @strncmp
 	cmp	rax, 0
 	jne	.LBB14_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.14+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncmp+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1543,7 +1719,10 @@ strncmp:                                # @strncmp
 	mov	dword ptr [rbp - 4], 0
 	jmp	.LBB14_14
 .LBB14_2:
-	jmp	.LBB14_3
+	movabs	rax, offset __llvm_gcov_ctr.14
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB14_3:                               # =>This Inner Loop Header: Depth=1
 	mov	rax, qword ptr [rbp - 40]
 	movzx	ecx, byte ptr [rax]
@@ -1553,6 +1732,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [rbp - 49], al         # 1-byte Spill
 	je	.LBB14_10
 # %bb.4:                                #   in Loop: Header=BB14_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.14+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncmp+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1565,6 +1748,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [rbp - 49], al         # 1-byte Spill
 	je	.LBB14_10
 # %bb.5:                                #   in Loop: Header=BB14_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.14+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncmp+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1580,6 +1767,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [rbp - 49], al         # 1-byte Spill
 	je	.LBB14_10
 # %bb.7:                                #   in Loop: Header=BB14_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.14+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncmp+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1602,6 +1793,10 @@ strncmp:                                # @strncmp
 	jmp	.LBB14_10
 .LBB14_9:                               #   in Loop: Header=BB14_3 Depth=1
 	mov	al, byte ptr [rbp - 50]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.14+40
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_strncmp+32
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -1618,6 +1813,10 @@ strncmp:                                # @strncmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.12:                               #   in Loop: Header=BB14_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.14+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 40]
 	add	rax, 1
 	mov	qword ptr [rbp - 40], rax
@@ -1696,6 +1895,10 @@ swab:                                   # @swab
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.15
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	mov	qword ptr [rbp - 24], rdx
@@ -1730,6 +1933,10 @@ swab:                                   # @swab
 	add	rax, 2
 	mov	qword ptr [rbp - 32], rax
 # %bb.3:                                #   in Loop: Header=BB15_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.15+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	sub	rax, 2
 	mov	qword ptr [rbp - 24], rax
@@ -1795,6 +2002,10 @@ isalpha:                                # @isalpha
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isalpha
 	mov	rcx, qword ptr [rax]
@@ -1866,6 +2077,10 @@ isascii:                                # @isascii
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.17
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isascii
 	mov	rcx, qword ptr [rax]
@@ -1937,6 +2152,10 @@ isblank:                                # @isblank
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.18
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isblank
 	mov	rcx, qword ptr [rax]
@@ -1947,6 +2166,10 @@ isblank:                                # @isblank
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	je	.LBB18_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.18+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_isblank+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -1959,6 +2182,10 @@ isblank:                                # @isblank
 	jne	.LBB18_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.18+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_isblank+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -2027,6 +2254,10 @@ iscntrl:                                # @iscntrl
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.19
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_iscntrl
 	mov	rcx, qword ptr [rax]
@@ -2037,6 +2268,10 @@ iscntrl:                                # @iscntrl
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	jb	.LBB19_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.19+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iscntrl+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2049,6 +2284,10 @@ iscntrl:                                # @iscntrl
 	jne	.LBB19_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.19+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_iscntrl+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -2117,6 +2356,10 @@ isdigit:                                # @isdigit
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.20
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isdigit
 	mov	rcx, qword ptr [rax]
@@ -2187,6 +2430,10 @@ isgraph:                                # @isgraph
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.21
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isgraph
 	mov	rcx, qword ptr [rax]
@@ -2257,6 +2504,10 @@ islower:                                # @islower
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.22
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_islower
 	mov	rcx, qword ptr [rax]
@@ -2327,6 +2578,10 @@ isprint:                                # @isprint
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.23
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isprint
 	mov	rcx, qword ptr [rax]
@@ -2397,6 +2652,10 @@ isspace:                                # @isspace
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isspace
 	mov	rcx, qword ptr [rax]
@@ -2407,6 +2666,10 @@ isspace:                                # @isspace
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	je	.LBB24_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.24+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_isspace+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2421,6 +2684,10 @@ isspace:                                # @isspace
 	jne	.LBB24_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.24+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_isspace+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -2489,6 +2756,10 @@ isupper:                                # @isupper
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.25
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_isupper
 	mov	rcx, qword ptr [rax]
@@ -2559,6 +2830,10 @@ iswcntrl:                               # @iswcntrl
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.26
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_iswcntrl
 	mov	rcx, qword ptr [rax]
@@ -2569,6 +2844,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	jb	.LBB26_7
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.26+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswcntrl+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2580,6 +2859,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	jb	.LBB26_7
 # %bb.2:
+	movabs	rax, offset __llvm_gcov_ctr.26+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswcntrl+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2596,6 +2879,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	jb	.LBB26_7
 # %bb.4:
+	movabs	rax, offset __llvm_gcov_ctr.26+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswcntrl+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2615,6 +2902,10 @@ iswcntrl:                               # @iswcntrl
 	jne	.LBB26_7
 # %bb.6:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.26+32
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_iswcntrl+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -2683,6 +2974,10 @@ iswdigit:                               # @iswdigit
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.27
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_iswdigit
 	mov	rcx, qword ptr [rax]
@@ -2761,6 +3056,10 @@ iswprint:                               # @iswprint
 	cmp	dword ptr [rbp - 8], 255
 	jae	.LBB28_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.28
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2778,6 +3077,10 @@ iswprint:                               # @iswprint
 	cmp	dword ptr [rbp - 8], 8232
 	jb	.LBB28_7
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.28+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2787,6 +3090,10 @@ iswprint:                               # @iswprint
 	cmp	eax, 47062
 	jb	.LBB28_7
 # %bb.4:
+	movabs	rax, offset __llvm_gcov_ctr.28+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2807,6 +3114,10 @@ iswprint:                               # @iswprint
 	mov	qword ptr [rax], rcx
 	jmp	.LBB28_8
 .LBB28_7:
+	movabs	rax, offset __llvm_gcov_ctr.28+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2819,6 +3130,10 @@ iswprint:                               # @iswprint
 	cmp	eax, 1048579
 	ja	.LBB28_11
 # %bb.9:
+	movabs	rax, offset __llvm_gcov_ctr.28+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2834,6 +3149,10 @@ iswprint:                               # @iswprint
 	mov	qword ptr [rax], rcx
 	jmp	.LBB28_12
 .LBB28_11:
+	movabs	rax, offset __llvm_gcov_ctr.28+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswprint+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2841,6 +3160,10 @@ iswprint:                               # @iswprint
 	mov	dword ptr [rbp - 4], 0
 	jmp	.LBB28_13
 .LBB28_12:
+	movabs	rax, offset __llvm_gcov_ctr.28+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 1
 .LBB28_13:
 	mov	eax, dword ptr [rbp - 4]
@@ -2903,6 +3226,10 @@ iswxdigit:                              # @iswxdigit
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.29
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_iswxdigit
 	mov	rcx, qword ptr [rax]
@@ -2915,6 +3242,10 @@ iswxdigit:                              # @iswxdigit
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	jb	.LBB29_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.29+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_iswxdigit+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -2930,6 +3261,10 @@ iswxdigit:                              # @iswxdigit
 	jne	.LBB29_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.29+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_iswxdigit+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -2998,6 +3333,10 @@ toascii:                                # @toascii
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.30
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_toascii
 	mov	rcx, qword ptr [rax]
@@ -3077,6 +3416,10 @@ fdim:                                   # @fdim
 	jne	.LBB31_1
 	jmp	.LBB31_2
 .LBB31_1:
+	movabs	rax, offset __llvm_gcov_ctr.31
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdim+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3092,6 +3435,10 @@ fdim:                                   # @fdim
 	jne	.LBB31_3
 	jmp	.LBB31_4
 .LBB31_3:
+	movabs	rax, offset __llvm_gcov_ctr.31+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdim+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3104,6 +3451,10 @@ fdim:                                   # @fdim
 	ucomisd	xmm0, qword ptr [rbp - 24]
 	jbe	.LBB31_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.31+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdim+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3113,9 +3464,12 @@ fdim:                                   # @fdim
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 	jmp	.LBB31_7
 .LBB31_6:
+	movabs	rax, offset __llvm_gcov_ctr.31+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xorps	xmm0, xmm0
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
-	jmp	.LBB31_7
 .LBB31_7:
 	movsd	xmm0, qword ptr [rbp - 32]      # 8-byte Reload
                                         # xmm0 = mem[0],zero
@@ -3194,6 +3548,10 @@ fdimf:                                  # @fdimf
 	jne	.LBB32_1
 	jmp	.LBB32_2
 .LBB32_1:
+	movabs	rax, offset __llvm_gcov_ctr.32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdimf+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3209,6 +3567,10 @@ fdimf:                                  # @fdimf
 	jne	.LBB32_3
 	jmp	.LBB32_4
 .LBB32_3:
+	movabs	rax, offset __llvm_gcov_ctr.32+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdimf+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3221,6 +3583,10 @@ fdimf:                                  # @fdimf
 	ucomiss	xmm0, dword ptr [rbp - 12]
 	jbe	.LBB32_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.32+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fdimf+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3230,9 +3596,12 @@ fdimf:                                  # @fdimf
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
 	jmp	.LBB32_7
 .LBB32_6:
+	movabs	rax, offset __llvm_gcov_ctr.32+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xorps	xmm0, xmm0
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
-	jmp	.LBB32_7
 .LBB32_7:
 	movss	xmm0, dword ptr [rbp - 16]      # 4-byte Reload
                                         # xmm0 = mem[0],zero,zero,zero
@@ -3311,6 +3680,10 @@ fmax:                                   # @fmax
 	jne	.LBB33_1
 	jmp	.LBB33_2
 .LBB33_1:
+	movabs	rax, offset __llvm_gcov_ctr.33
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmax+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3326,6 +3699,10 @@ fmax:                                   # @fmax
 	jne	.LBB33_3
 	jmp	.LBB33_4
 .LBB33_3:
+	movabs	rax, offset __llvm_gcov_ctr.33+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmax+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3358,6 +3735,10 @@ fmax:                                   # @fmax
 	cmp	rax, 0
 	jge	.LBB33_7
 # %bb.6:
+	movabs	rax, offset __llvm_gcov_ctr.33+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmax+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3366,6 +3747,10 @@ fmax:                                   # @fmax
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 	jmp	.LBB33_8
 .LBB33_7:
+	movabs	rax, offset __llvm_gcov_ctr.33+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 16]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 .LBB33_8:
@@ -3379,6 +3764,10 @@ fmax:                                   # @fmax
 	ucomisd	xmm0, xmm1
 	jbe	.LBB33_11
 # %bb.10:
+	movabs	rax, offset __llvm_gcov_ctr.33+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmax+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3387,6 +3776,10 @@ fmax:                                   # @fmax
 	movsd	qword ptr [rbp - 40], xmm0      # 8-byte Spill
 	jmp	.LBB33_12
 .LBB33_11:
+	movabs	rax, offset __llvm_gcov_ctr.33+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 16]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 40], xmm0      # 8-byte Spill
 .LBB33_12:
@@ -3467,6 +3860,10 @@ fmaxf:                                  # @fmaxf
 	jne	.LBB34_1
 	jmp	.LBB34_2
 .LBB34_1:
+	movabs	rax, offset __llvm_gcov_ctr.34
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxf+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3482,6 +3879,10 @@ fmaxf:                                  # @fmaxf
 	jne	.LBB34_3
 	jmp	.LBB34_4
 .LBB34_3:
+	movabs	rax, offset __llvm_gcov_ctr.34+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxf+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3514,6 +3915,10 @@ fmaxf:                                  # @fmaxf
 	cmp	eax, 0
 	jge	.LBB34_7
 # %bb.6:
+	movabs	rax, offset __llvm_gcov_ctr.34+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxf+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3522,6 +3927,10 @@ fmaxf:                                  # @fmaxf
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
 	jmp	.LBB34_8
 .LBB34_7:
+	movabs	rax, offset __llvm_gcov_ctr.34+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 8]       # xmm0 = mem[0],zero,zero,zero
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
 .LBB34_8:
@@ -3535,6 +3944,10 @@ fmaxf:                                  # @fmaxf
 	ucomiss	xmm0, xmm1
 	jbe	.LBB34_11
 # %bb.10:
+	movabs	rax, offset __llvm_gcov_ctr.34+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxf+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3543,6 +3956,10 @@ fmaxf:                                  # @fmaxf
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 	jmp	.LBB34_12
 .LBB34_11:
+	movabs	rax, offset __llvm_gcov_ctr.34+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 8]       # xmm0 = mem[0],zero,zero,zero
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 .LBB34_12:
@@ -3625,6 +4042,10 @@ fmaxl:                                  # @fmaxl
 	jne	.LBB35_1
 	jmp	.LBB35_2
 .LBB35_1:
+	movabs	rax, offset __llvm_gcov_ctr.35
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxl+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3640,6 +4061,10 @@ fmaxl:                                  # @fmaxl
 	jne	.LBB35_3
 	jmp	.LBB35_4
 .LBB35_3:
+	movabs	rax, offset __llvm_gcov_ctr.35+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxl+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3667,6 +4092,10 @@ fmaxl:                                  # @fmaxl
 	jns	.LBB35_7
 	jmp	.LBB35_6
 .LBB35_6:
+	movabs	rax, offset __llvm_gcov_ctr.35+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxl+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3675,6 +4104,10 @@ fmaxl:                                  # @fmaxl
 	fstp	tbyte ptr [rbp - 60]            # 10-byte Folded Spill
 	jmp	.LBB35_8
 .LBB35_7:
+	movabs	rax, offset __llvm_gcov_ctr.35+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fld	tbyte ptr [rbp - 32]
 	fstp	tbyte ptr [rbp - 60]            # 10-byte Folded Spill
 .LBB35_8:
@@ -3689,6 +4122,10 @@ fmaxl:                                  # @fmaxl
 	jbe	.LBB35_11
 	jmp	.LBB35_10
 .LBB35_10:
+	movabs	rax, offset __llvm_gcov_ctr.35+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmaxl+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3697,6 +4134,10 @@ fmaxl:                                  # @fmaxl
 	fstp	tbyte ptr [rbp - 72]            # 10-byte Folded Spill
 	jmp	.LBB35_12
 .LBB35_11:
+	movabs	rax, offset __llvm_gcov_ctr.35+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fld	tbyte ptr [rbp - 32]
 	fstp	tbyte ptr [rbp - 72]            # 10-byte Folded Spill
 .LBB35_12:
@@ -3777,6 +4218,10 @@ fmin:                                   # @fmin
 	jne	.LBB36_1
 	jmp	.LBB36_2
 .LBB36_1:
+	movabs	rax, offset __llvm_gcov_ctr.36
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmin+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3792,6 +4237,10 @@ fmin:                                   # @fmin
 	jne	.LBB36_3
 	jmp	.LBB36_4
 .LBB36_3:
+	movabs	rax, offset __llvm_gcov_ctr.36+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmin+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3824,6 +4273,10 @@ fmin:                                   # @fmin
 	cmp	rax, 0
 	jge	.LBB36_7
 # %bb.6:
+	movabs	rax, offset __llvm_gcov_ctr.36+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmin+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3832,6 +4285,10 @@ fmin:                                   # @fmin
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 	jmp	.LBB36_8
 .LBB36_7:
+	movabs	rax, offset __llvm_gcov_ctr.36+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 24]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 .LBB36_8:
@@ -3845,6 +4302,10 @@ fmin:                                   # @fmin
 	ucomisd	xmm0, xmm1
 	jbe	.LBB36_11
 # %bb.10:
+	movabs	rax, offset __llvm_gcov_ctr.36+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fmin+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3853,6 +4314,10 @@ fmin:                                   # @fmin
 	movsd	qword ptr [rbp - 40], xmm0      # 8-byte Spill
 	jmp	.LBB36_12
 .LBB36_11:
+	movabs	rax, offset __llvm_gcov_ctr.36+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 24]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 40], xmm0      # 8-byte Spill
 .LBB36_12:
@@ -3933,6 +4398,10 @@ fminf:                                  # @fminf
 	jne	.LBB37_1
 	jmp	.LBB37_2
 .LBB37_1:
+	movabs	rax, offset __llvm_gcov_ctr.37
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminf+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3948,6 +4417,10 @@ fminf:                                  # @fminf
 	jne	.LBB37_3
 	jmp	.LBB37_4
 .LBB37_3:
+	movabs	rax, offset __llvm_gcov_ctr.37+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminf+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3980,6 +4453,10 @@ fminf:                                  # @fminf
 	cmp	eax, 0
 	jge	.LBB37_7
 # %bb.6:
+	movabs	rax, offset __llvm_gcov_ctr.37+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminf+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -3988,6 +4465,10 @@ fminf:                                  # @fminf
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
 	jmp	.LBB37_8
 .LBB37_7:
+	movabs	rax, offset __llvm_gcov_ctr.37+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 12]      # xmm0 = mem[0],zero,zero,zero
 	movss	dword ptr [rbp - 16], xmm0      # 4-byte Spill
 .LBB37_8:
@@ -4001,6 +4482,10 @@ fminf:                                  # @fminf
 	ucomiss	xmm0, xmm1
 	jbe	.LBB37_11
 # %bb.10:
+	movabs	rax, offset __llvm_gcov_ctr.37+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminf+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4009,6 +4494,10 @@ fminf:                                  # @fminf
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 	jmp	.LBB37_12
 .LBB37_11:
+	movabs	rax, offset __llvm_gcov_ctr.37+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 12]      # xmm0 = mem[0],zero,zero,zero
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 .LBB37_12:
@@ -4091,6 +4580,10 @@ fminl:                                  # @fminl
 	jne	.LBB38_1
 	jmp	.LBB38_2
 .LBB38_1:
+	movabs	rax, offset __llvm_gcov_ctr.38
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminl+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4106,6 +4599,10 @@ fminl:                                  # @fminl
 	jne	.LBB38_3
 	jmp	.LBB38_4
 .LBB38_3:
+	movabs	rax, offset __llvm_gcov_ctr.38+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminl+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4133,6 +4630,10 @@ fminl:                                  # @fminl
 	jns	.LBB38_7
 	jmp	.LBB38_6
 .LBB38_6:
+	movabs	rax, offset __llvm_gcov_ctr.38+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminl+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4141,6 +4642,10 @@ fminl:                                  # @fminl
 	fstp	tbyte ptr [rbp - 60]            # 10-byte Folded Spill
 	jmp	.LBB38_8
 .LBB38_7:
+	movabs	rax, offset __llvm_gcov_ctr.38+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fld	tbyte ptr [rbp - 48]
 	fstp	tbyte ptr [rbp - 60]            # 10-byte Folded Spill
 .LBB38_8:
@@ -4155,6 +4660,10 @@ fminl:                                  # @fminl
 	jbe	.LBB38_11
 	jmp	.LBB38_10
 .LBB38_10:
+	movabs	rax, offset __llvm_gcov_ctr.38+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_fminl+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4163,6 +4672,10 @@ fminl:                                  # @fminl
 	fstp	tbyte ptr [rbp - 72]            # 10-byte Folded Spill
 	jmp	.LBB38_12
 .LBB38_11:
+	movabs	rax, offset __llvm_gcov_ctr.38+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fld	tbyte ptr [rbp - 48]
 	fstp	tbyte ptr [rbp - 72]            # 10-byte Folded Spill
 .LBB38_12:
@@ -4230,6 +4743,10 @@ l64a:                                   # @l64a
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.39
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc_l64a
 	mov	rcx, qword ptr [rax]
@@ -4256,6 +4773,10 @@ l64a:                                   # @l64a
 	mov	rax, qword ptr [rbp - 16]
 	mov	byte ptr [rax], cl
 # %bb.3:                                #   in Loop: Header=BB39_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.39+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	add	rax, 1
 	mov	qword ptr [rbp - 16], rax
@@ -4326,6 +4847,10 @@ srand:                                  # @srand
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_srand
 	mov	rcx, qword ptr [rax]
@@ -4396,6 +4921,10 @@ rand:                                   # @rand
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.41
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_rand
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4481,6 +5010,10 @@ insque:                                 # @insque
 	cmp	qword ptr [rbp - 32], 0
 	jne	.LBB42_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.42+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_insque+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4491,6 +5024,10 @@ insque:                                 # @insque
 	mov	qword ptr [rax], 0
 	jmp	.LBB42_4
 .LBB42_2:
+	movabs	rax, offset __llvm_gcov_ctr.42
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 32]
 	mov	rcx, qword ptr [rax]
 	mov	rax, qword ptr [rbp - 24]
@@ -4505,6 +5042,10 @@ insque:                                 # @insque
 	cmp	qword ptr [rax], 0
 	je	.LBB42_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.42+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_insque+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4574,6 +5115,10 @@ remque:                                 # @remque
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.43
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc_remque
 	mov	rcx, qword ptr [rax]
@@ -4585,6 +5130,10 @@ remque:                                 # @remque
 	cmp	qword ptr [rax], 0
 	je	.LBB43_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.43+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_remque+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4599,6 +5148,10 @@ remque:                                 # @remque
 	cmp	qword ptr [rax + 8], 0
 	je	.LBB43_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.43+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_remque+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4707,6 +5260,10 @@ lsearch:                                # @lsearch
 	jne	.LBB44_4
 # %bb.3:
 	mov	rcx, qword ptr [rbp - 80]       # 8-byte Reload
+	movabs	rax, offset __llvm_gcov_ctr.44
+	mov	rdx, qword ptr [rax]
+	inc	rdx
+	mov	qword ptr [rax], rdx
 	movabs	rax, offset .L__profc_lsearch+16
 	mov	rdx, qword ptr [rax]
 	inc	rdx
@@ -4719,12 +5276,20 @@ lsearch:                                # @lsearch
 .LBB44_4:                               #   in Loop: Header=BB44_1 Depth=1
 	jmp	.LBB44_5
 .LBB44_5:                               #   in Loop: Header=BB44_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.44+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 72]
 	add	rax, 1
 	mov	qword ptr [rbp - 72], rax
 	jmp	.LBB44_1
 .LBB44_6:
 	mov	rax, qword ptr [rbp - 80]       # 8-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.44+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	rdx, qword ptr [rbp - 64]
 	add	rdx, 1
 	mov	rcx, qword ptr [rbp - 32]
@@ -4840,6 +5405,10 @@ lfind:                                  # @lfind
 	jne	.LBB45_4
 # %bb.3:
 	mov	rcx, qword ptr [rbp - 80]       # 8-byte Reload
+	movabs	rax, offset __llvm_gcov_ctr.45
+	mov	rdx, qword ptr [rax]
+	inc	rdx
+	mov	qword ptr [rax], rdx
 	movabs	rax, offset .L__profc_lfind+16
 	mov	rdx, qword ptr [rax]
 	inc	rdx
@@ -4852,11 +5421,19 @@ lfind:                                  # @lfind
 .LBB45_4:                               #   in Loop: Header=BB45_1 Depth=1
 	jmp	.LBB45_5
 .LBB45_5:                               #   in Loop: Header=BB45_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.45+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 72]
 	add	rax, 1
 	mov	qword ptr [rbp - 72], rax
 	jmp	.LBB45_1
 .LBB45_6:
+	movabs	rax, offset __llvm_gcov_ctr.45+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB45_7:
 	mov	rax, qword ptr [rbp - 8]
@@ -4928,6 +5505,10 @@ abs:                                    # @abs
 	cmp	dword ptr [rbp - 4], 0
 	jle	.LBB46_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.46
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_abs+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -4936,6 +5517,10 @@ abs:                                    # @abs
 	mov	dword ptr [rbp - 8], eax        # 4-byte Spill
 	jmp	.LBB46_3
 .LBB46_2:
+	movabs	rax, offset __llvm_gcov_ctr.46+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
 	sub	eax, dword ptr [rbp - 4]
 	mov	dword ptr [rbp - 8], eax        # 4-byte Spill
@@ -5016,6 +5601,10 @@ atoi:                                   # @atoi
 	cmp	eax, 0
 	je	.LBB47_3
 # %bb.2:                                #   in Loop: Header=BB47_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.47
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoi+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5037,6 +5626,10 @@ atoi:                                   # @atoi
 	jne	.LBB47_7
 	jmp	.LBB47_4
 .LBB47_4:
+	movabs	rax, offset __llvm_gcov_ctr.47+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoi+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5044,6 +5637,10 @@ atoi:                                   # @atoi
 	mov	dword ptr [rbp - 16], 1
 	jmp	.LBB47_6
 .LBB47_5:
+	movabs	rax, offset __llvm_gcov_ctr.47+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoi+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5065,6 +5662,10 @@ atoi:                                   # @atoi
 	cmp	eax, 0
 	je	.LBB47_10
 # %bb.9:                                #   in Loop: Header=BB47_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.47+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoi+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5083,6 +5684,10 @@ atoi:                                   # @atoi
 	cmp	dword ptr [rbp - 16], 0
 	je	.LBB47_12
 # %bb.11:
+	movabs	rax, offset __llvm_gcov_ctr.47+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoi+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5091,6 +5696,10 @@ atoi:                                   # @atoi
 	mov	dword ptr [rbp - 24], eax       # 4-byte Spill
 	jmp	.LBB47_13
 .LBB47_12:
+	movabs	rax, offset __llvm_gcov_ctr.47+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
 	sub	eax, dword ptr [rbp - 12]
 	mov	dword ptr [rbp - 24], eax       # 4-byte Spill
@@ -5172,6 +5781,10 @@ atol:                                   # @atol
 	cmp	eax, 0
 	je	.LBB48_3
 # %bb.2:                                #   in Loop: Header=BB48_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atol+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5193,6 +5806,10 @@ atol:                                   # @atol
 	jne	.LBB48_7
 	jmp	.LBB48_4
 .LBB48_4:
+	movabs	rax, offset __llvm_gcov_ctr.48+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atol+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5200,6 +5817,10 @@ atol:                                   # @atol
 	mov	dword ptr [rbp - 20], 1
 	jmp	.LBB48_6
 .LBB48_5:
+	movabs	rax, offset __llvm_gcov_ctr.48+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atol+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5221,6 +5842,10 @@ atol:                                   # @atol
 	cmp	eax, 0
 	je	.LBB48_10
 # %bb.9:                                #   in Loop: Header=BB48_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.48+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atol+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5240,6 +5865,10 @@ atol:                                   # @atol
 	cmp	dword ptr [rbp - 20], 0
 	je	.LBB48_12
 # %bb.11:
+	movabs	rax, offset __llvm_gcov_ctr.48+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atol+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5248,6 +5877,10 @@ atol:                                   # @atol
 	mov	qword ptr [rbp - 32], rax       # 8-byte Spill
 	jmp	.LBB48_13
 .LBB48_12:
+	movabs	rax, offset __llvm_gcov_ctr.48+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	sub	rax, qword ptr [rbp - 16]
@@ -5330,6 +5963,10 @@ atoll:                                  # @atoll
 	cmp	eax, 0
 	je	.LBB49_3
 # %bb.2:                                #   in Loop: Header=BB49_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.49
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoll+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5351,6 +5988,10 @@ atoll:                                  # @atoll
 	jne	.LBB49_7
 	jmp	.LBB49_4
 .LBB49_4:
+	movabs	rax, offset __llvm_gcov_ctr.49+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoll+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5358,6 +5999,10 @@ atoll:                                  # @atoll
 	mov	dword ptr [rbp - 20], 1
 	jmp	.LBB49_6
 .LBB49_5:
+	movabs	rax, offset __llvm_gcov_ctr.49+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoll+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5379,6 +6024,10 @@ atoll:                                  # @atoll
 	cmp	eax, 0
 	je	.LBB49_10
 # %bb.9:                                #   in Loop: Header=BB49_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.49+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoll+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5398,6 +6047,10 @@ atoll:                                  # @atoll
 	cmp	dword ptr [rbp - 20], 0
 	je	.LBB49_12
 # %bb.11:
+	movabs	rax, offset __llvm_gcov_ctr.49+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_atoll+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5406,6 +6059,10 @@ atoll:                                  # @atoll
 	mov	qword ptr [rbp - 32], rax       # 8-byte Spill
 	jmp	.LBB49_13
 .LBB49_12:
+	movabs	rax, offset __llvm_gcov_ctr.49+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	sub	rax, qword ptr [rbp - 16]
@@ -5505,6 +6162,10 @@ bsearch:                                # @bsearch
 	cmp	dword ptr [rbp - 60], 0
 	jge	.LBB50_4
 # %bb.3:                                #   in Loop: Header=BB50_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.50+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_bsearch+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5532,14 +6193,25 @@ bsearch:                                # @bsearch
 	mov	qword ptr [rbp - 32], rax
 	jmp	.LBB50_7
 .LBB50_6:
+	movabs	rax, offset __llvm_gcov_ctr.50+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 56]
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB50_10
 .LBB50_7:                               #   in Loop: Header=BB50_1 Depth=1
-	jmp	.LBB50_8
+	movabs	rax, offset __llvm_gcov_ctr.50+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB50_8:                               #   in Loop: Header=BB50_1 Depth=1
 	jmp	.LBB50_1
 .LBB50_9:
+	movabs	rax, offset __llvm_gcov_ctr.50
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB50_10:
 	mov	rax, qword ptr [rbp - 8]
@@ -5643,6 +6315,10 @@ bsearch_r:                              # @bsearch_r
 	cmp	dword ptr [rbp - 72], 0
 	jne	.LBB51_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.51
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_bsearch_r+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5654,6 +6330,10 @@ bsearch_r:                              # @bsearch_r
 	cmp	dword ptr [rbp - 72], 0
 	jle	.LBB51_6
 # %bb.5:                                #   in Loop: Header=BB51_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.51+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_bsearch_r+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5667,11 +6347,19 @@ bsearch_r:                              # @bsearch_r
 .LBB51_6:                               #   in Loop: Header=BB51_1 Depth=1
 	jmp	.LBB51_7
 .LBB51_7:                               #   in Loop: Header=BB51_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.51+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 68]
 	sar	eax
 	mov	dword ptr [rbp - 68], eax
 	jmp	.LBB51_1
 .LBB51_8:
+	movabs	rax, offset __llvm_gcov_ctr.51+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB51_9:
 	mov	rax, qword ptr [rbp - 8]
@@ -5735,6 +6423,10 @@ div:                                    # @div
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.52
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 12], edi
 	mov	dword ptr [rbp - 16], esi
 	movabs	rax, offset .L__profc_div
@@ -5817,6 +6509,10 @@ imaxabs:                                # @imaxabs
 	cmp	qword ptr [rbp - 8], 0
 	jle	.LBB53_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.53
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_imaxabs+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5825,6 +6521,10 @@ imaxabs:                                # @imaxabs
 	mov	qword ptr [rbp - 16], rax       # 8-byte Spill
 	jmp	.LBB53_3
 .LBB53_2:
+	movabs	rax, offset __llvm_gcov_ctr.53+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	sub	rax, qword ptr [rbp - 8]
@@ -5890,6 +6590,10 @@ imaxdiv:                                # @imaxdiv
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.54
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc_imaxdiv
@@ -5974,6 +6678,10 @@ labs:                                   # @labs
 	cmp	qword ptr [rbp - 8], 0
 	jle	.LBB55_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.55
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_labs+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -5982,6 +6690,10 @@ labs:                                   # @labs
 	mov	qword ptr [rbp - 16], rax       # 8-byte Spill
 	jmp	.LBB55_3
 .LBB55_2:
+	movabs	rax, offset __llvm_gcov_ctr.55+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	sub	rax, qword ptr [rbp - 8]
@@ -6047,6 +6759,10 @@ ldiv:                                   # @ldiv
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc_ldiv
@@ -6131,6 +6847,10 @@ llabs:                                  # @llabs
 	cmp	qword ptr [rbp - 8], 0
 	jle	.LBB57_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.57
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_llabs+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6139,6 +6859,10 @@ llabs:                                  # @llabs
 	mov	qword ptr [rbp - 16], rax       # 8-byte Spill
 	jmp	.LBB57_3
 .LBB57_2:
+	movabs	rax, offset __llvm_gcov_ctr.57+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	sub	rax, qword ptr [rbp - 8]
@@ -6204,6 +6928,10 @@ lldiv:                                  # @lldiv
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.58
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc_lldiv
@@ -6294,6 +7022,10 @@ wcschr:                                 # @wcschr
 	mov	byte ptr [rbp - 13], al         # 1-byte Spill
 	je	.LBB59_4
 # %bb.2:                                #   in Loop: Header=BB59_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.59
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcschr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6309,6 +7041,10 @@ wcschr:                                 # @wcschr
 	jmp	.LBB59_4
 .LBB59_3:                               #   in Loop: Header=BB59_1 Depth=1
 	mov	al, byte ptr [rbp - 14]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.59+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_wcschr+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -6325,6 +7061,10 @@ wcschr:                                 # @wcschr
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB59_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.59+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 4
 	mov	qword ptr [rbp - 8], rax
@@ -6334,6 +7074,10 @@ wcschr:                                 # @wcschr
 	cmp	dword ptr [rax], 0
 	je	.LBB59_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.59+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcschr+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6342,10 +7086,13 @@ wcschr:                                 # @wcschr
 	mov	qword ptr [rbp - 24], rax       # 8-byte Spill
 	jmp	.LBB59_10
 .LBB59_9:
+	movabs	rax, offset __llvm_gcov_ctr.59+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	mov	qword ptr [rbp - 24], rax       # 8-byte Spill
-	jmp	.LBB59_10
 .LBB59_10:
 	mov	rax, qword ptr [rbp - 24]       # 8-byte Reload
 	pop	rbp
@@ -6423,6 +7170,10 @@ wcscmp:                                 # @wcscmp
 	mov	byte ptr [rbp - 17], al         # 1-byte Spill
 	jne	.LBB60_6
 # %bb.2:                                #   in Loop: Header=BB60_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.60
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcscmp+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6434,6 +7185,10 @@ wcscmp:                                 # @wcscmp
 	mov	byte ptr [rbp - 17], al         # 1-byte Spill
 	je	.LBB60_6
 # %bb.3:                                #   in Loop: Header=BB60_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.60+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcscmp+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6453,6 +7208,10 @@ wcscmp:                                 # @wcscmp
 	jmp	.LBB60_6
 .LBB60_5:                               #   in Loop: Header=BB60_1 Depth=1
 	mov	al, byte ptr [rbp - 18]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.60+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_wcscmp+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -6469,6 +7228,10 @@ wcscmp:                                 # @wcscmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.8:                                #   in Loop: Header=BB60_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.60+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 4
 	mov	qword ptr [rbp - 8], rax
@@ -6483,6 +7246,10 @@ wcscmp:                                 # @wcscmp
 	cmp	eax, dword ptr [rcx]
 	jge	.LBB60_11
 # %bb.10:
+	movabs	rax, offset __llvm_gcov_ctr.60+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcscmp+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6491,6 +7258,10 @@ wcscmp:                                 # @wcscmp
 	mov	dword ptr [rbp - 24], eax       # 4-byte Spill
 	jmp	.LBB60_12
 .LBB60_11:
+	movabs	rax, offset __llvm_gcov_ctr.60+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	mov	eax, dword ptr [rax]
 	mov	rcx, qword ptr [rbp - 16]
@@ -6560,6 +7331,10 @@ wcscpy:                                 # @wcscpy
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.61
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc_wcscpy
@@ -6582,6 +7357,10 @@ wcscpy:                                 # @wcscpy
 	cmp	eax, 0
 	je	.LBB61_3
 # %bb.2:                                #   in Loop: Header=BB61_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.61+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcscpy+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6648,6 +7427,10 @@ wcslen:                                 # @wcslen
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.62
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc_wcslen
 	mov	rcx, qword ptr [rax]
@@ -6665,6 +7448,10 @@ wcslen:                                 # @wcslen
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.3:                                #   in Loop: Header=BB62_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.62+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	add	rax, 4
 	mov	qword ptr [rbp - 8], rax
@@ -6747,6 +7534,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	je	.LBB63_8
 # %bb.2:                                #   in Loop: Header=BB63_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.63
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcsncmp+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6760,6 +7551,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	jne	.LBB63_8
 # %bb.3:                                #   in Loop: Header=BB63_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.63+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcsncmp+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6776,6 +7571,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	je	.LBB63_8
 # %bb.5:                                #   in Loop: Header=BB63_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.63+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcsncmp+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6795,6 +7594,10 @@ wcsncmp:                                # @wcsncmp
 	jmp	.LBB63_8
 .LBB63_7:                               #   in Loop: Header=BB63_1 Depth=1
 	mov	al, byte ptr [rbp - 26]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.63+24
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_wcsncmp+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -6811,6 +7614,10 @@ wcsncmp:                                # @wcsncmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.10:                               #   in Loop: Header=BB63_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.63+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -6835,6 +7642,10 @@ wcsncmp:                                # @wcsncmp
 	cmp	eax, dword ptr [rcx]
 	jge	.LBB63_14
 # %bb.13:
+	movabs	rax, offset __llvm_gcov_ctr.63+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wcsncmp+72
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6843,6 +7654,10 @@ wcsncmp:                                # @wcsncmp
 	mov	dword ptr [rbp - 32], eax       # 4-byte Spill
 	jmp	.LBB63_15
 .LBB63_14:
+	movabs	rax, offset __llvm_gcov_ctr.63+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	mov	eax, dword ptr [rax]
 	mov	rcx, qword ptr [rbp - 16]
@@ -6856,9 +7671,12 @@ wcsncmp:                                # @wcsncmp
 	mov	dword ptr [rbp - 36], eax       # 4-byte Spill
 	jmp	.LBB63_17
 .LBB63_16:
+	movabs	rax, offset __llvm_gcov_ctr.63+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
 	mov	dword ptr [rbp - 36], eax       # 4-byte Spill
-	jmp	.LBB63_17
 .LBB63_17:
 	mov	eax, dword ptr [rbp - 36]       # 4-byte Reload
 	pop	rbp
@@ -6934,6 +7752,10 @@ wmemchr:                                # @wmemchr
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	je	.LBB64_4
 # %bb.2:                                #   in Loop: Header=BB64_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.64
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemchr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6949,6 +7771,10 @@ wmemchr:                                # @wmemchr
 	jmp	.LBB64_4
 .LBB64_3:                               #   in Loop: Header=BB64_1 Depth=1
 	mov	al, byte ptr [rbp - 26]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.64+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_wmemchr+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -6965,6 +7791,10 @@ wmemchr:                                # @wmemchr
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB64_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.64+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -6976,6 +7806,10 @@ wmemchr:                                # @wmemchr
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB64_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.64+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemchr+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -6984,10 +7818,13 @@ wmemchr:                                # @wmemchr
 	mov	qword ptr [rbp - 40], rax       # 8-byte Spill
 	jmp	.LBB64_10
 .LBB64_9:
+	movabs	rax, offset __llvm_gcov_ctr.64+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
                                         # kill: def $rax killed $eax
 	mov	qword ptr [rbp - 40], rax       # 8-byte Spill
-	jmp	.LBB64_10
 .LBB64_10:
 	mov	rax, qword ptr [rbp - 40]       # 8-byte Reload
 	pop	rbp
@@ -7063,6 +7900,10 @@ wmemcmp:                                # @wmemcmp
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	je	.LBB65_4
 # %bb.2:                                #   in Loop: Header=BB65_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.65
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemcmp+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7079,6 +7920,10 @@ wmemcmp:                                # @wmemcmp
 	jmp	.LBB65_4
 .LBB65_3:                               #   in Loop: Header=BB65_1 Depth=1
 	mov	al, byte ptr [rbp - 26]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.65+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_wmemcmp+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -7095,6 +7940,10 @@ wmemcmp:                                # @wmemcmp
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB65_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.65+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -7119,6 +7968,10 @@ wmemcmp:                                # @wmemcmp
 	cmp	eax, dword ptr [rcx]
 	jge	.LBB65_10
 # %bb.9:
+	movabs	rax, offset __llvm_gcov_ctr.65+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemcmp+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7127,6 +7980,10 @@ wmemcmp:                                # @wmemcmp
 	mov	dword ptr [rbp - 32], eax       # 4-byte Spill
 	jmp	.LBB65_11
 .LBB65_10:
+	movabs	rax, offset __llvm_gcov_ctr.65+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 8]
 	mov	eax, dword ptr [rax]
 	mov	rcx, qword ptr [rbp - 16]
@@ -7140,9 +7997,12 @@ wmemcmp:                                # @wmemcmp
 	mov	dword ptr [rbp - 36], eax       # 4-byte Spill
 	jmp	.LBB65_13
 .LBB65_12:
+	movabs	rax, offset __llvm_gcov_ctr.65+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	xor	eax, eax
 	mov	dword ptr [rbp - 36], eax       # 4-byte Spill
-	jmp	.LBB65_13
 .LBB65_13:
 	mov	eax, dword ptr [rbp - 36]       # 4-byte Reload
 	pop	rbp
@@ -7204,6 +8064,10 @@ wmemcpy:                                # @wmemcpy
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.66
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	mov	qword ptr [rbp - 24], rdx
@@ -7221,6 +8085,10 @@ wmemcpy:                                # @wmemcpy
 	cmp	rax, 0
 	je	.LBB66_3
 # %bb.2:                                #   in Loop: Header=BB66_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.66+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemcpy+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7310,6 +8178,10 @@ wmemmove:                               # @wmemmove
 	cmp	rax, qword ptr [rbp - 24]
 	jne	.LBB67_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.67
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemmove+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7326,6 +8198,10 @@ wmemmove:                               # @wmemmove
 	cmp	rax, rcx
 	jae	.LBB67_7
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.67+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemmove+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7338,6 +8214,10 @@ wmemmove:                               # @wmemmove
 	cmp	rax, 0
 	je	.LBB67_6
 # %bb.5:                                #   in Loop: Header=BB67_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.67+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemmove+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7361,6 +8241,10 @@ wmemmove:                               # @wmemmove
 	cmp	rax, 0
 	je	.LBB67_10
 # %bb.9:                                #   in Loop: Header=BB67_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.67+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemmove+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7377,7 +8261,10 @@ wmemmove:                               # @wmemmove
 	mov	dword ptr [rax], ecx
 	jmp	.LBB67_8
 .LBB67_10:
-	jmp	.LBB67_11
+	movabs	rax, offset __llvm_gcov_ctr.67+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB67_11:
 	mov	rax, qword ptr [rbp - 40]
 	mov	qword ptr [rbp - 8], rax
@@ -7442,6 +8329,10 @@ wmemset:                                # @wmemset
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.68
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	mov	qword ptr [rbp - 24], rdx
@@ -7459,6 +8350,10 @@ wmemset:                                # @wmemset
 	cmp	rax, 0
 	je	.LBB68_3
 # %bb.2:                                #   in Loop: Header=BB68_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.68+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_wmemset+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7546,6 +8441,10 @@ bcopy:                                  # @bcopy
 	cmp	rax, qword ptr [rbp - 40]
 	jae	.LBB69_6
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.69
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_bcopy+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7575,6 +8474,10 @@ bcopy:                                  # @bcopy
 	mov	qword ptr [rbp - 40], rdx
 	mov	byte ptr [rax - 1], cl
 # %bb.4:                                #   in Loop: Header=BB69_2 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.69+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -7594,6 +8497,10 @@ bcopy:                                  # @bcopy
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB69_11
 # %bb.9:                                #   in Loop: Header=BB69_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.69+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_bcopy+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -7614,9 +8521,15 @@ bcopy:                                  # @bcopy
 	mov	qword ptr [rbp - 24], rax
 	jmp	.LBB69_8
 .LBB69_11:
-	jmp	.LBB69_12
+	movabs	rax, offset __llvm_gcov_ctr.69+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB69_12:
-	jmp	.LBB69_13
+	movabs	rax, offset __llvm_gcov_ctr.69+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB69_13:
 	pop	rbp
 	.cfi_def_cfa rsp, 8
@@ -7678,6 +8591,10 @@ rotl64:                                 # @rotl64
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.70
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_rotl64
@@ -7758,6 +8675,10 @@ rotr64:                                 # @rotr64
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.71
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_rotr64
@@ -7838,6 +8759,10 @@ rotl32:                                 # @rotl32
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.72
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotl32
@@ -7915,6 +8840,10 @@ rotr32:                                 # @rotr32
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.73
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotr32
@@ -7992,6 +8921,10 @@ rotl_sz:                                # @rotl_sz
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.74
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_rotl_sz
@@ -8071,6 +9004,10 @@ rotr_sz:                                # @rotr_sz
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.75
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_rotr_sz
@@ -8151,6 +9088,10 @@ rotl16:                                 # @rotl16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.76
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotl16
@@ -8230,6 +9171,10 @@ rotr16:                                 # @rotr16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.77
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotr16
@@ -8309,6 +9254,10 @@ rotl8:                                  # @rotl8
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	al, dil
+	movabs	rcx, offset __llvm_gcov_ctr.78
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	byte ptr [rbp - 1], al
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotl8
@@ -8388,6 +9337,10 @@ rotr8:                                  # @rotr8
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	al, dil
+	movabs	rcx, offset __llvm_gcov_ctr.79
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	byte ptr [rbp - 1], al
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc_rotr8
@@ -8467,6 +9420,10 @@ bswap_16:                               # @bswap_16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.80
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	movabs	rax, offset .L__profc_bswap_16
 	mov	rcx, qword ptr [rax]
@@ -8544,6 +9501,10 @@ bswap_32:                               # @bswap_32
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.81
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc_bswap_32
 	mov	rcx, qword ptr [rax]
@@ -8632,6 +9593,10 @@ bswap_64:                               # @bswap_64
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.82
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc_bswap_64
 	mov	rcx, qword ptr [rax]
@@ -8770,6 +9735,10 @@ ffs:                                    # @ffs
 	cmp	eax, 0
 	je	.LBB83_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.83
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ffs+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -8781,11 +9750,19 @@ ffs:                                    # @ffs
 .LBB83_4:                               #   in Loop: Header=BB83_1 Depth=1
 	jmp	.LBB83_5
 .LBB83_5:                               #   in Loop: Header=BB83_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.83+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 12]
 	add	eax, 1
 	mov	dword ptr [rbp - 12], eax
 	jmp	.LBB83_1
 .LBB83_6:
+	movabs	rax, offset __llvm_gcov_ctr.83+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 0
 .LBB83_7:
 	mov	eax, dword ptr [rbp - 4]
@@ -8856,6 +9833,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	cmp	dword ptr [rbp - 8], 0
 	jne	.LBB84_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.84+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_libiberty_ffs+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -8863,6 +9844,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	mov	dword ptr [rbp - 4], 0
 	jmp	.LBB84_7
 .LBB84_2:
+	movabs	rax, offset __llvm_gcov_ctr.84
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 12], 1
 .LBB84_3:                               # =>This Inner Loop Header: Depth=1
 	mov	eax, dword ptr [rbp - 8]
@@ -8882,6 +9867,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	sar	eax
 	mov	dword ptr [rbp - 8], eax
 # %bb.5:                                #   in Loop: Header=BB84_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.84+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 12]
 	add	eax, 1
 	mov	dword ptr [rbp - 12], eax
@@ -8957,6 +9946,10 @@ gl_isinff:                              # @gl_isinff
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.85
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	dword ptr [rbp - 4], xmm0
 	movabs	rax, offset .L__profc_gl_isinff
 	mov	rcx, qword ptr [rax]
@@ -8969,6 +9962,10 @@ gl_isinff:                              # @gl_isinff
 	mov	byte ptr [rbp - 5], al          # 1-byte Spill
 	ja	.LBB85_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.85+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_gl_isinff+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -8984,6 +9981,10 @@ gl_isinff:                              # @gl_isinff
 	jne	.LBB85_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 6]          # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.85+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_gl_isinff+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -9059,6 +10060,10 @@ gl_isinfd:                              # @gl_isinfd
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.86
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	qword ptr [rbp - 8], xmm0
 	movabs	rax, offset .L__profc_gl_isinfd
 	mov	rcx, qword ptr [rax]
@@ -9071,6 +10076,10 @@ gl_isinfd:                              # @gl_isinfd
 	mov	byte ptr [rbp - 9], al          # 1-byte Spill
 	ja	.LBB86_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.86+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_gl_isinfd+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9086,6 +10095,10 @@ gl_isinfd:                              # @gl_isinfd
 	jne	.LBB86_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 10]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.86+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_gl_isinfd+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -9166,6 +10179,10 @@ gl_isinfl:                              # @gl_isinfl
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	fld	tbyte ptr [rbp + 16]
+	movabs	rax, offset __llvm_gcov_ctr.87
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fstp	tbyte ptr [rbp - 16]
 	movabs	rax, offset .L__profc_gl_isinfl
 	mov	rcx, qword ptr [rax]
@@ -9181,6 +10198,10 @@ gl_isinfl:                              # @gl_isinfl
 	ja	.LBB87_3
 	jmp	.LBB87_1
 .LBB87_1:
+	movabs	rax, offset __llvm_gcov_ctr.87+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_gl_isinfl+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9198,6 +10219,10 @@ gl_isinfl:                              # @gl_isinfl
 	jne	.LBB87_3
 # %bb.2:
 	mov	al, byte ptr [rbp - 18]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.87+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_gl_isinfl+16
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -9266,6 +10291,10 @@ _Qp_itoq:                               # @_Qp_itoq
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.88
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc__Qp_itoq
@@ -9344,6 +10373,10 @@ ldexpf:                                 # @ldexpf
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.89
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	dword ptr [rbp - 4], xmm0
 	mov	dword ptr [rbp - 8], edi
 	movabs	rax, offset .L__profc_ldexpf
@@ -9356,6 +10389,10 @@ ldexpf:                                 # @ldexpf
 	test	al, 1
 	jne	.LBB89_10
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.89+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpf+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9367,6 +10404,10 @@ ldexpf:                                 # @ldexpf
 	jp	.LBB89_2
 	jmp	.LBB89_10
 .LBB89_2:
+	movabs	rax, offset __llvm_gcov_ctr.89+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpf+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9412,6 +10453,10 @@ ldexpf:                                 # @ldexpf
 	cmp	edx, 0
 	je	.LBB89_6
 # %bb.5:                                #   in Loop: Header=BB89_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.89+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpf+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9434,6 +10479,10 @@ ldexpf:                                 # @ldexpf
 	mov	qword ptr [rax], rcx
 	jmp	.LBB89_9
 .LBB89_8:                               #   in Loop: Header=BB89_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.89+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 12]      # xmm0 = mem[0],zero,zero,zero
 	mulss	xmm0, dword ptr [rbp - 12]
 	movss	dword ptr [rbp - 12], xmm0
@@ -9508,6 +10557,10 @@ ldexp:                                  # @ldexp
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.90
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	qword ptr [rbp - 8], xmm0
 	mov	dword ptr [rbp - 12], edi
 	movabs	rax, offset .L__profc_ldexp
@@ -9520,6 +10573,10 @@ ldexp:                                  # @ldexp
 	test	al, 1
 	jne	.LBB90_10
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.90+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexp+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9531,6 +10588,10 @@ ldexp:                                  # @ldexp
 	jp	.LBB90_2
 	jmp	.LBB90_10
 .LBB90_2:
+	movabs	rax, offset __llvm_gcov_ctr.90+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexp+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9576,6 +10637,10 @@ ldexp:                                  # @ldexp
 	cmp	edx, 0
 	je	.LBB90_6
 # %bb.5:                                #   in Loop: Header=BB90_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.90+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexp+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9598,6 +10663,10 @@ ldexp:                                  # @ldexp
 	mov	qword ptr [rax], rcx
 	jmp	.LBB90_9
 .LBB90_8:                               #   in Loop: Header=BB90_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.90+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 24]      # xmm0 = mem[0],zero
 	mulsd	xmm0, qword ptr [rbp - 24]
 	movsd	qword ptr [rbp - 24], xmm0
@@ -9676,6 +10745,10 @@ ldexpl:                                 # @ldexpl
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	fld	tbyte ptr [rbp + 16]
+	movabs	rax, offset __llvm_gcov_ctr.91
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fstp	tbyte ptr [rbp - 16]
 	mov	dword ptr [rbp - 20], edi
 	movabs	rax, offset .L__profc_ldexpl
@@ -9688,6 +10761,10 @@ ldexpl:                                 # @ldexpl
 	test	al, 1
 	jne	.LBB91_10
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.91+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpl+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9701,6 +10778,10 @@ ldexpl:                                 # @ldexpl
 	jp	.LBB91_2
 	jmp	.LBB91_10
 .LBB91_2:
+	movabs	rax, offset __llvm_gcov_ctr.91+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpl+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9736,6 +10817,10 @@ ldexpl:                                 # @ldexpl
 	cmp	edx, 0
 	je	.LBB91_6
 # %bb.5:                                #   in Loop: Header=BB91_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.91+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_ldexpl+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9759,6 +10844,10 @@ ldexpl:                                 # @ldexpl
 	mov	qword ptr [rax], rcx
 	jmp	.LBB91_9
 .LBB91_8:                               #   in Loop: Header=BB91_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.91+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	fld	tbyte ptr [rbp - 48]
 	fmul	st(0), st
 	fstp	tbyte ptr [rbp - 48]
@@ -9827,6 +10916,10 @@ memxor:                                 # @memxor
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.92
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	mov	qword ptr [rbp - 24], rdx
@@ -9860,6 +10953,10 @@ memxor:                                 # @memxor
                                         # kill: def $cl killed $cl killed $ecx
 	mov	byte ptr [rax], cl
 # %bb.3:                                #   in Loop: Header=BB92_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.92+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, -1
 	mov	qword ptr [rbp - 24], rax
@@ -9949,6 +11046,10 @@ strncat:                                # @strncat
 	mov	byte ptr [rbp - 41], al         # 1-byte Spill
 	jbe	.LBB93_4
 # %bb.2:                                #   in Loop: Header=BB93_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.93
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncat+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -9967,6 +11068,10 @@ strncat:                                # @strncat
 	jmp	.LBB93_4
 .LBB93_3:                               #   in Loop: Header=BB93_1 Depth=1
 	mov	al, byte ptr [rbp - 42]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.93+8
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_strncat+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -9983,6 +11088,10 @@ strncat:                                # @strncat
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB93_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.93+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	add	rax, 1
 	mov	qword ptr [rbp - 16], rax
@@ -9994,9 +11103,17 @@ strncat:                                # @strncat
 	mov	qword ptr [rbp - 24], rax
 	jmp	.LBB93_1
 .LBB93_7:
+	movabs	rax, offset __llvm_gcov_ctr.93+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	cmp	qword ptr [rbp - 24], 0
 	jne	.LBB93_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.93+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strncat+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10065,6 +11182,10 @@ strnlen:                                # @strnlen
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.94
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc_strnlen
@@ -10080,6 +11201,10 @@ strnlen:                                # @strnlen
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	jae	.LBB94_4
 # %bb.2:                                #   in Loop: Header=BB94_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.94+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strnlen+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10096,6 +11221,10 @@ strnlen:                                # @strnlen
 	jmp	.LBB94_4
 .LBB94_3:                               #   in Loop: Header=BB94_1 Depth=1
 	mov	al, byte ptr [rbp - 26]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.94+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_strnlen+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -10112,6 +11241,10 @@ strnlen:                                # @strnlen
 	inc	rcx
 	mov	qword ptr [rax], rcx
 # %bb.6:                                #   in Loop: Header=BB94_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.94+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 24]
 	add	rax, 1
 	mov	qword ptr [rbp - 24], rax
@@ -10217,6 +11350,10 @@ strpbrk:                                # @strpbrk
 	cmp	eax, ecx
 	jne	.LBB95_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.95+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strpbrk+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10225,13 +11362,25 @@ strpbrk:                                # @strpbrk
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB95_9
 .LBB95_6:                               #   in Loop: Header=BB95_3 Depth=2
+	movabs	rax, offset __llvm_gcov_ctr.95+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	jmp	.LBB95_3
 .LBB95_7:                               #   in Loop: Header=BB95_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.95+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	add	rax, 1
 	mov	qword ptr [rbp - 16], rax
 	jmp	.LBB95_1
 .LBB95_8:
+	movabs	rax, offset __llvm_gcov_ctr.95
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB95_9:
 	mov	rax, qword ptr [rbp - 8]
@@ -10294,6 +11443,10 @@ strrchr:                                # @strrchr
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.96
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	dword ptr [rbp - 12], esi
 	movabs	rax, offset .L__profc_strrchr
@@ -10303,6 +11456,10 @@ strrchr:                                # @strrchr
 	mov	qword ptr [rbp - 24], 0
 	jmp	.LBB96_2
 .LBB96_1:                               #   in Loop: Header=BB96_2 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.96+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strrchr+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10313,6 +11470,10 @@ strrchr:                                # @strrchr
 	cmp	eax, dword ptr [rbp - 12]
 	jne	.LBB96_4
 # %bb.3:                                #   in Loop: Header=BB96_2 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.96+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strrchr+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10405,6 +11566,10 @@ strstr:                                 # @strstr
 	cmp	qword ptr [rbp - 40], 0
 	jne	.LBB97_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.97
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strstr+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10436,6 +11601,10 @@ strstr:                                 # @strstr
 	cmp	eax, 0
 	jne	.LBB97_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.97+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_strstr+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10446,11 +11615,19 @@ strstr:                                 # @strstr
 .LBB97_6:                               #   in Loop: Header=BB97_3 Depth=1
 	jmp	.LBB97_7
 .LBB97_7:                               #   in Loop: Header=BB97_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.97+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 32]
 	add	rax, 1
 	mov	qword ptr [rbp - 32], rax
 	jmp	.LBB97_3
 .LBB97_8:
+	movabs	rax, offset __llvm_gcov_ctr.97+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB97_9:
 	mov	rax, qword ptr [rbp - 8]
@@ -10524,6 +11701,10 @@ copysign:                               # @copysign
 	ucomisd	xmm0, qword ptr [rbp - 16]
 	jbe	.LBB98_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.98
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_copysign+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10533,6 +11714,10 @@ copysign:                               # @copysign
 	ucomisd	xmm0, xmm1
 	jbe	.LBB98_3
 # %bb.2:
+	movabs	rax, offset __llvm_gcov_ctr.98+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_copysign+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10548,6 +11733,10 @@ copysign:                               # @copysign
 	ucomisd	xmm0, xmm1
 	jbe	.LBB98_7
 # %bb.4:
+	movabs	rax, offset __llvm_gcov_ctr.98+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_copysign+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10556,6 +11745,10 @@ copysign:                               # @copysign
 	ucomisd	xmm0, qword ptr [rbp - 24]
 	jbe	.LBB98_7
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.98+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_copysign+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10573,6 +11766,10 @@ copysign:                               # @copysign
 	movsd	qword ptr [rbp - 8], xmm0
 	jmp	.LBB98_8
 .LBB98_7:
+	movabs	rax, offset __llvm_gcov_ctr.98+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 16]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 8], xmm0
 .LBB98_8:
@@ -10655,6 +11852,10 @@ memmem:                                 # @memmem
 	cmp	qword ptr [rbp - 40], 0
 	jne	.LBB99_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.99
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmem+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10672,6 +11873,10 @@ memmem:                                 # @memmem
 	cmp	rax, 0
 	je	.LBB99_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.99+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmem+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10697,6 +11902,10 @@ memmem:                                 # @memmem
 	cmp	eax, ecx
 	jne	.LBB99_10
 # %bb.7:                                #   in Loop: Header=BB99_5 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.99+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmem+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10712,6 +11921,10 @@ memmem:                                 # @memmem
 	cmp	eax, 0
 	jne	.LBB99_10
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.99+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_memmem+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10727,11 +11940,19 @@ memmem:                                 # @memmem
 .LBB99_10:                              #   in Loop: Header=BB99_5 Depth=1
 	jmp	.LBB99_11
 .LBB99_11:                              #   in Loop: Header=BB99_5 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.99+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 48]
 	add	rax, 1
 	mov	qword ptr [rbp - 48], rax
 	jmp	.LBB99_5
 .LBB99_12:
+	movabs	rax, offset __llvm_gcov_ctr.99+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], 0
 .LBB99_13:
 	mov	rax, qword ptr [rbp - 8]
@@ -10796,6 +12017,10 @@ mempcpy:                                # @mempcpy
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 32
+	movabs	rax, offset __llvm_gcov_ctr.100
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	mov	qword ptr [rbp - 24], rdx
@@ -10893,6 +12118,10 @@ frexp:                                  # @frexp
 	ucomisd	xmm0, qword ptr [rbp - 8]
 	jbe	.LBB101_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.101
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10911,6 +12140,10 @@ frexp:                                  # @frexp
 	ucomisd	xmm0, xmm1
 	jb	.LBB101_7
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.101+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10922,6 +12155,10 @@ frexp:                                  # @frexp
 	ucomisd	xmm0, xmm1
 	jb	.LBB101_6
 # %bb.5:                                #   in Loop: Header=BB101_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.101+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10943,6 +12180,10 @@ frexp:                                  # @frexp
 	ucomisd	xmm0, qword ptr [rbp - 8]
 	jbe	.LBB101_14
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.101+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10969,6 +12210,10 @@ frexp:                                  # @frexp
 	ucomisd	xmm0, qword ptr [rbp - 8]
 	jbe	.LBB101_13
 # %bb.12:                               #   in Loop: Header=BB101_11 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.101+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -10982,9 +12227,15 @@ frexp:                                  # @frexp
 	movsd	qword ptr [rbp - 8], xmm0
 	jmp	.LBB101_11
 .LBB101_13:
-	jmp	.LBB101_14
+	movabs	rax, offset __llvm_gcov_ctr.101+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB101_14:
-	jmp	.LBB101_15
+	movabs	rax, offset __llvm_gcov_ctr.101+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB101_15:
 	mov	ecx, dword ptr [rbp - 24]
 	mov	rax, qword ptr [rbp - 16]
@@ -10992,6 +12243,10 @@ frexp:                                  # @frexp
 	cmp	dword ptr [rbp - 20], 0
 	je	.LBB101_17
 # %bb.16:
+	movabs	rax, offset __llvm_gcov_ctr.101+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_frexp+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11063,6 +12318,10 @@ __muldi3:                               # @__muldi3
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.102
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___muldi3
@@ -11085,6 +12344,10 @@ __muldi3:                               # @__muldi3
 	cmp	rax, 0
 	je	.LBB102_4
 # %bb.3:                                #   in Loop: Header=BB102_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.102+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___muldi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11093,6 +12356,10 @@ __muldi3:                               # @__muldi3
 	add	rax, qword ptr [rbp - 24]
 	mov	qword ptr [rbp - 24], rax
 .LBB102_4:                              #   in Loop: Header=BB102_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.102+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	shl	rax
 	mov	qword ptr [rbp - 16], rax
@@ -11178,6 +12445,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	byte ptr [rbp - 33], al         # 1-byte Spill
 	jae	.LBB103_6
 # %bb.2:                                #   in Loop: Header=BB103_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.103
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_udivmodsi4+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11188,6 +12459,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	byte ptr [rbp - 33], al         # 1-byte Spill
 	je	.LBB103_6
 # %bb.3:                                #   in Loop: Header=BB103_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.103+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_udivmodsi4+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11211,6 +12486,10 @@ udivmodsi4:                             # @udivmodsi4
 	jmp	.LBB103_6
 .LBB103_5:                              #   in Loop: Header=BB103_1 Depth=1
 	mov	al, byte ptr [rbp - 34]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.103+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc_udivmodsi4+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -11222,6 +12501,10 @@ udivmodsi4:                             # @udivmodsi4
 	jne	.LBB103_7
 	jmp	.LBB103_8
 .LBB103_7:                              #   in Loop: Header=BB103_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.103+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_udivmodsi4+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11247,6 +12530,10 @@ udivmodsi4:                             # @udivmodsi4
 	cmp	eax, dword ptr [rbp - 12]
 	jb	.LBB103_12
 # %bb.11:                               #   in Loop: Header=BB103_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.103+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_udivmodsi4+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11259,6 +12546,10 @@ udivmodsi4:                             # @udivmodsi4
 	or	eax, dword ptr [rbp - 32]
 	mov	dword ptr [rbp - 32], eax
 .LBB103_12:                             #   in Loop: Header=BB103_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.103+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 28]
 	shr	eax
 	mov	dword ptr [rbp - 28], eax
@@ -11270,6 +12561,10 @@ udivmodsi4:                             # @udivmodsi4
 	cmp	qword ptr [rbp - 24], 0
 	je	.LBB103_15
 # %bb.14:
+	movabs	rax, offset __llvm_gcov_ctr.103+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc_udivmodsi4+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11278,6 +12573,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	dword ptr [rbp - 4], eax
 	jmp	.LBB103_16
 .LBB103_15:
+	movabs	rax, offset __llvm_gcov_ctr.103+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 32]
 	mov	dword ptr [rbp - 4], eax
 .LBB103_16:
@@ -11351,6 +12650,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	cmp	eax, 0
 	jge	.LBB104_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.104
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___clrsbqi2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11364,6 +12667,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	cmp	eax, 0
 	jne	.LBB104_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.104+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___clrsbqi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11371,6 +12678,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	mov	dword ptr [rbp - 4], 7
 	jmp	.LBB104_5
 .LBB104_4:
+	movabs	rax, offset __llvm_gcov_ctr.104+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsx	eax, byte ptr [rbp - 5]
 	shl	eax, 8
 	bsr	eax, eax
@@ -11448,6 +12759,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	cmp	qword ptr [rbp - 16], 0
 	jge	.LBB105_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.105
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___clrsbdi2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11459,6 +12774,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	cmp	qword ptr [rbp - 16], 0
 	jne	.LBB105_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.105+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___clrsbdi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11466,6 +12785,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	mov	dword ptr [rbp - 4], 63
 	jmp	.LBB105_5
 .LBB105_4:
+	movabs	rax, offset __llvm_gcov_ctr.105+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 16]
 	bsr	rax, rax
 	xor	rax, 63
@@ -11535,6 +12858,10 @@ __mulsi3:                               # @__mulsi3
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.106
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc___mulsi3
@@ -11555,6 +12882,10 @@ __mulsi3:                               # @__mulsi3
 	cmp	eax, 0
 	je	.LBB106_4
 # %bb.3:                                #   in Loop: Header=BB106_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.106+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulsi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11563,6 +12894,10 @@ __mulsi3:                               # @__mulsi3
 	add	eax, dword ptr [rbp - 12]
 	mov	dword ptr [rbp - 12], eax
 .LBB106_4:                              #   in Loop: Header=BB106_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.106+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 4]
 	shr	eax
 	mov	dword ptr [rbp - 4], eax
@@ -11652,6 +12987,10 @@ __cmovd:                                # @__cmovd
 	cmp	rax, qword ptr [rbp - 48]
 	jb	.LBB107_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.107
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovd+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11693,6 +13032,10 @@ __cmovd:                                # @__cmovd
                                         # kill: def $rcx killed $ecx
 	mov	qword ptr [rax + 8*rcx], rdx
 # %bb.6:                                #   in Loop: Header=BB107_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.107+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 24]
 	add	eax, 1
 	mov	dword ptr [rbp - 24], eax
@@ -11704,6 +13047,10 @@ __cmovd:                                # @__cmovd
 	cmp	eax, dword ptr [rbp - 32]
 	jbe	.LBB107_10
 # %bb.9:                                #   in Loop: Header=BB107_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.107+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovd+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11721,6 +13068,10 @@ __cmovd:                                # @__cmovd
 	mov	dword ptr [rbp - 32], eax
 	jmp	.LBB107_8
 .LBB107_10:
+	movabs	rax, offset __llvm_gcov_ctr.107+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	jmp	.LBB107_15
 .LBB107_11:
 	jmp	.LBB107_12
@@ -11732,6 +13083,10 @@ __cmovd:                                # @__cmovd
 	cmp	eax, 0
 	jbe	.LBB107_14
 # %bb.13:                               #   in Loop: Header=BB107_12 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.107+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovd+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11746,7 +13101,10 @@ __cmovd:                                # @__cmovd
 	mov	byte ptr [rax + rcx], dl
 	jmp	.LBB107_12
 .LBB107_14:
-	jmp	.LBB107_15
+	movabs	rax, offset __llvm_gcov_ctr.107+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB107_15:
 	pop	rbp
 	.cfi_def_cfa rsp, 8
@@ -11826,6 +13184,10 @@ __cmovh:                                # @__cmovh
 	cmp	rax, qword ptr [rbp - 48]
 	jb	.LBB108_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.108
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovh+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11867,6 +13229,10 @@ __cmovh:                                # @__cmovh
                                         # kill: def $rcx killed $ecx
 	mov	word ptr [rax + 2*rcx], dx
 # %bb.6:                                #   in Loop: Header=BB108_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.108+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 24]
 	add	eax, 1
 	mov	dword ptr [rbp - 24], eax
@@ -11877,6 +13243,10 @@ __cmovh:                                # @__cmovh
 	cmp	eax, 0
 	je	.LBB108_9
 # %bb.8:
+	movabs	rax, offset __llvm_gcov_ctr.108+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovh+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11894,6 +13264,10 @@ __cmovh:                                # @__cmovh
                                         # kill: def $rcx killed $ecx
 	mov	byte ptr [rax + rcx], dl
 .LBB108_9:
+	movabs	rax, offset __llvm_gcov_ctr.108+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	jmp	.LBB108_14
 .LBB108_10:
 	jmp	.LBB108_11
@@ -11905,6 +13279,10 @@ __cmovh:                                # @__cmovh
 	cmp	eax, 0
 	jbe	.LBB108_13
 # %bb.12:                               #   in Loop: Header=BB108_11 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.108+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovh+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -11919,7 +13297,10 @@ __cmovh:                                # @__cmovh
 	mov	byte ptr [rax + rcx], dl
 	jmp	.LBB108_11
 .LBB108_13:
-	jmp	.LBB108_14
+	movabs	rax, offset __llvm_gcov_ctr.108+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB108_14:
 	pop	rbp
 	.cfi_def_cfa rsp, 8
@@ -12002,6 +13383,10 @@ __cmovw:                                # @__cmovw
 	cmp	rax, qword ptr [rbp - 48]
 	jb	.LBB109_3
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.109
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovw+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12043,6 +13428,10 @@ __cmovw:                                # @__cmovw
                                         # kill: def $rcx killed $ecx
 	mov	dword ptr [rax + 4*rcx], edx
 # %bb.6:                                #   in Loop: Header=BB109_4 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.109+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 24]
 	add	eax, 1
 	mov	dword ptr [rbp - 24], eax
@@ -12054,6 +13443,10 @@ __cmovw:                                # @__cmovw
 	cmp	eax, dword ptr [rbp - 32]
 	jbe	.LBB109_10
 # %bb.9:                                #   in Loop: Header=BB109_8 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.109+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovw+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12071,6 +13464,10 @@ __cmovw:                                # @__cmovw
 	mov	dword ptr [rbp - 32], eax
 	jmp	.LBB109_8
 .LBB109_10:
+	movabs	rax, offset __llvm_gcov_ctr.109+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	jmp	.LBB109_15
 .LBB109_11:
 	jmp	.LBB109_12
@@ -12082,6 +13479,10 @@ __cmovw:                                # @__cmovw
 	cmp	eax, 0
 	jbe	.LBB109_14
 # %bb.13:                               #   in Loop: Header=BB109_12 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.109+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmovw+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12096,7 +13497,10 @@ __cmovw:                                # @__cmovw
 	mov	byte ptr [rax + rcx], dl
 	jmp	.LBB109_12
 .LBB109_14:
-	jmp	.LBB109_15
+	movabs	rax, offset __llvm_gcov_ctr.109+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB109_15:
 	pop	rbp
 	.cfi_def_cfa rsp, 8
@@ -12158,6 +13562,10 @@ __modi:                                 # @__modi
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.110
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc___modi
@@ -12227,6 +13635,10 @@ __uitod:                                # @__uitod
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.111
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___uitod
 	mov	rcx, qword ptr [rax]
@@ -12294,6 +13706,10 @@ __uitof:                                # @__uitof
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.112
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___uitof
 	mov	rcx, qword ptr [rax]
@@ -12372,6 +13788,10 @@ __ulltod:                               # @__ulltod
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.113
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___ulltod
 	mov	rcx, qword ptr [rax]
@@ -12446,6 +13866,10 @@ __ulltof:                               # @__ulltof
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.114
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___ulltof
 	mov	rcx, qword ptr [rax]
@@ -12531,6 +13955,10 @@ __umodi:                                # @__umodi
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.115
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc___umodi
@@ -12601,6 +14029,10 @@ __clzhi2:                               # @__clzhi2
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.116
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	movabs	rax, offset .L__profc___clzhi2
 	mov	rcx, qword ptr [rax]
@@ -12626,6 +14058,10 @@ __clzhi2:                               # @__clzhi2
 	cmp	eax, 0
 	je	.LBB116_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.116+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___clzhi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12634,6 +14070,10 @@ __clzhi2:                               # @__clzhi2
 .LBB116_4:                              #   in Loop: Header=BB116_1 Depth=1
 	jmp	.LBB116_5
 .LBB116_5:                              #   in Loop: Header=BB116_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.116+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 8]
 	add	eax, 1
 	mov	dword ptr [rbp - 8], eax
@@ -12700,6 +14140,10 @@ __ctzhi2:                               # @__ctzhi2
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.117
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	movabs	rax, offset .L__profc___ctzhi2
 	mov	rcx, qword ptr [rax]
@@ -12724,6 +14168,10 @@ __ctzhi2:                               # @__ctzhi2
 	cmp	eax, 0
 	je	.LBB117_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.117+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ctzhi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12732,6 +14180,10 @@ __ctzhi2:                               # @__ctzhi2
 .LBB117_4:                              #   in Loop: Header=BB117_1 Depth=1
 	jmp	.LBB117_5
 .LBB117_5:                              #   in Loop: Header=BB117_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.117+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 8]
 	add	eax, 1
 	mov	dword ptr [rbp - 8], eax
@@ -12813,6 +14265,10 @@ __fixunssfsi:                           # @__fixunssfsi
 	ucomiss	xmm0, xmm1
 	jb	.LBB118_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.118
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___fixunssfsi+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12826,6 +14282,10 @@ __fixunssfsi:                           # @__fixunssfsi
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB118_3
 .LBB118_2:
+	movabs	rax, offset __llvm_gcov_ctr.118+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	cvttss2si	rax, dword ptr [rbp - 12]
 	mov	qword ptr [rbp - 8], rax
 .LBB118_3:
@@ -12890,6 +14350,10 @@ __parityhi2:                            # @__parityhi2
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.119
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	movabs	rax, offset .L__profc___parityhi2
 	mov	rcx, qword ptr [rax]
@@ -12915,6 +14379,10 @@ __parityhi2:                            # @__parityhi2
 	cmp	eax, 0
 	je	.LBB119_4
 # %bb.3:                                #   in Loop: Header=BB119_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.119+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___parityhi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -12925,6 +14393,10 @@ __parityhi2:                            # @__parityhi2
 .LBB119_4:                              #   in Loop: Header=BB119_1 Depth=1
 	jmp	.LBB119_5
 .LBB119_5:                              #   in Loop: Header=BB119_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.119+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 8]
 	add	eax, 1
 	mov	dword ptr [rbp - 8], eax
@@ -12992,6 +14464,10 @@ __popcounthi2:                          # @__popcounthi2
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	mov	ax, di
+	movabs	rcx, offset __llvm_gcov_ctr.120
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	mov	word ptr [rbp - 2], ax
 	movabs	rax, offset .L__profc___popcounthi2
 	mov	rcx, qword ptr [rax]
@@ -13017,6 +14493,10 @@ __popcounthi2:                          # @__popcounthi2
 	cmp	eax, 0
 	je	.LBB120_4
 # %bb.3:                                #   in Loop: Header=BB120_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.120+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___popcounthi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13027,6 +14507,10 @@ __popcounthi2:                          # @__popcounthi2
 .LBB120_4:                              #   in Loop: Header=BB120_1 Depth=1
 	jmp	.LBB120_5
 .LBB120_5:                              #   in Loop: Header=BB120_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.120+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 8]
 	add	eax, 1
 	mov	dword ptr [rbp - 8], eax
@@ -13092,6 +14576,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.121
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc___mulsi3_iq2000
@@ -13112,6 +14600,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	cmp	eax, 0
 	je	.LBB121_4
 # %bb.3:                                #   in Loop: Header=BB121_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.121+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulsi3_iq2000+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13120,6 +14612,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	add	eax, dword ptr [rbp - 12]
 	mov	dword ptr [rbp - 12], eax
 .LBB121_4:                              #   in Loop: Header=BB121_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.121+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 4]
 	shr	eax
 	mov	dword ptr [rbp - 4], eax
@@ -13198,6 +14694,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	cmp	dword ptr [rbp - 8], 0
 	jne	.LBB122_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.122+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulsi3_lm32+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13205,7 +14705,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	mov	dword ptr [rbp - 4], 0
 	jmp	.LBB122_8
 .LBB122_2:
-	jmp	.LBB122_3
+	movabs	rax, offset __llvm_gcov_ctr.122
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 .LBB122_3:                              # =>This Inner Loop Header: Depth=1
 	cmp	dword ptr [rbp - 12], 0
 	je	.LBB122_7
@@ -13219,6 +14722,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	cmp	eax, 0
 	je	.LBB122_6
 # %bb.5:                                #   in Loop: Header=BB122_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.122+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulsi3_lm32+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13227,6 +14734,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	add	eax, dword ptr [rbp - 16]
 	mov	dword ptr [rbp - 16], eax
 .LBB122_6:                              #   in Loop: Header=BB122_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.122+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 8]
 	shl	eax
 	mov	dword ptr [rbp - 8], eax
@@ -13315,6 +14826,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	jae	.LBB123_6
 # %bb.2:                                #   in Loop: Header=BB123_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.123
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13325,6 +14840,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	byte ptr [rbp - 25], al         # 1-byte Spill
 	je	.LBB123_6
 # %bb.3:                                #   in Loop: Header=BB123_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.123+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13348,6 +14867,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	jmp	.LBB123_6
 .LBB123_5:                              #   in Loop: Header=BB123_1 Depth=1
 	mov	al, byte ptr [rbp - 26]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.123+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc___udivmodsi4+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -13359,6 +14882,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	jne	.LBB123_7
 	jmp	.LBB123_8
 .LBB123_7:                              #   in Loop: Header=BB123_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.123+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13384,6 +14911,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	cmp	eax, dword ptr [rbp - 12]
 	jb	.LBB123_12
 # %bb.11:                               #   in Loop: Header=BB123_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.123+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13396,6 +14927,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	or	eax, dword ptr [rbp - 24]
 	mov	dword ptr [rbp - 24], eax
 .LBB123_12:                             #   in Loop: Header=BB123_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.123+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 20]
 	shr	eax
 	mov	dword ptr [rbp - 20], eax
@@ -13407,6 +14942,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	cmp	dword ptr [rbp - 16], 0
 	je	.LBB123_15
 # %bb.14:
+	movabs	rax, offset __llvm_gcov_ctr.123+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13415,6 +14954,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	dword ptr [rbp - 4], eax
 	jmp	.LBB123_16
 .LBB123_15:
+	movabs	rax, offset __llvm_gcov_ctr.123+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 24]
 	mov	dword ptr [rbp - 4], eax
 .LBB123_16:
@@ -13489,6 +15032,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	ucomiss	xmm0, xmm1
 	jbe	.LBB124_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.124
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mspabi_cmpf+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13500,6 +15047,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	ucomiss	xmm0, dword ptr [rbp - 12]
 	jbe	.LBB124_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.124+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mspabi_cmpf+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13507,6 +15058,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	mov	dword ptr [rbp - 4], 1
 	jmp	.LBB124_5
 .LBB124_4:
+	movabs	rax, offset __llvm_gcov_ctr.124+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 0
 .LBB124_5:
 	mov	eax, dword ptr [rbp - 4]
@@ -13580,6 +15135,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	ucomisd	xmm0, xmm1
 	jbe	.LBB125_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.125
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mspabi_cmpd+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13591,6 +15150,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	ucomisd	xmm0, qword ptr [rbp - 24]
 	jbe	.LBB125_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.125+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mspabi_cmpd+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13598,6 +15161,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	mov	dword ptr [rbp - 4], 1
 	jmp	.LBB125_5
 .LBB125_4:
+	movabs	rax, offset __llvm_gcov_ctr.125+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 0
 .LBB125_5:
 	mov	eax, dword ptr [rbp - 4]
@@ -13660,6 +15227,10 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.126
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___mspabi_mpysll
@@ -13727,6 +15298,10 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.127
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___mspabi_mpyull
@@ -13805,6 +15380,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	dword ptr [rbp - 8], 0
 	jge	.LBB128_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.128
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulhi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13822,6 +15401,10 @@ __mulhi3:                               # @__mulhi3
 	mov	byte ptr [rbp - 21], al         # 1-byte Spill
 	je	.LBB128_6
 # %bb.4:                                #   in Loop: Header=BB128_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.128+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulhi3+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13836,6 +15419,10 @@ __mulhi3:                               # @__mulhi3
 	jmp	.LBB128_6
 .LBB128_5:                              #   in Loop: Header=BB128_3 Depth=1
 	mov	al, byte ptr [rbp - 22]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.128+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc___mulhi3+32
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -13856,6 +15443,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	eax, 0
 	je	.LBB128_9
 # %bb.8:                                #   in Loop: Header=BB128_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.128+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulhi3+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13871,6 +15462,10 @@ __mulhi3:                               # @__mulhi3
 	sar	eax
 	mov	dword ptr [rbp - 8], eax
 # %bb.10:                               #   in Loop: Header=BB128_3 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.128+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	al, byte ptr [rbp - 9]
 	add	al, 1
 	mov	byte ptr [rbp - 9], al
@@ -13879,6 +15474,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	dword ptr [rbp - 16], 0
 	je	.LBB128_13
 # %bb.12:
+	movabs	rax, offset __llvm_gcov_ctr.128+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___mulhi3+48
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13888,6 +15487,10 @@ __mulhi3:                               # @__mulhi3
 	mov	dword ptr [rbp - 28], eax       # 4-byte Spill
 	jmp	.LBB128_14
 .LBB128_13:
+	movabs	rax, offset __llvm_gcov_ctr.128+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 20]
 	mov	dword ptr [rbp - 28], eax       # 4-byte Spill
 .LBB128_14:
@@ -13952,6 +15555,10 @@ __divsi3:                               # @__divsi3
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 32
+	movabs	rax, offset __llvm_gcov_ctr.129
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___divsi3
@@ -13962,6 +15569,10 @@ __divsi3:                               # @__divsi3
 	cmp	qword ptr [rbp - 8], 0
 	jge	.LBB129_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.129+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___divsi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -13980,6 +15591,10 @@ __divsi3:                               # @__divsi3
 	cmp	qword ptr [rbp - 16], 0
 	jge	.LBB129_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.129+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___divsi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14009,6 +15624,10 @@ __divsi3:                               # @__divsi3
 	cmp	dword ptr [rbp - 20], 0
 	je	.LBB129_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.129+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___divsi3+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14080,6 +15699,10 @@ __modsi3:                               # @__modsi3
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 32
+	movabs	rax, offset __llvm_gcov_ctr.130
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___modsi3
@@ -14090,6 +15713,10 @@ __modsi3:                               # @__modsi3
 	cmp	qword ptr [rbp - 8], 0
 	jge	.LBB130_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.130+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___modsi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14103,6 +15730,10 @@ __modsi3:                               # @__modsi3
 	cmp	qword ptr [rbp - 16], 0
 	jge	.LBB130_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.130+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___modsi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14125,6 +15756,10 @@ __modsi3:                               # @__modsi3
 	cmp	dword ptr [rbp - 20], 0
 	je	.LBB130_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.130+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___modsi3+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14215,6 +15850,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	byte ptr [rbp - 17], al         # 1-byte Spill
 	jge	.LBB131_6
 # %bb.2:                                #   in Loop: Header=BB131_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.131
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodhi4+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14226,6 +15865,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	byte ptr [rbp - 17], al         # 1-byte Spill
 	je	.LBB131_6
 # %bb.3:                                #   in Loop: Header=BB131_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.131+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodhi4+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14247,6 +15890,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	jmp	.LBB131_6
 .LBB131_5:                              #   in Loop: Header=BB131_1 Depth=1
 	mov	al, byte ptr [rbp - 18]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.131+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc___udivmodhi4+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -14258,6 +15905,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	jne	.LBB131_7
 	jmp	.LBB131_8
 .LBB131_7:                              #   in Loop: Header=BB131_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.131+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodhi4+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14286,6 +15937,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	cmp	eax, ecx
 	jl	.LBB131_12
 # %bb.11:                               #   in Loop: Header=BB131_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.131+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodhi4+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14301,6 +15956,10 @@ __udivmodhi4:                           # @__udivmodhi4
                                         # kill: def $ax killed $ax killed $eax
 	mov	word ptr [rbp - 16], ax
 .LBB131_12:                             #   in Loop: Header=BB131_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.131+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movzx	eax, word ptr [rbp - 14]
 	sar	eax
                                         # kill: def $ax killed $ax killed $eax
@@ -14314,6 +15973,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	cmp	dword ptr [rbp - 12], 0
 	je	.LBB131_15
 # %bb.14:
+	movabs	rax, offset __llvm_gcov_ctr.131+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodhi4+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14322,6 +15985,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	word ptr [rbp - 2], ax
 	jmp	.LBB131_16
 .LBB131_15:
+	movabs	rax, offset __llvm_gcov_ctr.131+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	ax, word ptr [rbp - 16]
 	mov	word ptr [rbp - 2], ax
 .LBB131_16:
@@ -14402,6 +16069,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	byte ptr [rbp - 49], al         # 1-byte Spill
 	jae	.LBB132_6
 # %bb.2:                                #   in Loop: Header=BB132_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.132
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4_libgcc+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14412,6 +16083,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	byte ptr [rbp - 49], al         # 1-byte Spill
 	je	.LBB132_6
 # %bb.3:                                #   in Loop: Header=BB132_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.132+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4_libgcc+40
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14433,6 +16108,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	jmp	.LBB132_6
 .LBB132_5:                              #   in Loop: Header=BB132_1 Depth=1
 	mov	al, byte ptr [rbp - 50]         # 1-byte Reload
+	movabs	rcx, offset __llvm_gcov_ctr.132+16
+	mov	rdx, qword ptr [rcx]
+	inc	rdx
+	mov	qword ptr [rcx], rdx
 	movabs	rcx, offset .L__profc___udivmodsi4_libgcc+24
 	mov	rdx, qword ptr [rcx]
 	inc	rdx
@@ -14444,6 +16123,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	jne	.LBB132_7
 	jmp	.LBB132_8
 .LBB132_7:                              #   in Loop: Header=BB132_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.132+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4_libgcc+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14469,6 +16152,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	cmp	rax, qword ptr [rbp - 24]
 	jb	.LBB132_12
 # %bb.11:                               #   in Loop: Header=BB132_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.132+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4_libgcc+56
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14481,6 +16168,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	or	rax, qword ptr [rbp - 48]
 	mov	qword ptr [rbp - 48], rax
 .LBB132_12:                             #   in Loop: Header=BB132_9 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.132+40
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 40]
 	shr	rax
 	mov	qword ptr [rbp - 40], rax
@@ -14492,6 +16183,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	cmp	dword ptr [rbp - 28], 0
 	je	.LBB132_15
 # %bb.14:
+	movabs	rax, offset __llvm_gcov_ctr.132+48
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___udivmodsi4_libgcc+64
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14500,6 +16195,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB132_16
 .LBB132_15:
+	movabs	rax, offset __llvm_gcov_ctr.132+56
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 48]
 	mov	qword ptr [rbp - 8], rax
 .LBB132_16:
@@ -14577,6 +16276,10 @@ __ashldi3:                              # @__ashldi3
 	cmp	eax, 0
 	je	.LBB133_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.133
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashldi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14593,6 +16296,10 @@ __ashldi3:                              # @__ashldi3
 	cmp	dword ptr [rbp - 20], 0
 	jne	.LBB133_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.133+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashldi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14601,6 +16308,10 @@ __ashldi3:                              # @__ashldi3
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB133_6
 .LBB133_4:
+	movabs	rax, offset __llvm_gcov_ctr.133+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 32]
 	mov	ecx, dword ptr [rbp - 20]
                                         # kill: def $cl killed $ecx
@@ -14703,6 +16414,10 @@ __ashlti3:                              # @__ashlti3
 	cmp	eax, 0
 	je	.LBB134_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.134
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashlti3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14721,6 +16436,10 @@ __ashlti3:                              # @__ashlti3
 	cmp	dword ptr [rbp - 52], 0
 	jne	.LBB134_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.134+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashlti3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14731,6 +16450,10 @@ __ashlti3:                              # @__ashlti3
 	mov	qword ptr [rbp - 16], rax
 	jmp	.LBB134_6
 .LBB134_4:
+	movabs	rax, offset __llvm_gcov_ctr.134+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 80]
 	mov	ecx, dword ptr [rbp - 52]
                                         # kill: def $rcx killed $ecx
@@ -14832,6 +16555,10 @@ __ashrdi3:                              # @__ashrdi3
 	cmp	eax, 0
 	je	.LBB135_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.135
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashrdi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14850,6 +16577,10 @@ __ashrdi3:                              # @__ashrdi3
 	cmp	dword ptr [rbp - 20], 0
 	jne	.LBB135_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.135+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashrdi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14858,6 +16589,10 @@ __ashrdi3:                              # @__ashrdi3
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB135_6
 .LBB135_4:
+	movabs	rax, offset __llvm_gcov_ctr.135+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 28]
 	mov	ecx, dword ptr [rbp - 20]
                                         # kill: def $cl killed $ecx
@@ -14960,6 +16695,10 @@ __ashrti3:                              # @__ashrti3
 	cmp	eax, 0
 	je	.LBB136_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.136
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashrti3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14980,6 +16719,10 @@ __ashrti3:                              # @__ashrti3
 	cmp	dword ptr [rbp - 52], 0
 	jne	.LBB136_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.136+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ashrti3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -14990,6 +16733,10 @@ __ashrti3:                              # @__ashrti3
 	mov	qword ptr [rbp - 16], rax
 	jmp	.LBB136_6
 .LBB136_4:
+	movabs	rax, offset __llvm_gcov_ctr.136+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 72]
 	mov	ecx, dword ptr [rbp - 52]
                                         # kill: def $rcx killed $ecx
@@ -15077,6 +16824,10 @@ __bswapdi2:                             # @__bswapdi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.137
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___bswapdi2
 	mov	rcx, qword ptr [rax]
@@ -15172,6 +16923,10 @@ __bswapsi2:                             # @__bswapsi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.138
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___bswapsi2
 	mov	rcx, qword ptr [rax]
@@ -15251,6 +17006,10 @@ __clzsi2:                               # @__clzsi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.139
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___clzsi2
 	mov	rcx, qword ptr [rax]
@@ -15397,6 +17156,10 @@ __clzti2:                               # @__clzti2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.140
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 16], rdi
 	mov	qword ptr [rbp - 8], rsi
 	mov	rax, qword ptr [rbp - 16]
@@ -15506,6 +17269,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [rbp - 36]
 	jge	.LBB141_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.141
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpdi2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15517,6 +17284,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [rbp - 36]
 	jle	.LBB141_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.141+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpdi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15528,6 +17299,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [rbp - 40]
 	jae	.LBB141_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.141+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpdi2+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15539,6 +17314,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [rbp - 40]
 	jbe	.LBB141_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.141+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpdi2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15546,6 +17325,10 @@ __cmpdi2:                               # @__cmpdi2
 	mov	dword ptr [rbp - 4], 2
 	jmp	.LBB141_9
 .LBB141_8:
+	movabs	rax, offset __llvm_gcov_ctr.141+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 1
 .LBB141_9:
 	mov	eax, dword ptr [rbp - 4]
@@ -15609,6 +17392,10 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 16
+	movabs	rax, offset __llvm_gcov_ctr.142
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___aeabi_lcmp
@@ -15709,6 +17496,10 @@ __cmpti2:                               # @__cmpti2
 	cmp	rax, qword ptr [rbp - 104]
 	jge	.LBB143_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.143
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpti2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15720,6 +17511,10 @@ __cmpti2:                               # @__cmpti2
 	cmp	rax, qword ptr [rbp - 104]
 	jle	.LBB143_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.143+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpti2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15731,6 +17526,10 @@ __cmpti2:                               # @__cmpti2
 	cmp	rax, qword ptr [rbp - 112]
 	jae	.LBB143_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.143+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpti2+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15742,6 +17541,10 @@ __cmpti2:                               # @__cmpti2
 	cmp	rax, qword ptr [rbp - 112]
 	jbe	.LBB143_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.143+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___cmpti2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -15749,6 +17552,10 @@ __cmpti2:                               # @__cmpti2
 	mov	dword ptr [rbp - 4], 2
 	jmp	.LBB143_9
 .LBB143_8:
+	movabs	rax, offset __llvm_gcov_ctr.143+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 1
 .LBB143_9:
 	mov	eax, dword ptr [rbp - 4]
@@ -15811,6 +17618,10 @@ __ctzsi2:                               # @__ctzsi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.144
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___ctzsi2
 	mov	rcx, qword ptr [rax]
@@ -15958,6 +17769,10 @@ __ctzti2:                               # @__ctzti2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.145
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 16], rdi
 	mov	qword ptr [rbp - 8], rsi
 	mov	rax, qword ptr [rbp - 16]
@@ -16076,6 +17891,10 @@ __ffsti2:                               # @__ffsti2
 	cmp	qword ptr [rbp - 56], 0
 	jne	.LBB146_3
 # %bb.2:
+	movabs	rax, offset __llvm_gcov_ctr.146+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ffsti2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -16083,6 +17902,10 @@ __ffsti2:                               # @__ffsti2
 	mov	dword ptr [rbp - 4], 0
 	jmp	.LBB146_5
 .LBB146_3:
+	movabs	rax, offset __llvm_gcov_ctr.146+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 56]
 	rep		bsf	rax, rax
                                         # kill: def $eax killed $eax killed $rax
@@ -16092,6 +17915,10 @@ __ffsti2:                               # @__ffsti2
 	mov	dword ptr [rbp - 4], eax
 	jmp	.LBB146_5
 .LBB146_4:
+	movabs	rax, offset __llvm_gcov_ctr.146
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 64]
 	rep		bsf	rax, rax
                                         # kill: def $eax killed $eax killed $rax
@@ -16172,6 +17999,10 @@ __lshrdi3:                              # @__lshrdi3
 	cmp	eax, 0
 	je	.LBB147_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.147
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___lshrdi3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -16188,6 +18019,10 @@ __lshrdi3:                              # @__lshrdi3
 	cmp	dword ptr [rbp - 20], 0
 	jne	.LBB147_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.147+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___lshrdi3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -16196,6 +18031,10 @@ __lshrdi3:                              # @__lshrdi3
 	mov	qword ptr [rbp - 8], rax
 	jmp	.LBB147_6
 .LBB147_4:
+	movabs	rax, offset __llvm_gcov_ctr.147+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	eax, dword ptr [rbp - 28]
 	mov	ecx, dword ptr [rbp - 20]
                                         # kill: def $cl killed $ecx
@@ -16298,6 +18137,10 @@ __lshrti3:                              # @__lshrti3
 	cmp	eax, 0
 	je	.LBB148_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.148
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___lshrti3+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -16316,6 +18159,10 @@ __lshrti3:                              # @__lshrti3
 	cmp	dword ptr [rbp - 52], 0
 	jne	.LBB148_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.148+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___lshrti3+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -16326,6 +18173,10 @@ __lshrti3:                              # @__lshrti3
 	mov	qword ptr [rbp - 16], rax
 	jmp	.LBB148_6
 .LBB148_4:
+	movabs	rax, offset __llvm_gcov_ctr.148+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	rax, qword ptr [rbp - 72]
 	mov	ecx, dword ptr [rbp - 52]
                                         # kill: def $rcx killed $ecx
@@ -16413,6 +18264,10 @@ __muldsi3:                              # @__muldsi3
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.149
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	mov	dword ptr [rbp - 8], esi
 	movabs	rax, offset .L__profc___muldsi3
@@ -16538,6 +18393,10 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 48
+	movabs	rax, offset __llvm_gcov_ctr.150
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___muldi3_compiler_rt
@@ -16621,6 +18480,10 @@ __mulddi3:                              # @__mulddi3
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.151
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 24], rdi
 	mov	qword ptr [rbp - 32], rsi
 	movabs	rax, offset .L__profc___mulddi3
@@ -16752,6 +18615,10 @@ __multi3:                               # @__multi3
 	.cfi_def_cfa_register rbp
 	sub	rsp, 144
 	mov	rax, rdx
+	movabs	rdx, offset __llvm_gcov_ctr.152
+	mov	r8, qword ptr [rdx]
+	inc	r8
+	mov	qword ptr [rdx], r8
 	mov	qword ptr [rbp - 32], rdi
 	mov	qword ptr [rbp - 24], rsi
 	mov	rdx, qword ptr [rbp - 32]
@@ -16861,6 +18728,10 @@ __negdi2:                               # @__negdi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.153
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___negdi2
 	mov	rcx, qword ptr [rax]
@@ -16928,6 +18799,10 @@ __negti2:                               # @__negti2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.154
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 32], rdi
 	mov	qword ptr [rbp - 24], rsi
 	mov	rax, qword ptr [rbp - 32]
@@ -17006,6 +18881,10 @@ __paritydi2:                            # @__paritydi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.155
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___paritydi2
 	mov	rcx, qword ptr [rax]
@@ -17093,6 +18972,10 @@ __parityti2:                            # @__parityti2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.156
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 16], rdi
 	mov	qword ptr [rbp - 8], rsi
 	mov	rax, qword ptr [rbp - 16]
@@ -17190,6 +19073,10 @@ __paritysi2:                            # @__paritysi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.157
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___paritysi2
 	mov	rcx, qword ptr [rax]
@@ -17274,6 +19161,10 @@ __popcountdi2:                          # @__popcountdi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.158
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	movabs	rax, offset .L__profc___popcountdi2
 	mov	rcx, qword ptr [rax]
@@ -17378,6 +19269,10 @@ __popcountsi2:                          # @__popcountsi2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.159
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], edi
 	movabs	rax, offset .L__profc___popcountsi2
 	mov	rcx, qword ptr [rax]
@@ -17473,6 +19368,10 @@ __popcountti2:                          # @__popcountti2
 	.cfi_offset rbp, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr.160
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 16], rdi
 	mov	qword ptr [rbp - 8], rsi
 	mov	rax, qword ptr [rbp - 16]
@@ -17636,6 +19535,10 @@ __powidf2:                              # @__powidf2
 	cmp	eax, 0
 	je	.LBB161_3
 # %bb.2:                                #   in Loop: Header=BB161_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.161
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___powidf2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17658,6 +19561,10 @@ __powidf2:                              # @__powidf2
 	mov	qword ptr [rax], rcx
 	jmp	.LBB161_6
 .LBB161_5:                              #   in Loop: Header=BB161_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.161+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 8]       # xmm0 = mem[0],zero
 	mulsd	xmm0, qword ptr [rbp - 8]
 	movsd	qword ptr [rbp - 8], xmm0
@@ -17666,6 +19573,10 @@ __powidf2:                              # @__powidf2
 	cmp	dword ptr [rbp - 16], 0
 	je	.LBB161_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.161+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___powidf2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17676,6 +19587,10 @@ __powidf2:                              # @__powidf2
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 	jmp	.LBB161_9
 .LBB161_8:
+	movabs	rax, offset __llvm_gcov_ctr.161+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movsd	xmm0, qword ptr [rbp - 24]      # xmm0 = mem[0],zero
 	movsd	qword ptr [rbp - 32], xmm0      # 8-byte Spill
 .LBB161_9:
@@ -17769,6 +19684,10 @@ __powisf2:                              # @__powisf2
 	cmp	eax, 0
 	je	.LBB162_3
 # %bb.2:                                #   in Loop: Header=BB162_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.162
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___powisf2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17791,6 +19710,10 @@ __powisf2:                              # @__powisf2
 	mov	qword ptr [rax], rcx
 	jmp	.LBB162_6
 .LBB162_5:                              #   in Loop: Header=BB162_1 Depth=1
+	movabs	rax, offset __llvm_gcov_ctr.162+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 4]       # xmm0 = mem[0],zero,zero,zero
 	mulss	xmm0, dword ptr [rbp - 4]
 	movss	dword ptr [rbp - 4], xmm0
@@ -17799,6 +19722,10 @@ __powisf2:                              # @__powisf2
 	cmp	dword ptr [rbp - 12], 0
 	je	.LBB162_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.162+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___powisf2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17809,6 +19736,10 @@ __powisf2:                              # @__powisf2
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 	jmp	.LBB162_9
 .LBB162_8:
+	movabs	rax, offset __llvm_gcov_ctr.162+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movss	xmm0, dword ptr [rbp - 16]      # xmm0 = mem[0],zero,zero,zero
 	movss	dword ptr [rbp - 20], xmm0      # 4-byte Spill
 .LBB162_9:
@@ -17887,6 +19818,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [rbp - 36]
 	jae	.LBB163_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.163
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpdi2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17898,6 +19833,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [rbp - 36]
 	jbe	.LBB163_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.163+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpdi2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17909,6 +19848,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [rbp - 40]
 	jae	.LBB163_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.163+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpdi2+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17920,6 +19863,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [rbp - 40]
 	jbe	.LBB163_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.163+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpdi2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -17927,6 +19874,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	mov	dword ptr [rbp - 4], 2
 	jmp	.LBB163_9
 .LBB163_8:
+	movabs	rax, offset __llvm_gcov_ctr.163+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 1
 .LBB163_9:
 	mov	eax, dword ptr [rbp - 4]
@@ -17990,6 +19941,10 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	mov	rbp, rsp
 	.cfi_def_cfa_register rbp
 	sub	rsp, 16
+	movabs	rax, offset __llvm_gcov_ctr.164
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	qword ptr [rbp - 8], rdi
 	mov	qword ptr [rbp - 16], rsi
 	movabs	rax, offset .L__profc___aeabi_ulcmp
@@ -18090,6 +20045,10 @@ __ucmpti2:                              # @__ucmpti2
 	cmp	rax, qword ptr [rbp - 104]
 	jae	.LBB165_2
 # %bb.1:
+	movabs	rax, offset __llvm_gcov_ctr.165
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpti2+8
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -18101,6 +20060,10 @@ __ucmpti2:                              # @__ucmpti2
 	cmp	rax, qword ptr [rbp - 104]
 	jbe	.LBB165_4
 # %bb.3:
+	movabs	rax, offset __llvm_gcov_ctr.165+8
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpti2+16
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -18112,6 +20075,10 @@ __ucmpti2:                              # @__ucmpti2
 	cmp	rax, qword ptr [rbp - 112]
 	jae	.LBB165_6
 # %bb.5:
+	movabs	rax, offset __llvm_gcov_ctr.165+16
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpti2+24
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -18123,6 +20090,10 @@ __ucmpti2:                              # @__ucmpti2
 	cmp	rax, qword ptr [rbp - 112]
 	jbe	.LBB165_8
 # %bb.7:
+	movabs	rax, offset __llvm_gcov_ctr.165+24
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	movabs	rax, offset .L__profc___ucmpti2+32
 	mov	rcx, qword ptr [rax]
 	inc	rcx
@@ -18130,6 +20101,10 @@ __ucmpti2:                              # @__ucmpti2
 	mov	dword ptr [rbp - 4], 2
 	jmp	.LBB165_9
 .LBB165_8:
+	movabs	rax, offset __llvm_gcov_ctr.165+32
+	mov	rcx, qword ptr [rax]
+	inc	rcx
+	mov	qword ptr [rax], rcx
 	mov	dword ptr [rbp - 4], 1
 .LBB165_9:
 	mov	eax, dword ptr [rbp - 4]
@@ -18181,6 +20156,853 @@ __ucmpti2:                              # @__ucmpti2
 	.size	__ucmpti2, .Lfunc_end165-__ucmpti2
 	.cfi_endproc
                                         # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+	.cfi_startproc
+# %bb.0:
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset rbp, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register rbp
+	sub	rsp, 48
+	xor	eax, eax
+	mov	dword ptr [rbp - 4], eax        # 4-byte Spill
+	jmp	.LBB166_1
+.LBB166_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB166_2 Depth 2
+	mov	eax, dword ptr [rbp - 4]        # 4-byte Reload
+	mov	dword ptr [rbp - 44], eax       # 4-byte Spill
+	cdqe
+	lea	rcx, [rax + 4*rax]
+	movabs	rax, offset __llvm_internal_gcov_emit_file_info
+	lea	rax, [rax + 8*rcx]
+	mov	qword ptr [rbp - 40], rax       # 8-byte Spill
+	mov	rdi, qword ptr [rax]
+	mov	esi, dword ptr [rax + 8]
+	mov	edx, dword ptr [rax + 12]
+	movabs	rax, offset llvm_gcda_start_file
+	call	rax
+	mov	rax, qword ptr [rbp - 40]       # 8-byte Reload
+	mov	ecx, dword ptr [rax + 16]
+	mov	dword ptr [rbp - 28], ecx       # 4-byte Spill
+	mov	rdx, qword ptr [rax + 24]
+	mov	qword ptr [rbp - 24], rdx       # 8-byte Spill
+	mov	rax, qword ptr [rax + 32]
+	mov	qword ptr [rbp - 16], rax       # 8-byte Spill
+	xor	eax, eax
+	cmp	eax, ecx
+	mov	dword ptr [rbp - 8], eax        # 4-byte Spill
+	jge	.LBB166_3
+.LBB166_2:                              #   Parent Loop BB166_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	mov	ecx, dword ptr [rbp - 8]        # 4-byte Reload
+	mov	rax, qword ptr [rbp - 24]       # 8-byte Reload
+	mov	dword ptr [rbp - 48], ecx       # 4-byte Spill
+	movsxd	rcx, ecx
+	imul	rcx, rcx, 12
+	add	rax, rcx
+	mov	edi, dword ptr [rax]
+	mov	esi, dword ptr [rax + 4]
+	mov	edx, dword ptr [rax + 8]
+	movabs	rax, offset llvm_gcda_emit_function
+	call	rax
+	mov	rax, qword ptr [rbp - 16]       # 8-byte Reload
+	mov	ecx, dword ptr [rbp - 48]       # 4-byte Reload
+	movsxd	rcx, ecx
+	shl	rcx, 4
+	add	rax, rcx
+	mov	edi, dword ptr [rax]
+	mov	rsi, qword ptr [rax + 8]
+	movabs	rax, offset llvm_gcda_emit_arcs
+	call	rax
+	mov	eax, dword ptr [rbp - 48]       # 4-byte Reload
+	mov	ecx, dword ptr [rbp - 28]       # 4-byte Reload
+	add	eax, 1
+	cmp	eax, ecx
+	mov	dword ptr [rbp - 8], eax        # 4-byte Spill
+	jl	.LBB166_2
+.LBB166_3:                              #   in Loop: Header=BB166_1 Depth=1
+	movabs	rax, offset llvm_gcda_summary_info
+	call	rax
+	movabs	rax, offset llvm_gcda_end_file
+	call	rax
+	mov	eax, dword ptr [rbp - 44]       # 4-byte Reload
+	add	eax, 1
+	cmp	eax, 1
+	mov	dword ptr [rbp - 4], eax        # 4-byte Spill
+	jl	.LBB166_1
+# %bb.4:
+	add	rsp, 48
+	pop	rbp
+	.cfi_def_cfa rsp, 8
+	ret
+	int3
+.Lfunc_end166:
+	.size	__llvm_gcov_writeout, .Lfunc_end166-__llvm_gcov_writeout
+	.cfi_endproc
+                                        # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+	.cfi_startproc
+# %bb.0:
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset rbp, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register rbp
+	movabs	rax, offset __llvm_gcov_ctr
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.1
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.2+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.2
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.2+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.3+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.3
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.3+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.4+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.4
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.4+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.5+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.5
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.5+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.6
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.7
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.7+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.8
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.9
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.10+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.10
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.11
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.11+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.12+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.12
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.13
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.14+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.14+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.14
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.14+48
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.15
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.17
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.18
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.18+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.19
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.19+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.20
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.21
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.22
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.23
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.24
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.24+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.25
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.26+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.26
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.26+32
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.27
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.28+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.28+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.28
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.28+48
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.29
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.29+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.30
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.31+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.31
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.32+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.32
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.33+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.33+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.33
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.34+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.34+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.34
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.35+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.35+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.35
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.36+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.36+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.36
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.37+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.37+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.37
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.38+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.38+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.38
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.39
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.40
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.41
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.42
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.42+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.43
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.43+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.44
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.44+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.45
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.45+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.46
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.47+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.47+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.47
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.48+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.48+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.48
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.49+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.49+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.49
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.50+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.50
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.51+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.51
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.52
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.53
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.54
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.55
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.56
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.57
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.58
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.59+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.59
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.59+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.60+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.60+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.60
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.61
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.62
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.63+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.63+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.63+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.63
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.64+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.64
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.64+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.65+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.65+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.65
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.66
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.67+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.67
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.67+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.68
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.69+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.69
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.69+32
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.70
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.71
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.72
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.73
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.74
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.75
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.76
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.77
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.78
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.79
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.80
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.81
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.82
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.83
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.83+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.84
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.84+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.85
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.85+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.86
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.86+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.87
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.87+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.88
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.89+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.89
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.89+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.90+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.90
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.90+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.91+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.91
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.91+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.92
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.93+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.93
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.93+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.94+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.94
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.95+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.95
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.96
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.96+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.97+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.97
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.98+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.98
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.98+32
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.99+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.99+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.99
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.100
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.101+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.101+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.101+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.101
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.102
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.102+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.103+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.103+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.103+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.103
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.104
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.104+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.105
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.105+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.106
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.106+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.107+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.107+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.107
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.108+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.108+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.108
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.109+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.109+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.109
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.110
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.111
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.112
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.113
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.114
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.115
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.116
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.116+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.117
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.117+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.118
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.119
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.119+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.120
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.120+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.121
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.121+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.122+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.122
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.123+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.123+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.123+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.123
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.124
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.124+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.125
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.125+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.126
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.127
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.128+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.128+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.128
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.128+48
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.129+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.129
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.130+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.130
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.131+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.131+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.131+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.131
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.132+48
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.132+32
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.132+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.132
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.133
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.133+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.134
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.134+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.135
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.135+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.136
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.136+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.137
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.138
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.139
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.140
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.141+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.141
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.141+32
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.142
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.143+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.143
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.143+32
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.144
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.145
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.146
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.146+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.147
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.147+16
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.148
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.148+16
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.149
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.150
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.151
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.152
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.153
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.154
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.155
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.156
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.157
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.158
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.159
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.160
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.161+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.161
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.162+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.162
+	movups	xmmword ptr [rax], xmm0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.163+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.163
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.163+32
+	mov	qword ptr [rax], 0
+	movabs	rax, offset __llvm_gcov_ctr.164
+	mov	qword ptr [rax], 0
+	xorps	xmm0, xmm0
+	movabs	rax, offset __llvm_gcov_ctr.165+16
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.165
+	movups	xmmword ptr [rax], xmm0
+	movabs	rax, offset __llvm_gcov_ctr.165+32
+	mov	qword ptr [rax], 0
+	pop	rbp
+	.cfi_def_cfa rsp, 8
+	ret
+	int3
+.Lfunc_end167:
+	.size	__llvm_gcov_reset, .Lfunc_end167-__llvm_gcov_reset
+	.cfi_endproc
+                                        # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+	.cfi_startproc
+# %bb.0:
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset rbp, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register rbp
+	movabs	rdi, offset __llvm_gcov_writeout
+	movabs	rsi, offset __llvm_gcov_reset
+	movabs	rax, offset llvm_gcov_init
+	call	rax
+	pop	rbp
+	.cfi_def_cfa rsp, 8
+	ret
+	int3
+.Lfunc_end168:
+	.size	__llvm_gcov_init, .Lfunc_end168-__llvm_gcov_init
+	.cfi_endproc
+                                        # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.section	.lbss,"awl",@nobits
 l64a.s:
@@ -18201,6 +21023,2030 @@ seed:
 	.quad	0                               # 0x0
 	.size	seed, 8
 
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.p2align	3, 0x0
+__llvm_gcov_ctr:
+	.zero	8
+	.size	__llvm_gcov_ctr, 8
+
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.p2align	3, 0x0
+__llvm_gcov_ctr.1:
+	.zero	8
+	.size	__llvm_gcov_ctr.1, 8
+
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.p2align	4, 0x0
+__llvm_gcov_ctr.2:
+	.zero	40
+	.size	__llvm_gcov_ctr.2, 40
+
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.p2align	4, 0x0
+__llvm_gcov_ctr.3:
+	.zero	40
+	.size	__llvm_gcov_ctr.3, 40
+
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.p2align	4, 0x0
+__llvm_gcov_ctr.4:
+	.zero	40
+	.size	__llvm_gcov_ctr.4, 40
+
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.p2align	4, 0x0
+__llvm_gcov_ctr.5:
+	.zero	40
+	.size	__llvm_gcov_ctr.5, 40
+
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.p2align	3, 0x0
+__llvm_gcov_ctr.6:
+	.zero	16
+	.size	__llvm_gcov_ctr.6, 16
+
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.p2align	4, 0x0
+__llvm_gcov_ctr.7:
+	.zero	24
+	.size	__llvm_gcov_ctr.7, 24
+
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.p2align	3, 0x0
+__llvm_gcov_ctr.8:
+	.zero	16
+	.size	__llvm_gcov_ctr.8, 16
+
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.p2align	3, 0x0
+__llvm_gcov_ctr.9:
+	.zero	16
+	.size	__llvm_gcov_ctr.9, 16
+
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.p2align	4, 0x0
+__llvm_gcov_ctr.10:
+	.zero	32
+	.size	__llvm_gcov_ctr.10, 32
+
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.p2align	4, 0x0
+__llvm_gcov_ctr.11:
+	.zero	24
+	.size	__llvm_gcov_ctr.11, 24
+
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.p2align	4, 0x0
+__llvm_gcov_ctr.12:
+	.zero	32
+	.size	__llvm_gcov_ctr.12, 32
+
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.p2align	3, 0x0
+__llvm_gcov_ctr.13:
+	.zero	16
+	.size	__llvm_gcov_ctr.13, 16
+
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.p2align	4, 0x0
+__llvm_gcov_ctr.14:
+	.zero	56
+	.size	__llvm_gcov_ctr.14, 56
+
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.p2align	3, 0x0
+__llvm_gcov_ctr.15:
+	.zero	16
+	.size	__llvm_gcov_ctr.15, 16
+
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.p2align	3, 0x0
+__llvm_gcov_ctr.16:
+	.zero	8
+	.size	__llvm_gcov_ctr.16, 8
+
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.p2align	3, 0x0
+__llvm_gcov_ctr.17:
+	.zero	8
+	.size	__llvm_gcov_ctr.17, 8
+
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.p2align	4, 0x0
+__llvm_gcov_ctr.18:
+	.zero	24
+	.size	__llvm_gcov_ctr.18, 24
+
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.p2align	4, 0x0
+__llvm_gcov_ctr.19:
+	.zero	24
+	.size	__llvm_gcov_ctr.19, 24
+
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.p2align	3, 0x0
+__llvm_gcov_ctr.20:
+	.zero	8
+	.size	__llvm_gcov_ctr.20, 8
+
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.p2align	3, 0x0
+__llvm_gcov_ctr.21:
+	.zero	8
+	.size	__llvm_gcov_ctr.21, 8
+
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.p2align	3, 0x0
+__llvm_gcov_ctr.22:
+	.zero	8
+	.size	__llvm_gcov_ctr.22, 8
+
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.p2align	3, 0x0
+__llvm_gcov_ctr.23:
+	.zero	8
+	.size	__llvm_gcov_ctr.23, 8
+
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.p2align	4, 0x0
+__llvm_gcov_ctr.24:
+	.zero	24
+	.size	__llvm_gcov_ctr.24, 24
+
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.p2align	3, 0x0
+__llvm_gcov_ctr.25:
+	.zero	8
+	.size	__llvm_gcov_ctr.25, 8
+
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.p2align	4, 0x0
+__llvm_gcov_ctr.26:
+	.zero	40
+	.size	__llvm_gcov_ctr.26, 40
+
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.p2align	3, 0x0
+__llvm_gcov_ctr.27:
+	.zero	8
+	.size	__llvm_gcov_ctr.27, 8
+
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.p2align	4, 0x0
+__llvm_gcov_ctr.28:
+	.zero	56
+	.size	__llvm_gcov_ctr.28, 56
+
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.p2align	4, 0x0
+__llvm_gcov_ctr.29:
+	.zero	24
+	.size	__llvm_gcov_ctr.29, 24
+
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.p2align	3, 0x0
+__llvm_gcov_ctr.30:
+	.zero	8
+	.size	__llvm_gcov_ctr.30, 8
+
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.p2align	4, 0x0
+__llvm_gcov_ctr.31:
+	.zero	32
+	.size	__llvm_gcov_ctr.31, 32
+
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.p2align	4, 0x0
+__llvm_gcov_ctr.32:
+	.zero	32
+	.size	__llvm_gcov_ctr.32, 32
+
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.p2align	4, 0x0
+__llvm_gcov_ctr.33:
+	.zero	48
+	.size	__llvm_gcov_ctr.33, 48
+
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.p2align	4, 0x0
+__llvm_gcov_ctr.34:
+	.zero	48
+	.size	__llvm_gcov_ctr.34, 48
+
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.p2align	4, 0x0
+__llvm_gcov_ctr.35:
+	.zero	48
+	.size	__llvm_gcov_ctr.35, 48
+
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.p2align	4, 0x0
+__llvm_gcov_ctr.36:
+	.zero	48
+	.size	__llvm_gcov_ctr.36, 48
+
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.p2align	4, 0x0
+__llvm_gcov_ctr.37:
+	.zero	48
+	.size	__llvm_gcov_ctr.37, 48
+
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.p2align	4, 0x0
+__llvm_gcov_ctr.38:
+	.zero	48
+	.size	__llvm_gcov_ctr.38, 48
+
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.p2align	3, 0x0
+__llvm_gcov_ctr.39:
+	.zero	16
+	.size	__llvm_gcov_ctr.39, 16
+
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.p2align	3, 0x0
+__llvm_gcov_ctr.40:
+	.zero	8
+	.size	__llvm_gcov_ctr.40, 8
+
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.p2align	3, 0x0
+__llvm_gcov_ctr.41:
+	.zero	8
+	.size	__llvm_gcov_ctr.41, 8
+
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.p2align	4, 0x0
+__llvm_gcov_ctr.42:
+	.zero	24
+	.size	__llvm_gcov_ctr.42, 24
+
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.p2align	4, 0x0
+__llvm_gcov_ctr.43:
+	.zero	24
+	.size	__llvm_gcov_ctr.43, 24
+
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.p2align	4, 0x0
+__llvm_gcov_ctr.44:
+	.zero	24
+	.size	__llvm_gcov_ctr.44, 24
+
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.p2align	4, 0x0
+__llvm_gcov_ctr.45:
+	.zero	24
+	.size	__llvm_gcov_ctr.45, 24
+
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.p2align	3, 0x0
+__llvm_gcov_ctr.46:
+	.zero	16
+	.size	__llvm_gcov_ctr.46, 16
+
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.p2align	4, 0x0
+__llvm_gcov_ctr.47:
+	.zero	48
+	.size	__llvm_gcov_ctr.47, 48
+
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.p2align	4, 0x0
+__llvm_gcov_ctr.48:
+	.zero	48
+	.size	__llvm_gcov_ctr.48, 48
+
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.p2align	4, 0x0
+__llvm_gcov_ctr.49:
+	.zero	48
+	.size	__llvm_gcov_ctr.49, 48
+
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.p2align	4, 0x0
+__llvm_gcov_ctr.50:
+	.zero	32
+	.size	__llvm_gcov_ctr.50, 32
+
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.p2align	4, 0x0
+__llvm_gcov_ctr.51:
+	.zero	32
+	.size	__llvm_gcov_ctr.51, 32
+
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.p2align	3, 0x0
+__llvm_gcov_ctr.52:
+	.zero	8
+	.size	__llvm_gcov_ctr.52, 8
+
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.p2align	3, 0x0
+__llvm_gcov_ctr.53:
+	.zero	16
+	.size	__llvm_gcov_ctr.53, 16
+
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.p2align	3, 0x0
+__llvm_gcov_ctr.54:
+	.zero	8
+	.size	__llvm_gcov_ctr.54, 8
+
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.p2align	3, 0x0
+__llvm_gcov_ctr.55:
+	.zero	16
+	.size	__llvm_gcov_ctr.55, 16
+
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.p2align	3, 0x0
+__llvm_gcov_ctr.56:
+	.zero	8
+	.size	__llvm_gcov_ctr.56, 8
+
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.p2align	3, 0x0
+__llvm_gcov_ctr.57:
+	.zero	16
+	.size	__llvm_gcov_ctr.57, 16
+
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.p2align	3, 0x0
+__llvm_gcov_ctr.58:
+	.zero	8
+	.size	__llvm_gcov_ctr.58, 8
+
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.p2align	4, 0x0
+__llvm_gcov_ctr.59:
+	.zero	40
+	.size	__llvm_gcov_ctr.59, 40
+
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.p2align	4, 0x0
+__llvm_gcov_ctr.60:
+	.zero	48
+	.size	__llvm_gcov_ctr.60, 48
+
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.p2align	3, 0x0
+__llvm_gcov_ctr.61:
+	.zero	16
+	.size	__llvm_gcov_ctr.61, 16
+
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.p2align	3, 0x0
+__llvm_gcov_ctr.62:
+	.zero	16
+	.size	__llvm_gcov_ctr.62, 16
+
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.p2align	4, 0x0
+__llvm_gcov_ctr.63:
+	.zero	64
+	.size	__llvm_gcov_ctr.63, 64
+
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.p2align	4, 0x0
+__llvm_gcov_ctr.64:
+	.zero	40
+	.size	__llvm_gcov_ctr.64, 40
+
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.p2align	4, 0x0
+__llvm_gcov_ctr.65:
+	.zero	48
+	.size	__llvm_gcov_ctr.65, 48
+
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.p2align	3, 0x0
+__llvm_gcov_ctr.66:
+	.zero	16
+	.size	__llvm_gcov_ctr.66, 16
+
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.p2align	4, 0x0
+__llvm_gcov_ctr.67:
+	.zero	40
+	.size	__llvm_gcov_ctr.67, 40
+
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.p2align	3, 0x0
+__llvm_gcov_ctr.68:
+	.zero	16
+	.size	__llvm_gcov_ctr.68, 16
+
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.p2align	4, 0x0
+__llvm_gcov_ctr.69:
+	.zero	40
+	.size	__llvm_gcov_ctr.69, 40
+
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.p2align	3, 0x0
+__llvm_gcov_ctr.70:
+	.zero	8
+	.size	__llvm_gcov_ctr.70, 8
+
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.p2align	3, 0x0
+__llvm_gcov_ctr.71:
+	.zero	8
+	.size	__llvm_gcov_ctr.71, 8
+
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.p2align	3, 0x0
+__llvm_gcov_ctr.72:
+	.zero	8
+	.size	__llvm_gcov_ctr.72, 8
+
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.p2align	3, 0x0
+__llvm_gcov_ctr.73:
+	.zero	8
+	.size	__llvm_gcov_ctr.73, 8
+
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.p2align	3, 0x0
+__llvm_gcov_ctr.74:
+	.zero	8
+	.size	__llvm_gcov_ctr.74, 8
+
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.p2align	3, 0x0
+__llvm_gcov_ctr.75:
+	.zero	8
+	.size	__llvm_gcov_ctr.75, 8
+
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.p2align	3, 0x0
+__llvm_gcov_ctr.76:
+	.zero	8
+	.size	__llvm_gcov_ctr.76, 8
+
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.p2align	3, 0x0
+__llvm_gcov_ctr.77:
+	.zero	8
+	.size	__llvm_gcov_ctr.77, 8
+
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.p2align	3, 0x0
+__llvm_gcov_ctr.78:
+	.zero	8
+	.size	__llvm_gcov_ctr.78, 8
+
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.p2align	3, 0x0
+__llvm_gcov_ctr.79:
+	.zero	8
+	.size	__llvm_gcov_ctr.79, 8
+
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.p2align	3, 0x0
+__llvm_gcov_ctr.80:
+	.zero	8
+	.size	__llvm_gcov_ctr.80, 8
+
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.p2align	3, 0x0
+__llvm_gcov_ctr.81:
+	.zero	8
+	.size	__llvm_gcov_ctr.81, 8
+
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.p2align	3, 0x0
+__llvm_gcov_ctr.82:
+	.zero	8
+	.size	__llvm_gcov_ctr.82, 8
+
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.p2align	4, 0x0
+__llvm_gcov_ctr.83:
+	.zero	24
+	.size	__llvm_gcov_ctr.83, 24
+
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.p2align	4, 0x0
+__llvm_gcov_ctr.84:
+	.zero	24
+	.size	__llvm_gcov_ctr.84, 24
+
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.p2align	4, 0x0
+__llvm_gcov_ctr.85:
+	.zero	24
+	.size	__llvm_gcov_ctr.85, 24
+
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.p2align	4, 0x0
+__llvm_gcov_ctr.86:
+	.zero	24
+	.size	__llvm_gcov_ctr.86, 24
+
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.p2align	4, 0x0
+__llvm_gcov_ctr.87:
+	.zero	24
+	.size	__llvm_gcov_ctr.87, 24
+
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.p2align	3, 0x0
+__llvm_gcov_ctr.88:
+	.zero	8
+	.size	__llvm_gcov_ctr.88, 8
+
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.p2align	4, 0x0
+__llvm_gcov_ctr.89:
+	.zero	40
+	.size	__llvm_gcov_ctr.89, 40
+
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.p2align	4, 0x0
+__llvm_gcov_ctr.90:
+	.zero	40
+	.size	__llvm_gcov_ctr.90, 40
+
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.p2align	4, 0x0
+__llvm_gcov_ctr.91:
+	.zero	40
+	.size	__llvm_gcov_ctr.91, 40
+
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.p2align	3, 0x0
+__llvm_gcov_ctr.92:
+	.zero	16
+	.size	__llvm_gcov_ctr.92, 16
+
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.p2align	4, 0x0
+__llvm_gcov_ctr.93:
+	.zero	40
+	.size	__llvm_gcov_ctr.93, 40
+
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.p2align	4, 0x0
+__llvm_gcov_ctr.94:
+	.zero	32
+	.size	__llvm_gcov_ctr.94, 32
+
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.p2align	4, 0x0
+__llvm_gcov_ctr.95:
+	.zero	32
+	.size	__llvm_gcov_ctr.95, 32
+
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.p2align	4, 0x0
+__llvm_gcov_ctr.96:
+	.zero	24
+	.size	__llvm_gcov_ctr.96, 24
+
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.p2align	4, 0x0
+__llvm_gcov_ctr.97:
+	.zero	32
+	.size	__llvm_gcov_ctr.97, 32
+
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.p2align	4, 0x0
+__llvm_gcov_ctr.98:
+	.zero	40
+	.size	__llvm_gcov_ctr.98, 40
+
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.p2align	4, 0x0
+__llvm_gcov_ctr.99:
+	.zero	48
+	.size	__llvm_gcov_ctr.99, 48
+
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.p2align	3, 0x0
+__llvm_gcov_ctr.100:
+	.zero	8
+	.size	__llvm_gcov_ctr.100, 8
+
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.p2align	4, 0x0
+__llvm_gcov_ctr.101:
+	.zero	64
+	.size	__llvm_gcov_ctr.101, 64
+
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.p2align	4, 0x0
+__llvm_gcov_ctr.102:
+	.zero	24
+	.size	__llvm_gcov_ctr.102, 24
+
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.p2align	4, 0x0
+__llvm_gcov_ctr.103:
+	.zero	64
+	.size	__llvm_gcov_ctr.103, 64
+
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.p2align	4, 0x0
+__llvm_gcov_ctr.104:
+	.zero	24
+	.size	__llvm_gcov_ctr.104, 24
+
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.p2align	4, 0x0
+__llvm_gcov_ctr.105:
+	.zero	24
+	.size	__llvm_gcov_ctr.105, 24
+
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.p2align	4, 0x0
+__llvm_gcov_ctr.106:
+	.zero	24
+	.size	__llvm_gcov_ctr.106, 24
+
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.p2align	4, 0x0
+__llvm_gcov_ctr.107:
+	.zero	48
+	.size	__llvm_gcov_ctr.107, 48
+
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.p2align	4, 0x0
+__llvm_gcov_ctr.108:
+	.zero	48
+	.size	__llvm_gcov_ctr.108, 48
+
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.p2align	4, 0x0
+__llvm_gcov_ctr.109:
+	.zero	48
+	.size	__llvm_gcov_ctr.109, 48
+
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.p2align	3, 0x0
+__llvm_gcov_ctr.110:
+	.zero	8
+	.size	__llvm_gcov_ctr.110, 8
+
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.p2align	3, 0x0
+__llvm_gcov_ctr.111:
+	.zero	8
+	.size	__llvm_gcov_ctr.111, 8
+
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.p2align	3, 0x0
+__llvm_gcov_ctr.112:
+	.zero	8
+	.size	__llvm_gcov_ctr.112, 8
+
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.p2align	3, 0x0
+__llvm_gcov_ctr.113:
+	.zero	8
+	.size	__llvm_gcov_ctr.113, 8
+
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.p2align	3, 0x0
+__llvm_gcov_ctr.114:
+	.zero	8
+	.size	__llvm_gcov_ctr.114, 8
+
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.p2align	3, 0x0
+__llvm_gcov_ctr.115:
+	.zero	8
+	.size	__llvm_gcov_ctr.115, 8
+
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.p2align	4, 0x0
+__llvm_gcov_ctr.116:
+	.zero	24
+	.size	__llvm_gcov_ctr.116, 24
+
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.p2align	4, 0x0
+__llvm_gcov_ctr.117:
+	.zero	24
+	.size	__llvm_gcov_ctr.117, 24
+
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.p2align	3, 0x0
+__llvm_gcov_ctr.118:
+	.zero	16
+	.size	__llvm_gcov_ctr.118, 16
+
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.p2align	4, 0x0
+__llvm_gcov_ctr.119:
+	.zero	24
+	.size	__llvm_gcov_ctr.119, 24
+
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.p2align	4, 0x0
+__llvm_gcov_ctr.120:
+	.zero	24
+	.size	__llvm_gcov_ctr.120, 24
+
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.p2align	4, 0x0
+__llvm_gcov_ctr.121:
+	.zero	24
+	.size	__llvm_gcov_ctr.121, 24
+
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.p2align	4, 0x0
+__llvm_gcov_ctr.122:
+	.zero	32
+	.size	__llvm_gcov_ctr.122, 32
+
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.p2align	4, 0x0
+__llvm_gcov_ctr.123:
+	.zero	64
+	.size	__llvm_gcov_ctr.123, 64
+
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.p2align	4, 0x0
+__llvm_gcov_ctr.124:
+	.zero	24
+	.size	__llvm_gcov_ctr.124, 24
+
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.p2align	4, 0x0
+__llvm_gcov_ctr.125:
+	.zero	24
+	.size	__llvm_gcov_ctr.125, 24
+
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.p2align	3, 0x0
+__llvm_gcov_ctr.126:
+	.zero	8
+	.size	__llvm_gcov_ctr.126, 8
+
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.p2align	3, 0x0
+__llvm_gcov_ctr.127:
+	.zero	8
+	.size	__llvm_gcov_ctr.127, 8
+
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.p2align	4, 0x0
+__llvm_gcov_ctr.128:
+	.zero	56
+	.size	__llvm_gcov_ctr.128, 56
+
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.p2align	4, 0x0
+__llvm_gcov_ctr.129:
+	.zero	32
+	.size	__llvm_gcov_ctr.129, 32
+
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.p2align	4, 0x0
+__llvm_gcov_ctr.130:
+	.zero	32
+	.size	__llvm_gcov_ctr.130, 32
+
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.p2align	4, 0x0
+__llvm_gcov_ctr.131:
+	.zero	64
+	.size	__llvm_gcov_ctr.131, 64
+
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.p2align	4, 0x0
+__llvm_gcov_ctr.132:
+	.zero	64
+	.size	__llvm_gcov_ctr.132, 64
+
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.p2align	4, 0x0
+__llvm_gcov_ctr.133:
+	.zero	24
+	.size	__llvm_gcov_ctr.133, 24
+
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.p2align	4, 0x0
+__llvm_gcov_ctr.134:
+	.zero	24
+	.size	__llvm_gcov_ctr.134, 24
+
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.p2align	4, 0x0
+__llvm_gcov_ctr.135:
+	.zero	24
+	.size	__llvm_gcov_ctr.135, 24
+
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.p2align	4, 0x0
+__llvm_gcov_ctr.136:
+	.zero	24
+	.size	__llvm_gcov_ctr.136, 24
+
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.p2align	3, 0x0
+__llvm_gcov_ctr.137:
+	.zero	8
+	.size	__llvm_gcov_ctr.137, 8
+
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.p2align	3, 0x0
+__llvm_gcov_ctr.138:
+	.zero	8
+	.size	__llvm_gcov_ctr.138, 8
+
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.p2align	3, 0x0
+__llvm_gcov_ctr.139:
+	.zero	8
+	.size	__llvm_gcov_ctr.139, 8
+
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.p2align	3, 0x0
+__llvm_gcov_ctr.140:
+	.zero	8
+	.size	__llvm_gcov_ctr.140, 8
+
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.p2align	4, 0x0
+__llvm_gcov_ctr.141:
+	.zero	40
+	.size	__llvm_gcov_ctr.141, 40
+
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.p2align	3, 0x0
+__llvm_gcov_ctr.142:
+	.zero	8
+	.size	__llvm_gcov_ctr.142, 8
+
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.p2align	4, 0x0
+__llvm_gcov_ctr.143:
+	.zero	40
+	.size	__llvm_gcov_ctr.143, 40
+
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.p2align	3, 0x0
+__llvm_gcov_ctr.144:
+	.zero	8
+	.size	__llvm_gcov_ctr.144, 8
+
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.p2align	3, 0x0
+__llvm_gcov_ctr.145:
+	.zero	8
+	.size	__llvm_gcov_ctr.145, 8
+
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.p2align	4, 0x0
+__llvm_gcov_ctr.146:
+	.zero	24
+	.size	__llvm_gcov_ctr.146, 24
+
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.p2align	4, 0x0
+__llvm_gcov_ctr.147:
+	.zero	24
+	.size	__llvm_gcov_ctr.147, 24
+
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.p2align	4, 0x0
+__llvm_gcov_ctr.148:
+	.zero	24
+	.size	__llvm_gcov_ctr.148, 24
+
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.p2align	3, 0x0
+__llvm_gcov_ctr.149:
+	.zero	8
+	.size	__llvm_gcov_ctr.149, 8
+
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.p2align	3, 0x0
+__llvm_gcov_ctr.150:
+	.zero	8
+	.size	__llvm_gcov_ctr.150, 8
+
+	.type	__llvm_gcov_ctr.151,@object     # @__llvm_gcov_ctr.151
+	.p2align	3, 0x0
+__llvm_gcov_ctr.151:
+	.zero	8
+	.size	__llvm_gcov_ctr.151, 8
+
+	.type	__llvm_gcov_ctr.152,@object     # @__llvm_gcov_ctr.152
+	.p2align	3, 0x0
+__llvm_gcov_ctr.152:
+	.zero	8
+	.size	__llvm_gcov_ctr.152, 8
+
+	.type	__llvm_gcov_ctr.153,@object     # @__llvm_gcov_ctr.153
+	.p2align	3, 0x0
+__llvm_gcov_ctr.153:
+	.zero	8
+	.size	__llvm_gcov_ctr.153, 8
+
+	.type	__llvm_gcov_ctr.154,@object     # @__llvm_gcov_ctr.154
+	.p2align	3, 0x0
+__llvm_gcov_ctr.154:
+	.zero	8
+	.size	__llvm_gcov_ctr.154, 8
+
+	.type	__llvm_gcov_ctr.155,@object     # @__llvm_gcov_ctr.155
+	.p2align	3, 0x0
+__llvm_gcov_ctr.155:
+	.zero	8
+	.size	__llvm_gcov_ctr.155, 8
+
+	.type	__llvm_gcov_ctr.156,@object     # @__llvm_gcov_ctr.156
+	.p2align	3, 0x0
+__llvm_gcov_ctr.156:
+	.zero	8
+	.size	__llvm_gcov_ctr.156, 8
+
+	.type	__llvm_gcov_ctr.157,@object     # @__llvm_gcov_ctr.157
+	.p2align	3, 0x0
+__llvm_gcov_ctr.157:
+	.zero	8
+	.size	__llvm_gcov_ctr.157, 8
+
+	.type	__llvm_gcov_ctr.158,@object     # @__llvm_gcov_ctr.158
+	.p2align	3, 0x0
+__llvm_gcov_ctr.158:
+	.zero	8
+	.size	__llvm_gcov_ctr.158, 8
+
+	.type	__llvm_gcov_ctr.159,@object     # @__llvm_gcov_ctr.159
+	.p2align	3, 0x0
+__llvm_gcov_ctr.159:
+	.zero	8
+	.size	__llvm_gcov_ctr.159, 8
+
+	.type	__llvm_gcov_ctr.160,@object     # @__llvm_gcov_ctr.160
+	.p2align	3, 0x0
+__llvm_gcov_ctr.160:
+	.zero	8
+	.size	__llvm_gcov_ctr.160, 8
+
+	.type	__llvm_gcov_ctr.161,@object     # @__llvm_gcov_ctr.161
+	.p2align	4, 0x0
+__llvm_gcov_ctr.161:
+	.zero	32
+	.size	__llvm_gcov_ctr.161, 32
+
+	.type	__llvm_gcov_ctr.162,@object     # @__llvm_gcov_ctr.162
+	.p2align	4, 0x0
+__llvm_gcov_ctr.162:
+	.zero	32
+	.size	__llvm_gcov_ctr.162, 32
+
+	.type	__llvm_gcov_ctr.163,@object     # @__llvm_gcov_ctr.163
+	.p2align	4, 0x0
+__llvm_gcov_ctr.163:
+	.zero	40
+	.size	__llvm_gcov_ctr.163, 40
+
+	.type	__llvm_gcov_ctr.164,@object     # @__llvm_gcov_ctr.164
+	.p2align	3, 0x0
+__llvm_gcov_ctr.164:
+	.zero	8
+	.size	__llvm_gcov_ctr.164, 8
+
+	.type	__llvm_gcov_ctr.165,@object     # @__llvm_gcov_ctr.165
+	.p2align	4, 0x0
+__llvm_gcov_ctr.165:
+	.zero	40
+	.size	__llvm_gcov_ctr.165, 40
+
+	.type	.L__unnamed_1,@object           # @0
+	.section	.lrodata.str1.1,"aMSl",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-x86_64.gcda"
+	.size	.L__unnamed_1, 50
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.lrodata,"al",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               # 0x0
+	.long	3759012176                      # 0xe00df950
+	.long	2102079853                      # 0x7d4b316d
+	.long	1                               # 0x1
+	.long	3518812481                      # 0xd1bcd141
+	.long	2102079853                      # 0x7d4b316d
+	.long	2                               # 0x2
+	.long	560687177                       # 0x216b6849
+	.long	2102079853                      # 0x7d4b316d
+	.long	3                               # 0x3
+	.long	1589591758                      # 0x5ebf3ece
+	.long	2102079853                      # 0x7d4b316d
+	.long	4                               # 0x4
+	.long	2176136383                      # 0x81b534bf
+	.long	2102079853                      # 0x7d4b316d
+	.long	5                               # 0x5
+	.long	3586625172                      # 0xd5c78e94
+	.long	2102079853                      # 0x7d4b316d
+	.long	6                               # 0x6
+	.long	2323119728                      # 0x8a77fe70
+	.long	2102079853                      # 0x7d4b316d
+	.long	7                               # 0x7
+	.long	2314569740                      # 0x89f5880c
+	.long	2102079853                      # 0x7d4b316d
+	.long	8                               # 0x8
+	.long	2833673551                      # 0xa8e66d4f
+	.long	2102079853                      # 0x7d4b316d
+	.long	9                               # 0x9
+	.long	1458633189                      # 0x56f0f9e5
+	.long	2102079853                      # 0x7d4b316d
+	.long	10                              # 0xa
+	.long	1190300833                      # 0x46f28ca1
+	.long	2102079853                      # 0x7d4b316d
+	.long	11                              # 0xb
+	.long	758327989                       # 0x2d332ab5
+	.long	2102079853                      # 0x7d4b316d
+	.long	12                              # 0xc
+	.long	1651479037                      # 0x626f91fd
+	.long	2102079853                      # 0x7d4b316d
+	.long	13                              # 0xd
+	.long	4132343275                      # 0xf64e8deb
+	.long	2102079853                      # 0x7d4b316d
+	.long	14                              # 0xe
+	.long	734262523                       # 0x2bc3f4fb
+	.long	2102079853                      # 0x7d4b316d
+	.long	15                              # 0xf
+	.long	2463424677                      # 0x92d4e0a5
+	.long	2102079853                      # 0x7d4b316d
+	.long	16                              # 0x10
+	.long	1419026334                      # 0x54949f9e
+	.long	2102079853                      # 0x7d4b316d
+	.long	17                              # 0x11
+	.long	3154471370                      # 0xbc0569ca
+	.long	2102079853                      # 0x7d4b316d
+	.long	18                              # 0x12
+	.long	2077973487                      # 0x7bdb5bef
+	.long	2102079853                      # 0x7d4b316d
+	.long	19                              # 0x13
+	.long	1474691227                      # 0x57e6009b
+	.long	2102079853                      # 0x7d4b316d
+	.long	20                              # 0x14
+	.long	3710986016                      # 0xdd312720
+	.long	2102079853                      # 0x7d4b316d
+	.long	21                              # 0x15
+	.long	1305101473                      # 0x4dca44a1
+	.long	2102079853                      # 0x7d4b316d
+	.long	22                              # 0x16
+	.long	3762036564                      # 0xe03c1f54
+	.long	2102079853                      # 0x7d4b316d
+	.long	23                              # 0x17
+	.long	477914433                       # 0x1c7c6541
+	.long	2102079853                      # 0x7d4b316d
+	.long	24                              # 0x18
+	.long	3923035234                      # 0xe9d4c462
+	.long	2102079853                      # 0x7d4b316d
+	.long	25                              # 0x19
+	.long	951651702                       # 0x38b90d76
+	.long	2102079853                      # 0x7d4b316d
+	.long	26                              # 0x1a
+	.long	4206925919                      # 0xfac0985f
+	.long	2102079853                      # 0x7d4b316d
+	.long	27                              # 0x1b
+	.long	32773942                        # 0x1f41736
+	.long	2102079853                      # 0x7d4b316d
+	.long	28                              # 0x1c
+	.long	2877267246                      # 0xab7f9d2e
+	.long	2102079853                      # 0x7d4b316d
+	.long	29                              # 0x1d
+	.long	860405771                       # 0x3348c00b
+	.long	2102079853                      # 0x7d4b316d
+	.long	30                              # 0x1e
+	.long	815674877                       # 0x309e35fd
+	.long	2102079853                      # 0x7d4b316d
+	.long	31                              # 0x1f
+	.long	1778838753                      # 0x6a06ece1
+	.long	2102079853                      # 0x7d4b316d
+	.long	32                              # 0x20
+	.long	2718307199                      # 0xa206137f
+	.long	2102079853                      # 0x7d4b316d
+	.long	33                              # 0x21
+	.long	856224820                       # 0x3308f434
+	.long	2102079853                      # 0x7d4b316d
+	.long	34                              # 0x22
+	.long	1111195143                      # 0x423b7e07
+	.long	2102079853                      # 0x7d4b316d
+	.long	35                              # 0x23
+	.long	1178414519                      # 0x463d2db7
+	.long	2102079853                      # 0x7d4b316d
+	.long	36                              # 0x24
+	.long	3477640633                      # 0xcf4895b9
+	.long	2102079853                      # 0x7d4b316d
+	.long	37                              # 0x25
+	.long	4294770115                      # 0xfffcfdc3
+	.long	2102079853                      # 0x7d4b316d
+	.long	38                              # 0x26
+	.long	3650660234                      # 0xd998a78a
+	.long	2102079853                      # 0x7d4b316d
+	.long	39                              # 0x27
+	.long	289327647                       # 0x113eca1f
+	.long	2102079853                      # 0x7d4b316d
+	.long	40                              # 0x28
+	.long	2093612798                      # 0x7cc9fefe
+	.long	2102079853                      # 0x7d4b316d
+	.long	41                              # 0x29
+	.long	4177956716                      # 0xf9068f6c
+	.long	2102079853                      # 0x7d4b316d
+	.long	42                              # 0x2a
+	.long	3434808461                      # 0xccbb048d
+	.long	2102079853                      # 0x7d4b316d
+	.long	43                              # 0x2b
+	.long	3206497114                      # 0xbf1f435a
+	.long	2102079853                      # 0x7d4b316d
+	.long	44                              # 0x2c
+	.long	1537257434                      # 0x5ba0afda
+	.long	2102079853                      # 0x7d4b316d
+	.long	45                              # 0x2d
+	.long	3028077325                      # 0xb47ccb0d
+	.long	2102079853                      # 0x7d4b316d
+	.long	46                              # 0x2e
+	.long	1369848209                      # 0x51a63991
+	.long	2102079853                      # 0x7d4b316d
+	.long	47                              # 0x2f
+	.long	938831176                       # 0x37f56d48
+	.long	2102079853                      # 0x7d4b316d
+	.long	48                              # 0x30
+	.long	1663146323                      # 0x63219953
+	.long	2102079853                      # 0x7d4b316d
+	.long	49                              # 0x31
+	.long	4111410217                      # 0xf50f2429
+	.long	2102079853                      # 0x7d4b316d
+	.long	50                              # 0x32
+	.long	1475378556                      # 0x57f07d7c
+	.long	2102079853                      # 0x7d4b316d
+	.long	51                              # 0x33
+	.long	3356195547                      # 0xc80b7adb
+	.long	2102079853                      # 0x7d4b316d
+	.long	52                              # 0x34
+	.long	514931786                       # 0x1eb13c4a
+	.long	2102079853                      # 0x7d4b316d
+	.long	53                              # 0x35
+	.long	2854034444                      # 0xaa1d1c0c
+	.long	2102079853                      # 0x7d4b316d
+	.long	54                              # 0x36
+	.long	2747937306                      # 0xa3ca321a
+	.long	2102079853                      # 0x7d4b316d
+	.long	55                              # 0x37
+	.long	4192776208                      # 0xf9e8b010
+	.long	2102079853                      # 0x7d4b316d
+	.long	56                              # 0x38
+	.long	984436227                       # 0x3aad4e03
+	.long	2102079853                      # 0x7d4b316d
+	.long	57                              # 0x39
+	.long	1477657574                      # 0x581343e6
+	.long	2102079853                      # 0x7d4b316d
+	.long	58                              # 0x3a
+	.long	1339127973                      # 0x4fd178a5
+	.long	2102079853                      # 0x7d4b316d
+	.long	59                              # 0x3b
+	.long	2960567906                      # 0xb076ae62
+	.long	2102079853                      # 0x7d4b316d
+	.long	60                              # 0x3c
+	.long	3390076872                      # 0xca1077c8
+	.long	2102079853                      # 0x7d4b316d
+	.long	61                              # 0x3d
+	.long	1543282230                      # 0x5bfc9e36
+	.long	2102079853                      # 0x7d4b316d
+	.long	62                              # 0x3e
+	.long	2934101789                      # 0xaee2d71d
+	.long	2102079853                      # 0x7d4b316d
+	.long	63                              # 0x3f
+	.long	3737986119                      # 0xdecd2447
+	.long	2102079853                      # 0x7d4b316d
+	.long	64                              # 0x40
+	.long	49556427                        # 0x2f42bcb
+	.long	2102079853                      # 0x7d4b316d
+	.long	65                              # 0x41
+	.long	234051526                       # 0xdf357c6
+	.long	2102079853                      # 0x7d4b316d
+	.long	66                              # 0x42
+	.long	2341800126                      # 0x8b9508be
+	.long	2102079853                      # 0x7d4b316d
+	.long	67                              # 0x43
+	.long	3256799948                      # 0xc21ed2cc
+	.long	2102079853                      # 0x7d4b316d
+	.long	68                              # 0x44
+	.long	777295480                       # 0x2e549678
+	.long	2102079853                      # 0x7d4b316d
+	.long	69                              # 0x45
+	.long	14040531                        # 0xd63dd3
+	.long	2102079853                      # 0x7d4b316d
+	.long	70                              # 0x46
+	.long	8047973                         # 0x7acd65
+	.long	2102079853                      # 0x7d4b316d
+	.long	71                              # 0x47
+	.long	719459161                       # 0x2ae21359
+	.long	2102079853                      # 0x7d4b316d
+	.long	72                              # 0x48
+	.long	243358501                       # 0xe815b25
+	.long	2102079853                      # 0x7d4b316d
+	.long	73                              # 0x49
+	.long	3262173932                      # 0xc270d2ec
+	.long	2102079853                      # 0x7d4b316d
+	.long	74                              # 0x4a
+	.long	398910553                       # 0x17c6e459
+	.long	2102079853                      # 0x7d4b316d
+	.long	75                              # 0x4b
+	.long	3354219739                      # 0xc7ed54db
+	.long	2102079853                      # 0x7d4b316d
+	.long	76                              # 0x4c
+	.long	2570308788                      # 0x9933ccb4
+	.long	2102079853                      # 0x7d4b316d
+	.long	77                              # 0x4d
+	.long	982429111                       # 0x3a8eadb7
+	.long	2102079853                      # 0x7d4b316d
+	.long	78                              # 0x4e
+	.long	211491241                       # 0xc9b19a9
+	.long	2102079853                      # 0x7d4b316d
+	.long	79                              # 0x4f
+	.long	1075683319                      # 0x401d9ff7
+	.long	2102079853                      # 0x7d4b316d
+	.long	80                              # 0x50
+	.long	1886352651                      # 0x706f750b
+	.long	2102079853                      # 0x7d4b316d
+	.long	81                              # 0x51
+	.long	248637203                       # 0xed1e713
+	.long	2102079853                      # 0x7d4b316d
+	.long	82                              # 0x52
+	.long	703327087                       # 0x29ebeb6f
+	.long	2102079853                      # 0x7d4b316d
+	.long	83                              # 0x53
+	.long	3690160730                      # 0xdbf3625a
+	.long	2102079853                      # 0x7d4b316d
+	.long	84                              # 0x54
+	.long	787048238                       # 0x2ee9672e
+	.long	2102079853                      # 0x7d4b316d
+	.long	85                              # 0x55
+	.long	1937497967                      # 0x737bdf6f
+	.long	2102079853                      # 0x7d4b316d
+	.long	86                              # 0x56
+	.long	4205062514                      # 0xfaa42972
+	.long	2102079853                      # 0x7d4b316d
+	.long	87                              # 0x57
+	.long	694462539                       # 0x2964a84b
+	.long	2102079853                      # 0x7d4b316d
+	.long	88                              # 0x58
+	.long	85970907                        # 0x51fcfdb
+	.long	2102079853                      # 0x7d4b316d
+	.long	89                              # 0x59
+	.long	3681984728                      # 0xdb76a0d8
+	.long	2102079853                      # 0x7d4b316d
+	.long	90                              # 0x5a
+	.long	3620297642                      # 0xd7c95baa
+	.long	2102079853                      # 0x7d4b316d
+	.long	91                              # 0x5b
+	.long	3394804480                      # 0xca589b00
+	.long	2102079853                      # 0x7d4b316d
+	.long	92                              # 0x5c
+	.long	2119330183                      # 0x7e526987
+	.long	2102079853                      # 0x7d4b316d
+	.long	93                              # 0x5d
+	.long	1963040266                      # 0x75019e0a
+	.long	2102079853                      # 0x7d4b316d
+	.long	94                              # 0x5e
+	.long	1603391838                      # 0x5f91d15e
+	.long	2102079853                      # 0x7d4b316d
+	.long	95                              # 0x5f
+	.long	2340921237                      # 0x8b879f95
+	.long	2102079853                      # 0x7d4b316d
+	.long	96                              # 0x60
+	.long	3028177438                      # 0xb47e521e
+	.long	2102079853                      # 0x7d4b316d
+	.long	97                              # 0x61
+	.long	2265525308                      # 0x87092c3c
+	.long	2102079853                      # 0x7d4b316d
+	.long	98                              # 0x62
+	.long	2598903994                      # 0x9ae820ba
+	.long	2102079853                      # 0x7d4b316d
+	.long	99                              # 0x63
+	.long	139524705                       # 0x850fa61
+	.long	2102079853                      # 0x7d4b316d
+	.long	100                             # 0x64
+	.long	1076410600                      # 0x4028b8e8
+	.long	2102079853                      # 0x7d4b316d
+	.long	101                             # 0x65
+	.long	220237413                       # 0xd208e65
+	.long	2102079853                      # 0x7d4b316d
+	.long	102                             # 0x66
+	.long	3913623866                      # 0xe945293a
+	.long	2102079853                      # 0x7d4b316d
+	.long	103                             # 0x67
+	.long	3453026372                      # 0xcdd10044
+	.long	2102079853                      # 0x7d4b316d
+	.long	104                             # 0x68
+	.long	2321387380                      # 0x8a5d8f74
+	.long	2102079853                      # 0x7d4b316d
+	.long	105                             # 0x69
+	.long	3319939363                      # 0xc5e24123
+	.long	2102079853                      # 0x7d4b316d
+	.long	106                             # 0x6a
+	.long	398991913                       # 0x17c82229
+	.long	2102079853                      # 0x7d4b316d
+	.long	107                             # 0x6b
+	.long	333429647                       # 0x13dfbb8f
+	.long	2102079853                      # 0x7d4b316d
+	.long	108                             # 0x6c
+	.long	3927133990                      # 0xea134f26
+	.long	2102079853                      # 0x7d4b316d
+	.long	109                             # 0x6d
+	.long	1797971294                      # 0x6b2add5e
+	.long	2102079853                      # 0x7d4b316d
+	.long	110                             # 0x6e
+	.long	1622314776                      # 0x60b28f18
+	.long	2102079853                      # 0x7d4b316d
+	.long	111                             # 0x6f
+	.long	1092862330                      # 0x4123c17a
+	.long	2102079853                      # 0x7d4b316d
+	.long	112                             # 0x70
+	.long	2568657322                      # 0x991a99aa
+	.long	2102079853                      # 0x7d4b316d
+	.long	113                             # 0x71
+	.long	2168129897                      # 0x813b0969
+	.long	2102079853                      # 0x7d4b316d
+	.long	114                             # 0x72
+	.long	2890303119                      # 0xac46868f
+	.long	2102079853                      # 0x7d4b316d
+	.long	115                             # 0x73
+	.long	1713332582                      # 0x661f6166
+	.long	2102079853                      # 0x7d4b316d
+	.long	116                             # 0x74
+	.long	2375727721                      # 0x8d9aba69
+	.long	2102079853                      # 0x7d4b316d
+	.long	117                             # 0x75
+	.long	3586767156                      # 0xd5c9b934
+	.long	2102079853                      # 0x7d4b316d
+	.long	118                             # 0x76
+	.long	2191348475                      # 0x829d52fb
+	.long	2102079853                      # 0x7d4b316d
+	.long	119                             # 0x77
+	.long	3910023869                      # 0xe90e3abd
+	.long	2102079853                      # 0x7d4b316d
+	.long	120                             # 0x78
+	.long	4189915105                      # 0xf9bd07e1
+	.long	2102079853                      # 0x7d4b316d
+	.long	121                             # 0x79
+	.long	2527353334                      # 0x96a459f6
+	.long	2102079853                      # 0x7d4b316d
+	.long	122                             # 0x7a
+	.long	3429265923                      # 0xcc667203
+	.long	2102079853                      # 0x7d4b316d
+	.long	123                             # 0x7b
+	.long	1283962724                      # 0x4c87b764
+	.long	2102079853                      # 0x7d4b316d
+	.long	124                             # 0x7c
+	.long	1970290990                      # 0x7570412e
+	.long	2102079853                      # 0x7d4b316d
+	.long	125                             # 0x7d
+	.long	2615950861                      # 0x9bec3e0d
+	.long	2102079853                      # 0x7d4b316d
+	.long	126                             # 0x7e
+	.long	3338450337                      # 0xc6fcb5a1
+	.long	2102079853                      # 0x7d4b316d
+	.long	127                             # 0x7f
+	.long	3971836509                      # 0xecbd6a5d
+	.long	2102079853                      # 0x7d4b316d
+	.long	128                             # 0x80
+	.long	4260339231                      # 0xfdef9e1f
+	.long	2102079853                      # 0x7d4b316d
+	.long	129                             # 0x81
+	.long	4160738226                      # 0xf7ffd3b2
+	.long	2102079853                      # 0x7d4b316d
+	.long	130                             # 0x82
+	.long	1309372079                      # 0x4e0b6eaf
+	.long	2102079853                      # 0x7d4b316d
+	.long	131                             # 0x83
+	.long	3151575564                      # 0xbbd93a0c
+	.long	2102079853                      # 0x7d4b316d
+	.long	132                             # 0x84
+	.long	3938977714                      # 0xeac807b2
+	.long	2102079853                      # 0x7d4b316d
+	.long	133                             # 0x85
+	.long	3228738087                      # 0xc072a227
+	.long	2102079853                      # 0x7d4b316d
+	.long	134                             # 0x86
+	.long	2262837051                      # 0x86e0273b
+	.long	2102079853                      # 0x7d4b316d
+	.long	135                             # 0x87
+	.long	3135705803                      # 0xbae712cb
+	.long	2102079853                      # 0x7d4b316d
+	.long	136                             # 0x88
+	.long	990447104                       # 0x3b090600
+	.long	2102079853                      # 0x7d4b316d
+	.long	137                             # 0x89
+	.long	4061147315                      # 0xf21030b3
+	.long	2102079853                      # 0x7d4b316d
+	.long	138                             # 0x8a
+	.long	2783543715                      # 0xa5e981a3
+	.long	2102079853                      # 0x7d4b316d
+	.long	139                             # 0x8b
+	.long	2471046843                      # 0x93492ebb
+	.long	2102079853                      # 0x7d4b316d
+	.long	140                             # 0x8c
+	.long	403058134                       # 0x18062dd6
+	.long	2102079853                      # 0x7d4b316d
+	.long	141                             # 0x8d
+	.long	260073473                       # 0xf806801
+	.long	2102079853                      # 0x7d4b316d
+	.long	142                             # 0x8e
+	.long	1259876295                      # 0x4b182fc7
+	.long	2102079853                      # 0x7d4b316d
+	.long	143                             # 0x8f
+	.long	2975678116                      # 0xb15d3ea4
+	.long	2102079853                      # 0x7d4b316d
+	.long	144                             # 0x90
+	.long	2579807359                      # 0x99c4bc7f
+	.long	2102079853                      # 0x7d4b316d
+	.long	145                             # 0x91
+	.long	863102422                       # 0x3371e5d6
+	.long	2102079853                      # 0x7d4b316d
+	.long	146                             # 0x92
+	.long	650832017                       # 0x26cae891
+	.long	2102079853                      # 0x7d4b316d
+	.long	147                             # 0x93
+	.long	90061610                        # 0x55e3b2a
+	.long	2102079853                      # 0x7d4b316d
+	.long	148                             # 0x94
+	.long	2446954539                      # 0x91d9902b
+	.long	2102079853                      # 0x7d4b316d
+	.long	149                             # 0x95
+	.long	3598610789                      # 0xd67e7165
+	.long	2102079853                      # 0x7d4b316d
+	.long	150                             # 0x96
+	.long	2351688191                      # 0x8c2be9ff
+	.long	2102079853                      # 0x7d4b316d
+	.long	151                             # 0x97
+	.long	1743478091                      # 0x67eb5d4b
+	.long	2102079853                      # 0x7d4b316d
+	.long	152                             # 0x98
+	.long	2798805217                      # 0xa6d260e1
+	.long	2102079853                      # 0x7d4b316d
+	.long	153                             # 0x99
+	.long	1438161982                      # 0x55b89c3e
+	.long	2102079853                      # 0x7d4b316d
+	.long	154                             # 0x9a
+	.long	273416875                       # 0x104c02ab
+	.long	2102079853                      # 0x7d4b316d
+	.long	155                             # 0x9b
+	.long	2438880600                      # 0x915e5d58
+	.long	2102079853                      # 0x7d4b316d
+	.long	156                             # 0x9c
+	.long	1284541841                      # 0x4c908d91
+	.long	2102079853                      # 0x7d4b316d
+	.long	157                             # 0x9d
+	.long	3593193962                      # 0xd62bc9ea
+	.long	2102079853                      # 0x7d4b316d
+	.long	158                             # 0x9e
+	.long	1755082314                      # 0x689c6e4a
+	.long	2102079853                      # 0x7d4b316d
+	.long	159                             # 0x9f
+	.long	3432612426                      # 0xcc99824a
+	.long	2102079853                      # 0x7d4b316d
+	.long	160                             # 0xa0
+	.long	1404964820                      # 0x53be0fd4
+	.long	2102079853                      # 0x7d4b316d
+	.long	161                             # 0xa1
+	.long	3374828335                      # 0xc927cb2f
+	.long	2102079853                      # 0x7d4b316d
+	.long	162                             # 0xa2
+	.long	3311814731                      # 0xc566484b
+	.long	2102079853                      # 0x7d4b316d
+	.long	163                             # 0xa3
+	.long	413908966                       # 0x18abbfe6
+	.long	2102079853                      # 0x7d4b316d
+	.long	164                             # 0xa4
+	.long	3027808697                      # 0xb478b1b9
+	.long	2102079853                      # 0x7d4b316d
+	.long	165                             # 0xa5
+	.long	540762785                       # 0x203b62a1
+	.long	2102079853                      # 0x7d4b316d
+	.size	__llvm_internal_gcov_emit_function_args.0, 1992
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.1
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.2
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.3
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.4
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.5
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.6
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.7
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.8
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.9
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.10
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.11
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.12
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.13
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.14
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.15
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.16
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.17
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.18
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.19
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.20
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.21
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.22
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.23
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.24
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.25
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.26
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.27
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.28
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.29
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.30
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.31
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.32
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.33
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.34
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.35
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.36
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.37
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.38
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.39
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.40
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.41
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.42
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.43
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.44
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.45
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.46
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.47
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.48
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.49
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.50
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.51
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.52
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.53
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.54
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.55
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.56
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.57
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.58
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.59
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.60
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.61
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.62
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.63
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.64
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.65
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.66
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.67
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.68
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.69
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.70
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.71
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.72
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.73
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.74
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.75
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.76
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.77
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.78
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.79
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.80
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.81
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.82
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.83
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.84
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.85
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.86
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.87
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.88
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.89
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.90
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.91
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.92
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.93
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.94
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.95
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.96
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.97
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.98
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.99
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.100
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.101
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.102
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.103
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.104
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.105
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.106
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.107
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.108
+	.long	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.109
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.110
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.111
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.112
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.113
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.114
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.115
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.116
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.117
+	.long	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.118
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.119
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.120
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.121
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.122
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.123
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.124
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.125
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.126
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.127
+	.long	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.128
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.129
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.130
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.131
+	.long	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.132
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.133
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.134
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.135
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.136
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.137
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.138
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.139
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.140
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.141
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.142
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.143
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.144
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.145
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.146
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.147
+	.long	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.148
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.149
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.150
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.151
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.152
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.153
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.154
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.155
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.156
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.157
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.158
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.159
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.160
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.161
+	.long	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.162
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.163
+	.long	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.164
+	.long	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.165
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 2656
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.quad	.L__unnamed_1
+	.long	875575338                       # 0x3430382a
+	.long	2102079853                      # 0x7d4b316d
+	.long	166                             # 0xa6
+	.zero	4
+	.quad	__llvm_internal_gcov_emit_function_args.0
+	.quad	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.quad	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_make_ti,@object       # @__profc_make_ti
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
@@ -22040,9 +26886,181 @@ seed:
 	.addrsig_sym __muldsi3
 	.addrsig_sym __mulddi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
+	.addrsig_sym __llvm_gcov_ctr.151
+	.addrsig_sym __llvm_gcov_ctr.152
+	.addrsig_sym __llvm_gcov_ctr.153
+	.addrsig_sym __llvm_gcov_ctr.154
+	.addrsig_sym __llvm_gcov_ctr.155
+	.addrsig_sym __llvm_gcov_ctr.156
+	.addrsig_sym __llvm_gcov_ctr.157
+	.addrsig_sym __llvm_gcov_ctr.158
+	.addrsig_sym __llvm_gcov_ctr.159
+	.addrsig_sym __llvm_gcov_ctr.160
+	.addrsig_sym __llvm_gcov_ctr.161
+	.addrsig_sym __llvm_gcov_ctr.162
+	.addrsig_sym __llvm_gcov_ctr.163
+	.addrsig_sym __llvm_gcov_ctr.164
+	.addrsig_sym __llvm_gcov_ctr.165
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_make_ti
 	.addrsig_sym .L__profd_make_ti

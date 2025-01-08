@@ -49,8 +49,16 @@ memmove:
 	bhs	.LBB0_6
 	b	.LBB0_1
 .LBB0_1:
-	ldr	r1, .LCPI0_0
+	ldr	r1, .LCPI0_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI0_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -92,6 +100,15 @@ memmove:
 	strb	r0, [r1, #-1]
 	b	.LBB0_4
 .LBB0_4:                                @   in Loop: Header=BB0_2 Depth=1
+	ldr	r1, .LCPI0_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	sub	r0, r0, #1
 	str	r0, [sp, #8]
@@ -121,8 +138,16 @@ memmove:
 	beq	.LBB0_11
 	b	.LBB0_9
 .LBB0_9:                                @   in Loop: Header=BB0_8 Depth=1
-	ldr	r1, .LCPI0_0
+	ldr	r1, .LCPI0_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI0_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -145,8 +170,26 @@ memmove:
 	str	r0, [sp, #8]
 	b	.LBB0_8
 .LBB0_11:
+	ldr	r1, .LCPI0_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB0_12
 .LBB0_12:
+	ldr	r1, .LCPI0_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	b	.LBB0_13
 .LBB0_13:
 	ldr	r0, [r11, #-4]
@@ -157,6 +200,8 @@ memmove:
 @ %bb.14:
 .LCPI0_0:
 	.long	.L__profc_memmove(sbrel)
+.LCPI0_1:
+	.long	__llvm_gcov_ctr(sbrel)
 .Lfunc_end0:
 	.size	memmove, .Lfunc_end0-memmove
 	.fnend
@@ -198,8 +243,16 @@ memccpy:
 	beq	.LBB1_4
 	b	.LBB1_2
 .LBB1_2:                                @   in Loop: Header=BB1_1 Depth=1
-	ldr	r1, .LCPI1_0
+	ldr	r1, .LCPI1_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI1_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -221,8 +274,16 @@ memccpy:
 	b	.LBB1_3
 .LBB1_3:                                @   in Loop: Header=BB1_1 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI1_0
+	ldr	r2, .LCPI1_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI1_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -249,6 +310,15 @@ memccpy:
 	str	r0, [r1, #12]
 	b	.LBB1_6
 .LBB1_6:                                @   in Loop: Header=BB1_1 Depth=1
+	ldr	r1, .LCPI1_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #16]
 	sub	r0, r0, #1
 	str	r0, [sp, #16]
@@ -265,8 +335,16 @@ memccpy:
 	beq	.LBB1_9
 	b	.LBB1_8
 .LBB1_8:
-	ldr	r1, .LCPI1_0
+	ldr	r1, .LCPI1_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI1_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -279,6 +357,15 @@ memccpy:
 	str	r0, [r11, #-4]
 	b	.LBB1_10
 .LBB1_9:
+	ldr	r1, .LCPI1_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB1_10
@@ -291,6 +378,8 @@ memccpy:
 @ %bb.11:
 .LCPI1_0:
 	.long	.L__profc_memccpy(sbrel)
+.LCPI1_1:
+	.long	__llvm_gcov_ctr.1(sbrel)
 .Lfunc_end1:
 	.size	memccpy, .Lfunc_end1-memccpy
 	.fnend
@@ -329,8 +418,16 @@ memchr:
 	beq	.LBB2_4
 	b	.LBB2_2
 .LBB2_2:                                @   in Loop: Header=BB2_1 Depth=1
-	ldr	r1, .LCPI2_0
+	ldr	r1, .LCPI2_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI2_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -350,8 +447,16 @@ memchr:
 	b	.LBB2_3
 .LBB2_3:                                @   in Loop: Header=BB2_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI2_0
+	ldr	r2, .LCPI2_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI2_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -378,6 +483,15 @@ memchr:
 	str	r0, [r1, #12]
 	b	.LBB2_6
 .LBB2_6:                                @   in Loop: Header=BB2_1 Depth=1
+	ldr	r1, .LCPI2_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	add	r0, r0, #1
 	str	r0, [sp, #12]
@@ -391,8 +505,16 @@ memchr:
 	beq	.LBB2_9
 	b	.LBB2_8
 .LBB2_8:
-	ldr	r1, .LCPI2_0
+	ldr	r1, .LCPI2_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI2_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -404,6 +526,15 @@ memchr:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB2_10
 .LBB2_9:
+	ldr	r1, .LCPI2_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB2_10
@@ -416,6 +547,8 @@ memchr:
 @ %bb.11:
 .LCPI2_0:
 	.long	.L__profc_memchr(sbrel)
+.LCPI2_1:
+	.long	__llvm_gcov_ctr.2(sbrel)
 .Lfunc_end2:
 	.size	memchr, .Lfunc_end2-memchr
 	.fnend
@@ -454,8 +587,16 @@ memcmp:
 	beq	.LBB3_4
 	b	.LBB3_2
 .LBB3_2:                                @   in Loop: Header=BB3_1 Depth=1
-	ldr	r1, .LCPI3_0
+	ldr	r1, .LCPI3_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI3_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -477,8 +618,16 @@ memcmp:
 	b	.LBB3_3
 .LBB3_3:                                @   in Loop: Header=BB3_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI3_0
+	ldr	r2, .LCPI3_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI3_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -505,6 +654,15 @@ memcmp:
 	str	r0, [r1, #12]
 	b	.LBB3_6
 .LBB3_6:                                @   in Loop: Header=BB3_1 Depth=1
+	ldr	r1, .LCPI3_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-12]
 	sub	r0, r0, #1
 	str	r0, [r11, #-12]
@@ -521,8 +679,16 @@ memcmp:
 	beq	.LBB3_9
 	b	.LBB3_8
 .LBB3_8:
-	ldr	r1, .LCPI3_0
+	ldr	r1, .LCPI3_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI3_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -538,6 +704,15 @@ memcmp:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB3_10
 .LBB3_9:
+	ldr	r1, .LCPI3_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB3_10
@@ -550,6 +725,8 @@ memcmp:
 @ %bb.11:
 .LCPI3_0:
 	.long	.L__profc_memcmp(sbrel)
+.LCPI3_1:
+	.long	__llvm_gcov_ctr.3(sbrel)
 .Lfunc_end3:
 	.size	memcmp, .Lfunc_end3-memcmp
 	.fnend
@@ -561,31 +738,61 @@ memcmp:
 memcpy:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #20
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI4_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #24
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI4_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #16]
+	str	r2, [sp, #12]
+	ldr	r0, .LCPI4_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #8]
+	ldr	r0, [sp, #16]
 	str	r0, [sp, #4]
-	ldr	r0, [r11, #-8]
-	str	r0, [sp]
 	b	.LBB4_1
 .LBB4_1:                                @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #0
 	beq	.LBB4_4
 	b	.LBB4_2
 .LBB4_2:                                @   in Loop: Header=BB4_1 Depth=1
+	ldr	r1, .LCPI4_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
+	ldr	r0, [sp, #4]
+	add	r1, r0, #1
+	str	r1, [sp, #4]
+	ldrb	r0, [r0]
+	ldr	r1, [sp, #8]
+	add	r2, r1, #1
+	str	r2, [sp, #8]
+	strb	r0, [r1]
+	b	.LBB4_3
+.LBB4_3:                                @   in Loop: Header=BB4_1 Depth=1
 	ldr	r1, .LCPI4_0
 	mov	r0, r9
 	add	r1, r0, r1
@@ -595,28 +802,20 @@ memcpy:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [sp]
-	add	r1, r0, #1
-	str	r1, [sp]
-	ldrb	r0, [r0]
-	ldr	r1, [sp, #4]
-	add	r2, r1, #1
-	str	r2, [sp, #4]
-	strb	r0, [r1]
-	b	.LBB4_3
-.LBB4_3:                                @   in Loop: Header=BB4_1 Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	sub	r0, r0, #1
-	str	r0, [sp, #8]
+	str	r0, [sp, #12]
 	b	.LBB4_1
 .LBB4_4:
-	ldr	r0, [r11, #-4]
-	mov	sp, r11
-	pop	{r11, lr}
+	ldr	r0, [r11, #-12]
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.5:
 .LCPI4_0:
+	.long	__llvm_gcov_ctr.4(sbrel)
+.LCPI4_1:
 	.long	.L__profc_memcpy(sbrel)
 .Lfunc_end4:
 	.size	memcpy, .Lfunc_end4-memcpy
@@ -673,8 +872,16 @@ memrchr:
 	bne	.LBB5_4
 	b	.LBB5_3
 .LBB5_3:
-	ldr	r1, .LCPI5_0
+	ldr	r1, .LCPI5_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI5_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -688,8 +895,26 @@ memrchr:
 	str	r0, [r11, #-4]
 	b	.LBB5_6
 .LBB5_4:                                @   in Loop: Header=BB5_1 Depth=1
+	ldr	r1, .LCPI5_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	b	.LBB5_1
 .LBB5_5:
+	ldr	r1, .LCPI5_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB5_6
@@ -702,6 +927,8 @@ memrchr:
 @ %bb.7:
 .LCPI5_0:
 	.long	.L__profc_memrchr(sbrel)
+.LCPI5_1:
+	.long	__llvm_gcov_ctr.5(sbrel)
 .Lfunc_end5:
 	.size	memrchr, .Lfunc_end5-memrchr
 	.fnend
@@ -713,29 +940,54 @@ memrchr:
 memset:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #20
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI6_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #24
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI6_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #16]
+	str	r2, [sp, #12]
+	ldr	r0, .LCPI6_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
-	str	r0, [sp, #4]
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #8]
 	b	.LBB6_1
 .LBB6_1:                                @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #0
 	beq	.LBB6_4
 	b	.LBB6_2
 .LBB6_2:                                @   in Loop: Header=BB6_1 Depth=1
+	ldr	r1, .LCPI6_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
+	ldr	r0, [sp, #16]
+	ldr	r1, [sp, #8]
+	strb	r0, [r1]
+	b	.LBB6_3
+.LBB6_3:                                @   in Loop: Header=BB6_1 Depth=1
 	ldr	r1, .LCPI6_0
 	mov	r0, r9
 	add	r1, r0, r1
@@ -745,26 +997,23 @@ memset:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [r11, #-8]
-	ldr	r1, [sp, #4]
-	strb	r0, [r1]
-	b	.LBB6_3
-.LBB6_3:                                @   in Loop: Header=BB6_1 Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	sub	r0, r0, #1
-	str	r0, [sp, #8]
-	ldr	r0, [sp, #4]
+	str	r0, [sp, #12]
+	ldr	r0, [sp, #8]
 	add	r0, r0, #1
-	str	r0, [sp, #4]
+	str	r0, [sp, #8]
 	b	.LBB6_1
 .LBB6_4:
-	ldr	r0, [r11, #-4]
-	mov	sp, r11
-	pop	{r11, lr}
+	ldr	r0, [r11, #-12]
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.5:
 .LCPI6_0:
+	.long	__llvm_gcov_ctr.6(sbrel)
+.LCPI6_1:
 	.long	.L__profc_memset(sbrel)
 .Lfunc_end6:
 	.size	memset, .Lfunc_end6-memset
@@ -779,11 +1028,22 @@ stpcpy:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI7_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI7_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI7_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -792,15 +1052,15 @@ stpcpy:
 	str	r0, [r1, #4]
 	b	.LBB7_1
 .LBB7_1:                                @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp]
+	ldr	r0, [sp, #4]
 	ldrb	r0, [r0]
-	ldr	r1, [sp, #4]
+	ldr	r1, [r11, #-4]
 	strb	r0, [r1]
 	cmp	r0, #0
 	beq	.LBB7_4
 	b	.LBB7_2
 .LBB7_2:                                @   in Loop: Header=BB7_1 Depth=1
-	ldr	r1, .LCPI7_0
+	ldr	r1, .LCPI7_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -811,21 +1071,32 @@ stpcpy:
 	str	r0, [r1, #12]
 	b	.LBB7_3
 .LBB7_3:                                @   in Loop: Header=BB7_1 Depth=1
-	ldr	r0, [sp]
-	add	r0, r0, #1
-	str	r0, [sp]
+	ldr	r1, .LCPI7_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #1
 	str	r0, [sp, #4]
+	ldr	r0, [r11, #-4]
+	add	r0, r0, #1
+	str	r0, [r11, #-4]
 	b	.LBB7_1
 .LBB7_4:
-	ldr	r0, [sp, #4]
+	ldr	r0, [r11, #-4]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.5:
 .LCPI7_0:
+	.long	__llvm_gcov_ctr.7(sbrel)
+.LCPI7_1:
 	.long	.L__profc_stpcpy(sbrel)
 .Lfunc_end7:
 	.size	stpcpy, .Lfunc_end7-stpcpy
@@ -840,19 +1111,30 @@ strchrnul:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	ldr	r0, .LCPI8_0
+	sub	sp, sp, #20
+	str	r1, [sp, #8]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+	ldr	r3, .LCPI8_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI8_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldrb	r0, [sp, #8]
-	str	r0, [sp, #8]
+	ldrb	r0, [r11, #-8]
+	str	r0, [r11, #-8]
 	b	.LBB8_1
 .LBB8_1:                                @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
@@ -865,6 +1147,14 @@ strchrnul:
 .LBB8_2:                                @   in Loop: Header=BB8_1 Depth=1
 	ldr	r1, .LCPI8_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI8_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -874,7 +1164,7 @@ strchrnul:
 	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
 	ldrb	r1, [r0]
-	ldr	r2, [sp, #8]
+	ldr	r2, [r11, #-8]
 	subs	r0, r1, r2
 	movne	r0, #1
 	str	r0, [sp]                        @ 4-byte Spill
@@ -886,6 +1176,14 @@ strchrnul:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI8_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI8_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -901,7 +1199,7 @@ strchrnul:
 	beq	.LBB8_7
 	b	.LBB8_5
 .LBB8_5:                                @   in Loop: Header=BB8_1 Depth=1
-	ldr	r1, .LCPI8_0
+	ldr	r1, .LCPI8_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -912,6 +1210,15 @@ strchrnul:
 	str	r0, [r1, #12]
 	b	.LBB8_6
 .LBB8_6:                                @   in Loop: Header=BB8_1 Depth=1
+	ldr	r1, .LCPI8_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [r11, #-4]
 	add	r0, r0, #1
 	str	r0, [r11, #-4]
@@ -924,6 +1231,8 @@ strchrnul:
 	.p2align	2
 @ %bb.8:
 .LCPI8_0:
+	.long	__llvm_gcov_ctr.8(sbrel)
+.LCPI8_1:
 	.long	.L__profc_strchrnul(sbrel)
 .Lfunc_end8:
 	.size	strchrnul, .Lfunc_end8-strchrnul
@@ -951,8 +1260,16 @@ strchr:
 	str	r0, [r1, #4]
 	b	.LBB9_2
 .LBB9_1:                                @   in Loop: Header=BB9_2 Depth=1
-	ldr	r1, .LCPI9_0
+	ldr	r1, .LCPI9_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI9_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -969,8 +1286,16 @@ strchr:
 	bne	.LBB9_4
 	b	.LBB9_3
 .LBB9_3:
-	ldr	r1, .LCPI9_0
+	ldr	r1, .LCPI9_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI9_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -992,6 +1317,15 @@ strchr:
 	bne	.LBB9_1
 	b	.LBB9_6
 .LBB9_6:
+	ldr	r1, .LCPI9_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB9_7
@@ -1004,6 +1338,8 @@ strchr:
 @ %bb.8:
 .LCPI9_0:
 	.long	.L__profc_strchr(sbrel)
+.LCPI9_1:
+	.long	__llvm_gcov_ctr.9(sbrel)
 .Lfunc_end9:
 	.size	strchr, .Lfunc_end9-strchr
 	.fnend
@@ -1017,11 +1353,22 @@ strcmp:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	ldr	r0, .LCPI10_0
+	sub	sp, sp, #20
+	str	r1, [sp, #8]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+	ldr	r3, .LCPI10_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI10_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1032,7 +1379,7 @@ strcmp:
 .LBB10_1:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
 	ldrb	r1, [r0]
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	ldrb	r2, [r0]
 	mov	r0, #0
 	cmp	r1, r2
@@ -1042,6 +1389,14 @@ strcmp:
 .LBB10_2:                               @   in Loop: Header=BB10_1 Depth=1
 	ldr	r1, .LCPI10_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI10_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -1063,6 +1418,14 @@ strcmp:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI10_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI10_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -1078,7 +1441,7 @@ strcmp:
 	beq	.LBB10_7
 	b	.LBB10_5
 .LBB10_5:                               @   in Loop: Header=BB10_1 Depth=1
-	ldr	r1, .LCPI10_0
+	ldr	r1, .LCPI10_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -1089,17 +1452,26 @@ strcmp:
 	str	r0, [r1, #12]
 	b	.LBB10_6
 .LBB10_6:                               @   in Loop: Header=BB10_1 Depth=1
+	ldr	r1, .LCPI10_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [r11, #-4]
 	add	r0, r0, #1
 	str	r0, [r11, #-4]
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	add	r0, r0, #1
-	str	r0, [sp, #8]
+	str	r0, [r11, #-8]
 	b	.LBB10_1
 .LBB10_7:
 	ldr	r0, [r11, #-4]
 	ldrb	r0, [r0]
-	ldr	r1, [sp, #8]
+	ldr	r1, [r11, #-8]
 	ldrb	r1, [r1]
 	sub	r0, r0, r1
 	mov	sp, r11
@@ -1108,6 +1480,8 @@ strcmp:
 	.p2align	2
 @ %bb.8:
 .LCPI10_0:
+	.long	__llvm_gcov_ctr.10(sbrel)
+.LCPI10_1:
 	.long	.L__profc_strcmp(sbrel)
 .Lfunc_end10:
 	.size	strcmp, .Lfunc_end10-strcmp
@@ -1123,9 +1497,17 @@ strlen:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI11_0
+	ldr	r2, .LCPI11_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI11_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1142,7 +1524,7 @@ strlen:
 	beq	.LBB11_4
 	b	.LBB11_2
 .LBB11_2:                               @   in Loop: Header=BB11_1 Depth=1
-	ldr	r1, .LCPI11_0
+	ldr	r1, .LCPI11_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -1153,6 +1535,15 @@ strlen:
 	str	r0, [r1, #12]
 	b	.LBB11_3
 .LBB11_3:                               @   in Loop: Header=BB11_1 Depth=1
+	ldr	r1, .LCPI11_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #1
 	str	r0, [sp, #4]
@@ -1167,6 +1558,8 @@ strlen:
 	.p2align	2
 @ %bb.5:
 .LCPI11_0:
+	.long	__llvm_gcov_ctr.11(sbrel)
+.LCPI11_1:
 	.long	.L__profc_strlen(sbrel)
 .Lfunc_end11:
 	.size	strlen, .Lfunc_end11-strlen
@@ -1204,8 +1597,16 @@ strncmp:
 	bne	.LBB12_2
 	b	.LBB12_1
 .LBB12_1:
-	ldr	r1, .LCPI12_0
+	ldr	r1, .LCPI12_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI12_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -1217,6 +1618,14 @@ strncmp:
 	str	r0, [r11, #-4]
 	b	.LBB12_14
 .LBB12_2:
+	ldr	r0, .LCPI12_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	b	.LBB12_3
 .LBB12_3:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [sp, #12]
@@ -1227,8 +1636,16 @@ strncmp:
 	beq	.LBB12_10
 	b	.LBB12_4
 .LBB12_4:                               @   in Loop: Header=BB12_3 Depth=1
-	ldr	r1, .LCPI12_0
+	ldr	r1, .LCPI12_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI12_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -1244,8 +1661,16 @@ strncmp:
 	beq	.LBB12_10
 	b	.LBB12_5
 .LBB12_5:                               @   in Loop: Header=BB12_3 Depth=1
-	ldr	r1, .LCPI12_0
+	ldr	r1, .LCPI12_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI12_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -1271,8 +1696,16 @@ strncmp:
 	beq	.LBB12_10
 	b	.LBB12_7
 .LBB12_7:                               @   in Loop: Header=BB12_3 Depth=1
-	ldr	r1, .LCPI12_0
+	ldr	r1, .LCPI12_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI12_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -1305,8 +1738,16 @@ strncmp:
 	b	.LBB12_9
 .LBB12_9:                               @   in Loop: Header=BB12_3 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI12_0
+	ldr	r2, .LCPI12_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #40]
+	ldr	r2, [r3, #44]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #40]
+	str	r2, [r3, #44]
+	ldr	r2, .LCPI12_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #32]
 	ldr	r1, [r2, #36]
@@ -1333,6 +1774,15 @@ strncmp:
 	str	r0, [r1, #20]
 	b	.LBB12_12
 .LBB12_12:                              @   in Loop: Header=BB12_3 Depth=1
+	ldr	r1, .LCPI12_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #48]
+	ldr	r0, [r1, #52]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #48]
+	str	r0, [r1, #52]
 	ldr	r0, [sp, #12]
 	add	r0, r0, #1
 	str	r0, [sp, #12]
@@ -1360,6 +1810,8 @@ strncmp:
 @ %bb.15:
 .LCPI12_0:
 	.long	.L__profc_strncmp(sbrel)
+.LCPI12_1:
+	.long	__llvm_gcov_ctr.12(sbrel)
 .Lfunc_end12:
 	.size	strncmp, .Lfunc_end12-strncmp
 	.fnend
@@ -1371,31 +1823,67 @@ strncmp:
 swab:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #20
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI13_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #24
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI13_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #16]
+	str	r2, [sp, #12]
+	ldr	r0, .LCPI13_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #8]
+	ldr	r0, [sp, #16]
 	str	r0, [sp, #4]
-	ldr	r0, [r11, #-8]
-	str	r0, [sp]
 	b	.LBB13_1
 .LBB13_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #2
 	blt	.LBB13_4
 	b	.LBB13_2
 .LBB13_2:                               @   in Loop: Header=BB13_1 Depth=1
+	ldr	r1, .LCPI13_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
+	ldr	r0, [sp, #8]
+	ldrb	r0, [r0, #1]
+	ldr	r1, [sp, #4]
+	strb	r0, [r1]
+	ldr	r0, [sp, #8]
+	ldrb	r0, [r0]
+	ldr	r1, [sp, #4]
+	strb	r0, [r1, #1]
+	ldr	r0, [sp, #4]
+	add	r0, r0, #2
+	str	r0, [sp, #4]
+	ldr	r0, [sp, #8]
+	add	r0, r0, #2
+	str	r0, [sp, #8]
+	b	.LBB13_3
+.LBB13_3:                               @   in Loop: Header=BB13_1 Depth=1
 	ldr	r1, .LCPI13_0
 	mov	r0, r9
 	add	r1, r0, r1
@@ -1405,33 +1893,19 @@ swab:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [sp, #4]
-	ldrb	r0, [r0, #1]
-	ldr	r1, [sp]
-	strb	r0, [r1]
-	ldr	r0, [sp, #4]
-	ldrb	r0, [r0]
-	ldr	r1, [sp]
-	strb	r0, [r1, #1]
-	ldr	r0, [sp]
-	add	r0, r0, #2
-	str	r0, [sp]
-	ldr	r0, [sp, #4]
-	add	r0, r0, #2
-	str	r0, [sp, #4]
-	b	.LBB13_3
-.LBB13_3:                               @   in Loop: Header=BB13_1 Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	sub	r0, r0, #2
-	str	r0, [sp, #8]
+	str	r0, [sp, #12]
 	b	.LBB13_1
 .LBB13_4:
-	mov	sp, r11
-	pop	{r11, lr}
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.5:
 .LCPI13_0:
+	.long	__llvm_gcov_ctr.13(sbrel)
+.LCPI13_1:
 	.long	.L__profc_swab(sbrel)
 .Lfunc_end13:
 	.size	swab, .Lfunc_end13-swab
@@ -1447,9 +1921,17 @@ isalpha:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI14_0
+	ldr	r2, .LCPI14_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI14_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1468,6 +1950,8 @@ isalpha:
 	.p2align	2
 @ %bb.1:
 .LCPI14_0:
+	.long	__llvm_gcov_ctr.14(sbrel)
+.LCPI14_1:
 	.long	.L__profc_isalpha(sbrel)
 .Lfunc_end14:
 	.size	isalpha, .Lfunc_end14-isalpha
@@ -1483,9 +1967,17 @@ isascii:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI15_0
+	ldr	r2, .LCPI15_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI15_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1502,6 +1994,8 @@ isascii:
 	.p2align	2
 @ %bb.1:
 .LCPI15_0:
+	.long	__llvm_gcov_ctr.15(sbrel)
+.LCPI15_1:
 	.long	.L__profc_isascii(sbrel)
 .Lfunc_end15:
 	.size	isascii, .Lfunc_end15-isascii
@@ -1517,9 +2011,17 @@ isblank:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI16_0
+	ldr	r2, .LCPI16_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI16_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1535,6 +2037,14 @@ isblank:
 .LBB16_1:
 	ldr	r1, .LCPI16_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI16_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -1555,6 +2065,14 @@ isblank:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI16_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI16_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -1573,6 +2091,8 @@ isblank:
 	.p2align	2
 @ %bb.4:
 .LCPI16_0:
+	.long	__llvm_gcov_ctr.16(sbrel)
+.LCPI16_1:
 	.long	.L__profc_isblank(sbrel)
 .Lfunc_end16:
 	.size	isblank, .Lfunc_end16-isblank
@@ -1588,9 +2108,17 @@ iscntrl:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI17_0
+	ldr	r2, .LCPI17_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI17_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1606,6 +2134,14 @@ iscntrl:
 .LBB17_1:
 	ldr	r1, .LCPI17_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI17_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -1626,6 +2162,14 @@ iscntrl:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI17_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI17_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -1644,6 +2188,8 @@ iscntrl:
 	.p2align	2
 @ %bb.4:
 .LCPI17_0:
+	.long	__llvm_gcov_ctr.17(sbrel)
+.LCPI17_1:
 	.long	.L__profc_iscntrl(sbrel)
 .Lfunc_end17:
 	.size	iscntrl, .Lfunc_end17-iscntrl
@@ -1659,9 +2205,17 @@ isdigit:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI18_0
+	ldr	r2, .LCPI18_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI18_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1679,6 +2233,8 @@ isdigit:
 	.p2align	2
 @ %bb.1:
 .LCPI18_0:
+	.long	__llvm_gcov_ctr.18(sbrel)
+.LCPI18_1:
 	.long	.L__profc_isdigit(sbrel)
 .Lfunc_end18:
 	.size	isdigit, .Lfunc_end18-isdigit
@@ -1694,9 +2250,17 @@ isgraph:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI19_0
+	ldr	r2, .LCPI19_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI19_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1714,6 +2278,8 @@ isgraph:
 	.p2align	2
 @ %bb.1:
 .LCPI19_0:
+	.long	__llvm_gcov_ctr.19(sbrel)
+.LCPI19_1:
 	.long	.L__profc_isgraph(sbrel)
 .Lfunc_end19:
 	.size	isgraph, .Lfunc_end19-isgraph
@@ -1729,9 +2295,17 @@ islower:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI20_0
+	ldr	r2, .LCPI20_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI20_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1749,6 +2323,8 @@ islower:
 	.p2align	2
 @ %bb.1:
 .LCPI20_0:
+	.long	__llvm_gcov_ctr.20(sbrel)
+.LCPI20_1:
 	.long	.L__profc_islower(sbrel)
 .Lfunc_end20:
 	.size	islower, .Lfunc_end20-islower
@@ -1764,9 +2340,17 @@ isprint:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI21_0
+	ldr	r2, .LCPI21_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI21_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1784,6 +2368,8 @@ isprint:
 	.p2align	2
 @ %bb.1:
 .LCPI21_0:
+	.long	__llvm_gcov_ctr.21(sbrel)
+.LCPI21_1:
 	.long	.L__profc_isprint(sbrel)
 .Lfunc_end21:
 	.size	isprint, .Lfunc_end21-isprint
@@ -1799,9 +2385,17 @@ isspace:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI22_0
+	ldr	r2, .LCPI22_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI22_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1817,6 +2411,14 @@ isspace:
 .LBB22_1:
 	ldr	r1, .LCPI22_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI22_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -1838,6 +2440,14 @@ isspace:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI22_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI22_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -1856,6 +2466,8 @@ isspace:
 	.p2align	2
 @ %bb.4:
 .LCPI22_0:
+	.long	__llvm_gcov_ctr.22(sbrel)
+.LCPI22_1:
 	.long	.L__profc_isspace(sbrel)
 .Lfunc_end22:
 	.size	isspace, .Lfunc_end22-isspace
@@ -1871,9 +2483,17 @@ isupper:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI23_0
+	ldr	r2, .LCPI23_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI23_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1891,6 +2511,8 @@ isupper:
 	.p2align	2
 @ %bb.1:
 .LCPI23_0:
+	.long	__llvm_gcov_ctr.23(sbrel)
+.LCPI23_1:
 	.long	.L__profc_isupper(sbrel)
 .Lfunc_end23:
 	.size	isupper, .Lfunc_end23-isupper
@@ -1906,9 +2528,17 @@ iswcntrl:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI24_0
+	ldr	r2, .LCPI24_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI24_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -1924,6 +2554,14 @@ iswcntrl:
 .LBB24_1:
 	ldr	r1, .LCPI24_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI24_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -1941,6 +2579,14 @@ iswcntrl:
 .LBB24_2:
 	ldr	r1, .LCPI24_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI24_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -1950,7 +2596,7 @@ iswcntrl:
 	str	r0, [r1, #52]
 	b	.LBB24_3
 .LBB24_3:
-	ldr	r1, .LCPI24_0
+	ldr	r1, .LCPI24_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
@@ -1971,6 +2617,14 @@ iswcntrl:
 .LBB24_4:
 	ldr	r1, .LCPI24_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI24_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -1980,7 +2634,7 @@ iswcntrl:
 	str	r0, [r1, #36]
 	b	.LBB24_5
 .LBB24_5:
-	ldr	r1, .LCPI24_0
+	ldr	r1, .LCPI24_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -2005,6 +2659,14 @@ iswcntrl:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI24_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #32]
+	ldr	r2, [r3, #36]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #32]
+	str	r2, [r3, #36]
+	ldr	r2, .LCPI24_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -2023,6 +2685,8 @@ iswcntrl:
 	.p2align	2
 @ %bb.8:
 .LCPI24_0:
+	.long	__llvm_gcov_ctr.24(sbrel)
+.LCPI24_1:
 	.long	.L__profc_iswcntrl(sbrel)
 .Lfunc_end24:
 	.size	iswcntrl, .Lfunc_end24-iswcntrl
@@ -2038,9 +2702,17 @@ iswdigit:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI25_0
+	ldr	r2, .LCPI25_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI25_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -2058,6 +2730,8 @@ iswdigit:
 	.p2align	2
 @ %bb.1:
 .LCPI25_0:
+	.long	__llvm_gcov_ctr.25(sbrel)
+.LCPI25_1:
 	.long	.L__profc_iswdigit(sbrel)
 .Lfunc_end25:
 	.size	iswdigit, .Lfunc_end25-iswdigit
@@ -2087,8 +2761,16 @@ iswprint:
 	bhi	.LBB26_2
 	b	.LBB26_1
 .LBB26_1:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2112,8 +2794,16 @@ iswprint:
 	blo	.LBB26_7
 	b	.LBB26_3
 .LBB26_3:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -2131,8 +2821,16 @@ iswprint:
 	blo	.LBB26_7
 	b	.LBB26_4
 .LBB26_4:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -2170,8 +2868,16 @@ iswprint:
 	str	r0, [r1, #36]
 	b	.LBB26_8
 .LBB26_7:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -2184,7 +2890,7 @@ iswprint:
 	b	.LBB26_13
 .LBB26_8:
 	ldr	r0, [sp]
-	ldr	r1, .LCPI26_1
+	ldr	r1, .LCPI26_2
 	add	r0, r0, r1
 	mov	r1, #3
 	orr	r1, r1, #1048576
@@ -2192,8 +2898,16 @@ iswprint:
 	bhi	.LBB26_11
 	b	.LBB26_9
 .LBB26_9:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -2220,8 +2934,16 @@ iswprint:
 	str	r0, [r1, #76]
 	b	.LBB26_12
 .LBB26_11:
-	ldr	r1, .LCPI26_0
+	ldr	r1, .LCPI26_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #40]
+	ldr	r1, [r2, #44]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #40]
+	str	r1, [r2, #44]
+	ldr	r1, .LCPI26_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -2233,6 +2955,15 @@ iswprint:
 	str	r0, [sp, #4]
 	b	.LBB26_13
 .LBB26_12:
+	ldr	r1, .LCPI26_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #48]
+	ldr	r0, [r1, #52]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #48]
+	str	r0, [r1, #52]
 	mov	r0, #1
 	str	r0, [sp, #4]
 	b	.LBB26_13
@@ -2246,6 +2977,8 @@ iswprint:
 .LCPI26_0:
 	.long	.L__profc_iswprint(sbrel)
 .LCPI26_1:
+	.long	__llvm_gcov_ctr.26(sbrel)
+.LCPI26_2:
 	.long	4294901764                      @ 0xffff0004
 .Lfunc_end26:
 	.size	iswprint, .Lfunc_end26-iswprint
@@ -2261,9 +2994,17 @@ iswxdigit:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI27_0
+	ldr	r2, .LCPI27_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI27_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -2280,6 +3021,14 @@ iswxdigit:
 .LBB27_1:
 	ldr	r1, .LCPI27_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI27_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2302,6 +3051,14 @@ iswxdigit:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI27_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI27_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -2320,6 +3077,8 @@ iswxdigit:
 	.p2align	2
 @ %bb.4:
 .LCPI27_0:
+	.long	__llvm_gcov_ctr.27(sbrel)
+.LCPI27_1:
 	.long	.L__profc_iswxdigit(sbrel)
 .Lfunc_end27:
 	.size	iswxdigit, .Lfunc_end27-iswxdigit
@@ -2335,9 +3094,17 @@ toascii:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI28_0
+	ldr	r2, .LCPI28_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI28_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -2352,6 +3119,8 @@ toascii:
 	.p2align	2
 @ %bb.1:
 .LCPI28_0:
+	.long	__llvm_gcov_ctr.28(sbrel)
+.LCPI28_1:
 	.long	.L__profc_toascii(sbrel)
 .Lfunc_end28:
 	.size	toascii, .Lfunc_end28-toascii
@@ -2393,8 +3162,16 @@ fdim:
 	blt	.LBB29_2
 	b	.LBB29_1
 .LBB29_1:
-	ldr	r1, .LCPI29_0
+	ldr	r1, .LCPI29_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI29_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2418,8 +3195,16 @@ fdim:
 	blt	.LBB29_4
 	b	.LBB29_3
 .LBB29_3:
-	ldr	r1, .LCPI29_0
+	ldr	r1, .LCPI29_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI29_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -2444,8 +3229,16 @@ fdim:
 	blt	.LBB29_6
 	b	.LBB29_5
 .LBB29_5:
-	ldr	r1, .LCPI29_0
+	ldr	r1, .LCPI29_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI29_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -2457,13 +3250,22 @@ fdim:
 	ldr	r1, [sp, #20]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI29_2
+	ldr	r4, .LCPI29_3
 	mov	lr, pc
 	mov	pc, r4
 	str	r0, [sp]                        @ 4-byte Spill
 	str	r1, [sp, #4]                    @ 4-byte Spill
 	b	.LBB29_7
 .LBB29_6:
+	ldr	r1, .LCPI29_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	mov	r0, #0
 	mov	r1, r0
 	str	r1, [sp]                        @ 4-byte Spill
@@ -2488,6 +3290,8 @@ fdim:
 .LCPI29_1:
 	.long	__gtdf2
 .LCPI29_2:
+	.long	__llvm_gcov_ctr.29(sbrel)
+.LCPI29_3:
 	.long	__subdf3
 .Lfunc_end29:
 	.size	fdim, .Lfunc_end29-fdim
@@ -2522,8 +3326,16 @@ fdimf:
 	blt	.LBB30_2
 	b	.LBB30_1
 .LBB30_1:
-	ldr	r1, .LCPI30_0
+	ldr	r1, .LCPI30_3
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI30_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2542,8 +3354,16 @@ fdimf:
 	blt	.LBB30_4
 	b	.LBB30_3
 .LBB30_3:
-	ldr	r1, .LCPI30_0
+	ldr	r1, .LCPI30_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI30_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -2564,8 +3384,16 @@ fdimf:
 	blt	.LBB30_6
 	b	.LBB30_5
 .LBB30_5:
-	ldr	r1, .LCPI30_0
+	ldr	r1, .LCPI30_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI30_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -2575,12 +3403,21 @@ fdimf:
 	str	r0, [r1, #28]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #4]
-	ldr	r2, .LCPI30_3
+	ldr	r2, .LCPI30_4
 	mov	lr, pc
 	mov	pc, r2
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB30_7
 .LBB30_6:
+	ldr	r1, .LCPI30_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB30_7
@@ -2602,6 +3439,8 @@ fdimf:
 .LCPI30_2:
 	.long	__gtsf2
 .LCPI30_3:
+	.long	__llvm_gcov_ctr.30(sbrel)
+.LCPI30_4:
 	.long	__subsf3
 .Lfunc_end30:
 	.size	fdimf, .Lfunc_end30-fdimf
@@ -2643,8 +3482,16 @@ fmax:
 	blt	.LBB31_2
 	b	.LBB31_1
 .LBB31_1:
-	ldr	r1, .LCPI31_0
+	ldr	r1, .LCPI31_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI31_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2668,8 +3515,16 @@ fmax:
 	blt	.LBB31_4
 	b	.LBB31_3
 .LBB31_3:
-	ldr	r1, .LCPI31_0
+	ldr	r1, .LCPI31_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI31_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -2704,8 +3559,16 @@ fmax:
 	bgt	.LBB31_7
 	b	.LBB31_6
 .LBB31_6:
-	ldr	r1, .LCPI31_0
+	ldr	r1, .LCPI31_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI31_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -2719,6 +3582,15 @@ fmax:
 	str	r0, [sp, #12]                   @ 4-byte Spill
 	b	.LBB31_8
 .LBB31_7:
+	ldr	r1, .LCPI31_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r1, [sp, #24]
 	ldr	r0, [sp, #28]
 	str	r1, [sp, #8]                    @ 4-byte Spill
@@ -2742,8 +3614,16 @@ fmax:
 	bgt	.LBB31_11
 	b	.LBB31_10
 .LBB31_10:
-	ldr	r1, .LCPI31_0
+	ldr	r1, .LCPI31_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI31_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -2757,6 +3637,15 @@ fmax:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB31_12
 .LBB31_11:
+	ldr	r1, .LCPI31_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r1, [sp, #24]
 	ldr	r0, [sp, #28]
 	str	r1, [sp]                        @ 4-byte Spill
@@ -2780,6 +3669,8 @@ fmax:
 	.long	.L__profc_fmax(sbrel)
 .LCPI31_1:
 	.long	__ltdf2
+.LCPI31_2:
+	.long	__llvm_gcov_ctr.31(sbrel)
 .Lfunc_end31:
 	.size	fmax, .Lfunc_end31-fmax
 	.fnend
@@ -2813,8 +3704,16 @@ fmaxf:
 	blt	.LBB32_2
 	b	.LBB32_1
 .LBB32_1:
-	ldr	r1, .LCPI32_0
+	ldr	r1, .LCPI32_3
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI32_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2833,8 +3732,16 @@ fmaxf:
 	blt	.LBB32_4
 	b	.LBB32_3
 .LBB32_3:
-	ldr	r1, .LCPI32_0
+	ldr	r1, .LCPI32_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI32_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -2867,8 +3774,16 @@ fmaxf:
 	bgt	.LBB32_7
 	b	.LBB32_6
 .LBB32_6:
-	ldr	r1, .LCPI32_0
+	ldr	r1, .LCPI32_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI32_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -2880,6 +3795,15 @@ fmaxf:
 	str	r0, [sp, #8]                    @ 4-byte Spill
 	b	.LBB32_8
 .LBB32_7:
+	ldr	r1, .LCPI32_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [r11, #-8]
 	str	r0, [sp, #8]                    @ 4-byte Spill
 	b	.LBB32_8
@@ -2897,8 +3821,16 @@ fmaxf:
 	bgt	.LBB32_11
 	b	.LBB32_10
 .LBB32_10:
-	ldr	r1, .LCPI32_0
+	ldr	r1, .LCPI32_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI32_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -2910,6 +3842,15 @@ fmaxf:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB32_12
 .LBB32_11:
+	ldr	r1, .LCPI32_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [r11, #-8]
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB32_12
@@ -2930,6 +3871,8 @@ fmaxf:
 	.long	2139095041                      @ 0x7f800001
 .LCPI32_2:
 	.long	__ltsf2
+.LCPI32_3:
+	.long	__llvm_gcov_ctr.32(sbrel)
 .Lfunc_end32:
 	.size	fmaxf, .Lfunc_end32-fmaxf
 	.fnend
@@ -2970,8 +3913,16 @@ fmaxl:
 	blt	.LBB33_2
 	b	.LBB33_1
 .LBB33_1:
-	ldr	r1, .LCPI33_0
+	ldr	r1, .LCPI33_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI33_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -2995,8 +3946,16 @@ fmaxl:
 	blt	.LBB33_4
 	b	.LBB33_3
 .LBB33_3:
-	ldr	r1, .LCPI33_0
+	ldr	r1, .LCPI33_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI33_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3031,8 +3990,16 @@ fmaxl:
 	bgt	.LBB33_7
 	b	.LBB33_6
 .LBB33_6:
-	ldr	r1, .LCPI33_0
+	ldr	r1, .LCPI33_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI33_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -3046,6 +4013,15 @@ fmaxl:
 	str	r0, [sp, #12]                   @ 4-byte Spill
 	b	.LBB33_8
 .LBB33_7:
+	ldr	r1, .LCPI33_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r1, [sp, #24]
 	ldr	r0, [sp, #28]
 	str	r1, [sp, #8]                    @ 4-byte Spill
@@ -3069,8 +4045,16 @@ fmaxl:
 	bgt	.LBB33_11
 	b	.LBB33_10
 .LBB33_10:
-	ldr	r1, .LCPI33_0
+	ldr	r1, .LCPI33_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI33_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -3084,6 +4068,15 @@ fmaxl:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB33_12
 .LBB33_11:
+	ldr	r1, .LCPI33_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r1, [sp, #24]
 	ldr	r0, [sp, #28]
 	str	r1, [sp]                        @ 4-byte Spill
@@ -3107,6 +4100,8 @@ fmaxl:
 	.long	.L__profc_fmaxl(sbrel)
 .LCPI33_1:
 	.long	__ltdf2
+.LCPI33_2:
+	.long	__llvm_gcov_ctr.33(sbrel)
 .Lfunc_end33:
 	.size	fmaxl, .Lfunc_end33-fmaxl
 	.fnend
@@ -3147,8 +4142,16 @@ fmin:
 	blt	.LBB34_2
 	b	.LBB34_1
 .LBB34_1:
-	ldr	r1, .LCPI34_0
+	ldr	r1, .LCPI34_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI34_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -3172,8 +4175,16 @@ fmin:
 	blt	.LBB34_4
 	b	.LBB34_3
 .LBB34_3:
-	ldr	r1, .LCPI34_0
+	ldr	r1, .LCPI34_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI34_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3208,8 +4219,16 @@ fmin:
 	bgt	.LBB34_7
 	b	.LBB34_6
 .LBB34_6:
-	ldr	r1, .LCPI34_0
+	ldr	r1, .LCPI34_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI34_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -3223,6 +4242,15 @@ fmin:
 	str	r0, [sp, #12]                   @ 4-byte Spill
 	b	.LBB34_8
 .LBB34_7:
+	ldr	r1, .LCPI34_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	str	r1, [sp, #8]                    @ 4-byte Spill
@@ -3246,8 +4274,16 @@ fmin:
 	bgt	.LBB34_11
 	b	.LBB34_10
 .LBB34_10:
-	ldr	r1, .LCPI34_0
+	ldr	r1, .LCPI34_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI34_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -3261,6 +4297,15 @@ fmin:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB34_12
 .LBB34_11:
+	ldr	r1, .LCPI34_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	str	r1, [sp]                        @ 4-byte Spill
@@ -3284,6 +4329,8 @@ fmin:
 	.long	.L__profc_fmin(sbrel)
 .LCPI34_1:
 	.long	__ltdf2
+.LCPI34_2:
+	.long	__llvm_gcov_ctr.34(sbrel)
 .Lfunc_end34:
 	.size	fmin, .Lfunc_end34-fmin
 	.fnend
@@ -3317,8 +4364,16 @@ fminf:
 	blt	.LBB35_2
 	b	.LBB35_1
 .LBB35_1:
-	ldr	r1, .LCPI35_0
+	ldr	r1, .LCPI35_3
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI35_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -3337,8 +4392,16 @@ fminf:
 	blt	.LBB35_4
 	b	.LBB35_3
 .LBB35_3:
-	ldr	r1, .LCPI35_0
+	ldr	r1, .LCPI35_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI35_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3371,8 +4434,16 @@ fminf:
 	bgt	.LBB35_7
 	b	.LBB35_6
 .LBB35_6:
-	ldr	r1, .LCPI35_0
+	ldr	r1, .LCPI35_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI35_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -3384,6 +4455,15 @@ fminf:
 	str	r0, [sp, #8]                    @ 4-byte Spill
 	b	.LBB35_8
 .LBB35_7:
+	ldr	r1, .LCPI35_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [sp, #12]
 	str	r0, [sp, #8]                    @ 4-byte Spill
 	b	.LBB35_8
@@ -3401,8 +4481,16 @@ fminf:
 	bgt	.LBB35_11
 	b	.LBB35_10
 .LBB35_10:
-	ldr	r1, .LCPI35_0
+	ldr	r1, .LCPI35_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI35_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -3414,6 +4502,15 @@ fminf:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB35_12
 .LBB35_11:
+	ldr	r1, .LCPI35_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [sp, #12]
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB35_12
@@ -3434,6 +4531,8 @@ fminf:
 	.long	2139095041                      @ 0x7f800001
 .LCPI35_2:
 	.long	__ltsf2
+.LCPI35_3:
+	.long	__llvm_gcov_ctr.35(sbrel)
 .Lfunc_end35:
 	.size	fminf, .Lfunc_end35-fminf
 	.fnend
@@ -3474,8 +4573,16 @@ fminl:
 	blt	.LBB36_2
 	b	.LBB36_1
 .LBB36_1:
-	ldr	r1, .LCPI36_0
+	ldr	r1, .LCPI36_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI36_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -3499,8 +4606,16 @@ fminl:
 	blt	.LBB36_4
 	b	.LBB36_3
 .LBB36_3:
-	ldr	r1, .LCPI36_0
+	ldr	r1, .LCPI36_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI36_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3535,8 +4650,16 @@ fminl:
 	bgt	.LBB36_7
 	b	.LBB36_6
 .LBB36_6:
-	ldr	r1, .LCPI36_0
+	ldr	r1, .LCPI36_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI36_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -3550,6 +4673,15 @@ fminl:
 	str	r0, [sp, #12]                   @ 4-byte Spill
 	b	.LBB36_8
 .LBB36_7:
+	ldr	r1, .LCPI36_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	str	r1, [sp, #8]                    @ 4-byte Spill
@@ -3573,8 +4705,16 @@ fminl:
 	bgt	.LBB36_11
 	b	.LBB36_10
 .LBB36_10:
-	ldr	r1, .LCPI36_0
+	ldr	r1, .LCPI36_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI36_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -3588,6 +4728,15 @@ fminl:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB36_12
 .LBB36_11:
+	ldr	r1, .LCPI36_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	str	r1, [sp]                        @ 4-byte Spill
@@ -3611,6 +4760,8 @@ fminl:
 	.long	.L__profc_fminl(sbrel)
 .LCPI36_1:
 	.long	__ltdf2
+.LCPI36_2:
+	.long	__llvm_gcov_ctr.36(sbrel)
 .Lfunc_end36:
 	.size	fminl, .Lfunc_end36-fminl
 	.fnend
@@ -3625,9 +4776,18 @@ l64a:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	ldr	r1, .LCPI37_0
+	mov	r1, r0
+	ldr	r2, .LCPI37_0
 	mov	r0, r9
+	mov	r3, r0
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r1, [r11, #-4]
+	ldr	r1, .LCPI37_1
 	mov	r2, r0
 	ldr	r3, [r2, r1]!
 	ldr	r1, [r2, #4]
@@ -3637,7 +4797,7 @@ l64a:
 	str	r1, [r2, #4]
 	ldr	r1, [r11, #-4]
 	str	r1, [sp]
-	ldr	r1, .LCPI37_1
+	ldr	r1, .LCPI37_2
 	add	r0, r0, r1
 	str	r0, [sp, #4]
 	b	.LBB37_1
@@ -3647,7 +4807,7 @@ l64a:
 	beq	.LBB37_4
 	b	.LBB37_2
 .LBB37_2:                               @   in Loop: Header=BB37_1 Depth=1
-	ldr	r1, .LCPI37_0
+	ldr	r1, .LCPI37_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -3658,7 +4818,7 @@ l64a:
 	str	r0, [r1, #12]
 	ldr	r0, [sp]
 	and	r1, r0, #63
-	ldr	r0, .LCPI37_2
+	ldr	r0, .LCPI37_3
 .LPC37_0:
 	add	r0, pc, r0
 	ldrb	r0, [r0, r1]
@@ -3666,6 +4826,15 @@ l64a:
 	strb	r0, [r1]
 	b	.LBB37_3
 .LBB37_3:                               @   in Loop: Header=BB37_1 Depth=1
+	ldr	r1, .LCPI37_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #1
 	str	r0, [sp, #4]
@@ -3677,7 +4846,7 @@ l64a:
 	ldr	r1, [sp, #4]
 	mov	r0, #0
 	strb	r0, [r1]
-	ldr	r1, .LCPI37_1
+	ldr	r1, .LCPI37_2
 	mov	r0, r9
 	add	r0, r0, r1
 	mov	sp, r11
@@ -3686,10 +4855,12 @@ l64a:
 	.p2align	2
 @ %bb.5:
 .LCPI37_0:
-	.long	.L__profc_l64a(sbrel)
+	.long	__llvm_gcov_ctr.37(sbrel)
 .LCPI37_1:
-	.long	l64a.s(sbrel)
+	.long	.L__profc_l64a(sbrel)
 .LCPI37_2:
+	.long	l64a.s(sbrel)
+.LCPI37_3:
 	.long	digits-(.LPC37_0+8)
 .Lfunc_end37:
 	.size	l64a, .Lfunc_end37-l64a
@@ -3705,9 +4876,17 @@ srand:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI38_0
+	ldr	r2, .LCPI38_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI38_1
 	mov	r2, r1
 	ldr	r3, [r2, r0]!
 	ldr	r0, [r2, #4]
@@ -3717,7 +4896,7 @@ srand:
 	str	r0, [r2, #4]
 	ldr	r0, [sp]
 	sub	r0, r0, #1
-	ldr	r2, .LCPI38_1
+	ldr	r2, .LCPI38_2
 	str	r0, [r1, r2]!
 	mov	r0, #0
 	str	r0, [r1, #4]
@@ -3727,8 +4906,10 @@ srand:
 	.p2align	2
 @ %bb.1:
 .LCPI38_0:
-	.long	.L__profc_srand(sbrel)
+	.long	__llvm_gcov_ctr.38(sbrel)
 .LCPI38_1:
+	.long	.L__profc_srand(sbrel)
+.LCPI38_2:
 	.long	seed(sbrel)
 .Lfunc_end38:
 	.size	srand, .Lfunc_end38-srand
@@ -3753,11 +4934,19 @@ rand:
 	str	r3, [r2]
 	str	r1, [r2, #4]
 	ldr	r1, .LCPI39_1
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI39_2
 	ldr	r3, [r0, r1]!
 	ldr	r12, [r0, #4]
-	ldr	lr, .LCPI39_2
+	ldr	lr, .LCPI39_3
 	umull	r2, r5, r3, lr
-	ldr	r4, .LCPI39_3
+	ldr	r4, .LCPI39_4
 	mla	r1, r3, r4, r5
 	mul	r3, r12, lr
 	adds	r2, r2, #1
@@ -3771,12 +4960,14 @@ rand:
 	.p2align	2
 @ %bb.1:
 .LCPI39_0:
-	.long	.L__profc_rand(sbrel)
+	.long	__llvm_gcov_ctr.39(sbrel)
 .LCPI39_1:
-	.long	seed(sbrel)
+	.long	.L__profc_rand(sbrel)
 .LCPI39_2:
-	.long	1284865837                      @ 0x4c957f2d
+	.long	seed(sbrel)
 .LCPI39_3:
+	.long	1284865837                      @ 0x4c957f2d
+.LCPI39_4:
 	.long	1481765933                      @ 0x5851f42d
 .Lfunc_end39:
 	.size	rand, .Lfunc_end39-rand
@@ -3811,8 +5002,16 @@ insque:
 	bne	.LBB40_2
 	b	.LBB40_1
 .LBB40_1:
-	ldr	r1, .LCPI40_0
+	ldr	r1, .LCPI40_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI40_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -3827,6 +5026,14 @@ insque:
 	str	r0, [r1]
 	b	.LBB40_4
 .LBB40_2:
+	ldr	r0, .LCPI40_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	ldr	r0, [sp]
 	ldr	r0, [r0]
 	ldr	r1, [sp, #4]
@@ -3843,8 +5050,16 @@ insque:
 	beq	.LBB40_4
 	b	.LBB40_3
 .LBB40_3:
-	ldr	r1, .LCPI40_0
+	ldr	r1, .LCPI40_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI40_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3864,6 +5079,8 @@ insque:
 @ %bb.5:
 .LCPI40_0:
 	.long	.L__profc_insque(sbrel)
+.LCPI40_1:
+	.long	__llvm_gcov_ctr.40(sbrel)
 .Lfunc_end40:
 	.size	insque, .Lfunc_end40-insque
 	.fnend
@@ -3878,9 +5095,17 @@ remque:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI41_0
+	ldr	r2, .LCPI41_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI41_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -3897,6 +5122,14 @@ remque:
 .LBB41_1:
 	ldr	r1, .LCPI41_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI41_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -3918,6 +5151,14 @@ remque:
 .LBB41_3:
 	ldr	r1, .LCPI41_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI41_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -3937,6 +5178,8 @@ remque:
 	.p2align	2
 @ %bb.5:
 .LCPI41_0:
+	.long	__llvm_gcov_ctr.41(sbrel)
+.LCPI41_1:
 	.long	.L__profc_remque(sbrel)
 .Lfunc_end41:
 	.size	remque, .Lfunc_end41-remque
@@ -4004,8 +5247,16 @@ lsearch:
 	b	.LBB42_3
 .LBB42_3:
 	ldr	r2, [sp, #4]                    @ 4-byte Reload
-	ldr	r1, .LCPI42_0
+	ldr	r1, .LCPI42_1
 	mov	r0, r9
+	mov	r3, r0
+	ldr	r12, [r3, r1]!
+	ldr	r1, [r3, #4]
+	adds	r12, r12, #1
+	adc	r1, r1, #0
+	str	r12, [r3]
+	str	r1, [r3, #4]
+	ldr	r1, .LCPI42_0
 	add	r1, r0, r1
 	ldr	r3, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -4021,12 +5272,30 @@ lsearch:
 .LBB42_4:                               @   in Loop: Header=BB42_1 Depth=1
 	b	.LBB42_5
 .LBB42_5:                               @   in Loop: Header=BB42_1 Depth=1
+	ldr	r1, .LCPI42_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	add	r0, r0, #1
 	str	r0, [sp, #8]
 	b	.LBB42_1
 .LBB42_6:
 	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, .LCPI42_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r3, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r3, r3, #1
+	adc	r0, r0, #0
+	str	r3, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	add	r0, r0, #1
 	ldr	r1, [r11, #-16]
@@ -4037,7 +5306,7 @@ lsearch:
 	str	r0, [sp]                        @ 4-byte Spill
 	ldr	r1, [r11, #-8]
 	ldr	r2, [sp, #20]
-	ldr	r3, .LCPI42_1
+	ldr	r3, .LCPI42_2
 	mov	lr, pc
 	mov	pc, r3
                                         @ kill: def $r1 killed $r0
@@ -4054,6 +5323,8 @@ lsearch:
 .LCPI42_0:
 	.long	.L__profc_lsearch(sbrel)
 .LCPI42_1:
+	.long	__llvm_gcov_ctr.42(sbrel)
+.LCPI42_2:
 	.long	memcpy
 .Lfunc_end42:
 	.size	lsearch, .Lfunc_end42-lsearch
@@ -4121,8 +5392,16 @@ lfind:
 	b	.LBB43_3
 .LBB43_3:
 	ldr	r2, [sp, #4]                    @ 4-byte Reload
-	ldr	r1, .LCPI43_0
+	ldr	r1, .LCPI43_1
 	mov	r0, r9
+	mov	r3, r0
+	ldr	r12, [r3, r1]!
+	ldr	r1, [r3, #4]
+	adds	r12, r12, #1
+	adc	r1, r1, #0
+	str	r12, [r3]
+	str	r1, [r3, #4]
+	ldr	r1, .LCPI43_0
 	add	r1, r0, r1
 	ldr	r3, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -4138,11 +5417,29 @@ lfind:
 .LBB43_4:                               @   in Loop: Header=BB43_1 Depth=1
 	b	.LBB43_5
 .LBB43_5:                               @   in Loop: Header=BB43_1 Depth=1
+	ldr	r1, .LCPI43_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	add	r0, r0, #1
 	str	r0, [sp, #8]
 	b	.LBB43_1
 .LBB43_6:
+	ldr	r1, .LCPI43_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB43_7
@@ -4155,6 +5452,8 @@ lfind:
 @ %bb.8:
 .LCPI43_0:
 	.long	.L__profc_lfind(sbrel)
+.LCPI43_1:
+	.long	__llvm_gcov_ctr.43(sbrel)
 .Lfunc_end43:
 	.size	lfind, .Lfunc_end43-lfind
 	.fnend
@@ -4183,8 +5482,16 @@ abs:
 	blt	.LBB44_2
 	b	.LBB44_1
 .LBB44_1:
-	ldr	r1, .LCPI44_0
+	ldr	r1, .LCPI44_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI44_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -4196,6 +5503,15 @@ abs:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB44_3
 .LBB44_2:
+	ldr	r1, .LCPI44_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	rsb	r0, r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
@@ -4209,6 +5525,8 @@ abs:
 @ %bb.4:
 .LCPI44_0:
 	.long	.L__profc_abs(sbrel)
+.LCPI44_1:
+	.long	__llvm_gcov_ctr.44(sbrel)
 .Lfunc_end44:
 	.size	abs, .Lfunc_end44-abs
 	.fnend
@@ -4246,8 +5564,16 @@ atoi:
 	beq	.LBB45_3
 	b	.LBB45_2
 .LBB45_2:                               @   in Loop: Header=BB45_1 Depth=1
-	ldr	r1, .LCPI45_0
+	ldr	r1, .LCPI45_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI45_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -4273,8 +5599,16 @@ atoi:
 	bne	.LBB45_8
 	b	.LBB45_5
 .LBB45_5:
-	ldr	r1, .LCPI45_0
+	ldr	r1, .LCPI45_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI45_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -4286,8 +5620,16 @@ atoi:
 	str	r0, [sp, #12]
 	b	.LBB45_7
 .LBB45_6:
-	ldr	r1, .LCPI45_0
+	ldr	r1, .LCPI45_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI45_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -4315,15 +5657,23 @@ atoi:
 .LBB45_9:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
 	ldrb	r0, [r0]
-	ldr	r1, .LCPI45_2
+	ldr	r1, .LCPI45_3
 	mov	lr, pc
 	mov	pc, r1
 	cmp	r0, #0
 	beq	.LBB45_11
 	b	.LBB45_10
 .LBB45_10:                              @   in Loop: Header=BB45_9 Depth=1
-	ldr	r1, .LCPI45_0
+	ldr	r1, .LCPI45_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI45_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -4347,8 +5697,16 @@ atoi:
 	beq	.LBB45_13
 	b	.LBB45_12
 .LBB45_12:
-	ldr	r1, .LCPI45_0
+	ldr	r1, .LCPI45_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI45_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -4360,6 +5718,15 @@ atoi:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB45_14
 .LBB45_13:
+	ldr	r1, .LCPI45_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [r11, #-8]
 	rsb	r0, r0, #0
 	str	r0, [sp, #4]                    @ 4-byte Spill
@@ -4376,6 +5743,8 @@ atoi:
 .LCPI45_1:
 	.long	isspace
 .LCPI45_2:
+	.long	__llvm_gcov_ctr.45(sbrel)
+.LCPI45_3:
 	.long	isdigit
 .Lfunc_end45:
 	.size	atoi, .Lfunc_end45-atoi
@@ -4414,8 +5783,16 @@ atol:
 	beq	.LBB46_3
 	b	.LBB46_2
 .LBB46_2:                               @   in Loop: Header=BB46_1 Depth=1
-	ldr	r1, .LCPI46_0
+	ldr	r1, .LCPI46_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI46_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -4441,8 +5818,16 @@ atol:
 	bne	.LBB46_8
 	b	.LBB46_5
 .LBB46_5:
-	ldr	r1, .LCPI46_0
+	ldr	r1, .LCPI46_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI46_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -4454,8 +5839,16 @@ atol:
 	str	r0, [sp, #12]
 	b	.LBB46_7
 .LBB46_6:
-	ldr	r1, .LCPI46_0
+	ldr	r1, .LCPI46_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI46_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -4483,15 +5876,23 @@ atol:
 .LBB46_9:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
 	ldrb	r0, [r0]
-	ldr	r1, .LCPI46_2
+	ldr	r1, .LCPI46_3
 	mov	lr, pc
 	mov	pc, r1
 	cmp	r0, #0
 	beq	.LBB46_11
 	b	.LBB46_10
 .LBB46_10:                              @   in Loop: Header=BB46_9 Depth=1
-	ldr	r1, .LCPI46_0
+	ldr	r1, .LCPI46_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI46_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -4515,8 +5916,16 @@ atol:
 	beq	.LBB46_13
 	b	.LBB46_12
 .LBB46_12:
-	ldr	r1, .LCPI46_0
+	ldr	r1, .LCPI46_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI46_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -4528,6 +5937,15 @@ atol:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB46_14
 .LBB46_13:
+	ldr	r1, .LCPI46_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [r11, #-8]
 	rsb	r0, r0, #0
 	str	r0, [sp, #4]                    @ 4-byte Spill
@@ -4544,6 +5962,8 @@ atol:
 .LCPI46_1:
 	.long	isspace
 .LCPI46_2:
+	.long	__llvm_gcov_ctr.46(sbrel)
+.LCPI46_3:
 	.long	isdigit
 .Lfunc_end46:
 	.size	atol, .Lfunc_end46-atol
@@ -4583,8 +6003,16 @@ atoll:
 	beq	.LBB47_3
 	b	.LBB47_2
 .LBB47_2:                               @   in Loop: Header=BB47_1 Depth=1
-	ldr	r1, .LCPI47_0
+	ldr	r1, .LCPI47_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI47_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -4610,8 +6038,16 @@ atoll:
 	bne	.LBB47_8
 	b	.LBB47_5
 .LBB47_5:
-	ldr	r1, .LCPI47_0
+	ldr	r1, .LCPI47_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI47_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -4623,8 +6059,16 @@ atoll:
 	str	r0, [sp, #12]
 	b	.LBB47_7
 .LBB47_6:
-	ldr	r1, .LCPI47_0
+	ldr	r1, .LCPI47_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI47_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -4652,15 +6096,23 @@ atoll:
 .LBB47_9:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
 	ldrb	r0, [r0]
-	ldr	r1, .LCPI47_2
+	ldr	r1, .LCPI47_3
 	mov	lr, pc
 	mov	pc, r1
 	cmp	r0, #0
 	beq	.LBB47_11
 	b	.LBB47_10
 .LBB47_10:                              @   in Loop: Header=BB47_9 Depth=1
-	ldr	r1, .LCPI47_0
+	ldr	r1, .LCPI47_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI47_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -4690,8 +6142,16 @@ atoll:
 	beq	.LBB47_13
 	b	.LBB47_12
 .LBB47_12:
-	ldr	r1, .LCPI47_0
+	ldr	r1, .LCPI47_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI47_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -4705,6 +6165,15 @@ atoll:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB47_14
 .LBB47_13:
+	ldr	r1, .LCPI47_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	rsbs	r1, r1, #0
@@ -4725,6 +6194,8 @@ atoll:
 .LCPI47_1:
 	.long	isspace
 .LCPI47_2:
+	.long	__llvm_gcov_ctr.47(sbrel)
+.LCPI47_3:
 	.long	isdigit
 .Lfunc_end47:
 	.size	atoll, .Lfunc_end47-atoll
@@ -4786,8 +6257,16 @@ bsearch:
 	bgt	.LBB48_4
 	b	.LBB48_3
 .LBB48_3:                               @   in Loop: Header=BB48_1 Depth=1
-	ldr	r1, .LCPI48_0
+	ldr	r1, .LCPI48_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI48_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -4824,14 +6303,40 @@ bsearch:
 	str	r0, [sp, #16]
 	b	.LBB48_7
 .LBB48_6:
+	ldr	r1, .LCPI48_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #8]
 	str	r0, [r11, #-4]
 	b	.LBB48_10
 .LBB48_7:                               @   in Loop: Header=BB48_1 Depth=1
+	ldr	r1, .LCPI48_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB48_8
 .LBB48_8:                               @   in Loop: Header=BB48_1 Depth=1
 	b	.LBB48_1
 .LBB48_9:
+	ldr	r0, .LCPI48_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB48_10
@@ -4844,6 +6349,8 @@ bsearch:
 @ %bb.11:
 .LCPI48_0:
 	.long	.L__profc_bsearch(sbrel)
+.LCPI48_1:
+	.long	__llvm_gcov_ctr.48(sbrel)
 .Lfunc_end48:
 	.size	bsearch, .Lfunc_end48-bsearch
 	.fnend
@@ -4910,8 +6417,16 @@ bsearch_r:
 	bne	.LBB49_4
 	b	.LBB49_3
 .LBB49_3:
-	ldr	r1, .LCPI49_0
+	ldr	r1, .LCPI49_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI49_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -4928,8 +6443,16 @@ bsearch_r:
 	blt	.LBB49_6
 	b	.LBB49_5
 .LBB49_5:                               @   in Loop: Header=BB49_1 Depth=1
-	ldr	r1, .LCPI49_0
+	ldr	r1, .LCPI49_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI49_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -4948,11 +6471,29 @@ bsearch_r:
 .LBB49_6:                               @   in Loop: Header=BB49_1 Depth=1
 	b	.LBB49_7
 .LBB49_7:                               @   in Loop: Header=BB49_1 Depth=1
+	ldr	r1, .LCPI49_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	asr	r0, r0, #1
 	str	r0, [sp, #12]
 	b	.LBB49_1
 .LBB49_8:
+	ldr	r1, .LCPI49_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB49_9
@@ -4965,6 +6506,8 @@ bsearch_r:
 @ %bb.10:
 .LCPI49_0:
 	.long	.L__profc_bsearch_r(sbrel)
+.LCPI49_1:
+	.long	__llvm_gcov_ctr.49(sbrel)
 .Lfunc_end49:
 	.size	bsearch_r, .Lfunc_end49-bsearch_r
 	.fnend
@@ -4979,11 +6522,22 @@ div:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #16
-	str	r0, [sp, #4]                    @ 4-byte Spill
-	str	r1, [r11, #-4]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI50_0
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r1, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	ldr	r3, .LCPI50_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r0, [r11, #-4]
+	str	r2, [sp, #8]
+	ldr	r0, .LCPI50_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -4992,14 +6546,14 @@ div:
 	str	r0, [r1, #4]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI50_1
+	ldr	r2, .LCPI50_2
 	mov	lr, pc
 	mov	pc, r2
 	ldr	r1, [sp, #4]                    @ 4-byte Reload
 	str	r0, [r1]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI50_2
+	ldr	r2, .LCPI50_3
 	mov	lr, pc
 	mov	pc, r2
 	ldr	r1, [sp, #4]                    @ 4-byte Reload
@@ -5010,10 +6564,12 @@ div:
 	.p2align	2
 @ %bb.1:
 .LCPI50_0:
-	.long	.L__profc_div(sbrel)
+	.long	__llvm_gcov_ctr.50(sbrel)
 .LCPI50_1:
-	.long	__divsi3
+	.long	.L__profc_div(sbrel)
 .LCPI50_2:
+	.long	__divsi3
+.LCPI50_3:
 	.long	__modsi3
 .Lfunc_end50:
 	.size	div, .Lfunc_end50-div
@@ -5048,8 +6604,16 @@ imaxabs:
 	blt	.LBB51_2
 	b	.LBB51_1
 .LBB51_1:
-	ldr	r1, .LCPI51_0
+	ldr	r1, .LCPI51_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI51_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -5063,6 +6627,15 @@ imaxabs:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB51_3
 .LBB51_2:
+	ldr	r1, .LCPI51_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r1, [sp, #8]
 	ldr	r0, [sp, #12]
 	rsbs	r1, r1, #0
@@ -5080,6 +6653,8 @@ imaxabs:
 @ %bb.4:
 .LCPI51_0:
 	.long	.L__profc_imaxabs(sbrel)
+.LCPI51_1:
+	.long	__llvm_gcov_ctr.51(sbrel)
 .Lfunc_end51:
 	.size	imaxabs, .Lfunc_end51-imaxabs
 	.fnend
@@ -5091,20 +6666,30 @@ imaxabs:
 imaxdiv:
 	.fnstart
 @ %bb.0:
-	push	{r4, r10, r11, lr}
+	push	{r4, r5, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #24
+	mov	r12, r3
+	mov	r3, r2
 	str	r0, [sp, #4]                    @ 4-byte Spill
-	ldr	r1, [r11, #12]
+	ldr	r2, [r11, #12]
 	ldr	r0, [r11, #8]
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-	str	r3, [sp, #20]
-	str	r2, [sp, #16]
-	str	r1, [sp, #12]
-	str	r0, [sp, #8]
-	ldr	r0, .LCPI52_0
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r3
+	ldr	lr, .LCPI52_0
 	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [sp, #20]
+	str	r3, [sp, #16]
+	str	r2, [sp, #12]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI52_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -5115,7 +6700,7 @@ imaxdiv:
 	ldr	r1, [sp, #20]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI52_1
+	ldr	r4, .LCPI52_2
 	mov	lr, pc
 	mov	pc, r4
 	mov	r2, r1
@@ -5126,7 +6711,7 @@ imaxdiv:
 	ldr	r1, [sp, #20]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI52_2
+	ldr	r4, .LCPI52_3
 	mov	lr, pc
 	mov	pc, r4
 	mov	r2, r1
@@ -5134,15 +6719,17 @@ imaxdiv:
 	str	r2, [r1, #12]
 	str	r0, [r1, #8]
 	sub	sp, r11, #8
-	pop	{r4, r10, r11, lr}
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI52_0:
-	.long	.L__profc_imaxdiv(sbrel)
+	.long	__llvm_gcov_ctr.52(sbrel)
 .LCPI52_1:
-	.long	__divdi3
+	.long	.L__profc_imaxdiv(sbrel)
 .LCPI52_2:
+	.long	__divdi3
+.LCPI52_3:
 	.long	__moddi3
 .Lfunc_end52:
 	.size	imaxdiv, .Lfunc_end52-imaxdiv
@@ -5172,8 +6759,16 @@ labs:
 	blt	.LBB53_2
 	b	.LBB53_1
 .LBB53_1:
-	ldr	r1, .LCPI53_0
+	ldr	r1, .LCPI53_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI53_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -5185,6 +6780,15 @@ labs:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB53_3
 .LBB53_2:
+	ldr	r1, .LCPI53_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	rsb	r0, r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
@@ -5198,6 +6802,8 @@ labs:
 @ %bb.4:
 .LCPI53_0:
 	.long	.L__profc_labs(sbrel)
+.LCPI53_1:
+	.long	__llvm_gcov_ctr.53(sbrel)
 .Lfunc_end53:
 	.size	labs, .Lfunc_end53-labs
 	.fnend
@@ -5212,11 +6818,22 @@ ldiv:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #16
-	str	r0, [sp, #4]                    @ 4-byte Spill
-	str	r1, [r11, #-4]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI54_0
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r1, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	ldr	r3, .LCPI54_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r0, [r11, #-4]
+	str	r2, [sp, #8]
+	ldr	r0, .LCPI54_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -5225,14 +6842,14 @@ ldiv:
 	str	r0, [r1, #4]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI54_1
+	ldr	r2, .LCPI54_2
 	mov	lr, pc
 	mov	pc, r2
 	ldr	r1, [sp, #4]                    @ 4-byte Reload
 	str	r0, [r1]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI54_2
+	ldr	r2, .LCPI54_3
 	mov	lr, pc
 	mov	pc, r2
 	ldr	r1, [sp, #4]                    @ 4-byte Reload
@@ -5243,10 +6860,12 @@ ldiv:
 	.p2align	2
 @ %bb.1:
 .LCPI54_0:
-	.long	.L__profc_ldiv(sbrel)
+	.long	__llvm_gcov_ctr.54(sbrel)
 .LCPI54_1:
-	.long	__divsi3
+	.long	.L__profc_ldiv(sbrel)
 .LCPI54_2:
+	.long	__divsi3
+.LCPI54_3:
 	.long	__modsi3
 .Lfunc_end54:
 	.size	ldiv, .Lfunc_end54-ldiv
@@ -5281,8 +6900,16 @@ llabs:
 	blt	.LBB55_2
 	b	.LBB55_1
 .LBB55_1:
-	ldr	r1, .LCPI55_0
+	ldr	r1, .LCPI55_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI55_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -5296,6 +6923,15 @@ llabs:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB55_3
 .LBB55_2:
+	ldr	r1, .LCPI55_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r1, [sp, #8]
 	ldr	r0, [sp, #12]
 	rsbs	r1, r1, #0
@@ -5313,6 +6949,8 @@ llabs:
 @ %bb.4:
 .LCPI55_0:
 	.long	.L__profc_llabs(sbrel)
+.LCPI55_1:
+	.long	__llvm_gcov_ctr.55(sbrel)
 .Lfunc_end55:
 	.size	llabs, .Lfunc_end55-llabs
 	.fnend
@@ -5324,20 +6962,30 @@ llabs:
 lldiv:
 	.fnstart
 @ %bb.0:
-	push	{r4, r10, r11, lr}
+	push	{r4, r5, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #24
+	mov	r12, r3
+	mov	r3, r2
 	str	r0, [sp, #4]                    @ 4-byte Spill
-	ldr	r1, [r11, #12]
+	ldr	r2, [r11, #12]
 	ldr	r0, [r11, #8]
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-	str	r3, [sp, #20]
-	str	r2, [sp, #16]
-	str	r1, [sp, #12]
-	str	r0, [sp, #8]
-	ldr	r0, .LCPI56_0
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r3
+	ldr	lr, .LCPI56_0
 	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [sp, #20]
+	str	r3, [sp, #16]
+	str	r2, [sp, #12]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI56_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -5348,7 +6996,7 @@ lldiv:
 	ldr	r1, [sp, #20]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI56_1
+	ldr	r4, .LCPI56_2
 	mov	lr, pc
 	mov	pc, r4
 	mov	r2, r1
@@ -5359,7 +7007,7 @@ lldiv:
 	ldr	r1, [sp, #20]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI56_2
+	ldr	r4, .LCPI56_3
 	mov	lr, pc
 	mov	pc, r4
 	mov	r2, r1
@@ -5367,15 +7015,17 @@ lldiv:
 	str	r2, [r1, #12]
 	str	r0, [r1, #8]
 	sub	sp, r11, #8
-	pop	{r4, r10, r11, lr}
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI56_0:
-	.long	.L__profc_lldiv(sbrel)
+	.long	__llvm_gcov_ctr.56(sbrel)
 .LCPI56_1:
-	.long	__divdi3
+	.long	.L__profc_lldiv(sbrel)
 .LCPI56_2:
+	.long	__divdi3
+.LCPI56_3:
 	.long	__moddi3
 .Lfunc_end56:
 	.size	lldiv, .Lfunc_end56-lldiv
@@ -5411,8 +7061,16 @@ wcschr:
 	beq	.LBB57_4
 	b	.LBB57_2
 .LBB57_2:                               @   in Loop: Header=BB57_1 Depth=1
-	ldr	r1, .LCPI57_0
+	ldr	r1, .LCPI57_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI57_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -5432,8 +7090,16 @@ wcschr:
 	b	.LBB57_3
 .LBB57_3:                               @   in Loop: Header=BB57_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI57_0
+	ldr	r2, .LCPI57_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI57_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -5460,6 +7126,15 @@ wcschr:
 	str	r0, [r1, #12]
 	b	.LBB57_6
 .LBB57_6:                               @   in Loop: Header=BB57_1 Depth=1
+	ldr	r1, .LCPI57_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
 	add	r0, r0, #4
 	str	r0, [r11, #-4]
@@ -5471,8 +7146,16 @@ wcschr:
 	beq	.LBB57_9
 	b	.LBB57_8
 .LBB57_8:
-	ldr	r1, .LCPI57_0
+	ldr	r1, .LCPI57_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI57_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -5484,6 +7167,15 @@ wcschr:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB57_10
 .LBB57_9:
+	ldr	r1, .LCPI57_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB57_10
@@ -5496,6 +7188,8 @@ wcschr:
 @ %bb.11:
 .LCPI57_0:
 	.long	.L__profc_wcschr(sbrel)
+.LCPI57_1:
+	.long	__llvm_gcov_ctr.57(sbrel)
 .Lfunc_end57:
 	.size	wcschr, .Lfunc_end57-wcschr
 	.fnend
@@ -5532,8 +7226,16 @@ wcscmp:
 	bne	.LBB58_6
 	b	.LBB58_2
 .LBB58_2:                               @   in Loop: Header=BB58_1 Depth=1
-	ldr	r1, .LCPI58_0
+	ldr	r1, .LCPI58_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI58_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -5549,8 +7251,16 @@ wcscmp:
 	beq	.LBB58_6
 	b	.LBB58_3
 .LBB58_3:                               @   in Loop: Header=BB58_1 Depth=1
-	ldr	r1, .LCPI58_0
+	ldr	r1, .LCPI58_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI58_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -5581,8 +7291,16 @@ wcscmp:
 	b	.LBB58_5
 .LBB58_5:                               @   in Loop: Header=BB58_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI58_0
+	ldr	r2, .LCPI58_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI58_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -5609,6 +7327,15 @@ wcscmp:
 	str	r0, [r1, #12]
 	b	.LBB58_8
 .LBB58_8:                               @   in Loop: Header=BB58_1 Depth=1
+	ldr	r1, .LCPI58_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [r11, #-4]
 	add	r0, r0, #4
 	str	r0, [r11, #-4]
@@ -5625,8 +7352,16 @@ wcscmp:
 	bhs	.LBB58_11
 	b	.LBB58_10
 .LBB58_10:
-	ldr	r1, .LCPI58_0
+	ldr	r1, .LCPI58_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI58_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -5638,6 +7373,15 @@ wcscmp:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB58_12
 .LBB58_11:
+	ldr	r1, .LCPI58_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [r0]
 	ldr	r0, [r11, #-8]
@@ -5656,6 +7400,8 @@ wcscmp:
 @ %bb.13:
 .LCPI58_0:
 	.long	.L__profc_wcscmp(sbrel)
+.LCPI58_1:
+	.long	__llvm_gcov_ctr.58(sbrel)
 .Lfunc_end58:
 	.size	wcscmp, .Lfunc_end58-wcscmp
 	.fnend
@@ -5669,11 +7415,22 @@ wcscpy:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	str	r1, [sp, #4]
-	ldr	r0, .LCPI59_0
+	sub	sp, sp, #16
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI59_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI59_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -5681,12 +7438,12 @@ wcscpy:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldr	r0, [r11, #-4]
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB59_1
 .LBB59_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #8]
 	add	r1, r0, #4
-	str	r1, [sp, #4]
+	str	r1, [sp, #8]
 	ldr	r0, [r0]
 	ldr	r1, [r11, #-4]
 	add	r2, r1, #4
@@ -5698,6 +7455,14 @@ wcscpy:
 .LBB59_2:                               @   in Loop: Header=BB59_1 Depth=1
 	ldr	r1, .LCPI59_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI59_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -5707,13 +7472,15 @@ wcscpy:
 	str	r0, [r1, #12]
 	b	.LBB59_1
 .LBB59_3:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #4]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.4:
 .LCPI59_0:
+	.long	__llvm_gcov_ctr.59(sbrel)
+.LCPI59_1:
 	.long	.L__profc_wcscpy(sbrel)
 .Lfunc_end59:
 	.size	wcscpy, .Lfunc_end59-wcscpy
@@ -5729,9 +7496,17 @@ wcslen:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI60_0
+	ldr	r2, .LCPI60_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI60_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -5748,7 +7523,7 @@ wcslen:
 	beq	.LBB60_4
 	b	.LBB60_2
 .LBB60_2:                               @   in Loop: Header=BB60_1 Depth=1
-	ldr	r1, .LCPI60_0
+	ldr	r1, .LCPI60_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -5759,6 +7534,15 @@ wcslen:
 	str	r0, [r1, #12]
 	b	.LBB60_3
 .LBB60_3:                               @   in Loop: Header=BB60_1 Depth=1
+	ldr	r1, .LCPI60_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #4
 	str	r0, [sp, #4]
@@ -5774,6 +7558,8 @@ wcslen:
 	.p2align	2
 @ %bb.5:
 .LCPI60_0:
+	.long	__llvm_gcov_ctr.60(sbrel)
+.LCPI60_1:
 	.long	.L__profc_wcslen(sbrel)
 .Lfunc_end60:
 	.size	wcslen, .Lfunc_end60-wcslen
@@ -5809,8 +7595,16 @@ wcsncmp:
 	beq	.LBB61_8
 	b	.LBB61_2
 .LBB61_2:                               @   in Loop: Header=BB61_1 Depth=1
-	ldr	r1, .LCPI61_0
+	ldr	r1, .LCPI61_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI61_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -5828,8 +7622,16 @@ wcsncmp:
 	bne	.LBB61_8
 	b	.LBB61_3
 .LBB61_3:                               @   in Loop: Header=BB61_1 Depth=1
-	ldr	r1, .LCPI61_0
+	ldr	r1, .LCPI61_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI61_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -5856,8 +7658,16 @@ wcsncmp:
 	beq	.LBB61_8
 	b	.LBB61_5
 .LBB61_5:                               @   in Loop: Header=BB61_1 Depth=1
-	ldr	r1, .LCPI61_0
+	ldr	r1, .LCPI61_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI61_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -5888,8 +7698,16 @@ wcsncmp:
 	b	.LBB61_7
 .LBB61_7:                               @   in Loop: Header=BB61_1 Depth=1
 	ldr	r0, [sp, #8]                    @ 4-byte Reload
-	ldr	r2, .LCPI61_0
+	ldr	r2, .LCPI61_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #24]
+	ldr	r2, [r3, #28]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #24]
+	str	r2, [r3, #28]
+	ldr	r2, .LCPI61_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -5916,6 +7734,15 @@ wcsncmp:
 	str	r0, [r1, #12]
 	b	.LBB61_10
 .LBB61_10:                              @   in Loop: Header=BB61_1 Depth=1
+	ldr	r1, .LCPI61_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r0, [r11, #-12]
 	sub	r0, r0, #1
 	str	r0, [r11, #-12]
@@ -5949,8 +7776,16 @@ wcsncmp:
 	bhs	.LBB61_14
 	b	.LBB61_13
 .LBB61_13:
-	ldr	r1, .LCPI61_0
+	ldr	r1, .LCPI61_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #40]
+	ldr	r1, [r2, #44]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #40]
+	str	r1, [r2, #44]
+	ldr	r1, .LCPI61_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #72]
 	ldr	r0, [r1, #76]
@@ -5962,6 +7797,15 @@ wcsncmp:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB61_15
 .LBB61_14:
+	ldr	r1, .LCPI61_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #48]
+	ldr	r0, [r1, #52]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #48]
+	str	r0, [r1, #52]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [r0]
 	ldr	r0, [r11, #-8]
@@ -5976,6 +7820,15 @@ wcsncmp:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB61_17
 .LBB61_16:
+	ldr	r1, .LCPI61_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #56]
+	ldr	r0, [r1, #60]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #56]
+	str	r0, [r1, #60]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB61_17
@@ -5988,6 +7841,8 @@ wcsncmp:
 @ %bb.18:
 .LCPI61_0:
 	.long	.L__profc_wcsncmp(sbrel)
+.LCPI61_1:
+	.long	__llvm_gcov_ctr.61(sbrel)
 .Lfunc_end61:
 	.size	wcsncmp, .Lfunc_end61-wcsncmp
 	.fnend
@@ -6022,8 +7877,16 @@ wmemchr:
 	beq	.LBB62_4
 	b	.LBB62_2
 .LBB62_2:                               @   in Loop: Header=BB62_1 Depth=1
-	ldr	r1, .LCPI62_0
+	ldr	r1, .LCPI62_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI62_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -6043,8 +7906,16 @@ wmemchr:
 	b	.LBB62_3
 .LBB62_3:                               @   in Loop: Header=BB62_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI62_0
+	ldr	r2, .LCPI62_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI62_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -6071,6 +7942,15 @@ wmemchr:
 	str	r0, [r1, #12]
 	b	.LBB62_6
 .LBB62_6:                               @   in Loop: Header=BB62_1 Depth=1
+	ldr	r1, .LCPI62_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	sub	r0, r0, #1
 	str	r0, [sp, #12]
@@ -6084,8 +7964,16 @@ wmemchr:
 	beq	.LBB62_9
 	b	.LBB62_8
 .LBB62_8:
-	ldr	r1, .LCPI62_0
+	ldr	r1, .LCPI62_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI62_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -6097,6 +7985,15 @@ wmemchr:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB62_10
 .LBB62_9:
+	ldr	r1, .LCPI62_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB62_10
@@ -6109,6 +8006,8 @@ wmemchr:
 @ %bb.11:
 .LCPI62_0:
 	.long	.L__profc_wmemchr(sbrel)
+.LCPI62_1:
+	.long	__llvm_gcov_ctr.62(sbrel)
 .Lfunc_end62:
 	.size	wmemchr, .Lfunc_end62-wmemchr
 	.fnend
@@ -6143,8 +8042,16 @@ wmemcmp:
 	beq	.LBB63_4
 	b	.LBB63_2
 .LBB63_2:                               @   in Loop: Header=BB63_1 Depth=1
-	ldr	r1, .LCPI63_0
+	ldr	r1, .LCPI63_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI63_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -6166,8 +8073,16 @@ wmemcmp:
 	b	.LBB63_3
 .LBB63_3:                               @   in Loop: Header=BB63_1 Depth=1
 	ldr	r0, [sp, #8]                    @ 4-byte Reload
-	ldr	r2, .LCPI63_0
+	ldr	r2, .LCPI63_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI63_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -6194,6 +8109,15 @@ wmemcmp:
 	str	r0, [r1, #12]
 	b	.LBB63_6
 .LBB63_6:                               @   in Loop: Header=BB63_1 Depth=1
+	ldr	r1, .LCPI63_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-12]
 	sub	r0, r0, #1
 	str	r0, [r11, #-12]
@@ -6227,8 +8151,16 @@ wmemcmp:
 	bhs	.LBB63_10
 	b	.LBB63_9
 .LBB63_9:
-	ldr	r1, .LCPI63_0
+	ldr	r1, .LCPI63_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI63_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -6240,6 +8172,15 @@ wmemcmp:
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB63_11
 .LBB63_10:
+	ldr	r1, .LCPI63_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r0, [r11, #-4]
 	ldr	r1, [r0]
 	ldr	r0, [r11, #-8]
@@ -6254,6 +8195,15 @@ wmemcmp:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB63_13
 .LBB63_12:
+	ldr	r1, .LCPI63_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	mov	r0, #0
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB63_13
@@ -6266,6 +8216,8 @@ wmemcmp:
 @ %bb.14:
 .LCPI63_0:
 	.long	.L__profc_wmemcmp(sbrel)
+.LCPI63_1:
+	.long	__llvm_gcov_ctr.63(sbrel)
 .Lfunc_end63:
 	.size	wmemcmp, .Lfunc_end63-wmemcmp
 	.fnend
@@ -6277,33 +8229,52 @@ wmemcmp:
 wmemcpy:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	str	r2, [sp, #4]
-	ldr	r0, .LCPI64_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #20
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI64_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #12]
+	str	r2, [sp, #8]
+	ldr	r0, .LCPI64_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
-	str	r0, [sp]
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #4]
 	b	.LBB64_1
 .LBB64_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #8]
 	sub	r1, r0, #1
-	str	r1, [sp, #4]
+	str	r1, [sp, #8]
 	cmp	r0, #0
 	beq	.LBB64_3
 	b	.LBB64_2
 .LBB64_2:                               @   in Loop: Header=BB64_1 Depth=1
 	ldr	r1, .LCPI64_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI64_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -6311,23 +8282,25 @@ wmemcpy:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	add	r1, r0, #4
-	str	r1, [sp, #8]
+	str	r1, [sp, #12]
 	ldr	r0, [r0]
-	ldr	r1, [r11, #-4]
+	ldr	r1, [r11, #-12]
 	add	r2, r1, #4
-	str	r2, [r11, #-4]
+	str	r2, [r11, #-12]
 	str	r0, [r1]
 	b	.LBB64_1
 .LBB64_3:
-	ldr	r0, [sp]
-	mov	sp, r11
-	pop	{r11, lr}
+	ldr	r0, [sp, #4]
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.4:
 .LCPI64_0:
+	.long	__llvm_gcov_ctr.64(sbrel)
+.LCPI64_1:
 	.long	.L__profc_wmemcpy(sbrel)
 .Lfunc_end64:
 	.size	wmemcpy, .Lfunc_end64-wmemcpy
@@ -6362,8 +8335,16 @@ wmemmove:
 	bne	.LBB65_2
 	b	.LBB65_1
 .LBB65_1:
-	ldr	r1, .LCPI65_0
+	ldr	r1, .LCPI65_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI65_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -6383,8 +8364,16 @@ wmemmove:
 	bhs	.LBB65_7
 	b	.LBB65_3
 .LBB65_3:
-	ldr	r1, .LCPI65_0
+	ldr	r1, .LCPI65_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI65_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -6401,8 +8390,16 @@ wmemmove:
 	beq	.LBB65_6
 	b	.LBB65_5
 .LBB65_5:                               @   in Loop: Header=BB65_4 Depth=1
-	ldr	r1, .LCPI65_0
+	ldr	r1, .LCPI65_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI65_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -6428,8 +8425,16 @@ wmemmove:
 	beq	.LBB65_10
 	b	.LBB65_9
 .LBB65_9:                               @   in Loop: Header=BB65_8 Depth=1
-	ldr	r1, .LCPI65_0
+	ldr	r1, .LCPI65_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI65_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -6447,6 +8452,15 @@ wmemmove:
 	str	r0, [r1]
 	b	.LBB65_8
 .LBB65_10:
+	ldr	r1, .LCPI65_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	b	.LBB65_11
 .LBB65_11:
 	ldr	r0, [sp]
@@ -6461,6 +8475,8 @@ wmemmove:
 @ %bb.13:
 .LCPI65_0:
 	.long	.L__profc_wmemmove(sbrel)
+.LCPI65_1:
+	.long	__llvm_gcov_ctr.65(sbrel)
 .Lfunc_end65:
 	.size	wmemmove, .Lfunc_end65-wmemmove
 	.fnend
@@ -6472,33 +8488,52 @@ wmemmove:
 wmemset:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	str	r2, [sp, #4]
-	ldr	r0, .LCPI66_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #20
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI66_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #12]
+	str	r2, [sp, #8]
+	ldr	r0, .LCPI66_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
-	str	r0, [sp]
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #4]
 	b	.LBB66_1
 .LBB66_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #8]
 	sub	r1, r0, #1
-	str	r1, [sp, #4]
+	str	r1, [sp, #8]
 	cmp	r0, #0
 	beq	.LBB66_3
 	b	.LBB66_2
 .LBB66_2:                               @   in Loop: Header=BB66_1 Depth=1
 	ldr	r1, .LCPI66_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI66_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -6506,20 +8541,22 @@ wmemset:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [sp, #8]
-	ldr	r1, [r11, #-4]
+	ldr	r0, [sp, #12]
+	ldr	r1, [r11, #-12]
 	add	r2, r1, #4
-	str	r2, [r11, #-4]
+	str	r2, [r11, #-12]
 	str	r0, [r1]
 	b	.LBB66_1
 .LBB66_3:
-	ldr	r0, [sp]
-	mov	sp, r11
-	pop	{r11, lr}
+	ldr	r0, [sp, #4]
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.4:
 .LCPI66_0:
+	.long	__llvm_gcov_ctr.66(sbrel)
+.LCPI66_1:
 	.long	.L__profc_wmemset(sbrel)
 .Lfunc_end66:
 	.size	wmemset, .Lfunc_end66-wmemset
@@ -6556,8 +8593,16 @@ bcopy:
 	bhs	.LBB67_6
 	b	.LBB67_1
 .LBB67_1:
-	ldr	r1, .LCPI67_0
+	ldr	r1, .LCPI67_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI67_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -6599,6 +8644,15 @@ bcopy:
 	strb	r0, [r1, #-1]
 	b	.LBB67_4
 .LBB67_4:                               @   in Loop: Header=BB67_2 Depth=1
+	ldr	r1, .LCPI67_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	sub	r0, r0, #1
 	str	r0, [sp, #8]
@@ -6628,8 +8682,16 @@ bcopy:
 	beq	.LBB67_11
 	b	.LBB67_9
 .LBB67_9:                               @   in Loop: Header=BB67_8 Depth=1
-	ldr	r1, .LCPI67_0
+	ldr	r1, .LCPI67_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI67_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -6652,8 +8714,26 @@ bcopy:
 	str	r0, [sp, #8]
 	b	.LBB67_8
 .LBB67_11:
+	ldr	r1, .LCPI67_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB67_12
 .LBB67_12:
+	ldr	r1, .LCPI67_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	b	.LBB67_13
 .LBB67_13:
 	mov	sp, r11
@@ -6663,6 +8743,8 @@ bcopy:
 @ %bb.14:
 .LCPI67_0:
 	.long	.L__profc_bcopy(sbrel)
+.LCPI67_1:
+	.long	__llvm_gcov_ctr.67(sbrel)
 .Lfunc_end67:
 	.size	bcopy, .Lfunc_end67-bcopy
 	.fnend
@@ -6677,13 +8759,22 @@ rotl64:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r3 killed $r1
-                                        @ kill: def $r3 killed $r0
-	str	r1, [sp, #12]
+	mov	r3, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r0
+	ldr	r12, .LCPI68_0
+	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [sp, #12]
 	str	r0, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r0, .LCPI68_0
-	mov	r1, r9
+	ldr	r0, .LCPI68_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -6719,6 +8810,8 @@ rotl64:
 	.p2align	2
 @ %bb.1:
 .LCPI68_0:
+	.long	__llvm_gcov_ctr.68(sbrel)
+.LCPI68_1:
 	.long	.L__profc_rotl64(sbrel)
 .Lfunc_end68:
 	.size	rotl64, .Lfunc_end68-rotl64
@@ -6734,13 +8827,22 @@ rotr64:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r3 killed $r1
-                                        @ kill: def $r3 killed $r0
-	str	r1, [sp, #12]
+	mov	r3, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r0
+	ldr	r12, .LCPI69_0
+	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [sp, #12]
 	str	r0, [sp, #8]
 	str	r2, [sp, #4]
-	ldr	r0, .LCPI69_0
-	mov	r1, r9
+	ldr	r0, .LCPI69_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -6776,6 +8878,8 @@ rotr64:
 	.p2align	2
 @ %bb.1:
 .LCPI69_0:
+	.long	__llvm_gcov_ctr.69(sbrel)
+.LCPI69_1:
 	.long	.L__profc_rotr64(sbrel)
 .Lfunc_end69:
 	.size	rotr64, .Lfunc_end69-rotr64
@@ -6790,19 +8894,30 @@ rotl32:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI70_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI70_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI70_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
 	rsb	r1, r1, #32
 	ror	r0, r0, r1
 	mov	sp, r11
@@ -6811,6 +8926,8 @@ rotl32:
 	.p2align	2
 @ %bb.1:
 .LCPI70_0:
+	.long	__llvm_gcov_ctr.70(sbrel)
+.LCPI70_1:
 	.long	.L__profc_rotl32(sbrel)
 .Lfunc_end70:
 	.size	rotl32, .Lfunc_end70-rotl32
@@ -6825,19 +8942,30 @@ rotr32:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI71_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI71_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI71_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
 	ror	r0, r0, r1
 	mov	sp, r11
 	pop	{r11, lr}
@@ -6845,6 +8973,8 @@ rotr32:
 	.p2align	2
 @ %bb.1:
 .LCPI71_0:
+	.long	__llvm_gcov_ctr.71(sbrel)
+.LCPI71_1:
 	.long	.L__profc_rotr32(sbrel)
 .Lfunc_end71:
 	.size	rotr32, .Lfunc_end71-rotr32
@@ -6859,19 +8989,30 @@ rotl_sz:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI72_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI72_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI72_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
 	rsb	r1, r1, #32
 	ror	r0, r0, r1
 	mov	sp, r11
@@ -6880,6 +9021,8 @@ rotl_sz:
 	.p2align	2
 @ %bb.1:
 .LCPI72_0:
+	.long	__llvm_gcov_ctr.72(sbrel)
+.LCPI72_1:
 	.long	.L__profc_rotl_sz(sbrel)
 .Lfunc_end72:
 	.size	rotl_sz, .Lfunc_end72-rotl_sz
@@ -6894,19 +9037,30 @@ rotr_sz:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI73_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI73_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI73_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
 	ror	r0, r0, r1
 	mov	sp, r11
 	pop	{r11, lr}
@@ -6914,6 +9068,8 @@ rotr_sz:
 	.p2align	2
 @ %bb.1:
 .LCPI73_0:
+	.long	__llvm_gcov_ctr.73(sbrel)
+.LCPI73_1:
 	.long	.L__profc_rotr_sz(sbrel)
 .Lfunc_end73:
 	.size	rotr_sz, .Lfunc_end73-rotr_sz
@@ -6928,12 +9084,23 @@ rotl16:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r0
-	strh	r0, [r11, #-2]
-	str	r1, [sp]
-	ldr	r0, .LCPI74_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+                                        @ kill: def $r1 killed $r2
+	ldr	r3, .LCPI74_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	strh	r2, [r11, #-2]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI74_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -6941,7 +9108,7 @@ rotl16:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldrh	r1, [r11, #-2]
-	ldr	r2, [sp]
+	ldr	r2, [sp, #4]
 	lsl	r0, r1, r2
 	rsb	r2, r2, #16
 	orr	r0, r0, r1, lsr r2
@@ -6954,6 +9121,8 @@ rotl16:
 	.p2align	2
 @ %bb.1:
 .LCPI74_0:
+	.long	__llvm_gcov_ctr.74(sbrel)
+.LCPI74_1:
 	.long	.L__profc_rotl16(sbrel)
 .Lfunc_end74:
 	.size	rotl16, .Lfunc_end74-rotl16
@@ -6968,12 +9137,23 @@ rotr16:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r0
-	strh	r0, [r11, #-2]
-	str	r1, [sp]
-	ldr	r0, .LCPI75_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+                                        @ kill: def $r1 killed $r2
+	ldr	r3, .LCPI75_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	strh	r2, [r11, #-2]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI75_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -6981,7 +9161,7 @@ rotr16:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldrh	r1, [r11, #-2]
-	ldr	r2, [sp]
+	ldr	r2, [sp, #4]
 	lsr	r0, r1, r2
 	rsb	r2, r2, #16
 	orr	r0, r0, r1, lsl r2
@@ -6994,6 +9174,8 @@ rotr16:
 	.p2align	2
 @ %bb.1:
 .LCPI75_0:
+	.long	__llvm_gcov_ctr.75(sbrel)
+.LCPI75_1:
 	.long	.L__profc_rotr16(sbrel)
 .Lfunc_end75:
 	.size	rotr16, .Lfunc_end75-rotr16
@@ -7008,12 +9190,23 @@ rotl8:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r0
-	strb	r0, [r11, #-1]
-	str	r1, [sp]
-	ldr	r0, .LCPI76_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+                                        @ kill: def $r1 killed $r2
+	ldr	r3, .LCPI76_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	strb	r2, [r11, #-1]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI76_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7021,7 +9214,7 @@ rotl8:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldrb	r1, [r11, #-1]
-	ldr	r2, [sp]
+	ldr	r2, [sp, #4]
 	lsl	r0, r1, r2
 	rsb	r2, r2, #8
 	orr	r0, r0, r1, lsr r2
@@ -7032,6 +9225,8 @@ rotl8:
 	.p2align	2
 @ %bb.1:
 .LCPI76_0:
+	.long	__llvm_gcov_ctr.76(sbrel)
+.LCPI76_1:
 	.long	.L__profc_rotl8(sbrel)
 .Lfunc_end76:
 	.size	rotl8, .Lfunc_end76-rotl8
@@ -7046,12 +9241,23 @@ rotr8:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r0
-	strb	r0, [r11, #-1]
-	str	r1, [sp]
-	ldr	r0, .LCPI77_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+                                        @ kill: def $r1 killed $r2
+	ldr	r3, .LCPI77_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	strb	r2, [r11, #-1]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI77_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7059,7 +9265,7 @@ rotr8:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldrb	r1, [r11, #-1]
-	ldr	r2, [sp]
+	ldr	r2, [sp, #4]
 	lsr	r0, r1, r2
 	rsb	r2, r2, #8
 	orr	r0, r0, r1, lsl r2
@@ -7070,6 +9276,8 @@ rotr8:
 	.p2align	2
 @ %bb.1:
 .LCPI77_0:
+	.long	__llvm_gcov_ctr.77(sbrel)
+.LCPI77_1:
 	.long	.L__profc_rotr8(sbrel)
 .Lfunc_end77:
 	.size	rotr8, .Lfunc_end77-rotr8
@@ -7086,9 +9294,17 @@ bswap_16:
 	mov	r11, sp
 	sub	sp, sp, #4
                                         @ kill: def $r1 killed $r0
-	strh	r0, [sp, #2]
-	ldr	r0, .LCPI78_0
+	ldr	r2, .LCPI78_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	strh	r0, [sp, #2]
+	ldr	r0, .LCPI78_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7112,6 +9328,8 @@ bswap_16:
 	.p2align	2
 @ %bb.1:
 .LCPI78_0:
+	.long	__llvm_gcov_ctr.78(sbrel)
+.LCPI78_1:
 	.long	.L__profc_bswap_16(sbrel)
 .Lfunc_end78:
 	.size	bswap_16, .Lfunc_end78-bswap_16
@@ -7127,9 +9345,17 @@ bswap_32:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI79_0
+	ldr	r2, .LCPI79_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI79_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7155,6 +9381,8 @@ bswap_32:
 	.p2align	2
 @ %bb.1:
 .LCPI79_0:
+	.long	__llvm_gcov_ctr.79(sbrel)
+.LCPI79_1:
 	.long	.L__profc_bswap_32(sbrel)
 .Lfunc_end79:
 	.size	bswap_32, .Lfunc_end79-bswap_32
@@ -7170,12 +9398,21 @@ bswap_64:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #12]
-	str	r0, [sp, #8]
-	ldr	r0, .LCPI80_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI80_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #12]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI80_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7218,6 +9455,8 @@ bswap_64:
 	.p2align	2
 @ %bb.1:
 .LCPI80_0:
+	.long	__llvm_gcov_ctr.80(sbrel)
+.LCPI80_1:
 	.long	.L__profc_bswap_64(sbrel)
 .Lfunc_end80:
 	.size	bswap_64, .Lfunc_end80-bswap_64
@@ -7267,8 +9506,16 @@ ffs:
 	beq	.LBB81_4
 	b	.LBB81_3
 .LBB81_3:
-	ldr	r1, .LCPI81_0
+	ldr	r1, .LCPI81_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI81_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -7283,11 +9530,29 @@ ffs:
 .LBB81_4:                               @   in Loop: Header=BB81_1 Depth=1
 	b	.LBB81_5
 .LBB81_5:                               @   in Loop: Header=BB81_1 Depth=1
+	ldr	r1, .LCPI81_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp]
 	add	r0, r0, #1
 	str	r0, [sp]
 	b	.LBB81_1
 .LBB81_6:
+	ldr	r1, .LCPI81_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB81_7
@@ -7300,6 +9565,8 @@ ffs:
 @ %bb.8:
 .LCPI81_0:
 	.long	.L__profc_ffs(sbrel)
+.LCPI81_1:
+	.long	__llvm_gcov_ctr.81(sbrel)
 .Lfunc_end81:
 	.size	ffs, .Lfunc_end81-ffs
 	.fnend
@@ -7328,8 +9595,16 @@ libiberty_ffs:
 	bne	.LBB82_2
 	b	.LBB82_1
 .LBB82_1:
-	ldr	r1, .LCPI82_0
+	ldr	r1, .LCPI82_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI82_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -7341,6 +9616,14 @@ libiberty_ffs:
 	str	r0, [r11, #-4]
 	b	.LBB82_7
 .LBB82_2:
+	ldr	r0, .LCPI82_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	mov	r0, #1
 	str	r0, [sp]
 	b	.LBB82_3
@@ -7364,6 +9647,15 @@ libiberty_ffs:
 	str	r0, [sp, #4]
 	b	.LBB82_5
 .LBB82_5:                               @   in Loop: Header=BB82_3 Depth=1
+	ldr	r1, .LCPI82_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp]
 	add	r0, r0, #1
 	str	r0, [sp]
@@ -7381,6 +9673,8 @@ libiberty_ffs:
 @ %bb.8:
 .LCPI82_0:
 	.long	.L__profc_libiberty_ffs(sbrel)
+.LCPI82_1:
+	.long	__llvm_gcov_ctr.82(sbrel)
 .Lfunc_end82:
 	.size	libiberty_ffs, .Lfunc_end82-libiberty_ffs
 	.fnend
@@ -7396,9 +9690,17 @@ gl_isinff:
 	mov	r11, sp
 	sub	sp, sp, #16
                                         @ kill: def $r1 killed $r0
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI83_0
+	ldr	r2, .LCPI83_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI83_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7406,7 +9708,7 @@ gl_isinff:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldr	r0, [r11, #-4]
-	ldr	r2, .LCPI83_1
+	ldr	r2, .LCPI83_2
 	mvn	r1, #8388608
 	mov	lr, pc
 	mov	pc, r2
@@ -7419,6 +9721,14 @@ gl_isinff:
 .LBB83_1:
 	ldr	r1, .LCPI83_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI83_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -7427,8 +9737,8 @@ gl_isinff:
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
 	ldr	r0, [r11, #-4]
-	ldr	r2, .LCPI83_2
-	ldr	r1, .LCPI83_3
+	ldr	r2, .LCPI83_3
+	ldr	r1, .LCPI83_4
 	mov	lr, pc
 	mov	pc, r2
 	mov	r1, r0
@@ -7444,6 +9754,14 @@ gl_isinff:
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
 	ldr	r2, .LCPI83_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI83_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -7462,12 +9780,14 @@ gl_isinff:
 	.p2align	2
 @ %bb.4:
 .LCPI83_0:
-	.long	.L__profc_gl_isinff(sbrel)
+	.long	__llvm_gcov_ctr.83(sbrel)
 .LCPI83_1:
-	.long	__ltsf2
+	.long	.L__profc_gl_isinff(sbrel)
 .LCPI83_2:
-	.long	__gtsf2
+	.long	__ltsf2
 .LCPI83_3:
+	.long	__gtsf2
+.LCPI83_4:
 	.long	2139095039                      @ 0x7f7fffff
 .Lfunc_end83:
 	.size	gl_isinff, .Lfunc_end83-gl_isinff
@@ -7483,12 +9803,21 @@ gl_isinfd:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #12]
-	str	r0, [sp, #8]
-	ldr	r0, .LCPI84_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI84_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #12]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI84_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7497,7 +9826,7 @@ gl_isinfd:
 	str	r0, [r1, #4]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI84_1
+	ldr	r4, .LCPI84_2
 	mvn	r2, #0
 	mvn	r3, #1048576
 	mov	lr, pc
@@ -7511,6 +9840,14 @@ gl_isinfd:
 .LBB84_1:
 	ldr	r1, .LCPI84_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI84_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -7520,9 +9857,9 @@ gl_isinfd:
 	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI84_2
+	ldr	r4, .LCPI84_3
 	mvn	r2, #0
-	ldr	r3, .LCPI84_3
+	ldr	r3, .LCPI84_4
 	mov	lr, pc
 	mov	pc, r4
 	mov	r1, r0
@@ -7538,6 +9875,14 @@ gl_isinfd:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI84_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI84_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -7556,12 +9901,14 @@ gl_isinfd:
 	.p2align	2
 @ %bb.4:
 .LCPI84_0:
-	.long	.L__profc_gl_isinfd(sbrel)
+	.long	__llvm_gcov_ctr.84(sbrel)
 .LCPI84_1:
-	.long	__ltdf2
+	.long	.L__profc_gl_isinfd(sbrel)
 .LCPI84_2:
-	.long	__gtdf2
+	.long	__ltdf2
 .LCPI84_3:
+	.long	__gtdf2
+.LCPI84_4:
 	.long	2146435071                      @ 0x7fefffff
 .Lfunc_end84:
 	.size	gl_isinfd, .Lfunc_end84-gl_isinfd
@@ -7577,12 +9924,21 @@ gl_isinfl:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #12]
-	str	r0, [sp, #8]
-	ldr	r0, .LCPI85_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI85_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #12]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI85_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7591,7 +9947,7 @@ gl_isinfl:
 	str	r0, [r1, #4]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI85_1
+	ldr	r4, .LCPI85_2
 	mvn	r2, #0
 	mvn	r3, #1048576
 	mov	lr, pc
@@ -7605,6 +9961,14 @@ gl_isinfl:
 .LBB85_1:
 	ldr	r1, .LCPI85_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI85_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -7614,9 +9978,9 @@ gl_isinfl:
 	str	r0, [r1, #12]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI85_2
+	ldr	r4, .LCPI85_3
 	mvn	r2, #0
-	ldr	r3, .LCPI85_3
+	ldr	r3, .LCPI85_4
 	mov	lr, pc
 	mov	pc, r4
 	mov	r1, r0
@@ -7632,6 +9996,14 @@ gl_isinfl:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI85_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI85_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #16]
 	ldr	r1, [r2, #20]
@@ -7650,12 +10022,14 @@ gl_isinfl:
 	.p2align	2
 @ %bb.4:
 .LCPI85_0:
-	.long	.L__profc_gl_isinfl(sbrel)
+	.long	__llvm_gcov_ctr.85(sbrel)
 .LCPI85_1:
-	.long	__ltdf2
+	.long	.L__profc_gl_isinfl(sbrel)
 .LCPI85_2:
-	.long	__gtdf2
+	.long	__ltdf2
 .LCPI85_3:
+	.long	__gtdf2
+.LCPI85_4:
 	.long	2146435071                      @ 0x7fefffff
 .Lfunc_end85:
 	.size	gl_isinfl, .Lfunc_end85-gl_isinfl
@@ -7670,23 +10044,34 @@ _Qp_itoq:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI86_0
+	sub	sp, sp, #16
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #4]                    @ 4-byte Reload
+	ldr	r3, .LCPI86_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI86_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp]
-	ldr	r1, .LCPI86_1
+	ldr	r0, [sp, #8]
+	ldr	r1, .LCPI86_2
 	mov	lr, pc
 	mov	pc, r1
 	mov	r2, r1
-	ldr	r1, [sp, #4]
+	ldr	r1, [r11, #-4]
 	str	r2, [r1, #4]
 	str	r0, [r1]
 	mov	sp, r11
@@ -7695,8 +10080,10 @@ _Qp_itoq:
 	.p2align	2
 @ %bb.1:
 .LCPI86_0:
-	.long	.L__profc__Qp_itoq(sbrel)
+	.long	__llvm_gcov_ctr.86(sbrel)
 .LCPI86_1:
+	.long	.L__profc__Qp_itoq(sbrel)
+.LCPI86_2:
 	.long	__floatsidf
 .Lfunc_end86:
 	.size	_Qp_itoq, .Lfunc_end86-_Qp_itoq
@@ -7712,11 +10099,22 @@ ldexpf:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #24
-                                        @ kill: def $r2 killed $r0
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	ldr	r0, .LCPI87_0
+	str	r1, [sp, #8]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+                                        @ kill: def $r1 killed $r2
+	ldr	r3, .LCPI87_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI87_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7733,6 +10131,14 @@ ldexpf:
 .LBB87_1:
 	ldr	r1, .LCPI87_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI87_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -7741,13 +10147,13 @@ ldexpf:
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
 	ldr	r1, [r11, #-4]
-	str	r1, [sp, #8]                    @ 4-byte Spill
-	ldr	r2, .LCPI87_1
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	ldr	r2, .LCPI87_2
 	mov	r0, r1
 	mov	lr, pc
 	mov	pc, r2
-	ldr	r1, [sp, #8]                    @ 4-byte Reload
-	ldr	r2, .LCPI87_2
+	ldr	r1, [sp, #4]                    @ 4-byte Reload
+	ldr	r2, .LCPI87_3
 	mov	lr, pc
 	mov	pc, r2
 	cmp	r0, #0
@@ -7756,6 +10162,14 @@ ldexpf:
 .LBB87_2:
 	ldr	r1, .LCPI87_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI87_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -7765,10 +10179,10 @@ ldexpf:
 	str	r0, [r1, #28]
 	b	.LBB87_3
 .LBB87_3:
-	ldr	r1, .LCPI87_0
+	ldr	r1, .LCPI87_1
 	mov	r0, r9
 	add	r2, r0, r1
-	str	r2, [sp, #4]                    @ 4-byte Spill
+	str	r2, [sp]                        @ 4-byte Spill
 	ldr	r1, [r2, #8]
 	ldr	r0, [r2, #12]
 	adds	r1, r1, #1
@@ -7792,7 +10206,7 @@ ldexpf:
 	str	r0, [sp, #12]
 	b	.LBB87_4
 .LBB87_4:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r1, .LCPI87_0
+	ldr	r1, .LCPI87_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
@@ -7811,6 +10225,14 @@ ldexpf:
 .LBB87_5:                               @   in Loop: Header=BB87_4 Depth=1
 	ldr	r1, .LCPI87_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI87_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -7820,7 +10242,7 @@ ldexpf:
 	str	r0, [r1, #52]
 	ldr	r1, [sp, #12]
 	ldr	r0, [r11, #-4]
-	ldr	r2, .LCPI87_3
+	ldr	r2, .LCPI87_4
 	mov	lr, pc
 	mov	pc, r2
 	str	r0, [r11, #-4]
@@ -7835,7 +10257,7 @@ ldexpf:
 	bne	.LBB87_8
 	b	.LBB87_7
 .LBB87_7:
-	ldr	r1, .LCPI87_0
+	ldr	r1, .LCPI87_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
@@ -7846,8 +10268,17 @@ ldexpf:
 	str	r0, [r1, #60]
 	b	.LBB87_9
 .LBB87_8:                               @   in Loop: Header=BB87_4 Depth=1
+	ldr	r1, .LCPI87_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r1, [sp, #12]
-	ldr	r2, .LCPI87_4
+	ldr	r2, .LCPI87_5
 	mov	r0, r1
 	mov	lr, pc
 	mov	pc, r2
@@ -7863,14 +10294,16 @@ ldexpf:
 	.p2align	2
 @ %bb.11:
 .LCPI87_0:
-	.long	.L__profc_ldexpf(sbrel)
+	.long	__llvm_gcov_ctr.87(sbrel)
 .LCPI87_1:
-	.long	__addsf3
+	.long	.L__profc_ldexpf(sbrel)
 .LCPI87_2:
-	.long	__eqsf2
+	.long	__addsf3
 .LCPI87_3:
-	.long	__mulsf3
+	.long	__eqsf2
 .LCPI87_4:
+	.long	__mulsf3
+.LCPI87_5:
 	.long	__mulsf3
 .Lfunc_end87:
 	.size	ldexpf, .Lfunc_end87-ldexpf
@@ -7886,13 +10319,22 @@ ldexp:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #40
-                                        @ kill: def $r3 killed $r1
-                                        @ kill: def $r3 killed $r0
-	str	r1, [r11, #-12]
+	mov	r3, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r0
+	ldr	r12, .LCPI88_0
+	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
 	str	r0, [r11, #-16]
 	str	r2, [r11, #-20]
-	ldr	r0, .LCPI88_0
-	mov	r1, r9
+	ldr	r0, .LCPI88_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -7911,6 +10353,14 @@ ldexp:
 .LBB88_1:
 	ldr	r1, .LCPI88_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI88_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -7922,14 +10372,14 @@ ldexp:
 	str	r2, [sp, #8]                    @ 4-byte Spill
 	ldr	r3, [r11, #-12]
 	str	r3, [sp, #12]                   @ 4-byte Spill
-	ldr	r4, .LCPI88_1
+	ldr	r4, .LCPI88_2
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
 	mov	pc, r4
 	ldr	r2, [sp, #8]                    @ 4-byte Reload
 	ldr	r3, [sp, #12]                   @ 4-byte Reload
-	ldr	r4, .LCPI88_2
+	ldr	r4, .LCPI88_3
 	mov	lr, pc
 	mov	pc, r4
 	cmp	r0, #0
@@ -7938,6 +10388,14 @@ ldexp:
 .LBB88_2:
 	ldr	r1, .LCPI88_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI88_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -7947,7 +10405,7 @@ ldexp:
 	str	r0, [r1, #28]
 	b	.LBB88_3
 .LBB88_3:
-	ldr	r1, .LCPI88_0
+	ldr	r1, .LCPI88_1
 	mov	r0, r9
 	add	r1, r0, r1
 	str	r1, [sp, #4]                    @ 4-byte Spill
@@ -7978,7 +10436,7 @@ ldexp:
 	str	r0, [sp, #16]
 	b	.LBB88_4
 .LBB88_4:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r1, .LCPI88_0
+	ldr	r1, .LCPI88_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
@@ -7997,6 +10455,14 @@ ldexp:
 .LBB88_5:                               @   in Loop: Header=BB88_4 Depth=1
 	ldr	r1, .LCPI88_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI88_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -8008,7 +10474,7 @@ ldexp:
 	ldr	r3, [sp, #20]
 	ldr	r0, [r11, #-16]
 	ldr	r1, [r11, #-12]
-	ldr	r4, .LCPI88_3
+	ldr	r4, .LCPI88_4
 	mov	lr, pc
 	mov	pc, r4
 	str	r1, [r11, #-12]
@@ -8024,7 +10490,7 @@ ldexp:
 	bne	.LBB88_8
 	b	.LBB88_7
 .LBB88_7:
-	ldr	r1, .LCPI88_0
+	ldr	r1, .LCPI88_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
@@ -8035,9 +10501,18 @@ ldexp:
 	str	r0, [r1, #60]
 	b	.LBB88_9
 .LBB88_8:                               @   in Loop: Header=BB88_4 Depth=1
+	ldr	r1, .LCPI88_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
-	ldr	r4, .LCPI88_4
+	ldr	r4, .LCPI88_5
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
@@ -8056,14 +10531,16 @@ ldexp:
 	.p2align	2
 @ %bb.11:
 .LCPI88_0:
-	.long	.L__profc_ldexp(sbrel)
+	.long	__llvm_gcov_ctr.88(sbrel)
 .LCPI88_1:
-	.long	__adddf3
+	.long	.L__profc_ldexp(sbrel)
 .LCPI88_2:
-	.long	__eqdf2
+	.long	__adddf3
 .LCPI88_3:
-	.long	__muldf3
+	.long	__eqdf2
 .LCPI88_4:
+	.long	__muldf3
+.LCPI88_5:
 	.long	__muldf3
 .Lfunc_end88:
 	.size	ldexp, .Lfunc_end88-ldexp
@@ -8079,13 +10556,22 @@ ldexpl:
 	push	{r4, r10, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #40
-                                        @ kill: def $r3 killed $r1
-                                        @ kill: def $r3 killed $r0
-	str	r1, [r11, #-12]
+	mov	r3, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r0
+	ldr	r12, .LCPI89_0
+	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
 	str	r0, [r11, #-16]
 	str	r2, [r11, #-20]
-	ldr	r0, .LCPI89_0
-	mov	r1, r9
+	ldr	r0, .LCPI89_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -8104,6 +10590,14 @@ ldexpl:
 .LBB89_1:
 	ldr	r1, .LCPI89_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI89_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -8115,14 +10609,14 @@ ldexpl:
 	str	r2, [sp, #8]                    @ 4-byte Spill
 	ldr	r3, [r11, #-12]
 	str	r3, [sp, #12]                   @ 4-byte Spill
-	ldr	r4, .LCPI89_1
+	ldr	r4, .LCPI89_2
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
 	mov	pc, r4
 	ldr	r2, [sp, #8]                    @ 4-byte Reload
 	ldr	r3, [sp, #12]                   @ 4-byte Reload
-	ldr	r4, .LCPI89_2
+	ldr	r4, .LCPI89_3
 	mov	lr, pc
 	mov	pc, r4
 	cmp	r0, #0
@@ -8131,6 +10625,14 @@ ldexpl:
 .LBB89_2:
 	ldr	r1, .LCPI89_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI89_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -8140,7 +10642,7 @@ ldexpl:
 	str	r0, [r1, #28]
 	b	.LBB89_3
 .LBB89_3:
-	ldr	r1, .LCPI89_0
+	ldr	r1, .LCPI89_1
 	mov	r0, r9
 	add	r1, r0, r1
 	str	r1, [sp, #4]                    @ 4-byte Spill
@@ -8171,7 +10673,7 @@ ldexpl:
 	str	r0, [sp, #16]
 	b	.LBB89_4
 .LBB89_4:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r1, .LCPI89_0
+	ldr	r1, .LCPI89_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
@@ -8190,6 +10692,14 @@ ldexpl:
 .LBB89_5:                               @   in Loop: Header=BB89_4 Depth=1
 	ldr	r1, .LCPI89_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI89_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -8201,7 +10711,7 @@ ldexpl:
 	ldr	r3, [sp, #20]
 	ldr	r0, [r11, #-16]
 	ldr	r1, [r11, #-12]
-	ldr	r4, .LCPI89_3
+	ldr	r4, .LCPI89_4
 	mov	lr, pc
 	mov	pc, r4
 	str	r1, [r11, #-12]
@@ -8217,7 +10727,7 @@ ldexpl:
 	bne	.LBB89_8
 	b	.LBB89_7
 .LBB89_7:
-	ldr	r1, .LCPI89_0
+	ldr	r1, .LCPI89_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
@@ -8228,9 +10738,18 @@ ldexpl:
 	str	r0, [r1, #60]
 	b	.LBB89_9
 .LBB89_8:                               @   in Loop: Header=BB89_4 Depth=1
+	ldr	r1, .LCPI89_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
-	ldr	r4, .LCPI89_4
+	ldr	r4, .LCPI89_5
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
@@ -8249,14 +10768,16 @@ ldexpl:
 	.p2align	2
 @ %bb.11:
 .LCPI89_0:
-	.long	.L__profc_ldexpl(sbrel)
+	.long	__llvm_gcov_ctr.89(sbrel)
 .LCPI89_1:
-	.long	__adddf3
+	.long	.L__profc_ldexpl(sbrel)
 .LCPI89_2:
-	.long	__eqdf2
+	.long	__adddf3
 .LCPI89_3:
-	.long	__muldf3
+	.long	__eqdf2
 .LCPI89_4:
+	.long	__muldf3
+.LCPI89_5:
 	.long	__muldf3
 .Lfunc_end89:
 	.size	ldexpl, .Lfunc_end89-ldexpl
@@ -8269,31 +10790,63 @@ ldexpl:
 memxor:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #20
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	str	r2, [sp, #8]
-	ldr	r0, .LCPI90_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #24
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r12, .LCPI90_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #16]
+	str	r2, [sp, #12]
+	ldr	r0, .LCPI90_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-8]
+	ldr	r0, [sp, #16]
+	str	r0, [sp, #8]
+	ldr	r0, [r11, #-12]
 	str	r0, [sp, #4]
-	ldr	r0, [r11, #-4]
-	str	r0, [sp]
 	b	.LBB90_1
 .LBB90_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #0
 	beq	.LBB90_4
 	b	.LBB90_2
 .LBB90_2:                               @   in Loop: Header=BB90_1 Depth=1
+	ldr	r1, .LCPI90_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
+	ldr	r0, [sp, #8]
+	add	r1, r0, #1
+	str	r1, [sp, #8]
+	ldrb	r2, [r0]
+	ldr	r1, [sp, #4]
+	add	r0, r1, #1
+	str	r0, [sp, #4]
+	ldrb	r0, [r1]
+	eor	r0, r0, r2
+	strb	r0, [r1]
+	b	.LBB90_3
+.LBB90_3:                               @   in Loop: Header=BB90_1 Depth=1
 	ldr	r1, .LCPI90_0
 	mov	r0, r9
 	add	r1, r0, r1
@@ -8303,30 +10856,20 @@ memxor:
 	adc	r0, r0, #0
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
-	ldr	r0, [sp, #4]
-	add	r1, r0, #1
-	str	r1, [sp, #4]
-	ldrb	r2, [r0]
-	ldr	r1, [sp]
-	add	r0, r1, #1
-	str	r0, [sp]
-	ldrb	r0, [r1]
-	eor	r0, r0, r2
-	strb	r0, [r1]
-	b	.LBB90_3
-.LBB90_3:                               @   in Loop: Header=BB90_1 Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	sub	r0, r0, #1
-	str	r0, [sp, #8]
+	str	r0, [sp, #12]
 	b	.LBB90_1
 .LBB90_4:
-	ldr	r0, [r11, #-4]
-	mov	sp, r11
-	pop	{r11, lr}
+	ldr	r0, [r11, #-12]
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.5:
 .LCPI90_0:
+	.long	__llvm_gcov_ctr.90(sbrel)
+.LCPI90_1:
 	.long	.L__profc_memxor(sbrel)
 .Lfunc_end90:
 	.size	memxor, .Lfunc_end90-memxor
@@ -8371,8 +10914,16 @@ strncat:
 	beq	.LBB91_4
 	b	.LBB91_2
 .LBB91_2:                               @   in Loop: Header=BB91_1 Depth=1
-	ldr	r1, .LCPI91_0
+	ldr	r1, .LCPI91_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI91_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -8394,8 +10945,16 @@ strncat:
 	b	.LBB91_3
 .LBB91_3:                               @   in Loop: Header=BB91_1 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI91_0
+	ldr	r2, .LCPI91_2
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #8]
+	ldr	r2, [r3, #12]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #8]
+	str	r2, [r3, #12]
+	ldr	r2, .LCPI91_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -8422,6 +10981,15 @@ strncat:
 	str	r0, [r1, #12]
 	b	.LBB91_6
 .LBB91_6:                               @   in Loop: Header=BB91_1 Depth=1
+	ldr	r1, .LCPI91_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [r11, #-8]
 	add	r0, r0, #1
 	str	r0, [r11, #-8]
@@ -8433,13 +11001,30 @@ strncat:
 	str	r0, [r11, #-12]
 	b	.LBB91_1
 .LBB91_7:
+	ldr	r1, .LCPI91_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-12]
 	cmp	r0, #0
 	bne	.LBB91_9
 	b	.LBB91_8
 .LBB91_8:
-	ldr	r1, .LCPI91_0
+	ldr	r1, .LCPI91_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI91_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -8462,6 +11047,8 @@ strncat:
 	.long	.L__profc_strncat(sbrel)
 .LCPI91_1:
 	.long	strlen
+.LCPI91_2:
+	.long	__llvm_gcov_ctr.91(sbrel)
 .Lfunc_end91:
 	.size	strncat, .Lfunc_end91-strncat
 	.fnend
@@ -8475,11 +11062,22 @@ strnlen:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #20
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	ldr	r0, .LCPI92_0
+	sub	sp, sp, #24
+	str	r1, [sp, #8]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+	ldr	r3, .LCPI92_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI92_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -8487,10 +11085,10 @@ strnlen:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp, #8]
+	str	r0, [sp, #12]
 	b	.LBB92_1
 .LBB92_1:                               @ =>This Inner Loop Header: Depth=1
-	ldr	r1, [sp, #8]
+	ldr	r1, [sp, #12]
 	ldr	r2, [r11, #-8]
 	mov	r0, #0
 	cmp	r1, r2
@@ -8500,6 +11098,14 @@ strnlen:
 .LBB92_2:                               @   in Loop: Header=BB92_1 Depth=1
 	ldr	r1, .LCPI92_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI92_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -8508,7 +11114,7 @@ strnlen:
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
-	ldr	r1, [sp, #8]
+	ldr	r1, [sp, #12]
 	ldrb	r1, [r0, r1]
 	cmp	r1, #0
 	mov	r0, r1
@@ -8522,6 +11128,14 @@ strnlen:
 	ldr	r0, [sp]                        @ 4-byte Reload
 	ldr	r2, .LCPI92_0
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI92_1
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -8537,7 +11151,7 @@ strnlen:
 	beq	.LBB92_7
 	b	.LBB92_5
 .LBB92_5:                               @   in Loop: Header=BB92_1 Depth=1
-	ldr	r1, .LCPI92_0
+	ldr	r1, .LCPI92_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -8548,18 +11162,29 @@ strnlen:
 	str	r0, [r1, #12]
 	b	.LBB92_6
 .LBB92_6:                               @   in Loop: Header=BB92_1 Depth=1
-	ldr	r0, [sp, #8]
+	ldr	r1, .LCPI92_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
+	ldr	r0, [sp, #12]
 	add	r0, r0, #1
-	str	r0, [sp, #8]
+	str	r0, [sp, #12]
 	b	.LBB92_1
 .LBB92_7:
-	ldr	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.8:
 .LCPI92_0:
+	.long	__llvm_gcov_ctr.92(sbrel)
+.LCPI92_1:
 	.long	.L__profc_strnlen(sbrel)
 .Lfunc_end92:
 	.size	strnlen, .Lfunc_end92-strnlen
@@ -8633,8 +11258,16 @@ strpbrk:
 	bne	.LBB93_6
 	b	.LBB93_5
 .LBB93_5:
-	ldr	r1, .LCPI93_0
+	ldr	r1, .LCPI93_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI93_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -8646,13 +11279,39 @@ strpbrk:
 	str	r0, [r11, #-4]
 	b	.LBB93_9
 .LBB93_6:                               @   in Loop: Header=BB93_3 Depth=2
+	ldr	r1, .LCPI93_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	b	.LBB93_3
 .LBB93_7:                               @   in Loop: Header=BB93_1 Depth=1
+	ldr	r1, .LCPI93_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [sp, #8]
 	add	r0, r0, #1
 	str	r0, [sp, #8]
 	b	.LBB93_1
 .LBB93_8:
+	ldr	r0, .LCPI93_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB93_9
@@ -8665,6 +11324,8 @@ strpbrk:
 @ %bb.10:
 .LCPI93_0:
 	.long	.L__profc_strpbrk(sbrel)
+.LCPI93_1:
+	.long	__llvm_gcov_ctr.93(sbrel)
 .Lfunc_end93:
 	.size	strpbrk, .Lfunc_end93-strpbrk
 	.fnend
@@ -8678,11 +11339,22 @@ strrchr:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	str	r1, [sp, #4]
-	ldr	r0, .LCPI94_0
+	sub	sp, sp, #16
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI94_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI94_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -8690,11 +11362,19 @@ strrchr:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB94_2
 .LBB94_1:                               @   in Loop: Header=BB94_2 Depth=1
 	ldr	r1, .LCPI94_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI94_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -8706,13 +11386,21 @@ strrchr:
 .LBB94_2:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
 	ldrb	r0, [r0]
-	ldr	r1, [sp, #4]
+	ldr	r1, [sp, #8]
 	cmp	r0, r1
 	bne	.LBB94_4
 	b	.LBB94_3
 .LBB94_3:                               @   in Loop: Header=BB94_2 Depth=1
 	ldr	r1, .LCPI94_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI94_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -8721,7 +11409,7 @@ strrchr:
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB94_4
 .LBB94_4:                               @   in Loop: Header=BB94_2 Depth=1
 	b	.LBB94_5
@@ -8734,13 +11422,15 @@ strrchr:
 	bne	.LBB94_1
 	b	.LBB94_6
 .LBB94_6:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #4]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.7:
 .LCPI94_0:
+	.long	__llvm_gcov_ctr.94(sbrel)
+.LCPI94_1:
 	.long	.L__profc_strrchr(sbrel)
 .Lfunc_end94:
 	.size	strrchr, .Lfunc_end94-strrchr
@@ -8778,8 +11468,16 @@ strstr:
 	bne	.LBB95_2
 	b	.LBB95_1
 .LBB95_1:
-	ldr	r1, .LCPI95_0
+	ldr	r1, .LCPI95_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI95_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -8796,7 +11494,7 @@ strstr:
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
 	ldrb	r1, [r1]
-	ldr	r2, .LCPI95_2
+	ldr	r2, .LCPI95_3
 	mov	lr, pc
 	mov	pc, r2
 	str	r0, [sp, #8]
@@ -8816,15 +11514,23 @@ strstr:
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
 	ldr	r2, [sp, #4]
-	ldr	r3, .LCPI95_3
+	ldr	r3, .LCPI95_4
 	mov	lr, pc
 	mov	pc, r3
 	cmp	r0, #0
 	bne	.LBB95_6
 	b	.LBB95_5
 .LBB95_5:
-	ldr	r1, .LCPI95_0
+	ldr	r1, .LCPI95_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI95_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -8838,11 +11544,29 @@ strstr:
 .LBB95_6:                               @   in Loop: Header=BB95_3 Depth=1
 	b	.LBB95_7
 .LBB95_7:                               @   in Loop: Header=BB95_3 Depth=1
+	ldr	r1, .LCPI95_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #8]
 	add	r0, r0, #1
 	str	r0, [sp, #8]
 	b	.LBB95_3
 .LBB95_8:
+	ldr	r1, .LCPI95_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB95_9
@@ -8858,8 +11582,10 @@ strstr:
 .LCPI95_1:
 	.long	strlen
 .LCPI95_2:
-	.long	strchr
+	.long	__llvm_gcov_ctr.95(sbrel)
 .LCPI95_3:
+	.long	strchr
+.LCPI95_4:
 	.long	strncmp
 .Lfunc_end95:
 	.size	strstr, .Lfunc_end95-strstr
@@ -8902,8 +11628,16 @@ copysign:
 	bgt	.LBB96_3
 	b	.LBB96_1
 .LBB96_1:
-	ldr	r1, .LCPI96_0
+	ldr	r1, .LCPI96_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI96_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -8913,7 +11647,7 @@ copysign:
 	str	r0, [r1, #28]
 	ldr	r0, [sp]
 	ldr	r1, [sp, #4]
-	ldr	r4, .LCPI96_2
+	ldr	r4, .LCPI96_3
 	mov	r3, #0
 	mov	r2, r3
 	mov	lr, pc
@@ -8922,8 +11656,16 @@ copysign:
 	blt	.LBB96_3
 	b	.LBB96_2
 .LBB96_2:
-	ldr	r1, .LCPI96_0
+	ldr	r1, .LCPI96_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI96_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -8944,7 +11686,7 @@ copysign:
 	str	r0, [r1, #20]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI96_3
+	ldr	r4, .LCPI96_4
 	mov	r3, #0
 	mov	r2, r3
 	mov	lr, pc
@@ -8953,8 +11695,16 @@ copysign:
 	blt	.LBB96_7
 	b	.LBB96_4
 .LBB96_4:
-	ldr	r1, .LCPI96_0
+	ldr	r1, .LCPI96_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI96_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -8964,7 +11714,7 @@ copysign:
 	str	r0, [r1, #44]
 	ldr	r0, [sp]
 	ldr	r1, [sp, #4]
-	ldr	r4, .LCPI96_4
+	ldr	r4, .LCPI96_5
 	mov	r3, #0
 	mov	r2, r3
 	mov	lr, pc
@@ -8973,8 +11723,16 @@ copysign:
 	bgt	.LBB96_7
 	b	.LBB96_5
 .LBB96_5:
-	ldr	r1, .LCPI96_0
+	ldr	r1, .LCPI96_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI96_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -9000,6 +11758,15 @@ copysign:
 	str	r0, [sp, #20]
 	b	.LBB96_8
 .LBB96_7:
+	ldr	r1, .LCPI96_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
 	str	r1, [sp, #20]
@@ -9018,10 +11785,12 @@ copysign:
 .LCPI96_1:
 	.long	__ltdf2
 .LCPI96_2:
-	.long	__gtdf2
+	.long	__llvm_gcov_ctr.96(sbrel)
 .LCPI96_3:
 	.long	__gtdf2
 .LCPI96_4:
+	.long	__gtdf2
+.LCPI96_5:
 	.long	__ltdf2
 .Lfunc_end96:
 	.size	copysign, .Lfunc_end96-copysign
@@ -9060,8 +11829,16 @@ memmem:
 	bne	.LBB97_2
 	b	.LBB97_1
 .LBB97_1:
-	ldr	r1, .LCPI97_0
+	ldr	r1, .LCPI97_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI97_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -9079,8 +11856,16 @@ memmem:
 	bhs	.LBB97_4
 	b	.LBB97_3
 .LBB97_3:
-	ldr	r1, .LCPI97_0
+	ldr	r1, .LCPI97_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI97_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -9119,8 +11904,16 @@ memmem:
 	bne	.LBB97_10
 	b	.LBB97_7
 .LBB97_7:                               @   in Loop: Header=BB97_5 Depth=1
-	ldr	r1, .LCPI97_0
+	ldr	r1, .LCPI97_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI97_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -9134,15 +11927,23 @@ memmem:
 	add	r1, r1, #1
 	ldr	r2, [sp, #12]
 	sub	r2, r2, #1
-	ldr	r3, .LCPI97_1
+	ldr	r3, .LCPI97_2
 	mov	lr, pc
 	mov	pc, r3
 	cmp	r0, #0
 	bne	.LBB97_10
 	b	.LBB97_8
 .LBB97_8:
-	ldr	r1, .LCPI97_0
+	ldr	r1, .LCPI97_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI97_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -9167,11 +11968,29 @@ memmem:
 .LBB97_10:                              @   in Loop: Header=BB97_5 Depth=1
 	b	.LBB97_11
 .LBB97_11:                              @   in Loop: Header=BB97_5 Depth=1
+	ldr	r1, .LCPI97_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldr	r0, [sp, #8]
 	add	r0, r0, #1
 	str	r0, [sp, #8]
 	b	.LBB97_5
 .LBB97_12:
+	ldr	r1, .LCPI97_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB97_13
@@ -9185,6 +12004,8 @@ memmem:
 .LCPI97_0:
 	.long	.L__profc_memmem(sbrel)
 .LCPI97_1:
+	.long	__llvm_gcov_ctr.97(sbrel)
+.LCPI97_2:
 	.long	memcmp
 .Lfunc_end97:
 	.size	memmem, .Lfunc_end97-memmem
@@ -9197,39 +12018,52 @@ memmem:
 mempcpy:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	str	r2, [sp, #4]
-	ldr	r0, .LCPI98_0
+	push	{r4, r10, r11, lr}
+	add	r11, sp, #8
+	sub	sp, sp, #24
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	mov	r3, r0
+	ldr	r0, [sp, #4]                    @ 4-byte Reload
+	ldr	r12, .LCPI98_0
 	mov	r1, r9
+	mov	lr, r1
+	ldr	r4, [lr, r12]!
+	ldr	r12, [lr, #4]
+	adds	r4, r4, #1
+	adc	r12, r12, #0
+	str	r4, [lr]
+	str	r12, [lr, #4]
+	str	r3, [r11, #-12]
+	str	r0, [sp, #16]
+	str	r2, [sp, #12]
+	ldr	r0, .LCPI98_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-4]
-	str	r0, [sp]                        @ 4-byte Spill
-	ldr	r1, [sp, #8]
-	ldr	r2, [sp, #4]
-	ldr	r3, .LCPI98_1
+	ldr	r0, [r11, #-12]
+	str	r0, [sp, #8]                    @ 4-byte Spill
+	ldr	r1, [sp, #16]
+	ldr	r2, [sp, #12]
+	ldr	r3, .LCPI98_2
 	mov	lr, pc
 	mov	pc, r3
                                         @ kill: def $r1 killed $r0
-	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r1, [sp, #4]
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [sp, #12]
 	add	r0, r0, r1
-	mov	sp, r11
-	pop	{r11, lr}
+	sub	sp, r11, #8
+	pop	{r4, r10, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI98_0:
-	.long	.L__profc_mempcpy(sbrel)
+	.long	__llvm_gcov_ctr.98(sbrel)
 .LCPI98_1:
+	.long	.L__profc_mempcpy(sbrel)
+.LCPI98_2:
 	.long	memcpy
 .Lfunc_end98:
 	.size	mempcpy, .Lfunc_end98-mempcpy
@@ -9271,8 +12105,16 @@ frexp:
 	bgt	.LBB99_2
 	b	.LBB99_1
 .LBB99_1:
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -9289,7 +12131,7 @@ frexp:
 .LBB99_2:
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_2
+	ldr	r4, .LCPI99_3
 	mov	r2, #0
 	mov	r3, #267386880
 	orr	r3, r3, #805306368
@@ -9299,8 +12141,16 @@ frexp:
 	bmi	.LBB99_7
 	b	.LBB99_3
 .LBB99_3:
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -9312,7 +12162,7 @@ frexp:
 .LBB99_4:                               @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_7
+	ldr	r4, .LCPI99_8
 	mov	r2, #0
 	mov	r3, #267386880
 	orr	r3, r3, #805306368
@@ -9322,8 +12172,16 @@ frexp:
 	bmi	.LBB99_6
 	b	.LBB99_5
 .LBB99_5:                               @   in Loop: Header=BB99_4 Depth=1
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -9336,7 +12194,7 @@ frexp:
 	str	r0, [sp, #4]
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_8
+	ldr	r4, .LCPI99_9
 	mov	r2, #0
 	mov	r3, #266338304
 	orr	r3, r3, #805306368
@@ -9350,7 +12208,7 @@ frexp:
 .LBB99_7:
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_3
+	ldr	r4, .LCPI99_4
 	mov	r2, #0
 	mov	r3, #266338304
 	orr	r3, r3, #805306368
@@ -9360,8 +12218,16 @@ frexp:
 	bgt	.LBB99_14
 	b	.LBB99_8
 .LBB99_8:
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -9371,7 +12237,7 @@ frexp:
 	str	r0, [r1, #44]
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_4
+	ldr	r4, .LCPI99_5
 	mov	r3, #0
 	mov	r2, r3
 	mov	lr, pc
@@ -9404,7 +12270,7 @@ frexp:
 .LBB99_11:                              @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #20]
-	ldr	r4, .LCPI99_5
+	ldr	r4, .LCPI99_6
 	mov	r2, #0
 	mov	r3, #266338304
 	orr	r3, r3, #805306368
@@ -9414,8 +12280,16 @@ frexp:
 	bgt	.LBB99_13
 	b	.LBB99_12
 .LBB99_12:                              @   in Loop: Header=BB99_11 Depth=1
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -9428,7 +12302,7 @@ frexp:
 	str	r0, [sp, #4]
 	ldr	r2, [sp, #16]
 	ldr	r3, [sp, #20]
-	ldr	r4, .LCPI99_6
+	ldr	r4, .LCPI99_7
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
@@ -9437,8 +12311,26 @@ frexp:
 	str	r0, [sp, #16]
 	b	.LBB99_11
 .LBB99_13:
+	ldr	r1, .LCPI99_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	b	.LBB99_14
 .LBB99_14:
+	ldr	r1, .LCPI99_2
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #48]
+	ldr	r0, [r1, #52]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #48]
+	str	r0, [r1, #52]
 	b	.LBB99_15
 .LBB99_15:
 	ldr	r0, [sp, #4]
@@ -9449,8 +12341,16 @@ frexp:
 	beq	.LBB99_17
 	b	.LBB99_16
 .LBB99_16:
-	ldr	r1, .LCPI99_0
+	ldr	r1, .LCPI99_2
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #56]
+	ldr	r1, [r2, #60]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #56]
+	str	r1, [r2, #60]
+	ldr	r1, .LCPI99_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -9475,18 +12375,20 @@ frexp:
 .LCPI99_1:
 	.long	__ltdf2
 .LCPI99_2:
-	.long	__gedf2
+	.long	__llvm_gcov_ctr.99(sbrel)
 .LCPI99_3:
-	.long	__ltdf2
-.LCPI99_4:
-	.long	__eqdf2
-.LCPI99_5:
-	.long	__ltdf2
-.LCPI99_6:
-	.long	__adddf3
-.LCPI99_7:
 	.long	__gedf2
+.LCPI99_4:
+	.long	__ltdf2
+.LCPI99_5:
+	.long	__eqdf2
+.LCPI99_6:
+	.long	__ltdf2
+.LCPI99_7:
+	.long	__adddf3
 .LCPI99_8:
+	.long	__gedf2
+.LCPI99_9:
 	.long	__muldf3
 .Lfunc_end99:
 	.size	frexp, .Lfunc_end99-frexp
@@ -9499,19 +12401,28 @@ frexp:
 __muldi3:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
+	push	{r4, r5, r11, lr}
+	add	r11, sp, #8
 	sub	sp, sp, #32
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-                                        @ kill: def $r12 killed $r1
-                                        @ kill: def $r12 killed $r0
-	str	r1, [r11, #-4]
-	str	r0, [r11, #-8]
+	mov	r12, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r0
+	ldr	lr, .LCPI100_0
+	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [r11, #-12]
+	str	r0, [r11, #-16]
 	str	r3, [sp, #20]
 	str	r2, [sp, #16]
-	ldr	r0, .LCPI100_0
-	mov	r1, r9
+	ldr	r0, .LCPI100_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -9521,8 +12432,8 @@ __muldi3:
 	mov	r0, #0
 	str	r0, [sp, #12]
 	str	r0, [sp, #8]
-	ldr	r0, [r11, #-8]
-	ldr	r1, [r11, #-4]
+	ldr	r0, [r11, #-16]
+	ldr	r1, [r11, #-12]
 	str	r1, [sp, #4]
 	str	r0, [sp]
 	b	.LBB100_1
@@ -9534,7 +12445,7 @@ __muldi3:
 	beq	.LBB100_5
 	b	.LBB100_2
 .LBB100_2:                              @   in Loop: Header=BB100_1 Depth=1
-	ldr	r1, .LCPI100_0
+	ldr	r1, .LCPI100_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -9550,6 +12461,14 @@ __muldi3:
 .LBB100_3:                              @   in Loop: Header=BB100_1 Depth=1
 	ldr	r1, .LCPI100_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI100_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -9567,6 +12486,15 @@ __muldi3:
 	str	r0, [sp, #12]
 	b	.LBB100_4
 .LBB100_4:                              @   in Loop: Header=BB100_1 Depth=1
+	ldr	r1, .LCPI100_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	lsl	r0, r0, #1
@@ -9584,12 +12512,14 @@ __muldi3:
 .LBB100_5:
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	mov	sp, r11
-	pop	{r11, lr}
+	sub	sp, r11, #8
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.6:
 .LCPI100_0:
+	.long	__llvm_gcov_ctr.100(sbrel)
+.LCPI100_1:
 	.long	.L__profc___muldi3(sbrel)
 .Lfunc_end100:
 	.size	__muldi3, .Lfunc_end100-__muldi3
@@ -9630,8 +12560,16 @@ udivmodsi4:
 	bhs	.LBB101_6
 	b	.LBB101_2
 .LBB101_2:                              @   in Loop: Header=BB101_1 Depth=1
-	ldr	r1, .LCPI101_0
+	ldr	r1, .LCPI101_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI101_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -9646,8 +12584,16 @@ udivmodsi4:
 	beq	.LBB101_6
 	b	.LBB101_3
 .LBB101_3:                              @   in Loop: Header=BB101_1 Depth=1
-	ldr	r1, .LCPI101_0
+	ldr	r1, .LCPI101_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI101_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -9677,8 +12623,16 @@ udivmodsi4:
 	b	.LBB101_5
 .LBB101_5:                              @   in Loop: Header=BB101_1 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI101_0
+	ldr	r2, .LCPI101_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI101_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -9694,8 +12648,16 @@ udivmodsi4:
 	beq	.LBB101_8
 	b	.LBB101_7
 .LBB101_7:                              @   in Loop: Header=BB101_1 Depth=1
-	ldr	r1, .LCPI101_0
+	ldr	r1, .LCPI101_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI101_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -9733,8 +12695,16 @@ udivmodsi4:
 	blo	.LBB101_12
 	b	.LBB101_11
 .LBB101_11:                             @   in Loop: Header=BB101_9 Depth=1
-	ldr	r1, .LCPI101_0
+	ldr	r1, .LCPI101_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI101_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -9752,6 +12722,15 @@ udivmodsi4:
 	str	r0, [sp, #8]
 	b	.LBB101_12
 .LBB101_12:                             @   in Loop: Header=BB101_9 Depth=1
+	ldr	r1, .LCPI101_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [sp, #12]
 	lsr	r0, r0, #1
 	str	r0, [sp, #12]
@@ -9765,8 +12744,16 @@ udivmodsi4:
 	beq	.LBB101_15
 	b	.LBB101_14
 .LBB101_14:
-	ldr	r1, .LCPI101_0
+	ldr	r1, .LCPI101_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #48]
+	ldr	r1, [r2, #52]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #48]
+	str	r1, [r2, #52]
+	ldr	r1, .LCPI101_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -9778,6 +12765,15 @@ udivmodsi4:
 	str	r0, [r11, #-4]
 	b	.LBB101_16
 .LBB101_15:
+	ldr	r1, .LCPI101_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #56]
+	ldr	r0, [r1, #60]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #56]
+	str	r0, [r1, #60]
 	ldr	r0, [sp, #8]
 	str	r0, [r11, #-4]
 	b	.LBB101_16
@@ -9790,6 +12786,8 @@ udivmodsi4:
 @ %bb.17:
 .LCPI101_0:
 	.long	.L__profc_udivmodsi4(sbrel)
+.LCPI101_1:
+	.long	__llvm_gcov_ctr.101(sbrel)
 .Lfunc_end101:
 	.size	udivmodsi4, .Lfunc_end101-udivmodsi4
 	.fnend
@@ -9819,8 +12817,16 @@ __clrsbqi2:
 	bgt	.LBB102_2
 	b	.LBB102_1
 .LBB102_1:
-	ldr	r1, .LCPI102_0
+	ldr	r1, .LCPI102_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI102_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -9838,8 +12844,16 @@ __clrsbqi2:
 	bne	.LBB102_4
 	b	.LBB102_3
 .LBB102_3:
-	ldr	r1, .LCPI102_0
+	ldr	r1, .LCPI102_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI102_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -9851,6 +12865,15 @@ __clrsbqi2:
 	str	r0, [r11, #-4]
 	b	.LBB102_5
 .LBB102_4:
+	ldr	r1, .LCPI102_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldrb	r0, [r11, #-5]
 	lsl	r0, r0, #8
 	orr	r0, r0, r0, lsr #1
@@ -9859,17 +12882,17 @@ __clrsbqi2:
 	orr	r0, r0, r0, lsr #8
 	orr	r0, r0, r0, lsr #16
 	mvn	r0, r0
-	ldr	r1, .LCPI102_1
+	ldr	r1, .LCPI102_2
 	and	r1, r1, r0, lsr #1
 	sub	r0, r0, r1
-	ldr	r2, .LCPI102_2
+	ldr	r2, .LCPI102_3
 	and	r1, r2, r0, lsr #2
 	and	r0, r0, r2
 	add	r0, r0, r1
 	add	r0, r0, r0, lsr #4
-	ldr	r1, .LCPI102_3
+	ldr	r1, .LCPI102_4
 	and	r1, r0, r1
-	ldr	r2, .LCPI102_4
+	ldr	r2, .LCPI102_5
 	mul	r0, r1, r2
 	lsr	r0, r0, #24
 	str	r0, [sp]
@@ -9887,12 +12910,14 @@ __clrsbqi2:
 .LCPI102_0:
 	.long	.L__profc___clrsbqi2(sbrel)
 .LCPI102_1:
-	.long	1431655765                      @ 0x55555555
+	.long	__llvm_gcov_ctr.102(sbrel)
 .LCPI102_2:
-	.long	858993459                       @ 0x33333333
+	.long	1431655765                      @ 0x55555555
 .LCPI102_3:
-	.long	252645135                       @ 0xf0f0f0f
+	.long	858993459                       @ 0x33333333
 .LCPI102_4:
+	.long	252645135                       @ 0xf0f0f0f
+.LCPI102_5:
 	.long	16843009                        @ 0x1010101
 .Lfunc_end102:
 	.size	__clrsbqi2, .Lfunc_end102-__clrsbqi2
@@ -9925,8 +12950,16 @@ __clrsbdi2:
 	bgt	.LBB103_2
 	b	.LBB103_1
 .LBB103_1:
-	ldr	r1, .LCPI103_0
+	ldr	r1, .LCPI103_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI103_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -9949,8 +12982,16 @@ __clrsbdi2:
 	bne	.LBB103_4
 	b	.LBB103_3
 .LBB103_3:
-	ldr	r1, .LCPI103_0
+	ldr	r1, .LCPI103_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI103_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -9962,6 +13003,15 @@ __clrsbdi2:
 	str	r0, [r11, #-4]
 	b	.LBB103_5
 .LBB103_4:
+	ldr	r1, .LCPI103_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r1, [sp, #16]
 	ldr	r0, [sp, #20]
 	str	r0, [sp, #4]                    @ 4-byte Spill
@@ -9971,22 +13021,22 @@ __clrsbdi2:
 	orr	r1, r1, r1, lsr #8
 	orr	r1, r1, r1, lsr #16
 	mvn	r1, r1
-	ldr	r2, .LCPI103_1
+	ldr	r2, .LCPI103_2
 	and	r2, r2, r1, lsr #1
 	sub	r1, r1, r2
-	ldr	r3, .LCPI103_2
+	ldr	r3, .LCPI103_3
 	and	r2, r3, r1, lsr #2
 	and	r1, r1, r3
 	add	r1, r1, r2
 	add	r1, r1, r1, lsr #4
-	ldr	r2, .LCPI103_3
+	ldr	r2, .LCPI103_4
 	and	r1, r1, r2
-	ldr	r3, .LCPI103_4
+	ldr	r3, .LCPI103_5
 	mul	r2, r1, r3
 	mov	r1, #32
 	add	r1, r1, r2, lsr #24
 	str	r1, [sp, #8]                    @ 4-byte Spill
-	ldr	r1, .LCPI103_5
+	ldr	r1, .LCPI103_6
 	mov	lr, pc
 	mov	pc, r1
 	ldr	r2, [sp, #4]                    @ 4-byte Reload
@@ -10009,14 +13059,16 @@ __clrsbdi2:
 .LCPI103_0:
 	.long	.L__profc___clrsbdi2(sbrel)
 .LCPI103_1:
-	.long	1431655765                      @ 0x55555555
+	.long	__llvm_gcov_ctr.103(sbrel)
 .LCPI103_2:
-	.long	858993459                       @ 0x33333333
+	.long	1431655765                      @ 0x55555555
 .LCPI103_3:
-	.long	252645135                       @ 0xf0f0f0f
+	.long	858993459                       @ 0x33333333
 .LCPI103_4:
-	.long	16843009                        @ 0x1010101
+	.long	252645135                       @ 0xf0f0f0f
 .LCPI103_5:
+	.long	16843009                        @ 0x1010101
+.LCPI103_6:
 	.long	__clzsi2
 .Lfunc_end103:
 	.size	__clrsbdi2, .Lfunc_end103-__clrsbdi2
@@ -10031,11 +13083,22 @@ __mulsi3:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	str	r1, [sp, #4]
-	ldr	r0, .LCPI104_0
+	sub	sp, sp, #16
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI104_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI104_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10043,7 +13106,7 @@ __mulsi3:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB104_1
 .LBB104_1:                              @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
@@ -10051,7 +13114,7 @@ __mulsi3:
 	beq	.LBB104_5
 	b	.LBB104_2
 .LBB104_2:                              @   in Loop: Header=BB104_1 Depth=1
-	ldr	r1, .LCPI104_0
+	ldr	r1, .LCPI104_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -10067,6 +13130,14 @@ __mulsi3:
 .LBB104_3:                              @   in Loop: Header=BB104_1 Depth=1
 	ldr	r1, .LCPI104_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI104_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10074,27 +13145,38 @@ __mulsi3:
 	adc	r0, r0, #0
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
-	ldr	r1, [sp, #4]
-	ldr	r0, [sp]
+	ldr	r1, [sp, #8]
+	ldr	r0, [sp, #4]
 	add	r0, r0, r1
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB104_4
 .LBB104_4:                              @   in Loop: Header=BB104_1 Depth=1
+	ldr	r1, .LCPI104_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
 	lsr	r0, r0, #1
 	str	r0, [r11, #-4]
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #8]
 	lsl	r0, r0, #1
-	str	r0, [sp, #4]
+	str	r0, [sp, #8]
 	b	.LBB104_1
 .LBB104_5:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #4]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.6:
 .LCPI104_0:
+	.long	__llvm_gcov_ctr.104(sbrel)
+.LCPI104_1:
 	.long	.L__profc___mulsi3(sbrel)
 .Lfunc_end104:
 	.size	__mulsi3, .Lfunc_end104-__mulsi3
@@ -10137,8 +13219,16 @@ __cmovd:
 	blo	.LBB105_3
 	b	.LBB105_1
 .LBB105_1:
-	ldr	r1, .LCPI105_0
+	ldr	r1, .LCPI105_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI105_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10202,6 +13292,15 @@ __cmovd:
 	str	r0, [r1, #4]
 	b	.LBB105_6
 .LBB105_6:                              @   in Loop: Header=BB105_4 Depth=1
+	ldr	r1, .LCPI105_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #16]
 	add	r0, r0, #1
 	str	r0, [sp, #16]
@@ -10215,8 +13314,16 @@ __cmovd:
 	bls	.LBB105_10
 	b	.LBB105_9
 .LBB105_9:                              @   in Loop: Header=BB105_8 Depth=1
-	ldr	r1, .LCPI105_0
+	ldr	r1, .LCPI105_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI105_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -10234,6 +13341,15 @@ __cmovd:
 	str	r0, [sp, #8]
 	b	.LBB105_8
 .LBB105_10:
+	ldr	r1, .LCPI105_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB105_15
 .LBB105_11:
 	b	.LBB105_12
@@ -10245,8 +13361,16 @@ __cmovd:
 	beq	.LBB105_14
 	b	.LBB105_13
 .LBB105_13:                             @   in Loop: Header=BB105_12 Depth=1
-	ldr	r1, .LCPI105_0
+	ldr	r1, .LCPI105_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI105_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -10261,6 +13385,15 @@ __cmovd:
 	strb	r0, [r1, r2]
 	b	.LBB105_12
 .LBB105_14:
+	ldr	r1, .LCPI105_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	b	.LBB105_15
 .LBB105_15:
 	mov	sp, r11
@@ -10270,6 +13403,8 @@ __cmovd:
 @ %bb.16:
 .LCPI105_0:
 	.long	.L__profc___cmovd(sbrel)
+.LCPI105_1:
+	.long	__llvm_gcov_ctr.105(sbrel)
 .Lfunc_end105:
 	.size	__cmovd, .Lfunc_end105-__cmovd
 	.fnend
@@ -10308,8 +13443,16 @@ __cmovh:
 	blo	.LBB106_3
 	b	.LBB106_1
 .LBB106_1:
-	ldr	r1, .LCPI106_0
+	ldr	r1, .LCPI106_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI106_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10373,6 +13516,15 @@ __cmovh:
 	strh	r0, [r1]
 	b	.LBB106_6
 .LBB106_6:                              @   in Loop: Header=BB106_4 Depth=1
+	ldr	r1, .LCPI106_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #12]
 	add	r0, r0, #1
 	str	r0, [sp, #12]
@@ -10383,8 +13535,16 @@ __cmovh:
 	beq	.LBB106_9
 	b	.LBB106_8
 .LBB106_8:
-	ldr	r1, .LCPI106_0
+	ldr	r1, .LCPI106_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI106_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -10400,6 +13560,15 @@ __cmovh:
 	strb	r0, [r1, r2]
 	b	.LBB106_9
 .LBB106_9:
+	ldr	r1, .LCPI106_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB106_14
 .LBB106_10:
 	b	.LBB106_11
@@ -10411,8 +13580,16 @@ __cmovh:
 	beq	.LBB106_13
 	b	.LBB106_12
 .LBB106_12:                             @   in Loop: Header=BB106_11 Depth=1
-	ldr	r1, .LCPI106_0
+	ldr	r1, .LCPI106_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI106_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -10427,6 +13604,15 @@ __cmovh:
 	strb	r0, [r1, r2]
 	b	.LBB106_11
 .LBB106_13:
+	ldr	r1, .LCPI106_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	b	.LBB106_14
 .LBB106_14:
 	mov	sp, r11
@@ -10436,6 +13622,8 @@ __cmovh:
 @ %bb.15:
 .LCPI106_0:
 	.long	.L__profc___cmovh(sbrel)
+.LCPI106_1:
+	.long	__llvm_gcov_ctr.106(sbrel)
 .Lfunc_end106:
 	.size	__cmovh, .Lfunc_end106-__cmovh
 	.fnend
@@ -10477,8 +13665,16 @@ __cmovw:
 	blo	.LBB107_3
 	b	.LBB107_1
 .LBB107_1:
-	ldr	r1, .LCPI107_0
+	ldr	r1, .LCPI107_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI107_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10540,6 +13736,15 @@ __cmovw:
 	str	r0, [r1, r2, lsl #2]
 	b	.LBB107_6
 .LBB107_6:                              @   in Loop: Header=BB107_4 Depth=1
+	ldr	r1, .LCPI107_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r0, [sp, #16]
 	add	r0, r0, #1
 	str	r0, [sp, #16]
@@ -10553,8 +13758,16 @@ __cmovw:
 	bls	.LBB107_10
 	b	.LBB107_9
 .LBB107_9:                              @   in Loop: Header=BB107_8 Depth=1
-	ldr	r1, .LCPI107_0
+	ldr	r1, .LCPI107_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI107_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -10572,6 +13785,15 @@ __cmovw:
 	str	r0, [sp, #8]
 	b	.LBB107_8
 .LBB107_10:
+	ldr	r1, .LCPI107_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	b	.LBB107_15
 .LBB107_11:
 	b	.LBB107_12
@@ -10583,8 +13805,16 @@ __cmovw:
 	beq	.LBB107_14
 	b	.LBB107_13
 .LBB107_13:                             @   in Loop: Header=BB107_12 Depth=1
-	ldr	r1, .LCPI107_0
+	ldr	r1, .LCPI107_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI107_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -10599,6 +13829,15 @@ __cmovw:
 	strb	r0, [r1, r2]
 	b	.LBB107_12
 .LBB107_14:
+	ldr	r1, .LCPI107_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	b	.LBB107_15
 .LBB107_15:
 	mov	sp, r11
@@ -10608,6 +13847,8 @@ __cmovw:
 @ %bb.16:
 .LCPI107_0:
 	.long	.L__profc___cmovw(sbrel)
+.LCPI107_1:
+	.long	__llvm_gcov_ctr.107(sbrel)
 .Lfunc_end107:
 	.size	__cmovw, .Lfunc_end107-__cmovw
 	.fnend
@@ -10621,28 +13862,41 @@ __modi:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI108_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI108_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI108_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
-	ldr	r2, .LCPI108_1
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
+	ldr	r2, .LCPI108_2
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, r2
 	.p2align	2
 @ %bb.1:
 .LCPI108_0:
-	.long	.L__profc___modi(sbrel)
+	.long	__llvm_gcov_ctr.108(sbrel)
 .LCPI108_1:
+	.long	.L__profc___modi(sbrel)
+.LCPI108_2:
 	.long	__modsi3
 .Lfunc_end108:
 	.size	__modi, .Lfunc_end108-__modi
@@ -10658,9 +13912,17 @@ __uitod:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI109_0
+	ldr	r2, .LCPI109_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI109_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10668,7 +13930,7 @@ __uitod:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldr	r0, [sp, #4]
-	ldr	r1, .LCPI109_1
+	ldr	r1, .LCPI109_2
 	mov	lr, pc
 	mov	pc, r1
 	mov	sp, r11
@@ -10677,8 +13939,10 @@ __uitod:
 	.p2align	2
 @ %bb.1:
 .LCPI109_0:
-	.long	.L__profc___uitod(sbrel)
+	.long	__llvm_gcov_ctr.109(sbrel)
 .LCPI109_1:
+	.long	.L__profc___uitod(sbrel)
+.LCPI109_2:
 	.long	__floatunsidf
 .Lfunc_end109:
 	.size	__uitod, .Lfunc_end109-__uitod
@@ -10694,9 +13958,17 @@ __uitof:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI110_0
+	ldr	r2, .LCPI110_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI110_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10704,7 +13976,7 @@ __uitof:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	ldr	r0, [sp, #4]
-	ldr	r1, .LCPI110_1
+	ldr	r1, .LCPI110_2
 	mov	lr, pc
 	mov	pc, r1
 	mov	sp, r11
@@ -10713,8 +13985,10 @@ __uitof:
 	.p2align	2
 @ %bb.1:
 .LCPI110_0:
-	.long	.L__profc___uitof(sbrel)
+	.long	__llvm_gcov_ctr.110(sbrel)
 .LCPI110_1:
+	.long	.L__profc___uitof(sbrel)
+.LCPI110_2:
 	.long	__floatunsisf
 .Lfunc_end110:
 	.size	__uitof, .Lfunc_end110-__uitof
@@ -10730,12 +14004,21 @@ __ulltod:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #4]
-	str	r0, [sp]
-	ldr	r0, .LCPI111_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI111_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI111_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10744,7 +14027,7 @@ __ulltod:
 	str	r0, [r1, #4]
 	ldr	r0, [sp]
 	ldr	r1, [sp, #4]
-	ldr	r2, .LCPI111_1
+	ldr	r2, .LCPI111_2
 	mov	lr, pc
 	mov	pc, r2
 	mov	sp, r11
@@ -10753,8 +14036,10 @@ __ulltod:
 	.p2align	2
 @ %bb.1:
 .LCPI111_0:
-	.long	.L__profc___ulltod(sbrel)
+	.long	__llvm_gcov_ctr.111(sbrel)
 .LCPI111_1:
+	.long	.L__profc___ulltod(sbrel)
+.LCPI111_2:
 	.long	__floatundidf
 .Lfunc_end111:
 	.size	__ulltod, .Lfunc_end111-__ulltod
@@ -10770,12 +14055,21 @@ __ulltof:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #4]
-	str	r0, [sp]
-	ldr	r0, .LCPI112_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI112_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI112_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10784,7 +14078,7 @@ __ulltof:
 	str	r0, [r1, #4]
 	ldr	r0, [sp]
 	ldr	r1, [sp, #4]
-	ldr	r2, .LCPI112_1
+	ldr	r2, .LCPI112_2
 	mov	lr, pc
 	mov	pc, r2
 	mov	sp, r11
@@ -10793,8 +14087,10 @@ __ulltof:
 	.p2align	2
 @ %bb.1:
 .LCPI112_0:
-	.long	.L__profc___ulltof(sbrel)
+	.long	__llvm_gcov_ctr.112(sbrel)
 .LCPI112_1:
+	.long	.L__profc___ulltof(sbrel)
+.LCPI112_2:
 	.long	__floatundisf
 .Lfunc_end112:
 	.size	__ulltof, .Lfunc_end112-__ulltof
@@ -10809,28 +14105,41 @@ __umodi:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI113_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI113_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI113_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [sp, #4]
-	ldr	r1, [sp]
-	ldr	r2, .LCPI113_1
+	ldr	r0, [r11, #-4]
+	ldr	r1, [sp, #4]
+	ldr	r2, .LCPI113_2
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, r2
 	.p2align	2
 @ %bb.1:
 .LCPI113_0:
-	.long	.L__profc___umodi(sbrel)
+	.long	__llvm_gcov_ctr.113(sbrel)
 .LCPI113_1:
+	.long	.L__profc___umodi(sbrel)
+.LCPI113_2:
 	.long	__umodsi3
 .Lfunc_end113:
 	.size	__umodi, .Lfunc_end113-__umodi
@@ -10847,9 +14156,17 @@ __clzhi2:
 	mov	r11, sp
 	sub	sp, sp, #8
                                         @ kill: def $r1 killed $r0
-	strh	r0, [r11, #-2]
-	ldr	r0, .LCPI114_0
+	ldr	r2, .LCPI114_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	strh	r0, [r11, #-2]
+	ldr	r0, .LCPI114_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10865,7 +14182,7 @@ __clzhi2:
 	bgt	.LBB114_6
 	b	.LBB114_2
 .LBB114_2:                              @   in Loop: Header=BB114_1 Depth=1
-	ldr	r1, .LCPI114_0
+	ldr	r1, .LCPI114_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -10884,6 +14201,14 @@ __clzhi2:
 .LBB114_3:
 	ldr	r1, .LCPI114_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI114_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10895,6 +14220,15 @@ __clzhi2:
 .LBB114_4:                              @   in Loop: Header=BB114_1 Depth=1
 	b	.LBB114_5
 .LBB114_5:                              @   in Loop: Header=BB114_1 Depth=1
+	ldr	r1, .LCPI114_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp]
 	add	r0, r0, #1
 	str	r0, [sp]
@@ -10907,6 +14241,8 @@ __clzhi2:
 	.p2align	2
 @ %bb.7:
 .LCPI114_0:
+	.long	__llvm_gcov_ctr.114(sbrel)
+.LCPI114_1:
 	.long	.L__profc___clzhi2(sbrel)
 .Lfunc_end114:
 	.size	__clzhi2, .Lfunc_end114-__clzhi2
@@ -10923,9 +14259,17 @@ __ctzhi2:
 	mov	r11, sp
 	sub	sp, sp, #8
                                         @ kill: def $r1 killed $r0
-	strh	r0, [r11, #-2]
-	ldr	r0, .LCPI115_0
+	ldr	r2, .LCPI115_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	strh	r0, [r11, #-2]
+	ldr	r0, .LCPI115_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -10941,7 +14285,7 @@ __ctzhi2:
 	bgt	.LBB115_6
 	b	.LBB115_2
 .LBB115_2:                              @   in Loop: Header=BB115_1 Depth=1
-	ldr	r1, .LCPI115_0
+	ldr	r1, .LCPI115_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -10959,6 +14303,14 @@ __ctzhi2:
 .LBB115_3:
 	ldr	r1, .LCPI115_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI115_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -10970,6 +14322,15 @@ __ctzhi2:
 .LBB115_4:                              @   in Loop: Header=BB115_1 Depth=1
 	b	.LBB115_5
 .LBB115_5:                              @   in Loop: Header=BB115_1 Depth=1
+	ldr	r1, .LCPI115_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp]
 	add	r0, r0, #1
 	str	r0, [sp]
@@ -10982,6 +14343,8 @@ __ctzhi2:
 	.p2align	2
 @ %bb.7:
 .LCPI115_0:
+	.long	__llvm_gcov_ctr.115(sbrel)
+.LCPI115_1:
 	.long	.L__profc___ctzhi2(sbrel)
 .Lfunc_end115:
 	.size	__ctzhi2, .Lfunc_end115-__ctzhi2
@@ -11016,7 +14379,36 @@ __fixunssfsi:
 	bmi	.LBB116_2
 	b	.LBB116_1
 .LBB116_1:
+	ldr	r1, .LCPI116_2
+	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
 	ldr	r1, .LCPI116_0
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
+	ldr	r0, [sp]
+	ldr	r2, .LCPI116_4
+	mov	r1, #-956301312
+	mov	lr, pc
+	mov	pc, r2
+	ldr	r1, .LCPI116_5
+	mov	lr, pc
+	mov	pc, r1
+	add	r0, r0, #32768
+	str	r0, [sp, #4]
+	b	.LBB116_3
+.LBB116_2:
+	ldr	r1, .LCPI116_2
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -11026,19 +14418,7 @@ __fixunssfsi:
 	str	r2, [r1, #8]
 	str	r0, [r1, #12]
 	ldr	r0, [sp]
-	ldr	r2, .LCPI116_3
-	mov	r1, #-956301312
-	mov	lr, pc
-	mov	pc, r2
-	ldr	r1, .LCPI116_4
-	mov	lr, pc
-	mov	pc, r1
-	add	r0, r0, #32768
-	str	r0, [sp, #4]
-	b	.LBB116_3
-.LBB116_2:
-	ldr	r0, [sp]
-	ldr	r1, .LCPI116_2
+	ldr	r1, .LCPI116_3
 	mov	lr, pc
 	mov	pc, r1
 	str	r0, [sp, #4]
@@ -11055,10 +14435,12 @@ __fixunssfsi:
 .LCPI116_1:
 	.long	__gesf2
 .LCPI116_2:
-	.long	__fixsfsi
+	.long	__llvm_gcov_ctr.116(sbrel)
 .LCPI116_3:
-	.long	__addsf3
+	.long	__fixsfsi
 .LCPI116_4:
+	.long	__addsf3
+.LCPI116_5:
 	.long	__fixsfsi
 .Lfunc_end116:
 	.size	__fixunssfsi, .Lfunc_end116-__fixunssfsi
@@ -11075,9 +14457,17 @@ __parityhi2:
 	mov	r11, sp
 	sub	sp, sp, #12
                                         @ kill: def $r1 killed $r0
-	strh	r0, [r11, #-2]
-	ldr	r0, .LCPI117_0
+	ldr	r2, .LCPI117_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	strh	r0, [r11, #-2]
+	ldr	r0, .LCPI117_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -11094,7 +14484,7 @@ __parityhi2:
 	bgt	.LBB117_6
 	b	.LBB117_2
 .LBB117_2:                              @   in Loop: Header=BB117_1 Depth=1
-	ldr	r1, .LCPI117_0
+	ldr	r1, .LCPI117_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -11112,6 +14502,14 @@ __parityhi2:
 .LBB117_3:                              @   in Loop: Header=BB117_1 Depth=1
 	ldr	r1, .LCPI117_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI117_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -11126,6 +14524,15 @@ __parityhi2:
 .LBB117_4:                              @   in Loop: Header=BB117_1 Depth=1
 	b	.LBB117_5
 .LBB117_5:                              @   in Loop: Header=BB117_1 Depth=1
+	ldr	r1, .LCPI117_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #1
 	str	r0, [sp, #4]
@@ -11139,6 +14546,8 @@ __parityhi2:
 	.p2align	2
 @ %bb.7:
 .LCPI117_0:
+	.long	__llvm_gcov_ctr.117(sbrel)
+.LCPI117_1:
 	.long	.L__profc___parityhi2(sbrel)
 .Lfunc_end117:
 	.size	__parityhi2, .Lfunc_end117-__parityhi2
@@ -11155,9 +14564,17 @@ __popcounthi2:
 	mov	r11, sp
 	sub	sp, sp, #12
                                         @ kill: def $r1 killed $r0
-	strh	r0, [r11, #-2]
-	ldr	r0, .LCPI118_0
+	ldr	r2, .LCPI118_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	strh	r0, [r11, #-2]
+	ldr	r0, .LCPI118_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -11174,7 +14591,7 @@ __popcounthi2:
 	bgt	.LBB118_6
 	b	.LBB118_2
 .LBB118_2:                              @   in Loop: Header=BB118_1 Depth=1
-	ldr	r1, .LCPI118_0
+	ldr	r1, .LCPI118_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -11192,6 +14609,14 @@ __popcounthi2:
 .LBB118_3:                              @   in Loop: Header=BB118_1 Depth=1
 	ldr	r1, .LCPI118_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI118_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -11206,6 +14631,15 @@ __popcounthi2:
 .LBB118_4:                              @   in Loop: Header=BB118_1 Depth=1
 	b	.LBB118_5
 .LBB118_5:                              @   in Loop: Header=BB118_1 Depth=1
+	ldr	r1, .LCPI118_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #4]
 	add	r0, r0, #1
 	str	r0, [sp, #4]
@@ -11218,6 +14652,8 @@ __popcounthi2:
 	.p2align	2
 @ %bb.7:
 .LCPI118_0:
+	.long	__llvm_gcov_ctr.118(sbrel)
+.LCPI118_1:
 	.long	.L__profc___popcounthi2(sbrel)
 .Lfunc_end118:
 	.size	__popcounthi2, .Lfunc_end118-__popcounthi2
@@ -11232,11 +14668,22 @@ __mulsi3_iq2000:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #12
-	str	r0, [r11, #-4]
-	str	r1, [sp, #4]
-	ldr	r0, .LCPI119_0
+	sub	sp, sp, #16
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI119_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #8]
+	ldr	r0, .LCPI119_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -11244,7 +14691,7 @@ __mulsi3_iq2000:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB119_1
 .LBB119_1:                              @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [r11, #-4]
@@ -11252,7 +14699,7 @@ __mulsi3_iq2000:
 	beq	.LBB119_5
 	b	.LBB119_2
 .LBB119_2:                              @   in Loop: Header=BB119_1 Depth=1
-	ldr	r1, .LCPI119_0
+	ldr	r1, .LCPI119_1
 	mov	r0, r9
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
@@ -11268,6 +14715,14 @@ __mulsi3_iq2000:
 .LBB119_3:                              @   in Loop: Header=BB119_1 Depth=1
 	ldr	r1, .LCPI119_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI119_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -11275,27 +14730,38 @@ __mulsi3_iq2000:
 	adc	r0, r0, #0
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
-	ldr	r1, [sp, #4]
-	ldr	r0, [sp]
+	ldr	r1, [sp, #8]
+	ldr	r0, [sp, #4]
 	add	r0, r0, r1
-	str	r0, [sp]
+	str	r0, [sp, #4]
 	b	.LBB119_4
 .LBB119_4:                              @   in Loop: Header=BB119_1 Depth=1
+	ldr	r1, .LCPI119_0
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [r11, #-4]
 	lsr	r0, r0, #1
 	str	r0, [r11, #-4]
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #8]
 	lsl	r0, r0, #1
-	str	r0, [sp, #4]
+	str	r0, [sp, #8]
 	b	.LBB119_1
 .LBB119_5:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #4]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.6:
 .LCPI119_0:
+	.long	__llvm_gcov_ctr.119(sbrel)
+.LCPI119_1:
 	.long	.L__profc___mulsi3_iq2000(sbrel)
 .Lfunc_end119:
 	.size	__mulsi3_iq2000, .Lfunc_end119-__mulsi3_iq2000
@@ -11328,8 +14794,16 @@ __mulsi3_lm32:
 	bne	.LBB120_2
 	b	.LBB120_1
 .LBB120_1:
-	ldr	r1, .LCPI120_0
+	ldr	r1, .LCPI120_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI120_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -11341,6 +14815,14 @@ __mulsi3_lm32:
 	str	r0, [r11, #-4]
 	b	.LBB120_8
 .LBB120_2:
+	ldr	r0, .LCPI120_1
+	mov	r1, r9
+	ldr	r2, [r1, r0]!
+	ldr	r0, [r1, #4]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1]
+	str	r0, [r1, #4]
 	b	.LBB120_3
 .LBB120_3:                              @ =>This Inner Loop Header: Depth=1
 	ldr	r0, [sp, #4]
@@ -11362,8 +14844,16 @@ __mulsi3_lm32:
 	beq	.LBB120_6
 	b	.LBB120_5
 .LBB120_5:                              @   in Loop: Header=BB120_3 Depth=1
-	ldr	r1, .LCPI120_0
+	ldr	r1, .LCPI120_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI120_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -11377,6 +14867,15 @@ __mulsi3_lm32:
 	str	r0, [sp]
 	b	.LBB120_6
 .LBB120_6:                              @   in Loop: Header=BB120_3 Depth=1
+	ldr	r1, .LCPI120_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [sp, #8]
 	lsl	r0, r0, #1
 	str	r0, [sp, #8]
@@ -11397,6 +14896,8 @@ __mulsi3_lm32:
 @ %bb.9:
 .LCPI120_0:
 	.long	.L__profc___mulsi3_lm32(sbrel)
+.LCPI120_1:
+	.long	__llvm_gcov_ctr.120(sbrel)
 .Lfunc_end120:
 	.size	__mulsi3_lm32, .Lfunc_end120-__mulsi3_lm32
 	.fnend
@@ -11436,8 +14937,16 @@ __udivmodsi4:
 	bhs	.LBB121_6
 	b	.LBB121_2
 .LBB121_2:                              @   in Loop: Header=BB121_1 Depth=1
-	ldr	r1, .LCPI121_0
+	ldr	r1, .LCPI121_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI121_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -11452,8 +14961,16 @@ __udivmodsi4:
 	beq	.LBB121_6
 	b	.LBB121_3
 .LBB121_3:                              @   in Loop: Header=BB121_1 Depth=1
-	ldr	r1, .LCPI121_0
+	ldr	r1, .LCPI121_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI121_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -11483,8 +15000,16 @@ __udivmodsi4:
 	b	.LBB121_5
 .LBB121_5:                              @   in Loop: Header=BB121_1 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI121_0
+	ldr	r2, .LCPI121_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI121_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -11500,8 +15025,16 @@ __udivmodsi4:
 	beq	.LBB121_8
 	b	.LBB121_7
 .LBB121_7:                              @   in Loop: Header=BB121_1 Depth=1
-	ldr	r1, .LCPI121_0
+	ldr	r1, .LCPI121_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI121_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -11539,8 +15072,16 @@ __udivmodsi4:
 	blo	.LBB121_12
 	b	.LBB121_11
 .LBB121_11:                             @   in Loop: Header=BB121_9 Depth=1
-	ldr	r1, .LCPI121_0
+	ldr	r1, .LCPI121_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI121_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -11558,6 +15099,15 @@ __udivmodsi4:
 	str	r0, [sp, #8]
 	b	.LBB121_12
 .LBB121_12:                             @   in Loop: Header=BB121_9 Depth=1
+	ldr	r1, .LCPI121_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [sp, #12]
 	lsr	r0, r0, #1
 	str	r0, [sp, #12]
@@ -11571,8 +15121,16 @@ __udivmodsi4:
 	beq	.LBB121_15
 	b	.LBB121_14
 .LBB121_14:
-	ldr	r1, .LCPI121_0
+	ldr	r1, .LCPI121_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #48]
+	ldr	r1, [r2, #52]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #48]
+	str	r1, [r2, #52]
+	ldr	r1, .LCPI121_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -11584,6 +15142,15 @@ __udivmodsi4:
 	str	r0, [r11, #-4]
 	b	.LBB121_16
 .LBB121_15:
+	ldr	r1, .LCPI121_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #56]
+	ldr	r0, [r1, #60]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #56]
+	str	r0, [r1, #60]
 	ldr	r0, [sp, #8]
 	str	r0, [r11, #-4]
 	b	.LBB121_16
@@ -11596,6 +15163,8 @@ __udivmodsi4:
 @ %bb.17:
 .LCPI121_0:
 	.long	.L__profc___udivmodsi4(sbrel)
+.LCPI121_1:
+	.long	__llvm_gcov_ctr.121(sbrel)
 .Lfunc_end121:
 	.size	__udivmodsi4, .Lfunc_end121-__udivmodsi4
 	.fnend
@@ -11631,8 +15200,16 @@ __mspabi_cmpf:
 	bgt	.LBB122_2
 	b	.LBB122_1
 .LBB122_1:
-	ldr	r1, .LCPI122_0
+	ldr	r1, .LCPI122_3
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI122_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -11653,8 +15230,16 @@ __mspabi_cmpf:
 	blt	.LBB122_4
 	b	.LBB122_3
 .LBB122_3:
-	ldr	r1, .LCPI122_0
+	ldr	r1, .LCPI122_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI122_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -11666,6 +15251,15 @@ __mspabi_cmpf:
 	str	r0, [r11, #-4]
 	b	.LBB122_5
 .LBB122_4:
+	ldr	r1, .LCPI122_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-4]
 	b	.LBB122_5
@@ -11682,6 +15276,8 @@ __mspabi_cmpf:
 	.long	__ltsf2
 .LCPI122_2:
 	.long	__gtsf2
+.LCPI122_3:
+	.long	__llvm_gcov_ctr.122(sbrel)
 .Lfunc_end122:
 	.size	__mspabi_cmpf, .Lfunc_end122-__mspabi_cmpf
 	.fnend
@@ -11723,8 +15319,16 @@ __mspabi_cmpd:
 	bgt	.LBB123_2
 	b	.LBB123_1
 .LBB123_1:
-	ldr	r1, .LCPI123_0
+	ldr	r1, .LCPI123_3
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI123_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -11747,8 +15351,16 @@ __mspabi_cmpd:
 	blt	.LBB123_4
 	b	.LBB123_3
 .LBB123_3:
-	ldr	r1, .LCPI123_0
+	ldr	r1, .LCPI123_3
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI123_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -11760,6 +15372,15 @@ __mspabi_cmpd:
 	str	r0, [r11, #-12]
 	b	.LBB123_5
 .LBB123_4:
+	ldr	r1, .LCPI123_3
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	mov	r0, #0
 	str	r0, [r11, #-12]
 	b	.LBB123_5
@@ -11776,6 +15397,8 @@ __mspabi_cmpd:
 	.long	__ltdf2
 .LCPI123_2:
 	.long	__gtdf2
+.LCPI123_3:
+	.long	__llvm_gcov_ctr.123(sbrel)
 .Lfunc_end123:
 	.size	__mspabi_cmpd, .Lfunc_end123-__mspabi_cmpd
 	.fnend
@@ -11789,19 +15412,30 @@ __mspabi_mpysll:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI124_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI124_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI124_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp]
+	ldr	r2, [r11, #-4]
+	ldr	r3, [sp, #4]
 	smull	r0, r1, r2, r3
 	mov	sp, r11
 	pop	{r11, lr}
@@ -11809,6 +15443,8 @@ __mspabi_mpysll:
 	.p2align	2
 @ %bb.1:
 .LCPI124_0:
+	.long	__llvm_gcov_ctr.124(sbrel)
+.LCPI124_1:
 	.long	.L__profc___mspabi_mpysll(sbrel)
 .Lfunc_end124:
 	.size	__mspabi_mpysll, .Lfunc_end124-__mspabi_mpysll
@@ -11823,19 +15459,30 @@ __mspabi_mpyull:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	str	r1, [sp]
-	ldr	r0, .LCPI125_0
+	sub	sp, sp, #12
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI125_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI125_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r2, [sp, #4]
-	ldr	r3, [sp]
+	ldr	r2, [r11, #-4]
+	ldr	r3, [sp, #4]
 	umull	r0, r1, r2, r3
 	mov	sp, r11
 	pop	{r11, lr}
@@ -11843,6 +15490,8 @@ __mspabi_mpyull:
 	.p2align	2
 @ %bb.1:
 .LCPI125_0:
+	.long	__llvm_gcov_ctr.125(sbrel)
+.LCPI125_1:
 	.long	.L__profc___mspabi_mpyull(sbrel)
 .Lfunc_end125:
 	.size	__mspabi_mpyull, .Lfunc_end125-__mspabi_mpyull
@@ -11876,8 +15525,16 @@ __mulhi3:
 	bgt	.LBB126_2
 	b	.LBB126_1
 .LBB126_1:
-	ldr	r1, .LCPI126_0
+	ldr	r1, .LCPI126_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI126_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -11903,8 +15560,16 @@ __mulhi3:
 	beq	.LBB126_6
 	b	.LBB126_4
 .LBB126_4:                              @   in Loop: Header=BB126_3 Depth=1
-	ldr	r1, .LCPI126_0
+	ldr	r1, .LCPI126_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI126_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -11923,8 +15588,16 @@ __mulhi3:
 	b	.LBB126_5
 .LBB126_5:                              @   in Loop: Header=BB126_3 Depth=1
 	ldr	r0, [sp, #4]                    @ 4-byte Reload
-	ldr	r2, .LCPI126_0
+	ldr	r2, .LCPI126_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI126_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #32]
 	ldr	r1, [r2, #36]
@@ -11954,8 +15627,16 @@ __mulhi3:
 	beq	.LBB126_9
 	b	.LBB126_8
 .LBB126_8:                              @   in Loop: Header=BB126_3 Depth=1
-	ldr	r1, .LCPI126_0
+	ldr	r1, .LCPI126_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI126_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -11977,6 +15658,15 @@ __mulhi3:
 	str	r0, [r11, #-8]
 	b	.LBB126_10
 .LBB126_10:                             @   in Loop: Header=BB126_3 Depth=1
+	ldr	r1, .LCPI126_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	ldrb	r0, [r11, #-9]
 	add	r0, r0, #1
 	strb	r0, [r11, #-9]
@@ -11987,8 +15677,16 @@ __mulhi3:
 	beq	.LBB126_13
 	b	.LBB126_12
 .LBB126_12:
-	ldr	r1, .LCPI126_0
+	ldr	r1, .LCPI126_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #40]
+	ldr	r1, [r2, #44]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #40]
+	str	r1, [r2, #44]
+	ldr	r1, .LCPI126_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #48]
 	ldr	r0, [r1, #52]
@@ -12001,6 +15699,15 @@ __mulhi3:
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB126_14
 .LBB126_13:
+	ldr	r1, .LCPI126_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #48]
+	ldr	r0, [r1, #52]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #48]
+	str	r0, [r1, #52]
 	ldr	r0, [sp, #12]
 	str	r0, [sp]                        @ 4-byte Spill
 	b	.LBB126_14
@@ -12013,6 +15720,8 @@ __mulhi3:
 @ %bb.15:
 .LCPI126_0:
 	.long	.L__profc___mulhi3(sbrel)
+.LCPI126_1:
+	.long	__llvm_gcov_ctr.126(sbrel)
 .Lfunc_end126:
 	.size	__mulhi3, .Lfunc_end126-__mulhi3
 	.fnend
@@ -12026,11 +15735,22 @@ __divsi3:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	ldr	r0, .LCPI127_0
+	sub	sp, sp, #24
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #4]                    @ 4-byte Reload
+	ldr	r3, .LCPI127_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI127_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -12038,7 +15758,7 @@ __divsi3:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp, #4]
+	str	r0, [sp, #12]
 	ldr	r0, [r11, #-4]
 	cmn	r0, #1
 	bgt	.LBB127_2
@@ -12046,6 +15766,14 @@ __divsi3:
 .LBB127_1:
 	ldr	r1, .LCPI127_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI127_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12056,19 +15784,27 @@ __divsi3:
 	ldr	r0, [r11, #-4]
 	rsb	r0, r0, #0
 	str	r0, [r11, #-4]
-	ldr	r0, [sp, #4]
+	ldr	r0, [sp, #12]
 	rsbs	r1, r0, #0
 	adc	r0, r0, r1
-	str	r0, [sp, #4]
+	str	r0, [sp, #12]
 	b	.LBB127_2
 .LBB127_2:
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	cmn	r0, #1
 	bgt	.LBB127_4
 	b	.LBB127_3
 .LBB127_3:
 	ldr	r1, .LCPI127_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI127_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -12076,29 +15812,37 @@ __divsi3:
 	adc	r0, r0, #0
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	rsb	r0, r0, #0
-	str	r0, [sp, #8]
-	ldr	r0, [sp, #4]
+	str	r0, [r11, #-8]
+	ldr	r0, [sp, #12]
 	rsbs	r1, r0, #0
 	adc	r0, r0, r1
-	str	r0, [sp, #4]
+	str	r0, [sp, #12]
 	b	.LBB127_4
 .LBB127_4:
 	ldr	r0, [r11, #-4]
-	ldr	r1, [sp, #8]
-	ldr	r3, .LCPI127_1
+	ldr	r1, [r11, #-8]
+	ldr	r3, .LCPI127_2
 	mov	r2, #0
 	mov	lr, pc
 	mov	pc, r3
-	str	r0, [sp]
-	ldr	r0, [sp, #4]
+	str	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #0
 	beq	.LBB127_6
 	b	.LBB127_5
 .LBB127_5:
 	ldr	r1, .LCPI127_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI127_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -12106,20 +15850,22 @@ __divsi3:
 	adc	r0, r0, #0
 	str	r2, [r1, #24]
 	str	r0, [r1, #28]
-	ldr	r0, [sp]
+	ldr	r0, [sp, #8]
 	rsb	r0, r0, #0
-	str	r0, [sp]
+	str	r0, [sp, #8]
 	b	.LBB127_6
 .LBB127_6:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #8]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.7:
 .LCPI127_0:
-	.long	.L__profc___divsi3(sbrel)
+	.long	__llvm_gcov_ctr.127(sbrel)
 .LCPI127_1:
+	.long	.L__profc___divsi3(sbrel)
+.LCPI127_2:
 	.long	__udivmodsi4
 .Lfunc_end127:
 	.size	__divsi3, .Lfunc_end127-__divsi3
@@ -12134,11 +15880,22 @@ __modsi3:
 @ %bb.0:
 	push	{r11, lr}
 	mov	r11, sp
-	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	str	r1, [sp, #8]
-	ldr	r0, .LCPI128_0
+	sub	sp, sp, #24
+	str	r1, [sp, #4]                    @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp, #4]                    @ 4-byte Reload
+	ldr	r3, .LCPI128_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI128_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -12146,7 +15903,7 @@ __modsi3:
 	str	r2, [r1]
 	str	r0, [r1, #4]
 	mov	r0, #0
-	str	r0, [sp, #4]
+	str	r0, [sp, #12]
 	ldr	r0, [r11, #-4]
 	cmn	r0, #1
 	bgt	.LBB128_2
@@ -12154,6 +15911,14 @@ __modsi3:
 .LBB128_1:
 	ldr	r1, .LCPI128_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI128_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12165,16 +15930,24 @@ __modsi3:
 	rsb	r0, r0, #0
 	str	r0, [r11, #-4]
 	mov	r0, #1
-	str	r0, [sp, #4]
+	str	r0, [sp, #12]
 	b	.LBB128_2
 .LBB128_2:
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	cmn	r0, #1
 	bgt	.LBB128_4
 	b	.LBB128_3
 .LBB128_3:
 	ldr	r1, .LCPI128_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI128_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -12182,25 +15955,33 @@ __modsi3:
 	adc	r0, r0, #0
 	str	r2, [r1, #16]
 	str	r0, [r1, #20]
-	ldr	r0, [sp, #8]
+	ldr	r0, [r11, #-8]
 	rsb	r0, r0, #0
-	str	r0, [sp, #8]
+	str	r0, [r11, #-8]
 	b	.LBB128_4
 .LBB128_4:
 	ldr	r0, [r11, #-4]
-	ldr	r1, [sp, #8]
-	ldr	r3, .LCPI128_1
+	ldr	r1, [r11, #-8]
+	ldr	r3, .LCPI128_2
 	mov	r2, #1
 	mov	lr, pc
 	mov	pc, r3
-	str	r0, [sp]
-	ldr	r0, [sp, #4]
+	str	r0, [sp, #8]
+	ldr	r0, [sp, #12]
 	cmp	r0, #0
 	beq	.LBB128_6
 	b	.LBB128_5
 .LBB128_5:
 	ldr	r1, .LCPI128_0
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI128_1
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -12208,20 +15989,22 @@ __modsi3:
 	adc	r0, r0, #0
 	str	r2, [r1, #24]
 	str	r0, [r1, #28]
-	ldr	r0, [sp]
+	ldr	r0, [sp, #8]
 	rsb	r0, r0, #0
-	str	r0, [sp]
+	str	r0, [sp, #8]
 	b	.LBB128_6
 .LBB128_6:
-	ldr	r0, [sp]
+	ldr	r0, [sp, #8]
 	mov	sp, r11
 	pop	{r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.7:
 .LCPI128_0:
-	.long	.L__profc___modsi3(sbrel)
+	.long	__llvm_gcov_ctr.128(sbrel)
 .LCPI128_1:
+	.long	.L__profc___modsi3(sbrel)
+.LCPI128_2:
 	.long	__udivmodsi4
 .Lfunc_end128:
 	.size	__modsi3, .Lfunc_end128-__modsi3
@@ -12264,8 +16047,16 @@ __udivmodhi4:
 	bge	.LBB129_6
 	b	.LBB129_2
 .LBB129_2:                              @   in Loop: Header=BB129_1 Depth=1
-	ldr	r1, .LCPI129_0
+	ldr	r1, .LCPI129_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI129_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -12280,8 +16071,16 @@ __udivmodhi4:
 	beq	.LBB129_6
 	b	.LBB129_3
 .LBB129_3:                              @   in Loop: Header=BB129_1 Depth=1
-	ldr	r1, .LCPI129_0
+	ldr	r1, .LCPI129_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI129_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -12311,8 +16110,16 @@ __udivmodhi4:
 	b	.LBB129_5
 .LBB129_5:                              @   in Loop: Header=BB129_1 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI129_0
+	ldr	r2, .LCPI129_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI129_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -12328,8 +16135,16 @@ __udivmodhi4:
 	beq	.LBB129_8
 	b	.LBB129_7
 .LBB129_7:                              @   in Loop: Header=BB129_1 Depth=1
-	ldr	r1, .LCPI129_0
+	ldr	r1, .LCPI129_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI129_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12367,8 +16182,16 @@ __udivmodhi4:
 	blt	.LBB129_12
 	b	.LBB129_11
 .LBB129_11:                             @   in Loop: Header=BB129_9 Depth=1
-	ldr	r1, .LCPI129_0
+	ldr	r1, .LCPI129_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI129_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -12386,6 +16209,15 @@ __udivmodhi4:
 	strh	r0, [sp, #8]
 	b	.LBB129_12
 .LBB129_12:                             @   in Loop: Header=BB129_9 Depth=1
+	ldr	r1, .LCPI129_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldrh	r0, [sp, #10]
 	lsr	r0, r0, #1
 	strh	r0, [sp, #10]
@@ -12399,8 +16231,16 @@ __udivmodhi4:
 	beq	.LBB129_15
 	b	.LBB129_14
 .LBB129_14:
-	ldr	r1, .LCPI129_0
+	ldr	r1, .LCPI129_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #48]
+	ldr	r1, [r2, #52]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #48]
+	str	r1, [r2, #52]
+	ldr	r1, .LCPI129_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -12412,6 +16252,15 @@ __udivmodhi4:
 	strh	r0, [r11, #-2]
 	b	.LBB129_16
 .LBB129_15:
+	ldr	r1, .LCPI129_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #56]
+	ldr	r0, [r1, #60]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #56]
+	str	r0, [r1, #60]
 	ldrh	r0, [sp, #8]
 	strh	r0, [r11, #-2]
 	b	.LBB129_16
@@ -12424,6 +16273,8 @@ __udivmodhi4:
 @ %bb.17:
 .LCPI129_0:
 	.long	.L__profc___udivmodhi4(sbrel)
+.LCPI129_1:
+	.long	__llvm_gcov_ctr.129(sbrel)
 .Lfunc_end129:
 	.size	__udivmodhi4, .Lfunc_end129-__udivmodhi4
 	.fnend
@@ -12463,8 +16314,16 @@ __udivmodsi4_libgcc:
 	bhs	.LBB130_6
 	b	.LBB130_2
 .LBB130_2:                              @   in Loop: Header=BB130_1 Depth=1
-	ldr	r1, .LCPI130_0
+	ldr	r1, .LCPI130_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI130_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -12479,8 +16338,16 @@ __udivmodsi4_libgcc:
 	beq	.LBB130_6
 	b	.LBB130_3
 .LBB130_3:                              @   in Loop: Header=BB130_1 Depth=1
-	ldr	r1, .LCPI130_0
+	ldr	r1, .LCPI130_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI130_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #40]
 	ldr	r0, [r1, #44]
@@ -12510,8 +16377,16 @@ __udivmodsi4_libgcc:
 	b	.LBB130_5
 .LBB130_5:                              @   in Loop: Header=BB130_1 Depth=1
 	ldr	r0, [sp]                        @ 4-byte Reload
-	ldr	r2, .LCPI130_0
+	ldr	r2, .LCPI130_1
 	mov	r1, r9
+	add	r3, r1, r2
+	ldr	r12, [r3, #16]
+	ldr	r2, [r3, #20]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3, #16]
+	str	r2, [r3, #20]
+	ldr	r2, .LCPI130_0
 	add	r2, r1, r2
 	ldr	r3, [r2, #24]
 	ldr	r1, [r2, #28]
@@ -12527,8 +16402,16 @@ __udivmodsi4_libgcc:
 	beq	.LBB130_8
 	b	.LBB130_7
 .LBB130_7:                              @   in Loop: Header=BB130_1 Depth=1
-	ldr	r1, .LCPI130_0
+	ldr	r1, .LCPI130_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI130_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12566,8 +16449,16 @@ __udivmodsi4_libgcc:
 	blo	.LBB130_12
 	b	.LBB130_11
 .LBB130_11:                             @   in Loop: Header=BB130_9 Depth=1
-	ldr	r1, .LCPI130_0
+	ldr	r1, .LCPI130_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #32]
+	ldr	r1, [r2, #36]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #32]
+	str	r1, [r2, #36]
+	ldr	r1, .LCPI130_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #56]
 	ldr	r0, [r1, #60]
@@ -12585,6 +16476,15 @@ __udivmodsi4_libgcc:
 	str	r0, [sp, #8]
 	b	.LBB130_12
 .LBB130_12:                             @   in Loop: Header=BB130_9 Depth=1
+	ldr	r1, .LCPI130_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #40]
+	ldr	r0, [r1, #44]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #40]
+	str	r0, [r1, #44]
 	ldr	r0, [sp, #12]
 	lsr	r0, r0, #1
 	str	r0, [sp, #12]
@@ -12598,8 +16498,16 @@ __udivmodsi4_libgcc:
 	beq	.LBB130_15
 	b	.LBB130_14
 .LBB130_14:
-	ldr	r1, .LCPI130_0
+	ldr	r1, .LCPI130_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #48]
+	ldr	r1, [r2, #52]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #48]
+	str	r1, [r2, #52]
+	ldr	r1, .LCPI130_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #64]
 	ldr	r0, [r1, #68]
@@ -12611,6 +16519,15 @@ __udivmodsi4_libgcc:
 	str	r0, [r11, #-4]
 	b	.LBB130_16
 .LBB130_15:
+	ldr	r1, .LCPI130_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #56]
+	ldr	r0, [r1, #60]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #56]
+	str	r0, [r1, #60]
 	ldr	r0, [sp, #8]
 	str	r0, [r11, #-4]
 	b	.LBB130_16
@@ -12623,6 +16540,8 @@ __udivmodsi4_libgcc:
 @ %bb.17:
 .LCPI130_0:
 	.long	.L__profc___udivmodsi4_libgcc(sbrel)
+.LCPI130_1:
+	.long	__llvm_gcov_ctr.130(sbrel)
 .Lfunc_end130:
 	.size	__udivmodsi4_libgcc, .Lfunc_end130-__udivmodsi4_libgcc
 	.fnend
@@ -12661,8 +16580,16 @@ __ashldi3:
 	beq	.LBB131_2
 	b	.LBB131_1
 .LBB131_1:
-	ldr	r1, .LCPI131_0
+	ldr	r1, .LCPI131_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI131_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12684,8 +16611,16 @@ __ashldi3:
 	bne	.LBB131_4
 	b	.LBB131_3
 .LBB131_3:
-	ldr	r1, .LCPI131_0
+	ldr	r1, .LCPI131_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI131_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -12699,6 +16634,15 @@ __ashldi3:
 	str	r0, [r11, #-8]
 	b	.LBB131_6
 .LBB131_4:
+	ldr	r1, .LCPI131_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #20]
 	lsl	r0, r0, r1
@@ -12727,6 +16671,8 @@ __ashldi3:
 @ %bb.7:
 .LCPI131_0:
 	.long	.L__profc___ashldi3(sbrel)
+.LCPI131_1:
+	.long	__llvm_gcov_ctr.131(sbrel)
 .Lfunc_end131:
 	.size	__ashldi3, .Lfunc_end131-__ashldi3
 	.fnend
@@ -12765,8 +16711,16 @@ __ashrdi3:
 	beq	.LBB132_2
 	b	.LBB132_1
 .LBB132_1:
-	ldr	r1, .LCPI132_0
+	ldr	r1, .LCPI132_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI132_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -12789,8 +16743,16 @@ __ashrdi3:
 	bne	.LBB132_4
 	b	.LBB132_3
 .LBB132_3:
-	ldr	r1, .LCPI132_0
+	ldr	r1, .LCPI132_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI132_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -12804,6 +16766,15 @@ __ashrdi3:
 	str	r0, [r11, #-8]
 	b	.LBB132_6
 .LBB132_4:
+	ldr	r1, .LCPI132_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	ldr	r1, [sp, #20]
 	asr	r0, r0, r1
@@ -12832,6 +16803,8 @@ __ashrdi3:
 @ %bb.7:
 .LCPI132_0:
 	.long	.L__profc___ashrdi3(sbrel)
+.LCPI132_1:
+	.long	__llvm_gcov_ctr.132(sbrel)
 .Lfunc_end132:
 	.size	__ashrdi3, .Lfunc_end132-__ashrdi3
 	.fnend
@@ -12846,12 +16819,21 @@ __bswapdi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #4]
-	str	r0, [sp]
-	ldr	r0, .LCPI133_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI133_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI133_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -12878,6 +16860,8 @@ __bswapdi2:
 	.p2align	2
 @ %bb.1:
 .LCPI133_0:
+	.long	__llvm_gcov_ctr.133(sbrel)
+.LCPI133_1:
 	.long	.L__profc___bswapdi2(sbrel)
 .Lfunc_end133:
 	.size	__bswapdi2, .Lfunc_end133-__bswapdi2
@@ -12893,9 +16877,17 @@ __bswapsi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #4
-	str	r0, [sp]
-	ldr	r0, .LCPI134_0
+	ldr	r2, .LCPI134_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI134_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -12915,6 +16907,8 @@ __bswapsi2:
 	.p2align	2
 @ %bb.1:
 .LCPI134_0:
+	.long	__llvm_gcov_ctr.134(sbrel)
+.LCPI134_1:
 	.long	.L__profc___bswapsi2(sbrel)
 .Lfunc_end134:
 	.size	__bswapsi2, .Lfunc_end134-__bswapsi2
@@ -12930,9 +16924,17 @@ __clzsi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI135_0
+	ldr	r2, .LCPI135_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI135_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13013,6 +17015,8 @@ __clzsi2:
 	.p2align	2
 @ %bb.1:
 .LCPI135_0:
+	.long	__llvm_gcov_ctr.135(sbrel)
+.LCPI135_1:
 	.long	.L__profc___clzsi2(sbrel)
 .Lfunc_end135:
 	.size	__clzsi2, .Lfunc_end135-__clzsi2
@@ -13058,8 +17062,16 @@ __cmpdi2:
 	bge	.LBB136_2
 	b	.LBB136_1
 .LBB136_1:
-	ldr	r1, .LCPI136_0
+	ldr	r1, .LCPI136_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI136_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -13077,8 +17089,16 @@ __cmpdi2:
 	ble	.LBB136_4
 	b	.LBB136_3
 .LBB136_3:
-	ldr	r1, .LCPI136_0
+	ldr	r1, .LCPI136_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI136_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -13096,8 +17116,16 @@ __cmpdi2:
 	bhs	.LBB136_6
 	b	.LBB136_5
 .LBB136_5:
-	ldr	r1, .LCPI136_0
+	ldr	r1, .LCPI136_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI136_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -13115,8 +17143,16 @@ __cmpdi2:
 	bls	.LBB136_8
 	b	.LBB136_7
 .LBB136_7:
-	ldr	r1, .LCPI136_0
+	ldr	r1, .LCPI136_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI136_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -13128,6 +17164,15 @@ __cmpdi2:
 	str	r0, [r11, #-4]
 	b	.LBB136_9
 .LBB136_8:
+	ldr	r1, .LCPI136_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #1
 	str	r0, [r11, #-4]
 	b	.LBB136_9
@@ -13140,6 +17185,8 @@ __cmpdi2:
 @ %bb.10:
 .LCPI136_0:
 	.long	.L__profc___cmpdi2(sbrel)
+.LCPI136_1:
+	.long	__llvm_gcov_ctr.136(sbrel)
 .Lfunc_end136:
 	.size	__cmpdi2, .Lfunc_end136-__cmpdi2
 	.fnend
@@ -13151,19 +17198,28 @@ __cmpdi2:
 __aeabi_lcmp:
 	.fnstart
 @ %bb.0:
-	push	{r4, r10, r11, lr}
+	push	{r4, r5, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-                                        @ kill: def $r12 killed $r1
-                                        @ kill: def $r12 killed $r0
-	str	r1, [sp, #12]
+	mov	r12, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r0
+	ldr	lr, .LCPI137_0
+	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [sp, #12]
 	str	r0, [sp, #8]
 	str	r3, [sp, #4]
 	str	r2, [sp]
-	ldr	r0, .LCPI137_0
-	mov	r1, r9
+	ldr	r0, .LCPI137_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13174,18 +17230,20 @@ __aeabi_lcmp:
 	ldr	r1, [sp, #12]
 	ldr	r2, [sp]
 	ldr	r3, [sp, #4]
-	ldr	r4, .LCPI137_1
+	ldr	r4, .LCPI137_2
 	mov	lr, pc
 	mov	pc, r4
 	sub	r0, r0, #1
 	sub	sp, r11, #8
-	pop	{r4, r10, r11, lr}
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI137_0:
-	.long	.L__profc___aeabi_lcmp(sbrel)
+	.long	__llvm_gcov_ctr.137(sbrel)
 .LCPI137_1:
+	.long	.L__profc___aeabi_lcmp(sbrel)
+.LCPI137_2:
 	.long	__cmpdi2
 .Lfunc_end137:
 	.size	__aeabi_lcmp, .Lfunc_end137-__aeabi_lcmp
@@ -13201,9 +17259,17 @@ __ctzsi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #16
-	str	r0, [r11, #-4]
-	ldr	r0, .LCPI138_0
+	ldr	r2, .LCPI138_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [r11, #-4]
+	ldr	r0, .LCPI138_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13281,6 +17347,8 @@ __ctzsi2:
 	.p2align	2
 @ %bb.1:
 .LCPI138_0:
+	.long	__llvm_gcov_ctr.138(sbrel)
+.LCPI138_1:
 	.long	.L__profc___ctzsi2(sbrel)
 .Lfunc_end138:
 	.size	__ctzsi2, .Lfunc_end138-__ctzsi2
@@ -13320,8 +17388,16 @@ __lshrdi3:
 	beq	.LBB139_2
 	b	.LBB139_1
 .LBB139_1:
-	ldr	r1, .LCPI139_0
+	ldr	r1, .LCPI139_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI139_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -13343,8 +17419,16 @@ __lshrdi3:
 	bne	.LBB139_4
 	b	.LBB139_3
 .LBB139_3:
-	ldr	r1, .LCPI139_0
+	ldr	r1, .LCPI139_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI139_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -13358,6 +17442,15 @@ __lshrdi3:
 	str	r0, [r11, #-8]
 	b	.LBB139_6
 .LBB139_4:
+	ldr	r1, .LCPI139_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #16]
+	ldr	r0, [r1, #20]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #16]
+	str	r0, [r1, #20]
 	ldr	r0, [sp, #12]
 	ldr	r1, [sp, #20]
 	lsr	r0, r0, r1
@@ -13386,6 +17479,8 @@ __lshrdi3:
 @ %bb.7:
 .LCPI139_0:
 	.long	.L__profc___lshrdi3(sbrel)
+.LCPI139_1:
+	.long	__llvm_gcov_ctr.139(sbrel)
 .Lfunc_end139:
 	.size	__lshrdi3, .Lfunc_end139-__lshrdi3
 	.fnend
@@ -13400,10 +17495,21 @@ __muldsi3:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #32
-	str	r0, [r11, #-4]
-	str	r1, [r11, #-8]
-	ldr	r0, .LCPI140_0
+	str	r1, [sp]                        @ 4-byte Spill
+	mov	r2, r0
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r3, .LCPI140_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI140_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13464,6 +17570,8 @@ __muldsi3:
 	.p2align	2
 @ %bb.1:
 .LCPI140_0:
+	.long	__llvm_gcov_ctr.140(sbrel)
+.LCPI140_1:
 	.long	.L__profc___muldsi3(sbrel)
 .Lfunc_end140:
 	.size	__muldsi3, .Lfunc_end140-__muldsi3
@@ -13476,36 +17584,45 @@ __muldsi3:
 __muldi3_compiler_rt:
 	.fnstart
 @ %bb.0:
-	push	{r11, lr}
-	mov	r11, sp
+	push	{r4, r5, r11, lr}
+	add	r11, sp, #8
 	sub	sp, sp, #40
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-                                        @ kill: def $r12 killed $r1
-                                        @ kill: def $r12 killed $r0
-	str	r1, [r11, #-4]
-	str	r0, [r11, #-8]
-	str	r3, [r11, #-12]
-	str	r2, [r11, #-16]
-	ldr	r0, .LCPI141_0
+	mov	r12, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r0
+	ldr	lr, .LCPI141_0
 	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [r11, #-12]
+	str	r0, [r11, #-16]
+	str	r3, [sp, #28]
+	str	r2, [sp, #24]
+	ldr	r0, .LCPI141_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
 	adc	r0, r0, #0
 	str	r2, [r1]
 	str	r0, [r1, #4]
-	ldr	r0, [r11, #-8]
-	ldr	r1, [r11, #-4]
-	str	r1, [sp, #20]
-	str	r0, [sp, #16]
 	ldr	r0, [r11, #-16]
 	ldr	r1, [r11, #-12]
+	str	r1, [sp, #20]
+	str	r0, [sp, #16]
+	ldr	r0, [sp, #24]
+	ldr	r1, [sp, #28]
 	str	r1, [sp, #12]
 	str	r0, [sp, #8]
 	ldr	r0, [sp, #16]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI141_1
+	ldr	r2, .LCPI141_2
 	mov	lr, pc
 	mov	pc, r2
 	str	r1, [sp, #4]
@@ -13521,14 +17638,16 @@ __muldi3_compiler_rt:
 	str	r0, [sp, #4]
 	ldr	r0, [sp]
 	ldr	r1, [sp, #4]
-	mov	sp, r11
-	pop	{r11, lr}
+	sub	sp, r11, #8
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI141_0:
-	.long	.L__profc___muldi3_compiler_rt(sbrel)
+	.long	__llvm_gcov_ctr.141(sbrel)
 .LCPI141_1:
+	.long	.L__profc___muldi3_compiler_rt(sbrel)
+.LCPI141_2:
 	.long	__muldsi3
 .Lfunc_end141:
 	.size	__muldi3_compiler_rt, .Lfunc_end141-__muldi3_compiler_rt
@@ -13544,12 +17663,21 @@ __negdi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [sp, #4]
-	str	r0, [sp]
-	ldr	r0, .LCPI142_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI142_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [sp, #4]
+	str	r0, [sp]
+	ldr	r0, .LCPI142_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13566,6 +17694,8 @@ __negdi2:
 	.p2align	2
 @ %bb.1:
 .LCPI142_0:
+	.long	__llvm_gcov_ctr.142(sbrel)
+.LCPI142_1:
 	.long	.L__profc___negdi2(sbrel)
 .Lfunc_end142:
 	.size	__negdi2, .Lfunc_end142-__negdi2
@@ -13581,12 +17711,21 @@ __paritydi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #24
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [r11, #-4]
-	str	r0, [r11, #-8]
-	ldr	r0, .LCPI143_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI143_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI143_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13622,6 +17761,8 @@ __paritydi2:
 	.p2align	2
 @ %bb.1:
 .LCPI143_0:
+	.long	__llvm_gcov_ctr.143(sbrel)
+.LCPI143_1:
 	.long	.L__profc___paritydi2(sbrel)
 .Lfunc_end143:
 	.size	__paritydi2, .Lfunc_end143-__paritydi2
@@ -13637,9 +17778,17 @@ __paritysi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI144_0
+	ldr	r2, .LCPI144_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI144_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13669,6 +17818,8 @@ __paritysi2:
 	.p2align	2
 @ %bb.1:
 .LCPI144_0:
+	.long	__llvm_gcov_ctr.144(sbrel)
+.LCPI144_1:
 	.long	.L__profc___paritysi2(sbrel)
 .Lfunc_end144:
 	.size	__paritysi2, .Lfunc_end144-__paritysi2
@@ -13684,12 +17835,21 @@ __popcountdi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #24
-                                        @ kill: def $r2 killed $r1
-                                        @ kill: def $r2 killed $r0
-	str	r1, [r11, #-4]
-	str	r0, [r11, #-8]
-	ldr	r0, .LCPI145_0
+	mov	r2, r1
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r0
+	ldr	r3, .LCPI145_0
 	mov	r1, r9
+	mov	r12, r1
+	ldr	lr, [r12, r3]!
+	ldr	r3, [r12, #4]
+	adds	lr, lr, #1
+	adc	r3, r3, #0
+	str	lr, [r12]
+	str	r3, [r12, #4]
+	str	r2, [r11, #-4]
+	str	r0, [r11, #-8]
+	ldr	r0, .LCPI145_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13704,7 +17864,7 @@ __popcountdi2:
 	ldr	r0, [sp, #12]
 	lsrs	r2, r0, #1
 	rrx	r3, r1
-	ldr	r12, .LCPI145_1
+	ldr	r12, .LCPI145_2
 	and	r2, r2, r12
 	and	r3, r3, r12
 	subs	r1, r1, r3
@@ -13713,7 +17873,7 @@ __popcountdi2:
 	str	r0, [sp, #12]
 	ldr	r3, [sp, #8]
 	ldr	r2, [sp, #12]
-	ldr	r12, .LCPI145_2
+	ldr	r12, .LCPI145_3
 	and	r1, r12, r2, lsr #2
 	and	r0, r12, r3, lsr #2
 	and	r2, r2, r12
@@ -13728,7 +17888,7 @@ __popcountdi2:
 	orr	r2, r2, r0, lsl #28
 	adds	r1, r1, r2
 	adc	r0, r0, r0, lsr #4
-	ldr	r2, .LCPI145_3
+	ldr	r2, .LCPI145_4
 	and	r0, r0, r2
 	and	r1, r1, r2
 	str	r1, [sp, #8]
@@ -13749,12 +17909,14 @@ __popcountdi2:
 	.p2align	2
 @ %bb.1:
 .LCPI145_0:
-	.long	.L__profc___popcountdi2(sbrel)
+	.long	__llvm_gcov_ctr.145(sbrel)
 .LCPI145_1:
-	.long	1431655765                      @ 0x55555555
+	.long	.L__profc___popcountdi2(sbrel)
 .LCPI145_2:
-	.long	858993459                       @ 0x33333333
+	.long	1431655765                      @ 0x55555555
 .LCPI145_3:
+	.long	858993459                       @ 0x33333333
+.LCPI145_4:
 	.long	252645135                       @ 0xf0f0f0f
 .Lfunc_end145:
 	.size	__popcountdi2, .Lfunc_end145-__popcountdi2
@@ -13770,9 +17932,17 @@ __popcountsi2:
 	push	{r11, lr}
 	mov	r11, sp
 	sub	sp, sp, #8
-	str	r0, [sp, #4]
-	ldr	r0, .LCPI146_0
+	ldr	r2, .LCPI146_0
 	mov	r1, r9
+	mov	r3, r1
+	ldr	r12, [r3, r2]!
+	ldr	r2, [r3, #4]
+	adds	r12, r12, #1
+	adc	r2, r2, #0
+	str	r12, [r3]
+	str	r2, [r3, #4]
+	str	r0, [sp, #4]
+	ldr	r0, .LCPI146_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -13782,19 +17952,19 @@ __popcountsi2:
 	ldr	r0, [sp, #4]
 	str	r0, [sp]
 	ldr	r0, [sp]
-	ldr	r1, .LCPI146_1
+	ldr	r1, .LCPI146_2
 	and	r1, r1, r0, lsr #1
 	sub	r0, r0, r1
 	str	r0, [sp]
 	ldr	r1, [sp]
-	ldr	r2, .LCPI146_2
+	ldr	r2, .LCPI146_3
 	and	r0, r2, r1, lsr #2
 	and	r1, r1, r2
 	add	r0, r0, r1
 	str	r0, [sp]
 	ldr	r0, [sp]
 	add	r0, r0, r0, lsr #4
-	ldr	r1, .LCPI146_3
+	ldr	r1, .LCPI146_4
 	and	r0, r0, r1
 	str	r0, [sp]
 	ldr	r0, [sp]
@@ -13809,12 +17979,14 @@ __popcountsi2:
 	.p2align	2
 @ %bb.1:
 .LCPI146_0:
-	.long	.L__profc___popcountsi2(sbrel)
+	.long	__llvm_gcov_ctr.146(sbrel)
 .LCPI146_1:
-	.long	1431655765                      @ 0x55555555
+	.long	.L__profc___popcountsi2(sbrel)
 .LCPI146_2:
-	.long	858993459                       @ 0x33333333
+	.long	1431655765                      @ 0x55555555
 .LCPI146_3:
+	.long	858993459                       @ 0x33333333
+.LCPI146_4:
 	.long	252645135                       @ 0xf0f0f0f
 .Lfunc_end146:
 	.size	__popcountsi2, .Lfunc_end146-__popcountsi2
@@ -13867,8 +18039,16 @@ __powidf2:
 	beq	.LBB147_3
 	b	.LBB147_2
 .LBB147_2:                              @   in Loop: Header=BB147_1 Depth=1
-	ldr	r1, .LCPI147_0
+	ldr	r1, .LCPI147_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI147_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -13880,7 +18060,7 @@ __powidf2:
 	ldr	r3, [r11, #-12]
 	ldr	r0, [sp, #8]
 	ldr	r1, [sp, #12]
-	ldr	r4, .LCPI147_1
+	ldr	r4, .LCPI147_2
 	mov	lr, pc
 	mov	pc, r4
 	str	r1, [sp, #12]
@@ -13907,9 +18087,18 @@ __powidf2:
 	str	r0, [r1, #28]
 	b	.LBB147_6
 .LBB147_5:                              @   in Loop: Header=BB147_1 Depth=1
+	ldr	r1, .LCPI147_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r2, [r11, #-16]
 	ldr	r3, [r11, #-12]
-	ldr	r4, .LCPI147_2
+	ldr	r4, .LCPI147_3
 	mov	r0, r2
 	mov	r1, r3
 	mov	lr, pc
@@ -13923,8 +18112,16 @@ __powidf2:
 	beq	.LBB147_8
 	b	.LBB147_7
 .LBB147_7:
-	ldr	r1, .LCPI147_0
+	ldr	r1, .LCPI147_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI147_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -13934,7 +18131,7 @@ __powidf2:
 	str	r0, [r1, #36]
 	ldr	r2, [sp, #8]
 	ldr	r3, [sp, #12]
-	ldr	r4, .LCPI147_3
+	ldr	r4, .LCPI147_4
 	mov	r0, #0
 	mov	r1, #267386880
 	orr	r1, r1, #805306368
@@ -13944,6 +18141,15 @@ __powidf2:
 	str	r1, [sp, #4]                    @ 4-byte Spill
 	b	.LBB147_9
 .LBB147_8:
+	ldr	r1, .LCPI147_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r1, [sp, #8]
 	ldr	r0, [sp, #12]
 	str	r1, [sp]                        @ 4-byte Spill
@@ -13960,10 +18166,12 @@ __powidf2:
 .LCPI147_0:
 	.long	.L__profc___powidf2(sbrel)
 .LCPI147_1:
-	.long	__muldf3
+	.long	__llvm_gcov_ctr.147(sbrel)
 .LCPI147_2:
 	.long	__muldf3
 .LCPI147_3:
+	.long	__muldf3
+.LCPI147_4:
 	.long	__divdf3
 .Lfunc_end147:
 	.size	__powidf2, .Lfunc_end147-__powidf2
@@ -14011,8 +18219,16 @@ __powisf2:
 	beq	.LBB148_3
 	b	.LBB148_2
 .LBB148_2:                              @   in Loop: Header=BB148_1 Depth=1
-	ldr	r1, .LCPI148_0
+	ldr	r1, .LCPI148_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI148_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -14022,7 +18238,7 @@ __powisf2:
 	str	r0, [r1, #20]
 	ldr	r1, [r11, #-4]
 	ldr	r0, [sp, #8]
-	ldr	r2, .LCPI148_1
+	ldr	r2, .LCPI148_2
 	mov	lr, pc
 	mov	pc, r2
 	str	r0, [sp, #8]
@@ -14048,8 +18264,17 @@ __powisf2:
 	str	r0, [r1, #28]
 	b	.LBB148_6
 .LBB148_5:                              @   in Loop: Header=BB148_1 Depth=1
+	ldr	r1, .LCPI148_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #8]
+	ldr	r0, [r1, #12]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #8]
+	str	r0, [r1, #12]
 	ldr	r1, [r11, #-4]
-	ldr	r2, .LCPI148_2
+	ldr	r2, .LCPI148_3
 	mov	r0, r1
 	mov	lr, pc
 	mov	pc, r2
@@ -14061,8 +18286,16 @@ __powisf2:
 	beq	.LBB148_8
 	b	.LBB148_7
 .LBB148_7:
-	ldr	r1, .LCPI148_0
+	ldr	r1, .LCPI148_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI148_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -14071,13 +18304,22 @@ __powisf2:
 	str	r2, [r1, #32]
 	str	r0, [r1, #36]
 	ldr	r1, [sp, #8]
-	ldr	r2, .LCPI148_3
+	ldr	r2, .LCPI148_4
 	mov	r0, #1065353216
 	mov	lr, pc
 	mov	pc, r2
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB148_9
 .LBB148_8:
+	ldr	r1, .LCPI148_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #24]
+	ldr	r0, [r1, #28]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #24]
+	str	r0, [r1, #28]
 	ldr	r0, [sp, #8]
 	str	r0, [sp, #4]                    @ 4-byte Spill
 	b	.LBB148_9
@@ -14091,10 +18333,12 @@ __powisf2:
 .LCPI148_0:
 	.long	.L__profc___powisf2(sbrel)
 .LCPI148_1:
-	.long	__mulsf3
+	.long	__llvm_gcov_ctr.148(sbrel)
 .LCPI148_2:
 	.long	__mulsf3
 .LCPI148_3:
+	.long	__mulsf3
+.LCPI148_4:
 	.long	__divsf3
 .Lfunc_end148:
 	.size	__powisf2, .Lfunc_end148-__powisf2
@@ -14140,8 +18384,16 @@ __ucmpdi2:
 	bhs	.LBB149_2
 	b	.LBB149_1
 .LBB149_1:
-	ldr	r1, .LCPI149_0
+	ldr	r1, .LCPI149_1
 	mov	r0, r9
+	mov	r2, r0
+	ldr	r3, [r2, r1]!
+	ldr	r1, [r2, #4]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2]
+	str	r1, [r2, #4]
+	ldr	r1, .LCPI149_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #8]
 	ldr	r0, [r1, #12]
@@ -14159,8 +18411,16 @@ __ucmpdi2:
 	bls	.LBB149_4
 	b	.LBB149_3
 .LBB149_3:
-	ldr	r1, .LCPI149_0
+	ldr	r1, .LCPI149_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #8]
+	ldr	r1, [r2, #12]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #8]
+	str	r1, [r2, #12]
+	ldr	r1, .LCPI149_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #16]
 	ldr	r0, [r1, #20]
@@ -14178,8 +18438,16 @@ __ucmpdi2:
 	bhs	.LBB149_6
 	b	.LBB149_5
 .LBB149_5:
-	ldr	r1, .LCPI149_0
+	ldr	r1, .LCPI149_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #16]
+	ldr	r1, [r2, #20]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #16]
+	str	r1, [r2, #20]
+	ldr	r1, .LCPI149_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #24]
 	ldr	r0, [r1, #28]
@@ -14197,8 +18465,16 @@ __ucmpdi2:
 	bls	.LBB149_8
 	b	.LBB149_7
 .LBB149_7:
-	ldr	r1, .LCPI149_0
+	ldr	r1, .LCPI149_1
 	mov	r0, r9
+	add	r2, r0, r1
+	ldr	r3, [r2, #24]
+	ldr	r1, [r2, #28]
+	adds	r3, r3, #1
+	adc	r1, r1, #0
+	str	r3, [r2, #24]
+	str	r1, [r2, #28]
+	ldr	r1, .LCPI149_0
 	add	r1, r0, r1
 	ldr	r2, [r1, #32]
 	ldr	r0, [r1, #36]
@@ -14210,6 +18486,15 @@ __ucmpdi2:
 	str	r0, [r11, #-4]
 	b	.LBB149_9
 .LBB149_8:
+	ldr	r1, .LCPI149_1
+	mov	r0, r9
+	add	r1, r0, r1
+	ldr	r2, [r1, #32]
+	ldr	r0, [r1, #36]
+	adds	r2, r2, #1
+	adc	r0, r0, #0
+	str	r2, [r1, #32]
+	str	r0, [r1, #36]
 	mov	r0, #1
 	str	r0, [r11, #-4]
 	b	.LBB149_9
@@ -14222,6 +18507,8 @@ __ucmpdi2:
 @ %bb.10:
 .LCPI149_0:
 	.long	.L__profc___ucmpdi2(sbrel)
+.LCPI149_1:
+	.long	__llvm_gcov_ctr.149(sbrel)
 .Lfunc_end149:
 	.size	__ucmpdi2, .Lfunc_end149-__ucmpdi2
 	.fnend
@@ -14233,19 +18520,28 @@ __ucmpdi2:
 __aeabi_ulcmp:
 	.fnstart
 @ %bb.0:
-	push	{r4, r10, r11, lr}
+	push	{r4, r5, r11, lr}
 	add	r11, sp, #8
 	sub	sp, sp, #16
-                                        @ kill: def $r12 killed $r3
-                                        @ kill: def $r12 killed $r2
-                                        @ kill: def $r12 killed $r1
-                                        @ kill: def $r12 killed $r0
-	str	r1, [sp, #12]
+	mov	r12, r1
+                                        @ kill: def $r1 killed $r3
+                                        @ kill: def $r1 killed $r2
+                                        @ kill: def $r1 killed $r12
+                                        @ kill: def $r1 killed $r0
+	ldr	lr, .LCPI150_0
+	mov	r1, r9
+	mov	r4, r1
+	ldr	r5, [r4, lr]!
+	ldr	lr, [r4, #4]
+	adds	r5, r5, #1
+	adc	lr, lr, #0
+	str	r5, [r4]
+	str	lr, [r4, #4]
+	str	r12, [sp, #12]
 	str	r0, [sp, #8]
 	str	r3, [sp, #4]
 	str	r2, [sp]
-	ldr	r0, .LCPI150_0
-	mov	r1, r9
+	ldr	r0, .LCPI150_1
 	ldr	r2, [r1, r0]!
 	ldr	r0, [r1, #4]
 	adds	r2, r2, #1
@@ -14256,21 +18552,2247 @@ __aeabi_ulcmp:
 	ldr	r1, [sp, #12]
 	ldr	r2, [sp]
 	ldr	r3, [sp, #4]
-	ldr	r4, .LCPI150_1
+	ldr	r4, .LCPI150_2
 	mov	lr, pc
 	mov	pc, r4
 	sub	r0, r0, #1
 	sub	sp, r11, #8
-	pop	{r4, r10, r11, lr}
+	pop	{r4, r5, r11, lr}
 	mov	pc, lr
 	.p2align	2
 @ %bb.1:
 .LCPI150_0:
-	.long	.L__profc___aeabi_ulcmp(sbrel)
+	.long	__llvm_gcov_ctr.150(sbrel)
 .LCPI150_1:
+	.long	.L__profc___aeabi_ulcmp(sbrel)
+.LCPI150_2:
 	.long	__ucmpdi2
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
+	.fnend
+                                        @ -- End function
+	.p2align	2                               @ -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,%function
+	.code	32                              @ @__llvm_gcov_writeout
+__llvm_gcov_writeout:
+	.fnstart
+@ %bb.0:
+	push	{r11, lr}
+	mov	r11, sp
+	sub	sp, sp, #32
+	mov	r0, #0
+	str	r0, [r11, #-4]                  @ 4-byte Spill
+	b	.LBB151_1
+.LBB151_1:                              @ =>This Loop Header: Depth=1
+                                        @     Child Loop BB151_2 Depth 2
+	ldr	r0, [r11, #-4]                  @ 4-byte Reload
+	str	r0, [sp, #4]                    @ 4-byte Spill
+	add	r0, r0, r0, lsl #1
+	ldr	r2, .LCPI151_5
+.LPC151_5:
+	add	r2, pc, r2
+	ldr	r0, [r2, r0, lsl #3]!
+	str	r2, [sp, #8]                    @ 4-byte Spill
+	ldr	r1, [r2, #4]
+	ldr	r2, [r2, #8]
+	ldr	r3, .LCPI151_0
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r0, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r0, #12]
+	str	r1, [sp, #12]                   @ 4-byte Spill
+	ldr	r2, [r0, #16]
+	str	r2, [sp, #16]                   @ 4-byte Spill
+	ldr	r0, [r0, #20]
+	str	r0, [r11, #-12]                 @ 4-byte Spill
+	mov	r0, #0
+	cmp	r1, #1
+	str	r0, [r11, #-8]                  @ 4-byte Spill
+	blt	.LBB151_3
+	b	.LBB151_2
+.LBB151_2:                              @   Parent Loop BB151_1 Depth=1
+                                        @ =>  This Inner Loop Header: Depth=2
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	str	r0, [sp]                        @ 4-byte Spill
+	add	r0, r0, r0, lsl #1
+	ldr	r0, [r2, r0, lsl #2]!
+	ldr	r1, [r2, #4]
+	ldr	r2, [r2, #8]
+	ldr	r3, .LCPI151_1
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-12]                 @ 4-byte Reload
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r0, [r1, r0, lsl #3]!
+	ldr	r1, [r1, #4]
+	ldr	r2, .LCPI151_2
+	mov	lr, pc
+	mov	pc, r2
+	ldr	r0, [sp]                        @ 4-byte Reload
+	ldr	r1, [sp, #12]                   @ 4-byte Reload
+	add	r0, r0, #1
+	cmp	r0, r1
+	str	r0, [r11, #-8]                  @ 4-byte Spill
+	blt	.LBB151_2
+	b	.LBB151_3
+.LBB151_3:                              @   in Loop: Header=BB151_1 Depth=1
+	ldr	r0, .LCPI151_3
+	mov	lr, pc
+	mov	pc, r0
+	ldr	r0, .LCPI151_4
+	mov	lr, pc
+	mov	pc, r0
+	ldr	r0, [sp, #4]                    @ 4-byte Reload
+	add	r0, r0, #1
+	cmp	r0, #1
+	str	r0, [r11, #-4]                  @ 4-byte Spill
+	blt	.LBB151_1
+	b	.LBB151_4
+.LBB151_4:
+	mov	sp, r11
+	pop	{r11, lr}
+	mov	pc, lr
+	.p2align	2
+@ %bb.5:
+.LCPI151_0:
+	.long	llvm_gcda_start_file
+.LCPI151_1:
+	.long	llvm_gcda_emit_function
+.LCPI151_2:
+	.long	llvm_gcda_emit_arcs
+.LCPI151_3:
+	.long	llvm_gcda_summary_info
+.LCPI151_4:
+	.long	llvm_gcda_end_file
+.LCPI151_5:
+	.long	__llvm_internal_gcov_emit_file_info-(.LPC151_5+8)
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+	.fnend
+                                        @ -- End function
+	.p2align	2                               @ -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,%function
+	.code	32                              @ @__llvm_gcov_reset
+__llvm_gcov_reset:
+	.fnstart
+@ %bb.0:
+	push	{r11, lr}
+	mov	r11, sp
+	sub	sp, sp, #40
+	ldr	r1, .LCPI152_251
+	mov	r0, r9
+	str	r0, [r11, #-8]                  @ 4-byte Spill
+	add	r0, r0, r1
+	ldr	r3, .LCPI152_252
+	mov	r1, #0
+	str	r1, [r11, #-4]                  @ 4-byte Spill
+	mov	r2, #40
+	str	r2, [r11, #-12]                 @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_253
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_254
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_255
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_256
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_257
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_258
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_259
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_260
+	mov	r2, #16
+	str	r2, [sp, #8]                    @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_261
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_262
+	mov	r2, #24
+	str	r2, [sp, #20]                   @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_263
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_264
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_265
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_266
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_267
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_268
+	mov	r2, #32
+	str	r2, [r11, #-16]                 @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_269
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_270
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_271
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_272
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_273
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_274
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_275
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_276
+	mov	r2, #56
+	str	r2, [sp, #12]                   @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_277
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_278
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_279
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_280
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_281
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_282
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_283
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_284
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_285
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_286
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_287
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_288
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_289
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_290
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_291
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_292
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_293
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #12]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_294
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_295
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_296
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_297
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_298
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_299
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_300
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_301
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_302
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_303
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_304
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_305
+	mov	r2, #48
+	str	r2, [sp, #4]                    @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_306
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_307
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_308
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_309
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_310
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_311
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_312
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_313
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_314
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_315
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_316
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_317
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_318
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_319
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_320
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_321
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_322
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_323
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_324
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_325
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_75
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_76
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_77
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_78
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_79
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_80
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_81
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_82
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_83
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_84
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_85
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_86
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_87
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_88
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_89
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_90
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_91
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_92
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_93
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_94
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_95
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_96
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_97
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_98
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_99
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_100
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_101
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_102
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_103
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_104
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_105
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_106
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_107
+	add	r0, r0, r2
+	ldr	r3, .LCPI152_108
+	mov	r2, #64
+	str	r2, [sp, #16]                   @ 4-byte Spill
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_109
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_110
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_111
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_112
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_113
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_114
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_115
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_116
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_117
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_118
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_119
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_120
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_121
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_122
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_123
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_124
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_125
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_126
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_127
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_128
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_129
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_130
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_131
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_132
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_133
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_134
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_135
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_136
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_137
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_138
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_139
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_140
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_141
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_142
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_143
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_144
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_145
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_146
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_147
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_148
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_149
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_150
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_151
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_152
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_153
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_154
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_155
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_156
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_157
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_158
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_159
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_160
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_161
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_162
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_163
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_164
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_165
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_166
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_167
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_168
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_169
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_170
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_171
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_172
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_173
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_174
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_175
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_176
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_177
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_178
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_179
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_180
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_181
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_182
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_183
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #4]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_184
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_185
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_186
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_187
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_188
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_189
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_190
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_191
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_192
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_193
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_194
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_195
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #8]                    @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_196
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_197
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_198
+	add	r0, r0, r3
+	b	.LBB152_76
+	.p2align	2
+@ %bb.1:
+.LCPI152_251:
+	.long	__llvm_gcov_ctr(sbrel)
+	.p2align	2
+@ %bb.2:
+.LCPI152_252:
+	.long	memset
+	.p2align	2
+@ %bb.3:
+.LCPI152_253:
+	.long	__llvm_gcov_ctr.1(sbrel)
+	.p2align	2
+@ %bb.4:
+.LCPI152_254:
+	.long	memset
+	.p2align	2
+@ %bb.5:
+.LCPI152_255:
+	.long	__llvm_gcov_ctr.2(sbrel)
+	.p2align	2
+@ %bb.6:
+.LCPI152_256:
+	.long	memset
+	.p2align	2
+@ %bb.7:
+.LCPI152_257:
+	.long	__llvm_gcov_ctr.3(sbrel)
+	.p2align	2
+@ %bb.8:
+.LCPI152_258:
+	.long	memset
+	.p2align	2
+@ %bb.9:
+.LCPI152_259:
+	.long	__llvm_gcov_ctr.4(sbrel)
+	.p2align	2
+@ %bb.10:
+.LCPI152_260:
+	.long	memset
+	.p2align	2
+@ %bb.11:
+.LCPI152_261:
+	.long	__llvm_gcov_ctr.5(sbrel)
+	.p2align	2
+@ %bb.12:
+.LCPI152_262:
+	.long	memset
+	.p2align	2
+@ %bb.13:
+.LCPI152_263:
+	.long	__llvm_gcov_ctr.6(sbrel)
+	.p2align	2
+@ %bb.14:
+.LCPI152_264:
+	.long	memset
+	.p2align	2
+@ %bb.15:
+.LCPI152_265:
+	.long	__llvm_gcov_ctr.7(sbrel)
+	.p2align	2
+@ %bb.16:
+.LCPI152_266:
+	.long	memset
+	.p2align	2
+@ %bb.17:
+.LCPI152_267:
+	.long	__llvm_gcov_ctr.8(sbrel)
+	.p2align	2
+@ %bb.18:
+.LCPI152_268:
+	.long	memset
+	.p2align	2
+@ %bb.19:
+.LCPI152_269:
+	.long	__llvm_gcov_ctr.9(sbrel)
+	.p2align	2
+@ %bb.20:
+.LCPI152_270:
+	.long	memset
+	.p2align	2
+@ %bb.21:
+.LCPI152_271:
+	.long	__llvm_gcov_ctr.10(sbrel)
+	.p2align	2
+@ %bb.22:
+.LCPI152_272:
+	.long	memset
+	.p2align	2
+@ %bb.23:
+.LCPI152_273:
+	.long	__llvm_gcov_ctr.11(sbrel)
+	.p2align	2
+@ %bb.24:
+.LCPI152_274:
+	.long	memset
+	.p2align	2
+@ %bb.25:
+.LCPI152_275:
+	.long	__llvm_gcov_ctr.12(sbrel)
+	.p2align	2
+@ %bb.26:
+.LCPI152_276:
+	.long	memset
+	.p2align	2
+@ %bb.27:
+.LCPI152_277:
+	.long	__llvm_gcov_ctr.13(sbrel)
+	.p2align	2
+@ %bb.28:
+.LCPI152_278:
+	.long	memset
+	.p2align	2
+@ %bb.29:
+.LCPI152_279:
+	.long	__llvm_gcov_ctr.14(sbrel)
+	.p2align	2
+@ %bb.30:
+.LCPI152_280:
+	.long	__llvm_gcov_ctr.15(sbrel)
+	.p2align	2
+@ %bb.31:
+.LCPI152_281:
+	.long	__llvm_gcov_ctr.16(sbrel)
+	.p2align	2
+@ %bb.32:
+.LCPI152_282:
+	.long	memset
+	.p2align	2
+@ %bb.33:
+.LCPI152_283:
+	.long	__llvm_gcov_ctr.17(sbrel)
+	.p2align	2
+@ %bb.34:
+.LCPI152_284:
+	.long	memset
+	.p2align	2
+@ %bb.35:
+.LCPI152_285:
+	.long	__llvm_gcov_ctr.18(sbrel)
+	.p2align	2
+@ %bb.36:
+.LCPI152_286:
+	.long	__llvm_gcov_ctr.19(sbrel)
+	.p2align	2
+@ %bb.37:
+.LCPI152_287:
+	.long	__llvm_gcov_ctr.20(sbrel)
+	.p2align	2
+@ %bb.38:
+.LCPI152_288:
+	.long	__llvm_gcov_ctr.21(sbrel)
+	.p2align	2
+@ %bb.39:
+.LCPI152_289:
+	.long	__llvm_gcov_ctr.22(sbrel)
+	.p2align	2
+@ %bb.40:
+.LCPI152_290:
+	.long	memset
+	.p2align	2
+@ %bb.41:
+.LCPI152_291:
+	.long	__llvm_gcov_ctr.23(sbrel)
+	.p2align	2
+@ %bb.42:
+.LCPI152_292:
+	.long	__llvm_gcov_ctr.24(sbrel)
+	.p2align	2
+@ %bb.43:
+.LCPI152_293:
+	.long	memset
+	.p2align	2
+@ %bb.44:
+.LCPI152_294:
+	.long	__llvm_gcov_ctr.25(sbrel)
+	.p2align	2
+@ %bb.45:
+.LCPI152_295:
+	.long	__llvm_gcov_ctr.26(sbrel)
+	.p2align	2
+@ %bb.46:
+.LCPI152_296:
+	.long	memset
+	.p2align	2
+@ %bb.47:
+.LCPI152_297:
+	.long	__llvm_gcov_ctr.27(sbrel)
+	.p2align	2
+@ %bb.48:
+.LCPI152_298:
+	.long	memset
+	.p2align	2
+@ %bb.49:
+.LCPI152_299:
+	.long	__llvm_gcov_ctr.28(sbrel)
+	.p2align	2
+@ %bb.50:
+.LCPI152_300:
+	.long	__llvm_gcov_ctr.29(sbrel)
+	.p2align	2
+@ %bb.51:
+.LCPI152_301:
+	.long	memset
+	.p2align	2
+@ %bb.52:
+.LCPI152_302:
+	.long	__llvm_gcov_ctr.30(sbrel)
+	.p2align	2
+@ %bb.53:
+.LCPI152_303:
+	.long	memset
+	.p2align	2
+@ %bb.54:
+.LCPI152_304:
+	.long	__llvm_gcov_ctr.31(sbrel)
+	.p2align	2
+@ %bb.55:
+.LCPI152_305:
+	.long	memset
+	.p2align	2
+@ %bb.56:
+.LCPI152_306:
+	.long	__llvm_gcov_ctr.32(sbrel)
+	.p2align	2
+@ %bb.57:
+.LCPI152_307:
+	.long	memset
+	.p2align	2
+@ %bb.58:
+.LCPI152_308:
+	.long	__llvm_gcov_ctr.33(sbrel)
+	.p2align	2
+@ %bb.59:
+.LCPI152_309:
+	.long	memset
+	.p2align	2
+@ %bb.60:
+.LCPI152_310:
+	.long	__llvm_gcov_ctr.34(sbrel)
+	.p2align	2
+@ %bb.61:
+.LCPI152_311:
+	.long	memset
+	.p2align	2
+@ %bb.62:
+.LCPI152_312:
+	.long	__llvm_gcov_ctr.35(sbrel)
+	.p2align	2
+@ %bb.63:
+.LCPI152_313:
+	.long	memset
+	.p2align	2
+@ %bb.64:
+.LCPI152_314:
+	.long	__llvm_gcov_ctr.36(sbrel)
+	.p2align	2
+@ %bb.65:
+.LCPI152_315:
+	.long	memset
+	.p2align	2
+@ %bb.66:
+.LCPI152_316:
+	.long	__llvm_gcov_ctr.37(sbrel)
+	.p2align	2
+@ %bb.67:
+.LCPI152_317:
+	.long	memset
+	.p2align	2
+@ %bb.68:
+.LCPI152_318:
+	.long	__llvm_gcov_ctr.38(sbrel)
+	.p2align	2
+@ %bb.69:
+.LCPI152_319:
+	.long	__llvm_gcov_ctr.39(sbrel)
+	.p2align	2
+@ %bb.70:
+.LCPI152_320:
+	.long	__llvm_gcov_ctr.40(sbrel)
+	.p2align	2
+@ %bb.71:
+.LCPI152_321:
+	.long	memset
+	.p2align	2
+@ %bb.72:
+.LCPI152_322:
+	.long	__llvm_gcov_ctr.41(sbrel)
+	.p2align	2
+@ %bb.73:
+.LCPI152_323:
+	.long	memset
+	.p2align	2
+@ %bb.74:
+.LCPI152_324:
+	.long	__llvm_gcov_ctr.42(sbrel)
+	.p2align	2
+@ %bb.75:
+.LCPI152_325:
+	.long	memset
+	.p2align	2
+.LBB152_76:
+	ldr	r3, .LCPI152_199
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_200
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_201
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_202
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_203
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_204
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_205
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_206
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_207
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_208
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_209
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_210
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_211
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #12]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_212
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_213
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_214
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_215
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_216
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_217
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_218
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_219
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_220
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_221
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #16]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_222
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_223
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_224
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_225
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_226
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_227
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_228
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_229
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_230
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_231
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_232
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [sp, #20]                   @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_233
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_234
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_235
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_236
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r12, .LCPI152_237
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_238
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_239
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_240
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_241
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_242
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r12, .LCPI152_243
+	mov	r3, r0
+	strb	r1, [r3, r12]!
+	strb	r1, [r3, #7]
+	strb	r1, [r3, #6]
+	strb	r1, [r3, #5]
+	strb	r1, [r3, #4]
+	strb	r1, [r3, #3]
+	strb	r1, [r3, #2]
+	strb	r1, [r3, #1]
+	ldr	r3, .LCPI152_244
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_245
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-16]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_246
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_247
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r2, [r11, #-12]                 @ 4-byte Reload
+	ldr	r1, [r11, #-4]                  @ 4-byte Reload
+                                        @ kill: def $r3 killed $r0
+	ldr	r0, [r11, #-8]                  @ 4-byte Reload
+	ldr	r3, .LCPI152_248
+	add	r0, r0, r3
+	ldr	r3, .LCPI152_249
+	mov	lr, pc
+	mov	pc, r3
+	ldr	r1, [r11, #-8]                  @ 4-byte Reload
+                                        @ kill: def $r2 killed $r0
+	ldr	r0, [r11, #-4]                  @ 4-byte Reload
+	ldr	r2, .LCPI152_250
+	strb	r0, [r1, r2]!
+	strb	r0, [r1, #7]
+	strb	r0, [r1, #6]
+	strb	r0, [r1, #5]
+	strb	r0, [r1, #4]
+	strb	r0, [r1, #3]
+	strb	r0, [r1, #2]
+	strb	r0, [r1, #1]
+	mov	sp, r11
+	pop	{r11, lr}
+	mov	pc, lr
+	.p2align	2
+@ %bb.77:
+.LCPI152_75:
+	.long	__llvm_gcov_ctr.43(sbrel)
+.LCPI152_76:
+	.long	memset
+.LCPI152_77:
+	.long	__llvm_gcov_ctr.44(sbrel)
+.LCPI152_78:
+	.long	memset
+.LCPI152_79:
+	.long	__llvm_gcov_ctr.45(sbrel)
+.LCPI152_80:
+	.long	memset
+.LCPI152_81:
+	.long	__llvm_gcov_ctr.46(sbrel)
+.LCPI152_82:
+	.long	memset
+.LCPI152_83:
+	.long	__llvm_gcov_ctr.47(sbrel)
+.LCPI152_84:
+	.long	memset
+.LCPI152_85:
+	.long	__llvm_gcov_ctr.48(sbrel)
+.LCPI152_86:
+	.long	memset
+.LCPI152_87:
+	.long	__llvm_gcov_ctr.49(sbrel)
+.LCPI152_88:
+	.long	memset
+.LCPI152_89:
+	.long	__llvm_gcov_ctr.50(sbrel)
+.LCPI152_90:
+	.long	__llvm_gcov_ctr.51(sbrel)
+.LCPI152_91:
+	.long	memset
+.LCPI152_92:
+	.long	__llvm_gcov_ctr.52(sbrel)
+.LCPI152_93:
+	.long	__llvm_gcov_ctr.53(sbrel)
+.LCPI152_94:
+	.long	memset
+.LCPI152_95:
+	.long	__llvm_gcov_ctr.54(sbrel)
+.LCPI152_96:
+	.long	__llvm_gcov_ctr.55(sbrel)
+.LCPI152_97:
+	.long	memset
+.LCPI152_98:
+	.long	__llvm_gcov_ctr.56(sbrel)
+.LCPI152_99:
+	.long	__llvm_gcov_ctr.57(sbrel)
+.LCPI152_100:
+	.long	memset
+.LCPI152_101:
+	.long	__llvm_gcov_ctr.58(sbrel)
+.LCPI152_102:
+	.long	memset
+.LCPI152_103:
+	.long	__llvm_gcov_ctr.59(sbrel)
+.LCPI152_104:
+	.long	memset
+.LCPI152_105:
+	.long	__llvm_gcov_ctr.60(sbrel)
+.LCPI152_106:
+	.long	memset
+.LCPI152_107:
+	.long	__llvm_gcov_ctr.61(sbrel)
+.LCPI152_108:
+	.long	memset
+.LCPI152_109:
+	.long	__llvm_gcov_ctr.62(sbrel)
+.LCPI152_110:
+	.long	memset
+.LCPI152_111:
+	.long	__llvm_gcov_ctr.63(sbrel)
+.LCPI152_112:
+	.long	memset
+.LCPI152_113:
+	.long	__llvm_gcov_ctr.64(sbrel)
+.LCPI152_114:
+	.long	memset
+.LCPI152_115:
+	.long	__llvm_gcov_ctr.65(sbrel)
+.LCPI152_116:
+	.long	memset
+.LCPI152_117:
+	.long	__llvm_gcov_ctr.66(sbrel)
+.LCPI152_118:
+	.long	memset
+.LCPI152_119:
+	.long	__llvm_gcov_ctr.67(sbrel)
+.LCPI152_120:
+	.long	memset
+.LCPI152_121:
+	.long	__llvm_gcov_ctr.68(sbrel)
+.LCPI152_122:
+	.long	__llvm_gcov_ctr.69(sbrel)
+.LCPI152_123:
+	.long	__llvm_gcov_ctr.70(sbrel)
+.LCPI152_124:
+	.long	__llvm_gcov_ctr.71(sbrel)
+.LCPI152_125:
+	.long	__llvm_gcov_ctr.72(sbrel)
+.LCPI152_126:
+	.long	__llvm_gcov_ctr.73(sbrel)
+.LCPI152_127:
+	.long	__llvm_gcov_ctr.74(sbrel)
+.LCPI152_128:
+	.long	__llvm_gcov_ctr.75(sbrel)
+.LCPI152_129:
+	.long	__llvm_gcov_ctr.76(sbrel)
+.LCPI152_130:
+	.long	__llvm_gcov_ctr.77(sbrel)
+.LCPI152_131:
+	.long	__llvm_gcov_ctr.78(sbrel)
+.LCPI152_132:
+	.long	__llvm_gcov_ctr.79(sbrel)
+.LCPI152_133:
+	.long	__llvm_gcov_ctr.80(sbrel)
+.LCPI152_134:
+	.long	__llvm_gcov_ctr.81(sbrel)
+.LCPI152_135:
+	.long	memset
+.LCPI152_136:
+	.long	__llvm_gcov_ctr.82(sbrel)
+.LCPI152_137:
+	.long	memset
+.LCPI152_138:
+	.long	__llvm_gcov_ctr.83(sbrel)
+.LCPI152_139:
+	.long	memset
+.LCPI152_140:
+	.long	__llvm_gcov_ctr.84(sbrel)
+.LCPI152_141:
+	.long	memset
+.LCPI152_142:
+	.long	__llvm_gcov_ctr.85(sbrel)
+.LCPI152_143:
+	.long	memset
+.LCPI152_144:
+	.long	__llvm_gcov_ctr.86(sbrel)
+.LCPI152_145:
+	.long	__llvm_gcov_ctr.87(sbrel)
+.LCPI152_146:
+	.long	memset
+.LCPI152_147:
+	.long	__llvm_gcov_ctr.88(sbrel)
+.LCPI152_148:
+	.long	memset
+.LCPI152_149:
+	.long	__llvm_gcov_ctr.89(sbrel)
+.LCPI152_150:
+	.long	memset
+.LCPI152_151:
+	.long	__llvm_gcov_ctr.90(sbrel)
+.LCPI152_152:
+	.long	memset
+.LCPI152_153:
+	.long	__llvm_gcov_ctr.91(sbrel)
+.LCPI152_154:
+	.long	memset
+.LCPI152_155:
+	.long	__llvm_gcov_ctr.92(sbrel)
+.LCPI152_156:
+	.long	memset
+.LCPI152_157:
+	.long	__llvm_gcov_ctr.93(sbrel)
+.LCPI152_158:
+	.long	memset
+.LCPI152_159:
+	.long	__llvm_gcov_ctr.94(sbrel)
+.LCPI152_160:
+	.long	memset
+.LCPI152_161:
+	.long	__llvm_gcov_ctr.95(sbrel)
+.LCPI152_162:
+	.long	memset
+.LCPI152_163:
+	.long	__llvm_gcov_ctr.96(sbrel)
+.LCPI152_164:
+	.long	memset
+.LCPI152_165:
+	.long	__llvm_gcov_ctr.97(sbrel)
+.LCPI152_166:
+	.long	memset
+.LCPI152_167:
+	.long	__llvm_gcov_ctr.98(sbrel)
+.LCPI152_168:
+	.long	__llvm_gcov_ctr.99(sbrel)
+.LCPI152_169:
+	.long	memset
+.LCPI152_170:
+	.long	__llvm_gcov_ctr.100(sbrel)
+.LCPI152_171:
+	.long	memset
+.LCPI152_172:
+	.long	__llvm_gcov_ctr.101(sbrel)
+.LCPI152_173:
+	.long	memset
+.LCPI152_174:
+	.long	__llvm_gcov_ctr.102(sbrel)
+.LCPI152_175:
+	.long	memset
+.LCPI152_176:
+	.long	__llvm_gcov_ctr.103(sbrel)
+.LCPI152_177:
+	.long	memset
+.LCPI152_178:
+	.long	__llvm_gcov_ctr.104(sbrel)
+.LCPI152_179:
+	.long	memset
+.LCPI152_180:
+	.long	__llvm_gcov_ctr.105(sbrel)
+.LCPI152_181:
+	.long	memset
+.LCPI152_182:
+	.long	__llvm_gcov_ctr.106(sbrel)
+.LCPI152_183:
+	.long	memset
+.LCPI152_184:
+	.long	__llvm_gcov_ctr.107(sbrel)
+.LCPI152_185:
+	.long	memset
+.LCPI152_186:
+	.long	__llvm_gcov_ctr.108(sbrel)
+.LCPI152_187:
+	.long	__llvm_gcov_ctr.109(sbrel)
+.LCPI152_188:
+	.long	__llvm_gcov_ctr.110(sbrel)
+.LCPI152_189:
+	.long	__llvm_gcov_ctr.111(sbrel)
+.LCPI152_190:
+	.long	__llvm_gcov_ctr.112(sbrel)
+.LCPI152_191:
+	.long	__llvm_gcov_ctr.113(sbrel)
+.LCPI152_192:
+	.long	__llvm_gcov_ctr.114(sbrel)
+.LCPI152_193:
+	.long	memset
+.LCPI152_194:
+	.long	__llvm_gcov_ctr.115(sbrel)
+.LCPI152_195:
+	.long	memset
+.LCPI152_196:
+	.long	__llvm_gcov_ctr.116(sbrel)
+.LCPI152_197:
+	.long	memset
+.LCPI152_198:
+	.long	__llvm_gcov_ctr.117(sbrel)
+.LCPI152_199:
+	.long	memset
+.LCPI152_200:
+	.long	__llvm_gcov_ctr.118(sbrel)
+.LCPI152_201:
+	.long	memset
+.LCPI152_202:
+	.long	__llvm_gcov_ctr.119(sbrel)
+.LCPI152_203:
+	.long	memset
+.LCPI152_204:
+	.long	__llvm_gcov_ctr.120(sbrel)
+.LCPI152_205:
+	.long	memset
+.LCPI152_206:
+	.long	__llvm_gcov_ctr.121(sbrel)
+.LCPI152_207:
+	.long	memset
+.LCPI152_208:
+	.long	__llvm_gcov_ctr.122(sbrel)
+.LCPI152_209:
+	.long	memset
+.LCPI152_210:
+	.long	__llvm_gcov_ctr.123(sbrel)
+.LCPI152_211:
+	.long	memset
+.LCPI152_212:
+	.long	__llvm_gcov_ctr.124(sbrel)
+.LCPI152_213:
+	.long	__llvm_gcov_ctr.125(sbrel)
+.LCPI152_214:
+	.long	__llvm_gcov_ctr.126(sbrel)
+.LCPI152_215:
+	.long	memset
+.LCPI152_216:
+	.long	__llvm_gcov_ctr.127(sbrel)
+.LCPI152_217:
+	.long	memset
+.LCPI152_218:
+	.long	__llvm_gcov_ctr.128(sbrel)
+.LCPI152_219:
+	.long	memset
+.LCPI152_220:
+	.long	__llvm_gcov_ctr.129(sbrel)
+.LCPI152_221:
+	.long	memset
+.LCPI152_222:
+	.long	__llvm_gcov_ctr.130(sbrel)
+.LCPI152_223:
+	.long	memset
+.LCPI152_224:
+	.long	__llvm_gcov_ctr.131(sbrel)
+.LCPI152_225:
+	.long	memset
+.LCPI152_226:
+	.long	__llvm_gcov_ctr.132(sbrel)
+.LCPI152_227:
+	.long	memset
+.LCPI152_228:
+	.long	__llvm_gcov_ctr.133(sbrel)
+.LCPI152_229:
+	.long	__llvm_gcov_ctr.134(sbrel)
+.LCPI152_230:
+	.long	__llvm_gcov_ctr.135(sbrel)
+.LCPI152_231:
+	.long	__llvm_gcov_ctr.136(sbrel)
+.LCPI152_232:
+	.long	memset
+.LCPI152_233:
+	.long	__llvm_gcov_ctr.137(sbrel)
+.LCPI152_234:
+	.long	__llvm_gcov_ctr.138(sbrel)
+.LCPI152_235:
+	.long	__llvm_gcov_ctr.139(sbrel)
+.LCPI152_236:
+	.long	memset
+.LCPI152_237:
+	.long	__llvm_gcov_ctr.140(sbrel)
+.LCPI152_238:
+	.long	__llvm_gcov_ctr.141(sbrel)
+.LCPI152_239:
+	.long	__llvm_gcov_ctr.142(sbrel)
+.LCPI152_240:
+	.long	__llvm_gcov_ctr.143(sbrel)
+.LCPI152_241:
+	.long	__llvm_gcov_ctr.144(sbrel)
+.LCPI152_242:
+	.long	__llvm_gcov_ctr.145(sbrel)
+.LCPI152_243:
+	.long	__llvm_gcov_ctr.146(sbrel)
+.LCPI152_244:
+	.long	__llvm_gcov_ctr.147(sbrel)
+.LCPI152_245:
+	.long	memset
+.LCPI152_246:
+	.long	__llvm_gcov_ctr.148(sbrel)
+.LCPI152_247:
+	.long	memset
+.LCPI152_248:
+	.long	__llvm_gcov_ctr.149(sbrel)
+.LCPI152_249:
+	.long	memset
+.LCPI152_250:
+	.long	__llvm_gcov_ctr.150(sbrel)
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+	.fnend
+                                        @ -- End function
+	.p2align	2                               @ -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,%function
+	.code	32                              @ @__llvm_gcov_init
+__llvm_gcov_init:
+	.fnstart
+@ %bb.0:
+	push	{r11, lr}
+	mov	r11, sp
+	ldr	r0, .LCPI153_1
+.LPC153_1:
+	add	r0, pc, r0
+	ldr	r1, .LCPI153_2
+.LPC153_2:
+	add	r1, pc, r1
+	ldr	r2, .LCPI153_0
+	mov	lr, pc
+	mov	pc, r2
+	pop	{r11, lr}
+	mov	pc, lr
+	.p2align	2
+@ %bb.1:
+.LCPI153_0:
+	.long	llvm_gcov_init
+.LCPI153_1:
+	.long	__llvm_gcov_writeout-(.LPC153_1+8)
+.LCPI153_2:
+	.long	__llvm_gcov_reset-(.LPC153_2+8)
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
 	.fnend
                                         @ -- End function
 	.type	l64a.s,%object                  @ @l64a.s
@@ -14285,6 +20807,1245 @@ digits:
 	.type	seed,%object                    @ @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,%object         @ @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,%object       @ @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,%object       @ @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,%object       @ @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,%object       @ @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,%object       @ @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,%object       @ @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,%object       @ @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,%object       @ @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,%object       @ @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,%object      @ @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,%object      @ @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,%object      @ @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,%object      @ @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,%object      @ @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,%object      @ @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,%object      @ @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,%object      @ @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,%object      @ @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,%object      @ @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,%object      @ @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,%object      @ @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,%object      @ @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,%object      @ @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,%object      @ @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,%object      @ @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,%object      @ @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,%object      @ @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,%object      @ @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,%object      @ @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,%object      @ @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,%object      @ @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,%object      @ @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,%object      @ @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,%object      @ @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,%object      @ @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,%object      @ @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,%object      @ @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,%object      @ @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,%object      @ @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,%object      @ @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,%object      @ @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,%object      @ @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,%object      @ @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,%object      @ @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,%object      @ @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,%object      @ @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,%object      @ @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,%object      @ @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,%object      @ @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,%object      @ @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,%object      @ @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,%object      @ @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,%object      @ @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,%object      @ @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,%object      @ @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,%object      @ @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,%object      @ @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,%object      @ @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,%object      @ @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,%object      @ @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,%object      @ @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,%object      @ @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,%object      @ @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,%object      @ @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,%object      @ @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,%object      @ @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,%object      @ @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,%object      @ @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,%object      @ @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,%object      @ @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,%object      @ @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,%object      @ @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,%object      @ @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,%object      @ @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,%object      @ @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,%object      @ @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,%object      @ @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,%object      @ @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,%object      @ @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,%object      @ @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,%object      @ @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,%object      @ @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,%object      @ @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,%object      @ @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,%object      @ @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,%object      @ @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,%object      @ @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,%object      @ @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,%object      @ @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,%object      @ @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,%object      @ @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,%object      @ @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,%object      @ @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,%object      @ @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,%object      @ @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,%object      @ @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,%object      @ @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,%object      @ @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,%object      @ @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,%object     @ @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,%object     @ @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,%object     @ @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,%object     @ @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,%object     @ @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,%object     @ @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,%object     @ @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,%object     @ @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,%object     @ @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,%object     @ @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,%object     @ @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,%object     @ @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,%object     @ @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,%object     @ @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,%object     @ @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,%object     @ @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,%object     @ @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,%object     @ @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,%object     @ @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,%object     @ @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,%object     @ @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,%object     @ @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,%object     @ @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,%object     @ @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,%object     @ @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,%object     @ @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,%object     @ @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,%object     @ @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,%object     @ @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,%object     @ @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,%object     @ @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,%object     @ @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,%object     @ @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,%object     @ @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,%object     @ @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,%object     @ @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,%object     @ @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,%object     @ @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,%object     @ @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,%object     @ @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,%object     @ @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,%object     @ @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,%object     @ @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,%object     @ @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,%object     @ @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,%object     @ @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,%object     @ @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,%object     @ @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,%object     @ @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,%object     @ @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,%object     @ @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,%object           @ @0
+	.section	.rodata.str1.1,"aMS",%progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-arm.gcda"
+	.size	.L__unnamed_1, 47
+
+	.type	__llvm_internal_gcov_emit_function_args.0,%object @ @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",%progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               @ 0x0
+	.long	560687177                       @ 0x216b6849
+	.long	3469251760                      @ 0xcec894b0
+	.long	1                               @ 0x1
+	.long	1589591758                      @ 0x5ebf3ece
+	.long	3469251760                      @ 0xcec894b0
+	.long	2                               @ 0x2
+	.long	2176136383                      @ 0x81b534bf
+	.long	3469251760                      @ 0xcec894b0
+	.long	3                               @ 0x3
+	.long	3586625172                      @ 0xd5c78e94
+	.long	3469251760                      @ 0xcec894b0
+	.long	4                               @ 0x4
+	.long	2323119728                      @ 0x8a77fe70
+	.long	3469251760                      @ 0xcec894b0
+	.long	5                               @ 0x5
+	.long	2314569740                      @ 0x89f5880c
+	.long	3469251760                      @ 0xcec894b0
+	.long	6                               @ 0x6
+	.long	2833673551                      @ 0xa8e66d4f
+	.long	3469251760                      @ 0xcec894b0
+	.long	7                               @ 0x7
+	.long	1458633189                      @ 0x56f0f9e5
+	.long	3469251760                      @ 0xcec894b0
+	.long	8                               @ 0x8
+	.long	1190300833                      @ 0x46f28ca1
+	.long	3469251760                      @ 0xcec894b0
+	.long	9                               @ 0x9
+	.long	758327989                       @ 0x2d332ab5
+	.long	3469251760                      @ 0xcec894b0
+	.long	10                              @ 0xa
+	.long	1651479037                      @ 0x626f91fd
+	.long	3469251760                      @ 0xcec894b0
+	.long	11                              @ 0xb
+	.long	4132343275                      @ 0xf64e8deb
+	.long	3469251760                      @ 0xcec894b0
+	.long	12                              @ 0xc
+	.long	734262523                       @ 0x2bc3f4fb
+	.long	3469251760                      @ 0xcec894b0
+	.long	13                              @ 0xd
+	.long	2463424677                      @ 0x92d4e0a5
+	.long	3469251760                      @ 0xcec894b0
+	.long	14                              @ 0xe
+	.long	1419026334                      @ 0x54949f9e
+	.long	3469251760                      @ 0xcec894b0
+	.long	15                              @ 0xf
+	.long	3154471370                      @ 0xbc0569ca
+	.long	3469251760                      @ 0xcec894b0
+	.long	16                              @ 0x10
+	.long	2077973487                      @ 0x7bdb5bef
+	.long	3469251760                      @ 0xcec894b0
+	.long	17                              @ 0x11
+	.long	1474691227                      @ 0x57e6009b
+	.long	3469251760                      @ 0xcec894b0
+	.long	18                              @ 0x12
+	.long	3710986016                      @ 0xdd312720
+	.long	3469251760                      @ 0xcec894b0
+	.long	19                              @ 0x13
+	.long	1305101473                      @ 0x4dca44a1
+	.long	3469251760                      @ 0xcec894b0
+	.long	20                              @ 0x14
+	.long	3762036564                      @ 0xe03c1f54
+	.long	3469251760                      @ 0xcec894b0
+	.long	21                              @ 0x15
+	.long	477914433                       @ 0x1c7c6541
+	.long	3469251760                      @ 0xcec894b0
+	.long	22                              @ 0x16
+	.long	3923035234                      @ 0xe9d4c462
+	.long	3469251760                      @ 0xcec894b0
+	.long	23                              @ 0x17
+	.long	951651702                       @ 0x38b90d76
+	.long	3469251760                      @ 0xcec894b0
+	.long	24                              @ 0x18
+	.long	4206925919                      @ 0xfac0985f
+	.long	3469251760                      @ 0xcec894b0
+	.long	25                              @ 0x19
+	.long	32773942                        @ 0x1f41736
+	.long	3469251760                      @ 0xcec894b0
+	.long	26                              @ 0x1a
+	.long	2877267246                      @ 0xab7f9d2e
+	.long	3469251760                      @ 0xcec894b0
+	.long	27                              @ 0x1b
+	.long	860405771                       @ 0x3348c00b
+	.long	3469251760                      @ 0xcec894b0
+	.long	28                              @ 0x1c
+	.long	815674877                       @ 0x309e35fd
+	.long	3469251760                      @ 0xcec894b0
+	.long	29                              @ 0x1d
+	.long	1778838753                      @ 0x6a06ece1
+	.long	3469251760                      @ 0xcec894b0
+	.long	30                              @ 0x1e
+	.long	2718307199                      @ 0xa206137f
+	.long	3469251760                      @ 0xcec894b0
+	.long	31                              @ 0x1f
+	.long	856224820                       @ 0x3308f434
+	.long	3469251760                      @ 0xcec894b0
+	.long	32                              @ 0x20
+	.long	1111195143                      @ 0x423b7e07
+	.long	3469251760                      @ 0xcec894b0
+	.long	33                              @ 0x21
+	.long	1178414519                      @ 0x463d2db7
+	.long	3469251760                      @ 0xcec894b0
+	.long	34                              @ 0x22
+	.long	3477640633                      @ 0xcf4895b9
+	.long	3469251760                      @ 0xcec894b0
+	.long	35                              @ 0x23
+	.long	4294770115                      @ 0xfffcfdc3
+	.long	3469251760                      @ 0xcec894b0
+	.long	36                              @ 0x24
+	.long	3650660234                      @ 0xd998a78a
+	.long	3469251760                      @ 0xcec894b0
+	.long	37                              @ 0x25
+	.long	289327647                       @ 0x113eca1f
+	.long	3469251760                      @ 0xcec894b0
+	.long	38                              @ 0x26
+	.long	2093612798                      @ 0x7cc9fefe
+	.long	3469251760                      @ 0xcec894b0
+	.long	39                              @ 0x27
+	.long	4177956716                      @ 0xf9068f6c
+	.long	3469251760                      @ 0xcec894b0
+	.long	40                              @ 0x28
+	.long	3434808461                      @ 0xccbb048d
+	.long	3469251760                      @ 0xcec894b0
+	.long	41                              @ 0x29
+	.long	3206497114                      @ 0xbf1f435a
+	.long	3469251760                      @ 0xcec894b0
+	.long	42                              @ 0x2a
+	.long	1537257434                      @ 0x5ba0afda
+	.long	3469251760                      @ 0xcec894b0
+	.long	43                              @ 0x2b
+	.long	3028077325                      @ 0xb47ccb0d
+	.long	3469251760                      @ 0xcec894b0
+	.long	44                              @ 0x2c
+	.long	1369848209                      @ 0x51a63991
+	.long	3469251760                      @ 0xcec894b0
+	.long	45                              @ 0x2d
+	.long	938831176                       @ 0x37f56d48
+	.long	3469251760                      @ 0xcec894b0
+	.long	46                              @ 0x2e
+	.long	1663146323                      @ 0x63219953
+	.long	3469251760                      @ 0xcec894b0
+	.long	47                              @ 0x2f
+	.long	4111410217                      @ 0xf50f2429
+	.long	3469251760                      @ 0xcec894b0
+	.long	48                              @ 0x30
+	.long	1475378556                      @ 0x57f07d7c
+	.long	3469251760                      @ 0xcec894b0
+	.long	49                              @ 0x31
+	.long	3356195547                      @ 0xc80b7adb
+	.long	3469251760                      @ 0xcec894b0
+	.long	50                              @ 0x32
+	.long	514931786                       @ 0x1eb13c4a
+	.long	3469251760                      @ 0xcec894b0
+	.long	51                              @ 0x33
+	.long	2854034444                      @ 0xaa1d1c0c
+	.long	3469251760                      @ 0xcec894b0
+	.long	52                              @ 0x34
+	.long	2747937306                      @ 0xa3ca321a
+	.long	3469251760                      @ 0xcec894b0
+	.long	53                              @ 0x35
+	.long	4192776208                      @ 0xf9e8b010
+	.long	3469251760                      @ 0xcec894b0
+	.long	54                              @ 0x36
+	.long	984436227                       @ 0x3aad4e03
+	.long	3469251760                      @ 0xcec894b0
+	.long	55                              @ 0x37
+	.long	1477657574                      @ 0x581343e6
+	.long	3469251760                      @ 0xcec894b0
+	.long	56                              @ 0x38
+	.long	1339127973                      @ 0x4fd178a5
+	.long	3469251760                      @ 0xcec894b0
+	.long	57                              @ 0x39
+	.long	2960567906                      @ 0xb076ae62
+	.long	3469251760                      @ 0xcec894b0
+	.long	58                              @ 0x3a
+	.long	3390076872                      @ 0xca1077c8
+	.long	3469251760                      @ 0xcec894b0
+	.long	59                              @ 0x3b
+	.long	1543282230                      @ 0x5bfc9e36
+	.long	3469251760                      @ 0xcec894b0
+	.long	60                              @ 0x3c
+	.long	2934101789                      @ 0xaee2d71d
+	.long	3469251760                      @ 0xcec894b0
+	.long	61                              @ 0x3d
+	.long	3737986119                      @ 0xdecd2447
+	.long	3469251760                      @ 0xcec894b0
+	.long	62                              @ 0x3e
+	.long	49556427                        @ 0x2f42bcb
+	.long	3469251760                      @ 0xcec894b0
+	.long	63                              @ 0x3f
+	.long	234051526                       @ 0xdf357c6
+	.long	3469251760                      @ 0xcec894b0
+	.long	64                              @ 0x40
+	.long	2341800126                      @ 0x8b9508be
+	.long	3469251760                      @ 0xcec894b0
+	.long	65                              @ 0x41
+	.long	3256799948                      @ 0xc21ed2cc
+	.long	3469251760                      @ 0xcec894b0
+	.long	66                              @ 0x42
+	.long	777295480                       @ 0x2e549678
+	.long	3469251760                      @ 0xcec894b0
+	.long	67                              @ 0x43
+	.long	14040531                        @ 0xd63dd3
+	.long	3469251760                      @ 0xcec894b0
+	.long	68                              @ 0x44
+	.long	8047973                         @ 0x7acd65
+	.long	3469251760                      @ 0xcec894b0
+	.long	69                              @ 0x45
+	.long	719459161                       @ 0x2ae21359
+	.long	3469251760                      @ 0xcec894b0
+	.long	70                              @ 0x46
+	.long	243358501                       @ 0xe815b25
+	.long	3469251760                      @ 0xcec894b0
+	.long	71                              @ 0x47
+	.long	3262173932                      @ 0xc270d2ec
+	.long	3469251760                      @ 0xcec894b0
+	.long	72                              @ 0x48
+	.long	398910553                       @ 0x17c6e459
+	.long	3469251760                      @ 0xcec894b0
+	.long	73                              @ 0x49
+	.long	3354219739                      @ 0xc7ed54db
+	.long	3469251760                      @ 0xcec894b0
+	.long	74                              @ 0x4a
+	.long	2570308788                      @ 0x9933ccb4
+	.long	3469251760                      @ 0xcec894b0
+	.long	75                              @ 0x4b
+	.long	982429111                       @ 0x3a8eadb7
+	.long	3469251760                      @ 0xcec894b0
+	.long	76                              @ 0x4c
+	.long	211491241                       @ 0xc9b19a9
+	.long	3469251760                      @ 0xcec894b0
+	.long	77                              @ 0x4d
+	.long	1075683319                      @ 0x401d9ff7
+	.long	3469251760                      @ 0xcec894b0
+	.long	78                              @ 0x4e
+	.long	1886352651                      @ 0x706f750b
+	.long	3469251760                      @ 0xcec894b0
+	.long	79                              @ 0x4f
+	.long	248637203                       @ 0xed1e713
+	.long	3469251760                      @ 0xcec894b0
+	.long	80                              @ 0x50
+	.long	703327087                       @ 0x29ebeb6f
+	.long	3469251760                      @ 0xcec894b0
+	.long	81                              @ 0x51
+	.long	3690160730                      @ 0xdbf3625a
+	.long	3469251760                      @ 0xcec894b0
+	.long	82                              @ 0x52
+	.long	787048238                       @ 0x2ee9672e
+	.long	3469251760                      @ 0xcec894b0
+	.long	83                              @ 0x53
+	.long	1937497967                      @ 0x737bdf6f
+	.long	3469251760                      @ 0xcec894b0
+	.long	84                              @ 0x54
+	.long	4205062514                      @ 0xfaa42972
+	.long	3469251760                      @ 0xcec894b0
+	.long	85                              @ 0x55
+	.long	694462539                       @ 0x2964a84b
+	.long	3469251760                      @ 0xcec894b0
+	.long	86                              @ 0x56
+	.long	85970907                        @ 0x51fcfdb
+	.long	3469251760                      @ 0xcec894b0
+	.long	87                              @ 0x57
+	.long	3681984728                      @ 0xdb76a0d8
+	.long	3469251760                      @ 0xcec894b0
+	.long	88                              @ 0x58
+	.long	3620297642                      @ 0xd7c95baa
+	.long	3469251760                      @ 0xcec894b0
+	.long	89                              @ 0x59
+	.long	3394804480                      @ 0xca589b00
+	.long	3469251760                      @ 0xcec894b0
+	.long	90                              @ 0x5a
+	.long	2119330183                      @ 0x7e526987
+	.long	3469251760                      @ 0xcec894b0
+	.long	91                              @ 0x5b
+	.long	1963040266                      @ 0x75019e0a
+	.long	3469251760                      @ 0xcec894b0
+	.long	92                              @ 0x5c
+	.long	1603391838                      @ 0x5f91d15e
+	.long	3469251760                      @ 0xcec894b0
+	.long	93                              @ 0x5d
+	.long	2340921237                      @ 0x8b879f95
+	.long	3469251760                      @ 0xcec894b0
+	.long	94                              @ 0x5e
+	.long	3028177438                      @ 0xb47e521e
+	.long	3469251760                      @ 0xcec894b0
+	.long	95                              @ 0x5f
+	.long	2265525308                      @ 0x87092c3c
+	.long	3469251760                      @ 0xcec894b0
+	.long	96                              @ 0x60
+	.long	2598903994                      @ 0x9ae820ba
+	.long	3469251760                      @ 0xcec894b0
+	.long	97                              @ 0x61
+	.long	139524705                       @ 0x850fa61
+	.long	3469251760                      @ 0xcec894b0
+	.long	98                              @ 0x62
+	.long	1076410600                      @ 0x4028b8e8
+	.long	3469251760                      @ 0xcec894b0
+	.long	99                              @ 0x63
+	.long	220237413                       @ 0xd208e65
+	.long	3469251760                      @ 0xcec894b0
+	.long	100                             @ 0x64
+	.long	3913623866                      @ 0xe945293a
+	.long	3469251760                      @ 0xcec894b0
+	.long	101                             @ 0x65
+	.long	3453026372                      @ 0xcdd10044
+	.long	3469251760                      @ 0xcec894b0
+	.long	102                             @ 0x66
+	.long	2321387380                      @ 0x8a5d8f74
+	.long	3469251760                      @ 0xcec894b0
+	.long	103                             @ 0x67
+	.long	3319939363                      @ 0xc5e24123
+	.long	3469251760                      @ 0xcec894b0
+	.long	104                             @ 0x68
+	.long	398991913                       @ 0x17c82229
+	.long	3469251760                      @ 0xcec894b0
+	.long	105                             @ 0x69
+	.long	333429647                       @ 0x13dfbb8f
+	.long	3469251760                      @ 0xcec894b0
+	.long	106                             @ 0x6a
+	.long	3927133990                      @ 0xea134f26
+	.long	3469251760                      @ 0xcec894b0
+	.long	107                             @ 0x6b
+	.long	1797971294                      @ 0x6b2add5e
+	.long	3469251760                      @ 0xcec894b0
+	.long	108                             @ 0x6c
+	.long	1622314776                      @ 0x60b28f18
+	.long	3469251760                      @ 0xcec894b0
+	.long	109                             @ 0x6d
+	.long	1092862330                      @ 0x4123c17a
+	.long	3469251760                      @ 0xcec894b0
+	.long	110                             @ 0x6e
+	.long	2568657322                      @ 0x991a99aa
+	.long	3469251760                      @ 0xcec894b0
+	.long	111                             @ 0x6f
+	.long	2168129897                      @ 0x813b0969
+	.long	3469251760                      @ 0xcec894b0
+	.long	112                             @ 0x70
+	.long	2890303119                      @ 0xac46868f
+	.long	3469251760                      @ 0xcec894b0
+	.long	113                             @ 0x71
+	.long	1713332582                      @ 0x661f6166
+	.long	3469251760                      @ 0xcec894b0
+	.long	114                             @ 0x72
+	.long	2375727721                      @ 0x8d9aba69
+	.long	3469251760                      @ 0xcec894b0
+	.long	115                             @ 0x73
+	.long	3586767156                      @ 0xd5c9b934
+	.long	3469251760                      @ 0xcec894b0
+	.long	116                             @ 0x74
+	.long	2191348475                      @ 0x829d52fb
+	.long	3469251760                      @ 0xcec894b0
+	.long	117                             @ 0x75
+	.long	3910023869                      @ 0xe90e3abd
+	.long	3469251760                      @ 0xcec894b0
+	.long	118                             @ 0x76
+	.long	4189915105                      @ 0xf9bd07e1
+	.long	3469251760                      @ 0xcec894b0
+	.long	119                             @ 0x77
+	.long	2527353334                      @ 0x96a459f6
+	.long	3469251760                      @ 0xcec894b0
+	.long	120                             @ 0x78
+	.long	3429265923                      @ 0xcc667203
+	.long	3469251760                      @ 0xcec894b0
+	.long	121                             @ 0x79
+	.long	1283962724                      @ 0x4c87b764
+	.long	3469251760                      @ 0xcec894b0
+	.long	122                             @ 0x7a
+	.long	1970290990                      @ 0x7570412e
+	.long	3469251760                      @ 0xcec894b0
+	.long	123                             @ 0x7b
+	.long	2615950861                      @ 0x9bec3e0d
+	.long	3469251760                      @ 0xcec894b0
+	.long	124                             @ 0x7c
+	.long	3338450337                      @ 0xc6fcb5a1
+	.long	3469251760                      @ 0xcec894b0
+	.long	125                             @ 0x7d
+	.long	3971836509                      @ 0xecbd6a5d
+	.long	3469251760                      @ 0xcec894b0
+	.long	126                             @ 0x7e
+	.long	4260339231                      @ 0xfdef9e1f
+	.long	3469251760                      @ 0xcec894b0
+	.long	127                             @ 0x7f
+	.long	4160738226                      @ 0xf7ffd3b2
+	.long	3469251760                      @ 0xcec894b0
+	.long	128                             @ 0x80
+	.long	1309372079                      @ 0x4e0b6eaf
+	.long	3469251760                      @ 0xcec894b0
+	.long	129                             @ 0x81
+	.long	3151575564                      @ 0xbbd93a0c
+	.long	3469251760                      @ 0xcec894b0
+	.long	130                             @ 0x82
+	.long	3938977714                      @ 0xeac807b2
+	.long	3469251760                      @ 0xcec894b0
+	.long	131                             @ 0x83
+	.long	3228738087                      @ 0xc072a227
+	.long	3469251760                      @ 0xcec894b0
+	.long	132                             @ 0x84
+	.long	3135705803                      @ 0xbae712cb
+	.long	3469251760                      @ 0xcec894b0
+	.long	133                             @ 0x85
+	.long	4061147315                      @ 0xf21030b3
+	.long	3469251760                      @ 0xcec894b0
+	.long	134                             @ 0x86
+	.long	2783543715                      @ 0xa5e981a3
+	.long	3469251760                      @ 0xcec894b0
+	.long	135                             @ 0x87
+	.long	2471046843                      @ 0x93492ebb
+	.long	3469251760                      @ 0xcec894b0
+	.long	136                             @ 0x88
+	.long	260073473                       @ 0xf806801
+	.long	3469251760                      @ 0xcec894b0
+	.long	137                             @ 0x89
+	.long	1259876295                      @ 0x4b182fc7
+	.long	3469251760                      @ 0xcec894b0
+	.long	138                             @ 0x8a
+	.long	2579807359                      @ 0x99c4bc7f
+	.long	3469251760                      @ 0xcec894b0
+	.long	139                             @ 0x8b
+	.long	90061610                        @ 0x55e3b2a
+	.long	3469251760                      @ 0xcec894b0
+	.long	140                             @ 0x8c
+	.long	3598610789                      @ 0xd67e7165
+	.long	3469251760                      @ 0xcec894b0
+	.long	141                             @ 0x8d
+	.long	2351688191                      @ 0x8c2be9ff
+	.long	3469251760                      @ 0xcec894b0
+	.long	142                             @ 0x8e
+	.long	1438161982                      @ 0x55b89c3e
+	.long	3469251760                      @ 0xcec894b0
+	.long	143                             @ 0x8f
+	.long	2438880600                      @ 0x915e5d58
+	.long	3469251760                      @ 0xcec894b0
+	.long	144                             @ 0x90
+	.long	3593193962                      @ 0xd62bc9ea
+	.long	3469251760                      @ 0xcec894b0
+	.long	145                             @ 0x91
+	.long	1755082314                      @ 0x689c6e4a
+	.long	3469251760                      @ 0xcec894b0
+	.long	146                             @ 0x92
+	.long	3432612426                      @ 0xcc99824a
+	.long	3469251760                      @ 0xcec894b0
+	.long	147                             @ 0x93
+	.long	3374828335                      @ 0xc927cb2f
+	.long	3469251760                      @ 0xcec894b0
+	.long	148                             @ 0x94
+	.long	3311814731                      @ 0xc566484b
+	.long	3469251760                      @ 0xcec894b0
+	.long	149                             @ 0x95
+	.long	413908966                       @ 0x18abbfe6
+	.long	3469251760                      @ 0xcec894b0
+	.long	150                             @ 0x96
+	.long	3027808697                      @ 0xb478b1b9
+	.long	3469251760                      @ 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,%object @ @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.1
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.2
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.3
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.4
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.5
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.6
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.7
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.8
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.9
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.10
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.11
+	.long	7                               @ 0x7
+	.long	__llvm_gcov_ctr.12
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.13
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.14
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.15
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.16
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.17
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.18
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.19
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.20
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.21
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.22
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.23
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.24
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.25
+	.long	7                               @ 0x7
+	.long	__llvm_gcov_ctr.26
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.27
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.28
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.29
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.30
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.31
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.32
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.33
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.34
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.35
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.36
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.37
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.38
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.39
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.40
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.41
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.42
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.43
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.44
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.45
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.46
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.47
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.48
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.49
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.50
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.51
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.52
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.53
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.54
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.55
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.56
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.57
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.58
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.59
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.60
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.61
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.62
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.63
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.64
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.65
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.66
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.67
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.68
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.69
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.70
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.71
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.72
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.73
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.74
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.75
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.76
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.77
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.78
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.79
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.80
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.81
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.82
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.83
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.84
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.85
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.86
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.87
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.88
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.89
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.90
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.91
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.92
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.93
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.94
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.95
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.96
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.97
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.98
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.99
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.100
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.101
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.102
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.103
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.104
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.105
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.106
+	.long	6                               @ 0x6
+	.long	__llvm_gcov_ctr.107
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.108
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.109
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.110
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.111
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.112
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.113
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.114
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.115
+	.long	2                               @ 0x2
+	.long	__llvm_gcov_ctr.116
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.117
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.118
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.119
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.120
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.121
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.122
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.123
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.124
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.125
+	.long	7                               @ 0x7
+	.long	__llvm_gcov_ctr.126
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.127
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.128
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.129
+	.long	8                               @ 0x8
+	.long	__llvm_gcov_ctr.130
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.131
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.132
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.133
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.134
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.135
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.136
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.137
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.138
+	.long	3                               @ 0x3
+	.long	__llvm_gcov_ctr.139
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.140
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.141
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.142
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.143
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.144
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.145
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.146
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.147
+	.long	4                               @ 0x4
+	.long	__llvm_gcov_ctr.148
+	.long	5                               @ 0x5
+	.long	__llvm_gcov_ctr.149
+	.long	1                               @ 0x1
+	.long	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,%object @ @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.long	.L__unnamed_1
+	.long	875575338                       @ 0x3430382a
+	.long	3469251760                      @ 0xcec894b0
+	.long	151                             @ 0x97
+	.long	__llvm_internal_gcov_emit_function_args.0
+	.long	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",%init_array
+	.p2align	2, 0x0
+	.long	__llvm_gcov_init(target1)
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,%object       @ @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",%progbits,__profc_memmove
@@ -18080,9 +25841,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

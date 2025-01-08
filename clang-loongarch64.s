@@ -9,9 +9,18 @@ make_ti:                                # @make_ti
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_make_ti)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_make_ti)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_make_ti)
@@ -42,9 +51,18 @@ make_tu:                                # @make_tu
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.1)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.1)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.1)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.1)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_make_tu)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_make_tu)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_make_tu)
@@ -97,6 +115,14 @@ memmove:                                # @memmove
 	b	.LBB2_1
 .LBB2_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmove)
@@ -138,6 +164,15 @@ memmove:                                # @memmove
 	st.b	$a0, $a1, -1
 	b	.LBB2_4
 .LBB2_4:                                #   in Loop: Header=BB2_2 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -166,6 +201,14 @@ memmove:                                # @memmove
 	b	.LBB2_9
 .LBB2_9:                                #   in Loop: Header=BB2_8 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_memmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmove)
@@ -189,8 +232,26 @@ memmove:                                # @memmove
 	st.d	$a0, $fp, -40
 	b	.LBB2_8
 .LBB2_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB2_12
 .LBB2_12:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	b	.LBB2_13
 .LBB2_13:
 	ld.d	$a0, $fp, -24
@@ -239,6 +300,14 @@ memccpy:                                # @memccpy
 	b	.LBB3_2
 .LBB3_2:                                #   in Loop: Header=BB3_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memccpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memccpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memccpy)
@@ -261,6 +330,14 @@ memccpy:                                # @memccpy
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	ld.d	$a0, $fp, -88                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_memccpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memccpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memccpy)
@@ -288,6 +365,15 @@ memccpy:                                # @memccpy
 	st.d	$a0, $a1, 8
 	b	.LBB3_6
 .LBB3_6:                                #   in Loop: Header=BB3_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -56
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -56
@@ -304,6 +390,14 @@ memccpy:                                # @memccpy
 	b	.LBB3_8
 .LBB3_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_memccpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memccpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memccpy)
@@ -318,6 +412,14 @@ memccpy:                                # @memccpy
 	b	.LBB3_10
 .LBB3_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	st.d	$a0, $fp, -24
 	b	.LBB3_10
 .LBB3_10:
@@ -364,6 +466,14 @@ memchr:                                 # @memchr
 	b	.LBB4_2
 .LBB4_2:                                #   in Loop: Header=BB4_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memchr)
@@ -384,6 +494,14 @@ memchr:                                 # @memchr
 .LBB4_3:                                #   in Loop: Header=BB4_1 Depth=1
 	ld.d	$a0, $fp, -64                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_memchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memchr)
@@ -411,6 +529,15 @@ memchr:                                 # @memchr
 	st.d	$a0, $a1, 8
 	b	.LBB4_6
 .LBB4_6:                                #   in Loop: Header=BB4_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -48
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -48
@@ -424,6 +551,14 @@ memchr:                                 # @memchr
 	b	.LBB4_8
 .LBB4_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_memchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memchr)
@@ -437,6 +572,14 @@ memchr:                                 # @memchr
 	b	.LBB4_10
 .LBB4_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	st.d	$a0, $fp, -72                   # 8-byte Folded Spill
 	b	.LBB4_10
 .LBB4_10:
@@ -482,6 +625,14 @@ memcmp:                                 # @memcmp
 	b	.LBB5_2
 .LBB5_2:                                #   in Loop: Header=BB5_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memcmp)
@@ -503,6 +654,14 @@ memcmp:                                 # @memcmp
 .LBB5_3:                                #   in Loop: Header=BB5_1 Depth=1
 	ld.d	$a0, $fp, -72                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_memcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memcmp)
@@ -530,6 +689,15 @@ memcmp:                                 # @memcmp
 	st.d	$a0, $a1, 8
 	b	.LBB5_6
 .LBB5_6:                                #   in Loop: Header=BB5_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -546,6 +714,14 @@ memcmp:                                 # @memcmp
 	b	.LBB5_8
 .LBB5_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_memcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memcmp)
@@ -563,6 +739,14 @@ memcmp:                                 # @memcmp
 	b	.LBB5_10
 .LBB5_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	st.d	$a0, $fp, -80                   # 8-byte Folded Spill
 	b	.LBB5_10
 .LBB5_10:
@@ -584,10 +768,19 @@ memcpy:                                 # @memcpy
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.6)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.6)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.6)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.6)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.d	$a1, $fp, -32
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_memcpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memcpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memcpy)
@@ -625,6 +818,15 @@ memcpy:                                 # @memcpy
 	st.b	$a0, $a1, 0
 	b	.LBB6_3
 .LBB6_3:                                #   in Loop: Header=BB6_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.6)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.6)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.6)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.6)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -689,6 +891,14 @@ memrchr:                                # @memrchr
 	b	.LBB7_3
 .LBB7_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.7)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.7)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.7)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.7)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memrchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memrchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memrchr)
@@ -703,9 +913,26 @@ memrchr:                                # @memrchr
 	st.d	$a0, $fp, -24
 	b	.LBB7_6
 .LBB7_4:                                #   in Loop: Header=BB7_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.7)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.7)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.7)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.7)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	b	.LBB7_1
 .LBB7_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.7)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.7)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.7)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.7)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.d	$a0, $fp, -24
 	b	.LBB7_6
 .LBB7_6:
@@ -726,11 +953,20 @@ memset:                                 # @memset
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r7 killed $r5
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+                                        # kill: def $r4 killed $r5
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.8)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.8)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.8)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.8)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.w	$a1, $fp, -28
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_memset)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memset)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memset)
@@ -761,6 +997,15 @@ memset:                                 # @memset
 	st.b	$a0, $a1, 0
 	b	.LBB8_3
 .LBB8_3:                                #   in Loop: Header=BB8_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.8)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.8)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.8)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.8)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -786,9 +1031,18 @@ stpcpy:                                 # @stpcpy
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.9)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.9)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.9)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.9)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_stpcpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_stpcpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_stpcpy)
@@ -817,6 +1071,15 @@ stpcpy:                                 # @stpcpy
 	st.d	$a0, $a1, 8
 	b	.LBB9_3
 .LBB9_3:                                #   in Loop: Header=BB9_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.9)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.9)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.9)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.9)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -32
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -32
@@ -842,10 +1105,19 @@ strchrnul:                              # @strchrnul
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r6 killed $r5
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.10)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.10)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.10)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.10)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a1, %pc_hi20(.L__profc_strchrnul)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strchrnul)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strchrnul)
@@ -866,6 +1138,14 @@ strchrnul:                              # @strchrnul
 	b	.LBB10_2
 .LBB10_2:                               #   in Loop: Header=BB10_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.10)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.10)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.10)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.10)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strchrnul)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strchrnul)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strchrnul)
@@ -886,6 +1166,14 @@ strchrnul:                              # @strchrnul
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.10)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.10)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.10)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.10)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_strchrnul)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strchrnul)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strchrnul)
@@ -913,6 +1201,15 @@ strchrnul:                              # @strchrnul
 	st.d	$a0, $a1, 8
 	b	.LBB10_6
 .LBB10_6:                               #   in Loop: Header=BB10_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.10)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.10)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.10)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.10)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -24
@@ -950,6 +1247,14 @@ strchr:                                 # @strchr
 	b	.LBB11_2
 .LBB11_1:                               #   in Loop: Header=BB11_2 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.11)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.11)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.11)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.11)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strchr)
@@ -967,6 +1272,14 @@ strchr:                                 # @strchr
 	b	.LBB11_3
 .LBB11_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.11)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.11)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.11)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.11)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_strchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strchr)
@@ -989,6 +1302,14 @@ strchr:                                 # @strchr
 	b	.LBB11_6
 .LBB11_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.11)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.11)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.11)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.11)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.d	$a0, $fp, -24
 	b	.LBB11_7
 .LBB11_7:
@@ -1009,9 +1330,18 @@ strcmp:                                 # @strcmp
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.12)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.12)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.12)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.12)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_strcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strcmp)
@@ -1032,6 +1362,14 @@ strcmp:                                 # @strcmp
 	b	.LBB12_2
 .LBB12_2:                               #   in Loop: Header=BB12_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.12)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.12)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.12)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.12)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strcmp)
@@ -1050,6 +1388,14 @@ strcmp:                                 # @strcmp
 .LBB12_3:                               #   in Loop: Header=BB12_1 Depth=1
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.12)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.12)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.12)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.12)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_strcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strcmp)
@@ -1077,6 +1423,15 @@ strcmp:                                 # @strcmp
 	st.d	$a0, $a1, 8
 	b	.LBB12_6
 .LBB12_6:                               #   in Loop: Header=BB12_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.12)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.12)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.12)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.12)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -24
@@ -1106,8 +1461,17 @@ strlen:                                 # @strlen
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.13)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.13)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.13)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.13)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_strlen)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strlen)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strlen)
@@ -1136,6 +1500,15 @@ strlen:                                 # @strlen
 	st.d	$a0, $a1, 8
 	b	.LBB13_3
 .LBB13_3:                               #   in Loop: Header=BB13_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.13)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.13)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.13)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.13)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -24
@@ -1183,6 +1556,14 @@ strncmp:                                # @strncmp
 	b	.LBB14_1
 .LBB14_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_strncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncmp)
@@ -1194,6 +1575,15 @@ strncmp:                                # @strncmp
 	st.w	$a0, $fp, -20
 	b	.LBB14_14
 .LBB14_2:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	b	.LBB14_3
 .LBB14_3:                               # =>This Inner Loop Header: Depth=1
 	ld.d	$a0, $fp, -56
@@ -1204,6 +1594,14 @@ strncmp:                                # @strncmp
 	b	.LBB14_4
 .LBB14_4:                               #   in Loop: Header=BB14_3 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_strncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncmp)
@@ -1219,6 +1617,14 @@ strncmp:                                # @strncmp
 	b	.LBB14_5
 .LBB14_5:                               #   in Loop: Header=BB14_3 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_strncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncmp)
@@ -1244,6 +1650,14 @@ strncmp:                                # @strncmp
 	b	.LBB14_7
 .LBB14_7:                               #   in Loop: Header=BB14_3 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_strncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncmp)
@@ -1276,6 +1690,14 @@ strncmp:                                # @strncmp
 .LBB14_9:                               #   in Loop: Header=BB14_3 Depth=1
 	ld.d	$a0, $fp, -80                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 40
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 40
 	pcalau12i	$a2, %pc_hi20(.L__profc_strncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncmp)
@@ -1303,6 +1725,15 @@ strncmp:                                # @strncmp
 	st.d	$a0, $a1, 16
 	b	.LBB14_12
 .LBB14_12:                              #   in Loop: Header=BB14_3 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 48
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 48
 	ld.d	$a0, $fp, -56
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -56
@@ -1339,10 +1770,19 @@ swab:                                   # @swab
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.15)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.15)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.15)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.15)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.d	$a1, $fp, -32
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_swab)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_swab)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_swab)
@@ -1387,6 +1827,15 @@ swab:                                   # @swab
 	st.d	$a0, $fp, -48
 	b	.LBB15_3
 .LBB15_3:                               #   in Loop: Header=BB15_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.15)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.15)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.15)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.15)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -2
 	st.d	$a0, $fp, -40
@@ -1408,9 +1857,18 @@ isalpha:                                # @isalpha
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.16)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.16)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.16)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.16)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isalpha)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isalpha)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isalpha)
@@ -1440,9 +1898,18 @@ isascii:                                # @isascii
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.17)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.17)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.17)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.17)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isascii)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isascii)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isascii)
@@ -1472,9 +1939,18 @@ isblank:                                # @isblank
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.18)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.18)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.18)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.18)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isblank)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isblank)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isblank)
@@ -1491,6 +1967,14 @@ isblank:                                # @isblank
 	b	.LBB18_1
 .LBB18_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.18)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.18)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.18)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.18)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_isblank)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isblank)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isblank)
@@ -1510,6 +1994,14 @@ isblank:                                # @isblank
 .LBB18_2:
 	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.18)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.18)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.18)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.18)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_isblank)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isblank)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isblank)
@@ -1539,9 +2031,18 @@ iscntrl:                                # @iscntrl
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.19)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.19)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.19)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.19)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_iscntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iscntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iscntrl)
@@ -1558,6 +2059,14 @@ iscntrl:                                # @iscntrl
 	b	.LBB19_1
 .LBB19_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.19)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.19)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.19)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.19)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_iscntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iscntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iscntrl)
@@ -1577,6 +2086,14 @@ iscntrl:                                # @iscntrl
 .LBB19_2:
 	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.19)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.19)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.19)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.19)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_iscntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iscntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iscntrl)
@@ -1606,9 +2123,18 @@ isdigit:                                # @isdigit
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.20)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.20)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.20)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.20)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isdigit)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isdigit)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isdigit)
@@ -1637,9 +2163,18 @@ isgraph:                                # @isgraph
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.21)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.21)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.21)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.21)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isgraph)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isgraph)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isgraph)
@@ -1668,9 +2203,18 @@ islower:                                # @islower
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.22)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.22)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.22)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.22)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_islower)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_islower)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_islower)
@@ -1699,9 +2243,18 @@ isprint:                                # @isprint
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.23)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.23)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.23)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.23)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isprint)
@@ -1730,9 +2283,18 @@ isspace:                                # @isspace
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.24)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.24)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.24)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.24)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isspace)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isspace)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isspace)
@@ -1749,6 +2311,14 @@ isspace:                                # @isspace
 	b	.LBB24_1
 .LBB24_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.24)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.24)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.24)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.24)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_isspace)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isspace)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isspace)
@@ -1769,6 +2339,14 @@ isspace:                                # @isspace
 .LBB24_2:
 	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.24)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.24)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.24)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.24)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_isspace)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isspace)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isspace)
@@ -1798,9 +2376,18 @@ isupper:                                # @isupper
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.25)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.25)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.25)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.25)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_isupper)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_isupper)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_isupper)
@@ -1829,9 +2416,18 @@ iswcntrl:                               # @iswcntrl
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswcntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswcntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswcntrl)
@@ -1848,6 +2444,14 @@ iswcntrl:                               # @iswcntrl
 	b	.LBB26_1
 .LBB26_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswcntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswcntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswcntrl)
@@ -1866,6 +2470,14 @@ iswcntrl:                               # @iswcntrl
 	b	.LBB26_2
 .LBB26_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswcntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswcntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswcntrl)
@@ -1897,6 +2509,14 @@ iswcntrl:                               # @iswcntrl
 	b	.LBB26_4
 .LBB26_4:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswcntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswcntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswcntrl)
@@ -1928,6 +2548,14 @@ iswcntrl:                               # @iswcntrl
 .LBB26_6:
 	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 32
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 32
 	pcalau12i	$a2, %pc_hi20(.L__profc_iswcntrl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswcntrl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswcntrl)
@@ -1957,9 +2585,18 @@ iswdigit:                               # @iswdigit
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.27)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.27)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.27)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.27)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswdigit)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswdigit)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswdigit)
@@ -2005,6 +2642,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_1
 .LBB28_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2028,6 +2673,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_3
 .LBB28_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2047,6 +2700,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_4
 .LBB28_4:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2087,6 +2748,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_8
 .LBB28_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2108,6 +2777,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_9
 .LBB28_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2136,6 +2813,14 @@ iswprint:                               # @iswprint
 	b	.LBB28_12
 .LBB28_11:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
 	pcalau12i	$a2, %pc_hi20(.L__profc_iswprint)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswprint)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswprint)
@@ -2147,6 +2832,15 @@ iswprint:                               # @iswprint
 	st.w	$a0, $fp, -20
 	b	.LBB28_13
 .LBB28_12:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 48
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 48
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -20
 	b	.LBB28_13
@@ -2168,9 +2862,18 @@ iswxdigit:                              # @iswxdigit
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.29)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.29)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.29)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.29)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswxdigit)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswxdigit)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswxdigit)
@@ -2189,6 +2892,14 @@ iswxdigit:                              # @iswxdigit
 	b	.LBB29_1
 .LBB29_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.29)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.29)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.29)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.29)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_iswxdigit)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswxdigit)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswxdigit)
@@ -2210,6 +2921,14 @@ iswxdigit:                              # @iswxdigit
 .LBB29_2:
 	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.29)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.29)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.29)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.29)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_iswxdigit)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_iswxdigit)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_iswxdigit)
@@ -2239,9 +2958,18 @@ toascii:                                # @toascii
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.30)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.30)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.30)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.30)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_toascii)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_toascii)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_toascii)
@@ -2289,6 +3017,14 @@ fdim:                                   # @fdim
 	b	.LBB31_1
 .LBB31_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.31)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.31)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.31)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.31)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdim)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdim)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdim)
@@ -2309,6 +3045,14 @@ fdim:                                   # @fdim
 	b	.LBB31_3
 .LBB31_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.31)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.31)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.31)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.31)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdim)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdim)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdim)
@@ -2334,6 +3078,14 @@ fdim:                                   # @fdim
 	b	.LBB31_5
 .LBB31_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.31)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.31)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.31)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.31)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdim)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdim)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdim)
@@ -2354,6 +3106,14 @@ fdim:                                   # @fdim
 	b	.LBB31_7
 .LBB31_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.31)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.31)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.31)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.31)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB31_7
 .LBB31_7:
@@ -2399,6 +3159,14 @@ fdimf:                                  # @fdimf
 	b	.LBB32_1
 .LBB32_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.32)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.32)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.32)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.32)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdimf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdimf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdimf)
@@ -2419,6 +3187,14 @@ fdimf:                                  # @fdimf
 	b	.LBB32_3
 .LBB32_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.32)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.32)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.32)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.32)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdimf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdimf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdimf)
@@ -2444,6 +3220,14 @@ fdimf:                                  # @fdimf
 	b	.LBB32_5
 .LBB32_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.32)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.32)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.32)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.32)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fdimf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fdimf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fdimf)
@@ -2464,6 +3248,14 @@ fdimf:                                  # @fdimf
 	b	.LBB32_7
 .LBB32_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.32)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.32)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.32)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.32)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB32_7
 .LBB32_7:
@@ -2509,6 +3301,14 @@ fmax:                                   # @fmax
 	b	.LBB33_1
 .LBB33_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmax)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmax)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmax)
@@ -2529,6 +3329,14 @@ fmax:                                   # @fmax
 	b	.LBB33_3
 .LBB33_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmax)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmax)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmax)
@@ -2563,6 +3371,14 @@ fmax:                                   # @fmax
 	b	.LBB33_6
 .LBB33_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmax)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmax)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmax)
@@ -2575,6 +3391,15 @@ fmax:                                   # @fmax
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB33_8
 .LBB33_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -32
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB33_8
@@ -2597,6 +3422,14 @@ fmax:                                   # @fmax
 	b	.LBB33_10
 .LBB33_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmax)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmax)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmax)
@@ -2609,6 +3442,15 @@ fmax:                                   # @fmax
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB33_12
 .LBB33_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -32
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB33_12
@@ -2655,6 +3497,14 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_1
 .LBB34_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxf)
@@ -2675,6 +3525,14 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_3
 .LBB34_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxf)
@@ -2709,6 +3567,14 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_6
 .LBB34_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxf)
@@ -2721,6 +3587,15 @@ fmaxf:                                  # @fmaxf
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB34_8
 .LBB34_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.w	$a0, $fp, -24
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB34_8
@@ -2743,6 +3618,14 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_10
 .LBB34_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxf)
@@ -2755,6 +3638,15 @@ fmaxf:                                  # @fmaxf
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB34_12
 .LBB34_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.w	$a0, $fp, -24
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB34_12
@@ -2814,6 +3706,14 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_1
 .LBB35_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxl)
@@ -2845,6 +3745,14 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_3
 .LBB35_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxl)
@@ -2881,6 +3789,14 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_6
 .LBB35_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxl)
@@ -2895,6 +3811,15 @@ fmaxl:                                  # @fmaxl
 	st.d	$a0, $fp, -72                   # 8-byte Folded Spill
 	b	.LBB35_8
 .LBB35_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -40
 	ld.d	$a1, $fp, -48
 	st.d	$a1, $fp, -80                   # 8-byte Folded Spill
@@ -2923,6 +3848,14 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_10
 .LBB35_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmaxl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmaxl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmaxl)
@@ -2937,6 +3870,15 @@ fmaxl:                                  # @fmaxl
 	st.d	$a0, $fp, -88                   # 8-byte Folded Spill
 	b	.LBB35_12
 .LBB35_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -40
 	ld.d	$a1, $fp, -48
 	st.d	$a1, $fp, -96                   # 8-byte Folded Spill
@@ -2988,6 +3930,14 @@ fmin:                                   # @fmin
 	b	.LBB36_1
 .LBB36_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmin)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmin)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmin)
@@ -3008,6 +3958,14 @@ fmin:                                   # @fmin
 	b	.LBB36_3
 .LBB36_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmin)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmin)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmin)
@@ -3042,6 +4000,14 @@ fmin:                                   # @fmin
 	b	.LBB36_6
 .LBB36_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmin)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmin)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmin)
@@ -3054,6 +4020,15 @@ fmin:                                   # @fmin
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB36_8
 .LBB36_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -40
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB36_8
@@ -3076,6 +4051,14 @@ fmin:                                   # @fmin
 	b	.LBB36_10
 .LBB36_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fmin)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fmin)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fmin)
@@ -3088,6 +4071,15 @@ fmin:                                   # @fmin
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB36_12
 .LBB36_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -40
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB36_12
@@ -3134,6 +4126,14 @@ fminf:                                  # @fminf
 	b	.LBB37_1
 .LBB37_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminf)
@@ -3154,6 +4154,14 @@ fminf:                                  # @fminf
 	b	.LBB37_3
 .LBB37_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminf)
@@ -3188,6 +4196,14 @@ fminf:                                  # @fminf
 	b	.LBB37_6
 .LBB37_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminf)
@@ -3200,6 +4216,15 @@ fminf:                                  # @fminf
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB37_8
 .LBB37_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.w	$a0, $fp, -28
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB37_8
@@ -3222,6 +4247,14 @@ fminf:                                  # @fminf
 	b	.LBB37_10
 .LBB37_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminf)
@@ -3234,6 +4267,15 @@ fminf:                                  # @fminf
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB37_12
 .LBB37_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.w	$a0, $fp, -28
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB37_12
@@ -3293,6 +4335,14 @@ fminl:                                  # @fminl
 	b	.LBB38_1
 .LBB38_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminl)
@@ -3324,6 +4374,14 @@ fminl:                                  # @fminl
 	b	.LBB38_3
 .LBB38_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminl)
@@ -3360,6 +4418,14 @@ fminl:                                  # @fminl
 	b	.LBB38_6
 .LBB38_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminl)
@@ -3374,6 +4440,15 @@ fminl:                                  # @fminl
 	st.d	$a0, $fp, -72                   # 8-byte Folded Spill
 	b	.LBB38_8
 .LBB38_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -56
 	ld.d	$a1, $fp, -64
 	st.d	$a1, $fp, -80                   # 8-byte Folded Spill
@@ -3402,6 +4477,14 @@ fminl:                                  # @fminl
 	b	.LBB38_10
 .LBB38_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_fminl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_fminl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_fminl)
@@ -3416,6 +4499,15 @@ fminl:                                  # @fminl
 	st.d	$a0, $fp, -88                   # 8-byte Folded Spill
 	b	.LBB38_12
 .LBB38_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -56
 	ld.d	$a1, $fp, -64
 	st.d	$a1, $fp, -96                   # 8-byte Folded Spill
@@ -3446,8 +4538,17 @@ l64a:                                   # @l64a
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.39)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.39)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.39)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.39)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a2, %pc_hi20(.L__profc_l64a)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_l64a)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_l64a)
@@ -3491,6 +4592,15 @@ l64a:                                   # @l64a
 	st.b	$a0, $a1, 0
 	b	.LBB39_3
 .LBB39_3:                               #   in Loop: Header=BB39_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.39)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.39)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.39)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.39)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -32
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -32
@@ -3524,8 +4634,16 @@ srand:                                  # @srand
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
                                         # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.40)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.40)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.40)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.40)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a0, $fp, -20
 	pcalau12i	$a2, %pc_hi20(.L__profc_srand)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_srand)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_srand)
@@ -3560,6 +4678,14 @@ rand:                                   # @rand
 	st.d	$fp, $sp, 0                     # 8-byte Folded Spill
 	addi.d	$fp, $sp, 16
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.41)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.41)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.41)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.41)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc_rand)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rand)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rand)
@@ -3619,6 +4745,14 @@ insque:                                 # @insque
 	b	.LBB42_1
 .LBB42_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.42)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.42)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.42)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.42)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_insque)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_insque)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_insque)
@@ -3633,6 +4767,15 @@ insque:                                 # @insque
 	st.d	$a0, $a1, 0
 	b	.LBB42_4
 .LBB42_2:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.42)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.42)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.42)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.42)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	ld.d	$a0, $fp, -48
 	ld.d	$a0, $a0, 0
 	ld.d	$a1, $fp, -40
@@ -3649,6 +4792,14 @@ insque:                                 # @insque
 	b	.LBB42_3
 .LBB42_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.42)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.42)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.42)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.42)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_insque)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_insque)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_insque)
@@ -3678,8 +4829,17 @@ remque:                                 # @remque
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.43)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.43)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.43)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.43)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_remque)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_remque)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_remque)
@@ -3696,6 +4856,14 @@ remque:                                 # @remque
 	b	.LBB43_1
 .LBB43_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.43)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.43)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.43)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.43)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_remque)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_remque)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_remque)
@@ -3716,6 +4884,14 @@ remque:                                 # @remque
 	b	.LBB43_3
 .LBB43_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.43)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.43)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.43)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.43)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_remque)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_remque)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_remque)
@@ -3797,6 +4973,14 @@ lsearch:                                # @lsearch
 .LBB44_3:
 	ld.d	$a2, $fp, -96                   # 8-byte Folded Reload
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.44)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.44)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.44)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.44)
+	add.d	$a3, $t8, $a3
+	ld.d	$a1, $a3, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a3, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_lsearch)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_lsearch)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_lsearch)
@@ -3814,12 +4998,30 @@ lsearch:                                # @lsearch
 .LBB44_4:                               #   in Loop: Header=BB44_1 Depth=1
 	b	.LBB44_5
 .LBB44_5:                               #   in Loop: Header=BB44_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.44)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.44)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.44)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.44)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -88
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -88
 	b	.LBB44_1
 .LBB44_6:
 	ld.d	$a2, $fp, -96                   # 8-byte Folded Reload
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.44)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.44)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.44)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.44)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -80
 	addi.d	$a0, $a0, 1
 	ld.d	$a1, $fp, -48
@@ -3910,6 +5112,14 @@ lfind:                                  # @lfind
 .LBB45_3:
 	ld.d	$a2, $fp, -96                   # 8-byte Folded Reload
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.45)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.45)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.45)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.45)
+	add.d	$a3, $t8, $a3
+	ld.d	$a1, $a3, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a3, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_lfind)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_lfind)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_lfind)
@@ -3927,12 +5137,29 @@ lfind:                                  # @lfind
 .LBB45_4:                               #   in Loop: Header=BB45_1 Depth=1
 	b	.LBB45_5
 .LBB45_5:                               #   in Loop: Header=BB45_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.45)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.45)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.45)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.45)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -88
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -88
 	b	.LBB45_1
 .LBB45_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.45)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.45)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.45)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.45)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.d	$a0, $fp, -24
 	b	.LBB45_7
 .LBB45_7:
@@ -3970,6 +5197,14 @@ abs:                                    # @abs
 	b	.LBB46_1
 .LBB46_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.46)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.46)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.46)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.46)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_abs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_abs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_abs)
@@ -3982,8 +5217,16 @@ abs:                                    # @abs
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB46_3
 .LBB46_2:
-	ld.w	$a1, $fp, -20
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.46)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.46)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.46)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.46)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
+	ld.w	$a1, $fp, -20
 	sub.d	$a0, $a0, $a1
 	addi.w	$a0, $a0, 0
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
@@ -4033,6 +5276,14 @@ atoi:                                   # @atoi
 	b	.LBB47_2
 .LBB47_2:                               #   in Loop: Header=BB47_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoi)
@@ -4061,6 +5312,14 @@ atoi:                                   # @atoi
 	b	.LBB47_5
 .LBB47_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoi)
@@ -4074,6 +5333,14 @@ atoi:                                   # @atoi
 	b	.LBB47_7
 .LBB47_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoi)
@@ -4112,6 +5379,14 @@ atoi:                                   # @atoi
 	b	.LBB47_10
 .LBB47_10:                              #   in Loop: Header=BB47_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoi)
@@ -4137,6 +5412,14 @@ atoi:                                   # @atoi
 	b	.LBB47_12
 .LBB47_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoi)
@@ -4149,8 +5432,16 @@ atoi:                                   # @atoi
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB47_14
 .LBB47_13:
-	ld.w	$a1, $fp, -28
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
+	ld.w	$a1, $fp, -28
 	sub.d	$a0, $a0, $a1
 	addi.w	$a0, $a0, 0
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
@@ -4200,6 +5491,14 @@ atol:                                   # @atol
 	b	.LBB48_2
 .LBB48_2:                               #   in Loop: Header=BB48_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_atol)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atol)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atol)
@@ -4228,6 +5527,14 @@ atol:                                   # @atol
 	b	.LBB48_5
 .LBB48_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_atol)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atol)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atol)
@@ -4241,6 +5548,14 @@ atol:                                   # @atol
 	b	.LBB48_7
 .LBB48_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_atol)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atol)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atol)
@@ -4279,6 +5594,14 @@ atol:                                   # @atol
 	b	.LBB48_10
 .LBB48_10:                              #   in Loop: Header=BB48_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_atol)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atol)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atol)
@@ -4304,6 +5627,14 @@ atol:                                   # @atol
 	b	.LBB48_12
 .LBB48_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_atol)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atol)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atol)
@@ -4316,8 +5647,16 @@ atol:                                   # @atol
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB48_14
 .LBB48_13:
-	ld.d	$a1, $fp, -32
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
+	ld.d	$a1, $fp, -32
 	sub.d	$a0, $a0, $a1
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB48_14
@@ -4365,6 +5704,14 @@ atoll:                                  # @atoll
 	b	.LBB49_2
 .LBB49_2:                               #   in Loop: Header=BB49_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoll)
@@ -4393,6 +5740,14 @@ atoll:                                  # @atoll
 	b	.LBB49_5
 .LBB49_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoll)
@@ -4406,6 +5761,14 @@ atoll:                                  # @atoll
 	b	.LBB49_7
 .LBB49_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoll)
@@ -4444,6 +5807,14 @@ atoll:                                  # @atoll
 	b	.LBB49_10
 .LBB49_10:                              #   in Loop: Header=BB49_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoll)
@@ -4469,6 +5840,14 @@ atoll:                                  # @atoll
 	b	.LBB49_12
 .LBB49_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_atoll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_atoll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_atoll)
@@ -4481,8 +5860,16 @@ atoll:                                  # @atoll
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB49_14
 .LBB49_13:
-	ld.d	$a1, $fp, -32
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
+	ld.d	$a1, $fp, -32
 	sub.d	$a0, $a0, $a1
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB49_14
@@ -4551,6 +5938,14 @@ bsearch:                                # @bsearch
 	b	.LBB50_3
 .LBB50_3:                               #   in Loop: Header=BB50_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.50)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.50)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.50)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.50)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_bsearch)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bsearch)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bsearch)
@@ -4589,15 +5984,41 @@ bsearch:                                # @bsearch
 	st.d	$a0, $fp, -48
 	b	.LBB50_7
 .LBB50_6:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.50)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.50)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.50)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.50)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -72
 	st.d	$a0, $fp, -24
 	b	.LBB50_10
 .LBB50_7:                               #   in Loop: Header=BB50_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.50)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.50)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.50)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.50)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB50_8
 .LBB50_8:                               #   in Loop: Header=BB50_1 Depth=1
 	b	.LBB50_1
 .LBB50_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.50)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.50)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.50)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.50)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	st.d	$a0, $fp, -24
 	b	.LBB50_10
 .LBB50_10:
@@ -4670,6 +6091,14 @@ bsearch_r:                              # @bsearch_r
 	b	.LBB51_3
 .LBB51_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.51)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.51)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.51)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.51)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_bsearch_r)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bsearch_r)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bsearch_r)
@@ -4688,6 +6117,14 @@ bsearch_r:                              # @bsearch_r
 	b	.LBB51_5
 .LBB51_5:                               #   in Loop: Header=BB51_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.51)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.51)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.51)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.51)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_bsearch_r)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bsearch_r)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bsearch_r)
@@ -4707,12 +6144,29 @@ bsearch_r:                              # @bsearch_r
 .LBB51_6:                               #   in Loop: Header=BB51_1 Depth=1
 	b	.LBB51_7
 .LBB51_7:                               #   in Loop: Header=BB51_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.51)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.51)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.51)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.51)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -84
 	srli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -84
 	b	.LBB51_1
 .LBB51_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.51)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.51)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.51)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.51)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	st.d	$a0, $fp, -24
 	b	.LBB51_9
 .LBB51_9:
@@ -4733,11 +6187,20 @@ div:                                    # @div
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -28
-	st.w	$a1, $fp, -32
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.52)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.52)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.52)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.52)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -28
+	st.w	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_div)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_div)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_div)
@@ -4790,6 +6253,14 @@ imaxabs:                                # @imaxabs
 	b	.LBB53_1
 .LBB53_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.53)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.53)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.53)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.53)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_imaxabs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_imaxabs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_imaxabs)
@@ -4802,8 +6273,16 @@ imaxabs:                                # @imaxabs
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB53_3
 .LBB53_2:
-	ld.d	$a1, $fp, -24
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.53)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.53)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.53)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.53)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
+	ld.d	$a1, $fp, -24
 	sub.d	$a0, $a0, $a1
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB53_3
@@ -4825,9 +6304,18 @@ imaxdiv:                                # @imaxdiv
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -40
-	st.d	$a1, $fp, -48
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.54)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.54)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.54)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.54)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -40
+	st.d	$a1, $fp, -48
 	pcalau12i	$a1, %pc_hi20(.L__profc_imaxdiv)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_imaxdiv)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_imaxdiv)
@@ -4878,6 +6366,14 @@ labs:                                   # @labs
 	b	.LBB55_1
 .LBB55_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.55)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.55)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.55)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.55)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_labs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_labs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_labs)
@@ -4890,8 +6386,16 @@ labs:                                   # @labs
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB55_3
 .LBB55_2:
-	ld.d	$a1, $fp, -24
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.55)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.55)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.55)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.55)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
+	ld.d	$a1, $fp, -24
 	sub.d	$a0, $a0, $a1
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB55_3
@@ -4913,9 +6417,18 @@ ldiv:                                   # @ldiv
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -40
-	st.d	$a1, $fp, -48
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.56)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.56)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.56)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.56)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -40
+	st.d	$a1, $fp, -48
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldiv)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldiv)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldiv)
@@ -4966,6 +6479,14 @@ llabs:                                  # @llabs
 	b	.LBB57_1
 .LBB57_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.57)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.57)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.57)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.57)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_llabs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_llabs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_llabs)
@@ -4978,8 +6499,16 @@ llabs:                                  # @llabs
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB57_3
 .LBB57_2:
-	ld.d	$a1, $fp, -24
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.57)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.57)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.57)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.57)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
+	ld.d	$a1, $fp, -24
 	sub.d	$a0, $a0, $a1
 	st.d	$a0, $fp, -32                   # 8-byte Folded Spill
 	b	.LBB57_3
@@ -5001,9 +6530,18 @@ lldiv:                                  # @lldiv
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -40
-	st.d	$a1, $fp, -48
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.58)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.58)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.58)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.58)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -40
+	st.d	$a1, $fp, -48
 	pcalau12i	$a1, %pc_hi20(.L__profc_lldiv)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_lldiv)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_lldiv)
@@ -5060,6 +6598,14 @@ wcschr:                                 # @wcschr
 	b	.LBB59_2
 .LBB59_2:                               #   in Loop: Header=BB59_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcschr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcschr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcschr)
@@ -5080,6 +6626,14 @@ wcschr:                                 # @wcschr
 .LBB59_3:                               #   in Loop: Header=BB59_1 Depth=1
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_wcschr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcschr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcschr)
@@ -5107,6 +6661,15 @@ wcschr:                                 # @wcschr
 	st.d	$a0, $a1, 8
 	b	.LBB59_6
 .LBB59_6:                               #   in Loop: Header=BB59_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 4
 	st.d	$a0, $fp, -24
@@ -5118,6 +6681,14 @@ wcschr:                                 # @wcschr
 	b	.LBB59_8
 .LBB59_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcschr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcschr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcschr)
@@ -5131,6 +6702,14 @@ wcschr:                                 # @wcschr
 	b	.LBB59_10
 .LBB59_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB59_10
 .LBB59_10:
@@ -5174,6 +6753,14 @@ wcscmp:                                 # @wcscmp
 	b	.LBB60_2
 .LBB60_2:                               #   in Loop: Header=BB60_1 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc_wcscmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscmp)
@@ -5189,6 +6776,14 @@ wcscmp:                                 # @wcscmp
 	b	.LBB60_3
 .LBB60_3:                               #   in Loop: Header=BB60_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcscmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscmp)
@@ -5218,6 +6813,14 @@ wcscmp:                                 # @wcscmp
 .LBB60_5:                               #   in Loop: Header=BB60_1 Depth=1
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_wcscmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscmp)
@@ -5245,6 +6848,15 @@ wcscmp:                                 # @wcscmp
 	st.d	$a0, $a1, 8
 	b	.LBB60_8
 .LBB60_8:                               #   in Loop: Header=BB60_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 4
 	st.d	$a0, $fp, -24
@@ -5261,6 +6873,14 @@ wcscmp:                                 # @wcscmp
 	b	.LBB60_10
 .LBB60_10:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcscmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscmp)
@@ -5273,6 +6893,15 @@ wcscmp:                                 # @wcscmp
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
 	b	.LBB60_12
 .LBB60_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -24
 	ld.w	$a1, $a0, 0
 	ld.d	$a0, $fp, -32
@@ -5299,9 +6928,18 @@ wcscpy:                                 # @wcscpy
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.61)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.61)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.61)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.61)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcscpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscpy)
@@ -5326,6 +6964,14 @@ wcscpy:                                 # @wcscpy
 	b	.LBB61_2
 .LBB61_2:                               #   in Loop: Header=BB61_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.61)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.61)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.61)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.61)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcscpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcscpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcscpy)
@@ -5353,8 +6999,17 @@ wcslen:                                 # @wcslen
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.62)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.62)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.62)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.62)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcslen)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcslen)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcslen)
@@ -5383,6 +7038,15 @@ wcslen:                                 # @wcslen
 	st.d	$a0, $a1, 8
 	b	.LBB62_3
 .LBB62_3:                               #   in Loop: Header=BB62_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.62)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.62)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.62)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.62)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -24
 	addi.d	$a0, $a0, 4
 	st.d	$a0, $fp, -24
@@ -5429,6 +7093,14 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_2
 .LBB63_2:                               #   in Loop: Header=BB63_1 Depth=1
 	move	$a2, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcsncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcsncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcsncmp)
@@ -5446,6 +7118,14 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_3
 .LBB63_3:                               #   in Loop: Header=BB63_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcsncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcsncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcsncmp)
@@ -5472,6 +7152,14 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_5
 .LBB63_5:                               #   in Loop: Header=BB63_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcsncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcsncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcsncmp)
@@ -5501,6 +7189,14 @@ wcsncmp:                                # @wcsncmp
 .LBB63_7:                               #   in Loop: Header=BB63_1 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 24
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 24
 	pcalau12i	$a2, %pc_hi20(.L__profc_wcsncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcsncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcsncmp)
@@ -5528,6 +7224,15 @@ wcsncmp:                                # @wcsncmp
 	st.d	$a0, $a1, 8
 	b	.LBB63_10
 .LBB63_10:                              #   in Loop: Header=BB63_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -5560,6 +7265,14 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_13
 .LBB63_13:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
 	pcalau12i	$a1, %pc_hi20(.L__profc_wcsncmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wcsncmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wcsncmp)
@@ -5572,6 +7285,15 @@ wcsncmp:                                # @wcsncmp
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
 	b	.LBB63_15
 .LBB63_14:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 48
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 48
 	ld.d	$a0, $fp, -24
 	ld.w	$a1, $a0, 0
 	ld.d	$a0, $fp, -32
@@ -5585,6 +7307,14 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_17
 .LBB63_16:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 56
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 56
 	st.d	$a0, $fp, -72                   # 8-byte Folded Spill
 	b	.LBB63_17
 .LBB63_17:
@@ -5628,6 +7358,14 @@ wmemchr:                                # @wmemchr
 	b	.LBB64_2
 .LBB64_2:                               #   in Loop: Header=BB64_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemchr)
@@ -5648,6 +7386,14 @@ wmemchr:                                # @wmemchr
 .LBB64_3:                               #   in Loop: Header=BB64_1 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_wmemchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemchr)
@@ -5675,6 +7421,15 @@ wmemchr:                                # @wmemchr
 	st.d	$a0, $a1, 8
 	b	.LBB64_6
 .LBB64_6:                               #   in Loop: Header=BB64_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -5688,6 +7443,14 @@ wmemchr:                                # @wmemchr
 	b	.LBB64_8
 .LBB64_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemchr)
@@ -5701,6 +7464,14 @@ wmemchr:                                # @wmemchr
 	b	.LBB64_10
 .LBB64_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
 	b	.LBB64_10
 .LBB64_10:
@@ -5742,6 +7513,14 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_2
 .LBB65_2:                               #   in Loop: Header=BB65_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemcmp)
@@ -5763,6 +7542,14 @@ wmemcmp:                                # @wmemcmp
 .LBB65_3:                               #   in Loop: Header=BB65_1 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_wmemcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemcmp)
@@ -5790,6 +7577,15 @@ wmemcmp:                                # @wmemcmp
 	st.d	$a0, $a1, 8
 	b	.LBB65_6
 .LBB65_6:                               #   in Loop: Header=BB65_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -5822,6 +7618,14 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_9
 .LBB65_9:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemcmp)
@@ -5834,6 +7638,15 @@ wmemcmp:                                # @wmemcmp
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
 	b	.LBB65_11
 .LBB65_10:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a0, $fp, -24
 	ld.w	$a1, $a0, 0
 	ld.d	$a0, $fp, -32
@@ -5847,6 +7660,14 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_13
 .LBB65_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
 	st.d	$a0, $fp, -72                   # 8-byte Folded Spill
 	b	.LBB65_13
 .LBB65_13:
@@ -5868,10 +7689,19 @@ wmemcpy:                                # @wmemcpy
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.66)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.66)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.66)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.66)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.d	$a1, $fp, -32
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemcpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemcpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemcpy)
@@ -5891,6 +7721,14 @@ wmemcpy:                                # @wmemcpy
 	b	.LBB66_2
 .LBB66_2:                               #   in Loop: Header=BB66_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.66)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.66)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.66)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.66)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemcpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemcpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemcpy)
@@ -5946,6 +7784,14 @@ wmemmove:                               # @wmemmove
 	b	.LBB67_1
 .LBB67_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemmove)
@@ -5967,6 +7813,14 @@ wmemmove:                               # @wmemmove
 	b	.LBB67_3
 .LBB67_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemmove)
@@ -5984,6 +7838,14 @@ wmemmove:                               # @wmemmove
 	b	.LBB67_5
 .LBB67_5:                               #   in Loop: Header=BB67_4 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemmove)
@@ -6011,6 +7873,14 @@ wmemmove:                               # @wmemmove
 	b	.LBB67_9
 .LBB67_9:                               #   in Loop: Header=BB67_8 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemmove)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemmove)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemmove)
@@ -6029,6 +7899,15 @@ wmemmove:                               # @wmemmove
 	st.w	$a0, $a1, 0
 	b	.LBB67_8
 .LBB67_10:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	b	.LBB67_11
 .LBB67_11:
 	ld.d	$a0, $fp, -56
@@ -6052,11 +7931,20 @@ wmemset:                                # @wmemset
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r7 killed $r5
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+                                        # kill: def $r4 killed $r5
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.68)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.68)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.68)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.68)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.w	$a1, $fp, -28
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemset)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemset)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemset)
@@ -6076,6 +7964,14 @@ wmemset:                                # @wmemset
 	b	.LBB68_2
 .LBB68_2:                               #   in Loop: Header=BB68_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.68)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.68)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.68)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.68)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_wmemset)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_wmemset)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_wmemset)
@@ -6130,6 +8026,14 @@ bcopy:                                  # @bcopy
 	b	.LBB69_1
 .LBB69_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_bcopy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bcopy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bcopy)
@@ -6171,6 +8075,15 @@ bcopy:                                  # @bcopy
 	st.b	$a0, $a1, -1
 	b	.LBB69_4
 .LBB69_4:                               #   in Loop: Header=BB69_2 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -6199,6 +8112,14 @@ bcopy:                                  # @bcopy
 	b	.LBB69_9
 .LBB69_9:                               #   in Loop: Header=BB69_8 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_bcopy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bcopy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bcopy)
@@ -6222,8 +8143,26 @@ bcopy:                                  # @bcopy
 	st.d	$a0, $fp, -40
 	b	.LBB69_8
 .LBB69_11:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB69_12
 .LBB69_12:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	b	.LBB69_13
 .LBB69_13:
 	ld.d	$fp, $sp, 48                    # 8-byte Folded Reload
@@ -6242,10 +8181,19 @@ rotl64:                                 # @rotl64
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.70)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.70)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.70)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.70)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotl64)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotl64)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotl64)
@@ -6275,10 +8223,19 @@ rotr64:                                 # @rotr64
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.71)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.71)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.71)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.71)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotr64)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotr64)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotr64)
@@ -6306,11 +8263,20 @@ rotl32:                                 # @rotl32
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.72)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.72)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.72)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.72)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotl32)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotl32)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotl32)
@@ -6341,11 +8307,20 @@ rotr32:                                 # @rotr32
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.73)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.73)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.73)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.73)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotr32)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotr32)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotr32)
@@ -6375,9 +8350,17 @@ rotl_sz:                                # @rotl_sz
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
                                         # kill: def $r6 killed $r5
+	move	$a2, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.74)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.74)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.74)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.74)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
 	st.d	$a0, $fp, -24
 	st.w	$a1, $fp, -28
-	move	$a2, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotl_sz)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotl_sz)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotl_sz)
@@ -6409,9 +8392,17 @@ rotr_sz:                                # @rotr_sz
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
                                         # kill: def $r6 killed $r5
+	move	$a2, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.75)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.75)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.75)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.75)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
 	st.d	$a0, $fp, -24
 	st.w	$a1, $fp, -28
-	move	$a2, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotr_sz)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotr_sz)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotr_sz)
@@ -6442,11 +8433,20 @@ rotl16:                                 # @rotl16
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.h	$a0, $fp, -18
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.76)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.76)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.76)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.76)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.h	$a2, $fp, -18
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotl16)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotl16)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotl16)
@@ -6479,11 +8479,20 @@ rotr16:                                 # @rotr16
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.h	$a0, $fp, -18
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.77)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.77)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.77)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.77)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.h	$a2, $fp, -18
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotr16)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotr16)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotr16)
@@ -6516,11 +8525,20 @@ rotl8:                                  # @rotl8
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.b	$a0, $fp, -17
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.78)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.78)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.78)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.78)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.b	$a2, $fp, -17
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotl8)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotl8)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotl8)
@@ -6553,11 +8571,20 @@ rotr8:                                  # @rotr8
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.b	$a0, $fp, -17
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.79)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.79)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.79)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.79)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.b	$a2, $fp, -17
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_rotr8)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_rotr8)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_rotr8)
@@ -6590,9 +8617,18 @@ bswap_16:                               # @bswap_16
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.h	$a0, $fp, -18
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.80)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.80)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.80)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.80)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.h	$a1, $fp, -18
 	pcalau12i	$a1, %pc_hi20(.L__profc_bswap_16)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bswap_16)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bswap_16)
@@ -6628,9 +8664,18 @@ bswap_32:                               # @bswap_32
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.81)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.81)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.81)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.81)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_bswap_32)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bswap_32)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bswap_32)
@@ -6676,8 +8721,17 @@ bswap_64:                               # @bswap_64
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.82)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.82)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.82)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.82)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_bswap_64)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_bswap_64)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_bswap_64)
@@ -6769,6 +8823,14 @@ ffs:                                    # @ffs
 	b	.LBB83_3
 .LBB83_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.83)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.83)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.83)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.83)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_ffs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ffs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ffs)
@@ -6784,12 +8846,29 @@ ffs:                                    # @ffs
 .LBB83_4:                               #   in Loop: Header=BB83_1 Depth=1
 	b	.LBB83_5
 .LBB83_5:                               #   in Loop: Header=BB83_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.83)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.83)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.83)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.83)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a0, $fp, -28
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -28
 	b	.LBB83_1
 .LBB83_6:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.83)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.83)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.83)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.83)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.w	$a0, $fp, -20
 	b	.LBB83_7
 .LBB83_7:
@@ -6826,6 +8905,14 @@ libiberty_ffs:                          # @libiberty_ffs
 	b	.LBB84_1
 .LBB84_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.84)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.84)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.84)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.84)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_libiberty_ffs)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_libiberty_ffs)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_libiberty_ffs)
@@ -6837,6 +8924,15 @@ libiberty_ffs:                          # @libiberty_ffs
 	st.w	$a0, $fp, -20
 	b	.LBB84_7
 .LBB84_2:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.84)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.84)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.84)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.84)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -28
 	b	.LBB84_3
@@ -6860,6 +8956,15 @@ libiberty_ffs:                          # @libiberty_ffs
 	st.w	$a0, $fp, -24
 	b	.LBB84_5
 .LBB84_5:                               #   in Loop: Header=BB84_3 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.84)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.84)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.84)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.84)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -28
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -28
@@ -6886,10 +8991,19 @@ gl_isinff:                              # @gl_isinff
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.85)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.85)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.85)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.85)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinff)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinff)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinff)
@@ -6915,6 +9029,14 @@ gl_isinff:                              # @gl_isinff
 .LBB85_1:
 	move	$a0, $zero
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.85)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.85)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.85)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.85)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinff)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinff)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinff)
@@ -6942,6 +9064,14 @@ gl_isinff:                              # @gl_isinff
 .LBB85_2:
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.85)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.85)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.85)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.85)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_gl_isinff)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinff)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinff)
@@ -6971,10 +9101,19 @@ gl_isinfd:                              # @gl_isinfd
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r5 killed $r4
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.86)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.86)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.86)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.86)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinfd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfd)
@@ -7000,6 +9139,14 @@ gl_isinfd:                              # @gl_isinfd
 .LBB86_1:
 	move	$a0, $zero
 	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.86)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.86)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.86)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.86)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinfd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfd)
@@ -7027,6 +9174,14 @@ gl_isinfd:                              # @gl_isinfd
 .LBB86_2:
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.86)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.86)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.86)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.86)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_gl_isinfd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfd)
@@ -7056,12 +9211,22 @@ gl_isinfl:                              # @gl_isinfl
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.87)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.87)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.87)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.87)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinfl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfl)
@@ -7089,6 +9254,14 @@ gl_isinfl:                              # @gl_isinfl
 .LBB87_1:
 	move	$a0, $zero
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.87)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.87)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.87)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.87)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_gl_isinfl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfl)
@@ -7119,6 +9292,14 @@ gl_isinfl:                              # @gl_isinfl
 .LBB87_2:
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.87)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.87)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.87)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.87)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_gl_isinfl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_gl_isinfl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_gl_isinfl)
@@ -7148,10 +9329,19 @@ _Qp_itoq:                               # @_Qp_itoq
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.88)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.88)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.88)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.88)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a1, %pc_hi20(.L__profc__Qp_itoq)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc__Qp_itoq)
 	lu32i.d	$t8, %pc64_lo20(.L__profc__Qp_itoq)
@@ -7193,11 +9383,20 @@ ldexpf:                                 # @ldexpf
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpf)
@@ -7213,6 +9412,14 @@ ldexpf:                                 # @ldexpf
 	b	.LBB89_1
 .LBB89_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpf)
@@ -7241,6 +9448,14 @@ ldexpf:                                 # @ldexpf
 	b	.LBB89_2
 .LBB89_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpf)
@@ -7295,6 +9510,14 @@ ldexpf:                                 # @ldexpf
 	b	.LBB89_5
 .LBB89_5:                               #   in Loop: Header=BB89_4 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpf)
@@ -7335,6 +9558,15 @@ ldexpf:                                 # @ldexpf
 	st.d	$a0, $a1, 56
 	b	.LBB89_9
 .LBB89_8:                               #   in Loop: Header=BB89_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.w	$a1, $fp, -28
 	move	$a0, $a1
 	pcalau12i	$ra, %got_pc_hi20(__mulsf3)
@@ -7365,11 +9597,20 @@ ldexp:                                  # @ldexp
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexp)
@@ -7385,6 +9626,14 @@ ldexp:                                  # @ldexp
 	b	.LBB90_1
 .LBB90_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexp)
@@ -7413,6 +9662,14 @@ ldexp:                                  # @ldexp
 	b	.LBB90_2
 .LBB90_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexp)
@@ -7467,6 +9724,14 @@ ldexp:                                  # @ldexp
 	b	.LBB90_5
 .LBB90_5:                               #   in Loop: Header=BB90_4 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexp)
@@ -7507,6 +9772,15 @@ ldexp:                                  # @ldexp
 	st.d	$a0, $a1, 56
 	b	.LBB90_9
 .LBB90_8:                               #   in Loop: Header=BB90_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a1, $fp, -40
 	move	$a0, $a1
 	pcalau12i	$ra, %got_pc_hi20(__muldf3)
@@ -7537,13 +9811,23 @@ ldexpl:                                 # @ldexpl
 	st.d	$ra, $sp, 72                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 64                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 80
-                                        # kill: def $r7 killed $r5
-                                        # kill: def $r7 killed $r4
-                                        # kill: def $r7 killed $r6
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
-	st.w	$a2, $fp, -36
+	move	$a3, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r7
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
+	st.d	$a1, $fp, -32
+	st.w	$a2, $fp, -36
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpl)
@@ -7569,6 +9853,14 @@ ldexpl:                                 # @ldexpl
 	b	.LBB91_1
 .LBB91_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpl)
@@ -7601,6 +9893,14 @@ ldexpl:                                 # @ldexpl
 	b	.LBB91_2
 .LBB91_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpl)
@@ -7658,6 +9958,14 @@ ldexpl:                                 # @ldexpl
 	b	.LBB91_5
 .LBB91_5:                               #   in Loop: Header=BB91_4 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_ldexpl)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_ldexpl)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_ldexpl)
@@ -7701,6 +10009,15 @@ ldexpl:                                 # @ldexpl
 	st.d	$a0, $a1, 56
 	b	.LBB91_9
 .LBB91_8:                               #   in Loop: Header=BB91_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a2, $fp, -64
 	ld.d	$a3, $fp, -56
 	move	$a0, $a2
@@ -7735,10 +10052,19 @@ memxor:                                 # @memxor
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.92)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.92)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.92)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.92)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.d	$a1, $fp, -32
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_memxor)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memxor)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memxor)
@@ -7778,6 +10104,15 @@ memxor:                                 # @memxor
 	st.b	$a0, $a1, 0
 	b	.LBB92_3
 .LBB92_3:                               #   in Loop: Header=BB92_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.92)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.92)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.92)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.92)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, -1
 	st.d	$a0, $fp, -40
@@ -7833,6 +10168,14 @@ strncat:                                # @strncat
 	b	.LBB93_2
 .LBB93_2:                               #   in Loop: Header=BB93_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_strncat)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncat)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncat)
@@ -7853,6 +10196,14 @@ strncat:                                # @strncat
 .LBB93_3:                               #   in Loop: Header=BB93_1 Depth=1
 	ld.d	$a0, $fp, -72                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 8
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_strncat)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncat)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncat)
@@ -7880,6 +10231,15 @@ strncat:                                # @strncat
 	st.d	$a0, $a1, 8
 	b	.LBB93_6
 .LBB93_6:                               #   in Loop: Header=BB93_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -32
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -32
@@ -7891,11 +10251,28 @@ strncat:                                # @strncat
 	st.d	$a0, $fp, -40
 	b	.LBB93_1
 .LBB93_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -40
 	bnez	$a0, .LBB93_9
 	b	.LBB93_8
 .LBB93_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a2, %pc_hi20(.L__profc_strncat)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strncat)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strncat)
@@ -7925,9 +10302,18 @@ strnlen:                                # @strnlen
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.94)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.94)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.94)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.94)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc_strnlen)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strnlen)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strnlen)
@@ -7947,6 +10333,14 @@ strnlen:                                # @strnlen
 	b	.LBB94_2
 .LBB94_2:                               #   in Loop: Header=BB94_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.94)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.94)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.94)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.94)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strnlen)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strnlen)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strnlen)
@@ -7966,6 +10360,14 @@ strnlen:                                # @strnlen
 .LBB94_3:                               #   in Loop: Header=BB94_1 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.94)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.94)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.94)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.94)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_strnlen)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strnlen)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strnlen)
@@ -7993,6 +10395,15 @@ strnlen:                                # @strnlen
 	st.d	$a0, $a1, 8
 	b	.LBB94_6
 .LBB94_6:                               #   in Loop: Header=BB94_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.94)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.94)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.94)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.94)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -40
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -40
@@ -8072,6 +10483,14 @@ strpbrk:                                # @strpbrk
 	b	.LBB95_5
 .LBB95_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.95)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.95)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.95)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.95)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strpbrk)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strpbrk)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strpbrk)
@@ -8084,14 +10503,40 @@ strpbrk:                                # @strpbrk
 	st.d	$a0, $fp, -24
 	b	.LBB95_9
 .LBB95_6:                               #   in Loop: Header=BB95_3 Depth=2
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.95)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.95)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.95)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.95)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	b	.LBB95_3
 .LBB95_7:                               #   in Loop: Header=BB95_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.95)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.95)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.95)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.95)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -32
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -32
 	b	.LBB95_1
 .LBB95_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.95)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.95)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.95)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.95)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	st.d	$a0, $fp, -24
 	b	.LBB95_9
 .LBB95_9:
@@ -8112,10 +10557,19 @@ strrchr:                                # @strrchr
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r6 killed $r5
-	st.d	$a0, $fp, -24
-	st.w	$a1, $fp, -28
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.96)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.96)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.96)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.96)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.w	$a1, $fp, -28
 	pcalau12i	$a2, %pc_hi20(.L__profc_strrchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strrchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strrchr)
@@ -8128,6 +10582,14 @@ strrchr:                                # @strrchr
 	b	.LBB96_2
 .LBB96_1:                               #   in Loop: Header=BB96_2 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.96)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.96)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.96)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.96)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_strrchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strrchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strrchr)
@@ -8145,6 +10607,14 @@ strrchr:                                # @strrchr
 	b	.LBB96_3
 .LBB96_3:                               #   in Loop: Header=BB96_2 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.96)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.96)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.96)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.96)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strrchr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strrchr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strrchr)
@@ -8209,6 +10679,14 @@ strstr:                                 # @strstr
 	b	.LBB97_1
 .LBB97_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.97)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.97)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.97)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.97)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_strstr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strstr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strstr)
@@ -8258,6 +10736,14 @@ strstr:                                 # @strstr
 	b	.LBB97_5
 .LBB97_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.97)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.97)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.97)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.97)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_strstr)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_strstr)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_strstr)
@@ -8272,12 +10758,29 @@ strstr:                                 # @strstr
 .LBB97_6:                               #   in Loop: Header=BB97_3 Depth=1
 	b	.LBB97_7
 .LBB97_7:                               #   in Loop: Header=BB97_3 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.97)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.97)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.97)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.97)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -48
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -48
 	b	.LBB97_3
 .LBB97_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.97)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.97)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.97)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.97)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	st.d	$a0, $fp, -24
 	b	.LBB97_9
 .LBB97_9:
@@ -8324,6 +10827,14 @@ copysign:                               # @copysign
 	b	.LBB98_1
 .LBB98_1:
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc_copysign)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_copysign)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_copysign)
@@ -8344,6 +10855,14 @@ copysign:                               # @copysign
 	b	.LBB98_2
 .LBB98_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_copysign)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_copysign)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_copysign)
@@ -8375,6 +10894,14 @@ copysign:                               # @copysign
 	b	.LBB98_4
 .LBB98_4:
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_copysign)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_copysign)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_copysign)
@@ -8396,6 +10923,14 @@ copysign:                               # @copysign
 	b	.LBB98_5
 .LBB98_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_copysign)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_copysign)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_copysign)
@@ -8421,6 +10956,15 @@ copysign:                               # @copysign
 	st.d	$a0, $fp, -24
 	b	.LBB98_8
 .LBB98_7:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a0, $fp, -32
 	st.d	$a0, $fp, -24
 	b	.LBB98_8
@@ -8466,6 +11010,14 @@ memmem:                                 # @memmem
 	b	.LBB99_1
 .LBB99_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_memmem)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmem)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmem)
@@ -8484,6 +11036,14 @@ memmem:                                 # @memmem
 	b	.LBB99_3
 .LBB99_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc_memmem)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmem)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmem)
@@ -8521,6 +11081,14 @@ memmem:                                 # @memmem
 	b	.LBB99_7
 .LBB99_7:                               #   in Loop: Header=BB99_5 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_memmem)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmem)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmem)
@@ -8545,6 +11113,14 @@ memmem:                                 # @memmem
 	b	.LBB99_8
 .LBB99_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_memmem)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_memmem)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_memmem)
@@ -8570,12 +11146,29 @@ memmem:                                 # @memmem
 .LBB99_10:                              #   in Loop: Header=BB99_5 Depth=1
 	b	.LBB99_11
 .LBB99_11:                              #   in Loop: Header=BB99_5 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.d	$a0, $fp, -64
 	addi.d	$a0, $a0, 1
 	st.d	$a0, $fp, -64
 	b	.LBB99_5
 .LBB99_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
 	st.d	$a0, $fp, -24
 	b	.LBB99_13
 .LBB99_13:
@@ -8596,10 +11189,19 @@ mempcpy:                                # @mempcpy
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
+	move	$a3, $a0
+	move	$a0, $zero
+	pcalau12i	$a5, %pc_hi20(__llvm_gcov_ctr.100)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.100)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.100)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.100)
+	add.d	$a5, $t8, $a5
+	ld.d	$a4, $a5, 0
+	addi.d	$a4, $a4, 1
+	st.d	$a4, $a5, 0
+	st.d	$a3, $fp, -24
 	st.d	$a1, $fp, -32
 	st.d	$a2, $fp, -40
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc_mempcpy)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_mempcpy)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_mempcpy)
@@ -8665,6 +11267,14 @@ frexp:                                  # @frexp
 	b	.LBB101_1
 .LBB101_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8694,6 +11304,14 @@ frexp:                                  # @frexp
 	b	.LBB101_3
 .LBB101_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8717,6 +11335,14 @@ frexp:                                  # @frexp
 	b	.LBB101_5
 .LBB101_5:                              #   in Loop: Header=BB101_4 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8755,6 +11381,14 @@ frexp:                                  # @frexp
 	b	.LBB101_8
 .LBB101_8:
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 24
 	pcalau12i	$a2, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8809,6 +11443,14 @@ frexp:                                  # @frexp
 	b	.LBB101_12
 .LBB101_12:                             #   in Loop: Header=BB101_11 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8831,8 +11473,26 @@ frexp:                                  # @frexp
 	st.d	$a0, $fp, -24
 	b	.LBB101_11
 .LBB101_13:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	b	.LBB101_14
 .LBB101_14:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 48
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 48
 	b	.LBB101_15
 .LBB101_15:
 	ld.w	$a0, $fp, -40
@@ -8843,6 +11503,14 @@ frexp:                                  # @frexp
 	b	.LBB101_16
 .LBB101_16:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 56
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 56
 	pcalau12i	$a1, %pc_hi20(.L__profc_frexp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_frexp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_frexp)
@@ -8874,9 +11542,18 @@ __muldi3:                               # @__muldi3
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.102)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.102)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.102)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.102)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___muldi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___muldi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___muldi3)
@@ -8909,6 +11586,14 @@ __muldi3:                               # @__muldi3
 	b	.LBB102_3
 .LBB102_3:                              #   in Loop: Header=BB102_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.102)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.102)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.102)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.102)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___muldi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___muldi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___muldi3)
@@ -8923,6 +11608,15 @@ __muldi3:                               # @__muldi3
 	st.d	$a0, $fp, -40
 	b	.LBB102_4
 .LBB102_4:                              #   in Loop: Header=BB102_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.102)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.102)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.102)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.102)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -32
 	slli.d	$a0, $a0, 1
 	st.d	$a0, $fp, -32
@@ -8975,6 +11669,14 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_2
 .LBB103_2:                              #   in Loop: Header=BB103_1 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -8989,6 +11691,14 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_3
 .LBB103_3:                              #   in Loop: Header=BB103_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -9020,6 +11730,14 @@ udivmodsi4:                             # @udivmodsi4
 .LBB103_5:                              #   in Loop: Header=BB103_1 Depth=1
 	ld.d	$a0, $fp, -64                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -9037,6 +11755,14 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_7
 .LBB103_7:                              #   in Loop: Header=BB103_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -9074,6 +11800,14 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_11
 .LBB103_11:                             #   in Loop: Header=BB103_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -9092,6 +11826,15 @@ udivmodsi4:                             # @udivmodsi4
 	st.w	$a0, $fp, -48
 	b	.LBB103_12
 .LBB103_12:                             #   in Loop: Header=BB103_9 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.wu	$a0, $fp, -44
 	srli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -44
@@ -9105,6 +11848,14 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_14
 .LBB103_14:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 48
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 48
 	pcalau12i	$a1, %pc_hi20(.L__profc_udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc_udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc_udivmodsi4)
@@ -9117,6 +11868,15 @@ udivmodsi4:                             # @udivmodsi4
 	st.w	$a0, $fp, -20
 	b	.LBB103_16
 .LBB103_15:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 56
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 56
 	ld.w	$a0, $fp, -48
 	st.w	$a0, $fp, -20
 	b	.LBB103_16
@@ -9155,6 +11915,14 @@ __clrsbqi2:                             # @__clrsbqi2
 	b	.LBB104_1
 .LBB104_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.104)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.104)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.104)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.104)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___clrsbqi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clrsbqi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clrsbqi2)
@@ -9173,6 +11941,14 @@ __clrsbqi2:                             # @__clrsbqi2
 	b	.LBB104_3
 .LBB104_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.104)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.104)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.104)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.104)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___clrsbqi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clrsbqi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clrsbqi2)
@@ -9185,6 +11961,15 @@ __clrsbqi2:                             # @__clrsbqi2
 	st.w	$a0, $fp, -20
 	b	.LBB104_5
 .LBB104_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.104)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.104)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.104)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.104)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.b	$a0, $fp, -21
 	slli.d	$a0, $a0, 40
 	clz.d	$a0, $a0
@@ -9227,6 +12012,14 @@ __clrsbdi2:                             # @__clrsbdi2
 	b	.LBB105_1
 .LBB105_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.105)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.105)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.105)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.105)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___clrsbdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clrsbdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clrsbdi2)
@@ -9245,6 +12038,14 @@ __clrsbdi2:                             # @__clrsbdi2
 	b	.LBB105_3
 .LBB105_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.105)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.105)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.105)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.105)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___clrsbdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clrsbdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clrsbdi2)
@@ -9257,6 +12058,15 @@ __clrsbdi2:                             # @__clrsbdi2
 	st.w	$a0, $fp, -20
 	b	.LBB105_5
 .LBB105_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.105)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.105)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.105)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.105)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -32
 	clz.d	$a0, $a0
 	st.w	$a0, $fp, -36
@@ -9282,11 +12092,20 @@ __mulsi3:                               # @__mulsi3
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.106)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.106)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.106)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.106)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3)
@@ -9317,6 +12136,14 @@ __mulsi3:                               # @__mulsi3
 	b	.LBB106_3
 .LBB106_3:                              #   in Loop: Header=BB106_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.106)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.106)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.106)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.106)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3)
@@ -9331,6 +12158,15 @@ __mulsi3:                               # @__mulsi3
 	st.w	$a0, $fp, -28
 	b	.LBB106_4
 .LBB106_4:                              #   in Loop: Header=BB106_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.106)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.106)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.106)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.106)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.wu	$a0, $fp, -20
 	srli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -20
@@ -9386,6 +12222,14 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_1
 .LBB107_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovd)
@@ -9446,6 +12290,15 @@ __cmovd:                                # @__cmovd
 	stx.d	$a0, $a1, $a2
 	b	.LBB107_6
 .LBB107_6:                              #   in Loop: Header=BB107_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a0, $fp, -40
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -40
@@ -9459,6 +12312,14 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_9
 .LBB107_9:                              #   in Loop: Header=BB107_8 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovd)
@@ -9477,6 +12338,15 @@ __cmovd:                                # @__cmovd
 	st.w	$a0, $fp, -48
 	b	.LBB107_8
 .LBB107_10:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB107_15
 .LBB107_11:
 	b	.LBB107_12
@@ -9488,6 +12358,14 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_13
 .LBB107_13:                             #   in Loop: Header=BB107_12 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovd)
@@ -9503,6 +12381,15 @@ __cmovd:                                # @__cmovd
 	stx.b	$a0, $a1, $a2
 	b	.LBB107_12
 .LBB107_14:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	b	.LBB107_15
 .LBB107_15:
 	ld.d	$fp, $sp, 48                    # 8-byte Folded Reload
@@ -9547,6 +12434,14 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_1
 .LBB108_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovh)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovh)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovh)
@@ -9607,6 +12502,15 @@ __cmovh:                                # @__cmovh
 	stx.h	$a0, $a1, $a2
 	b	.LBB108_6
 .LBB108_6:                              #   in Loop: Header=BB108_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a0, $fp, -40
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -40
@@ -9618,6 +12522,14 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_8
 .LBB108_8:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovh)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovh)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovh)
@@ -9635,6 +12547,15 @@ __cmovh:                                # @__cmovh
 	stx.b	$a0, $a1, $a2
 	b	.LBB108_9
 .LBB108_9:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB108_14
 .LBB108_10:
 	b	.LBB108_11
@@ -9646,6 +12567,14 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_12
 .LBB108_12:                             #   in Loop: Header=BB108_11 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovh)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovh)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovh)
@@ -9661,6 +12590,15 @@ __cmovh:                                # @__cmovh
 	stx.b	$a0, $a1, $a2
 	b	.LBB108_11
 .LBB108_13:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	b	.LBB108_14
 .LBB108_14:
 	ld.d	$fp, $sp, 48                    # 8-byte Folded Reload
@@ -9709,6 +12647,14 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_1
 .LBB109_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovw)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovw)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovw)
@@ -9769,6 +12715,15 @@ __cmovw:                                # @__cmovw
 	stx.w	$a0, $a1, $a2
 	b	.LBB109_6
 .LBB109_6:                              #   in Loop: Header=BB109_4 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a0, $fp, -40
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -40
@@ -9782,6 +12737,14 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_9
 .LBB109_9:                              #   in Loop: Header=BB109_8 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovw)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovw)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovw)
@@ -9800,6 +12763,15 @@ __cmovw:                                # @__cmovw
 	st.w	$a0, $fp, -48
 	b	.LBB109_8
 .LBB109_10:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	b	.LBB109_15
 .LBB109_11:
 	b	.LBB109_12
@@ -9811,6 +12783,14 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_13
 .LBB109_13:                             #   in Loop: Header=BB109_12 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmovw)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmovw)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmovw)
@@ -9826,6 +12806,15 @@ __cmovw:                                # @__cmovw
 	stx.b	$a0, $a1, $a2
 	b	.LBB109_12
 .LBB109_14:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	b	.LBB109_15
 .LBB109_15:
 	ld.d	$fp, $sp, 48                    # 8-byte Folded Reload
@@ -9844,11 +12833,20 @@ __modi:                                 # @__modi
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.110)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.110)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.110)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.110)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___modi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___modi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___modi)
@@ -9876,9 +12874,18 @@ __uitod:                                # @__uitod
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.111)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.111)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.111)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.111)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___uitod)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___uitod)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___uitod)
@@ -9910,9 +12917,18 @@ __uitof:                                # @__uitof
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.112)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.112)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.112)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.112)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___uitof)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___uitof)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___uitof)
@@ -9944,8 +12960,17 @@ __ulltod:                               # @__ulltod
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.113)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.113)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.113)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.113)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___ulltod)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ulltod)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ulltod)
@@ -9977,8 +13002,17 @@ __ulltof:                               # @__ulltof
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.114)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.114)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.114)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.114)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___ulltof)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ulltof)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ulltof)
@@ -10010,11 +13044,20 @@ __umodi:                                # @__umodi
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.115)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.115)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.115)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.115)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___umodi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___umodi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___umodi)
@@ -10043,9 +13086,18 @@ __clzhi2:                               # @__clzhi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.h	$a0, $fp, -18
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.116)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.116)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.116)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.116)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.h	$a1, $fp, -18
 	pcalau12i	$a2, %pc_hi20(.L__profc___clzhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clzhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clzhi2)
@@ -10081,6 +13133,14 @@ __clzhi2:                               # @__clzhi2
 	b	.LBB116_3
 .LBB116_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.116)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.116)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.116)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.116)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___clzhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clzhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clzhi2)
@@ -10093,6 +13153,15 @@ __clzhi2:                               # @__clzhi2
 .LBB116_4:                              #   in Loop: Header=BB116_1 Depth=1
 	b	.LBB116_5
 .LBB116_5:                              #   in Loop: Header=BB116_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.116)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.116)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.116)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.116)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -24
@@ -10115,9 +13184,18 @@ __ctzhi2:                               # @__ctzhi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.h	$a0, $fp, -18
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.117)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.117)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.117)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.117)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.h	$a1, $fp, -18
 	pcalau12i	$a2, %pc_hi20(.L__profc___ctzhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ctzhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ctzhi2)
@@ -10151,6 +13229,14 @@ __ctzhi2:                               # @__ctzhi2
 	b	.LBB117_3
 .LBB117_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.117)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.117)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.117)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.117)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ctzhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ctzhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ctzhi2)
@@ -10163,6 +13249,15 @@ __ctzhi2:                               # @__ctzhi2
 .LBB117_4:                              #   in Loop: Header=BB117_1 Depth=1
 	b	.LBB117_5
 .LBB117_5:                              #   in Loop: Header=BB117_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.117)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.117)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.117)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.117)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -24
@@ -10210,6 +13305,14 @@ __fixunssfsi:                           # @__fixunssfsi
 	b	.LBB118_1
 .LBB118_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.118)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.118)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.118)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.118)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___fixunssfsi)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___fixunssfsi)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___fixunssfsi)
@@ -10237,6 +13340,15 @@ __fixunssfsi:                           # @__fixunssfsi
 	st.d	$a0, $fp, -24
 	b	.LBB118_3
 .LBB118_2:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.118)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.118)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.118)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.118)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a0, $fp, -28
 	pcalau12i	$ra, %got_pc_hi20(__fixsfdi)
 	addi.d	$t8, $zero, %got_pc_lo12(__fixsfdi)
@@ -10264,9 +13376,18 @@ __parityhi2:                            # @__parityhi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.h	$a0, $fp, -18
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.119)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.119)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.119)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.119)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.h	$a1, $fp, -18
 	pcalau12i	$a2, %pc_hi20(.L__profc___parityhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___parityhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___parityhi2)
@@ -10301,6 +13422,14 @@ __parityhi2:                            # @__parityhi2
 	b	.LBB119_3
 .LBB119_3:                              #   in Loop: Header=BB119_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.119)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.119)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.119)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.119)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___parityhi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___parityhi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___parityhi2)
@@ -10316,6 +13445,15 @@ __parityhi2:                            # @__parityhi2
 .LBB119_4:                              #   in Loop: Header=BB119_1 Depth=1
 	b	.LBB119_5
 .LBB119_5:                              #   in Loop: Header=BB119_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.119)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.119)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.119)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.119)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -24
@@ -10339,9 +13477,18 @@ __popcounthi2:                          # @__popcounthi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.h	$a0, $fp, -18
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.120)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.120)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.120)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.120)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.h	$a1, $fp, -18
 	pcalau12i	$a2, %pc_hi20(.L__profc___popcounthi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___popcounthi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___popcounthi2)
@@ -10376,6 +13523,14 @@ __popcounthi2:                          # @__popcounthi2
 	b	.LBB120_3
 .LBB120_3:                              #   in Loop: Header=BB120_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.120)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.120)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.120)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.120)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___popcounthi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___popcounthi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___popcounthi2)
@@ -10391,6 +13546,15 @@ __popcounthi2:                          # @__popcounthi2
 .LBB120_4:                              #   in Loop: Header=BB120_1 Depth=1
 	b	.LBB120_5
 .LBB120_5:                              #   in Loop: Header=BB120_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.120)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.120)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.120)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.120)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -24
 	addi.d	$a0, $a0, 1
 	st.w	$a0, $fp, -24
@@ -10413,11 +13577,20 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.121)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.121)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.121)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.121)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulsi3_iq2000)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3_iq2000)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3_iq2000)
@@ -10448,6 +13621,14 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	b	.LBB121_3
 .LBB121_3:                              #   in Loop: Header=BB121_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.121)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.121)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.121)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.121)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulsi3_iq2000)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3_iq2000)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3_iq2000)
@@ -10462,6 +13643,15 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	st.w	$a0, $fp, -28
 	b	.LBB121_4
 .LBB121_4:                              #   in Loop: Header=BB121_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.121)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.121)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.121)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.121)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.wu	$a0, $fp, -20
 	srli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -20
@@ -10506,6 +13696,14 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	b	.LBB122_1
 .LBB122_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.122)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.122)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.122)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.122)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulsi3_lm32)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3_lm32)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3_lm32)
@@ -10517,6 +13715,15 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	st.w	$a0, $fp, -20
 	b	.LBB122_8
 .LBB122_2:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.122)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.122)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.122)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.122)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	b	.LBB122_3
 .LBB122_3:                              # =>This Inner Loop Header: Depth=1
 	ld.w	$a0, $fp, -28
@@ -10538,6 +13745,14 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	b	.LBB122_5
 .LBB122_5:                              #   in Loop: Header=BB122_3 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.122)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.122)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.122)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.122)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulsi3_lm32)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulsi3_lm32)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulsi3_lm32)
@@ -10552,6 +13767,15 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	st.w	$a0, $fp, -32
 	b	.LBB122_6
 .LBB122_6:                              #   in Loop: Header=BB122_3 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.122)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.122)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.122)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.122)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.w	$a0, $fp, -24
 	slli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -24
@@ -10609,6 +13833,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_2
 .LBB123_2:                              #   in Loop: Header=BB123_1 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10623,6 +13855,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_3
 .LBB123_3:                              #   in Loop: Header=BB123_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10654,6 +13894,14 @@ __udivmodsi4:                           # @__udivmodsi4
 .LBB123_5:                              #   in Loop: Header=BB123_1 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10671,6 +13919,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_7
 .LBB123_7:                              #   in Loop: Header=BB123_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10708,6 +13964,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_11
 .LBB123_11:                             #   in Loop: Header=BB123_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10726,6 +13990,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	st.w	$a0, $fp, -40
 	b	.LBB123_12
 .LBB123_12:                             #   in Loop: Header=BB123_9 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.wu	$a0, $fp, -36
 	srli.d	$a0, $a0, 1
 	st.w	$a0, $fp, -36
@@ -10739,6 +14012,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_14
 .LBB123_14:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 48
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 48
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4)
@@ -10751,6 +14032,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	st.w	$a0, $fp, -20
 	b	.LBB123_16
 .LBB123_15:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 56
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 56
 	ld.w	$a0, $fp, -40
 	st.w	$a0, $fp, -20
 	b	.LBB123_16
@@ -10799,6 +14089,14 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	b	.LBB124_1
 .LBB124_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.124)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.124)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.124)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.124)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_cmpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_cmpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_cmpf)
@@ -10825,6 +14123,14 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	b	.LBB124_3
 .LBB124_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.124)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.124)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.124)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.124)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_cmpf)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_cmpf)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_cmpf)
@@ -10838,6 +14144,14 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	b	.LBB124_5
 .LBB124_4:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.124)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.124)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.124)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.124)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.w	$a0, $fp, -20
 	b	.LBB124_5
 .LBB124_5:
@@ -10885,6 +14199,14 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	b	.LBB125_1
 .LBB125_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.125)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.125)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.125)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.125)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_cmpd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_cmpd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_cmpd)
@@ -10911,6 +14233,14 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	b	.LBB125_3
 .LBB125_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.125)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.125)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.125)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.125)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_cmpd)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_cmpd)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_cmpd)
@@ -10924,6 +14254,14 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	b	.LBB125_5
 .LBB125_4:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.125)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.125)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.125)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.125)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	st.w	$a0, $fp, -20
 	b	.LBB125_5
 .LBB125_5:
@@ -10944,9 +14282,18 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.126)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.126)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.126)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.126)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_mpysll)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_mpysll)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_mpysll)
@@ -10974,9 +14321,18 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.127)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.127)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.127)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.127)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___mspabi_mpyull)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mspabi_mpyull)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mspabi_mpyull)
@@ -11025,6 +14381,14 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_1
 .LBB128_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulhi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulhi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulhi3)
@@ -11051,6 +14415,14 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_4
 .LBB128_4:                              #   in Loop: Header=BB128_3 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulhi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulhi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulhi3)
@@ -11069,6 +14441,14 @@ __mulhi3:                               # @__mulhi3
 .LBB128_5:                              #   in Loop: Header=BB128_3 Depth=1
 	ld.d	$a0, $fp, -56                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulhi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulhi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulhi3)
@@ -11100,6 +14480,14 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_8
 .LBB128_8:                              #   in Loop: Header=BB128_3 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulhi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulhi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulhi3)
@@ -11122,6 +14510,15 @@ __mulhi3:                               # @__mulhi3
 	st.w	$a0, $fp, -24
 	b	.LBB128_10
 .LBB128_10:                             #   in Loop: Header=BB128_3 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ld.b	$a0, $fp, -25
 	addi.d	$a0, $a0, 1
 	st.b	$a0, $fp, -25
@@ -11132,6 +14529,14 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_12
 .LBB128_12:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 40
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 40
 	pcalau12i	$a2, %pc_hi20(.L__profc___mulhi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulhi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulhi3)
@@ -11146,6 +14551,15 @@ __mulhi3:                               # @__mulhi3
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
 	b	.LBB128_14
 .LBB128_13:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 48
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 48
 	ld.w	$a0, $fp, -36
 	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
 	b	.LBB128_14
@@ -11168,9 +14582,18 @@ __divsi3:                               # @__divsi3
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.129)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.129)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.129)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.129)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___divsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___divsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___divsi3)
@@ -11186,6 +14609,14 @@ __divsi3:                               # @__divsi3
 	b	.LBB129_1
 .LBB129_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.129)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.129)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.129)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.129)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc___divsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___divsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___divsi3)
@@ -11208,6 +14639,14 @@ __divsi3:                               # @__divsi3
 	b	.LBB129_3
 .LBB129_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.129)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.129)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.129)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.129)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___divsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___divsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___divsi3)
@@ -11240,6 +14679,14 @@ __divsi3:                               # @__divsi3
 	b	.LBB129_5
 .LBB129_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.129)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.129)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.129)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.129)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a2, %pc_hi20(.L__profc___divsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___divsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___divsi3)
@@ -11270,9 +14717,18 @@ __modsi3:                               # @__modsi3
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.130)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.130)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.130)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.130)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___modsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___modsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___modsi3)
@@ -11288,6 +14744,14 @@ __modsi3:                               # @__modsi3
 	b	.LBB130_1
 .LBB130_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.130)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.130)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.130)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.130)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc___modsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___modsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___modsi3)
@@ -11309,6 +14773,14 @@ __modsi3:                               # @__modsi3
 	b	.LBB130_3
 .LBB130_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.130)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.130)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.130)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.130)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___modsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___modsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___modsi3)
@@ -11338,6 +14810,14 @@ __modsi3:                               # @__modsi3
 	b	.LBB130_5
 .LBB130_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.130)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.130)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.130)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.130)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a2, %pc_hi20(.L__profc___modsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___modsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___modsi3)
@@ -11396,6 +14876,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_2
 .LBB131_2:                              #   in Loop: Header=BB131_1 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11410,6 +14898,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_3
 .LBB131_3:                              #   in Loop: Header=BB131_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11440,6 +14936,14 @@ __udivmodhi4:                           # @__udivmodhi4
 .LBB131_5:                              #   in Loop: Header=BB131_1 Depth=1
 	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11457,6 +14961,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_7
 .LBB131_7:                              #   in Loop: Header=BB131_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11494,6 +15006,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_11
 .LBB131_11:                             #   in Loop: Header=BB131_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11512,6 +15032,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	st.h	$a0, $fp, -32
 	b	.LBB131_12
 .LBB131_12:                             #   in Loop: Header=BB131_9 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.hu	$a0, $fp, -30
 	srli.d	$a0, $a0, 1
 	st.h	$a0, $fp, -30
@@ -11525,6 +15054,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_14
 .LBB131_14:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 48
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 48
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodhi4)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodhi4)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodhi4)
@@ -11537,6 +15074,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	st.h	$a0, $fp, -18
 	b	.LBB131_16
 .LBB131_15:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 56
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 56
 	ld.h	$a0, $fp, -32
 	st.h	$a0, $fp, -18
 	b	.LBB131_16
@@ -11584,6 +15130,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_2
 .LBB132_2:                              #   in Loop: Header=BB132_1 Depth=1
 	move	$a1, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a2, $t8, $a2
+	ld.d	$a0, $a2, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11598,6 +15152,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_3
 .LBB132_3:                              #   in Loop: Header=BB132_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11629,6 +15191,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 .LBB132_5:                              #   in Loop: Header=BB132_1 Depth=1
 	ld.d	$a0, $fp, -80                   # 8-byte Folded Reload
 	move	$a1, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 16
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11646,6 +15216,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_7
 .LBB132_7:                              #   in Loop: Header=BB132_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11683,6 +15261,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_11
 .LBB132_11:                             #   in Loop: Header=BB132_9 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 32
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 32
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11701,6 +15287,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	st.d	$a0, $fp, -64
 	b	.LBB132_12
 .LBB132_12:                             #   in Loop: Header=BB132_9 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 40
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 40
 	ld.d	$a0, $fp, -56
 	srli.d	$a0, $a0, 1
 	st.d	$a0, $fp, -56
@@ -11714,6 +15309,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_14
 .LBB132_14:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 48
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 48
 	pcalau12i	$a1, %pc_hi20(.L__profc___udivmodsi4_libgcc)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___udivmodsi4_libgcc)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___udivmodsi4_libgcc)
@@ -11726,6 +15329,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	st.d	$a0, $fp, -24
 	b	.LBB132_16
 .LBB132_15:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 56
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 56
 	ld.d	$a0, $fp, -64
 	st.d	$a0, $fp, -24
 	b	.LBB132_16
@@ -11769,6 +15381,14 @@ __ashldi3:                              # @__ashldi3
 	b	.LBB133_1
 .LBB133_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.133)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.133)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.133)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.133)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___ashldi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashldi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashldi3)
@@ -11790,6 +15410,14 @@ __ashldi3:                              # @__ashldi3
 	b	.LBB133_3
 .LBB133_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.133)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.133)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.133)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.133)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashldi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashldi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashldi3)
@@ -11802,6 +15430,15 @@ __ashldi3:                              # @__ashldi3
 	st.d	$a0, $fp, -24
 	b	.LBB133_6
 .LBB133_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.133)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.133)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.133)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.133)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -48
 	ld.wu	$a1, $fp, -36
 	sll.w	$a0, $a0, $a1
@@ -11865,6 +15502,14 @@ __ashlti3:                              # @__ashlti3
 	b	.LBB134_1
 .LBB134_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.134)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.134)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.134)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.134)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___ashlti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashlti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashlti3)
@@ -11886,6 +15531,14 @@ __ashlti3:                              # @__ashlti3
 	b	.LBB134_3
 .LBB134_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.134)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.134)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.134)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.134)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashlti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashlti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashlti3)
@@ -11900,6 +15553,15 @@ __ashlti3:                              # @__ashlti3
 	st.d	$a0, $fp, -32
 	b	.LBB134_6
 .LBB134_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.134)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.134)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.134)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.134)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -80
 	ld.wu	$a1, $fp, -52
 	sll.d	$a0, $a0, $a1
@@ -11961,6 +15623,14 @@ __ashrdi3:                              # @__ashrdi3
 	b	.LBB135_1
 .LBB135_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.135)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.135)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.135)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.135)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashrdi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashrdi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashrdi3)
@@ -11984,6 +15654,14 @@ __ashrdi3:                              # @__ashrdi3
 	b	.LBB135_3
 .LBB135_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.135)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.135)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.135)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.135)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashrdi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashrdi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashrdi3)
@@ -11996,6 +15674,15 @@ __ashrdi3:                              # @__ashrdi3
 	st.d	$a0, $fp, -24
 	b	.LBB135_6
 .LBB135_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.135)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.135)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.135)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.135)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -44
 	ld.wu	$a1, $fp, -36
 	sra.w	$a0, $a0, $a1
@@ -12059,6 +15746,14 @@ __ashrti3:                              # @__ashrti3
 	b	.LBB136_1
 .LBB136_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.136)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.136)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.136)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.136)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashrti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashrti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashrti3)
@@ -12082,6 +15777,14 @@ __ashrti3:                              # @__ashrti3
 	b	.LBB136_3
 .LBB136_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.136)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.136)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.136)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.136)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ashrti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ashrti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ashrti3)
@@ -12096,6 +15799,15 @@ __ashrti3:                              # @__ashrti3
 	st.d	$a0, $fp, -32
 	b	.LBB136_6
 .LBB136_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.136)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.136)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.136)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.136)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -72
 	ld.wu	$a1, $fp, -52
 	sra.d	$a0, $a0, $a1
@@ -12135,8 +15847,17 @@ __bswapdi2:                             # @__bswapdi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.137)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.137)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.137)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.137)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___bswapdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___bswapdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___bswapdi2)
@@ -12193,9 +15914,18 @@ __bswapsi2:                             # @__bswapsi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.138)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.138)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.138)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.138)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___bswapsi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___bswapsi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___bswapsi2)
@@ -12233,8 +15963,16 @@ __clzsi2:                               # @__clzsi2
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
                                         # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
 	move	$a2, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.139)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.139)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.139)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.139)
+	add.d	$a3, $t8, $a3
+	ld.d	$a1, $a3, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a3, 0
+	st.w	$a0, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___clzsi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clzsi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clzsi2)
@@ -12328,11 +16066,21 @@ __clzti2:                               # @__clzti2
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.140)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.140)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.140)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.140)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___clzti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___clzti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___clzti2)
@@ -12395,6 +16143,14 @@ __cmpdi2:                               # @__cmpdi2
 	b	.LBB141_1
 .LBB141_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___cmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpdi2)
@@ -12412,6 +16168,14 @@ __cmpdi2:                               # @__cmpdi2
 	b	.LBB141_3
 .LBB141_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpdi2)
@@ -12430,6 +16194,14 @@ __cmpdi2:                               # @__cmpdi2
 	b	.LBB141_5
 .LBB141_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___cmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpdi2)
@@ -12447,6 +16219,14 @@ __cmpdi2:                               # @__cmpdi2
 	b	.LBB141_7
 .LBB141_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpdi2)
@@ -12459,6 +16239,15 @@ __cmpdi2:                               # @__cmpdi2
 	st.w	$a0, $fp, -20
 	b	.LBB141_9
 .LBB141_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -20
 	b	.LBB141_9
@@ -12480,9 +16269,18 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.142)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.142)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.142)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.142)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___aeabi_lcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___aeabi_lcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___aeabi_lcmp)
@@ -12548,6 +16346,14 @@ __cmpti2:                               # @__cmpti2
 	b	.LBB143_1
 .LBB143_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___cmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpti2)
@@ -12565,6 +16371,14 @@ __cmpti2:                               # @__cmpti2
 	b	.LBB143_3
 .LBB143_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpti2)
@@ -12583,6 +16397,14 @@ __cmpti2:                               # @__cmpti2
 	b	.LBB143_5
 .LBB143_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___cmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpti2)
@@ -12600,6 +16422,14 @@ __cmpti2:                               # @__cmpti2
 	b	.LBB143_7
 .LBB143_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___cmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___cmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___cmpti2)
@@ -12612,6 +16442,15 @@ __cmpti2:                               # @__cmpti2
 	st.w	$a0, $fp, -20
 	b	.LBB143_9
 .LBB143_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -20
 	b	.LBB143_9
@@ -12633,9 +16472,18 @@ __ctzsi2:                               # @__ctzsi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.144)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.144)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.144)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.144)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___ctzsi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ctzsi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ctzsi2)
@@ -12723,11 +16571,21 @@ __ctzti2:                               # @__ctzti2
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.145)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.145)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.145)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.145)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___ctzti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ctzti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ctzti2)
@@ -12804,6 +16662,14 @@ __ffsti2:                               # @__ffsti2
 	b	.LBB146_2
 .LBB146_2:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.146)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.146)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.146)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.146)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a2, %pc_hi20(.L__profc___ffsti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ffsti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ffsti2)
@@ -12815,12 +16681,30 @@ __ffsti2:                               # @__ffsti2
 	st.w	$a0, $fp, -20
 	b	.LBB146_5
 .LBB146_3:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.146)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.146)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.146)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.146)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -56
 	ctz.d	$a0, $a0
 	addi.d	$a0, $a0, 65
 	st.w	$a0, $fp, -20
 	b	.LBB146_5
 .LBB146_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.146)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.146)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.146)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.146)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 0
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 0
 	ld.d	$a0, $fp, -64
 	ctz.d	$a0, $a0
 	addi.d	$a0, $a0, 1
@@ -12866,6 +16750,14 @@ __lshrdi3:                              # @__lshrdi3
 	b	.LBB147_1
 .LBB147_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.147)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.147)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.147)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.147)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___lshrdi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___lshrdi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___lshrdi3)
@@ -12887,6 +16779,14 @@ __lshrdi3:                              # @__lshrdi3
 	b	.LBB147_3
 .LBB147_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.147)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.147)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.147)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.147)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___lshrdi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___lshrdi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___lshrdi3)
@@ -12899,6 +16799,15 @@ __lshrdi3:                              # @__lshrdi3
 	st.d	$a0, $fp, -24
 	b	.LBB147_6
 .LBB147_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.147)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.147)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.147)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.147)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.w	$a0, $fp, -44
 	ld.wu	$a1, $fp, -36
 	srl.w	$a0, $a0, $a1
@@ -12962,6 +16871,14 @@ __lshrti3:                              # @__lshrti3
 	b	.LBB148_1
 .LBB148_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.148)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.148)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.148)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.148)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___lshrti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___lshrti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___lshrti3)
@@ -12983,6 +16900,14 @@ __lshrti3:                              # @__lshrti3
 	b	.LBB148_3
 .LBB148_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.148)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.148)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.148)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.148)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___lshrti3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___lshrti3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___lshrti3)
@@ -12997,6 +16922,15 @@ __lshrti3:                              # @__lshrti3
 	st.d	$a0, $fp, -32
 	b	.LBB148_6
 .LBB148_4:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.148)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.148)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.148)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.148)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 16
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 16
 	ld.d	$a0, $fp, -72
 	ld.wu	$a1, $fp, -52
 	srl.d	$a0, $a0, $a1
@@ -13036,11 +16970,20 @@ __muldsi3:                              # @__muldsi3
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.w	$a0, $fp, -20
-	st.w	$a1, $fp, -24
+	move	$a2, $a0
+                                        # kill: def $r4 killed $r5
+                                        # kill: def $r4 killed $r6
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.149)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.149)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.149)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.149)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.w	$a2, $fp, -20
+	st.w	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___muldsi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___muldsi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___muldsi3)
@@ -13117,9 +17060,18 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.150)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.150)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.150)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.150)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___muldi3_compiler_rt)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___muldi3_compiler_rt)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___muldi3_compiler_rt)
@@ -13168,9 +17120,18 @@ __mulddi3:                              # @__mulddi3
 	st.d	$ra, $sp, 72                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 64                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 80
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.151)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.151)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.151)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.151)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___mulddi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___mulddi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___mulddi3)
@@ -13248,15 +17209,25 @@ __multi3:                               # @__multi3
 	st.d	$ra, $sp, 88                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 80                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 96
-                                        # kill: def $r8 killed $r7
-                                        # kill: def $r8 killed $r6
-                                        # kill: def $r8 killed $r5
-                                        # kill: def $r8 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a4, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r7
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r8
+                                        # kill: def $r4 killed $r5
+	move	$a0, $zero
+	pcalau12i	$a6, %pc_hi20(__llvm_gcov_ctr.152)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.152)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.152)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.152)
+	add.d	$a6, $t8, $a6
+	ld.d	$a5, $a6, 0
+	addi.d	$a5, $a5, 1
+	st.d	$a5, $a6, 0
+	st.d	$a4, $fp, -24
+	st.d	$a1, $fp, -32
 	st.d	$a3, $fp, -40
 	st.d	$a2, $fp, -48
-	move	$a0, $zero
 	pcalau12i	$a1, %pc_hi20(.L__profc___multi3)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___multi3)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___multi3)
@@ -13311,8 +17282,17 @@ __negdi2:                               # @__negdi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.153)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.153)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.153)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.153)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a2, %pc_hi20(.L__profc___negdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___negdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___negdi2)
@@ -13339,11 +17319,20 @@ __negti2:                               # @__negti2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+                                        # kill: def $r5 killed $r6
+                                        # kill: def $r5 killed $r4
 	move	$a1, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.154)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.154)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.154)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.154)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a0, $fp, -32
 	pcalau12i	$a2, %pc_hi20(.L__profc___negti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___negti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___negti2)
@@ -13374,8 +17363,17 @@ __paritydi2:                            # @__paritydi2
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.155)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.155)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.155)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.155)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___paritydi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___paritydi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___paritydi2)
@@ -13424,11 +17422,21 @@ __parityti2:                            # @__parityti2
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.156)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.156)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.156)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.156)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___parityti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___parityti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___parityti2)
@@ -13483,9 +17491,18 @@ __paritysi2:                            # @__paritysi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.157)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.157)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.157)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.157)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___paritysi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___paritysi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___paritysi2)
@@ -13530,8 +17547,17 @@ __popcountdi2:                          # @__popcountdi2
 	st.d	$ra, $sp, 40                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 32                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 48
-	st.d	$a0, $fp, -24
+	move	$a1, $a0
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.158)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.158)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.158)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.158)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.d	$a1, $fp, -24
 	pcalau12i	$a1, %pc_hi20(.L__profc___popcountdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___popcountdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___popcountdi2)
@@ -13598,9 +17624,18 @@ __popcountsi2:                          # @__popcountsi2
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-                                        # kill: def $r5 killed $r4
-	st.w	$a0, $fp, -20
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a3, %pc_hi20(__llvm_gcov_ctr.159)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.159)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.159)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.159)
+	add.d	$a3, $t8, $a3
+	ld.d	$a2, $a3, 0
+	addi.d	$a2, $a2, 1
+	st.d	$a2, $a3, 0
+	st.w	$a1, $fp, -20
 	pcalau12i	$a1, %pc_hi20(.L__profc___popcountsi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___popcountsi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___popcountsi2)
@@ -13657,11 +17692,21 @@ __popcountti2:                          # @__popcountti2
 	st.d	$ra, $sp, 56                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 48                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 64
-                                        # kill: def $r6 killed $r5
-                                        # kill: def $r6 killed $r4
-	st.d	$a1, $fp, -24
-	st.d	$a0, $fp, -32
+	move	$a2, $a1
+	move	$a1, $a0
+                                        # kill: def $r4 killed $r6
+                                        # kill: def $r4 killed $r5
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.160)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.160)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.160)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.160)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___popcountti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___popcountti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___popcountti2)
@@ -13793,6 +17838,14 @@ __powidf2:                              # @__powidf2
 	b	.LBB161_2
 .LBB161_2:                              #   in Loop: Header=BB161_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.161)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.161)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.161)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.161)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___powidf2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___powidf2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___powidf2)
@@ -13833,6 +17886,15 @@ __powidf2:                              # @__powidf2
 	st.d	$a0, $a1, 24
 	b	.LBB161_6
 .LBB161_5:                              #   in Loop: Header=BB161_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.161)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.161)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.161)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.161)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.d	$a1, $fp, -24
 	move	$a0, $a1
 	pcalau12i	$ra, %got_pc_hi20(__muldf3)
@@ -13849,6 +17911,14 @@ __powidf2:                              # @__powidf2
 	b	.LBB161_7
 .LBB161_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.161)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.161)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.161)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.161)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___powidf2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___powidf2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___powidf2)
@@ -13868,6 +17938,15 @@ __powidf2:                              # @__powidf2
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB161_9
 .LBB161_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.161)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.161)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.161)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.161)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.d	$a0, $fp, -40
 	st.d	$a0, $fp, -48                   # 8-byte Folded Spill
 	b	.LBB161_9
@@ -13924,6 +18003,14 @@ __powisf2:                              # @__powisf2
 	b	.LBB162_2
 .LBB162_2:                              #   in Loop: Header=BB162_1 Depth=1
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.162)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.162)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.162)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.162)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a1, %pc_hi20(.L__profc___powisf2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___powisf2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___powisf2)
@@ -13964,6 +18051,15 @@ __powisf2:                              # @__powisf2
 	st.d	$a0, $a1, 24
 	b	.LBB162_6
 .LBB162_5:                              #   in Loop: Header=BB162_1 Depth=1
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.162)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.162)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.162)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.162)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 8
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 8
 	ld.w	$a1, $fp, -20
 	move	$a0, $a1
 	pcalau12i	$ra, %got_pc_hi20(__mulsf3)
@@ -13980,6 +18076,14 @@ __powisf2:                              # @__powisf2
 	b	.LBB162_7
 .LBB162_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.162)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.162)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.162)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.162)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a1, %pc_hi20(.L__profc___powisf2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___powisf2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___powisf2)
@@ -13999,6 +18103,15 @@ __powisf2:                              # @__powisf2
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB162_9
 .LBB162_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.162)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.162)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.162)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.162)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 24
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 24
 	ld.w	$a0, $fp, -32
 	st.d	$a0, $fp, -40                   # 8-byte Folded Spill
 	b	.LBB162_9
@@ -14041,6 +18154,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	b	.LBB163_1
 .LBB163_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___ucmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpdi2)
@@ -14058,6 +18179,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	b	.LBB163_3
 .LBB163_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ucmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpdi2)
@@ -14076,6 +18205,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	b	.LBB163_5
 .LBB163_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___ucmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpdi2)
@@ -14093,6 +18230,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	b	.LBB163_7
 .LBB163_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___ucmpdi2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpdi2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpdi2)
@@ -14105,6 +18250,15 @@ __ucmpdi2:                              # @__ucmpdi2
 	st.w	$a0, $fp, -20
 	b	.LBB163_9
 .LBB163_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -20
 	b	.LBB163_9
@@ -14126,9 +18280,18 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	st.d	$ra, $sp, 24                    # 8-byte Folded Spill
 	st.d	$fp, $sp, 16                    # 8-byte Folded Spill
 	addi.d	$fp, $sp, 32
-	st.d	$a0, $fp, -24
-	st.d	$a1, $fp, -32
+	move	$a2, $a0
 	move	$a0, $zero
+	pcalau12i	$a4, %pc_hi20(__llvm_gcov_ctr.164)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.164)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.164)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.164)
+	add.d	$a4, $t8, $a4
+	ld.d	$a3, $a4, 0
+	addi.d	$a3, $a3, 1
+	st.d	$a3, $a4, 0
+	st.d	$a2, $fp, -24
+	st.d	$a1, $fp, -32
 	pcalau12i	$a1, %pc_hi20(.L__profc___aeabi_ulcmp)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___aeabi_ulcmp)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___aeabi_ulcmp)
@@ -14194,6 +18357,14 @@ __ucmpti2:                              # @__ucmpti2
 	b	.LBB165_1
 .LBB165_1:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 0
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 0
 	pcalau12i	$a2, %pc_hi20(.L__profc___ucmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpti2)
@@ -14211,6 +18382,14 @@ __ucmpti2:                              # @__ucmpti2
 	b	.LBB165_3
 .LBB165_3:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 8
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 8
 	pcalau12i	$a1, %pc_hi20(.L__profc___ucmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpti2)
@@ -14229,6 +18408,14 @@ __ucmpti2:                              # @__ucmpti2
 	b	.LBB165_5
 .LBB165_5:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 16
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 16
 	pcalau12i	$a2, %pc_hi20(.L__profc___ucmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpti2)
@@ -14246,6 +18433,14 @@ __ucmpti2:                              # @__ucmpti2
 	b	.LBB165_7
 .LBB165_7:
 	move	$a0, $zero
+	pcalau12i	$a2, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a2, $t8, $a2
+	ld.d	$a1, $a2, 24
+	addi.d	$a1, $a1, 1
+	st.d	$a1, $a2, 24
 	pcalau12i	$a1, %pc_hi20(.L__profc___ucmpti2)
 	addi.d	$t8, $zero, %pc_lo12(.L__profc___ucmpti2)
 	lu32i.d	$t8, %pc64_lo20(.L__profc___ucmpti2)
@@ -14258,6 +18453,15 @@ __ucmpti2:                              # @__ucmpti2
 	st.w	$a0, $fp, -20
 	b	.LBB165_9
 .LBB165_8:
+	move	$a0, $zero
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a1, $t8, $a1
+	ld.d	$a0, $a1, 32
+	addi.d	$a0, $a0, 1
+	st.d	$a0, $a1, 32
 	ori	$a0, $zero, 1
 	st.w	$a0, $fp, -20
 	b	.LBB165_9
@@ -14269,6 +18473,1963 @@ __ucmpti2:                              # @__ucmpti2
 	ret
 .Lfunc_end165:
 	.size	__ucmpti2, .Lfunc_end165-__ucmpti2
+                                        # -- End function
+	.p2align	5                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+# %bb.0:
+	addi.d	$sp, $sp, -96
+	st.d	$ra, $sp, 88                    # 8-byte Folded Spill
+	st.d	$fp, $sp, 80                    # 8-byte Folded Spill
+	addi.d	$fp, $sp, 96
+	move	$a0, $zero
+	st.d	$a0, $fp, -24                   # 8-byte Folded Spill
+.LBB166_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB166_2 Depth 2
+	ld.d	$a0, $fp, -24                   # 8-byte Folded Reload
+	st.d	$a0, $fp, -80                   # 8-byte Folded Spill
+	addi.w	$a0, $a0, 0
+	slli.d	$a1, $a0, 5
+	alsl.d	$a1, $a0, $a1, 3
+	move	$a0, $zero
+	st.d	$a0, $fp, -64                   # 8-byte Folded Spill
+	pcalau12i	$a0, %pc_hi20(__llvm_internal_gcov_emit_file_info)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_internal_gcov_emit_file_info)
+	lu32i.d	$t8, %pc64_lo20(__llvm_internal_gcov_emit_file_info)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_internal_gcov_emit_file_info)
+	add.d	$a0, $t8, $a0
+	add.d	$a2, $a0, $a1
+	st.d	$a2, $fp, -72                   # 8-byte Folded Spill
+	ldx.d	$a0, $a0, $a1
+	ld.w	$a1, $a2, 8
+	ld.w	$a2, $a2, 12
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcda_start_file)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcda_start_file)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcda_start_file)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcda_start_file)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -64                   # 8-byte Folded Reload
+	ld.w	$a0, $a1, 16
+	st.d	$a0, $fp, -56                   # 8-byte Folded Spill
+	ld.d	$a3, $a1, 24
+	st.d	$a3, $fp, -48                   # 8-byte Folded Spill
+	ld.d	$a1, $a1, 32
+	st.d	$a1, $fp, -40                   # 8-byte Folded Spill
+	ori	$a1, $zero, 1
+	st.d	$a2, $fp, -32                   # 8-byte Folded Spill
+	blt	$a0, $a1, .LBB166_3
+	b	.LBB166_2
+.LBB166_2:                              #   Parent Loop BB166_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a0, $fp, -48                   # 8-byte Folded Reload
+	st.d	$a1, $fp, -88                   # 8-byte Folded Spill
+	addi.w	$a1, $a1, 0
+	st.d	$a1, $fp, -96                   # 8-byte Folded Spill
+	slli.d	$a2, $a1, 3
+	alsl.d	$a1, $a1, $a2, 2
+	add.d	$a2, $a0, $a1
+	ldx.w	$a0, $a0, $a1
+	ld.w	$a1, $a2, 4
+	ld.w	$a2, $a2, 8
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcda_emit_function)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcda_emit_function)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcda_emit_function)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcda_emit_function)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -96                   # 8-byte Folded Reload
+	ld.d	$a0, $fp, -40                   # 8-byte Folded Reload
+	alsl.d	$a1, $a2, $a0, 4
+	slli.d	$a2, $a2, 4
+	ldx.w	$a0, $a0, $a2
+	ld.d	$a1, $a1, 8
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcda_emit_arcs)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcda_emit_arcs)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcda_emit_arcs)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcda_emit_arcs)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a0, $fp, -88                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -56                   # 8-byte Folded Reload
+	addi.d	$a0, $a0, 1
+	addi.w	$a0, $a0, 0
+	move	$a2, $a0
+	st.d	$a2, $fp, -32                   # 8-byte Folded Spill
+	blt	$a0, $a1, .LBB166_2
+	b	.LBB166_3
+.LBB166_3:                              #   in Loop: Header=BB166_1 Depth=1
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcda_summary_info)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcda_summary_info)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcda_summary_info)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcda_summary_info)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcda_end_file)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcda_end_file)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcda_end_file)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcda_end_file)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a0, $fp, -80                   # 8-byte Folded Reload
+	addi.d	$a0, $a0, 1
+	addi.w	$a0, $a0, 0
+	ori	$a1, $zero, 1
+	move	$a2, $a0
+	st.d	$a2, $fp, -24                   # 8-byte Folded Spill
+	blt	$a0, $a1, .LBB166_1
+	b	.LBB166_4
+.LBB166_4:
+	ld.d	$fp, $sp, 80                    # 8-byte Folded Reload
+	ld.d	$ra, $sp, 88                    # 8-byte Folded Reload
+	addi.d	$sp, $sp, 96
+	ret
+.Lfunc_end166:
+	.size	__llvm_gcov_writeout, .Lfunc_end166-__llvm_gcov_writeout
+                                        # -- End function
+	.p2align	5                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+# %bb.0:
+	addi.d	$sp, $sp, -80
+	st.d	$ra, $sp, 72                    # 8-byte Folded Spill
+	st.d	$fp, $sp, 64                    # 8-byte Folded Spill
+	addi.d	$fp, $sp, 80
+	move	$a1, $zero
+	st.d	$a1, $fp, -32                   # 8-byte Folded Spill
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.1)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.1)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.1)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.1)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.2)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.2)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.2)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.2)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 40
+	st.d	$a2, $fp, -24                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.3)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.3)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.3)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.3)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.4)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.4)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.4)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.4)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.5)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.5)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.5)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.5)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.6)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.6)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.6)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.6)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 16
+	st.d	$a2, $fp, -72                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.7)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.7)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.7)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.7)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 24
+	st.d	$a2, $fp, -48                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.8)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.8)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.8)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.8)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.9)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.9)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.9)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.9)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.10)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.10)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.10)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.10)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 32
+	st.d	$a2, $fp, -40                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.11)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.11)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.11)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.11)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.12)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.12)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.12)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.12)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.13)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.13)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.13)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.13)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.14)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.14)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.14)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.14)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 56
+	st.d	$a2, $fp, -64                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.15)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.15)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.15)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.15)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.16)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.16)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.16)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.16)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.17)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.17)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.17)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.17)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.18)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.18)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.18)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.18)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.19)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.19)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.19)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.19)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.20)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.20)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.20)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.20)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.21)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.21)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.21)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.21)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.22)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.22)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.22)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.22)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.23)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.23)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.23)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.23)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.24)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.24)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.24)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.24)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.25)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.25)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.25)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.25)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.26)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.26)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.26)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.26)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -64                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.27)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.27)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.27)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.27)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.28)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.28)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.28)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.28)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.29)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.29)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.29)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.29)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.30)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.30)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.30)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.30)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.31)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.31)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.31)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.31)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.32)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.32)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.32)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.32)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.33)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.33)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.33)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.33)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 48
+	st.d	$a2, $fp, -80                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.34)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.34)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.34)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.34)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.35)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.35)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.35)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.35)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.36)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.36)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.36)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.36)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.37)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.37)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.37)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.37)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.38)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.38)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.38)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.38)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.39)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.39)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.39)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.39)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.40)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.40)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.40)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.40)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.41)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.41)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.41)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.41)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.42)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.42)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.42)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.42)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.43)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.43)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.43)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.43)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.44)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.44)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.44)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.44)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.45)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.45)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.45)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.45)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.46)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.46)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.46)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.46)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.47)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.47)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.47)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.47)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.48)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.48)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.48)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.48)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.49)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.49)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.49)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.49)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.50)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.50)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.50)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.50)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.51)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.51)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.51)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.51)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.52)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.52)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.52)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.52)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.53)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.53)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.53)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.53)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.54)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.54)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.54)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.54)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.55)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.55)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.55)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.55)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.56)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.56)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.56)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.56)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.57)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.57)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.57)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.57)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.58)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.58)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.58)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.58)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.59)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.59)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.59)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.59)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.60)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.60)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.60)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.60)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.61)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.61)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.61)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.61)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.62)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.62)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.62)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.62)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.63)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.63)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.63)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.63)
+	add.d	$a0, $t8, $a0
+	ori	$a2, $zero, 64
+	st.d	$a2, $fp, -56                   # 8-byte Folded Spill
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.64)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.64)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.64)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.64)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.65)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.65)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.65)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.65)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.66)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.66)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.66)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.66)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.67)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.67)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.67)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.67)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.68)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.68)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.68)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.68)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.69)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.69)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.69)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.69)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.70)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.70)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.70)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.70)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.71)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.71)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.71)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.71)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.72)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.72)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.72)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.72)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.73)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.73)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.73)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.73)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.74)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.74)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.74)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.74)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.75)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.75)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.75)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.75)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.76)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.76)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.76)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.76)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.77)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.77)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.77)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.77)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.78)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.78)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.78)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.78)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.79)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.79)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.79)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.79)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.80)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.80)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.80)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.80)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.81)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.81)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.81)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.81)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.82)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.82)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.82)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.82)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.83)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.83)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.83)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.83)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.84)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.84)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.84)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.84)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.85)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.85)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.85)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.85)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.86)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.86)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.86)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.86)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.87)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.87)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.87)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.87)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.88)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.88)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.88)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.88)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.89)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.89)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.89)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.89)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.90)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.90)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.90)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.90)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.91)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.91)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.91)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.91)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.92)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.92)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.92)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.92)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.93)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.93)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.93)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.93)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.94)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.94)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.94)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.94)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.95)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.95)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.95)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.95)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.96)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.96)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.96)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.96)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.97)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.97)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.97)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.97)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.98)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.98)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.98)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.98)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.99)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.99)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.99)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.99)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -56                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.100)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.100)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.100)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.100)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.101)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.101)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.101)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.101)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.102)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.102)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.102)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.102)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -56                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.103)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.103)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.103)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.103)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.104)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.104)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.104)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.104)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.105)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.105)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.105)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.105)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.106)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.106)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.106)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.106)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.107)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.107)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.107)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.107)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.108)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.108)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.108)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.108)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -80                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.109)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.109)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.109)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.109)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.110)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.110)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.110)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.110)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.111)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.111)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.111)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.111)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.112)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.112)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.112)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.112)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.113)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.113)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.113)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.113)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.114)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.114)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.114)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.114)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.115)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.115)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.115)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.115)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.116)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.116)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.116)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.116)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.117)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.117)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.117)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.117)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -72                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.118)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.118)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.118)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.118)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.119)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.119)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.119)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.119)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.120)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.120)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.120)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.120)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.121)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.121)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.121)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.121)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.122)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.122)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.122)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.122)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -56                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.123)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.123)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.123)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.123)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.124)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.124)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.124)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.124)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.125)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.125)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.125)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.125)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -64                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.126)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.126)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.126)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.126)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.127)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.127)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.127)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.127)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.128)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.128)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.128)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.128)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.129)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.129)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.129)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.129)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.130)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.130)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.130)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.130)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -56                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.131)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.131)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.131)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.131)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -56                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.132)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.132)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.132)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.132)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.133)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.133)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.133)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.133)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.134)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.134)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.134)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.134)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.135)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.135)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.135)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.135)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.136)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.136)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.136)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.136)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.137)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.137)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.137)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.137)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.138)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.138)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.138)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.138)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.139)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.139)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.139)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.139)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.140)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.140)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.140)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.140)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.141)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.141)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.141)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.141)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.142)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.142)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.142)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.142)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.143)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.143)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.143)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.143)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.144)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.144)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.144)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.144)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.145)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.145)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.145)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.145)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.146)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.146)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.146)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.146)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.147)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.147)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.147)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.147)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -48                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.148)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.148)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.148)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.148)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.149)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.149)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.149)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.149)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.150)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.150)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.150)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.150)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.151)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.151)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.151)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.151)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.152)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.152)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.152)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.152)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.153)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.153)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.153)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.153)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.154)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.154)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.154)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.154)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.155)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.155)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.155)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.155)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.156)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.156)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.156)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.156)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.157)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.157)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.157)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.157)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.158)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.158)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.158)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.158)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.159)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.159)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.159)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.159)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.160)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.160)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.160)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.160)
+	add.d	$a0, $t8, $a0
+	st.d	$a1, $a0, 0
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.161)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.161)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.161)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.161)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a2, $fp, -40                   # 8-byte Folded Reload
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.162)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.162)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.162)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.162)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.163)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.163)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.163)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.163)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$a1, $fp, -32                   # 8-byte Folded Reload
+	ld.d	$a2, $fp, -24                   # 8-byte Folded Reload
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.164)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.164)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.164)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.164)
+	add.d	$a0, $t8, $a0
+	st.b	$a1, $a0, 0
+	st.b	$a1, $a0, 1
+	st.b	$a1, $a0, 2
+	st.b	$a1, $a0, 3
+	st.b	$a1, $a0, 4
+	st.b	$a1, $a0, 5
+	st.b	$a1, $a0, 6
+	st.b	$a1, $a0, 7
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_ctr.165)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_ctr.165)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_ctr.165)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_ctr.165)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$ra, %got_pc_hi20(memset)
+	addi.d	$t8, $zero, %got_pc_lo12(memset)
+	lu32i.d	$t8, %got64_pc_lo20(memset)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(memset)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$fp, $sp, 64                    # 8-byte Folded Reload
+	ld.d	$ra, $sp, 72                    # 8-byte Folded Reload
+	addi.d	$sp, $sp, 80
+	ret
+.Lfunc_end167:
+	.size	__llvm_gcov_reset, .Lfunc_end167-__llvm_gcov_reset
+                                        # -- End function
+	.p2align	5                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+# %bb.0:
+	addi.d	$sp, $sp, -16
+	st.d	$ra, $sp, 8                     # 8-byte Folded Spill
+	st.d	$fp, $sp, 0                     # 8-byte Folded Spill
+	addi.d	$fp, $sp, 16
+	move	$a1, $zero
+	pcalau12i	$a0, %pc_hi20(__llvm_gcov_writeout)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_writeout)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_writeout)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_writeout)
+	add.d	$a0, $t8, $a0
+	pcalau12i	$a1, %pc_hi20(__llvm_gcov_reset)
+	addi.d	$t8, $zero, %pc_lo12(__llvm_gcov_reset)
+	lu32i.d	$t8, %pc64_lo20(__llvm_gcov_reset)
+	lu52i.d	$t8, $t8, %pc64_hi12(__llvm_gcov_reset)
+	add.d	$a1, $t8, $a1
+	pcalau12i	$ra, %got_pc_hi20(llvm_gcov_init)
+	addi.d	$t8, $zero, %got_pc_lo12(llvm_gcov_init)
+	lu32i.d	$t8, %got64_pc_lo20(llvm_gcov_init)
+	lu52i.d	$t8, $t8, %got64_pc_hi12(llvm_gcov_init)
+	ldx.d	$ra, $t8, $ra
+	jirl	$ra, $ra, 0
+	ld.d	$fp, $sp, 0                     # 8-byte Folded Reload
+	ld.d	$ra, $sp, 8                     # 8-byte Folded Reload
+	addi.d	$sp, $sp, 16
+	ret
+.Lfunc_end168:
+	.size	__llvm_gcov_init, .Lfunc_end168-__llvm_gcov_init
                                         # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.local	l64a.s
@@ -14282,6 +20443,1532 @@ digits:
 	.type	seed,@object                    # @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,8,8
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,8,8
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,40,16
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,40,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,24,16
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,16,8
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,16,8
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,24,16
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,32,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,56,16
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,16,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,8,8
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,8,8
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,24,16
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,24,16
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,8,8
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,24,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,40,16
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,8,8
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,56,16
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,24,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,8,8
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,32,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,32,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,48,16
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,48,16
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,16,8
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,8,8
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,8,8
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,24,16
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,24,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,16,8
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,48,16
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,48,16
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,32,16
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,32,16
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,8
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,8,8
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,40,16
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,48,16
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,16,8
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,8
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,64,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,40,16
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,48,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,16,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,40,16
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,8,8
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,8,8
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,24,16
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,24,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,8,8
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,40,16
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,16,8
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,40,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,32,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,24,16
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,32,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,40,16
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,48,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,8,8
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,64,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,24,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,24,16
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,48,16
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,48,16
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,8,8
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,8,8
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,16,8
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,32,16
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,64,16
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,24,16
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,24,16
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,8,8
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,8,8
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,56,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,32,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,32,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,64,16
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,64,16
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,24,16
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,24,16
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,24,16
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,24,16
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,8,8
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,40,16
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,40,16
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,24,16
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,24,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,24,16
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,8,8
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	__llvm_gcov_ctr.151,@object     # @__llvm_gcov_ctr.151
+	.local	__llvm_gcov_ctr.151
+	.comm	__llvm_gcov_ctr.151,8,8
+	.type	__llvm_gcov_ctr.152,@object     # @__llvm_gcov_ctr.152
+	.local	__llvm_gcov_ctr.152
+	.comm	__llvm_gcov_ctr.152,8,8
+	.type	__llvm_gcov_ctr.153,@object     # @__llvm_gcov_ctr.153
+	.local	__llvm_gcov_ctr.153
+	.comm	__llvm_gcov_ctr.153,8,8
+	.type	__llvm_gcov_ctr.154,@object     # @__llvm_gcov_ctr.154
+	.local	__llvm_gcov_ctr.154
+	.comm	__llvm_gcov_ctr.154,8,8
+	.type	__llvm_gcov_ctr.155,@object     # @__llvm_gcov_ctr.155
+	.local	__llvm_gcov_ctr.155
+	.comm	__llvm_gcov_ctr.155,8,8
+	.type	__llvm_gcov_ctr.156,@object     # @__llvm_gcov_ctr.156
+	.local	__llvm_gcov_ctr.156
+	.comm	__llvm_gcov_ctr.156,8,8
+	.type	__llvm_gcov_ctr.157,@object     # @__llvm_gcov_ctr.157
+	.local	__llvm_gcov_ctr.157
+	.comm	__llvm_gcov_ctr.157,8,8
+	.type	__llvm_gcov_ctr.158,@object     # @__llvm_gcov_ctr.158
+	.local	__llvm_gcov_ctr.158
+	.comm	__llvm_gcov_ctr.158,8,8
+	.type	__llvm_gcov_ctr.159,@object     # @__llvm_gcov_ctr.159
+	.local	__llvm_gcov_ctr.159
+	.comm	__llvm_gcov_ctr.159,8,8
+	.type	__llvm_gcov_ctr.160,@object     # @__llvm_gcov_ctr.160
+	.local	__llvm_gcov_ctr.160
+	.comm	__llvm_gcov_ctr.160,8,8
+	.type	__llvm_gcov_ctr.161,@object     # @__llvm_gcov_ctr.161
+	.local	__llvm_gcov_ctr.161
+	.comm	__llvm_gcov_ctr.161,32,16
+	.type	__llvm_gcov_ctr.162,@object     # @__llvm_gcov_ctr.162
+	.local	__llvm_gcov_ctr.162
+	.comm	__llvm_gcov_ctr.162,32,16
+	.type	__llvm_gcov_ctr.163,@object     # @__llvm_gcov_ctr.163
+	.local	__llvm_gcov_ctr.163
+	.comm	__llvm_gcov_ctr.163,40,16
+	.type	__llvm_gcov_ctr.164,@object     # @__llvm_gcov_ctr.164
+	.local	__llvm_gcov_ctr.164
+	.comm	__llvm_gcov_ctr.164,8,8
+	.type	__llvm_gcov_ctr.165,@object     # @__llvm_gcov_ctr.165
+	.local	__llvm_gcov_ctr.165
+	.comm	__llvm_gcov_ctr.165,40,16
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-loongarch64.gcda"
+	.size	.L__unnamed_1, 55
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.word	0                               # 0x0
+	.word	3759012176                      # 0xe00df950
+	.word	2102079853                      # 0x7d4b316d
+	.word	1                               # 0x1
+	.word	3518812481                      # 0xd1bcd141
+	.word	2102079853                      # 0x7d4b316d
+	.word	2                               # 0x2
+	.word	560687177                       # 0x216b6849
+	.word	2102079853                      # 0x7d4b316d
+	.word	3                               # 0x3
+	.word	1589591758                      # 0x5ebf3ece
+	.word	2102079853                      # 0x7d4b316d
+	.word	4                               # 0x4
+	.word	2176136383                      # 0x81b534bf
+	.word	2102079853                      # 0x7d4b316d
+	.word	5                               # 0x5
+	.word	3586625172                      # 0xd5c78e94
+	.word	2102079853                      # 0x7d4b316d
+	.word	6                               # 0x6
+	.word	2323119728                      # 0x8a77fe70
+	.word	2102079853                      # 0x7d4b316d
+	.word	7                               # 0x7
+	.word	2314569740                      # 0x89f5880c
+	.word	2102079853                      # 0x7d4b316d
+	.word	8                               # 0x8
+	.word	2833673551                      # 0xa8e66d4f
+	.word	2102079853                      # 0x7d4b316d
+	.word	9                               # 0x9
+	.word	1458633189                      # 0x56f0f9e5
+	.word	2102079853                      # 0x7d4b316d
+	.word	10                              # 0xa
+	.word	1190300833                      # 0x46f28ca1
+	.word	2102079853                      # 0x7d4b316d
+	.word	11                              # 0xb
+	.word	758327989                       # 0x2d332ab5
+	.word	2102079853                      # 0x7d4b316d
+	.word	12                              # 0xc
+	.word	1651479037                      # 0x626f91fd
+	.word	2102079853                      # 0x7d4b316d
+	.word	13                              # 0xd
+	.word	4132343275                      # 0xf64e8deb
+	.word	2102079853                      # 0x7d4b316d
+	.word	14                              # 0xe
+	.word	734262523                       # 0x2bc3f4fb
+	.word	2102079853                      # 0x7d4b316d
+	.word	15                              # 0xf
+	.word	2463424677                      # 0x92d4e0a5
+	.word	2102079853                      # 0x7d4b316d
+	.word	16                              # 0x10
+	.word	1419026334                      # 0x54949f9e
+	.word	2102079853                      # 0x7d4b316d
+	.word	17                              # 0x11
+	.word	3154471370                      # 0xbc0569ca
+	.word	2102079853                      # 0x7d4b316d
+	.word	18                              # 0x12
+	.word	2077973487                      # 0x7bdb5bef
+	.word	2102079853                      # 0x7d4b316d
+	.word	19                              # 0x13
+	.word	1474691227                      # 0x57e6009b
+	.word	2102079853                      # 0x7d4b316d
+	.word	20                              # 0x14
+	.word	3710986016                      # 0xdd312720
+	.word	2102079853                      # 0x7d4b316d
+	.word	21                              # 0x15
+	.word	1305101473                      # 0x4dca44a1
+	.word	2102079853                      # 0x7d4b316d
+	.word	22                              # 0x16
+	.word	3762036564                      # 0xe03c1f54
+	.word	2102079853                      # 0x7d4b316d
+	.word	23                              # 0x17
+	.word	477914433                       # 0x1c7c6541
+	.word	2102079853                      # 0x7d4b316d
+	.word	24                              # 0x18
+	.word	3923035234                      # 0xe9d4c462
+	.word	2102079853                      # 0x7d4b316d
+	.word	25                              # 0x19
+	.word	951651702                       # 0x38b90d76
+	.word	2102079853                      # 0x7d4b316d
+	.word	26                              # 0x1a
+	.word	4206925919                      # 0xfac0985f
+	.word	2102079853                      # 0x7d4b316d
+	.word	27                              # 0x1b
+	.word	32773942                        # 0x1f41736
+	.word	2102079853                      # 0x7d4b316d
+	.word	28                              # 0x1c
+	.word	2877267246                      # 0xab7f9d2e
+	.word	2102079853                      # 0x7d4b316d
+	.word	29                              # 0x1d
+	.word	860405771                       # 0x3348c00b
+	.word	2102079853                      # 0x7d4b316d
+	.word	30                              # 0x1e
+	.word	815674877                       # 0x309e35fd
+	.word	2102079853                      # 0x7d4b316d
+	.word	31                              # 0x1f
+	.word	1778838753                      # 0x6a06ece1
+	.word	2102079853                      # 0x7d4b316d
+	.word	32                              # 0x20
+	.word	2718307199                      # 0xa206137f
+	.word	2102079853                      # 0x7d4b316d
+	.word	33                              # 0x21
+	.word	856224820                       # 0x3308f434
+	.word	2102079853                      # 0x7d4b316d
+	.word	34                              # 0x22
+	.word	1111195143                      # 0x423b7e07
+	.word	2102079853                      # 0x7d4b316d
+	.word	35                              # 0x23
+	.word	1178414519                      # 0x463d2db7
+	.word	2102079853                      # 0x7d4b316d
+	.word	36                              # 0x24
+	.word	3477640633                      # 0xcf4895b9
+	.word	2102079853                      # 0x7d4b316d
+	.word	37                              # 0x25
+	.word	4294770115                      # 0xfffcfdc3
+	.word	2102079853                      # 0x7d4b316d
+	.word	38                              # 0x26
+	.word	3650660234                      # 0xd998a78a
+	.word	2102079853                      # 0x7d4b316d
+	.word	39                              # 0x27
+	.word	289327647                       # 0x113eca1f
+	.word	2102079853                      # 0x7d4b316d
+	.word	40                              # 0x28
+	.word	2093612798                      # 0x7cc9fefe
+	.word	2102079853                      # 0x7d4b316d
+	.word	41                              # 0x29
+	.word	4177956716                      # 0xf9068f6c
+	.word	2102079853                      # 0x7d4b316d
+	.word	42                              # 0x2a
+	.word	3434808461                      # 0xccbb048d
+	.word	2102079853                      # 0x7d4b316d
+	.word	43                              # 0x2b
+	.word	3206497114                      # 0xbf1f435a
+	.word	2102079853                      # 0x7d4b316d
+	.word	44                              # 0x2c
+	.word	1537257434                      # 0x5ba0afda
+	.word	2102079853                      # 0x7d4b316d
+	.word	45                              # 0x2d
+	.word	3028077325                      # 0xb47ccb0d
+	.word	2102079853                      # 0x7d4b316d
+	.word	46                              # 0x2e
+	.word	1369848209                      # 0x51a63991
+	.word	2102079853                      # 0x7d4b316d
+	.word	47                              # 0x2f
+	.word	938831176                       # 0x37f56d48
+	.word	2102079853                      # 0x7d4b316d
+	.word	48                              # 0x30
+	.word	1663146323                      # 0x63219953
+	.word	2102079853                      # 0x7d4b316d
+	.word	49                              # 0x31
+	.word	4111410217                      # 0xf50f2429
+	.word	2102079853                      # 0x7d4b316d
+	.word	50                              # 0x32
+	.word	1475378556                      # 0x57f07d7c
+	.word	2102079853                      # 0x7d4b316d
+	.word	51                              # 0x33
+	.word	3356195547                      # 0xc80b7adb
+	.word	2102079853                      # 0x7d4b316d
+	.word	52                              # 0x34
+	.word	514931786                       # 0x1eb13c4a
+	.word	2102079853                      # 0x7d4b316d
+	.word	53                              # 0x35
+	.word	2854034444                      # 0xaa1d1c0c
+	.word	2102079853                      # 0x7d4b316d
+	.word	54                              # 0x36
+	.word	2747937306                      # 0xa3ca321a
+	.word	2102079853                      # 0x7d4b316d
+	.word	55                              # 0x37
+	.word	4192776208                      # 0xf9e8b010
+	.word	2102079853                      # 0x7d4b316d
+	.word	56                              # 0x38
+	.word	984436227                       # 0x3aad4e03
+	.word	2102079853                      # 0x7d4b316d
+	.word	57                              # 0x39
+	.word	1477657574                      # 0x581343e6
+	.word	2102079853                      # 0x7d4b316d
+	.word	58                              # 0x3a
+	.word	1339127973                      # 0x4fd178a5
+	.word	2102079853                      # 0x7d4b316d
+	.word	59                              # 0x3b
+	.word	2960567906                      # 0xb076ae62
+	.word	2102079853                      # 0x7d4b316d
+	.word	60                              # 0x3c
+	.word	3390076872                      # 0xca1077c8
+	.word	2102079853                      # 0x7d4b316d
+	.word	61                              # 0x3d
+	.word	1543282230                      # 0x5bfc9e36
+	.word	2102079853                      # 0x7d4b316d
+	.word	62                              # 0x3e
+	.word	2934101789                      # 0xaee2d71d
+	.word	2102079853                      # 0x7d4b316d
+	.word	63                              # 0x3f
+	.word	3737986119                      # 0xdecd2447
+	.word	2102079853                      # 0x7d4b316d
+	.word	64                              # 0x40
+	.word	49556427                        # 0x2f42bcb
+	.word	2102079853                      # 0x7d4b316d
+	.word	65                              # 0x41
+	.word	234051526                       # 0xdf357c6
+	.word	2102079853                      # 0x7d4b316d
+	.word	66                              # 0x42
+	.word	2341800126                      # 0x8b9508be
+	.word	2102079853                      # 0x7d4b316d
+	.word	67                              # 0x43
+	.word	3256799948                      # 0xc21ed2cc
+	.word	2102079853                      # 0x7d4b316d
+	.word	68                              # 0x44
+	.word	777295480                       # 0x2e549678
+	.word	2102079853                      # 0x7d4b316d
+	.word	69                              # 0x45
+	.word	14040531                        # 0xd63dd3
+	.word	2102079853                      # 0x7d4b316d
+	.word	70                              # 0x46
+	.word	8047973                         # 0x7acd65
+	.word	2102079853                      # 0x7d4b316d
+	.word	71                              # 0x47
+	.word	719459161                       # 0x2ae21359
+	.word	2102079853                      # 0x7d4b316d
+	.word	72                              # 0x48
+	.word	243358501                       # 0xe815b25
+	.word	2102079853                      # 0x7d4b316d
+	.word	73                              # 0x49
+	.word	3262173932                      # 0xc270d2ec
+	.word	2102079853                      # 0x7d4b316d
+	.word	74                              # 0x4a
+	.word	398910553                       # 0x17c6e459
+	.word	2102079853                      # 0x7d4b316d
+	.word	75                              # 0x4b
+	.word	3354219739                      # 0xc7ed54db
+	.word	2102079853                      # 0x7d4b316d
+	.word	76                              # 0x4c
+	.word	2570308788                      # 0x9933ccb4
+	.word	2102079853                      # 0x7d4b316d
+	.word	77                              # 0x4d
+	.word	982429111                       # 0x3a8eadb7
+	.word	2102079853                      # 0x7d4b316d
+	.word	78                              # 0x4e
+	.word	211491241                       # 0xc9b19a9
+	.word	2102079853                      # 0x7d4b316d
+	.word	79                              # 0x4f
+	.word	1075683319                      # 0x401d9ff7
+	.word	2102079853                      # 0x7d4b316d
+	.word	80                              # 0x50
+	.word	1886352651                      # 0x706f750b
+	.word	2102079853                      # 0x7d4b316d
+	.word	81                              # 0x51
+	.word	248637203                       # 0xed1e713
+	.word	2102079853                      # 0x7d4b316d
+	.word	82                              # 0x52
+	.word	703327087                       # 0x29ebeb6f
+	.word	2102079853                      # 0x7d4b316d
+	.word	83                              # 0x53
+	.word	3690160730                      # 0xdbf3625a
+	.word	2102079853                      # 0x7d4b316d
+	.word	84                              # 0x54
+	.word	787048238                       # 0x2ee9672e
+	.word	2102079853                      # 0x7d4b316d
+	.word	85                              # 0x55
+	.word	1937497967                      # 0x737bdf6f
+	.word	2102079853                      # 0x7d4b316d
+	.word	86                              # 0x56
+	.word	4205062514                      # 0xfaa42972
+	.word	2102079853                      # 0x7d4b316d
+	.word	87                              # 0x57
+	.word	694462539                       # 0x2964a84b
+	.word	2102079853                      # 0x7d4b316d
+	.word	88                              # 0x58
+	.word	85970907                        # 0x51fcfdb
+	.word	2102079853                      # 0x7d4b316d
+	.word	89                              # 0x59
+	.word	3681984728                      # 0xdb76a0d8
+	.word	2102079853                      # 0x7d4b316d
+	.word	90                              # 0x5a
+	.word	3620297642                      # 0xd7c95baa
+	.word	2102079853                      # 0x7d4b316d
+	.word	91                              # 0x5b
+	.word	3394804480                      # 0xca589b00
+	.word	2102079853                      # 0x7d4b316d
+	.word	92                              # 0x5c
+	.word	2119330183                      # 0x7e526987
+	.word	2102079853                      # 0x7d4b316d
+	.word	93                              # 0x5d
+	.word	1963040266                      # 0x75019e0a
+	.word	2102079853                      # 0x7d4b316d
+	.word	94                              # 0x5e
+	.word	1603391838                      # 0x5f91d15e
+	.word	2102079853                      # 0x7d4b316d
+	.word	95                              # 0x5f
+	.word	2340921237                      # 0x8b879f95
+	.word	2102079853                      # 0x7d4b316d
+	.word	96                              # 0x60
+	.word	3028177438                      # 0xb47e521e
+	.word	2102079853                      # 0x7d4b316d
+	.word	97                              # 0x61
+	.word	2265525308                      # 0x87092c3c
+	.word	2102079853                      # 0x7d4b316d
+	.word	98                              # 0x62
+	.word	2598903994                      # 0x9ae820ba
+	.word	2102079853                      # 0x7d4b316d
+	.word	99                              # 0x63
+	.word	139524705                       # 0x850fa61
+	.word	2102079853                      # 0x7d4b316d
+	.word	100                             # 0x64
+	.word	1076410600                      # 0x4028b8e8
+	.word	2102079853                      # 0x7d4b316d
+	.word	101                             # 0x65
+	.word	220237413                       # 0xd208e65
+	.word	2102079853                      # 0x7d4b316d
+	.word	102                             # 0x66
+	.word	3913623866                      # 0xe945293a
+	.word	2102079853                      # 0x7d4b316d
+	.word	103                             # 0x67
+	.word	3453026372                      # 0xcdd10044
+	.word	2102079853                      # 0x7d4b316d
+	.word	104                             # 0x68
+	.word	2321387380                      # 0x8a5d8f74
+	.word	2102079853                      # 0x7d4b316d
+	.word	105                             # 0x69
+	.word	3319939363                      # 0xc5e24123
+	.word	2102079853                      # 0x7d4b316d
+	.word	106                             # 0x6a
+	.word	398991913                       # 0x17c82229
+	.word	2102079853                      # 0x7d4b316d
+	.word	107                             # 0x6b
+	.word	333429647                       # 0x13dfbb8f
+	.word	2102079853                      # 0x7d4b316d
+	.word	108                             # 0x6c
+	.word	3927133990                      # 0xea134f26
+	.word	2102079853                      # 0x7d4b316d
+	.word	109                             # 0x6d
+	.word	1797971294                      # 0x6b2add5e
+	.word	2102079853                      # 0x7d4b316d
+	.word	110                             # 0x6e
+	.word	1622314776                      # 0x60b28f18
+	.word	2102079853                      # 0x7d4b316d
+	.word	111                             # 0x6f
+	.word	1092862330                      # 0x4123c17a
+	.word	2102079853                      # 0x7d4b316d
+	.word	112                             # 0x70
+	.word	2568657322                      # 0x991a99aa
+	.word	2102079853                      # 0x7d4b316d
+	.word	113                             # 0x71
+	.word	2168129897                      # 0x813b0969
+	.word	2102079853                      # 0x7d4b316d
+	.word	114                             # 0x72
+	.word	2890303119                      # 0xac46868f
+	.word	2102079853                      # 0x7d4b316d
+	.word	115                             # 0x73
+	.word	1713332582                      # 0x661f6166
+	.word	2102079853                      # 0x7d4b316d
+	.word	116                             # 0x74
+	.word	2375727721                      # 0x8d9aba69
+	.word	2102079853                      # 0x7d4b316d
+	.word	117                             # 0x75
+	.word	3586767156                      # 0xd5c9b934
+	.word	2102079853                      # 0x7d4b316d
+	.word	118                             # 0x76
+	.word	2191348475                      # 0x829d52fb
+	.word	2102079853                      # 0x7d4b316d
+	.word	119                             # 0x77
+	.word	3910023869                      # 0xe90e3abd
+	.word	2102079853                      # 0x7d4b316d
+	.word	120                             # 0x78
+	.word	4189915105                      # 0xf9bd07e1
+	.word	2102079853                      # 0x7d4b316d
+	.word	121                             # 0x79
+	.word	2527353334                      # 0x96a459f6
+	.word	2102079853                      # 0x7d4b316d
+	.word	122                             # 0x7a
+	.word	3429265923                      # 0xcc667203
+	.word	2102079853                      # 0x7d4b316d
+	.word	123                             # 0x7b
+	.word	1283962724                      # 0x4c87b764
+	.word	2102079853                      # 0x7d4b316d
+	.word	124                             # 0x7c
+	.word	1970290990                      # 0x7570412e
+	.word	2102079853                      # 0x7d4b316d
+	.word	125                             # 0x7d
+	.word	2615950861                      # 0x9bec3e0d
+	.word	2102079853                      # 0x7d4b316d
+	.word	126                             # 0x7e
+	.word	3338450337                      # 0xc6fcb5a1
+	.word	2102079853                      # 0x7d4b316d
+	.word	127                             # 0x7f
+	.word	3971836509                      # 0xecbd6a5d
+	.word	2102079853                      # 0x7d4b316d
+	.word	128                             # 0x80
+	.word	4260339231                      # 0xfdef9e1f
+	.word	2102079853                      # 0x7d4b316d
+	.word	129                             # 0x81
+	.word	4160738226                      # 0xf7ffd3b2
+	.word	2102079853                      # 0x7d4b316d
+	.word	130                             # 0x82
+	.word	1309372079                      # 0x4e0b6eaf
+	.word	2102079853                      # 0x7d4b316d
+	.word	131                             # 0x83
+	.word	3151575564                      # 0xbbd93a0c
+	.word	2102079853                      # 0x7d4b316d
+	.word	132                             # 0x84
+	.word	3938977714                      # 0xeac807b2
+	.word	2102079853                      # 0x7d4b316d
+	.word	133                             # 0x85
+	.word	3228738087                      # 0xc072a227
+	.word	2102079853                      # 0x7d4b316d
+	.word	134                             # 0x86
+	.word	2262837051                      # 0x86e0273b
+	.word	2102079853                      # 0x7d4b316d
+	.word	135                             # 0x87
+	.word	3135705803                      # 0xbae712cb
+	.word	2102079853                      # 0x7d4b316d
+	.word	136                             # 0x88
+	.word	990447104                       # 0x3b090600
+	.word	2102079853                      # 0x7d4b316d
+	.word	137                             # 0x89
+	.word	4061147315                      # 0xf21030b3
+	.word	2102079853                      # 0x7d4b316d
+	.word	138                             # 0x8a
+	.word	2783543715                      # 0xa5e981a3
+	.word	2102079853                      # 0x7d4b316d
+	.word	139                             # 0x8b
+	.word	2471046843                      # 0x93492ebb
+	.word	2102079853                      # 0x7d4b316d
+	.word	140                             # 0x8c
+	.word	403058134                       # 0x18062dd6
+	.word	2102079853                      # 0x7d4b316d
+	.word	141                             # 0x8d
+	.word	260073473                       # 0xf806801
+	.word	2102079853                      # 0x7d4b316d
+	.word	142                             # 0x8e
+	.word	1259876295                      # 0x4b182fc7
+	.word	2102079853                      # 0x7d4b316d
+	.word	143                             # 0x8f
+	.word	2975678116                      # 0xb15d3ea4
+	.word	2102079853                      # 0x7d4b316d
+	.word	144                             # 0x90
+	.word	2579807359                      # 0x99c4bc7f
+	.word	2102079853                      # 0x7d4b316d
+	.word	145                             # 0x91
+	.word	863102422                       # 0x3371e5d6
+	.word	2102079853                      # 0x7d4b316d
+	.word	146                             # 0x92
+	.word	650832017                       # 0x26cae891
+	.word	2102079853                      # 0x7d4b316d
+	.word	147                             # 0x93
+	.word	90061610                        # 0x55e3b2a
+	.word	2102079853                      # 0x7d4b316d
+	.word	148                             # 0x94
+	.word	2446954539                      # 0x91d9902b
+	.word	2102079853                      # 0x7d4b316d
+	.word	149                             # 0x95
+	.word	3598610789                      # 0xd67e7165
+	.word	2102079853                      # 0x7d4b316d
+	.word	150                             # 0x96
+	.word	2351688191                      # 0x8c2be9ff
+	.word	2102079853                      # 0x7d4b316d
+	.word	151                             # 0x97
+	.word	1743478091                      # 0x67eb5d4b
+	.word	2102079853                      # 0x7d4b316d
+	.word	152                             # 0x98
+	.word	2798805217                      # 0xa6d260e1
+	.word	2102079853                      # 0x7d4b316d
+	.word	153                             # 0x99
+	.word	1438161982                      # 0x55b89c3e
+	.word	2102079853                      # 0x7d4b316d
+	.word	154                             # 0x9a
+	.word	273416875                       # 0x104c02ab
+	.word	2102079853                      # 0x7d4b316d
+	.word	155                             # 0x9b
+	.word	2438880600                      # 0x915e5d58
+	.word	2102079853                      # 0x7d4b316d
+	.word	156                             # 0x9c
+	.word	1284541841                      # 0x4c908d91
+	.word	2102079853                      # 0x7d4b316d
+	.word	157                             # 0x9d
+	.word	3593193962                      # 0xd62bc9ea
+	.word	2102079853                      # 0x7d4b316d
+	.word	158                             # 0x9e
+	.word	1755082314                      # 0x689c6e4a
+	.word	2102079853                      # 0x7d4b316d
+	.word	159                             # 0x9f
+	.word	3432612426                      # 0xcc99824a
+	.word	2102079853                      # 0x7d4b316d
+	.word	160                             # 0xa0
+	.word	1404964820                      # 0x53be0fd4
+	.word	2102079853                      # 0x7d4b316d
+	.word	161                             # 0xa1
+	.word	3374828335                      # 0xc927cb2f
+	.word	2102079853                      # 0x7d4b316d
+	.word	162                             # 0xa2
+	.word	3311814731                      # 0xc566484b
+	.word	2102079853                      # 0x7d4b316d
+	.word	163                             # 0xa3
+	.word	413908966                       # 0x18abbfe6
+	.word	2102079853                      # 0x7d4b316d
+	.word	164                             # 0xa4
+	.word	3027808697                      # 0xb478b1b9
+	.word	2102079853                      # 0x7d4b316d
+	.word	165                             # 0xa5
+	.word	540762785                       # 0x203b62a1
+	.word	2102079853                      # 0x7d4b316d
+	.size	__llvm_internal_gcov_emit_function_args.0, 1992
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.1
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.2
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.3
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.4
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.5
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.6
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.7
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.8
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.9
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.10
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.11
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.12
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.13
+	.word	7                               # 0x7
+	.space	4
+	.dword	__llvm_gcov_ctr.14
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.15
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.16
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.17
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.18
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.19
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.20
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.21
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.22
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.23
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.24
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.25
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.26
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.27
+	.word	7                               # 0x7
+	.space	4
+	.dword	__llvm_gcov_ctr.28
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.29
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.30
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.31
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.32
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.33
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.34
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.35
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.36
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.37
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.38
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.39
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.40
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.41
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.42
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.43
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.44
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.45
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.46
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.47
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.48
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.49
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.50
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.51
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.52
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.53
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.54
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.55
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.56
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.57
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.58
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.59
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.60
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.61
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.62
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.63
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.64
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.65
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.66
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.67
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.68
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.69
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.70
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.71
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.72
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.73
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.74
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.75
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.76
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.77
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.78
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.79
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.80
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.81
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.82
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.83
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.84
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.85
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.86
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.87
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.88
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.89
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.90
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.91
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.92
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.93
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.94
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.95
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.96
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.97
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.98
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.99
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.100
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.101
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.102
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.103
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.104
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.105
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.106
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.107
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.108
+	.word	6                               # 0x6
+	.space	4
+	.dword	__llvm_gcov_ctr.109
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.110
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.111
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.112
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.113
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.114
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.115
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.116
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.117
+	.word	2                               # 0x2
+	.space	4
+	.dword	__llvm_gcov_ctr.118
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.119
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.120
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.121
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.122
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.123
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.124
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.125
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.126
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.127
+	.word	7                               # 0x7
+	.space	4
+	.dword	__llvm_gcov_ctr.128
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.129
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.130
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.131
+	.word	8                               # 0x8
+	.space	4
+	.dword	__llvm_gcov_ctr.132
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.133
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.134
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.135
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.136
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.137
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.138
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.139
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.140
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.141
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.142
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.143
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.144
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.145
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.146
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.147
+	.word	3                               # 0x3
+	.space	4
+	.dword	__llvm_gcov_ctr.148
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.149
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.150
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.151
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.152
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.153
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.154
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.155
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.156
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.157
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.158
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.159
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.160
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.161
+	.word	4                               # 0x4
+	.space	4
+	.dword	__llvm_gcov_ctr.162
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.163
+	.word	1                               # 0x1
+	.space	4
+	.dword	__llvm_gcov_ctr.164
+	.word	5                               # 0x5
+	.space	4
+	.dword	__llvm_gcov_ctr.165
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 2656
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.dword	.L__unnamed_1
+	.word	875575338                       # 0x3430382a
+	.word	2102079853                      # 0x7d4b316d
+	.word	166                             # 0xa6
+	.space	4
+	.dword	__llvm_internal_gcov_emit_function_args.0
+	.dword	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.dword	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_make_ti,@object       # @__profc_make_ti
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
@@ -18121,9 +25808,181 @@ digits:
 	.addrsig_sym __muldsi3
 	.addrsig_sym __mulddi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
+	.addrsig_sym __llvm_gcov_ctr.151
+	.addrsig_sym __llvm_gcov_ctr.152
+	.addrsig_sym __llvm_gcov_ctr.153
+	.addrsig_sym __llvm_gcov_ctr.154
+	.addrsig_sym __llvm_gcov_ctr.155
+	.addrsig_sym __llvm_gcov_ctr.156
+	.addrsig_sym __llvm_gcov_ctr.157
+	.addrsig_sym __llvm_gcov_ctr.158
+	.addrsig_sym __llvm_gcov_ctr.159
+	.addrsig_sym __llvm_gcov_ctr.160
+	.addrsig_sym __llvm_gcov_ctr.161
+	.addrsig_sym __llvm_gcov_ctr.162
+	.addrsig_sym __llvm_gcov_ctr.163
+	.addrsig_sym __llvm_gcov_ctr.164
+	.addrsig_sym __llvm_gcov_ctr.165
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_make_ti
 	.addrsig_sym .L__profd_make_ti

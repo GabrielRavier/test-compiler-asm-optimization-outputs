@@ -11,11 +11,17 @@ make_ti:                                # @make_ti
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi0:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi0)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi0:
+.Lpcrel_hi1:
 	auipc	a0, %pcrel_hi(.L__profc_make_ti)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi0)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -41,11 +47,17 @@ make_tu:                                # @make_tu
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi2:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.1)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi2)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi1:
+.Lpcrel_hi3:
 	auipc	a0, %pcrel_hi(.L__profc_make_tu)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi3)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -74,9 +86,9 @@ memmove:                                # @memmove
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi2:
+.Lpcrel_hi4:
 	auipc	a0, %pcrel_hi(.L__profc_memmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi4)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -89,9 +101,15 @@ memmove:                                # @memmove
 	bgeu	a0, a1, .LBB2_6
 	j	.LBB2_1
 .LBB2_1:
-.Lpcrel_hi3:
+.Lpcrel_hi5:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi5)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi6:
 	auipc	a0, %pcrel_hi(.L__profc_memmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi3)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi6)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -109,9 +127,9 @@ memmove:                                # @memmove
 	beqz	a0, .LBB2_5
 	j	.LBB2_3
 .LBB2_3:                                #   in Loop: Header=BB2_2 Depth=1
-.Lpcrel_hi4:
+.Lpcrel_hi7:
 	auipc	a0, %pcrel_hi(.L__profc_memmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi4)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi7)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -125,6 +143,12 @@ memmove:                                # @memmove
 	sb	a0, -1(a1)
 	j	.LBB2_4
 .LBB2_4:                                #   in Loop: Header=BB2_2 Depth=1
+.Lpcrel_hi8:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi8)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -137,9 +161,9 @@ memmove:                                # @memmove
 	beq	a0, a1, .LBB2_12
 	j	.LBB2_7
 .LBB2_7:
-.Lpcrel_hi5:
+.Lpcrel_hi9:
 	auipc	a0, %pcrel_hi(.L__profc_memmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi5)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi9)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -149,9 +173,15 @@ memmove:                                # @memmove
 	beqz	a0, .LBB2_11
 	j	.LBB2_9
 .LBB2_9:                                #   in Loop: Header=BB2_8 Depth=1
-.Lpcrel_hi6:
+.Lpcrel_hi10:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi10)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi11:
 	auipc	a0, %pcrel_hi(.L__profc_memmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi6)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi11)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -170,8 +200,20 @@ memmove:                                # @memmove
 	sd	a0, -40(s0)
 	j	.LBB2_8
 .LBB2_11:
+.Lpcrel_hi12:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi12)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB2_12
 .LBB2_12:
+.Lpcrel_hi13:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi13)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	j	.LBB2_13
 .LBB2_13:
 	ld	a0, -24(s0)
@@ -196,9 +238,9 @@ memccpy:                                # @memccpy
 	sd	a1, -40(s0)
 	sw	a2, -44(s0)
 	sd	a3, -56(s0)
-.Lpcrel_hi7:
+.Lpcrel_hi14:
 	auipc	a0, %pcrel_hi(.L__profc_memccpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi7)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi14)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -216,9 +258,15 @@ memccpy:                                # @memccpy
 	beqz	a0, .LBB3_4
 	j	.LBB3_2
 .LBB3_2:                                #   in Loop: Header=BB3_1 Depth=1
-.Lpcrel_hi8:
+.Lpcrel_hi15:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi15)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi16:
 	auipc	a0, %pcrel_hi(.L__profc_memccpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi8)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi16)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -235,9 +283,15 @@ memccpy:                                # @memccpy
 	j	.LBB3_3
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	ld	a0, -88(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi9:
+.Lpcrel_hi17:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi17)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi18:
 	auipc	a1, %pcrel_hi(.L__profc_memccpy)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi9)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi18)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -249,14 +303,20 @@ memccpy:                                # @memccpy
 	beqz	a0, .LBB3_7
 	j	.LBB3_5
 .LBB3_5:                                #   in Loop: Header=BB3_1 Depth=1
-.Lpcrel_hi10:
+.Lpcrel_hi19:
 	auipc	a0, %pcrel_hi(.L__profc_memccpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi10)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi19)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB3_6
 .LBB3_6:                                #   in Loop: Header=BB3_1 Depth=1
+.Lpcrel_hi20:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi20)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -56(s0)
 	addi	a0, a0, -1
 	sd	a0, -56(s0)
@@ -272,9 +332,15 @@ memccpy:                                # @memccpy
 	beqz	a0, .LBB3_9
 	j	.LBB3_8
 .LBB3_8:
-.Lpcrel_hi11:
+.Lpcrel_hi21:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi21)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi22:
 	auipc	a0, %pcrel_hi(.L__profc_memccpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi11)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi22)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -283,6 +349,12 @@ memccpy:                                # @memccpy
 	sd	a0, -24(s0)
 	j	.LBB3_10
 .LBB3_9:
+.Lpcrel_hi23:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi23)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB3_10
@@ -308,9 +380,9 @@ memchr:                                 # @memchr
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi12:
+.Lpcrel_hi24:
 	auipc	a0, %pcrel_hi(.L__profc_memchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi12)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi24)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -326,9 +398,15 @@ memchr:                                 # @memchr
 	beqz	a0, .LBB4_4
 	j	.LBB4_2
 .LBB4_2:                                #   in Loop: Header=BB4_1 Depth=1
-.Lpcrel_hi13:
+.Lpcrel_hi25:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi25)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi26:
 	auipc	a0, %pcrel_hi(.L__profc_memchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi13)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi26)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -343,9 +421,15 @@ memchr:                                 # @memchr
 	j	.LBB4_3
 .LBB4_3:                                #   in Loop: Header=BB4_1 Depth=1
 	ld	a0, -64(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi14:
+.Lpcrel_hi27:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi27)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi28:
 	auipc	a1, %pcrel_hi(.L__profc_memchr)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi14)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi28)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -357,14 +441,20 @@ memchr:                                 # @memchr
 	beqz	a0, .LBB4_7
 	j	.LBB4_5
 .LBB4_5:                                #   in Loop: Header=BB4_1 Depth=1
-.Lpcrel_hi15:
+.Lpcrel_hi29:
 	auipc	a0, %pcrel_hi(.L__profc_memchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi15)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi29)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB4_6
 .LBB4_6:                                #   in Loop: Header=BB4_1 Depth=1
+.Lpcrel_hi30:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi30)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -48(s0)
 	addi	a0, a0, 1
 	sd	a0, -48(s0)
@@ -377,9 +467,15 @@ memchr:                                 # @memchr
 	beqz	a0, .LBB4_9
 	j	.LBB4_8
 .LBB4_8:
-.Lpcrel_hi16:
+.Lpcrel_hi31:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi31)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi32:
 	auipc	a0, %pcrel_hi(.L__profc_memchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi16)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi32)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -387,6 +483,12 @@ memchr:                                 # @memchr
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB4_10
 .LBB4_9:
+.Lpcrel_hi33:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi33)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 0
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB4_10
@@ -411,9 +513,9 @@ memcmp:                                 # @memcmp
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi17:
+.Lpcrel_hi34:
 	auipc	a0, %pcrel_hi(.L__profc_memcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi17)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi34)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -429,9 +531,15 @@ memcmp:                                 # @memcmp
 	beqz	a0, .LBB5_4
 	j	.LBB5_2
 .LBB5_2:                                #   in Loop: Header=BB5_1 Depth=1
-.Lpcrel_hi18:
+.Lpcrel_hi35:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi35)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi36:
 	auipc	a0, %pcrel_hi(.L__profc_memcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi18)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi36)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -447,9 +555,15 @@ memcmp:                                 # @memcmp
 	j	.LBB5_3
 .LBB5_3:                                #   in Loop: Header=BB5_1 Depth=1
 	ld	a0, -72(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi19:
+.Lpcrel_hi37:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi37)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi38:
 	auipc	a1, %pcrel_hi(.L__profc_memcmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi19)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi38)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -461,14 +575,20 @@ memcmp:                                 # @memcmp
 	beqz	a0, .LBB5_7
 	j	.LBB5_5
 .LBB5_5:                                #   in Loop: Header=BB5_1 Depth=1
-.Lpcrel_hi20:
+.Lpcrel_hi39:
 	auipc	a0, %pcrel_hi(.L__profc_memcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi20)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi39)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB5_6
 .LBB5_6:                                #   in Loop: Header=BB5_1 Depth=1
+.Lpcrel_hi40:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi40)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -484,9 +604,15 @@ memcmp:                                 # @memcmp
 	beqz	a0, .LBB5_9
 	j	.LBB5_8
 .LBB5_8:
-.Lpcrel_hi21:
+.Lpcrel_hi41:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi41)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi42:
 	auipc	a0, %pcrel_hi(.L__profc_memcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi21)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi42)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -498,6 +624,12 @@ memcmp:                                 # @memcmp
 	sd	a0, -80(s0)                     # 8-byte Folded Spill
 	j	.LBB5_10
 .LBB5_9:
+.Lpcrel_hi43:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi43)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 0
 	sd	a0, -80(s0)                     # 8-byte Folded Spill
 	j	.LBB5_10
@@ -520,12 +652,18 @@ memcpy:                                 # @memcpy
 	sd	ra, 56(sp)                      # 8-byte Folded Spill
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
+.Lpcrel_hi44:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.6)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi44)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi22:
+.Lpcrel_hi45:
 	auipc	a0, %pcrel_hi(.L__profc_memcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi22)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi45)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -539,9 +677,9 @@ memcpy:                                 # @memcpy
 	beqz	a0, .LBB6_4
 	j	.LBB6_2
 .LBB6_2:                                #   in Loop: Header=BB6_1 Depth=1
-.Lpcrel_hi23:
+.Lpcrel_hi46:
 	auipc	a0, %pcrel_hi(.L__profc_memcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi23)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi46)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -555,6 +693,12 @@ memcpy:                                 # @memcpy
 	sb	a0, 0(a1)
 	j	.LBB6_3
 .LBB6_3:                                #   in Loop: Header=BB6_1 Depth=1
+.Lpcrel_hi47:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.6)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi47)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -581,9 +725,9 @@ memrchr:                                # @memrchr
 	sd	a0, -32(s0)
 	sw	a1, -36(s0)
 	sd	a2, -48(s0)
-.Lpcrel_hi24:
+.Lpcrel_hi48:
 	auipc	a0, %pcrel_hi(.L__profc_memrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi24)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi48)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -599,9 +743,9 @@ memrchr:                                # @memrchr
 	beqz	a0, .LBB7_5
 	j	.LBB7_2
 .LBB7_2:                                #   in Loop: Header=BB7_1 Depth=1
-.Lpcrel_hi25:
+.Lpcrel_hi49:
 	auipc	a0, %pcrel_hi(.L__profc_memrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi25)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi49)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -613,9 +757,15 @@ memrchr:                                # @memrchr
 	bne	a0, a1, .LBB7_4
 	j	.LBB7_3
 .LBB7_3:
-.Lpcrel_hi26:
+.Lpcrel_hi50:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.7)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi50)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi51:
 	auipc	a0, %pcrel_hi(.L__profc_memrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi26)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi51)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -625,8 +775,20 @@ memrchr:                                # @memrchr
 	sd	a0, -24(s0)
 	j	.LBB7_6
 .LBB7_4:                                #   in Loop: Header=BB7_1 Depth=1
+.Lpcrel_hi52:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.7)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi52)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	j	.LBB7_1
 .LBB7_5:
+.Lpcrel_hi53:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.7)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi53)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB7_6
@@ -649,12 +811,18 @@ memset:                                 # @memset
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
                                         # kill: def $x13 killed $x11
+.Lpcrel_hi54:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.8)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi54)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi27:
+.Lpcrel_hi55:
 	auipc	a0, %pcrel_hi(.L__profc_memset)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi27)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi55)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -666,9 +834,9 @@ memset:                                 # @memset
 	beqz	a0, .LBB8_4
 	j	.LBB8_2
 .LBB8_2:                                #   in Loop: Header=BB8_1 Depth=1
-.Lpcrel_hi28:
+.Lpcrel_hi56:
 	auipc	a0, %pcrel_hi(.L__profc_memset)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi56)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -677,6 +845,12 @@ memset:                                 # @memset
 	sb	a0, 0(a1)
 	j	.LBB8_3
 .LBB8_3:                                #   in Loop: Header=BB8_1 Depth=1
+.Lpcrel_hi57:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.8)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi57)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -702,11 +876,17 @@ stpcpy:                                 # @stpcpy
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi58:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.9)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi58)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi29:
+.Lpcrel_hi59:
 	auipc	a0, %pcrel_hi(.L__profc_stpcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi29)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi59)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -719,14 +899,20 @@ stpcpy:                                 # @stpcpy
 	beqz	a0, .LBB9_4
 	j	.LBB9_2
 .LBB9_2:                                #   in Loop: Header=BB9_1 Depth=1
-.Lpcrel_hi30:
+.Lpcrel_hi60:
 	auipc	a0, %pcrel_hi(.L__profc_stpcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi30)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi60)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB9_3
 .LBB9_3:                                #   in Loop: Header=BB9_1 Depth=1
+.Lpcrel_hi61:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.9)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi61)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -32(s0)
 	addi	a0, a0, 1
 	sd	a0, -32(s0)
@@ -753,11 +939,17 @@ strchrnul:                              # @strchrnul
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi62:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.10)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi62)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi31:
+.Lpcrel_hi63:
 	auipc	a0, %pcrel_hi(.L__profc_strchrnul)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi31)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi63)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -772,9 +964,15 @@ strchrnul:                              # @strchrnul
 	beqz	a0, .LBB10_4
 	j	.LBB10_2
 .LBB10_2:                               #   in Loop: Header=BB10_1 Depth=1
-.Lpcrel_hi32:
+.Lpcrel_hi64:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.10)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi64)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi65:
 	auipc	a0, %pcrel_hi(.L__profc_strchrnul)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi32)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi65)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -789,9 +987,15 @@ strchrnul:                              # @strchrnul
 	j	.LBB10_3
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi33:
+.Lpcrel_hi66:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.10)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi66)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi67:
 	auipc	a1, %pcrel_hi(.L__profc_strchrnul)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi33)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi67)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -803,14 +1007,20 @@ strchrnul:                              # @strchrnul
 	beqz	a0, .LBB10_7
 	j	.LBB10_5
 .LBB10_5:                               #   in Loop: Header=BB10_1 Depth=1
-.Lpcrel_hi34:
+.Lpcrel_hi68:
 	auipc	a0, %pcrel_hi(.L__profc_strchrnul)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi68)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB10_6
 .LBB10_6:                               #   in Loop: Header=BB10_1 Depth=1
+.Lpcrel_hi69:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.10)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi69)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 1
 	sd	a0, -24(s0)
@@ -836,17 +1046,23 @@ strchr:                                 # @strchr
                                         # kill: def $x12 killed $x11
 	sd	a0, -32(s0)
 	sw	a1, -36(s0)
-.Lpcrel_hi35:
+.Lpcrel_hi70:
 	auipc	a0, %pcrel_hi(.L__profc_strchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi70)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
 	j	.LBB11_2
 .LBB11_1:                               #   in Loop: Header=BB11_2 Depth=1
-.Lpcrel_hi36:
+.Lpcrel_hi71:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.11)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi71)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi72:
 	auipc	a0, %pcrel_hi(.L__profc_strchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi72)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -858,9 +1074,15 @@ strchr:                                 # @strchr
 	bne	a0, a1, .LBB11_4
 	j	.LBB11_3
 .LBB11_3:
-.Lpcrel_hi37:
+.Lpcrel_hi73:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.11)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi73)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi74:
 	auipc	a0, %pcrel_hi(.L__profc_strchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi74)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -877,6 +1099,12 @@ strchr:                                 # @strchr
 	bnez	a0, .LBB11_1
 	j	.LBB11_6
 .LBB11_6:
+.Lpcrel_hi75:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.11)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi75)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB11_7
@@ -898,11 +1126,17 @@ strcmp:                                 # @strcmp
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi76:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.12)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi76)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi38:
+.Lpcrel_hi77:
 	auipc	a0, %pcrel_hi(.L__profc_strcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi77)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -917,9 +1151,15 @@ strcmp:                                 # @strcmp
 	bne	a0, a1, .LBB12_4
 	j	.LBB12_2
 .LBB12_2:                               #   in Loop: Header=BB12_1 Depth=1
-.Lpcrel_hi39:
+.Lpcrel_hi78:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.12)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi78)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi79:
 	auipc	a0, %pcrel_hi(.L__profc_strcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi39)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi79)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -932,9 +1172,15 @@ strcmp:                                 # @strcmp
 	j	.LBB12_3
 .LBB12_3:                               #   in Loop: Header=BB12_1 Depth=1
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi40:
+.Lpcrel_hi80:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.12)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi80)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi81:
 	auipc	a1, %pcrel_hi(.L__profc_strcmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi40)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi81)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -946,14 +1192,20 @@ strcmp:                                 # @strcmp
 	beqz	a0, .LBB12_7
 	j	.LBB12_5
 .LBB12_5:                               #   in Loop: Header=BB12_1 Depth=1
-.Lpcrel_hi41:
+.Lpcrel_hi82:
 	auipc	a0, %pcrel_hi(.L__profc_strcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi41)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi82)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB12_6
 .LBB12_6:                               #   in Loop: Header=BB12_1 Depth=1
+.Lpcrel_hi83:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.12)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi83)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 1
 	sd	a0, -24(s0)
@@ -983,10 +1235,16 @@ strlen:                                 # @strlen
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi84:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.13)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi84)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi42:
+.Lpcrel_hi85:
 	auipc	a0, %pcrel_hi(.L__profc_strlen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi42)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi85)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -999,14 +1257,20 @@ strlen:                                 # @strlen
 	beqz	a0, .LBB13_4
 	j	.LBB13_2
 .LBB13_2:                               #   in Loop: Header=BB13_1 Depth=1
-.Lpcrel_hi43:
+.Lpcrel_hi86:
 	auipc	a0, %pcrel_hi(.L__profc_strlen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi43)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi86)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB13_3
 .LBB13_3:                               #   in Loop: Header=BB13_1 Depth=1
+.Lpcrel_hi87:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.13)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi87)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 1
 	sd	a0, -24(s0)
@@ -1034,9 +1298,9 @@ strncmp:                                # @strncmp
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
 	sd	a2, -48(s0)
-.Lpcrel_hi44:
+.Lpcrel_hi88:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi44)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi88)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1050,9 +1314,15 @@ strncmp:                                # @strncmp
 	bnez	a0, .LBB14_2
 	j	.LBB14_1
 .LBB14_1:
-.Lpcrel_hi45:
+.Lpcrel_hi89:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi89)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi90:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi45)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi90)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1060,6 +1330,12 @@ strncmp:                                # @strncmp
 	sw	a0, -20(s0)
 	j	.LBB14_14
 .LBB14_2:
+.Lpcrel_hi91:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi91)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	j	.LBB14_3
 .LBB14_3:                               # =>This Inner Loop Header: Depth=1
 	ld	a0, -56(s0)
@@ -1069,9 +1345,15 @@ strncmp:                                # @strncmp
 	beqz	a0, .LBB14_10
 	j	.LBB14_4
 .LBB14_4:                               #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi46:
+.Lpcrel_hi92:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi92)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi93:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi46)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi93)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -1082,17 +1364,23 @@ strncmp:                                # @strncmp
 	beqz	a0, .LBB14_10
 	j	.LBB14_5
 .LBB14_5:                               #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi47:
+.Lpcrel_hi94:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi94)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi95:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi95)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
 	j	.LBB14_6
 .LBB14_6:                               #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi48:
+.Lpcrel_hi96:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi96)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -1102,17 +1390,23 @@ strncmp:                                # @strncmp
 	beqz	a0, .LBB14_10
 	j	.LBB14_7
 .LBB14_7:                               #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi49:
+.Lpcrel_hi97:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi97)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi98:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi98)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB14_8
 .LBB14_8:                               #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi50:
+.Lpcrel_hi99:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi50)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi99)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -1128,9 +1422,15 @@ strncmp:                                # @strncmp
 	j	.LBB14_9
 .LBB14_9:                               #   in Loop: Header=BB14_3 Depth=1
 	ld	a0, -80(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi51:
+.Lpcrel_hi100:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi100)
+	ld	a1, 40(a2)
+	addi	a1, a1, 1
+	sd	a1, 40(a2)
+.Lpcrel_hi101:
 	auipc	a1, %pcrel_hi(.L__profc_strncmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi51)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi101)
 	ld	a1, 32(a2)
 	addi	a1, a1, 1
 	sd	a1, 32(a2)
@@ -1142,14 +1442,20 @@ strncmp:                                # @strncmp
 	beqz	a0, .LBB14_13
 	j	.LBB14_11
 .LBB14_11:                              #   in Loop: Header=BB14_3 Depth=1
-.Lpcrel_hi52:
+.Lpcrel_hi102:
 	auipc	a0, %pcrel_hi(.L__profc_strncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi52)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi102)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
 	j	.LBB14_12
 .LBB14_12:                              #   in Loop: Header=BB14_3 Depth=1
+.Lpcrel_hi103:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi103)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
 	ld	a0, -56(s0)
 	addi	a0, a0, 1
 	sd	a0, -56(s0)
@@ -1186,12 +1492,18 @@ swab:                                   # @swab
 	sd	ra, 56(sp)                      # 8-byte Folded Spill
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
+.Lpcrel_hi104:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.15)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi104)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi53:
+.Lpcrel_hi105:
 	auipc	a0, %pcrel_hi(.L__profc_swab)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi53)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi105)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1206,9 +1518,9 @@ swab:                                   # @swab
 	blt	a0, a1, .LBB15_4
 	j	.LBB15_2
 .LBB15_2:                               #   in Loop: Header=BB15_1 Depth=1
-.Lpcrel_hi54:
+.Lpcrel_hi106:
 	auipc	a0, %pcrel_hi(.L__profc_swab)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi54)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi106)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1228,6 +1540,12 @@ swab:                                   # @swab
 	sd	a0, -48(s0)
 	j	.LBB15_3
 .LBB15_3:                               #   in Loop: Header=BB15_1 Depth=1
+.Lpcrel_hi107:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.15)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi107)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -2
 	sd	a0, -40(s0)
@@ -1250,10 +1568,16 @@ isalpha:                                # @isalpha
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi108:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.16)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi108)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi55:
+.Lpcrel_hi109:
 	auipc	a0, %pcrel_hi(.L__profc_isalpha)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi55)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi109)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1278,10 +1602,16 @@ isascii:                                # @isascii
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi110:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.17)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi110)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi56:
+.Lpcrel_hi111:
 	auipc	a0, %pcrel_hi(.L__profc_isascii)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi56)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi111)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1305,10 +1635,16 @@ isblank:                                # @isblank
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi112:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.18)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi112)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi57:
+.Lpcrel_hi113:
 	auipc	a0, %pcrel_hi(.L__profc_isblank)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi57)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi113)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1319,9 +1655,15 @@ isblank:                                # @isblank
 	beq	a0, a1, .LBB18_3
 	j	.LBB18_1
 .LBB18_1:
-.Lpcrel_hi58:
+.Lpcrel_hi114:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.18)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi114)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi115:
 	auipc	a0, %pcrel_hi(.L__profc_isblank)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi58)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi115)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1335,9 +1677,15 @@ isblank:                                # @isblank
 	j	.LBB18_2
 .LBB18_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi59:
+.Lpcrel_hi116:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.18)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi116)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi117:
 	auipc	a1, %pcrel_hi(.L__profc_isblank)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi59)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi117)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -1363,10 +1711,16 @@ iscntrl:                                # @iscntrl
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi118:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.19)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi118)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi60:
+.Lpcrel_hi119:
 	auipc	a0, %pcrel_hi(.L__profc_iscntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi119)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1377,9 +1731,15 @@ iscntrl:                                # @iscntrl
 	bltu	a0, a1, .LBB19_3
 	j	.LBB19_1
 .LBB19_1:
-.Lpcrel_hi61:
+.Lpcrel_hi120:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.19)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi120)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi121:
 	auipc	a0, %pcrel_hi(.L__profc_iscntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi61)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi121)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1393,9 +1753,15 @@ iscntrl:                                # @iscntrl
 	j	.LBB19_2
 .LBB19_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi62:
+.Lpcrel_hi122:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.19)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi122)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi123:
 	auipc	a1, %pcrel_hi(.L__profc_iscntrl)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi62)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi123)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -1421,10 +1787,16 @@ isdigit:                                # @isdigit
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi124:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.20)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi124)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi63:
+.Lpcrel_hi125:
 	auipc	a0, %pcrel_hi(.L__profc_isdigit)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi125)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1448,10 +1820,16 @@ isgraph:                                # @isgraph
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi126:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.21)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi126)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi64:
+.Lpcrel_hi127:
 	auipc	a0, %pcrel_hi(.L__profc_isgraph)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi64)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi127)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1475,10 +1853,16 @@ islower:                                # @islower
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi128:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.22)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi128)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi65:
+.Lpcrel_hi129:
 	auipc	a0, %pcrel_hi(.L__profc_islower)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi129)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1502,10 +1886,16 @@ isprint:                                # @isprint
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi130:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.23)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi130)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi66:
+.Lpcrel_hi131:
 	auipc	a0, %pcrel_hi(.L__profc_isprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi66)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi131)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1529,10 +1919,16 @@ isspace:                                # @isspace
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi132:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.24)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi132)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi67:
+.Lpcrel_hi133:
 	auipc	a0, %pcrel_hi(.L__profc_isspace)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi133)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1543,9 +1939,15 @@ isspace:                                # @isspace
 	beq	a0, a1, .LBB24_3
 	j	.LBB24_1
 .LBB24_1:
-.Lpcrel_hi68:
+.Lpcrel_hi134:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.24)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi134)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi135:
 	auipc	a0, %pcrel_hi(.L__profc_isspace)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi68)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi135)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1559,9 +1961,15 @@ isspace:                                # @isspace
 	j	.LBB24_2
 .LBB24_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi69:
+.Lpcrel_hi136:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.24)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi136)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi137:
 	auipc	a1, %pcrel_hi(.L__profc_isspace)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi69)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi137)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -1587,10 +1995,16 @@ isupper:                                # @isupper
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi138:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.25)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi138)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi70:
+.Lpcrel_hi139:
 	auipc	a0, %pcrel_hi(.L__profc_isupper)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi70)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi139)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1614,10 +2028,16 @@ iswcntrl:                               # @iswcntrl
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi140:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi140)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi71:
+.Lpcrel_hi141:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi71)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi141)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1628,9 +2048,15 @@ iswcntrl:                               # @iswcntrl
 	bltu	a0, a1, .LBB26_7
 	j	.LBB26_1
 .LBB26_1:
-.Lpcrel_hi72:
+.Lpcrel_hi142:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi142)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi143:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi72)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi143)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -1642,17 +2068,23 @@ iswcntrl:                               # @iswcntrl
 	bltu	a0, a1, .LBB26_7
 	j	.LBB26_2
 .LBB26_2:
-.Lpcrel_hi73:
+.Lpcrel_hi144:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi144)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi145:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi73)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi145)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB26_3
 .LBB26_3:
-.Lpcrel_hi74:
+.Lpcrel_hi146:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi74)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi146)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -1666,17 +2098,23 @@ iswcntrl:                               # @iswcntrl
 	bltu	a0, a1, .LBB26_7
 	j	.LBB26_4
 .LBB26_4:
-.Lpcrel_hi75:
+.Lpcrel_hi147:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi147)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi148:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi75)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi148)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
 	j	.LBB26_5
 .LBB26_5:
-.Lpcrel_hi76:
+.Lpcrel_hi149:
 	auipc	a0, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi76)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi149)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1692,9 +2130,15 @@ iswcntrl:                               # @iswcntrl
 	j	.LBB26_6
 .LBB26_6:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi77:
+.Lpcrel_hi150:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi150)
+	ld	a1, 32(a2)
+	addi	a1, a1, 1
+	sd	a1, 32(a2)
+.Lpcrel_hi151:
 	auipc	a1, %pcrel_hi(.L__profc_iswcntrl)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi77)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi151)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -1720,10 +2164,16 @@ iswdigit:                               # @iswdigit
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi152:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.27)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi152)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi78:
+.Lpcrel_hi153:
 	auipc	a0, %pcrel_hi(.L__profc_iswdigit)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi78)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi153)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1748,9 +2198,9 @@ iswprint:                               # @iswprint
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sw	a0, -24(s0)
-.Lpcrel_hi79:
+.Lpcrel_hi154:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi79)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi154)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1759,9 +2209,15 @@ iswprint:                               # @iswprint
 	bltu	a0, a1, .LBB28_2
 	j	.LBB28_1
 .LBB28_1:
-.Lpcrel_hi80:
+.Lpcrel_hi155:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi155)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi156:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi80)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi156)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1779,9 +2235,15 @@ iswprint:                               # @iswprint
 	bltu	a0, a1, .LBB28_7
 	j	.LBB28_3
 .LBB28_3:
-.Lpcrel_hi81:
+.Lpcrel_hi157:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi157)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi158:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi81)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi158)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -1794,17 +2256,23 @@ iswprint:                               # @iswprint
 	bltu	a0, a1, .LBB28_7
 	j	.LBB28_4
 .LBB28_4:
-.Lpcrel_hi82:
+.Lpcrel_hi159:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi159)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi160:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi82)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi160)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB28_5
 .LBB28_5:
-.Lpcrel_hi83:
+.Lpcrel_hi161:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi83)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi161)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -1816,17 +2284,23 @@ iswprint:                               # @iswprint
 	bltu	a0, a1, .LBB28_7
 	j	.LBB28_6
 .LBB28_6:
-.Lpcrel_hi84:
+.Lpcrel_hi162:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi84)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi162)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
 	j	.LBB28_8
 .LBB28_7:
-.Lpcrel_hi85:
+.Lpcrel_hi163:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi163)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi164:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi85)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi164)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -1843,9 +2317,15 @@ iswprint:                               # @iswprint
 	bltu	a0, a1, .LBB28_11
 	j	.LBB28_9
 .LBB28_9:
-.Lpcrel_hi86:
+.Lpcrel_hi165:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi165)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi166:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi86)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi166)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -1856,17 +2336,23 @@ iswprint:                               # @iswprint
 	beq	a0, a1, .LBB28_11
 	j	.LBB28_10
 .LBB28_10:
-.Lpcrel_hi87:
+.Lpcrel_hi167:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi87)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi167)
 	ld	a0, 72(a1)
 	addi	a0, a0, 1
 	sd	a0, 72(a1)
 	j	.LBB28_12
 .LBB28_11:
-.Lpcrel_hi88:
+.Lpcrel_hi168:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi168)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
+.Lpcrel_hi169:
 	auipc	a0, %pcrel_hi(.L__profc_iswprint)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi88)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi169)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -1874,6 +2360,12 @@ iswprint:                               # @iswprint
 	sw	a0, -20(s0)
 	j	.LBB28_13
 .LBB28_12:
+.Lpcrel_hi170:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi170)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
 	li	a0, 1
 	sw	a0, -20(s0)
 	j	.LBB28_13
@@ -1896,10 +2388,16 @@ iswxdigit:                              # @iswxdigit
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi171:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.29)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi171)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi89:
+.Lpcrel_hi172:
 	auipc	a0, %pcrel_hi(.L__profc_iswxdigit)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi89)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi172)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1911,9 +2409,15 @@ iswxdigit:                              # @iswxdigit
 	bltu	a0, a1, .LBB29_3
 	j	.LBB29_1
 .LBB29_1:
-.Lpcrel_hi90:
+.Lpcrel_hi173:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.29)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi173)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi174:
 	auipc	a0, %pcrel_hi(.L__profc_iswxdigit)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi90)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi174)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -1928,9 +2432,15 @@ iswxdigit:                              # @iswxdigit
 	j	.LBB29_2
 .LBB29_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi91:
+.Lpcrel_hi175:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.29)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi175)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi176:
 	auipc	a1, %pcrel_hi(.L__profc_iswxdigit)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi91)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi176)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -1956,10 +2466,16 @@ toascii:                                # @toascii
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi177:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.30)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi177)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi92:
+.Lpcrel_hi178:
 	auipc	a0, %pcrel_hi(.L__profc_toascii)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi92)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi178)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -1985,9 +2501,9 @@ fdim:                                   # @fdim
                                         # kill: def $x12 killed $x10
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi93:
+.Lpcrel_hi179:
 	auipc	a0, %pcrel_hi(.L__profc_fdim)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi93)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi179)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2000,9 +2516,15 @@ fdim:                                   # @fdim
 	blt	a0, a1, .LBB31_2
 	j	.LBB31_1
 .LBB31_1:
-.Lpcrel_hi94:
+.Lpcrel_hi180:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.31)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi180)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi181:
 	auipc	a0, %pcrel_hi(.L__profc_fdim)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi94)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi181)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2019,9 +2541,15 @@ fdim:                                   # @fdim
 	blt	a0, a1, .LBB31_4
 	j	.LBB31_3
 .LBB31_3:
-.Lpcrel_hi95:
+.Lpcrel_hi182:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.31)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi182)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi183:
 	auipc	a0, %pcrel_hi(.L__profc_fdim)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi95)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi183)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2037,9 +2565,15 @@ fdim:                                   # @fdim
 	bge	a0, a1, .LBB31_6
 	j	.LBB31_5
 .LBB31_5:
-.Lpcrel_hi96:
+.Lpcrel_hi184:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.31)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi184)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi185:
 	auipc	a0, %pcrel_hi(.L__profc_fdim)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi96)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi185)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2049,6 +2583,12 @@ fdim:                                   # @fdim
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB31_7
 .LBB31_6:
+.Lpcrel_hi186:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.31)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi186)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	li	a0, 0
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB31_7
@@ -2078,9 +2618,9 @@ fdimf:                                  # @fdimf
                                         # kill: def $x12 killed $x10
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi97:
+.Lpcrel_hi187:
 	auipc	a0, %pcrel_hi(.L__profc_fdimf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi97)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi187)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2092,9 +2632,15 @@ fdimf:                                  # @fdimf
 	blt	a0, a1, .LBB32_2
 	j	.LBB32_1
 .LBB32_1:
-.Lpcrel_hi98:
+.Lpcrel_hi188:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.32)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi188)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi189:
 	auipc	a0, %pcrel_hi(.L__profc_fdimf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi189)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2110,9 +2656,15 @@ fdimf:                                  # @fdimf
 	blt	a0, a1, .LBB32_4
 	j	.LBB32_3
 .LBB32_3:
-.Lpcrel_hi99:
+.Lpcrel_hi190:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.32)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi190)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi191:
 	auipc	a0, %pcrel_hi(.L__profc_fdimf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi191)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2128,9 +2680,15 @@ fdimf:                                  # @fdimf
 	bge	a0, a1, .LBB32_6
 	j	.LBB32_5
 .LBB32_5:
-.Lpcrel_hi100:
+.Lpcrel_hi192:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.32)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi192)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi193:
 	auipc	a0, %pcrel_hi(.L__profc_fdimf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi100)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi193)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2140,6 +2698,12 @@ fdimf:                                  # @fdimf
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB32_7
 .LBB32_6:
+.Lpcrel_hi194:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.32)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi194)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	li	a0, 0
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB32_7
@@ -2169,9 +2733,9 @@ fmax:                                   # @fmax
                                         # kill: def $x12 killed $x10
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi101:
+.Lpcrel_hi195:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi195)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2184,9 +2748,15 @@ fmax:                                   # @fmax
 	blt	a0, a1, .LBB33_2
 	j	.LBB33_1
 .LBB33_1:
-.Lpcrel_hi102:
+.Lpcrel_hi196:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi196)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi197:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi102)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi197)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2203,9 +2773,15 @@ fmax:                                   # @fmax
 	blt	a0, a1, .LBB33_4
 	j	.LBB33_3
 .LBB33_3:
-.Lpcrel_hi103:
+.Lpcrel_hi198:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi198)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi199:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi199)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2220,9 +2796,9 @@ fmax:                                   # @fmax
 	beq	a0, a1, .LBB33_9
 	j	.LBB33_5
 .LBB33_5:
-.Lpcrel_hi104:
+.Lpcrel_hi200:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi104)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi200)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2230,9 +2806,15 @@ fmax:                                   # @fmax
 	bgez	a0, .LBB33_7
 	j	.LBB33_6
 .LBB33_6:
-.Lpcrel_hi105:
+.Lpcrel_hi201:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi201)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi202:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi105)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi202)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2240,6 +2822,12 @@ fmax:                                   # @fmax
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB33_8
 .LBB33_7:
+.Lpcrel_hi203:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi203)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -32(s0)
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB33_8
@@ -2254,9 +2842,15 @@ fmax:                                   # @fmax
 	bgez	a0, .LBB33_11
 	j	.LBB33_10
 .LBB33_10:
-.Lpcrel_hi106:
+.Lpcrel_hi204:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi204)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi205:
 	auipc	a0, %pcrel_hi(.L__profc_fmax)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi106)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi205)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2264,6 +2858,12 @@ fmax:                                   # @fmax
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB33_12
 .LBB33_11:
+.Lpcrel_hi206:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi206)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -32(s0)
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB33_12
@@ -2293,9 +2893,9 @@ fmaxf:                                  # @fmaxf
                                         # kill: def $x12 killed $x10
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi107:
+.Lpcrel_hi207:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi207)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2307,9 +2907,15 @@ fmaxf:                                  # @fmaxf
 	blt	a0, a1, .LBB34_2
 	j	.LBB34_1
 .LBB34_1:
-.Lpcrel_hi108:
+.Lpcrel_hi208:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi208)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi209:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi209)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2325,9 +2931,15 @@ fmaxf:                                  # @fmaxf
 	blt	a0, a1, .LBB34_4
 	j	.LBB34_3
 .LBB34_3:
-.Lpcrel_hi109:
+.Lpcrel_hi210:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi210)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi211:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi211)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2342,9 +2954,9 @@ fmaxf:                                  # @fmaxf
 	beq	a0, a1, .LBB34_9
 	j	.LBB34_5
 .LBB34_5:
-.Lpcrel_hi110:
+.Lpcrel_hi212:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi110)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi212)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2352,9 +2964,15 @@ fmaxf:                                  # @fmaxf
 	bgez	a0, .LBB34_7
 	j	.LBB34_6
 .LBB34_6:
-.Lpcrel_hi111:
+.Lpcrel_hi213:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi213)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi214:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi111)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi214)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2362,6 +2980,12 @@ fmaxf:                                  # @fmaxf
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB34_8
 .LBB34_7:
+.Lpcrel_hi215:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi215)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	lw	a0, -24(s0)
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB34_8
@@ -2376,9 +3000,15 @@ fmaxf:                                  # @fmaxf
 	bgez	a0, .LBB34_11
 	j	.LBB34_10
 .LBB34_10:
-.Lpcrel_hi112:
+.Lpcrel_hi216:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi216)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi217:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi112)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi217)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2386,6 +3016,12 @@ fmaxf:                                  # @fmaxf
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB34_12
 .LBB34_11:
+.Lpcrel_hi218:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi218)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lw	a0, -24(s0)
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB34_12
@@ -2419,9 +3055,9 @@ fmaxl:                                  # @fmaxl
 	sd	a0, -48(s0)
 	sd	a3, -56(s0)
 	sd	a2, -64(s0)
-.Lpcrel_hi113:
+.Lpcrel_hi219:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi113)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi219)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2444,9 +3080,15 @@ fmaxl:                                  # @fmaxl
 	bnez	a0, .LBB35_4
 	j	.LBB35_3
 .LBB35_3:
-.Lpcrel_hi114:
+.Lpcrel_hi220:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi220)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi221:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi114)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi221)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2475,9 +3117,15 @@ fmaxl:                                  # @fmaxl
 	bnez	a0, .LBB35_8
 	j	.LBB35_7
 .LBB35_7:
-.Lpcrel_hi115:
+.Lpcrel_hi222:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi222)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi223:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi115)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi223)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2494,9 +3142,9 @@ fmaxl:                                  # @fmaxl
 	beq	a0, a1, .LBB35_13
 	j	.LBB35_9
 .LBB35_9:
-.Lpcrel_hi116:
+.Lpcrel_hi224:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi116)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi224)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2504,9 +3152,15 @@ fmaxl:                                  # @fmaxl
 	bgez	a0, .LBB35_11
 	j	.LBB35_10
 .LBB35_10:
-.Lpcrel_hi117:
+.Lpcrel_hi225:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi225)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi226:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi117)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi226)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2516,6 +3170,12 @@ fmaxl:                                  # @fmaxl
 	sd	a0, -104(s0)                    # 8-byte Folded Spill
 	j	.LBB35_12
 .LBB35_11:
+.Lpcrel_hi227:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi227)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -40(s0)
 	ld	a1, -48(s0)
 	sd	a1, -112(s0)                    # 8-byte Folded Spill
@@ -2536,9 +3196,15 @@ fmaxl:                                  # @fmaxl
 	bgez	a0, .LBB35_15
 	j	.LBB35_14
 .LBB35_14:
-.Lpcrel_hi118:
+.Lpcrel_hi228:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi228)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi229:
 	auipc	a0, %pcrel_hi(.L__profc_fmaxl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi118)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi229)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2548,6 +3214,12 @@ fmaxl:                                  # @fmaxl
 	sd	a0, -120(s0)                    # 8-byte Folded Spill
 	j	.LBB35_16
 .LBB35_15:
+.Lpcrel_hi230:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi230)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -40(s0)
 	ld	a1, -48(s0)
 	sd	a1, -128(s0)                    # 8-byte Folded Spill
@@ -2582,9 +3254,9 @@ fmin:                                   # @fmin
                                         # kill: def $x12 killed $x10
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi119:
+.Lpcrel_hi231:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi119)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi231)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2597,9 +3269,15 @@ fmin:                                   # @fmin
 	blt	a0, a1, .LBB36_2
 	j	.LBB36_1
 .LBB36_1:
-.Lpcrel_hi120:
+.Lpcrel_hi232:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi232)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi233:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi120)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi233)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2616,9 +3294,15 @@ fmin:                                   # @fmin
 	blt	a0, a1, .LBB36_4
 	j	.LBB36_3
 .LBB36_3:
-.Lpcrel_hi121:
+.Lpcrel_hi234:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi234)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi235:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi121)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi235)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2633,9 +3317,9 @@ fmin:                                   # @fmin
 	beq	a0, a1, .LBB36_9
 	j	.LBB36_5
 .LBB36_5:
-.Lpcrel_hi122:
+.Lpcrel_hi236:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi122)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi236)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2643,9 +3327,15 @@ fmin:                                   # @fmin
 	bgez	a0, .LBB36_7
 	j	.LBB36_6
 .LBB36_6:
-.Lpcrel_hi123:
+.Lpcrel_hi237:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi237)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi238:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi238)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2653,6 +3343,12 @@ fmin:                                   # @fmin
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB36_8
 .LBB36_7:
+.Lpcrel_hi239:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi239)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -40(s0)
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB36_8
@@ -2667,9 +3363,15 @@ fmin:                                   # @fmin
 	bgez	a0, .LBB36_11
 	j	.LBB36_10
 .LBB36_10:
-.Lpcrel_hi124:
+.Lpcrel_hi240:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi240)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi241:
 	auipc	a0, %pcrel_hi(.L__profc_fmin)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi124)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi241)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2677,6 +3379,12 @@ fmin:                                   # @fmin
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB36_12
 .LBB36_11:
+.Lpcrel_hi242:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi242)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -40(s0)
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB36_12
@@ -2706,9 +3414,9 @@ fminf:                                  # @fminf
                                         # kill: def $x12 killed $x10
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi125:
+.Lpcrel_hi243:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi125)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi243)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2720,9 +3428,15 @@ fminf:                                  # @fminf
 	blt	a0, a1, .LBB37_2
 	j	.LBB37_1
 .LBB37_1:
-.Lpcrel_hi126:
+.Lpcrel_hi244:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi244)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi245:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi126)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi245)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2738,9 +3452,15 @@ fminf:                                  # @fminf
 	blt	a0, a1, .LBB37_4
 	j	.LBB37_3
 .LBB37_3:
-.Lpcrel_hi127:
+.Lpcrel_hi246:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi246)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi247:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi127)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi247)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2755,9 +3475,9 @@ fminf:                                  # @fminf
 	beq	a0, a1, .LBB37_9
 	j	.LBB37_5
 .LBB37_5:
-.Lpcrel_hi128:
+.Lpcrel_hi248:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi248)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2765,9 +3485,15 @@ fminf:                                  # @fminf
 	bgez	a0, .LBB37_7
 	j	.LBB37_6
 .LBB37_6:
-.Lpcrel_hi129:
+.Lpcrel_hi249:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi249)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi250:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi129)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi250)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2775,6 +3501,12 @@ fminf:                                  # @fminf
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB37_8
 .LBB37_7:
+.Lpcrel_hi251:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi251)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	lw	a0, -28(s0)
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB37_8
@@ -2789,9 +3521,15 @@ fminf:                                  # @fminf
 	bgez	a0, .LBB37_11
 	j	.LBB37_10
 .LBB37_10:
-.Lpcrel_hi130:
+.Lpcrel_hi252:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi252)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi253:
 	auipc	a0, %pcrel_hi(.L__profc_fminf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi130)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi253)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2799,6 +3537,12 @@ fminf:                                  # @fminf
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB37_12
 .LBB37_11:
+.Lpcrel_hi254:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi254)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lw	a0, -28(s0)
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB37_12
@@ -2832,9 +3576,9 @@ fminl:                                  # @fminl
 	sd	a0, -48(s0)
 	sd	a3, -56(s0)
 	sd	a2, -64(s0)
-.Lpcrel_hi131:
+.Lpcrel_hi255:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi255)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -2857,9 +3601,15 @@ fminl:                                  # @fminl
 	bnez	a0, .LBB38_4
 	j	.LBB38_3
 .LBB38_3:
-.Lpcrel_hi132:
+.Lpcrel_hi256:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi256)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi257:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi257)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -2888,9 +3638,15 @@ fminl:                                  # @fminl
 	bnez	a0, .LBB38_8
 	j	.LBB38_7
 .LBB38_7:
-.Lpcrel_hi133:
+.Lpcrel_hi258:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi258)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi259:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi133)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi259)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -2907,9 +3663,9 @@ fminl:                                  # @fminl
 	beq	a0, a1, .LBB38_13
 	j	.LBB38_9
 .LBB38_9:
-.Lpcrel_hi134:
+.Lpcrel_hi260:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi134)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi260)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -2917,9 +3673,15 @@ fminl:                                  # @fminl
 	bgez	a0, .LBB38_11
 	j	.LBB38_10
 .LBB38_10:
-.Lpcrel_hi135:
+.Lpcrel_hi261:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi261)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi262:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi135)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi262)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -2929,6 +3691,12 @@ fminl:                                  # @fminl
 	sd	a0, -104(s0)                    # 8-byte Folded Spill
 	j	.LBB38_12
 .LBB38_11:
+.Lpcrel_hi263:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi263)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -56(s0)
 	ld	a1, -64(s0)
 	sd	a1, -112(s0)                    # 8-byte Folded Spill
@@ -2949,9 +3717,15 @@ fminl:                                  # @fminl
 	bgez	a0, .LBB38_15
 	j	.LBB38_14
 .LBB38_14:
-.Lpcrel_hi136:
+.Lpcrel_hi264:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi264)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi265:
 	auipc	a0, %pcrel_hi(.L__profc_fminl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi136)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi265)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -2961,6 +3735,12 @@ fminl:                                  # @fminl
 	sd	a0, -120(s0)                    # 8-byte Folded Spill
 	j	.LBB38_16
 .LBB38_15:
+.Lpcrel_hi266:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi266)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -56(s0)
 	ld	a1, -64(s0)
 	sd	a1, -128(s0)                    # 8-byte Folded Spill
@@ -2991,18 +3771,24 @@ l64a:                                   # @l64a
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi267:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.39)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi267)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi137:
+.Lpcrel_hi268:
 	auipc	a0, %pcrel_hi(.L__profc_l64a)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi137)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi268)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
 	ld	a0, -24(s0)
 	sw	a0, -36(s0)
-.Lpcrel_hi138:
+.Lpcrel_hi269:
 	auipc	a0, %pcrel_hi(l64a.s)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi138)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi269)
 	sd	a0, -32(s0)
 	j	.LBB39_1
 .LBB39_1:                               # =>This Inner Loop Header: Depth=1
@@ -3010,23 +3796,29 @@ l64a:                                   # @l64a
 	beqz	a0, .LBB39_4
 	j	.LBB39_2
 .LBB39_2:                               #   in Loop: Header=BB39_1 Depth=1
-.Lpcrel_hi139:
+.Lpcrel_hi270:
 	auipc	a0, %pcrel_hi(.L__profc_l64a)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi139)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi270)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	lwu	a0, -36(s0)
 	andi	a1, a0, 63
-.Lpcrel_hi140:
+.Lpcrel_hi271:
 	auipc	a0, %pcrel_hi(digits)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi140)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi271)
 	add	a0, a0, a1
 	lbu	a0, 0(a0)
 	ld	a1, -32(s0)
 	sb	a0, 0(a1)
 	j	.LBB39_3
 .LBB39_3:                               #   in Loop: Header=BB39_1 Depth=1
+.Lpcrel_hi272:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.39)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi272)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -32(s0)
 	addi	a0, a0, 1
 	sd	a0, -32(s0)
@@ -3038,9 +3830,9 @@ l64a:                                   # @l64a
 	ld	a1, -32(s0)
 	li	a0, 0
 	sb	a0, 0(a1)
-.Lpcrel_hi141:
+.Lpcrel_hi273:
 	auipc	a0, %pcrel_hi(l64a.s)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi141)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi273)
 	ld	ra, 40(sp)                      # 8-byte Folded Reload
 	ld	s0, 32(sp)                      # 8-byte Folded Reload
 	addi	sp, sp, 48
@@ -3058,10 +3850,16 @@ srand:                                  # @srand
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi274:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.40)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi274)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi142:
+.Lpcrel_hi275:
 	auipc	a0, %pcrel_hi(.L__profc_srand)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi142)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi275)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3069,9 +3867,9 @@ srand:                                  # @srand
 	addiw	a0, a0, -1
 	slli	a0, a0, 32
 	srli	a0, a0, 32
-.Lpcrel_hi143:
+.Lpcrel_hi276:
 	auipc	a1, %pcrel_hi(seed)
-	addi	a1, a1, %pcrel_lo(.Lpcrel_hi143)
+	addi	a1, a1, %pcrel_lo(.Lpcrel_hi276)
 	sd	a0, 0(a1)
 	ld	ra, 24(sp)                      # 8-byte Folded Reload
 	ld	s0, 16(sp)                      # 8-byte Folded Reload
@@ -3094,19 +3892,25 @@ rand:                                   # @rand
 	sd	ra, 8(sp)                       # 8-byte Folded Spill
 	sd	s0, 0(sp)                       # 8-byte Folded Spill
 	addi	s0, sp, 16
-.Lpcrel_hi144:
-	auipc	a0, %pcrel_hi(.L__profc_rand)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi144)
+.Lpcrel_hi277:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.41)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi277)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
-.Lpcrel_hi145:
+.Lpcrel_hi278:
+	auipc	a0, %pcrel_hi(.L__profc_rand)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi278)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi279:
 	auipc	a0, %pcrel_hi(seed)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi145)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi279)
 	ld	a1, 0(a0)
-.Lpcrel_hi146:
+.Lpcrel_hi280:
 	auipc	a2, %pcrel_hi(.LCPI41_0)
-	addi	a2, a2, %pcrel_lo(.Lpcrel_hi146)
+	addi	a2, a2, %pcrel_lo(.Lpcrel_hi280)
 	ld	a2, 0(a2)
 	mul	a1, a1, a2
 	addi	a1, a1, 1
@@ -3131,9 +3935,9 @@ insque:                                 # @insque
 	addi	s0, sp, 48
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi147:
+.Lpcrel_hi281:
 	auipc	a0, %pcrel_hi(.L__profc_insque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi147)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi281)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3145,9 +3949,15 @@ insque:                                 # @insque
 	bnez	a0, .LBB42_2
 	j	.LBB42_1
 .LBB42_1:
-.Lpcrel_hi148:
+.Lpcrel_hi282:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.42)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi282)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi283:
 	auipc	a0, %pcrel_hi(.L__profc_insque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi148)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi283)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3158,6 +3968,12 @@ insque:                                 # @insque
 	sd	a0, 0(a1)
 	j	.LBB42_4
 .LBB42_2:
+.Lpcrel_hi284:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.42)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi284)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	ld	a0, -48(s0)
 	ld	a0, 0(a0)
 	ld	a1, -40(s0)
@@ -3173,9 +3989,15 @@ insque:                                 # @insque
 	beqz	a0, .LBB42_4
 	j	.LBB42_3
 .LBB42_3:
-.Lpcrel_hi149:
+.Lpcrel_hi285:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.42)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi285)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi286:
 	auipc	a0, %pcrel_hi(.L__profc_insque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi149)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi286)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3200,10 +4022,16 @@ remque:                                 # @remque
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi287:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.43)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi287)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi150:
+.Lpcrel_hi288:
 	auipc	a0, %pcrel_hi(.L__profc_remque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi150)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi288)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3214,9 +4042,15 @@ remque:                                 # @remque
 	beqz	a0, .LBB43_2
 	j	.LBB43_1
 .LBB43_1:
-.Lpcrel_hi151:
+.Lpcrel_hi289:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.43)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi289)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi290:
 	auipc	a0, %pcrel_hi(.L__profc_remque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi151)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi290)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3231,9 +4065,15 @@ remque:                                 # @remque
 	beqz	a0, .LBB43_4
 	j	.LBB43_3
 .LBB43_3:
-.Lpcrel_hi152:
+.Lpcrel_hi291:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.43)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi291)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi292:
 	auipc	a0, %pcrel_hi(.L__profc_remque)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi152)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi292)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3268,9 +4108,9 @@ lsearch:                                # @lsearch
 	sd	a2, -48(s0)
 	sd	a3, -56(s0)
 	sd	a0, -64(s0)
-.Lpcrel_hi153:
+.Lpcrel_hi293:
 	auipc	a0, %pcrel_hi(.L__profc_lsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi153)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi293)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3291,9 +4131,9 @@ lsearch:                                # @lsearch
 	j	.LBB44_2
 .LBB44_2:                               #   in Loop: Header=BB44_1 Depth=1
 	ld	ra, -96(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi154:
+.Lpcrel_hi294:
 	auipc	a0, %pcrel_hi(.L__profc_lsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi154)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi294)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3308,9 +4148,15 @@ lsearch:                                # @lsearch
 	j	.LBB44_3
 .LBB44_3:
 	ld	a2, -96(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi155:
+.Lpcrel_hi295:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.44)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi295)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi296:
 	auipc	a0, %pcrel_hi(.L__profc_lsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi155)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi296)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3323,12 +4169,24 @@ lsearch:                                # @lsearch
 .LBB44_4:                               #   in Loop: Header=BB44_1 Depth=1
 	j	.LBB44_5
 .LBB44_5:                               #   in Loop: Header=BB44_1 Depth=1
+.Lpcrel_hi297:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.44)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi297)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -88(s0)
 	addi	a0, a0, 1
 	sd	a0, -88(s0)
 	j	.LBB44_1
 .LBB44_6:
 	ld	a2, -96(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi298:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.44)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi298)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -80(s0)
 	addi	a0, a0, 1
 	ld	a1, -48(s0)
@@ -3372,9 +4230,9 @@ lfind:                                  # @lfind
 	sd	a2, -48(s0)
 	sd	a3, -56(s0)
 	sd	a0, -64(s0)
-.Lpcrel_hi156:
+.Lpcrel_hi299:
 	auipc	a0, %pcrel_hi(.L__profc_lfind)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi156)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi299)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3395,9 +4253,9 @@ lfind:                                  # @lfind
 	j	.LBB45_2
 .LBB45_2:                               #   in Loop: Header=BB45_1 Depth=1
 	ld	ra, -96(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi157:
+.Lpcrel_hi300:
 	auipc	a0, %pcrel_hi(.L__profc_lfind)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi157)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi300)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3412,9 +4270,15 @@ lfind:                                  # @lfind
 	j	.LBB45_3
 .LBB45_3:
 	ld	a2, -96(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi158:
+.Lpcrel_hi301:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.45)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi301)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi302:
 	auipc	a0, %pcrel_hi(.L__profc_lfind)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi158)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi302)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3427,11 +4291,23 @@ lfind:                                  # @lfind
 .LBB45_4:                               #   in Loop: Header=BB45_1 Depth=1
 	j	.LBB45_5
 .LBB45_5:                               #   in Loop: Header=BB45_1 Depth=1
+.Lpcrel_hi303:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.45)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi303)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -88(s0)
 	addi	a0, a0, 1
 	sd	a0, -88(s0)
 	j	.LBB45_1
 .LBB45_6:
+.Lpcrel_hi304:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.45)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi304)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB45_7
@@ -3455,9 +4331,9 @@ abs:                                    # @abs
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sw	a0, -20(s0)
-.Lpcrel_hi159:
+.Lpcrel_hi305:
 	auipc	a0, %pcrel_hi(.L__profc_abs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi159)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi305)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3466,9 +4342,15 @@ abs:                                    # @abs
 	bge	a0, a1, .LBB46_2
 	j	.LBB46_1
 .LBB46_1:
-.Lpcrel_hi160:
+.Lpcrel_hi306:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.46)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi306)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi307:
 	auipc	a0, %pcrel_hi(.L__profc_abs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi160)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi307)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3476,6 +4358,12 @@ abs:                                    # @abs
 	sd	a0, -32(s0)                     # 8-byte Folded Spill
 	j	.LBB46_3
 .LBB46_2:
+.Lpcrel_hi308:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.46)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi308)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a1, -20(s0)
 	li	a0, 0
 	subw	a0, a0, a1
@@ -3501,9 +4389,9 @@ atoi:                                   # @atoi
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
 	sd	a0, -24(s0)
-.Lpcrel_hi161:
+.Lpcrel_hi309:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi161)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi309)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3518,9 +4406,15 @@ atoi:                                   # @atoi
 	beqz	a0, .LBB47_3
 	j	.LBB47_2
 .LBB47_2:                               #   in Loop: Header=BB47_1 Depth=1
-.Lpcrel_hi162:
+.Lpcrel_hi310:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi310)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi311:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi162)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi311)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3542,9 +4436,15 @@ atoi:                                   # @atoi
 	bne	a0, a1, .LBB47_8
 	j	.LBB47_5
 .LBB47_5:
-.Lpcrel_hi163:
+.Lpcrel_hi312:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi312)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi313:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi313)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -3552,9 +4452,15 @@ atoi:                                   # @atoi
 	sw	a0, -32(s0)
 	j	.LBB47_7
 .LBB47_6:
-.Lpcrel_hi164:
+.Lpcrel_hi314:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi314)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi315:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi164)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi315)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -3565,9 +4471,9 @@ atoi:                                   # @atoi
 	sd	a0, -24(s0)
 	j	.LBB47_8
 .LBB47_8:
-.Lpcrel_hi165:
+.Lpcrel_hi316:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi316)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3579,9 +4485,15 @@ atoi:                                   # @atoi
 	beqz	a0, .LBB47_11
 	j	.LBB47_10
 .LBB47_10:                              #   in Loop: Header=BB47_9 Depth=1
-.Lpcrel_hi166:
+.Lpcrel_hi317:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi317)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi318:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi166)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi318)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -3601,9 +4513,15 @@ atoi:                                   # @atoi
 	beqz	a0, .LBB47_13
 	j	.LBB47_12
 .LBB47_12:
-.Lpcrel_hi167:
+.Lpcrel_hi319:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi319)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi320:
 	auipc	a0, %pcrel_hi(.L__profc_atoi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi167)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi320)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -3611,6 +4529,12 @@ atoi:                                   # @atoi
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB47_14
 .LBB47_13:
+.Lpcrel_hi321:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi321)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lw	a1, -28(s0)
 	li	a0, 0
 	subw	a0, a0, a1
@@ -3636,9 +4560,9 @@ atol:                                   # @atol
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
 	sd	a0, -24(s0)
-.Lpcrel_hi168:
+.Lpcrel_hi322:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi168)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi322)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3653,9 +4577,15 @@ atol:                                   # @atol
 	beqz	a0, .LBB48_3
 	j	.LBB48_2
 .LBB48_2:                               #   in Loop: Header=BB48_1 Depth=1
-.Lpcrel_hi169:
+.Lpcrel_hi323:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi323)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi324:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi169)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi324)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3677,9 +4607,15 @@ atol:                                   # @atol
 	bne	a0, a1, .LBB48_8
 	j	.LBB48_5
 .LBB48_5:
-.Lpcrel_hi170:
+.Lpcrel_hi325:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi325)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi326:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi170)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi326)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -3687,9 +4623,15 @@ atol:                                   # @atol
 	sw	a0, -36(s0)
 	j	.LBB48_7
 .LBB48_6:
-.Lpcrel_hi171:
+.Lpcrel_hi327:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi327)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi328:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi171)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi328)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -3700,9 +4642,9 @@ atol:                                   # @atol
 	sd	a0, -24(s0)
 	j	.LBB48_8
 .LBB48_8:
-.Lpcrel_hi172:
+.Lpcrel_hi329:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi172)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi329)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3714,9 +4656,15 @@ atol:                                   # @atol
 	beqz	a0, .LBB48_11
 	j	.LBB48_10
 .LBB48_10:                              #   in Loop: Header=BB48_9 Depth=1
-.Lpcrel_hi173:
+.Lpcrel_hi330:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi330)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi331:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi173)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi331)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -3736,9 +4684,15 @@ atol:                                   # @atol
 	beqz	a0, .LBB48_13
 	j	.LBB48_12
 .LBB48_12:
-.Lpcrel_hi174:
+.Lpcrel_hi332:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi332)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi333:
 	auipc	a0, %pcrel_hi(.L__profc_atol)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi174)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi333)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -3746,6 +4700,12 @@ atol:                                   # @atol
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB48_14
 .LBB48_13:
+.Lpcrel_hi334:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi334)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a1, -32(s0)
 	li	a0, 0
 	sub	a0, a0, a1
@@ -3770,9 +4730,9 @@ atoll:                                  # @atoll
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
 	sd	a0, -24(s0)
-.Lpcrel_hi175:
+.Lpcrel_hi335:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi175)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi335)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3787,9 +4747,15 @@ atoll:                                  # @atoll
 	beqz	a0, .LBB49_3
 	j	.LBB49_2
 .LBB49_2:                               #   in Loop: Header=BB49_1 Depth=1
-.Lpcrel_hi176:
+.Lpcrel_hi336:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi336)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi337:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi176)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi337)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3811,9 +4777,15 @@ atoll:                                  # @atoll
 	bne	a0, a1, .LBB49_8
 	j	.LBB49_5
 .LBB49_5:
-.Lpcrel_hi177:
+.Lpcrel_hi338:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi338)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi339:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi177)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi339)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -3821,9 +4793,15 @@ atoll:                                  # @atoll
 	sw	a0, -36(s0)
 	j	.LBB49_7
 .LBB49_6:
-.Lpcrel_hi178:
+.Lpcrel_hi340:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi340)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi341:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi178)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi341)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -3834,9 +4812,9 @@ atoll:                                  # @atoll
 	sd	a0, -24(s0)
 	j	.LBB49_8
 .LBB49_8:
-.Lpcrel_hi179:
+.Lpcrel_hi342:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi179)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi342)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3848,9 +4826,15 @@ atoll:                                  # @atoll
 	beqz	a0, .LBB49_11
 	j	.LBB49_10
 .LBB49_10:                              #   in Loop: Header=BB49_9 Depth=1
-.Lpcrel_hi180:
+.Lpcrel_hi343:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi343)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi344:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi180)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi344)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -3870,9 +4854,15 @@ atoll:                                  # @atoll
 	beqz	a0, .LBB49_13
 	j	.LBB49_12
 .LBB49_12:
-.Lpcrel_hi181:
+.Lpcrel_hi345:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi345)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi346:
 	auipc	a0, %pcrel_hi(.L__profc_atoll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi181)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi346)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -3880,6 +4870,12 @@ atoll:                                  # @atoll
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB49_14
 .LBB49_13:
+.Lpcrel_hi347:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi347)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a1, -32(s0)
 	li	a0, 0
 	sub	a0, a0, a1
@@ -3912,9 +4908,9 @@ bsearch:                                # @bsearch
 	sd	a2, -48(s0)
 	sd	a3, -56(s0)
 	sd	a0, -64(s0)
-.Lpcrel_hi182:
+.Lpcrel_hi348:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi182)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi348)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -3924,9 +4920,9 @@ bsearch:                                # @bsearch
 	beqz	a0, .LBB50_9
 	j	.LBB50_2
 .LBB50_2:                               #   in Loop: Header=BB50_1 Depth=1
-.Lpcrel_hi183:
+.Lpcrel_hi349:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi183)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi349)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -3946,9 +4942,15 @@ bsearch:                                # @bsearch
 	bgez	a0, .LBB50_4
 	j	.LBB50_3
 .LBB50_3:                               #   in Loop: Header=BB50_1 Depth=1
-.Lpcrel_hi184:
+.Lpcrel_hi350:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.50)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi350)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi351:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi184)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi351)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -3962,9 +4964,9 @@ bsearch:                                # @bsearch
 	bge	a0, a1, .LBB50_6
 	j	.LBB50_5
 .LBB50_5:                               #   in Loop: Header=BB50_1 Depth=1
-.Lpcrel_hi185:
+.Lpcrel_hi352:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi185)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi352)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -3979,14 +4981,32 @@ bsearch:                                # @bsearch
 	sd	a0, -48(s0)
 	j	.LBB50_7
 .LBB50_6:
+.Lpcrel_hi353:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.50)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi353)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -72(s0)
 	sd	a0, -24(s0)
 	j	.LBB50_10
 .LBB50_7:                               #   in Loop: Header=BB50_1 Depth=1
+.Lpcrel_hi354:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.50)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi354)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB50_8
 .LBB50_8:                               #   in Loop: Header=BB50_1 Depth=1
 	j	.LBB50_1
 .LBB50_9:
+.Lpcrel_hi355:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.50)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi355)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB50_10
@@ -4021,9 +5041,9 @@ bsearch_r:                              # @bsearch_r
 	sd	a3, -56(s0)
 	sd	a1, -64(s0)
 	sd	a0, -72(s0)
-.Lpcrel_hi186:
+.Lpcrel_hi356:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch_r)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi186)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi356)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4037,9 +5057,9 @@ bsearch_r:                              # @bsearch_r
 	beqz	a0, .LBB51_8
 	j	.LBB51_2
 .LBB51_2:                               #   in Loop: Header=BB51_1 Depth=1
-.Lpcrel_hi187:
+.Lpcrel_hi357:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch_r)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi187)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi357)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -4060,9 +5080,15 @@ bsearch_r:                              # @bsearch_r
 	bnez	a0, .LBB51_4
 	j	.LBB51_3
 .LBB51_3:
-.Lpcrel_hi188:
+.Lpcrel_hi358:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.51)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi358)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi359:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch_r)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi188)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi359)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -4075,9 +5101,15 @@ bsearch_r:                              # @bsearch_r
 	bge	a0, a1, .LBB51_6
 	j	.LBB51_5
 .LBB51_5:                               #   in Loop: Header=BB51_1 Depth=1
-.Lpcrel_hi189:
+.Lpcrel_hi360:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.51)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi360)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi361:
 	auipc	a0, %pcrel_hi(.L__profc_bsearch_r)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi189)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi361)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -4092,11 +5124,23 @@ bsearch_r:                              # @bsearch_r
 .LBB51_6:                               #   in Loop: Header=BB51_1 Depth=1
 	j	.LBB51_7
 .LBB51_7:                               #   in Loop: Header=BB51_1 Depth=1
+.Lpcrel_hi362:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.51)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi362)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -84(s0)
 	srli	a0, a0, 1
 	sw	a0, -84(s0)
 	j	.LBB51_1
 .LBB51_8:
+.Lpcrel_hi363:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.51)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi363)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB51_9
@@ -4120,11 +5164,17 @@ div:                                    # @div
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi364:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.52)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi364)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -28(s0)
 	sw	a1, -32(s0)
-.Lpcrel_hi190:
+.Lpcrel_hi365:
 	auipc	a0, %pcrel_hi(.L__profc_div)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi190)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi365)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4157,9 +5207,9 @@ imaxabs:                                # @imaxabs
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
 	sd	a0, -24(s0)
-.Lpcrel_hi191:
+.Lpcrel_hi366:
 	auipc	a0, %pcrel_hi(.L__profc_imaxabs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi191)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi366)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4168,9 +5218,15 @@ imaxabs:                                # @imaxabs
 	bge	a0, a1, .LBB53_2
 	j	.LBB53_1
 .LBB53_1:
-.Lpcrel_hi192:
+.Lpcrel_hi367:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.53)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi367)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi368:
 	auipc	a0, %pcrel_hi(.L__profc_imaxabs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi192)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi368)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -4178,6 +5234,12 @@ imaxabs:                                # @imaxabs
 	sd	a0, -32(s0)                     # 8-byte Folded Spill
 	j	.LBB53_3
 .LBB53_2:
+.Lpcrel_hi369:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.53)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi369)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a1, -24(s0)
 	li	a0, 0
 	sub	a0, a0, a1
@@ -4201,11 +5263,17 @@ imaxdiv:                                # @imaxdiv
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi370:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.54)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi370)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -40(s0)
 	sd	a1, -48(s0)
-.Lpcrel_hi193:
+.Lpcrel_hi371:
 	auipc	a0, %pcrel_hi(.L__profc_imaxdiv)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi193)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi371)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4236,9 +5304,9 @@ labs:                                   # @labs
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
 	sd	a0, -24(s0)
-.Lpcrel_hi194:
+.Lpcrel_hi372:
 	auipc	a0, %pcrel_hi(.L__profc_labs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi194)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi372)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4247,9 +5315,15 @@ labs:                                   # @labs
 	bge	a0, a1, .LBB55_2
 	j	.LBB55_1
 .LBB55_1:
-.Lpcrel_hi195:
+.Lpcrel_hi373:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.55)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi373)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi374:
 	auipc	a0, %pcrel_hi(.L__profc_labs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi195)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi374)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -4257,6 +5331,12 @@ labs:                                   # @labs
 	sd	a0, -32(s0)                     # 8-byte Folded Spill
 	j	.LBB55_3
 .LBB55_2:
+.Lpcrel_hi375:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.55)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi375)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a1, -24(s0)
 	li	a0, 0
 	sub	a0, a0, a1
@@ -4280,11 +5360,17 @@ ldiv:                                   # @ldiv
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi376:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.56)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi376)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -40(s0)
 	sd	a1, -48(s0)
-.Lpcrel_hi196:
+.Lpcrel_hi377:
 	auipc	a0, %pcrel_hi(.L__profc_ldiv)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi196)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi377)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4315,9 +5401,9 @@ llabs:                                  # @llabs
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
 	sd	a0, -24(s0)
-.Lpcrel_hi197:
+.Lpcrel_hi378:
 	auipc	a0, %pcrel_hi(.L__profc_llabs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi197)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi378)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4326,9 +5412,15 @@ llabs:                                  # @llabs
 	bge	a0, a1, .LBB57_2
 	j	.LBB57_1
 .LBB57_1:
-.Lpcrel_hi198:
+.Lpcrel_hi379:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.57)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi379)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi380:
 	auipc	a0, %pcrel_hi(.L__profc_llabs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi198)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi380)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -4336,6 +5428,12 @@ llabs:                                  # @llabs
 	sd	a0, -32(s0)                     # 8-byte Folded Spill
 	j	.LBB57_3
 .LBB57_2:
+.Lpcrel_hi381:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.57)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi381)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a1, -24(s0)
 	li	a0, 0
 	sub	a0, a0, a1
@@ -4359,11 +5457,17 @@ lldiv:                                  # @lldiv
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi382:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.58)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi382)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -40(s0)
 	sd	a1, -48(s0)
-.Lpcrel_hi199:
+.Lpcrel_hi383:
 	auipc	a0, %pcrel_hi(.L__profc_lldiv)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi199)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi383)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4396,9 +5500,9 @@ wcschr:                                 # @wcschr
                                         # kill: def $x12 killed $x11
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi200:
+.Lpcrel_hi384:
 	auipc	a0, %pcrel_hi(.L__profc_wcschr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi200)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi384)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4411,9 +5515,15 @@ wcschr:                                 # @wcschr
 	beqz	a0, .LBB59_4
 	j	.LBB59_2
 .LBB59_2:                               #   in Loop: Header=BB59_1 Depth=1
-.Lpcrel_hi201:
+.Lpcrel_hi385:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi385)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi386:
 	auipc	a0, %pcrel_hi(.L__profc_wcschr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi201)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi386)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -4428,9 +5538,15 @@ wcschr:                                 # @wcschr
 	j	.LBB59_3
 .LBB59_3:                               #   in Loop: Header=BB59_1 Depth=1
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi202:
+.Lpcrel_hi387:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi387)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi388:
 	auipc	a1, %pcrel_hi(.L__profc_wcschr)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi202)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi388)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -4442,14 +5558,20 @@ wcschr:                                 # @wcschr
 	beqz	a0, .LBB59_7
 	j	.LBB59_5
 .LBB59_5:                               #   in Loop: Header=BB59_1 Depth=1
-.Lpcrel_hi203:
+.Lpcrel_hi389:
 	auipc	a0, %pcrel_hi(.L__profc_wcschr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi203)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi389)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB59_6
 .LBB59_6:                               #   in Loop: Header=BB59_1 Depth=1
+.Lpcrel_hi390:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi390)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 4
 	sd	a0, -24(s0)
@@ -4460,9 +5582,15 @@ wcschr:                                 # @wcschr
 	beqz	a0, .LBB59_9
 	j	.LBB59_8
 .LBB59_8:
-.Lpcrel_hi204:
+.Lpcrel_hi391:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi391)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi392:
 	auipc	a0, %pcrel_hi(.L__profc_wcschr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi204)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi392)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -4470,6 +5598,12 @@ wcschr:                                 # @wcschr
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB59_10
 .LBB59_9:
+.Lpcrel_hi393:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi393)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 0
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB59_10
@@ -4493,9 +5627,9 @@ wcscmp:                                 # @wcscmp
 	addi	s0, sp, 64
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi205:
+.Lpcrel_hi394:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi205)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi394)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4510,9 +5644,15 @@ wcscmp:                                 # @wcscmp
 	bne	a0, a1, .LBB60_6
 	j	.LBB60_2
 .LBB60_2:                               #   in Loop: Header=BB60_1 Depth=1
-.Lpcrel_hi206:
+.Lpcrel_hi395:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi395)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi396:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi206)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi396)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -4523,17 +5663,23 @@ wcscmp:                                 # @wcscmp
 	beqz	a0, .LBB60_6
 	j	.LBB60_3
 .LBB60_3:                               #   in Loop: Header=BB60_1 Depth=1
-.Lpcrel_hi207:
+.Lpcrel_hi397:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi397)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi398:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi207)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi398)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB60_4
 .LBB60_4:                               #   in Loop: Header=BB60_1 Depth=1
-.Lpcrel_hi208:
+.Lpcrel_hi399:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi208)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi399)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -4546,9 +5692,15 @@ wcscmp:                                 # @wcscmp
 	j	.LBB60_5
 .LBB60_5:                               #   in Loop: Header=BB60_1 Depth=1
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi209:
+.Lpcrel_hi400:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi400)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi401:
 	auipc	a1, %pcrel_hi(.L__profc_wcscmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi209)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi401)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -4560,14 +5712,20 @@ wcscmp:                                 # @wcscmp
 	beqz	a0, .LBB60_9
 	j	.LBB60_7
 .LBB60_7:                               #   in Loop: Header=BB60_1 Depth=1
-.Lpcrel_hi210:
+.Lpcrel_hi402:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi210)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi402)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB60_8
 .LBB60_8:                               #   in Loop: Header=BB60_1 Depth=1
+.Lpcrel_hi403:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi403)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 4
 	sd	a0, -24(s0)
@@ -4583,9 +5741,15 @@ wcscmp:                                 # @wcscmp
 	bge	a0, a1, .LBB60_11
 	j	.LBB60_10
 .LBB60_10:
-.Lpcrel_hi211:
+.Lpcrel_hi404:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi404)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi405:
 	auipc	a0, %pcrel_hi(.L__profc_wcscmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi211)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi405)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -4593,6 +5757,12 @@ wcscmp:                                 # @wcscmp
 	sd	a0, -56(s0)                     # 8-byte Folded Spill
 	j	.LBB60_12
 .LBB60_11:
+.Lpcrel_hi406:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi406)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -24(s0)
 	lw	a1, 0(a0)
 	ld	a0, -32(s0)
@@ -4619,11 +5789,17 @@ wcscpy:                                 # @wcscpy
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi407:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.61)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi407)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi212:
+.Lpcrel_hi408:
 	auipc	a0, %pcrel_hi(.L__profc_wcscpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi212)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi408)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4642,9 +5818,15 @@ wcscpy:                                 # @wcscpy
 	beqz	a0, .LBB61_3
 	j	.LBB61_2
 .LBB61_2:                               #   in Loop: Header=BB61_1 Depth=1
-.Lpcrel_hi213:
+.Lpcrel_hi409:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.61)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi409)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi410:
 	auipc	a0, %pcrel_hi(.L__profc_wcscpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi213)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi410)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -4667,10 +5849,16 @@ wcslen:                                 # @wcslen
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi411:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.62)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi411)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi214:
+.Lpcrel_hi412:
 	auipc	a0, %pcrel_hi(.L__profc_wcslen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi214)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi412)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4683,14 +5871,20 @@ wcslen:                                 # @wcslen
 	beqz	a0, .LBB62_4
 	j	.LBB62_2
 .LBB62_2:                               #   in Loop: Header=BB62_1 Depth=1
-.Lpcrel_hi215:
+.Lpcrel_hi413:
 	auipc	a0, %pcrel_hi(.L__profc_wcslen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi215)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi413)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB62_3
 .LBB62_3:                               #   in Loop: Header=BB62_1 Depth=1
+.Lpcrel_hi414:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.62)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi414)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -24(s0)
 	addi	a0, a0, 4
 	sd	a0, -24(s0)
@@ -4719,9 +5913,9 @@ wcsncmp:                                # @wcsncmp
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi216:
+.Lpcrel_hi415:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi216)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi415)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4733,9 +5927,15 @@ wcsncmp:                                # @wcsncmp
 	beqz	a0, .LBB63_8
 	j	.LBB63_2
 .LBB63_2:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi217:
+.Lpcrel_hi416:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi416)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi417:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi217)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi417)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -4748,17 +5948,23 @@ wcsncmp:                                # @wcsncmp
 	bne	a0, a1, .LBB63_8
 	j	.LBB63_3
 .LBB63_3:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi218:
+.Lpcrel_hi418:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi418)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi419:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi218)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi419)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
 	j	.LBB63_4
 .LBB63_4:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi219:
+.Lpcrel_hi420:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi219)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi420)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -4769,17 +5975,23 @@ wcsncmp:                                # @wcsncmp
 	beqz	a0, .LBB63_8
 	j	.LBB63_5
 .LBB63_5:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi220:
+.Lpcrel_hi421:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi421)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi422:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi220)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi422)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB63_6
 .LBB63_6:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi221:
+.Lpcrel_hi423:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi221)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi423)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -4792,9 +6004,15 @@ wcsncmp:                                # @wcsncmp
 	j	.LBB63_7
 .LBB63_7:                               #   in Loop: Header=BB63_1 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi222:
+.Lpcrel_hi424:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi424)
+	ld	a1, 24(a2)
+	addi	a1, a1, 1
+	sd	a1, 24(a2)
+.Lpcrel_hi425:
 	auipc	a1, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi222)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi425)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -4806,14 +6024,20 @@ wcsncmp:                                # @wcsncmp
 	beqz	a0, .LBB63_11
 	j	.LBB63_9
 .LBB63_9:                               #   in Loop: Header=BB63_1 Depth=1
-.Lpcrel_hi223:
+.Lpcrel_hi426:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi223)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi426)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB63_10
 .LBB63_10:                              #   in Loop: Header=BB63_1 Depth=1
+.Lpcrel_hi427:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi427)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -4829,9 +6053,9 @@ wcsncmp:                                # @wcsncmp
 	beqz	a0, .LBB63_16
 	j	.LBB63_12
 .LBB63_12:
-.Lpcrel_hi224:
+.Lpcrel_hi428:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi224)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi428)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -4842,9 +6066,15 @@ wcsncmp:                                # @wcsncmp
 	bge	a0, a1, .LBB63_14
 	j	.LBB63_13
 .LBB63_13:
-.Lpcrel_hi225:
+.Lpcrel_hi429:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi429)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
+.Lpcrel_hi430:
 	auipc	a0, %pcrel_hi(.L__profc_wcsncmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi225)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi430)
 	ld	a0, 72(a1)
 	addi	a0, a0, 1
 	sd	a0, 72(a1)
@@ -4852,6 +6082,12 @@ wcsncmp:                                # @wcsncmp
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB63_15
 .LBB63_14:
+.Lpcrel_hi431:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi431)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
 	ld	a0, -24(s0)
 	lw	a1, 0(a0)
 	ld	a0, -32(s0)
@@ -4864,6 +6100,12 @@ wcsncmp:                                # @wcsncmp
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB63_17
 .LBB63_16:
+.Lpcrel_hi432:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi432)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
 	li	a0, 0
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB63_17
@@ -4890,9 +6132,9 @@ wmemchr:                                # @wmemchr
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi226:
+.Lpcrel_hi433:
 	auipc	a0, %pcrel_hi(.L__profc_wmemchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi226)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi433)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -4904,9 +6146,15 @@ wmemchr:                                # @wmemchr
 	beqz	a0, .LBB64_4
 	j	.LBB64_2
 .LBB64_2:                               #   in Loop: Header=BB64_1 Depth=1
-.Lpcrel_hi227:
+.Lpcrel_hi434:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi434)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi435:
 	auipc	a0, %pcrel_hi(.L__profc_wmemchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi227)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi435)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -4921,9 +6169,15 @@ wmemchr:                                # @wmemchr
 	j	.LBB64_3
 .LBB64_3:                               #   in Loop: Header=BB64_1 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi228:
+.Lpcrel_hi436:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi436)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi437:
 	auipc	a1, %pcrel_hi(.L__profc_wmemchr)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi228)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi437)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -4935,14 +6189,20 @@ wmemchr:                                # @wmemchr
 	beqz	a0, .LBB64_7
 	j	.LBB64_5
 .LBB64_5:                               #   in Loop: Header=BB64_1 Depth=1
-.Lpcrel_hi229:
+.Lpcrel_hi438:
 	auipc	a0, %pcrel_hi(.L__profc_wmemchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi229)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi438)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB64_6
 .LBB64_6:                               #   in Loop: Header=BB64_1 Depth=1
+.Lpcrel_hi439:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi439)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -4955,9 +6215,15 @@ wmemchr:                                # @wmemchr
 	beqz	a0, .LBB64_9
 	j	.LBB64_8
 .LBB64_8:
-.Lpcrel_hi230:
+.Lpcrel_hi440:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi440)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi441:
 	auipc	a0, %pcrel_hi(.L__profc_wmemchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi230)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi441)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -4965,6 +6231,12 @@ wmemchr:                                # @wmemchr
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB64_10
 .LBB64_9:
+.Lpcrel_hi442:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi442)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 0
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB64_10
@@ -4989,9 +6261,9 @@ wmemcmp:                                # @wmemcmp
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi231:
+.Lpcrel_hi443:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi231)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi443)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5003,9 +6275,15 @@ wmemcmp:                                # @wmemcmp
 	beqz	a0, .LBB65_4
 	j	.LBB65_2
 .LBB65_2:                               #   in Loop: Header=BB65_1 Depth=1
-.Lpcrel_hi232:
+.Lpcrel_hi444:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi444)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi445:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi232)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi445)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -5021,9 +6299,15 @@ wmemcmp:                                # @wmemcmp
 	j	.LBB65_3
 .LBB65_3:                               #   in Loop: Header=BB65_1 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi233:
+.Lpcrel_hi446:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi446)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi447:
 	auipc	a1, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi233)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi447)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -5035,14 +6319,20 @@ wmemcmp:                                # @wmemcmp
 	beqz	a0, .LBB65_7
 	j	.LBB65_5
 .LBB65_5:                               #   in Loop: Header=BB65_1 Depth=1
-.Lpcrel_hi234:
+.Lpcrel_hi448:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi234)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi448)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB65_6
 .LBB65_6:                               #   in Loop: Header=BB65_1 Depth=1
+.Lpcrel_hi449:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi449)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -5058,9 +6348,9 @@ wmemcmp:                                # @wmemcmp
 	beqz	a0, .LBB65_12
 	j	.LBB65_8
 .LBB65_8:
-.Lpcrel_hi235:
+.Lpcrel_hi450:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi235)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi450)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -5071,9 +6361,15 @@ wmemcmp:                                # @wmemcmp
 	bge	a0, a1, .LBB65_10
 	j	.LBB65_9
 .LBB65_9:
-.Lpcrel_hi236:
+.Lpcrel_hi451:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi451)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi452:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi236)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi452)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -5081,6 +6377,12 @@ wmemcmp:                                # @wmemcmp
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB65_11
 .LBB65_10:
+.Lpcrel_hi453:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi453)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a0, -24(s0)
 	lw	a1, 0(a0)
 	ld	a0, -32(s0)
@@ -5093,6 +6395,12 @@ wmemcmp:                                # @wmemcmp
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB65_13
 .LBB65_12:
+.Lpcrel_hi454:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi454)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	li	a0, 0
 	sd	a0, -72(s0)                     # 8-byte Folded Spill
 	j	.LBB65_13
@@ -5115,12 +6423,18 @@ wmemcpy:                                # @wmemcpy
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi455:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.66)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi455)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi237:
+.Lpcrel_hi456:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi237)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi456)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5134,9 +6448,15 @@ wmemcpy:                                # @wmemcpy
 	beqz	a0, .LBB66_3
 	j	.LBB66_2
 .LBB66_2:                               #   in Loop: Header=BB66_1 Depth=1
-.Lpcrel_hi238:
+.Lpcrel_hi457:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.66)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi457)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi458:
 	auipc	a0, %pcrel_hi(.L__profc_wmemcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi238)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi458)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -5170,9 +6490,9 @@ wmemmove:                               # @wmemmove
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
 	sd	a2, -48(s0)
-.Lpcrel_hi239:
+.Lpcrel_hi459:
 	auipc	a0, %pcrel_hi(.L__profc_wmemmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi239)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi459)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5183,9 +6503,15 @@ wmemmove:                               # @wmemmove
 	bne	a0, a1, .LBB67_2
 	j	.LBB67_1
 .LBB67_1:
-.Lpcrel_hi240:
+.Lpcrel_hi460:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi460)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi461:
 	auipc	a0, %pcrel_hi(.L__profc_wmemmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi240)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi461)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -5201,9 +6527,15 @@ wmemmove:                               # @wmemmove
 	bgeu	a0, a1, .LBB67_7
 	j	.LBB67_3
 .LBB67_3:
-.Lpcrel_hi241:
+.Lpcrel_hi462:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi462)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi463:
 	auipc	a0, %pcrel_hi(.L__profc_wmemmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi241)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi463)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -5215,9 +6547,15 @@ wmemmove:                               # @wmemmove
 	beqz	a0, .LBB67_6
 	j	.LBB67_5
 .LBB67_5:                               #   in Loop: Header=BB67_4 Depth=1
-.Lpcrel_hi242:
+.Lpcrel_hi464:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi464)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi465:
 	auipc	a0, %pcrel_hi(.L__profc_wmemmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi242)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi465)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -5241,9 +6579,15 @@ wmemmove:                               # @wmemmove
 	beqz	a0, .LBB67_10
 	j	.LBB67_9
 .LBB67_9:                               #   in Loop: Header=BB67_8 Depth=1
-.Lpcrel_hi243:
+.Lpcrel_hi466:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi466)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi467:
 	auipc	a0, %pcrel_hi(.L__profc_wmemmove)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi243)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi467)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -5257,6 +6601,12 @@ wmemmove:                               # @wmemmove
 	sw	a0, 0(a1)
 	j	.LBB67_8
 .LBB67_10:
+.Lpcrel_hi468:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi468)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	j	.LBB67_11
 .LBB67_11:
 	ld	a0, -56(s0)
@@ -5281,12 +6631,18 @@ wmemset:                                # @wmemset
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x13 killed $x11
+.Lpcrel_hi469:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.68)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi469)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi244:
+.Lpcrel_hi470:
 	auipc	a0, %pcrel_hi(.L__profc_wmemset)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi244)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi470)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5300,9 +6656,15 @@ wmemset:                                # @wmemset
 	beqz	a0, .LBB68_3
 	j	.LBB68_2
 .LBB68_2:                               #   in Loop: Header=BB68_1 Depth=1
-.Lpcrel_hi245:
+.Lpcrel_hi471:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.68)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi471)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi472:
 	auipc	a0, %pcrel_hi(.L__profc_wmemset)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi245)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi472)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -5333,9 +6695,9 @@ bcopy:                                  # @bcopy
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi246:
+.Lpcrel_hi473:
 	auipc	a0, %pcrel_hi(.L__profc_bcopy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi246)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi473)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5348,9 +6710,15 @@ bcopy:                                  # @bcopy
 	bgeu	a0, a1, .LBB69_6
 	j	.LBB69_1
 .LBB69_1:
-.Lpcrel_hi247:
+.Lpcrel_hi474:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi474)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi475:
 	auipc	a0, %pcrel_hi(.L__profc_bcopy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi247)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi475)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -5368,9 +6736,9 @@ bcopy:                                  # @bcopy
 	beqz	a0, .LBB69_5
 	j	.LBB69_3
 .LBB69_3:                               #   in Loop: Header=BB69_2 Depth=1
-.Lpcrel_hi248:
+.Lpcrel_hi476:
 	auipc	a0, %pcrel_hi(.L__profc_bcopy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi248)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi476)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -5384,6 +6752,12 @@ bcopy:                                  # @bcopy
 	sb	a0, -1(a1)
 	j	.LBB69_4
 .LBB69_4:                               #   in Loop: Header=BB69_2 Depth=1
+.Lpcrel_hi477:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi477)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -5396,9 +6770,9 @@ bcopy:                                  # @bcopy
 	beq	a0, a1, .LBB69_12
 	j	.LBB69_7
 .LBB69_7:
-.Lpcrel_hi249:
+.Lpcrel_hi478:
 	auipc	a0, %pcrel_hi(.L__profc_bcopy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi249)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi478)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -5408,9 +6782,15 @@ bcopy:                                  # @bcopy
 	beqz	a0, .LBB69_11
 	j	.LBB69_9
 .LBB69_9:                               #   in Loop: Header=BB69_8 Depth=1
-.Lpcrel_hi250:
+.Lpcrel_hi479:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi479)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi480:
 	auipc	a0, %pcrel_hi(.L__profc_bcopy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi250)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi480)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -5429,8 +6809,20 @@ bcopy:                                  # @bcopy
 	sd	a0, -40(s0)
 	j	.LBB69_8
 .LBB69_11:
+.Lpcrel_hi481:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi481)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB69_12
 .LBB69_12:
+.Lpcrel_hi482:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi482)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	j	.LBB69_13
 .LBB69_13:
 	ld	ra, 56(sp)                      # 8-byte Folded Reload
@@ -5450,11 +6842,17 @@ rotl64:                                 # @rotl64
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi483:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.70)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi483)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi251:
+.Lpcrel_hi484:
 	auipc	a0, %pcrel_hi(.L__profc_rotl64)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi251)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi484)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5481,11 +6879,17 @@ rotr64:                                 # @rotr64
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi485:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.71)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi485)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi252:
+.Lpcrel_hi486:
 	auipc	a0, %pcrel_hi(.L__profc_rotr64)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi252)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi486)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5513,11 +6917,17 @@ rotl32:                                 # @rotl32
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi487:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.72)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi487)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi253:
+.Lpcrel_hi488:
 	auipc	a0, %pcrel_hi(.L__profc_rotl32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi253)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi488)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5545,11 +6955,17 @@ rotr32:                                 # @rotr32
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi489:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.73)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi489)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi254:
+.Lpcrel_hi490:
 	auipc	a0, %pcrel_hi(.L__profc_rotr32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi254)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi490)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5576,11 +6992,17 @@ rotl_sz:                                # @rotl_sz
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi491:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.74)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi491)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi255:
+.Lpcrel_hi492:
 	auipc	a0, %pcrel_hi(.L__profc_rotl_sz)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi255)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi492)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5607,11 +7029,17 @@ rotr_sz:                                # @rotr_sz
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi493:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.75)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi493)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi256:
+.Lpcrel_hi494:
 	auipc	a0, %pcrel_hi(.L__profc_rotr_sz)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi256)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi494)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5639,11 +7067,17 @@ rotl16:                                 # @rotl16
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi495:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.76)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi495)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sh	a0, -18(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi257:
+.Lpcrel_hi496:
 	auipc	a0, %pcrel_hi(.L__profc_rotl16)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi257)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi496)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5674,11 +7108,17 @@ rotr16:                                 # @rotr16
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi497:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.77)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi497)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sh	a0, -18(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi258:
+.Lpcrel_hi498:
 	auipc	a0, %pcrel_hi(.L__profc_rotr16)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi258)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi498)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5709,11 +7149,17 @@ rotl8:                                  # @rotl8
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi499:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.78)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi499)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sb	a0, -17(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi259:
+.Lpcrel_hi500:
 	auipc	a0, %pcrel_hi(.L__profc_rotl8)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi259)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi500)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5743,11 +7189,17 @@ rotr8:                                  # @rotr8
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi501:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.79)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi501)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sb	a0, -17(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi260:
+.Lpcrel_hi502:
 	auipc	a0, %pcrel_hi(.L__profc_rotr8)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi260)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi502)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5776,10 +7228,16 @@ bswap_16:                               # @bswap_16
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi503:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.80)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi503)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sh	a0, -18(s0)
-.Lpcrel_hi261:
+.Lpcrel_hi504:
 	auipc	a0, %pcrel_hi(.L__profc_bswap_16)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi261)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi504)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5812,10 +7270,16 @@ bswap_32:                               # @bswap_32
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi505:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.81)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi505)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi262:
+.Lpcrel_hi506:
 	auipc	a0, %pcrel_hi(.L__profc_bswap_32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi262)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi506)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5853,10 +7317,16 @@ bswap_64:                               # @bswap_64
 	sd	ra, 72(sp)                      # 8-byte Folded Spill
 	sd	s0, 64(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 80
+.Lpcrel_hi507:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.82)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi507)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi263:
+.Lpcrel_hi508:
 	auipc	a0, %pcrel_hi(.L__profc_bswap_64)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi263)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi508)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5921,9 +7391,9 @@ ffs:                                    # @ffs
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sw	a0, -24(s0)
-.Lpcrel_hi264:
+.Lpcrel_hi509:
 	auipc	a0, %pcrel_hi(.L__profc_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi264)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi509)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -5936,9 +7406,9 @@ ffs:                                    # @ffs
 	bltu	a0, a1, .LBB83_6
 	j	.LBB83_2
 .LBB83_2:                               #   in Loop: Header=BB83_1 Depth=1
-.Lpcrel_hi265:
+.Lpcrel_hi510:
 	auipc	a0, %pcrel_hi(.L__profc_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi265)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi510)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -5949,9 +7419,15 @@ ffs:                                    # @ffs
 	beqz	a0, .LBB83_4
 	j	.LBB83_3
 .LBB83_3:
-.Lpcrel_hi266:
+.Lpcrel_hi511:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.83)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi511)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi512:
 	auipc	a0, %pcrel_hi(.L__profc_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi266)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi512)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -5962,11 +7438,23 @@ ffs:                                    # @ffs
 .LBB83_4:                               #   in Loop: Header=BB83_1 Depth=1
 	j	.LBB83_5
 .LBB83_5:                               #   in Loop: Header=BB83_1 Depth=1
+.Lpcrel_hi513:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.83)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi513)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a0, -28(s0)
 	addiw	a0, a0, 1
 	sw	a0, -28(s0)
 	j	.LBB83_1
 .LBB83_6:
+.Lpcrel_hi514:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.83)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi514)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sw	a0, -20(s0)
 	j	.LBB83_7
@@ -5990,9 +7478,9 @@ libiberty_ffs:                          # @libiberty_ffs
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sw	a0, -24(s0)
-.Lpcrel_hi267:
+.Lpcrel_hi515:
 	auipc	a0, %pcrel_hi(.L__profc_libiberty_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi267)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi515)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6000,9 +7488,15 @@ libiberty_ffs:                          # @libiberty_ffs
 	bnez	a0, .LBB84_2
 	j	.LBB84_1
 .LBB84_1:
-.Lpcrel_hi268:
+.Lpcrel_hi516:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.84)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi516)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi517:
 	auipc	a0, %pcrel_hi(.L__profc_libiberty_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi268)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi517)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6010,6 +7504,12 @@ libiberty_ffs:                          # @libiberty_ffs
 	sw	a0, -20(s0)
 	j	.LBB84_7
 .LBB84_2:
+.Lpcrel_hi518:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.84)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi518)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	li	a0, 1
 	sw	a0, -28(s0)
 	j	.LBB84_3
@@ -6019,9 +7519,9 @@ libiberty_ffs:                          # @libiberty_ffs
 	bnez	a0, .LBB84_6
 	j	.LBB84_4
 .LBB84_4:                               #   in Loop: Header=BB84_3 Depth=1
-.Lpcrel_hi269:
+.Lpcrel_hi519:
 	auipc	a0, %pcrel_hi(.L__profc_libiberty_ffs)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi269)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi519)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6030,6 +7530,12 @@ libiberty_ffs:                          # @libiberty_ffs
 	sw	a0, -24(s0)
 	j	.LBB84_5
 .LBB84_5:                               #   in Loop: Header=BB84_3 Depth=1
+.Lpcrel_hi520:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.84)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi520)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -28(s0)
 	addiw	a0, a0, 1
 	sw	a0, -28(s0)
@@ -6057,10 +7563,16 @@ gl_isinff:                              # @gl_isinff
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi521:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.85)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi521)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi270:
+.Lpcrel_hi522:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinff)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi270)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi522)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6073,9 +7585,15 @@ gl_isinff:                              # @gl_isinff
 	bltz	a0, .LBB85_3
 	j	.LBB85_1
 .LBB85_1:
-.Lpcrel_hi271:
+.Lpcrel_hi523:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.85)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi523)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi524:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinff)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi271)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi524)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6092,9 +7610,15 @@ gl_isinff:                              # @gl_isinff
 	j	.LBB85_2
 .LBB85_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi272:
+.Lpcrel_hi525:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.85)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi525)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi526:
 	auipc	a1, %pcrel_hi(.L__profc_gl_isinff)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi272)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi526)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -6120,10 +7644,16 @@ gl_isinfd:                              # @gl_isinfd
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi527:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.86)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi527)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi273:
+.Lpcrel_hi528:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinfd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi273)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi528)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6137,9 +7667,15 @@ gl_isinfd:                              # @gl_isinfd
 	bltz	a0, .LBB86_3
 	j	.LBB86_1
 .LBB86_1:
-.Lpcrel_hi274:
+.Lpcrel_hi529:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.86)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi529)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi530:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinfd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi274)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi530)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6157,9 +7693,15 @@ gl_isinfd:                              # @gl_isinfd
 	j	.LBB86_2
 .LBB86_2:
 	ld	a0, -40(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi275:
+.Lpcrel_hi531:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.86)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi531)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi532:
 	auipc	a1, %pcrel_hi(.L__profc_gl_isinfd)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi275)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi532)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -6186,11 +7728,17 @@ gl_isinfl:                              # @gl_isinfl
 	addi	s0, sp, 48
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi533:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.87)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi533)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi276:
+.Lpcrel_hi534:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinfl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi276)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi534)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6205,9 +7753,15 @@ gl_isinfl:                              # @gl_isinfl
 	bltz	a0, .LBB87_3
 	j	.LBB87_1
 .LBB87_1:
-.Lpcrel_hi277:
+.Lpcrel_hi535:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.87)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi535)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi536:
 	auipc	a0, %pcrel_hi(.L__profc_gl_isinfl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi277)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi536)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6227,9 +7781,15 @@ gl_isinfl:                              # @gl_isinfl
 	j	.LBB87_2
 .LBB87_2:
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi278:
+.Lpcrel_hi537:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.87)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi537)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi538:
 	auipc	a1, %pcrel_hi(.L__profc_gl_isinfl)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi278)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi538)
 	ld	a1, 16(a2)
 	addi	a1, a1, 1
 	sd	a1, 16(a2)
@@ -6255,11 +7815,17 @@ _Qp_itoq:                               # @_Qp_itoq
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi539:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.88)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi539)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi279:
+.Lpcrel_hi540:
 	auipc	a0, %pcrel_hi(.L__profc__Qp_itoq)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi279)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi540)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6288,11 +7854,17 @@ ldexpf:                                 # @ldexpf
 	addi	s0, sp, 64
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi541:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi541)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi280:
+.Lpcrel_hi542:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi280)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi542)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6303,9 +7875,15 @@ ldexpf:                                 # @ldexpf
 	blt	a0, a1, .LBB89_12
 	j	.LBB89_1
 .LBB89_1:
-.Lpcrel_hi281:
+.Lpcrel_hi543:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi543)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi544:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi281)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi544)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6318,17 +7896,23 @@ ldexpf:                                 # @ldexpf
 	beqz	a0, .LBB89_12
 	j	.LBB89_2
 .LBB89_2:
-.Lpcrel_hi282:
+.Lpcrel_hi545:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi545)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi546:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi282)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi546)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB89_3
 .LBB89_3:
-.Lpcrel_hi283:
+.Lpcrel_hi547:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a2, a0, %pcrel_lo(.Lpcrel_hi283)
+	addi	a2, a0, %pcrel_lo(.Lpcrel_hi547)
 	ld	a0, 8(a2)
 	addi	a0, a0, 1
 	sd	a0, 8(a2)
@@ -6350,9 +7934,9 @@ ldexpf:                                 # @ldexpf
 	sw	a0, -28(s0)
 	j	.LBB89_6
 .LBB89_6:                               # =>This Inner Loop Header: Depth=1
-.Lpcrel_hi284:
+.Lpcrel_hi548:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi284)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi548)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -6364,9 +7948,15 @@ ldexpf:                                 # @ldexpf
 	beqz	a0, .LBB89_8
 	j	.LBB89_7
 .LBB89_7:                               #   in Loop: Header=BB89_6 Depth=1
-.Lpcrel_hi285:
+.Lpcrel_hi549:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi549)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi550:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi285)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi550)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -6385,14 +7975,20 @@ ldexpf:                                 # @ldexpf
 	bnez	a0, .LBB89_10
 	j	.LBB89_9
 .LBB89_9:
-.Lpcrel_hi286:
+.Lpcrel_hi551:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi286)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi551)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
 	j	.LBB89_11
 .LBB89_10:                              #   in Loop: Header=BB89_6 Depth=1
+.Lpcrel_hi552:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi552)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	lw	a1, -28(s0)
 	mv	a0, a1
 	call	__mulsf3
@@ -6420,11 +8016,17 @@ ldexp:                                  # @ldexp
 	addi	s0, sp, 64
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi553:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi553)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi287:
+.Lpcrel_hi554:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi287)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi554)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6436,9 +8038,15 @@ ldexp:                                  # @ldexp
 	blt	a0, a1, .LBB90_12
 	j	.LBB90_1
 .LBB90_1:
-.Lpcrel_hi288:
+.Lpcrel_hi555:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi555)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi556:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi288)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi556)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6451,17 +8059,23 @@ ldexp:                                  # @ldexp
 	beqz	a0, .LBB90_12
 	j	.LBB90_2
 .LBB90_2:
-.Lpcrel_hi289:
+.Lpcrel_hi557:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi557)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi558:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi289)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi558)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB90_3
 .LBB90_3:
-.Lpcrel_hi290:
+.Lpcrel_hi559:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a2, a0, %pcrel_lo(.Lpcrel_hi290)
+	addi	a2, a0, %pcrel_lo(.Lpcrel_hi559)
 	ld	a0, 8(a2)
 	addi	a0, a0, 1
 	sd	a0, 8(a2)
@@ -6485,9 +8099,9 @@ ldexp:                                  # @ldexp
 	sd	a0, -40(s0)
 	j	.LBB90_6
 .LBB90_6:                               # =>This Inner Loop Header: Depth=1
-.Lpcrel_hi291:
+.Lpcrel_hi560:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi291)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi560)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -6499,9 +8113,15 @@ ldexp:                                  # @ldexp
 	beqz	a0, .LBB90_8
 	j	.LBB90_7
 .LBB90_7:                               #   in Loop: Header=BB90_6 Depth=1
-.Lpcrel_hi292:
+.Lpcrel_hi561:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi561)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi562:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi292)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi562)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -6520,14 +8140,20 @@ ldexp:                                  # @ldexp
 	bnez	a0, .LBB90_10
 	j	.LBB90_9
 .LBB90_9:
-.Lpcrel_hi293:
+.Lpcrel_hi563:
 	auipc	a0, %pcrel_hi(.L__profc_ldexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi293)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi563)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
 	j	.LBB90_11
 .LBB90_10:                              #   in Loop: Header=BB90_6 Depth=1
+.Lpcrel_hi564:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi564)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a1, -40(s0)
 	mv	a0, a1
 	call	__muldf3
@@ -6556,12 +8182,18 @@ ldexpl:                                 # @ldexpl
                                         # kill: def $x13 killed $x11
                                         # kill: def $x13 killed $x10
                                         # kill: def $x13 killed $x12
+.Lpcrel_hi565:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi565)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
 	sw	a2, -36(s0)
-.Lpcrel_hi294:
+.Lpcrel_hi566:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi294)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi566)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6584,9 +8216,15 @@ ldexpl:                                 # @ldexpl
 	bnez	a0, .LBB91_14
 	j	.LBB91_3
 .LBB91_3:
-.Lpcrel_hi295:
+.Lpcrel_hi567:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi567)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi568:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi295)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi568)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6603,17 +8241,23 @@ ldexpl:                                 # @ldexpl
 	beqz	a0, .LBB91_14
 	j	.LBB91_4
 .LBB91_4:
-.Lpcrel_hi296:
+.Lpcrel_hi569:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi569)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi570:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi296)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi570)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB91_5
 .LBB91_5:
-.Lpcrel_hi297:
+.Lpcrel_hi571:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a2, a0, %pcrel_lo(.Lpcrel_hi297)
+	addi	a2, a0, %pcrel_lo(.Lpcrel_hi571)
 	ld	a0, 8(a2)
 	addi	a0, a0, 1
 	sd	a0, 8(a2)
@@ -6639,9 +8283,9 @@ ldexpl:                                 # @ldexpl
 	sd	a0, -64(s0)
 	j	.LBB91_8
 .LBB91_8:                               # =>This Inner Loop Header: Depth=1
-.Lpcrel_hi298:
+.Lpcrel_hi572:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi298)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi572)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -6653,9 +8297,15 @@ ldexpl:                                 # @ldexpl
 	beqz	a0, .LBB91_10
 	j	.LBB91_9
 .LBB91_9:                               #   in Loop: Header=BB91_8 Depth=1
-.Lpcrel_hi299:
+.Lpcrel_hi573:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi573)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi574:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi299)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi574)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -6677,14 +8327,20 @@ ldexpl:                                 # @ldexpl
 	bnez	a0, .LBB91_12
 	j	.LBB91_11
 .LBB91_11:
-.Lpcrel_hi300:
+.Lpcrel_hi575:
 	auipc	a0, %pcrel_hi(.L__profc_ldexpl)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi300)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi575)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
 	j	.LBB91_13
 .LBB91_12:                              #   in Loop: Header=BB91_8 Depth=1
+.Lpcrel_hi576:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi576)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a2, -64(s0)
 	ld	a3, -56(s0)
 	mv	a0, a2
@@ -6714,12 +8370,18 @@ memxor:                                 # @memxor
 	sd	ra, 56(sp)                      # 8-byte Folded Spill
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
+.Lpcrel_hi577:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.92)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi577)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi301:
+.Lpcrel_hi578:
 	auipc	a0, %pcrel_hi(.L__profc_memxor)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi301)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi578)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6733,9 +8395,9 @@ memxor:                                 # @memxor
 	beqz	a0, .LBB92_4
 	j	.LBB92_2
 .LBB92_2:                               #   in Loop: Header=BB92_1 Depth=1
-.Lpcrel_hi302:
+.Lpcrel_hi579:
 	auipc	a0, %pcrel_hi(.L__profc_memxor)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi302)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi579)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6751,6 +8413,12 @@ memxor:                                 # @memxor
 	sb	a0, 0(a1)
 	j	.LBB92_3
 .LBB92_3:                               #   in Loop: Header=BB92_1 Depth=1
+.Lpcrel_hi580:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.92)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi580)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, -1
 	sd	a0, -40(s0)
@@ -6776,9 +8444,9 @@ strncat:                                # @strncat
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi303:
+.Lpcrel_hi581:
 	auipc	a0, %pcrel_hi(.L__profc_strncat)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi303)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi581)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6797,9 +8465,15 @@ strncat:                                # @strncat
 	beqz	a0, .LBB93_4
 	j	.LBB93_2
 .LBB93_2:                               #   in Loop: Header=BB93_1 Depth=1
-.Lpcrel_hi304:
+.Lpcrel_hi582:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi582)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi583:
 	auipc	a0, %pcrel_hi(.L__profc_strncat)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi304)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi583)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6814,9 +8488,15 @@ strncat:                                # @strncat
 	j	.LBB93_3
 .LBB93_3:                               #   in Loop: Header=BB93_1 Depth=1
 	ld	a0, -72(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi305:
+.Lpcrel_hi584:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi584)
+	ld	a1, 8(a2)
+	addi	a1, a1, 1
+	sd	a1, 8(a2)
+.Lpcrel_hi585:
 	auipc	a1, %pcrel_hi(.L__profc_strncat)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi305)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi585)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -6828,14 +8508,20 @@ strncat:                                # @strncat
 	beqz	a0, .LBB93_7
 	j	.LBB93_5
 .LBB93_5:                               #   in Loop: Header=BB93_1 Depth=1
-.Lpcrel_hi306:
+.Lpcrel_hi586:
 	auipc	a0, %pcrel_hi(.L__profc_strncat)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi306)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi586)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB93_6
 .LBB93_6:                               #   in Loop: Header=BB93_1 Depth=1
+.Lpcrel_hi587:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi587)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -32(s0)
 	addi	a0, a0, 1
 	sd	a0, -32(s0)
@@ -6847,13 +8533,25 @@ strncat:                                # @strncat
 	sd	a0, -40(s0)
 	j	.LBB93_1
 .LBB93_7:
+.Lpcrel_hi588:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi588)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -40(s0)
 	bnez	a0, .LBB93_9
 	j	.LBB93_8
 .LBB93_8:
-.Lpcrel_hi307:
+.Lpcrel_hi589:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi589)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi590:
 	auipc	a0, %pcrel_hi(.L__profc_strncat)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi307)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi590)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -6879,11 +8577,17 @@ strnlen:                                # @strnlen
 	sd	ra, 56(sp)                      # 8-byte Folded Spill
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
+.Lpcrel_hi591:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.94)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi591)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi308:
+.Lpcrel_hi592:
 	auipc	a0, %pcrel_hi(.L__profc_strnlen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi308)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi592)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6898,9 +8602,15 @@ strnlen:                                # @strnlen
 	bgeu	a0, a1, .LBB94_4
 	j	.LBB94_2
 .LBB94_2:                               #   in Loop: Header=BB94_1 Depth=1
-.Lpcrel_hi309:
+.Lpcrel_hi593:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.94)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi593)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi594:
 	auipc	a0, %pcrel_hi(.L__profc_strnlen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi309)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi594)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -6915,9 +8625,15 @@ strnlen:                                # @strnlen
 	j	.LBB94_3
 .LBB94_3:                               #   in Loop: Header=BB94_1 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi310:
+.Lpcrel_hi595:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.94)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi595)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi596:
 	auipc	a1, %pcrel_hi(.L__profc_strnlen)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi310)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi596)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -6929,14 +8645,20 @@ strnlen:                                # @strnlen
 	beqz	a0, .LBB94_7
 	j	.LBB94_5
 .LBB94_5:                               #   in Loop: Header=BB94_1 Depth=1
-.Lpcrel_hi311:
+.Lpcrel_hi597:
 	auipc	a0, %pcrel_hi(.L__profc_strnlen)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi311)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi597)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
 	j	.LBB94_6
 .LBB94_6:                               #   in Loop: Header=BB94_1 Depth=1
+.Lpcrel_hi598:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.94)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi598)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -40(s0)
 	addi	a0, a0, 1
 	sd	a0, -40(s0)
@@ -6961,9 +8683,9 @@ strpbrk:                                # @strpbrk
 	addi	s0, sp, 48
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi312:
+.Lpcrel_hi599:
 	auipc	a0, %pcrel_hi(.L__profc_strpbrk)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi312)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi599)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -6975,9 +8697,9 @@ strpbrk:                                # @strpbrk
 	beqz	a0, .LBB95_8
 	j	.LBB95_2
 .LBB95_2:                               #   in Loop: Header=BB95_1 Depth=1
-.Lpcrel_hi313:
+.Lpcrel_hi600:
 	auipc	a0, %pcrel_hi(.L__profc_strpbrk)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi313)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi600)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -6991,9 +8713,9 @@ strpbrk:                                # @strpbrk
 	beqz	a0, .LBB95_7
 	j	.LBB95_4
 .LBB95_4:                               #   in Loop: Header=BB95_3 Depth=2
-.Lpcrel_hi314:
+.Lpcrel_hi601:
 	auipc	a0, %pcrel_hi(.L__profc_strpbrk)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi314)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi601)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7006,9 +8728,15 @@ strpbrk:                                # @strpbrk
 	bne	a0, a1, .LBB95_6
 	j	.LBB95_5
 .LBB95_5:
-.Lpcrel_hi315:
+.Lpcrel_hi602:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.95)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi602)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi603:
 	auipc	a0, %pcrel_hi(.L__profc_strpbrk)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi315)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi603)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -7016,13 +8744,31 @@ strpbrk:                                # @strpbrk
 	sd	a0, -24(s0)
 	j	.LBB95_9
 .LBB95_6:                               #   in Loop: Header=BB95_3 Depth=2
+.Lpcrel_hi604:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.95)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi604)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	j	.LBB95_3
 .LBB95_7:                               #   in Loop: Header=BB95_1 Depth=1
+.Lpcrel_hi605:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.95)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi605)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -32(s0)
 	addi	a0, a0, 1
 	sd	a0, -32(s0)
 	j	.LBB95_1
 .LBB95_8:
+.Lpcrel_hi606:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.95)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi606)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB95_9
@@ -7045,11 +8791,17 @@ strrchr:                                # @strrchr
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
                                         # kill: def $x12 killed $x11
+.Lpcrel_hi607:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.96)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi607)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi316:
+.Lpcrel_hi608:
 	auipc	a0, %pcrel_hi(.L__profc_strrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi316)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi608)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7057,9 +8809,15 @@ strrchr:                                # @strrchr
 	sd	a0, -40(s0)
 	j	.LBB96_2
 .LBB96_1:                               #   in Loop: Header=BB96_2 Depth=1
-.Lpcrel_hi317:
+.Lpcrel_hi609:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.96)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi609)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi610:
 	auipc	a0, %pcrel_hi(.L__profc_strrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi317)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi610)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7071,9 +8829,15 @@ strrchr:                                # @strrchr
 	bne	a0, a1, .LBB96_4
 	j	.LBB96_3
 .LBB96_3:                               #   in Loop: Header=BB96_2 Depth=1
-.Lpcrel_hi318:
+.Lpcrel_hi611:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.96)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi611)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi612:
 	auipc	a0, %pcrel_hi(.L__profc_strrchr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi318)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi612)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7109,9 +8873,9 @@ strstr:                                 # @strstr
 	addi	s0, sp, 64
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi319:
+.Lpcrel_hi613:
 	auipc	a0, %pcrel_hi(.L__profc_strstr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi319)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi613)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7124,9 +8888,15 @@ strstr:                                 # @strstr
 	bnez	a0, .LBB97_2
 	j	.LBB97_1
 .LBB97_1:
-.Lpcrel_hi320:
+.Lpcrel_hi614:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.97)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi614)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi615:
 	auipc	a0, %pcrel_hi(.L__profc_strstr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi320)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi615)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7144,9 +8914,9 @@ strstr:                                 # @strstr
 	beqz	a0, .LBB97_8
 	j	.LBB97_4
 .LBB97_4:                               #   in Loop: Header=BB97_3 Depth=1
-.Lpcrel_hi321:
+.Lpcrel_hi616:
 	auipc	a0, %pcrel_hi(.L__profc_strstr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi321)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi616)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7157,9 +8927,15 @@ strstr:                                 # @strstr
 	bnez	a0, .LBB97_6
 	j	.LBB97_5
 .LBB97_5:
-.Lpcrel_hi322:
+.Lpcrel_hi617:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.97)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi617)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi618:
 	auipc	a0, %pcrel_hi(.L__profc_strstr)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi322)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi618)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -7169,11 +8945,23 @@ strstr:                                 # @strstr
 .LBB97_6:                               #   in Loop: Header=BB97_3 Depth=1
 	j	.LBB97_7
 .LBB97_7:                               #   in Loop: Header=BB97_3 Depth=1
+.Lpcrel_hi619:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.97)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi619)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -48(s0)
 	addi	a0, a0, 1
 	sd	a0, -48(s0)
 	j	.LBB97_3
 .LBB97_8:
+.Lpcrel_hi620:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.97)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi620)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB97_9
@@ -7199,9 +8987,9 @@ copysign:                               # @copysign
                                         # kill: def $x12 killed $x10
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi323:
+.Lpcrel_hi621:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi323)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi621)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7211,9 +8999,15 @@ copysign:                               # @copysign
 	bgez	a0, .LBB98_3
 	j	.LBB98_1
 .LBB98_1:
-.Lpcrel_hi324:
+.Lpcrel_hi622:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi622)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi623:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi324)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi623)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -7226,17 +9020,23 @@ copysign:                               # @copysign
 	bge	a0, a1, .LBB98_3
 	j	.LBB98_2
 .LBB98_2:
-.Lpcrel_hi325:
+.Lpcrel_hi624:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi624)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi625:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi325)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi625)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
 	j	.LBB98_6
 .LBB98_3:
-.Lpcrel_hi326:
+.Lpcrel_hi626:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi326)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi626)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7249,9 +9049,15 @@ copysign:                               # @copysign
 	bge	a0, a1, .LBB98_7
 	j	.LBB98_4
 .LBB98_4:
-.Lpcrel_hi327:
+.Lpcrel_hi627:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi627)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi628:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi327)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi628)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -7261,17 +9067,23 @@ copysign:                               # @copysign
 	bgez	a0, .LBB98_7
 	j	.LBB98_5
 .LBB98_5:
-.Lpcrel_hi328:
+.Lpcrel_hi629:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi629)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi630:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi328)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi630)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB98_6
 .LBB98_6:
-.Lpcrel_hi329:
+.Lpcrel_hi631:
 	auipc	a0, %pcrel_hi(.L__profc_copysign)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi329)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi631)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7282,6 +9094,12 @@ copysign:                               # @copysign
 	sd	a0, -24(s0)
 	j	.LBB98_8
 .LBB98_7:
+.Lpcrel_hi632:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi632)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a0, -32(s0)
 	sd	a0, -24(s0)
 	j	.LBB98_8
@@ -7307,9 +9125,9 @@ memmem:                                 # @memmem
 	sd	a1, -40(s0)
 	sd	a2, -48(s0)
 	sd	a3, -56(s0)
-.Lpcrel_hi330:
+.Lpcrel_hi633:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi330)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi633)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7323,9 +9141,15 @@ memmem:                                 # @memmem
 	bnez	a0, .LBB99_2
 	j	.LBB99_1
 .LBB99_1:
-.Lpcrel_hi331:
+.Lpcrel_hi634:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi634)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi635:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi331)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi635)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7338,9 +9162,15 @@ memmem:                                 # @memmem
 	bgeu	a0, a1, .LBB99_4
 	j	.LBB99_3
 .LBB99_3:
-.Lpcrel_hi332:
+.Lpcrel_hi636:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi636)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi637:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi332)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi637)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7357,9 +9187,9 @@ memmem:                                 # @memmem
 	bltu	a0, a1, .LBB99_12
 	j	.LBB99_6
 .LBB99_6:                               #   in Loop: Header=BB99_5 Depth=1
-.Lpcrel_hi333:
+.Lpcrel_hi638:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi333)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi638)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -7370,9 +9200,15 @@ memmem:                                 # @memmem
 	bne	a0, a1, .LBB99_10
 	j	.LBB99_7
 .LBB99_7:                               #   in Loop: Header=BB99_5 Depth=1
-.Lpcrel_hi334:
+.Lpcrel_hi639:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi639)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi640:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi334)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi640)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -7386,17 +9222,23 @@ memmem:                                 # @memmem
 	bnez	a0, .LBB99_10
 	j	.LBB99_8
 .LBB99_8:
-.Lpcrel_hi335:
+.Lpcrel_hi641:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi641)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi642:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi335)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi642)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB99_9
 .LBB99_9:
-.Lpcrel_hi336:
+.Lpcrel_hi643:
 	auipc	a0, %pcrel_hi(.L__profc_memmem)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi336)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi643)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -7406,11 +9248,23 @@ memmem:                                 # @memmem
 .LBB99_10:                              #   in Loop: Header=BB99_5 Depth=1
 	j	.LBB99_11
 .LBB99_11:                              #   in Loop: Header=BB99_5 Depth=1
+.Lpcrel_hi644:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi644)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	ld	a0, -64(s0)
 	addi	a0, a0, 1
 	sd	a0, -64(s0)
 	j	.LBB99_5
 .LBB99_12:
+.Lpcrel_hi645:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi645)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	li	a0, 0
 	sd	a0, -24(s0)
 	j	.LBB99_13
@@ -7432,12 +9286,18 @@ mempcpy:                                # @mempcpy
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi646:
+	auipc	a3, %pcrel_hi(__llvm_gcov_ctr.100)
+	addi	ra, a3, %pcrel_lo(.Lpcrel_hi646)
+	ld	a3, 0(ra)
+	addi	a3, a3, 1
+	sd	a3, 0(ra)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi337:
+.Lpcrel_hi647:
 	auipc	a0, %pcrel_hi(.L__profc_mempcpy)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi337)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi647)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7469,9 +9329,9 @@ frexp:                                  # @frexp
                                         # kill: def $x12 killed $x10
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi338:
+.Lpcrel_hi648:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi338)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi648)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7483,9 +9343,15 @@ frexp:                                  # @frexp
 	bgez	a0, .LBB101_2
 	j	.LBB101_1
 .LBB101_1:
-.Lpcrel_hi339:
+.Lpcrel_hi649:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi649)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi650:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi339)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi650)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7505,9 +9371,15 @@ frexp:                                  # @frexp
 	bltz	a0, .LBB101_7
 	j	.LBB101_3
 .LBB101_3:
-.Lpcrel_hi340:
+.Lpcrel_hi651:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi651)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi652:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi340)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi652)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7520,9 +9392,15 @@ frexp:                                  # @frexp
 	bltz	a0, .LBB101_6
 	j	.LBB101_5
 .LBB101_5:                              #   in Loop: Header=BB101_4 Depth=1
-.Lpcrel_hi341:
+.Lpcrel_hi653:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi653)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi654:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi341)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi654)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -7545,9 +9423,15 @@ frexp:                                  # @frexp
 	bgez	a0, .LBB101_14
 	j	.LBB101_8
 .LBB101_8:
-.Lpcrel_hi342:
+.Lpcrel_hi655:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi655)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi656:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi342)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi656)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -7557,17 +9441,17 @@ frexp:                                  # @frexp
 	beqz	a0, .LBB101_14
 	j	.LBB101_9
 .LBB101_9:
-.Lpcrel_hi343:
+.Lpcrel_hi657:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi343)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi657)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
 	j	.LBB101_10
 .LBB101_10:
-.Lpcrel_hi344:
+.Lpcrel_hi658:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi344)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi658)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -7580,9 +9464,15 @@ frexp:                                  # @frexp
 	bgez	a0, .LBB101_13
 	j	.LBB101_12
 .LBB101_12:                             #   in Loop: Header=BB101_11 Depth=1
-.Lpcrel_hi345:
+.Lpcrel_hi659:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi659)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi660:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi345)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi660)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -7595,8 +9485,20 @@ frexp:                                  # @frexp
 	sd	a0, -24(s0)
 	j	.LBB101_11
 .LBB101_13:
+.Lpcrel_hi661:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi661)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	j	.LBB101_14
 .LBB101_14:
+.Lpcrel_hi662:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi662)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
 	j	.LBB101_15
 .LBB101_15:
 	lw	a0, -40(s0)
@@ -7606,9 +9508,15 @@ frexp:                                  # @frexp
 	beqz	a0, .LBB101_17
 	j	.LBB101_16
 .LBB101_16:
-.Lpcrel_hi346:
+.Lpcrel_hi663:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi663)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
+.Lpcrel_hi664:
 	auipc	a0, %pcrel_hi(.L__profc_frexp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi346)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi664)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -7636,11 +9544,17 @@ __muldi3:                               # @__muldi3
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi665:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.102)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi665)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi347:
+.Lpcrel_hi666:
 	auipc	a0, %pcrel_hi(.L__profc___muldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi347)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi666)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7654,9 +9568,9 @@ __muldi3:                               # @__muldi3
 	beqz	a0, .LBB102_5
 	j	.LBB102_2
 .LBB102_2:                              #   in Loop: Header=BB102_1 Depth=1
-.Lpcrel_hi348:
+.Lpcrel_hi667:
 	auipc	a0, %pcrel_hi(.L__profc___muldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi348)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi667)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7665,9 +9579,15 @@ __muldi3:                               # @__muldi3
 	beqz	a0, .LBB102_4
 	j	.LBB102_3
 .LBB102_3:                              #   in Loop: Header=BB102_1 Depth=1
-.Lpcrel_hi349:
+.Lpcrel_hi668:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.102)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi668)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi669:
 	auipc	a0, %pcrel_hi(.L__profc___muldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi349)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi669)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7677,6 +9597,12 @@ __muldi3:                               # @__muldi3
 	sd	a0, -40(s0)
 	j	.LBB102_4
 .LBB102_4:                              #   in Loop: Header=BB102_1 Depth=1
+.Lpcrel_hi670:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.102)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi670)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -32(s0)
 	slli	a0, a0, 1
 	sd	a0, -32(s0)
@@ -7707,9 +9633,9 @@ udivmodsi4:                             # @udivmodsi4
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
 	sd	a2, -40(s0)
-.Lpcrel_hi350:
+.Lpcrel_hi671:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi350)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi671)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7726,9 +9652,15 @@ udivmodsi4:                             # @udivmodsi4
 	bgeu	a0, a1, .LBB103_6
 	j	.LBB103_2
 .LBB103_2:                              #   in Loop: Header=BB103_1 Depth=1
-.Lpcrel_hi351:
+.Lpcrel_hi672:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi672)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi673:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi351)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi673)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -7738,17 +9670,23 @@ udivmodsi4:                             # @udivmodsi4
 	beqz	a0, .LBB103_6
 	j	.LBB103_3
 .LBB103_3:                              #   in Loop: Header=BB103_1 Depth=1
-.Lpcrel_hi352:
+.Lpcrel_hi674:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi674)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi675:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi352)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi675)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB103_4
 .LBB103_4:                              #   in Loop: Header=BB103_1 Depth=1
-.Lpcrel_hi353:
+.Lpcrel_hi676:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi353)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi676)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7762,9 +9700,15 @@ udivmodsi4:                             # @udivmodsi4
 	j	.LBB103_5
 .LBB103_5:                              #   in Loop: Header=BB103_1 Depth=1
 	ld	a0, -64(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi354:
+.Lpcrel_hi677:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi677)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi678:
 	auipc	a1, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi354)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi678)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -7776,9 +9720,15 @@ udivmodsi4:                             # @udivmodsi4
 	beqz	a0, .LBB103_8
 	j	.LBB103_7
 .LBB103_7:                              #   in Loop: Header=BB103_1 Depth=1
-.Lpcrel_hi355:
+.Lpcrel_hi679:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi679)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi680:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi355)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi680)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7796,9 +9746,9 @@ udivmodsi4:                             # @udivmodsi4
 	beqz	a0, .LBB103_13
 	j	.LBB103_10
 .LBB103_10:                             #   in Loop: Header=BB103_9 Depth=1
-.Lpcrel_hi356:
+.Lpcrel_hi681:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi356)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi681)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -7807,9 +9757,15 @@ udivmodsi4:                             # @udivmodsi4
 	bltu	a0, a1, .LBB103_12
 	j	.LBB103_11
 .LBB103_11:                             #   in Loop: Header=BB103_9 Depth=1
-.Lpcrel_hi357:
+.Lpcrel_hi682:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi682)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi683:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi357)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi683)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -7823,6 +9779,12 @@ udivmodsi4:                             # @udivmodsi4
 	sw	a0, -48(s0)
 	j	.LBB103_12
 .LBB103_12:                             #   in Loop: Header=BB103_9 Depth=1
+.Lpcrel_hi684:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi684)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lwu	a0, -44(s0)
 	srli	a0, a0, 1
 	sw	a0, -44(s0)
@@ -7835,9 +9797,15 @@ udivmodsi4:                             # @udivmodsi4
 	beqz	a0, .LBB103_15
 	j	.LBB103_14
 .LBB103_14:
-.Lpcrel_hi358:
+.Lpcrel_hi685:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi685)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
+.Lpcrel_hi686:
 	auipc	a0, %pcrel_hi(.L__profc_udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi358)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi686)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -7845,6 +9813,12 @@ udivmodsi4:                             # @udivmodsi4
 	sw	a0, -20(s0)
 	j	.LBB103_16
 .LBB103_15:
+.Lpcrel_hi687:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi687)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
 	lw	a0, -48(s0)
 	sw	a0, -20(s0)
 	j	.LBB103_16
@@ -7868,9 +9842,9 @@ __clrsbqi2:                             # @__clrsbqi2
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sb	a0, -21(s0)
-.Lpcrel_hi359:
+.Lpcrel_hi688:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbqi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi359)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi688)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7878,9 +9852,15 @@ __clrsbqi2:                             # @__clrsbqi2
 	bnez	a0, .LBB104_2
 	j	.LBB104_1
 .LBB104_1:
-.Lpcrel_hi360:
+.Lpcrel_hi689:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.104)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi689)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi690:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbqi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi360)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi690)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7893,9 +9873,15 @@ __clrsbqi2:                             # @__clrsbqi2
 	bnez	a0, .LBB104_4
 	j	.LBB104_3
 .LBB104_3:
-.Lpcrel_hi361:
+.Lpcrel_hi691:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.104)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi691)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi692:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbqi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi361)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi692)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7903,6 +9889,12 @@ __clrsbqi2:                             # @__clrsbqi2
 	sw	a0, -20(s0)
 	j	.LBB104_5
 .LBB104_4:
+.Lpcrel_hi693:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.104)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi693)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lbu	a0, -21(s0)
 	slli	a0, a0, 8
 	srli	a1, a0, 1
@@ -7961,9 +9953,9 @@ __clrsbdi2:                             # @__clrsbdi2
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
 	sd	a0, -32(s0)
-.Lpcrel_hi362:
+.Lpcrel_hi694:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi362)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi694)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -7971,9 +9963,15 @@ __clrsbdi2:                             # @__clrsbdi2
 	bgez	a0, .LBB105_2
 	j	.LBB105_1
 .LBB105_1:
-.Lpcrel_hi363:
+.Lpcrel_hi695:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.105)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi695)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi696:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi363)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi696)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -7986,9 +9984,15 @@ __clrsbdi2:                             # @__clrsbdi2
 	bnez	a0, .LBB105_4
 	j	.LBB105_3
 .LBB105_3:
-.Lpcrel_hi364:
+.Lpcrel_hi697:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.105)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi697)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi698:
 	auipc	a0, %pcrel_hi(.L__profc___clrsbdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi364)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi698)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -7996,6 +10000,12 @@ __clrsbdi2:                             # @__clrsbdi2
 	sw	a0, -20(s0)
 	j	.LBB105_5
 .LBB105_4:
+.Lpcrel_hi699:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.105)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi699)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -32(s0)
 	srli	a1, a0, 1
 	or	a0, a0, a1
@@ -8063,11 +10073,17 @@ __mulsi3:                               # @__mulsi3
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi700:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.106)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi700)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi365:
+.Lpcrel_hi701:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi365)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi701)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8079,9 +10095,9 @@ __mulsi3:                               # @__mulsi3
 	beqz	a0, .LBB106_5
 	j	.LBB106_2
 .LBB106_2:                              #   in Loop: Header=BB106_1 Depth=1
-.Lpcrel_hi366:
+.Lpcrel_hi702:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi366)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi702)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8090,9 +10106,15 @@ __mulsi3:                               # @__mulsi3
 	beqz	a0, .LBB106_4
 	j	.LBB106_3
 .LBB106_3:                              #   in Loop: Header=BB106_1 Depth=1
-.Lpcrel_hi367:
+.Lpcrel_hi703:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.106)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi703)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi704:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi367)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi704)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8102,6 +10124,12 @@ __mulsi3:                               # @__mulsi3
 	sw	a0, -28(s0)
 	j	.LBB106_4
 .LBB106_4:                              #   in Loop: Header=BB106_1 Depth=1
+.Lpcrel_hi705:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.106)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi705)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lwu	a0, -20(s0)
 	srli	a0, a0, 1
 	sw	a0, -20(s0)
@@ -8131,9 +10159,9 @@ __cmovd:                                # @__cmovd
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sw	a2, -36(s0)
-.Lpcrel_hi368:
+.Lpcrel_hi706:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi368)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi706)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8152,9 +10180,15 @@ __cmovd:                                # @__cmovd
 	bltu	a0, a1, .LBB107_3
 	j	.LBB107_1
 .LBB107_1:
-.Lpcrel_hi369:
+.Lpcrel_hi707:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi707)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi708:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi369)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi708)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8165,17 +10199,17 @@ __cmovd:                                # @__cmovd
 	bltu	a0, a1, .LBB107_3
 	j	.LBB107_2
 .LBB107_2:
-.Lpcrel_hi370:
+.Lpcrel_hi709:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi370)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi709)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB107_11
 .LBB107_3:
-.Lpcrel_hi371:
+.Lpcrel_hi710:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi371)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi710)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8188,9 +10222,9 @@ __cmovd:                                # @__cmovd
 	bgeu	a0, a1, .LBB107_7
 	j	.LBB107_5
 .LBB107_5:                              #   in Loop: Header=BB107_4 Depth=1
-.Lpcrel_hi372:
+.Lpcrel_hi711:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi372)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi711)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -8204,6 +10238,12 @@ __cmovd:                                # @__cmovd
 	sd	a0, 0(a1)
 	j	.LBB107_6
 .LBB107_6:                              #   in Loop: Header=BB107_4 Depth=1
+.Lpcrel_hi712:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi712)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a0, -40(s0)
 	addiw	a0, a0, 1
 	sw	a0, -40(s0)
@@ -8216,9 +10256,15 @@ __cmovd:                                # @__cmovd
 	bgeu	a0, a1, .LBB107_10
 	j	.LBB107_9
 .LBB107_9:                              #   in Loop: Header=BB107_8 Depth=1
-.Lpcrel_hi373:
+.Lpcrel_hi713:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi713)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi714:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi373)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi714)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -8234,6 +10280,12 @@ __cmovd:                                # @__cmovd
 	sw	a0, -48(s0)
 	j	.LBB107_8
 .LBB107_10:
+.Lpcrel_hi715:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi715)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB107_15
 .LBB107_11:
 	j	.LBB107_12
@@ -8244,9 +10296,15 @@ __cmovd:                                # @__cmovd
 	beqz	a0, .LBB107_14
 	j	.LBB107_13
 .LBB107_13:                             #   in Loop: Header=BB107_12 Depth=1
-.Lpcrel_hi374:
+.Lpcrel_hi716:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi716)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi717:
 	auipc	a0, %pcrel_hi(.L__profc___cmovd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi374)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi717)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -8259,6 +10317,12 @@ __cmovd:                                # @__cmovd
 	sb	a0, 0(a1)
 	j	.LBB107_12
 .LBB107_14:
+.Lpcrel_hi718:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi718)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	j	.LBB107_15
 .LBB107_15:
 	ld	ra, 56(sp)                      # 8-byte Folded Reload
@@ -8281,9 +10345,9 @@ __cmovh:                                # @__cmovh
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sw	a2, -36(s0)
-.Lpcrel_hi375:
+.Lpcrel_hi719:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi375)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi719)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8299,9 +10363,15 @@ __cmovh:                                # @__cmovh
 	bltu	a0, a1, .LBB108_3
 	j	.LBB108_1
 .LBB108_1:
-.Lpcrel_hi376:
+.Lpcrel_hi720:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi720)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi721:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi376)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi721)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8312,17 +10382,17 @@ __cmovh:                                # @__cmovh
 	bltu	a0, a1, .LBB108_3
 	j	.LBB108_2
 .LBB108_2:
-.Lpcrel_hi377:
+.Lpcrel_hi722:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi377)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi722)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB108_10
 .LBB108_3:
-.Lpcrel_hi378:
+.Lpcrel_hi723:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi378)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi723)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8335,9 +10405,9 @@ __cmovh:                                # @__cmovh
 	bgeu	a0, a1, .LBB108_7
 	j	.LBB108_5
 .LBB108_5:                              #   in Loop: Header=BB108_4 Depth=1
-.Lpcrel_hi379:
+.Lpcrel_hi724:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi379)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi724)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -8351,6 +10421,12 @@ __cmovh:                                # @__cmovh
 	sh	a0, 0(a1)
 	j	.LBB108_6
 .LBB108_6:                              #   in Loop: Header=BB108_4 Depth=1
+.Lpcrel_hi725:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi725)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a0, -40(s0)
 	addiw	a0, a0, 1
 	sw	a0, -40(s0)
@@ -8361,9 +10437,15 @@ __cmovh:                                # @__cmovh
 	beqz	a0, .LBB108_9
 	j	.LBB108_8
 .LBB108_8:
-.Lpcrel_hi380:
+.Lpcrel_hi726:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi726)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi727:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi380)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi727)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -8379,6 +10461,12 @@ __cmovh:                                # @__cmovh
 	sb	a0, 0(a1)
 	j	.LBB108_9
 .LBB108_9:
+.Lpcrel_hi728:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi728)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB108_14
 .LBB108_10:
 	j	.LBB108_11
@@ -8389,9 +10477,15 @@ __cmovh:                                # @__cmovh
 	beqz	a0, .LBB108_13
 	j	.LBB108_12
 .LBB108_12:                             #   in Loop: Header=BB108_11 Depth=1
-.Lpcrel_hi381:
+.Lpcrel_hi729:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi729)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi730:
 	auipc	a0, %pcrel_hi(.L__profc___cmovh)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi381)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi730)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -8404,6 +10498,12 @@ __cmovh:                                # @__cmovh
 	sb	a0, 0(a1)
 	j	.LBB108_11
 .LBB108_13:
+.Lpcrel_hi731:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi731)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	j	.LBB108_14
 .LBB108_14:
 	ld	ra, 56(sp)                      # 8-byte Folded Reload
@@ -8426,9 +10526,9 @@ __cmovw:                                # @__cmovw
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
 	sw	a2, -36(s0)
-.Lpcrel_hi382:
+.Lpcrel_hi732:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi382)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi732)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8447,9 +10547,15 @@ __cmovw:                                # @__cmovw
 	bltu	a0, a1, .LBB109_3
 	j	.LBB109_1
 .LBB109_1:
-.Lpcrel_hi383:
+.Lpcrel_hi733:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi733)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi734:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi383)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi734)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8460,17 +10566,17 @@ __cmovw:                                # @__cmovw
 	bltu	a0, a1, .LBB109_3
 	j	.LBB109_2
 .LBB109_2:
-.Lpcrel_hi384:
+.Lpcrel_hi735:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi384)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi735)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB109_11
 .LBB109_3:
-.Lpcrel_hi385:
+.Lpcrel_hi736:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi385)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi736)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8483,9 +10589,9 @@ __cmovw:                                # @__cmovw
 	bgeu	a0, a1, .LBB109_7
 	j	.LBB109_5
 .LBB109_5:                              #   in Loop: Header=BB109_4 Depth=1
-.Lpcrel_hi386:
+.Lpcrel_hi737:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi386)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi737)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -8499,6 +10605,12 @@ __cmovw:                                # @__cmovw
 	sw	a0, 0(a1)
 	j	.LBB109_6
 .LBB109_6:                              #   in Loop: Header=BB109_4 Depth=1
+.Lpcrel_hi738:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi738)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a0, -40(s0)
 	addiw	a0, a0, 1
 	sw	a0, -40(s0)
@@ -8511,9 +10623,15 @@ __cmovw:                                # @__cmovw
 	bgeu	a0, a1, .LBB109_10
 	j	.LBB109_9
 .LBB109_9:                              #   in Loop: Header=BB109_8 Depth=1
-.Lpcrel_hi387:
+.Lpcrel_hi739:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi739)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi740:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi387)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi740)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -8529,6 +10647,12 @@ __cmovw:                                # @__cmovw
 	sw	a0, -48(s0)
 	j	.LBB109_8
 .LBB109_10:
+.Lpcrel_hi741:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi741)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	j	.LBB109_15
 .LBB109_11:
 	j	.LBB109_12
@@ -8539,9 +10663,15 @@ __cmovw:                                # @__cmovw
 	beqz	a0, .LBB109_14
 	j	.LBB109_13
 .LBB109_13:                             #   in Loop: Header=BB109_12 Depth=1
-.Lpcrel_hi388:
+.Lpcrel_hi742:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi742)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi743:
 	auipc	a0, %pcrel_hi(.L__profc___cmovw)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi388)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi743)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -8554,6 +10684,12 @@ __cmovw:                                # @__cmovw
 	sb	a0, 0(a1)
 	j	.LBB109_12
 .LBB109_14:
+.Lpcrel_hi744:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi744)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	j	.LBB109_15
 .LBB109_15:
 	ld	ra, 56(sp)                      # 8-byte Folded Reload
@@ -8574,11 +10710,17 @@ __modi:                                 # @__modi
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi745:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.110)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi745)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi389:
+.Lpcrel_hi746:
 	auipc	a0, %pcrel_hi(.L__profc___modi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi389)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi746)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8602,10 +10744,16 @@ __uitod:                                # @__uitod
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi747:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.111)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi747)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi390:
+.Lpcrel_hi748:
 	auipc	a0, %pcrel_hi(.L__profc___uitod)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi390)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi748)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8628,10 +10776,16 @@ __uitof:                                # @__uitof
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi749:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.112)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi749)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi391:
+.Lpcrel_hi750:
 	auipc	a0, %pcrel_hi(.L__profc___uitof)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi391)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi750)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8653,10 +10807,16 @@ __ulltod:                               # @__ulltod
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi751:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.113)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi751)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi392:
+.Lpcrel_hi752:
 	auipc	a0, %pcrel_hi(.L__profc___ulltod)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi392)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi752)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8678,10 +10838,16 @@ __ulltof:                               # @__ulltof
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi753:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.114)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi753)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi393:
+.Lpcrel_hi754:
 	auipc	a0, %pcrel_hi(.L__profc___ulltof)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi393)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi754)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8705,11 +10871,17 @@ __umodi:                                # @__umodi
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi755:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.115)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi755)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi394:
+.Lpcrel_hi756:
 	auipc	a0, %pcrel_hi(.L__profc___umodi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi394)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi756)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8733,10 +10905,16 @@ __clzhi2:                               # @__clzhi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi757:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.116)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi757)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sh	a0, -18(s0)
-.Lpcrel_hi395:
+.Lpcrel_hi758:
 	auipc	a0, %pcrel_hi(.L__profc___clzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi395)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi758)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8749,9 +10927,9 @@ __clzhi2:                               # @__clzhi2
 	blt	a0, a1, .LBB116_6
 	j	.LBB116_2
 .LBB116_2:                              #   in Loop: Header=BB116_1 Depth=1
-.Lpcrel_hi396:
+.Lpcrel_hi759:
 	auipc	a0, %pcrel_hi(.L__profc___clzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi396)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi759)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8764,9 +10942,15 @@ __clzhi2:                               # @__clzhi2
 	beqz	a0, .LBB116_4
 	j	.LBB116_3
 .LBB116_3:
-.Lpcrel_hi397:
+.Lpcrel_hi760:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.116)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi760)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi761:
 	auipc	a0, %pcrel_hi(.L__profc___clzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi397)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi761)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8774,6 +10958,12 @@ __clzhi2:                               # @__clzhi2
 .LBB116_4:                              #   in Loop: Header=BB116_1 Depth=1
 	j	.LBB116_5
 .LBB116_5:                              #   in Loop: Header=BB116_1 Depth=1
+.Lpcrel_hi762:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.116)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi762)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -24(s0)
 	addiw	a0, a0, 1
 	sw	a0, -24(s0)
@@ -8797,10 +10987,16 @@ __ctzhi2:                               # @__ctzhi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi763:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.117)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi763)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sh	a0, -18(s0)
-.Lpcrel_hi398:
+.Lpcrel_hi764:
 	auipc	a0, %pcrel_hi(.L__profc___ctzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi398)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi764)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8813,9 +11009,9 @@ __ctzhi2:                               # @__ctzhi2
 	blt	a0, a1, .LBB117_6
 	j	.LBB117_2
 .LBB117_2:                              #   in Loop: Header=BB117_1 Depth=1
-.Lpcrel_hi399:
+.Lpcrel_hi765:
 	auipc	a0, %pcrel_hi(.L__profc___ctzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi399)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi765)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8826,9 +11022,15 @@ __ctzhi2:                               # @__ctzhi2
 	beqz	a0, .LBB117_4
 	j	.LBB117_3
 .LBB117_3:
-.Lpcrel_hi400:
+.Lpcrel_hi766:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.117)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi766)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi767:
 	auipc	a0, %pcrel_hi(.L__profc___ctzhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi400)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi767)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8836,6 +11038,12 @@ __ctzhi2:                               # @__ctzhi2
 .LBB117_4:                              #   in Loop: Header=BB117_1 Depth=1
 	j	.LBB117_5
 .LBB117_5:                              #   in Loop: Header=BB117_1 Depth=1
+.Lpcrel_hi768:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.117)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi768)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -24(s0)
 	addiw	a0, a0, 1
 	sw	a0, -24(s0)
@@ -8860,9 +11068,9 @@ __fixunssfsi:                           # @__fixunssfsi
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
 	sw	a0, -28(s0)
-.Lpcrel_hi401:
+.Lpcrel_hi769:
 	auipc	a0, %pcrel_hi(.L__profc___fixunssfsi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi401)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi769)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8872,9 +11080,15 @@ __fixunssfsi:                           # @__fixunssfsi
 	bltz	a0, .LBB118_2
 	j	.LBB118_1
 .LBB118_1:
-.Lpcrel_hi402:
+.Lpcrel_hi770:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.118)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi770)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi771:
 	auipc	a0, %pcrel_hi(.L__profc___fixunssfsi)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi402)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi771)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8887,6 +11101,12 @@ __fixunssfsi:                           # @__fixunssfsi
 	sd	a0, -24(s0)
 	j	.LBB118_3
 .LBB118_2:
+.Lpcrel_hi772:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.118)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi772)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a0, -28(s0)
 	call	__fixsfdi
 	sd	a0, -24(s0)
@@ -8910,10 +11130,16 @@ __parityhi2:                            # @__parityhi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi773:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.119)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi773)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sh	a0, -18(s0)
-.Lpcrel_hi403:
+.Lpcrel_hi774:
 	auipc	a0, %pcrel_hi(.L__profc___parityhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi403)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi774)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8927,9 +11153,9 @@ __parityhi2:                            # @__parityhi2
 	blt	a0, a1, .LBB119_6
 	j	.LBB119_2
 .LBB119_2:                              #   in Loop: Header=BB119_1 Depth=1
-.Lpcrel_hi404:
+.Lpcrel_hi775:
 	auipc	a0, %pcrel_hi(.L__profc___parityhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi404)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi775)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -8940,9 +11166,15 @@ __parityhi2:                            # @__parityhi2
 	beqz	a0, .LBB119_4
 	j	.LBB119_3
 .LBB119_3:                              #   in Loop: Header=BB119_1 Depth=1
-.Lpcrel_hi405:
+.Lpcrel_hi776:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.119)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi776)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi777:
 	auipc	a0, %pcrel_hi(.L__profc___parityhi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi405)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi777)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -8953,6 +11185,12 @@ __parityhi2:                            # @__parityhi2
 .LBB119_4:                              #   in Loop: Header=BB119_1 Depth=1
 	j	.LBB119_5
 .LBB119_5:                              #   in Loop: Header=BB119_1 Depth=1
+.Lpcrel_hi778:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.119)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi778)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -24(s0)
 	addiw	a0, a0, 1
 	sw	a0, -24(s0)
@@ -8977,10 +11215,16 @@ __popcounthi2:                          # @__popcounthi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi779:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.120)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi779)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sh	a0, -18(s0)
-.Lpcrel_hi406:
+.Lpcrel_hi780:
 	auipc	a0, %pcrel_hi(.L__profc___popcounthi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi406)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi780)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -8994,9 +11238,9 @@ __popcounthi2:                          # @__popcounthi2
 	blt	a0, a1, .LBB120_6
 	j	.LBB120_2
 .LBB120_2:                              #   in Loop: Header=BB120_1 Depth=1
-.Lpcrel_hi407:
+.Lpcrel_hi781:
 	auipc	a0, %pcrel_hi(.L__profc___popcounthi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi407)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi781)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9007,9 +11251,15 @@ __popcounthi2:                          # @__popcounthi2
 	beqz	a0, .LBB120_4
 	j	.LBB120_3
 .LBB120_3:                              #   in Loop: Header=BB120_1 Depth=1
-.Lpcrel_hi408:
+.Lpcrel_hi782:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.120)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi782)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi783:
 	auipc	a0, %pcrel_hi(.L__profc___popcounthi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi408)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi783)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9020,6 +11270,12 @@ __popcounthi2:                          # @__popcounthi2
 .LBB120_4:                              #   in Loop: Header=BB120_1 Depth=1
 	j	.LBB120_5
 .LBB120_5:                              #   in Loop: Header=BB120_1 Depth=1
+.Lpcrel_hi784:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.120)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi784)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -24(s0)
 	addiw	a0, a0, 1
 	sw	a0, -24(s0)
@@ -9044,11 +11300,17 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi785:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.121)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi785)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi409:
+.Lpcrel_hi786:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_iq2000)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi409)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi786)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9060,9 +11322,9 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	beqz	a0, .LBB121_5
 	j	.LBB121_2
 .LBB121_2:                              #   in Loop: Header=BB121_1 Depth=1
-.Lpcrel_hi410:
+.Lpcrel_hi787:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_iq2000)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi410)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi787)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9071,9 +11333,15 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	beqz	a0, .LBB121_4
 	j	.LBB121_3
 .LBB121_3:                              #   in Loop: Header=BB121_1 Depth=1
-.Lpcrel_hi411:
+.Lpcrel_hi788:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.121)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi788)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi789:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_iq2000)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi411)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi789)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9083,6 +11351,12 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	sw	a0, -28(s0)
 	j	.LBB121_4
 .LBB121_4:                              #   in Loop: Header=BB121_1 Depth=1
+.Lpcrel_hi790:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.121)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi790)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lwu	a0, -20(s0)
 	srli	a0, a0, 1
 	sw	a0, -20(s0)
@@ -9112,9 +11386,9 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
                                         # kill: def $x12 killed $x10
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi412:
+.Lpcrel_hi791:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_lm32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi412)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi791)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9124,9 +11398,15 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	bnez	a0, .LBB122_2
 	j	.LBB122_1
 .LBB122_1:
-.Lpcrel_hi413:
+.Lpcrel_hi792:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.122)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi792)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi793:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_lm32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi413)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi793)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9134,15 +11414,21 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	sw	a0, -20(s0)
 	j	.LBB122_8
 .LBB122_2:
+.Lpcrel_hi794:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.122)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi794)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	j	.LBB122_3
 .LBB122_3:                              # =>This Inner Loop Header: Depth=1
 	lw	a0, -28(s0)
 	beqz	a0, .LBB122_7
 	j	.LBB122_4
 .LBB122_4:                              #   in Loop: Header=BB122_3 Depth=1
-.Lpcrel_hi414:
+.Lpcrel_hi795:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_lm32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi414)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi795)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9151,9 +11437,15 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	beqz	a0, .LBB122_6
 	j	.LBB122_5
 .LBB122_5:                              #   in Loop: Header=BB122_3 Depth=1
-.Lpcrel_hi415:
+.Lpcrel_hi796:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.122)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi796)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi797:
 	auipc	a0, %pcrel_hi(.L__profc___mulsi3_lm32)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi415)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi797)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -9163,6 +11455,12 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	sw	a0, -32(s0)
 	j	.LBB122_6
 .LBB122_6:                              #   in Loop: Header=BB122_3 Depth=1
+.Lpcrel_hi798:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.122)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi798)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	lw	a0, -24(s0)
 	slliw	a0, a0, 1
 	sw	a0, -24(s0)
@@ -9198,9 +11496,9 @@ __udivmodsi4:                           # @__udivmodsi4
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
 	sw	a2, -32(s0)
-.Lpcrel_hi416:
+.Lpcrel_hi799:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi416)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi799)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9217,9 +11515,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	bgeu	a0, a1, .LBB123_6
 	j	.LBB123_2
 .LBB123_2:                              #   in Loop: Header=BB123_1 Depth=1
-.Lpcrel_hi417:
+.Lpcrel_hi800:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi800)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi801:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi417)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi801)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -9229,17 +11533,23 @@ __udivmodsi4:                           # @__udivmodsi4
 	beqz	a0, .LBB123_6
 	j	.LBB123_3
 .LBB123_3:                              #   in Loop: Header=BB123_1 Depth=1
-.Lpcrel_hi418:
+.Lpcrel_hi802:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi802)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi803:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi418)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi803)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB123_4
 .LBB123_4:                              #   in Loop: Header=BB123_1 Depth=1
-.Lpcrel_hi419:
+.Lpcrel_hi804:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi419)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi804)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9253,9 +11563,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	j	.LBB123_5
 .LBB123_5:                              #   in Loop: Header=BB123_1 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi420:
+.Lpcrel_hi805:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi805)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi806:
 	auipc	a1, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi420)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi806)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -9267,9 +11583,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	beqz	a0, .LBB123_8
 	j	.LBB123_7
 .LBB123_7:                              #   in Loop: Header=BB123_1 Depth=1
-.Lpcrel_hi421:
+.Lpcrel_hi807:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi807)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi808:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi421)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi808)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9287,9 +11609,9 @@ __udivmodsi4:                           # @__udivmodsi4
 	beqz	a0, .LBB123_13
 	j	.LBB123_10
 .LBB123_10:                             #   in Loop: Header=BB123_9 Depth=1
-.Lpcrel_hi422:
+.Lpcrel_hi809:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi422)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi809)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -9298,9 +11620,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	bltu	a0, a1, .LBB123_12
 	j	.LBB123_11
 .LBB123_11:                             #   in Loop: Header=BB123_9 Depth=1
-.Lpcrel_hi423:
+.Lpcrel_hi810:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi810)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi811:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi423)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi811)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -9314,6 +11642,12 @@ __udivmodsi4:                           # @__udivmodsi4
 	sw	a0, -40(s0)
 	j	.LBB123_12
 .LBB123_12:                             #   in Loop: Header=BB123_9 Depth=1
+.Lpcrel_hi812:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi812)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lwu	a0, -36(s0)
 	srli	a0, a0, 1
 	sw	a0, -36(s0)
@@ -9326,9 +11660,15 @@ __udivmodsi4:                           # @__udivmodsi4
 	beqz	a0, .LBB123_15
 	j	.LBB123_14
 .LBB123_14:
-.Lpcrel_hi424:
+.Lpcrel_hi813:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi813)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
+.Lpcrel_hi814:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi424)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi814)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -9336,6 +11676,12 @@ __udivmodsi4:                           # @__udivmodsi4
 	sw	a0, -20(s0)
 	j	.LBB123_16
 .LBB123_15:
+.Lpcrel_hi815:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi815)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
 	lw	a0, -40(s0)
 	sw	a0, -20(s0)
 	j	.LBB123_16
@@ -9361,9 +11707,9 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
                                         # kill: def $x12 killed $x10
 	sw	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi425:
+.Lpcrel_hi816:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi425)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi816)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9373,9 +11719,15 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	bgez	a0, .LBB124_2
 	j	.LBB124_1
 .LBB124_1:
-.Lpcrel_hi426:
+.Lpcrel_hi817:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.124)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi817)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi818:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi426)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi818)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9391,9 +11743,15 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	bge	a0, a1, .LBB124_4
 	j	.LBB124_3
 .LBB124_3:
-.Lpcrel_hi427:
+.Lpcrel_hi819:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.124)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi819)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi820:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpf)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi427)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi820)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9401,6 +11759,12 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	sw	a0, -20(s0)
 	j	.LBB124_5
 .LBB124_4:
+.Lpcrel_hi821:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.124)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi821)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sw	a0, -20(s0)
 	j	.LBB124_5
@@ -9426,9 +11790,9 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
                                         # kill: def $x12 killed $x10
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi428:
+.Lpcrel_hi822:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi428)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi822)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9438,9 +11802,15 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	bgez	a0, .LBB125_2
 	j	.LBB125_1
 .LBB125_1:
-.Lpcrel_hi429:
+.Lpcrel_hi823:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.125)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi823)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi824:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi429)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi824)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9456,9 +11826,15 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	bge	a0, a1, .LBB125_4
 	j	.LBB125_3
 .LBB125_3:
-.Lpcrel_hi430:
+.Lpcrel_hi825:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.125)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi825)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi826:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_cmpd)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi430)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi826)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9466,6 +11842,12 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	sw	a0, -20(s0)
 	j	.LBB125_5
 .LBB125_4:
+.Lpcrel_hi827:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.125)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi827)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	li	a0, 0
 	sw	a0, -20(s0)
 	j	.LBB125_5
@@ -9487,11 +11869,17 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi828:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.126)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi828)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi431:
+.Lpcrel_hi829:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_mpysll)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi431)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi829)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9514,11 +11902,17 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi830:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.127)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi830)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi432:
+.Lpcrel_hi831:
 	auipc	a0, %pcrel_hi(.L__profc___mspabi_mpyull)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi432)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi831)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9545,9 +11939,9 @@ __mulhi3:                               # @__mulhi3
                                         # kill: def $x12 killed $x10
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi433:
+.Lpcrel_hi832:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi433)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi832)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9558,9 +11952,15 @@ __mulhi3:                               # @__mulhi3
 	bgez	a0, .LBB128_2
 	j	.LBB128_1
 .LBB128_1:
-.Lpcrel_hi434:
+.Lpcrel_hi833:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi833)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi834:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi434)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi834)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9582,9 +11982,15 @@ __mulhi3:                               # @__mulhi3
 	beqz	a0, .LBB128_6
 	j	.LBB128_4
 .LBB128_4:                              #   in Loop: Header=BB128_3 Depth=1
-.Lpcrel_hi435:
+.Lpcrel_hi835:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi835)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi836:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi435)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi836)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -9597,9 +12003,15 @@ __mulhi3:                               # @__mulhi3
 	j	.LBB128_5
 .LBB128_5:                              #   in Loop: Header=BB128_3 Depth=1
 	ld	a0, -56(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi436:
+.Lpcrel_hi837:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi837)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi838:
 	auipc	a1, %pcrel_hi(.L__profc___mulhi3)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi436)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi838)
 	ld	a1, 32(a2)
 	addi	a1, a1, 1
 	sd	a1, 32(a2)
@@ -9611,9 +12023,9 @@ __mulhi3:                               # @__mulhi3
 	beqz	a0, .LBB128_11
 	j	.LBB128_7
 .LBB128_7:                              #   in Loop: Header=BB128_3 Depth=1
-.Lpcrel_hi437:
+.Lpcrel_hi839:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi437)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi839)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9622,9 +12034,15 @@ __mulhi3:                               # @__mulhi3
 	beqz	a0, .LBB128_9
 	j	.LBB128_8
 .LBB128_8:                              #   in Loop: Header=BB128_3 Depth=1
-.Lpcrel_hi438:
+.Lpcrel_hi840:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi840)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi841:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi438)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi841)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
@@ -9642,6 +12060,12 @@ __mulhi3:                               # @__mulhi3
 	sw	a0, -24(s0)
 	j	.LBB128_10
 .LBB128_10:                             #   in Loop: Header=BB128_3 Depth=1
+.Lpcrel_hi842:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi842)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	lbu	a0, -25(s0)
 	addiw	a0, a0, 1
 	sb	a0, -25(s0)
@@ -9651,9 +12075,15 @@ __mulhi3:                               # @__mulhi3
 	beqz	a0, .LBB128_13
 	j	.LBB128_12
 .LBB128_12:
-.Lpcrel_hi439:
+.Lpcrel_hi843:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi843)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
+.Lpcrel_hi844:
 	auipc	a0, %pcrel_hi(.L__profc___mulhi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi439)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi844)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -9663,6 +12093,12 @@ __mulhi3:                               # @__mulhi3
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB128_14
 .LBB128_13:
+.Lpcrel_hi845:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi845)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
 	lw	a0, -36(s0)
 	sd	a0, -64(s0)                     # 8-byte Folded Spill
 	j	.LBB128_14
@@ -9685,11 +12121,17 @@ __divsi3:                               # @__divsi3
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi846:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.129)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi846)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi440:
+.Lpcrel_hi847:
 	auipc	a0, %pcrel_hi(.L__profc___divsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi440)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi847)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9699,9 +12141,15 @@ __divsi3:                               # @__divsi3
 	bgez	a0, .LBB129_2
 	j	.LBB129_1
 .LBB129_1:
-.Lpcrel_hi441:
+.Lpcrel_hi848:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.129)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi848)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi849:
 	auipc	a0, %pcrel_hi(.L__profc___divsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi441)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi849)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9718,9 +12166,15 @@ __divsi3:                               # @__divsi3
 	bgez	a0, .LBB129_4
 	j	.LBB129_3
 .LBB129_3:
-.Lpcrel_hi442:
+.Lpcrel_hi850:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.129)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi850)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi851:
 	auipc	a0, %pcrel_hi(.L__profc___divsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi442)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi851)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9744,9 +12198,15 @@ __divsi3:                               # @__divsi3
 	beqz	a0, .LBB129_6
 	j	.LBB129_5
 .LBB129_5:
-.Lpcrel_hi443:
+.Lpcrel_hi852:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.129)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi852)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi853:
 	auipc	a0, %pcrel_hi(.L__profc___divsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi443)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi853)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -9773,11 +12233,17 @@ __modsi3:                               # @__modsi3
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi854:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.130)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi854)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi444:
+.Lpcrel_hi855:
 	auipc	a0, %pcrel_hi(.L__profc___modsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi444)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi855)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9787,9 +12253,15 @@ __modsi3:                               # @__modsi3
 	bgez	a0, .LBB130_2
 	j	.LBB130_1
 .LBB130_1:
-.Lpcrel_hi445:
+.Lpcrel_hi856:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.130)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi856)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi857:
 	auipc	a0, %pcrel_hi(.L__profc___modsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi445)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi857)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9805,9 +12277,15 @@ __modsi3:                               # @__modsi3
 	bgez	a0, .LBB130_4
 	j	.LBB130_3
 .LBB130_3:
-.Lpcrel_hi446:
+.Lpcrel_hi858:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.130)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi858)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi859:
 	auipc	a0, %pcrel_hi(.L__profc___modsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi446)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi859)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9828,9 +12306,15 @@ __modsi3:                               # @__modsi3
 	beqz	a0, .LBB130_6
 	j	.LBB130_5
 .LBB130_5:
-.Lpcrel_hi447:
+.Lpcrel_hi860:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.130)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi860)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi861:
 	auipc	a0, %pcrel_hi(.L__profc___modsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi447)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi861)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -9863,9 +12347,9 @@ __udivmodhi4:                           # @__udivmodhi4
 	sh	a0, -20(s0)
 	sh	a1, -22(s0)
 	sw	a2, -28(s0)
-.Lpcrel_hi448:
+.Lpcrel_hi862:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi448)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi862)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -9882,9 +12366,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	bge	a0, a1, .LBB131_6
 	j	.LBB131_2
 .LBB131_2:                              #   in Loop: Header=BB131_1 Depth=1
-.Lpcrel_hi449:
+.Lpcrel_hi863:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi863)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi864:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi449)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi864)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -9894,17 +12384,23 @@ __udivmodhi4:                           # @__udivmodhi4
 	beqz	a0, .LBB131_6
 	j	.LBB131_3
 .LBB131_3:                              #   in Loop: Header=BB131_1 Depth=1
-.Lpcrel_hi450:
+.Lpcrel_hi865:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi865)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi866:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi450)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi866)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB131_4
 .LBB131_4:                              #   in Loop: Header=BB131_1 Depth=1
-.Lpcrel_hi451:
+.Lpcrel_hi867:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi451)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi867)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -9918,9 +12414,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	j	.LBB131_5
 .LBB131_5:                              #   in Loop: Header=BB131_1 Depth=1
 	ld	a0, -48(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi452:
+.Lpcrel_hi868:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi868)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi869:
 	auipc	a1, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi452)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi869)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -9932,9 +12434,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	beqz	a0, .LBB131_8
 	j	.LBB131_7
 .LBB131_7:                              #   in Loop: Header=BB131_1 Depth=1
-.Lpcrel_hi453:
+.Lpcrel_hi870:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi870)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi871:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi453)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi871)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -9952,9 +12460,9 @@ __udivmodhi4:                           # @__udivmodhi4
 	beqz	a0, .LBB131_13
 	j	.LBB131_10
 .LBB131_10:                             #   in Loop: Header=BB131_9 Depth=1
-.Lpcrel_hi454:
+.Lpcrel_hi872:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi454)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi872)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -9963,9 +12471,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	blt	a0, a1, .LBB131_12
 	j	.LBB131_11
 .LBB131_11:                             #   in Loop: Header=BB131_9 Depth=1
-.Lpcrel_hi455:
+.Lpcrel_hi873:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi873)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi874:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi455)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi874)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -9979,6 +12493,12 @@ __udivmodhi4:                           # @__udivmodhi4
 	sh	a0, -32(s0)
 	j	.LBB131_12
 .LBB131_12:                             #   in Loop: Header=BB131_9 Depth=1
+.Lpcrel_hi875:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi875)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	lhu	a0, -30(s0)
 	srli	a0, a0, 1
 	sh	a0, -30(s0)
@@ -9991,9 +12511,15 @@ __udivmodhi4:                           # @__udivmodhi4
 	beqz	a0, .LBB131_15
 	j	.LBB131_14
 .LBB131_14:
-.Lpcrel_hi456:
+.Lpcrel_hi876:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi876)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
+.Lpcrel_hi877:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodhi4)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi456)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi877)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -10001,6 +12527,12 @@ __udivmodhi4:                           # @__udivmodhi4
 	sh	a0, -18(s0)
 	j	.LBB131_16
 .LBB131_15:
+.Lpcrel_hi878:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi878)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
 	lh	a0, -32(s0)
 	sh	a0, -18(s0)
 	j	.LBB131_16
@@ -10026,9 +12558,9 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
 	sw	a2, -44(s0)
-.Lpcrel_hi457:
+.Lpcrel_hi879:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi457)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi879)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10045,9 +12577,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	bgeu	a0, a1, .LBB132_6
 	j	.LBB132_2
 .LBB132_2:                              #   in Loop: Header=BB132_1 Depth=1
-.Lpcrel_hi458:
+.Lpcrel_hi880:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi880)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi881:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi458)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi881)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -10057,17 +12595,23 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beqz	a0, .LBB132_6
 	j	.LBB132_3
 .LBB132_3:                              #   in Loop: Header=BB132_1 Depth=1
-.Lpcrel_hi459:
+.Lpcrel_hi882:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi882)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi883:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi459)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi883)
 	ld	a0, 40(a1)
 	addi	a0, a0, 1
 	sd	a0, 40(a1)
 	j	.LBB132_4
 .LBB132_4:                              #   in Loop: Header=BB132_1 Depth=1
-.Lpcrel_hi460:
+.Lpcrel_hi884:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi460)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi884)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10081,9 +12625,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	j	.LBB132_5
 .LBB132_5:                              #   in Loop: Header=BB132_1 Depth=1
 	ld	a0, -80(s0)                     # 8-byte Folded Reload
-.Lpcrel_hi461:
+.Lpcrel_hi885:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi885)
+	ld	a1, 16(a2)
+	addi	a1, a1, 1
+	sd	a1, 16(a2)
+.Lpcrel_hi886:
 	auipc	a1, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a2, a1, %pcrel_lo(.Lpcrel_hi461)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi886)
 	ld	a1, 24(a2)
 	addi	a1, a1, 1
 	sd	a1, 24(a2)
@@ -10095,9 +12645,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beqz	a0, .LBB132_8
 	j	.LBB132_7
 .LBB132_7:                              #   in Loop: Header=BB132_1 Depth=1
-.Lpcrel_hi462:
+.Lpcrel_hi887:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi887)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi888:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi462)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi888)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10115,9 +12671,9 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beqz	a0, .LBB132_13
 	j	.LBB132_10
 .LBB132_10:                             #   in Loop: Header=BB132_9 Depth=1
-.Lpcrel_hi463:
+.Lpcrel_hi889:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi463)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi889)
 	ld	a0, 48(a1)
 	addi	a0, a0, 1
 	sd	a0, 48(a1)
@@ -10126,9 +12682,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	bltu	a0, a1, .LBB132_12
 	j	.LBB132_11
 .LBB132_11:                             #   in Loop: Header=BB132_9 Depth=1
-.Lpcrel_hi464:
+.Lpcrel_hi890:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi890)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
+.Lpcrel_hi891:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi464)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi891)
 	ld	a0, 56(a1)
 	addi	a0, a0, 1
 	sd	a0, 56(a1)
@@ -10142,6 +12704,12 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	sd	a0, -64(s0)
 	j	.LBB132_12
 .LBB132_12:                             #   in Loop: Header=BB132_9 Depth=1
+.Lpcrel_hi892:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi892)
+	ld	a0, 40(a1)
+	addi	a0, a0, 1
+	sd	a0, 40(a1)
 	ld	a0, -56(s0)
 	srli	a0, a0, 1
 	sd	a0, -56(s0)
@@ -10154,9 +12722,15 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beqz	a0, .LBB132_15
 	j	.LBB132_14
 .LBB132_14:
-.Lpcrel_hi465:
+.Lpcrel_hi893:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi893)
+	ld	a0, 48(a1)
+	addi	a0, a0, 1
+	sd	a0, 48(a1)
+.Lpcrel_hi894:
 	auipc	a0, %pcrel_hi(.L__profc___udivmodsi4_libgcc)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi465)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi894)
 	ld	a0, 64(a1)
 	addi	a0, a0, 1
 	sd	a0, 64(a1)
@@ -10164,6 +12738,12 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	sd	a0, -24(s0)
 	j	.LBB132_16
 .LBB132_15:
+.Lpcrel_hi895:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi895)
+	ld	a0, 56(a1)
+	addi	a0, a0, 1
+	sd	a0, 56(a1)
 	ld	a0, -64(s0)
 	sd	a0, -24(s0)
 	j	.LBB132_16
@@ -10188,9 +12768,9 @@ __ashldi3:                              # @__ashldi3
                                         # kill: def $x12 killed $x11
 	sd	a0, -32(s0)
 	sw	a1, -36(s0)
-.Lpcrel_hi466:
+.Lpcrel_hi896:
 	auipc	a0, %pcrel_hi(.L__profc___ashldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi466)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi896)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10203,9 +12783,15 @@ __ashldi3:                              # @__ashldi3
 	beqz	a0, .LBB133_2
 	j	.LBB133_1
 .LBB133_1:
-.Lpcrel_hi467:
+.Lpcrel_hi897:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.133)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi897)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi898:
 	auipc	a0, %pcrel_hi(.L__profc___ashldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi467)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi898)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10221,9 +12807,15 @@ __ashldi3:                              # @__ashldi3
 	bnez	a0, .LBB133_4
 	j	.LBB133_3
 .LBB133_3:
-.Lpcrel_hi468:
+.Lpcrel_hi899:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.133)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi899)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi900:
 	auipc	a0, %pcrel_hi(.L__profc___ashldi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi468)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi900)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10231,6 +12823,12 @@ __ashldi3:                              # @__ashldi3
 	sd	a0, -24(s0)
 	j	.LBB133_6
 .LBB133_4:
+.Lpcrel_hi901:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.133)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi901)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -48(s0)
 	lwu	a1, -36(s0)
 	sllw	a0, a0, a1
@@ -10272,9 +12870,9 @@ __ashlti3:                              # @__ashlti3
 	sd	a1, -40(s0)
 	sd	a0, -48(s0)
 	sw	a2, -52(s0)
-.Lpcrel_hi469:
+.Lpcrel_hi902:
 	auipc	a0, %pcrel_hi(.L__profc___ashlti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi469)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi902)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10289,9 +12887,15 @@ __ashlti3:                              # @__ashlti3
 	beqz	a0, .LBB134_2
 	j	.LBB134_1
 .LBB134_1:
-.Lpcrel_hi470:
+.Lpcrel_hi903:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.134)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi903)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi904:
 	auipc	a0, %pcrel_hi(.L__profc___ashlti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi470)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi904)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10307,9 +12911,15 @@ __ashlti3:                              # @__ashlti3
 	bnez	a0, .LBB134_4
 	j	.LBB134_3
 .LBB134_3:
-.Lpcrel_hi471:
+.Lpcrel_hi905:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.134)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi905)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi906:
 	auipc	a0, %pcrel_hi(.L__profc___ashlti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi471)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi906)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10319,6 +12929,12 @@ __ashlti3:                              # @__ashlti3
 	sd	a0, -32(s0)
 	j	.LBB134_6
 .LBB134_4:
+.Lpcrel_hi907:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.134)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi907)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -80(s0)
 	lwu	a1, -52(s0)
 	sll	a0, a0, a1
@@ -10360,9 +12976,9 @@ __ashrdi3:                              # @__ashrdi3
                                         # kill: def $x12 killed $x11
 	sd	a0, -32(s0)
 	sw	a1, -36(s0)
-.Lpcrel_hi472:
+.Lpcrel_hi908:
 	auipc	a0, %pcrel_hi(.L__profc___ashrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi472)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi908)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10375,9 +12991,15 @@ __ashrdi3:                              # @__ashrdi3
 	beqz	a0, .LBB135_2
 	j	.LBB135_1
 .LBB135_1:
-.Lpcrel_hi473:
+.Lpcrel_hi909:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.135)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi909)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi910:
 	auipc	a0, %pcrel_hi(.L__profc___ashrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi473)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi910)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10394,9 +13016,15 @@ __ashrdi3:                              # @__ashrdi3
 	bnez	a0, .LBB135_4
 	j	.LBB135_3
 .LBB135_3:
-.Lpcrel_hi474:
+.Lpcrel_hi911:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.135)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi911)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi912:
 	auipc	a0, %pcrel_hi(.L__profc___ashrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi474)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi912)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10404,6 +13032,12 @@ __ashrdi3:                              # @__ashrdi3
 	sd	a0, -24(s0)
 	j	.LBB135_6
 .LBB135_4:
+.Lpcrel_hi913:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.135)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi913)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -44(s0)
 	lwu	a1, -36(s0)
 	sraw	a0, a0, a1
@@ -10445,9 +13079,9 @@ __ashrti3:                              # @__ashrti3
 	sd	a1, -40(s0)
 	sd	a0, -48(s0)
 	sw	a2, -52(s0)
-.Lpcrel_hi475:
+.Lpcrel_hi914:
 	auipc	a0, %pcrel_hi(.L__profc___ashrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi475)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi914)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10462,9 +13096,15 @@ __ashrti3:                              # @__ashrti3
 	beqz	a0, .LBB136_2
 	j	.LBB136_1
 .LBB136_1:
-.Lpcrel_hi476:
+.Lpcrel_hi915:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.136)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi915)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi916:
 	auipc	a0, %pcrel_hi(.L__profc___ashrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi476)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi916)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10481,9 +13121,15 @@ __ashrti3:                              # @__ashrti3
 	bnez	a0, .LBB136_4
 	j	.LBB136_3
 .LBB136_3:
-.Lpcrel_hi477:
+.Lpcrel_hi917:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.136)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi917)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi918:
 	auipc	a0, %pcrel_hi(.L__profc___ashrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi477)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi918)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10493,6 +13139,12 @@ __ashrti3:                              # @__ashrti3
 	sd	a0, -32(s0)
 	j	.LBB136_6
 .LBB136_4:
+.Lpcrel_hi919:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.136)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi919)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -72(s0)
 	lwu	a1, -52(s0)
 	sra	a0, a0, a1
@@ -10531,10 +13183,16 @@ __bswapdi2:                             # @__bswapdi2
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi920:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.137)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi920)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi478:
+.Lpcrel_hi921:
 	auipc	a0, %pcrel_hi(.L__profc___bswapdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi478)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi921)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10584,10 +13242,16 @@ __bswapsi2:                             # @__bswapsi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi922:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.138)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi922)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi479:
+.Lpcrel_hi923:
 	auipc	a0, %pcrel_hi(.L__profc___bswapsi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi479)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi923)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10621,10 +13285,16 @@ __clzsi2:                               # @__clzsi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi924:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.139)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi924)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi480:
+.Lpcrel_hi925:
 	auipc	a0, %pcrel_hi(.L__profc___clzsi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi480)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi925)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10714,11 +13384,17 @@ __clzti2:                               # @__clzti2
 	addi	s0, sp, 64
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi926:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.140)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi926)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi481:
+.Lpcrel_hi927:
 	auipc	a0, %pcrel_hi(.L__profc___clzti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi481)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi927)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10798,9 +13474,9 @@ __cmpdi2:                               # @__cmpdi2
 	addi	s0, sp, 64
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi482:
+.Lpcrel_hi928:
 	auipc	a0, %pcrel_hi(.L__profc___cmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi482)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi928)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10813,9 +13489,15 @@ __cmpdi2:                               # @__cmpdi2
 	bge	a0, a1, .LBB141_2
 	j	.LBB141_1
 .LBB141_1:
-.Lpcrel_hi483:
+.Lpcrel_hi929:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi929)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi930:
 	auipc	a0, %pcrel_hi(.L__profc___cmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi483)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi930)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10828,9 +13510,15 @@ __cmpdi2:                               # @__cmpdi2
 	bge	a0, a1, .LBB141_4
 	j	.LBB141_3
 .LBB141_3:
-.Lpcrel_hi484:
+.Lpcrel_hi931:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi931)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi932:
 	auipc	a0, %pcrel_hi(.L__profc___cmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi484)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi932)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10843,9 +13531,15 @@ __cmpdi2:                               # @__cmpdi2
 	bgeu	a0, a1, .LBB141_6
 	j	.LBB141_5
 .LBB141_5:
-.Lpcrel_hi485:
+.Lpcrel_hi933:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi933)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi934:
 	auipc	a0, %pcrel_hi(.L__profc___cmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi485)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi934)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -10858,9 +13552,15 @@ __cmpdi2:                               # @__cmpdi2
 	bgeu	a0, a1, .LBB141_8
 	j	.LBB141_7
 .LBB141_7:
-.Lpcrel_hi486:
+.Lpcrel_hi935:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi935)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi936:
 	auipc	a0, %pcrel_hi(.L__profc___cmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi486)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi936)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -10868,6 +13568,12 @@ __cmpdi2:                               # @__cmpdi2
 	sw	a0, -20(s0)
 	j	.LBB141_9
 .LBB141_8:
+.Lpcrel_hi937:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi937)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 1
 	sw	a0, -20(s0)
 	j	.LBB141_9
@@ -10889,11 +13595,17 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi938:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.142)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi938)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi487:
+.Lpcrel_hi939:
 	auipc	a0, %pcrel_hi(.L__profc___aeabi_lcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi487)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi939)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10925,9 +13637,9 @@ __cmpti2:                               # @__cmpti2
 	sd	a0, -48(s0)
 	sd	a3, -56(s0)
 	sd	a2, -64(s0)
-.Lpcrel_hi488:
+.Lpcrel_hi940:
 	auipc	a0, %pcrel_hi(.L__profc___cmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi488)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi940)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -10944,9 +13656,15 @@ __cmpti2:                               # @__cmpti2
 	bge	a0, a1, .LBB143_2
 	j	.LBB143_1
 .LBB143_1:
-.Lpcrel_hi489:
+.Lpcrel_hi941:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi941)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi942:
 	auipc	a0, %pcrel_hi(.L__profc___cmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi489)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi942)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -10959,9 +13677,15 @@ __cmpti2:                               # @__cmpti2
 	bge	a0, a1, .LBB143_4
 	j	.LBB143_3
 .LBB143_3:
-.Lpcrel_hi490:
+.Lpcrel_hi943:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi943)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi944:
 	auipc	a0, %pcrel_hi(.L__profc___cmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi490)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi944)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -10974,9 +13698,15 @@ __cmpti2:                               # @__cmpti2
 	bgeu	a0, a1, .LBB143_6
 	j	.LBB143_5
 .LBB143_5:
-.Lpcrel_hi491:
+.Lpcrel_hi945:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi945)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi946:
 	auipc	a0, %pcrel_hi(.L__profc___cmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi491)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi946)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -10989,9 +13719,15 @@ __cmpti2:                               # @__cmpti2
 	bgeu	a0, a1, .LBB143_8
 	j	.LBB143_7
 .LBB143_7:
-.Lpcrel_hi492:
+.Lpcrel_hi947:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi947)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi948:
 	auipc	a0, %pcrel_hi(.L__profc___cmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi492)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi948)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -10999,6 +13735,12 @@ __cmpti2:                               # @__cmpti2
 	sw	a0, -20(s0)
 	j	.LBB143_9
 .LBB143_8:
+.Lpcrel_hi949:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi949)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 1
 	sw	a0, -20(s0)
 	j	.LBB143_9
@@ -11021,10 +13763,16 @@ __ctzsi2:                               # @__ctzsi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi950:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.144)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi950)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi493:
+.Lpcrel_hi951:
 	auipc	a0, %pcrel_hi(.L__profc___ctzsi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi493)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi951)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11116,11 +13864,17 @@ __ctzti2:                               # @__ctzti2
 	addi	s0, sp, 64
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi952:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.145)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi952)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi494:
+.Lpcrel_hi953:
 	auipc	a0, %pcrel_hi(.L__profc___ctzti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi494)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi953)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11142,15 +13896,15 @@ __ctzti2:                               # @__ctzti2
 	li	a2, 0
 	sub	a2, a2, a0
 	and	a0, a0, a2
-.Lpcrel_hi495:
+.Lpcrel_hi954:
 	auipc	a2, %pcrel_hi(.LCPI145_0)
-	addi	a2, a2, %pcrel_lo(.Lpcrel_hi495)
+	addi	a2, a2, %pcrel_lo(.Lpcrel_hi954)
 	ld	a2, 0(a2)
 	mul	a0, a0, a2
 	srli	a2, a0, 58
-.Lpcrel_hi496:
+.Lpcrel_hi955:
 	auipc	a0, %pcrel_hi(.LCPI145_1)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi496)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi955)
 	add	a0, a0, a2
 	lbu	a0, 0(a0)
 	andi	a1, a1, 64
@@ -11183,9 +13937,9 @@ __ffsti2:                               # @__ffsti2
                                         # kill: def $x12 killed $x10
 	sd	a1, -40(s0)
 	sd	a0, -48(s0)
-.Lpcrel_hi497:
+.Lpcrel_hi956:
 	auipc	a0, %pcrel_hi(.L__profc___ffsti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi497)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi956)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11197,9 +13951,9 @@ __ffsti2:                               # @__ffsti2
 	bnez	a0, .LBB146_4
 	j	.LBB146_1
 .LBB146_1:
-.Lpcrel_hi498:
+.Lpcrel_hi957:
 	auipc	a0, %pcrel_hi(.L__profc___ffsti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi498)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi957)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -11207,9 +13961,15 @@ __ffsti2:                               # @__ffsti2
 	bnez	a0, .LBB146_3
 	j	.LBB146_2
 .LBB146_2:
-.Lpcrel_hi499:
+.Lpcrel_hi958:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.146)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi958)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi959:
 	auipc	a0, %pcrel_hi(.L__profc___ffsti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi499)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi959)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -11217,38 +13977,50 @@ __ffsti2:                               # @__ffsti2
 	sw	a0, -20(s0)
 	j	.LBB146_5
 .LBB146_3:
+.Lpcrel_hi960:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.146)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi960)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -56(s0)
 	li	a1, 0
 	sub	a1, a1, a0
 	and	a0, a0, a1
-.Lpcrel_hi500:
+.Lpcrel_hi961:
 	auipc	a1, %pcrel_hi(.LCPI146_0)
-	addi	a1, a1, %pcrel_lo(.Lpcrel_hi500)
+	addi	a1, a1, %pcrel_lo(.Lpcrel_hi961)
 	ld	a1, 0(a1)
 	mul	a0, a0, a1
 	srli	a1, a0, 58
-.Lpcrel_hi501:
+.Lpcrel_hi962:
 	auipc	a0, %pcrel_hi(.LCPI146_1)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi501)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi962)
 	add	a0, a0, a1
 	lbu	a0, 0(a0)
 	addiw	a0, a0, 65
 	sw	a0, -20(s0)
 	j	.LBB146_5
 .LBB146_4:
+.Lpcrel_hi963:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.146)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi963)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
 	ld	a0, -64(s0)
 	li	a1, 0
 	sub	a1, a1, a0
 	and	a0, a0, a1
-.Lpcrel_hi502:
+.Lpcrel_hi964:
 	auipc	a1, %pcrel_hi(.LCPI146_0)
-	addi	a1, a1, %pcrel_lo(.Lpcrel_hi502)
+	addi	a1, a1, %pcrel_lo(.Lpcrel_hi964)
 	ld	a1, 0(a1)
 	mul	a0, a0, a1
 	srli	a1, a0, 58
-.Lpcrel_hi503:
+.Lpcrel_hi965:
 	auipc	a0, %pcrel_hi(.LCPI146_1)
-	addi	a0, a0, %pcrel_lo(.Lpcrel_hi503)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi965)
 	add	a0, a0, a1
 	lbu	a0, 0(a0)
 	addiw	a0, a0, 1
@@ -11275,9 +14047,9 @@ __lshrdi3:                              # @__lshrdi3
                                         # kill: def $x12 killed $x11
 	sd	a0, -32(s0)
 	sw	a1, -36(s0)
-.Lpcrel_hi504:
+.Lpcrel_hi966:
 	auipc	a0, %pcrel_hi(.L__profc___lshrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi504)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi966)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11290,9 +14062,15 @@ __lshrdi3:                              # @__lshrdi3
 	beqz	a0, .LBB147_2
 	j	.LBB147_1
 .LBB147_1:
-.Lpcrel_hi505:
+.Lpcrel_hi967:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.147)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi967)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi968:
 	auipc	a0, %pcrel_hi(.L__profc___lshrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi505)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi968)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -11308,9 +14086,15 @@ __lshrdi3:                              # @__lshrdi3
 	bnez	a0, .LBB147_4
 	j	.LBB147_3
 .LBB147_3:
-.Lpcrel_hi506:
+.Lpcrel_hi969:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.147)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi969)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi970:
 	auipc	a0, %pcrel_hi(.L__profc___lshrdi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi506)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi970)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -11318,6 +14102,12 @@ __lshrdi3:                              # @__lshrdi3
 	sd	a0, -24(s0)
 	j	.LBB147_6
 .LBB147_4:
+.Lpcrel_hi971:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.147)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi971)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	lw	a0, -44(s0)
 	lwu	a1, -36(s0)
 	srlw	a0, a0, a1
@@ -11359,9 +14149,9 @@ __lshrti3:                              # @__lshrti3
 	sd	a1, -40(s0)
 	sd	a0, -48(s0)
 	sw	a2, -52(s0)
-.Lpcrel_hi507:
+.Lpcrel_hi972:
 	auipc	a0, %pcrel_hi(.L__profc___lshrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi507)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi972)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11376,9 +14166,15 @@ __lshrti3:                              # @__lshrti3
 	beqz	a0, .LBB148_2
 	j	.LBB148_1
 .LBB148_1:
-.Lpcrel_hi508:
+.Lpcrel_hi973:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.148)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi973)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi974:
 	auipc	a0, %pcrel_hi(.L__profc___lshrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi508)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi974)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -11394,9 +14190,15 @@ __lshrti3:                              # @__lshrti3
 	bnez	a0, .LBB148_4
 	j	.LBB148_3
 .LBB148_3:
-.Lpcrel_hi509:
+.Lpcrel_hi975:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.148)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi975)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi976:
 	auipc	a0, %pcrel_hi(.L__profc___lshrti3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi509)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi976)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -11406,6 +14208,12 @@ __lshrti3:                              # @__lshrti3
 	sd	a0, -32(s0)
 	j	.LBB148_6
 .LBB148_4:
+.Lpcrel_hi977:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.148)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi977)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
 	ld	a0, -72(s0)
 	lwu	a1, -52(s0)
 	srl	a0, a0, a1
@@ -11446,11 +14254,17 @@ __muldsi3:                              # @__muldsi3
 	addi	s0, sp, 48
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi978:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.149)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi978)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi510:
+.Lpcrel_hi979:
 	auipc	a0, %pcrel_hi(.L__profc___muldsi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi510)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi979)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11522,11 +14336,17 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	sd	ra, 56(sp)                      # 8-byte Folded Spill
 	sd	s0, 48(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 64
+.Lpcrel_hi980:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.150)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi980)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi511:
+.Lpcrel_hi981:
 	auipc	a0, %pcrel_hi(.L__profc___muldi3_compiler_rt)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi511)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi981)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11565,11 +14385,17 @@ __mulddi3:                              # @__mulddi3
 	sd	ra, 72(sp)                      # 8-byte Folded Spill
 	sd	s0, 64(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 80
+.Lpcrel_hi982:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.151)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi982)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi512:
+.Lpcrel_hi983:
 	auipc	a0, %pcrel_hi(.L__profc___mulddi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi512)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi983)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11638,21 +14464,28 @@ __mulddi3:                              # @__mulddi3
 	.type	__multi3,@function
 __multi3:                               # @__multi3
 # %bb.0:
-	addi	sp, sp, -96
-	sd	ra, 88(sp)                      # 8-byte Folded Spill
-	sd	s0, 80(sp)                      # 8-byte Folded Spill
-	addi	s0, sp, 96
+	addi	sp, sp, -112
+	sd	ra, 104(sp)                     # 8-byte Folded Spill
+	sd	s0, 96(sp)                      # 8-byte Folded Spill
+	addi	s0, sp, 112
+	sd	a0, -104(s0)                    # 8-byte Folded Spill
                                         # kill: def $x1 killed $x13
                                         # kill: def $x1 killed $x12
                                         # kill: def $x1 killed $x11
-                                        # kill: def $x1 killed $x10
+.Lpcrel_hi984:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.152)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi984)
+	ld	ra, 0(a0)
+	addi	ra, ra, 1
+	sd	ra, 0(a0)
+	ld	a0, -104(s0)                    # 8-byte Folded Reload
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
 	sd	a3, -40(s0)
 	sd	a2, -48(s0)
-.Lpcrel_hi513:
+.Lpcrel_hi985:
 	auipc	a0, %pcrel_hi(.L__profc___multi3)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi513)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi985)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11681,9 +14514,9 @@ __multi3:                               # @__multi3
 	sd	a0, -88(s0)
 	ld	a0, -96(s0)
 	ld	a1, -88(s0)
-	ld	ra, 88(sp)                      # 8-byte Folded Reload
-	ld	s0, 80(sp)                      # 8-byte Folded Reload
-	addi	sp, sp, 96
+	ld	ra, 104(sp)                     # 8-byte Folded Reload
+	ld	s0, 96(sp)                      # 8-byte Folded Reload
+	addi	sp, sp, 112
 	ret
 .Lfunc_end152:
 	.size	__multi3, .Lfunc_end152-__multi3
@@ -11697,10 +14530,16 @@ __negdi2:                               # @__negdi2
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi986:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.153)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi986)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi514:
+.Lpcrel_hi987:
 	auipc	a0, %pcrel_hi(.L__profc___negdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi514)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi987)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11725,11 +14564,17 @@ __negti2:                               # @__negti2
 	addi	s0, sp, 32
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi988:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.154)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi988)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi515:
+.Lpcrel_hi989:
 	auipc	a0, %pcrel_hi(.L__profc___negti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi515)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi989)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11756,10 +14601,16 @@ __paritydi2:                            # @__paritydi2
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi990:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.155)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi990)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi516:
+.Lpcrel_hi991:
 	auipc	a0, %pcrel_hi(.L__profc___paritydi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi516)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi991)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11805,11 +14656,17 @@ __parityti2:                            # @__parityti2
 	addi	s0, sp, 64
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi992:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.156)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi992)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi517:
+.Lpcrel_hi993:
 	auipc	a0, %pcrel_hi(.L__profc___parityti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi517)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi993)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11860,10 +14717,16 @@ __paritysi2:                            # @__paritysi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi994:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.157)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi994)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi518:
+.Lpcrel_hi995:
 	auipc	a0, %pcrel_hi(.L__profc___paritysi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi518)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi995)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11903,10 +14766,16 @@ __popcountdi2:                          # @__popcountdi2
 	sd	ra, 40(sp)                      # 8-byte Folded Spill
 	sd	s0, 32(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 48
+.Lpcrel_hi996:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.158)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi996)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sd	a0, -24(s0)
-.Lpcrel_hi519:
+.Lpcrel_hi997:
 	auipc	a0, %pcrel_hi(.L__profc___popcountdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi519)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi997)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -11969,10 +14838,16 @@ __popcountsi2:                          # @__popcountsi2
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
                                         # kill: def $x11 killed $x10
+.Lpcrel_hi998:
+	auipc	a1, %pcrel_hi(__llvm_gcov_ctr.159)
+	addi	a2, a1, %pcrel_lo(.Lpcrel_hi998)
+	ld	a1, 0(a2)
+	addi	a1, a1, 1
+	sd	a1, 0(a2)
 	sw	a0, -20(s0)
-.Lpcrel_hi520:
+.Lpcrel_hi999:
 	auipc	a0, %pcrel_hi(.L__profc___popcountsi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi520)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi999)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12026,11 +14901,17 @@ __popcountti2:                          # @__popcountti2
 	addi	s0, sp, 80
                                         # kill: def $x12 killed $x11
                                         # kill: def $x12 killed $x10
+.Lpcrel_hi1000:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.160)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi1000)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a1, -24(s0)
 	sd	a0, -32(s0)
-.Lpcrel_hi521:
+.Lpcrel_hi1001:
 	auipc	a0, %pcrel_hi(.L__profc___popcountti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi521)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1001)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12130,9 +15011,9 @@ __powidf2:                              # @__powidf2
                                         # kill: def $x12 killed $x10
 	sd	a0, -24(s0)
 	sw	a1, -28(s0)
-.Lpcrel_hi522:
+.Lpcrel_hi1002:
 	auipc	a0, %pcrel_hi(.L__profc___powidf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi522)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1002)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12144,9 +15025,9 @@ __powidf2:                              # @__powidf2
 	sd	a0, -40(s0)
 	j	.LBB161_1
 .LBB161_1:                              # =>This Inner Loop Header: Depth=1
-.Lpcrel_hi523:
+.Lpcrel_hi1003:
 	auipc	a0, %pcrel_hi(.L__profc___powidf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi523)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1003)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -12155,9 +15036,15 @@ __powidf2:                              # @__powidf2
 	beqz	a0, .LBB161_3
 	j	.LBB161_2
 .LBB161_2:                              #   in Loop: Header=BB161_1 Depth=1
-.Lpcrel_hi524:
+.Lpcrel_hi1004:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.161)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1004)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi1005:
 	auipc	a0, %pcrel_hi(.L__profc___powidf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi524)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1005)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -12176,14 +15063,20 @@ __powidf2:                              # @__powidf2
 	bnez	a0, .LBB161_5
 	j	.LBB161_4
 .LBB161_4:
-.Lpcrel_hi525:
+.Lpcrel_hi1006:
 	auipc	a0, %pcrel_hi(.L__profc___powidf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi525)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1006)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB161_6
 .LBB161_5:                              #   in Loop: Header=BB161_1 Depth=1
+.Lpcrel_hi1007:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.161)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1007)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	ld	a1, -24(s0)
 	mv	a0, a1
 	call	__muldf3
@@ -12194,9 +15087,15 @@ __powidf2:                              # @__powidf2
 	beqz	a0, .LBB161_8
 	j	.LBB161_7
 .LBB161_7:
-.Lpcrel_hi526:
+.Lpcrel_hi1008:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.161)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1008)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi1009:
 	auipc	a0, %pcrel_hi(.L__profc___powidf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi526)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1009)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -12207,6 +15106,12 @@ __powidf2:                              # @__powidf2
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB161_9
 .LBB161_8:
+.Lpcrel_hi1010:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.161)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1010)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	ld	a0, -40(s0)
 	sd	a0, -48(s0)                     # 8-byte Folded Spill
 	j	.LBB161_9
@@ -12232,9 +15137,9 @@ __powisf2:                              # @__powisf2
                                         # kill: def $x12 killed $x10
 	sw	a0, -20(s0)
 	sw	a1, -24(s0)
-.Lpcrel_hi527:
+.Lpcrel_hi1011:
 	auipc	a0, %pcrel_hi(.L__profc___powisf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi527)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1011)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12245,9 +15150,9 @@ __powisf2:                              # @__powisf2
 	sw	a0, -32(s0)
 	j	.LBB162_1
 .LBB162_1:                              # =>This Inner Loop Header: Depth=1
-.Lpcrel_hi528:
+.Lpcrel_hi1012:
 	auipc	a0, %pcrel_hi(.L__profc___powisf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi528)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1012)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -12256,9 +15161,15 @@ __powisf2:                              # @__powisf2
 	beqz	a0, .LBB162_3
 	j	.LBB162_2
 .LBB162_2:                              #   in Loop: Header=BB162_1 Depth=1
-.Lpcrel_hi529:
+.Lpcrel_hi1013:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.162)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1013)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi1014:
 	auipc	a0, %pcrel_hi(.L__profc___powisf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi529)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1014)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -12277,14 +15188,20 @@ __powisf2:                              # @__powisf2
 	bnez	a0, .LBB162_5
 	j	.LBB162_4
 .LBB162_4:
-.Lpcrel_hi530:
+.Lpcrel_hi1015:
 	auipc	a0, %pcrel_hi(.L__profc___powisf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi530)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1015)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
 	j	.LBB162_6
 .LBB162_5:                              #   in Loop: Header=BB162_1 Depth=1
+.Lpcrel_hi1016:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.162)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1016)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
 	lw	a1, -20(s0)
 	mv	a0, a1
 	call	__mulsf3
@@ -12295,9 +15212,15 @@ __powisf2:                              # @__powisf2
 	beqz	a0, .LBB162_8
 	j	.LBB162_7
 .LBB162_7:
-.Lpcrel_hi531:
+.Lpcrel_hi1017:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.162)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1017)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi1018:
 	auipc	a0, %pcrel_hi(.L__profc___powisf2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi531)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1018)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -12307,6 +15230,12 @@ __powisf2:                              # @__powisf2
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB162_9
 .LBB162_8:
+.Lpcrel_hi1019:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.162)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1019)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
 	lw	a0, -32(s0)
 	sd	a0, -40(s0)                     # 8-byte Folded Spill
 	j	.LBB162_9
@@ -12330,9 +15259,9 @@ __ucmpdi2:                              # @__ucmpdi2
 	addi	s0, sp, 64
 	sd	a0, -32(s0)
 	sd	a1, -40(s0)
-.Lpcrel_hi532:
+.Lpcrel_hi1020:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi532)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1020)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12345,9 +15274,15 @@ __ucmpdi2:                              # @__ucmpdi2
 	bgeu	a0, a1, .LBB163_2
 	j	.LBB163_1
 .LBB163_1:
-.Lpcrel_hi533:
+.Lpcrel_hi1021:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1021)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi1022:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi533)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1022)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -12360,9 +15295,15 @@ __ucmpdi2:                              # @__ucmpdi2
 	bgeu	a0, a1, .LBB163_4
 	j	.LBB163_3
 .LBB163_3:
-.Lpcrel_hi534:
+.Lpcrel_hi1023:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1023)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi1024:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi534)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1024)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -12375,9 +15316,15 @@ __ucmpdi2:                              # @__ucmpdi2
 	bgeu	a0, a1, .LBB163_6
 	j	.LBB163_5
 .LBB163_5:
-.Lpcrel_hi535:
+.Lpcrel_hi1025:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1025)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi1026:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi535)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1026)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -12390,9 +15337,15 @@ __ucmpdi2:                              # @__ucmpdi2
 	bgeu	a0, a1, .LBB163_8
 	j	.LBB163_7
 .LBB163_7:
-.Lpcrel_hi536:
+.Lpcrel_hi1027:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1027)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi1028:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpdi2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi536)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1028)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -12400,6 +15353,12 @@ __ucmpdi2:                              # @__ucmpdi2
 	sw	a0, -20(s0)
 	j	.LBB163_9
 .LBB163_8:
+.Lpcrel_hi1029:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1029)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 1
 	sw	a0, -20(s0)
 	j	.LBB163_9
@@ -12421,11 +15380,17 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	sd	ra, 24(sp)                      # 8-byte Folded Spill
 	sd	s0, 16(sp)                      # 8-byte Folded Spill
 	addi	s0, sp, 32
+.Lpcrel_hi1030:
+	auipc	a2, %pcrel_hi(__llvm_gcov_ctr.164)
+	addi	a3, a2, %pcrel_lo(.Lpcrel_hi1030)
+	ld	a2, 0(a3)
+	addi	a2, a2, 1
+	sd	a2, 0(a3)
 	sd	a0, -24(s0)
 	sd	a1, -32(s0)
-.Lpcrel_hi537:
+.Lpcrel_hi1031:
 	auipc	a0, %pcrel_hi(.L__profc___aeabi_ulcmp)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi537)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1031)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12457,9 +15422,9 @@ __ucmpti2:                              # @__ucmpti2
 	sd	a0, -48(s0)
 	sd	a3, -56(s0)
 	sd	a2, -64(s0)
-.Lpcrel_hi538:
+.Lpcrel_hi1032:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi538)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1032)
 	ld	a0, 0(a1)
 	addi	a0, a0, 1
 	sd	a0, 0(a1)
@@ -12476,9 +15441,15 @@ __ucmpti2:                              # @__ucmpti2
 	bgeu	a0, a1, .LBB165_2
 	j	.LBB165_1
 .LBB165_1:
-.Lpcrel_hi539:
+.Lpcrel_hi1033:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1033)
+	ld	a0, 0(a1)
+	addi	a0, a0, 1
+	sd	a0, 0(a1)
+.Lpcrel_hi1034:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi539)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1034)
 	ld	a0, 8(a1)
 	addi	a0, a0, 1
 	sd	a0, 8(a1)
@@ -12491,9 +15462,15 @@ __ucmpti2:                              # @__ucmpti2
 	bgeu	a0, a1, .LBB165_4
 	j	.LBB165_3
 .LBB165_3:
-.Lpcrel_hi540:
+.Lpcrel_hi1035:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1035)
+	ld	a0, 8(a1)
+	addi	a0, a0, 1
+	sd	a0, 8(a1)
+.Lpcrel_hi1036:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi540)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1036)
 	ld	a0, 16(a1)
 	addi	a0, a0, 1
 	sd	a0, 16(a1)
@@ -12506,9 +15483,15 @@ __ucmpti2:                              # @__ucmpti2
 	bgeu	a0, a1, .LBB165_6
 	j	.LBB165_5
 .LBB165_5:
-.Lpcrel_hi541:
+.Lpcrel_hi1037:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1037)
+	ld	a0, 16(a1)
+	addi	a0, a0, 1
+	sd	a0, 16(a1)
+.Lpcrel_hi1038:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi541)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1038)
 	ld	a0, 24(a1)
 	addi	a0, a0, 1
 	sd	a0, 24(a1)
@@ -12521,9 +15504,15 @@ __ucmpti2:                              # @__ucmpti2
 	bgeu	a0, a1, .LBB165_8
 	j	.LBB165_7
 .LBB165_7:
-.Lpcrel_hi542:
+.Lpcrel_hi1039:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1039)
+	ld	a0, 24(a1)
+	addi	a0, a0, 1
+	sd	a0, 24(a1)
+.Lpcrel_hi1040:
 	auipc	a0, %pcrel_hi(.L__profc___ucmpti2)
-	addi	a1, a0, %pcrel_lo(.Lpcrel_hi542)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1040)
 	ld	a0, 32(a1)
 	addi	a0, a0, 1
 	sd	a0, 32(a1)
@@ -12531,6 +15520,12 @@ __ucmpti2:                              # @__ucmpti2
 	sw	a0, -20(s0)
 	j	.LBB165_9
 .LBB165_8:
+.Lpcrel_hi1041:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a1, a0, %pcrel_lo(.Lpcrel_hi1041)
+	ld	a0, 32(a1)
+	addi	a0, a0, 1
+	sd	a0, 32(a1)
 	li	a0, 1
 	sw	a0, -20(s0)
 	j	.LBB165_9
@@ -12542,6 +15537,1437 @@ __ucmpti2:                              # @__ucmpti2
 	ret
 .Lfunc_end165:
 	.size	__ucmpti2, .Lfunc_end165-__ucmpti2
+                                        # -- End function
+	.p2align	1                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+# %bb.0:
+	addi	sp, sp, -96
+	sd	ra, 88(sp)                      # 8-byte Folded Spill
+	sd	s0, 80(sp)                      # 8-byte Folded Spill
+	addi	s0, sp, 96
+	li	a0, 0
+	sd	a0, -24(s0)                     # 8-byte Folded Spill
+	j	.LBB166_1
+.LBB166_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB166_3 Depth 2
+	ld	a0, -24(s0)                     # 8-byte Folded Reload
+	sd	a0, -64(s0)                     # 8-byte Folded Spill
+	sext.w	a0, a0
+	li	a1, 40
+	mul	a1, a0, a1
+.Lpcrel_hi1042:
+	auipc	a0, %pcrel_hi(__llvm_internal_gcov_emit_file_info)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1042)
+	add	a2, a0, a1
+	sd	a2, -56(s0)                     # 8-byte Folded Spill
+	ld	a0, 0(a2)
+	lw	a1, 8(a2)
+	lw	a2, 12(a2)
+	call	llvm_gcda_start_file
+	ld	a0, -56(s0)                     # 8-byte Folded Reload
+	lw	a1, 16(a0)
+	sd	a1, -48(s0)                     # 8-byte Folded Spill
+	ld	a2, 24(a0)
+	sd	a2, -40(s0)                     # 8-byte Folded Spill
+	ld	a0, 32(a0)
+	sd	a0, -32(s0)                     # 8-byte Folded Spill
+	li	a0, 0
+	bge	a0, a1, .LBB166_5
+	j	.LBB166_2
+.LBB166_2:                              #   in Loop: Header=BB166_1 Depth=1
+	li	a0, 0
+	sd	a0, -72(s0)                     # 8-byte Folded Spill
+	j	.LBB166_3
+.LBB166_3:                              #   Parent Loop BB166_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	ld	a1, -72(s0)                     # 8-byte Folded Reload
+	ld	a0, -40(s0)                     # 8-byte Folded Reload
+	sd	a1, -80(s0)                     # 8-byte Folded Spill
+	sext.w	a1, a1
+	slli	a2, a1, 2
+	slli	a1, a1, 4
+	sd	a1, -88(s0)                     # 8-byte Folded Spill
+	sub	a1, a1, a2
+	add	a2, a0, a1
+	lw	a0, 0(a2)
+	lw	a1, 4(a2)
+	lw	a2, 8(a2)
+	call	llvm_gcda_emit_function
+	ld	a1, -88(s0)                     # 8-byte Folded Reload
+	ld	a0, -32(s0)                     # 8-byte Folded Reload
+	add	a1, a1, a0
+	lw	a0, 0(a1)
+	ld	a1, 8(a1)
+	call	llvm_gcda_emit_arcs
+	ld	a0, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -48(s0)                     # 8-byte Folded Reload
+	addiw	a0, a0, 1
+	sext.w	a1, a1
+	mv	a2, a0
+	sd	a2, -72(s0)                     # 8-byte Folded Spill
+	blt	a0, a1, .LBB166_3
+	j	.LBB166_4
+.LBB166_4:                              #   in Loop: Header=BB166_1 Depth=1
+	j	.LBB166_5
+.LBB166_5:                              #   in Loop: Header=BB166_1 Depth=1
+	call	llvm_gcda_summary_info
+	call	llvm_gcda_end_file
+	ld	a0, -64(s0)                     # 8-byte Folded Reload
+	addiw	a1, a0, 1
+	li	a0, 0
+	mv	a2, a1
+	sd	a2, -24(s0)                     # 8-byte Folded Spill
+	bge	a0, a1, .LBB166_1
+	j	.LBB166_6
+.LBB166_6:
+	ld	ra, 88(sp)                      # 8-byte Folded Reload
+	ld	s0, 80(sp)                      # 8-byte Folded Reload
+	addi	sp, sp, 96
+	ret
+.Lfunc_end166:
+	.size	__llvm_gcov_writeout, .Lfunc_end166-__llvm_gcov_writeout
+                                        # -- End function
+	.p2align	1                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+# %bb.0:
+	addi	sp, sp, -80
+	sd	ra, 72(sp)                      # 8-byte Folded Spill
+	sd	s0, 64(sp)                      # 8-byte Folded Spill
+	addi	s0, sp, 80
+.Lpcrel_hi1043:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1043)
+	li	a1, 0
+	sd	a1, -32(s0)                     # 8-byte Folded Spill
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1044:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.1)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1044)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1045:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.2)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1045)
+	li	a2, 40
+	sd	a2, -24(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1046:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.3)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1046)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1047:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.4)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1047)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1048:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.5)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1048)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1049:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.6)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1049)
+	li	a2, 16
+	sd	a2, -72(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1050:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.7)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1050)
+	li	a2, 24
+	sd	a2, -48(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1051:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.8)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1051)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1052:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.9)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1052)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1053:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.10)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1053)
+	li	a2, 32
+	sd	a2, -40(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1054:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.11)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1054)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1055:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.12)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1055)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1056:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.13)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1056)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1057:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.14)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1057)
+	li	a2, 56
+	sd	a2, -64(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1058:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.15)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1058)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1059:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.16)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1059)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1060:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.17)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1060)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1061:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.18)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1061)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1062:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.19)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1062)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1063:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.20)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1063)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1064:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.21)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1064)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1065:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.22)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1065)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1066:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.23)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1066)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1067:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.24)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1067)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1068:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.25)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1068)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1069:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.26)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1069)
+	call	memset
+	ld	a2, -64(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1070:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.27)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1070)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1071:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.28)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1071)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1072:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.29)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1072)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1073:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.30)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1073)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1074:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.31)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1074)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1075:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.32)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1075)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1076:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.33)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1076)
+	li	a2, 48
+	sd	a2, -80(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1077:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.34)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1077)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1078:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.35)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1078)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1079:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.36)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1079)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1080:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.37)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1080)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1081:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.38)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1081)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1082:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.39)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1082)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1083:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.40)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1083)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1084:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.41)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1084)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1085:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.42)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1085)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1086:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.43)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1086)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1087:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.44)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1087)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1088:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.45)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1088)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1089:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.46)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1089)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1090:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.47)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1090)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1091:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.48)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1091)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1092:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.49)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1092)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1093:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.50)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1093)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1094:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.51)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1094)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1095:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.52)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1095)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1096:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.53)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1096)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1097:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.54)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1097)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1098:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.55)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1098)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1099:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.56)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1099)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1100:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.57)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1100)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1101:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.58)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1101)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1102:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.59)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1102)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1103:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.60)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1103)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1104:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.61)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1104)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1105:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.62)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1105)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1106:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.63)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1106)
+	li	a2, 64
+	sd	a2, -56(s0)                     # 8-byte Folded Spill
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1107:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.64)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1107)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1108:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.65)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1108)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1109:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.66)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1109)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1110:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.67)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1110)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1111:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.68)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1111)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1112:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.69)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1112)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1113:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.70)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1113)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1114:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.71)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1114)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1115:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.72)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1115)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1116:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.73)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1116)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1117:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.74)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1117)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1118:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.75)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1118)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1119:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.76)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1119)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1120:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.77)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1120)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1121:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.78)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1121)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1122:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.79)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1122)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1123:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.80)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1123)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1124:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.81)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1124)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1125:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.82)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1125)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1126:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.83)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1126)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1127:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.84)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1127)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1128:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.85)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1128)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1129:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.86)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1129)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1130:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.87)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1130)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1131:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.88)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1131)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1132:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.89)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1132)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1133:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.90)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1133)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1134:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.91)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1134)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1135:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.92)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1135)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1136:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.93)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1136)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1137:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.94)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1137)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1138:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.95)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1138)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1139:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.96)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1139)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1140:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.97)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1140)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1141:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.98)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1141)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1142:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.99)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1142)
+	call	memset
+	ld	a2, -56(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1143:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.100)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1143)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1144:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.101)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1144)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1145:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.102)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1145)
+	call	memset
+	ld	a2, -56(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1146:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.103)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1146)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1147:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.104)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1147)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1148:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.105)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1148)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1149:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.106)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1149)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1150:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.107)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1150)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1151:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.108)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1151)
+	call	memset
+	ld	a2, -80(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1152:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.109)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1152)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1153:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.110)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1153)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1154:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.111)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1154)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1155:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.112)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1155)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1156:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.113)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1156)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1157:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.114)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1157)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1158:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.115)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1158)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1159:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.116)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1159)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1160:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.117)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1160)
+	call	memset
+	ld	a2, -72(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1161:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.118)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1161)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1162:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.119)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1162)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1163:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.120)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1163)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1164:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.121)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1164)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1165:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.122)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1165)
+	call	memset
+	ld	a2, -56(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1166:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.123)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1166)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1167:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.124)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1167)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1168:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.125)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1168)
+	call	memset
+	ld	a2, -64(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1169:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.126)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1169)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1170:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.127)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1170)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1171:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.128)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1171)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1172:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.129)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1172)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1173:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.130)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1173)
+	call	memset
+	ld	a2, -56(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1174:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.131)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1174)
+	call	memset
+	ld	a2, -56(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1175:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.132)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1175)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1176:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.133)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1176)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1177:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.134)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1177)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1178:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.135)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1178)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1179:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.136)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1179)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1180:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.137)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1180)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1181:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.138)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1181)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1182:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.139)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1182)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1183:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.140)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1183)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1184:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.141)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1184)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1185:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.142)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1185)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1186:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.143)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1186)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1187:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.144)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1187)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1188:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.145)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1188)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1189:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.146)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1189)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1190:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.147)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1190)
+	call	memset
+	ld	a2, -48(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1191:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.148)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1191)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1192:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.149)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1192)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1193:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.150)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1193)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1194:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.151)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1194)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1195:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.152)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1195)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1196:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.153)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1196)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1197:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.154)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1197)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1198:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.155)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1198)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1199:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.156)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1199)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1200:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.157)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1200)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1201:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.158)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1201)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1202:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.159)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1202)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1203:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.160)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1203)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1204:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.161)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1204)
+	call	memset
+	ld	a2, -40(s0)                     # 8-byte Folded Reload
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1205:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.162)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1205)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1206:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.163)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1206)
+	call	memset
+	ld	a1, -32(s0)                     # 8-byte Folded Reload
+	ld	a2, -24(s0)                     # 8-byte Folded Reload
+.Lpcrel_hi1207:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.164)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1207)
+	sb	a1, 7(a0)
+	sb	a1, 6(a0)
+	sb	a1, 5(a0)
+	sb	a1, 4(a0)
+	sb	a1, 3(a0)
+	sb	a1, 2(a0)
+	sb	a1, 1(a0)
+	sb	a1, 0(a0)
+.Lpcrel_hi1208:
+	auipc	a0, %pcrel_hi(__llvm_gcov_ctr.165)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1208)
+	call	memset
+	ld	ra, 72(sp)                      # 8-byte Folded Reload
+	ld	s0, 64(sp)                      # 8-byte Folded Reload
+	addi	sp, sp, 80
+	ret
+.Lfunc_end167:
+	.size	__llvm_gcov_reset, .Lfunc_end167-__llvm_gcov_reset
+                                        # -- End function
+	.p2align	1                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+# %bb.0:
+	addi	sp, sp, -16
+	sd	ra, 8(sp)                       # 8-byte Folded Spill
+	sd	s0, 0(sp)                       # 8-byte Folded Spill
+	addi	s0, sp, 16
+.Lpcrel_hi1209:
+	auipc	a0, %pcrel_hi(__llvm_gcov_writeout)
+	addi	a0, a0, %pcrel_lo(.Lpcrel_hi1209)
+.Lpcrel_hi1210:
+	auipc	a1, %pcrel_hi(__llvm_gcov_reset)
+	addi	a1, a1, %pcrel_lo(.Lpcrel_hi1210)
+	call	llvm_gcov_init
+	ld	ra, 8(sp)                       # 8-byte Folded Reload
+	ld	s0, 0(sp)                       # 8-byte Folded Reload
+	addi	sp, sp, 16
+	ret
+.Lfunc_end168:
+	.size	__llvm_gcov_init, .Lfunc_end168-__llvm_gcov_init
                                         # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.section	.sbss,"aw",@nobits
@@ -12562,6 +16988,1712 @@ seed:
 	.quad	0                               # 0x0
 	.size	seed, 8
 
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.p2align	3, 0x0
+__llvm_gcov_ctr:
+	.zero	8
+	.size	__llvm_gcov_ctr, 8
+
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.p2align	3, 0x0
+__llvm_gcov_ctr.1:
+	.zero	8
+	.size	__llvm_gcov_ctr.1, 8
+
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,40,16
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,40,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,24,16
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,16,8
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,16,8
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,24,16
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,32,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,56,16
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,16,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.p2align	3, 0x0
+__llvm_gcov_ctr.16:
+	.zero	8
+	.size	__llvm_gcov_ctr.16, 8
+
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.p2align	3, 0x0
+__llvm_gcov_ctr.17:
+	.zero	8
+	.size	__llvm_gcov_ctr.17, 8
+
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,24,16
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,24,16
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.p2align	3, 0x0
+__llvm_gcov_ctr.20:
+	.zero	8
+	.size	__llvm_gcov_ctr.20, 8
+
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.p2align	3, 0x0
+__llvm_gcov_ctr.21:
+	.zero	8
+	.size	__llvm_gcov_ctr.21, 8
+
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.p2align	3, 0x0
+__llvm_gcov_ctr.22:
+	.zero	8
+	.size	__llvm_gcov_ctr.22, 8
+
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.p2align	3, 0x0
+__llvm_gcov_ctr.23:
+	.zero	8
+	.size	__llvm_gcov_ctr.23, 8
+
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,24,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.p2align	3, 0x0
+__llvm_gcov_ctr.25:
+	.zero	8
+	.size	__llvm_gcov_ctr.25, 8
+
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,40,16
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.p2align	3, 0x0
+__llvm_gcov_ctr.27:
+	.zero	8
+	.size	__llvm_gcov_ctr.27, 8
+
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,56,16
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,24,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.p2align	3, 0x0
+__llvm_gcov_ctr.30:
+	.zero	8
+	.size	__llvm_gcov_ctr.30, 8
+
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,32,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,32,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,48,16
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,48,16
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,16,8
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.p2align	3, 0x0
+__llvm_gcov_ctr.40:
+	.zero	8
+	.size	__llvm_gcov_ctr.40, 8
+
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.p2align	3, 0x0
+__llvm_gcov_ctr.41:
+	.zero	8
+	.size	__llvm_gcov_ctr.41, 8
+
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,24,16
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,24,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,16,8
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,48,16
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,48,16
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,32,16
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,32,16
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.p2align	3, 0x0
+__llvm_gcov_ctr.52:
+	.zero	8
+	.size	__llvm_gcov_ctr.52, 8
+
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.p2align	3, 0x0
+__llvm_gcov_ctr.54:
+	.zero	8
+	.size	__llvm_gcov_ctr.54, 8
+
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.p2align	3, 0x0
+__llvm_gcov_ctr.56:
+	.zero	8
+	.size	__llvm_gcov_ctr.56, 8
+
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,8
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.p2align	3, 0x0
+__llvm_gcov_ctr.58:
+	.zero	8
+	.size	__llvm_gcov_ctr.58, 8
+
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,40,16
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,48,16
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,16,8
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,8
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,64,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,40,16
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,48,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,16,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,40,16
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.p2align	3, 0x0
+__llvm_gcov_ctr.70:
+	.zero	8
+	.size	__llvm_gcov_ctr.70, 8
+
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.p2align	3, 0x0
+__llvm_gcov_ctr.71:
+	.zero	8
+	.size	__llvm_gcov_ctr.71, 8
+
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.p2align	3, 0x0
+__llvm_gcov_ctr.72:
+	.zero	8
+	.size	__llvm_gcov_ctr.72, 8
+
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.p2align	3, 0x0
+__llvm_gcov_ctr.73:
+	.zero	8
+	.size	__llvm_gcov_ctr.73, 8
+
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.p2align	3, 0x0
+__llvm_gcov_ctr.74:
+	.zero	8
+	.size	__llvm_gcov_ctr.74, 8
+
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.p2align	3, 0x0
+__llvm_gcov_ctr.75:
+	.zero	8
+	.size	__llvm_gcov_ctr.75, 8
+
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.p2align	3, 0x0
+__llvm_gcov_ctr.76:
+	.zero	8
+	.size	__llvm_gcov_ctr.76, 8
+
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.p2align	3, 0x0
+__llvm_gcov_ctr.77:
+	.zero	8
+	.size	__llvm_gcov_ctr.77, 8
+
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.p2align	3, 0x0
+__llvm_gcov_ctr.78:
+	.zero	8
+	.size	__llvm_gcov_ctr.78, 8
+
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.p2align	3, 0x0
+__llvm_gcov_ctr.79:
+	.zero	8
+	.size	__llvm_gcov_ctr.79, 8
+
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.p2align	3, 0x0
+__llvm_gcov_ctr.80:
+	.zero	8
+	.size	__llvm_gcov_ctr.80, 8
+
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.p2align	3, 0x0
+__llvm_gcov_ctr.81:
+	.zero	8
+	.size	__llvm_gcov_ctr.81, 8
+
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.p2align	3, 0x0
+__llvm_gcov_ctr.82:
+	.zero	8
+	.size	__llvm_gcov_ctr.82, 8
+
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,24,16
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,24,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.p2align	3, 0x0
+__llvm_gcov_ctr.88:
+	.zero	8
+	.size	__llvm_gcov_ctr.88, 8
+
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,40,16
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,16,8
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,40,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,32,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,24,16
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,32,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,40,16
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,48,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.p2align	3, 0x0
+__llvm_gcov_ctr.100:
+	.zero	8
+	.size	__llvm_gcov_ctr.100, 8
+
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,64,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,24,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,24,16
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,48,16
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,48,16
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.p2align	3, 0x0
+__llvm_gcov_ctr.110:
+	.zero	8
+	.size	__llvm_gcov_ctr.110, 8
+
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.p2align	3, 0x0
+__llvm_gcov_ctr.111:
+	.zero	8
+	.size	__llvm_gcov_ctr.111, 8
+
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.p2align	3, 0x0
+__llvm_gcov_ctr.112:
+	.zero	8
+	.size	__llvm_gcov_ctr.112, 8
+
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.p2align	3, 0x0
+__llvm_gcov_ctr.113:
+	.zero	8
+	.size	__llvm_gcov_ctr.113, 8
+
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.p2align	3, 0x0
+__llvm_gcov_ctr.114:
+	.zero	8
+	.size	__llvm_gcov_ctr.114, 8
+
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.p2align	3, 0x0
+__llvm_gcov_ctr.115:
+	.zero	8
+	.size	__llvm_gcov_ctr.115, 8
+
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,16,8
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,32,16
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,64,16
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,24,16
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,24,16
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.p2align	3, 0x0
+__llvm_gcov_ctr.126:
+	.zero	8
+	.size	__llvm_gcov_ctr.126, 8
+
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.p2align	3, 0x0
+__llvm_gcov_ctr.127:
+	.zero	8
+	.size	__llvm_gcov_ctr.127, 8
+
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,56,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,32,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,32,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,64,16
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,64,16
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,24,16
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,24,16
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,24,16
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,24,16
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.p2align	3, 0x0
+__llvm_gcov_ctr.137:
+	.zero	8
+	.size	__llvm_gcov_ctr.137, 8
+
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.p2align	3, 0x0
+__llvm_gcov_ctr.138:
+	.zero	8
+	.size	__llvm_gcov_ctr.138, 8
+
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.p2align	3, 0x0
+__llvm_gcov_ctr.139:
+	.zero	8
+	.size	__llvm_gcov_ctr.139, 8
+
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.p2align	3, 0x0
+__llvm_gcov_ctr.140:
+	.zero	8
+	.size	__llvm_gcov_ctr.140, 8
+
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,40,16
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.p2align	3, 0x0
+__llvm_gcov_ctr.142:
+	.zero	8
+	.size	__llvm_gcov_ctr.142, 8
+
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,40,16
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.p2align	3, 0x0
+__llvm_gcov_ctr.144:
+	.zero	8
+	.size	__llvm_gcov_ctr.144, 8
+
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.p2align	3, 0x0
+__llvm_gcov_ctr.145:
+	.zero	8
+	.size	__llvm_gcov_ctr.145, 8
+
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,24,16
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,24,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,24,16
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.p2align	3, 0x0
+__llvm_gcov_ctr.149:
+	.zero	8
+	.size	__llvm_gcov_ctr.149, 8
+
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.p2align	3, 0x0
+__llvm_gcov_ctr.150:
+	.zero	8
+	.size	__llvm_gcov_ctr.150, 8
+
+	.type	__llvm_gcov_ctr.151,@object     # @__llvm_gcov_ctr.151
+	.p2align	3, 0x0
+__llvm_gcov_ctr.151:
+	.zero	8
+	.size	__llvm_gcov_ctr.151, 8
+
+	.type	__llvm_gcov_ctr.152,@object     # @__llvm_gcov_ctr.152
+	.p2align	3, 0x0
+__llvm_gcov_ctr.152:
+	.zero	8
+	.size	__llvm_gcov_ctr.152, 8
+
+	.type	__llvm_gcov_ctr.153,@object     # @__llvm_gcov_ctr.153
+	.p2align	3, 0x0
+__llvm_gcov_ctr.153:
+	.zero	8
+	.size	__llvm_gcov_ctr.153, 8
+
+	.type	__llvm_gcov_ctr.154,@object     # @__llvm_gcov_ctr.154
+	.p2align	3, 0x0
+__llvm_gcov_ctr.154:
+	.zero	8
+	.size	__llvm_gcov_ctr.154, 8
+
+	.type	__llvm_gcov_ctr.155,@object     # @__llvm_gcov_ctr.155
+	.p2align	3, 0x0
+__llvm_gcov_ctr.155:
+	.zero	8
+	.size	__llvm_gcov_ctr.155, 8
+
+	.type	__llvm_gcov_ctr.156,@object     # @__llvm_gcov_ctr.156
+	.p2align	3, 0x0
+__llvm_gcov_ctr.156:
+	.zero	8
+	.size	__llvm_gcov_ctr.156, 8
+
+	.type	__llvm_gcov_ctr.157,@object     # @__llvm_gcov_ctr.157
+	.p2align	3, 0x0
+__llvm_gcov_ctr.157:
+	.zero	8
+	.size	__llvm_gcov_ctr.157, 8
+
+	.type	__llvm_gcov_ctr.158,@object     # @__llvm_gcov_ctr.158
+	.p2align	3, 0x0
+__llvm_gcov_ctr.158:
+	.zero	8
+	.size	__llvm_gcov_ctr.158, 8
+
+	.type	__llvm_gcov_ctr.159,@object     # @__llvm_gcov_ctr.159
+	.p2align	3, 0x0
+__llvm_gcov_ctr.159:
+	.zero	8
+	.size	__llvm_gcov_ctr.159, 8
+
+	.type	__llvm_gcov_ctr.160,@object     # @__llvm_gcov_ctr.160
+	.p2align	3, 0x0
+__llvm_gcov_ctr.160:
+	.zero	8
+	.size	__llvm_gcov_ctr.160, 8
+
+	.type	__llvm_gcov_ctr.161,@object     # @__llvm_gcov_ctr.161
+	.local	__llvm_gcov_ctr.161
+	.comm	__llvm_gcov_ctr.161,32,16
+	.type	__llvm_gcov_ctr.162,@object     # @__llvm_gcov_ctr.162
+	.local	__llvm_gcov_ctr.162
+	.comm	__llvm_gcov_ctr.162,32,16
+	.type	__llvm_gcov_ctr.163,@object     # @__llvm_gcov_ctr.163
+	.local	__llvm_gcov_ctr.163
+	.comm	__llvm_gcov_ctr.163,40,16
+	.type	__llvm_gcov_ctr.164,@object     # @__llvm_gcov_ctr.164
+	.p2align	3, 0x0
+__llvm_gcov_ctr.164:
+	.zero	8
+	.size	__llvm_gcov_ctr.164, 8
+
+	.type	__llvm_gcov_ctr.165,@object     # @__llvm_gcov_ctr.165
+	.local	__llvm_gcov_ctr.165
+	.comm	__llvm_gcov_ctr.165,40,16
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-riscv64.gcda"
+	.size	.L__unnamed_1, 51
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.word	0                               # 0x0
+	.word	3759012176                      # 0xe00df950
+	.word	2102079853                      # 0x7d4b316d
+	.word	1                               # 0x1
+	.word	3518812481                      # 0xd1bcd141
+	.word	2102079853                      # 0x7d4b316d
+	.word	2                               # 0x2
+	.word	560687177                       # 0x216b6849
+	.word	2102079853                      # 0x7d4b316d
+	.word	3                               # 0x3
+	.word	1589591758                      # 0x5ebf3ece
+	.word	2102079853                      # 0x7d4b316d
+	.word	4                               # 0x4
+	.word	2176136383                      # 0x81b534bf
+	.word	2102079853                      # 0x7d4b316d
+	.word	5                               # 0x5
+	.word	3586625172                      # 0xd5c78e94
+	.word	2102079853                      # 0x7d4b316d
+	.word	6                               # 0x6
+	.word	2323119728                      # 0x8a77fe70
+	.word	2102079853                      # 0x7d4b316d
+	.word	7                               # 0x7
+	.word	2314569740                      # 0x89f5880c
+	.word	2102079853                      # 0x7d4b316d
+	.word	8                               # 0x8
+	.word	2833673551                      # 0xa8e66d4f
+	.word	2102079853                      # 0x7d4b316d
+	.word	9                               # 0x9
+	.word	1458633189                      # 0x56f0f9e5
+	.word	2102079853                      # 0x7d4b316d
+	.word	10                              # 0xa
+	.word	1190300833                      # 0x46f28ca1
+	.word	2102079853                      # 0x7d4b316d
+	.word	11                              # 0xb
+	.word	758327989                       # 0x2d332ab5
+	.word	2102079853                      # 0x7d4b316d
+	.word	12                              # 0xc
+	.word	1651479037                      # 0x626f91fd
+	.word	2102079853                      # 0x7d4b316d
+	.word	13                              # 0xd
+	.word	4132343275                      # 0xf64e8deb
+	.word	2102079853                      # 0x7d4b316d
+	.word	14                              # 0xe
+	.word	734262523                       # 0x2bc3f4fb
+	.word	2102079853                      # 0x7d4b316d
+	.word	15                              # 0xf
+	.word	2463424677                      # 0x92d4e0a5
+	.word	2102079853                      # 0x7d4b316d
+	.word	16                              # 0x10
+	.word	1419026334                      # 0x54949f9e
+	.word	2102079853                      # 0x7d4b316d
+	.word	17                              # 0x11
+	.word	3154471370                      # 0xbc0569ca
+	.word	2102079853                      # 0x7d4b316d
+	.word	18                              # 0x12
+	.word	2077973487                      # 0x7bdb5bef
+	.word	2102079853                      # 0x7d4b316d
+	.word	19                              # 0x13
+	.word	1474691227                      # 0x57e6009b
+	.word	2102079853                      # 0x7d4b316d
+	.word	20                              # 0x14
+	.word	3710986016                      # 0xdd312720
+	.word	2102079853                      # 0x7d4b316d
+	.word	21                              # 0x15
+	.word	1305101473                      # 0x4dca44a1
+	.word	2102079853                      # 0x7d4b316d
+	.word	22                              # 0x16
+	.word	3762036564                      # 0xe03c1f54
+	.word	2102079853                      # 0x7d4b316d
+	.word	23                              # 0x17
+	.word	477914433                       # 0x1c7c6541
+	.word	2102079853                      # 0x7d4b316d
+	.word	24                              # 0x18
+	.word	3923035234                      # 0xe9d4c462
+	.word	2102079853                      # 0x7d4b316d
+	.word	25                              # 0x19
+	.word	951651702                       # 0x38b90d76
+	.word	2102079853                      # 0x7d4b316d
+	.word	26                              # 0x1a
+	.word	4206925919                      # 0xfac0985f
+	.word	2102079853                      # 0x7d4b316d
+	.word	27                              # 0x1b
+	.word	32773942                        # 0x1f41736
+	.word	2102079853                      # 0x7d4b316d
+	.word	28                              # 0x1c
+	.word	2877267246                      # 0xab7f9d2e
+	.word	2102079853                      # 0x7d4b316d
+	.word	29                              # 0x1d
+	.word	860405771                       # 0x3348c00b
+	.word	2102079853                      # 0x7d4b316d
+	.word	30                              # 0x1e
+	.word	815674877                       # 0x309e35fd
+	.word	2102079853                      # 0x7d4b316d
+	.word	31                              # 0x1f
+	.word	1778838753                      # 0x6a06ece1
+	.word	2102079853                      # 0x7d4b316d
+	.word	32                              # 0x20
+	.word	2718307199                      # 0xa206137f
+	.word	2102079853                      # 0x7d4b316d
+	.word	33                              # 0x21
+	.word	856224820                       # 0x3308f434
+	.word	2102079853                      # 0x7d4b316d
+	.word	34                              # 0x22
+	.word	1111195143                      # 0x423b7e07
+	.word	2102079853                      # 0x7d4b316d
+	.word	35                              # 0x23
+	.word	1178414519                      # 0x463d2db7
+	.word	2102079853                      # 0x7d4b316d
+	.word	36                              # 0x24
+	.word	3477640633                      # 0xcf4895b9
+	.word	2102079853                      # 0x7d4b316d
+	.word	37                              # 0x25
+	.word	4294770115                      # 0xfffcfdc3
+	.word	2102079853                      # 0x7d4b316d
+	.word	38                              # 0x26
+	.word	3650660234                      # 0xd998a78a
+	.word	2102079853                      # 0x7d4b316d
+	.word	39                              # 0x27
+	.word	289327647                       # 0x113eca1f
+	.word	2102079853                      # 0x7d4b316d
+	.word	40                              # 0x28
+	.word	2093612798                      # 0x7cc9fefe
+	.word	2102079853                      # 0x7d4b316d
+	.word	41                              # 0x29
+	.word	4177956716                      # 0xf9068f6c
+	.word	2102079853                      # 0x7d4b316d
+	.word	42                              # 0x2a
+	.word	3434808461                      # 0xccbb048d
+	.word	2102079853                      # 0x7d4b316d
+	.word	43                              # 0x2b
+	.word	3206497114                      # 0xbf1f435a
+	.word	2102079853                      # 0x7d4b316d
+	.word	44                              # 0x2c
+	.word	1537257434                      # 0x5ba0afda
+	.word	2102079853                      # 0x7d4b316d
+	.word	45                              # 0x2d
+	.word	3028077325                      # 0xb47ccb0d
+	.word	2102079853                      # 0x7d4b316d
+	.word	46                              # 0x2e
+	.word	1369848209                      # 0x51a63991
+	.word	2102079853                      # 0x7d4b316d
+	.word	47                              # 0x2f
+	.word	938831176                       # 0x37f56d48
+	.word	2102079853                      # 0x7d4b316d
+	.word	48                              # 0x30
+	.word	1663146323                      # 0x63219953
+	.word	2102079853                      # 0x7d4b316d
+	.word	49                              # 0x31
+	.word	4111410217                      # 0xf50f2429
+	.word	2102079853                      # 0x7d4b316d
+	.word	50                              # 0x32
+	.word	1475378556                      # 0x57f07d7c
+	.word	2102079853                      # 0x7d4b316d
+	.word	51                              # 0x33
+	.word	3356195547                      # 0xc80b7adb
+	.word	2102079853                      # 0x7d4b316d
+	.word	52                              # 0x34
+	.word	514931786                       # 0x1eb13c4a
+	.word	2102079853                      # 0x7d4b316d
+	.word	53                              # 0x35
+	.word	2854034444                      # 0xaa1d1c0c
+	.word	2102079853                      # 0x7d4b316d
+	.word	54                              # 0x36
+	.word	2747937306                      # 0xa3ca321a
+	.word	2102079853                      # 0x7d4b316d
+	.word	55                              # 0x37
+	.word	4192776208                      # 0xf9e8b010
+	.word	2102079853                      # 0x7d4b316d
+	.word	56                              # 0x38
+	.word	984436227                       # 0x3aad4e03
+	.word	2102079853                      # 0x7d4b316d
+	.word	57                              # 0x39
+	.word	1477657574                      # 0x581343e6
+	.word	2102079853                      # 0x7d4b316d
+	.word	58                              # 0x3a
+	.word	1339127973                      # 0x4fd178a5
+	.word	2102079853                      # 0x7d4b316d
+	.word	59                              # 0x3b
+	.word	2960567906                      # 0xb076ae62
+	.word	2102079853                      # 0x7d4b316d
+	.word	60                              # 0x3c
+	.word	3390076872                      # 0xca1077c8
+	.word	2102079853                      # 0x7d4b316d
+	.word	61                              # 0x3d
+	.word	1543282230                      # 0x5bfc9e36
+	.word	2102079853                      # 0x7d4b316d
+	.word	62                              # 0x3e
+	.word	2934101789                      # 0xaee2d71d
+	.word	2102079853                      # 0x7d4b316d
+	.word	63                              # 0x3f
+	.word	3737986119                      # 0xdecd2447
+	.word	2102079853                      # 0x7d4b316d
+	.word	64                              # 0x40
+	.word	49556427                        # 0x2f42bcb
+	.word	2102079853                      # 0x7d4b316d
+	.word	65                              # 0x41
+	.word	234051526                       # 0xdf357c6
+	.word	2102079853                      # 0x7d4b316d
+	.word	66                              # 0x42
+	.word	2341800126                      # 0x8b9508be
+	.word	2102079853                      # 0x7d4b316d
+	.word	67                              # 0x43
+	.word	3256799948                      # 0xc21ed2cc
+	.word	2102079853                      # 0x7d4b316d
+	.word	68                              # 0x44
+	.word	777295480                       # 0x2e549678
+	.word	2102079853                      # 0x7d4b316d
+	.word	69                              # 0x45
+	.word	14040531                        # 0xd63dd3
+	.word	2102079853                      # 0x7d4b316d
+	.word	70                              # 0x46
+	.word	8047973                         # 0x7acd65
+	.word	2102079853                      # 0x7d4b316d
+	.word	71                              # 0x47
+	.word	719459161                       # 0x2ae21359
+	.word	2102079853                      # 0x7d4b316d
+	.word	72                              # 0x48
+	.word	243358501                       # 0xe815b25
+	.word	2102079853                      # 0x7d4b316d
+	.word	73                              # 0x49
+	.word	3262173932                      # 0xc270d2ec
+	.word	2102079853                      # 0x7d4b316d
+	.word	74                              # 0x4a
+	.word	398910553                       # 0x17c6e459
+	.word	2102079853                      # 0x7d4b316d
+	.word	75                              # 0x4b
+	.word	3354219739                      # 0xc7ed54db
+	.word	2102079853                      # 0x7d4b316d
+	.word	76                              # 0x4c
+	.word	2570308788                      # 0x9933ccb4
+	.word	2102079853                      # 0x7d4b316d
+	.word	77                              # 0x4d
+	.word	982429111                       # 0x3a8eadb7
+	.word	2102079853                      # 0x7d4b316d
+	.word	78                              # 0x4e
+	.word	211491241                       # 0xc9b19a9
+	.word	2102079853                      # 0x7d4b316d
+	.word	79                              # 0x4f
+	.word	1075683319                      # 0x401d9ff7
+	.word	2102079853                      # 0x7d4b316d
+	.word	80                              # 0x50
+	.word	1886352651                      # 0x706f750b
+	.word	2102079853                      # 0x7d4b316d
+	.word	81                              # 0x51
+	.word	248637203                       # 0xed1e713
+	.word	2102079853                      # 0x7d4b316d
+	.word	82                              # 0x52
+	.word	703327087                       # 0x29ebeb6f
+	.word	2102079853                      # 0x7d4b316d
+	.word	83                              # 0x53
+	.word	3690160730                      # 0xdbf3625a
+	.word	2102079853                      # 0x7d4b316d
+	.word	84                              # 0x54
+	.word	787048238                       # 0x2ee9672e
+	.word	2102079853                      # 0x7d4b316d
+	.word	85                              # 0x55
+	.word	1937497967                      # 0x737bdf6f
+	.word	2102079853                      # 0x7d4b316d
+	.word	86                              # 0x56
+	.word	4205062514                      # 0xfaa42972
+	.word	2102079853                      # 0x7d4b316d
+	.word	87                              # 0x57
+	.word	694462539                       # 0x2964a84b
+	.word	2102079853                      # 0x7d4b316d
+	.word	88                              # 0x58
+	.word	85970907                        # 0x51fcfdb
+	.word	2102079853                      # 0x7d4b316d
+	.word	89                              # 0x59
+	.word	3681984728                      # 0xdb76a0d8
+	.word	2102079853                      # 0x7d4b316d
+	.word	90                              # 0x5a
+	.word	3620297642                      # 0xd7c95baa
+	.word	2102079853                      # 0x7d4b316d
+	.word	91                              # 0x5b
+	.word	3394804480                      # 0xca589b00
+	.word	2102079853                      # 0x7d4b316d
+	.word	92                              # 0x5c
+	.word	2119330183                      # 0x7e526987
+	.word	2102079853                      # 0x7d4b316d
+	.word	93                              # 0x5d
+	.word	1963040266                      # 0x75019e0a
+	.word	2102079853                      # 0x7d4b316d
+	.word	94                              # 0x5e
+	.word	1603391838                      # 0x5f91d15e
+	.word	2102079853                      # 0x7d4b316d
+	.word	95                              # 0x5f
+	.word	2340921237                      # 0x8b879f95
+	.word	2102079853                      # 0x7d4b316d
+	.word	96                              # 0x60
+	.word	3028177438                      # 0xb47e521e
+	.word	2102079853                      # 0x7d4b316d
+	.word	97                              # 0x61
+	.word	2265525308                      # 0x87092c3c
+	.word	2102079853                      # 0x7d4b316d
+	.word	98                              # 0x62
+	.word	2598903994                      # 0x9ae820ba
+	.word	2102079853                      # 0x7d4b316d
+	.word	99                              # 0x63
+	.word	139524705                       # 0x850fa61
+	.word	2102079853                      # 0x7d4b316d
+	.word	100                             # 0x64
+	.word	1076410600                      # 0x4028b8e8
+	.word	2102079853                      # 0x7d4b316d
+	.word	101                             # 0x65
+	.word	220237413                       # 0xd208e65
+	.word	2102079853                      # 0x7d4b316d
+	.word	102                             # 0x66
+	.word	3913623866                      # 0xe945293a
+	.word	2102079853                      # 0x7d4b316d
+	.word	103                             # 0x67
+	.word	3453026372                      # 0xcdd10044
+	.word	2102079853                      # 0x7d4b316d
+	.word	104                             # 0x68
+	.word	2321387380                      # 0x8a5d8f74
+	.word	2102079853                      # 0x7d4b316d
+	.word	105                             # 0x69
+	.word	3319939363                      # 0xc5e24123
+	.word	2102079853                      # 0x7d4b316d
+	.word	106                             # 0x6a
+	.word	398991913                       # 0x17c82229
+	.word	2102079853                      # 0x7d4b316d
+	.word	107                             # 0x6b
+	.word	333429647                       # 0x13dfbb8f
+	.word	2102079853                      # 0x7d4b316d
+	.word	108                             # 0x6c
+	.word	3927133990                      # 0xea134f26
+	.word	2102079853                      # 0x7d4b316d
+	.word	109                             # 0x6d
+	.word	1797971294                      # 0x6b2add5e
+	.word	2102079853                      # 0x7d4b316d
+	.word	110                             # 0x6e
+	.word	1622314776                      # 0x60b28f18
+	.word	2102079853                      # 0x7d4b316d
+	.word	111                             # 0x6f
+	.word	1092862330                      # 0x4123c17a
+	.word	2102079853                      # 0x7d4b316d
+	.word	112                             # 0x70
+	.word	2568657322                      # 0x991a99aa
+	.word	2102079853                      # 0x7d4b316d
+	.word	113                             # 0x71
+	.word	2168129897                      # 0x813b0969
+	.word	2102079853                      # 0x7d4b316d
+	.word	114                             # 0x72
+	.word	2890303119                      # 0xac46868f
+	.word	2102079853                      # 0x7d4b316d
+	.word	115                             # 0x73
+	.word	1713332582                      # 0x661f6166
+	.word	2102079853                      # 0x7d4b316d
+	.word	116                             # 0x74
+	.word	2375727721                      # 0x8d9aba69
+	.word	2102079853                      # 0x7d4b316d
+	.word	117                             # 0x75
+	.word	3586767156                      # 0xd5c9b934
+	.word	2102079853                      # 0x7d4b316d
+	.word	118                             # 0x76
+	.word	2191348475                      # 0x829d52fb
+	.word	2102079853                      # 0x7d4b316d
+	.word	119                             # 0x77
+	.word	3910023869                      # 0xe90e3abd
+	.word	2102079853                      # 0x7d4b316d
+	.word	120                             # 0x78
+	.word	4189915105                      # 0xf9bd07e1
+	.word	2102079853                      # 0x7d4b316d
+	.word	121                             # 0x79
+	.word	2527353334                      # 0x96a459f6
+	.word	2102079853                      # 0x7d4b316d
+	.word	122                             # 0x7a
+	.word	3429265923                      # 0xcc667203
+	.word	2102079853                      # 0x7d4b316d
+	.word	123                             # 0x7b
+	.word	1283962724                      # 0x4c87b764
+	.word	2102079853                      # 0x7d4b316d
+	.word	124                             # 0x7c
+	.word	1970290990                      # 0x7570412e
+	.word	2102079853                      # 0x7d4b316d
+	.word	125                             # 0x7d
+	.word	2615950861                      # 0x9bec3e0d
+	.word	2102079853                      # 0x7d4b316d
+	.word	126                             # 0x7e
+	.word	3338450337                      # 0xc6fcb5a1
+	.word	2102079853                      # 0x7d4b316d
+	.word	127                             # 0x7f
+	.word	3971836509                      # 0xecbd6a5d
+	.word	2102079853                      # 0x7d4b316d
+	.word	128                             # 0x80
+	.word	4260339231                      # 0xfdef9e1f
+	.word	2102079853                      # 0x7d4b316d
+	.word	129                             # 0x81
+	.word	4160738226                      # 0xf7ffd3b2
+	.word	2102079853                      # 0x7d4b316d
+	.word	130                             # 0x82
+	.word	1309372079                      # 0x4e0b6eaf
+	.word	2102079853                      # 0x7d4b316d
+	.word	131                             # 0x83
+	.word	3151575564                      # 0xbbd93a0c
+	.word	2102079853                      # 0x7d4b316d
+	.word	132                             # 0x84
+	.word	3938977714                      # 0xeac807b2
+	.word	2102079853                      # 0x7d4b316d
+	.word	133                             # 0x85
+	.word	3228738087                      # 0xc072a227
+	.word	2102079853                      # 0x7d4b316d
+	.word	134                             # 0x86
+	.word	2262837051                      # 0x86e0273b
+	.word	2102079853                      # 0x7d4b316d
+	.word	135                             # 0x87
+	.word	3135705803                      # 0xbae712cb
+	.word	2102079853                      # 0x7d4b316d
+	.word	136                             # 0x88
+	.word	990447104                       # 0x3b090600
+	.word	2102079853                      # 0x7d4b316d
+	.word	137                             # 0x89
+	.word	4061147315                      # 0xf21030b3
+	.word	2102079853                      # 0x7d4b316d
+	.word	138                             # 0x8a
+	.word	2783543715                      # 0xa5e981a3
+	.word	2102079853                      # 0x7d4b316d
+	.word	139                             # 0x8b
+	.word	2471046843                      # 0x93492ebb
+	.word	2102079853                      # 0x7d4b316d
+	.word	140                             # 0x8c
+	.word	403058134                       # 0x18062dd6
+	.word	2102079853                      # 0x7d4b316d
+	.word	141                             # 0x8d
+	.word	260073473                       # 0xf806801
+	.word	2102079853                      # 0x7d4b316d
+	.word	142                             # 0x8e
+	.word	1259876295                      # 0x4b182fc7
+	.word	2102079853                      # 0x7d4b316d
+	.word	143                             # 0x8f
+	.word	2975678116                      # 0xb15d3ea4
+	.word	2102079853                      # 0x7d4b316d
+	.word	144                             # 0x90
+	.word	2579807359                      # 0x99c4bc7f
+	.word	2102079853                      # 0x7d4b316d
+	.word	145                             # 0x91
+	.word	863102422                       # 0x3371e5d6
+	.word	2102079853                      # 0x7d4b316d
+	.word	146                             # 0x92
+	.word	650832017                       # 0x26cae891
+	.word	2102079853                      # 0x7d4b316d
+	.word	147                             # 0x93
+	.word	90061610                        # 0x55e3b2a
+	.word	2102079853                      # 0x7d4b316d
+	.word	148                             # 0x94
+	.word	2446954539                      # 0x91d9902b
+	.word	2102079853                      # 0x7d4b316d
+	.word	149                             # 0x95
+	.word	3598610789                      # 0xd67e7165
+	.word	2102079853                      # 0x7d4b316d
+	.word	150                             # 0x96
+	.word	2351688191                      # 0x8c2be9ff
+	.word	2102079853                      # 0x7d4b316d
+	.word	151                             # 0x97
+	.word	1743478091                      # 0x67eb5d4b
+	.word	2102079853                      # 0x7d4b316d
+	.word	152                             # 0x98
+	.word	2798805217                      # 0xa6d260e1
+	.word	2102079853                      # 0x7d4b316d
+	.word	153                             # 0x99
+	.word	1438161982                      # 0x55b89c3e
+	.word	2102079853                      # 0x7d4b316d
+	.word	154                             # 0x9a
+	.word	273416875                       # 0x104c02ab
+	.word	2102079853                      # 0x7d4b316d
+	.word	155                             # 0x9b
+	.word	2438880600                      # 0x915e5d58
+	.word	2102079853                      # 0x7d4b316d
+	.word	156                             # 0x9c
+	.word	1284541841                      # 0x4c908d91
+	.word	2102079853                      # 0x7d4b316d
+	.word	157                             # 0x9d
+	.word	3593193962                      # 0xd62bc9ea
+	.word	2102079853                      # 0x7d4b316d
+	.word	158                             # 0x9e
+	.word	1755082314                      # 0x689c6e4a
+	.word	2102079853                      # 0x7d4b316d
+	.word	159                             # 0x9f
+	.word	3432612426                      # 0xcc99824a
+	.word	2102079853                      # 0x7d4b316d
+	.word	160                             # 0xa0
+	.word	1404964820                      # 0x53be0fd4
+	.word	2102079853                      # 0x7d4b316d
+	.word	161                             # 0xa1
+	.word	3374828335                      # 0xc927cb2f
+	.word	2102079853                      # 0x7d4b316d
+	.word	162                             # 0xa2
+	.word	3311814731                      # 0xc566484b
+	.word	2102079853                      # 0x7d4b316d
+	.word	163                             # 0xa3
+	.word	413908966                       # 0x18abbfe6
+	.word	2102079853                      # 0x7d4b316d
+	.word	164                             # 0xa4
+	.word	3027808697                      # 0xb478b1b9
+	.word	2102079853                      # 0x7d4b316d
+	.word	165                             # 0xa5
+	.word	540762785                       # 0x203b62a1
+	.word	2102079853                      # 0x7d4b316d
+	.size	__llvm_internal_gcov_emit_function_args.0, 1992
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.1
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.2
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.3
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.4
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.5
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.6
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.7
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.8
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.9
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.10
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.11
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.12
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.13
+	.word	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.14
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.15
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.16
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.17
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.18
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.19
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.20
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.21
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.22
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.23
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.24
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.25
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.26
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.27
+	.word	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.28
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.29
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.30
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.31
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.32
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.33
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.34
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.35
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.36
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.37
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.38
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.39
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.40
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.41
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.42
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.43
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.44
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.45
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.46
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.47
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.48
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.49
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.50
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.51
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.52
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.53
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.54
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.55
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.56
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.57
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.58
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.59
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.60
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.61
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.62
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.63
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.64
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.65
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.66
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.67
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.68
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.69
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.70
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.71
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.72
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.73
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.74
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.75
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.76
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.77
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.78
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.79
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.80
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.81
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.82
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.83
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.84
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.85
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.86
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.87
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.88
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.89
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.90
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.91
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.92
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.93
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.94
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.95
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.96
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.97
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.98
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.99
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.100
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.101
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.102
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.103
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.104
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.105
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.106
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.107
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.108
+	.word	6                               # 0x6
+	.zero	4
+	.quad	__llvm_gcov_ctr.109
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.110
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.111
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.112
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.113
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.114
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.115
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.116
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.117
+	.word	2                               # 0x2
+	.zero	4
+	.quad	__llvm_gcov_ctr.118
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.119
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.120
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.121
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.122
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.123
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.124
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.125
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.126
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.127
+	.word	7                               # 0x7
+	.zero	4
+	.quad	__llvm_gcov_ctr.128
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.129
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.130
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.131
+	.word	8                               # 0x8
+	.zero	4
+	.quad	__llvm_gcov_ctr.132
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.133
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.134
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.135
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.136
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.137
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.138
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.139
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.140
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.141
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.142
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.143
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.144
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.145
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.146
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.147
+	.word	3                               # 0x3
+	.zero	4
+	.quad	__llvm_gcov_ctr.148
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.149
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.150
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.151
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.152
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.153
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.154
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.155
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.156
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.157
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.158
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.159
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.160
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.161
+	.word	4                               # 0x4
+	.zero	4
+	.quad	__llvm_gcov_ctr.162
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.163
+	.word	1                               # 0x1
+	.zero	4
+	.quad	__llvm_gcov_ctr.164
+	.word	5                               # 0x5
+	.zero	4
+	.quad	__llvm_gcov_ctr.165
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 2656
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.quad	.L__unnamed_1
+	.word	875575338                       # 0x3430382a
+	.word	2102079853                      # 0x7d4b316d
+	.word	166                             # 0xa6
+	.zero	4
+	.quad	__llvm_internal_gcov_emit_function_args.0
+	.quad	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.quad	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_make_ti,@object       # @__profc_make_ti
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
@@ -16401,9 +22533,181 @@ seed:
 	.addrsig_sym __muldsi3
 	.addrsig_sym __mulddi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
+	.addrsig_sym __llvm_gcov_ctr.151
+	.addrsig_sym __llvm_gcov_ctr.152
+	.addrsig_sym __llvm_gcov_ctr.153
+	.addrsig_sym __llvm_gcov_ctr.154
+	.addrsig_sym __llvm_gcov_ctr.155
+	.addrsig_sym __llvm_gcov_ctr.156
+	.addrsig_sym __llvm_gcov_ctr.157
+	.addrsig_sym __llvm_gcov_ctr.158
+	.addrsig_sym __llvm_gcov_ctr.159
+	.addrsig_sym __llvm_gcov_ctr.160
+	.addrsig_sym __llvm_gcov_ctr.161
+	.addrsig_sym __llvm_gcov_ctr.162
+	.addrsig_sym __llvm_gcov_ctr.163
+	.addrsig_sym __llvm_gcov_ctr.164
+	.addrsig_sym __llvm_gcov_ctr.165
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_make_ti
 	.addrsig_sym .L__profd_make_ti

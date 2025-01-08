@@ -28,6 +28,10 @@ memmove:                                # @memmove
 	cmp	eax, dword ptr [ebp - 4]
 	jae	.LBB0_6
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr+4], 0
+	mov	dword ptr [__llvm_gcov_ctr], eax
 	mov	eax, dword ptr [.L__profc_memmove+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmove+12], 0
@@ -57,6 +61,10 @@ memmove:                                # @memmove
 	mov	dword ptr [ebp - 4], edx
 	mov	byte ptr [eax - 1], cl
 # %bb.4:                                #   in Loop: Header=BB0_2 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr+12], 0
+	mov	dword ptr [__llvm_gcov_ctr+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -76,6 +84,10 @@ memmove:                                # @memmove
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB0_11
 # %bb.9:                                #   in Loop: Header=BB0_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr+20], 0
+	mov	dword ptr [__llvm_gcov_ctr+16], eax
 	mov	eax, dword ptr [.L__profc_memmove+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmove+36], 0
@@ -96,9 +108,15 @@ memmove:                                # @memmove
 	mov	dword ptr [ebp + 16], eax
 	jmp	.LBB0_8
 .LBB0_11:
-	jmp	.LBB0_12
+	mov	eax, dword ptr [__llvm_gcov_ctr+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr+28], 0
+	mov	dword ptr [__llvm_gcov_ctr+24], eax
 .LBB0_12:
-	jmp	.LBB0_13
+	mov	eax, dword ptr [__llvm_gcov_ctr+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr+36], 0
+	mov	dword ptr [__llvm_gcov_ctr+32], eax
 .LBB0_13:
 	mov	eax, dword ptr [ebp + 8]
 	add	esp, 8
@@ -160,6 +178,10 @@ memccpy:                                # @memccpy
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB1_4
 # %bb.2:                                #   in Loop: Header=BB1_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.1]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.1+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.1], eax
 	mov	eax, dword ptr [.L__profc_memccpy+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memccpy+20], 0
@@ -178,6 +200,10 @@ memccpy:                                # @memccpy
 	jmp	.LBB1_4
 .LBB1_3:                                #   in Loop: Header=BB1_1 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.1+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.1+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+8], ecx
 	mov	ecx, dword ptr [.L__profc_memccpy+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_memccpy+28], 0
@@ -194,6 +220,10 @@ memccpy:                                # @memccpy
 	adc	dword ptr [.L__profc_memccpy+12], 0
 	mov	dword ptr [.L__profc_memccpy+8], eax
 # %bb.6:                                #   in Loop: Header=BB1_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.1+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.1+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+16], eax
 	mov	eax, dword ptr [ebp + 20]
 	add	eax, -1
 	mov	dword ptr [ebp + 20], eax
@@ -208,6 +238,10 @@ memccpy:                                # @memccpy
 	cmp	dword ptr [ebp + 20], 0
 	je	.LBB1_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.1+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.1+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+24], eax
 	mov	eax, dword ptr [.L__profc_memccpy+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memccpy+36], 0
@@ -217,6 +251,10 @@ memccpy:                                # @memccpy
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB1_10
 .LBB1_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.1+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.1+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+32], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB1_10:
 	mov	eax, dword ptr [ebp - 4]
@@ -276,6 +314,10 @@ memchr:                                 # @memchr
 	mov	byte ptr [ebp - 5], al          # 1-byte Spill
 	je	.LBB2_4
 # %bb.2:                                #   in Loop: Header=BB2_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.2]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.2+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.2], eax
 	mov	eax, dword ptr [.L__profc_memchr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memchr+20], 0
@@ -291,6 +333,10 @@ memchr:                                 # @memchr
 	jmp	.LBB2_4
 .LBB2_3:                                #   in Loop: Header=BB2_1 Depth=1
 	mov	al, byte ptr [ebp - 6]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.2+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.2+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+8], ecx
 	mov	ecx, dword ptr [.L__profc_memchr+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_memchr+28], 0
@@ -307,6 +353,10 @@ memchr:                                 # @memchr
 	adc	dword ptr [.L__profc_memchr+12], 0
 	mov	dword ptr [.L__profc_memchr+8], eax
 # %bb.6:                                #   in Loop: Header=BB2_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.2+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.2+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+16], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -318,6 +368,10 @@ memchr:                                 # @memchr
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB2_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.2+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.2+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+24], eax
 	mov	eax, dword ptr [.L__profc_memchr+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memchr+36], 0
@@ -326,9 +380,12 @@ memchr:                                 # @memchr
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
 	jmp	.LBB2_10
 .LBB2_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.2+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.2+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+32], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
-	jmp	.LBB2_10
 .LBB2_10:
 	mov	eax, dword ptr [ebp - 12]       # 4-byte Reload
 	add	esp, 12
@@ -385,6 +442,10 @@ memcmp:                                 # @memcmp
 	mov	byte ptr [ebp - 9], al          # 1-byte Spill
 	je	.LBB3_4
 # %bb.2:                                #   in Loop: Header=BB3_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.3]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.3+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.3], eax
 	mov	eax, dword ptr [.L__profc_memcmp+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memcmp+20], 0
@@ -402,6 +463,10 @@ memcmp:                                 # @memcmp
 	jmp	.LBB3_4
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	mov	al, byte ptr [ebp - 10]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.3+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.3+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+8], ecx
 	mov	ecx, dword ptr [.L__profc_memcmp+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_memcmp+28], 0
@@ -418,6 +483,10 @@ memcmp:                                 # @memcmp
 	adc	dword ptr [.L__profc_memcmp+12], 0
 	mov	dword ptr [.L__profc_memcmp+8], eax
 # %bb.6:                                #   in Loop: Header=BB3_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.3+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.3+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+16], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -432,6 +501,10 @@ memcmp:                                 # @memcmp
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB3_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.3+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.3+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+24], eax
 	mov	eax, dword ptr [.L__profc_memcmp+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memcmp+36], 0
@@ -444,9 +517,12 @@ memcmp:                                 # @memcmp
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
 	jmp	.LBB3_10
 .LBB3_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.3+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.3+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+32], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
-	jmp	.LBB3_10
 .LBB3_10:
 	mov	eax, dword ptr [ebp - 16]       # 4-byte Reload
 	add	esp, 16
@@ -488,6 +564,10 @@ memcpy:                                 # @memcpy
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.4]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.4+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.4], eax
 	mov	eax, dword ptr [.L__profc_memcpy]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memcpy+4], 0
@@ -515,6 +595,10 @@ memcpy:                                 # @memcpy
 	mov	dword ptr [ebp - 4], edx
 	mov	byte ptr [eax], cl
 # %bb.3:                                #   in Loop: Header=BB4_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.4+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.4+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.4+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -588,6 +672,10 @@ memrchr:                                # @memrchr
 	cmp	eax, dword ptr [ebp + 12]
 	jne	.LBB5_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.5]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.5+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.5], eax
 	mov	eax, dword ptr [.L__profc_memrchr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memrchr+20], 0
@@ -597,8 +685,16 @@ memrchr:                                # @memrchr
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB5_6
 .LBB5_4:                                #   in Loop: Header=BB5_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.5+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.5+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+8], eax
 	jmp	.LBB5_1
 .LBB5_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.5+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.5+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+16], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB5_6:
 	mov	eax, dword ptr [ebp - 4]
@@ -641,6 +737,10 @@ memset:                                 # @memset
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.6]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.6+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.6], eax
 	mov	eax, dword ptr [.L__profc_memset]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memset+4], 0
@@ -660,6 +760,10 @@ memset:                                 # @memset
 	mov	eax, dword ptr [ebp - 4]
 	mov	byte ptr [eax], cl
 # %bb.3:                                #   in Loop: Header=BB6_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.6+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.6+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.6+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -706,6 +810,10 @@ stpcpy:                                 # @stpcpy
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.7]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.7+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.7], eax
 	mov	eax, dword ptr [.L__profc_stpcpy]
 	add	eax, 1
 	adc	dword ptr [.L__profc_stpcpy+4], 0
@@ -723,6 +831,10 @@ stpcpy:                                 # @stpcpy
 	adc	dword ptr [.L__profc_stpcpy+12], 0
 	mov	dword ptr [.L__profc_stpcpy+8], eax
 # %bb.3:                                #   in Loop: Header=BB7_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.7+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.7+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.7+8], eax
 	mov	eax, dword ptr [ebp + 12]
 	add	eax, 1
 	mov	dword ptr [ebp + 12], eax
@@ -769,6 +881,10 @@ strchrnul:                              # @strchrnul
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.8+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.8], eax
 	mov	eax, dword ptr [.L__profc_strchrnul]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strchrnul+4], 0
@@ -786,6 +902,10 @@ strchrnul:                              # @strchrnul
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB8_4
 # %bb.2:                                #   in Loop: Header=BB8_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.8+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.8+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+8], eax
 	mov	eax, dword ptr [.L__profc_strchrnul+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strchrnul+20], 0
@@ -801,6 +921,10 @@ strchrnul:                              # @strchrnul
 	jmp	.LBB8_4
 .LBB8_3:                                #   in Loop: Header=BB8_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.8+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.8+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+16], ecx
 	mov	ecx, dword ptr [.L__profc_strchrnul+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_strchrnul+28], 0
@@ -817,6 +941,10 @@ strchrnul:                              # @strchrnul
 	adc	dword ptr [.L__profc_strchrnul+12], 0
 	mov	dword ptr [.L__profc_strchrnul+8], eax
 # %bb.6:                                #   in Loop: Header=BB8_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.8+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.8+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+24], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 1
 	mov	dword ptr [ebp + 8], eax
@@ -867,6 +995,10 @@ strchr:                                 # @strchr
 	mov	dword ptr [.L__profc_strchr], eax
 	jmp	.LBB9_2
 .LBB9_1:                                #   in Loop: Header=BB9_2 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.9+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.9+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+8], eax
 	mov	eax, dword ptr [.L__profc_strchr+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strchr+12], 0
@@ -877,6 +1009,10 @@ strchr:                                 # @strchr
 	cmp	eax, dword ptr [ebp + 12]
 	jne	.LBB9_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.9]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.9+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.9], eax
 	mov	eax, dword ptr [.L__profc_strchr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strchr+20], 0
@@ -894,6 +1030,10 @@ strchr:                                 # @strchr
 	cmp	byte ptr [eax], 0
 	jne	.LBB9_1
 # %bb.6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.9+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.9+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+16], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB9_7:
 	mov	eax, dword ptr [ebp - 4]
@@ -935,6 +1075,10 @@ strcmp:                                 # @strcmp
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.10]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.10+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.10], eax
 	mov	eax, dword ptr [.L__profc_strcmp]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strcmp+4], 0
@@ -950,6 +1094,10 @@ strcmp:                                 # @strcmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jne	.LBB10_4
 # %bb.2:                                #   in Loop: Header=BB10_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.10+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.10+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+8], eax
 	mov	eax, dword ptr [.L__profc_strcmp+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strcmp+20], 0
@@ -965,6 +1113,10 @@ strcmp:                                 # @strcmp
 	jmp	.LBB10_4
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.10+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.10+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+16], ecx
 	mov	ecx, dword ptr [.L__profc_strcmp+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_strcmp+28], 0
@@ -981,6 +1133,10 @@ strcmp:                                 # @strcmp
 	adc	dword ptr [.L__profc_strcmp+12], 0
 	mov	dword ptr [.L__profc_strcmp+8], eax
 # %bb.6:                                #   in Loop: Header=BB10_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.10+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.10+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+24], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 1
 	mov	dword ptr [ebp + 8], eax
@@ -1031,6 +1187,10 @@ strlen:                                 # @strlen
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.11]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.11+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.11], eax
 	mov	eax, dword ptr [.L__profc_strlen]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strlen+4], 0
@@ -1047,6 +1207,10 @@ strlen:                                 # @strlen
 	adc	dword ptr [.L__profc_strlen+12], 0
 	mov	dword ptr [.L__profc_strlen+8], eax
 # %bb.3:                                #   in Loop: Header=BB11_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.11+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.11+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.11+8], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 1
 	mov	dword ptr [ebp + 8], eax
@@ -1109,6 +1273,10 @@ strncmp:                                # @strncmp
 	cmp	eax, 0
 	jne	.LBB12_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.12+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+8], eax
 	mov	eax, dword ptr [.L__profc_strncmp+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncmp+12], 0
@@ -1116,7 +1284,10 @@ strncmp:                                # @strncmp
 	mov	dword ptr [ebp - 4], 0
 	jmp	.LBB12_14
 .LBB12_2:
-	jmp	.LBB12_3
+	mov	eax, dword ptr [__llvm_gcov_ctr.12]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.12], eax
 .LBB12_3:                               # =>This Inner Loop Header: Depth=1
 	mov	eax, dword ptr [ebp - 8]
 	movzx	ecx, byte ptr [eax]
@@ -1126,6 +1297,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB12_10
 # %bb.4:                                #   in Loop: Header=BB12_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.12+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+16], eax
 	mov	eax, dword ptr [.L__profc_strncmp+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncmp+60], 0
@@ -1138,6 +1313,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB12_10
 # %bb.5:                                #   in Loop: Header=BB12_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.12+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+24], eax
 	mov	eax, dword ptr [.L__profc_strncmp+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncmp+68], 0
@@ -1153,6 +1332,10 @@ strncmp:                                # @strncmp
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB12_10
 # %bb.7:                                #   in Loop: Header=BB12_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.12+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+32], eax
 	mov	eax, dword ptr [.L__profc_strncmp+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncmp+52], 0
@@ -1175,6 +1358,10 @@ strncmp:                                # @strncmp
 	jmp	.LBB12_10
 .LBB12_9:                               #   in Loop: Header=BB12_3 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.12+40]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+40], ecx
 	mov	ecx, dword ptr [.L__profc_strncmp+32]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_strncmp+36], 0
@@ -1191,6 +1378,10 @@ strncmp:                                # @strncmp
 	adc	dword ptr [.L__profc_strncmp+20], 0
 	mov	dword ptr [.L__profc_strncmp+16], eax
 # %bb.12:                               #   in Loop: Header=BB12_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.12+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.12+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+48], eax
 	mov	eax, dword ptr [ebp - 8]
 	add	eax, 1
 	mov	dword ptr [ebp - 8], eax
@@ -1249,6 +1440,10 @@ swab:                                   # @swab
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.13]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.13+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.13], eax
 	mov	eax, dword ptr [.L__profc_swab]
 	add	eax, 1
 	adc	dword ptr [.L__profc_swab+4], 0
@@ -1280,6 +1475,10 @@ swab:                                   # @swab
 	add	eax, 2
 	mov	dword ptr [ebp - 4], eax
 # %bb.3:                                #   in Loop: Header=BB13_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.13+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.13+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.13+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	sub	eax, 2
 	mov	dword ptr [ebp + 16], eax
@@ -1322,6 +1521,10 @@ isalpha:                                # @isalpha
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.14]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.14+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.14], eax
 	mov	eax, dword ptr [.L__profc_isalpha]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isalpha+4], 0
@@ -1368,6 +1571,10 @@ isascii:                                # @isascii
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.15]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.15+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.15], eax
 	mov	eax, dword ptr [.L__profc_isascii]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isascii+4], 0
@@ -1415,6 +1622,10 @@ isblank:                                # @isblank
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.16+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.16], eax
 	mov	eax, dword ptr [.L__profc_isblank]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isblank+4], 0
@@ -1424,6 +1635,10 @@ isblank:                                # @isblank
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB16_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.16+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.16+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+8], eax
 	mov	eax, dword ptr [.L__profc_isblank+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isblank+12], 0
@@ -1436,6 +1651,10 @@ isblank:                                # @isblank
 	jne	.LBB16_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.16+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.16+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+16], ecx
 	mov	ecx, dword ptr [.L__profc_isblank+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_isblank+20], 0
@@ -1482,6 +1701,10 @@ iscntrl:                                # @iscntrl
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.17]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.17+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.17], eax
 	mov	eax, dword ptr [.L__profc_iscntrl]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iscntrl+4], 0
@@ -1491,6 +1714,10 @@ iscntrl:                                # @iscntrl
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jb	.LBB17_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.17+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.17+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+8], eax
 	mov	eax, dword ptr [.L__profc_iscntrl+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iscntrl+12], 0
@@ -1503,6 +1730,10 @@ iscntrl:                                # @iscntrl
 	jne	.LBB17_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.17+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.17+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+16], ecx
 	mov	ecx, dword ptr [.L__profc_iscntrl+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_iscntrl+20], 0
@@ -1548,6 +1779,10 @@ isdigit:                                # @isdigit
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.18]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.18+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.18], eax
 	mov	eax, dword ptr [.L__profc_isdigit]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isdigit+4], 0
@@ -1593,6 +1828,10 @@ isgraph:                                # @isgraph
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.19]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.19+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.19], eax
 	mov	eax, dword ptr [.L__profc_isgraph]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isgraph+4], 0
@@ -1638,6 +1877,10 @@ islower:                                # @islower
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.20]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.20+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.20], eax
 	mov	eax, dword ptr [.L__profc_islower]
 	add	eax, 1
 	adc	dword ptr [.L__profc_islower+4], 0
@@ -1683,6 +1926,10 @@ isprint:                                # @isprint
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.21]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.21+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.21], eax
 	mov	eax, dword ptr [.L__profc_isprint]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isprint+4], 0
@@ -1729,6 +1976,10 @@ isspace:                                # @isspace
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.22]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.22+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.22], eax
 	mov	eax, dword ptr [.L__profc_isspace]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isspace+4], 0
@@ -1738,6 +1989,10 @@ isspace:                                # @isspace
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB22_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.22+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.22+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+8], eax
 	mov	eax, dword ptr [.L__profc_isspace+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isspace+12], 0
@@ -1752,6 +2007,10 @@ isspace:                                # @isspace
 	jne	.LBB22_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.22+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.22+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+16], ecx
 	mov	ecx, dword ptr [.L__profc_isspace+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_isspace+20], 0
@@ -1797,6 +2056,10 @@ isupper:                                # @isupper
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.23]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.23+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.23], eax
 	mov	eax, dword ptr [.L__profc_isupper]
 	add	eax, 1
 	adc	dword ptr [.L__profc_isupper+4], 0
@@ -1843,6 +2106,10 @@ iswcntrl:                               # @iswcntrl
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.24+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.24], eax
 	mov	eax, dword ptr [.L__profc_iswcntrl]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswcntrl+4], 0
@@ -1852,6 +2119,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jb	.LBB24_7
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.24+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.24+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+8], eax
 	mov	eax, dword ptr [.L__profc_iswcntrl+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswcntrl+44], 0
@@ -1863,6 +2134,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jb	.LBB24_7
 # %bb.2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.24+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.24+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+16], eax
 	mov	eax, dword ptr [.L__profc_iswcntrl+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswcntrl+52], 0
@@ -1879,6 +2154,10 @@ iswcntrl:                               # @iswcntrl
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jb	.LBB24_7
 # %bb.4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.24+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.24+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+24], eax
 	mov	eax, dword ptr [.L__profc_iswcntrl+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswcntrl+36], 0
@@ -1898,6 +2177,10 @@ iswcntrl:                               # @iswcntrl
 	jne	.LBB24_7
 # %bb.6:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.24+32]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.24+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+32], ecx
 	mov	ecx, dword ptr [.L__profc_iswcntrl+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_iswcntrl+20], 0
@@ -1943,6 +2226,10 @@ iswdigit:                               # @iswdigit
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.25]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.25+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.25], eax
 	mov	eax, dword ptr [.L__profc_iswdigit]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswdigit+4], 0
@@ -1996,6 +2283,10 @@ iswprint:                               # @iswprint
 	cmp	dword ptr [ebp + 8], 255
 	jae	.LBB26_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.26], eax
 	mov	eax, dword ptr [.L__profc_iswprint+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+12], 0
@@ -2013,6 +2304,10 @@ iswprint:                               # @iswprint
 	cmp	dword ptr [ebp + 8], 8232
 	jb	.LBB26_7
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+8], eax
 	mov	eax, dword ptr [.L__profc_iswprint+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+44], 0
@@ -2022,6 +2317,10 @@ iswprint:                               # @iswprint
 	cmp	eax, 47062
 	jb	.LBB26_7
 # %bb.4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+16], eax
 	mov	eax, dword ptr [.L__profc_iswprint+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+52], 0
@@ -2042,6 +2341,10 @@ iswprint:                               # @iswprint
 	mov	dword ptr [.L__profc_iswprint+32], eax
 	jmp	.LBB26_8
 .LBB26_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+24], eax
 	mov	eax, dword ptr [.L__profc_iswprint+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+20], 0
@@ -2054,6 +2357,10 @@ iswprint:                               # @iswprint
 	cmp	eax, 1048579
 	ja	.LBB26_11
 # %bb.9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+32], eax
 	mov	eax, dword ptr [.L__profc_iswprint+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+68], 0
@@ -2069,6 +2376,10 @@ iswprint:                               # @iswprint
 	mov	dword ptr [.L__profc_iswprint+72], eax
 	jmp	.LBB26_12
 .LBB26_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+40], eax
 	mov	eax, dword ptr [.L__profc_iswprint+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswprint+60], 0
@@ -2076,6 +2387,10 @@ iswprint:                               # @iswprint
 	mov	dword ptr [ebp - 4], 0
 	jmp	.LBB26_13
 .LBB26_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.26+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.26+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+48], eax
 	mov	dword ptr [ebp - 4], 1
 .LBB26_13:
 	mov	eax, dword ptr [ebp - 4]
@@ -2116,6 +2431,10 @@ iswxdigit:                              # @iswxdigit
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.27]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.27+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.27], eax
 	mov	eax, dword ptr [.L__profc_iswxdigit]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswxdigit+4], 0
@@ -2127,6 +2446,10 @@ iswxdigit:                              # @iswxdigit
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jb	.LBB27_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.27+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.27+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+8], eax
 	mov	eax, dword ptr [.L__profc_iswxdigit+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_iswxdigit+12], 0
@@ -2142,6 +2465,10 @@ iswxdigit:                              # @iswxdigit
 	jne	.LBB27_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.27+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.27+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+16], ecx
 	mov	ecx, dword ptr [.L__profc_iswxdigit+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_iswxdigit+20], 0
@@ -2187,6 +2514,10 @@ toascii:                                # @toascii
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.28]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.28+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.28], eax
 	mov	eax, dword ptr [.L__profc_toascii]
 	add	eax, 1
 	adc	dword ptr [.L__profc_toascii+4], 0
@@ -2247,6 +2578,10 @@ fdim:                                   # @fdim
 	jne	.LBB29_1
 	jmp	.LBB29_2
 .LBB29_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.29]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.29+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.29], eax
 	mov	eax, dword ptr [.L__profc_fdim+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdim+12], 0
@@ -2265,6 +2600,10 @@ fdim:                                   # @fdim
 	jne	.LBB29_3
 	jmp	.LBB29_4
 .LBB29_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.29+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.29+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+8], eax
 	mov	eax, dword ptr [.L__profc_fdim+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdim+20], 0
@@ -2283,6 +2622,10 @@ fdim:                                   # @fdim
 	jbe	.LBB29_6
 	jmp	.LBB29_5
 .LBB29_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.29+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.29+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+16], eax
 	mov	eax, dword ptr [.L__profc_fdim+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdim+28], 0
@@ -2293,6 +2636,10 @@ fdim:                                   # @fdim
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 	jmp	.LBB29_7
 .LBB29_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.29+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.29+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+24], eax
 	fldz
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 	jmp	.LBB29_7
@@ -2356,6 +2703,10 @@ fdimf:                                  # @fdimf
 	jne	.LBB30_1
 	jmp	.LBB30_2
 .LBB30_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.30]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.30+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.30], eax
 	mov	eax, dword ptr [.L__profc_fdimf+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdimf+12], 0
@@ -2374,6 +2725,10 @@ fdimf:                                  # @fdimf
 	jne	.LBB30_3
 	jmp	.LBB30_4
 .LBB30_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.30+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.30+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+8], eax
 	mov	eax, dword ptr [.L__profc_fdimf+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdimf+20], 0
@@ -2392,6 +2747,10 @@ fdimf:                                  # @fdimf
 	jbe	.LBB30_6
 	jmp	.LBB30_5
 .LBB30_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.30+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.30+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+16], eax
 	mov	eax, dword ptr [.L__profc_fdimf+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fdimf+28], 0
@@ -2402,6 +2761,10 @@ fdimf:                                  # @fdimf
 	fstp	dword ptr [ebp - 8]             # 4-byte Folded Spill
 	jmp	.LBB30_7
 .LBB30_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.30+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.30+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+24], eax
 	fldz
 	fstp	dword ptr [ebp - 8]             # 4-byte Folded Spill
 	jmp	.LBB30_7
@@ -2466,6 +2829,10 @@ fmax:                                   # @fmax
 	jne	.LBB31_1
 	jmp	.LBB31_2
 .LBB31_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.31], eax
 	mov	eax, dword ptr [.L__profc_fmax+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmax+12], 0
@@ -2484,6 +2851,10 @@ fmax:                                   # @fmax
 	jne	.LBB31_3
 	jmp	.LBB31_4
 .LBB31_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+8], eax
 	mov	eax, dword ptr [.L__profc_fmax+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmax+20], 0
@@ -2511,6 +2882,10 @@ fmax:                                   # @fmax
 	jns	.LBB31_7
 	jmp	.LBB31_6
 .LBB31_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+16], eax
 	mov	eax, dword ptr [.L__profc_fmax+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmax+36], 0
@@ -2519,6 +2894,10 @@ fmax:                                   # @fmax
 	fstp	qword ptr [esp + 8]             # 8-byte Folded Spill
 	jmp	.LBB31_8
 .LBB31_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+24], eax
 	fld	qword ptr [esp + 24]
 	fstp	qword ptr [esp + 8]             # 8-byte Folded Spill
 .LBB31_8:
@@ -2535,6 +2914,10 @@ fmax:                                   # @fmax
 	jbe	.LBB31_11
 	jmp	.LBB31_10
 .LBB31_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+32], eax
 	mov	eax, dword ptr [.L__profc_fmax+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmax+44], 0
@@ -2543,6 +2926,10 @@ fmax:                                   # @fmax
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 	jmp	.LBB31_12
 .LBB31_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.31+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.31+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+40], eax
 	fld	qword ptr [esp + 24]
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 .LBB31_12:
@@ -2605,6 +2992,10 @@ fmaxf:                                  # @fmaxf
 	jne	.LBB32_1
 	jmp	.LBB32_2
 .LBB32_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.32], eax
 	mov	eax, dword ptr [.L__profc_fmaxf+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxf+12], 0
@@ -2623,6 +3014,10 @@ fmaxf:                                  # @fmaxf
 	jne	.LBB32_3
 	jmp	.LBB32_4
 .LBB32_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+8], eax
 	mov	eax, dword ptr [.L__profc_fmaxf+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxf+20], 0
@@ -2653,6 +3048,10 @@ fmaxf:                                  # @fmaxf
 	cmp	eax, 0
 	jge	.LBB32_7
 # %bb.6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+16], eax
 	mov	eax, dword ptr [.L__profc_fmaxf+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxf+36], 0
@@ -2661,6 +3060,10 @@ fmaxf:                                  # @fmaxf
 	fstp	dword ptr [ebp - 16]            # 4-byte Folded Spill
 	jmp	.LBB32_8
 .LBB32_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+24], eax
 	fld	dword ptr [ebp + 8]
 	fstp	dword ptr [ebp - 16]            # 4-byte Folded Spill
 .LBB32_8:
@@ -2677,6 +3080,10 @@ fmaxf:                                  # @fmaxf
 	jbe	.LBB32_11
 	jmp	.LBB32_10
 .LBB32_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+32], eax
 	mov	eax, dword ptr [.L__profc_fmaxf+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxf+44], 0
@@ -2685,6 +3092,10 @@ fmaxf:                                  # @fmaxf
 	fstp	dword ptr [ebp - 20]            # 4-byte Folded Spill
 	jmp	.LBB32_12
 .LBB32_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.32+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.32+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+40], eax
 	fld	dword ptr [ebp + 8]
 	fstp	dword ptr [ebp - 20]            # 4-byte Folded Spill
 .LBB32_12:
@@ -2747,6 +3158,10 @@ fmaxl:                                  # @fmaxl
 	jne	.LBB33_1
 	jmp	.LBB33_2
 .LBB33_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.33], eax
 	mov	eax, dword ptr [.L__profc_fmaxl+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxl+12], 0
@@ -2765,6 +3180,10 @@ fmaxl:                                  # @fmaxl
 	jne	.LBB33_3
 	jmp	.LBB33_4
 .LBB33_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+8], eax
 	mov	eax, dword ptr [.L__profc_fmaxl+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxl+20], 0
@@ -2792,6 +3211,10 @@ fmaxl:                                  # @fmaxl
 	je	.LBB33_7
 	jmp	.LBB33_6
 .LBB33_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+16], eax
 	mov	eax, dword ptr [.L__profc_fmaxl+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxl+36], 0
@@ -2800,6 +3223,10 @@ fmaxl:                                  # @fmaxl
 	fstp	tbyte ptr [ebp - 48]            # 10-byte Folded Spill
 	jmp	.LBB33_8
 .LBB33_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+24], eax
 	fld	tbyte ptr [ebp - 24]
 	fstp	tbyte ptr [ebp - 48]            # 10-byte Folded Spill
 .LBB33_8:
@@ -2816,6 +3243,10 @@ fmaxl:                                  # @fmaxl
 	jbe	.LBB33_11
 	jmp	.LBB33_10
 .LBB33_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+32], eax
 	mov	eax, dword ptr [.L__profc_fmaxl+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmaxl+44], 0
@@ -2824,6 +3255,10 @@ fmaxl:                                  # @fmaxl
 	fstp	tbyte ptr [ebp - 60]            # 10-byte Folded Spill
 	jmp	.LBB33_12
 .LBB33_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.33+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.33+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+40], eax
 	fld	tbyte ptr [ebp - 24]
 	fstp	tbyte ptr [ebp - 60]            # 10-byte Folded Spill
 .LBB33_12:
@@ -2887,6 +3322,10 @@ fmin:                                   # @fmin
 	jne	.LBB34_1
 	jmp	.LBB34_2
 .LBB34_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.34], eax
 	mov	eax, dword ptr [.L__profc_fmin+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmin+12], 0
@@ -2905,6 +3344,10 @@ fmin:                                   # @fmin
 	jne	.LBB34_3
 	jmp	.LBB34_4
 .LBB34_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+8], eax
 	mov	eax, dword ptr [.L__profc_fmin+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmin+20], 0
@@ -2932,6 +3375,10 @@ fmin:                                   # @fmin
 	jns	.LBB34_7
 	jmp	.LBB34_6
 .LBB34_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+16], eax
 	mov	eax, dword ptr [.L__profc_fmin+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmin+36], 0
@@ -2940,6 +3387,10 @@ fmin:                                   # @fmin
 	fstp	qword ptr [esp + 8]             # 8-byte Folded Spill
 	jmp	.LBB34_8
 .LBB34_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+24], eax
 	fld	qword ptr [esp + 16]
 	fstp	qword ptr [esp + 8]             # 8-byte Folded Spill
 .LBB34_8:
@@ -2956,6 +3407,10 @@ fmin:                                   # @fmin
 	jbe	.LBB34_11
 	jmp	.LBB34_10
 .LBB34_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+32], eax
 	mov	eax, dword ptr [.L__profc_fmin+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fmin+44], 0
@@ -2964,6 +3419,10 @@ fmin:                                   # @fmin
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 	jmp	.LBB34_12
 .LBB34_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.34+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.34+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+40], eax
 	fld	qword ptr [esp + 16]
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 .LBB34_12:
@@ -3026,6 +3485,10 @@ fminf:                                  # @fminf
 	jne	.LBB35_1
 	jmp	.LBB35_2
 .LBB35_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.35], eax
 	mov	eax, dword ptr [.L__profc_fminf+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminf+12], 0
@@ -3044,6 +3507,10 @@ fminf:                                  # @fminf
 	jne	.LBB35_3
 	jmp	.LBB35_4
 .LBB35_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+8], eax
 	mov	eax, dword ptr [.L__profc_fminf+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminf+20], 0
@@ -3074,6 +3541,10 @@ fminf:                                  # @fminf
 	cmp	eax, 0
 	jge	.LBB35_7
 # %bb.6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+16], eax
 	mov	eax, dword ptr [.L__profc_fminf+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminf+36], 0
@@ -3082,6 +3553,10 @@ fminf:                                  # @fminf
 	fstp	dword ptr [ebp - 16]            # 4-byte Folded Spill
 	jmp	.LBB35_8
 .LBB35_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+24], eax
 	fld	dword ptr [ebp + 12]
 	fstp	dword ptr [ebp - 16]            # 4-byte Folded Spill
 .LBB35_8:
@@ -3098,6 +3573,10 @@ fminf:                                  # @fminf
 	jbe	.LBB35_11
 	jmp	.LBB35_10
 .LBB35_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+32], eax
 	mov	eax, dword ptr [.L__profc_fminf+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminf+44], 0
@@ -3106,6 +3585,10 @@ fminf:                                  # @fminf
 	fstp	dword ptr [ebp - 20]            # 4-byte Folded Spill
 	jmp	.LBB35_12
 .LBB35_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.35+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.35+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+40], eax
 	fld	dword ptr [ebp + 12]
 	fstp	dword ptr [ebp - 20]            # 4-byte Folded Spill
 .LBB35_12:
@@ -3168,6 +3651,10 @@ fminl:                                  # @fminl
 	jne	.LBB36_1
 	jmp	.LBB36_2
 .LBB36_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.36], eax
 	mov	eax, dword ptr [.L__profc_fminl+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminl+12], 0
@@ -3186,6 +3673,10 @@ fminl:                                  # @fminl
 	jne	.LBB36_3
 	jmp	.LBB36_4
 .LBB36_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+8], eax
 	mov	eax, dword ptr [.L__profc_fminl+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminl+20], 0
@@ -3213,6 +3704,10 @@ fminl:                                  # @fminl
 	je	.LBB36_7
 	jmp	.LBB36_6
 .LBB36_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+16], eax
 	mov	eax, dword ptr [.L__profc_fminl+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminl+36], 0
@@ -3221,6 +3716,10 @@ fminl:                                  # @fminl
 	fstp	tbyte ptr [ebp - 48]            # 10-byte Folded Spill
 	jmp	.LBB36_8
 .LBB36_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+24], eax
 	fld	tbyte ptr [ebp - 36]
 	fstp	tbyte ptr [ebp - 48]            # 10-byte Folded Spill
 .LBB36_8:
@@ -3237,6 +3736,10 @@ fminl:                                  # @fminl
 	jbe	.LBB36_11
 	jmp	.LBB36_10
 .LBB36_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+32], eax
 	mov	eax, dword ptr [.L__profc_fminl+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_fminl+44], 0
@@ -3245,6 +3748,10 @@ fminl:                                  # @fminl
 	fstp	tbyte ptr [ebp - 60]            # 10-byte Folded Spill
 	jmp	.LBB36_12
 .LBB36_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.36+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.36+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+40], eax
 	fld	tbyte ptr [ebp - 36]
 	fstp	tbyte ptr [ebp - 60]            # 10-byte Folded Spill
 .LBB36_12:
@@ -3290,6 +3797,10 @@ l64a:                                   # @l64a
 	.cfi_def_cfa_register ebp
 	sub	esp, 8
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.37]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.37+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.37], eax
 	mov	eax, dword ptr [.L__profc_l64a]
 	add	eax, 1
 	adc	dword ptr [.L__profc_l64a+4], 0
@@ -3312,6 +3823,10 @@ l64a:                                   # @l64a
 	mov	eax, dword ptr [ebp - 4]
 	mov	byte ptr [eax], cl
 # %bb.3:                                #   in Loop: Header=BB37_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.37+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.37+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.37+8], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -3359,6 +3874,10 @@ srand:                                  # @srand
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.38]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.38+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.38], eax
 	mov	eax, dword ptr [.L__profc_srand]
 	add	eax, 1
 	adc	dword ptr [.L__profc_srand+4], 0
@@ -3405,6 +3924,10 @@ rand:                                   # @rand
 	push	esi
 	push	eax
 	.cfi_offset esi, -12
+	mov	eax, dword ptr [__llvm_gcov_ctr.39]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.39+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.39], eax
 	mov	eax, dword ptr [.L__profc_rand]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rand+4], 0
@@ -3477,6 +4000,10 @@ insque:                                 # @insque
 	cmp	dword ptr [ebp - 8], 0
 	jne	.LBB40_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.40+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.40+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+8], eax
 	mov	eax, dword ptr [.L__profc_insque+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_insque+12], 0
@@ -3487,6 +4014,10 @@ insque:                                 # @insque
 	mov	dword ptr [eax], 0
 	jmp	.LBB40_4
 .LBB40_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.40+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.40], eax
 	mov	eax, dword ptr [ebp - 8]
 	mov	ecx, dword ptr [eax]
 	mov	eax, dword ptr [ebp - 4]
@@ -3501,6 +4032,10 @@ insque:                                 # @insque
 	cmp	dword ptr [eax], 0
 	je	.LBB40_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.40+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.40+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+16], eax
 	mov	eax, dword ptr [.L__profc_insque+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_insque+20], 0
@@ -3548,6 +4083,10 @@ remque:                                 # @remque
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.41]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.41+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.41], eax
 	mov	eax, dword ptr [.L__profc_remque]
 	add	eax, 1
 	adc	dword ptr [.L__profc_remque+4], 0
@@ -3558,6 +4097,10 @@ remque:                                 # @remque
 	cmp	dword ptr [eax], 0
 	je	.LBB41_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.41+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.41+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+8], eax
 	mov	eax, dword ptr [.L__profc_remque+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_remque+12], 0
@@ -3572,6 +4115,10 @@ remque:                                 # @remque
 	cmp	dword ptr [eax + 4], 0
 	je	.LBB41_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.41+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.41+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+16], eax
 	mov	eax, dword ptr [.L__profc_remque+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_remque+20], 0
@@ -3660,6 +4207,10 @@ lsearch:                                # @lsearch
 	jne	.LBB42_4
 # %bb.3:
 	mov	ecx, dword ptr [ebp - 24]       # 4-byte Reload
+	mov	eax, dword ptr [__llvm_gcov_ctr.42]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.42+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.42], eax
 	mov	eax, dword ptr [.L__profc_lsearch+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_lsearch+20], 0
@@ -3672,12 +4223,20 @@ lsearch:                                # @lsearch
 .LBB42_4:                               #   in Loop: Header=BB42_1 Depth=1
 	jmp	.LBB42_5
 .LBB42_5:                               #   in Loop: Header=BB42_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.42+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.42+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+8], eax
 	mov	eax, dword ptr [ebp - 20]
 	add	eax, 1
 	mov	dword ptr [ebp - 20], eax
 	jmp	.LBB42_1
 .LBB42_6:
 	mov	eax, dword ptr [ebp - 24]       # 4-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.42+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.42+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+16], ecx
 	mov	edx, dword ptr [ebp - 16]
 	add	edx, 1
 	mov	ecx, dword ptr [ebp + 16]
@@ -3774,6 +4333,10 @@ lfind:                                  # @lfind
 	jne	.LBB43_4
 # %bb.3:
 	mov	ecx, dword ptr [ebp - 24]       # 4-byte Reload
+	mov	eax, dword ptr [__llvm_gcov_ctr.43]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.43+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.43], eax
 	mov	eax, dword ptr [.L__profc_lfind+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_lfind+20], 0
@@ -3786,11 +4349,19 @@ lfind:                                  # @lfind
 .LBB43_4:                               #   in Loop: Header=BB43_1 Depth=1
 	jmp	.LBB43_5
 .LBB43_5:                               #   in Loop: Header=BB43_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.43+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.43+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+8], eax
 	mov	eax, dword ptr [ebp - 20]
 	add	eax, 1
 	mov	dword ptr [ebp - 20], eax
 	jmp	.LBB43_1
 .LBB43_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.43+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.43+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+16], eax
 	mov	dword ptr [ebp - 8], 0
 .LBB43_7:
 	mov	eax, dword ptr [ebp - 8]
@@ -3839,6 +4410,10 @@ abs:                                    # @abs
 	cmp	dword ptr [ebp + 8], 0
 	jle	.LBB44_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.44]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.44+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.44], eax
 	mov	eax, dword ptr [.L__profc_abs+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_abs+12], 0
@@ -3847,6 +4422,10 @@ abs:                                    # @abs
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
 	jmp	.LBB44_3
 .LBB44_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.44+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.44+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.44+8], eax
 	xor	eax, eax
 	sub	eax, dword ptr [ebp + 8]
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
@@ -3903,6 +4482,10 @@ atoi:                                   # @atoi
 	cmp	eax, 0
 	je	.LBB45_3
 # %bb.2:                                #   in Loop: Header=BB45_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.45]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.45], eax
 	mov	eax, dword ptr [.L__profc_atoi+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoi+12], 0
@@ -3924,6 +4507,10 @@ atoi:                                   # @atoi
 	jne	.LBB45_7
 	jmp	.LBB45_4
 .LBB45_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.45+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+8], eax
 	mov	eax, dword ptr [.L__profc_atoi+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoi+28], 0
@@ -3931,6 +4518,10 @@ atoi:                                   # @atoi
 	mov	dword ptr [ebp - 8], 1
 	jmp	.LBB45_6
 .LBB45_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.45+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+16], eax
 	mov	eax, dword ptr [.L__profc_atoi+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoi+36], 0
@@ -3952,6 +4543,10 @@ atoi:                                   # @atoi
 	cmp	eax, 0
 	je	.LBB45_10
 # %bb.9:                                #   in Loop: Header=BB45_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.45+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+24], eax
 	mov	eax, dword ptr [.L__profc_atoi+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoi+44], 0
@@ -3970,6 +4565,10 @@ atoi:                                   # @atoi
 	cmp	dword ptr [ebp - 8], 0
 	je	.LBB45_12
 # %bb.11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.45+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+32], eax
 	mov	eax, dword ptr [.L__profc_atoi+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoi+52], 0
@@ -3978,6 +4577,10 @@ atoi:                                   # @atoi
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
 	jmp	.LBB45_13
 .LBB45_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.45+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.45+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+40], eax
 	xor	eax, eax
 	sub	eax, dword ptr [ebp - 4]
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
@@ -4034,6 +4637,10 @@ atol:                                   # @atol
 	cmp	eax, 0
 	je	.LBB46_3
 # %bb.2:                                #   in Loop: Header=BB46_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.46]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.46], eax
 	mov	eax, dword ptr [.L__profc_atol+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atol+12], 0
@@ -4055,6 +4662,10 @@ atol:                                   # @atol
 	jne	.LBB46_7
 	jmp	.LBB46_4
 .LBB46_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.46+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+8], eax
 	mov	eax, dword ptr [.L__profc_atol+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atol+28], 0
@@ -4062,6 +4673,10 @@ atol:                                   # @atol
 	mov	dword ptr [ebp - 8], 1
 	jmp	.LBB46_6
 .LBB46_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.46+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+16], eax
 	mov	eax, dword ptr [.L__profc_atol+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atol+36], 0
@@ -4083,6 +4698,10 @@ atol:                                   # @atol
 	cmp	eax, 0
 	je	.LBB46_10
 # %bb.9:                                #   in Loop: Header=BB46_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.46+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+24], eax
 	mov	eax, dword ptr [.L__profc_atol+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atol+44], 0
@@ -4101,6 +4720,10 @@ atol:                                   # @atol
 	cmp	dword ptr [ebp - 8], 0
 	je	.LBB46_12
 # %bb.11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.46+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+32], eax
 	mov	eax, dword ptr [.L__profc_atol+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atol+52], 0
@@ -4109,6 +4732,10 @@ atol:                                   # @atol
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
 	jmp	.LBB46_13
 .LBB46_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.46+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.46+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+40], eax
 	xor	eax, eax
 	sub	eax, dword ptr [ebp - 4]
 	mov	dword ptr [ebp - 16], eax       # 4-byte Spill
@@ -4169,6 +4796,10 @@ atoll:                                  # @atoll
 	cmp	eax, 0
 	je	.LBB47_3
 # %bb.2:                                #   in Loop: Header=BB47_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.47]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.47], eax
 	mov	eax, dword ptr [.L__profc_atoll+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoll+12], 0
@@ -4190,6 +4821,10 @@ atoll:                                  # @atoll
 	jne	.LBB47_7
 	jmp	.LBB47_4
 .LBB47_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.47+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+8], eax
 	mov	eax, dword ptr [.L__profc_atoll+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoll+28], 0
@@ -4197,6 +4832,10 @@ atoll:                                  # @atoll
 	mov	dword ptr [esp + 20], 1
 	jmp	.LBB47_6
 .LBB47_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.47+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+16], eax
 	mov	eax, dword ptr [.L__profc_atoll+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoll+36], 0
@@ -4218,6 +4857,10 @@ atoll:                                  # @atoll
 	cmp	eax, 0
 	je	.LBB47_10
 # %bb.9:                                #   in Loop: Header=BB47_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.47+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+24], eax
 	mov	eax, dword ptr [.L__profc_atoll+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoll+44], 0
@@ -4248,6 +4891,10 @@ atoll:                                  # @atoll
 	cmp	dword ptr [esp + 20], 0
 	je	.LBB47_12
 # %bb.11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.47+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+32], eax
 	mov	eax, dword ptr [.L__profc_atoll+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_atoll+52], 0
@@ -4258,6 +4905,10 @@ atoll:                                  # @atoll
 	mov	dword ptr [esp + 8], eax        # 4-byte Spill
 	jmp	.LBB47_13
 .LBB47_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.47+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.47+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+40], eax
 	mov	ecx, dword ptr [esp + 24]
 	mov	edx, dword ptr [esp + 28]
 	xor	eax, eax
@@ -4339,6 +4990,10 @@ bsearch:                                # @bsearch
 	cmp	dword ptr [ebp - 12], 0
 	jge	.LBB48_4
 # %bb.3:                                #   in Loop: Header=BB48_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.48+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.48+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+8], eax
 	mov	eax, dword ptr [.L__profc_bsearch+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bsearch+20], 0
@@ -4366,14 +5021,25 @@ bsearch:                                # @bsearch
 	mov	dword ptr [ebp + 16], eax
 	jmp	.LBB48_7
 .LBB48_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.48+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.48+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+16], eax
 	mov	eax, dword ptr [ebp - 8]
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB48_10
 .LBB48_7:                               #   in Loop: Header=BB48_1 Depth=1
-	jmp	.LBB48_8
+	mov	eax, dword ptr [__llvm_gcov_ctr.48+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.48+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+24], eax
 .LBB48_8:                               #   in Loop: Header=BB48_1 Depth=1
 	jmp	.LBB48_1
 .LBB48_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.48+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.48], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB48_10:
 	mov	eax, dword ptr [ebp - 4]
@@ -4455,6 +5121,10 @@ bsearch_r:                              # @bsearch_r
 	cmp	dword ptr [ebp - 20], 0
 	jne	.LBB49_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.49]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.49+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.49], eax
 	mov	eax, dword ptr [.L__profc_bsearch_r+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bsearch_r+20], 0
@@ -4466,6 +5136,10 @@ bsearch_r:                              # @bsearch_r
 	cmp	dword ptr [ebp - 20], 0
 	jle	.LBB49_6
 # %bb.5:                                #   in Loop: Header=BB49_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.49+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.49+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+8], eax
 	mov	eax, dword ptr [.L__profc_bsearch_r+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bsearch_r+28], 0
@@ -4479,11 +5153,19 @@ bsearch_r:                              # @bsearch_r
 .LBB49_6:                               #   in Loop: Header=BB49_1 Depth=1
 	jmp	.LBB49_7
 .LBB49_7:                               #   in Loop: Header=BB49_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.49+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.49+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+16], eax
 	mov	eax, dword ptr [ebp - 16]
 	sar	eax
 	mov	dword ptr [ebp - 16], eax
 	jmp	.LBB49_1
 .LBB49_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.49+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.49+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+24], eax
 	mov	dword ptr [ebp - 8], 0
 .LBB49_9:
 	mov	eax, dword ptr [ebp - 8]
@@ -4529,6 +5211,10 @@ div:                                    # @div
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
+	mov	eax, dword ptr [__llvm_gcov_ctr.50]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.50+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.50], eax
 	mov	eax, dword ptr [.L__profc_div]
 	add	eax, 1
 	adc	dword ptr [.L__profc_div+4], 0
@@ -4595,6 +5281,10 @@ imaxabs:                                # @imaxabs
 	jl	.LBB51_2
 	jmp	.LBB51_1
 .LBB51_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.51]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.51+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.51], eax
 	mov	eax, dword ptr [.L__profc_imaxabs+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_imaxabs+12], 0
@@ -4605,6 +5295,10 @@ imaxabs:                                # @imaxabs
 	mov	dword ptr [esp + 4], eax        # 4-byte Spill
 	jmp	.LBB51_3
 .LBB51_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.51+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.51+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.51+8], eax
 	mov	ecx, dword ptr [esp + 8]
 	mov	edx, dword ptr [esp + 12]
 	xor	eax, eax
@@ -4661,10 +5355,14 @@ imaxdiv:                                # @imaxdiv
 	mov	dword ptr [esp + 24], eax       # 4-byte Spill
 	mov	eax, dword ptr [ebp + 20]
 	mov	ecx, dword ptr [ebp + 24]
-	mov	esi, dword ptr [ebp + 12]
-	mov	edx, dword ptr [ebp + 16]
-	mov	dword ptr [esp + 40], esi
-	mov	dword ptr [esp + 44], edx
+	mov	edx, dword ptr [ebp + 12]
+	mov	esi, dword ptr [ebp + 16]
+	mov	edi, dword ptr [__llvm_gcov_ctr.52]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.52+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.52], edi
+	mov	dword ptr [esp + 44], esi
+	mov	dword ptr [esp + 40], edx
 	mov	dword ptr [esp + 36], ecx
 	mov	dword ptr [esp + 32], eax
 	mov	eax, dword ptr [.L__profc_imaxdiv]
@@ -4750,6 +5448,10 @@ labs:                                   # @labs
 	cmp	dword ptr [ebp + 8], 0
 	jle	.LBB53_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.53]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.53+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.53], eax
 	mov	eax, dword ptr [.L__profc_labs+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_labs+12], 0
@@ -4758,6 +5460,10 @@ labs:                                   # @labs
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
 	jmp	.LBB53_3
 .LBB53_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.53+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.53+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.53+8], eax
 	xor	eax, eax
 	sub	eax, dword ptr [ebp + 8]
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
@@ -4804,6 +5510,10 @@ ldiv:                                   # @ldiv
 	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
+	mov	eax, dword ptr [__llvm_gcov_ctr.54]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.54+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.54], eax
 	mov	eax, dword ptr [.L__profc_ldiv]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldiv+4], 0
@@ -4870,6 +5580,10 @@ llabs:                                  # @llabs
 	jl	.LBB55_2
 	jmp	.LBB55_1
 .LBB55_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.55]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.55+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.55], eax
 	mov	eax, dword ptr [.L__profc_llabs+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_llabs+12], 0
@@ -4880,6 +5594,10 @@ llabs:                                  # @llabs
 	mov	dword ptr [esp + 4], eax        # 4-byte Spill
 	jmp	.LBB55_3
 .LBB55_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.55+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.55+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.55+8], eax
 	mov	ecx, dword ptr [esp + 8]
 	mov	edx, dword ptr [esp + 12]
 	xor	eax, eax
@@ -4936,10 +5654,14 @@ lldiv:                                  # @lldiv
 	mov	dword ptr [esp + 24], eax       # 4-byte Spill
 	mov	eax, dword ptr [ebp + 20]
 	mov	ecx, dword ptr [ebp + 24]
-	mov	esi, dword ptr [ebp + 12]
-	mov	edx, dword ptr [ebp + 16]
-	mov	dword ptr [esp + 40], esi
-	mov	dword ptr [esp + 44], edx
+	mov	edx, dword ptr [ebp + 12]
+	mov	esi, dword ptr [ebp + 16]
+	mov	edi, dword ptr [__llvm_gcov_ctr.56]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.56+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.56], edi
+	mov	dword ptr [esp + 44], esi
+	mov	dword ptr [esp + 40], edx
 	mov	dword ptr [esp + 36], ecx
 	mov	dword ptr [esp + 32], eax
 	mov	eax, dword ptr [.L__profc_lldiv]
@@ -5031,6 +5753,10 @@ wcschr:                                 # @wcschr
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB57_4
 # %bb.2:                                #   in Loop: Header=BB57_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.57]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.57+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.57], eax
 	mov	eax, dword ptr [.L__profc_wcschr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcschr+20], 0
@@ -5046,6 +5772,10 @@ wcschr:                                 # @wcschr
 	jmp	.LBB57_4
 .LBB57_3:                               #   in Loop: Header=BB57_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.57+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.57+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+8], ecx
 	mov	ecx, dword ptr [.L__profc_wcschr+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_wcschr+28], 0
@@ -5062,6 +5792,10 @@ wcschr:                                 # @wcschr
 	adc	dword ptr [.L__profc_wcschr+12], 0
 	mov	dword ptr [.L__profc_wcschr+8], eax
 # %bb.6:                                #   in Loop: Header=BB57_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.57+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.57+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+16], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 4
 	mov	dword ptr [ebp + 8], eax
@@ -5071,6 +5805,10 @@ wcschr:                                 # @wcschr
 	cmp	dword ptr [eax], 0
 	je	.LBB57_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.57+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.57+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+24], eax
 	mov	eax, dword ptr [.L__profc_wcschr+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcschr+36], 0
@@ -5079,9 +5817,12 @@ wcschr:                                 # @wcschr
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
 	jmp	.LBB57_10
 .LBB57_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.57+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.57+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+32], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
-	jmp	.LBB57_10
 .LBB57_10:
 	mov	eax, dword ptr [ebp - 8]        # 4-byte Reload
 	add	esp, 8
@@ -5136,6 +5877,10 @@ wcscmp:                                 # @wcscmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jne	.LBB58_6
 # %bb.2:                                #   in Loop: Header=BB58_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.58]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.58], eax
 	mov	eax, dword ptr [.L__profc_wcscmp+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcscmp+36], 0
@@ -5147,6 +5892,10 @@ wcscmp:                                 # @wcscmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB58_6
 # %bb.3:                                #   in Loop: Header=BB58_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.58+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+8], eax
 	mov	eax, dword ptr [.L__profc_wcscmp+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcscmp+44], 0
@@ -5166,6 +5915,10 @@ wcscmp:                                 # @wcscmp
 	jmp	.LBB58_6
 .LBB58_5:                               #   in Loop: Header=BB58_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.58+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+16], ecx
 	mov	ecx, dword ptr [.L__profc_wcscmp+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_wcscmp+28], 0
@@ -5182,6 +5935,10 @@ wcscmp:                                 # @wcscmp
 	adc	dword ptr [.L__profc_wcscmp+12], 0
 	mov	dword ptr [.L__profc_wcscmp+8], eax
 # %bb.8:                                #   in Loop: Header=BB58_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.58+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+24], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 4
 	mov	dword ptr [ebp + 8], eax
@@ -5196,6 +5953,10 @@ wcscmp:                                 # @wcscmp
 	cmp	eax, dword ptr [ecx]
 	jge	.LBB58_11
 # %bb.10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.58+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+32], eax
 	mov	eax, dword ptr [.L__profc_wcscmp+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcscmp+52], 0
@@ -5204,6 +5965,10 @@ wcscmp:                                 # @wcscmp
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
 	jmp	.LBB58_12
 .LBB58_11:
+	mov	eax, dword ptr [__llvm_gcov_ctr.58+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.58+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+40], eax
 	mov	eax, dword ptr [ebp + 8]
 	mov	eax, dword ptr [eax]
 	mov	ecx, dword ptr [ebp + 12]
@@ -5252,6 +6017,10 @@ wcscpy:                                 # @wcscpy
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.59]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.59+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.59], eax
 	mov	eax, dword ptr [.L__profc_wcscpy]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcscpy+4], 0
@@ -5272,6 +6041,10 @@ wcscpy:                                 # @wcscpy
 	cmp	eax, 0
 	je	.LBB59_3
 # %bb.2:                                #   in Loop: Header=BB59_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.59+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.59+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.59+8], eax
 	mov	eax, dword ptr [.L__profc_wcscpy+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcscpy+12], 0
@@ -5316,6 +6089,10 @@ wcslen:                                 # @wcslen
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.60]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.60+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.60], eax
 	mov	eax, dword ptr [.L__profc_wcslen]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcslen+4], 0
@@ -5332,6 +6109,10 @@ wcslen:                                 # @wcslen
 	adc	dword ptr [.L__profc_wcslen+12], 0
 	mov	dword ptr [.L__profc_wcslen+8], eax
 # %bb.3:                                #   in Loop: Header=BB60_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.60+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.60+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.60+8], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 4
 	mov	dword ptr [ebp + 8], eax
@@ -5391,6 +6172,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB61_8
 # %bb.2:                                #   in Loop: Header=BB61_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.61]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.61], eax
 	mov	eax, dword ptr [.L__profc_wcsncmp+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcsncmp+52], 0
@@ -5404,6 +6189,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	jne	.LBB61_8
 # %bb.3:                                #   in Loop: Header=BB61_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+8], eax
 	mov	eax, dword ptr [.L__profc_wcsncmp+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcsncmp+60], 0
@@ -5420,6 +6209,10 @@ wcsncmp:                                # @wcsncmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB61_8
 # %bb.5:                                #   in Loop: Header=BB61_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+16], eax
 	mov	eax, dword ptr [.L__profc_wcsncmp+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcsncmp+44], 0
@@ -5439,6 +6232,10 @@ wcsncmp:                                # @wcsncmp
 	jmp	.LBB61_8
 .LBB61_7:                               #   in Loop: Header=BB61_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.61+24]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+24], ecx
 	mov	ecx, dword ptr [.L__profc_wcsncmp+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_wcsncmp+28], 0
@@ -5455,6 +6252,10 @@ wcsncmp:                                # @wcsncmp
 	adc	dword ptr [.L__profc_wcsncmp+12], 0
 	mov	dword ptr [.L__profc_wcsncmp+8], eax
 # %bb.10:                               #   in Loop: Header=BB61_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+32], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -5479,6 +6280,10 @@ wcsncmp:                                # @wcsncmp
 	cmp	eax, dword ptr [ecx]
 	jge	.LBB61_14
 # %bb.13:
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+40], eax
 	mov	eax, dword ptr [.L__profc_wcsncmp+72]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wcsncmp+76], 0
@@ -5487,6 +6292,10 @@ wcsncmp:                                # @wcsncmp
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
 	jmp	.LBB61_15
 .LBB61_14:
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+48], eax
 	mov	eax, dword ptr [ebp + 8]
 	mov	eax, dword ptr [eax]
 	mov	ecx, dword ptr [ebp + 12]
@@ -5500,9 +6309,12 @@ wcsncmp:                                # @wcsncmp
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
 	jmp	.LBB61_17
 .LBB61_16:
+	mov	eax, dword ptr [__llvm_gcov_ctr.61+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.61+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+56], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
-	jmp	.LBB61_17
 .LBB61_17:
 	mov	eax, dword ptr [ebp - 12]       # 4-byte Reload
 	add	esp, 12
@@ -5555,6 +6367,10 @@ wmemchr:                                # @wmemchr
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB62_4
 # %bb.2:                                #   in Loop: Header=BB62_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.62]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.62+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.62], eax
 	mov	eax, dword ptr [.L__profc_wmemchr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemchr+20], 0
@@ -5570,6 +6386,10 @@ wmemchr:                                # @wmemchr
 	jmp	.LBB62_4
 .LBB62_3:                               #   in Loop: Header=BB62_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.62+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.62+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+8], ecx
 	mov	ecx, dword ptr [.L__profc_wmemchr+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_wmemchr+28], 0
@@ -5586,6 +6406,10 @@ wmemchr:                                # @wmemchr
 	adc	dword ptr [.L__profc_wmemchr+12], 0
 	mov	dword ptr [.L__profc_wmemchr+8], eax
 # %bb.6:                                #   in Loop: Header=BB62_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.62+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.62+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+16], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -5597,6 +6421,10 @@ wmemchr:                                # @wmemchr
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB62_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.62+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.62+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+24], eax
 	mov	eax, dword ptr [.L__profc_wmemchr+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemchr+36], 0
@@ -5605,9 +6433,12 @@ wmemchr:                                # @wmemchr
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
 	jmp	.LBB62_10
 .LBB62_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.62+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.62+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+32], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
-	jmp	.LBB62_10
 .LBB62_10:
 	mov	eax, dword ptr [ebp - 8]        # 4-byte Reload
 	add	esp, 8
@@ -5660,6 +6491,10 @@ wmemcmp:                                # @wmemcmp
 	mov	byte ptr [ebp - 1], al          # 1-byte Spill
 	je	.LBB63_4
 # %bb.2:                                #   in Loop: Header=BB63_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.63]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.63], eax
 	mov	eax, dword ptr [.L__profc_wmemcmp+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemcmp+20], 0
@@ -5676,6 +6511,10 @@ wmemcmp:                                # @wmemcmp
 	jmp	.LBB63_4
 .LBB63_3:                               #   in Loop: Header=BB63_1 Depth=1
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.63+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+8], ecx
 	mov	ecx, dword ptr [.L__profc_wmemcmp+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_wmemcmp+28], 0
@@ -5692,6 +6531,10 @@ wmemcmp:                                # @wmemcmp
 	adc	dword ptr [.L__profc_wmemcmp+12], 0
 	mov	dword ptr [.L__profc_wmemcmp+8], eax
 # %bb.6:                                #   in Loop: Header=BB63_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.63+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+16], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -5716,6 +6559,10 @@ wmemcmp:                                # @wmemcmp
 	cmp	eax, dword ptr [ecx]
 	jge	.LBB63_10
 # %bb.9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.63+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+24], eax
 	mov	eax, dword ptr [.L__profc_wmemcmp+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemcmp+44], 0
@@ -5724,6 +6571,10 @@ wmemcmp:                                # @wmemcmp
 	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
 	jmp	.LBB63_11
 .LBB63_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.63+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+32], eax
 	mov	eax, dword ptr [ebp + 8]
 	mov	eax, dword ptr [eax]
 	mov	ecx, dword ptr [ebp + 12]
@@ -5737,9 +6588,12 @@ wmemcmp:                                # @wmemcmp
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
 	jmp	.LBB63_13
 .LBB63_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.63+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.63+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+40], eax
 	xor	eax, eax
 	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
-	jmp	.LBB63_13
 .LBB63_13:
 	mov	eax, dword ptr [ebp - 12]       # 4-byte Reload
 	add	esp, 12
@@ -5781,6 +6635,10 @@ wmemcpy:                                # @wmemcpy
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.64]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.64+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.64], eax
 	mov	eax, dword ptr [.L__profc_wmemcpy]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemcpy+4], 0
@@ -5795,6 +6653,10 @@ wmemcpy:                                # @wmemcpy
 	cmp	eax, 0
 	je	.LBB64_3
 # %bb.2:                                #   in Loop: Header=BB64_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.64+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.64+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.64+8], eax
 	mov	eax, dword ptr [.L__profc_wmemcpy+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemcpy+12], 0
@@ -5861,6 +6723,10 @@ wmemmove:                               # @wmemmove
 	cmp	eax, dword ptr [ebp + 12]
 	jne	.LBB65_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.65]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.65+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.65], eax
 	mov	eax, dword ptr [.L__profc_wmemmove+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemmove+12], 0
@@ -5877,6 +6743,10 @@ wmemmove:                               # @wmemmove
 	cmp	eax, ecx
 	jae	.LBB65_7
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.65+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.65+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+8], eax
 	mov	eax, dword ptr [.L__profc_wmemmove+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemmove+20], 0
@@ -5889,6 +6759,10 @@ wmemmove:                               # @wmemmove
 	cmp	eax, 0
 	je	.LBB65_6
 # %bb.5:                                #   in Loop: Header=BB65_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.65+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.65+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+16], eax
 	mov	eax, dword ptr [.L__profc_wmemmove+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemmove+28], 0
@@ -5912,6 +6786,10 @@ wmemmove:                               # @wmemmove
 	cmp	eax, 0
 	je	.LBB65_10
 # %bb.9:                                #   in Loop: Header=BB65_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.65+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.65+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+24], eax
 	mov	eax, dword ptr [.L__profc_wmemmove+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemmove+36], 0
@@ -5928,7 +6806,10 @@ wmemmove:                               # @wmemmove
 	mov	dword ptr [eax], ecx
 	jmp	.LBB65_8
 .LBB65_10:
-	jmp	.LBB65_11
+	mov	eax, dword ptr [__llvm_gcov_ctr.65+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.65+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+32], eax
 .LBB65_11:
 	mov	eax, dword ptr [ebp - 8]
 	mov	dword ptr [ebp - 4], eax
@@ -5973,6 +6854,10 @@ wmemset:                                # @wmemset
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.66]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.66+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.66], eax
 	mov	eax, dword ptr [.L__profc_wmemset]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemset+4], 0
@@ -5987,6 +6872,10 @@ wmemset:                                # @wmemset
 	cmp	eax, 0
 	je	.LBB66_3
 # %bb.2:                                #   in Loop: Header=BB66_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.66+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.66+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.66+8], eax
 	mov	eax, dword ptr [.L__profc_wmemset+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_wmemset+12], 0
@@ -6051,6 +6940,10 @@ bcopy:                                  # @bcopy
 	cmp	eax, dword ptr [ebp - 8]
 	jae	.LBB67_6
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.67]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.67+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.67], eax
 	mov	eax, dword ptr [.L__profc_bcopy+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bcopy+12], 0
@@ -6080,6 +6973,10 @@ bcopy:                                  # @bcopy
 	mov	dword ptr [ebp - 8], edx
 	mov	byte ptr [eax - 1], cl
 # %bb.4:                                #   in Loop: Header=BB67_2 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.67+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.67+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -6099,6 +6996,10 @@ bcopy:                                  # @bcopy
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB67_11
 # %bb.9:                                #   in Loop: Header=BB67_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.67+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.67+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+16], eax
 	mov	eax, dword ptr [.L__profc_bcopy+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bcopy+36], 0
@@ -6119,9 +7020,15 @@ bcopy:                                  # @bcopy
 	mov	dword ptr [ebp + 16], eax
 	jmp	.LBB67_8
 .LBB67_11:
-	jmp	.LBB67_12
+	mov	eax, dword ptr [__llvm_gcov_ctr.67+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.67+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+24], eax
 .LBB67_12:
-	jmp	.LBB67_13
+	mov	eax, dword ptr [__llvm_gcov_ctr.67+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.67+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+32], eax
 .LBB67_13:
 	add	esp, 8
 	pop	ebp
@@ -6167,11 +7074,15 @@ rotl64:                                 # @rotl64
 	.cfi_offset esi, -20
 	.cfi_offset edi, -16
 	.cfi_offset ebx, -12
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
 	mov	edx, dword ptr [ebp + 16]
-	mov	dword ptr [esp + 56], ecx
-	mov	dword ptr [esp + 60], eax
+	mov	edx, dword ptr [__llvm_gcov_ctr.68]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.68+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.68], edx
+	mov	dword ptr [esp + 60], ecx
+	mov	dword ptr [esp + 56], eax
 	mov	eax, dword ptr [.L__profc_rotl64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotl64+4], 0
@@ -6281,11 +7192,15 @@ rotr64:                                 # @rotr64
 	.cfi_offset esi, -20
 	.cfi_offset edi, -16
 	.cfi_offset ebx, -12
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
 	mov	edx, dword ptr [ebp + 16]
-	mov	dword ptr [esp + 56], ecx
-	mov	dword ptr [esp + 60], eax
+	mov	edx, dword ptr [__llvm_gcov_ctr.69]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.69+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.69], edx
+	mov	dword ptr [esp + 60], ecx
+	mov	dword ptr [esp + 56], eax
 	mov	eax, dword ptr [.L__profc_rotr64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotr64+4], 0
@@ -6389,6 +7304,10 @@ rotl32:                                 # @rotl32
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.70]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.70+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.70], eax
 	mov	eax, dword ptr [.L__profc_rotl32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotl32+4], 0
@@ -6441,6 +7360,10 @@ rotr32:                                 # @rotr32
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.71]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.71+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.71], eax
 	mov	eax, dword ptr [.L__profc_rotr32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotr32+4], 0
@@ -6493,6 +7416,10 @@ rotl_sz:                                # @rotl_sz
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.72]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.72+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.72], eax
 	mov	eax, dword ptr [.L__profc_rotl_sz]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotl_sz+4], 0
@@ -6545,6 +7472,10 @@ rotr_sz:                                # @rotr_sz
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.73]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.73+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.73], eax
 	mov	eax, dword ptr [.L__profc_rotr_sz]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotr_sz+4], 0
@@ -6597,6 +7528,10 @@ rotl16:                                 # @rotl16
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.74]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.74+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.74], eax
 	mov	eax, dword ptr [.L__profc_rotl16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotl16+4], 0
@@ -6650,6 +7585,10 @@ rotr16:                                 # @rotr16
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.75]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.75+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.75], eax
 	mov	eax, dword ptr [.L__profc_rotr16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotr16+4], 0
@@ -6703,6 +7642,10 @@ rotl8:                                  # @rotl8
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	al, byte ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.76]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.76+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.76], eax
 	mov	eax, dword ptr [.L__profc_rotl8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotl8+4], 0
@@ -6756,6 +7699,10 @@ rotr8:                                  # @rotr8
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	al, byte ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.77]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.77+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.77], eax
 	mov	eax, dword ptr [.L__profc_rotr8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_rotr8+4], 0
@@ -6809,6 +7756,10 @@ bswap_16:                               # @bswap_16
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.78]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.78+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.78], eax
 	mov	eax, dword ptr [.L__profc_bswap_16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bswap_16+4], 0
@@ -6863,6 +7814,10 @@ bswap_32:                               # @bswap_32
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.79]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.79+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.79], eax
 	mov	eax, dword ptr [.L__profc_bswap_32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bswap_32+4], 0
@@ -6934,10 +7889,14 @@ bswap_64:                               # @bswap_64
 	.cfi_offset esi, -20
 	.cfi_offset edi, -16
 	.cfi_offset ebx, -12
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 32], ecx
-	mov	dword ptr [esp + 36], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.80]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.80+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.80], edx
+	mov	dword ptr [esp + 36], ecx
+	mov	dword ptr [esp + 32], eax
 	mov	eax, dword ptr [.L__profc_bswap_64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_bswap_64+4], 0
@@ -7059,6 +8018,10 @@ ffs:                                    # @ffs
 	cmp	eax, 0
 	je	.LBB81_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.81]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.81+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.81], eax
 	mov	eax, dword ptr [.L__profc_ffs+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ffs+20], 0
@@ -7070,11 +8033,19 @@ ffs:                                    # @ffs
 .LBB81_4:                               #   in Loop: Header=BB81_1 Depth=1
 	jmp	.LBB81_5
 .LBB81_5:                               #   in Loop: Header=BB81_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.81+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.81+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+8], eax
 	mov	eax, dword ptr [ebp - 8]
 	add	eax, 1
 	mov	dword ptr [ebp - 8], eax
 	jmp	.LBB81_1
 .LBB81_6:
+	mov	eax, dword ptr [__llvm_gcov_ctr.81+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.81+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+16], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB81_7:
 	mov	eax, dword ptr [ebp - 4]
@@ -7122,6 +8093,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	cmp	dword ptr [ebp + 8], 0
 	jne	.LBB82_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.82+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.82+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+8], eax
 	mov	eax, dword ptr [.L__profc_libiberty_ffs+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_libiberty_ffs+12], 0
@@ -7129,6 +8104,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	mov	dword ptr [ebp - 4], 0
 	jmp	.LBB82_7
 .LBB82_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.82]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.82+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.82], eax
 	mov	dword ptr [ebp - 8], 1
 .LBB82_3:                               # =>This Inner Loop Header: Depth=1
 	mov	eax, dword ptr [ebp + 8]
@@ -7148,6 +8127,10 @@ libiberty_ffs:                          # @libiberty_ffs
 	sar	eax
 	mov	dword ptr [ebp + 8], eax
 # %bb.5:                                #   in Loop: Header=BB82_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.82+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.82+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+16], eax
 	mov	eax, dword ptr [ebp - 8]
 	add	eax, 1
 	mov	dword ptr [ebp - 8], eax
@@ -7202,6 +8185,10 @@ gl_isinff:                              # @gl_isinff
 	push	eax
 	fld	dword ptr [ebp + 8]
 	fstp	st(0)
+	mov	eax, dword ptr [__llvm_gcov_ctr.83]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.83+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.83], eax
 	mov	eax, dword ptr [.L__profc_gl_isinff]
 	add	eax, 1
 	adc	dword ptr [.L__profc_gl_isinff+4], 0
@@ -7217,6 +8204,10 @@ gl_isinff:                              # @gl_isinff
 	ja	.LBB83_3
 	jmp	.LBB83_1
 .LBB83_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.83+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.83+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+8], eax
 	mov	eax, dword ptr [.L__profc_gl_isinff+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_gl_isinff+12], 0
@@ -7235,6 +8226,10 @@ gl_isinff:                              # @gl_isinff
 	jne	.LBB83_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 2]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.83+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.83+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+16], ecx
 	mov	ecx, dword ptr [.L__profc_gl_isinff+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_gl_isinff+20], 0
@@ -7289,6 +8284,10 @@ gl_isinfd:                              # @gl_isinfd
 	and	esp, -8
 	sub	esp, 16
 	fld	qword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.84]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.84+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.84], eax
 	fstp	qword ptr [esp + 8]
 	mov	eax, dword ptr [.L__profc_gl_isinfd]
 	add	eax, 1
@@ -7305,6 +8304,10 @@ gl_isinfd:                              # @gl_isinfd
 	ja	.LBB84_3
 	jmp	.LBB84_1
 .LBB84_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.84+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.84+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+8], eax
 	mov	eax, dword ptr [.L__profc_gl_isinfd+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_gl_isinfd+12], 0
@@ -7323,6 +8326,10 @@ gl_isinfd:                              # @gl_isinfd
 	jne	.LBB84_3
 # %bb.2:
 	mov	al, byte ptr [esp + 6]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.84+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.84+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+16], ecx
 	mov	ecx, dword ptr [.L__profc_gl_isinfd+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_gl_isinfd+20], 0
@@ -7380,6 +8387,10 @@ gl_isinfl:                              # @gl_isinfl
 	.cfi_def_cfa_register ebp
 	sub	esp, 16
 	fld	tbyte ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.85]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.85+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.85], eax
 	fstp	tbyte ptr [ebp - 12]
 	mov	eax, dword ptr [.L__profc_gl_isinfl]
 	add	eax, 1
@@ -7396,6 +8407,10 @@ gl_isinfl:                              # @gl_isinfl
 	ja	.LBB85_3
 	jmp	.LBB85_1
 .LBB85_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.85+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.85+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+8], eax
 	mov	eax, dword ptr [.L__profc_gl_isinfl+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_gl_isinfl+12], 0
@@ -7414,6 +8429,10 @@ gl_isinfl:                              # @gl_isinfl
 	jne	.LBB85_3
 # %bb.2:
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.85+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.85+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+16], ecx
 	mov	ecx, dword ptr [.L__profc_gl_isinfl+16]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_gl_isinfl+20], 0
@@ -7461,6 +8480,10 @@ _Qp_itoq:                               # @_Qp_itoq
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.86]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.86+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.86], eax
 	mov	eax, dword ptr [.L__profc__Qp_itoq]
 	add	eax, 1
 	adc	dword ptr [.L__profc__Qp_itoq+4], 0
@@ -7516,6 +8539,10 @@ ldexpf:                                 # @ldexpf
 	mov	eax, dword ptr [ebp + 12]
 	fld	dword ptr [ebp + 8]
 	fstp	st(0)
+	mov	eax, dword ptr [__llvm_gcov_ctr.87]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.87+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.87], eax
 	mov	eax, dword ptr [.L__profc_ldexpf]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpf+4], 0
@@ -7529,6 +8556,10 @@ ldexpf:                                 # @ldexpf
 	test	al, 1
 	jne	.LBB87_10
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.87+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.87+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+8], eax
 	mov	eax, dword ptr [.L__profc_ldexpf+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpf+20], 0
@@ -7544,6 +8575,10 @@ ldexpf:                                 # @ldexpf
 	jp	.LBB87_2
 	jmp	.LBB87_10
 .LBB87_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.87+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.87+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+16], eax
 	mov	eax, dword ptr [.L__profc_ldexpf+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpf+28], 0
@@ -7575,6 +8610,10 @@ ldexpf:                                 # @ldexpf
 	cmp	edx, 0
 	je	.LBB87_6
 # %bb.5:                                #   in Loop: Header=BB87_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.87+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.87+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+24], eax
 	mov	eax, dword ptr [.L__profc_ldexpf+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpf+52], 0
@@ -7598,6 +8637,10 @@ ldexpf:                                 # @ldexpf
 	mov	dword ptr [.L__profc_ldexpf+56], eax
 	jmp	.LBB87_9
 .LBB87_8:                               #   in Loop: Header=BB87_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.87+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.87+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+32], eax
 	fld	dword ptr [ebp - 4]
 	fmul	st(0), st
 	fstp	dword ptr [ebp - 4]
@@ -7652,6 +8695,10 @@ ldexp:                                  # @ldexp
 	sub	esp, 16
 	mov	eax, dword ptr [ebp + 16]
 	fld	qword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.88]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.88+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.88], eax
 	fstp	qword ptr [esp + 8]
 	mov	eax, dword ptr [.L__profc_ldexp]
 	add	eax, 1
@@ -7666,6 +8713,10 @@ ldexp:                                  # @ldexp
 	test	al, 1
 	jne	.LBB88_10
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.88+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.88+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+8], eax
 	mov	eax, dword ptr [.L__profc_ldexp+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexp+20], 0
@@ -7681,6 +8732,10 @@ ldexp:                                  # @ldexp
 	jp	.LBB88_2
 	jmp	.LBB88_10
 .LBB88_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.88+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.88+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+16], eax
 	mov	eax, dword ptr [.L__profc_ldexp+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexp+28], 0
@@ -7712,6 +8767,10 @@ ldexp:                                  # @ldexp
 	cmp	edx, 0
 	je	.LBB88_6
 # %bb.5:                                #   in Loop: Header=BB88_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.88+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.88+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+24], eax
 	mov	eax, dword ptr [.L__profc_ldexp+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexp+52], 0
@@ -7735,6 +8794,10 @@ ldexp:                                  # @ldexp
 	mov	dword ptr [.L__profc_ldexp+56], eax
 	jmp	.LBB88_9
 .LBB88_8:                               #   in Loop: Header=BB88_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.88+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.88+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+32], eax
 	fld	qword ptr [esp]
 	fmul	st(0), st
 	fstp	qword ptr [esp]
@@ -7794,6 +8857,10 @@ ldexpl:                                 # @ldexpl
 	.cfi_offset esi, -12
 	mov	eax, dword ptr [ebp + 20]
 	fld	tbyte ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.89]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.89+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.89], eax
 	fstp	tbyte ptr [ebp - 16]
 	mov	eax, dword ptr [.L__profc_ldexpl]
 	add	eax, 1
@@ -7808,6 +8875,10 @@ ldexpl:                                 # @ldexpl
 	test	al, 1
 	jne	.LBB89_10
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.89+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.89+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+8], eax
 	mov	eax, dword ptr [.L__profc_ldexpl+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpl+20], 0
@@ -7823,6 +8894,10 @@ ldexpl:                                 # @ldexpl
 	jp	.LBB89_2
 	jmp	.LBB89_10
 .LBB89_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.89+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.89+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+16], eax
 	mov	eax, dword ptr [.L__profc_ldexpl+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpl+28], 0
@@ -7857,6 +8932,10 @@ ldexpl:                                 # @ldexpl
 	cmp	edx, 0
 	je	.LBB89_6
 # %bb.5:                                #   in Loop: Header=BB89_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.89+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.89+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+24], eax
 	mov	eax, dword ptr [.L__profc_ldexpl+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_ldexpl+52], 0
@@ -7880,6 +8959,10 @@ ldexpl:                                 # @ldexpl
 	mov	dword ptr [.L__profc_ldexpl+56], eax
 	jmp	.LBB89_9
 .LBB89_8:                               #   in Loop: Header=BB89_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.89+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.89+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+32], eax
 	fld	tbyte ptr [ebp - 28]
 	fmul	st(0), st
 	fstp	tbyte ptr [ebp - 28]
@@ -7929,6 +9012,10 @@ memxor:                                 # @memxor
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.90]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.90+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.90], eax
 	mov	eax, dword ptr [.L__profc_memxor]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memxor+4], 0
@@ -7959,6 +9046,10 @@ memxor:                                 # @memxor
                                         # kill: def $cl killed $cl killed $ecx
 	mov	byte ptr [eax], cl
 # %bb.3:                                #   in Loop: Header=BB90_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.90+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.90+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.90+8], eax
 	mov	eax, dword ptr [ebp + 16]
 	add	eax, -1
 	mov	dword ptr [ebp + 16], eax
@@ -8025,6 +9116,10 @@ strncat:                                # @strncat
 	mov	byte ptr [ebp - 9], al          # 1-byte Spill
 	jbe	.LBB91_4
 # %bb.2:                                #   in Loop: Header=BB91_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.91]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.91+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.91], eax
 	mov	eax, dword ptr [.L__profc_strncat+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncat+20], 0
@@ -8043,6 +9138,10 @@ strncat:                                # @strncat
 	jmp	.LBB91_4
 .LBB91_3:                               #   in Loop: Header=BB91_1 Depth=1
 	mov	al, byte ptr [ebp - 10]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.91+8]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.91+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+8], ecx
 	mov	ecx, dword ptr [.L__profc_strncat+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_strncat+28], 0
@@ -8059,6 +9158,10 @@ strncat:                                # @strncat
 	adc	dword ptr [.L__profc_strncat+12], 0
 	mov	dword ptr [.L__profc_strncat+8], eax
 # %bb.6:                                #   in Loop: Header=BB91_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.91+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.91+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+24], eax
 	mov	eax, dword ptr [ebp + 12]
 	add	eax, 1
 	mov	dword ptr [ebp + 12], eax
@@ -8070,9 +9173,17 @@ strncat:                                # @strncat
 	mov	dword ptr [ebp + 16], eax
 	jmp	.LBB91_1
 .LBB91_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.91+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.91+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+16], eax
 	cmp	dword ptr [ebp + 16], 0
 	jne	.LBB91_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.91+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.91+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+32], eax
 	mov	eax, dword ptr [.L__profc_strncat+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strncat+36], 0
@@ -8119,6 +9230,10 @@ strnlen:                                # @strnlen
 	sub	esp, 8
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.92]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.92+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.92], eax
 	mov	eax, dword ptr [.L__profc_strnlen]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strnlen+4], 0
@@ -8132,6 +9247,10 @@ strnlen:                                # @strnlen
 	mov	byte ptr [ebp - 5], al          # 1-byte Spill
 	jae	.LBB92_4
 # %bb.2:                                #   in Loop: Header=BB92_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.92+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.92+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+8], eax
 	mov	eax, dword ptr [.L__profc_strnlen+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strnlen+20], 0
@@ -8148,6 +9267,10 @@ strnlen:                                # @strnlen
 	jmp	.LBB92_4
 .LBB92_3:                               #   in Loop: Header=BB92_1 Depth=1
 	mov	al, byte ptr [ebp - 6]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.92+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.92+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+16], ecx
 	mov	ecx, dword ptr [.L__profc_strnlen+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_strnlen+28], 0
@@ -8164,6 +9287,10 @@ strnlen:                                # @strnlen
 	adc	dword ptr [.L__profc_strnlen+12], 0
 	mov	dword ptr [.L__profc_strnlen+8], eax
 # %bb.6:                                #   in Loop: Header=BB92_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.92+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.92+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+24], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -8246,6 +9373,10 @@ strpbrk:                                # @strpbrk
 	cmp	eax, ecx
 	jne	.LBB93_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.93+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.93+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+8], eax
 	mov	eax, dword ptr [.L__profc_strpbrk+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strpbrk+28], 0
@@ -8254,13 +9385,25 @@ strpbrk:                                # @strpbrk
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB93_9
 .LBB93_6:                               #   in Loop: Header=BB93_3 Depth=2
+	mov	eax, dword ptr [__llvm_gcov_ctr.93+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.93+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+16], eax
 	jmp	.LBB93_3
 .LBB93_7:                               #   in Loop: Header=BB93_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.93+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.93+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+24], eax
 	mov	eax, dword ptr [ebp + 8]
 	add	eax, 1
 	mov	dword ptr [ebp + 8], eax
 	jmp	.LBB93_1
 .LBB93_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.93]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.93+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.93], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB93_9:
 	mov	eax, dword ptr [ebp - 4]
@@ -8302,6 +9445,10 @@ strrchr:                                # @strrchr
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.94]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.94+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.94], eax
 	mov	eax, dword ptr [.L__profc_strrchr]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strrchr+4], 0
@@ -8309,6 +9456,10 @@ strrchr:                                # @strrchr
 	mov	dword ptr [ebp - 4], 0
 	jmp	.LBB94_2
 .LBB94_1:                               #   in Loop: Header=BB94_2 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.94+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.94+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+16], eax
 	mov	eax, dword ptr [.L__profc_strrchr+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strrchr+12], 0
@@ -8319,6 +9470,10 @@ strrchr:                                # @strrchr
 	cmp	eax, dword ptr [ebp + 12]
 	jne	.LBB94_4
 # %bb.3:                                #   in Loop: Header=BB94_2 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.94+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.94+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+8], eax
 	mov	eax, dword ptr [.L__profc_strrchr+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strrchr+20], 0
@@ -8388,6 +9543,10 @@ strstr:                                 # @strstr
 	cmp	dword ptr [ebp - 12], 0
 	jne	.LBB95_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.95]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.95+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.95], eax
 	mov	eax, dword ptr [.L__profc_strstr+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strstr+12], 0
@@ -8422,6 +9581,10 @@ strstr:                                 # @strstr
 	cmp	eax, 0
 	jne	.LBB95_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.95+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.95+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+8], eax
 	mov	eax, dword ptr [.L__profc_strstr+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_strstr+28], 0
@@ -8432,11 +9595,19 @@ strstr:                                 # @strstr
 .LBB95_6:                               #   in Loop: Header=BB95_3 Depth=1
 	jmp	.LBB95_7
 .LBB95_7:                               #   in Loop: Header=BB95_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.95+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.95+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+16], eax
 	mov	eax, dword ptr [ebp - 8]
 	add	eax, 1
 	mov	dword ptr [ebp - 8], eax
 	jmp	.LBB95_3
 .LBB95_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.95+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.95+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+24], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB95_9:
 	mov	eax, dword ptr [ebp - 4]
@@ -8494,6 +9665,10 @@ copysign:                               # @copysign
 	jbe	.LBB96_3
 	jmp	.LBB96_1
 .LBB96_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.96]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.96+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.96], eax
 	mov	eax, dword ptr [.L__profc_copysign+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_copysign+28], 0
@@ -8508,6 +9683,10 @@ copysign:                               # @copysign
 	jbe	.LBB96_3
 	jmp	.LBB96_2
 .LBB96_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.96+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.96+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+8], eax
 	mov	eax, dword ptr [.L__profc_copysign+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_copysign+36], 0
@@ -8528,6 +9707,10 @@ copysign:                               # @copysign
 	jbe	.LBB96_7
 	jmp	.LBB96_4
 .LBB96_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.96+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.96+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+16], eax
 	mov	eax, dword ptr [.L__profc_copysign+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_copysign+44], 0
@@ -8541,6 +9724,10 @@ copysign:                               # @copysign
 	jbe	.LBB96_7
 	jmp	.LBB96_5
 .LBB96_5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.96+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.96+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+24], eax
 	mov	eax, dword ptr [.L__profc_copysign+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_copysign+52], 0
@@ -8555,6 +9742,10 @@ copysign:                               # @copysign
 	fstp	qword ptr [esp + 16]
 	jmp	.LBB96_8
 .LBB96_7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.96+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.96+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+32], eax
 	fld	qword ptr [esp + 8]
 	fstp	qword ptr [esp + 16]
 .LBB96_8:
@@ -8615,6 +9806,10 @@ memmem:                                 # @memmem
 	cmp	dword ptr [ebp + 20], 0
 	jne	.LBB97_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.97]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.97], eax
 	mov	eax, dword ptr [.L__profc_memmem+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmem+12], 0
@@ -8627,6 +9822,10 @@ memmem:                                 # @memmem
 	cmp	eax, dword ptr [ebp + 20]
 	jae	.LBB97_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.97+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+8], eax
 	mov	eax, dword ptr [.L__profc_memmem+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmem+20], 0
@@ -8652,6 +9851,10 @@ memmem:                                 # @memmem
 	cmp	eax, ecx
 	jne	.LBB97_10
 # %bb.7:                                #   in Loop: Header=BB97_5 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.97+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+16], eax
 	mov	eax, dword ptr [.L__profc_memmem+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmem+44], 0
@@ -8670,6 +9873,10 @@ memmem:                                 # @memmem
 	cmp	eax, 0
 	jne	.LBB97_10
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.97+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+24], eax
 	mov	eax, dword ptr [.L__profc_memmem+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc_memmem+52], 0
@@ -8685,11 +9892,19 @@ memmem:                                 # @memmem
 .LBB97_10:                              #   in Loop: Header=BB97_5 Depth=1
 	jmp	.LBB97_11
 .LBB97_11:                              #   in Loop: Header=BB97_5 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.97+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+32], eax
 	mov	eax, dword ptr [ebp - 12]
 	add	eax, 1
 	mov	dword ptr [ebp - 12], eax
 	jmp	.LBB97_5
 .LBB97_12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.97+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.97+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+40], eax
 	mov	dword ptr [ebp - 8], 0
 .LBB97_13:
 	mov	eax, dword ptr [ebp - 8]
@@ -8733,6 +9948,10 @@ mempcpy:                                # @mempcpy
 	mov	eax, dword ptr [ebp + 16]
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.98]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.98+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.98], eax
 	mov	eax, dword ptr [.L__profc_mempcpy]
 	add	eax, 1
 	adc	dword ptr [.L__profc_mempcpy+4], 0
@@ -8811,6 +10030,10 @@ frexp:                                  # @frexp
 	jbe	.LBB99_2
 	jmp	.LBB99_1
 .LBB99_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.99]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.99], eax
 	mov	eax, dword ptr [.L__profc_frexp+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+12], 0
@@ -8830,6 +10053,10 @@ frexp:                                  # @frexp
 	jb	.LBB99_7
 	jmp	.LBB99_3
 .LBB99_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+8], eax
 	mov	eax, dword ptr [.L__profc_frexp+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+20], 0
@@ -8845,6 +10072,10 @@ frexp:                                  # @frexp
 	jb	.LBB99_6
 	jmp	.LBB99_5
 .LBB99_5:                               #   in Loop: Header=BB99_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+16], eax
 	mov	eax, dword ptr [.L__profc_frexp+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+28], 0
@@ -8869,6 +10100,10 @@ frexp:                                  # @frexp
 	jbe	.LBB99_14
 	jmp	.LBB99_8
 .LBB99_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+24], eax
 	mov	eax, dword ptr [.L__profc_frexp+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+44], 0
@@ -8903,6 +10138,10 @@ frexp:                                  # @frexp
 	jbe	.LBB99_13
 	jmp	.LBB99_12
 .LBB99_12:                              #   in Loop: Header=BB99_11 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+32], eax
 	mov	eax, dword ptr [.L__profc_frexp+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+60], 0
@@ -8915,9 +10154,15 @@ frexp:                                  # @frexp
 	fstp	qword ptr [esp + 8]
 	jmp	.LBB99_11
 .LBB99_13:
-	jmp	.LBB99_14
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+40], eax
 .LBB99_14:
-	jmp	.LBB99_15
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+48], eax
 .LBB99_15:
 	mov	ecx, dword ptr [esp]
 	mov	eax, dword ptr [ebp + 16]
@@ -8925,6 +10170,10 @@ frexp:                                  # @frexp
 	cmp	dword ptr [esp + 4], 0
 	je	.LBB99_17
 # %bb.16:
+	mov	eax, dword ptr [__llvm_gcov_ctr.99+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.99+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+56], eax
 	mov	eax, dword ptr [.L__profc_frexp+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_frexp+68], 0
@@ -8970,16 +10219,22 @@ __muldi3:                               # @__muldi3
 	.cfi_offset ebp, -8
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
+	push	edi
 	push	esi
 	and	esp, -8
-	sub	esp, 40
-	.cfi_offset esi, -12
+	sub	esp, 32
+	.cfi_offset esi, -16
+	.cfi_offset edi, -12
 	mov	eax, dword ptr [ebp + 16]
 	mov	ecx, dword ptr [ebp + 20]
-	mov	esi, dword ptr [ebp + 8]
-	mov	edx, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 24], esi
-	mov	dword ptr [esp + 28], edx
+	mov	edx, dword ptr [ebp + 8]
+	mov	esi, dword ptr [ebp + 12]
+	mov	edi, dword ptr [__llvm_gcov_ctr.100]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.100+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.100], edi
+	mov	dword ptr [esp + 28], esi
+	mov	dword ptr [esp + 24], edx
 	mov	dword ptr [esp + 20], ecx
 	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___muldi3]
@@ -9008,6 +10263,10 @@ __muldi3:                               # @__muldi3
 	je	.LBB100_4
 	jmp	.LBB100_3
 .LBB100_3:                              #   in Loop: Header=BB100_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.100+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.100+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+8], eax
 	mov	eax, dword ptr [.L__profc___muldi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___muldi3+20], 0
@@ -9021,6 +10280,10 @@ __muldi3:                               # @__muldi3
 	mov	dword ptr [esp + 8], ecx
 	mov	dword ptr [esp + 12], eax
 .LBB100_4:                              #   in Loop: Header=BB100_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.100+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.100+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+16], eax
 	mov	edx, dword ptr [esp + 16]
 	mov	ecx, dword ptr [esp + 20]
 	mov	eax, edx
@@ -9039,8 +10302,9 @@ __muldi3:                               # @__muldi3
 .LBB100_5:
 	mov	eax, dword ptr [esp + 8]
 	mov	edx, dword ptr [esp + 12]
-	lea	esp, [ebp - 4]
+	lea	esp, [ebp - 8]
 	pop	esi
+	pop	edi
 	pop	ebp
 	.cfi_def_cfa esp, 4
 	fldz
@@ -9092,6 +10356,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	jae	.LBB101_6
 # %bb.2:                                #   in Loop: Header=BB101_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.101]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.101], eax
 	mov	eax, dword ptr [.L__profc_udivmodsi4+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc_udivmodsi4+36], 0
@@ -9102,6 +10370,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB101_6
 # %bb.3:                                #   in Loop: Header=BB101_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+8], eax
 	mov	eax, dword ptr [.L__profc_udivmodsi4+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc_udivmodsi4+44], 0
@@ -9123,6 +10395,10 @@ udivmodsi4:                             # @udivmodsi4
 	jmp	.LBB101_6
 .LBB101_5:                              #   in Loop: Header=BB101_1 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.101+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+16], ecx
 	mov	ecx, dword ptr [.L__profc_udivmodsi4+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc_udivmodsi4+28], 0
@@ -9134,6 +10410,10 @@ udivmodsi4:                             # @udivmodsi4
 	jne	.LBB101_7
 	jmp	.LBB101_8
 .LBB101_7:                              #   in Loop: Header=BB101_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+24], eax
 	mov	eax, dword ptr [.L__profc_udivmodsi4+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc_udivmodsi4+12], 0
@@ -9159,6 +10439,10 @@ udivmodsi4:                             # @udivmodsi4
 	cmp	eax, dword ptr [ebp + 12]
 	jb	.LBB101_12
 # %bb.11:                               #   in Loop: Header=BB101_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+32], eax
 	mov	eax, dword ptr [.L__profc_udivmodsi4+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc_udivmodsi4+60], 0
@@ -9171,6 +10455,10 @@ udivmodsi4:                             # @udivmodsi4
 	or	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 12], eax
 .LBB101_12:                             #   in Loop: Header=BB101_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+40], eax
 	mov	eax, dword ptr [ebp - 8]
 	shr	eax
 	mov	dword ptr [ebp - 8], eax
@@ -9182,6 +10470,10 @@ udivmodsi4:                             # @udivmodsi4
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB101_15
 # %bb.14:
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+48], eax
 	mov	eax, dword ptr [.L__profc_udivmodsi4+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc_udivmodsi4+68], 0
@@ -9190,6 +10482,10 @@ udivmodsi4:                             # @udivmodsi4
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB101_16
 .LBB101_15:
+	mov	eax, dword ptr [__llvm_gcov_ctr.101+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.101+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+56], eax
 	mov	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 4], eax
 .LBB101_16:
@@ -9239,6 +10535,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	cmp	eax, 0
 	jge	.LBB102_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.102]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.102+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.102], eax
 	mov	eax, dword ptr [.L__profc___clrsbqi2+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clrsbqi2+12], 0
@@ -9252,6 +10552,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	cmp	eax, 0
 	jne	.LBB102_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.102+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.102+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+8], eax
 	mov	eax, dword ptr [.L__profc___clrsbqi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clrsbqi2+20], 0
@@ -9259,6 +10563,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	mov	dword ptr [ebp - 4], 7
 	jmp	.LBB102_5
 .LBB102_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.102+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.102+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+16], eax
 	movsx	eax, byte ptr [ebp + 8]
 	shl	eax, 8
 	bsr	eax, eax
@@ -9319,6 +10627,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	jns	.LBB103_2
 	jmp	.LBB103_1
 .LBB103_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.103]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.103+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.103], eax
 	mov	eax, dword ptr [.L__profc___clrsbdi2+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clrsbdi2+12], 0
@@ -9336,6 +10648,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	jne	.LBB103_4
 	jmp	.LBB103_3
 .LBB103_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.103+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.103+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+8], eax
 	mov	eax, dword ptr [.L__profc___clrsbdi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clrsbdi2+20], 0
@@ -9343,6 +10659,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	mov	dword ptr [esp + 28], 63
 	jmp	.LBB103_5
 .LBB103_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.103+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.103+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+16], eax
 	mov	ecx, dword ptr [esp + 20]
 	bsr	eax, ecx
 	xor	eax, 31
@@ -9402,6 +10722,10 @@ __mulsi3:                               # @__mulsi3
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.104]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.104+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.104], eax
 	mov	eax, dword ptr [.L__profc___mulsi3]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3+4], 0
@@ -9420,6 +10744,10 @@ __mulsi3:                               # @__mulsi3
 	cmp	eax, 0
 	je	.LBB104_4
 # %bb.3:                                #   in Loop: Header=BB104_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.104+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.104+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+8], eax
 	mov	eax, dword ptr [.L__profc___mulsi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3+20], 0
@@ -9428,6 +10756,10 @@ __mulsi3:                               # @__mulsi3
 	add	eax, dword ptr [ebp - 4]
 	mov	dword ptr [ebp - 4], eax
 .LBB104_4:                              #   in Loop: Header=BB104_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.104+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.104+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+16], eax
 	mov	eax, dword ptr [ebp + 8]
 	shr	eax
 	mov	dword ptr [ebp + 8], eax
@@ -9496,6 +10828,10 @@ __cmovd:                                # @__cmovd
 	cmp	eax, dword ptr [ebp - 24]
 	jb	.LBB105_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.105]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.105], eax
 	mov	eax, dword ptr [.L__profc___cmovd+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovd+20], 0
@@ -9534,6 +10870,10 @@ __cmovd:                                # @__cmovd
 	mov	dword ptr [eax + 8*ecx + 4], esi
 	mov	dword ptr [eax + 8*ecx], edx
 # %bb.6:                                #   in Loop: Header=BB105_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.105+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+8], eax
 	mov	eax, dword ptr [ebp - 8]
 	add	eax, 1
 	mov	dword ptr [ebp - 8], eax
@@ -9545,6 +10885,10 @@ __cmovd:                                # @__cmovd
 	cmp	eax, dword ptr [ebp - 16]
 	jbe	.LBB105_10
 # %bb.9:                                #   in Loop: Header=BB105_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.105+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+16], eax
 	mov	eax, dword ptr [.L__profc___cmovd+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovd+44], 0
@@ -9560,6 +10904,10 @@ __cmovd:                                # @__cmovd
 	mov	dword ptr [ebp - 16], eax
 	jmp	.LBB105_8
 .LBB105_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.105+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+24], eax
 	jmp	.LBB105_15
 .LBB105_11:
 	jmp	.LBB105_12
@@ -9571,6 +10919,10 @@ __cmovd:                                # @__cmovd
 	cmp	eax, 0
 	jbe	.LBB105_14
 # %bb.13:                               #   in Loop: Header=BB105_12 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.105+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+32], eax
 	mov	eax, dword ptr [.L__profc___cmovd+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovd+52], 0
@@ -9583,7 +10935,10 @@ __cmovd:                                # @__cmovd
 	mov	byte ptr [eax + ecx], dl
 	jmp	.LBB105_12
 .LBB105_14:
-	jmp	.LBB105_15
+	mov	eax, dword ptr [__llvm_gcov_ctr.105+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.105+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+40], eax
 .LBB105_15:
 	add	esp, 20
 	pop	esi
@@ -9641,6 +10996,10 @@ __cmovh:                                # @__cmovh
 	cmp	eax, dword ptr [ebp - 16]
 	jb	.LBB106_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.106]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.106], eax
 	mov	eax, dword ptr [.L__profc___cmovh+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovh+20], 0
@@ -9678,6 +11037,10 @@ __cmovh:                                # @__cmovh
 	mov	ecx, dword ptr [ebp - 4]
 	mov	word ptr [eax + 2*ecx], dx
 # %bb.6:                                #   in Loop: Header=BB106_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.106+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+8], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -9688,6 +11051,10 @@ __cmovh:                                # @__cmovh
 	cmp	eax, 0
 	je	.LBB106_9
 # %bb.8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.106+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+16], eax
 	mov	eax, dword ptr [.L__profc___cmovh+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovh+44], 0
@@ -9701,6 +11068,10 @@ __cmovh:                                # @__cmovh
 	sub	ecx, 1
 	mov	byte ptr [eax + ecx], dl
 .LBB106_9:
+	mov	eax, dword ptr [__llvm_gcov_ctr.106+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+24], eax
 	jmp	.LBB106_14
 .LBB106_10:
 	jmp	.LBB106_11
@@ -9712,6 +11083,10 @@ __cmovh:                                # @__cmovh
 	cmp	eax, 0
 	jbe	.LBB106_13
 # %bb.12:                               #   in Loop: Header=BB106_11 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.106+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+32], eax
 	mov	eax, dword ptr [.L__profc___cmovh+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovh+52], 0
@@ -9724,7 +11099,10 @@ __cmovh:                                # @__cmovh
 	mov	byte ptr [eax + ecx], dl
 	jmp	.LBB106_11
 .LBB106_13:
-	jmp	.LBB106_14
+	mov	eax, dword ptr [__llvm_gcov_ctr.106+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.106+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+40], eax
 .LBB106_14:
 	add	esp, 16
 	pop	ebp
@@ -9784,6 +11162,10 @@ __cmovw:                                # @__cmovw
 	cmp	eax, dword ptr [ebp - 20]
 	jb	.LBB107_3
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.107]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.107], eax
 	mov	eax, dword ptr [.L__profc___cmovw+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovw+20], 0
@@ -9821,6 +11203,10 @@ __cmovw:                                # @__cmovw
 	mov	ecx, dword ptr [ebp - 4]
 	mov	dword ptr [eax + 4*ecx], edx
 # %bb.6:                                #   in Loop: Header=BB107_4 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.107+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+8], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -9832,6 +11218,10 @@ __cmovw:                                # @__cmovw
 	cmp	eax, dword ptr [ebp - 12]
 	jbe	.LBB107_10
 # %bb.9:                                #   in Loop: Header=BB107_8 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.107+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+16], eax
 	mov	eax, dword ptr [.L__profc___cmovw+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovw+44], 0
@@ -9847,6 +11237,10 @@ __cmovw:                                # @__cmovw
 	mov	dword ptr [ebp - 12], eax
 	jmp	.LBB107_8
 .LBB107_10:
+	mov	eax, dword ptr [__llvm_gcov_ctr.107+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+24], eax
 	jmp	.LBB107_15
 .LBB107_11:
 	jmp	.LBB107_12
@@ -9858,6 +11252,10 @@ __cmovw:                                # @__cmovw
 	cmp	eax, 0
 	jbe	.LBB107_14
 # %bb.13:                               #   in Loop: Header=BB107_12 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.107+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+32], eax
 	mov	eax, dword ptr [.L__profc___cmovw+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmovw+52], 0
@@ -9870,7 +11268,10 @@ __cmovw:                                # @__cmovw
 	mov	byte ptr [eax + ecx], dl
 	jmp	.LBB107_12
 .LBB107_14:
-	jmp	.LBB107_15
+	mov	eax, dword ptr [__llvm_gcov_ctr.107+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.107+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+40], eax
 .LBB107_15:
 	add	esp, 20
 	pop	ebp
@@ -9910,6 +11311,10 @@ __modi:                                 # @__modi
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.108]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.108+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.108], eax
 	mov	eax, dword ptr [.L__profc___modi]
 	add	eax, 1
 	adc	dword ptr [.L__profc___modi+4], 0
@@ -9955,6 +11360,10 @@ __uitod:                                # @__uitod
 	and	esp, -8
 	sub	esp, 8
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.109]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.109+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.109], eax
 	mov	eax, dword ptr [.L__profc___uitod]
 	add	eax, 1
 	adc	dword ptr [.L__profc___uitod+4], 0
@@ -10002,6 +11411,10 @@ __uitof:                                # @__uitof
 	and	esp, -8
 	sub	esp, 8
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.110]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.110+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.110], eax
 	mov	eax, dword ptr [.L__profc___uitof]
 	add	eax, 1
 	adc	dword ptr [.L__profc___uitof+4], 0
@@ -10053,10 +11466,14 @@ __ulltod:                               # @__ulltod
 	.cfi_def_cfa_register ebp
 	and	esp, -8
 	sub	esp, 24
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 16], ecx
-	mov	dword ptr [esp + 20], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.111]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.111+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.111], edx
+	mov	dword ptr [esp + 20], ecx
+	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___ulltod]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ulltod+4], 0
@@ -10114,10 +11531,14 @@ __ulltof:                               # @__ulltof
 	.cfi_def_cfa_register ebp
 	and	esp, -8
 	sub	esp, 24
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 16], ecx
-	mov	dword ptr [esp + 20], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.112]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.112+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.112], edx
+	mov	dword ptr [esp + 20], ecx
+	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___ulltof]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ulltof+4], 0
@@ -10170,6 +11591,10 @@ __umodi:                                # @__umodi
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.113]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.113+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.113], eax
 	mov	eax, dword ptr [.L__profc___umodi]
 	add	eax, 1
 	adc	dword ptr [.L__profc___umodi+4], 0
@@ -10214,6 +11639,10 @@ __clzhi2:                               # @__clzhi2
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.114]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.114+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.114], eax
 	mov	eax, dword ptr [.L__profc___clzhi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clzhi2+4], 0
@@ -10238,6 +11667,10 @@ __clzhi2:                               # @__clzhi2
 	cmp	eax, 0
 	je	.LBB114_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.114+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.114+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+8], eax
 	mov	eax, dword ptr [.L__profc___clzhi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clzhi2+20], 0
@@ -10246,6 +11679,10 @@ __clzhi2:                               # @__clzhi2
 .LBB114_4:                              #   in Loop: Header=BB114_1 Depth=1
 	jmp	.LBB114_5
 .LBB114_5:                              #   in Loop: Header=BB114_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.114+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.114+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+16], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -10289,6 +11726,10 @@ __ctzhi2:                               # @__ctzhi2
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.115]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.115+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.115], eax
 	mov	eax, dword ptr [.L__profc___ctzhi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ctzhi2+4], 0
@@ -10312,6 +11753,10 @@ __ctzhi2:                               # @__ctzhi2
 	cmp	eax, 0
 	je	.LBB115_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.115+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.115+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+8], eax
 	mov	eax, dword ptr [.L__profc___ctzhi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ctzhi2+20], 0
@@ -10320,6 +11765,10 @@ __ctzhi2:                               # @__ctzhi2
 .LBB115_4:                              #   in Loop: Header=BB115_1 Depth=1
 	jmp	.LBB115_5
 .LBB115_5:                              #   in Loop: Header=BB115_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.115+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.115+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+16], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -10385,6 +11834,10 @@ __fixunssfsi:                           # @__fixunssfsi
 	jb	.LBB116_2
 	jmp	.LBB116_1
 .LBB116_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.116]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.116+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.116], eax
 	mov	eax, dword ptr [.L__profc___fixunssfsi+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___fixunssfsi+12], 0
@@ -10405,6 +11858,10 @@ __fixunssfsi:                           # @__fixunssfsi
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB116_3
 .LBB116_2:
+	mov	eax, dword ptr [__llvm_gcov_ctr.116+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.116+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.116+8], eax
 	fld	dword ptr [ebp + 8]
 	fnstcw	word ptr [ebp - 18]
 	movzx	eax, word ptr [ebp - 18]
@@ -10455,6 +11912,10 @@ __parityhi2:                            # @__parityhi2
 	.cfi_def_cfa_register ebp
 	sub	esp, 8
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.117]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.117+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.117], eax
 	mov	eax, dword ptr [.L__profc___parityhi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___parityhi2+4], 0
@@ -10479,6 +11940,10 @@ __parityhi2:                            # @__parityhi2
 	cmp	eax, 0
 	je	.LBB117_4
 # %bb.3:                                #   in Loop: Header=BB117_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.117+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.117+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+8], eax
 	mov	eax, dword ptr [.L__profc___parityhi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___parityhi2+20], 0
@@ -10489,6 +11954,10 @@ __parityhi2:                            # @__parityhi2
 .LBB117_4:                              #   in Loop: Header=BB117_1 Depth=1
 	jmp	.LBB117_5
 .LBB117_5:                              #   in Loop: Header=BB117_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.117+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.117+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+16], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -10533,6 +12002,10 @@ __popcounthi2:                          # @__popcounthi2
 	.cfi_def_cfa_register ebp
 	sub	esp, 8
 	mov	ax, word ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.118]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.118+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.118], eax
 	mov	eax, dword ptr [.L__profc___popcounthi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___popcounthi2+4], 0
@@ -10557,6 +12030,10 @@ __popcounthi2:                          # @__popcounthi2
 	cmp	eax, 0
 	je	.LBB118_4
 # %bb.3:                                #   in Loop: Header=BB118_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.118+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.118+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+8], eax
 	mov	eax, dword ptr [.L__profc___popcounthi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___popcounthi2+20], 0
@@ -10567,6 +12044,10 @@ __popcounthi2:                          # @__popcounthi2
 .LBB118_4:                              #   in Loop: Header=BB118_1 Depth=1
 	jmp	.LBB118_5
 .LBB118_5:                              #   in Loop: Header=BB118_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.118+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.118+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+16], eax
 	mov	eax, dword ptr [ebp - 4]
 	add	eax, 1
 	mov	dword ptr [ebp - 4], eax
@@ -10611,6 +12092,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	push	eax
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.119]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.119+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.119], eax
 	mov	eax, dword ptr [.L__profc___mulsi3_iq2000]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3_iq2000+4], 0
@@ -10629,6 +12114,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	cmp	eax, 0
 	je	.LBB119_4
 # %bb.3:                                #   in Loop: Header=BB119_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.119+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.119+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+8], eax
 	mov	eax, dword ptr [.L__profc___mulsi3_iq2000+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3_iq2000+20], 0
@@ -10637,6 +12126,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	add	eax, dword ptr [ebp - 4]
 	mov	dword ptr [ebp - 4], eax
 .LBB119_4:                              #   in Loop: Header=BB119_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.119+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.119+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+16], eax
 	mov	eax, dword ptr [ebp + 8]
 	shr	eax
 	mov	dword ptr [ebp + 8], eax
@@ -10692,6 +12185,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	cmp	dword ptr [ebp + 8], 0
 	jne	.LBB120_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.120+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.120+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+8], eax
 	mov	eax, dword ptr [.L__profc___mulsi3_lm32+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3_lm32+12], 0
@@ -10699,7 +12196,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	mov	dword ptr [ebp - 4], 0
 	jmp	.LBB120_8
 .LBB120_2:
-	jmp	.LBB120_3
+	mov	eax, dword ptr [__llvm_gcov_ctr.120]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.120+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.120], eax
 .LBB120_3:                              # =>This Inner Loop Header: Depth=1
 	cmp	dword ptr [ebp + 12], 0
 	je	.LBB120_7
@@ -10713,6 +12213,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	cmp	eax, 0
 	je	.LBB120_6
 # %bb.5:                                #   in Loop: Header=BB120_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.120+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.120+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+16], eax
 	mov	eax, dword ptr [.L__profc___mulsi3_lm32+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulsi3_lm32+28], 0
@@ -10721,6 +12225,10 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	add	eax, dword ptr [ebp - 8]
 	mov	dword ptr [ebp - 8], eax
 .LBB120_6:                              #   in Loop: Header=BB120_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.120+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.120+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+24], eax
 	mov	eax, dword ptr [ebp + 8]
 	shl	eax
 	mov	dword ptr [ebp + 8], eax
@@ -10786,6 +12294,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	jae	.LBB121_6
 # %bb.2:                                #   in Loop: Header=BB121_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.121]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.121], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4+36], 0
@@ -10796,6 +12308,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB121_6
 # %bb.3:                                #   in Loop: Header=BB121_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+8], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4+44], 0
@@ -10817,6 +12333,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	jmp	.LBB121_6
 .LBB121_5:                              #   in Loop: Header=BB121_1 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.121+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+16], ecx
 	mov	ecx, dword ptr [.L__profc___udivmodsi4+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc___udivmodsi4+28], 0
@@ -10828,6 +12348,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	jne	.LBB121_7
 	jmp	.LBB121_8
 .LBB121_7:                              #   in Loop: Header=BB121_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+24], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4+12], 0
@@ -10853,6 +12377,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	cmp	eax, dword ptr [ebp + 12]
 	jb	.LBB121_12
 # %bb.11:                               #   in Loop: Header=BB121_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+32], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4+60], 0
@@ -10865,6 +12393,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	or	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 12], eax
 .LBB121_12:                             #   in Loop: Header=BB121_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+40], eax
 	mov	eax, dword ptr [ebp - 8]
 	shr	eax
 	mov	dword ptr [ebp - 8], eax
@@ -10876,6 +12408,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB121_15
 # %bb.14:
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+48], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4+68], 0
@@ -10884,6 +12420,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB121_16
 .LBB121_15:
+	mov	eax, dword ptr [__llvm_gcov_ctr.121+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.121+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+56], eax
 	mov	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 4], eax
 .LBB121_16:
@@ -10941,6 +12481,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	jbe	.LBB122_2
 	jmp	.LBB122_1
 .LBB122_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.122]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.122+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.122], eax
 	mov	eax, dword ptr [.L__profc___mspabi_cmpf+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_cmpf+12], 0
@@ -10958,6 +12502,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	jbe	.LBB122_4
 	jmp	.LBB122_3
 .LBB122_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.122+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.122+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+8], eax
 	mov	eax, dword ptr [.L__profc___mspabi_cmpf+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_cmpf+20], 0
@@ -10965,6 +12513,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	mov	dword ptr [ebp - 4], 1
 	jmp	.LBB122_5
 .LBB122_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.122+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.122+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+16], eax
 	mov	dword ptr [ebp - 4], 0
 .LBB122_5:
 	mov	eax, dword ptr [ebp - 4]
@@ -11022,6 +12574,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	jbe	.LBB123_2
 	jmp	.LBB123_1
 .LBB123_1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.123]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.123+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.123], eax
 	mov	eax, dword ptr [.L__profc___mspabi_cmpd+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_cmpd+12], 0
@@ -11039,6 +12595,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	jbe	.LBB123_4
 	jmp	.LBB123_3
 .LBB123_3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.123+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.123+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+8], eax
 	mov	eax, dword ptr [.L__profc___mspabi_cmpd+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_cmpd+20], 0
@@ -11046,6 +12606,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	mov	dword ptr [esp + 20], 1
 	jmp	.LBB123_5
 .LBB123_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.123+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.123+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+16], eax
 	mov	dword ptr [esp + 20], 0
 .LBB123_5:
 	mov	eax, dword ptr [esp + 20]
@@ -11086,6 +12650,10 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.124]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.124+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.124], eax
 	mov	eax, dword ptr [.L__profc___mspabi_mpysll]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_mpysll+4], 0
@@ -11128,6 +12696,10 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.125]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.125+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.125], eax
 	mov	eax, dword ptr [.L__profc___mspabi_mpyull]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mspabi_mpyull+4], 0
@@ -11180,6 +12752,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	dword ptr [ebp + 12], 0
 	jge	.LBB126_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.126]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.126], eax
 	mov	eax, dword ptr [.L__profc___mulhi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulhi3+12], 0
@@ -11197,6 +12773,10 @@ __mulhi3:                               # @__mulhi3
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB126_6
 # %bb.4:                                #   in Loop: Header=BB126_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.126+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+8], eax
 	mov	eax, dword ptr [.L__profc___mulhi3+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulhi3+28], 0
@@ -11211,6 +12791,10 @@ __mulhi3:                               # @__mulhi3
 	jmp	.LBB126_6
 .LBB126_5:                              #   in Loop: Header=BB126_3 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.126+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+16], ecx
 	mov	ecx, dword ptr [.L__profc___mulhi3+32]
 	add	ecx, 1
 	adc	dword ptr [.L__profc___mulhi3+36], 0
@@ -11231,6 +12815,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	eax, 0
 	je	.LBB126_9
 # %bb.8:                                #   in Loop: Header=BB126_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.126+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+24], eax
 	mov	eax, dword ptr [.L__profc___mulhi3+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulhi3+44], 0
@@ -11246,6 +12834,10 @@ __mulhi3:                               # @__mulhi3
 	sar	eax
 	mov	dword ptr [ebp + 12], eax
 # %bb.10:                               #   in Loop: Header=BB126_3 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.126+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+32], eax
 	mov	al, byte ptr [ebp - 1]
 	add	al, 1
 	mov	byte ptr [ebp - 1], al
@@ -11254,6 +12846,10 @@ __mulhi3:                               # @__mulhi3
 	cmp	dword ptr [ebp - 8], 0
 	je	.LBB126_13
 # %bb.12:
+	mov	eax, dword ptr [__llvm_gcov_ctr.126+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+40], eax
 	mov	eax, dword ptr [.L__profc___mulhi3+48]
 	add	eax, 1
 	adc	dword ptr [.L__profc___mulhi3+52], 0
@@ -11263,6 +12859,10 @@ __mulhi3:                               # @__mulhi3
 	mov	dword ptr [ebp - 20], eax       # 4-byte Spill
 	jmp	.LBB126_14
 .LBB126_13:
+	mov	eax, dword ptr [__llvm_gcov_ctr.126+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.126+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+48], eax
 	mov	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 20], eax       # 4-byte Spill
 .LBB126_14:
@@ -11305,6 +12905,10 @@ __divsi3:                               # @__divsi3
 	sub	esp, 20
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.127]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.127+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.127], eax
 	mov	eax, dword ptr [.L__profc___divsi3]
 	add	eax, 1
 	adc	dword ptr [.L__profc___divsi3+4], 0
@@ -11313,6 +12917,10 @@ __divsi3:                               # @__divsi3
 	cmp	dword ptr [ebp + 8], 0
 	jge	.LBB127_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.127+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.127+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+8], eax
 	mov	eax, dword ptr [.L__profc___divsi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___divsi3+12], 0
@@ -11330,6 +12938,10 @@ __divsi3:                               # @__divsi3
 	cmp	dword ptr [ebp + 12], 0
 	jge	.LBB127_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.127+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.127+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+16], eax
 	mov	eax, dword ptr [.L__profc___divsi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___divsi3+20], 0
@@ -11355,6 +12967,10 @@ __divsi3:                               # @__divsi3
 	cmp	dword ptr [ebp - 4], 0
 	je	.LBB127_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.127+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.127+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+24], eax
 	mov	eax, dword ptr [.L__profc___divsi3+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___divsi3+28], 0
@@ -11402,6 +13018,10 @@ __modsi3:                               # @__modsi3
 	sub	esp, 20
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.128]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.128+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.128], eax
 	mov	eax, dword ptr [.L__profc___modsi3]
 	add	eax, 1
 	adc	dword ptr [.L__profc___modsi3+4], 0
@@ -11410,6 +13030,10 @@ __modsi3:                               # @__modsi3
 	cmp	dword ptr [ebp + 8], 0
 	jge	.LBB128_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.128+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.128+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+8], eax
 	mov	eax, dword ptr [.L__profc___modsi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___modsi3+12], 0
@@ -11422,6 +13046,10 @@ __modsi3:                               # @__modsi3
 	cmp	dword ptr [ebp + 12], 0
 	jge	.LBB128_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.128+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.128+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+16], eax
 	mov	eax, dword ptr [.L__profc___modsi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___modsi3+20], 0
@@ -11440,6 +13068,10 @@ __modsi3:                               # @__modsi3
 	cmp	dword ptr [ebp - 4], 0
 	je	.LBB128_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.128+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.128+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+24], eax
 	mov	eax, dword ptr [.L__profc___modsi3+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___modsi3+28], 0
@@ -11503,6 +13135,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	byte ptr [ebp - 7], al          # 1-byte Spill
 	jge	.LBB129_6
 # %bb.2:                                #   in Loop: Header=BB129_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.129]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.129], eax
 	mov	eax, dword ptr [.L__profc___udivmodhi4+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodhi4+36], 0
@@ -11514,6 +13150,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	byte ptr [ebp - 7], al          # 1-byte Spill
 	je	.LBB129_6
 # %bb.3:                                #   in Loop: Header=BB129_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+8], eax
 	mov	eax, dword ptr [.L__profc___udivmodhi4+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodhi4+44], 0
@@ -11535,6 +13175,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	jmp	.LBB129_6
 .LBB129_5:                              #   in Loop: Header=BB129_1 Depth=1
 	mov	al, byte ptr [ebp - 8]          # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.129+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+16], ecx
 	mov	ecx, dword ptr [.L__profc___udivmodhi4+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc___udivmodhi4+28], 0
@@ -11546,6 +13190,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	jne	.LBB129_7
 	jmp	.LBB129_8
 .LBB129_7:                              #   in Loop: Header=BB129_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+24], eax
 	mov	eax, dword ptr [.L__profc___udivmodhi4+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodhi4+12], 0
@@ -11574,6 +13222,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	cmp	eax, ecx
 	jl	.LBB129_12
 # %bb.11:                               #   in Loop: Header=BB129_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+32], eax
 	mov	eax, dword ptr [.L__profc___udivmodhi4+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodhi4+60], 0
@@ -11589,6 +13241,10 @@ __udivmodhi4:                           # @__udivmodhi4
                                         # kill: def $ax killed $ax killed $eax
 	mov	word ptr [ebp - 6], ax
 .LBB129_12:                             #   in Loop: Header=BB129_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+40], eax
 	movzx	eax, word ptr [ebp - 4]
 	sar	eax
                                         # kill: def $ax killed $ax killed $eax
@@ -11602,6 +13258,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB129_15
 # %bb.14:
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+48], eax
 	mov	eax, dword ptr [.L__profc___udivmodhi4+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodhi4+68], 0
@@ -11610,6 +13270,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	mov	word ptr [ebp - 2], ax
 	jmp	.LBB129_16
 .LBB129_15:
+	mov	eax, dword ptr [__llvm_gcov_ctr.129+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.129+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+56], eax
 	mov	ax, word ptr [ebp - 6]
 	mov	word ptr [ebp - 2], ax
 .LBB129_16:
@@ -11667,6 +13331,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	jae	.LBB130_6
 # %bb.2:                                #   in Loop: Header=BB130_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.130]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.130], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4_libgcc+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+36], 0
@@ -11677,6 +13345,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	byte ptr [ebp - 13], al         # 1-byte Spill
 	je	.LBB130_6
 # %bb.3:                                #   in Loop: Header=BB130_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+8], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4_libgcc+40]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+44], 0
@@ -11698,6 +13370,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	jmp	.LBB130_6
 .LBB130_5:                              #   in Loop: Header=BB130_1 Depth=1
 	mov	al, byte ptr [ebp - 14]         # 1-byte Reload
+	mov	ecx, dword ptr [__llvm_gcov_ctr.130+16]
+	add	ecx, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+16], ecx
 	mov	ecx, dword ptr [.L__profc___udivmodsi4_libgcc+24]
 	add	ecx, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+28], 0
@@ -11709,6 +13385,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	jne	.LBB130_7
 	jmp	.LBB130_8
 .LBB130_7:                              #   in Loop: Header=BB130_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+24], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4_libgcc+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+12], 0
@@ -11734,6 +13414,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	cmp	eax, dword ptr [ebp + 12]
 	jb	.LBB130_12
 # %bb.11:                               #   in Loop: Header=BB130_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+32], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4_libgcc+56]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+60], 0
@@ -11746,6 +13430,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	or	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 12], eax
 .LBB130_12:                             #   in Loop: Header=BB130_9 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+40]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+40], eax
 	mov	eax, dword ptr [ebp - 8]
 	shr	eax
 	mov	dword ptr [ebp - 8], eax
@@ -11757,6 +13445,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	cmp	dword ptr [ebp + 16], 0
 	je	.LBB130_15
 # %bb.14:
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+48]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+48], eax
 	mov	eax, dword ptr [.L__profc___udivmodsi4_libgcc+64]
 	add	eax, 1
 	adc	dword ptr [.L__profc___udivmodsi4_libgcc+68], 0
@@ -11765,6 +13457,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	mov	dword ptr [ebp - 4], eax
 	jmp	.LBB130_16
 .LBB130_15:
+	mov	eax, dword ptr [__llvm_gcov_ctr.130+56]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.130+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+56], eax
 	mov	eax, dword ptr [ebp - 12]
 	mov	dword ptr [ebp - 4], eax
 .LBB130_16:
@@ -11825,6 +13521,10 @@ __ashldi3:                              # @__ashldi3
 	cmp	eax, 0
 	je	.LBB131_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.131]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.131+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.131], eax
 	mov	eax, dword ptr [.L__profc___ashldi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ashldi3+12], 0
@@ -11841,6 +13541,10 @@ __ashldi3:                              # @__ashldi3
 	cmp	dword ptr [ebp + 16], 0
 	jne	.LBB131_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.131+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.131+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+8], eax
 	mov	eax, dword ptr [.L__profc___ashldi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ashldi3+20], 0
@@ -11851,6 +13555,10 @@ __ashldi3:                              # @__ashldi3
 	mov	dword ptr [esp + 32], eax
 	jmp	.LBB131_6
 .LBB131_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.131+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.131+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+16], eax
 	mov	eax, dword ptr [esp + 12]
 	mov	ecx, dword ptr [ebp + 16]
                                         # kill: def $cl killed $ecx
@@ -11931,6 +13639,10 @@ __ashrdi3:                              # @__ashrdi3
 	cmp	eax, 0
 	je	.LBB132_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.132]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.132+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.132], eax
 	mov	eax, dword ptr [.L__profc___ashrdi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ashrdi3+12], 0
@@ -11949,6 +13661,10 @@ __ashrdi3:                              # @__ashrdi3
 	cmp	dword ptr [ebp + 16], 0
 	jne	.LBB132_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.132+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.132+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+8], eax
 	mov	eax, dword ptr [.L__profc___ashrdi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ashrdi3+20], 0
@@ -11959,6 +13675,10 @@ __ashrdi3:                              # @__ashrdi3
 	mov	dword ptr [esp + 32], eax
 	jmp	.LBB132_6
 .LBB132_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.132+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.132+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+16], eax
 	mov	eax, dword ptr [esp + 16]
 	mov	ecx, dword ptr [ebp + 16]
                                         # kill: def $cl killed $ecx
@@ -12022,10 +13742,14 @@ __bswapdi2:                             # @__bswapdi2
 	and	esp, -8
 	sub	esp, 16
 	.cfi_offset esi, -12
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp], ecx
-	mov	dword ptr [esp + 4], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.133]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.133+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.133], edx
+	mov	dword ptr [esp + 4], ecx
+	mov	dword ptr [esp], eax
 	mov	eax, dword ptr [.L__profc___bswapdi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___bswapdi2+4], 0
@@ -12092,6 +13816,10 @@ __bswapsi2:                             # @__bswapsi2
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.134]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.134+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.134], eax
 	mov	eax, dword ptr [.L__profc___bswapsi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___bswapsi2+4], 0
@@ -12149,6 +13877,10 @@ __clzsi2:                               # @__clzsi2
 	sub	esp, 12
 	.cfi_offset esi, -12
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.135]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.135+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.135], eax
 	mov	eax, dword ptr [.L__profc___clzsi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___clzsi2+4], 0
@@ -12299,6 +14031,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [esp + 4]
 	jge	.LBB136_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.136]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.136+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.136], eax
 	mov	eax, dword ptr [.L__profc___cmpdi2+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmpdi2+12], 0
@@ -12310,6 +14046,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [esp + 4]
 	jle	.LBB136_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.136+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.136+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+8], eax
 	mov	eax, dword ptr [.L__profc___cmpdi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmpdi2+20], 0
@@ -12321,6 +14061,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [esp]
 	jae	.LBB136_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.136+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.136+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+16], eax
 	mov	eax, dword ptr [.L__profc___cmpdi2+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmpdi2+28], 0
@@ -12332,6 +14076,10 @@ __cmpdi2:                               # @__cmpdi2
 	cmp	eax, dword ptr [esp]
 	jbe	.LBB136_8
 # %bb.7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.136+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.136+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+24], eax
 	mov	eax, dword ptr [.L__profc___cmpdi2+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___cmpdi2+36], 0
@@ -12339,6 +14087,10 @@ __cmpdi2:                               # @__cmpdi2
 	mov	dword ptr [esp + 32], 2
 	jmp	.LBB136_9
 .LBB136_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.136+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.136+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+32], eax
 	mov	dword ptr [esp + 32], 1
 .LBB136_9:
 	mov	eax, dword ptr [esp + 32]
@@ -12386,10 +14138,14 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	.cfi_offset edi, -12
 	mov	eax, dword ptr [ebp + 16]
 	mov	ecx, dword ptr [ebp + 20]
-	mov	esi, dword ptr [ebp + 8]
-	mov	edx, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 24], esi
-	mov	dword ptr [esp + 28], edx
+	mov	edx, dword ptr [ebp + 8]
+	mov	esi, dword ptr [ebp + 12]
+	mov	edi, dword ptr [__llvm_gcov_ctr.137]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.137+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.137], edi
+	mov	dword ptr [esp + 28], esi
+	mov	dword ptr [esp + 24], edx
 	mov	dword ptr [esp + 20], ecx
 	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___aeabi_lcmp]
@@ -12448,6 +14204,10 @@ __ctzsi2:                               # @__ctzsi2
 	sub	esp, 12
 	.cfi_offset esi, -12
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.138]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.138+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.138], eax
 	mov	eax, dword ptr [.L__profc___ctzsi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ctzsi2+4], 0
@@ -12592,6 +14352,10 @@ __lshrdi3:                              # @__lshrdi3
 	cmp	eax, 0
 	je	.LBB139_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.139]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.139+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.139], eax
 	mov	eax, dword ptr [.L__profc___lshrdi3+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___lshrdi3+12], 0
@@ -12608,6 +14372,10 @@ __lshrdi3:                              # @__lshrdi3
 	cmp	dword ptr [ebp + 16], 0
 	jne	.LBB139_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.139+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.139+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+8], eax
 	mov	eax, dword ptr [.L__profc___lshrdi3+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___lshrdi3+20], 0
@@ -12618,6 +14386,10 @@ __lshrdi3:                              # @__lshrdi3
 	mov	dword ptr [esp + 32], eax
 	jmp	.LBB139_6
 .LBB139_4:
+	mov	eax, dword ptr [__llvm_gcov_ctr.139+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.139+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+16], eax
 	mov	eax, dword ptr [esp + 16]
 	mov	ecx, dword ptr [ebp + 16]
                                         # kill: def $cl killed $ecx
@@ -12680,6 +14452,10 @@ __muldsi3:                              # @__muldsi3
 	sub	esp, 20
 	mov	eax, dword ptr [ebp + 12]
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.140]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.140+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.140], eax
 	mov	eax, dword ptr [.L__profc___muldsi3]
 	add	eax, 1
 	adc	dword ptr [.L__profc___muldsi3+4], 0
@@ -12768,16 +14544,22 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	.cfi_offset ebp, -8
 	mov	ebp, esp
 	.cfi_def_cfa_register ebp
+	push	edi
 	push	esi
 	and	esp, -8
-	sub	esp, 56
-	.cfi_offset esi, -12
+	sub	esp, 48
+	.cfi_offset esi, -16
+	.cfi_offset edi, -12
 	mov	eax, dword ptr [ebp + 16]
 	mov	ecx, dword ptr [ebp + 20]
-	mov	esi, dword ptr [ebp + 8]
-	mov	edx, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 40], esi
-	mov	dword ptr [esp + 44], edx
+	mov	edx, dword ptr [ebp + 8]
+	mov	esi, dword ptr [ebp + 12]
+	mov	edi, dword ptr [__llvm_gcov_ctr.141]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.141+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.141], edi
+	mov	dword ptr [esp + 44], esi
+	mov	dword ptr [esp + 40], edx
 	mov	dword ptr [esp + 36], ecx
 	mov	dword ptr [esp + 32], eax
 	mov	eax, dword ptr [.L__profc___muldi3_compiler_rt]
@@ -12812,8 +14594,9 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	mov	dword ptr [esp + 12], eax
 	mov	eax, dword ptr [esp + 8]
 	mov	edx, dword ptr [esp + 12]
-	lea	esp, [ebp - 4]
+	lea	esp, [ebp - 8]
 	pop	esi
+	pop	edi
 	pop	ebp
 	.cfi_def_cfa esp, 4
 	fldz
@@ -12849,10 +14632,14 @@ __negdi2:                               # @__negdi2
 	.cfi_def_cfa_register ebp
 	and	esp, -8
 	sub	esp, 8
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp], ecx
-	mov	dword ptr [esp + 4], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.142]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.142+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.142], edx
+	mov	dword ptr [esp + 4], ecx
+	mov	dword ptr [esp], eax
 	mov	eax, dword ptr [.L__profc___negdi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___negdi2+4], 0
@@ -12898,10 +14685,14 @@ __paritydi2:                            # @__paritydi2
 	.cfi_def_cfa_register ebp
 	and	esp, -8
 	sub	esp, 24
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 16], ecx
-	mov	dword ptr [esp + 20], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.143]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.143+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.143], edx
+	mov	dword ptr [esp + 20], ecx
+	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___paritydi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___paritydi2+4], 0
@@ -12968,6 +14759,10 @@ __paritysi2:                            # @__paritysi2
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.144]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.144+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.144], eax
 	mov	eax, dword ptr [.L__profc___paritysi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___paritysi2+4], 0
@@ -13031,10 +14826,14 @@ __popcountdi2:                          # @__popcountdi2
 	and	esp, -8
 	sub	esp, 32
 	.cfi_offset esi, -12
-	mov	ecx, dword ptr [ebp + 8]
-	mov	eax, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 16], ecx
-	mov	dword ptr [esp + 20], eax
+	mov	eax, dword ptr [ebp + 8]
+	mov	ecx, dword ptr [ebp + 12]
+	mov	edx, dword ptr [__llvm_gcov_ctr.145]
+	add	edx, 1
+	adc	dword ptr [__llvm_gcov_ctr.145+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.145], edx
+	mov	dword ptr [esp + 20], ecx
+	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___popcountdi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___popcountdi2+4], 0
@@ -13133,6 +14932,10 @@ __popcountsi2:                          # @__popcountsi2
 	.cfi_def_cfa_register ebp
 	push	eax
 	mov	eax, dword ptr [ebp + 8]
+	mov	eax, dword ptr [__llvm_gcov_ctr.146]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.146+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.146], eax
 	mov	eax, dword ptr [.L__profc___popcountsi2]
 	add	eax, 1
 	adc	dword ptr [.L__profc___popcountsi2+4], 0
@@ -13232,6 +15035,10 @@ __powidf2:                              # @__powidf2
 	cmp	eax, 0
 	je	.LBB147_3
 # %bb.2:                                #   in Loop: Header=BB147_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.147]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.147+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.147], eax
 	mov	eax, dword ptr [.L__profc___powidf2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___powidf2+20], 0
@@ -13255,6 +15062,10 @@ __powidf2:                              # @__powidf2
 	mov	dword ptr [.L__profc___powidf2+24], eax
 	jmp	.LBB147_6
 .LBB147_5:                              #   in Loop: Header=BB147_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.147+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.147+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+8], eax
 	fld	qword ptr [esp + 24]
 	fmul	st(0), st
 	fstp	qword ptr [esp + 24]
@@ -13263,6 +15074,10 @@ __powidf2:                              # @__powidf2
 	cmp	dword ptr [esp + 20], 0
 	je	.LBB147_8
 # %bb.7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.147+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.147+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+16], eax
 	mov	eax, dword ptr [.L__profc___powidf2+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___powidf2+36], 0
@@ -13273,6 +15088,10 @@ __powidf2:                              # @__powidf2
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 	jmp	.LBB147_9
 .LBB147_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.147+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.147+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+24], eax
 	fld	qword ptr [esp + 8]
 	fstp	qword ptr [esp]                 # 8-byte Folded Spill
 .LBB147_9:
@@ -13340,6 +15159,10 @@ __powisf2:                              # @__powisf2
 	cmp	eax, 0
 	je	.LBB148_3
 # %bb.2:                                #   in Loop: Header=BB148_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.148]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.148+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.148], eax
 	mov	eax, dword ptr [.L__profc___powisf2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___powisf2+20], 0
@@ -13363,6 +15186,10 @@ __powisf2:                              # @__powisf2
 	mov	dword ptr [.L__profc___powisf2+24], eax
 	jmp	.LBB148_6
 .LBB148_5:                              #   in Loop: Header=BB148_1 Depth=1
+	mov	eax, dword ptr [__llvm_gcov_ctr.148+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.148+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+8], eax
 	fld	dword ptr [ebp + 8]
 	fmul	st(0), st
 	fstp	dword ptr [ebp + 8]
@@ -13371,6 +15198,10 @@ __powisf2:                              # @__powisf2
 	cmp	dword ptr [ebp - 4], 0
 	je	.LBB148_8
 # %bb.7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.148+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.148+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+16], eax
 	mov	eax, dword ptr [.L__profc___powisf2+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___powisf2+36], 0
@@ -13381,6 +15212,10 @@ __powisf2:                              # @__powisf2
 	fstp	dword ptr [ebp - 12]            # 4-byte Folded Spill
 	jmp	.LBB148_9
 .LBB148_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.148+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.148+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+24], eax
 	fld	dword ptr [ebp - 8]
 	fstp	dword ptr [ebp - 12]            # 4-byte Folded Spill
 .LBB148_9:
@@ -13449,6 +15284,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [esp + 4]
 	jae	.LBB149_2
 # %bb.1:
+	mov	eax, dword ptr [__llvm_gcov_ctr.149]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.149+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.149], eax
 	mov	eax, dword ptr [.L__profc___ucmpdi2+8]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ucmpdi2+12], 0
@@ -13460,6 +15299,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [esp + 4]
 	jbe	.LBB149_4
 # %bb.3:
+	mov	eax, dword ptr [__llvm_gcov_ctr.149+8]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.149+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+8], eax
 	mov	eax, dword ptr [.L__profc___ucmpdi2+16]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ucmpdi2+20], 0
@@ -13471,6 +15314,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [esp]
 	jae	.LBB149_6
 # %bb.5:
+	mov	eax, dword ptr [__llvm_gcov_ctr.149+16]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.149+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+16], eax
 	mov	eax, dword ptr [.L__profc___ucmpdi2+24]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ucmpdi2+28], 0
@@ -13482,6 +15329,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	cmp	eax, dword ptr [esp]
 	jbe	.LBB149_8
 # %bb.7:
+	mov	eax, dword ptr [__llvm_gcov_ctr.149+24]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.149+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+24], eax
 	mov	eax, dword ptr [.L__profc___ucmpdi2+32]
 	add	eax, 1
 	adc	dword ptr [.L__profc___ucmpdi2+36], 0
@@ -13489,6 +15340,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	mov	dword ptr [esp + 32], 2
 	jmp	.LBB149_9
 .LBB149_8:
+	mov	eax, dword ptr [__llvm_gcov_ctr.149+32]
+	add	eax, 1
+	adc	dword ptr [__llvm_gcov_ctr.149+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+32], eax
 	mov	dword ptr [esp + 32], 1
 .LBB149_9:
 	mov	eax, dword ptr [esp + 32]
@@ -13536,10 +15391,14 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	.cfi_offset edi, -12
 	mov	eax, dword ptr [ebp + 16]
 	mov	ecx, dword ptr [ebp + 20]
-	mov	esi, dword ptr [ebp + 8]
-	mov	edx, dword ptr [ebp + 12]
-	mov	dword ptr [esp + 24], esi
-	mov	dword ptr [esp + 28], edx
+	mov	edx, dword ptr [ebp + 8]
+	mov	esi, dword ptr [ebp + 12]
+	mov	edi, dword ptr [__llvm_gcov_ctr.150]
+	add	edi, 1
+	adc	dword ptr [__llvm_gcov_ctr.150+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.150], edi
+	mov	dword ptr [esp + 28], esi
+	mov	dword ptr [esp + 24], edx
 	mov	dword ptr [esp + 20], ecx
 	mov	dword ptr [esp + 16], eax
 	mov	eax, dword ptr [.L__profc___aeabi_ulcmp]
@@ -13583,6 +15442,1067 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
 	.cfi_endproc
                                         # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+	.cfi_startproc
+# %bb.0:
+	push	ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset ebp, -8
+	mov	ebp, esp
+	.cfi_def_cfa_register ebp
+	sub	esp, 44
+	xor	eax, eax
+	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
+	jmp	.LBB151_1
+.LBB151_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB151_2 Depth 2
+	mov	ecx, dword ptr [ebp - 4]        # 4-byte Reload
+	mov	dword ptr [ebp - 28], ecx       # 4-byte Spill
+	lea	eax, [__llvm_internal_gcov_emit_file_info]
+	imul	ecx, ecx, 24
+	add	eax, ecx
+	mov	dword ptr [ebp - 24], eax       # 4-byte Spill
+	mov	edx, dword ptr [eax]
+	mov	ecx, dword ptr [eax + 4]
+	mov	eax, dword ptr [eax + 8]
+	mov	dword ptr [esp], edx
+	mov	dword ptr [esp + 4], ecx
+	mov	dword ptr [esp + 8], eax
+	call	llvm_gcda_start_file@PLT
+	mov	eax, dword ptr [ebp - 24]       # 4-byte Reload
+	mov	ecx, dword ptr [eax + 12]
+	mov	dword ptr [ebp - 20], ecx       # 4-byte Spill
+	mov	edx, dword ptr [eax + 16]
+	mov	dword ptr [ebp - 16], edx       # 4-byte Spill
+	mov	eax, dword ptr [eax + 20]
+	mov	dword ptr [ebp - 12], eax       # 4-byte Spill
+	xor	eax, eax
+	cmp	eax, ecx
+	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
+	jge	.LBB151_3
+.LBB151_2:                              #   Parent Loop BB151_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	mov	ecx, dword ptr [ebp - 8]        # 4-byte Reload
+	mov	eax, dword ptr [ebp - 16]       # 4-byte Reload
+	mov	dword ptr [ebp - 32], ecx       # 4-byte Spill
+	imul	ecx, ecx, 12
+	add	eax, ecx
+	mov	edx, dword ptr [eax]
+	mov	ecx, dword ptr [eax + 4]
+	mov	eax, dword ptr [eax + 8]
+	mov	dword ptr [esp], edx
+	mov	dword ptr [esp + 4], ecx
+	mov	dword ptr [esp + 8], eax
+	call	llvm_gcda_emit_function@PLT
+	mov	eax, dword ptr [ebp - 12]       # 4-byte Reload
+	mov	edx, dword ptr [ebp - 32]       # 4-byte Reload
+	mov	ecx, dword ptr [eax + 8*edx]
+	mov	eax, dword ptr [eax + 8*edx + 4]
+	mov	dword ptr [esp], ecx
+	mov	dword ptr [esp + 4], eax
+	call	llvm_gcda_emit_arcs@PLT
+	mov	eax, dword ptr [ebp - 32]       # 4-byte Reload
+	mov	ecx, dword ptr [ebp - 20]       # 4-byte Reload
+	add	eax, 1
+	cmp	eax, ecx
+	mov	dword ptr [ebp - 8], eax        # 4-byte Spill
+	jl	.LBB151_2
+.LBB151_3:                              #   in Loop: Header=BB151_1 Depth=1
+	call	llvm_gcda_summary_info@PLT
+	call	llvm_gcda_end_file@PLT
+	mov	eax, dword ptr [ebp - 28]       # 4-byte Reload
+	add	eax, 1
+	cmp	eax, 1
+	mov	dword ptr [ebp - 4], eax        # 4-byte Spill
+	jl	.LBB151_1
+# %bb.4:
+	add	esp, 44
+	pop	ebp
+	.cfi_def_cfa esp, 4
+	jmp	__x86_return_thunk              # TAILCALL
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+	.cfi_endproc
+                                        # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+	.cfi_startproc
+# %bb.0:
+	push	ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset ebp, -8
+	mov	ebp, esp
+	.cfi_def_cfa_register ebp
+	mov	dword ptr [__llvm_gcov_ctr+36], 0
+	mov	dword ptr [__llvm_gcov_ctr+32], 0
+	mov	dword ptr [__llvm_gcov_ctr+28], 0
+	mov	dword ptr [__llvm_gcov_ctr+24], 0
+	mov	dword ptr [__llvm_gcov_ctr+20], 0
+	mov	dword ptr [__llvm_gcov_ctr+16], 0
+	mov	dword ptr [__llvm_gcov_ctr+12], 0
+	mov	dword ptr [__llvm_gcov_ctr+8], 0
+	mov	dword ptr [__llvm_gcov_ctr+4], 0
+	mov	dword ptr [__llvm_gcov_ctr], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.1+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.1], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.2+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.2], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.3+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.3], 0
+	mov	dword ptr [__llvm_gcov_ctr.4+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.4+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.4+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.4], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.5+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.5], 0
+	mov	dword ptr [__llvm_gcov_ctr.6+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.6+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.6+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.6], 0
+	mov	dword ptr [__llvm_gcov_ctr.7+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.7+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.7+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.7], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.8+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.8], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.9+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.9], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.10+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.10], 0
+	mov	dword ptr [__llvm_gcov_ctr.11+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.11+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.11+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.11], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.12+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.12], 0
+	mov	dword ptr [__llvm_gcov_ctr.13+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.13+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.13+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.13], 0
+	mov	dword ptr [__llvm_gcov_ctr.14+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.14], 0
+	mov	dword ptr [__llvm_gcov_ctr.15+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.15], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.16+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.16], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.17+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.17], 0
+	mov	dword ptr [__llvm_gcov_ctr.18+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.18], 0
+	mov	dword ptr [__llvm_gcov_ctr.19+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.19], 0
+	mov	dword ptr [__llvm_gcov_ctr.20+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.20], 0
+	mov	dword ptr [__llvm_gcov_ctr.21+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.21], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.22+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.22], 0
+	mov	dword ptr [__llvm_gcov_ctr.23+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.23], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.24+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.24], 0
+	mov	dword ptr [__llvm_gcov_ctr.25+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.25], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.26+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.26], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.27+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.27], 0
+	mov	dword ptr [__llvm_gcov_ctr.28+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.28], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.29+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.29], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.30+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.30], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.31+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.31], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.32+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.32], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.33+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.33], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.34+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.34], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.35+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.35], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.36+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.36], 0
+	mov	dword ptr [__llvm_gcov_ctr.37+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.37+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.37+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.37], 0
+	mov	dword ptr [__llvm_gcov_ctr.38+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.38], 0
+	mov	dword ptr [__llvm_gcov_ctr.39+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.39], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.40+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.40], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.41+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.41], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.42+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.42], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.43+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.43], 0
+	mov	dword ptr [__llvm_gcov_ctr.44+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.44+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.44+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.44], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.45+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.45], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.46+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.46], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.47+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.47], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.48+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.48], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.49+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.49], 0
+	mov	dword ptr [__llvm_gcov_ctr.50+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.50], 0
+	mov	dword ptr [__llvm_gcov_ctr.51+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.51+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.51+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.51], 0
+	mov	dword ptr [__llvm_gcov_ctr.52+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.52], 0
+	mov	dword ptr [__llvm_gcov_ctr.53+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.53+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.53+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.53], 0
+	mov	dword ptr [__llvm_gcov_ctr.54+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.54], 0
+	mov	dword ptr [__llvm_gcov_ctr.55+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.55+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.55+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.55], 0
+	mov	dword ptr [__llvm_gcov_ctr.56+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.56], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.57+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.57], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.58+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.58], 0
+	mov	dword ptr [__llvm_gcov_ctr.59+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.59+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.59+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.59], 0
+	mov	dword ptr [__llvm_gcov_ctr.60+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.60+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.60+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.60], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.61+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.61], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.62+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.62], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.63+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.63], 0
+	mov	dword ptr [__llvm_gcov_ctr.64+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.64+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.64+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.64], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.65+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.65], 0
+	mov	dword ptr [__llvm_gcov_ctr.66+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.66+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.66+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.66], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.67+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.67], 0
+	mov	dword ptr [__llvm_gcov_ctr.68+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.68], 0
+	mov	dword ptr [__llvm_gcov_ctr.69+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.69], 0
+	mov	dword ptr [__llvm_gcov_ctr.70+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.70], 0
+	mov	dword ptr [__llvm_gcov_ctr.71+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.71], 0
+	mov	dword ptr [__llvm_gcov_ctr.72+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.72], 0
+	mov	dword ptr [__llvm_gcov_ctr.73+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.73], 0
+	mov	dword ptr [__llvm_gcov_ctr.74+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.74], 0
+	mov	dword ptr [__llvm_gcov_ctr.75+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.75], 0
+	mov	dword ptr [__llvm_gcov_ctr.76+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.76], 0
+	mov	dword ptr [__llvm_gcov_ctr.77+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.77], 0
+	mov	dword ptr [__llvm_gcov_ctr.78+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.78], 0
+	mov	dword ptr [__llvm_gcov_ctr.79+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.79], 0
+	mov	dword ptr [__llvm_gcov_ctr.80+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.80], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.81+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.81], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.82+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.82], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.83+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.83], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.84+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.84], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.85+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.85], 0
+	mov	dword ptr [__llvm_gcov_ctr.86+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.86], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.87+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.87], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.88+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.88], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.89+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.89], 0
+	mov	dword ptr [__llvm_gcov_ctr.90+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.90+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.90+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.90], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.91+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.91], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.92+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.92], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.93+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.93], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.94+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.94], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.95+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.95], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.96+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.96], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.97+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.97], 0
+	mov	dword ptr [__llvm_gcov_ctr.98+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.98], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.99+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.99], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.100+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.100], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.101+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.101], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.102+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.102], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.103+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.103], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.104+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.104], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.105+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.105], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.106+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.106], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.107+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.107], 0
+	mov	dword ptr [__llvm_gcov_ctr.108+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.108], 0
+	mov	dword ptr [__llvm_gcov_ctr.109+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.109], 0
+	mov	dword ptr [__llvm_gcov_ctr.110+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.110], 0
+	mov	dword ptr [__llvm_gcov_ctr.111+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.111], 0
+	mov	dword ptr [__llvm_gcov_ctr.112+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.112], 0
+	mov	dword ptr [__llvm_gcov_ctr.113+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.113], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.114+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.114], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.115+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.115], 0
+	mov	dword ptr [__llvm_gcov_ctr.116+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.116+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.116+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.116], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.117+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.117], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.118+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.118], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.119+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.119], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.120+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.120], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.121+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.121], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.122+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.122], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.123+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.123], 0
+	mov	dword ptr [__llvm_gcov_ctr.124+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.124], 0
+	mov	dword ptr [__llvm_gcov_ctr.125+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.125], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.126+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.126], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.127+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.127], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.128+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.128], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.129+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.129], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+60], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+56], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+52], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+48], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+44], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+40], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.130+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.130], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.131+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.131], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.132+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.132], 0
+	mov	dword ptr [__llvm_gcov_ctr.133+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.133], 0
+	mov	dword ptr [__llvm_gcov_ctr.134+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.134], 0
+	mov	dword ptr [__llvm_gcov_ctr.135+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.135], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.136+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.136], 0
+	mov	dword ptr [__llvm_gcov_ctr.137+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.137], 0
+	mov	dword ptr [__llvm_gcov_ctr.138+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.138], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.139+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.139], 0
+	mov	dword ptr [__llvm_gcov_ctr.140+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.140], 0
+	mov	dword ptr [__llvm_gcov_ctr.141+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.141], 0
+	mov	dword ptr [__llvm_gcov_ctr.142+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.142], 0
+	mov	dword ptr [__llvm_gcov_ctr.143+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.143], 0
+	mov	dword ptr [__llvm_gcov_ctr.144+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.144], 0
+	mov	dword ptr [__llvm_gcov_ctr.145+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.145], 0
+	mov	dword ptr [__llvm_gcov_ctr.146+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.146], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.147+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.147], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.148+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.148], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+36], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+32], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+28], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+24], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+20], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+16], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+12], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+8], 0
+	mov	dword ptr [__llvm_gcov_ctr.149+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.149], 0
+	mov	dword ptr [__llvm_gcov_ctr.150+4], 0
+	mov	dword ptr [__llvm_gcov_ctr.150], 0
+	pop	ebp
+	.cfi_def_cfa esp, 4
+	jmp	__x86_return_thunk              # TAILCALL
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+	.cfi_endproc
+                                        # -- End function
+	.p2align	4, 0x90                         # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+	.cfi_startproc
+# %bb.0:
+	push	ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset ebp, -8
+	mov	ebp, esp
+	.cfi_def_cfa_register ebp
+	sub	esp, 8
+	lea	ecx, [__llvm_gcov_writeout]
+	lea	eax, [__llvm_gcov_reset]
+	mov	dword ptr [esp], ecx
+	mov	dword ptr [esp + 4], eax
+	call	llvm_gcov_init@PLT
+	add	esp, 8
+	pop	ebp
+	.cfi_def_cfa esp, 4
+	jmp	__x86_return_thunk              # TAILCALL
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
+	.cfi_endproc
+                                        # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.local	l64a.s
 	.comm	l64a.s,7,1
@@ -13595,6 +16515,1245 @@ digits:
 	.type	seed,@object                    # @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-i386.gcda"
+	.size	.L__unnamed_1, 48
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               # 0x0
+	.long	560687177                       # 0x216b6849
+	.long	3469251760                      # 0xcec894b0
+	.long	1                               # 0x1
+	.long	1589591758                      # 0x5ebf3ece
+	.long	3469251760                      # 0xcec894b0
+	.long	2                               # 0x2
+	.long	2176136383                      # 0x81b534bf
+	.long	3469251760                      # 0xcec894b0
+	.long	3                               # 0x3
+	.long	3586625172                      # 0xd5c78e94
+	.long	3469251760                      # 0xcec894b0
+	.long	4                               # 0x4
+	.long	2323119728                      # 0x8a77fe70
+	.long	3469251760                      # 0xcec894b0
+	.long	5                               # 0x5
+	.long	2314569740                      # 0x89f5880c
+	.long	3469251760                      # 0xcec894b0
+	.long	6                               # 0x6
+	.long	2833673551                      # 0xa8e66d4f
+	.long	3469251760                      # 0xcec894b0
+	.long	7                               # 0x7
+	.long	1458633189                      # 0x56f0f9e5
+	.long	3469251760                      # 0xcec894b0
+	.long	8                               # 0x8
+	.long	1190300833                      # 0x46f28ca1
+	.long	3469251760                      # 0xcec894b0
+	.long	9                               # 0x9
+	.long	758327989                       # 0x2d332ab5
+	.long	3469251760                      # 0xcec894b0
+	.long	10                              # 0xa
+	.long	1651479037                      # 0x626f91fd
+	.long	3469251760                      # 0xcec894b0
+	.long	11                              # 0xb
+	.long	4132343275                      # 0xf64e8deb
+	.long	3469251760                      # 0xcec894b0
+	.long	12                              # 0xc
+	.long	734262523                       # 0x2bc3f4fb
+	.long	3469251760                      # 0xcec894b0
+	.long	13                              # 0xd
+	.long	2463424677                      # 0x92d4e0a5
+	.long	3469251760                      # 0xcec894b0
+	.long	14                              # 0xe
+	.long	1419026334                      # 0x54949f9e
+	.long	3469251760                      # 0xcec894b0
+	.long	15                              # 0xf
+	.long	3154471370                      # 0xbc0569ca
+	.long	3469251760                      # 0xcec894b0
+	.long	16                              # 0x10
+	.long	2077973487                      # 0x7bdb5bef
+	.long	3469251760                      # 0xcec894b0
+	.long	17                              # 0x11
+	.long	1474691227                      # 0x57e6009b
+	.long	3469251760                      # 0xcec894b0
+	.long	18                              # 0x12
+	.long	3710986016                      # 0xdd312720
+	.long	3469251760                      # 0xcec894b0
+	.long	19                              # 0x13
+	.long	1305101473                      # 0x4dca44a1
+	.long	3469251760                      # 0xcec894b0
+	.long	20                              # 0x14
+	.long	3762036564                      # 0xe03c1f54
+	.long	3469251760                      # 0xcec894b0
+	.long	21                              # 0x15
+	.long	477914433                       # 0x1c7c6541
+	.long	3469251760                      # 0xcec894b0
+	.long	22                              # 0x16
+	.long	3923035234                      # 0xe9d4c462
+	.long	3469251760                      # 0xcec894b0
+	.long	23                              # 0x17
+	.long	951651702                       # 0x38b90d76
+	.long	3469251760                      # 0xcec894b0
+	.long	24                              # 0x18
+	.long	4206925919                      # 0xfac0985f
+	.long	3469251760                      # 0xcec894b0
+	.long	25                              # 0x19
+	.long	32773942                        # 0x1f41736
+	.long	3469251760                      # 0xcec894b0
+	.long	26                              # 0x1a
+	.long	2877267246                      # 0xab7f9d2e
+	.long	3469251760                      # 0xcec894b0
+	.long	27                              # 0x1b
+	.long	860405771                       # 0x3348c00b
+	.long	3469251760                      # 0xcec894b0
+	.long	28                              # 0x1c
+	.long	815674877                       # 0x309e35fd
+	.long	3469251760                      # 0xcec894b0
+	.long	29                              # 0x1d
+	.long	1778838753                      # 0x6a06ece1
+	.long	3469251760                      # 0xcec894b0
+	.long	30                              # 0x1e
+	.long	2718307199                      # 0xa206137f
+	.long	3469251760                      # 0xcec894b0
+	.long	31                              # 0x1f
+	.long	856224820                       # 0x3308f434
+	.long	3469251760                      # 0xcec894b0
+	.long	32                              # 0x20
+	.long	1111195143                      # 0x423b7e07
+	.long	3469251760                      # 0xcec894b0
+	.long	33                              # 0x21
+	.long	1178414519                      # 0x463d2db7
+	.long	3469251760                      # 0xcec894b0
+	.long	34                              # 0x22
+	.long	3477640633                      # 0xcf4895b9
+	.long	3469251760                      # 0xcec894b0
+	.long	35                              # 0x23
+	.long	4294770115                      # 0xfffcfdc3
+	.long	3469251760                      # 0xcec894b0
+	.long	36                              # 0x24
+	.long	3650660234                      # 0xd998a78a
+	.long	3469251760                      # 0xcec894b0
+	.long	37                              # 0x25
+	.long	289327647                       # 0x113eca1f
+	.long	3469251760                      # 0xcec894b0
+	.long	38                              # 0x26
+	.long	2093612798                      # 0x7cc9fefe
+	.long	3469251760                      # 0xcec894b0
+	.long	39                              # 0x27
+	.long	4177956716                      # 0xf9068f6c
+	.long	3469251760                      # 0xcec894b0
+	.long	40                              # 0x28
+	.long	3434808461                      # 0xccbb048d
+	.long	3469251760                      # 0xcec894b0
+	.long	41                              # 0x29
+	.long	3206497114                      # 0xbf1f435a
+	.long	3469251760                      # 0xcec894b0
+	.long	42                              # 0x2a
+	.long	1537257434                      # 0x5ba0afda
+	.long	3469251760                      # 0xcec894b0
+	.long	43                              # 0x2b
+	.long	3028077325                      # 0xb47ccb0d
+	.long	3469251760                      # 0xcec894b0
+	.long	44                              # 0x2c
+	.long	1369848209                      # 0x51a63991
+	.long	3469251760                      # 0xcec894b0
+	.long	45                              # 0x2d
+	.long	938831176                       # 0x37f56d48
+	.long	3469251760                      # 0xcec894b0
+	.long	46                              # 0x2e
+	.long	1663146323                      # 0x63219953
+	.long	3469251760                      # 0xcec894b0
+	.long	47                              # 0x2f
+	.long	4111410217                      # 0xf50f2429
+	.long	3469251760                      # 0xcec894b0
+	.long	48                              # 0x30
+	.long	1475378556                      # 0x57f07d7c
+	.long	3469251760                      # 0xcec894b0
+	.long	49                              # 0x31
+	.long	3356195547                      # 0xc80b7adb
+	.long	3469251760                      # 0xcec894b0
+	.long	50                              # 0x32
+	.long	514931786                       # 0x1eb13c4a
+	.long	3469251760                      # 0xcec894b0
+	.long	51                              # 0x33
+	.long	2854034444                      # 0xaa1d1c0c
+	.long	3469251760                      # 0xcec894b0
+	.long	52                              # 0x34
+	.long	2747937306                      # 0xa3ca321a
+	.long	3469251760                      # 0xcec894b0
+	.long	53                              # 0x35
+	.long	4192776208                      # 0xf9e8b010
+	.long	3469251760                      # 0xcec894b0
+	.long	54                              # 0x36
+	.long	984436227                       # 0x3aad4e03
+	.long	3469251760                      # 0xcec894b0
+	.long	55                              # 0x37
+	.long	1477657574                      # 0x581343e6
+	.long	3469251760                      # 0xcec894b0
+	.long	56                              # 0x38
+	.long	1339127973                      # 0x4fd178a5
+	.long	3469251760                      # 0xcec894b0
+	.long	57                              # 0x39
+	.long	2960567906                      # 0xb076ae62
+	.long	3469251760                      # 0xcec894b0
+	.long	58                              # 0x3a
+	.long	3390076872                      # 0xca1077c8
+	.long	3469251760                      # 0xcec894b0
+	.long	59                              # 0x3b
+	.long	1543282230                      # 0x5bfc9e36
+	.long	3469251760                      # 0xcec894b0
+	.long	60                              # 0x3c
+	.long	2934101789                      # 0xaee2d71d
+	.long	3469251760                      # 0xcec894b0
+	.long	61                              # 0x3d
+	.long	3737986119                      # 0xdecd2447
+	.long	3469251760                      # 0xcec894b0
+	.long	62                              # 0x3e
+	.long	49556427                        # 0x2f42bcb
+	.long	3469251760                      # 0xcec894b0
+	.long	63                              # 0x3f
+	.long	234051526                       # 0xdf357c6
+	.long	3469251760                      # 0xcec894b0
+	.long	64                              # 0x40
+	.long	2341800126                      # 0x8b9508be
+	.long	3469251760                      # 0xcec894b0
+	.long	65                              # 0x41
+	.long	3256799948                      # 0xc21ed2cc
+	.long	3469251760                      # 0xcec894b0
+	.long	66                              # 0x42
+	.long	777295480                       # 0x2e549678
+	.long	3469251760                      # 0xcec894b0
+	.long	67                              # 0x43
+	.long	14040531                        # 0xd63dd3
+	.long	3469251760                      # 0xcec894b0
+	.long	68                              # 0x44
+	.long	8047973                         # 0x7acd65
+	.long	3469251760                      # 0xcec894b0
+	.long	69                              # 0x45
+	.long	719459161                       # 0x2ae21359
+	.long	3469251760                      # 0xcec894b0
+	.long	70                              # 0x46
+	.long	243358501                       # 0xe815b25
+	.long	3469251760                      # 0xcec894b0
+	.long	71                              # 0x47
+	.long	3262173932                      # 0xc270d2ec
+	.long	3469251760                      # 0xcec894b0
+	.long	72                              # 0x48
+	.long	398910553                       # 0x17c6e459
+	.long	3469251760                      # 0xcec894b0
+	.long	73                              # 0x49
+	.long	3354219739                      # 0xc7ed54db
+	.long	3469251760                      # 0xcec894b0
+	.long	74                              # 0x4a
+	.long	2570308788                      # 0x9933ccb4
+	.long	3469251760                      # 0xcec894b0
+	.long	75                              # 0x4b
+	.long	982429111                       # 0x3a8eadb7
+	.long	3469251760                      # 0xcec894b0
+	.long	76                              # 0x4c
+	.long	211491241                       # 0xc9b19a9
+	.long	3469251760                      # 0xcec894b0
+	.long	77                              # 0x4d
+	.long	1075683319                      # 0x401d9ff7
+	.long	3469251760                      # 0xcec894b0
+	.long	78                              # 0x4e
+	.long	1886352651                      # 0x706f750b
+	.long	3469251760                      # 0xcec894b0
+	.long	79                              # 0x4f
+	.long	248637203                       # 0xed1e713
+	.long	3469251760                      # 0xcec894b0
+	.long	80                              # 0x50
+	.long	703327087                       # 0x29ebeb6f
+	.long	3469251760                      # 0xcec894b0
+	.long	81                              # 0x51
+	.long	3690160730                      # 0xdbf3625a
+	.long	3469251760                      # 0xcec894b0
+	.long	82                              # 0x52
+	.long	787048238                       # 0x2ee9672e
+	.long	3469251760                      # 0xcec894b0
+	.long	83                              # 0x53
+	.long	1937497967                      # 0x737bdf6f
+	.long	3469251760                      # 0xcec894b0
+	.long	84                              # 0x54
+	.long	4205062514                      # 0xfaa42972
+	.long	3469251760                      # 0xcec894b0
+	.long	85                              # 0x55
+	.long	694462539                       # 0x2964a84b
+	.long	3469251760                      # 0xcec894b0
+	.long	86                              # 0x56
+	.long	85970907                        # 0x51fcfdb
+	.long	3469251760                      # 0xcec894b0
+	.long	87                              # 0x57
+	.long	3681984728                      # 0xdb76a0d8
+	.long	3469251760                      # 0xcec894b0
+	.long	88                              # 0x58
+	.long	3620297642                      # 0xd7c95baa
+	.long	3469251760                      # 0xcec894b0
+	.long	89                              # 0x59
+	.long	3394804480                      # 0xca589b00
+	.long	3469251760                      # 0xcec894b0
+	.long	90                              # 0x5a
+	.long	2119330183                      # 0x7e526987
+	.long	3469251760                      # 0xcec894b0
+	.long	91                              # 0x5b
+	.long	1963040266                      # 0x75019e0a
+	.long	3469251760                      # 0xcec894b0
+	.long	92                              # 0x5c
+	.long	1603391838                      # 0x5f91d15e
+	.long	3469251760                      # 0xcec894b0
+	.long	93                              # 0x5d
+	.long	2340921237                      # 0x8b879f95
+	.long	3469251760                      # 0xcec894b0
+	.long	94                              # 0x5e
+	.long	3028177438                      # 0xb47e521e
+	.long	3469251760                      # 0xcec894b0
+	.long	95                              # 0x5f
+	.long	2265525308                      # 0x87092c3c
+	.long	3469251760                      # 0xcec894b0
+	.long	96                              # 0x60
+	.long	2598903994                      # 0x9ae820ba
+	.long	3469251760                      # 0xcec894b0
+	.long	97                              # 0x61
+	.long	139524705                       # 0x850fa61
+	.long	3469251760                      # 0xcec894b0
+	.long	98                              # 0x62
+	.long	1076410600                      # 0x4028b8e8
+	.long	3469251760                      # 0xcec894b0
+	.long	99                              # 0x63
+	.long	220237413                       # 0xd208e65
+	.long	3469251760                      # 0xcec894b0
+	.long	100                             # 0x64
+	.long	3913623866                      # 0xe945293a
+	.long	3469251760                      # 0xcec894b0
+	.long	101                             # 0x65
+	.long	3453026372                      # 0xcdd10044
+	.long	3469251760                      # 0xcec894b0
+	.long	102                             # 0x66
+	.long	2321387380                      # 0x8a5d8f74
+	.long	3469251760                      # 0xcec894b0
+	.long	103                             # 0x67
+	.long	3319939363                      # 0xc5e24123
+	.long	3469251760                      # 0xcec894b0
+	.long	104                             # 0x68
+	.long	398991913                       # 0x17c82229
+	.long	3469251760                      # 0xcec894b0
+	.long	105                             # 0x69
+	.long	333429647                       # 0x13dfbb8f
+	.long	3469251760                      # 0xcec894b0
+	.long	106                             # 0x6a
+	.long	3927133990                      # 0xea134f26
+	.long	3469251760                      # 0xcec894b0
+	.long	107                             # 0x6b
+	.long	1797971294                      # 0x6b2add5e
+	.long	3469251760                      # 0xcec894b0
+	.long	108                             # 0x6c
+	.long	1622314776                      # 0x60b28f18
+	.long	3469251760                      # 0xcec894b0
+	.long	109                             # 0x6d
+	.long	1092862330                      # 0x4123c17a
+	.long	3469251760                      # 0xcec894b0
+	.long	110                             # 0x6e
+	.long	2568657322                      # 0x991a99aa
+	.long	3469251760                      # 0xcec894b0
+	.long	111                             # 0x6f
+	.long	2168129897                      # 0x813b0969
+	.long	3469251760                      # 0xcec894b0
+	.long	112                             # 0x70
+	.long	2890303119                      # 0xac46868f
+	.long	3469251760                      # 0xcec894b0
+	.long	113                             # 0x71
+	.long	1713332582                      # 0x661f6166
+	.long	3469251760                      # 0xcec894b0
+	.long	114                             # 0x72
+	.long	2375727721                      # 0x8d9aba69
+	.long	3469251760                      # 0xcec894b0
+	.long	115                             # 0x73
+	.long	3586767156                      # 0xd5c9b934
+	.long	3469251760                      # 0xcec894b0
+	.long	116                             # 0x74
+	.long	2191348475                      # 0x829d52fb
+	.long	3469251760                      # 0xcec894b0
+	.long	117                             # 0x75
+	.long	3910023869                      # 0xe90e3abd
+	.long	3469251760                      # 0xcec894b0
+	.long	118                             # 0x76
+	.long	4189915105                      # 0xf9bd07e1
+	.long	3469251760                      # 0xcec894b0
+	.long	119                             # 0x77
+	.long	2527353334                      # 0x96a459f6
+	.long	3469251760                      # 0xcec894b0
+	.long	120                             # 0x78
+	.long	3429265923                      # 0xcc667203
+	.long	3469251760                      # 0xcec894b0
+	.long	121                             # 0x79
+	.long	1283962724                      # 0x4c87b764
+	.long	3469251760                      # 0xcec894b0
+	.long	122                             # 0x7a
+	.long	1970290990                      # 0x7570412e
+	.long	3469251760                      # 0xcec894b0
+	.long	123                             # 0x7b
+	.long	2615950861                      # 0x9bec3e0d
+	.long	3469251760                      # 0xcec894b0
+	.long	124                             # 0x7c
+	.long	3338450337                      # 0xc6fcb5a1
+	.long	3469251760                      # 0xcec894b0
+	.long	125                             # 0x7d
+	.long	3971836509                      # 0xecbd6a5d
+	.long	3469251760                      # 0xcec894b0
+	.long	126                             # 0x7e
+	.long	4260339231                      # 0xfdef9e1f
+	.long	3469251760                      # 0xcec894b0
+	.long	127                             # 0x7f
+	.long	4160738226                      # 0xf7ffd3b2
+	.long	3469251760                      # 0xcec894b0
+	.long	128                             # 0x80
+	.long	1309372079                      # 0x4e0b6eaf
+	.long	3469251760                      # 0xcec894b0
+	.long	129                             # 0x81
+	.long	3151575564                      # 0xbbd93a0c
+	.long	3469251760                      # 0xcec894b0
+	.long	130                             # 0x82
+	.long	3938977714                      # 0xeac807b2
+	.long	3469251760                      # 0xcec894b0
+	.long	131                             # 0x83
+	.long	3228738087                      # 0xc072a227
+	.long	3469251760                      # 0xcec894b0
+	.long	132                             # 0x84
+	.long	3135705803                      # 0xbae712cb
+	.long	3469251760                      # 0xcec894b0
+	.long	133                             # 0x85
+	.long	4061147315                      # 0xf21030b3
+	.long	3469251760                      # 0xcec894b0
+	.long	134                             # 0x86
+	.long	2783543715                      # 0xa5e981a3
+	.long	3469251760                      # 0xcec894b0
+	.long	135                             # 0x87
+	.long	2471046843                      # 0x93492ebb
+	.long	3469251760                      # 0xcec894b0
+	.long	136                             # 0x88
+	.long	260073473                       # 0xf806801
+	.long	3469251760                      # 0xcec894b0
+	.long	137                             # 0x89
+	.long	1259876295                      # 0x4b182fc7
+	.long	3469251760                      # 0xcec894b0
+	.long	138                             # 0x8a
+	.long	2579807359                      # 0x99c4bc7f
+	.long	3469251760                      # 0xcec894b0
+	.long	139                             # 0x8b
+	.long	90061610                        # 0x55e3b2a
+	.long	3469251760                      # 0xcec894b0
+	.long	140                             # 0x8c
+	.long	3598610789                      # 0xd67e7165
+	.long	3469251760                      # 0xcec894b0
+	.long	141                             # 0x8d
+	.long	2351688191                      # 0x8c2be9ff
+	.long	3469251760                      # 0xcec894b0
+	.long	142                             # 0x8e
+	.long	1438161982                      # 0x55b89c3e
+	.long	3469251760                      # 0xcec894b0
+	.long	143                             # 0x8f
+	.long	2438880600                      # 0x915e5d58
+	.long	3469251760                      # 0xcec894b0
+	.long	144                             # 0x90
+	.long	3593193962                      # 0xd62bc9ea
+	.long	3469251760                      # 0xcec894b0
+	.long	145                             # 0x91
+	.long	1755082314                      # 0x689c6e4a
+	.long	3469251760                      # 0xcec894b0
+	.long	146                             # 0x92
+	.long	3432612426                      # 0xcc99824a
+	.long	3469251760                      # 0xcec894b0
+	.long	147                             # 0x93
+	.long	3374828335                      # 0xc927cb2f
+	.long	3469251760                      # 0xcec894b0
+	.long	148                             # 0x94
+	.long	3311814731                      # 0xc566484b
+	.long	3469251760                      # 0xcec894b0
+	.long	149                             # 0x95
+	.long	413908966                       # 0x18abbfe6
+	.long	3469251760                      # 0xcec894b0
+	.long	150                             # 0x96
+	.long	3027808697                      # 0xb478b1b9
+	.long	3469251760                      # 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.1
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.2
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.3
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.4
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.5
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.6
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.7
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.8
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.9
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.10
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.11
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.12
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.13
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.14
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.15
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.16
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.17
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.18
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.19
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.20
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.21
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.22
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.23
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.24
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.25
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.26
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.27
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.28
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.29
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.30
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.31
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.32
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.33
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.34
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.35
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.36
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.37
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.38
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.39
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.40
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.41
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.42
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.43
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.44
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.45
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.46
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.47
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.48
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.49
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.50
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.51
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.52
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.53
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.54
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.55
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.56
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.57
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.58
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.59
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.60
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.61
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.62
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.63
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.64
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.65
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.66
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.67
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.68
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.69
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.70
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.71
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.72
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.73
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.74
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.75
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.76
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.77
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.78
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.79
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.80
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.81
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.82
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.83
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.84
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.85
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.86
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.87
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.88
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.89
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.90
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.91
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.92
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.93
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.94
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.95
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.96
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.97
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.98
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.99
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.100
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.101
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.102
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.103
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.104
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.105
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.106
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.107
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.108
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.109
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.110
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.111
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.112
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.113
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.114
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.115
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.116
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.117
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.118
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.119
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.120
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.121
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.122
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.123
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.124
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.125
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.126
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.127
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.128
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.129
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.130
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.131
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.132
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.133
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.134
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.135
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.136
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.137
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.138
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.139
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.140
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.141
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.142
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.143
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.144
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.145
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.146
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.147
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.148
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.149
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.long	.L__unnamed_1
+	.long	875575338                       # 0x3430382a
+	.long	3469251760                      # 0xcec894b0
+	.long	151                             # 0x97
+	.long	__llvm_internal_gcov_emit_function_args.0
+	.long	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.long	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       # @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -17088,9 +21247,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

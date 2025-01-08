@@ -5,6 +5,7 @@
 	.type	memmove,@function
 memmove:                                ; @memmove
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 8(r1)
@@ -47,10 +48,10 @@ memmove:                                ; @memmove
 	jhs	.LBB0_6
 	jmp	.LBB0_1
 .LBB0_1:
-	mov	&.L__profc_memmove+14, r12
-	mov	&.L__profc_memmove+12, r11
-	mov	&.L__profc_memmove+10, r14
-	mov	&.L__profc_memmove+8, r15
+	mov	&__llvm_gcov_ctr+6, r12
+	mov	&__llvm_gcov_ctr+4, r11
+	mov	&__llvm_gcov_ctr+2, r14
+	mov	&__llvm_gcov_ctr, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -66,8 +67,35 @@ memmove:                                ; @memmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr
+	mov	r14, &__llvm_gcov_ctr+2
+	mov	r13, &__llvm_gcov_ctr+4
+	mov	r12, &__llvm_gcov_ctr+6
+	mov	&.L__profc_memmove+14, r12
+	mov	&.L__profc_memmove+12, r10
+	mov	&.L__profc_memmove+10, r14
+	mov	&.L__profc_memmove+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmove+8
@@ -128,6 +156,33 @@ memmove:                                ; @memmove
 	mov.b	r13, -1(r12)
 	jmp	.LBB0_4
 .LBB0_4:                                ;   in Loop: Header=BB0_2 Depth=1
+	mov	&__llvm_gcov_ctr+14, r12
+	mov	&__llvm_gcov_ctr+12, r11
+	mov	&__llvm_gcov_ctr+10, r14
+	mov	&__llvm_gcov_ctr+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr+8
+	mov	r14, &__llvm_gcov_ctr+10
+	mov	r13, &__llvm_gcov_ctr+12
+	mov	r12, &__llvm_gcov_ctr+14
 	mov	4(r1), r12
 	add	#-1, r12
 	mov	r12, 4(r1)
@@ -175,10 +230,10 @@ memmove:                                ; @memmove
 	jeq	.LBB0_11
 	jmp	.LBB0_9
 .LBB0_9:                                ;   in Loop: Header=BB0_8 Depth=1
-	mov	&.L__profc_memmove+38, r12
-	mov	&.L__profc_memmove+36, r11
-	mov	&.L__profc_memmove+34, r14
-	mov	&.L__profc_memmove+32, r15
+	mov	&__llvm_gcov_ctr+22, r12
+	mov	&__llvm_gcov_ctr+20, r11
+	mov	&__llvm_gcov_ctr+18, r14
+	mov	&__llvm_gcov_ctr+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -194,8 +249,35 @@ memmove:                                ; @memmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr+16
+	mov	r14, &__llvm_gcov_ctr+18
+	mov	r13, &__llvm_gcov_ctr+20
+	mov	r12, &__llvm_gcov_ctr+22
+	mov	&.L__profc_memmove+38, r12
+	mov	&.L__profc_memmove+36, r10
+	mov	&.L__profc_memmove+34, r14
+	mov	&.L__profc_memmove+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmove+32
@@ -219,13 +301,68 @@ memmove:                                ; @memmove
 	mov	r12, 4(r1)
 	jmp	.LBB0_8
 .LBB0_11:
+	mov	&__llvm_gcov_ctr+30, r12
+	mov	&__llvm_gcov_ctr+28, r11
+	mov	&__llvm_gcov_ctr+26, r14
+	mov	&__llvm_gcov_ctr+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr+24
+	mov	r14, &__llvm_gcov_ctr+26
+	mov	r13, &__llvm_gcov_ctr+28
+	mov	r12, &__llvm_gcov_ctr+30
 	jmp	.LBB0_12
 .LBB0_12:
+	mov	&__llvm_gcov_ctr+38, r12
+	mov	&__llvm_gcov_ctr+36, r11
+	mov	&__llvm_gcov_ctr+34, r14
+	mov	&__llvm_gcov_ctr+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr+32
+	mov	r14, &__llvm_gcov_ctr+34
+	mov	r13, &__llvm_gcov_ctr+36
+	mov	r12, &__llvm_gcov_ctr+38
 	jmp	.LBB0_13
 .LBB0_13:
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end0:
 	.size	memmove, .Lfunc_end0-memmove
@@ -235,6 +372,7 @@ memmove:                                ; @memmove
 	.type	memccpy,@function
 memccpy:                                ; @memccpy
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#16, r1
@@ -284,10 +422,10 @@ memccpy:                                ; @memccpy
 	jeq	.LBB1_4
 	jmp	.LBB1_2
 .LBB1_2:                                ;   in Loop: Header=BB1_1 Depth=1
-	mov	&.L__profc_memccpy+22, r13
-	mov	&.L__profc_memccpy+20, r12
-	mov	&.L__profc_memccpy+18, r15
-	mov	&.L__profc_memccpy+16, r11
+	mov	&__llvm_gcov_ctr.1+6, r13
+	mov	&__llvm_gcov_ctr.1+4, r12
+	mov	&__llvm_gcov_ctr.1+2, r15
+	mov	&__llvm_gcov_ctr.1, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -305,6 +443,33 @@ memccpy:                                ; @memccpy
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.1
+	mov	r15, &__llvm_gcov_ctr.1+2
+	mov	r14, &__llvm_gcov_ctr.1+4
+	mov	r13, &__llvm_gcov_ctr.1+6
+	mov	&.L__profc_memccpy+22, r13
+	mov	&.L__profc_memccpy+20, r10
+	mov	&.L__profc_memccpy+18, r15
+	mov	&.L__profc_memccpy+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -330,10 +495,10 @@ memccpy:                                ; @memccpy
 	jmp	.LBB1_3
 .LBB1_3:                                ;   in Loop: Header=BB1_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_memccpy+30, r13
-	mov	&.L__profc_memccpy+28, r10
-	mov	&.L__profc_memccpy+26, r15
-	mov	&.L__profc_memccpy+24, r11
+	mov	&__llvm_gcov_ctr.1+14, r13
+	mov	&__llvm_gcov_ctr.1+12, r10
+	mov	&__llvm_gcov_ctr.1+10, r15
+	mov	&__llvm_gcov_ctr.1+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -349,8 +514,35 @@ memccpy:                                ; @memccpy
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.1+8
+	mov	r15, &__llvm_gcov_ctr.1+10
+	mov	r14, &__llvm_gcov_ctr.1+12
+	mov	r13, &__llvm_gcov_ctr.1+14
+	mov	&.L__profc_memccpy+30, r13
+	mov	&.L__profc_memccpy+28, r9
+	mov	&.L__profc_memccpy+26, r15
+	mov	&.L__profc_memccpy+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_memccpy+24
@@ -395,26 +587,10 @@ memccpy:                                ; @memccpy
 	mov	r12, &.L__profc_memccpy+14
 	jmp	.LBB1_6
 .LBB1_6:                                ;   in Loop: Header=BB1_1 Depth=1
-	mov	6(r1), r12
-	add	#-1, r12
-	mov	r12, 6(r1)
-	mov	2(r1), r12
-	inc	r12
-	mov	r12, 2(r1)
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	jmp	.LBB1_1
-.LBB1_7:
-	mov	6(r1), r12
-	tst	r12
-	jeq	.LBB1_9
-	jmp	.LBB1_8
-.LBB1_8:
-	mov	&.L__profc_memccpy+38, r12
-	mov	&.L__profc_memccpy+36, r11
-	mov	&.L__profc_memccpy+34, r14
-	mov	&.L__profc_memccpy+32, r15
+	mov	&__llvm_gcov_ctr.1+22, r12
+	mov	&__llvm_gcov_ctr.1+20, r11
+	mov	&__llvm_gcov_ctr.1+18, r14
+	mov	&__llvm_gcov_ctr.1+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -434,6 +610,76 @@ memccpy:                                ; @memccpy
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.1+16
+	mov	r14, &__llvm_gcov_ctr.1+18
+	mov	r13, &__llvm_gcov_ctr.1+20
+	mov	r12, &__llvm_gcov_ctr.1+22
+	mov	6(r1), r12
+	add	#-1, r12
+	mov	r12, 6(r1)
+	mov	2(r1), r12
+	inc	r12
+	mov	r12, 2(r1)
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	jmp	.LBB1_1
+.LBB1_7:
+	mov	6(r1), r12
+	tst	r12
+	jeq	.LBB1_9
+	jmp	.LBB1_8
+.LBB1_8:
+	mov	&__llvm_gcov_ctr.1+30, r12
+	mov	&__llvm_gcov_ctr.1+28, r11
+	mov	&__llvm_gcov_ctr.1+26, r14
+	mov	&__llvm_gcov_ctr.1+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.1+24
+	mov	r14, &__llvm_gcov_ctr.1+26
+	mov	r13, &__llvm_gcov_ctr.1+28
+	mov	r12, &__llvm_gcov_ctr.1+30
+	mov	&.L__profc_memccpy+38, r12
+	mov	&.L__profc_memccpy+36, r10
+	mov	&.L__profc_memccpy+34, r14
+	mov	&.L__profc_memccpy+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_memccpy+32
 	mov	r14, &.L__profc_memccpy+34
 	mov	r13, &.L__profc_memccpy+36
@@ -443,6 +689,33 @@ memccpy:                                ; @memccpy
 	mov	r12, 14(r1)
 	jmp	.LBB1_10
 .LBB1_9:
+	mov	&__llvm_gcov_ctr.1+38, r12
+	mov	&__llvm_gcov_ctr.1+36, r11
+	mov	&__llvm_gcov_ctr.1+34, r14
+	mov	&__llvm_gcov_ctr.1+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.1+32
+	mov	r14, &__llvm_gcov_ctr.1+34
+	mov	r13, &__llvm_gcov_ctr.1+36
+	mov	r12, &__llvm_gcov_ctr.1+38
 	clr	14(r1)
 	jmp	.LBB1_10
 .LBB1_10:
@@ -450,6 +723,7 @@ memccpy:                                ; @memccpy
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end1:
 	.size	memccpy, .Lfunc_end1-memccpy
@@ -459,6 +733,7 @@ memccpy:                                ; @memccpy
 	.type	memchr,@function
 memchr:                                 ; @memchr
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#12, r1
@@ -505,10 +780,10 @@ memchr:                                 ; @memchr
 	jeq	.LBB2_4
 	jmp	.LBB2_2
 .LBB2_2:                                ;   in Loop: Header=BB2_1 Depth=1
-	mov	&.L__profc_memchr+22, r13
-	mov	&.L__profc_memchr+20, r12
-	mov	&.L__profc_memchr+18, r15
-	mov	&.L__profc_memchr+16, r11
+	mov	&__llvm_gcov_ctr.2+6, r13
+	mov	&__llvm_gcov_ctr.2+4, r12
+	mov	&__llvm_gcov_ctr.2+2, r15
+	mov	&__llvm_gcov_ctr.2, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -526,6 +801,33 @@ memchr:                                 ; @memchr
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.2
+	mov	r15, &__llvm_gcov_ctr.2+2
+	mov	r14, &__llvm_gcov_ctr.2+4
+	mov	r13, &__llvm_gcov_ctr.2+6
+	mov	&.L__profc_memchr+22, r13
+	mov	&.L__profc_memchr+20, r10
+	mov	&.L__profc_memchr+18, r15
+	mov	&.L__profc_memchr+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -548,10 +850,10 @@ memchr:                                 ; @memchr
 	jmp	.LBB2_3
 .LBB2_3:                                ;   in Loop: Header=BB2_1 Depth=1
 	mov.b	2(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_memchr+30, r13
-	mov	&.L__profc_memchr+28, r10
-	mov	&.L__profc_memchr+26, r15
-	mov	&.L__profc_memchr+24, r11
+	mov	&__llvm_gcov_ctr.2+14, r13
+	mov	&__llvm_gcov_ctr.2+12, r10
+	mov	&__llvm_gcov_ctr.2+10, r15
+	mov	&__llvm_gcov_ctr.2+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -567,8 +869,35 @@ memchr:                                 ; @memchr
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.2+8
+	mov	r15, &__llvm_gcov_ctr.2+10
+	mov	r14, &__llvm_gcov_ctr.2+12
+	mov	r13, &__llvm_gcov_ctr.2+14
+	mov	&.L__profc_memchr+30, r13
+	mov	&.L__profc_memchr+28, r9
+	mov	&.L__profc_memchr+26, r15
+	mov	&.L__profc_memchr+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_memchr+24
@@ -613,23 +942,10 @@ memchr:                                 ; @memchr
 	mov	r12, &.L__profc_memchr+14
 	jmp	.LBB2_6
 .LBB2_6:                                ;   in Loop: Header=BB2_1 Depth=1
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	mov	6(r1), r12
-	add	#-1, r12
-	mov	r12, 6(r1)
-	jmp	.LBB2_1
-.LBB2_7:
-	mov	6(r1), r12
-	tst	r12
-	jeq	.LBB2_9
-	jmp	.LBB2_8
-.LBB2_8:
-	mov	&.L__profc_memchr+38, r12
-	mov	&.L__profc_memchr+36, r11
-	mov	&.L__profc_memchr+34, r14
-	mov	&.L__profc_memchr+32, r15
+	mov	&__llvm_gcov_ctr.2+22, r12
+	mov	&__llvm_gcov_ctr.2+20, r11
+	mov	&__llvm_gcov_ctr.2+18, r14
+	mov	&__llvm_gcov_ctr.2+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -649,6 +965,73 @@ memchr:                                 ; @memchr
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.2+16
+	mov	r14, &__llvm_gcov_ctr.2+18
+	mov	r13, &__llvm_gcov_ctr.2+20
+	mov	r12, &__llvm_gcov_ctr.2+22
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	mov	6(r1), r12
+	add	#-1, r12
+	mov	r12, 6(r1)
+	jmp	.LBB2_1
+.LBB2_7:
+	mov	6(r1), r12
+	tst	r12
+	jeq	.LBB2_9
+	jmp	.LBB2_8
+.LBB2_8:
+	mov	&__llvm_gcov_ctr.2+30, r12
+	mov	&__llvm_gcov_ctr.2+28, r11
+	mov	&__llvm_gcov_ctr.2+26, r14
+	mov	&__llvm_gcov_ctr.2+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.2+24
+	mov	r14, &__llvm_gcov_ctr.2+26
+	mov	r13, &__llvm_gcov_ctr.2+28
+	mov	r12, &__llvm_gcov_ctr.2+30
+	mov	&.L__profc_memchr+38, r12
+	mov	&.L__profc_memchr+36, r10
+	mov	&.L__profc_memchr+34, r14
+	mov	&.L__profc_memchr+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_memchr+32
 	mov	r14, &.L__profc_memchr+34
 	mov	r13, &.L__profc_memchr+36
@@ -657,6 +1040,33 @@ memchr:                                 ; @memchr
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB2_10
 .LBB2_9:
+	mov	&__llvm_gcov_ctr.2+38, r12
+	mov	&__llvm_gcov_ctr.2+36, r11
+	mov	&__llvm_gcov_ctr.2+34, r14
+	mov	&__llvm_gcov_ctr.2+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.2+32
+	mov	r14, &__llvm_gcov_ctr.2+34
+	mov	r13, &__llvm_gcov_ctr.2+36
+	mov	r12, &__llvm_gcov_ctr.2+38
 	clr	r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB2_10
@@ -665,6 +1075,7 @@ memchr:                                 ; @memchr
 	add	#12, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end2:
 	.size	memchr, .Lfunc_end2-memchr
@@ -674,6 +1085,7 @@ memchr:                                 ; @memchr
 	.type	memcmp,@function
 memcmp:                                 ; @memcmp
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#14, r1
@@ -720,10 +1132,10 @@ memcmp:                                 ; @memcmp
 	jeq	.LBB3_4
 	jmp	.LBB3_2
 .LBB3_2:                                ;   in Loop: Header=BB3_1 Depth=1
-	mov	&.L__profc_memcmp+22, r12
-	mov	&.L__profc_memcmp+20, r11
-	mov	&.L__profc_memcmp+18, r14
-	mov	&.L__profc_memcmp+16, r15
+	mov	&__llvm_gcov_ctr.3+6, r12
+	mov	&__llvm_gcov_ctr.3+4, r11
+	mov	&__llvm_gcov_ctr.3+2, r14
+	mov	&__llvm_gcov_ctr.3, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -739,8 +1151,35 @@ memcmp:                                 ; @memcmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.3
+	mov	r14, &__llvm_gcov_ctr.3+2
+	mov	r13, &__llvm_gcov_ctr.3+4
+	mov	r12, &__llvm_gcov_ctr.3+6
+	mov	&.L__profc_memcmp+22, r12
+	mov	&.L__profc_memcmp+20, r10
+	mov	&.L__profc_memcmp+18, r14
+	mov	&.L__profc_memcmp+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memcmp+16
@@ -763,10 +1202,10 @@ memcmp:                                 ; @memcmp
 	jmp	.LBB3_3
 .LBB3_3:                                ;   in Loop: Header=BB3_1 Depth=1
 	mov.b	2(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_memcmp+30, r13
-	mov	&.L__profc_memcmp+28, r10
-	mov	&.L__profc_memcmp+26, r15
-	mov	&.L__profc_memcmp+24, r11
+	mov	&__llvm_gcov_ctr.3+14, r13
+	mov	&__llvm_gcov_ctr.3+12, r10
+	mov	&__llvm_gcov_ctr.3+10, r15
+	mov	&__llvm_gcov_ctr.3+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -782,8 +1221,35 @@ memcmp:                                 ; @memcmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.3+8
+	mov	r15, &__llvm_gcov_ctr.3+10
+	mov	r14, &__llvm_gcov_ctr.3+12
+	mov	r13, &__llvm_gcov_ctr.3+14
+	mov	&.L__profc_memcmp+30, r13
+	mov	&.L__profc_memcmp+28, r9
+	mov	&.L__profc_memcmp+26, r15
+	mov	&.L__profc_memcmp+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_memcmp+24
@@ -828,26 +1294,10 @@ memcmp:                                 ; @memcmp
 	mov	r12, &.L__profc_memcmp+14
 	jmp	.LBB3_6
 .LBB3_6:                                ;   in Loop: Header=BB3_1 Depth=1
-	mov	8(r1), r12
-	add	#-1, r12
-	mov	r12, 8(r1)
-	mov	6(r1), r12
-	inc	r12
-	mov	r12, 6(r1)
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	jmp	.LBB3_1
-.LBB3_7:
-	mov	8(r1), r12
-	tst	r12
-	jeq	.LBB3_9
-	jmp	.LBB3_8
-.LBB3_8:
-	mov	&.L__profc_memcmp+38, r12
-	mov	&.L__profc_memcmp+36, r11
-	mov	&.L__profc_memcmp+34, r14
-	mov	&.L__profc_memcmp+32, r15
+	mov	&__llvm_gcov_ctr.3+22, r12
+	mov	&__llvm_gcov_ctr.3+20, r11
+	mov	&__llvm_gcov_ctr.3+18, r14
+	mov	&__llvm_gcov_ctr.3+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -867,6 +1317,76 @@ memcmp:                                 ; @memcmp
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.3+16
+	mov	r14, &__llvm_gcov_ctr.3+18
+	mov	r13, &__llvm_gcov_ctr.3+20
+	mov	r12, &__llvm_gcov_ctr.3+22
+	mov	8(r1), r12
+	add	#-1, r12
+	mov	r12, 8(r1)
+	mov	6(r1), r12
+	inc	r12
+	mov	r12, 6(r1)
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	jmp	.LBB3_1
+.LBB3_7:
+	mov	8(r1), r12
+	tst	r12
+	jeq	.LBB3_9
+	jmp	.LBB3_8
+.LBB3_8:
+	mov	&__llvm_gcov_ctr.3+30, r12
+	mov	&__llvm_gcov_ctr.3+28, r11
+	mov	&__llvm_gcov_ctr.3+26, r14
+	mov	&__llvm_gcov_ctr.3+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.3+24
+	mov	r14, &__llvm_gcov_ctr.3+26
+	mov	r13, &__llvm_gcov_ctr.3+28
+	mov	r12, &__llvm_gcov_ctr.3+30
+	mov	&.L__profc_memcmp+38, r12
+	mov	&.L__profc_memcmp+36, r10
+	mov	&.L__profc_memcmp+34, r14
+	mov	&.L__profc_memcmp+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_memcmp+32
 	mov	r14, &.L__profc_memcmp+34
 	mov	r13, &.L__profc_memcmp+36
@@ -879,32 +1399,10 @@ memcmp:                                 ; @memcmp
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB3_10
 .LBB3_9:
-	clr	r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB3_10
-.LBB3_10:
-	mov	0(r1), r12                      ; 2-byte Folded Reload
-	add	#14, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end3:
-	.size	memcmp, .Lfunc_end3-memcmp
-                                        ; -- End function
-	.globl	memcpy                          ; -- Begin function memcpy
-	.p2align	1
-	.type	memcpy,@function
-memcpy:                                 ; @memcpy
-; %bb.0:
-	push	r10
-	sub	#10, r1
-	mov	r12, 8(r1)
-	mov	r13, 6(r1)
-	mov	r14, 4(r1)
-	mov	&.L__profc_memcpy+6, r12
-	mov	&.L__profc_memcpy+4, r11
-	mov	&.L__profc_memcpy+2, r14
-	mov	&.L__profc_memcpy, r15
+	mov	&__llvm_gcov_ctr.3+38, r12
+	mov	&__llvm_gcov_ctr.3+36, r11
+	mov	&__llvm_gcov_ctr.3+34, r14
+	mov	&__llvm_gcov_ctr.3+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -922,6 +1420,87 @@ memcpy:                                 ; @memcpy
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.3+32
+	mov	r14, &__llvm_gcov_ctr.3+34
+	mov	r13, &__llvm_gcov_ctr.3+36
+	mov	r12, &__llvm_gcov_ctr.3+38
+	clr	r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB3_10
+.LBB3_10:
+	mov	0(r1), r12                      ; 2-byte Folded Reload
+	add	#14, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end3:
+	.size	memcmp, .Lfunc_end3-memcmp
+                                        ; -- End function
+	.globl	memcpy                          ; -- Begin function memcpy
+	.p2align	1
+	.type	memcpy,@function
+memcpy:                                 ; @memcpy
+; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#10, r1
+	mov	&__llvm_gcov_ctr.4+6, r15
+	mov	&__llvm_gcov_ctr.4+4, r11
+	mov	&__llvm_gcov_ctr.4+2, r9
+	mov	&__llvm_gcov_ctr.4, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.4
+	mov	r9, &__llvm_gcov_ctr.4+2
+	mov	r10, &__llvm_gcov_ctr.4+4
+	mov	r15, &__llvm_gcov_ctr.4+6
+	mov	r12, 8(r1)
+	mov	r13, 6(r1)
+	mov	r14, 4(r1)
+	mov	&.L__profc_memcpy+6, r12
+	mov	&.L__profc_memcpy+4, r10
+	mov	&.L__profc_memcpy+2, r14
+	mov	&.L__profc_memcpy, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memcpy
@@ -978,6 +1557,33 @@ memcpy:                                 ; @memcpy
 	mov.b	r13, 0(r12)
 	jmp	.LBB4_3
 .LBB4_3:                                ;   in Loop: Header=BB4_1 Depth=1
+	mov	&__llvm_gcov_ctr.4+14, r12
+	mov	&__llvm_gcov_ctr.4+12, r11
+	mov	&__llvm_gcov_ctr.4+10, r14
+	mov	&__llvm_gcov_ctr.4+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.4+8
+	mov	r14, &__llvm_gcov_ctr.4+10
+	mov	r13, &__llvm_gcov_ctr.4+12
+	mov	r12, &__llvm_gcov_ctr.4+14
 	mov	4(r1), r12
 	add	#-1, r12
 	mov	r12, 4(r1)
@@ -986,6 +1592,10 @@ memcpy:                                 ; @memcpy
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end4:
 	.size	memcpy, .Lfunc_end4-memcpy
@@ -995,6 +1605,7 @@ memcpy:                                 ; @memcpy
 	.type	memrchr,@function
 memrchr:                                ; @memrchr
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 6(r1)
@@ -1077,10 +1688,70 @@ memrchr:                                ; @memrchr
 	jne	.LBB5_4
 	jmp	.LBB5_3
 .LBB5_3:
+	mov	&__llvm_gcov_ctr.5+6, r12
+	mov	&__llvm_gcov_ctr.5+4, r11
+	mov	&__llvm_gcov_ctr.5+2, r14
+	mov	&__llvm_gcov_ctr.5, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.5
+	mov	r14, &__llvm_gcov_ctr.5+2
+	mov	r13, &__llvm_gcov_ctr.5+4
+	mov	r12, &__llvm_gcov_ctr.5+6
 	mov	&.L__profc_memrchr+22, r12
-	mov	&.L__profc_memrchr+20, r11
+	mov	&.L__profc_memrchr+20, r10
 	mov	&.L__profc_memrchr+18, r14
 	mov	&.L__profc_memrchr+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_memrchr+16
+	mov	r14, &.L__profc_memrchr+18
+	mov	r13, &.L__profc_memrchr+20
+	mov	r12, &.L__profc_memrchr+22
+	mov	0(r1), r12
+	mov	2(r1), r13
+	add	r13, r12
+	mov	r12, 8(r1)
+	jmp	.LBB5_6
+.LBB5_4:                                ;   in Loop: Header=BB5_1 Depth=1
+	mov	&__llvm_gcov_ctr.5+14, r12
+	mov	&__llvm_gcov_ctr.5+12, r11
+	mov	&__llvm_gcov_ctr.5+10, r14
+	mov	&__llvm_gcov_ctr.5+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1100,42 +1771,16 @@ memrchr:                                ; @memrchr
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_memrchr+16
-	mov	r14, &.L__profc_memrchr+18
-	mov	r13, &.L__profc_memrchr+20
-	mov	r12, &.L__profc_memrchr+22
-	mov	0(r1), r12
-	mov	2(r1), r13
-	add	r13, r12
-	mov	r12, 8(r1)
-	jmp	.LBB5_6
-.LBB5_4:                                ;   in Loop: Header=BB5_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.5+8
+	mov	r14, &__llvm_gcov_ctr.5+10
+	mov	r13, &__llvm_gcov_ctr.5+12
+	mov	r12, &__llvm_gcov_ctr.5+14
 	jmp	.LBB5_1
 .LBB5_5:
-	clr	8(r1)
-	jmp	.LBB5_6
-.LBB5_6:
-	mov	8(r1), r12
-	add	#10, r1
-	pop	r10
-	ret
-.Lfunc_end5:
-	.size	memrchr, .Lfunc_end5-memrchr
-                                        ; -- End function
-	.globl	memset                          ; -- Begin function memset
-	.p2align	1
-	.type	memset,@function
-memset:                                 ; @memset
-; %bb.0:
-	push	r10
-	sub	#10, r1
-	mov	r12, 8(r1)
-	mov	r13, 6(r1)
-	mov	r14, 4(r1)
-	mov	&.L__profc_memset+6, r12
-	mov	&.L__profc_memset+4, r11
-	mov	&.L__profc_memset+2, r14
-	mov	&.L__profc_memset, r15
+	mov	&__llvm_gcov_ctr.5+22, r12
+	mov	&__llvm_gcov_ctr.5+20, r11
+	mov	&__llvm_gcov_ctr.5+18, r14
+	mov	&__llvm_gcov_ctr.5+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1153,6 +1798,85 @@ memset:                                 ; @memset
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.5+16
+	mov	r14, &__llvm_gcov_ctr.5+18
+	mov	r13, &__llvm_gcov_ctr.5+20
+	mov	r12, &__llvm_gcov_ctr.5+22
+	clr	8(r1)
+	jmp	.LBB5_6
+.LBB5_6:
+	mov	8(r1), r12
+	add	#10, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end5:
+	.size	memrchr, .Lfunc_end5-memrchr
+                                        ; -- End function
+	.globl	memset                          ; -- Begin function memset
+	.p2align	1
+	.type	memset,@function
+memset:                                 ; @memset
+; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#10, r1
+	mov	&__llvm_gcov_ctr.6+6, r15
+	mov	&__llvm_gcov_ctr.6+4, r11
+	mov	&__llvm_gcov_ctr.6+2, r9
+	mov	&__llvm_gcov_ctr.6, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.6
+	mov	r9, &__llvm_gcov_ctr.6+2
+	mov	r10, &__llvm_gcov_ctr.6+4
+	mov	r15, &__llvm_gcov_ctr.6+6
+	mov	r12, 8(r1)
+	mov	r13, 6(r1)
+	mov	r14, 4(r1)
+	mov	&.L__profc_memset+6, r12
+	mov	&.L__profc_memset+4, r10
+	mov	&.L__profc_memset+2, r14
+	mov	&.L__profc_memset, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memset
@@ -1200,34 +1924,10 @@ memset:                                 ; @memset
 	mov.b	r13, 0(r12)
 	jmp	.LBB6_3
 .LBB6_3:                                ;   in Loop: Header=BB6_1 Depth=1
-	mov	4(r1), r12
-	add	#-1, r12
-	mov	r12, 4(r1)
-	mov	2(r1), r12
-	inc	r12
-	mov	r12, 2(r1)
-	jmp	.LBB6_1
-.LBB6_4:
-	mov	8(r1), r12
-	add	#10, r1
-	pop	r10
-	ret
-.Lfunc_end6:
-	.size	memset, .Lfunc_end6-memset
-                                        ; -- End function
-	.globl	stpcpy                          ; -- Begin function stpcpy
-	.p2align	1
-	.type	stpcpy,@function
-stpcpy:                                 ; @stpcpy
-; %bb.0:
-	push	r10
-	sub	#4, r1
-	mov	r12, 2(r1)
-	mov	r13, 0(r1)
-	mov	&.L__profc_stpcpy+6, r12
-	mov	&.L__profc_stpcpy+4, r11
-	mov	&.L__profc_stpcpy+2, r14
-	mov	&.L__profc_stpcpy, r15
+	mov	&__llvm_gcov_ctr.6+14, r12
+	mov	&__llvm_gcov_ctr.6+12, r11
+	mov	&__llvm_gcov_ctr.6+10, r14
+	mov	&__llvm_gcov_ctr.6+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1245,6 +1945,91 @@ stpcpy:                                 ; @stpcpy
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.6+8
+	mov	r14, &__llvm_gcov_ctr.6+10
+	mov	r13, &__llvm_gcov_ctr.6+12
+	mov	r12, &__llvm_gcov_ctr.6+14
+	mov	4(r1), r12
+	add	#-1, r12
+	mov	r12, 4(r1)
+	mov	2(r1), r12
+	inc	r12
+	mov	r12, 2(r1)
+	jmp	.LBB6_1
+.LBB6_4:
+	mov	8(r1), r12
+	add	#10, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	ret
+.Lfunc_end6:
+	.size	memset, .Lfunc_end6-memset
+                                        ; -- End function
+	.globl	stpcpy                          ; -- Begin function stpcpy
+	.p2align	1
+	.type	stpcpy,@function
+stpcpy:                                 ; @stpcpy
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#4, r1
+	mov	&__llvm_gcov_ctr.7+6, r14
+	mov	&__llvm_gcov_ctr.7+4, r11
+	mov	&__llvm_gcov_ctr.7+2, r10
+	mov	&__llvm_gcov_ctr.7, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.7
+	mov	r10, &__llvm_gcov_ctr.7+2
+	mov	r15, &__llvm_gcov_ctr.7+4
+	mov	r14, &__llvm_gcov_ctr.7+6
+	mov	r12, 2(r1)
+	mov	r13, 0(r1)
+	mov	&.L__profc_stpcpy+6, r12
+	mov	&.L__profc_stpcpy+4, r10
+	mov	&.L__profc_stpcpy+2, r14
+	mov	&.L__profc_stpcpy, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_stpcpy
@@ -1290,35 +2075,10 @@ stpcpy:                                 ; @stpcpy
 	mov	r12, &.L__profc_stpcpy+14
 	jmp	.LBB7_3
 .LBB7_3:                                ;   in Loop: Header=BB7_1 Depth=1
-	mov	0(r1), r12
-	inc	r12
-	mov	r12, 0(r1)
-	mov	2(r1), r12
-	inc	r12
-	mov	r12, 2(r1)
-	jmp	.LBB7_1
-.LBB7_4:
-	mov	2(r1), r12
-	add	#4, r1
-	pop	r10
-	ret
-.Lfunc_end7:
-	.size	stpcpy, .Lfunc_end7-stpcpy
-                                        ; -- End function
-	.globl	strchrnul                       ; -- Begin function strchrnul
-	.p2align	1
-	.type	strchrnul,@function
-strchrnul:                              ; @strchrnul
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#6, r1
-	mov	r12, 4(r1)
-	mov	r13, 2(r1)
-	mov	&.L__profc_strchrnul+6, r12
-	mov	&.L__profc_strchrnul+4, r11
-	mov	&.L__profc_strchrnul+2, r14
-	mov	&.L__profc_strchrnul, r15
+	mov	&__llvm_gcov_ctr.7+14, r12
+	mov	&__llvm_gcov_ctr.7+12, r11
+	mov	&__llvm_gcov_ctr.7+10, r14
+	mov	&__llvm_gcov_ctr.7+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1338,6 +2098,90 @@ strchrnul:                              ; @strchrnul
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.7+8
+	mov	r14, &__llvm_gcov_ctr.7+10
+	mov	r13, &__llvm_gcov_ctr.7+12
+	mov	r12, &__llvm_gcov_ctr.7+14
+	mov	0(r1), r12
+	inc	r12
+	mov	r12, 0(r1)
+	mov	2(r1), r12
+	inc	r12
+	mov	r12, 2(r1)
+	jmp	.LBB7_1
+.LBB7_4:
+	mov	2(r1), r12
+	add	#4, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	ret
+.Lfunc_end7:
+	.size	stpcpy, .Lfunc_end7-stpcpy
+                                        ; -- End function
+	.globl	strchrnul                       ; -- Begin function strchrnul
+	.p2align	1
+	.type	strchrnul,@function
+strchrnul:                              ; @strchrnul
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#6, r1
+	mov	&__llvm_gcov_ctr.8+6, r14
+	mov	&__llvm_gcov_ctr.8+4, r11
+	mov	&__llvm_gcov_ctr.8+2, r10
+	mov	&__llvm_gcov_ctr.8, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.8
+	mov	r10, &__llvm_gcov_ctr.8+2
+	mov	r15, &__llvm_gcov_ctr.8+4
+	mov	r14, &__llvm_gcov_ctr.8+6
+	mov	r12, 4(r1)
+	mov	r13, 2(r1)
+	mov	&.L__profc_strchrnul+6, r12
+	mov	&.L__profc_strchrnul+4, r10
+	mov	&.L__profc_strchrnul+2, r14
+	mov	&.L__profc_strchrnul, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_strchrnul
 	mov	r14, &.L__profc_strchrnul+2
 	mov	r13, &.L__profc_strchrnul+4
@@ -1354,10 +2198,10 @@ strchrnul:                              ; @strchrnul
 	jeq	.LBB8_4
 	jmp	.LBB8_2
 .LBB8_2:                                ;   in Loop: Header=BB8_1 Depth=1
-	mov	&.L__profc_strchrnul+22, r13
-	mov	&.L__profc_strchrnul+20, r12
-	mov	&.L__profc_strchrnul+18, r15
-	mov	&.L__profc_strchrnul+16, r11
+	mov	&__llvm_gcov_ctr.8+14, r13
+	mov	&__llvm_gcov_ctr.8+12, r12
+	mov	&__llvm_gcov_ctr.8+10, r15
+	mov	&__llvm_gcov_ctr.8+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -1375,6 +2219,33 @@ strchrnul:                              ; @strchrnul
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.8+8
+	mov	r15, &__llvm_gcov_ctr.8+10
+	mov	r14, &__llvm_gcov_ctr.8+12
+	mov	r13, &__llvm_gcov_ctr.8+14
+	mov	&.L__profc_strchrnul+22, r13
+	mov	&.L__profc_strchrnul+20, r10
+	mov	&.L__profc_strchrnul+18, r15
+	mov	&.L__profc_strchrnul+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -1397,10 +2268,10 @@ strchrnul:                              ; @strchrnul
 	jmp	.LBB8_3
 .LBB8_3:                                ;   in Loop: Header=BB8_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_strchrnul+30, r13
-	mov	&.L__profc_strchrnul+28, r10
-	mov	&.L__profc_strchrnul+26, r15
-	mov	&.L__profc_strchrnul+24, r11
+	mov	&__llvm_gcov_ctr.8+22, r13
+	mov	&__llvm_gcov_ctr.8+20, r10
+	mov	&__llvm_gcov_ctr.8+18, r15
+	mov	&__llvm_gcov_ctr.8+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -1416,8 +2287,35 @@ strchrnul:                              ; @strchrnul
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.8+16
+	mov	r15, &__llvm_gcov_ctr.8+18
+	mov	r14, &__llvm_gcov_ctr.8+20
+	mov	r13, &__llvm_gcov_ctr.8+22
+	mov	&.L__profc_strchrnul+30, r13
+	mov	&.L__profc_strchrnul+28, r9
+	mov	&.L__profc_strchrnul+26, r15
+	mov	&.L__profc_strchrnul+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_strchrnul+24
@@ -1462,6 +2360,33 @@ strchrnul:                              ; @strchrnul
 	mov	r12, &.L__profc_strchrnul+14
 	jmp	.LBB8_6
 .LBB8_6:                                ;   in Loop: Header=BB8_1 Depth=1
+	mov	&__llvm_gcov_ctr.8+30, r12
+	mov	&__llvm_gcov_ctr.8+28, r11
+	mov	&__llvm_gcov_ctr.8+26, r14
+	mov	&__llvm_gcov_ctr.8+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.8+24
+	mov	r14, &__llvm_gcov_ctr.8+26
+	mov	r13, &__llvm_gcov_ctr.8+28
+	mov	r12, &__llvm_gcov_ctr.8+30
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
@@ -1471,6 +2396,8 @@ strchrnul:                              ; @strchrnul
 	add	#6, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end8:
 	.size	strchrnul, .Lfunc_end8-strchrnul
@@ -1480,6 +2407,7 @@ strchrnul:                              ; @strchrnul
 	.type	strchr,@function
 strchr:                                 ; @strchr
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#6, r1
 	mov	r12, 2(r1)
@@ -1513,10 +2441,10 @@ strchr:                                 ; @strchr
 	mov	r12, &.L__profc_strchr+6
 	jmp	.LBB9_2
 .LBB9_1:                                ;   in Loop: Header=BB9_2 Depth=1
-	mov	&.L__profc_strchr+14, r12
-	mov	&.L__profc_strchr+12, r11
-	mov	&.L__profc_strchr+10, r14
-	mov	&.L__profc_strchr+8, r15
+	mov	&__llvm_gcov_ctr.9+14, r12
+	mov	&__llvm_gcov_ctr.9+12, r11
+	mov	&__llvm_gcov_ctr.9+10, r14
+	mov	&__llvm_gcov_ctr.9+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1532,8 +2460,35 @@ strchr:                                 ; @strchr
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.9+8
+	mov	r14, &__llvm_gcov_ctr.9+10
+	mov	r13, &__llvm_gcov_ctr.9+12
+	mov	r12, &__llvm_gcov_ctr.9+14
+	mov	&.L__profc_strchr+14, r12
+	mov	&.L__profc_strchr+12, r10
+	mov	&.L__profc_strchr+10, r14
+	mov	&.L__profc_strchr+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strchr+8
@@ -1550,10 +2505,10 @@ strchr:                                 ; @strchr
 	jne	.LBB9_4
 	jmp	.LBB9_3
 .LBB9_3:
-	mov	&.L__profc_strchr+22, r12
-	mov	&.L__profc_strchr+20, r11
-	mov	&.L__profc_strchr+18, r14
-	mov	&.L__profc_strchr+16, r15
+	mov	&__llvm_gcov_ctr.9+6, r12
+	mov	&__llvm_gcov_ctr.9+4, r11
+	mov	&__llvm_gcov_ctr.9+2, r14
+	mov	&__llvm_gcov_ctr.9, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1569,8 +2524,35 @@ strchr:                                 ; @strchr
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.9
+	mov	r14, &__llvm_gcov_ctr.9+2
+	mov	r13, &__llvm_gcov_ctr.9+4
+	mov	r12, &__llvm_gcov_ctr.9+6
+	mov	&.L__profc_strchr+22, r12
+	mov	&.L__profc_strchr+20, r10
+	mov	&.L__profc_strchr+18, r14
+	mov	&.L__profc_strchr+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strchr+16
@@ -1592,30 +2574,10 @@ strchr:                                 ; @strchr
 	jne	.LBB9_1
 	jmp	.LBB9_6
 .LBB9_6:
-	clr	4(r1)
-	jmp	.LBB9_7
-.LBB9_7:
-	mov	4(r1), r12
-	add	#6, r1
-	pop	r10
-	ret
-.Lfunc_end9:
-	.size	strchr, .Lfunc_end9-strchr
-                                        ; -- End function
-	.globl	strcmp                          ; -- Begin function strcmp
-	.p2align	1
-	.type	strcmp,@function
-strcmp:                                 ; @strcmp
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#6, r1
-	mov	r12, 4(r1)
-	mov	r13, 2(r1)
-	mov	&.L__profc_strcmp+6, r12
-	mov	&.L__profc_strcmp+4, r11
-	mov	&.L__profc_strcmp+2, r14
-	mov	&.L__profc_strcmp, r15
+	mov	&__llvm_gcov_ctr.9+22, r12
+	mov	&__llvm_gcov_ctr.9+20, r11
+	mov	&__llvm_gcov_ctr.9+18, r14
+	mov	&__llvm_gcov_ctr.9+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1633,6 +2595,83 @@ strcmp:                                 ; @strcmp
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.9+16
+	mov	r14, &__llvm_gcov_ctr.9+18
+	mov	r13, &__llvm_gcov_ctr.9+20
+	mov	r12, &__llvm_gcov_ctr.9+22
+	clr	4(r1)
+	jmp	.LBB9_7
+.LBB9_7:
+	mov	4(r1), r12
+	add	#6, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end9:
+	.size	strchr, .Lfunc_end9-strchr
+                                        ; -- End function
+	.globl	strcmp                          ; -- Begin function strcmp
+	.p2align	1
+	.type	strcmp,@function
+strcmp:                                 ; @strcmp
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#6, r1
+	mov	&__llvm_gcov_ctr.10+6, r14
+	mov	&__llvm_gcov_ctr.10+4, r11
+	mov	&__llvm_gcov_ctr.10+2, r10
+	mov	&__llvm_gcov_ctr.10, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.10
+	mov	r10, &__llvm_gcov_ctr.10+2
+	mov	r15, &__llvm_gcov_ctr.10+4
+	mov	r14, &__llvm_gcov_ctr.10+6
+	mov	r12, 4(r1)
+	mov	r13, 2(r1)
+	mov	&.L__profc_strcmp+6, r12
+	mov	&.L__profc_strcmp+4, r10
+	mov	&.L__profc_strcmp+2, r14
+	mov	&.L__profc_strcmp, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strcmp
@@ -1653,10 +2692,10 @@ strcmp:                                 ; @strcmp
 	jne	.LBB10_4
 	jmp	.LBB10_2
 .LBB10_2:                               ;   in Loop: Header=BB10_1 Depth=1
-	mov	&.L__profc_strcmp+22, r13
-	mov	&.L__profc_strcmp+20, r12
-	mov	&.L__profc_strcmp+18, r15
-	mov	&.L__profc_strcmp+16, r11
+	mov	&__llvm_gcov_ctr.10+14, r13
+	mov	&__llvm_gcov_ctr.10+12, r12
+	mov	&__llvm_gcov_ctr.10+10, r15
+	mov	&__llvm_gcov_ctr.10+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -1674,6 +2713,33 @@ strcmp:                                 ; @strcmp
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.10+8
+	mov	r15, &__llvm_gcov_ctr.10+10
+	mov	r14, &__llvm_gcov_ctr.10+12
+	mov	r13, &__llvm_gcov_ctr.10+14
+	mov	&.L__profc_strcmp+22, r13
+	mov	&.L__profc_strcmp+20, r10
+	mov	&.L__profc_strcmp+18, r15
+	mov	&.L__profc_strcmp+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -1696,10 +2762,10 @@ strcmp:                                 ; @strcmp
 	jmp	.LBB10_3
 .LBB10_3:                               ;   in Loop: Header=BB10_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_strcmp+30, r13
-	mov	&.L__profc_strcmp+28, r10
-	mov	&.L__profc_strcmp+26, r15
-	mov	&.L__profc_strcmp+24, r11
+	mov	&__llvm_gcov_ctr.10+22, r13
+	mov	&__llvm_gcov_ctr.10+20, r10
+	mov	&__llvm_gcov_ctr.10+18, r15
+	mov	&__llvm_gcov_ctr.10+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -1715,8 +2781,35 @@ strcmp:                                 ; @strcmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.10+16
+	mov	r15, &__llvm_gcov_ctr.10+18
+	mov	r14, &__llvm_gcov_ctr.10+20
+	mov	r13, &__llvm_gcov_ctr.10+22
+	mov	&.L__profc_strcmp+30, r13
+	mov	&.L__profc_strcmp+28, r9
+	mov	&.L__profc_strcmp+26, r15
+	mov	&.L__profc_strcmp+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_strcmp+24
@@ -1761,38 +2854,10 @@ strcmp:                                 ; @strcmp
 	mov	r12, &.L__profc_strcmp+14
 	jmp	.LBB10_6
 .LBB10_6:                               ;   in Loop: Header=BB10_1 Depth=1
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	mov	2(r1), r12
-	inc	r12
-	mov	r12, 2(r1)
-	jmp	.LBB10_1
-.LBB10_7:
-	mov	4(r1), r12
-	mov.b	0(r12), r12
-	mov	2(r1), r13
-	mov.b	0(r13), r13
-	sub	r13, r12
-	add	#6, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end10:
-	.size	strcmp, .Lfunc_end10-strcmp
-                                        ; -- End function
-	.globl	strlen                          ; -- Begin function strlen
-	.p2align	1
-	.type	strlen,@function
-strlen:                                 ; @strlen
-; %bb.0:
-	push	r10
-	sub	#4, r1
-	mov	r12, 2(r1)
-	mov	&.L__profc_strlen+6, r12
-	mov	&.L__profc_strlen+4, r11
-	mov	&.L__profc_strlen+2, r14
-	mov	&.L__profc_strlen, r15
+	mov	&__llvm_gcov_ctr.10+30, r12
+	mov	&__llvm_gcov_ctr.10+28, r11
+	mov	&__llvm_gcov_ctr.10+26, r14
+	mov	&__llvm_gcov_ctr.10+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1810,6 +2875,92 @@ strlen:                                 ; @strlen
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.10+24
+	mov	r14, &__llvm_gcov_ctr.10+26
+	mov	r13, &__llvm_gcov_ctr.10+28
+	mov	r12, &__llvm_gcov_ctr.10+30
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	mov	2(r1), r12
+	inc	r12
+	mov	r12, 2(r1)
+	jmp	.LBB10_1
+.LBB10_7:
+	mov	4(r1), r12
+	mov.b	0(r12), r12
+	mov	2(r1), r13
+	mov.b	0(r13), r13
+	sub	r13, r12
+	add	#6, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	ret
+.Lfunc_end10:
+	.size	strcmp, .Lfunc_end10-strcmp
+                                        ; -- End function
+	.globl	strlen                          ; -- Begin function strlen
+	.p2align	1
+	.type	strlen,@function
+strlen:                                 ; @strlen
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#4, r1
+	mov	&__llvm_gcov_ctr.11+6, r13
+	mov	&__llvm_gcov_ctr.11+4, r11
+	mov	&__llvm_gcov_ctr.11+2, r15
+	mov	&__llvm_gcov_ctr.11, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.11
+	mov	r15, &__llvm_gcov_ctr.11+2
+	mov	r14, &__llvm_gcov_ctr.11+4
+	mov	r13, &__llvm_gcov_ctr.11+6
+	mov	r12, 2(r1)
+	mov	&.L__profc_strlen+6, r12
+	mov	&.L__profc_strlen+4, r10
+	mov	&.L__profc_strlen+2, r14
+	mov	&.L__profc_strlen, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strlen
@@ -1855,6 +3006,33 @@ strlen:                                 ; @strlen
 	mov	r12, &.L__profc_strlen+14
 	jmp	.LBB11_3
 .LBB11_3:                               ;   in Loop: Header=BB11_1 Depth=1
+	mov	&__llvm_gcov_ctr.11+14, r12
+	mov	&__llvm_gcov_ctr.11+12, r11
+	mov	&__llvm_gcov_ctr.11+10, r14
+	mov	&__llvm_gcov_ctr.11+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.11+8
+	mov	r14, &__llvm_gcov_ctr.11+10
+	mov	r13, &__llvm_gcov_ctr.11+12
+	mov	r12, &__llvm_gcov_ctr.11+14
 	mov	2(r1), r12
 	inc	r12
 	mov	r12, 2(r1)
@@ -1865,6 +3043,8 @@ strlen:                                 ; @strlen
 	sub	r13, r12
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end11:
 	.size	strlen, .Lfunc_end11-strlen
@@ -1874,6 +3054,7 @@ strlen:                                 ; @strlen
 	.type	strncmp,@function
 strncmp:                                ; @strncmp
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#14, r1
@@ -1919,10 +3100,67 @@ strncmp:                                ; @strncmp
 	jne	.LBB12_2
 	jmp	.LBB12_1
 .LBB12_1:
+	mov	&__llvm_gcov_ctr.12+14, r12
+	mov	&__llvm_gcov_ctr.12+12, r11
+	mov	&__llvm_gcov_ctr.12+10, r14
+	mov	&__llvm_gcov_ctr.12+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.12+8
+	mov	r14, &__llvm_gcov_ctr.12+10
+	mov	r13, &__llvm_gcov_ctr.12+12
+	mov	r12, &__llvm_gcov_ctr.12+14
 	mov	&.L__profc_strncmp+14, r12
-	mov	&.L__profc_strncmp+12, r11
+	mov	&.L__profc_strncmp+12, r10
 	mov	&.L__profc_strncmp+10, r14
 	mov	&.L__profc_strncmp+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_strncmp+8
+	mov	r14, &.L__profc_strncmp+10
+	mov	r13, &.L__profc_strncmp+12
+	mov	r12, &.L__profc_strncmp+14
+	clr	12(r1)
+	br	#.LBB12_14
+.LBB12_2:
+	mov	&__llvm_gcov_ctr.12+6, r12
+	mov	&__llvm_gcov_ctr.12+4, r11
+	mov	&__llvm_gcov_ctr.12+2, r14
+	mov	&__llvm_gcov_ctr.12, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1942,13 +3180,10 @@ strncmp:                                ; @strncmp
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_strncmp+8
-	mov	r14, &.L__profc_strncmp+10
-	mov	r13, &.L__profc_strncmp+12
-	mov	r12, &.L__profc_strncmp+14
-	clr	12(r1)
-	jmp	.LBB12_14
-.LBB12_2:
+	mov	r15, &__llvm_gcov_ctr.12
+	mov	r14, &__llvm_gcov_ctr.12+2
+	mov	r13, &__llvm_gcov_ctr.12+4
+	mov	r12, &__llvm_gcov_ctr.12+6
 	jmp	.LBB12_3
 .LBB12_3:                               ; =>This Inner Loop Header: Depth=1
 	mov	4(r1), r12
@@ -1959,10 +3194,10 @@ strncmp:                                ; @strncmp
 	jeq	.LBB12_10
 	jmp	.LBB12_4
 .LBB12_4:                               ;   in Loop: Header=BB12_3 Depth=1
-	mov	&.L__profc_strncmp+62, r12
-	mov	&.L__profc_strncmp+60, r11
-	mov	&.L__profc_strncmp+58, r14
-	mov	&.L__profc_strncmp+56, r15
+	mov	&__llvm_gcov_ctr.12+22, r12
+	mov	&__llvm_gcov_ctr.12+20, r11
+	mov	&__llvm_gcov_ctr.12+18, r14
+	mov	&__llvm_gcov_ctr.12+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -1978,8 +3213,35 @@ strncmp:                                ; @strncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.12+16
+	mov	r14, &__llvm_gcov_ctr.12+18
+	mov	r13, &__llvm_gcov_ctr.12+20
+	mov	r12, &__llvm_gcov_ctr.12+22
+	mov	&.L__profc_strncmp+62, r12
+	mov	&.L__profc_strncmp+60, r10
+	mov	&.L__profc_strncmp+58, r14
+	mov	&.L__profc_strncmp+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strncmp+56
@@ -1994,10 +3256,10 @@ strncmp:                                ; @strncmp
 	jeq	.LBB12_10
 	jmp	.LBB12_5
 .LBB12_5:                               ;   in Loop: Header=BB12_3 Depth=1
-	mov	&.L__profc_strncmp+70, r12
-	mov	&.L__profc_strncmp+68, r11
-	mov	&.L__profc_strncmp+66, r14
-	mov	&.L__profc_strncmp+64, r15
+	mov	&__llvm_gcov_ctr.12+30, r12
+	mov	&__llvm_gcov_ctr.12+28, r11
+	mov	&__llvm_gcov_ctr.12+26, r14
+	mov	&__llvm_gcov_ctr.12+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -2013,8 +3275,35 @@ strncmp:                                ; @strncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.12+24
+	mov	r14, &__llvm_gcov_ctr.12+26
+	mov	r13, &__llvm_gcov_ctr.12+28
+	mov	r12, &__llvm_gcov_ctr.12+30
+	mov	&.L__profc_strncmp+70, r12
+	mov	&.L__profc_strncmp+68, r10
+	mov	&.L__profc_strncmp+66, r14
+	mov	&.L__profc_strncmp+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strncmp+64
@@ -2057,10 +3346,10 @@ strncmp:                                ; @strncmp
 	jeq	.LBB12_10
 	jmp	.LBB12_7
 .LBB12_7:                               ;   in Loop: Header=BB12_3 Depth=1
-	mov	&.L__profc_strncmp+54, r12
-	mov	&.L__profc_strncmp+52, r11
-	mov	&.L__profc_strncmp+50, r14
-	mov	&.L__profc_strncmp+48, r15
+	mov	&__llvm_gcov_ctr.12+38, r12
+	mov	&__llvm_gcov_ctr.12+36, r11
+	mov	&__llvm_gcov_ctr.12+34, r14
+	mov	&__llvm_gcov_ctr.12+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -2076,8 +3365,35 @@ strncmp:                                ; @strncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.12+32
+	mov	r14, &__llvm_gcov_ctr.12+34
+	mov	r13, &__llvm_gcov_ctr.12+36
+	mov	r12, &__llvm_gcov_ctr.12+38
+	mov	&.L__profc_strncmp+54, r12
+	mov	&.L__profc_strncmp+52, r10
+	mov	&.L__profc_strncmp+50, r14
+	mov	&.L__profc_strncmp+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strncmp+48
@@ -2129,10 +3445,10 @@ strncmp:                                ; @strncmp
 	jmp	.LBB12_9
 .LBB12_9:                               ;   in Loop: Header=BB12_3 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_strncmp+38, r13
-	mov	&.L__profc_strncmp+36, r10
-	mov	&.L__profc_strncmp+34, r15
-	mov	&.L__profc_strncmp+32, r11
+	mov	&__llvm_gcov_ctr.12+46, r13
+	mov	&__llvm_gcov_ctr.12+44, r10
+	mov	&__llvm_gcov_ctr.12+42, r15
+	mov	&__llvm_gcov_ctr.12+40, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -2148,8 +3464,35 @@ strncmp:                                ; @strncmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.12+40
+	mov	r15, &__llvm_gcov_ctr.12+42
+	mov	r14, &__llvm_gcov_ctr.12+44
+	mov	r13, &__llvm_gcov_ctr.12+46
+	mov	&.L__profc_strncmp+38, r13
+	mov	&.L__profc_strncmp+36, r9
+	mov	&.L__profc_strncmp+34, r15
+	mov	&.L__profc_strncmp+32, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_strncmp+32
@@ -2194,6 +3537,33 @@ strncmp:                                ; @strncmp
 	mov	r12, &.L__profc_strncmp+22
 	jmp	.LBB12_12
 .LBB12_12:                              ;   in Loop: Header=BB12_3 Depth=1
+	mov	&__llvm_gcov_ctr.12+54, r12
+	mov	&__llvm_gcov_ctr.12+52, r11
+	mov	&__llvm_gcov_ctr.12+50, r14
+	mov	&__llvm_gcov_ctr.12+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.12+48
+	mov	r14, &__llvm_gcov_ctr.12+50
+	mov	r13, &__llvm_gcov_ctr.12+52
+	mov	r12, &__llvm_gcov_ctr.12+54
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
@@ -2217,6 +3587,7 @@ strncmp:                                ; @strncmp
 	add	#14, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end12:
 	.size	strncmp, .Lfunc_end12-strncmp
@@ -2226,13 +3597,45 @@ strncmp:                                ; @strncmp
 	.type	swab,@function
 swab:                                   ; @swab
 ; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#10, r1
+	mov	&__llvm_gcov_ctr.13+6, r15
+	mov	&__llvm_gcov_ctr.13+4, r11
+	mov	&__llvm_gcov_ctr.13+2, r9
+	mov	&__llvm_gcov_ctr.13, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.13
+	mov	r9, &__llvm_gcov_ctr.13+2
+	mov	r10, &__llvm_gcov_ctr.13+4
+	mov	r15, &__llvm_gcov_ctr.13+6
 	mov	r12, 8(r1)
 	mov	r13, 6(r1)
 	mov	r14, 4(r1)
 	mov	&.L__profc_swab+6, r12
-	mov	&.L__profc_swab+4, r11
+	mov	&.L__profc_swab+4, r10
 	mov	&.L__profc_swab+2, r14
 	mov	&.L__profc_swab, r15
 	inc	r15
@@ -2244,14 +3647,13 @@ swab:                                   ; @swab
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_swab
@@ -2312,6 +3714,33 @@ swab:                                   ; @swab
 	mov	r12, 2(r1)
 	jmp	.LBB13_3
 .LBB13_3:                               ;   in Loop: Header=BB13_1 Depth=1
+	mov	&__llvm_gcov_ctr.13+14, r12
+	mov	&__llvm_gcov_ctr.13+12, r11
+	mov	&__llvm_gcov_ctr.13+10, r14
+	mov	&__llvm_gcov_ctr.13+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.13+8
+	mov	r14, &__llvm_gcov_ctr.13+10
+	mov	r13, &__llvm_gcov_ctr.13+12
+	mov	r12, &__llvm_gcov_ctr.13+14
 	mov	4(r1), r12
 	add	#-2, r12
 	mov	r12, 4(r1)
@@ -2319,6 +3748,10 @@ swab:                                   ; @swab
 .LBB13_4:
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end13:
 	.size	swab, .Lfunc_end13-swab
@@ -2328,12 +3761,42 @@ swab:                                   ; @swab
 	.type	isalpha,@function
 isalpha:                                ; @isalpha
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#2, r1
-	mov	r12, 0(r1)
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.14+6, r14
+	mov	&__llvm_gcov_ctr.14+4, r12
+	mov	&__llvm_gcov_ctr.14+2, r11
+	mov	&__llvm_gcov_ctr.14, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.14
+	mov	r11, &__llvm_gcov_ctr.14+2
+	mov	r15, &__llvm_gcov_ctr.14+4
+	mov	r14, &__llvm_gcov_ctr.14+6
+	mov	r13, 0(r1)
 	mov	&.L__profc_isalpha+6, r13
-	mov	&.L__profc_isalpha+4, r12
+	mov	&.L__profc_isalpha+4, r10
 	mov	&.L__profc_isalpha+2, r15
 	mov	&.L__profc_isalpha, r11
 	inc	r11
@@ -2345,14 +3808,13 @@ isalpha:                                ; @isalpha
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -2369,6 +3831,7 @@ isalpha:                                ; @isalpha
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end14:
 	.size	isalpha, .Lfunc_end14-isalpha
@@ -2378,11 +3841,41 @@ isalpha:                                ; @isalpha
 	.type	isascii,@function
 isascii:                                ; @isascii
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#2, r1
+	mov	&__llvm_gcov_ctr.15+6, r13
+	mov	&__llvm_gcov_ctr.15+4, r11
+	mov	&__llvm_gcov_ctr.15+2, r15
+	mov	&__llvm_gcov_ctr.15, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.15
+	mov	r15, &__llvm_gcov_ctr.15+2
+	mov	r14, &__llvm_gcov_ctr.15+4
+	mov	r13, &__llvm_gcov_ctr.15+6
 	mov	r12, 0(r1)
 	mov	&.L__profc_isascii+6, r12
-	mov	&.L__profc_isascii+4, r11
+	mov	&.L__profc_isascii+4, r10
 	mov	&.L__profc_isascii+2, r14
 	mov	&.L__profc_isascii, r15
 	inc	r15
@@ -2394,14 +3887,13 @@ isascii:                                ; @isascii
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_isascii
@@ -2415,6 +3907,8 @@ isascii:                                ; @isascii
 	and	#1, r12
 	add	#2, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end15:
 	.size	isascii, .Lfunc_end15-isascii
@@ -2424,12 +3918,41 @@ isascii:                                ; @isascii
 	.type	isblank,@function
 isblank:                                ; @isblank
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.16+6, r13
+	mov	&__llvm_gcov_ctr.16+4, r11
+	mov	&__llvm_gcov_ctr.16+2, r15
+	mov	&__llvm_gcov_ctr.16, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.16
+	mov	r15, &__llvm_gcov_ctr.16+2
+	mov	r14, &__llvm_gcov_ctr.16+4
+	mov	r13, &__llvm_gcov_ctr.16+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_isblank+6, r12
-	mov	&.L__profc_isblank+4, r11
+	mov	&.L__profc_isblank+4, r10
 	mov	&.L__profc_isblank+2, r14
 	mov	&.L__profc_isblank, r15
 	inc	r15
@@ -2441,14 +3964,13 @@ isblank:                                ; @isblank
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_isblank
@@ -2462,10 +3984,10 @@ isblank:                                ; @isblank
 	jeq	.LBB16_3
 	jmp	.LBB16_1
 .LBB16_1:
-	mov	&.L__profc_isblank+14, r12
-	mov	&.L__profc_isblank+12, r11
-	mov	&.L__profc_isblank+10, r14
-	mov	&.L__profc_isblank+8, r15
+	mov	&__llvm_gcov_ctr.16+14, r12
+	mov	&__llvm_gcov_ctr.16+12, r11
+	mov	&__llvm_gcov_ctr.16+10, r14
+	mov	&__llvm_gcov_ctr.16+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -2481,8 +4003,35 @@ isblank:                                ; @isblank
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.16+8
+	mov	r14, &__llvm_gcov_ctr.16+10
+	mov	r13, &__llvm_gcov_ctr.16+12
+	mov	r12, &__llvm_gcov_ctr.16+14
+	mov	&.L__profc_isblank+14, r12
+	mov	&.L__profc_isblank+12, r10
+	mov	&.L__profc_isblank+10, r14
+	mov	&.L__profc_isblank+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_isblank+8
@@ -2502,10 +4051,10 @@ isblank:                                ; @isblank
 	jmp	.LBB16_2
 .LBB16_2:
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_isblank+22, r13
-	mov	&.L__profc_isblank+20, r10
-	mov	&.L__profc_isblank+18, r15
-	mov	&.L__profc_isblank+16, r11
+	mov	&__llvm_gcov_ctr.16+22, r13
+	mov	&__llvm_gcov_ctr.16+20, r10
+	mov	&__llvm_gcov_ctr.16+18, r15
+	mov	&__llvm_gcov_ctr.16+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -2521,8 +4070,35 @@ isblank:                                ; @isblank
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.16+16
+	mov	r15, &__llvm_gcov_ctr.16+18
+	mov	r14, &__llvm_gcov_ctr.16+20
+	mov	r13, &__llvm_gcov_ctr.16+22
+	mov	&.L__profc_isblank+22, r13
+	mov	&.L__profc_isblank+20, r9
+	mov	&.L__profc_isblank+18, r15
+	mov	&.L__profc_isblank+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_isblank+16
@@ -2538,6 +4114,7 @@ isblank:                                ; @isblank
 	add	#4, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end16:
 	.size	isblank, .Lfunc_end16-isblank
@@ -2547,12 +4124,41 @@ isblank:                                ; @isblank
 	.type	iscntrl,@function
 iscntrl:                                ; @iscntrl
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.17+6, r13
+	mov	&__llvm_gcov_ctr.17+4, r11
+	mov	&__llvm_gcov_ctr.17+2, r15
+	mov	&__llvm_gcov_ctr.17, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.17
+	mov	r15, &__llvm_gcov_ctr.17+2
+	mov	r14, &__llvm_gcov_ctr.17+4
+	mov	r13, &__llvm_gcov_ctr.17+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_iscntrl+6, r12
-	mov	&.L__profc_iscntrl+4, r11
+	mov	&.L__profc_iscntrl+4, r10
 	mov	&.L__profc_iscntrl+2, r14
 	mov	&.L__profc_iscntrl, r15
 	inc	r15
@@ -2564,14 +4170,13 @@ iscntrl:                                ; @iscntrl
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iscntrl
@@ -2585,10 +4190,10 @@ iscntrl:                                ; @iscntrl
 	jlo	.LBB17_3
 	jmp	.LBB17_1
 .LBB17_1:
-	mov	&.L__profc_iscntrl+14, r12
-	mov	&.L__profc_iscntrl+12, r11
-	mov	&.L__profc_iscntrl+10, r14
-	mov	&.L__profc_iscntrl+8, r15
+	mov	&__llvm_gcov_ctr.17+14, r12
+	mov	&__llvm_gcov_ctr.17+12, r11
+	mov	&__llvm_gcov_ctr.17+10, r14
+	mov	&__llvm_gcov_ctr.17+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -2604,8 +4209,35 @@ iscntrl:                                ; @iscntrl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.17+8
+	mov	r14, &__llvm_gcov_ctr.17+10
+	mov	r13, &__llvm_gcov_ctr.17+12
+	mov	r12, &__llvm_gcov_ctr.17+14
+	mov	&.L__profc_iscntrl+14, r12
+	mov	&.L__profc_iscntrl+12, r10
+	mov	&.L__profc_iscntrl+10, r14
+	mov	&.L__profc_iscntrl+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iscntrl+8
@@ -2625,10 +4257,117 @@ iscntrl:                                ; @iscntrl
 	jmp	.LBB17_2
 .LBB17_2:
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
+	mov	&__llvm_gcov_ctr.17+22, r13
+	mov	&__llvm_gcov_ctr.17+20, r10
+	mov	&__llvm_gcov_ctr.17+18, r15
+	mov	&__llvm_gcov_ctr.17+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r8
+	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.17+16
+	mov	r15, &__llvm_gcov_ctr.17+18
+	mov	r14, &__llvm_gcov_ctr.17+20
+	mov	r13, &__llvm_gcov_ctr.17+22
 	mov	&.L__profc_iscntrl+22, r13
-	mov	&.L__profc_iscntrl+20, r10
+	mov	&.L__profc_iscntrl+20, r9
 	mov	&.L__profc_iscntrl+18, r15
 	mov	&.L__profc_iscntrl+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &.L__profc_iscntrl+16
+	mov	r15, &.L__profc_iscntrl+18
+	mov	r14, &.L__profc_iscntrl+20
+	mov	r13, &.L__profc_iscntrl+22
+	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
+	jmp	.LBB17_3
+.LBB17_3:
+	mov.b	1(r1), r12                      ; 1-byte Folded Reload
+                                        ; kill: def $r12 killed $r12b
+	and	#1, r12
+	add	#4, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end17:
+	.size	iscntrl, .Lfunc_end17-iscntrl
+                                        ; -- End function
+	.globl	isdigit                         ; -- Begin function isdigit
+	.p2align	1
+	.type	isdigit,@function
+isdigit:                                ; @isdigit
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#2, r1
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.18+6, r14
+	mov	&__llvm_gcov_ctr.18+4, r12
+	mov	&__llvm_gcov_ctr.18+2, r11
+	mov	&__llvm_gcov_ctr.18, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.18
+	mov	r11, &__llvm_gcov_ctr.18+2
+	mov	r15, &__llvm_gcov_ctr.18+4
+	mov	r14, &__llvm_gcov_ctr.18+6
+	mov	r13, 0(r1)
+	mov	&.L__profc_isdigit+6, r13
+	mov	&.L__profc_isdigit+4, r10
+	mov	&.L__profc_isdigit+2, r15
+	mov	&.L__profc_isdigit, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -2645,56 +4384,6 @@ iscntrl:                                ; @iscntrl
 	add	r9, r14
 	cmp	r10, r14
 	mov	r2, r9
-	mov	#1, r10
-	bic	r9, r10
-	add	r10, r13
-	mov	r11, &.L__profc_iscntrl+16
-	mov	r15, &.L__profc_iscntrl+18
-	mov	r14, &.L__profc_iscntrl+20
-	mov	r13, &.L__profc_iscntrl+22
-	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
-	jmp	.LBB17_3
-.LBB17_3:
-	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-                                        ; kill: def $r12 killed $r12b
-	and	#1, r12
-	add	#4, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end17:
-	.size	iscntrl, .Lfunc_end17-iscntrl
-                                        ; -- End function
-	.globl	isdigit                         ; -- Begin function isdigit
-	.p2align	1
-	.type	isdigit,@function
-isdigit:                                ; @isdigit
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#2, r1
-	mov	r12, 0(r1)
-	mov	&.L__profc_isdigit+6, r13
-	mov	&.L__profc_isdigit+4, r12
-	mov	&.L__profc_isdigit+2, r15
-	mov	&.L__profc_isdigit, r11
-	inc	r11
-	tst	r11
-	mov	r2, r14
-	rra	r14
-	and	#1, r14
-	add	r14, r15
-	mov	r11, r14
-	bis	r15, r14
-	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
-	mov	r2, r9
-	mov	#1, r12
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -2710,6 +4399,7 @@ isdigit:                                ; @isdigit
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end18:
 	.size	isdigit, .Lfunc_end18-isdigit
@@ -2719,12 +4409,42 @@ isdigit:                                ; @isdigit
 	.type	isgraph,@function
 isgraph:                                ; @isgraph
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#2, r1
-	mov	r12, 0(r1)
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.19+6, r14
+	mov	&__llvm_gcov_ctr.19+4, r12
+	mov	&__llvm_gcov_ctr.19+2, r11
+	mov	&__llvm_gcov_ctr.19, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.19
+	mov	r11, &__llvm_gcov_ctr.19+2
+	mov	r15, &__llvm_gcov_ctr.19+4
+	mov	r14, &__llvm_gcov_ctr.19+6
+	mov	r13, 0(r1)
 	mov	&.L__profc_isgraph+6, r13
-	mov	&.L__profc_isgraph+4, r12
+	mov	&.L__profc_isgraph+4, r10
 	mov	&.L__profc_isgraph+2, r15
 	mov	&.L__profc_isgraph, r11
 	inc	r11
@@ -2736,14 +4456,13 @@ isgraph:                                ; @isgraph
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -2759,6 +4478,7 @@ isgraph:                                ; @isgraph
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end19:
 	.size	isgraph, .Lfunc_end19-isgraph
@@ -2768,12 +4488,42 @@ isgraph:                                ; @isgraph
 	.type	islower,@function
 islower:                                ; @islower
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#2, r1
-	mov	r12, 0(r1)
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.20+6, r14
+	mov	&__llvm_gcov_ctr.20+4, r12
+	mov	&__llvm_gcov_ctr.20+2, r11
+	mov	&__llvm_gcov_ctr.20, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.20
+	mov	r11, &__llvm_gcov_ctr.20+2
+	mov	r15, &__llvm_gcov_ctr.20+4
+	mov	r14, &__llvm_gcov_ctr.20+6
+	mov	r13, 0(r1)
 	mov	&.L__profc_islower+6, r13
-	mov	&.L__profc_islower+4, r12
+	mov	&.L__profc_islower+4, r10
 	mov	&.L__profc_islower+2, r15
 	mov	&.L__profc_islower, r11
 	inc	r11
@@ -2785,14 +4535,13 @@ islower:                                ; @islower
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -2808,6 +4557,7 @@ islower:                                ; @islower
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end20:
 	.size	islower, .Lfunc_end20-islower
@@ -2817,14 +4567,155 @@ islower:                                ; @islower
 	.type	isprint,@function
 isprint:                                ; @isprint
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#2, r1
-	mov	r12, 0(r1)
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.21+6, r14
+	mov	&__llvm_gcov_ctr.21+4, r12
+	mov	&__llvm_gcov_ctr.21+2, r11
+	mov	&__llvm_gcov_ctr.21, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.21
+	mov	r11, &__llvm_gcov_ctr.21+2
+	mov	r15, &__llvm_gcov_ctr.21+4
+	mov	r14, &__llvm_gcov_ctr.21+6
+	mov	r13, 0(r1)
 	mov	&.L__profc_isprint+6, r13
-	mov	&.L__profc_isprint+4, r12
+	mov	&.L__profc_isprint+4, r10
 	mov	&.L__profc_isprint+2, r15
 	mov	&.L__profc_isprint, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &.L__profc_isprint
+	mov	r15, &.L__profc_isprint+2
+	mov	r14, &.L__profc_isprint+4
+	mov	r13, &.L__profc_isprint+6
+	mov	0(r1), r13
+	add	#-32, r13
+	cmp	#95, r13
+	mov	r2, r13
+	bic	r13, r12
+	add	#2, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end21:
+	.size	isprint, .Lfunc_end21-isprint
+                                        ; -- End function
+	.globl	isspace                         ; -- Begin function isspace
+	.p2align	1
+	.type	isspace,@function
+isspace:                                ; @isspace
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#4, r1
+	mov	&__llvm_gcov_ctr.22+6, r13
+	mov	&__llvm_gcov_ctr.22+4, r11
+	mov	&__llvm_gcov_ctr.22+2, r15
+	mov	&__llvm_gcov_ctr.22, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.22
+	mov	r15, &__llvm_gcov_ctr.22+2
+	mov	r14, &__llvm_gcov_ctr.22+4
+	mov	r13, &__llvm_gcov_ctr.22+6
+	mov	r12, 2(r1)
+	mov	&.L__profc_isspace+6, r12
+	mov	&.L__profc_isspace+4, r10
+	mov	&.L__profc_isspace+2, r14
+	mov	&.L__profc_isspace, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_isspace
+	mov	r14, &.L__profc_isspace+2
+	mov	r13, &.L__profc_isspace+4
+	mov	r12, &.L__profc_isspace+6
+	mov	2(r1), r13
+	mov.b	#1, r12
+	cmp	#32, r13
+	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
+	jeq	.LBB22_3
+	jmp	.LBB22_1
+.LBB22_1:
+	mov	&__llvm_gcov_ctr.22+14, r13
+	mov	&__llvm_gcov_ctr.22+12, r12
+	mov	&__llvm_gcov_ctr.22+10, r15
+	mov	&__llvm_gcov_ctr.22+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -2845,67 +4736,12 @@ isprint:                                ; @isprint
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
-	mov	r11, &.L__profc_isprint
-	mov	r15, &.L__profc_isprint+2
-	mov	r14, &.L__profc_isprint+4
-	mov	r13, &.L__profc_isprint+6
-	mov	0(r1), r13
-	add	#-32, r13
-	cmp	#95, r13
-	mov	r2, r13
-	bic	r13, r12
-	add	#2, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end21:
-	.size	isprint, .Lfunc_end21-isprint
-                                        ; -- End function
-	.globl	isspace                         ; -- Begin function isspace
-	.p2align	1
-	.type	isspace,@function
-isspace:                                ; @isspace
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#4, r1
-	mov	r12, 2(r1)
-	mov	&.L__profc_isspace+6, r12
-	mov	&.L__profc_isspace+4, r11
-	mov	&.L__profc_isspace+2, r14
-	mov	&.L__profc_isspace, r15
-	inc	r15
-	tst	r15
-	mov	r2, r13
-	rra	r13
-	and	#1, r13
-	add	r13, r14
-	mov	r15, r13
-	bis	r14, r13
-	tst	r13
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
-	bic	r10, r11
-	add	r11, r12
-	mov	r15, &.L__profc_isspace
-	mov	r14, &.L__profc_isspace+2
-	mov	r13, &.L__profc_isspace+4
-	mov	r12, &.L__profc_isspace+6
-	mov	2(r1), r13
-	mov.b	#1, r12
-	cmp	#32, r13
-	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
-	jeq	.LBB22_3
-	jmp	.LBB22_1
-.LBB22_1:
+	mov	r11, &__llvm_gcov_ctr.22+8
+	mov	r15, &__llvm_gcov_ctr.22+10
+	mov	r14, &__llvm_gcov_ctr.22+12
+	mov	r13, &__llvm_gcov_ctr.22+14
 	mov	&.L__profc_isspace+14, r13
-	mov	&.L__profc_isspace+12, r12
+	mov	&.L__profc_isspace+12, r10
 	mov	&.L__profc_isspace+10, r15
 	mov	&.L__profc_isspace+8, r11
 	inc	r11
@@ -2917,14 +4753,13 @@ isspace:                                ; @isspace
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -2945,10 +4780,117 @@ isspace:                                ; @isspace
 	jmp	.LBB22_2
 .LBB22_2:
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
+	mov	&__llvm_gcov_ctr.22+22, r13
+	mov	&__llvm_gcov_ctr.22+20, r10
+	mov	&__llvm_gcov_ctr.22+18, r15
+	mov	&__llvm_gcov_ctr.22+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r8
+	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.22+16
+	mov	r15, &__llvm_gcov_ctr.22+18
+	mov	r14, &__llvm_gcov_ctr.22+20
+	mov	r13, &__llvm_gcov_ctr.22+22
 	mov	&.L__profc_isspace+22, r13
-	mov	&.L__profc_isspace+20, r10
+	mov	&.L__profc_isspace+20, r9
 	mov	&.L__profc_isspace+18, r15
 	mov	&.L__profc_isspace+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &.L__profc_isspace+16
+	mov	r15, &.L__profc_isspace+18
+	mov	r14, &.L__profc_isspace+20
+	mov	r13, &.L__profc_isspace+22
+	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
+	jmp	.LBB22_3
+.LBB22_3:
+	mov.b	1(r1), r12                      ; 1-byte Folded Reload
+                                        ; kill: def $r12 killed $r12b
+	and	#1, r12
+	add	#4, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end22:
+	.size	isspace, .Lfunc_end22-isspace
+                                        ; -- End function
+	.globl	isupper                         ; -- Begin function isupper
+	.p2align	1
+	.type	isupper,@function
+isupper:                                ; @isupper
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#2, r1
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.23+6, r14
+	mov	&__llvm_gcov_ctr.23+4, r12
+	mov	&__llvm_gcov_ctr.23+2, r11
+	mov	&__llvm_gcov_ctr.23, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.23
+	mov	r11, &__llvm_gcov_ctr.23+2
+	mov	r15, &__llvm_gcov_ctr.23+4
+	mov	r14, &__llvm_gcov_ctr.23+6
+	mov	r13, 0(r1)
+	mov	&.L__profc_isupper+6, r13
+	mov	&.L__profc_isupper+4, r10
+	mov	&.L__profc_isupper+2, r15
+	mov	&.L__profc_isupper, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -2965,56 +4907,6 @@ isspace:                                ; @isspace
 	add	r9, r14
 	cmp	r10, r14
 	mov	r2, r9
-	mov	#1, r10
-	bic	r9, r10
-	add	r10, r13
-	mov	r11, &.L__profc_isspace+16
-	mov	r15, &.L__profc_isspace+18
-	mov	r14, &.L__profc_isspace+20
-	mov	r13, &.L__profc_isspace+22
-	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
-	jmp	.LBB22_3
-.LBB22_3:
-	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-                                        ; kill: def $r12 killed $r12b
-	and	#1, r12
-	add	#4, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end22:
-	.size	isspace, .Lfunc_end22-isspace
-                                        ; -- End function
-	.globl	isupper                         ; -- Begin function isupper
-	.p2align	1
-	.type	isupper,@function
-isupper:                                ; @isupper
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#2, r1
-	mov	r12, 0(r1)
-	mov	&.L__profc_isupper+6, r13
-	mov	&.L__profc_isupper+4, r12
-	mov	&.L__profc_isupper+2, r15
-	mov	&.L__profc_isupper, r11
-	inc	r11
-	tst	r11
-	mov	r2, r14
-	rra	r14
-	and	#1, r14
-	add	r14, r15
-	mov	r11, r14
-	bis	r15, r14
-	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
-	mov	r2, r9
-	mov	#1, r12
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -3030,6 +4922,7 @@ isupper:                                ; @isupper
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end23:
 	.size	isupper, .Lfunc_end23-isupper
@@ -3039,12 +4932,41 @@ isupper:                                ; @isupper
 	.type	iswcntrl,@function
 iswcntrl:                               ; @iswcntrl
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.24+6, r13
+	mov	&__llvm_gcov_ctr.24+4, r11
+	mov	&__llvm_gcov_ctr.24+2, r15
+	mov	&__llvm_gcov_ctr.24, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.24
+	mov	r15, &__llvm_gcov_ctr.24+2
+	mov	r14, &__llvm_gcov_ctr.24+4
+	mov	r13, &__llvm_gcov_ctr.24+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_iswcntrl+6, r12
-	mov	&.L__profc_iswcntrl+4, r11
+	mov	&.L__profc_iswcntrl+4, r10
 	mov	&.L__profc_iswcntrl+2, r14
 	mov	&.L__profc_iswcntrl, r15
 	inc	r15
@@ -3056,14 +4978,13 @@ iswcntrl:                               ; @iswcntrl
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswcntrl
@@ -3077,10 +4998,10 @@ iswcntrl:                               ; @iswcntrl
 	jlo	.LBB24_7
 	jmp	.LBB24_1
 .LBB24_1:
-	mov	&.L__profc_iswcntrl+46, r12
-	mov	&.L__profc_iswcntrl+44, r11
-	mov	&.L__profc_iswcntrl+42, r14
-	mov	&.L__profc_iswcntrl+40, r15
+	mov	&__llvm_gcov_ctr.24+14, r12
+	mov	&__llvm_gcov_ctr.24+12, r11
+	mov	&__llvm_gcov_ctr.24+10, r14
+	mov	&__llvm_gcov_ctr.24+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3096,8 +5017,35 @@ iswcntrl:                               ; @iswcntrl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.24+8
+	mov	r14, &__llvm_gcov_ctr.24+10
+	mov	r13, &__llvm_gcov_ctr.24+12
+	mov	r12, &__llvm_gcov_ctr.24+14
+	mov	&.L__profc_iswcntrl+46, r12
+	mov	&.L__profc_iswcntrl+44, r10
+	mov	&.L__profc_iswcntrl+42, r14
+	mov	&.L__profc_iswcntrl+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswcntrl+40
@@ -3112,10 +5060,10 @@ iswcntrl:                               ; @iswcntrl
 	jlo	.LBB24_7
 	jmp	.LBB24_2
 .LBB24_2:
-	mov	&.L__profc_iswcntrl+54, r12
-	mov	&.L__profc_iswcntrl+52, r11
-	mov	&.L__profc_iswcntrl+50, r14
-	mov	&.L__profc_iswcntrl+48, r15
+	mov	&__llvm_gcov_ctr.24+22, r12
+	mov	&__llvm_gcov_ctr.24+20, r11
+	mov	&__llvm_gcov_ctr.24+18, r14
+	mov	&__llvm_gcov_ctr.24+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3131,8 +5079,35 @@ iswcntrl:                               ; @iswcntrl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.24+16
+	mov	r14, &__llvm_gcov_ctr.24+18
+	mov	r13, &__llvm_gcov_ctr.24+20
+	mov	r12, &__llvm_gcov_ctr.24+22
+	mov	&.L__profc_iswcntrl+54, r12
+	mov	&.L__profc_iswcntrl+52, r10
+	mov	&.L__profc_iswcntrl+50, r14
+	mov	&.L__profc_iswcntrl+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswcntrl+48
@@ -3176,10 +5151,10 @@ iswcntrl:                               ; @iswcntrl
 	jlo	.LBB24_7
 	jmp	.LBB24_4
 .LBB24_4:
-	mov	&.L__profc_iswcntrl+38, r12
-	mov	&.L__profc_iswcntrl+36, r11
-	mov	&.L__profc_iswcntrl+34, r14
-	mov	&.L__profc_iswcntrl+32, r15
+	mov	&__llvm_gcov_ctr.24+30, r12
+	mov	&__llvm_gcov_ctr.24+28, r11
+	mov	&__llvm_gcov_ctr.24+26, r14
+	mov	&__llvm_gcov_ctr.24+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3195,8 +5170,35 @@ iswcntrl:                               ; @iswcntrl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.24+24
+	mov	r14, &__llvm_gcov_ctr.24+26
+	mov	r13, &__llvm_gcov_ctr.24+28
+	mov	r12, &__llvm_gcov_ctr.24+30
+	mov	&.L__profc_iswcntrl+38, r12
+	mov	&.L__profc_iswcntrl+36, r10
+	mov	&.L__profc_iswcntrl+34, r14
+	mov	&.L__profc_iswcntrl+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswcntrl+32
@@ -3246,10 +5248,117 @@ iswcntrl:                               ; @iswcntrl
 	jmp	.LBB24_6
 .LBB24_6:
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
+	mov	&__llvm_gcov_ctr.24+38, r13
+	mov	&__llvm_gcov_ctr.24+36, r10
+	mov	&__llvm_gcov_ctr.24+34, r15
+	mov	&__llvm_gcov_ctr.24+32, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r8
+	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.24+32
+	mov	r15, &__llvm_gcov_ctr.24+34
+	mov	r14, &__llvm_gcov_ctr.24+36
+	mov	r13, &__llvm_gcov_ctr.24+38
 	mov	&.L__profc_iswcntrl+22, r13
-	mov	&.L__profc_iswcntrl+20, r10
+	mov	&.L__profc_iswcntrl+20, r9
 	mov	&.L__profc_iswcntrl+18, r15
 	mov	&.L__profc_iswcntrl+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &.L__profc_iswcntrl+16
+	mov	r15, &.L__profc_iswcntrl+18
+	mov	r14, &.L__profc_iswcntrl+20
+	mov	r13, &.L__profc_iswcntrl+22
+	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
+	jmp	.LBB24_7
+.LBB24_7:
+	mov.b	1(r1), r12                      ; 1-byte Folded Reload
+                                        ; kill: def $r12 killed $r12b
+	and	#1, r12
+	add	#4, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end24:
+	.size	iswcntrl, .Lfunc_end24-iswcntrl
+                                        ; -- End function
+	.globl	iswdigit                        ; -- Begin function iswdigit
+	.p2align	1
+	.type	iswdigit,@function
+iswdigit:                               ; @iswdigit
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#2, r1
+	mov	r12, r13
+	mov	&__llvm_gcov_ctr.25+6, r14
+	mov	&__llvm_gcov_ctr.25+4, r12
+	mov	&__llvm_gcov_ctr.25+2, r11
+	mov	&__llvm_gcov_ctr.25, r10
+	inc	r10
+	tst	r10
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r11
+	mov	r10, r15
+	bis	r11, r15
+	tst	r15
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r12, r15
+	add	r9, r15
+	cmp	r12, r15
+	mov	r2, r8
+	mov	#1, r12
+	mov	r12, r9
+	bic	r8, r9
+	add	r9, r14
+	mov	r10, &__llvm_gcov_ctr.25
+	mov	r11, &__llvm_gcov_ctr.25+2
+	mov	r15, &__llvm_gcov_ctr.25+4
+	mov	r14, &__llvm_gcov_ctr.25+6
+	mov	r13, 0(r1)
+	mov	&.L__profc_iswdigit+6, r13
+	mov	&.L__profc_iswdigit+4, r10
+	mov	&.L__profc_iswdigit+2, r15
+	mov	&.L__profc_iswdigit, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -3266,56 +5375,6 @@ iswcntrl:                               ; @iswcntrl
 	add	r9, r14
 	cmp	r10, r14
 	mov	r2, r9
-	mov	#1, r10
-	bic	r9, r10
-	add	r10, r13
-	mov	r11, &.L__profc_iswcntrl+16
-	mov	r15, &.L__profc_iswcntrl+18
-	mov	r14, &.L__profc_iswcntrl+20
-	mov	r13, &.L__profc_iswcntrl+22
-	mov.b	r12, 1(r1)                      ; 1-byte Folded Spill
-	jmp	.LBB24_7
-.LBB24_7:
-	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-                                        ; kill: def $r12 killed $r12b
-	and	#1, r12
-	add	#4, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end24:
-	.size	iswcntrl, .Lfunc_end24-iswcntrl
-                                        ; -- End function
-	.globl	iswdigit                        ; -- Begin function iswdigit
-	.p2align	1
-	.type	iswdigit,@function
-iswdigit:                               ; @iswdigit
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#2, r1
-	mov	r12, 0(r1)
-	mov	&.L__profc_iswdigit+6, r13
-	mov	&.L__profc_iswdigit+4, r12
-	mov	&.L__profc_iswdigit+2, r15
-	mov	&.L__profc_iswdigit, r11
-	inc	r11
-	tst	r11
-	mov	r2, r14
-	rra	r14
-	and	#1, r14
-	add	r14, r15
-	mov	r11, r14
-	bis	r15, r14
-	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
-	mov	r2, r9
-	mov	#1, r12
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -3331,6 +5390,7 @@ iswdigit:                               ; @iswdigit
 	add	#2, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end25:
 	.size	iswdigit, .Lfunc_end25-iswdigit
@@ -3376,10 +5436,10 @@ iswprint:                               ; @iswprint
 	jhs	.LBB26_4
 	jmp	.LBB26_1
 .LBB26_1:
-	mov	&.L__profc_iswprint+14, r13
-	mov	&.L__profc_iswprint+12, r12
-	mov	&.L__profc_iswprint+10, r15
-	mov	&.L__profc_iswprint+8, r11
+	mov	&__llvm_gcov_ctr.26+6, r13
+	mov	&__llvm_gcov_ctr.26+4, r12
+	mov	&__llvm_gcov_ctr.26+2, r15
+	mov	&__llvm_gcov_ctr.26, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -3397,6 +5457,33 @@ iswprint:                               ; @iswprint
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.26
+	mov	r15, &__llvm_gcov_ctr.26+2
+	mov	r14, &__llvm_gcov_ctr.26+4
+	mov	r13, &__llvm_gcov_ctr.26+6
+	mov	&.L__profc_iswprint+14, r13
+	mov	&.L__profc_iswprint+12, r10
+	mov	&.L__profc_iswprint+10, r15
+	mov	&.L__profc_iswprint+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -3418,17 +5505,17 @@ iswprint:                               ; @iswprint
 .LBB26_3:
 	mov	2(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 6(r1)
-	jmp	.LBB26_15
+	br	#.LBB26_15
 .LBB26_4:
 	mov	4(r1), r12
 	cmp	#8232, r12
 	jlo	.LBB26_9
 	jmp	.LBB26_5
 .LBB26_5:
-	mov	&.L__profc_iswprint+46, r12
-	mov	&.L__profc_iswprint+44, r11
-	mov	&.L__profc_iswprint+42, r14
-	mov	&.L__profc_iswprint+40, r15
+	mov	&__llvm_gcov_ctr.26+14, r12
+	mov	&__llvm_gcov_ctr.26+12, r11
+	mov	&__llvm_gcov_ctr.26+10, r14
+	mov	&__llvm_gcov_ctr.26+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3444,8 +5531,35 @@ iswprint:                               ; @iswprint
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.26+8
+	mov	r14, &__llvm_gcov_ctr.26+10
+	mov	r13, &__llvm_gcov_ctr.26+12
+	mov	r12, &__llvm_gcov_ctr.26+14
+	mov	&.L__profc_iswprint+46, r12
+	mov	&.L__profc_iswprint+44, r10
+	mov	&.L__profc_iswprint+42, r14
+	mov	&.L__profc_iswprint+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswprint+40
@@ -3458,10 +5572,10 @@ iswprint:                               ; @iswprint
 	jlo	.LBB26_9
 	jmp	.LBB26_6
 .LBB26_6:
-	mov	&.L__profc_iswprint+54, r12
-	mov	&.L__profc_iswprint+52, r11
-	mov	&.L__profc_iswprint+50, r14
-	mov	&.L__profc_iswprint+48, r15
+	mov	&__llvm_gcov_ctr.26+22, r12
+	mov	&__llvm_gcov_ctr.26+20, r11
+	mov	&__llvm_gcov_ctr.26+18, r14
+	mov	&__llvm_gcov_ctr.26+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3477,8 +5591,35 @@ iswprint:                               ; @iswprint
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.26+16
+	mov	r14, &__llvm_gcov_ctr.26+18
+	mov	r13, &__llvm_gcov_ctr.26+20
+	mov	r12, &__llvm_gcov_ctr.26+22
+	mov	&.L__profc_iswprint+54, r12
+	mov	&.L__profc_iswprint+52, r10
+	mov	&.L__profc_iswprint+50, r14
+	mov	&.L__profc_iswprint+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswprint+48
@@ -3549,10 +5690,10 @@ iswprint:                               ; @iswprint
 	mov	r12, &.L__profc_iswprint+38
 	jmp	.LBB26_10
 .LBB26_9:
-	mov	&.L__profc_iswprint+22, r12
-	mov	&.L__profc_iswprint+20, r11
-	mov	&.L__profc_iswprint+18, r14
-	mov	&.L__profc_iswprint+16, r15
+	mov	&__llvm_gcov_ctr.26+30, r12
+	mov	&__llvm_gcov_ctr.26+28, r11
+	mov	&__llvm_gcov_ctr.26+26, r14
+	mov	&__llvm_gcov_ctr.26+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3568,8 +5709,35 @@ iswprint:                               ; @iswprint
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.26+24
+	mov	r14, &__llvm_gcov_ctr.26+26
+	mov	r13, &__llvm_gcov_ctr.26+28
+	mov	r12, &__llvm_gcov_ctr.26+30
+	mov	&.L__profc_iswprint+22, r12
+	mov	&.L__profc_iswprint+20, r10
+	mov	&.L__profc_iswprint+18, r14
+	mov	&.L__profc_iswprint+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswprint+16
@@ -3584,10 +5752,10 @@ iswprint:                               ; @iswprint
 	jne	.LBB26_13
 	jmp	.LBB26_11
 .LBB26_11:
-	mov	&.L__profc_iswprint+70, r12
-	mov	&.L__profc_iswprint+68, r11
-	mov	&.L__profc_iswprint+66, r14
-	mov	&.L__profc_iswprint+64, r15
+	mov	&__llvm_gcov_ctr.26+38, r12
+	mov	&__llvm_gcov_ctr.26+36, r11
+	mov	&__llvm_gcov_ctr.26+34, r14
+	mov	&__llvm_gcov_ctr.26+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3603,8 +5771,35 @@ iswprint:                               ; @iswprint
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.26+32
+	mov	r14, &__llvm_gcov_ctr.26+34
+	mov	r13, &__llvm_gcov_ctr.26+36
+	mov	r12, &__llvm_gcov_ctr.26+38
+	mov	&.L__profc_iswprint+70, r12
+	mov	&.L__profc_iswprint+68, r10
+	mov	&.L__profc_iswprint+66, r14
+	mov	&.L__profc_iswprint+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswprint+64
@@ -3646,10 +5841,67 @@ iswprint:                               ; @iswprint
 	mov	r12, &.L__profc_iswprint+78
 	jmp	.LBB26_14
 .LBB26_13:
+	mov	&__llvm_gcov_ctr.26+46, r12
+	mov	&__llvm_gcov_ctr.26+44, r11
+	mov	&__llvm_gcov_ctr.26+42, r14
+	mov	&__llvm_gcov_ctr.26+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.26+40
+	mov	r14, &__llvm_gcov_ctr.26+42
+	mov	r13, &__llvm_gcov_ctr.26+44
+	mov	r12, &__llvm_gcov_ctr.26+46
 	mov	&.L__profc_iswprint+62, r12
-	mov	&.L__profc_iswprint+60, r11
+	mov	&.L__profc_iswprint+60, r10
 	mov	&.L__profc_iswprint+58, r14
 	mov	&.L__profc_iswprint+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_iswprint+56
+	mov	r14, &.L__profc_iswprint+58
+	mov	r13, &.L__profc_iswprint+60
+	mov	r12, &.L__profc_iswprint+62
+	clr	6(r1)
+	jmp	.LBB26_15
+.LBB26_14:
+	mov	&__llvm_gcov_ctr.26+54, r12
+	mov	&__llvm_gcov_ctr.26+52, r11
+	mov	&__llvm_gcov_ctr.26+50, r14
+	mov	&__llvm_gcov_ctr.26+48, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3669,13 +5921,10 @@ iswprint:                               ; @iswprint
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_iswprint+56
-	mov	r14, &.L__profc_iswprint+58
-	mov	r13, &.L__profc_iswprint+60
-	mov	r12, &.L__profc_iswprint+62
-	clr	6(r1)
-	jmp	.LBB26_15
-.LBB26_14:
+	mov	r15, &__llvm_gcov_ctr.26+48
+	mov	r14, &__llvm_gcov_ctr.26+50
+	mov	r13, &__llvm_gcov_ctr.26+52
+	mov	r12, &__llvm_gcov_ctr.26+54
 	mov	#1, 6(r1)
 	jmp	.LBB26_15
 .LBB26_15:
@@ -3692,12 +5941,41 @@ iswprint:                               ; @iswprint
 	.type	iswxdigit,@function
 iswxdigit:                              ; @iswxdigit
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.27+6, r13
+	mov	&__llvm_gcov_ctr.27+4, r11
+	mov	&__llvm_gcov_ctr.27+2, r15
+	mov	&__llvm_gcov_ctr.27, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.27
+	mov	r15, &__llvm_gcov_ctr.27+2
+	mov	r14, &__llvm_gcov_ctr.27+4
+	mov	r13, &__llvm_gcov_ctr.27+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_iswxdigit+6, r12
-	mov	&.L__profc_iswxdigit+4, r11
+	mov	&.L__profc_iswxdigit+4, r10
 	mov	&.L__profc_iswxdigit+2, r14
 	mov	&.L__profc_iswxdigit, r15
 	inc	r15
@@ -3709,14 +5987,13 @@ iswxdigit:                              ; @iswxdigit
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_iswxdigit
@@ -3731,10 +6008,10 @@ iswxdigit:                              ; @iswxdigit
 	jlo	.LBB27_3
 	jmp	.LBB27_1
 .LBB27_1:
-	mov	&.L__profc_iswxdigit+14, r13
-	mov	&.L__profc_iswxdigit+12, r12
-	mov	&.L__profc_iswxdigit+10, r15
-	mov	&.L__profc_iswxdigit+8, r11
+	mov	&__llvm_gcov_ctr.27+14, r13
+	mov	&__llvm_gcov_ctr.27+12, r12
+	mov	&__llvm_gcov_ctr.27+10, r15
+	mov	&__llvm_gcov_ctr.27+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -3752,6 +6029,33 @@ iswxdigit:                              ; @iswxdigit
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.27+8
+	mov	r15, &__llvm_gcov_ctr.27+10
+	mov	r14, &__llvm_gcov_ctr.27+12
+	mov	r13, &__llvm_gcov_ctr.27+14
+	mov	&.L__profc_iswxdigit+14, r13
+	mov	&.L__profc_iswxdigit+12, r10
+	mov	&.L__profc_iswxdigit+10, r15
+	mov	&.L__profc_iswxdigit+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -3773,10 +6077,10 @@ iswxdigit:                              ; @iswxdigit
 	jmp	.LBB27_2
 .LBB27_2:
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_iswxdigit+22, r13
-	mov	&.L__profc_iswxdigit+20, r10
-	mov	&.L__profc_iswxdigit+18, r15
-	mov	&.L__profc_iswxdigit+16, r11
+	mov	&__llvm_gcov_ctr.27+22, r13
+	mov	&__llvm_gcov_ctr.27+20, r10
+	mov	&__llvm_gcov_ctr.27+18, r15
+	mov	&__llvm_gcov_ctr.27+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -3792,8 +6096,35 @@ iswxdigit:                              ; @iswxdigit
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.27+16
+	mov	r15, &__llvm_gcov_ctr.27+18
+	mov	r14, &__llvm_gcov_ctr.27+20
+	mov	r13, &__llvm_gcov_ctr.27+22
+	mov	&.L__profc_iswxdigit+22, r13
+	mov	&.L__profc_iswxdigit+20, r9
+	mov	&.L__profc_iswxdigit+18, r15
+	mov	&.L__profc_iswxdigit+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_iswxdigit+16
@@ -3809,6 +6140,7 @@ iswxdigit:                              ; @iswxdigit
 	add	#4, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end27:
 	.size	iswxdigit, .Lfunc_end27-iswxdigit
@@ -3818,11 +6150,41 @@ iswxdigit:                              ; @iswxdigit
 	.type	toascii,@function
 toascii:                                ; @toascii
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#2, r1
+	mov	&__llvm_gcov_ctr.28+6, r13
+	mov	&__llvm_gcov_ctr.28+4, r11
+	mov	&__llvm_gcov_ctr.28+2, r15
+	mov	&__llvm_gcov_ctr.28, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.28
+	mov	r15, &__llvm_gcov_ctr.28+2
+	mov	r14, &__llvm_gcov_ctr.28+4
+	mov	r13, &__llvm_gcov_ctr.28+6
 	mov	r12, 0(r1)
 	mov	&.L__profc_toascii+6, r12
-	mov	&.L__profc_toascii+4, r11
+	mov	&.L__profc_toascii+4, r10
 	mov	&.L__profc_toascii+2, r14
 	mov	&.L__profc_toascii, r15
 	inc	r15
@@ -3834,14 +6196,13 @@ toascii:                                ; @toascii
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_toascii
@@ -3852,6 +6213,8 @@ toascii:                                ; @toascii
 	and	#127, r12
 	add	#2, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end28:
 	.size	toascii, .Lfunc_end28-toascii
@@ -3964,10 +6327,10 @@ fdim:                                   ; @fdim
 	jne	.LBB29_8
 	jmp	.LBB29_7
 .LBB29_7:
-	mov	&.L__profc_fdim+14, r12
-	mov	&.L__profc_fdim+12, r11
-	mov	&.L__profc_fdim+10, r14
-	mov	&.L__profc_fdim+8, r15
+	mov	&__llvm_gcov_ctr.29+6, r12
+	mov	&__llvm_gcov_ctr.29+4, r11
+	mov	&__llvm_gcov_ctr.29+2, r14
+	mov	&__llvm_gcov_ctr.29, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -3983,8 +6346,35 @@ fdim:                                   ; @fdim
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.29
+	mov	r14, &__llvm_gcov_ctr.29+2
+	mov	r13, &__llvm_gcov_ctr.29+4
+	mov	r12, &__llvm_gcov_ctr.29+6
+	mov	&.L__profc_fdim+14, r12
+	mov	&.L__profc_fdim+12, r10
+	mov	&.L__profc_fdim+10, r14
+	mov	&.L__profc_fdim+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fdim+8
@@ -4052,10 +6442,10 @@ fdim:                                   ; @fdim
 	jne	.LBB29_16
 	jmp	.LBB29_15
 .LBB29_15:
-	mov	&.L__profc_fdim+22, r12
-	mov	&.L__profc_fdim+20, r11
-	mov	&.L__profc_fdim+18, r14
-	mov	&.L__profc_fdim+16, r15
+	mov	&__llvm_gcov_ctr.29+14, r12
+	mov	&__llvm_gcov_ctr.29+12, r11
+	mov	&__llvm_gcov_ctr.29+10, r14
+	mov	&__llvm_gcov_ctr.29+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4071,8 +6461,35 @@ fdim:                                   ; @fdim
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.29+8
+	mov	r14, &__llvm_gcov_ctr.29+10
+	mov	r13, &__llvm_gcov_ctr.29+12
+	mov	r12, &__llvm_gcov_ctr.29+14
+	mov	&.L__profc_fdim+22, r12
+	mov	&.L__profc_fdim+20, r10
+	mov	&.L__profc_fdim+18, r14
+	mov	&.L__profc_fdim+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fdim+16
@@ -4102,10 +6519,10 @@ fdim:                                   ; @fdim
 	jl	.LBB29_18
 	jmp	.LBB29_17
 .LBB29_17:
-	mov	&.L__profc_fdim+30, r12
-	mov	&.L__profc_fdim+28, r11
-	mov	&.L__profc_fdim+26, r14
-	mov	&.L__profc_fdim+24, r15
+	mov	&__llvm_gcov_ctr.29+22, r12
+	mov	&__llvm_gcov_ctr.29+20, r11
+	mov	&__llvm_gcov_ctr.29+18, r14
+	mov	&__llvm_gcov_ctr.29+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4121,8 +6538,35 @@ fdim:                                   ; @fdim
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.29+16
+	mov	r14, &__llvm_gcov_ctr.29+18
+	mov	r13, &__llvm_gcov_ctr.29+20
+	mov	r12, &__llvm_gcov_ctr.29+22
+	mov	&.L__profc_fdim+30, r12
+	mov	&.L__profc_fdim+28, r10
+	mov	&.L__profc_fdim+26, r14
+	mov	&.L__profc_fdim+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fdim+24
@@ -4144,6 +6588,33 @@ fdim:                                   ; @fdim
 	mov	r15, 6(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB29_19
 .LBB29_18:
+	mov	&__llvm_gcov_ctr.29+30, r12
+	mov	&__llvm_gcov_ctr.29+28, r11
+	mov	&__llvm_gcov_ctr.29+26, r14
+	mov	&__llvm_gcov_ctr.29+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.29+24
+	mov	r14, &__llvm_gcov_ctr.29+26
+	mov	r13, &__llvm_gcov_ctr.29+28
+	mov	r12, &__llvm_gcov_ctr.29+30
 	clr	r12
 	mov	r12, r13
 	mov	r12, r14
@@ -4255,10 +6726,10 @@ fdimf:                                  ; @fdimf
 	jne	.LBB30_6
 	jmp	.LBB30_5
 .LBB30_5:
-	mov	&.L__profc_fdimf+14, r12
-	mov	&.L__profc_fdimf+12, r11
-	mov	&.L__profc_fdimf+10, r14
-	mov	&.L__profc_fdimf+8, r15
+	mov	&__llvm_gcov_ctr.30+6, r12
+	mov	&__llvm_gcov_ctr.30+4, r11
+	mov	&__llvm_gcov_ctr.30+2, r14
+	mov	&__llvm_gcov_ctr.30, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4274,8 +6745,35 @@ fdimf:                                  ; @fdimf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.30
+	mov	r14, &__llvm_gcov_ctr.30+2
+	mov	r13, &__llvm_gcov_ctr.30+4
+	mov	r12, &__llvm_gcov_ctr.30+6
+	mov	&.L__profc_fdimf+14, r12
+	mov	&.L__profc_fdimf+12, r10
+	mov	&.L__profc_fdimf+10, r14
+	mov	&.L__profc_fdimf+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fdimf+8
@@ -4323,10 +6821,10 @@ fdimf:                                  ; @fdimf
 	jne	.LBB30_12
 	jmp	.LBB30_11
 .LBB30_11:
-	mov	&.L__profc_fdimf+22, r12
-	mov	&.L__profc_fdimf+20, r11
-	mov	&.L__profc_fdimf+18, r14
-	mov	&.L__profc_fdimf+16, r15
+	mov	&__llvm_gcov_ctr.30+14, r12
+	mov	&__llvm_gcov_ctr.30+12, r11
+	mov	&__llvm_gcov_ctr.30+10, r14
+	mov	&__llvm_gcov_ctr.30+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4342,8 +6840,35 @@ fdimf:                                  ; @fdimf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.30+8
+	mov	r14, &__llvm_gcov_ctr.30+10
+	mov	r13, &__llvm_gcov_ctr.30+12
+	mov	r12, &__llvm_gcov_ctr.30+14
+	mov	&.L__profc_fdimf+22, r12
+	mov	&.L__profc_fdimf+20, r10
+	mov	&.L__profc_fdimf+18, r14
+	mov	&.L__profc_fdimf+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fdimf+16
@@ -4365,10 +6890,73 @@ fdimf:                                  ; @fdimf
 	jl	.LBB30_14
 	jmp	.LBB30_13
 .LBB30_13:
+	mov	&__llvm_gcov_ctr.30+22, r12
+	mov	&__llvm_gcov_ctr.30+20, r11
+	mov	&__llvm_gcov_ctr.30+18, r14
+	mov	&__llvm_gcov_ctr.30+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.30+16
+	mov	r14, &__llvm_gcov_ctr.30+18
+	mov	r13, &__llvm_gcov_ctr.30+20
+	mov	r12, &__llvm_gcov_ctr.30+22
 	mov	&.L__profc_fdimf+30, r12
-	mov	&.L__profc_fdimf+28, r11
+	mov	&.L__profc_fdimf+28, r10
 	mov	&.L__profc_fdimf+26, r14
 	mov	&.L__profc_fdimf+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fdimf+24
+	mov	r14, &.L__profc_fdimf+26
+	mov	r13, &.L__profc_fdimf+28
+	mov	r12, &.L__profc_fdimf+30
+	mov	32(r1), r12
+	mov	34(r1), r13
+	mov	28(r1), r14
+	mov	30(r1), r15
+	call	#__mspabi_subf
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB30_15
+.LBB30_14:
+	mov	&__llvm_gcov_ctr.30+30, r12
+	mov	&__llvm_gcov_ctr.30+28, r11
+	mov	&__llvm_gcov_ctr.30+26, r14
+	mov	&__llvm_gcov_ctr.30+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4388,19 +6976,10 @@ fdimf:                                  ; @fdimf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fdimf+24
-	mov	r14, &.L__profc_fdimf+26
-	mov	r13, &.L__profc_fdimf+28
-	mov	r12, &.L__profc_fdimf+30
-	mov	32(r1), r12
-	mov	34(r1), r13
-	mov	28(r1), r14
-	mov	30(r1), r15
-	call	#__mspabi_subf
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	r13, 2(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB30_15
-.LBB30_14:
+	mov	r15, &__llvm_gcov_ctr.30+24
+	mov	r14, &__llvm_gcov_ctr.30+26
+	mov	r13, &__llvm_gcov_ctr.30+28
+	mov	r12, &__llvm_gcov_ctr.30+30
 	clr	r12
 	mov	r12, r13
 	mov	r13, 0(r1)                      ; 2-byte Folded Spill
@@ -4530,10 +7109,10 @@ fmax:                                   ; @fmax
 	jne	.LBB31_8
 	jmp	.LBB31_7
 .LBB31_7:
-	mov	&.L__profc_fmax+14, r12
-	mov	&.L__profc_fmax+12, r11
-	mov	&.L__profc_fmax+10, r14
-	mov	&.L__profc_fmax+8, r15
+	mov	&__llvm_gcov_ctr.31+6, r12
+	mov	&__llvm_gcov_ctr.31+4, r11
+	mov	&__llvm_gcov_ctr.31+2, r14
+	mov	&__llvm_gcov_ctr.31, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4549,8 +7128,35 @@ fmax:                                   ; @fmax
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.31
+	mov	r14, &__llvm_gcov_ctr.31+2
+	mov	r13, &__llvm_gcov_ctr.31+4
+	mov	r12, &__llvm_gcov_ctr.31+6
+	mov	&.L__profc_fmax+14, r12
+	mov	&.L__profc_fmax+12, r10
+	mov	&.L__profc_fmax+10, r14
+	mov	&.L__profc_fmax+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmax+8
@@ -4565,7 +7171,7 @@ fmax:                                   ; @fmax
 	mov	r14, 82(r1)
 	mov	r13, 80(r1)
 	mov	r12, 78(r1)
-	jmp	.LBB31_29
+	br	#.LBB31_29
 .LBB31_8:
 	mov	66(r1), r12
 	mov	r12, 32(r1)                     ; 2-byte Folded Spill
@@ -4618,10 +7224,10 @@ fmax:                                   ; @fmax
 	jne	.LBB31_16
 	jmp	.LBB31_15
 .LBB31_15:
-	mov	&.L__profc_fmax+22, r12
-	mov	&.L__profc_fmax+20, r11
-	mov	&.L__profc_fmax+18, r14
-	mov	&.L__profc_fmax+16, r15
+	mov	&__llvm_gcov_ctr.31+14, r12
+	mov	&__llvm_gcov_ctr.31+12, r11
+	mov	&__llvm_gcov_ctr.31+10, r14
+	mov	&__llvm_gcov_ctr.31+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4637,8 +7243,35 @@ fmax:                                   ; @fmax
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.31+8
+	mov	r14, &__llvm_gcov_ctr.31+10
+	mov	r13, &__llvm_gcov_ctr.31+12
+	mov	r12, &__llvm_gcov_ctr.31+14
+	mov	&.L__profc_fmax+22, r12
+	mov	&.L__profc_fmax+20, r10
+	mov	&.L__profc_fmax+18, r14
+	mov	&.L__profc_fmax+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmax+16
@@ -4716,10 +7349,74 @@ fmax:                                   ; @fmax
 	jge	.LBB31_23
 	jmp	.LBB31_22
 .LBB31_22:
+	mov	&__llvm_gcov_ctr.31+22, r12
+	mov	&__llvm_gcov_ctr.31+20, r11
+	mov	&__llvm_gcov_ctr.31+18, r14
+	mov	&__llvm_gcov_ctr.31+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.31+16
+	mov	r14, &__llvm_gcov_ctr.31+18
+	mov	r13, &__llvm_gcov_ctr.31+20
+	mov	r12, &__llvm_gcov_ctr.31+22
 	mov	&.L__profc_fmax+38, r12
-	mov	&.L__profc_fmax+36, r11
+	mov	&.L__profc_fmax+36, r10
 	mov	&.L__profc_fmax+34, r14
 	mov	&.L__profc_fmax+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmax+32
+	mov	r14, &.L__profc_fmax+34
+	mov	r13, &.L__profc_fmax+36
+	mov	r12, &.L__profc_fmax+38
+	mov	68(r1), r12
+	mov	66(r1), r13
+	mov	64(r1), r14
+	mov	62(r1), r15
+	mov	r15, 8(r1)                      ; 2-byte Folded Spill
+	mov	r14, 10(r1)                     ; 2-byte Folded Spill
+	mov	r13, 12(r1)                     ; 2-byte Folded Spill
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	jmp	.LBB31_24
+.LBB31_23:
+	mov	&__llvm_gcov_ctr.31+30, r12
+	mov	&__llvm_gcov_ctr.31+28, r11
+	mov	&__llvm_gcov_ctr.31+26, r14
+	mov	&__llvm_gcov_ctr.31+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4739,20 +7436,10 @@ fmax:                                   ; @fmax
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmax+32
-	mov	r14, &.L__profc_fmax+34
-	mov	r13, &.L__profc_fmax+36
-	mov	r12, &.L__profc_fmax+38
-	mov	68(r1), r12
-	mov	66(r1), r13
-	mov	64(r1), r14
-	mov	62(r1), r15
-	mov	r15, 8(r1)                      ; 2-byte Folded Spill
-	mov	r14, 10(r1)                     ; 2-byte Folded Spill
-	mov	r13, 12(r1)                     ; 2-byte Folded Spill
-	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jmp	.LBB31_24
-.LBB31_23:
+	mov	r15, &__llvm_gcov_ctr.31+24
+	mov	r14, &__llvm_gcov_ctr.31+26
+	mov	r13, &__llvm_gcov_ctr.31+28
+	mov	r12, &__llvm_gcov_ctr.31+30
 	mov	76(r1), r12
 	mov	74(r1), r13
 	mov	72(r1), r14
@@ -4786,10 +7473,74 @@ fmax:                                   ; @fmax
 	jge	.LBB31_27
 	jmp	.LBB31_26
 .LBB31_26:
+	mov	&__llvm_gcov_ctr.31+38, r12
+	mov	&__llvm_gcov_ctr.31+36, r11
+	mov	&__llvm_gcov_ctr.31+34, r14
+	mov	&__llvm_gcov_ctr.31+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.31+32
+	mov	r14, &__llvm_gcov_ctr.31+34
+	mov	r13, &__llvm_gcov_ctr.31+36
+	mov	r12, &__llvm_gcov_ctr.31+38
 	mov	&.L__profc_fmax+46, r12
-	mov	&.L__profc_fmax+44, r11
+	mov	&.L__profc_fmax+44, r10
 	mov	&.L__profc_fmax+42, r14
 	mov	&.L__profc_fmax+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmax+40
+	mov	r14, &.L__profc_fmax+42
+	mov	r13, &.L__profc_fmax+44
+	mov	r12, &.L__profc_fmax+46
+	mov	68(r1), r12
+	mov	66(r1), r13
+	mov	64(r1), r14
+	mov	62(r1), r15
+	mov	r15, 0(r1)                      ; 2-byte Folded Spill
+	mov	r14, 2(r1)                      ; 2-byte Folded Spill
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB31_28
+.LBB31_27:
+	mov	&__llvm_gcov_ctr.31+46, r12
+	mov	&__llvm_gcov_ctr.31+44, r11
+	mov	&__llvm_gcov_ctr.31+42, r14
+	mov	&__llvm_gcov_ctr.31+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4809,20 +7560,10 @@ fmax:                                   ; @fmax
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmax+40
-	mov	r14, &.L__profc_fmax+42
-	mov	r13, &.L__profc_fmax+44
-	mov	r12, &.L__profc_fmax+46
-	mov	68(r1), r12
-	mov	66(r1), r13
-	mov	64(r1), r14
-	mov	62(r1), r15
-	mov	r15, 0(r1)                      ; 2-byte Folded Spill
-	mov	r14, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB31_28
-.LBB31_27:
+	mov	r15, &__llvm_gcov_ctr.31+40
+	mov	r14, &__llvm_gcov_ctr.31+42
+	mov	r13, &__llvm_gcov_ctr.31+44
+	mov	r12, &__llvm_gcov_ctr.31+46
 	mov	76(r1), r12
 	mov	74(r1), r13
 	mov	72(r1), r14
@@ -4934,10 +7675,10 @@ fmaxf:                                  ; @fmaxf
 	jne	.LBB32_6
 	jmp	.LBB32_5
 .LBB32_5:
-	mov	&.L__profc_fmaxf+14, r12
-	mov	&.L__profc_fmaxf+12, r11
-	mov	&.L__profc_fmaxf+10, r14
-	mov	&.L__profc_fmaxf+8, r15
+	mov	&__llvm_gcov_ctr.32+6, r12
+	mov	&__llvm_gcov_ctr.32+4, r11
+	mov	&__llvm_gcov_ctr.32+2, r14
+	mov	&__llvm_gcov_ctr.32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -4953,8 +7694,35 @@ fmaxf:                                  ; @fmaxf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.32
+	mov	r14, &__llvm_gcov_ctr.32+2
+	mov	r13, &__llvm_gcov_ctr.32+4
+	mov	r12, &__llvm_gcov_ctr.32+6
+	mov	&.L__profc_fmaxf+14, r12
+	mov	&.L__profc_fmaxf+12, r10
+	mov	&.L__profc_fmaxf+10, r14
+	mov	&.L__profc_fmaxf+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmaxf+8
@@ -5002,10 +7770,10 @@ fmaxf:                                  ; @fmaxf
 	jne	.LBB32_12
 	jmp	.LBB32_11
 .LBB32_11:
-	mov	&.L__profc_fmaxf+22, r12
-	mov	&.L__profc_fmaxf+20, r11
-	mov	&.L__profc_fmaxf+18, r14
-	mov	&.L__profc_fmaxf+16, r15
+	mov	&__llvm_gcov_ctr.32+14, r12
+	mov	&__llvm_gcov_ctr.32+12, r11
+	mov	&__llvm_gcov_ctr.32+10, r14
+	mov	&__llvm_gcov_ctr.32+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5021,8 +7789,35 @@ fmaxf:                                  ; @fmaxf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.32+8
+	mov	r14, &__llvm_gcov_ctr.32+10
+	mov	r13, &__llvm_gcov_ctr.32+12
+	mov	r12, &__llvm_gcov_ctr.32+14
+	mov	&.L__profc_fmaxf+22, r12
+	mov	&.L__profc_fmaxf+20, r10
+	mov	&.L__profc_fmaxf+18, r14
+	mov	&.L__profc_fmaxf+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmaxf+16
@@ -5096,10 +7891,70 @@ fmaxf:                                  ; @fmaxf
 	jge	.LBB32_19
 	jmp	.LBB32_18
 .LBB32_18:
+	mov	&__llvm_gcov_ctr.32+22, r12
+	mov	&__llvm_gcov_ctr.32+20, r11
+	mov	&__llvm_gcov_ctr.32+18, r14
+	mov	&__llvm_gcov_ctr.32+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.32+16
+	mov	r14, &__llvm_gcov_ctr.32+18
+	mov	r13, &__llvm_gcov_ctr.32+20
+	mov	r12, &__llvm_gcov_ctr.32+22
 	mov	&.L__profc_fmaxf+38, r12
-	mov	&.L__profc_fmaxf+36, r11
+	mov	&.L__profc_fmaxf+36, r10
 	mov	&.L__profc_fmaxf+34, r14
 	mov	&.L__profc_fmaxf+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmaxf+32
+	mov	r14, &.L__profc_fmaxf+34
+	mov	r13, &.L__profc_fmaxf+36
+	mov	r12, &.L__profc_fmaxf+38
+	mov	44(r1), r12
+	mov	42(r1), r13
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB32_20
+.LBB32_19:
+	mov	&__llvm_gcov_ctr.32+30, r12
+	mov	&__llvm_gcov_ctr.32+28, r11
+	mov	&__llvm_gcov_ctr.32+26, r14
+	mov	&__llvm_gcov_ctr.32+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5119,16 +7974,10 @@ fmaxf:                                  ; @fmaxf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmaxf+32
-	mov	r14, &.L__profc_fmaxf+34
-	mov	r13, &.L__profc_fmaxf+36
-	mov	r12, &.L__profc_fmaxf+38
-	mov	44(r1), r12
-	mov	42(r1), r13
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB32_20
-.LBB32_19:
+	mov	r15, &__llvm_gcov_ctr.32+24
+	mov	r14, &__llvm_gcov_ctr.32+26
+	mov	r13, &__llvm_gcov_ctr.32+28
+	mov	r12, &__llvm_gcov_ctr.32+30
 	mov	48(r1), r12
 	mov	46(r1), r13
 	mov	r13, 4(r1)                      ; 2-byte Folded Spill
@@ -5150,10 +7999,70 @@ fmaxf:                                  ; @fmaxf
 	jge	.LBB32_23
 	jmp	.LBB32_22
 .LBB32_22:
+	mov	&__llvm_gcov_ctr.32+38, r12
+	mov	&__llvm_gcov_ctr.32+36, r11
+	mov	&__llvm_gcov_ctr.32+34, r14
+	mov	&__llvm_gcov_ctr.32+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.32+32
+	mov	r14, &__llvm_gcov_ctr.32+34
+	mov	r13, &__llvm_gcov_ctr.32+36
+	mov	r12, &__llvm_gcov_ctr.32+38
 	mov	&.L__profc_fmaxf+46, r12
-	mov	&.L__profc_fmaxf+44, r11
+	mov	&.L__profc_fmaxf+44, r10
 	mov	&.L__profc_fmaxf+42, r14
 	mov	&.L__profc_fmaxf+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmaxf+40
+	mov	r14, &.L__profc_fmaxf+42
+	mov	r13, &.L__profc_fmaxf+44
+	mov	r12, &.L__profc_fmaxf+46
+	mov	44(r1), r12
+	mov	42(r1), r13
+	mov	r13, 0(r1)                      ; 2-byte Folded Spill
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB32_24
+.LBB32_23:
+	mov	&__llvm_gcov_ctr.32+46, r12
+	mov	&__llvm_gcov_ctr.32+44, r11
+	mov	&__llvm_gcov_ctr.32+42, r14
+	mov	&__llvm_gcov_ctr.32+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5173,16 +8082,10 @@ fmaxf:                                  ; @fmaxf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmaxf+40
-	mov	r14, &.L__profc_fmaxf+42
-	mov	r13, &.L__profc_fmaxf+44
-	mov	r12, &.L__profc_fmaxf+46
-	mov	44(r1), r12
-	mov	42(r1), r13
-	mov	r13, 0(r1)                      ; 2-byte Folded Spill
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB32_24
-.LBB32_23:
+	mov	r15, &__llvm_gcov_ctr.32+40
+	mov	r14, &__llvm_gcov_ctr.32+42
+	mov	r13, &__llvm_gcov_ctr.32+44
+	mov	r12, &__llvm_gcov_ctr.32+46
 	mov	48(r1), r12
 	mov	46(r1), r13
 	mov	r13, 0(r1)                      ; 2-byte Folded Spill
@@ -5312,10 +8215,10 @@ fmaxl:                                  ; @fmaxl
 	jne	.LBB33_8
 	jmp	.LBB33_7
 .LBB33_7:
-	mov	&.L__profc_fmaxl+14, r12
-	mov	&.L__profc_fmaxl+12, r11
-	mov	&.L__profc_fmaxl+10, r14
-	mov	&.L__profc_fmaxl+8, r15
+	mov	&__llvm_gcov_ctr.33+6, r12
+	mov	&__llvm_gcov_ctr.33+4, r11
+	mov	&__llvm_gcov_ctr.33+2, r14
+	mov	&__llvm_gcov_ctr.33, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5331,8 +8234,35 @@ fmaxl:                                  ; @fmaxl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.33
+	mov	r14, &__llvm_gcov_ctr.33+2
+	mov	r13, &__llvm_gcov_ctr.33+4
+	mov	r12, &__llvm_gcov_ctr.33+6
+	mov	&.L__profc_fmaxl+14, r12
+	mov	&.L__profc_fmaxl+12, r10
+	mov	&.L__profc_fmaxl+10, r14
+	mov	&.L__profc_fmaxl+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmaxl+8
@@ -5347,7 +8277,7 @@ fmaxl:                                  ; @fmaxl
 	mov	r14, 82(r1)
 	mov	r13, 80(r1)
 	mov	r12, 78(r1)
-	jmp	.LBB33_29
+	br	#.LBB33_29
 .LBB33_8:
 	mov	66(r1), r12
 	mov	r12, 32(r1)                     ; 2-byte Folded Spill
@@ -5400,10 +8330,10 @@ fmaxl:                                  ; @fmaxl
 	jne	.LBB33_16
 	jmp	.LBB33_15
 .LBB33_15:
-	mov	&.L__profc_fmaxl+22, r12
-	mov	&.L__profc_fmaxl+20, r11
-	mov	&.L__profc_fmaxl+18, r14
-	mov	&.L__profc_fmaxl+16, r15
+	mov	&__llvm_gcov_ctr.33+14, r12
+	mov	&__llvm_gcov_ctr.33+12, r11
+	mov	&__llvm_gcov_ctr.33+10, r14
+	mov	&__llvm_gcov_ctr.33+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5419,8 +8349,35 @@ fmaxl:                                  ; @fmaxl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.33+8
+	mov	r14, &__llvm_gcov_ctr.33+10
+	mov	r13, &__llvm_gcov_ctr.33+12
+	mov	r12, &__llvm_gcov_ctr.33+14
+	mov	&.L__profc_fmaxl+22, r12
+	mov	&.L__profc_fmaxl+20, r10
+	mov	&.L__profc_fmaxl+18, r14
+	mov	&.L__profc_fmaxl+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmaxl+16
@@ -5498,10 +8455,74 @@ fmaxl:                                  ; @fmaxl
 	jge	.LBB33_23
 	jmp	.LBB33_22
 .LBB33_22:
+	mov	&__llvm_gcov_ctr.33+22, r12
+	mov	&__llvm_gcov_ctr.33+20, r11
+	mov	&__llvm_gcov_ctr.33+18, r14
+	mov	&__llvm_gcov_ctr.33+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.33+16
+	mov	r14, &__llvm_gcov_ctr.33+18
+	mov	r13, &__llvm_gcov_ctr.33+20
+	mov	r12, &__llvm_gcov_ctr.33+22
 	mov	&.L__profc_fmaxl+38, r12
-	mov	&.L__profc_fmaxl+36, r11
+	mov	&.L__profc_fmaxl+36, r10
 	mov	&.L__profc_fmaxl+34, r14
 	mov	&.L__profc_fmaxl+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmaxl+32
+	mov	r14, &.L__profc_fmaxl+34
+	mov	r13, &.L__profc_fmaxl+36
+	mov	r12, &.L__profc_fmaxl+38
+	mov	68(r1), r12
+	mov	66(r1), r13
+	mov	64(r1), r14
+	mov	62(r1), r15
+	mov	r15, 8(r1)                      ; 2-byte Folded Spill
+	mov	r14, 10(r1)                     ; 2-byte Folded Spill
+	mov	r13, 12(r1)                     ; 2-byte Folded Spill
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	jmp	.LBB33_24
+.LBB33_23:
+	mov	&__llvm_gcov_ctr.33+30, r12
+	mov	&__llvm_gcov_ctr.33+28, r11
+	mov	&__llvm_gcov_ctr.33+26, r14
+	mov	&__llvm_gcov_ctr.33+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5521,20 +8542,10 @@ fmaxl:                                  ; @fmaxl
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmaxl+32
-	mov	r14, &.L__profc_fmaxl+34
-	mov	r13, &.L__profc_fmaxl+36
-	mov	r12, &.L__profc_fmaxl+38
-	mov	68(r1), r12
-	mov	66(r1), r13
-	mov	64(r1), r14
-	mov	62(r1), r15
-	mov	r15, 8(r1)                      ; 2-byte Folded Spill
-	mov	r14, 10(r1)                     ; 2-byte Folded Spill
-	mov	r13, 12(r1)                     ; 2-byte Folded Spill
-	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jmp	.LBB33_24
-.LBB33_23:
+	mov	r15, &__llvm_gcov_ctr.33+24
+	mov	r14, &__llvm_gcov_ctr.33+26
+	mov	r13, &__llvm_gcov_ctr.33+28
+	mov	r12, &__llvm_gcov_ctr.33+30
 	mov	76(r1), r12
 	mov	74(r1), r13
 	mov	72(r1), r14
@@ -5568,10 +8579,74 @@ fmaxl:                                  ; @fmaxl
 	jge	.LBB33_27
 	jmp	.LBB33_26
 .LBB33_26:
+	mov	&__llvm_gcov_ctr.33+38, r12
+	mov	&__llvm_gcov_ctr.33+36, r11
+	mov	&__llvm_gcov_ctr.33+34, r14
+	mov	&__llvm_gcov_ctr.33+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.33+32
+	mov	r14, &__llvm_gcov_ctr.33+34
+	mov	r13, &__llvm_gcov_ctr.33+36
+	mov	r12, &__llvm_gcov_ctr.33+38
 	mov	&.L__profc_fmaxl+46, r12
-	mov	&.L__profc_fmaxl+44, r11
+	mov	&.L__profc_fmaxl+44, r10
 	mov	&.L__profc_fmaxl+42, r14
 	mov	&.L__profc_fmaxl+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmaxl+40
+	mov	r14, &.L__profc_fmaxl+42
+	mov	r13, &.L__profc_fmaxl+44
+	mov	r12, &.L__profc_fmaxl+46
+	mov	68(r1), r12
+	mov	66(r1), r13
+	mov	64(r1), r14
+	mov	62(r1), r15
+	mov	r15, 0(r1)                      ; 2-byte Folded Spill
+	mov	r14, 2(r1)                      ; 2-byte Folded Spill
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB33_28
+.LBB33_27:
+	mov	&__llvm_gcov_ctr.33+46, r12
+	mov	&__llvm_gcov_ctr.33+44, r11
+	mov	&__llvm_gcov_ctr.33+42, r14
+	mov	&__llvm_gcov_ctr.33+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5591,20 +8666,10 @@ fmaxl:                                  ; @fmaxl
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmaxl+40
-	mov	r14, &.L__profc_fmaxl+42
-	mov	r13, &.L__profc_fmaxl+44
-	mov	r12, &.L__profc_fmaxl+46
-	mov	68(r1), r12
-	mov	66(r1), r13
-	mov	64(r1), r14
-	mov	62(r1), r15
-	mov	r15, 0(r1)                      ; 2-byte Folded Spill
-	mov	r14, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB33_28
-.LBB33_27:
+	mov	r15, &__llvm_gcov_ctr.33+40
+	mov	r14, &__llvm_gcov_ctr.33+42
+	mov	r13, &__llvm_gcov_ctr.33+44
+	mov	r12, &__llvm_gcov_ctr.33+46
 	mov	76(r1), r12
 	mov	74(r1), r13
 	mov	72(r1), r14
@@ -5746,10 +8811,10 @@ fmin:                                   ; @fmin
 	jne	.LBB34_8
 	jmp	.LBB34_7
 .LBB34_7:
-	mov	&.L__profc_fmin+14, r12
-	mov	&.L__profc_fmin+12, r11
-	mov	&.L__profc_fmin+10, r14
-	mov	&.L__profc_fmin+8, r15
+	mov	&__llvm_gcov_ctr.34+6, r12
+	mov	&__llvm_gcov_ctr.34+4, r11
+	mov	&__llvm_gcov_ctr.34+2, r14
+	mov	&__llvm_gcov_ctr.34, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5765,8 +8830,35 @@ fmin:                                   ; @fmin
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.34
+	mov	r14, &__llvm_gcov_ctr.34+2
+	mov	r13, &__llvm_gcov_ctr.34+4
+	mov	r12, &__llvm_gcov_ctr.34+6
+	mov	&.L__profc_fmin+14, r12
+	mov	&.L__profc_fmin+12, r10
+	mov	&.L__profc_fmin+10, r14
+	mov	&.L__profc_fmin+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmin+8
@@ -5781,7 +8873,7 @@ fmin:                                   ; @fmin
 	mov	r14, 82(r1)
 	mov	r13, 80(r1)
 	mov	r12, 78(r1)
-	jmp	.LBB34_29
+	br	#.LBB34_29
 .LBB34_8:
 	mov	66(r1), r12
 	mov	r12, 32(r1)                     ; 2-byte Folded Spill
@@ -5834,10 +8926,10 @@ fmin:                                   ; @fmin
 	jne	.LBB34_16
 	jmp	.LBB34_15
 .LBB34_15:
-	mov	&.L__profc_fmin+22, r12
-	mov	&.L__profc_fmin+20, r11
-	mov	&.L__profc_fmin+18, r14
-	mov	&.L__profc_fmin+16, r15
+	mov	&__llvm_gcov_ctr.34+14, r12
+	mov	&__llvm_gcov_ctr.34+12, r11
+	mov	&__llvm_gcov_ctr.34+10, r14
+	mov	&__llvm_gcov_ctr.34+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5853,8 +8945,35 @@ fmin:                                   ; @fmin
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.34+8
+	mov	r14, &__llvm_gcov_ctr.34+10
+	mov	r13, &__llvm_gcov_ctr.34+12
+	mov	r12, &__llvm_gcov_ctr.34+14
+	mov	&.L__profc_fmin+22, r12
+	mov	&.L__profc_fmin+20, r10
+	mov	&.L__profc_fmin+18, r14
+	mov	&.L__profc_fmin+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fmin+16
@@ -5932,10 +9051,74 @@ fmin:                                   ; @fmin
 	jge	.LBB34_23
 	jmp	.LBB34_22
 .LBB34_22:
+	mov	&__llvm_gcov_ctr.34+22, r12
+	mov	&__llvm_gcov_ctr.34+20, r11
+	mov	&__llvm_gcov_ctr.34+18, r14
+	mov	&__llvm_gcov_ctr.34+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.34+16
+	mov	r14, &__llvm_gcov_ctr.34+18
+	mov	r13, &__llvm_gcov_ctr.34+20
+	mov	r12, &__llvm_gcov_ctr.34+22
 	mov	&.L__profc_fmin+38, r12
-	mov	&.L__profc_fmin+36, r11
+	mov	&.L__profc_fmin+36, r10
 	mov	&.L__profc_fmin+34, r14
 	mov	&.L__profc_fmin+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmin+32
+	mov	r14, &.L__profc_fmin+34
+	mov	r13, &.L__profc_fmin+36
+	mov	r12, &.L__profc_fmin+38
+	mov	76(r1), r12
+	mov	74(r1), r13
+	mov	72(r1), r14
+	mov	70(r1), r15
+	mov	r15, 8(r1)                      ; 2-byte Folded Spill
+	mov	r14, 10(r1)                     ; 2-byte Folded Spill
+	mov	r13, 12(r1)                     ; 2-byte Folded Spill
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	jmp	.LBB34_24
+.LBB34_23:
+	mov	&__llvm_gcov_ctr.34+30, r12
+	mov	&__llvm_gcov_ctr.34+28, r11
+	mov	&__llvm_gcov_ctr.34+26, r14
+	mov	&__llvm_gcov_ctr.34+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -5955,20 +9138,10 @@ fmin:                                   ; @fmin
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmin+32
-	mov	r14, &.L__profc_fmin+34
-	mov	r13, &.L__profc_fmin+36
-	mov	r12, &.L__profc_fmin+38
-	mov	76(r1), r12
-	mov	74(r1), r13
-	mov	72(r1), r14
-	mov	70(r1), r15
-	mov	r15, 8(r1)                      ; 2-byte Folded Spill
-	mov	r14, 10(r1)                     ; 2-byte Folded Spill
-	mov	r13, 12(r1)                     ; 2-byte Folded Spill
-	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jmp	.LBB34_24
-.LBB34_23:
+	mov	r15, &__llvm_gcov_ctr.34+24
+	mov	r14, &__llvm_gcov_ctr.34+26
+	mov	r13, &__llvm_gcov_ctr.34+28
+	mov	r12, &__llvm_gcov_ctr.34+30
 	mov	68(r1), r12
 	mov	66(r1), r13
 	mov	64(r1), r14
@@ -6002,10 +9175,74 @@ fmin:                                   ; @fmin
 	jge	.LBB34_27
 	jmp	.LBB34_26
 .LBB34_26:
+	mov	&__llvm_gcov_ctr.34+38, r12
+	mov	&__llvm_gcov_ctr.34+36, r11
+	mov	&__llvm_gcov_ctr.34+34, r14
+	mov	&__llvm_gcov_ctr.34+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.34+32
+	mov	r14, &__llvm_gcov_ctr.34+34
+	mov	r13, &__llvm_gcov_ctr.34+36
+	mov	r12, &__llvm_gcov_ctr.34+38
 	mov	&.L__profc_fmin+46, r12
-	mov	&.L__profc_fmin+44, r11
+	mov	&.L__profc_fmin+44, r10
 	mov	&.L__profc_fmin+42, r14
 	mov	&.L__profc_fmin+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fmin+40
+	mov	r14, &.L__profc_fmin+42
+	mov	r13, &.L__profc_fmin+44
+	mov	r12, &.L__profc_fmin+46
+	mov	76(r1), r12
+	mov	74(r1), r13
+	mov	72(r1), r14
+	mov	70(r1), r15
+	mov	r15, 0(r1)                      ; 2-byte Folded Spill
+	mov	r14, 2(r1)                      ; 2-byte Folded Spill
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB34_28
+.LBB34_27:
+	mov	&__llvm_gcov_ctr.34+46, r12
+	mov	&__llvm_gcov_ctr.34+44, r11
+	mov	&__llvm_gcov_ctr.34+42, r14
+	mov	&__llvm_gcov_ctr.34+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6025,20 +9262,10 @@ fmin:                                   ; @fmin
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fmin+40
-	mov	r14, &.L__profc_fmin+42
-	mov	r13, &.L__profc_fmin+44
-	mov	r12, &.L__profc_fmin+46
-	mov	76(r1), r12
-	mov	74(r1), r13
-	mov	72(r1), r14
-	mov	70(r1), r15
-	mov	r15, 0(r1)                      ; 2-byte Folded Spill
-	mov	r14, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB34_28
-.LBB34_27:
+	mov	r15, &__llvm_gcov_ctr.34+40
+	mov	r14, &__llvm_gcov_ctr.34+42
+	mov	r13, &__llvm_gcov_ctr.34+44
+	mov	r12, &__llvm_gcov_ctr.34+46
 	mov	68(r1), r12
 	mov	66(r1), r13
 	mov	64(r1), r14
@@ -6150,10 +9377,10 @@ fminf:                                  ; @fminf
 	jne	.LBB35_6
 	jmp	.LBB35_5
 .LBB35_5:
-	mov	&.L__profc_fminf+14, r12
-	mov	&.L__profc_fminf+12, r11
-	mov	&.L__profc_fminf+10, r14
-	mov	&.L__profc_fminf+8, r15
+	mov	&__llvm_gcov_ctr.35+6, r12
+	mov	&__llvm_gcov_ctr.35+4, r11
+	mov	&__llvm_gcov_ctr.35+2, r14
+	mov	&__llvm_gcov_ctr.35, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6169,8 +9396,35 @@ fminf:                                  ; @fminf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.35
+	mov	r14, &__llvm_gcov_ctr.35+2
+	mov	r13, &__llvm_gcov_ctr.35+4
+	mov	r12, &__llvm_gcov_ctr.35+6
+	mov	&.L__profc_fminf+14, r12
+	mov	&.L__profc_fminf+12, r10
+	mov	&.L__profc_fminf+10, r14
+	mov	&.L__profc_fminf+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fminf+8
@@ -6218,10 +9472,10 @@ fminf:                                  ; @fminf
 	jne	.LBB35_12
 	jmp	.LBB35_11
 .LBB35_11:
-	mov	&.L__profc_fminf+22, r12
-	mov	&.L__profc_fminf+20, r11
-	mov	&.L__profc_fminf+18, r14
-	mov	&.L__profc_fminf+16, r15
+	mov	&__llvm_gcov_ctr.35+14, r12
+	mov	&__llvm_gcov_ctr.35+12, r11
+	mov	&__llvm_gcov_ctr.35+10, r14
+	mov	&__llvm_gcov_ctr.35+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6237,8 +9491,35 @@ fminf:                                  ; @fminf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.35+8
+	mov	r14, &__llvm_gcov_ctr.35+10
+	mov	r13, &__llvm_gcov_ctr.35+12
+	mov	r12, &__llvm_gcov_ctr.35+14
+	mov	&.L__profc_fminf+22, r12
+	mov	&.L__profc_fminf+20, r10
+	mov	&.L__profc_fminf+18, r14
+	mov	&.L__profc_fminf+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fminf+16
@@ -6312,10 +9593,70 @@ fminf:                                  ; @fminf
 	jge	.LBB35_19
 	jmp	.LBB35_18
 .LBB35_18:
+	mov	&__llvm_gcov_ctr.35+22, r12
+	mov	&__llvm_gcov_ctr.35+20, r11
+	mov	&__llvm_gcov_ctr.35+18, r14
+	mov	&__llvm_gcov_ctr.35+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.35+16
+	mov	r14, &__llvm_gcov_ctr.35+18
+	mov	r13, &__llvm_gcov_ctr.35+20
+	mov	r12, &__llvm_gcov_ctr.35+22
 	mov	&.L__profc_fminf+38, r12
-	mov	&.L__profc_fminf+36, r11
+	mov	&.L__profc_fminf+36, r10
 	mov	&.L__profc_fminf+34, r14
 	mov	&.L__profc_fminf+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fminf+32
+	mov	r14, &.L__profc_fminf+34
+	mov	r13, &.L__profc_fminf+36
+	mov	r12, &.L__profc_fminf+38
+	mov	48(r1), r12
+	mov	46(r1), r13
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB35_20
+.LBB35_19:
+	mov	&__llvm_gcov_ctr.35+30, r12
+	mov	&__llvm_gcov_ctr.35+28, r11
+	mov	&__llvm_gcov_ctr.35+26, r14
+	mov	&__llvm_gcov_ctr.35+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6335,16 +9676,10 @@ fminf:                                  ; @fminf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fminf+32
-	mov	r14, &.L__profc_fminf+34
-	mov	r13, &.L__profc_fminf+36
-	mov	r12, &.L__profc_fminf+38
-	mov	48(r1), r12
-	mov	46(r1), r13
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB35_20
-.LBB35_19:
+	mov	r15, &__llvm_gcov_ctr.35+24
+	mov	r14, &__llvm_gcov_ctr.35+26
+	mov	r13, &__llvm_gcov_ctr.35+28
+	mov	r12, &__llvm_gcov_ctr.35+30
 	mov	44(r1), r12
 	mov	42(r1), r13
 	mov	r13, 4(r1)                      ; 2-byte Folded Spill
@@ -6366,10 +9701,70 @@ fminf:                                  ; @fminf
 	jge	.LBB35_23
 	jmp	.LBB35_22
 .LBB35_22:
+	mov	&__llvm_gcov_ctr.35+38, r12
+	mov	&__llvm_gcov_ctr.35+36, r11
+	mov	&__llvm_gcov_ctr.35+34, r14
+	mov	&__llvm_gcov_ctr.35+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.35+32
+	mov	r14, &__llvm_gcov_ctr.35+34
+	mov	r13, &__llvm_gcov_ctr.35+36
+	mov	r12, &__llvm_gcov_ctr.35+38
 	mov	&.L__profc_fminf+46, r12
-	mov	&.L__profc_fminf+44, r11
+	mov	&.L__profc_fminf+44, r10
 	mov	&.L__profc_fminf+42, r14
 	mov	&.L__profc_fminf+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fminf+40
+	mov	r14, &.L__profc_fminf+42
+	mov	r13, &.L__profc_fminf+44
+	mov	r12, &.L__profc_fminf+46
+	mov	48(r1), r12
+	mov	46(r1), r13
+	mov	r13, 0(r1)                      ; 2-byte Folded Spill
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB35_24
+.LBB35_23:
+	mov	&__llvm_gcov_ctr.35+46, r12
+	mov	&__llvm_gcov_ctr.35+44, r11
+	mov	&__llvm_gcov_ctr.35+42, r14
+	mov	&__llvm_gcov_ctr.35+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6389,16 +9784,10 @@ fminf:                                  ; @fminf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fminf+40
-	mov	r14, &.L__profc_fminf+42
-	mov	r13, &.L__profc_fminf+44
-	mov	r12, &.L__profc_fminf+46
-	mov	48(r1), r12
-	mov	46(r1), r13
-	mov	r13, 0(r1)                      ; 2-byte Folded Spill
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB35_24
-.LBB35_23:
+	mov	r15, &__llvm_gcov_ctr.35+40
+	mov	r14, &__llvm_gcov_ctr.35+42
+	mov	r13, &__llvm_gcov_ctr.35+44
+	mov	r12, &__llvm_gcov_ctr.35+46
 	mov	44(r1), r12
 	mov	42(r1), r13
 	mov	r13, 0(r1)                      ; 2-byte Folded Spill
@@ -6528,10 +9917,10 @@ fminl:                                  ; @fminl
 	jne	.LBB36_8
 	jmp	.LBB36_7
 .LBB36_7:
-	mov	&.L__profc_fminl+14, r12
-	mov	&.L__profc_fminl+12, r11
-	mov	&.L__profc_fminl+10, r14
-	mov	&.L__profc_fminl+8, r15
+	mov	&__llvm_gcov_ctr.36+6, r12
+	mov	&__llvm_gcov_ctr.36+4, r11
+	mov	&__llvm_gcov_ctr.36+2, r14
+	mov	&__llvm_gcov_ctr.36, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6547,8 +9936,35 @@ fminl:                                  ; @fminl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.36
+	mov	r14, &__llvm_gcov_ctr.36+2
+	mov	r13, &__llvm_gcov_ctr.36+4
+	mov	r12, &__llvm_gcov_ctr.36+6
+	mov	&.L__profc_fminl+14, r12
+	mov	&.L__profc_fminl+12, r10
+	mov	&.L__profc_fminl+10, r14
+	mov	&.L__profc_fminl+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fminl+8
@@ -6563,7 +9979,7 @@ fminl:                                  ; @fminl
 	mov	r14, 82(r1)
 	mov	r13, 80(r1)
 	mov	r12, 78(r1)
-	jmp	.LBB36_29
+	br	#.LBB36_29
 .LBB36_8:
 	mov	66(r1), r12
 	mov	r12, 32(r1)                     ; 2-byte Folded Spill
@@ -6616,10 +10032,10 @@ fminl:                                  ; @fminl
 	jne	.LBB36_16
 	jmp	.LBB36_15
 .LBB36_15:
-	mov	&.L__profc_fminl+22, r12
-	mov	&.L__profc_fminl+20, r11
-	mov	&.L__profc_fminl+18, r14
-	mov	&.L__profc_fminl+16, r15
+	mov	&__llvm_gcov_ctr.36+14, r12
+	mov	&__llvm_gcov_ctr.36+12, r11
+	mov	&__llvm_gcov_ctr.36+10, r14
+	mov	&__llvm_gcov_ctr.36+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6635,8 +10051,35 @@ fminl:                                  ; @fminl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.36+8
+	mov	r14, &__llvm_gcov_ctr.36+10
+	mov	r13, &__llvm_gcov_ctr.36+12
+	mov	r12, &__llvm_gcov_ctr.36+14
+	mov	&.L__profc_fminl+22, r12
+	mov	&.L__profc_fminl+20, r10
+	mov	&.L__profc_fminl+18, r14
+	mov	&.L__profc_fminl+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_fminl+16
@@ -6714,10 +10157,74 @@ fminl:                                  ; @fminl
 	jge	.LBB36_23
 	jmp	.LBB36_22
 .LBB36_22:
+	mov	&__llvm_gcov_ctr.36+22, r12
+	mov	&__llvm_gcov_ctr.36+20, r11
+	mov	&__llvm_gcov_ctr.36+18, r14
+	mov	&__llvm_gcov_ctr.36+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.36+16
+	mov	r14, &__llvm_gcov_ctr.36+18
+	mov	r13, &__llvm_gcov_ctr.36+20
+	mov	r12, &__llvm_gcov_ctr.36+22
 	mov	&.L__profc_fminl+38, r12
-	mov	&.L__profc_fminl+36, r11
+	mov	&.L__profc_fminl+36, r10
 	mov	&.L__profc_fminl+34, r14
 	mov	&.L__profc_fminl+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fminl+32
+	mov	r14, &.L__profc_fminl+34
+	mov	r13, &.L__profc_fminl+36
+	mov	r12, &.L__profc_fminl+38
+	mov	76(r1), r12
+	mov	74(r1), r13
+	mov	72(r1), r14
+	mov	70(r1), r15
+	mov	r15, 8(r1)                      ; 2-byte Folded Spill
+	mov	r14, 10(r1)                     ; 2-byte Folded Spill
+	mov	r13, 12(r1)                     ; 2-byte Folded Spill
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	jmp	.LBB36_24
+.LBB36_23:
+	mov	&__llvm_gcov_ctr.36+30, r12
+	mov	&__llvm_gcov_ctr.36+28, r11
+	mov	&__llvm_gcov_ctr.36+26, r14
+	mov	&__llvm_gcov_ctr.36+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6737,20 +10244,10 @@ fminl:                                  ; @fminl
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fminl+32
-	mov	r14, &.L__profc_fminl+34
-	mov	r13, &.L__profc_fminl+36
-	mov	r12, &.L__profc_fminl+38
-	mov	76(r1), r12
-	mov	74(r1), r13
-	mov	72(r1), r14
-	mov	70(r1), r15
-	mov	r15, 8(r1)                      ; 2-byte Folded Spill
-	mov	r14, 10(r1)                     ; 2-byte Folded Spill
-	mov	r13, 12(r1)                     ; 2-byte Folded Spill
-	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jmp	.LBB36_24
-.LBB36_23:
+	mov	r15, &__llvm_gcov_ctr.36+24
+	mov	r14, &__llvm_gcov_ctr.36+26
+	mov	r13, &__llvm_gcov_ctr.36+28
+	mov	r12, &__llvm_gcov_ctr.36+30
 	mov	68(r1), r12
 	mov	66(r1), r13
 	mov	64(r1), r14
@@ -6784,10 +10281,74 @@ fminl:                                  ; @fminl
 	jge	.LBB36_27
 	jmp	.LBB36_26
 .LBB36_26:
+	mov	&__llvm_gcov_ctr.36+38, r12
+	mov	&__llvm_gcov_ctr.36+36, r11
+	mov	&__llvm_gcov_ctr.36+34, r14
+	mov	&__llvm_gcov_ctr.36+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.36+32
+	mov	r14, &__llvm_gcov_ctr.36+34
+	mov	r13, &__llvm_gcov_ctr.36+36
+	mov	r12, &__llvm_gcov_ctr.36+38
 	mov	&.L__profc_fminl+46, r12
-	mov	&.L__profc_fminl+44, r11
+	mov	&.L__profc_fminl+44, r10
 	mov	&.L__profc_fminl+42, r14
 	mov	&.L__profc_fminl+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_fminl+40
+	mov	r14, &.L__profc_fminl+42
+	mov	r13, &.L__profc_fminl+44
+	mov	r12, &.L__profc_fminl+46
+	mov	76(r1), r12
+	mov	74(r1), r13
+	mov	72(r1), r14
+	mov	70(r1), r15
+	mov	r15, 0(r1)                      ; 2-byte Folded Spill
+	mov	r14, 2(r1)                      ; 2-byte Folded Spill
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB36_28
+.LBB36_27:
+	mov	&__llvm_gcov_ctr.36+46, r12
+	mov	&__llvm_gcov_ctr.36+44, r11
+	mov	&__llvm_gcov_ctr.36+42, r14
+	mov	&__llvm_gcov_ctr.36+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -6807,20 +10368,10 @@ fminl:                                  ; @fminl
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_fminl+40
-	mov	r14, &.L__profc_fminl+42
-	mov	r13, &.L__profc_fminl+44
-	mov	r12, &.L__profc_fminl+46
-	mov	76(r1), r12
-	mov	74(r1), r13
-	mov	72(r1), r14
-	mov	70(r1), r15
-	mov	r15, 0(r1)                      ; 2-byte Folded Spill
-	mov	r14, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB36_28
-.LBB36_27:
+	mov	r15, &__llvm_gcov_ctr.36+40
+	mov	r14, &__llvm_gcov_ctr.36+42
+	mov	r13, &__llvm_gcov_ctr.36+44
+	mov	r12, &__llvm_gcov_ctr.36+46
 	mov	68(r1), r12
 	mov	66(r1), r13
 	mov	64(r1), r14
@@ -6859,14 +10410,45 @@ fminl:                                  ; @fminl
 	.type	l64a,@function
 l64a:                                   ; @l64a
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#10, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.37+6, r14
+	mov	&__llvm_gcov_ctr.37+4, r11
+	mov	&__llvm_gcov_ctr.37+2, r10
+	mov	&__llvm_gcov_ctr.37, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.37
+	mov	r10, &__llvm_gcov_ctr.37+2
+	mov	r15, &__llvm_gcov_ctr.37+4
+	mov	r14, &__llvm_gcov_ctr.37+6
 	mov	r13, 8(r1)
 	mov	r12, 6(r1)
 	mov	&.L__profc_l64a+6, r12
-	mov	&.L__profc_l64a+4, r11
+	mov	&.L__profc_l64a+4, r10
 	mov	&.L__profc_l64a+2, r14
 	mov	&.L__profc_l64a, r15
 	inc	r15
@@ -6878,14 +10460,13 @@ l64a:                                   ; @l64a
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_l64a
@@ -6940,6 +10521,33 @@ l64a:                                   ; @l64a
 	mov.b	r13, 0(r12)
 	jmp	.LBB37_3
 .LBB37_3:                               ;   in Loop: Header=BB37_1 Depth=1
+	mov	&__llvm_gcov_ctr.37+14, r12
+	mov	&__llvm_gcov_ctr.37+12, r11
+	mov	&__llvm_gcov_ctr.37+10, r14
+	mov	&__llvm_gcov_ctr.37+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.37+8
+	mov	r14, &__llvm_gcov_ctr.37+10
+	mov	r13, &__llvm_gcov_ctr.37+12
+	mov	r12, &__llvm_gcov_ctr.37+14
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
@@ -6974,6 +10582,9 @@ l64a:                                   ; @l64a
 	mov	#l64a.s, r12
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end37:
 	.size	l64a, .Lfunc_end37-l64a
@@ -6983,11 +10594,41 @@ l64a:                                   ; @l64a
 	.type	srand,@function
 srand:                                  ; @srand
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#2, r1
+	mov	&__llvm_gcov_ctr.38+6, r13
+	mov	&__llvm_gcov_ctr.38+4, r11
+	mov	&__llvm_gcov_ctr.38+2, r15
+	mov	&__llvm_gcov_ctr.38, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.38
+	mov	r15, &__llvm_gcov_ctr.38+2
+	mov	r14, &__llvm_gcov_ctr.38+4
+	mov	r13, &__llvm_gcov_ctr.38+6
 	mov	r12, 0(r1)
 	mov	&.L__profc_srand+6, r12
-	mov	&.L__profc_srand+4, r11
+	mov	&.L__profc_srand+4, r10
 	mov	&.L__profc_srand+2, r14
 	mov	&.L__profc_srand, r15
 	inc	r15
@@ -6999,14 +10640,13 @@ srand:                                  ; @srand
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_srand
@@ -7021,6 +10661,8 @@ srand:                                  ; @srand
 	clr	&seed+2
 	add	#2, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end38:
 	.size	srand, .Lfunc_end38-srand
@@ -7034,10 +10676,10 @@ rand:                                   ; @rand
 	push	r9
 	push	r10
 	sub	#2, r1
-	mov	&.L__profc_rand+6, r12
-	mov	&.L__profc_rand+4, r11
-	mov	&.L__profc_rand+2, r14
-	mov	&.L__profc_rand, r15
+	mov	&__llvm_gcov_ctr.39+6, r12
+	mov	&__llvm_gcov_ctr.39+4, r11
+	mov	&__llvm_gcov_ctr.39+2, r14
+	mov	&__llvm_gcov_ctr.39, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7053,9 +10695,36 @@ rand:                                   ; @rand
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.39
+	mov	r14, &__llvm_gcov_ctr.39+2
+	mov	r13, &__llvm_gcov_ctr.39+4
+	mov	r12, &__llvm_gcov_ctr.39+6
+	mov	&.L__profc_rand+6, r12
+	mov	&.L__profc_rand+4, r10
+	mov	&.L__profc_rand+2, r14
+	mov	&.L__profc_rand, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rand
@@ -7121,6 +10790,7 @@ rand:                                   ; @rand
 	.type	insque,@function
 insque:                                 ; @insque
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#8, r1
 	mov	r12, 6(r1)
@@ -7161,10 +10831,70 @@ insque:                                 ; @insque
 	jne	.LBB40_2
 	jmp	.LBB40_1
 .LBB40_1:
+	mov	&__llvm_gcov_ctr.40+14, r12
+	mov	&__llvm_gcov_ctr.40+12, r11
+	mov	&__llvm_gcov_ctr.40+10, r14
+	mov	&__llvm_gcov_ctr.40+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.40+8
+	mov	r14, &__llvm_gcov_ctr.40+10
+	mov	r13, &__llvm_gcov_ctr.40+12
+	mov	r12, &__llvm_gcov_ctr.40+14
 	mov	&.L__profc_insque+14, r12
-	mov	&.L__profc_insque+12, r11
+	mov	&.L__profc_insque+12, r10
 	mov	&.L__profc_insque+10, r14
 	mov	&.L__profc_insque+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_insque+8
+	mov	r14, &.L__profc_insque+10
+	mov	r13, &.L__profc_insque+12
+	mov	r12, &.L__profc_insque+14
+	mov	2(r1), r12
+	clr	2(r12)
+	mov	2(r1), r12
+	clr	0(r12)
+	jmp	.LBB40_4
+.LBB40_2:
+	mov	&__llvm_gcov_ctr.40+6, r12
+	mov	&__llvm_gcov_ctr.40+4, r11
+	mov	&__llvm_gcov_ctr.40+2, r14
+	mov	&__llvm_gcov_ctr.40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7184,16 +10914,10 @@ insque:                                 ; @insque
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_insque+8
-	mov	r14, &.L__profc_insque+10
-	mov	r13, &.L__profc_insque+12
-	mov	r12, &.L__profc_insque+14
-	mov	2(r1), r12
-	clr	2(r12)
-	mov	2(r1), r12
-	clr	0(r12)
-	jmp	.LBB40_4
-.LBB40_2:
+	mov	r15, &__llvm_gcov_ctr.40
+	mov	r14, &__llvm_gcov_ctr.40+2
+	mov	r13, &__llvm_gcov_ctr.40+4
+	mov	r12, &__llvm_gcov_ctr.40+6
 	mov	0(r1), r12
 	mov	0(r12), r13
 	mov	2(r1), r12
@@ -7210,10 +10934,10 @@ insque:                                 ; @insque
 	jeq	.LBB40_4
 	jmp	.LBB40_3
 .LBB40_3:
-	mov	&.L__profc_insque+22, r12
-	mov	&.L__profc_insque+20, r11
-	mov	&.L__profc_insque+18, r14
-	mov	&.L__profc_insque+16, r15
+	mov	&__llvm_gcov_ctr.40+22, r12
+	mov	&__llvm_gcov_ctr.40+20, r11
+	mov	&__llvm_gcov_ctr.40+18, r14
+	mov	&__llvm_gcov_ctr.40+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7229,8 +10953,35 @@ insque:                                 ; @insque
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.40+16
+	mov	r14, &__llvm_gcov_ctr.40+18
+	mov	r13, &__llvm_gcov_ctr.40+20
+	mov	r12, &__llvm_gcov_ctr.40+22
+	mov	&.L__profc_insque+22, r12
+	mov	&.L__profc_insque+20, r10
+	mov	&.L__profc_insque+18, r14
+	mov	&.L__profc_insque+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_insque+16
@@ -7244,6 +10995,7 @@ insque:                                 ; @insque
 .LBB40_4:
 	add	#8, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end40:
 	.size	insque, .Lfunc_end40-insque
@@ -7253,11 +11005,41 @@ insque:                                 ; @insque
 	.type	remque,@function
 remque:                                 ; @remque
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.41+6, r13
+	mov	&__llvm_gcov_ctr.41+4, r11
+	mov	&__llvm_gcov_ctr.41+2, r15
+	mov	&__llvm_gcov_ctr.41, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.41
+	mov	r15, &__llvm_gcov_ctr.41+2
+	mov	r14, &__llvm_gcov_ctr.41+4
+	mov	r13, &__llvm_gcov_ctr.41+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_remque+6, r12
-	mov	&.L__profc_remque+4, r11
+	mov	&.L__profc_remque+4, r10
 	mov	&.L__profc_remque+2, r14
 	mov	&.L__profc_remque, r15
 	inc	r15
@@ -7269,14 +11051,13 @@ remque:                                 ; @remque
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_remque
@@ -7291,10 +11072,10 @@ remque:                                 ; @remque
 	jeq	.LBB41_2
 	jmp	.LBB41_1
 .LBB41_1:
-	mov	&.L__profc_remque+14, r12
-	mov	&.L__profc_remque+12, r11
-	mov	&.L__profc_remque+10, r14
-	mov	&.L__profc_remque+8, r15
+	mov	&__llvm_gcov_ctr.41+14, r12
+	mov	&__llvm_gcov_ctr.41+12, r11
+	mov	&__llvm_gcov_ctr.41+10, r14
+	mov	&__llvm_gcov_ctr.41+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7310,8 +11091,35 @@ remque:                                 ; @remque
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.41+8
+	mov	r14, &__llvm_gcov_ctr.41+10
+	mov	r13, &__llvm_gcov_ctr.41+12
+	mov	r12, &__llvm_gcov_ctr.41+14
+	mov	&.L__profc_remque+14, r12
+	mov	&.L__profc_remque+12, r10
+	mov	&.L__profc_remque+10, r14
+	mov	&.L__profc_remque+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_remque+8
@@ -7330,10 +11138,10 @@ remque:                                 ; @remque
 	jeq	.LBB41_4
 	jmp	.LBB41_3
 .LBB41_3:
-	mov	&.L__profc_remque+22, r12
-	mov	&.L__profc_remque+20, r11
-	mov	&.L__profc_remque+18, r14
-	mov	&.L__profc_remque+16, r15
+	mov	&__llvm_gcov_ctr.41+22, r12
+	mov	&__llvm_gcov_ctr.41+20, r11
+	mov	&__llvm_gcov_ctr.41+18, r14
+	mov	&__llvm_gcov_ctr.41+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7349,8 +11157,35 @@ remque:                                 ; @remque
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.41+16
+	mov	r14, &__llvm_gcov_ctr.41+18
+	mov	r13, &__llvm_gcov_ctr.41+20
+	mov	r12, &__llvm_gcov_ctr.41+22
+	mov	&.L__profc_remque+22, r12
+	mov	&.L__profc_remque+20, r10
+	mov	&.L__profc_remque+18, r14
+	mov	&.L__profc_remque+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_remque+16
@@ -7365,6 +11200,8 @@ remque:                                 ; @remque
 .LBB41_4:
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end41:
 	.size	remque, .Lfunc_end41-remque
@@ -7374,10 +11211,11 @@ remque:                                 ; @remque
 	.type	lsearch,@function
 lsearch:                                ; @lsearch
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#30, r1
-	mov	36(r1), r11
+	mov	38(r1), r11
 	mov	r12, 26(r1)
 	mov	r13, 24(r1)
 	mov	r14, 22(r1)
@@ -7453,7 +11291,7 @@ lsearch:                                ; @lsearch
 	mov	r15, &.L__profc_lsearch+10
 	mov	r14, &.L__profc_lsearch+12
 	mov	r12, &.L__profc_lsearch+14
-	mov	36(r1), r12
+	mov	38(r1), r12
 	mov	r12, 6(r1)                      ; 2-byte Folded Spill
 	mov	26(r1), r12
 	mov	r12, 10(r1)                     ; 2-byte Folded Spill
@@ -7472,10 +11310,109 @@ lsearch:                                ; @lsearch
 	jmp	.LBB42_3
 .LBB42_3:
 	mov	12(r1), r13                     ; 2-byte Folded Reload
+	mov	&__llvm_gcov_ctr.42+6, r12
+	mov	&__llvm_gcov_ctr.42+4, r10
+	mov	&__llvm_gcov_ctr.42+2, r15
+	mov	&__llvm_gcov_ctr.42, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r8
+	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r12
+	mov	r11, &__llvm_gcov_ctr.42
+	mov	r15, &__llvm_gcov_ctr.42+2
+	mov	r14, &__llvm_gcov_ctr.42+4
+	mov	r12, &__llvm_gcov_ctr.42+6
 	mov	&.L__profc_lsearch+22, r12
-	mov	&.L__profc_lsearch+20, r10
+	mov	&.L__profc_lsearch+20, r9
 	mov	&.L__profc_lsearch+18, r15
 	mov	&.L__profc_lsearch+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &.L__profc_lsearch+16
+	mov	r15, &.L__profc_lsearch+18
+	mov	r14, &.L__profc_lsearch+20
+	mov	r12, &.L__profc_lsearch+22
+	mov	18(r1), r12
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	mov	14(r1), r12
+	call	#__mspabi_mpyi
+	mov	r12, r13
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	add	r13, r12
+	mov	r12, 28(r1)
+	jmp	.LBB42_7
+.LBB42_4:                               ;   in Loop: Header=BB42_1 Depth=1
+	jmp	.LBB42_5
+.LBB42_5:                               ;   in Loop: Header=BB42_1 Depth=1
+	mov	&__llvm_gcov_ctr.42+14, r12
+	mov	&__llvm_gcov_ctr.42+12, r11
+	mov	&__llvm_gcov_ctr.42+10, r14
+	mov	&__llvm_gcov_ctr.42+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.42+8
+	mov	r14, &__llvm_gcov_ctr.42+10
+	mov	r13, &__llvm_gcov_ctr.42+12
+	mov	r12, &__llvm_gcov_ctr.42+14
+	mov	14(r1), r12
+	inc	r12
+	mov	r12, 14(r1)
+	jmp	.LBB42_1
+.LBB42_6:
+	mov	12(r1), r13                     ; 2-byte Folded Reload
+	mov	&__llvm_gcov_ctr.42+22, r12
+	mov	&__llvm_gcov_ctr.42+20, r10
+	mov	&__llvm_gcov_ctr.42+18, r15
+	mov	&__llvm_gcov_ctr.42+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -7495,28 +11432,10 @@ lsearch:                                ; @lsearch
 	mov	#1, r10
 	bic	r9, r10
 	add	r10, r12
-	mov	r11, &.L__profc_lsearch+16
-	mov	r15, &.L__profc_lsearch+18
-	mov	r14, &.L__profc_lsearch+20
-	mov	r12, &.L__profc_lsearch+22
-	mov	18(r1), r12
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	mov	14(r1), r12
-	call	#__mspabi_mpyi
-	mov	r12, r13
-	mov	4(r1), r12                      ; 2-byte Folded Reload
-	add	r13, r12
-	mov	r12, 28(r1)
-	jmp	.LBB42_7
-.LBB42_4:                               ;   in Loop: Header=BB42_1 Depth=1
-	jmp	.LBB42_5
-.LBB42_5:                               ;   in Loop: Header=BB42_1 Depth=1
-	mov	14(r1), r12
-	inc	r12
-	mov	r12, 14(r1)
-	jmp	.LBB42_1
-.LBB42_6:
-	mov	12(r1), r13                     ; 2-byte Folded Reload
+	mov	r11, &__llvm_gcov_ctr.42+16
+	mov	r15, &__llvm_gcov_ctr.42+18
+	mov	r14, &__llvm_gcov_ctr.42+20
+	mov	r12, &__llvm_gcov_ctr.42+22
 	mov	16(r1), r14
 	inc	r14
 	mov	22(r1), r12
@@ -7541,6 +11460,7 @@ lsearch:                                ; @lsearch
 	add	#30, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end42:
 	.size	lsearch, .Lfunc_end42-lsearch
@@ -7550,10 +11470,11 @@ lsearch:                                ; @lsearch
 	.type	lfind,@function
 lfind:                                  ; @lfind
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#26, r1
-	mov	32(r1), r11
+	mov	34(r1), r11
 	mov	r12, 22(r1)
 	mov	r13, 20(r1)
 	mov	r14, 18(r1)
@@ -7629,7 +11550,7 @@ lfind:                                  ; @lfind
 	mov	r15, &.L__profc_lfind+10
 	mov	r14, &.L__profc_lfind+12
 	mov	r12, &.L__profc_lfind+14
-	mov	32(r1), r12
+	mov	34(r1), r12
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
 	mov	22(r1), r12
 	mov	r12, 6(r1)                      ; 2-byte Folded Spill
@@ -7648,10 +11569,10 @@ lfind:                                  ; @lfind
 	jmp	.LBB43_3
 .LBB43_3:
 	mov	8(r1), r13                      ; 2-byte Folded Reload
-	mov	&.L__profc_lfind+22, r12
-	mov	&.L__profc_lfind+20, r10
-	mov	&.L__profc_lfind+18, r15
-	mov	&.L__profc_lfind+16, r11
+	mov	&__llvm_gcov_ctr.43+6, r12
+	mov	&__llvm_gcov_ctr.43+4, r10
+	mov	&__llvm_gcov_ctr.43+2, r15
+	mov	&__llvm_gcov_ctr.43, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -7667,8 +11588,35 @@ lfind:                                  ; @lfind
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r12
+	mov	r11, &__llvm_gcov_ctr.43
+	mov	r15, &__llvm_gcov_ctr.43+2
+	mov	r14, &__llvm_gcov_ctr.43+4
+	mov	r12, &__llvm_gcov_ctr.43+6
+	mov	&.L__profc_lfind+22, r12
+	mov	&.L__profc_lfind+20, r9
+	mov	&.L__profc_lfind+18, r15
+	mov	&.L__profc_lfind+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r12
 	mov	r11, &.L__profc_lfind+16
@@ -7687,11 +11635,65 @@ lfind:                                  ; @lfind
 .LBB43_4:                               ;   in Loop: Header=BB43_1 Depth=1
 	jmp	.LBB43_5
 .LBB43_5:                               ;   in Loop: Header=BB43_1 Depth=1
+	mov	&__llvm_gcov_ctr.43+14, r12
+	mov	&__llvm_gcov_ctr.43+12, r11
+	mov	&__llvm_gcov_ctr.43+10, r14
+	mov	&__llvm_gcov_ctr.43+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.43+8
+	mov	r14, &__llvm_gcov_ctr.43+10
+	mov	r13, &__llvm_gcov_ctr.43+12
+	mov	r12, &__llvm_gcov_ctr.43+14
 	mov	10(r1), r12
 	inc	r12
 	mov	r12, 10(r1)
 	jmp	.LBB43_1
 .LBB43_6:
+	mov	&__llvm_gcov_ctr.43+22, r12
+	mov	&__llvm_gcov_ctr.43+20, r11
+	mov	&__llvm_gcov_ctr.43+18, r14
+	mov	&__llvm_gcov_ctr.43+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.43+16
+	mov	r14, &__llvm_gcov_ctr.43+18
+	mov	r13, &__llvm_gcov_ctr.43+20
+	mov	r12, &__llvm_gcov_ctr.43+22
 	clr	24(r1)
 	jmp	.LBB43_7
 .LBB43_7:
@@ -7699,6 +11701,7 @@ lfind:                                  ; @lfind
 	add	#26, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end43:
 	.size	lfind, .Lfunc_end43-lfind
@@ -7708,6 +11711,7 @@ lfind:                                  ; @lfind
 	.type	abs,@function
 abs:                                    ; @abs
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#4, r1
 	mov	r12, 2(r1)
@@ -7743,10 +11747,68 @@ abs:                                    ; @abs
 	jl	.LBB44_2
 	jmp	.LBB44_1
 .LBB44_1:
+	mov	&__llvm_gcov_ctr.44+6, r12
+	mov	&__llvm_gcov_ctr.44+4, r11
+	mov	&__llvm_gcov_ctr.44+2, r14
+	mov	&__llvm_gcov_ctr.44, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.44
+	mov	r14, &__llvm_gcov_ctr.44+2
+	mov	r13, &__llvm_gcov_ctr.44+4
+	mov	r12, &__llvm_gcov_ctr.44+6
 	mov	&.L__profc_abs+14, r12
-	mov	&.L__profc_abs+12, r11
+	mov	&.L__profc_abs+12, r10
 	mov	&.L__profc_abs+10, r14
 	mov	&.L__profc_abs+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_abs+8
+	mov	r14, &.L__profc_abs+10
+	mov	r13, &.L__profc_abs+12
+	mov	r12, &.L__profc_abs+14
+	mov	2(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB44_3
+.LBB44_2:
+	mov	&__llvm_gcov_ctr.44+14, r12
+	mov	&__llvm_gcov_ctr.44+12, r11
+	mov	&__llvm_gcov_ctr.44+10, r14
+	mov	&__llvm_gcov_ctr.44+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7766,14 +11828,10 @@ abs:                                    ; @abs
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_abs+8
-	mov	r14, &.L__profc_abs+10
-	mov	r13, &.L__profc_abs+12
-	mov	r12, &.L__profc_abs+14
-	mov	2(r1), r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB44_3
-.LBB44_2:
+	mov	r15, &__llvm_gcov_ctr.44+8
+	mov	r14, &__llvm_gcov_ctr.44+10
+	mov	r13, &__llvm_gcov_ctr.44+12
+	mov	r12, &__llvm_gcov_ctr.44+14
 	mov	2(r1), r13
 	clr	r12
 	sub	r13, r12
@@ -7783,6 +11841,7 @@ abs:                                    ; @abs
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	add	#4, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end44:
 	.size	abs, .Lfunc_end44-abs
@@ -7792,6 +11851,7 @@ abs:                                    ; @abs
 	.type	atoi,@function
 atoi:                                   ; @atoi
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 8(r1)
@@ -7834,10 +11894,10 @@ atoi:                                   ; @atoi
 	jeq	.LBB45_3
 	jmp	.LBB45_2
 .LBB45_2:                               ;   in Loop: Header=BB45_1 Depth=1
-	mov	&.L__profc_atoi+14, r12
-	mov	&.L__profc_atoi+12, r11
-	mov	&.L__profc_atoi+10, r14
-	mov	&.L__profc_atoi+8, r15
+	mov	&__llvm_gcov_ctr.45+6, r12
+	mov	&__llvm_gcov_ctr.45+4, r11
+	mov	&__llvm_gcov_ctr.45+2, r14
+	mov	&__llvm_gcov_ctr.45, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7853,8 +11913,35 @@ atoi:                                   ; @atoi
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.45
+	mov	r14, &__llvm_gcov_ctr.45+2
+	mov	r13, &__llvm_gcov_ctr.45+4
+	mov	r12, &__llvm_gcov_ctr.45+6
+	mov	&.L__profc_atoi+14, r12
+	mov	&.L__profc_atoi+12, r10
+	mov	&.L__profc_atoi+10, r14
+	mov	&.L__profc_atoi+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoi+8
@@ -7879,8 +11966,36 @@ atoi:                                   ; @atoi
 	jne	.LBB45_8
 	jmp	.LBB45_5
 .LBB45_5:
+	mov	&__llvm_gcov_ctr.45+14, r12
+	mov	&__llvm_gcov_ctr.45+12, r11
+	mov	&__llvm_gcov_ctr.45+10, r14
+	mov	&__llvm_gcov_ctr.45+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.45+8
+	mov	r14, &__llvm_gcov_ctr.45+10
+	mov	r13, &__llvm_gcov_ctr.45+12
+	mov	r12, &__llvm_gcov_ctr.45+14
 	mov	&.L__profc_atoi+30, r12
-	mov	&.L__profc_atoi+28, r11
+	mov	&.L__profc_atoi+28, r10
 	mov	&.L__profc_atoi+26, r14
 	mov	&.L__profc_atoi+24, r15
 	inc	r15
@@ -7892,14 +12007,13 @@ atoi:                                   ; @atoi
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoi+24
@@ -7909,10 +12023,10 @@ atoi:                                   ; @atoi
 	mov	#1, 4(r1)
 	jmp	.LBB45_7
 .LBB45_6:
-	mov	&.L__profc_atoi+38, r12
-	mov	&.L__profc_atoi+36, r11
-	mov	&.L__profc_atoi+34, r14
-	mov	&.L__profc_atoi+32, r15
+	mov	&__llvm_gcov_ctr.45+22, r12
+	mov	&__llvm_gcov_ctr.45+20, r11
+	mov	&__llvm_gcov_ctr.45+18, r14
+	mov	&__llvm_gcov_ctr.45+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7928,8 +12042,35 @@ atoi:                                   ; @atoi
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.45+16
+	mov	r14, &__llvm_gcov_ctr.45+18
+	mov	r13, &__llvm_gcov_ctr.45+20
+	mov	r12, &__llvm_gcov_ctr.45+22
+	mov	&.L__profc_atoi+38, r12
+	mov	&.L__profc_atoi+36, r10
+	mov	&.L__profc_atoi+34, r14
+	mov	&.L__profc_atoi+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoi+32
@@ -7980,10 +12121,10 @@ atoi:                                   ; @atoi
 	jeq	.LBB45_11
 	jmp	.LBB45_10
 .LBB45_10:                              ;   in Loop: Header=BB45_9 Depth=1
-	mov	&.L__profc_atoi+46, r12
-	mov	&.L__profc_atoi+44, r11
-	mov	&.L__profc_atoi+42, r14
-	mov	&.L__profc_atoi+40, r15
+	mov	&__llvm_gcov_ctr.45+30, r12
+	mov	&__llvm_gcov_ctr.45+28, r11
+	mov	&__llvm_gcov_ctr.45+26, r14
+	mov	&__llvm_gcov_ctr.45+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -7999,8 +12140,35 @@ atoi:                                   ; @atoi
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.45+24
+	mov	r14, &__llvm_gcov_ctr.45+26
+	mov	r13, &__llvm_gcov_ctr.45+28
+	mov	r12, &__llvm_gcov_ctr.45+30
+	mov	&.L__profc_atoi+46, r12
+	mov	&.L__profc_atoi+44, r10
+	mov	&.L__profc_atoi+42, r14
+	mov	&.L__profc_atoi+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoi+40
@@ -8026,10 +12194,68 @@ atoi:                                   ; @atoi
 	jeq	.LBB45_13
 	jmp	.LBB45_12
 .LBB45_12:
+	mov	&__llvm_gcov_ctr.45+38, r12
+	mov	&__llvm_gcov_ctr.45+36, r11
+	mov	&__llvm_gcov_ctr.45+34, r14
+	mov	&__llvm_gcov_ctr.45+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.45+32
+	mov	r14, &__llvm_gcov_ctr.45+34
+	mov	r13, &__llvm_gcov_ctr.45+36
+	mov	r12, &__llvm_gcov_ctr.45+38
 	mov	&.L__profc_atoi+54, r12
-	mov	&.L__profc_atoi+52, r11
+	mov	&.L__profc_atoi+52, r10
 	mov	&.L__profc_atoi+50, r14
 	mov	&.L__profc_atoi+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_atoi+48
+	mov	r14, &.L__profc_atoi+50
+	mov	r13, &.L__profc_atoi+52
+	mov	r12, &.L__profc_atoi+54
+	mov	6(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB45_14
+.LBB45_13:
+	mov	&__llvm_gcov_ctr.45+46, r12
+	mov	&__llvm_gcov_ctr.45+44, r11
+	mov	&__llvm_gcov_ctr.45+42, r14
+	mov	&__llvm_gcov_ctr.45+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8049,14 +12275,10 @@ atoi:                                   ; @atoi
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_atoi+48
-	mov	r14, &.L__profc_atoi+50
-	mov	r13, &.L__profc_atoi+52
-	mov	r12, &.L__profc_atoi+54
-	mov	6(r1), r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB45_14
-.LBB45_13:
+	mov	r15, &__llvm_gcov_ctr.45+40
+	mov	r14, &__llvm_gcov_ctr.45+42
+	mov	r13, &__llvm_gcov_ctr.45+44
+	mov	r12, &__llvm_gcov_ctr.45+46
 	mov	6(r1), r13
 	clr	r12
 	sub	r13, r12
@@ -8066,6 +12288,7 @@ atoi:                                   ; @atoi
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	add	#10, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end45:
 	.size	atoi, .Lfunc_end45-atoi
@@ -8075,6 +12298,7 @@ atoi:                                   ; @atoi
 	.type	atol,@function
 atol:                                   ; @atol
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#18, r1
 	mov	r12, 16(r1)
@@ -8118,10 +12342,10 @@ atol:                                   ; @atol
 	jeq	.LBB46_3
 	jmp	.LBB46_2
 .LBB46_2:                               ;   in Loop: Header=BB46_1 Depth=1
-	mov	&.L__profc_atol+14, r12
-	mov	&.L__profc_atol+12, r11
-	mov	&.L__profc_atol+10, r14
-	mov	&.L__profc_atol+8, r15
+	mov	&__llvm_gcov_ctr.46+6, r12
+	mov	&__llvm_gcov_ctr.46+4, r11
+	mov	&__llvm_gcov_ctr.46+2, r14
+	mov	&__llvm_gcov_ctr.46, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8137,8 +12361,35 @@ atol:                                   ; @atol
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.46
+	mov	r14, &__llvm_gcov_ctr.46+2
+	mov	r13, &__llvm_gcov_ctr.46+4
+	mov	r12, &__llvm_gcov_ctr.46+6
+	mov	&.L__profc_atol+14, r12
+	mov	&.L__profc_atol+12, r10
+	mov	&.L__profc_atol+10, r14
+	mov	&.L__profc_atol+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atol+8
@@ -8163,8 +12414,36 @@ atol:                                   ; @atol
 	jne	.LBB46_8
 	jmp	.LBB46_5
 .LBB46_5:
+	mov	&__llvm_gcov_ctr.46+14, r12
+	mov	&__llvm_gcov_ctr.46+12, r11
+	mov	&__llvm_gcov_ctr.46+10, r14
+	mov	&__llvm_gcov_ctr.46+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.46+8
+	mov	r14, &__llvm_gcov_ctr.46+10
+	mov	r13, &__llvm_gcov_ctr.46+12
+	mov	r12, &__llvm_gcov_ctr.46+14
 	mov	&.L__profc_atol+30, r12
-	mov	&.L__profc_atol+28, r11
+	mov	&.L__profc_atol+28, r10
 	mov	&.L__profc_atol+26, r14
 	mov	&.L__profc_atol+24, r15
 	inc	r15
@@ -8176,14 +12455,13 @@ atol:                                   ; @atol
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atol+24
@@ -8193,10 +12471,10 @@ atol:                                   ; @atol
 	mov	#1, 10(r1)
 	jmp	.LBB46_7
 .LBB46_6:
-	mov	&.L__profc_atol+38, r12
-	mov	&.L__profc_atol+36, r11
-	mov	&.L__profc_atol+34, r14
-	mov	&.L__profc_atol+32, r15
+	mov	&__llvm_gcov_ctr.46+22, r12
+	mov	&__llvm_gcov_ctr.46+20, r11
+	mov	&__llvm_gcov_ctr.46+18, r14
+	mov	&__llvm_gcov_ctr.46+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8212,8 +12490,35 @@ atol:                                   ; @atol
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.46+16
+	mov	r14, &__llvm_gcov_ctr.46+18
+	mov	r13, &__llvm_gcov_ctr.46+20
+	mov	r12, &__llvm_gcov_ctr.46+22
+	mov	&.L__profc_atol+38, r12
+	mov	&.L__profc_atol+36, r10
+	mov	&.L__profc_atol+34, r14
+	mov	&.L__profc_atol+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atol+32
@@ -8264,10 +12569,10 @@ atol:                                   ; @atol
 	jeq	.LBB46_11
 	jmp	.LBB46_10
 .LBB46_10:                              ;   in Loop: Header=BB46_9 Depth=1
-	mov	&.L__profc_atol+46, r12
-	mov	&.L__profc_atol+44, r11
-	mov	&.L__profc_atol+42, r14
-	mov	&.L__profc_atol+40, r15
+	mov	&__llvm_gcov_ctr.46+30, r12
+	mov	&__llvm_gcov_ctr.46+28, r11
+	mov	&__llvm_gcov_ctr.46+26, r14
+	mov	&__llvm_gcov_ctr.46+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8283,9 +12588,36 @@ atol:                                   ; @atol
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 4(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.46+24
+	mov	r14, &__llvm_gcov_ctr.46+26
+	mov	r13, &__llvm_gcov_ctr.46+28
+	mov	r12, &__llvm_gcov_ctr.46+30
+	mov	&.L__profc_atol+46, r12
+	mov	&.L__profc_atol+44, r10
+	mov	&.L__profc_atol+42, r14
+	mov	&.L__profc_atol+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atol+40
@@ -8333,10 +12665,10 @@ atol:                                   ; @atol
 	jeq	.LBB46_13
 	jmp	.LBB46_12
 .LBB46_12:
-	mov	&.L__profc_atol+54, r12
-	mov	&.L__profc_atol+52, r11
-	mov	&.L__profc_atol+50, r14
-	mov	&.L__profc_atol+48, r15
+	mov	&__llvm_gcov_ctr.46+38, r12
+	mov	&__llvm_gcov_ctr.46+36, r11
+	mov	&__llvm_gcov_ctr.46+34, r14
+	mov	&__llvm_gcov_ctr.46+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8352,8 +12684,35 @@ atol:                                   ; @atol
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.46+32
+	mov	r14, &__llvm_gcov_ctr.46+34
+	mov	r13, &__llvm_gcov_ctr.46+36
+	mov	r12, &__llvm_gcov_ctr.46+38
+	mov	&.L__profc_atol+54, r12
+	mov	&.L__profc_atol+52, r10
+	mov	&.L__profc_atol+50, r14
+	mov	&.L__profc_atol+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atol+48
@@ -8366,15 +12725,42 @@ atol:                                   ; @atol
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB46_14
 .LBB46_13:
+	mov	&__llvm_gcov_ctr.46+46, r12
+	mov	&__llvm_gcov_ctr.46+44, r15
+	mov	&__llvm_gcov_ctr.46+42, r14
+	mov	&__llvm_gcov_ctr.46+40, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r15, r13
+	add	r10, r13
+	cmp	r15, r13
+	mov	r2, r9
+	mov	#1, r15
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.46+40
+	mov	r14, &__llvm_gcov_ctr.46+42
+	mov	r13, &__llvm_gcov_ctr.46+44
+	mov	r12, &__llvm_gcov_ctr.46+46
 	mov	14(r1), r14
-	mov	12(r1), r15
+	mov	12(r1), r11
 	clr	r12
 	mov	r12, r13
-	sub	r15, r13
-	tst	r15
+	sub	r11, r13
+	tst	r11
 	mov	r2, r11
 	rra	r11
-	mov	#1, r15
 	bic	r11, r15
 	add	r15, r14
 	sub	r14, r12
@@ -8386,6 +12772,7 @@ atol:                                   ; @atol
 	mov	2(r1), r13                      ; 2-byte Folded Reload
 	add	#18, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end46:
 	.size	atol, .Lfunc_end46-atol
@@ -8446,10 +12833,10 @@ atoll:                                  ; @atoll
 	jeq	.LBB47_3
 	jmp	.LBB47_2
 .LBB47_2:                               ;   in Loop: Header=BB47_1 Depth=1
-	mov	&.L__profc_atoll+14, r12
-	mov	&.L__profc_atoll+12, r11
-	mov	&.L__profc_atoll+10, r14
-	mov	&.L__profc_atoll+8, r15
+	mov	&__llvm_gcov_ctr.47+6, r12
+	mov	&__llvm_gcov_ctr.47+4, r11
+	mov	&__llvm_gcov_ctr.47+2, r14
+	mov	&__llvm_gcov_ctr.47, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8465,8 +12852,35 @@ atoll:                                  ; @atoll
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.47
+	mov	r14, &__llvm_gcov_ctr.47+2
+	mov	r13, &__llvm_gcov_ctr.47+4
+	mov	r12, &__llvm_gcov_ctr.47+6
+	mov	&.L__profc_atoll+14, r12
+	mov	&.L__profc_atoll+12, r10
+	mov	&.L__profc_atoll+10, r14
+	mov	&.L__profc_atoll+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoll+8
@@ -8491,8 +12905,36 @@ atoll:                                  ; @atoll
 	jne	.LBB47_8
 	jmp	.LBB47_5
 .LBB47_5:
+	mov	&__llvm_gcov_ctr.47+14, r12
+	mov	&__llvm_gcov_ctr.47+12, r11
+	mov	&__llvm_gcov_ctr.47+10, r14
+	mov	&__llvm_gcov_ctr.47+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.47+8
+	mov	r14, &__llvm_gcov_ctr.47+10
+	mov	r13, &__llvm_gcov_ctr.47+12
+	mov	r12, &__llvm_gcov_ctr.47+14
 	mov	&.L__profc_atoll+30, r12
-	mov	&.L__profc_atoll+28, r11
+	mov	&.L__profc_atoll+28, r10
 	mov	&.L__profc_atoll+26, r14
 	mov	&.L__profc_atoll+24, r15
 	inc	r15
@@ -8504,14 +12946,13 @@ atoll:                                  ; @atoll
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoll+24
@@ -8521,10 +12962,10 @@ atoll:                                  ; @atoll
 	mov	#1, 46(r1)
 	jmp	.LBB47_7
 .LBB47_6:
-	mov	&.L__profc_atoll+38, r12
-	mov	&.L__profc_atoll+36, r11
-	mov	&.L__profc_atoll+34, r14
-	mov	&.L__profc_atoll+32, r15
+	mov	&__llvm_gcov_ctr.47+22, r12
+	mov	&__llvm_gcov_ctr.47+20, r11
+	mov	&__llvm_gcov_ctr.47+18, r14
+	mov	&__llvm_gcov_ctr.47+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8540,8 +12981,35 @@ atoll:                                  ; @atoll
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.47+16
+	mov	r14, &__llvm_gcov_ctr.47+18
+	mov	r13, &__llvm_gcov_ctr.47+20
+	mov	r12, &__llvm_gcov_ctr.47+22
+	mov	&.L__profc_atoll+38, r12
+	mov	&.L__profc_atoll+36, r10
+	mov	&.L__profc_atoll+34, r14
+	mov	&.L__profc_atoll+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoll+32
@@ -8592,10 +13060,10 @@ atoll:                                  ; @atoll
 	jeq	.LBB47_13
 	jmp	.LBB47_10
 .LBB47_10:                              ;   in Loop: Header=BB47_9 Depth=1
-	mov	&.L__profc_atoll+46, r12
-	mov	&.L__profc_atoll+44, r11
-	mov	&.L__profc_atoll+42, r14
-	mov	&.L__profc_atoll+40, r15
+	mov	&__llvm_gcov_ctr.47+30, r12
+	mov	&__llvm_gcov_ctr.47+28, r11
+	mov	&__llvm_gcov_ctr.47+26, r14
+	mov	&__llvm_gcov_ctr.47+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8611,9 +13079,36 @@ atoll:                                  ; @atoll
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 30(r1)                     ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.47+24
+	mov	r14, &__llvm_gcov_ctr.47+26
+	mov	r13, &__llvm_gcov_ctr.47+28
+	mov	r12, &__llvm_gcov_ctr.47+30
+	mov	&.L__profc_atoll+46, r12
+	mov	&.L__profc_atoll+44, r10
+	mov	&.L__profc_atoll+42, r14
+	mov	&.L__profc_atoll+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoll+40
@@ -8706,10 +13201,10 @@ atoll:                                  ; @atoll
 	jeq	.LBB47_15
 	jmp	.LBB47_14
 .LBB47_14:
-	mov	&.L__profc_atoll+54, r12
-	mov	&.L__profc_atoll+52, r11
-	mov	&.L__profc_atoll+50, r14
-	mov	&.L__profc_atoll+48, r15
+	mov	&__llvm_gcov_ctr.47+38, r12
+	mov	&__llvm_gcov_ctr.47+36, r11
+	mov	&__llvm_gcov_ctr.47+34, r14
+	mov	&__llvm_gcov_ctr.47+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8725,8 +13220,35 @@ atoll:                                  ; @atoll
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.47+32
+	mov	r14, &__llvm_gcov_ctr.47+34
+	mov	r13, &__llvm_gcov_ctr.47+36
+	mov	r12, &__llvm_gcov_ctr.47+38
+	mov	&.L__profc_atoll+54, r12
+	mov	&.L__profc_atoll+52, r10
+	mov	&.L__profc_atoll+50, r14
+	mov	&.L__profc_atoll+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_atoll+48
@@ -8743,19 +13265,46 @@ atoll:                                  ; @atoll
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
 	jmp	.LBB47_18
 .LBB47_15:
-	mov	54(r1), r12
+	mov	&__llvm_gcov_ctr.47+46, r13
+	mov	&__llvm_gcov_ctr.47+44, r12
+	mov	&__llvm_gcov_ctr.47+42, r15
+	mov	&__llvm_gcov_ctr.47+40, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	52(r1), r12
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.47+40
+	mov	r15, &__llvm_gcov_ctr.47+42
+	mov	r14, &__llvm_gcov_ctr.47+44
+	mov	r13, &__llvm_gcov_ctr.47+46
+	mov	54(r1), r13
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	mov	52(r1), r13
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
 	mov	48(r1), r14
-	mov	r14, 4(r1)                      ; 2-byte Folded Spill
+	mov	r14, 6(r1)                      ; 2-byte Folded Spill
 	mov	50(r1), r13
-	mov	r13, 6(r1)                      ; 2-byte Folded Spill
+	mov	r13, 8(r1)                      ; 2-byte Folded Spill
 	tst	r13
 	mov	r2, r11
 	rra	r11
-	mov	#1, r12
-	mov	r12, 8(r1)                      ; 2-byte Folded Spill
 	mov	r12, r15
 	bic	r11, r15
 	mov	r15, 10(r1)                     ; 2-byte Folded Spill
@@ -8772,11 +13321,11 @@ atoll:                                  ; @atoll
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
 .LBB47_17:
 	mov	12(r1), r10                     ; 2-byte Folded Reload
-	mov	6(r1), r11                      ; 2-byte Folded Reload
-	mov	4(r1), r9                       ; 2-byte Folded Reload
-	mov	0(r1), r15                      ; 2-byte Folded Reload
-	mov	8(r1), r8                       ; 2-byte Folded Reload
-	mov	2(r1), r7                       ; 2-byte Folded Reload
+	mov	8(r1), r11                      ; 2-byte Folded Reload
+	mov	6(r1), r9                       ; 2-byte Folded Reload
+	mov	2(r1), r15                      ; 2-byte Folded Reload
+	mov	0(r1), r8                       ; 2-byte Folded Reload
+	mov	4(r1), r7                       ; 2-byte Folded Reload
 	mov	14(r1), r6                      ; 2-byte Folded Reload
 	clr	r14
 	mov	r14, r12
@@ -8826,9 +13375,10 @@ atoll:                                  ; @atoll
 	.type	bsearch,@function
 bsearch:                                ; @bsearch
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#16, r1
-	mov	20(r1), r11
+	mov	22(r1), r11
 	mov	r12, 12(r1)
 	mov	r13, 10(r1)
 	mov	r14, 8(r1)
@@ -8905,7 +13455,7 @@ bsearch:                                ; @bsearch
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	add	r13, r12
 	mov	r12, 4(r1)
-	mov	20(r1), r14
+	mov	22(r1), r14
 	mov	12(r1), r12
 	mov	4(r1), r13
 	call	r14
@@ -8915,10 +13465,10 @@ bsearch:                                ; @bsearch
 	jge	.LBB48_4
 	jmp	.LBB48_3
 .LBB48_3:                               ;   in Loop: Header=BB48_1 Depth=1
-	mov	&.L__profc_bsearch+22, r12
-	mov	&.L__profc_bsearch+20, r11
-	mov	&.L__profc_bsearch+18, r14
-	mov	&.L__profc_bsearch+16, r15
+	mov	&__llvm_gcov_ctr.48+14, r12
+	mov	&__llvm_gcov_ctr.48+12, r11
+	mov	&__llvm_gcov_ctr.48+10, r14
+	mov	&__llvm_gcov_ctr.48+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -8934,8 +13484,35 @@ bsearch:                                ; @bsearch
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.48+8
+	mov	r14, &__llvm_gcov_ctr.48+10
+	mov	r13, &__llvm_gcov_ctr.48+12
+	mov	r12, &__llvm_gcov_ctr.48+14
+	mov	&.L__profc_bsearch+22, r12
+	mov	&.L__profc_bsearch+20, r10
+	mov	&.L__profc_bsearch+18, r14
+	mov	&.L__profc_bsearch+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bsearch+16
@@ -8993,20 +13570,102 @@ bsearch:                                ; @bsearch
 	mov	r12, 8(r1)
 	jmp	.LBB48_7
 .LBB48_6:
+	mov	&__llvm_gcov_ctr.48+22, r12
+	mov	&__llvm_gcov_ctr.48+20, r11
+	mov	&__llvm_gcov_ctr.48+18, r14
+	mov	&__llvm_gcov_ctr.48+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.48+16
+	mov	r14, &__llvm_gcov_ctr.48+18
+	mov	r13, &__llvm_gcov_ctr.48+20
+	mov	r12, &__llvm_gcov_ctr.48+22
 	mov	4(r1), r12
 	mov	r12, 14(r1)
 	jmp	.LBB48_10
 .LBB48_7:                               ;   in Loop: Header=BB48_1 Depth=1
+	mov	&__llvm_gcov_ctr.48+30, r12
+	mov	&__llvm_gcov_ctr.48+28, r11
+	mov	&__llvm_gcov_ctr.48+26, r14
+	mov	&__llvm_gcov_ctr.48+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.48+24
+	mov	r14, &__llvm_gcov_ctr.48+26
+	mov	r13, &__llvm_gcov_ctr.48+28
+	mov	r12, &__llvm_gcov_ctr.48+30
 	jmp	.LBB48_8
 .LBB48_8:                               ;   in Loop: Header=BB48_1 Depth=1
 	jmp	.LBB48_1
 .LBB48_9:
+	mov	&__llvm_gcov_ctr.48+6, r12
+	mov	&__llvm_gcov_ctr.48+4, r11
+	mov	&__llvm_gcov_ctr.48+2, r14
+	mov	&__llvm_gcov_ctr.48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.48
+	mov	r14, &__llvm_gcov_ctr.48+2
+	mov	r13, &__llvm_gcov_ctr.48+4
+	mov	r12, &__llvm_gcov_ctr.48+6
 	clr	14(r1)
 	jmp	.LBB48_10
 .LBB48_10:
 	mov	14(r1), r12
 	add	#16, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end48:
 	.size	bsearch, .Lfunc_end48-bsearch
@@ -9016,10 +13675,11 @@ bsearch:                                ; @bsearch
 	.type	bsearch_r,@function
 bsearch_r:                              ; @bsearch_r
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#20, r1
+	mov	28(r1), r11
 	mov	26(r1), r11
-	mov	24(r1), r11
 	mov	r12, 16(r1)
 	mov	r13, 14(r1)
 	mov	r14, 12(r1)
@@ -9099,10 +13759,10 @@ bsearch_r:                              ; @bsearch_r
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	add	r13, r12
 	mov	r12, 2(r1)
-	mov	24(r1), r15
+	mov	26(r1), r15
 	mov	16(r1), r12
 	mov	2(r1), r13
-	mov	26(r1), r14
+	mov	28(r1), r14
 	call	r15
 	mov	r12, 4(r1)
 	mov	4(r1), r12
@@ -9110,10 +13770,10 @@ bsearch_r:                              ; @bsearch_r
 	jne	.LBB49_4
 	jmp	.LBB49_3
 .LBB49_3:
-	mov	&.L__profc_bsearch_r+22, r12
-	mov	&.L__profc_bsearch_r+20, r11
-	mov	&.L__profc_bsearch_r+18, r14
-	mov	&.L__profc_bsearch_r+16, r15
+	mov	&__llvm_gcov_ctr.49+6, r12
+	mov	&__llvm_gcov_ctr.49+4, r11
+	mov	&__llvm_gcov_ctr.49+2, r14
+	mov	&__llvm_gcov_ctr.49, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9129,8 +13789,35 @@ bsearch_r:                              ; @bsearch_r
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.49
+	mov	r14, &__llvm_gcov_ctr.49+2
+	mov	r13, &__llvm_gcov_ctr.49+4
+	mov	r12, &__llvm_gcov_ctr.49+6
+	mov	&.L__profc_bsearch_r+22, r12
+	mov	&.L__profc_bsearch_r+20, r10
+	mov	&.L__profc_bsearch_r+18, r14
+	mov	&.L__profc_bsearch_r+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bsearch_r+16
@@ -9146,10 +13833,10 @@ bsearch_r:                              ; @bsearch_r
 	jl	.LBB49_6
 	jmp	.LBB49_5
 .LBB49_5:                               ;   in Loop: Header=BB49_1 Depth=1
-	mov	&.L__profc_bsearch_r+30, r12
-	mov	&.L__profc_bsearch_r+28, r11
-	mov	&.L__profc_bsearch_r+26, r14
-	mov	&.L__profc_bsearch_r+24, r15
+	mov	&__llvm_gcov_ctr.49+14, r12
+	mov	&__llvm_gcov_ctr.49+12, r11
+	mov	&__llvm_gcov_ctr.49+10, r14
+	mov	&__llvm_gcov_ctr.49+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9165,8 +13852,35 @@ bsearch_r:                              ; @bsearch_r
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.49+8
+	mov	r14, &__llvm_gcov_ctr.49+10
+	mov	r13, &__llvm_gcov_ctr.49+12
+	mov	r12, &__llvm_gcov_ctr.49+14
+	mov	&.L__profc_bsearch_r+30, r12
+	mov	&.L__profc_bsearch_r+28, r10
+	mov	&.L__profc_bsearch_r+26, r14
+	mov	&.L__profc_bsearch_r+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bsearch_r+24
@@ -9184,36 +13898,10 @@ bsearch_r:                              ; @bsearch_r
 .LBB49_6:                               ;   in Loop: Header=BB49_1 Depth=1
 	jmp	.LBB49_7
 .LBB49_7:                               ;   in Loop: Header=BB49_1 Depth=1
-	mov	6(r1), r12
-	rra	r12
-	mov	r12, 6(r1)
-	jmp	.LBB49_1
-.LBB49_8:
-	clr	18(r1)
-	jmp	.LBB49_9
-.LBB49_9:
-	mov	18(r1), r12
-	add	#20, r1
-	pop	r10
-	ret
-.Lfunc_end49:
-	.size	bsearch_r, .Lfunc_end49-bsearch_r
-                                        ; -- End function
-	.globl	div                             ; -- Begin function div
-	.p2align	1
-	.type	div,@function
-div:                                    ; @div
-; %bb.0:
-	push	r10
-	sub	#8, r1
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 6(r1)
-	mov	r14, 4(r1)
-	mov	&.L__profc_div+6, r12
-	mov	&.L__profc_div+4, r11
-	mov	&.L__profc_div+2, r14
-	mov	&.L__profc_div, r15
+	mov	&__llvm_gcov_ctr.49+22, r12
+	mov	&__llvm_gcov_ctr.49+20, r11
+	mov	&__llvm_gcov_ctr.49+18, r14
+	mov	&__llvm_gcov_ctr.49+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9231,6 +13919,117 @@ div:                                    ; @div
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.49+16
+	mov	r14, &__llvm_gcov_ctr.49+18
+	mov	r13, &__llvm_gcov_ctr.49+20
+	mov	r12, &__llvm_gcov_ctr.49+22
+	mov	6(r1), r12
+	rra	r12
+	mov	r12, 6(r1)
+	jmp	.LBB49_1
+.LBB49_8:
+	mov	&__llvm_gcov_ctr.49+30, r12
+	mov	&__llvm_gcov_ctr.49+28, r11
+	mov	&__llvm_gcov_ctr.49+26, r14
+	mov	&__llvm_gcov_ctr.49+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.49+24
+	mov	r14, &__llvm_gcov_ctr.49+26
+	mov	r13, &__llvm_gcov_ctr.49+28
+	mov	r12, &__llvm_gcov_ctr.49+30
+	clr	18(r1)
+	jmp	.LBB49_9
+.LBB49_9:
+	mov	18(r1), r12
+	add	#20, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end49:
+	.size	bsearch_r, .Lfunc_end49-bsearch_r
+                                        ; -- End function
+	.globl	div                             ; -- Begin function div
+	.p2align	1
+	.type	div,@function
+div:                                    ; @div
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#8, r1
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	mov	&__llvm_gcov_ctr.50+6, r12
+	mov	&__llvm_gcov_ctr.50+4, r11
+	mov	&__llvm_gcov_ctr.50+2, r10
+	mov	&__llvm_gcov_ctr.50, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r12
+	mov	r9, &__llvm_gcov_ctr.50
+	mov	r10, &__llvm_gcov_ctr.50+2
+	mov	r15, &__llvm_gcov_ctr.50+4
+	mov	r12, &__llvm_gcov_ctr.50+6
+	mov	r13, 6(r1)
+	mov	r14, 4(r1)
+	mov	&.L__profc_div+6, r12
+	mov	&.L__profc_div+4, r10
+	mov	&.L__profc_div+2, r14
+	mov	&.L__profc_div, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_div
@@ -9252,6 +14051,9 @@ div:                                    ; @div
 	mov	r14, 2(r13)
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end50:
 	.size	div, .Lfunc_end50-div
@@ -9351,10 +14153,10 @@ imaxabs:                                ; @imaxabs
 	jne	.LBB51_8
 	jmp	.LBB51_7
 .LBB51_7:
-	mov	&.L__profc_imaxabs+14, r12
-	mov	&.L__profc_imaxabs+12, r11
-	mov	&.L__profc_imaxabs+10, r14
-	mov	&.L__profc_imaxabs+8, r15
+	mov	&__llvm_gcov_ctr.51+6, r12
+	mov	&__llvm_gcov_ctr.51+4, r11
+	mov	&__llvm_gcov_ctr.51+2, r14
+	mov	&__llvm_gcov_ctr.51, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9370,8 +14172,35 @@ imaxabs:                                ; @imaxabs
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.51
+	mov	r14, &__llvm_gcov_ctr.51+2
+	mov	r13, &__llvm_gcov_ctr.51+4
+	mov	r12, &__llvm_gcov_ctr.51+6
+	mov	&.L__profc_imaxabs+14, r12
+	mov	&.L__profc_imaxabs+12, r10
+	mov	&.L__profc_imaxabs+10, r14
+	mov	&.L__profc_imaxabs+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_imaxabs+8
@@ -9388,19 +14217,46 @@ imaxabs:                                ; @imaxabs
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
 	jmp	.LBB51_11
 .LBB51_8:
-	mov	48(r1), r12
+	mov	&__llvm_gcov_ctr.51+14, r13
+	mov	&__llvm_gcov_ctr.51+12, r12
+	mov	&__llvm_gcov_ctr.51+10, r15
+	mov	&__llvm_gcov_ctr.51+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	46(r1), r12
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.51+8
+	mov	r15, &__llvm_gcov_ctr.51+10
+	mov	r14, &__llvm_gcov_ctr.51+12
+	mov	r13, &__llvm_gcov_ctr.51+14
+	mov	48(r1), r13
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	mov	46(r1), r13
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
 	mov	42(r1), r14
-	mov	r14, 4(r1)                      ; 2-byte Folded Spill
+	mov	r14, 6(r1)                      ; 2-byte Folded Spill
 	mov	44(r1), r13
-	mov	r13, 6(r1)                      ; 2-byte Folded Spill
+	mov	r13, 8(r1)                      ; 2-byte Folded Spill
 	tst	r13
 	mov	r2, r11
 	rra	r11
-	mov	#1, r12
-	mov	r12, 8(r1)                      ; 2-byte Folded Spill
 	mov	r12, r15
 	bic	r11, r15
 	mov	r15, 10(r1)                     ; 2-byte Folded Spill
@@ -9417,11 +14273,11 @@ imaxabs:                                ; @imaxabs
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
 .LBB51_10:
 	mov	12(r1), r10                     ; 2-byte Folded Reload
-	mov	6(r1), r11                      ; 2-byte Folded Reload
-	mov	4(r1), r9                       ; 2-byte Folded Reload
-	mov	0(r1), r15                      ; 2-byte Folded Reload
-	mov	8(r1), r8                       ; 2-byte Folded Reload
-	mov	2(r1), r7                       ; 2-byte Folded Reload
+	mov	8(r1), r11                      ; 2-byte Folded Reload
+	mov	6(r1), r9                       ; 2-byte Folded Reload
+	mov	2(r1), r15                      ; 2-byte Folded Reload
+	mov	0(r1), r8                       ; 2-byte Folded Reload
+	mov	4(r1), r7                       ; 2-byte Folded Reload
 	mov	14(r1), r6                      ; 2-byte Folded Reload
 	clr	r14
 	mov	r14, r12
@@ -9469,30 +14325,67 @@ imaxabs:                                ; @imaxabs
 	.type	imaxdiv,@function
 imaxdiv:                                ; @imaxdiv
 ; %bb.0:
+	push	r4
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#30, r1
-	mov	r12, 8(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	mov	52(r1), r15
-	mov	50(r1), r14
-	mov	48(r1), r13
-	mov	46(r1), r12
-	mov	44(r1), r8
-	mov	42(r1), r9
-	mov	40(r1), r10
-	mov	38(r1), r11
-	mov	r8, 28(r1)
-	mov	r9, 26(r1)
-	mov	r10, 24(r1)
-	mov	r11, 22(r1)
-	mov	r15, 20(r1)
-	mov	r14, 18(r1)
-	mov	r13, 16(r1)
-	mov	r12, 14(r1)
+	sub	#36, r1
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	mov	r12, 12(r1)                     ; 2-byte Folded Spill
+	mov	66(r1), r15
+	mov	64(r1), r14
+	mov	62(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	60(r1), r12
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	mov	58(r1), r7
+	mov	56(r1), r8
+	mov	54(r1), r9
+	mov	52(r1), r10
+	mov	&__llvm_gcov_ctr.52+6, r6
+	mov	&__llvm_gcov_ctr.52+4, r12
+	mov	&__llvm_gcov_ctr.52+2, r4
+	mov	&__llvm_gcov_ctr.52, r13
+	inc	r13
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	tst	r13
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r4
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r11
+	mov	r11, r12
+	bic	r13, r12
+	mov	0(r1), r13                      ; 2-byte Folded Reload
+	add	r12, r6
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, &__llvm_gcov_ctr.52
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.52+2
+	mov	r5, &__llvm_gcov_ctr.52+4
+	mov	r6, &__llvm_gcov_ctr.52+6
+	mov	r7, 34(r1)
+	mov	r8, 32(r1)
+	mov	r9, 30(r1)
+	mov	r10, 28(r1)
+	mov	r15, 26(r1)
+	mov	r14, 24(r1)
+	mov	r13, 22(r1)
+	mov	r12, 20(r1)
 	mov	&.L__profc_imaxdiv+6, r12
-	mov	&.L__profc_imaxdiv+4, r11
+	mov	&.L__profc_imaxdiv+4, r10
 	mov	&.L__profc_imaxdiv+2, r14
 	mov	&.L__profc_imaxdiv, r15
 	inc	r15
@@ -9504,71 +14397,74 @@ imaxdiv:                                ; @imaxdiv
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_imaxdiv
 	mov	r14, &.L__profc_imaxdiv+2
 	mov	r13, &.L__profc_imaxdiv+4
 	mov	r12, &.L__profc_imaxdiv+6
-	mov	22(r1), r8
-	mov	24(r1), r9
-	mov	26(r1), r10
-	mov	28(r1), r11
-	mov	14(r1), r12
-	mov	16(r1), r13
-	mov	18(r1), r14
-	mov	20(r1), r15
+	mov	28(r1), r8
+	mov	30(r1), r9
+	mov	32(r1), r10
+	mov	34(r1), r11
+	mov	20(r1), r12
+	mov	22(r1), r13
+	mov	24(r1), r14
+	mov	26(r1), r15
 	call	#__mspabi_divlli
 	mov	r12, r11
-	mov	8(r1), r12                      ; 2-byte Folded Reload
-	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	14(r1), r12                     ; 2-byte Folded Reload
+	mov	r11, 6(r1)                      ; 2-byte Folded Spill
 	mov	r13, r11
-	mov	0(r1), r13                      ; 2-byte Folded Reload
-	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	6(r1), r13                      ; 2-byte Folded Reload
+	mov	r11, 8(r1)                      ; 2-byte Folded Spill
 	mov	r14, r11
-	mov	2(r1), r14                      ; 2-byte Folded Reload
-	mov	r11, 4(r1)                      ; 2-byte Folded Spill
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	r11, 10(r1)                     ; 2-byte Folded Spill
 	mov	r15, r11
-	mov	4(r1), r15                      ; 2-byte Folded Reload
+	mov	10(r1), r15                     ; 2-byte Folded Reload
 	mov	r11, 6(r12)
 	mov	r15, 4(r12)
 	mov	r14, 2(r12)
 	mov	r13, 0(r12)
-	mov	22(r1), r8
-	mov	24(r1), r9
-	mov	26(r1), r10
-	mov	28(r1), r11
-	mov	14(r1), r12
-	mov	16(r1), r13
-	mov	18(r1), r14
-	mov	20(r1), r15
+	mov	28(r1), r8
+	mov	30(r1), r9
+	mov	32(r1), r10
+	mov	34(r1), r11
+	mov	20(r1), r12
+	mov	22(r1), r13
+	mov	24(r1), r14
+	mov	26(r1), r15
 	call	#__mspabi_remlli
 	mov	r12, r11
-	mov	6(r1), r12                      ; 2-byte Folded Reload
-	mov	r11, 10(r1)                     ; 2-byte Folded Spill
+	mov	12(r1), r12                     ; 2-byte Folded Reload
+	mov	r11, 16(r1)                     ; 2-byte Folded Spill
 	mov	r13, r11
-	mov	8(r1), r13                      ; 2-byte Folded Reload
-	mov	r11, 12(r1)                     ; 2-byte Folded Spill
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	r11, 18(r1)                     ; 2-byte Folded Spill
 	mov	r14, r11
-	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	16(r1), r14                     ; 2-byte Folded Reload
 	mov	r15, r10
-	mov	12(r1), r15                     ; 2-byte Folded Reload
+	mov	18(r1), r15                     ; 2-byte Folded Reload
 	mov	r10, 14(r13)
 	mov	r11, 12(r13)
 	mov	r15, 10(r13)
 	mov	r14, 8(r13)
-	add	#30, r1
+	add	#36, r1
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end52:
 	.size	imaxdiv, .Lfunc_end52-imaxdiv
@@ -9646,10 +14542,10 @@ labs:                                   ; @labs
 	jne	.LBB53_6
 	jmp	.LBB53_5
 .LBB53_5:
-	mov	&.L__profc_labs+14, r12
-	mov	&.L__profc_labs+12, r11
-	mov	&.L__profc_labs+10, r14
-	mov	&.L__profc_labs+8, r15
+	mov	&__llvm_gcov_ctr.53+6, r12
+	mov	&__llvm_gcov_ctr.53+4, r11
+	mov	&__llvm_gcov_ctr.53+2, r14
+	mov	&__llvm_gcov_ctr.53, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9665,8 +14561,35 @@ labs:                                   ; @labs
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.53
+	mov	r14, &__llvm_gcov_ctr.53+2
+	mov	r13, &__llvm_gcov_ctr.53+4
+	mov	r12, &__llvm_gcov_ctr.53+6
+	mov	&.L__profc_labs+14, r12
+	mov	&.L__profc_labs+12, r10
+	mov	&.L__profc_labs+10, r14
+	mov	&.L__profc_labs+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_labs+8
@@ -9679,15 +14602,42 @@ labs:                                   ; @labs
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB53_7
 .LBB53_6:
+	mov	&__llvm_gcov_ctr.53+14, r12
+	mov	&__llvm_gcov_ctr.53+12, r15
+	mov	&__llvm_gcov_ctr.53+10, r14
+	mov	&__llvm_gcov_ctr.53+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r15, r13
+	add	r10, r13
+	cmp	r15, r13
+	mov	r2, r9
+	mov	#1, r15
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.53+8
+	mov	r14, &__llvm_gcov_ctr.53+10
+	mov	r13, &__llvm_gcov_ctr.53+12
+	mov	r12, &__llvm_gcov_ctr.53+14
 	mov	18(r1), r14
-	mov	16(r1), r15
+	mov	16(r1), r11
 	clr	r12
 	mov	r12, r13
-	sub	r15, r13
-	tst	r15
+	sub	r11, r13
+	tst	r11
 	mov	r2, r11
 	rra	r11
-	mov	#1, r15
 	bic	r11, r15
 	add	r15, r14
 	sub	r14, r12
@@ -9709,20 +14659,53 @@ labs:                                   ; @labs
 	.type	ldiv,@function
 ldiv:                                   ; @ldiv
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#14, r1
 	mov	r12, 4(r1)                      ; 2-byte Folded Spill
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	18(r1), r12
+	mov	28(r1), r12
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
+	mov	&__llvm_gcov_ctr.54+6, r10
+	mov	&__llvm_gcov_ctr.54+4, r11
+	mov	&__llvm_gcov_ctr.54+2, r8
+	mov	&__llvm_gcov_ctr.54, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.54
+	mov	r8, &__llvm_gcov_ctr.54+2
+	mov	r9, &__llvm_gcov_ctr.54+4
+	mov	r10, &__llvm_gcov_ctr.54+6
 	mov	r14, 12(r1)
 	mov	r13, 10(r1)
 	mov	r12, 8(r1)
 	mov	r15, 6(r1)
 	mov	&.L__profc_ldiv+6, r12
-	mov	&.L__profc_ldiv+4, r11
+	mov	&.L__profc_ldiv+4, r10
 	mov	&.L__profc_ldiv+2, r14
 	mov	&.L__profc_ldiv, r15
 	inc	r15
@@ -9734,14 +14717,13 @@ ldiv:                                   ; @ldiv
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldiv
@@ -9773,6 +14755,11 @@ ldiv:                                   ; @ldiv
 	mov	r14, 4(r13)
 	add	#14, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end54:
 	.size	ldiv, .Lfunc_end54-ldiv
@@ -9872,10 +14859,10 @@ llabs:                                  ; @llabs
 	jne	.LBB55_8
 	jmp	.LBB55_7
 .LBB55_7:
-	mov	&.L__profc_llabs+14, r12
-	mov	&.L__profc_llabs+12, r11
-	mov	&.L__profc_llabs+10, r14
-	mov	&.L__profc_llabs+8, r15
+	mov	&__llvm_gcov_ctr.55+6, r12
+	mov	&__llvm_gcov_ctr.55+4, r11
+	mov	&__llvm_gcov_ctr.55+2, r14
+	mov	&__llvm_gcov_ctr.55, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -9891,8 +14878,35 @@ llabs:                                  ; @llabs
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.55
+	mov	r14, &__llvm_gcov_ctr.55+2
+	mov	r13, &__llvm_gcov_ctr.55+4
+	mov	r12, &__llvm_gcov_ctr.55+6
+	mov	&.L__profc_llabs+14, r12
+	mov	&.L__profc_llabs+12, r10
+	mov	&.L__profc_llabs+10, r14
+	mov	&.L__profc_llabs+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_llabs+8
@@ -9909,19 +14923,46 @@ llabs:                                  ; @llabs
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
 	jmp	.LBB55_11
 .LBB55_8:
-	mov	48(r1), r12
+	mov	&__llvm_gcov_ctr.55+14, r13
+	mov	&__llvm_gcov_ctr.55+12, r12
+	mov	&__llvm_gcov_ctr.55+10, r15
+	mov	&__llvm_gcov_ctr.55+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	46(r1), r12
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.55+8
+	mov	r15, &__llvm_gcov_ctr.55+10
+	mov	r14, &__llvm_gcov_ctr.55+12
+	mov	r13, &__llvm_gcov_ctr.55+14
+	mov	48(r1), r13
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	mov	46(r1), r13
+	mov	r13, 4(r1)                      ; 2-byte Folded Spill
 	mov	42(r1), r14
-	mov	r14, 4(r1)                      ; 2-byte Folded Spill
+	mov	r14, 6(r1)                      ; 2-byte Folded Spill
 	mov	44(r1), r13
-	mov	r13, 6(r1)                      ; 2-byte Folded Spill
+	mov	r13, 8(r1)                      ; 2-byte Folded Spill
 	tst	r13
 	mov	r2, r11
 	rra	r11
-	mov	#1, r12
-	mov	r12, 8(r1)                      ; 2-byte Folded Spill
 	mov	r12, r15
 	bic	r11, r15
 	mov	r15, 10(r1)                     ; 2-byte Folded Spill
@@ -9938,11 +14979,11 @@ llabs:                                  ; @llabs
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
 .LBB55_10:
 	mov	12(r1), r10                     ; 2-byte Folded Reload
-	mov	6(r1), r11                      ; 2-byte Folded Reload
-	mov	4(r1), r9                       ; 2-byte Folded Reload
-	mov	0(r1), r15                      ; 2-byte Folded Reload
-	mov	8(r1), r8                       ; 2-byte Folded Reload
-	mov	2(r1), r7                       ; 2-byte Folded Reload
+	mov	8(r1), r11                      ; 2-byte Folded Reload
+	mov	6(r1), r9                       ; 2-byte Folded Reload
+	mov	2(r1), r15                      ; 2-byte Folded Reload
+	mov	0(r1), r8                       ; 2-byte Folded Reload
+	mov	4(r1), r7                       ; 2-byte Folded Reload
 	mov	14(r1), r6                      ; 2-byte Folded Reload
 	clr	r14
 	mov	r14, r12
@@ -9990,30 +15031,67 @@ llabs:                                  ; @llabs
 	.type	lldiv,@function
 lldiv:                                  ; @lldiv
 ; %bb.0:
+	push	r4
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#30, r1
-	mov	r12, 8(r1)                      ; 2-byte Folded Spill
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	mov	52(r1), r15
-	mov	50(r1), r14
-	mov	48(r1), r13
-	mov	46(r1), r12
-	mov	44(r1), r8
-	mov	42(r1), r9
-	mov	40(r1), r10
-	mov	38(r1), r11
-	mov	r8, 28(r1)
-	mov	r9, 26(r1)
-	mov	r10, 24(r1)
-	mov	r11, 22(r1)
-	mov	r15, 20(r1)
-	mov	r14, 18(r1)
-	mov	r13, 16(r1)
-	mov	r12, 14(r1)
+	sub	#36, r1
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	mov	r12, 12(r1)                     ; 2-byte Folded Spill
+	mov	66(r1), r15
+	mov	64(r1), r14
+	mov	62(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	60(r1), r12
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	mov	58(r1), r7
+	mov	56(r1), r8
+	mov	54(r1), r9
+	mov	52(r1), r10
+	mov	&__llvm_gcov_ctr.56+6, r6
+	mov	&__llvm_gcov_ctr.56+4, r12
+	mov	&__llvm_gcov_ctr.56+2, r4
+	mov	&__llvm_gcov_ctr.56, r13
+	inc	r13
+	mov	r13, 2(r1)                      ; 2-byte Folded Spill
+	tst	r13
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r4
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r11
+	mov	r11, r12
+	bic	r13, r12
+	mov	0(r1), r13                      ; 2-byte Folded Reload
+	add	r12, r6
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, &__llvm_gcov_ctr.56
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.56+2
+	mov	r5, &__llvm_gcov_ctr.56+4
+	mov	r6, &__llvm_gcov_ctr.56+6
+	mov	r7, 34(r1)
+	mov	r8, 32(r1)
+	mov	r9, 30(r1)
+	mov	r10, 28(r1)
+	mov	r15, 26(r1)
+	mov	r14, 24(r1)
+	mov	r13, 22(r1)
+	mov	r12, 20(r1)
 	mov	&.L__profc_lldiv+6, r12
-	mov	&.L__profc_lldiv+4, r11
+	mov	&.L__profc_lldiv+4, r10
 	mov	&.L__profc_lldiv+2, r14
 	mov	&.L__profc_lldiv, r15
 	inc	r15
@@ -10025,71 +15103,74 @@ lldiv:                                  ; @lldiv
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_lldiv
 	mov	r14, &.L__profc_lldiv+2
 	mov	r13, &.L__profc_lldiv+4
 	mov	r12, &.L__profc_lldiv+6
-	mov	22(r1), r8
-	mov	24(r1), r9
-	mov	26(r1), r10
-	mov	28(r1), r11
-	mov	14(r1), r12
-	mov	16(r1), r13
-	mov	18(r1), r14
-	mov	20(r1), r15
+	mov	28(r1), r8
+	mov	30(r1), r9
+	mov	32(r1), r10
+	mov	34(r1), r11
+	mov	20(r1), r12
+	mov	22(r1), r13
+	mov	24(r1), r14
+	mov	26(r1), r15
 	call	#__mspabi_divlli
 	mov	r12, r11
-	mov	8(r1), r12                      ; 2-byte Folded Reload
-	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	14(r1), r12                     ; 2-byte Folded Reload
+	mov	r11, 6(r1)                      ; 2-byte Folded Spill
 	mov	r13, r11
-	mov	0(r1), r13                      ; 2-byte Folded Reload
-	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	6(r1), r13                      ; 2-byte Folded Reload
+	mov	r11, 8(r1)                      ; 2-byte Folded Spill
 	mov	r14, r11
-	mov	2(r1), r14                      ; 2-byte Folded Reload
-	mov	r11, 4(r1)                      ; 2-byte Folded Spill
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	r11, 10(r1)                     ; 2-byte Folded Spill
 	mov	r15, r11
-	mov	4(r1), r15                      ; 2-byte Folded Reload
+	mov	10(r1), r15                     ; 2-byte Folded Reload
 	mov	r11, 6(r12)
 	mov	r15, 4(r12)
 	mov	r14, 2(r12)
 	mov	r13, 0(r12)
-	mov	22(r1), r8
-	mov	24(r1), r9
-	mov	26(r1), r10
-	mov	28(r1), r11
-	mov	14(r1), r12
-	mov	16(r1), r13
-	mov	18(r1), r14
-	mov	20(r1), r15
+	mov	28(r1), r8
+	mov	30(r1), r9
+	mov	32(r1), r10
+	mov	34(r1), r11
+	mov	20(r1), r12
+	mov	22(r1), r13
+	mov	24(r1), r14
+	mov	26(r1), r15
 	call	#__mspabi_remlli
 	mov	r12, r11
-	mov	6(r1), r12                      ; 2-byte Folded Reload
-	mov	r11, 10(r1)                     ; 2-byte Folded Spill
+	mov	12(r1), r12                     ; 2-byte Folded Reload
+	mov	r11, 16(r1)                     ; 2-byte Folded Spill
 	mov	r13, r11
-	mov	8(r1), r13                      ; 2-byte Folded Reload
-	mov	r11, 12(r1)                     ; 2-byte Folded Spill
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	r11, 18(r1)                     ; 2-byte Folded Spill
 	mov	r14, r11
-	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	16(r1), r14                     ; 2-byte Folded Reload
 	mov	r15, r10
-	mov	12(r1), r15                     ; 2-byte Folded Reload
+	mov	18(r1), r15                     ; 2-byte Folded Reload
 	mov	r10, 14(r13)
 	mov	r11, 12(r13)
 	mov	r15, 10(r13)
 	mov	r14, 8(r13)
-	add	#30, r1
+	add	#36, r1
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end56:
 	.size	lldiv, .Lfunc_end56-lldiv
@@ -10099,6 +15180,7 @@ lldiv:                                  ; @lldiv
 	.type	wcschr,@function
 wcschr:                                 ; @wcschr
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#8, r1
@@ -10141,10 +15223,10 @@ wcschr:                                 ; @wcschr
 	jeq	.LBB57_4
 	jmp	.LBB57_2
 .LBB57_2:                               ;   in Loop: Header=BB57_1 Depth=1
-	mov	&.L__profc_wcschr+22, r13
-	mov	&.L__profc_wcschr+20, r12
-	mov	&.L__profc_wcschr+18, r15
-	mov	&.L__profc_wcschr+16, r11
+	mov	&__llvm_gcov_ctr.57+6, r13
+	mov	&__llvm_gcov_ctr.57+4, r12
+	mov	&__llvm_gcov_ctr.57+2, r15
+	mov	&__llvm_gcov_ctr.57, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -10162,6 +15244,33 @@ wcschr:                                 ; @wcschr
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.57
+	mov	r15, &__llvm_gcov_ctr.57+2
+	mov	r14, &__llvm_gcov_ctr.57+4
+	mov	r13, &__llvm_gcov_ctr.57+6
+	mov	&.L__profc_wcschr+22, r13
+	mov	&.L__profc_wcschr+20, r10
+	mov	&.L__profc_wcschr+18, r15
+	mov	&.L__profc_wcschr+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -10184,10 +15293,10 @@ wcschr:                                 ; @wcschr
 	jmp	.LBB57_3
 .LBB57_3:                               ;   in Loop: Header=BB57_1 Depth=1
 	mov.b	2(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_wcschr+30, r13
-	mov	&.L__profc_wcschr+28, r10
-	mov	&.L__profc_wcschr+26, r15
-	mov	&.L__profc_wcschr+24, r11
+	mov	&__llvm_gcov_ctr.57+14, r13
+	mov	&__llvm_gcov_ctr.57+12, r10
+	mov	&__llvm_gcov_ctr.57+10, r15
+	mov	&__llvm_gcov_ctr.57+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -10203,8 +15312,35 @@ wcschr:                                 ; @wcschr
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.57+8
+	mov	r15, &__llvm_gcov_ctr.57+10
+	mov	r14, &__llvm_gcov_ctr.57+12
+	mov	r13, &__llvm_gcov_ctr.57+14
+	mov	&.L__profc_wcschr+30, r13
+	mov	&.L__profc_wcschr+28, r9
+	mov	&.L__profc_wcschr+26, r15
+	mov	&.L__profc_wcschr+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_wcschr+24
@@ -10249,21 +15385,10 @@ wcschr:                                 ; @wcschr
 	mov	r12, &.L__profc_wcschr+14
 	jmp	.LBB57_6
 .LBB57_6:                               ;   in Loop: Header=BB57_1 Depth=1
-	mov	6(r1), r12
-	incd	r12
-	mov	r12, 6(r1)
-	jmp	.LBB57_1
-.LBB57_7:
-	mov	6(r1), r12
-	mov	0(r12), r12
-	tst	r12
-	jeq	.LBB57_9
-	jmp	.LBB57_8
-.LBB57_8:
-	mov	&.L__profc_wcschr+38, r12
-	mov	&.L__profc_wcschr+36, r11
-	mov	&.L__profc_wcschr+34, r14
-	mov	&.L__profc_wcschr+32, r15
+	mov	&__llvm_gcov_ctr.57+22, r12
+	mov	&__llvm_gcov_ctr.57+20, r11
+	mov	&__llvm_gcov_ctr.57+18, r14
+	mov	&__llvm_gcov_ctr.57+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10283,6 +15408,71 @@ wcschr:                                 ; @wcschr
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.57+16
+	mov	r14, &__llvm_gcov_ctr.57+18
+	mov	r13, &__llvm_gcov_ctr.57+20
+	mov	r12, &__llvm_gcov_ctr.57+22
+	mov	6(r1), r12
+	incd	r12
+	mov	r12, 6(r1)
+	jmp	.LBB57_1
+.LBB57_7:
+	mov	6(r1), r12
+	mov	0(r12), r12
+	tst	r12
+	jeq	.LBB57_9
+	jmp	.LBB57_8
+.LBB57_8:
+	mov	&__llvm_gcov_ctr.57+30, r12
+	mov	&__llvm_gcov_ctr.57+28, r11
+	mov	&__llvm_gcov_ctr.57+26, r14
+	mov	&__llvm_gcov_ctr.57+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.57+24
+	mov	r14, &__llvm_gcov_ctr.57+26
+	mov	r13, &__llvm_gcov_ctr.57+28
+	mov	r12, &__llvm_gcov_ctr.57+30
+	mov	&.L__profc_wcschr+38, r12
+	mov	&.L__profc_wcschr+36, r10
+	mov	&.L__profc_wcschr+34, r14
+	mov	&.L__profc_wcschr+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_wcschr+32
 	mov	r14, &.L__profc_wcschr+34
 	mov	r13, &.L__profc_wcschr+36
@@ -10291,6 +15481,33 @@ wcschr:                                 ; @wcschr
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB57_10
 .LBB57_9:
+	mov	&__llvm_gcov_ctr.57+38, r12
+	mov	&__llvm_gcov_ctr.57+36, r11
+	mov	&__llvm_gcov_ctr.57+34, r14
+	mov	&__llvm_gcov_ctr.57+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.57+32
+	mov	r14, &__llvm_gcov_ctr.57+34
+	mov	r13, &__llvm_gcov_ctr.57+36
+	mov	r12, &__llvm_gcov_ctr.57+38
 	clr	r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB57_10
@@ -10299,6 +15516,7 @@ wcschr:                                 ; @wcschr
 	add	#8, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end57:
 	.size	wcschr, .Lfunc_end57-wcschr
@@ -10308,6 +15526,7 @@ wcschr:                                 ; @wcschr
 	.type	wcscmp,@function
 wcscmp:                                 ; @wcscmp
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#12, r1
@@ -10352,10 +15571,10 @@ wcscmp:                                 ; @wcscmp
 	jne	.LBB58_6
 	jmp	.LBB58_2
 .LBB58_2:                               ;   in Loop: Header=BB58_1 Depth=1
-	mov	&.L__profc_wcscmp+38, r12
-	mov	&.L__profc_wcscmp+36, r11
-	mov	&.L__profc_wcscmp+34, r14
-	mov	&.L__profc_wcscmp+32, r15
+	mov	&__llvm_gcov_ctr.58+6, r12
+	mov	&__llvm_gcov_ctr.58+4, r11
+	mov	&__llvm_gcov_ctr.58+2, r14
+	mov	&__llvm_gcov_ctr.58, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10371,8 +15590,35 @@ wcscmp:                                 ; @wcscmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.58
+	mov	r14, &__llvm_gcov_ctr.58+2
+	mov	r13, &__llvm_gcov_ctr.58+4
+	mov	r12, &__llvm_gcov_ctr.58+6
+	mov	&.L__profc_wcscmp+38, r12
+	mov	&.L__profc_wcscmp+36, r10
+	mov	&.L__profc_wcscmp+34, r14
+	mov	&.L__profc_wcscmp+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcscmp+32
@@ -10387,10 +15633,10 @@ wcscmp:                                 ; @wcscmp
 	jeq	.LBB58_6
 	jmp	.LBB58_3
 .LBB58_3:                               ;   in Loop: Header=BB58_1 Depth=1
-	mov	&.L__profc_wcscmp+46, r12
-	mov	&.L__profc_wcscmp+44, r11
-	mov	&.L__profc_wcscmp+42, r14
-	mov	&.L__profc_wcscmp+40, r15
+	mov	&__llvm_gcov_ctr.58+14, r12
+	mov	&__llvm_gcov_ctr.58+12, r11
+	mov	&__llvm_gcov_ctr.58+10, r14
+	mov	&__llvm_gcov_ctr.58+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10406,8 +15652,35 @@ wcscmp:                                 ; @wcscmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.58+8
+	mov	r14, &__llvm_gcov_ctr.58+10
+	mov	r13, &__llvm_gcov_ctr.58+12
+	mov	r12, &__llvm_gcov_ctr.58+14
+	mov	&.L__profc_wcscmp+46, r12
+	mov	&.L__profc_wcscmp+44, r10
+	mov	&.L__profc_wcscmp+42, r14
+	mov	&.L__profc_wcscmp+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcscmp+40
@@ -10458,10 +15731,10 @@ wcscmp:                                 ; @wcscmp
 	jmp	.LBB58_5
 .LBB58_5:                               ;   in Loop: Header=BB58_1 Depth=1
 	mov.b	6(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_wcscmp+30, r13
-	mov	&.L__profc_wcscmp+28, r10
-	mov	&.L__profc_wcscmp+26, r15
-	mov	&.L__profc_wcscmp+24, r11
+	mov	&__llvm_gcov_ctr.58+22, r13
+	mov	&__llvm_gcov_ctr.58+20, r10
+	mov	&__llvm_gcov_ctr.58+18, r15
+	mov	&__llvm_gcov_ctr.58+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -10477,8 +15750,35 @@ wcscmp:                                 ; @wcscmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.58+16
+	mov	r15, &__llvm_gcov_ctr.58+18
+	mov	r14, &__llvm_gcov_ctr.58+20
+	mov	r13, &__llvm_gcov_ctr.58+22
+	mov	&.L__profc_wcscmp+30, r13
+	mov	&.L__profc_wcscmp+28, r9
+	mov	&.L__profc_wcscmp+26, r15
+	mov	&.L__profc_wcscmp+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_wcscmp+24
@@ -10523,26 +15823,10 @@ wcscmp:                                 ; @wcscmp
 	mov	r12, &.L__profc_wcscmp+14
 	jmp	.LBB58_8
 .LBB58_8:                               ;   in Loop: Header=BB58_1 Depth=1
-	mov	10(r1), r12
-	incd	r12
-	mov	r12, 10(r1)
-	mov	8(r1), r12
-	incd	r12
-	mov	r12, 8(r1)
-	jmp	.LBB58_1
-.LBB58_9:
-	mov	10(r1), r12
-	mov	0(r12), r12
-	mov	8(r1), r13
-	mov	0(r13), r13
-	cmp	r13, r12
-	jge	.LBB58_11
-	jmp	.LBB58_10
-.LBB58_10:
-	mov	&.L__profc_wcscmp+54, r12
-	mov	&.L__profc_wcscmp+52, r11
-	mov	&.L__profc_wcscmp+50, r14
-	mov	&.L__profc_wcscmp+48, r15
+	mov	&__llvm_gcov_ctr.58+30, r12
+	mov	&__llvm_gcov_ctr.58+28, r11
+	mov	&__llvm_gcov_ctr.58+26, r14
+	mov	&__llvm_gcov_ctr.58+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10562,53 +15846,30 @@ wcscmp:                                 ; @wcscmp
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_wcscmp+48
-	mov	r14, &.L__profc_wcscmp+50
-	mov	r13, &.L__profc_wcscmp+52
-	mov	r12, &.L__profc_wcscmp+54
-	mov	#-1, r12
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB58_14
-.LBB58_11:
+	mov	r15, &__llvm_gcov_ctr.58+24
+	mov	r14, &__llvm_gcov_ctr.58+26
+	mov	r13, &__llvm_gcov_ctr.58+28
+	mov	r12, &__llvm_gcov_ctr.58+30
 	mov	10(r1), r12
-	mov	0(r12), r14
+	incd	r12
+	mov	r12, 10(r1)
 	mov	8(r1), r12
-	mov	0(r12), r13
-	clr	r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	mov	#1, r12
-	cmp	r14, r13
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jl	.LBB58_13
-; %bb.12:
-	mov	0(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-.LBB58_13:
-	mov	2(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB58_14
-.LBB58_14:
-	mov	4(r1), r12                      ; 2-byte Folded Reload
-	add	#12, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end58:
-	.size	wcscmp, .Lfunc_end58-wcscmp
-                                        ; -- End function
-	.globl	wcscpy                          ; -- Begin function wcscpy
-	.p2align	1
-	.type	wcscpy,@function
-wcscpy:                                 ; @wcscpy
-; %bb.0:
-	push	r10
-	sub	#6, r1
-	mov	r12, 4(r1)
-	mov	r13, 2(r1)
-	mov	&.L__profc_wcscpy+6, r12
-	mov	&.L__profc_wcscpy+4, r11
-	mov	&.L__profc_wcscpy+2, r14
-	mov	&.L__profc_wcscpy, r15
+	incd	r12
+	mov	r12, 8(r1)
+	jmp	.LBB58_1
+.LBB58_9:
+	mov	10(r1), r12
+	mov	0(r12), r12
+	mov	8(r1), r13
+	mov	0(r13), r13
+	cmp	r13, r12
+	jge	.LBB58_11
+	jmp	.LBB58_10
+.LBB58_10:
+	mov	&__llvm_gcov_ctr.58+38, r12
+	mov	&__llvm_gcov_ctr.58+36, r11
+	mov	&__llvm_gcov_ctr.58+34, r14
+	mov	&__llvm_gcov_ctr.58+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10624,8 +15885,159 @@ wcscpy:                                 ; @wcscpy
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.58+32
+	mov	r14, &__llvm_gcov_ctr.58+34
+	mov	r13, &__llvm_gcov_ctr.58+36
+	mov	r12, &__llvm_gcov_ctr.58+38
+	mov	&.L__profc_wcscmp+54, r12
+	mov	&.L__profc_wcscmp+52, r10
+	mov	&.L__profc_wcscmp+50, r14
+	mov	&.L__profc_wcscmp+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_wcscmp+48
+	mov	r14, &.L__profc_wcscmp+50
+	mov	r13, &.L__profc_wcscmp+52
+	mov	r12, &.L__profc_wcscmp+54
+	mov	#-1, r12
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB58_14
+.LBB58_11:
+	mov	&__llvm_gcov_ctr.58+46, r13
+	mov	&__llvm_gcov_ctr.58+44, r12
+	mov	&__llvm_gcov_ctr.58+42, r15
+	mov	&__llvm_gcov_ctr.58+40, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.58+40
+	mov	r15, &__llvm_gcov_ctr.58+42
+	mov	r14, &__llvm_gcov_ctr.58+44
+	mov	r13, &__llvm_gcov_ctr.58+46
+	mov	10(r1), r13
+	mov	0(r13), r14
+	mov	8(r1), r13
+	mov	0(r13), r13
+	clr	r15
+	mov	r15, 0(r1)                      ; 2-byte Folded Spill
+	cmp	r14, r13
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+	jl	.LBB58_13
+; %bb.12:
+	mov	0(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+.LBB58_13:
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB58_14
+.LBB58_14:
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	add	#12, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end58:
+	.size	wcscmp, .Lfunc_end58-wcscmp
+                                        ; -- End function
+	.globl	wcscpy                          ; -- Begin function wcscpy
+	.p2align	1
+	.type	wcscpy,@function
+wcscpy:                                 ; @wcscpy
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#6, r1
+	mov	&__llvm_gcov_ctr.59+6, r14
+	mov	&__llvm_gcov_ctr.59+4, r11
+	mov	&__llvm_gcov_ctr.59+2, r10
+	mov	&__llvm_gcov_ctr.59, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.59
+	mov	r10, &__llvm_gcov_ctr.59+2
+	mov	r15, &__llvm_gcov_ctr.59+4
+	mov	r14, &__llvm_gcov_ctr.59+6
+	mov	r12, 4(r1)
+	mov	r13, 2(r1)
+	mov	&.L__profc_wcscpy+6, r12
+	mov	&.L__profc_wcscpy+4, r10
+	mov	&.L__profc_wcscpy+2, r14
+	mov	&.L__profc_wcscpy, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcscpy
@@ -10650,8 +16062,36 @@ wcscpy:                                 ; @wcscpy
 	jeq	.LBB59_3
 	jmp	.LBB59_2
 .LBB59_2:                               ;   in Loop: Header=BB59_1 Depth=1
+	mov	&__llvm_gcov_ctr.59+14, r12
+	mov	&__llvm_gcov_ctr.59+12, r11
+	mov	&__llvm_gcov_ctr.59+10, r14
+	mov	&__llvm_gcov_ctr.59+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.59+8
+	mov	r14, &__llvm_gcov_ctr.59+10
+	mov	r13, &__llvm_gcov_ctr.59+12
+	mov	r12, &__llvm_gcov_ctr.59+14
 	mov	&.L__profc_wcscpy+14, r12
-	mov	&.L__profc_wcscpy+12, r11
+	mov	&.L__profc_wcscpy+12, r10
 	mov	&.L__profc_wcscpy+10, r14
 	mov	&.L__profc_wcscpy+8, r15
 	inc	r15
@@ -10663,14 +16103,13 @@ wcscpy:                                 ; @wcscpy
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcscpy+8
@@ -10682,6 +16121,9 @@ wcscpy:                                 ; @wcscpy
 	mov	0(r1), r12
 	add	#6, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end59:
 	.size	wcscpy, .Lfunc_end59-wcscpy
@@ -10691,11 +16133,41 @@ wcscpy:                                 ; @wcscpy
 	.type	wcslen,@function
 wcslen:                                 ; @wcslen
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.60+6, r13
+	mov	&__llvm_gcov_ctr.60+4, r11
+	mov	&__llvm_gcov_ctr.60+2, r15
+	mov	&__llvm_gcov_ctr.60, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.60
+	mov	r15, &__llvm_gcov_ctr.60+2
+	mov	r14, &__llvm_gcov_ctr.60+4
+	mov	r13, &__llvm_gcov_ctr.60+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_wcslen+6, r12
-	mov	&.L__profc_wcslen+4, r11
+	mov	&.L__profc_wcslen+4, r10
 	mov	&.L__profc_wcslen+2, r14
 	mov	&.L__profc_wcslen, r15
 	inc	r15
@@ -10707,14 +16179,13 @@ wcslen:                                 ; @wcslen
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcslen
@@ -10760,6 +16231,33 @@ wcslen:                                 ; @wcslen
 	mov	r12, &.L__profc_wcslen+14
 	jmp	.LBB60_3
 .LBB60_3:                               ;   in Loop: Header=BB60_1 Depth=1
+	mov	&__llvm_gcov_ctr.60+14, r12
+	mov	&__llvm_gcov_ctr.60+12, r11
+	mov	&__llvm_gcov_ctr.60+10, r14
+	mov	&__llvm_gcov_ctr.60+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.60+8
+	mov	r14, &__llvm_gcov_ctr.60+10
+	mov	r13, &__llvm_gcov_ctr.60+12
+	mov	r12, &__llvm_gcov_ctr.60+14
 	mov	2(r1), r12
 	incd	r12
 	mov	r12, 2(r1)
@@ -10771,6 +16269,8 @@ wcslen:                                 ; @wcslen
 	rra	r12
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end60:
 	.size	wcslen, .Lfunc_end60-wcslen
@@ -10780,6 +16280,7 @@ wcslen:                                 ; @wcslen
 	.type	wcsncmp,@function
 wcsncmp:                                ; @wcsncmp
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#16, r1
@@ -10822,10 +16323,10 @@ wcsncmp:                                ; @wcsncmp
 	jeq	.LBB61_8
 	jmp	.LBB61_2
 .LBB61_2:                               ;   in Loop: Header=BB61_1 Depth=1
-	mov	&.L__profc_wcsncmp+54, r12
-	mov	&.L__profc_wcsncmp+52, r11
-	mov	&.L__profc_wcsncmp+50, r14
-	mov	&.L__profc_wcsncmp+48, r15
+	mov	&__llvm_gcov_ctr.61+6, r12
+	mov	&__llvm_gcov_ctr.61+4, r11
+	mov	&__llvm_gcov_ctr.61+2, r14
+	mov	&__llvm_gcov_ctr.61, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10841,8 +16342,35 @@ wcsncmp:                                ; @wcsncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.61
+	mov	r14, &__llvm_gcov_ctr.61+2
+	mov	r13, &__llvm_gcov_ctr.61+4
+	mov	r12, &__llvm_gcov_ctr.61+6
+	mov	&.L__profc_wcsncmp+54, r12
+	mov	&.L__profc_wcsncmp+52, r10
+	mov	&.L__profc_wcsncmp+50, r14
+	mov	&.L__profc_wcsncmp+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcsncmp+48
@@ -10859,10 +16387,10 @@ wcsncmp:                                ; @wcsncmp
 	jne	.LBB61_8
 	jmp	.LBB61_3
 .LBB61_3:                               ;   in Loop: Header=BB61_1 Depth=1
-	mov	&.L__profc_wcsncmp+62, r12
-	mov	&.L__profc_wcsncmp+60, r11
-	mov	&.L__profc_wcsncmp+58, r14
-	mov	&.L__profc_wcsncmp+56, r15
+	mov	&__llvm_gcov_ctr.61+14, r12
+	mov	&__llvm_gcov_ctr.61+12, r11
+	mov	&__llvm_gcov_ctr.61+10, r14
+	mov	&__llvm_gcov_ctr.61+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10878,8 +16406,35 @@ wcsncmp:                                ; @wcsncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.61+8
+	mov	r14, &__llvm_gcov_ctr.61+10
+	mov	r13, &__llvm_gcov_ctr.61+12
+	mov	r12, &__llvm_gcov_ctr.61+14
+	mov	&.L__profc_wcsncmp+62, r12
+	mov	&.L__profc_wcsncmp+60, r10
+	mov	&.L__profc_wcsncmp+58, r14
+	mov	&.L__profc_wcsncmp+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcsncmp+56
@@ -10923,10 +16478,10 @@ wcsncmp:                                ; @wcsncmp
 	jeq	.LBB61_8
 	jmp	.LBB61_5
 .LBB61_5:                               ;   in Loop: Header=BB61_1 Depth=1
-	mov	&.L__profc_wcsncmp+46, r12
-	mov	&.L__profc_wcsncmp+44, r11
-	mov	&.L__profc_wcsncmp+42, r14
-	mov	&.L__profc_wcsncmp+40, r15
+	mov	&__llvm_gcov_ctr.61+22, r12
+	mov	&__llvm_gcov_ctr.61+20, r11
+	mov	&__llvm_gcov_ctr.61+18, r14
+	mov	&__llvm_gcov_ctr.61+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -10942,8 +16497,35 @@ wcsncmp:                                ; @wcsncmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.61+16
+	mov	r14, &__llvm_gcov_ctr.61+18
+	mov	r13, &__llvm_gcov_ctr.61+20
+	mov	r12, &__llvm_gcov_ctr.61+22
+	mov	&.L__profc_wcsncmp+46, r12
+	mov	&.L__profc_wcsncmp+44, r10
+	mov	&.L__profc_wcsncmp+42, r14
+	mov	&.L__profc_wcsncmp+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wcsncmp+40
@@ -10994,10 +16576,10 @@ wcsncmp:                                ; @wcsncmp
 	jmp	.LBB61_7
 .LBB61_7:                               ;   in Loop: Header=BB61_1 Depth=1
 	mov.b	8(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_wcsncmp+30, r13
-	mov	&.L__profc_wcsncmp+28, r10
-	mov	&.L__profc_wcsncmp+26, r15
-	mov	&.L__profc_wcsncmp+24, r11
+	mov	&__llvm_gcov_ctr.61+30, r13
+	mov	&__llvm_gcov_ctr.61+28, r10
+	mov	&__llvm_gcov_ctr.61+26, r15
+	mov	&__llvm_gcov_ctr.61+24, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -11013,8 +16595,35 @@ wcsncmp:                                ; @wcsncmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.61+24
+	mov	r15, &__llvm_gcov_ctr.61+26
+	mov	r14, &__llvm_gcov_ctr.61+28
+	mov	r13, &__llvm_gcov_ctr.61+30
+	mov	&.L__profc_wcsncmp+30, r13
+	mov	&.L__profc_wcsncmp+28, r9
+	mov	&.L__profc_wcsncmp+26, r15
+	mov	&.L__profc_wcsncmp+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_wcsncmp+24
@@ -11059,6 +16668,33 @@ wcsncmp:                                ; @wcsncmp
 	mov	r12, &.L__profc_wcsncmp+14
 	jmp	.LBB61_10
 .LBB61_10:                              ;   in Loop: Header=BB61_1 Depth=1
+	mov	&__llvm_gcov_ctr.61+38, r12
+	mov	&__llvm_gcov_ctr.61+36, r11
+	mov	&__llvm_gcov_ctr.61+34, r14
+	mov	&__llvm_gcov_ctr.61+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.61+32
+	mov	r14, &__llvm_gcov_ctr.61+34
+	mov	r13, &__llvm_gcov_ctr.61+36
+	mov	r12, &__llvm_gcov_ctr.61+38
 	mov	10(r1), r12
 	add	#-1, r12
 	mov	r12, 10(r1)
@@ -11110,10 +16746,117 @@ wcsncmp:                                ; @wcsncmp
 	jge	.LBB61_14
 	jmp	.LBB61_13
 .LBB61_13:
+	mov	&__llvm_gcov_ctr.61+46, r12
+	mov	&__llvm_gcov_ctr.61+44, r11
+	mov	&__llvm_gcov_ctr.61+42, r14
+	mov	&__llvm_gcov_ctr.61+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.61+40
+	mov	r14, &__llvm_gcov_ctr.61+42
+	mov	r13, &__llvm_gcov_ctr.61+44
+	mov	r12, &__llvm_gcov_ctr.61+46
 	mov	&.L__profc_wcsncmp+78, r12
-	mov	&.L__profc_wcsncmp+76, r11
+	mov	&.L__profc_wcsncmp+76, r10
 	mov	&.L__profc_wcsncmp+74, r14
 	mov	&.L__profc_wcsncmp+72, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_wcsncmp+72
+	mov	r14, &.L__profc_wcsncmp+74
+	mov	r13, &.L__profc_wcsncmp+76
+	mov	r12, &.L__profc_wcsncmp+78
+	mov	#-1, r12
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB61_17
+.LBB61_14:
+	mov	&__llvm_gcov_ctr.61+54, r13
+	mov	&__llvm_gcov_ctr.61+52, r12
+	mov	&__llvm_gcov_ctr.61+50, r15
+	mov	&__llvm_gcov_ctr.61+48, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.61+48
+	mov	r15, &__llvm_gcov_ctr.61+50
+	mov	r14, &__llvm_gcov_ctr.61+52
+	mov	r13, &__llvm_gcov_ctr.61+54
+	mov	14(r1), r13
+	mov	0(r13), r14
+	mov	12(r1), r13
+	mov	0(r13), r13
+	clr	r15
+	mov	r15, 2(r1)                      ; 2-byte Folded Spill
+	cmp	r14, r13
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	jl	.LBB61_16
+; %bb.15:
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+.LBB61_16:
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB61_17
+.LBB61_17:
+	mov	6(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB61_19
+.LBB61_18:
+	mov	&__llvm_gcov_ctr.61+62, r12
+	mov	&__llvm_gcov_ctr.61+60, r11
+	mov	&__llvm_gcov_ctr.61+58, r14
+	mov	&__llvm_gcov_ctr.61+56, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11133,36 +16876,10 @@ wcsncmp:                                ; @wcsncmp
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_wcsncmp+72
-	mov	r14, &.L__profc_wcsncmp+74
-	mov	r13, &.L__profc_wcsncmp+76
-	mov	r12, &.L__profc_wcsncmp+78
-	mov	#-1, r12
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB61_17
-.LBB61_14:
-	mov	14(r1), r12
-	mov	0(r12), r14
-	mov	12(r1), r12
-	mov	0(r12), r13
-	clr	r12
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	#1, r12
-	cmp	r14, r13
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	jl	.LBB61_16
-; %bb.15:
-	mov	2(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-.LBB61_16:
-	mov	4(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB61_17
-.LBB61_17:
-	mov	6(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB61_19
-.LBB61_18:
+	mov	r15, &__llvm_gcov_ctr.61+56
+	mov	r14, &__llvm_gcov_ctr.61+58
+	mov	r13, &__llvm_gcov_ctr.61+60
+	mov	r12, &__llvm_gcov_ctr.61+62
 	clr	r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB61_19
@@ -11171,6 +16888,7 @@ wcsncmp:                                ; @wcsncmp
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end61:
 	.size	wcsncmp, .Lfunc_end61-wcsncmp
@@ -11180,6 +16898,7 @@ wcsncmp:                                ; @wcsncmp
 	.type	wmemchr,@function
 wmemchr:                                ; @wmemchr
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#10, r1
@@ -11222,10 +16941,10 @@ wmemchr:                                ; @wmemchr
 	jeq	.LBB62_4
 	jmp	.LBB62_2
 .LBB62_2:                               ;   in Loop: Header=BB62_1 Depth=1
-	mov	&.L__profc_wmemchr+22, r13
-	mov	&.L__profc_wmemchr+20, r12
-	mov	&.L__profc_wmemchr+18, r15
-	mov	&.L__profc_wmemchr+16, r11
+	mov	&__llvm_gcov_ctr.62+6, r13
+	mov	&__llvm_gcov_ctr.62+4, r12
+	mov	&__llvm_gcov_ctr.62+2, r15
+	mov	&__llvm_gcov_ctr.62, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -11243,6 +16962,33 @@ wmemchr:                                ; @wmemchr
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.62
+	mov	r15, &__llvm_gcov_ctr.62+2
+	mov	r14, &__llvm_gcov_ctr.62+4
+	mov	r13, &__llvm_gcov_ctr.62+6
+	mov	&.L__profc_wmemchr+22, r13
+	mov	&.L__profc_wmemchr+20, r10
+	mov	&.L__profc_wmemchr+18, r15
+	mov	&.L__profc_wmemchr+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -11265,10 +17011,10 @@ wmemchr:                                ; @wmemchr
 	jmp	.LBB62_3
 .LBB62_3:                               ;   in Loop: Header=BB62_1 Depth=1
 	mov.b	2(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_wmemchr+30, r13
-	mov	&.L__profc_wmemchr+28, r10
-	mov	&.L__profc_wmemchr+26, r15
-	mov	&.L__profc_wmemchr+24, r11
+	mov	&__llvm_gcov_ctr.62+14, r13
+	mov	&__llvm_gcov_ctr.62+12, r10
+	mov	&__llvm_gcov_ctr.62+10, r15
+	mov	&__llvm_gcov_ctr.62+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -11284,8 +17030,35 @@ wmemchr:                                ; @wmemchr
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.62+8
+	mov	r15, &__llvm_gcov_ctr.62+10
+	mov	r14, &__llvm_gcov_ctr.62+12
+	mov	r13, &__llvm_gcov_ctr.62+14
+	mov	&.L__profc_wmemchr+30, r13
+	mov	&.L__profc_wmemchr+28, r9
+	mov	&.L__profc_wmemchr+26, r15
+	mov	&.L__profc_wmemchr+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_wmemchr+24
@@ -11330,23 +17103,10 @@ wmemchr:                                ; @wmemchr
 	mov	r12, &.L__profc_wmemchr+14
 	jmp	.LBB62_6
 .LBB62_6:                               ;   in Loop: Header=BB62_1 Depth=1
-	mov	4(r1), r12
-	add	#-1, r12
-	mov	r12, 4(r1)
-	mov	8(r1), r12
-	incd	r12
-	mov	r12, 8(r1)
-	jmp	.LBB62_1
-.LBB62_7:
-	mov	4(r1), r12
-	tst	r12
-	jeq	.LBB62_9
-	jmp	.LBB62_8
-.LBB62_8:
-	mov	&.L__profc_wmemchr+38, r12
-	mov	&.L__profc_wmemchr+36, r11
-	mov	&.L__profc_wmemchr+34, r14
-	mov	&.L__profc_wmemchr+32, r15
+	mov	&__llvm_gcov_ctr.62+22, r12
+	mov	&__llvm_gcov_ctr.62+20, r11
+	mov	&__llvm_gcov_ctr.62+18, r14
+	mov	&__llvm_gcov_ctr.62+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11366,6 +17126,73 @@ wmemchr:                                ; @wmemchr
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.62+16
+	mov	r14, &__llvm_gcov_ctr.62+18
+	mov	r13, &__llvm_gcov_ctr.62+20
+	mov	r12, &__llvm_gcov_ctr.62+22
+	mov	4(r1), r12
+	add	#-1, r12
+	mov	r12, 4(r1)
+	mov	8(r1), r12
+	incd	r12
+	mov	r12, 8(r1)
+	jmp	.LBB62_1
+.LBB62_7:
+	mov	4(r1), r12
+	tst	r12
+	jeq	.LBB62_9
+	jmp	.LBB62_8
+.LBB62_8:
+	mov	&__llvm_gcov_ctr.62+30, r12
+	mov	&__llvm_gcov_ctr.62+28, r11
+	mov	&__llvm_gcov_ctr.62+26, r14
+	mov	&__llvm_gcov_ctr.62+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.62+24
+	mov	r14, &__llvm_gcov_ctr.62+26
+	mov	r13, &__llvm_gcov_ctr.62+28
+	mov	r12, &__llvm_gcov_ctr.62+30
+	mov	&.L__profc_wmemchr+38, r12
+	mov	&.L__profc_wmemchr+36, r10
+	mov	&.L__profc_wmemchr+34, r14
+	mov	&.L__profc_wmemchr+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_wmemchr+32
 	mov	r14, &.L__profc_wmemchr+34
 	mov	r13, &.L__profc_wmemchr+36
@@ -11374,6 +17201,33 @@ wmemchr:                                ; @wmemchr
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB62_10
 .LBB62_9:
+	mov	&__llvm_gcov_ctr.62+38, r12
+	mov	&__llvm_gcov_ctr.62+36, r11
+	mov	&__llvm_gcov_ctr.62+34, r14
+	mov	&__llvm_gcov_ctr.62+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.62+32
+	mov	r14, &__llvm_gcov_ctr.62+34
+	mov	r13, &__llvm_gcov_ctr.62+36
+	mov	r12, &__llvm_gcov_ctr.62+38
 	clr	r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB62_10
@@ -11382,6 +17236,7 @@ wmemchr:                                ; @wmemchr
 	add	#10, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end62:
 	.size	wmemchr, .Lfunc_end62-wmemchr
@@ -11391,6 +17246,7 @@ wmemchr:                                ; @wmemchr
 	.type	wmemcmp,@function
 wmemcmp:                                ; @wmemcmp
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#16, r1
@@ -11433,10 +17289,10 @@ wmemcmp:                                ; @wmemcmp
 	jeq	.LBB63_4
 	jmp	.LBB63_2
 .LBB63_2:                               ;   in Loop: Header=BB63_1 Depth=1
-	mov	&.L__profc_wmemcmp+22, r12
-	mov	&.L__profc_wmemcmp+20, r11
-	mov	&.L__profc_wmemcmp+18, r14
-	mov	&.L__profc_wmemcmp+16, r15
+	mov	&__llvm_gcov_ctr.63+6, r12
+	mov	&__llvm_gcov_ctr.63+4, r11
+	mov	&__llvm_gcov_ctr.63+2, r14
+	mov	&__llvm_gcov_ctr.63, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11452,8 +17308,35 @@ wmemcmp:                                ; @wmemcmp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.63
+	mov	r14, &__llvm_gcov_ctr.63+2
+	mov	r13, &__llvm_gcov_ctr.63+4
+	mov	r12, &__llvm_gcov_ctr.63+6
+	mov	&.L__profc_wmemcmp+22, r12
+	mov	&.L__profc_wmemcmp+20, r10
+	mov	&.L__profc_wmemcmp+18, r14
+	mov	&.L__profc_wmemcmp+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemcmp+16
@@ -11476,10 +17359,10 @@ wmemcmp:                                ; @wmemcmp
 	jmp	.LBB63_3
 .LBB63_3:                               ;   in Loop: Header=BB63_1 Depth=1
 	mov.b	8(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_wmemcmp+30, r13
-	mov	&.L__profc_wmemcmp+28, r10
-	mov	&.L__profc_wmemcmp+26, r15
-	mov	&.L__profc_wmemcmp+24, r11
+	mov	&__llvm_gcov_ctr.63+14, r13
+	mov	&__llvm_gcov_ctr.63+12, r10
+	mov	&__llvm_gcov_ctr.63+10, r15
+	mov	&__llvm_gcov_ctr.63+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -11495,8 +17378,35 @@ wmemcmp:                                ; @wmemcmp
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.63+8
+	mov	r15, &__llvm_gcov_ctr.63+10
+	mov	r14, &__llvm_gcov_ctr.63+12
+	mov	r13, &__llvm_gcov_ctr.63+14
+	mov	&.L__profc_wmemcmp+30, r13
+	mov	&.L__profc_wmemcmp+28, r9
+	mov	&.L__profc_wmemcmp+26, r15
+	mov	&.L__profc_wmemcmp+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_wmemcmp+24
@@ -11541,6 +17451,33 @@ wmemcmp:                                ; @wmemcmp
 	mov	r12, &.L__profc_wmemcmp+14
 	jmp	.LBB63_6
 .LBB63_6:                               ;   in Loop: Header=BB63_1 Depth=1
+	mov	&__llvm_gcov_ctr.63+22, r12
+	mov	&__llvm_gcov_ctr.63+20, r11
+	mov	&__llvm_gcov_ctr.63+18, r14
+	mov	&__llvm_gcov_ctr.63+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.63+16
+	mov	r14, &__llvm_gcov_ctr.63+18
+	mov	r13, &__llvm_gcov_ctr.63+20
+	mov	r12, &__llvm_gcov_ctr.63+22
 	mov	10(r1), r12
 	add	#-1, r12
 	mov	r12, 10(r1)
@@ -11592,10 +17529,117 @@ wmemcmp:                                ; @wmemcmp
 	jge	.LBB63_10
 	jmp	.LBB63_9
 .LBB63_9:
+	mov	&__llvm_gcov_ctr.63+30, r12
+	mov	&__llvm_gcov_ctr.63+28, r11
+	mov	&__llvm_gcov_ctr.63+26, r14
+	mov	&__llvm_gcov_ctr.63+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.63+24
+	mov	r14, &__llvm_gcov_ctr.63+26
+	mov	r13, &__llvm_gcov_ctr.63+28
+	mov	r12, &__llvm_gcov_ctr.63+30
 	mov	&.L__profc_wmemcmp+46, r12
-	mov	&.L__profc_wmemcmp+44, r11
+	mov	&.L__profc_wmemcmp+44, r10
 	mov	&.L__profc_wmemcmp+42, r14
 	mov	&.L__profc_wmemcmp+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_wmemcmp+40
+	mov	r14, &.L__profc_wmemcmp+42
+	mov	r13, &.L__profc_wmemcmp+44
+	mov	r12, &.L__profc_wmemcmp+46
+	mov	#-1, r12
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB63_13
+.LBB63_10:
+	mov	&__llvm_gcov_ctr.63+38, r13
+	mov	&__llvm_gcov_ctr.63+36, r12
+	mov	&__llvm_gcov_ctr.63+34, r15
+	mov	&__llvm_gcov_ctr.63+32, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r12, r14
+	add	r10, r14
+	cmp	r12, r14
+	mov	r2, r9
+	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.63+32
+	mov	r15, &__llvm_gcov_ctr.63+34
+	mov	r14, &__llvm_gcov_ctr.63+36
+	mov	r13, &__llvm_gcov_ctr.63+38
+	mov	14(r1), r13
+	mov	0(r13), r14
+	mov	12(r1), r13
+	mov	0(r13), r13
+	clr	r15
+	mov	r15, 2(r1)                      ; 2-byte Folded Spill
+	cmp	r14, r13
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	jl	.LBB63_12
+; %bb.11:
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+.LBB63_12:
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB63_13
+.LBB63_13:
+	mov	6(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB63_15
+.LBB63_14:
+	mov	&__llvm_gcov_ctr.63+46, r12
+	mov	&__llvm_gcov_ctr.63+44, r11
+	mov	&__llvm_gcov_ctr.63+42, r14
+	mov	&__llvm_gcov_ctr.63+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11615,36 +17659,10 @@ wmemcmp:                                ; @wmemcmp
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_wmemcmp+40
-	mov	r14, &.L__profc_wmemcmp+42
-	mov	r13, &.L__profc_wmemcmp+44
-	mov	r12, &.L__profc_wmemcmp+46
-	mov	#-1, r12
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB63_13
-.LBB63_10:
-	mov	14(r1), r12
-	mov	0(r12), r14
-	mov	12(r1), r12
-	mov	0(r12), r13
-	clr	r12
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	#1, r12
-	cmp	r14, r13
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	jl	.LBB63_12
-; %bb.11:
-	mov	2(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-.LBB63_12:
-	mov	4(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 6(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB63_13
-.LBB63_13:
-	mov	6(r1), r12                      ; 2-byte Folded Reload
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB63_15
-.LBB63_14:
+	mov	r15, &__llvm_gcov_ctr.63+40
+	mov	r14, &__llvm_gcov_ctr.63+42
+	mov	r13, &__llvm_gcov_ctr.63+44
+	mov	r12, &__llvm_gcov_ctr.63+46
 	clr	r12
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB63_15
@@ -11653,6 +17671,7 @@ wmemcmp:                                ; @wmemcmp
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end63:
 	.size	wmemcmp, .Lfunc_end63-wmemcmp
@@ -11662,13 +17681,45 @@ wmemcmp:                                ; @wmemcmp
 	.type	wmemcpy,@function
 wmemcpy:                                ; @wmemcpy
 ; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
+	mov	&__llvm_gcov_ctr.64+6, r15
+	mov	&__llvm_gcov_ctr.64+4, r11
+	mov	&__llvm_gcov_ctr.64+2, r9
+	mov	&__llvm_gcov_ctr.64, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.64
+	mov	r9, &__llvm_gcov_ctr.64+2
+	mov	r10, &__llvm_gcov_ctr.64+4
+	mov	r15, &__llvm_gcov_ctr.64+6
 	mov	r12, 6(r1)
 	mov	r13, 4(r1)
 	mov	r14, 2(r1)
 	mov	&.L__profc_wmemcpy+6, r12
-	mov	&.L__profc_wmemcpy+4, r11
+	mov	&.L__profc_wmemcpy+4, r10
 	mov	&.L__profc_wmemcpy+2, r14
 	mov	&.L__profc_wmemcpy, r15
 	inc	r15
@@ -11680,14 +17731,13 @@ wmemcpy:                                ; @wmemcpy
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemcpy
@@ -11706,10 +17756,10 @@ wmemcpy:                                ; @wmemcpy
 	jeq	.LBB64_3
 	jmp	.LBB64_2
 .LBB64_2:                               ;   in Loop: Header=BB64_1 Depth=1
-	mov	&.L__profc_wmemcpy+14, r12
-	mov	&.L__profc_wmemcpy+12, r11
-	mov	&.L__profc_wmemcpy+10, r14
-	mov	&.L__profc_wmemcpy+8, r15
+	mov	&__llvm_gcov_ctr.64+14, r12
+	mov	&__llvm_gcov_ctr.64+12, r11
+	mov	&__llvm_gcov_ctr.64+10, r14
+	mov	&__llvm_gcov_ctr.64+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11725,8 +17775,35 @@ wmemcpy:                                ; @wmemcpy
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.64+8
+	mov	r14, &__llvm_gcov_ctr.64+10
+	mov	r13, &__llvm_gcov_ctr.64+12
+	mov	r12, &__llvm_gcov_ctr.64+14
+	mov	&.L__profc_wmemcpy+14, r12
+	mov	&.L__profc_wmemcpy+12, r10
+	mov	&.L__profc_wmemcpy+10, r14
+	mov	&.L__profc_wmemcpy+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemcpy+8
@@ -11748,6 +17825,10 @@ wmemcpy:                                ; @wmemcpy
 	mov	0(r1), r12
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end64:
 	.size	wmemcpy, .Lfunc_end64-wmemcpy
@@ -11757,6 +17838,7 @@ wmemcpy:                                ; @wmemcpy
 	.type	wmemmove,@function
 wmemmove:                               ; @wmemmove
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 6(r1)
@@ -11797,10 +17879,10 @@ wmemmove:                               ; @wmemmove
 	jne	.LBB65_2
 	jmp	.LBB65_1
 .LBB65_1:
-	mov	&.L__profc_wmemmove+14, r12
-	mov	&.L__profc_wmemmove+12, r11
-	mov	&.L__profc_wmemmove+10, r14
-	mov	&.L__profc_wmemmove+8, r15
+	mov	&__llvm_gcov_ctr.65+6, r12
+	mov	&__llvm_gcov_ctr.65+4, r11
+	mov	&__llvm_gcov_ctr.65+2, r14
+	mov	&__llvm_gcov_ctr.65, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11816,8 +17898,35 @@ wmemmove:                               ; @wmemmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.65
+	mov	r14, &__llvm_gcov_ctr.65+2
+	mov	r13, &__llvm_gcov_ctr.65+4
+	mov	r12, &__llvm_gcov_ctr.65+6
+	mov	&.L__profc_wmemmove+14, r12
+	mov	&.L__profc_wmemmove+12, r10
+	mov	&.L__profc_wmemmove+10, r14
+	mov	&.L__profc_wmemmove+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemmove+8
@@ -11837,10 +17946,10 @@ wmemmove:                               ; @wmemmove
 	jhs	.LBB65_7
 	jmp	.LBB65_3
 .LBB65_3:
-	mov	&.L__profc_wmemmove+22, r12
-	mov	&.L__profc_wmemmove+20, r11
-	mov	&.L__profc_wmemmove+18, r14
-	mov	&.L__profc_wmemmove+16, r15
+	mov	&__llvm_gcov_ctr.65+14, r12
+	mov	&__llvm_gcov_ctr.65+12, r11
+	mov	&__llvm_gcov_ctr.65+10, r14
+	mov	&__llvm_gcov_ctr.65+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11856,8 +17965,35 @@ wmemmove:                               ; @wmemmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.65+8
+	mov	r14, &__llvm_gcov_ctr.65+10
+	mov	r13, &__llvm_gcov_ctr.65+12
+	mov	r12, &__llvm_gcov_ctr.65+14
+	mov	&.L__profc_wmemmove+22, r12
+	mov	&.L__profc_wmemmove+20, r10
+	mov	&.L__profc_wmemmove+18, r14
+	mov	&.L__profc_wmemmove+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemmove+16
@@ -11874,10 +18010,10 @@ wmemmove:                               ; @wmemmove
 	jeq	.LBB65_6
 	jmp	.LBB65_5
 .LBB65_5:                               ;   in Loop: Header=BB65_4 Depth=1
-	mov	&.L__profc_wmemmove+30, r12
-	mov	&.L__profc_wmemmove+28, r11
-	mov	&.L__profc_wmemmove+26, r14
-	mov	&.L__profc_wmemmove+24, r15
+	mov	&__llvm_gcov_ctr.65+22, r12
+	mov	&__llvm_gcov_ctr.65+20, r11
+	mov	&__llvm_gcov_ctr.65+18, r14
+	mov	&__llvm_gcov_ctr.65+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11893,8 +18029,35 @@ wmemmove:                               ; @wmemmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.65+16
+	mov	r14, &__llvm_gcov_ctr.65+18
+	mov	r13, &__llvm_gcov_ctr.65+20
+	mov	r12, &__llvm_gcov_ctr.65+22
+	mov	&.L__profc_wmemmove+30, r12
+	mov	&.L__profc_wmemmove+28, r10
+	mov	&.L__profc_wmemmove+26, r14
+	mov	&.L__profc_wmemmove+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemmove+24
@@ -11923,10 +18086,10 @@ wmemmove:                               ; @wmemmove
 	jeq	.LBB65_10
 	jmp	.LBB65_9
 .LBB65_9:                               ;   in Loop: Header=BB65_8 Depth=1
-	mov	&.L__profc_wmemmove+38, r12
-	mov	&.L__profc_wmemmove+36, r11
-	mov	&.L__profc_wmemmove+34, r14
-	mov	&.L__profc_wmemmove+32, r15
+	mov	&__llvm_gcov_ctr.65+30, r12
+	mov	&__llvm_gcov_ctr.65+28, r11
+	mov	&__llvm_gcov_ctr.65+26, r14
+	mov	&__llvm_gcov_ctr.65+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -11942,8 +18105,35 @@ wmemmove:                               ; @wmemmove
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.65+24
+	mov	r14, &__llvm_gcov_ctr.65+26
+	mov	r13, &__llvm_gcov_ctr.65+28
+	mov	r12, &__llvm_gcov_ctr.65+30
+	mov	&.L__profc_wmemmove+38, r12
+	mov	&.L__profc_wmemmove+36, r10
+	mov	&.L__profc_wmemmove+34, r14
+	mov	&.L__profc_wmemmove+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemmove+32
@@ -11962,33 +18152,10 @@ wmemmove:                               ; @wmemmove
 	mov	r13, 0(r12)
 	jmp	.LBB65_8
 .LBB65_10:
-	jmp	.LBB65_11
-.LBB65_11:
-	mov	0(r1), r12
-	mov	r12, 8(r1)
-	jmp	.LBB65_12
-.LBB65_12:
-	mov	8(r1), r12
-	add	#10, r1
-	pop	r10
-	ret
-.Lfunc_end65:
-	.size	wmemmove, .Lfunc_end65-wmemmove
-                                        ; -- End function
-	.globl	wmemset                         ; -- Begin function wmemset
-	.p2align	1
-	.type	wmemset,@function
-wmemset:                                ; @wmemset
-; %bb.0:
-	push	r10
-	sub	#8, r1
-	mov	r12, 6(r1)
-	mov	r13, 4(r1)
-	mov	r14, 2(r1)
-	mov	&.L__profc_wmemset+6, r12
-	mov	&.L__profc_wmemset+4, r11
-	mov	&.L__profc_wmemset+2, r14
-	mov	&.L__profc_wmemset, r15
+	mov	&__llvm_gcov_ctr.65+38, r12
+	mov	&__llvm_gcov_ctr.65+36, r11
+	mov	&__llvm_gcov_ctr.65+34, r14
+	mov	&__llvm_gcov_ctr.65+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -12006,6 +18173,88 @@ wmemset:                                ; @wmemset
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.65+32
+	mov	r14, &__llvm_gcov_ctr.65+34
+	mov	r13, &__llvm_gcov_ctr.65+36
+	mov	r12, &__llvm_gcov_ctr.65+38
+	jmp	.LBB65_11
+.LBB65_11:
+	mov	0(r1), r12
+	mov	r12, 8(r1)
+	jmp	.LBB65_12
+.LBB65_12:
+	mov	8(r1), r12
+	add	#10, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end65:
+	.size	wmemmove, .Lfunc_end65-wmemmove
+                                        ; -- End function
+	.globl	wmemset                         ; -- Begin function wmemset
+	.p2align	1
+	.type	wmemset,@function
+wmemset:                                ; @wmemset
+; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#8, r1
+	mov	&__llvm_gcov_ctr.66+6, r15
+	mov	&__llvm_gcov_ctr.66+4, r11
+	mov	&__llvm_gcov_ctr.66+2, r9
+	mov	&__llvm_gcov_ctr.66, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.66
+	mov	r9, &__llvm_gcov_ctr.66+2
+	mov	r10, &__llvm_gcov_ctr.66+4
+	mov	r15, &__llvm_gcov_ctr.66+6
+	mov	r12, 6(r1)
+	mov	r13, 4(r1)
+	mov	r14, 2(r1)
+	mov	&.L__profc_wmemset+6, r12
+	mov	&.L__profc_wmemset+4, r10
+	mov	&.L__profc_wmemset+2, r14
+	mov	&.L__profc_wmemset, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemset
@@ -12024,10 +18273,10 @@ wmemset:                                ; @wmemset
 	jeq	.LBB66_3
 	jmp	.LBB66_2
 .LBB66_2:                               ;   in Loop: Header=BB66_1 Depth=1
-	mov	&.L__profc_wmemset+14, r12
-	mov	&.L__profc_wmemset+12, r11
-	mov	&.L__profc_wmemset+10, r14
-	mov	&.L__profc_wmemset+8, r15
+	mov	&__llvm_gcov_ctr.66+14, r12
+	mov	&__llvm_gcov_ctr.66+12, r11
+	mov	&__llvm_gcov_ctr.66+10, r14
+	mov	&__llvm_gcov_ctr.66+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -12043,8 +18292,35 @@ wmemset:                                ; @wmemset
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.66+8
+	mov	r14, &__llvm_gcov_ctr.66+10
+	mov	r13, &__llvm_gcov_ctr.66+12
+	mov	r12, &__llvm_gcov_ctr.66+14
+	mov	&.L__profc_wmemset+14, r12
+	mov	&.L__profc_wmemset+12, r10
+	mov	&.L__profc_wmemset+10, r14
+	mov	&.L__profc_wmemset+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_wmemset+8
@@ -12062,6 +18338,10 @@ wmemset:                                ; @wmemset
 	mov	0(r1), r12
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end66:
 	.size	wmemset, .Lfunc_end66-wmemset
@@ -12071,6 +18351,7 @@ wmemset:                                ; @wmemset
 	.type	bcopy,@function
 bcopy:                                  ; @bcopy
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 8(r1)
@@ -12113,10 +18394,10 @@ bcopy:                                  ; @bcopy
 	jhs	.LBB67_6
 	jmp	.LBB67_1
 .LBB67_1:
-	mov	&.L__profc_bcopy+14, r12
-	mov	&.L__profc_bcopy+12, r11
-	mov	&.L__profc_bcopy+10, r14
-	mov	&.L__profc_bcopy+8, r15
+	mov	&__llvm_gcov_ctr.67+6, r12
+	mov	&__llvm_gcov_ctr.67+4, r11
+	mov	&__llvm_gcov_ctr.67+2, r14
+	mov	&__llvm_gcov_ctr.67, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -12132,8 +18413,35 @@ bcopy:                                  ; @bcopy
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.67
+	mov	r14, &__llvm_gcov_ctr.67+2
+	mov	r13, &__llvm_gcov_ctr.67+4
+	mov	r12, &__llvm_gcov_ctr.67+6
+	mov	&.L__profc_bcopy+14, r12
+	mov	&.L__profc_bcopy+12, r10
+	mov	&.L__profc_bcopy+10, r14
+	mov	&.L__profc_bcopy+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bcopy+8
@@ -12194,6 +18502,33 @@ bcopy:                                  ; @bcopy
 	mov.b	r13, -1(r12)
 	jmp	.LBB67_4
 .LBB67_4:                               ;   in Loop: Header=BB67_2 Depth=1
+	mov	&__llvm_gcov_ctr.67+14, r12
+	mov	&__llvm_gcov_ctr.67+12, r11
+	mov	&__llvm_gcov_ctr.67+10, r14
+	mov	&__llvm_gcov_ctr.67+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.67+8
+	mov	r14, &__llvm_gcov_ctr.67+10
+	mov	r13, &__llvm_gcov_ctr.67+12
+	mov	r12, &__llvm_gcov_ctr.67+14
 	mov	4(r1), r12
 	add	#-1, r12
 	mov	r12, 4(r1)
@@ -12241,10 +18576,10 @@ bcopy:                                  ; @bcopy
 	jeq	.LBB67_11
 	jmp	.LBB67_9
 .LBB67_9:                               ;   in Loop: Header=BB67_8 Depth=1
-	mov	&.L__profc_bcopy+38, r12
-	mov	&.L__profc_bcopy+36, r11
-	mov	&.L__profc_bcopy+34, r14
-	mov	&.L__profc_bcopy+32, r15
+	mov	&__llvm_gcov_ctr.67+22, r12
+	mov	&__llvm_gcov_ctr.67+20, r11
+	mov	&__llvm_gcov_ctr.67+18, r14
+	mov	&__llvm_gcov_ctr.67+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -12260,8 +18595,35 @@ bcopy:                                  ; @bcopy
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.67+16
+	mov	r14, &__llvm_gcov_ctr.67+18
+	mov	r13, &__llvm_gcov_ctr.67+20
+	mov	r12, &__llvm_gcov_ctr.67+22
+	mov	&.L__profc_bcopy+38, r12
+	mov	&.L__profc_bcopy+36, r10
+	mov	&.L__profc_bcopy+34, r14
+	mov	&.L__profc_bcopy+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bcopy+32
@@ -12285,40 +18647,10 @@ bcopy:                                  ; @bcopy
 	mov	r12, 4(r1)
 	jmp	.LBB67_8
 .LBB67_11:
-	jmp	.LBB67_12
-.LBB67_12:
-	jmp	.LBB67_13
-.LBB67_13:
-	add	#10, r1
-	pop	r10
-	ret
-.Lfunc_end67:
-	.size	bcopy, .Lfunc_end67-bcopy
-                                        ; -- End function
-	.globl	rotl64                          ; -- Begin function rotl64
-	.p2align	1
-	.type	rotl64,@function
-rotl64:                                 ; @rotl64
-; %bb.0:
-	push	r6
-	push	r7
-	push	r8
-	push	r9
-	push	r10
-	sub	#156, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	168(r1), r11
-	mov	r15, 154(r1)
-	mov	r14, 152(r1)
-	mov	r13, 150(r1)
-	mov	r12, 148(r1)
-	mov	&.L__profc_rotl64+6, r12
-	mov	&.L__profc_rotl64+4, r11
-	mov	&.L__profc_rotl64+2, r14
-	mov	&.L__profc_rotl64, r15
+	mov	&__llvm_gcov_ctr.67+30, r12
+	mov	&__llvm_gcov_ctr.67+28, r11
+	mov	&__llvm_gcov_ctr.67+26, r14
+	mov	&__llvm_gcov_ctr.67+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -12338,6 +18670,119 @@ rotl64:                                 ; @rotl64
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.67+24
+	mov	r14, &__llvm_gcov_ctr.67+26
+	mov	r13, &__llvm_gcov_ctr.67+28
+	mov	r12, &__llvm_gcov_ctr.67+30
+	jmp	.LBB67_12
+.LBB67_12:
+	mov	&__llvm_gcov_ctr.67+38, r12
+	mov	&__llvm_gcov_ctr.67+36, r11
+	mov	&__llvm_gcov_ctr.67+34, r14
+	mov	&__llvm_gcov_ctr.67+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.67+32
+	mov	r14, &__llvm_gcov_ctr.67+34
+	mov	r13, &__llvm_gcov_ctr.67+36
+	mov	r12, &__llvm_gcov_ctr.67+38
+	jmp	.LBB67_13
+.LBB67_13:
+	add	#10, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end67:
+	.size	bcopy, .Lfunc_end67-bcopy
+                                        ; -- End function
+	.globl	rotl64                          ; -- Begin function rotl64
+	.p2align	1
+	.type	rotl64,@function
+rotl64:                                 ; @rotl64
+; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#156, r1
+                                        ; kill: def $r11 killed $r15
+                                        ; kill: def $r11 killed $r14
+                                        ; kill: def $r11 killed $r13
+                                        ; kill: def $r11 killed $r12
+	mov	170(r1), r11
+	mov	&__llvm_gcov_ctr.68+6, r10
+	mov	&__llvm_gcov_ctr.68+4, r11
+	mov	&__llvm_gcov_ctr.68+2, r8
+	mov	&__llvm_gcov_ctr.68, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.68
+	mov	r8, &__llvm_gcov_ctr.68+2
+	mov	r9, &__llvm_gcov_ctr.68+4
+	mov	r10, &__llvm_gcov_ctr.68+6
+	mov	r15, 154(r1)
+	mov	r14, 152(r1)
+	mov	r13, 150(r1)
+	mov	r12, 148(r1)
+	mov	&.L__profc_rotl64+6, r12
+	mov	&.L__profc_rotl64+4, r10
+	mov	&.L__profc_rotl64+2, r14
+	mov	&.L__profc_rotl64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_rotl64
 	mov	r14, &.L__profc_rotl64+2
 	mov	r13, &.L__profc_rotl64+4
@@ -12346,7 +18791,7 @@ rotl64:                                 ; @rotl64
 	mov	150(r1), r14
 	mov	152(r1), r15
 	mov	154(r1), r11
-	mov.b	168(r1), r12
+	mov.b	170(r1), r12
 	mov.b	r12, 99(r1)                     ; 1-byte Folded Spill
 	mov.b	r11, r10
 	mov.b	r10, 100(r1)                    ; 1-byte Folded Spill
@@ -12766,6 +19211,7 @@ rotl64:                                 ; @rotl64
 	pop	r8
 	pop	r7
 	pop	r6
+	pop	r5
 	ret
 .Lfunc_end68:
 	.size	rotl64, .Lfunc_end68-rotl64
@@ -12775,6 +19221,7 @@ rotl64:                                 ; @rotl64
 	.type	rotr64,@function
 rotr64:                                 ; @rotr64
 ; %bb.0:
+	push	r5
 	push	r6
 	push	r7
 	push	r8
@@ -12785,13 +19232,41 @@ rotr64:                                 ; @rotr64
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	168(r1), r11
+	mov	170(r1), r11
+	mov	&__llvm_gcov_ctr.69+6, r10
+	mov	&__llvm_gcov_ctr.69+4, r11
+	mov	&__llvm_gcov_ctr.69+2, r8
+	mov	&__llvm_gcov_ctr.69, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.69
+	mov	r8, &__llvm_gcov_ctr.69+2
+	mov	r9, &__llvm_gcov_ctr.69+4
+	mov	r10, &__llvm_gcov_ctr.69+6
 	mov	r15, 154(r1)
 	mov	r14, 152(r1)
 	mov	r13, 150(r1)
 	mov	r12, 148(r1)
 	mov	&.L__profc_rotr64+6, r12
-	mov	&.L__profc_rotr64+4, r11
+	mov	&.L__profc_rotr64+4, r10
 	mov	&.L__profc_rotr64+2, r14
 	mov	&.L__profc_rotr64, r15
 	inc	r15
@@ -12803,14 +19278,13 @@ rotr64:                                 ; @rotr64
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotr64
@@ -12821,7 +19295,7 @@ rotr64:                                 ; @rotr64
 	mov	150(r1), r14
 	mov	152(r1), r15
 	mov	154(r1), r11
-	mov.b	168(r1), r12
+	mov.b	170(r1), r12
 	mov.b	r12, 99(r1)                     ; 1-byte Folded Spill
 	mov.b	r11, r10
 	mov.b	r10, 100(r1)                    ; 1-byte Folded Spill
@@ -13241,6 +19715,7 @@ rotr64:                                 ; @rotr64
 	pop	r8
 	pop	r7
 	pop	r6
+	pop	r5
 	ret
 .Lfunc_end69:
 	.size	rotr64, .Lfunc_end69-rotr64
@@ -13250,15 +19725,47 @@ rotr64:                                 ; @rotr64
 	.type	rotl32,@function
 rotl32:                                 ; @rotl32
 ; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#16, r1
                                         ; kill: def $r15 killed $r13
                                         ; kill: def $r15 killed $r12
+	mov	&__llvm_gcov_ctr.70+6, r15
+	mov	&__llvm_gcov_ctr.70+4, r11
+	mov	&__llvm_gcov_ctr.70+2, r9
+	mov	&__llvm_gcov_ctr.70, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.70
+	mov	r9, &__llvm_gcov_ctr.70+2
+	mov	r10, &__llvm_gcov_ctr.70+4
+	mov	r15, &__llvm_gcov_ctr.70+6
 	mov	r13, 14(r1)
 	mov	r12, 12(r1)
 	mov	r14, 10(r1)
 	mov	&.L__profc_rotl32+6, r12
-	mov	&.L__profc_rotl32+4, r11
+	mov	&.L__profc_rotl32+4, r10
 	mov	&.L__profc_rotl32+2, r14
 	mov	&.L__profc_rotl32, r15
 	inc	r15
@@ -13270,14 +19777,13 @@ rotl32:                                 ; @rotl32
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotl32
@@ -13311,6 +19817,10 @@ rotl32:                                 ; @rotl32
 	bis	r14, r13
 	add	#16, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end70:
 	.size	rotl32, .Lfunc_end70-rotl32
@@ -13320,15 +19830,47 @@ rotl32:                                 ; @rotl32
 	.type	rotr32,@function
 rotr32:                                 ; @rotr32
 ; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#16, r1
                                         ; kill: def $r15 killed $r13
                                         ; kill: def $r15 killed $r12
+	mov	&__llvm_gcov_ctr.71+6, r15
+	mov	&__llvm_gcov_ctr.71+4, r11
+	mov	&__llvm_gcov_ctr.71+2, r9
+	mov	&__llvm_gcov_ctr.71, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.71
+	mov	r9, &__llvm_gcov_ctr.71+2
+	mov	r10, &__llvm_gcov_ctr.71+4
+	mov	r15, &__llvm_gcov_ctr.71+6
 	mov	r13, 14(r1)
 	mov	r12, 12(r1)
 	mov	r14, 10(r1)
 	mov	&.L__profc_rotr32+6, r12
-	mov	&.L__profc_rotr32+4, r11
+	mov	&.L__profc_rotr32+4, r10
 	mov	&.L__profc_rotr32+2, r14
 	mov	&.L__profc_rotr32, r15
 	inc	r15
@@ -13340,14 +19882,13 @@ rotr32:                                 ; @rotr32
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotr32
@@ -13381,6 +19922,10 @@ rotr32:                                 ; @rotr32
 	bis	r14, r13
 	add	#16, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end71:
 	.size	rotr32, .Lfunc_end71-rotr32
@@ -13390,12 +19935,43 @@ rotr32:                                 ; @rotr32
 	.type	rotl_sz,@function
 rotl_sz:                                ; @rotl_sz
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
+	mov	&__llvm_gcov_ctr.72+6, r14
+	mov	&__llvm_gcov_ctr.72+4, r11
+	mov	&__llvm_gcov_ctr.72+2, r10
+	mov	&__llvm_gcov_ctr.72, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.72
+	mov	r10, &__llvm_gcov_ctr.72+2
+	mov	r15, &__llvm_gcov_ctr.72+4
+	mov	r14, &__llvm_gcov_ctr.72+6
 	mov	r12, 16(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotl_sz+6, r12
-	mov	&.L__profc_rotl_sz+4, r11
+	mov	&.L__profc_rotl_sz+4, r10
 	mov	&.L__profc_rotl_sz+2, r14
 	mov	&.L__profc_rotl_sz, r15
 	inc	r15
@@ -13407,14 +19983,13 @@ rotl_sz:                                ; @rotl_sz
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotl_sz
@@ -13463,6 +20038,9 @@ rotl_sz:                                ; @rotl_sz
 	bis	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end72:
 	.size	rotl_sz, .Lfunc_end72-rotl_sz
@@ -13472,12 +20050,43 @@ rotl_sz:                                ; @rotl_sz
 	.type	rotr_sz,@function
 rotr_sz:                                ; @rotr_sz
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
+	mov	&__llvm_gcov_ctr.73+6, r14
+	mov	&__llvm_gcov_ctr.73+4, r11
+	mov	&__llvm_gcov_ctr.73+2, r10
+	mov	&__llvm_gcov_ctr.73, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.73
+	mov	r10, &__llvm_gcov_ctr.73+2
+	mov	r15, &__llvm_gcov_ctr.73+4
+	mov	r14, &__llvm_gcov_ctr.73+6
 	mov	r12, 16(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotr_sz+6, r12
-	mov	&.L__profc_rotr_sz+4, r11
+	mov	&.L__profc_rotr_sz+4, r10
 	mov	&.L__profc_rotr_sz+2, r14
 	mov	&.L__profc_rotr_sz, r15
 	inc	r15
@@ -13489,14 +20098,13 @@ rotr_sz:                                ; @rotr_sz
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotr_sz
@@ -13545,6 +20153,9 @@ rotr_sz:                                ; @rotr_sz
 	bis	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end73:
 	.size	rotr_sz, .Lfunc_end73-rotr_sz
@@ -13554,12 +20165,43 @@ rotr_sz:                                ; @rotr_sz
 	.type	rotl16,@function
 rotl16:                                 ; @rotl16
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
+	mov	&__llvm_gcov_ctr.74+6, r14
+	mov	&__llvm_gcov_ctr.74+4, r11
+	mov	&__llvm_gcov_ctr.74+2, r10
+	mov	&__llvm_gcov_ctr.74, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.74
+	mov	r10, &__llvm_gcov_ctr.74+2
+	mov	r15, &__llvm_gcov_ctr.74+4
+	mov	r14, &__llvm_gcov_ctr.74+6
 	mov	r12, 16(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotl16+6, r12
-	mov	&.L__profc_rotl16+4, r11
+	mov	&.L__profc_rotl16+4, r10
 	mov	&.L__profc_rotl16+2, r14
 	mov	&.L__profc_rotl16, r15
 	inc	r15
@@ -13571,14 +20213,13 @@ rotl16:                                 ; @rotl16
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotl16
@@ -13627,6 +20268,9 @@ rotl16:                                 ; @rotl16
 	bis	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end74:
 	.size	rotl16, .Lfunc_end74-rotl16
@@ -13636,12 +20280,43 @@ rotl16:                                 ; @rotl16
 	.type	rotr16,@function
 rotr16:                                 ; @rotr16
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
+	mov	&__llvm_gcov_ctr.75+6, r14
+	mov	&__llvm_gcov_ctr.75+4, r11
+	mov	&__llvm_gcov_ctr.75+2, r10
+	mov	&__llvm_gcov_ctr.75, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.75
+	mov	r10, &__llvm_gcov_ctr.75+2
+	mov	r15, &__llvm_gcov_ctr.75+4
+	mov	r14, &__llvm_gcov_ctr.75+6
 	mov	r12, 16(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotr16+6, r12
-	mov	&.L__profc_rotr16+4, r11
+	mov	&.L__profc_rotr16+4, r10
 	mov	&.L__profc_rotr16+2, r14
 	mov	&.L__profc_rotr16, r15
 	inc	r15
@@ -13653,14 +20328,13 @@ rotr16:                                 ; @rotr16
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotr16
@@ -13709,6 +20383,9 @@ rotr16:                                 ; @rotr16
 	bis	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end75:
 	.size	rotr16, .Lfunc_end75-rotr16
@@ -13718,13 +20395,44 @@ rotr16:                                 ; @rotr16
 	.type	rotl8,@function
 rotl8:                                  ; @rotl8
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
                                         ; kill: def $r12b killed $r12b killed $r12
+	mov	&__llvm_gcov_ctr.76+6, r14
+	mov	&__llvm_gcov_ctr.76+4, r11
+	mov	&__llvm_gcov_ctr.76+2, r10
+	mov	&__llvm_gcov_ctr.76, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.76
+	mov	r10, &__llvm_gcov_ctr.76+2
+	mov	r15, &__llvm_gcov_ctr.76+4
+	mov	r14, &__llvm_gcov_ctr.76+6
 	mov.b	r12, 17(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotl8+6, r12
-	mov	&.L__profc_rotl8+4, r11
+	mov	&.L__profc_rotl8+4, r10
 	mov	&.L__profc_rotl8+2, r14
 	mov	&.L__profc_rotl8, r15
 	inc	r15
@@ -13736,14 +20444,13 @@ rotl8:                                  ; @rotl8
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotl8
@@ -13793,6 +20500,9 @@ rotl8:                                  ; @rotl8
 	mov.b	r12, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end76:
 	.size	rotl8, .Lfunc_end76-rotl8
@@ -13802,13 +20512,44 @@ rotl8:                                  ; @rotl8
 	.type	rotr8,@function
 rotr8:                                  ; @rotr8
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
                                         ; kill: def $r12b killed $r12b killed $r12
+	mov	&__llvm_gcov_ctr.77+6, r14
+	mov	&__llvm_gcov_ctr.77+4, r11
+	mov	&__llvm_gcov_ctr.77+2, r10
+	mov	&__llvm_gcov_ctr.77, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.77
+	mov	r10, &__llvm_gcov_ctr.77+2
+	mov	r15, &__llvm_gcov_ctr.77+4
+	mov	r14, &__llvm_gcov_ctr.77+6
 	mov.b	r12, 17(r1)
 	mov	r13, 14(r1)
 	mov	&.L__profc_rotr8+6, r12
-	mov	&.L__profc_rotr8+4, r11
+	mov	&.L__profc_rotr8+4, r10
 	mov	&.L__profc_rotr8+2, r14
 	mov	&.L__profc_rotr8, r15
 	inc	r15
@@ -13820,14 +20561,13 @@ rotr8:                                  ; @rotr8
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_rotr8
@@ -13877,6 +20617,9 @@ rotr8:                                  ; @rotr8
 	mov.b	r12, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end77:
 	.size	rotr8, .Lfunc_end77-rotr8
@@ -13886,11 +20629,41 @@ rotr8:                                  ; @rotr8
 	.type	bswap_16,@function
 bswap_16:                               ; @bswap_16
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.78+6, r13
+	mov	&__llvm_gcov_ctr.78+4, r11
+	mov	&__llvm_gcov_ctr.78+2, r15
+	mov	&__llvm_gcov_ctr.78, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.78
+	mov	r15, &__llvm_gcov_ctr.78+2
+	mov	r14, &__llvm_gcov_ctr.78+4
+	mov	r13, &__llvm_gcov_ctr.78+6
 	mov	r12, 2(r1)
 	mov	&.L__profc_bswap_16+6, r12
-	mov	&.L__profc_bswap_16+4, r11
+	mov	&.L__profc_bswap_16+4, r10
 	mov	&.L__profc_bswap_16+2, r14
 	mov	&.L__profc_bswap_16, r15
 	inc	r15
@@ -13902,14 +20675,13 @@ bswap_16:                               ; @bswap_16
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bswap_16
@@ -13927,6 +20699,8 @@ bswap_16:                               ; @bswap_16
 	bis	r13, r12
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end78:
 	.size	bswap_16, .Lfunc_end78-bswap_16
@@ -13936,15 +20710,45 @@ bswap_16:                               ; @bswap_16
 	.type	bswap_32,@function
 bswap_32:                               ; @bswap_32
 ; %bb.0:
+	push	r7
+	push	r8
 	push	r9
 	push	r10
 	sub	#8, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.79+6, r14
+	mov	&__llvm_gcov_ctr.79+4, r11
+	mov	&__llvm_gcov_ctr.79+2, r10
+	mov	&__llvm_gcov_ctr.79, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.79
+	mov	r10, &__llvm_gcov_ctr.79+2
+	mov	r15, &__llvm_gcov_ctr.79+4
+	mov	r14, &__llvm_gcov_ctr.79+6
 	mov	r13, 6(r1)
 	mov	r12, 4(r1)
 	mov	&.L__profc_bswap_32+6, r12
-	mov	&.L__profc_bswap_32+4, r11
+	mov	&.L__profc_bswap_32+4, r10
 	mov	&.L__profc_bswap_32+2, r14
 	mov	&.L__profc_bswap_32, r15
 	inc	r15
@@ -13956,14 +20760,13 @@ bswap_32:                               ; @bswap_32
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bswap_32
@@ -14002,6 +20805,8 @@ bswap_32:                               ; @bswap_32
 	add	#8, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end79:
 	.size	bswap_32, .Lfunc_end79-bswap_32
@@ -14023,12 +20828,40 @@ bswap_64:                               ; @bswap_64
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.80+6, r10
+	mov	&__llvm_gcov_ctr.80+4, r11
+	mov	&__llvm_gcov_ctr.80+2, r8
+	mov	&__llvm_gcov_ctr.80, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.80
+	mov	r8, &__llvm_gcov_ctr.80+2
+	mov	r9, &__llvm_gcov_ctr.80+4
+	mov	r10, &__llvm_gcov_ctr.80+6
 	mov	r15, 24(r1)
 	mov	r14, 22(r1)
 	mov	r13, 20(r1)
 	mov	r12, 18(r1)
 	mov	&.L__profc_bswap_64+6, r12
-	mov	&.L__profc_bswap_64+4, r11
+	mov	&.L__profc_bswap_64+4, r10
 	mov	&.L__profc_bswap_64+2, r14
 	mov	&.L__profc_bswap_64, r15
 	inc	r15
@@ -14040,14 +20873,13 @@ bswap_64:                               ; @bswap_64
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_bswap_64
@@ -14165,6 +20997,7 @@ bswap_64:                               ; @bswap_64
 	.type	ffs,@function
 ffs:                                    ; @ffs
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 6(r1)
@@ -14253,10 +21086,71 @@ ffs:                                    ; @ffs
 	jeq	.LBB81_6
 	jmp	.LBB81_5
 .LBB81_5:
+	mov	&__llvm_gcov_ctr.81+6, r12
+	mov	&__llvm_gcov_ctr.81+4, r11
+	mov	&__llvm_gcov_ctr.81+2, r14
+	mov	&__llvm_gcov_ctr.81, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.81
+	mov	r14, &__llvm_gcov_ctr.81+2
+	mov	r13, &__llvm_gcov_ctr.81+4
+	mov	r12, &__llvm_gcov_ctr.81+6
 	mov	&.L__profc_ffs+22, r12
-	mov	&.L__profc_ffs+20, r11
+	mov	&.L__profc_ffs+20, r10
 	mov	&.L__profc_ffs+18, r14
 	mov	&.L__profc_ffs+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_ffs+16
+	mov	r14, &.L__profc_ffs+18
+	mov	r13, &.L__profc_ffs+20
+	mov	r12, &.L__profc_ffs+22
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 8(r1)
+	jmp	.LBB81_9
+.LBB81_6:                               ;   in Loop: Header=BB81_1 Depth=1
+	jmp	.LBB81_7
+.LBB81_7:                               ;   in Loop: Header=BB81_1 Depth=1
+	mov	&__llvm_gcov_ctr.81+14, r12
+	mov	&__llvm_gcov_ctr.81+12, r11
+	mov	&__llvm_gcov_ctr.81+10, r14
+	mov	&__llvm_gcov_ctr.81+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14276,28 +21170,49 @@ ffs:                                    ; @ffs
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_ffs+16
-	mov	r14, &.L__profc_ffs+18
-	mov	r13, &.L__profc_ffs+20
-	mov	r12, &.L__profc_ffs+22
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 8(r1)
-	jmp	.LBB81_9
-.LBB81_6:                               ;   in Loop: Header=BB81_1 Depth=1
-	jmp	.LBB81_7
-.LBB81_7:                               ;   in Loop: Header=BB81_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.81+8
+	mov	r14, &__llvm_gcov_ctr.81+10
+	mov	r13, &__llvm_gcov_ctr.81+12
+	mov	r12, &__llvm_gcov_ctr.81+14
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
 	jmp	.LBB81_1
 .LBB81_8:
+	mov	&__llvm_gcov_ctr.81+22, r12
+	mov	&__llvm_gcov_ctr.81+20, r11
+	mov	&__llvm_gcov_ctr.81+18, r14
+	mov	&__llvm_gcov_ctr.81+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.81+16
+	mov	r14, &__llvm_gcov_ctr.81+18
+	mov	r13, &__llvm_gcov_ctr.81+20
+	mov	r12, &__llvm_gcov_ctr.81+22
 	clr	8(r1)
 	jmp	.LBB81_9
 .LBB81_9:
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end81:
 	.size	ffs, .Lfunc_end81-ffs
@@ -14307,6 +21222,7 @@ ffs:                                    ; @ffs
 	.type	libiberty_ffs,@function
 libiberty_ffs:                          ; @libiberty_ffs
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#6, r1
 	mov	r12, 2(r1)
@@ -14342,10 +21258,67 @@ libiberty_ffs:                          ; @libiberty_ffs
 	jne	.LBB82_2
 	jmp	.LBB82_1
 .LBB82_1:
+	mov	&__llvm_gcov_ctr.82+14, r12
+	mov	&__llvm_gcov_ctr.82+12, r11
+	mov	&__llvm_gcov_ctr.82+10, r14
+	mov	&__llvm_gcov_ctr.82+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.82+8
+	mov	r14, &__llvm_gcov_ctr.82+10
+	mov	r13, &__llvm_gcov_ctr.82+12
+	mov	r12, &__llvm_gcov_ctr.82+14
 	mov	&.L__profc_libiberty_ffs+14, r12
-	mov	&.L__profc_libiberty_ffs+12, r11
+	mov	&.L__profc_libiberty_ffs+12, r10
 	mov	&.L__profc_libiberty_ffs+10, r14
 	mov	&.L__profc_libiberty_ffs+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_libiberty_ffs+8
+	mov	r14, &.L__profc_libiberty_ffs+10
+	mov	r13, &.L__profc_libiberty_ffs+12
+	mov	r12, &.L__profc_libiberty_ffs+14
+	clr	4(r1)
+	jmp	.LBB82_7
+.LBB82_2:
+	mov	&__llvm_gcov_ctr.82+6, r12
+	mov	&__llvm_gcov_ctr.82+4, r11
+	mov	&__llvm_gcov_ctr.82+2, r14
+	mov	&__llvm_gcov_ctr.82, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14365,13 +21338,10 @@ libiberty_ffs:                          ; @libiberty_ffs
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_libiberty_ffs+8
-	mov	r14, &.L__profc_libiberty_ffs+10
-	mov	r13, &.L__profc_libiberty_ffs+12
-	mov	r12, &.L__profc_libiberty_ffs+14
-	clr	4(r1)
-	jmp	.LBB82_7
-.LBB82_2:
+	mov	r15, &__llvm_gcov_ctr.82
+	mov	r14, &__llvm_gcov_ctr.82+2
+	mov	r13, &__llvm_gcov_ctr.82+4
+	mov	r12, &__llvm_gcov_ctr.82+6
 	mov	#1, 0(r1)
 	jmp	.LBB82_3
 .LBB82_3:                               ; =>This Inner Loop Header: Depth=1
@@ -14412,38 +21382,10 @@ libiberty_ffs:                          ; @libiberty_ffs
 	mov	r12, 2(r1)
 	jmp	.LBB82_5
 .LBB82_5:                               ;   in Loop: Header=BB82_3 Depth=1
-	mov	0(r1), r12
-	inc	r12
-	mov	r12, 0(r1)
-	jmp	.LBB82_3
-.LBB82_6:
-	mov	0(r1), r12
-	mov	r12, 4(r1)
-	jmp	.LBB82_7
-.LBB82_7:
-	mov	4(r1), r12
-	add	#6, r1
-	pop	r10
-	ret
-.Lfunc_end82:
-	.size	libiberty_ffs, .Lfunc_end82-libiberty_ffs
-                                        ; -- End function
-	.globl	gl_isinff                       ; -- Begin function gl_isinff
-	.p2align	1
-	.type	gl_isinff,@function
-gl_isinff:                              ; @gl_isinff
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#16, r1
-                                        ; kill: def $r14 killed $r13
-                                        ; kill: def $r14 killed $r12
-	mov	r13, 14(r1)
-	mov	r12, 12(r1)
-	mov	&.L__profc_gl_isinff+6, r12
-	mov	&.L__profc_gl_isinff+4, r11
-	mov	&.L__profc_gl_isinff+2, r14
-	mov	&.L__profc_gl_isinff, r15
+	mov	&__llvm_gcov_ctr.82+22, r12
+	mov	&__llvm_gcov_ctr.82+20, r11
+	mov	&__llvm_gcov_ctr.82+18, r14
+	mov	&__llvm_gcov_ctr.82+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14463,6 +21405,91 @@ gl_isinff:                              ; @gl_isinff
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.82+16
+	mov	r14, &__llvm_gcov_ctr.82+18
+	mov	r13, &__llvm_gcov_ctr.82+20
+	mov	r12, &__llvm_gcov_ctr.82+22
+	mov	0(r1), r12
+	inc	r12
+	mov	r12, 0(r1)
+	jmp	.LBB82_3
+.LBB82_6:
+	mov	0(r1), r12
+	mov	r12, 4(r1)
+	jmp	.LBB82_7
+.LBB82_7:
+	mov	4(r1), r12
+	add	#6, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end82:
+	.size	libiberty_ffs, .Lfunc_end82-libiberty_ffs
+                                        ; -- End function
+	.globl	gl_isinff                       ; -- Begin function gl_isinff
+	.p2align	1
+	.type	gl_isinff,@function
+gl_isinff:                              ; @gl_isinff
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#16, r1
+                                        ; kill: def $r14 killed $r13
+                                        ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.83+6, r14
+	mov	&__llvm_gcov_ctr.83+4, r11
+	mov	&__llvm_gcov_ctr.83+2, r10
+	mov	&__llvm_gcov_ctr.83, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.83
+	mov	r10, &__llvm_gcov_ctr.83+2
+	mov	r15, &__llvm_gcov_ctr.83+4
+	mov	r14, &__llvm_gcov_ctr.83+6
+	mov	r13, 14(r1)
+	mov	r12, 12(r1)
+	mov	&.L__profc_gl_isinff+6, r12
+	mov	&.L__profc_gl_isinff+4, r10
+	mov	&.L__profc_gl_isinff+2, r14
+	mov	&.L__profc_gl_isinff, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_gl_isinff
 	mov	r14, &.L__profc_gl_isinff+2
 	mov	r13, &.L__profc_gl_isinff+4
@@ -14479,10 +21506,10 @@ gl_isinff:                              ; @gl_isinff
 	jl	.LBB83_5
 	jmp	.LBB83_1
 .LBB83_1:
-	mov	&.L__profc_gl_isinff+14, r12
-	mov	&.L__profc_gl_isinff+12, r11
-	mov	&.L__profc_gl_isinff+10, r14
-	mov	&.L__profc_gl_isinff+8, r15
+	mov	&__llvm_gcov_ctr.83+14, r12
+	mov	&__llvm_gcov_ctr.83+12, r11
+	mov	&__llvm_gcov_ctr.83+10, r14
+	mov	&__llvm_gcov_ctr.83+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14498,9 +21525,36 @@ gl_isinff:                              ; @gl_isinff
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.83+8
+	mov	r14, &__llvm_gcov_ctr.83+10
+	mov	r13, &__llvm_gcov_ctr.83+12
+	mov	r12, &__llvm_gcov_ctr.83+14
+	mov	&.L__profc_gl_isinff+14, r12
+	mov	&.L__profc_gl_isinff+12, r10
+	mov	&.L__profc_gl_isinff+10, r14
+	mov	&.L__profc_gl_isinff+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_gl_isinff+8
@@ -14534,10 +21588,10 @@ gl_isinff:                              ; @gl_isinff
 	jmp	.LBB83_4
 .LBB83_4:
 	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_gl_isinff+22, r13
-	mov	&.L__profc_gl_isinff+20, r10
-	mov	&.L__profc_gl_isinff+18, r15
-	mov	&.L__profc_gl_isinff+16, r11
+	mov	&__llvm_gcov_ctr.83+22, r13
+	mov	&__llvm_gcov_ctr.83+20, r10
+	mov	&__llvm_gcov_ctr.83+18, r15
+	mov	&__llvm_gcov_ctr.83+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -14553,8 +21607,35 @@ gl_isinff:                              ; @gl_isinff
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.83+16
+	mov	r15, &__llvm_gcov_ctr.83+18
+	mov	r14, &__llvm_gcov_ctr.83+20
+	mov	r13, &__llvm_gcov_ctr.83+22
+	mov	&.L__profc_gl_isinff+22, r13
+	mov	&.L__profc_gl_isinff+20, r9
+	mov	&.L__profc_gl_isinff+18, r15
+	mov	&.L__profc_gl_isinff+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_gl_isinff+16
@@ -14570,6 +21651,8 @@ gl_isinff:                              ; @gl_isinff
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end83:
 	.size	gl_isinff, .Lfunc_end83-gl_isinff
@@ -14579,6 +21662,9 @@ gl_isinff:                              ; @gl_isinff
 	.type	gl_isinfd,@function
 gl_isinfd:                              ; @gl_isinfd
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
@@ -14587,12 +21673,40 @@ gl_isinfd:                              ; @gl_isinfd
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.84+6, r10
+	mov	&__llvm_gcov_ctr.84+4, r11
+	mov	&__llvm_gcov_ctr.84+2, r8
+	mov	&__llvm_gcov_ctr.84, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.84
+	mov	r8, &__llvm_gcov_ctr.84+2
+	mov	r9, &__llvm_gcov_ctr.84+4
+	mov	r10, &__llvm_gcov_ctr.84+6
 	mov	r15, 18(r1)
 	mov	r14, 16(r1)
 	mov	r13, 14(r1)
 	mov	r12, 12(r1)
 	mov	&.L__profc_gl_isinfd+6, r12
-	mov	&.L__profc_gl_isinfd+4, r11
+	mov	&.L__profc_gl_isinfd+4, r10
 	mov	&.L__profc_gl_isinfd+2, r14
 	mov	&.L__profc_gl_isinfd, r15
 	inc	r15
@@ -14604,14 +21718,13 @@ gl_isinfd:                              ; @gl_isinfd
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_gl_isinfd
@@ -14634,10 +21747,10 @@ gl_isinfd:                              ; @gl_isinfd
 	jl	.LBB84_5
 	jmp	.LBB84_1
 .LBB84_1:
-	mov	&.L__profc_gl_isinfd+14, r12
-	mov	&.L__profc_gl_isinfd+12, r11
-	mov	&.L__profc_gl_isinfd+10, r14
-	mov	&.L__profc_gl_isinfd+8, r15
+	mov	&__llvm_gcov_ctr.84+14, r12
+	mov	&__llvm_gcov_ctr.84+12, r11
+	mov	&__llvm_gcov_ctr.84+10, r14
+	mov	&__llvm_gcov_ctr.84+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14653,9 +21766,36 @@ gl_isinfd:                              ; @gl_isinfd
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.84+8
+	mov	r14, &__llvm_gcov_ctr.84+10
+	mov	r13, &__llvm_gcov_ctr.84+12
+	mov	r12, &__llvm_gcov_ctr.84+14
+	mov	&.L__profc_gl_isinfd+14, r12
+	mov	&.L__profc_gl_isinfd+12, r10
+	mov	&.L__profc_gl_isinfd+10, r14
+	mov	&.L__profc_gl_isinfd+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_gl_isinfd+8
@@ -14693,10 +21833,10 @@ gl_isinfd:                              ; @gl_isinfd
 	jmp	.LBB84_4
 .LBB84_4:
 	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_gl_isinfd+22, r13
-	mov	&.L__profc_gl_isinfd+20, r10
-	mov	&.L__profc_gl_isinfd+18, r15
-	mov	&.L__profc_gl_isinfd+16, r11
+	mov	&__llvm_gcov_ctr.84+22, r13
+	mov	&__llvm_gcov_ctr.84+20, r10
+	mov	&__llvm_gcov_ctr.84+18, r15
+	mov	&__llvm_gcov_ctr.84+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -14712,8 +21852,35 @@ gl_isinfd:                              ; @gl_isinfd
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.84+16
+	mov	r15, &__llvm_gcov_ctr.84+18
+	mov	r14, &__llvm_gcov_ctr.84+20
+	mov	r13, &__llvm_gcov_ctr.84+22
+	mov	&.L__profc_gl_isinfd+22, r13
+	mov	&.L__profc_gl_isinfd+20, r9
+	mov	&.L__profc_gl_isinfd+18, r15
+	mov	&.L__profc_gl_isinfd+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_gl_isinfd+16
@@ -14730,6 +21897,9 @@ gl_isinfd:                              ; @gl_isinfd
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end84:
 	.size	gl_isinfd, .Lfunc_end84-gl_isinfd
@@ -14739,6 +21909,9 @@ gl_isinfd:                              ; @gl_isinfd
 	.type	gl_isinfl,@function
 gl_isinfl:                              ; @gl_isinfl
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
@@ -14747,12 +21920,40 @@ gl_isinfl:                              ; @gl_isinfl
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.85+6, r10
+	mov	&__llvm_gcov_ctr.85+4, r11
+	mov	&__llvm_gcov_ctr.85+2, r8
+	mov	&__llvm_gcov_ctr.85, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.85
+	mov	r8, &__llvm_gcov_ctr.85+2
+	mov	r9, &__llvm_gcov_ctr.85+4
+	mov	r10, &__llvm_gcov_ctr.85+6
 	mov	r15, 18(r1)
 	mov	r14, 16(r1)
 	mov	r13, 14(r1)
 	mov	r12, 12(r1)
 	mov	&.L__profc_gl_isinfl+6, r12
-	mov	&.L__profc_gl_isinfl+4, r11
+	mov	&.L__profc_gl_isinfl+4, r10
 	mov	&.L__profc_gl_isinfl+2, r14
 	mov	&.L__profc_gl_isinfl, r15
 	inc	r15
@@ -14764,14 +21965,13 @@ gl_isinfl:                              ; @gl_isinfl
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_gl_isinfl
@@ -14794,10 +21994,10 @@ gl_isinfl:                              ; @gl_isinfl
 	jl	.LBB85_5
 	jmp	.LBB85_1
 .LBB85_1:
-	mov	&.L__profc_gl_isinfl+14, r12
-	mov	&.L__profc_gl_isinfl+12, r11
-	mov	&.L__profc_gl_isinfl+10, r14
-	mov	&.L__profc_gl_isinfl+8, r15
+	mov	&__llvm_gcov_ctr.85+14, r12
+	mov	&__llvm_gcov_ctr.85+12, r11
+	mov	&__llvm_gcov_ctr.85+10, r14
+	mov	&__llvm_gcov_ctr.85+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -14813,9 +22013,36 @@ gl_isinfl:                              ; @gl_isinfl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.85+8
+	mov	r14, &__llvm_gcov_ctr.85+10
+	mov	r13, &__llvm_gcov_ctr.85+12
+	mov	r12, &__llvm_gcov_ctr.85+14
+	mov	&.L__profc_gl_isinfl+14, r12
+	mov	&.L__profc_gl_isinfl+12, r10
+	mov	&.L__profc_gl_isinfl+10, r14
+	mov	&.L__profc_gl_isinfl+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_gl_isinfl+8
@@ -14853,10 +22080,10 @@ gl_isinfl:                              ; @gl_isinfl
 	jmp	.LBB85_4
 .LBB85_4:
 	mov.b	1(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_gl_isinfl+22, r13
-	mov	&.L__profc_gl_isinfl+20, r10
-	mov	&.L__profc_gl_isinfl+18, r15
-	mov	&.L__profc_gl_isinfl+16, r11
+	mov	&__llvm_gcov_ctr.85+22, r13
+	mov	&__llvm_gcov_ctr.85+20, r10
+	mov	&__llvm_gcov_ctr.85+18, r15
+	mov	&__llvm_gcov_ctr.85+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -14872,8 +22099,35 @@ gl_isinfl:                              ; @gl_isinfl
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.85+16
+	mov	r15, &__llvm_gcov_ctr.85+18
+	mov	r14, &__llvm_gcov_ctr.85+20
+	mov	r13, &__llvm_gcov_ctr.85+22
+	mov	&.L__profc_gl_isinfl+22, r13
+	mov	&.L__profc_gl_isinfl+20, r9
+	mov	&.L__profc_gl_isinfl+18, r15
+	mov	&.L__profc_gl_isinfl+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_gl_isinfl+16
@@ -14890,6 +22144,9 @@ gl_isinfl:                              ; @gl_isinfl
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end85:
 	.size	gl_isinfl, .Lfunc_end85-gl_isinfl
@@ -14899,12 +22156,43 @@ gl_isinfl:                              ; @gl_isinfl
 	.type	_Qp_itoq,@function
 _Qp_itoq:                               ; @_Qp_itoq
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#10, r1
+	mov	&__llvm_gcov_ctr.86+6, r14
+	mov	&__llvm_gcov_ctr.86+4, r11
+	mov	&__llvm_gcov_ctr.86+2, r10
+	mov	&__llvm_gcov_ctr.86, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.86
+	mov	r10, &__llvm_gcov_ctr.86+2
+	mov	r15, &__llvm_gcov_ctr.86+4
+	mov	r14, &__llvm_gcov_ctr.86+6
 	mov	r12, 8(r1)
 	mov	r13, 6(r1)
 	mov	&.L__profc__Qp_itoq+6, r12
-	mov	&.L__profc__Qp_itoq+4, r11
+	mov	&.L__profc__Qp_itoq+4, r10
 	mov	&.L__profc__Qp_itoq+2, r14
 	mov	&.L__profc__Qp_itoq, r15
 	inc	r15
@@ -14916,14 +22204,13 @@ _Qp_itoq:                               ; @_Qp_itoq
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc__Qp_itoq
@@ -14958,6 +22245,9 @@ _Qp_itoq:                               ; @_Qp_itoq
 	mov	r13, 0(r12)
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end86:
 	.size	_Qp_itoq, .Lfunc_end86-_Qp_itoq
@@ -14967,17 +22257,50 @@ _Qp_itoq:                               ; @_Qp_itoq
 	.type	ldexpf,@function
 ldexpf:                                 ; @ldexpf
 ; %bb.0:
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
 	sub	#52, r1
-                                        ; kill: def $r15 killed $r13
-                                        ; kill: def $r15 killed $r12
-	mov	r13, 50(r1)
-	mov	r12, 48(r1)
+	mov	r13, r15
+	mov	r12, r13
+                                        ; kill: def $r12 killed $r15
+                                        ; kill: def $r12 killed $r13
+	mov	&__llvm_gcov_ctr.87+6, r11
+	mov	&__llvm_gcov_ctr.87+4, r12
+	mov	&__llvm_gcov_ctr.87+2, r9
+	mov	&__llvm_gcov_ctr.87, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r12, r10
+	add	r7, r10
+	cmp	r12, r10
+	mov	r2, r6
+	mov	#1, r12
+	mov	r12, 32(r1)                     ; 2-byte Folded Spill
+	mov	r12, r7
+	bic	r6, r7
+	add	r7, r11
+	mov	r8, &__llvm_gcov_ctr.87
+	mov	r9, &__llvm_gcov_ctr.87+2
+	mov	r10, &__llvm_gcov_ctr.87+4
+	mov	r11, &__llvm_gcov_ctr.87+6
+	mov	r15, 50(r1)
+	mov	r13, 48(r1)
 	mov	r14, 46(r1)
 	mov	&.L__profc_ldexpf+6, r13
-	mov	&.L__profc_ldexpf+4, r12
+	mov	&.L__profc_ldexpf+4, r10
 	mov	&.L__profc_ldexpf+2, r15
 	mov	&.L__profc_ldexpf, r11
 	inc	r11
@@ -14989,15 +22312,13 @@ ldexpf:                                 ; @ldexpf
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
-	mov	r12, 32(r1)                     ; 2-byte Folded Spill
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -15037,13 +22358,15 @@ ldexpf:                                 ; @ldexpf
 .LBB87_4:
 	mov	30(r1), r12                     ; 2-byte Folded Reload
 	bit	#1, r12
-	jne	.LBB87_20
-	jmp	.LBB87_5
+	jeq	.LBB87_5
+	br	#.LBB87_21
 .LBB87_5:
-	mov	&.L__profc_ldexpf+22, r12
-	mov	&.L__profc_ldexpf+20, r11
-	mov	&.L__profc_ldexpf+18, r14
-	mov	&.L__profc_ldexpf+16, r15
+	jmp	.LBB87_6
+.LBB87_6:
+	mov	&__llvm_gcov_ctr.87+14, r12
+	mov	&__llvm_gcov_ctr.87+12, r11
+	mov	&__llvm_gcov_ctr.87+10, r14
+	mov	&__llvm_gcov_ctr.87+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15059,8 +22382,35 @@ ldexpf:                                 ; @ldexpf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.87+8
+	mov	r14, &__llvm_gcov_ctr.87+10
+	mov	r13, &__llvm_gcov_ctr.87+12
+	mov	r12, &__llvm_gcov_ctr.87+14
+	mov	&.L__profc_ldexpf+22, r12
+	mov	&.L__profc_ldexpf+20, r10
+	mov	&.L__profc_ldexpf+18, r14
+	mov	&.L__profc_ldexpf+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpf+16
@@ -15078,13 +22428,13 @@ ldexpf:                                 ; @ldexpf
 	mov	26(r1), r14                     ; 2-byte Folded Reload
 	call	#__mspabi_cmpf
 	tst	r12
-	jeq	.LBB87_20
-	jmp	.LBB87_6
-.LBB87_6:
-	mov	&.L__profc_ldexpf+30, r12
-	mov	&.L__profc_ldexpf+28, r11
-	mov	&.L__profc_ldexpf+26, r14
-	mov	&.L__profc_ldexpf+24, r15
+	jeq	.LBB87_21
+	jmp	.LBB87_7
+.LBB87_7:
+	mov	&__llvm_gcov_ctr.87+22, r12
+	mov	&__llvm_gcov_ctr.87+20, r11
+	mov	&__llvm_gcov_ctr.87+18, r14
+	mov	&__llvm_gcov_ctr.87+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15100,16 +22450,43 @@ ldexpf:                                 ; @ldexpf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.87+16
+	mov	r14, &__llvm_gcov_ctr.87+18
+	mov	r13, &__llvm_gcov_ctr.87+20
+	mov	r12, &__llvm_gcov_ctr.87+22
+	mov	&.L__profc_ldexpf+30, r12
+	mov	&.L__profc_ldexpf+28, r10
+	mov	&.L__profc_ldexpf+26, r14
+	mov	&.L__profc_ldexpf+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpf+24
 	mov	r14, &.L__profc_ldexpf+26
 	mov	r13, &.L__profc_ldexpf+28
 	mov	r12, &.L__profc_ldexpf+30
-	jmp	.LBB87_7
-.LBB87_7:
+	jmp	.LBB87_8
+.LBB87_8:
 	mov	&.L__profc_ldexpf+14, r13
 	mov	&.L__profc_ldexpf+12, r12
 	mov	&.L__profc_ldexpf+10, r15
@@ -15145,11 +22522,11 @@ ldexpf:                                 ; @ldexpf
 	mov	r14, 20(r1)                     ; 2-byte Folded Spill
 	tst	r13
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-	jl	.LBB87_9
-; %bb.8:
+	jl	.LBB87_10
+; %bb.9:
 	mov	20(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-.LBB87_9:
+.LBB87_10:
 	mov	16(r1), r15                     ; 2-byte Folded Reload
 	mov	22(r1), r12                     ; 2-byte Folded Reload
 	mov	&.L__profc_ldexpf+38, r13
@@ -15174,11 +22551,11 @@ ldexpf:                                 ; @ldexpf
 	mov	r15, 12(r1)                     ; 2-byte Folded Spill
 	cmp	r14, r13
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jhs	.LBB87_11
-; %bb.10:
+	jhs	.LBB87_12
+; %bb.11:
 	mov	12(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-.LBB87_11:
+.LBB87_12:
 	mov	18(r1), r13                     ; 2-byte Folded Reload
 	mov	10(r1), r15                     ; 2-byte Folded Reload
 	mov	8(r1), r11                      ; 2-byte Folded Reload
@@ -15201,16 +22578,16 @@ ldexpf:                                 ; @ldexpf
 	mov	#16128, r12
 	tst	r13
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jl	.LBB87_13
-; %bb.12:
+	jl	.LBB87_14
+; %bb.13:
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-.LBB87_13:
+.LBB87_14:
 	mov	2(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 44(r1)
 	clr	42(r1)
-	jmp	.LBB87_14
-.LBB87_14:                              ; =>This Inner Loop Header: Depth=1
+	jmp	.LBB87_15
+.LBB87_15:                              ; =>This Inner Loop Header: Depth=1
 	mov	&.L__profc_ldexpf+46, r12
 	mov	&.L__profc_ldexpf+44, r11
 	mov	&.L__profc_ldexpf+42, r14
@@ -15255,13 +22632,13 @@ ldexpf:                                 ; @ldexpf
 	and	#-2, r13
 	sub	r13, r12
 	tst	r12
-	jeq	.LBB87_16
-	jmp	.LBB87_15
-.LBB87_15:                              ;   in Loop: Header=BB87_14 Depth=1
-	mov	&.L__profc_ldexpf+54, r12
-	mov	&.L__profc_ldexpf+52, r11
-	mov	&.L__profc_ldexpf+50, r14
-	mov	&.L__profc_ldexpf+48, r15
+	jeq	.LBB87_17
+	jmp	.LBB87_16
+.LBB87_16:                              ;   in Loop: Header=BB87_15 Depth=1
+	mov	&__llvm_gcov_ctr.87+30, r12
+	mov	&__llvm_gcov_ctr.87+28, r11
+	mov	&__llvm_gcov_ctr.87+26, r14
+	mov	&__llvm_gcov_ctr.87+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15277,8 +22654,35 @@ ldexpf:                                 ; @ldexpf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.87+24
+	mov	r14, &__llvm_gcov_ctr.87+26
+	mov	r13, &__llvm_gcov_ctr.87+28
+	mov	r12, &__llvm_gcov_ctr.87+30
+	mov	&.L__profc_ldexpf+54, r12
+	mov	&.L__profc_ldexpf+52, r10
+	mov	&.L__profc_ldexpf+50, r14
+	mov	&.L__profc_ldexpf+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpf+48
@@ -15292,8 +22696,8 @@ ldexpf:                                 ; @ldexpf
 	call	#__mspabi_mpyf
 	mov	r13, 50(r1)
 	mov	r12, 48(r1)
-	jmp	.LBB87_16
-.LBB87_16:                              ;   in Loop: Header=BB87_14 Depth=1
+	jmp	.LBB87_17
+.LBB87_17:                              ;   in Loop: Header=BB87_15 Depth=1
 	mov	46(r1), r12
 	mov	r12, r13
 	swpb	r13
@@ -15311,9 +22715,9 @@ ldexpf:                                 ; @ldexpf
 	mov	r12, 46(r1)
 	mov	46(r1), r12
 	tst	r12
-	jne	.LBB87_18
-	jmp	.LBB87_17
-.LBB87_17:
+	jne	.LBB87_19
+	jmp	.LBB87_18
+.LBB87_18:
 	mov	&.L__profc_ldexpf+62, r12
 	mov	&.L__profc_ldexpf+60, r11
 	mov	&.L__profc_ldexpf+58, r14
@@ -15341,8 +22745,35 @@ ldexpf:                                 ; @ldexpf
 	mov	r14, &.L__profc_ldexpf+58
 	mov	r13, &.L__profc_ldexpf+60
 	mov	r12, &.L__profc_ldexpf+62
-	jmp	.LBB87_19
-.LBB87_18:                              ;   in Loop: Header=BB87_14 Depth=1
+	jmp	.LBB87_20
+.LBB87_19:                              ;   in Loop: Header=BB87_15 Depth=1
+	mov	&__llvm_gcov_ctr.87+38, r12
+	mov	&__llvm_gcov_ctr.87+36, r11
+	mov	&__llvm_gcov_ctr.87+34, r14
+	mov	&__llvm_gcov_ctr.87+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.87+32
+	mov	r14, &__llvm_gcov_ctr.87+34
+	mov	r13, &__llvm_gcov_ctr.87+36
+	mov	r12, &__llvm_gcov_ctr.87+38
 	mov	42(r1), r14
 	mov	44(r1), r15
 	mov	r14, r12
@@ -15350,16 +22781,18 @@ ldexpf:                                 ; @ldexpf
 	call	#__mspabi_mpyf
 	mov	r13, 44(r1)
 	mov	r12, 42(r1)
-	jmp	.LBB87_14
-.LBB87_19:
-	jmp	.LBB87_20
+	jmp	.LBB87_15
 .LBB87_20:
+	jmp	.LBB87_21
+.LBB87_21:
 	mov	48(r1), r12
 	mov	50(r1), r13
 	add	#52, r1
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end87:
 	.size	ldexpf, .Lfunc_end87-ldexpf
@@ -15369,21 +22802,57 @@ ldexpf:                                 ; @ldexpf
 	.type	ldexp,@function
 ldexp:                                  ; @ldexp
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
 	sub	#74, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	82(r1), r11
-	mov	r15, 72(r1)
-	mov	r14, 70(r1)
-	mov	r13, 68(r1)
-	mov	r12, 66(r1)
+	mov	r15, r11
+	mov	r14, r15
+	mov	r13, r14
+	mov	r12, r13
+                                        ; kill: def $r12 killed $r11
+                                        ; kill: def $r12 killed $r15
+                                        ; kill: def $r12 killed $r14
+                                        ; kill: def $r12 killed $r13
+	mov	88(r1), r12
+	mov	&__llvm_gcov_ctr.88+6, r10
+	mov	&__llvm_gcov_ctr.88+4, r12
+	mov	&__llvm_gcov_ctr.88+2, r8
+	mov	&__llvm_gcov_ctr.88, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r12, r9
+	add	r6, r9
+	cmp	r12, r9
+	mov	r2, r5
+	mov	#1, r12
+	mov	r12, 44(r1)                     ; 2-byte Folded Spill
+	mov	r12, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.88
+	mov	r8, &__llvm_gcov_ctr.88+2
+	mov	r9, &__llvm_gcov_ctr.88+4
+	mov	r10, &__llvm_gcov_ctr.88+6
+	mov	r11, 72(r1)
+	mov	r15, 70(r1)
+	mov	r14, 68(r1)
+	mov	r13, 66(r1)
 	mov	&.L__profc_ldexp+6, r13
-	mov	&.L__profc_ldexp+4, r12
+	mov	&.L__profc_ldexp+4, r10
 	mov	&.L__profc_ldexp+2, r15
 	mov	&.L__profc_ldexp, r11
 	inc	r11
@@ -15395,15 +22864,13 @@ ldexp:                                  ; @ldexp
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
-	mov	r12, 44(r1)                     ; 2-byte Folded Spill
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -15481,13 +22948,15 @@ ldexp:                                  ; @ldexp
 .LBB88_8:
 	mov	32(r1), r12                     ; 2-byte Folded Reload
 	bit	#1, r12
-	jne	.LBB88_24
-	jmp	.LBB88_9
+	jeq	.LBB88_9
+	br	#.LBB88_25
 .LBB88_9:
-	mov	&.L__profc_ldexp+22, r12
-	mov	&.L__profc_ldexp+20, r11
-	mov	&.L__profc_ldexp+18, r14
-	mov	&.L__profc_ldexp+16, r15
+	jmp	.LBB88_10
+.LBB88_10:
+	mov	&__llvm_gcov_ctr.88+14, r12
+	mov	&__llvm_gcov_ctr.88+12, r11
+	mov	&__llvm_gcov_ctr.88+10, r14
+	mov	&__llvm_gcov_ctr.88+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15503,8 +22972,35 @@ ldexp:                                  ; @ldexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.88+8
+	mov	r14, &__llvm_gcov_ctr.88+10
+	mov	r13, &__llvm_gcov_ctr.88+12
+	mov	r12, &__llvm_gcov_ctr.88+14
+	mov	&.L__profc_ldexp+22, r12
+	mov	&.L__profc_ldexp+20, r10
+	mov	&.L__profc_ldexp+18, r14
+	mov	&.L__profc_ldexp+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexp+16
@@ -15534,13 +23030,13 @@ ldexp:                                  ; @ldexp
 	mov	30(r1), r15                     ; 2-byte Folded Reload
 	call	#__mspabi_cmpd
 	tst	r12
-	jeq	.LBB88_24
-	jmp	.LBB88_10
-.LBB88_10:
-	mov	&.L__profc_ldexp+30, r12
-	mov	&.L__profc_ldexp+28, r11
-	mov	&.L__profc_ldexp+26, r14
-	mov	&.L__profc_ldexp+24, r15
+	jeq	.LBB88_25
+	jmp	.LBB88_11
+.LBB88_11:
+	mov	&__llvm_gcov_ctr.88+22, r12
+	mov	&__llvm_gcov_ctr.88+20, r11
+	mov	&__llvm_gcov_ctr.88+18, r14
+	mov	&__llvm_gcov_ctr.88+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15556,16 +23052,43 @@ ldexp:                                  ; @ldexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.88+16
+	mov	r14, &__llvm_gcov_ctr.88+18
+	mov	r13, &__llvm_gcov_ctr.88+20
+	mov	r12, &__llvm_gcov_ctr.88+22
+	mov	&.L__profc_ldexp+30, r12
+	mov	&.L__profc_ldexp+28, r10
+	mov	&.L__profc_ldexp+26, r14
+	mov	&.L__profc_ldexp+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexp+24
 	mov	r14, &.L__profc_ldexp+26
 	mov	r13, &.L__profc_ldexp+28
 	mov	r12, &.L__profc_ldexp+30
-	jmp	.LBB88_11
-.LBB88_11:
+	jmp	.LBB88_12
+.LBB88_12:
 	mov	&.L__profc_ldexp+14, r13
 	mov	&.L__profc_ldexp+12, r12
 	mov	&.L__profc_ldexp+10, r15
@@ -15595,17 +23118,17 @@ ldexp:                                  ; @ldexp
 	mov	r15, &.L__profc_ldexp+10
 	mov	r14, &.L__profc_ldexp+12
 	mov	r13, &.L__profc_ldexp+14
-	mov	82(r1), r13
+	mov	88(r1), r13
 	mov	r13, 18(r1)                     ; 2-byte Folded Spill
 	clr	r14
 	mov	r14, 20(r1)                     ; 2-byte Folded Spill
 	tst	r13
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-	jl	.LBB88_13
-; %bb.12:
+	jl	.LBB88_14
+; %bb.13:
 	mov	20(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-.LBB88_13:
+.LBB88_14:
 	mov	16(r1), r15                     ; 2-byte Folded Reload
 	mov	22(r1), r12                     ; 2-byte Folded Reload
 	mov	&.L__profc_ldexp+38, r13
@@ -15630,11 +23153,11 @@ ldexp:                                  ; @ldexp
 	mov	r15, 12(r1)                     ; 2-byte Folded Spill
 	cmp	r14, r13
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jhs	.LBB88_15
-; %bb.14:
+	jhs	.LBB88_16
+; %bb.15:
 	mov	12(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-.LBB88_15:
+.LBB88_16:
 	mov	18(r1), r13                     ; 2-byte Folded Reload
 	mov	10(r1), r15                     ; 2-byte Folded Reload
 	mov	8(r1), r11                      ; 2-byte Folded Reload
@@ -15657,18 +23180,18 @@ ldexp:                                  ; @ldexp
 	mov	#16352, r12
 	tst	r13
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jl	.LBB88_17
-; %bb.16:
+	jl	.LBB88_18
+; %bb.17:
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-.LBB88_17:
+.LBB88_18:
 	mov	2(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 64(r1)
 	clr	62(r1)
 	clr	60(r1)
 	clr	58(r1)
-	jmp	.LBB88_18
-.LBB88_18:                              ; =>This Inner Loop Header: Depth=1
+	jmp	.LBB88_19
+.LBB88_19:                              ; =>This Inner Loop Header: Depth=1
 	mov	&.L__profc_ldexp+46, r12
 	mov	&.L__profc_ldexp+44, r11
 	mov	&.L__profc_ldexp+42, r14
@@ -15696,7 +23219,7 @@ ldexp:                                  ; @ldexp
 	mov	r14, &.L__profc_ldexp+42
 	mov	r13, &.L__profc_ldexp+44
 	mov	r12, &.L__profc_ldexp+46
-	mov	82(r1), r12
+	mov	88(r1), r12
 	mov	r12, r14
 	swpb	r14
 	mov.b	r14, r14
@@ -15713,13 +23236,13 @@ ldexp:                                  ; @ldexp
 	and	#-2, r13
 	sub	r13, r12
 	tst	r12
-	jeq	.LBB88_20
-	jmp	.LBB88_19
-.LBB88_19:                              ;   in Loop: Header=BB88_18 Depth=1
-	mov	&.L__profc_ldexp+54, r12
-	mov	&.L__profc_ldexp+52, r11
-	mov	&.L__profc_ldexp+50, r14
-	mov	&.L__profc_ldexp+48, r15
+	jeq	.LBB88_21
+	jmp	.LBB88_20
+.LBB88_20:                              ;   in Loop: Header=BB88_19 Depth=1
+	mov	&__llvm_gcov_ctr.88+30, r12
+	mov	&__llvm_gcov_ctr.88+28, r11
+	mov	&__llvm_gcov_ctr.88+26, r14
+	mov	&__llvm_gcov_ctr.88+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15735,8 +23258,35 @@ ldexp:                                  ; @ldexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.88+24
+	mov	r14, &__llvm_gcov_ctr.88+26
+	mov	r13, &__llvm_gcov_ctr.88+28
+	mov	r12, &__llvm_gcov_ctr.88+30
+	mov	&.L__profc_ldexp+54, r12
+	mov	&.L__profc_ldexp+52, r10
+	mov	&.L__profc_ldexp+50, r14
+	mov	&.L__profc_ldexp+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexp+48
@@ -15756,9 +23306,9 @@ ldexp:                                  ; @ldexp
 	mov	r14, 70(r1)
 	mov	r13, 68(r1)
 	mov	r12, 66(r1)
-	jmp	.LBB88_20
-.LBB88_20:                              ;   in Loop: Header=BB88_18 Depth=1
-	mov	82(r1), r12
+	jmp	.LBB88_21
+.LBB88_21:                              ;   in Loop: Header=BB88_19 Depth=1
+	mov	88(r1), r12
 	mov	r12, r13
 	swpb	r13
 	mov.b	r13, r13
@@ -15772,12 +23322,12 @@ ldexp:                                  ; @ldexp
 	rra	r13
 	add	r13, r12
 	rra	r12
-	mov	r12, 82(r1)
-	mov	82(r1), r12
+	mov	r12, 88(r1)
+	mov	88(r1), r12
 	tst	r12
-	jne	.LBB88_22
-	jmp	.LBB88_21
-.LBB88_21:
+	jne	.LBB88_23
+	jmp	.LBB88_22
+.LBB88_22:
 	mov	&.L__profc_ldexp+62, r12
 	mov	&.L__profc_ldexp+60, r11
 	mov	&.L__profc_ldexp+58, r14
@@ -15805,8 +23355,35 @@ ldexp:                                  ; @ldexp
 	mov	r14, &.L__profc_ldexp+58
 	mov	r13, &.L__profc_ldexp+60
 	mov	r12, &.L__profc_ldexp+62
-	jmp	.LBB88_23
-.LBB88_22:                              ;   in Loop: Header=BB88_18 Depth=1
+	jmp	.LBB88_24
+.LBB88_23:                              ;   in Loop: Header=BB88_19 Depth=1
+	mov	&__llvm_gcov_ctr.88+38, r12
+	mov	&__llvm_gcov_ctr.88+36, r11
+	mov	&__llvm_gcov_ctr.88+34, r14
+	mov	&__llvm_gcov_ctr.88+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.88+32
+	mov	r14, &__llvm_gcov_ctr.88+34
+	mov	r13, &__llvm_gcov_ctr.88+36
+	mov	r12, &__llvm_gcov_ctr.88+38
 	mov	58(r1), r12
 	mov	60(r1), r13
 	mov	62(r1), r14
@@ -15820,10 +23397,10 @@ ldexp:                                  ; @ldexp
 	mov	r14, 62(r1)
 	mov	r13, 60(r1)
 	mov	r12, 58(r1)
-	jmp	.LBB88_18
-.LBB88_23:
-	jmp	.LBB88_24
+	jmp	.LBB88_19
 .LBB88_24:
+	jmp	.LBB88_25
+.LBB88_25:
 	mov	66(r1), r12
 	mov	68(r1), r13
 	mov	70(r1), r14
@@ -15832,6 +23409,9 @@ ldexp:                                  ; @ldexp
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end88:
 	.size	ldexp, .Lfunc_end88-ldexp
@@ -15841,21 +23421,57 @@ ldexp:                                  ; @ldexp
 	.type	ldexpl,@function
 ldexpl:                                 ; @ldexpl
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
 	sub	#74, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	82(r1), r11
-	mov	r15, 72(r1)
-	mov	r14, 70(r1)
-	mov	r13, 68(r1)
-	mov	r12, 66(r1)
+	mov	r15, r11
+	mov	r14, r15
+	mov	r13, r14
+	mov	r12, r13
+                                        ; kill: def $r12 killed $r11
+                                        ; kill: def $r12 killed $r15
+                                        ; kill: def $r12 killed $r14
+                                        ; kill: def $r12 killed $r13
+	mov	88(r1), r12
+	mov	&__llvm_gcov_ctr.89+6, r10
+	mov	&__llvm_gcov_ctr.89+4, r12
+	mov	&__llvm_gcov_ctr.89+2, r8
+	mov	&__llvm_gcov_ctr.89, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r12, r9
+	add	r6, r9
+	cmp	r12, r9
+	mov	r2, r5
+	mov	#1, r12
+	mov	r12, 44(r1)                     ; 2-byte Folded Spill
+	mov	r12, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.89
+	mov	r8, &__llvm_gcov_ctr.89+2
+	mov	r9, &__llvm_gcov_ctr.89+4
+	mov	r10, &__llvm_gcov_ctr.89+6
+	mov	r11, 72(r1)
+	mov	r15, 70(r1)
+	mov	r14, 68(r1)
+	mov	r13, 66(r1)
 	mov	&.L__profc_ldexpl+6, r13
-	mov	&.L__profc_ldexpl+4, r12
+	mov	&.L__profc_ldexpl+4, r10
 	mov	&.L__profc_ldexpl+2, r15
 	mov	&.L__profc_ldexpl, r11
 	inc	r11
@@ -15867,15 +23483,13 @@ ldexpl:                                 ; @ldexpl
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
-	mov	r12, 44(r1)                     ; 2-byte Folded Spill
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -15953,13 +23567,15 @@ ldexpl:                                 ; @ldexpl
 .LBB89_8:
 	mov	32(r1), r12                     ; 2-byte Folded Reload
 	bit	#1, r12
-	jne	.LBB89_24
-	jmp	.LBB89_9
+	jeq	.LBB89_9
+	br	#.LBB89_25
 .LBB89_9:
-	mov	&.L__profc_ldexpl+22, r12
-	mov	&.L__profc_ldexpl+20, r11
-	mov	&.L__profc_ldexpl+18, r14
-	mov	&.L__profc_ldexpl+16, r15
+	jmp	.LBB89_10
+.LBB89_10:
+	mov	&__llvm_gcov_ctr.89+14, r12
+	mov	&__llvm_gcov_ctr.89+12, r11
+	mov	&__llvm_gcov_ctr.89+10, r14
+	mov	&__llvm_gcov_ctr.89+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -15975,8 +23591,35 @@ ldexpl:                                 ; @ldexpl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.89+8
+	mov	r14, &__llvm_gcov_ctr.89+10
+	mov	r13, &__llvm_gcov_ctr.89+12
+	mov	r12, &__llvm_gcov_ctr.89+14
+	mov	&.L__profc_ldexpl+22, r12
+	mov	&.L__profc_ldexpl+20, r10
+	mov	&.L__profc_ldexpl+18, r14
+	mov	&.L__profc_ldexpl+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpl+16
@@ -16006,13 +23649,13 @@ ldexpl:                                 ; @ldexpl
 	mov	30(r1), r15                     ; 2-byte Folded Reload
 	call	#__mspabi_cmpd
 	tst	r12
-	jeq	.LBB89_24
-	jmp	.LBB89_10
-.LBB89_10:
-	mov	&.L__profc_ldexpl+30, r12
-	mov	&.L__profc_ldexpl+28, r11
-	mov	&.L__profc_ldexpl+26, r14
-	mov	&.L__profc_ldexpl+24, r15
+	jeq	.LBB89_25
+	jmp	.LBB89_11
+.LBB89_11:
+	mov	&__llvm_gcov_ctr.89+22, r12
+	mov	&__llvm_gcov_ctr.89+20, r11
+	mov	&__llvm_gcov_ctr.89+18, r14
+	mov	&__llvm_gcov_ctr.89+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -16028,16 +23671,43 @@ ldexpl:                                 ; @ldexpl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.89+16
+	mov	r14, &__llvm_gcov_ctr.89+18
+	mov	r13, &__llvm_gcov_ctr.89+20
+	mov	r12, &__llvm_gcov_ctr.89+22
+	mov	&.L__profc_ldexpl+30, r12
+	mov	&.L__profc_ldexpl+28, r10
+	mov	&.L__profc_ldexpl+26, r14
+	mov	&.L__profc_ldexpl+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpl+24
 	mov	r14, &.L__profc_ldexpl+26
 	mov	r13, &.L__profc_ldexpl+28
 	mov	r12, &.L__profc_ldexpl+30
-	jmp	.LBB89_11
-.LBB89_11:
+	jmp	.LBB89_12
+.LBB89_12:
 	mov	&.L__profc_ldexpl+14, r13
 	mov	&.L__profc_ldexpl+12, r12
 	mov	&.L__profc_ldexpl+10, r15
@@ -16067,17 +23737,17 @@ ldexpl:                                 ; @ldexpl
 	mov	r15, &.L__profc_ldexpl+10
 	mov	r14, &.L__profc_ldexpl+12
 	mov	r13, &.L__profc_ldexpl+14
-	mov	82(r1), r13
+	mov	88(r1), r13
 	mov	r13, 18(r1)                     ; 2-byte Folded Spill
 	clr	r14
 	mov	r14, 20(r1)                     ; 2-byte Folded Spill
 	tst	r13
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-	jl	.LBB89_13
-; %bb.12:
+	jl	.LBB89_14
+; %bb.13:
 	mov	20(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 22(r1)                     ; 2-byte Folded Spill
-.LBB89_13:
+.LBB89_14:
 	mov	16(r1), r15                     ; 2-byte Folded Reload
 	mov	22(r1), r12                     ; 2-byte Folded Reload
 	mov	&.L__profc_ldexpl+38, r13
@@ -16102,11 +23772,11 @@ ldexpl:                                 ; @ldexpl
 	mov	r15, 12(r1)                     ; 2-byte Folded Spill
 	cmp	r14, r13
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-	jhs	.LBB89_15
-; %bb.14:
+	jhs	.LBB89_16
+; %bb.15:
 	mov	12(r1), r12                     ; 2-byte Folded Reload
 	mov	r12, 14(r1)                     ; 2-byte Folded Spill
-.LBB89_15:
+.LBB89_16:
 	mov	18(r1), r13                     ; 2-byte Folded Reload
 	mov	10(r1), r15                     ; 2-byte Folded Reload
 	mov	8(r1), r11                      ; 2-byte Folded Reload
@@ -16129,18 +23799,18 @@ ldexpl:                                 ; @ldexpl
 	mov	#16352, r12
 	tst	r13
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	jl	.LBB89_17
-; %bb.16:
+	jl	.LBB89_18
+; %bb.17:
 	mov	0(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-.LBB89_17:
+.LBB89_18:
 	mov	2(r1), r12                      ; 2-byte Folded Reload
 	mov	r12, 64(r1)
 	clr	62(r1)
 	clr	60(r1)
 	clr	58(r1)
-	jmp	.LBB89_18
-.LBB89_18:                              ; =>This Inner Loop Header: Depth=1
+	jmp	.LBB89_19
+.LBB89_19:                              ; =>This Inner Loop Header: Depth=1
 	mov	&.L__profc_ldexpl+46, r12
 	mov	&.L__profc_ldexpl+44, r11
 	mov	&.L__profc_ldexpl+42, r14
@@ -16168,7 +23838,7 @@ ldexpl:                                 ; @ldexpl
 	mov	r14, &.L__profc_ldexpl+42
 	mov	r13, &.L__profc_ldexpl+44
 	mov	r12, &.L__profc_ldexpl+46
-	mov	82(r1), r12
+	mov	88(r1), r12
 	mov	r12, r14
 	swpb	r14
 	mov.b	r14, r14
@@ -16185,13 +23855,13 @@ ldexpl:                                 ; @ldexpl
 	and	#-2, r13
 	sub	r13, r12
 	tst	r12
-	jeq	.LBB89_20
-	jmp	.LBB89_19
-.LBB89_19:                              ;   in Loop: Header=BB89_18 Depth=1
-	mov	&.L__profc_ldexpl+54, r12
-	mov	&.L__profc_ldexpl+52, r11
-	mov	&.L__profc_ldexpl+50, r14
-	mov	&.L__profc_ldexpl+48, r15
+	jeq	.LBB89_21
+	jmp	.LBB89_20
+.LBB89_20:                              ;   in Loop: Header=BB89_19 Depth=1
+	mov	&__llvm_gcov_ctr.89+30, r12
+	mov	&__llvm_gcov_ctr.89+28, r11
+	mov	&__llvm_gcov_ctr.89+26, r14
+	mov	&__llvm_gcov_ctr.89+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -16207,8 +23877,35 @@ ldexpl:                                 ; @ldexpl
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.89+24
+	mov	r14, &__llvm_gcov_ctr.89+26
+	mov	r13, &__llvm_gcov_ctr.89+28
+	mov	r12, &__llvm_gcov_ctr.89+30
+	mov	&.L__profc_ldexpl+54, r12
+	mov	&.L__profc_ldexpl+52, r10
+	mov	&.L__profc_ldexpl+50, r14
+	mov	&.L__profc_ldexpl+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_ldexpl+48
@@ -16228,9 +23925,9 @@ ldexpl:                                 ; @ldexpl
 	mov	r14, 70(r1)
 	mov	r13, 68(r1)
 	mov	r12, 66(r1)
-	jmp	.LBB89_20
-.LBB89_20:                              ;   in Loop: Header=BB89_18 Depth=1
-	mov	82(r1), r12
+	jmp	.LBB89_21
+.LBB89_21:                              ;   in Loop: Header=BB89_19 Depth=1
+	mov	88(r1), r12
 	mov	r12, r13
 	swpb	r13
 	mov.b	r13, r13
@@ -16244,12 +23941,12 @@ ldexpl:                                 ; @ldexpl
 	rra	r13
 	add	r13, r12
 	rra	r12
-	mov	r12, 82(r1)
-	mov	82(r1), r12
+	mov	r12, 88(r1)
+	mov	88(r1), r12
 	tst	r12
-	jne	.LBB89_22
-	jmp	.LBB89_21
-.LBB89_21:
+	jne	.LBB89_23
+	jmp	.LBB89_22
+.LBB89_22:
 	mov	&.L__profc_ldexpl+62, r12
 	mov	&.L__profc_ldexpl+60, r11
 	mov	&.L__profc_ldexpl+58, r14
@@ -16277,51 +23974,12 @@ ldexpl:                                 ; @ldexpl
 	mov	r14, &.L__profc_ldexpl+58
 	mov	r13, &.L__profc_ldexpl+60
 	mov	r12, &.L__profc_ldexpl+62
-	jmp	.LBB89_23
-.LBB89_22:                              ;   in Loop: Header=BB89_18 Depth=1
-	mov	58(r1), r12
-	mov	60(r1), r13
-	mov	62(r1), r14
-	mov	64(r1), r15
-	mov	r12, r8
-	mov	r13, r9
-	mov	r14, r10
-	mov	r15, r11
-	call	#__mspabi_mpyd
-	mov	r15, 64(r1)
-	mov	r14, 62(r1)
-	mov	r13, 60(r1)
-	mov	r12, 58(r1)
-	jmp	.LBB89_18
-.LBB89_23:
 	jmp	.LBB89_24
-.LBB89_24:
-	mov	66(r1), r12
-	mov	68(r1), r13
-	mov	70(r1), r14
-	mov	72(r1), r15
-	add	#74, r1
-	pop	r10
-	pop	r9
-	pop	r8
-	ret
-.Lfunc_end89:
-	.size	ldexpl, .Lfunc_end89-ldexpl
-                                        ; -- End function
-	.globl	memxor                          ; -- Begin function memxor
-	.p2align	1
-	.type	memxor,@function
-memxor:                                 ; @memxor
-; %bb.0:
-	push	r10
-	sub	#10, r1
-	mov	r12, 8(r1)
-	mov	r13, 6(r1)
-	mov	r14, 4(r1)
-	mov	&.L__profc_memxor+6, r12
-	mov	&.L__profc_memxor+4, r11
-	mov	&.L__profc_memxor+2, r14
-	mov	&.L__profc_memxor, r15
+.LBB89_23:                              ;   in Loop: Header=BB89_19 Depth=1
+	mov	&__llvm_gcov_ctr.89+38, r12
+	mov	&__llvm_gcov_ctr.89+36, r11
+	mov	&__llvm_gcov_ctr.89+34, r14
+	mov	&__llvm_gcov_ctr.89+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -16339,6 +23997,106 @@ memxor:                                 ; @memxor
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.89+32
+	mov	r14, &__llvm_gcov_ctr.89+34
+	mov	r13, &__llvm_gcov_ctr.89+36
+	mov	r12, &__llvm_gcov_ctr.89+38
+	mov	58(r1), r12
+	mov	60(r1), r13
+	mov	62(r1), r14
+	mov	64(r1), r15
+	mov	r12, r8
+	mov	r13, r9
+	mov	r14, r10
+	mov	r15, r11
+	call	#__mspabi_mpyd
+	mov	r15, 64(r1)
+	mov	r14, 62(r1)
+	mov	r13, 60(r1)
+	mov	r12, 58(r1)
+	jmp	.LBB89_19
+.LBB89_24:
+	jmp	.LBB89_25
+.LBB89_25:
+	mov	66(r1), r12
+	mov	68(r1), r13
+	mov	70(r1), r14
+	mov	72(r1), r15
+	add	#74, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
+	ret
+.Lfunc_end89:
+	.size	ldexpl, .Lfunc_end89-ldexpl
+                                        ; -- End function
+	.globl	memxor                          ; -- Begin function memxor
+	.p2align	1
+	.type	memxor,@function
+memxor:                                 ; @memxor
+; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#10, r1
+	mov	&__llvm_gcov_ctr.90+6, r15
+	mov	&__llvm_gcov_ctr.90+4, r11
+	mov	&__llvm_gcov_ctr.90+2, r9
+	mov	&__llvm_gcov_ctr.90, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.90
+	mov	r9, &__llvm_gcov_ctr.90+2
+	mov	r10, &__llvm_gcov_ctr.90+4
+	mov	r15, &__llvm_gcov_ctr.90+6
+	mov	r12, 8(r1)
+	mov	r13, 6(r1)
+	mov	r14, 4(r1)
+	mov	&.L__profc_memxor+6, r12
+	mov	&.L__profc_memxor+4, r10
+	mov	&.L__profc_memxor+2, r14
+	mov	&.L__profc_memxor, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memxor
@@ -16398,6 +24156,33 @@ memxor:                                 ; @memxor
 	mov.b	r13, 0(r12)
 	jmp	.LBB90_3
 .LBB90_3:                               ;   in Loop: Header=BB90_1 Depth=1
+	mov	&__llvm_gcov_ctr.90+14, r12
+	mov	&__llvm_gcov_ctr.90+12, r11
+	mov	&__llvm_gcov_ctr.90+10, r14
+	mov	&__llvm_gcov_ctr.90+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.90+8
+	mov	r14, &__llvm_gcov_ctr.90+10
+	mov	r13, &__llvm_gcov_ctr.90+12
+	mov	r12, &__llvm_gcov_ctr.90+14
 	mov	4(r1), r12
 	add	#-1, r12
 	mov	r12, 4(r1)
@@ -16406,6 +24191,10 @@ memxor:                                 ; @memxor
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end90:
 	.size	memxor, .Lfunc_end90-memxor
@@ -16415,6 +24204,7 @@ memxor:                                 ; @memxor
 	.type	strncat,@function
 strncat:                                ; @strncat
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#12, r1
@@ -16464,10 +24254,10 @@ strncat:                                ; @strncat
 	jeq	.LBB91_4
 	jmp	.LBB91_2
 .LBB91_2:                               ;   in Loop: Header=BB91_1 Depth=1
-	mov	&.L__profc_strncat+22, r13
-	mov	&.L__profc_strncat+20, r12
-	mov	&.L__profc_strncat+18, r15
-	mov	&.L__profc_strncat+16, r11
+	mov	&__llvm_gcov_ctr.91+6, r13
+	mov	&__llvm_gcov_ctr.91+4, r12
+	mov	&__llvm_gcov_ctr.91+2, r15
+	mov	&__llvm_gcov_ctr.91, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -16485,6 +24275,33 @@ strncat:                                ; @strncat
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.91
+	mov	r15, &__llvm_gcov_ctr.91+2
+	mov	r14, &__llvm_gcov_ctr.91+4
+	mov	r13, &__llvm_gcov_ctr.91+6
+	mov	&.L__profc_strncat+22, r13
+	mov	&.L__profc_strncat+20, r10
+	mov	&.L__profc_strncat+18, r15
+	mov	&.L__profc_strncat+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -16511,10 +24328,10 @@ strncat:                                ; @strncat
 	jmp	.LBB91_3
 .LBB91_3:                               ;   in Loop: Header=BB91_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_strncat+30, r13
-	mov	&.L__profc_strncat+28, r10
-	mov	&.L__profc_strncat+26, r15
-	mov	&.L__profc_strncat+24, r11
+	mov	&__llvm_gcov_ctr.91+14, r13
+	mov	&__llvm_gcov_ctr.91+12, r10
+	mov	&__llvm_gcov_ctr.91+10, r15
+	mov	&__llvm_gcov_ctr.91+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -16530,8 +24347,35 @@ strncat:                                ; @strncat
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.91+8
+	mov	r15, &__llvm_gcov_ctr.91+10
+	mov	r14, &__llvm_gcov_ctr.91+12
+	mov	r13, &__llvm_gcov_ctr.91+14
+	mov	&.L__profc_strncat+30, r13
+	mov	&.L__profc_strncat+28, r9
+	mov	&.L__profc_strncat+26, r15
+	mov	&.L__profc_strncat+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_strncat+24
@@ -16576,26 +24420,10 @@ strncat:                                ; @strncat
 	mov	r12, &.L__profc_strncat+14
 	jmp	.LBB91_6
 .LBB91_6:                               ;   in Loop: Header=BB91_1 Depth=1
-	mov	8(r1), r12
-	inc	r12
-	mov	r12, 8(r1)
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	mov	6(r1), r12
-	add	#-1, r12
-	mov	r12, 6(r1)
-	jmp	.LBB91_1
-.LBB91_7:
-	mov	6(r1), r12
-	tst	r12
-	jne	.LBB91_9
-	jmp	.LBB91_8
-.LBB91_8:
-	mov	&.L__profc_strncat+38, r12
-	mov	&.L__profc_strncat+36, r11
-	mov	&.L__profc_strncat+34, r14
-	mov	&.L__profc_strncat+32, r15
+	mov	&__llvm_gcov_ctr.91+30, r12
+	mov	&__llvm_gcov_ctr.91+28, r11
+	mov	&__llvm_gcov_ctr.91+26, r14
+	mov	&__llvm_gcov_ctr.91+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -16615,36 +24443,25 @@ strncat:                                ; @strncat
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_strncat+32
-	mov	r14, &.L__profc_strncat+34
-	mov	r13, &.L__profc_strncat+36
-	mov	r12, &.L__profc_strncat+38
+	mov	r15, &__llvm_gcov_ctr.91+24
+	mov	r14, &__llvm_gcov_ctr.91+26
+	mov	r13, &__llvm_gcov_ctr.91+28
+	mov	r12, &__llvm_gcov_ctr.91+30
+	mov	8(r1), r12
+	inc	r12
+	mov	r12, 8(r1)
 	mov	4(r1), r12
-	clr.b	0(r12)
-	jmp	.LBB91_9
-.LBB91_9:
-	mov	10(r1), r12
-	add	#12, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end91:
-	.size	strncat, .Lfunc_end91-strncat
-                                        ; -- End function
-	.globl	strnlen                         ; -- Begin function strnlen
-	.p2align	1
-	.type	strnlen,@function
-strnlen:                                ; @strnlen
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#8, r1
+	inc	r12
+	mov	r12, 4(r1)
+	mov	6(r1), r12
+	add	#-1, r12
 	mov	r12, 6(r1)
-	mov	r13, 4(r1)
-	mov	&.L__profc_strnlen+6, r12
-	mov	&.L__profc_strnlen+4, r11
-	mov	&.L__profc_strnlen+2, r14
-	mov	&.L__profc_strnlen, r15
+	jmp	.LBB91_1
+.LBB91_7:
+	mov	&__llvm_gcov_ctr.91+22, r12
+	mov	&__llvm_gcov_ctr.91+20, r11
+	mov	&__llvm_gcov_ctr.91+18, r14
+	mov	&__llvm_gcov_ctr.91+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -16662,6 +24479,144 @@ strnlen:                                ; @strnlen
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.91+16
+	mov	r14, &__llvm_gcov_ctr.91+18
+	mov	r13, &__llvm_gcov_ctr.91+20
+	mov	r12, &__llvm_gcov_ctr.91+22
+	mov	6(r1), r12
+	tst	r12
+	jne	.LBB91_9
+	jmp	.LBB91_8
+.LBB91_8:
+	mov	&__llvm_gcov_ctr.91+38, r12
+	mov	&__llvm_gcov_ctr.91+36, r11
+	mov	&__llvm_gcov_ctr.91+34, r14
+	mov	&__llvm_gcov_ctr.91+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.91+32
+	mov	r14, &__llvm_gcov_ctr.91+34
+	mov	r13, &__llvm_gcov_ctr.91+36
+	mov	r12, &__llvm_gcov_ctr.91+38
+	mov	&.L__profc_strncat+38, r12
+	mov	&.L__profc_strncat+36, r10
+	mov	&.L__profc_strncat+34, r14
+	mov	&.L__profc_strncat+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_strncat+32
+	mov	r14, &.L__profc_strncat+34
+	mov	r13, &.L__profc_strncat+36
+	mov	r12, &.L__profc_strncat+38
+	mov	4(r1), r12
+	clr.b	0(r12)
+	jmp	.LBB91_9
+.LBB91_9:
+	mov	10(r1), r12
+	add	#12, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end91:
+	.size	strncat, .Lfunc_end91-strncat
+                                        ; -- End function
+	.globl	strnlen                         ; -- Begin function strnlen
+	.p2align	1
+	.type	strnlen,@function
+strnlen:                                ; @strnlen
+; %bb.0:
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#8, r1
+	mov	&__llvm_gcov_ctr.92+6, r14
+	mov	&__llvm_gcov_ctr.92+4, r11
+	mov	&__llvm_gcov_ctr.92+2, r10
+	mov	&__llvm_gcov_ctr.92, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.92
+	mov	r10, &__llvm_gcov_ctr.92+2
+	mov	r15, &__llvm_gcov_ctr.92+4
+	mov	r14, &__llvm_gcov_ctr.92+6
+	mov	r12, 6(r1)
+	mov	r13, 4(r1)
+	mov	&.L__profc_strnlen+6, r12
+	mov	&.L__profc_strnlen+4, r10
+	mov	&.L__profc_strnlen+2, r14
+	mov	&.L__profc_strnlen, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strnlen
@@ -16679,10 +24634,10 @@ strnlen:                                ; @strnlen
 	jhs	.LBB92_4
 	jmp	.LBB92_2
 .LBB92_2:                               ;   in Loop: Header=BB92_1 Depth=1
-	mov	&.L__profc_strnlen+22, r13
-	mov	&.L__profc_strnlen+20, r12
-	mov	&.L__profc_strnlen+18, r15
-	mov	&.L__profc_strnlen+16, r11
+	mov	&__llvm_gcov_ctr.92+14, r13
+	mov	&__llvm_gcov_ctr.92+12, r12
+	mov	&__llvm_gcov_ctr.92+10, r15
+	mov	&__llvm_gcov_ctr.92+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -16700,6 +24655,33 @@ strnlen:                                ; @strnlen
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.92+8
+	mov	r15, &__llvm_gcov_ctr.92+10
+	mov	r14, &__llvm_gcov_ctr.92+12
+	mov	r13, &__llvm_gcov_ctr.92+14
+	mov	&.L__profc_strnlen+22, r13
+	mov	&.L__profc_strnlen+20, r10
+	mov	&.L__profc_strnlen+18, r15
+	mov	&.L__profc_strnlen+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -16724,10 +24706,10 @@ strnlen:                                ; @strnlen
 	jmp	.LBB92_3
 .LBB92_3:                               ;   in Loop: Header=BB92_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_strnlen+30, r13
-	mov	&.L__profc_strnlen+28, r10
-	mov	&.L__profc_strnlen+26, r15
-	mov	&.L__profc_strnlen+24, r11
+	mov	&__llvm_gcov_ctr.92+22, r13
+	mov	&__llvm_gcov_ctr.92+20, r10
+	mov	&__llvm_gcov_ctr.92+18, r15
+	mov	&__llvm_gcov_ctr.92+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -16743,8 +24725,35 @@ strnlen:                                ; @strnlen
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.92+16
+	mov	r15, &__llvm_gcov_ctr.92+18
+	mov	r14, &__llvm_gcov_ctr.92+20
+	mov	r13, &__llvm_gcov_ctr.92+22
+	mov	&.L__profc_strnlen+30, r13
+	mov	&.L__profc_strnlen+28, r9
+	mov	&.L__profc_strnlen+26, r15
+	mov	&.L__profc_strnlen+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_strnlen+24
@@ -16789,6 +24798,33 @@ strnlen:                                ; @strnlen
 	mov	r12, &.L__profc_strnlen+14
 	jmp	.LBB92_6
 .LBB92_6:                               ;   in Loop: Header=BB92_1 Depth=1
+	mov	&__llvm_gcov_ctr.92+30, r12
+	mov	&__llvm_gcov_ctr.92+28, r11
+	mov	&__llvm_gcov_ctr.92+26, r14
+	mov	&__llvm_gcov_ctr.92+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.92+24
+	mov	r14, &__llvm_gcov_ctr.92+26
+	mov	r13, &__llvm_gcov_ctr.92+28
+	mov	r12, &__llvm_gcov_ctr.92+30
 	mov	2(r1), r12
 	inc	r12
 	mov	r12, 2(r1)
@@ -16798,6 +24834,8 @@ strnlen:                                ; @strnlen
 	add	#8, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end92:
 	.size	strnlen, .Lfunc_end92-strnlen
@@ -16807,6 +24845,7 @@ strnlen:                                ; @strnlen
 	.type	strpbrk,@function
 strpbrk:                                ; @strpbrk
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#8, r1
 	mov	r12, 4(r1)
@@ -16925,8 +24964,36 @@ strpbrk:                                ; @strpbrk
 	jne	.LBB93_6
 	jmp	.LBB93_5
 .LBB93_5:
+	mov	&__llvm_gcov_ctr.93+14, r12
+	mov	&__llvm_gcov_ctr.93+12, r11
+	mov	&__llvm_gcov_ctr.93+10, r14
+	mov	&__llvm_gcov_ctr.93+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.93+8
+	mov	r14, &__llvm_gcov_ctr.93+10
+	mov	r13, &__llvm_gcov_ctr.93+12
+	mov	r12, &__llvm_gcov_ctr.93+14
 	mov	&.L__profc_strpbrk+30, r12
-	mov	&.L__profc_strpbrk+28, r11
+	mov	&.L__profc_strpbrk+28, r10
 	mov	&.L__profc_strpbrk+26, r14
 	mov	&.L__profc_strpbrk+24, r15
 	inc	r15
@@ -16938,14 +25005,13 @@ strpbrk:                                ; @strpbrk
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strpbrk+24
@@ -16956,19 +25022,101 @@ strpbrk:                                ; @strpbrk
 	mov	r12, 6(r1)
 	jmp	.LBB93_9
 .LBB93_6:                               ;   in Loop: Header=BB93_3 Depth=2
+	mov	&__llvm_gcov_ctr.93+22, r12
+	mov	&__llvm_gcov_ctr.93+20, r11
+	mov	&__llvm_gcov_ctr.93+18, r14
+	mov	&__llvm_gcov_ctr.93+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.93+16
+	mov	r14, &__llvm_gcov_ctr.93+18
+	mov	r13, &__llvm_gcov_ctr.93+20
+	mov	r12, &__llvm_gcov_ctr.93+22
 	jmp	.LBB93_3
 .LBB93_7:                               ;   in Loop: Header=BB93_1 Depth=1
+	mov	&__llvm_gcov_ctr.93+30, r12
+	mov	&__llvm_gcov_ctr.93+28, r11
+	mov	&__llvm_gcov_ctr.93+26, r14
+	mov	&__llvm_gcov_ctr.93+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.93+24
+	mov	r14, &__llvm_gcov_ctr.93+26
+	mov	r13, &__llvm_gcov_ctr.93+28
+	mov	r12, &__llvm_gcov_ctr.93+30
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
 	jmp	.LBB93_1
 .LBB93_8:
+	mov	&__llvm_gcov_ctr.93+6, r12
+	mov	&__llvm_gcov_ctr.93+4, r11
+	mov	&__llvm_gcov_ctr.93+2, r14
+	mov	&__llvm_gcov_ctr.93, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.93
+	mov	r14, &__llvm_gcov_ctr.93+2
+	mov	r13, &__llvm_gcov_ctr.93+4
+	mov	r12, &__llvm_gcov_ctr.93+6
 	clr	6(r1)
 	jmp	.LBB93_9
 .LBB93_9:
 	mov	6(r1), r12
 	add	#8, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end93:
 	.size	strpbrk, .Lfunc_end93-strpbrk
@@ -16978,12 +25126,43 @@ strpbrk:                                ; @strpbrk
 	.type	strrchr,@function
 strrchr:                                ; @strrchr
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#6, r1
+	mov	&__llvm_gcov_ctr.94+6, r14
+	mov	&__llvm_gcov_ctr.94+4, r11
+	mov	&__llvm_gcov_ctr.94+2, r10
+	mov	&__llvm_gcov_ctr.94, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.94
+	mov	r10, &__llvm_gcov_ctr.94+2
+	mov	r15, &__llvm_gcov_ctr.94+4
+	mov	r14, &__llvm_gcov_ctr.94+6
 	mov	r12, 4(r1)
 	mov	r13, 2(r1)
 	mov	&.L__profc_strrchr+6, r12
-	mov	&.L__profc_strrchr+4, r11
+	mov	&.L__profc_strrchr+4, r10
 	mov	&.L__profc_strrchr+2, r14
 	mov	&.L__profc_strrchr, r15
 	inc	r15
@@ -16995,14 +25174,13 @@ strrchr:                                ; @strrchr
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strrchr
@@ -17012,10 +25190,10 @@ strrchr:                                ; @strrchr
 	clr	0(r1)
 	jmp	.LBB94_2
 .LBB94_1:                               ;   in Loop: Header=BB94_2 Depth=1
-	mov	&.L__profc_strrchr+14, r12
-	mov	&.L__profc_strrchr+12, r11
-	mov	&.L__profc_strrchr+10, r14
-	mov	&.L__profc_strrchr+8, r15
+	mov	&__llvm_gcov_ctr.94+22, r12
+	mov	&__llvm_gcov_ctr.94+20, r11
+	mov	&__llvm_gcov_ctr.94+18, r14
+	mov	&__llvm_gcov_ctr.94+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17031,8 +25209,35 @@ strrchr:                                ; @strrchr
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.94+16
+	mov	r14, &__llvm_gcov_ctr.94+18
+	mov	r13, &__llvm_gcov_ctr.94+20
+	mov	r12, &__llvm_gcov_ctr.94+22
+	mov	&.L__profc_strrchr+14, r12
+	mov	&.L__profc_strrchr+12, r10
+	mov	&.L__profc_strrchr+10, r14
+	mov	&.L__profc_strrchr+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strrchr+8
@@ -17049,10 +25254,10 @@ strrchr:                                ; @strrchr
 	jne	.LBB94_4
 	jmp	.LBB94_3
 .LBB94_3:                               ;   in Loop: Header=BB94_2 Depth=1
-	mov	&.L__profc_strrchr+22, r12
-	mov	&.L__profc_strrchr+20, r11
-	mov	&.L__profc_strrchr+18, r14
-	mov	&.L__profc_strrchr+16, r15
+	mov	&__llvm_gcov_ctr.94+14, r12
+	mov	&__llvm_gcov_ctr.94+12, r11
+	mov	&__llvm_gcov_ctr.94+10, r14
+	mov	&__llvm_gcov_ctr.94+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17068,8 +25273,35 @@ strrchr:                                ; @strrchr
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.94+8
+	mov	r14, &__llvm_gcov_ctr.94+10
+	mov	r13, &__llvm_gcov_ctr.94+12
+	mov	r12, &__llvm_gcov_ctr.94+14
+	mov	&.L__profc_strrchr+22, r12
+	mov	&.L__profc_strrchr+20, r10
+	mov	&.L__profc_strrchr+18, r14
+	mov	&.L__profc_strrchr+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strrchr+16
@@ -17094,6 +25326,9 @@ strrchr:                                ; @strrchr
 	mov	0(r1), r12
 	add	#6, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end94:
 	.size	strrchr, .Lfunc_end94-strrchr
@@ -17103,6 +25338,7 @@ strrchr:                                ; @strrchr
 	.type	strstr,@function
 strstr:                                 ; @strstr
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
 	mov	r12, 6(r1)
@@ -17144,10 +25380,10 @@ strstr:                                 ; @strstr
 	jne	.LBB95_2
 	jmp	.LBB95_1
 .LBB95_1:
-	mov	&.L__profc_strstr+14, r12
-	mov	&.L__profc_strstr+12, r11
-	mov	&.L__profc_strstr+10, r14
-	mov	&.L__profc_strstr+8, r15
+	mov	&__llvm_gcov_ctr.95+6, r12
+	mov	&__llvm_gcov_ctr.95+4, r11
+	mov	&__llvm_gcov_ctr.95+2, r14
+	mov	&__llvm_gcov_ctr.95, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17163,8 +25399,35 @@ strstr:                                 ; @strstr
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.95
+	mov	r14, &__llvm_gcov_ctr.95+2
+	mov	r13, &__llvm_gcov_ctr.95+4
+	mov	r12, &__llvm_gcov_ctr.95+6
+	mov	&.L__profc_strstr+14, r12
+	mov	&.L__profc_strstr+12, r10
+	mov	&.L__profc_strstr+10, r14
+	mov	&.L__profc_strstr+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_strstr+8
@@ -17222,10 +25485,70 @@ strstr:                                 ; @strstr
 	jne	.LBB95_6
 	jmp	.LBB95_5
 .LBB95_5:
+	mov	&__llvm_gcov_ctr.95+14, r12
+	mov	&__llvm_gcov_ctr.95+12, r11
+	mov	&__llvm_gcov_ctr.95+10, r14
+	mov	&__llvm_gcov_ctr.95+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.95+8
+	mov	r14, &__llvm_gcov_ctr.95+10
+	mov	r13, &__llvm_gcov_ctr.95+12
+	mov	r12, &__llvm_gcov_ctr.95+14
 	mov	&.L__profc_strstr+30, r12
-	mov	&.L__profc_strstr+28, r11
+	mov	&.L__profc_strstr+28, r10
 	mov	&.L__profc_strstr+26, r14
 	mov	&.L__profc_strstr+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_strstr+24
+	mov	r14, &.L__profc_strstr+26
+	mov	r13, &.L__profc_strstr+28
+	mov	r12, &.L__profc_strstr+30
+	mov	2(r1), r12
+	mov	r12, 8(r1)
+	jmp	.LBB95_9
+.LBB95_6:                               ;   in Loop: Header=BB95_3 Depth=1
+	jmp	.LBB95_7
+.LBB95_7:                               ;   in Loop: Header=BB95_3 Depth=1
+	mov	&__llvm_gcov_ctr.95+22, r12
+	mov	&__llvm_gcov_ctr.95+20, r11
+	mov	&__llvm_gcov_ctr.95+18, r14
+	mov	&__llvm_gcov_ctr.95+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17245,27 +25568,49 @@ strstr:                                 ; @strstr
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_strstr+24
-	mov	r14, &.L__profc_strstr+26
-	mov	r13, &.L__profc_strstr+28
-	mov	r12, &.L__profc_strstr+30
-	mov	2(r1), r12
-	mov	r12, 8(r1)
-	jmp	.LBB95_9
-.LBB95_6:                               ;   in Loop: Header=BB95_3 Depth=1
-	jmp	.LBB95_7
-.LBB95_7:                               ;   in Loop: Header=BB95_3 Depth=1
+	mov	r15, &__llvm_gcov_ctr.95+16
+	mov	r14, &__llvm_gcov_ctr.95+18
+	mov	r13, &__llvm_gcov_ctr.95+20
+	mov	r12, &__llvm_gcov_ctr.95+22
 	mov	2(r1), r12
 	inc	r12
 	mov	r12, 2(r1)
 	jmp	.LBB95_3
 .LBB95_8:
+	mov	&__llvm_gcov_ctr.95+30, r12
+	mov	&__llvm_gcov_ctr.95+28, r11
+	mov	&__llvm_gcov_ctr.95+26, r14
+	mov	&__llvm_gcov_ctr.95+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.95+24
+	mov	r14, &__llvm_gcov_ctr.95+26
+	mov	r13, &__llvm_gcov_ctr.95+28
+	mov	r12, &__llvm_gcov_ctr.95+30
 	clr	8(r1)
 	jmp	.LBB95_9
 .LBB95_9:
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end95:
 	.size	strstr, .Lfunc_end95-strstr
@@ -17340,10 +25685,10 @@ copysign:                               ; @copysign
 	jge	.LBB96_3
 	jmp	.LBB96_1
 .LBB96_1:
-	mov	&.L__profc_copysign+30, r12
-	mov	&.L__profc_copysign+28, r11
-	mov	&.L__profc_copysign+26, r14
-	mov	&.L__profc_copysign+24, r15
+	mov	&__llvm_gcov_ctr.96+6, r12
+	mov	&__llvm_gcov_ctr.96+4, r11
+	mov	&__llvm_gcov_ctr.96+2, r14
+	mov	&__llvm_gcov_ctr.96, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17359,8 +25704,35 @@ copysign:                               ; @copysign
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.96
+	mov	r14, &__llvm_gcov_ctr.96+2
+	mov	r13, &__llvm_gcov_ctr.96+4
+	mov	r12, &__llvm_gcov_ctr.96+6
+	mov	&.L__profc_copysign+30, r12
+	mov	&.L__profc_copysign+28, r10
+	mov	&.L__profc_copysign+26, r14
+	mov	&.L__profc_copysign+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_copysign+24
@@ -17380,10 +25752,10 @@ copysign:                               ; @copysign
 	jl	.LBB96_3
 	jmp	.LBB96_2
 .LBB96_2:
-	mov	&.L__profc_copysign+38, r12
-	mov	&.L__profc_copysign+36, r11
-	mov	&.L__profc_copysign+34, r14
-	mov	&.L__profc_copysign+32, r15
+	mov	&__llvm_gcov_ctr.96+14, r12
+	mov	&__llvm_gcov_ctr.96+12, r11
+	mov	&__llvm_gcov_ctr.96+10, r14
+	mov	&__llvm_gcov_ctr.96+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17399,8 +25771,35 @@ copysign:                               ; @copysign
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.96+8
+	mov	r14, &__llvm_gcov_ctr.96+10
+	mov	r13, &__llvm_gcov_ctr.96+12
+	mov	r12, &__llvm_gcov_ctr.96+14
+	mov	&.L__profc_copysign+38, r12
+	mov	&.L__profc_copysign+36, r10
+	mov	&.L__profc_copysign+34, r14
+	mov	&.L__profc_copysign+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_copysign+32
@@ -17449,10 +25848,10 @@ copysign:                               ; @copysign
 	jl	.LBB96_7
 	jmp	.LBB96_4
 .LBB96_4:
-	mov	&.L__profc_copysign+46, r12
-	mov	&.L__profc_copysign+44, r11
-	mov	&.L__profc_copysign+42, r14
-	mov	&.L__profc_copysign+40, r15
+	mov	&__llvm_gcov_ctr.96+22, r12
+	mov	&__llvm_gcov_ctr.96+20, r11
+	mov	&__llvm_gcov_ctr.96+18, r14
+	mov	&__llvm_gcov_ctr.96+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17468,8 +25867,35 @@ copysign:                               ; @copysign
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.96+16
+	mov	r14, &__llvm_gcov_ctr.96+18
+	mov	r13, &__llvm_gcov_ctr.96+20
+	mov	r12, &__llvm_gcov_ctr.96+22
+	mov	&.L__profc_copysign+46, r12
+	mov	&.L__profc_copysign+44, r10
+	mov	&.L__profc_copysign+42, r14
+	mov	&.L__profc_copysign+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_copysign+40
@@ -17489,10 +25915,10 @@ copysign:                               ; @copysign
 	jge	.LBB96_7
 	jmp	.LBB96_5
 .LBB96_5:
-	mov	&.L__profc_copysign+54, r12
-	mov	&.L__profc_copysign+52, r11
-	mov	&.L__profc_copysign+50, r14
-	mov	&.L__profc_copysign+48, r15
+	mov	&__llvm_gcov_ctr.96+30, r12
+	mov	&__llvm_gcov_ctr.96+28, r11
+	mov	&__llvm_gcov_ctr.96+26, r14
+	mov	&__llvm_gcov_ctr.96+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17508,8 +25934,35 @@ copysign:                               ; @copysign
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.96+24
+	mov	r14, &__llvm_gcov_ctr.96+26
+	mov	r13, &__llvm_gcov_ctr.96+28
+	mov	r12, &__llvm_gcov_ctr.96+30
+	mov	&.L__profc_copysign+54, r12
+	mov	&.L__profc_copysign+52, r10
+	mov	&.L__profc_copysign+50, r14
+	mov	&.L__profc_copysign+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_copysign+48
@@ -17556,6 +26009,33 @@ copysign:                               ; @copysign
 	mov	r12, 22(r1)
 	jmp	.LBB96_8
 .LBB96_7:
+	mov	&__llvm_gcov_ctr.96+38, r12
+	mov	&__llvm_gcov_ctr.96+36, r11
+	mov	&__llvm_gcov_ctr.96+34, r14
+	mov	&__llvm_gcov_ctr.96+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.96+32
+	mov	r14, &__llvm_gcov_ctr.96+34
+	mov	r13, &__llvm_gcov_ctr.96+36
+	mov	r12, &__llvm_gcov_ctr.96+38
 	mov	8(r1), r12
 	mov	10(r1), r13
 	mov	12(r1), r14
@@ -17584,6 +26064,7 @@ copysign:                               ; @copysign
 	.type	memmem,@function
 memmem:                                 ; @memmem
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#14, r1
 	mov	r12, 10(r1)
@@ -17628,10 +26109,10 @@ memmem:                                 ; @memmem
 	jne	.LBB97_2
 	jmp	.LBB97_1
 .LBB97_1:
-	mov	&.L__profc_memmem+14, r12
-	mov	&.L__profc_memmem+12, r11
-	mov	&.L__profc_memmem+10, r14
-	mov	&.L__profc_memmem+8, r15
+	mov	&__llvm_gcov_ctr.97+6, r12
+	mov	&__llvm_gcov_ctr.97+4, r11
+	mov	&__llvm_gcov_ctr.97+2, r14
+	mov	&__llvm_gcov_ctr.97, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17647,8 +26128,35 @@ memmem:                                 ; @memmem
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.97
+	mov	r14, &__llvm_gcov_ctr.97+2
+	mov	r13, &__llvm_gcov_ctr.97+4
+	mov	r12, &__llvm_gcov_ctr.97+6
+	mov	&.L__profc_memmem+14, r12
+	mov	&.L__profc_memmem+12, r10
+	mov	&.L__profc_memmem+10, r14
+	mov	&.L__profc_memmem+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmem+8
@@ -17665,10 +26173,10 @@ memmem:                                 ; @memmem
 	jhs	.LBB97_4
 	jmp	.LBB97_3
 .LBB97_3:
-	mov	&.L__profc_memmem+22, r12
-	mov	&.L__profc_memmem+20, r11
-	mov	&.L__profc_memmem+18, r14
-	mov	&.L__profc_memmem+16, r15
+	mov	&__llvm_gcov_ctr.97+14, r12
+	mov	&__llvm_gcov_ctr.97+12, r11
+	mov	&__llvm_gcov_ctr.97+10, r14
+	mov	&__llvm_gcov_ctr.97+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17684,8 +26192,35 @@ memmem:                                 ; @memmem
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.97+8
+	mov	r14, &__llvm_gcov_ctr.97+10
+	mov	r13, &__llvm_gcov_ctr.97+12
+	mov	r12, &__llvm_gcov_ctr.97+14
+	mov	&.L__profc_memmem+22, r12
+	mov	&.L__profc_memmem+20, r10
+	mov	&.L__profc_memmem+18, r14
+	mov	&.L__profc_memmem+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmem+16
@@ -17742,10 +26277,10 @@ memmem:                                 ; @memmem
 	jne	.LBB97_10
 	jmp	.LBB97_7
 .LBB97_7:                               ;   in Loop: Header=BB97_5 Depth=1
-	mov	&.L__profc_memmem+46, r12
-	mov	&.L__profc_memmem+44, r11
-	mov	&.L__profc_memmem+42, r14
-	mov	&.L__profc_memmem+40, r15
+	mov	&__llvm_gcov_ctr.97+22, r12
+	mov	&__llvm_gcov_ctr.97+20, r11
+	mov	&__llvm_gcov_ctr.97+18, r14
+	mov	&__llvm_gcov_ctr.97+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17761,8 +26296,35 @@ memmem:                                 ; @memmem
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.97+16
+	mov	r14, &__llvm_gcov_ctr.97+18
+	mov	r13, &__llvm_gcov_ctr.97+20
+	mov	r12, &__llvm_gcov_ctr.97+22
+	mov	&.L__profc_memmem+46, r12
+	mov	&.L__profc_memmem+44, r10
+	mov	&.L__profc_memmem+42, r14
+	mov	&.L__profc_memmem+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmem+40
@@ -17780,10 +26342,10 @@ memmem:                                 ; @memmem
 	jne	.LBB97_10
 	jmp	.LBB97_8
 .LBB97_8:
-	mov	&.L__profc_memmem+54, r12
-	mov	&.L__profc_memmem+52, r11
-	mov	&.L__profc_memmem+50, r14
-	mov	&.L__profc_memmem+48, r15
+	mov	&__llvm_gcov_ctr.97+30, r12
+	mov	&__llvm_gcov_ctr.97+28, r11
+	mov	&__llvm_gcov_ctr.97+26, r14
+	mov	&__llvm_gcov_ctr.97+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17799,8 +26361,35 @@ memmem:                                 ; @memmem
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.97+24
+	mov	r14, &__llvm_gcov_ctr.97+26
+	mov	r13, &__llvm_gcov_ctr.97+28
+	mov	r12, &__llvm_gcov_ctr.97+30
+	mov	&.L__profc_memmem+54, r12
+	mov	&.L__profc_memmem+52, r10
+	mov	&.L__profc_memmem+50, r14
+	mov	&.L__profc_memmem+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_memmem+48
@@ -17842,35 +26431,10 @@ memmem:                                 ; @memmem
 .LBB97_10:                              ;   in Loop: Header=BB97_5 Depth=1
 	jmp	.LBB97_11
 .LBB97_11:                              ;   in Loop: Header=BB97_5 Depth=1
-	mov	2(r1), r12
-	inc	r12
-	mov	r12, 2(r1)
-	jmp	.LBB97_5
-.LBB97_12:
-	clr	12(r1)
-	jmp	.LBB97_13
-.LBB97_13:
-	mov	12(r1), r12
-	add	#14, r1
-	pop	r10
-	ret
-.Lfunc_end97:
-	.size	memmem, .Lfunc_end97-memmem
-                                        ; -- End function
-	.globl	mempcpy                         ; -- Begin function mempcpy
-	.p2align	1
-	.type	mempcpy,@function
-mempcpy:                                ; @mempcpy
-; %bb.0:
-	push	r10
-	sub	#8, r1
-	mov	r12, 6(r1)
-	mov	r13, 4(r1)
-	mov	r14, 2(r1)
-	mov	&.L__profc_mempcpy+6, r12
-	mov	&.L__profc_mempcpy+4, r11
-	mov	&.L__profc_mempcpy+2, r14
-	mov	&.L__profc_mempcpy, r15
+	mov	&__llvm_gcov_ctr.97+38, r12
+	mov	&__llvm_gcov_ctr.97+36, r11
+	mov	&__llvm_gcov_ctr.97+34, r14
+	mov	&__llvm_gcov_ctr.97+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17890,6 +26454,117 @@ mempcpy:                                ; @mempcpy
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.97+32
+	mov	r14, &__llvm_gcov_ctr.97+34
+	mov	r13, &__llvm_gcov_ctr.97+36
+	mov	r12, &__llvm_gcov_ctr.97+38
+	mov	2(r1), r12
+	inc	r12
+	mov	r12, 2(r1)
+	jmp	.LBB97_5
+.LBB97_12:
+	mov	&__llvm_gcov_ctr.97+46, r12
+	mov	&__llvm_gcov_ctr.97+44, r11
+	mov	&__llvm_gcov_ctr.97+42, r14
+	mov	&__llvm_gcov_ctr.97+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.97+40
+	mov	r14, &__llvm_gcov_ctr.97+42
+	mov	r13, &__llvm_gcov_ctr.97+44
+	mov	r12, &__llvm_gcov_ctr.97+46
+	clr	12(r1)
+	jmp	.LBB97_13
+.LBB97_13:
+	mov	12(r1), r12
+	add	#14, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end97:
+	.size	memmem, .Lfunc_end97-memmem
+                                        ; -- End function
+	.globl	mempcpy                         ; -- Begin function mempcpy
+	.p2align	1
+	.type	mempcpy,@function
+mempcpy:                                ; @mempcpy
+; %bb.0:
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#8, r1
+	mov	&__llvm_gcov_ctr.98+6, r15
+	mov	&__llvm_gcov_ctr.98+4, r11
+	mov	&__llvm_gcov_ctr.98+2, r9
+	mov	&__llvm_gcov_ctr.98, r8
+	inc	r8
+	tst	r8
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	add	r10, r9
+	mov	r8, r10
+	bis	r9, r10
+	tst	r10
+	mov	r2, r7
+	rra	r7
+	and	#1, r7
+	mov	r11, r10
+	add	r7, r10
+	cmp	r11, r10
+	mov	r2, r6
+	mov	#1, r11
+	mov	r11, r7
+	bic	r6, r7
+	add	r7, r15
+	mov	r8, &__llvm_gcov_ctr.98
+	mov	r9, &__llvm_gcov_ctr.98+2
+	mov	r10, &__llvm_gcov_ctr.98+4
+	mov	r15, &__llvm_gcov_ctr.98+6
+	mov	r12, 6(r1)
+	mov	r13, 4(r1)
+	mov	r14, 2(r1)
+	mov	&.L__profc_mempcpy+6, r12
+	mov	&.L__profc_mempcpy+4, r10
+	mov	&.L__profc_mempcpy+2, r14
+	mov	&.L__profc_mempcpy, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc_mempcpy
 	mov	r14, &.L__profc_mempcpy+2
 	mov	r13, &.L__profc_mempcpy+4
@@ -17905,6 +26580,10 @@ mempcpy:                                ; @mempcpy
 	add	r13, r12
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
 	ret
 .Lfunc_end98:
 	.size	mempcpy, .Lfunc_end98-mempcpy
@@ -17969,10 +26648,10 @@ frexp:                                  ; @frexp
 	jge	.LBB99_2
 	jmp	.LBB99_1
 .LBB99_1:
-	mov	&.L__profc_frexp+14, r12
-	mov	&.L__profc_frexp+12, r11
-	mov	&.L__profc_frexp+10, r14
-	mov	&.L__profc_frexp+8, r15
+	mov	&__llvm_gcov_ctr.99+6, r12
+	mov	&__llvm_gcov_ctr.99+4, r11
+	mov	&__llvm_gcov_ctr.99+2, r14
+	mov	&__llvm_gcov_ctr.99, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -17988,8 +26667,35 @@ frexp:                                  ; @frexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99
+	mov	r14, &__llvm_gcov_ctr.99+2
+	mov	r13, &__llvm_gcov_ctr.99+4
+	mov	r12, &__llvm_gcov_ctr.99+6
+	mov	&.L__profc_frexp+14, r12
+	mov	&.L__profc_frexp+12, r10
+	mov	&.L__profc_frexp+10, r14
+	mov	&.L__profc_frexp+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+8
@@ -18021,10 +26727,10 @@ frexp:                                  ; @frexp
 	jl	.LBB99_7
 	jmp	.LBB99_3
 .LBB99_3:
-	mov	&.L__profc_frexp+22, r12
-	mov	&.L__profc_frexp+20, r11
-	mov	&.L__profc_frexp+18, r14
-	mov	&.L__profc_frexp+16, r15
+	mov	&__llvm_gcov_ctr.99+14, r12
+	mov	&__llvm_gcov_ctr.99+12, r11
+	mov	&__llvm_gcov_ctr.99+10, r14
+	mov	&__llvm_gcov_ctr.99+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18040,8 +26746,35 @@ frexp:                                  ; @frexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99+8
+	mov	r14, &__llvm_gcov_ctr.99+10
+	mov	r13, &__llvm_gcov_ctr.99+12
+	mov	r12, &__llvm_gcov_ctr.99+14
+	mov	&.L__profc_frexp+22, r12
+	mov	&.L__profc_frexp+20, r10
+	mov	&.L__profc_frexp+18, r14
+	mov	&.L__profc_frexp+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+16
@@ -18063,10 +26796,10 @@ frexp:                                  ; @frexp
 	jl	.LBB99_6
 	jmp	.LBB99_5
 .LBB99_5:                               ;   in Loop: Header=BB99_4 Depth=1
-	mov	&.L__profc_frexp+30, r12
-	mov	&.L__profc_frexp+28, r11
-	mov	&.L__profc_frexp+26, r14
-	mov	&.L__profc_frexp+24, r15
+	mov	&__llvm_gcov_ctr.99+22, r12
+	mov	&__llvm_gcov_ctr.99+20, r11
+	mov	&__llvm_gcov_ctr.99+18, r14
+	mov	&__llvm_gcov_ctr.99+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18082,8 +26815,35 @@ frexp:                                  ; @frexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99+16
+	mov	r14, &__llvm_gcov_ctr.99+18
+	mov	r13, &__llvm_gcov_ctr.99+20
+	mov	r12, &__llvm_gcov_ctr.99+22
+	mov	&.L__profc_frexp+30, r12
+	mov	&.L__profc_frexp+28, r10
+	mov	&.L__profc_frexp+26, r14
+	mov	&.L__profc_frexp+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+24
@@ -18123,10 +26883,10 @@ frexp:                                  ; @frexp
 	jge	.LBB99_14
 	jmp	.LBB99_8
 .LBB99_8:
-	mov	&.L__profc_frexp+46, r12
-	mov	&.L__profc_frexp+44, r11
-	mov	&.L__profc_frexp+42, r14
-	mov	&.L__profc_frexp+40, r15
+	mov	&__llvm_gcov_ctr.99+30, r12
+	mov	&__llvm_gcov_ctr.99+28, r11
+	mov	&__llvm_gcov_ctr.99+26, r14
+	mov	&__llvm_gcov_ctr.99+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18142,8 +26902,35 @@ frexp:                                  ; @frexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99+24
+	mov	r14, &__llvm_gcov_ctr.99+26
+	mov	r13, &__llvm_gcov_ctr.99+28
+	mov	r12, &__llvm_gcov_ctr.99+30
+	mov	&.L__profc_frexp+46, r12
+	mov	&.L__profc_frexp+44, r10
+	mov	&.L__profc_frexp+42, r14
+	mov	&.L__profc_frexp+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+40
@@ -18234,10 +27021,10 @@ frexp:                                  ; @frexp
 	jge	.LBB99_13
 	jmp	.LBB99_12
 .LBB99_12:                              ;   in Loop: Header=BB99_11 Depth=1
-	mov	&.L__profc_frexp+62, r12
-	mov	&.L__profc_frexp+60, r11
-	mov	&.L__profc_frexp+58, r14
-	mov	&.L__profc_frexp+56, r15
+	mov	&__llvm_gcov_ctr.99+38, r12
+	mov	&__llvm_gcov_ctr.99+36, r11
+	mov	&__llvm_gcov_ctr.99+34, r14
+	mov	&__llvm_gcov_ctr.99+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18253,8 +27040,35 @@ frexp:                                  ; @frexp
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99+32
+	mov	r14, &__llvm_gcov_ctr.99+34
+	mov	r13, &__llvm_gcov_ctr.99+36
+	mov	r12, &__llvm_gcov_ctr.99+38
+	mov	&.L__profc_frexp+62, r12
+	mov	&.L__profc_frexp+60, r10
+	mov	&.L__profc_frexp+58, r14
+	mov	&.L__profc_frexp+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+56
@@ -18279,22 +27093,10 @@ frexp:                                  ; @frexp
 	mov	r12, 4(r1)
 	jmp	.LBB99_11
 .LBB99_13:
-	jmp	.LBB99_14
-.LBB99_14:
-	jmp	.LBB99_15
-.LBB99_15:
-	mov	0(r1), r13
-	mov	20(r1), r12
-	mov	r13, 0(r12)
-	mov	2(r1), r12
-	tst	r12
-	jeq	.LBB99_17
-	jmp	.LBB99_16
-.LBB99_16:
-	mov	&.L__profc_frexp+70, r12
-	mov	&.L__profc_frexp+68, r11
-	mov	&.L__profc_frexp+66, r14
-	mov	&.L__profc_frexp+64, r15
+	mov	&__llvm_gcov_ctr.99+46, r12
+	mov	&__llvm_gcov_ctr.99+44, r11
+	mov	&__llvm_gcov_ctr.99+42, r14
+	mov	&__llvm_gcov_ctr.99+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18312,6 +27114,99 @@ frexp:                                  ; @frexp
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.99+40
+	mov	r14, &__llvm_gcov_ctr.99+42
+	mov	r13, &__llvm_gcov_ctr.99+44
+	mov	r12, &__llvm_gcov_ctr.99+46
+	jmp	.LBB99_14
+.LBB99_14:
+	mov	&__llvm_gcov_ctr.99+54, r12
+	mov	&__llvm_gcov_ctr.99+52, r11
+	mov	&__llvm_gcov_ctr.99+50, r14
+	mov	&__llvm_gcov_ctr.99+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.99+48
+	mov	r14, &__llvm_gcov_ctr.99+50
+	mov	r13, &__llvm_gcov_ctr.99+52
+	mov	r12, &__llvm_gcov_ctr.99+54
+	jmp	.LBB99_15
+.LBB99_15:
+	mov	0(r1), r13
+	mov	20(r1), r12
+	mov	r13, 0(r12)
+	mov	2(r1), r12
+	tst	r12
+	jeq	.LBB99_17
+	jmp	.LBB99_16
+.LBB99_16:
+	mov	&__llvm_gcov_ctr.99+62, r12
+	mov	&__llvm_gcov_ctr.99+60, r11
+	mov	&__llvm_gcov_ctr.99+58, r14
+	mov	&__llvm_gcov_ctr.99+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.99+56
+	mov	r14, &__llvm_gcov_ctr.99+58
+	mov	r13, &__llvm_gcov_ctr.99+60
+	mov	r12, &__llvm_gcov_ctr.99+62
+	mov	&.L__profc_frexp+70, r12
+	mov	&.L__profc_frexp+68, r10
+	mov	&.L__profc_frexp+66, r14
+	mov	&.L__profc_frexp+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_frexp+64
@@ -18346,34 +27241,69 @@ frexp:                                  ; @frexp
 	.type	__muldi3,@function
 __muldi3:                               ; @__muldi3
 ; %bb.0:
+	push	r4
+	push	r5
 	push	r6
 	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#50, r1
-	mov	r15, r8
-	mov	r14, r9
-	mov	r13, r10
-	mov	r12, r11
-	mov	68(r1), r15
-	mov	66(r1), r14
-	mov	64(r1), r13
-	mov	62(r1), r12
-                                        ; kill: def $r7 killed $r8
-                                        ; kill: def $r7 killed $r9
-                                        ; kill: def $r7 killed $r10
-                                        ; kill: def $r7 killed $r11
-	mov	r8, 48(r1)
-	mov	r9, 46(r1)
-	mov	r10, 44(r1)
-	mov	r11, 42(r1)
-	mov	r15, 40(r1)
-	mov	r14, 38(r1)
-	mov	r13, 36(r1)
-	mov	r12, 34(r1)
+	sub	#56, r1
+	mov	r15, r7
+	mov	r14, r8
+	mov	r13, r9
+	mov	r12, r10
+	mov	78(r1), r15
+	mov	76(r1), r14
+	mov	74(r1), r12
+	mov	r12, 18(r1)                     ; 2-byte Folded Spill
+	mov	72(r1), r12
+	mov	r12, 22(r1)                     ; 2-byte Folded Spill
+                                        ; kill: def $r12 killed $r7
+                                        ; kill: def $r12 killed $r8
+                                        ; kill: def $r13 killed $r9
+                                        ; kill: def $r12 killed $r10
+	mov	&__llvm_gcov_ctr.100+6, r6
+	mov	&__llvm_gcov_ctr.100+4, r12
+	mov	&__llvm_gcov_ctr.100+2, r4
+	mov	&__llvm_gcov_ctr.100, r13
+	inc	r13
+	mov	r13, 20(r1)                     ; 2-byte Folded Spill
+	tst	r13
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r4
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r11
+	mov	r11, r12
+	bic	r13, r12
+	mov	18(r1), r13                     ; 2-byte Folded Reload
+	add	r12, r6
+	mov	20(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, &__llvm_gcov_ctr.100
+	mov	22(r1), r12                     ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.100+2
+	mov	r5, &__llvm_gcov_ctr.100+4
+	mov	r6, &__llvm_gcov_ctr.100+6
+	mov	r7, 54(r1)
+	mov	r8, 52(r1)
+	mov	r9, 50(r1)
+	mov	r10, 48(r1)
+	mov	r15, 46(r1)
+	mov	r14, 44(r1)
+	mov	r13, 42(r1)
+	mov	r12, 40(r1)
 	mov	&.L__profc___muldi3+6, r12
-	mov	&.L__profc___muldi3+4, r11
+	mov	&.L__profc___muldi3+4, r10
 	mov	&.L__profc___muldi3+2, r14
 	mov	&.L__profc___muldi3, r15
 	inc	r15
@@ -18385,38 +27315,37 @@ __muldi3:                               ; @__muldi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___muldi3
 	mov	r14, &.L__profc___muldi3+2
 	mov	r13, &.L__profc___muldi3+4
 	mov	r12, &.L__profc___muldi3+6
+	clr	38(r1)
+	clr	36(r1)
+	clr	34(r1)
 	clr	32(r1)
-	clr	30(r1)
-	clr	28(r1)
-	clr	26(r1)
-	mov	42(r1), r12
-	mov	44(r1), r13
-	mov	46(r1), r14
-	mov	48(r1), r15
-	mov	r15, 24(r1)
-	mov	r14, 22(r1)
-	mov	r13, 20(r1)
-	mov	r12, 18(r1)
+	mov	48(r1), r12
+	mov	50(r1), r13
+	mov	52(r1), r14
+	mov	54(r1), r15
+	mov	r15, 30(r1)
+	mov	r14, 28(r1)
+	mov	r13, 26(r1)
+	mov	r12, 24(r1)
 	jmp	.LBB100_1
 .LBB100_1:                              ; =>This Inner Loop Header: Depth=1
-	mov	22(r1), r14
-	mov	18(r1), r12
-	mov	24(r1), r15
-	mov	20(r1), r13
+	mov	28(r1), r14
+	mov	24(r1), r12
+	mov	30(r1), r15
+	mov	26(r1), r13
 	bis	r15, r13
 	bis	r14, r12
 	bis	r13, r12
@@ -18451,15 +27380,15 @@ __muldi3:                               ; @__muldi3
 	mov	r14, &.L__profc___muldi3+10
 	mov	r13, &.L__profc___muldi3+12
 	mov	r12, &.L__profc___muldi3+14
-	mov.b	18(r1), r12
+	mov.b	24(r1), r12
 	bit.b	#1, r12
 	jeq	.LBB100_6
 	jmp	.LBB100_3
 .LBB100_3:                              ;   in Loop: Header=BB100_1 Depth=1
-	mov	&.L__profc___muldi3+22, r12
-	mov	&.L__profc___muldi3+20, r15
-	mov	&.L__profc___muldi3+18, r14
-	mov	&.L__profc___muldi3+16, r11
+	mov	&__llvm_gcov_ctr.100+14, r12
+	mov	&__llvm_gcov_ctr.100+12, r15
+	mov	&__llvm_gcov_ctr.100+10, r14
+	mov	&__llvm_gcov_ctr.100+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -18481,22 +27410,49 @@ __muldi3:                               ; @__muldi3
 	mov	r15, r10
 	bic	r9, r10
 	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.100+8
+	mov	r14, &__llvm_gcov_ctr.100+10
+	mov	r13, &__llvm_gcov_ctr.100+12
+	mov	r12, &__llvm_gcov_ctr.100+14
+	mov	&.L__profc___muldi3+22, r12
+	mov	&.L__profc___muldi3+20, r10
+	mov	&.L__profc___muldi3+18, r14
+	mov	&.L__profc___muldi3+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
 	mov	r11, &.L__profc___muldi3+16
 	mov	r14, &.L__profc___muldi3+18
 	mov	r13, &.L__profc___muldi3+20
 	mov	r12, &.L__profc___muldi3+22
-	mov	40(r1), r12
+	mov	46(r1), r12
 	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	38(r1), r12
+	mov	44(r1), r12
 	mov	r12, 4(r1)                      ; 2-byte Folded Spill
-	mov	34(r1), r10
-	mov	36(r1), r12
-	mov	32(r1), r13
+	mov	40(r1), r10
+	mov	42(r1), r12
+	mov	38(r1), r13
 	mov	r13, 6(r1)                      ; 2-byte Folded Spill
-	mov	30(r1), r13
+	mov	36(r1), r13
 	mov	r13, 8(r1)                      ; 2-byte Folded Spill
-	mov	26(r1), r11
-	mov	28(r1), r14
+	mov	32(r1), r11
+	mov	34(r1), r14
 	mov	r14, r13
 	add	r12, r13
 	mov	r11, r12
@@ -18541,16 +27497,43 @@ __muldi3:                               ; @__muldi3
 	bic	r9, r10
 	add	r10, r12
 	add	r11, r12
-	mov	r15, 26(r1)
-	mov	r14, 28(r1)
-	mov	r13, 30(r1)
-	mov	r12, 32(r1)
+	mov	r15, 32(r1)
+	mov	r14, 34(r1)
+	mov	r13, 36(r1)
+	mov	r12, 38(r1)
 	jmp	.LBB100_6
 .LBB100_6:                              ;   in Loop: Header=BB100_1 Depth=1
-	mov	40(r1), r15
-	mov	38(r1), r11
-	mov	34(r1), r13
-	mov	36(r1), r10
+	mov	&__llvm_gcov_ctr.100+22, r12
+	mov	&__llvm_gcov_ctr.100+20, r11
+	mov	&__llvm_gcov_ctr.100+18, r14
+	mov	&__llvm_gcov_ctr.100+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.100+16
+	mov	r14, &__llvm_gcov_ctr.100+18
+	mov	r13, &__llvm_gcov_ctr.100+20
+	mov	r12, &__llvm_gcov_ctr.100+22
+	mov	46(r1), r15
+	mov	44(r1), r11
+	mov	40(r1), r13
+	mov	42(r1), r10
 	mov	r10, r12
 	add	r12, r12
 	mov	r13, r14
@@ -18591,14 +27574,14 @@ __muldi3:                               ; @__muldi3
 	rra	r11
 	bis	r11, r15
 	add	r13, r13
-	mov	r15, 40(r1)
-	mov	r14, 38(r1)
-	mov	r13, 34(r1)
-	mov	r12, 36(r1)
-	mov	24(r1), r15
-	mov	22(r1), r14
-	mov	20(r1), r13
-	mov	18(r1), r12
+	mov	r15, 46(r1)
+	mov	r14, 44(r1)
+	mov	r13, 40(r1)
+	mov	r12, 42(r1)
+	mov	30(r1), r15
+	mov	28(r1), r14
+	mov	26(r1), r13
+	mov	24(r1), r12
 	clrc
 	rrc	r12
 	mov	r13, r11
@@ -18640,22 +27623,24 @@ __muldi3:                               ; @__muldi3
 	bis	r11, r14
 	clrc
 	rrc	r15
-	mov	r15, 24(r1)
-	mov	r14, 22(r1)
-	mov	r13, 20(r1)
-	mov	r12, 18(r1)
+	mov	r15, 30(r1)
+	mov	r14, 28(r1)
+	mov	r13, 26(r1)
+	mov	r12, 24(r1)
 	jmp	.LBB100_1
 .LBB100_7:
-	mov	26(r1), r12
-	mov	28(r1), r13
-	mov	30(r1), r14
-	mov	32(r1), r15
-	add	#50, r1
+	mov	32(r1), r12
+	mov	34(r1), r13
+	mov	36(r1), r14
+	mov	38(r1), r15
+	add	#56, r1
 	pop	r10
 	pop	r9
 	pop	r8
 	pop	r7
 	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end100:
 	.size	__muldi3, .Lfunc_end100-__muldi3
@@ -18665,6 +27650,7 @@ __muldi3:                               ; @__muldi3
 	.type	udivmodsi4,@function
 udivmodsi4:                             ; @udivmodsi4
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#30, r1
@@ -18672,7 +27658,7 @@ udivmodsi4:                             ; @udivmodsi4
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	36(r1), r11
+	mov	38(r1), r11
 	mov	r13, 24(r1)
 	mov	r12, 22(r1)
 	mov	r15, 20(r1)
@@ -18735,10 +27721,10 @@ udivmodsi4:                             ; @udivmodsi4
 	jne	.LBB101_8
 	jmp	.LBB101_4
 .LBB101_4:                              ;   in Loop: Header=BB101_1 Depth=1
-	mov	&.L__profc_udivmodsi4+38, r12
-	mov	&.L__profc_udivmodsi4+36, r11
-	mov	&.L__profc_udivmodsi4+34, r14
-	mov	&.L__profc_udivmodsi4+32, r15
+	mov	&__llvm_gcov_ctr.101+6, r12
+	mov	&__llvm_gcov_ctr.101+4, r11
+	mov	&__llvm_gcov_ctr.101+2, r14
+	mov	&__llvm_gcov_ctr.101, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18754,8 +27740,35 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.101
+	mov	r14, &__llvm_gcov_ctr.101+2
+	mov	r13, &__llvm_gcov_ctr.101+4
+	mov	r12, &__llvm_gcov_ctr.101+6
+	mov	&.L__profc_udivmodsi4+38, r12
+	mov	&.L__profc_udivmodsi4+36, r10
+	mov	&.L__profc_udivmodsi4+34, r14
+	mov	&.L__profc_udivmodsi4+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_udivmodsi4+32
@@ -18771,10 +27784,10 @@ udivmodsi4:                             ; @udivmodsi4
 	jeq	.LBB101_8
 	jmp	.LBB101_5
 .LBB101_5:                              ;   in Loop: Header=BB101_1 Depth=1
-	mov	&.L__profc_udivmodsi4+46, r12
-	mov	&.L__profc_udivmodsi4+44, r11
-	mov	&.L__profc_udivmodsi4+42, r14
-	mov	&.L__profc_udivmodsi4+40, r15
+	mov	&__llvm_gcov_ctr.101+14, r12
+	mov	&__llvm_gcov_ctr.101+12, r11
+	mov	&__llvm_gcov_ctr.101+10, r14
+	mov	&__llvm_gcov_ctr.101+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18790,8 +27803,35 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.101+8
+	mov	r14, &__llvm_gcov_ctr.101+10
+	mov	r13, &__llvm_gcov_ctr.101+12
+	mov	r12, &__llvm_gcov_ctr.101+14
+	mov	&.L__profc_udivmodsi4+46, r12
+	mov	&.L__profc_udivmodsi4+44, r10
+	mov	&.L__profc_udivmodsi4+42, r14
+	mov	&.L__profc_udivmodsi4+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_udivmodsi4+40
@@ -18841,10 +27881,10 @@ udivmodsi4:                             ; @udivmodsi4
 	jmp	.LBB101_7
 .LBB101_7:                              ;   in Loop: Header=BB101_1 Depth=1
 	mov.b	4(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc_udivmodsi4+30, r13
-	mov	&.L__profc_udivmodsi4+28, r10
-	mov	&.L__profc_udivmodsi4+26, r15
-	mov	&.L__profc_udivmodsi4+24, r11
+	mov	&__llvm_gcov_ctr.101+22, r13
+	mov	&__llvm_gcov_ctr.101+20, r10
+	mov	&__llvm_gcov_ctr.101+18, r15
+	mov	&__llvm_gcov_ctr.101+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -18860,8 +27900,35 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.101+16
+	mov	r15, &__llvm_gcov_ctr.101+18
+	mov	r14, &__llvm_gcov_ctr.101+20
+	mov	r13, &__llvm_gcov_ctr.101+22
+	mov	&.L__profc_udivmodsi4+30, r13
+	mov	&.L__profc_udivmodsi4+28, r9
+	mov	&.L__profc_udivmodsi4+26, r15
+	mov	&.L__profc_udivmodsi4+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc_udivmodsi4+24
@@ -18877,10 +27944,10 @@ udivmodsi4:                             ; @udivmodsi4
 	jeq	.LBB101_10
 	jmp	.LBB101_9
 .LBB101_9:                              ;   in Loop: Header=BB101_1 Depth=1
-	mov	&.L__profc_udivmodsi4+14, r12
-	mov	&.L__profc_udivmodsi4+12, r11
-	mov	&.L__profc_udivmodsi4+10, r14
-	mov	&.L__profc_udivmodsi4+8, r15
+	mov	&__llvm_gcov_ctr.101+30, r12
+	mov	&__llvm_gcov_ctr.101+28, r11
+	mov	&__llvm_gcov_ctr.101+26, r14
+	mov	&__llvm_gcov_ctr.101+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -18896,8 +27963,35 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.101+24
+	mov	r14, &__llvm_gcov_ctr.101+26
+	mov	r13, &__llvm_gcov_ctr.101+28
+	mov	r12, &__llvm_gcov_ctr.101+30
+	mov	&.L__profc_udivmodsi4+14, r12
+	mov	&.L__profc_udivmodsi4+12, r10
+	mov	&.L__profc_udivmodsi4+10, r14
+	mov	&.L__profc_udivmodsi4+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc_udivmodsi4+8
@@ -19003,10 +28097,10 @@ udivmodsi4:                             ; @udivmodsi4
 	jne	.LBB101_16
 	jmp	.LBB101_15
 .LBB101_15:                             ;   in Loop: Header=BB101_11 Depth=1
-	mov	&.L__profc_udivmodsi4+62, r12
-	mov	&.L__profc_udivmodsi4+60, r15
-	mov	&.L__profc_udivmodsi4+58, r14
-	mov	&.L__profc_udivmodsi4+56, r11
+	mov	&__llvm_gcov_ctr.101+38, r12
+	mov	&__llvm_gcov_ctr.101+36, r15
+	mov	&__llvm_gcov_ctr.101+34, r14
+	mov	&__llvm_gcov_ctr.101+32, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -19024,6 +28118,33 @@ udivmodsi4:                             ; @udivmodsi4
 	cmp	r15, r13
 	mov	r2, r9
 	mov	#1, r15
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.101+32
+	mov	r14, &__llvm_gcov_ctr.101+34
+	mov	r13, &__llvm_gcov_ctr.101+36
+	mov	r12, &__llvm_gcov_ctr.101+38
+	mov	&.L__profc_udivmodsi4+62, r12
+	mov	&.L__profc_udivmodsi4+60, r10
+	mov	&.L__profc_udivmodsi4+58, r14
+	mov	&.L__profc_udivmodsi4+56, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r15, r10
 	bic	r9, r10
 	add	r10, r12
@@ -19053,6 +28174,33 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r12, 10(r1)
 	jmp	.LBB101_16
 .LBB101_16:                             ;   in Loop: Header=BB101_11 Depth=1
+	mov	&__llvm_gcov_ctr.101+46, r12
+	mov	&__llvm_gcov_ctr.101+44, r11
+	mov	&__llvm_gcov_ctr.101+42, r14
+	mov	&__llvm_gcov_ctr.101+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.101+40
+	mov	r14, &__llvm_gcov_ctr.101+42
+	mov	r13, &__llvm_gcov_ctr.101+44
+	mov	r12, &__llvm_gcov_ctr.101+46
 	mov	16(r1), r13
 	mov	14(r1), r12
 	clrc
@@ -19093,15 +28241,75 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	r12, 18(r1)
 	jmp	.LBB101_11
 .LBB101_17:
-	mov	36(r1), r12
+	mov	38(r1), r12
 	tst	r12
 	jeq	.LBB101_19
 	jmp	.LBB101_18
 .LBB101_18:
+	mov	&__llvm_gcov_ctr.101+54, r12
+	mov	&__llvm_gcov_ctr.101+52, r11
+	mov	&__llvm_gcov_ctr.101+50, r14
+	mov	&__llvm_gcov_ctr.101+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.101+48
+	mov	r14, &__llvm_gcov_ctr.101+50
+	mov	r13, &__llvm_gcov_ctr.101+52
+	mov	r12, &__llvm_gcov_ctr.101+54
 	mov	&.L__profc_udivmodsi4+70, r12
-	mov	&.L__profc_udivmodsi4+68, r11
+	mov	&.L__profc_udivmodsi4+68, r10
 	mov	&.L__profc_udivmodsi4+66, r14
 	mov	&.L__profc_udivmodsi4+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc_udivmodsi4+64
+	mov	r14, &.L__profc_udivmodsi4+66
+	mov	r13, &.L__profc_udivmodsi4+68
+	mov	r12, &.L__profc_udivmodsi4+70
+	mov	22(r1), r12
+	mov	24(r1), r13
+	mov	r13, 28(r1)
+	mov	r12, 26(r1)
+	jmp	.LBB101_20
+.LBB101_19:
+	mov	&__llvm_gcov_ctr.101+62, r12
+	mov	&__llvm_gcov_ctr.101+60, r11
+	mov	&__llvm_gcov_ctr.101+58, r14
+	mov	&__llvm_gcov_ctr.101+56, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19121,16 +28329,10 @@ udivmodsi4:                             ; @udivmodsi4
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc_udivmodsi4+64
-	mov	r14, &.L__profc_udivmodsi4+66
-	mov	r13, &.L__profc_udivmodsi4+68
-	mov	r12, &.L__profc_udivmodsi4+70
-	mov	22(r1), r12
-	mov	24(r1), r13
-	mov	r13, 28(r1)
-	mov	r12, 26(r1)
-	jmp	.LBB101_20
-.LBB101_19:
+	mov	r15, &__llvm_gcov_ctr.101+56
+	mov	r14, &__llvm_gcov_ctr.101+58
+	mov	r13, &__llvm_gcov_ctr.101+60
+	mov	r12, &__llvm_gcov_ctr.101+62
 	mov	10(r1), r12
 	mov	12(r1), r13
 	mov	r13, 28(r1)
@@ -19142,6 +28344,7 @@ udivmodsi4:                             ; @udivmodsi4
 	add	#30, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end101:
 	.size	udivmodsi4, .Lfunc_end101-udivmodsi4
@@ -19151,6 +28354,7 @@ udivmodsi4:                             ; @udivmodsi4
 	.type	__clrsbqi2,@function
 __clrsbqi2:                             ; @__clrsbqi2
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#6, r1
                                         ; kill: def $r12b killed $r12b killed $r12
@@ -19188,10 +28392,10 @@ __clrsbqi2:                             ; @__clrsbqi2
 	jge	.LBB102_2
 	jmp	.LBB102_1
 .LBB102_1:
-	mov	&.L__profc___clrsbqi2+14, r12
-	mov	&.L__profc___clrsbqi2+12, r11
-	mov	&.L__profc___clrsbqi2+10, r14
-	mov	&.L__profc___clrsbqi2+8, r15
+	mov	&__llvm_gcov_ctr.102+6, r12
+	mov	&__llvm_gcov_ctr.102+4, r11
+	mov	&__llvm_gcov_ctr.102+2, r14
+	mov	&__llvm_gcov_ctr.102, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19207,8 +28411,35 @@ __clrsbqi2:                             ; @__clrsbqi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.102
+	mov	r14, &__llvm_gcov_ctr.102+2
+	mov	r13, &__llvm_gcov_ctr.102+4
+	mov	r12, &__llvm_gcov_ctr.102+6
+	mov	&.L__profc___clrsbqi2+14, r12
+	mov	&.L__profc___clrsbqi2+12, r10
+	mov	&.L__profc___clrsbqi2+10, r14
+	mov	&.L__profc___clrsbqi2+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___clrsbqi2+8
@@ -19225,10 +28456,67 @@ __clrsbqi2:                             ; @__clrsbqi2
 	jne	.LBB102_4
 	jmp	.LBB102_3
 .LBB102_3:
+	mov	&__llvm_gcov_ctr.102+14, r12
+	mov	&__llvm_gcov_ctr.102+12, r11
+	mov	&__llvm_gcov_ctr.102+10, r14
+	mov	&__llvm_gcov_ctr.102+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.102+8
+	mov	r14, &__llvm_gcov_ctr.102+10
+	mov	r13, &__llvm_gcov_ctr.102+12
+	mov	r12, &__llvm_gcov_ctr.102+14
 	mov	&.L__profc___clrsbqi2+22, r12
-	mov	&.L__profc___clrsbqi2+20, r11
+	mov	&.L__profc___clrsbqi2+20, r10
 	mov	&.L__profc___clrsbqi2+18, r14
 	mov	&.L__profc___clrsbqi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___clrsbqi2+16
+	mov	r14, &.L__profc___clrsbqi2+18
+	mov	r13, &.L__profc___clrsbqi2+20
+	mov	r12, &.L__profc___clrsbqi2+22
+	mov	#7, 4(r1)
+	jmp	.LBB102_5
+.LBB102_4:
+	mov	&__llvm_gcov_ctr.102+22, r12
+	mov	&__llvm_gcov_ctr.102+20, r11
+	mov	&__llvm_gcov_ctr.102+18, r14
+	mov	&__llvm_gcov_ctr.102+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19248,13 +28536,10 @@ __clrsbqi2:                             ; @__clrsbqi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___clrsbqi2+16
-	mov	r14, &.L__profc___clrsbqi2+18
-	mov	r13, &.L__profc___clrsbqi2+20
-	mov	r12, &.L__profc___clrsbqi2+22
-	mov	#7, 4(r1)
-	jmp	.LBB102_5
-.LBB102_4:
+	mov	r15, &__llvm_gcov_ctr.102+16
+	mov	r14, &__llvm_gcov_ctr.102+18
+	mov	r13, &__llvm_gcov_ctr.102+20
+	mov	r12, &__llvm_gcov_ctr.102+22
 	mov.b	3(r1), r13
 	swpb	r13
 	clrc
@@ -19311,6 +28596,7 @@ __clrsbqi2:                             ; @__clrsbqi2
 	mov	4(r1), r12
 	add	#6, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end102:
 	.size	__clrsbqi2, .Lfunc_end102-__clrsbqi2
@@ -19320,6 +28606,7 @@ __clrsbqi2:                             ; @__clrsbqi2
 	.type	__clrsbdi2,@function
 __clrsbdi2:                             ; @__clrsbdi2
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#34, r1
                                         ; kill: def $r11 killed $r15
@@ -19362,10 +28649,10 @@ __clrsbdi2:                             ; @__clrsbdi2
 	jge	.LBB103_2
 	jmp	.LBB103_1
 .LBB103_1:
-	mov	&.L__profc___clrsbdi2+14, r12
-	mov	&.L__profc___clrsbdi2+12, r11
-	mov	&.L__profc___clrsbdi2+10, r14
-	mov	&.L__profc___clrsbdi2+8, r15
+	mov	&__llvm_gcov_ctr.103+6, r12
+	mov	&__llvm_gcov_ctr.103+4, r11
+	mov	&__llvm_gcov_ctr.103+2, r14
+	mov	&__llvm_gcov_ctr.103, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19381,8 +28668,35 @@ __clrsbdi2:                             ; @__clrsbdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.103
+	mov	r14, &__llvm_gcov_ctr.103+2
+	mov	r13, &__llvm_gcov_ctr.103+4
+	mov	r12, &__llvm_gcov_ctr.103+6
+	mov	&.L__profc___clrsbdi2+14, r12
+	mov	&.L__profc___clrsbdi2+12, r10
+	mov	&.L__profc___clrsbdi2+10, r14
+	mov	&.L__profc___clrsbdi2+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___clrsbdi2+8
@@ -19414,10 +28728,67 @@ __clrsbdi2:                             ; @__clrsbdi2
 	jne	.LBB103_4
 	jmp	.LBB103_3
 .LBB103_3:
+	mov	&__llvm_gcov_ctr.103+14, r12
+	mov	&__llvm_gcov_ctr.103+12, r11
+	mov	&__llvm_gcov_ctr.103+10, r14
+	mov	&__llvm_gcov_ctr.103+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.103+8
+	mov	r14, &__llvm_gcov_ctr.103+10
+	mov	r13, &__llvm_gcov_ctr.103+12
+	mov	r12, &__llvm_gcov_ctr.103+14
 	mov	&.L__profc___clrsbdi2+22, r12
-	mov	&.L__profc___clrsbdi2+20, r11
+	mov	&.L__profc___clrsbdi2+20, r10
 	mov	&.L__profc___clrsbdi2+18, r14
 	mov	&.L__profc___clrsbdi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___clrsbdi2+16
+	mov	r14, &.L__profc___clrsbdi2+18
+	mov	r13, &.L__profc___clrsbdi2+20
+	mov	r12, &.L__profc___clrsbdi2+22
+	mov	#63, 32(r1)
+	jmp	.LBB103_11
+.LBB103_4:
+	mov	&__llvm_gcov_ctr.103+22, r12
+	mov	&__llvm_gcov_ctr.103+20, r11
+	mov	&__llvm_gcov_ctr.103+18, r14
+	mov	&__llvm_gcov_ctr.103+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19437,13 +28808,10 @@ __clrsbdi2:                             ; @__clrsbdi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___clrsbdi2+16
-	mov	r14, &.L__profc___clrsbdi2+18
-	mov	r13, &.L__profc___clrsbdi2+20
-	mov	r12, &.L__profc___clrsbdi2+22
-	mov	#63, 32(r1)
-	jmp	.LBB103_11
-.LBB103_4:
+	mov	r15, &__llvm_gcov_ctr.103+16
+	mov	r14, &__llvm_gcov_ctr.103+18
+	mov	r13, &__llvm_gcov_ctr.103+20
+	mov	r12, &__llvm_gcov_ctr.103+22
 	mov	24(r1), r12
 	mov	r12, 10(r1)                     ; 2-byte Folded Spill
 	mov	26(r1), r12
@@ -19680,6 +29048,7 @@ __clrsbdi2:                             ; @__clrsbdi2
 	mov	32(r1), r12
 	add	#34, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end103:
 	.size	__clrsbdi2, .Lfunc_end103-__clrsbdi2
@@ -19689,12 +29058,43 @@ __clrsbdi2:                             ; @__clrsbdi2
 	.type	__mulsi3,@function
 __mulsi3:                               ; @__mulsi3
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#6, r1
+	mov	&__llvm_gcov_ctr.104+6, r14
+	mov	&__llvm_gcov_ctr.104+4, r11
+	mov	&__llvm_gcov_ctr.104+2, r10
+	mov	&__llvm_gcov_ctr.104, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.104
+	mov	r10, &__llvm_gcov_ctr.104+2
+	mov	r15, &__llvm_gcov_ctr.104+4
+	mov	r14, &__llvm_gcov_ctr.104+6
 	mov	r12, 4(r1)
 	mov	r13, 2(r1)
 	mov	&.L__profc___mulsi3+6, r12
-	mov	&.L__profc___mulsi3+4, r11
+	mov	&.L__profc___mulsi3+4, r10
 	mov	&.L__profc___mulsi3+2, r14
 	mov	&.L__profc___mulsi3, r15
 	inc	r15
@@ -19706,14 +29106,13 @@ __mulsi3:                               ; @__mulsi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mulsi3
@@ -19760,10 +29159,70 @@ __mulsi3:                               ; @__mulsi3
 	jeq	.LBB104_4
 	jmp	.LBB104_3
 .LBB104_3:                              ;   in Loop: Header=BB104_1 Depth=1
+	mov	&__llvm_gcov_ctr.104+14, r12
+	mov	&__llvm_gcov_ctr.104+12, r11
+	mov	&__llvm_gcov_ctr.104+10, r14
+	mov	&__llvm_gcov_ctr.104+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.104+8
+	mov	r14, &__llvm_gcov_ctr.104+10
+	mov	r13, &__llvm_gcov_ctr.104+12
+	mov	r12, &__llvm_gcov_ctr.104+14
 	mov	&.L__profc___mulsi3+22, r12
-	mov	&.L__profc___mulsi3+20, r11
+	mov	&.L__profc___mulsi3+20, r10
 	mov	&.L__profc___mulsi3+18, r14
 	mov	&.L__profc___mulsi3+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___mulsi3+16
+	mov	r14, &.L__profc___mulsi3+18
+	mov	r13, &.L__profc___mulsi3+20
+	mov	r12, &.L__profc___mulsi3+22
+	mov	2(r1), r13
+	mov	0(r1), r12
+	add	r13, r12
+	mov	r12, 0(r1)
+	jmp	.LBB104_4
+.LBB104_4:                              ;   in Loop: Header=BB104_1 Depth=1
+	mov	&__llvm_gcov_ctr.104+22, r12
+	mov	&__llvm_gcov_ctr.104+20, r11
+	mov	&__llvm_gcov_ctr.104+18, r14
+	mov	&__llvm_gcov_ctr.104+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19783,16 +29242,10 @@ __mulsi3:                               ; @__mulsi3
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___mulsi3+16
-	mov	r14, &.L__profc___mulsi3+18
-	mov	r13, &.L__profc___mulsi3+20
-	mov	r12, &.L__profc___mulsi3+22
-	mov	2(r1), r13
-	mov	0(r1), r12
-	add	r13, r12
-	mov	r12, 0(r1)
-	jmp	.LBB104_4
-.LBB104_4:                              ;   in Loop: Header=BB104_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.104+16
+	mov	r14, &__llvm_gcov_ctr.104+18
+	mov	r13, &__llvm_gcov_ctr.104+20
+	mov	r12, &__llvm_gcov_ctr.104+22
 	mov	4(r1), r12
 	clrc
 	rrc	r12
@@ -19805,6 +29258,9 @@ __mulsi3:                               ; @__mulsi3
 	mov	0(r1), r12
 	add	#6, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end104:
 	.size	__mulsi3, .Lfunc_end104-__mulsi3
@@ -19814,6 +29270,7 @@ __mulsi3:                               ; @__mulsi3
 	.type	__cmovd,@function
 __cmovd:                                ; @__cmovd
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#16, r1
 	mov	r12, 14(r1)
@@ -19865,10 +29322,10 @@ __cmovd:                                ; @__cmovd
 	jlo	.LBB105_3
 	jmp	.LBB105_1
 .LBB105_1:
-	mov	&.L__profc___cmovd+22, r12
-	mov	&.L__profc___cmovd+20, r11
-	mov	&.L__profc___cmovd+18, r14
-	mov	&.L__profc___cmovd+16, r15
+	mov	&__llvm_gcov_ctr.105+6, r12
+	mov	&__llvm_gcov_ctr.105+4, r11
+	mov	&__llvm_gcov_ctr.105+2, r14
+	mov	&__llvm_gcov_ctr.105, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -19884,8 +29341,35 @@ __cmovd:                                ; @__cmovd
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.105
+	mov	r14, &__llvm_gcov_ctr.105+2
+	mov	r13, &__llvm_gcov_ctr.105+4
+	mov	r12, &__llvm_gcov_ctr.105+6
+	mov	&.L__profc___cmovd+22, r12
+	mov	&.L__profc___cmovd+20, r10
+	mov	&.L__profc___cmovd+18, r14
+	mov	&.L__profc___cmovd+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovd+16
@@ -20010,23 +29494,10 @@ __cmovd:                                ; @__cmovd
 	mov	r13, 0(r12)
 	jmp	.LBB105_6
 .LBB105_6:                              ;   in Loop: Header=BB105_4 Depth=1
-	mov	8(r1), r12
-	inc	r12
-	mov	r12, 8(r1)
-	jmp	.LBB105_4
-.LBB105_7:
-	jmp	.LBB105_8
-.LBB105_8:                              ; =>This Inner Loop Header: Depth=1
-	mov	10(r1), r13
-	mov	4(r1), r12
-	cmp	r13, r12
-	jhs	.LBB105_10
-	jmp	.LBB105_9
-.LBB105_9:                              ;   in Loop: Header=BB105_8 Depth=1
-	mov	&.L__profc___cmovd+46, r12
-	mov	&.L__profc___cmovd+44, r11
-	mov	&.L__profc___cmovd+42, r14
-	mov	&.L__profc___cmovd+40, r15
+	mov	&__llvm_gcov_ctr.105+14, r12
+	mov	&__llvm_gcov_ctr.105+12, r11
+	mov	&__llvm_gcov_ctr.105+10, r14
+	mov	&__llvm_gcov_ctr.105+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20044,6 +29515,73 @@ __cmovd:                                ; @__cmovd
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.105+8
+	mov	r14, &__llvm_gcov_ctr.105+10
+	mov	r13, &__llvm_gcov_ctr.105+12
+	mov	r12, &__llvm_gcov_ctr.105+14
+	mov	8(r1), r12
+	inc	r12
+	mov	r12, 8(r1)
+	jmp	.LBB105_4
+.LBB105_7:
+	jmp	.LBB105_8
+.LBB105_8:                              ; =>This Inner Loop Header: Depth=1
+	mov	10(r1), r13
+	mov	4(r1), r12
+	cmp	r13, r12
+	jhs	.LBB105_10
+	jmp	.LBB105_9
+.LBB105_9:                              ;   in Loop: Header=BB105_8 Depth=1
+	mov	&__llvm_gcov_ctr.105+22, r12
+	mov	&__llvm_gcov_ctr.105+20, r11
+	mov	&__llvm_gcov_ctr.105+18, r14
+	mov	&__llvm_gcov_ctr.105+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.105+16
+	mov	r14, &__llvm_gcov_ctr.105+18
+	mov	r13, &__llvm_gcov_ctr.105+20
+	mov	r12, &__llvm_gcov_ctr.105+22
+	mov	&.L__profc___cmovd+46, r12
+	mov	&.L__profc___cmovd+44, r10
+	mov	&.L__profc___cmovd+42, r14
+	mov	&.L__profc___cmovd+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovd+40
@@ -20062,22 +29600,10 @@ __cmovd:                                ; @__cmovd
 	mov	r12, 4(r1)
 	jmp	.LBB105_8
 .LBB105_10:
-	jmp	.LBB105_15
-.LBB105_11:
-	jmp	.LBB105_12
-.LBB105_12:                             ; =>This Inner Loop Header: Depth=1
-	mov	10(r1), r12
-	mov	r12, r13
-	add	#-1, r13
-	mov	r13, 10(r1)
-	tst	r12
-	jeq	.LBB105_14
-	jmp	.LBB105_13
-.LBB105_13:                             ;   in Loop: Header=BB105_12 Depth=1
-	mov	&.L__profc___cmovd+54, r12
-	mov	&.L__profc___cmovd+52, r11
-	mov	&.L__profc___cmovd+50, r14
-	mov	&.L__profc___cmovd+48, r15
+	mov	&__llvm_gcov_ctr.105+30, r12
+	mov	&__llvm_gcov_ctr.105+28, r11
+	mov	&__llvm_gcov_ctr.105+26, r14
+	mov	&__llvm_gcov_ctr.105+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20097,6 +29623,72 @@ __cmovd:                                ; @__cmovd
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.105+24
+	mov	r14, &__llvm_gcov_ctr.105+26
+	mov	r13, &__llvm_gcov_ctr.105+28
+	mov	r12, &__llvm_gcov_ctr.105+30
+	jmp	.LBB105_15
+.LBB105_11:
+	jmp	.LBB105_12
+.LBB105_12:                             ; =>This Inner Loop Header: Depth=1
+	mov	10(r1), r12
+	mov	r12, r13
+	add	#-1, r13
+	mov	r13, 10(r1)
+	tst	r12
+	jeq	.LBB105_14
+	jmp	.LBB105_13
+.LBB105_13:                             ;   in Loop: Header=BB105_12 Depth=1
+	mov	&__llvm_gcov_ctr.105+38, r12
+	mov	&__llvm_gcov_ctr.105+36, r11
+	mov	&__llvm_gcov_ctr.105+34, r14
+	mov	&__llvm_gcov_ctr.105+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.105+32
+	mov	r14, &__llvm_gcov_ctr.105+34
+	mov	r13, &__llvm_gcov_ctr.105+36
+	mov	r12, &__llvm_gcov_ctr.105+38
+	mov	&.L__profc___cmovd+54, r12
+	mov	&.L__profc___cmovd+52, r10
+	mov	&.L__profc___cmovd+50, r14
+	mov	&.L__profc___cmovd+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc___cmovd+48
 	mov	r14, &.L__profc___cmovd+50
 	mov	r13, &.L__profc___cmovd+52
@@ -20110,10 +29702,38 @@ __cmovd:                                ; @__cmovd
 	mov.b	r13, 0(r12)
 	jmp	.LBB105_12
 .LBB105_14:
+	mov	&__llvm_gcov_ctr.105+46, r12
+	mov	&__llvm_gcov_ctr.105+44, r11
+	mov	&__llvm_gcov_ctr.105+42, r14
+	mov	&__llvm_gcov_ctr.105+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.105+40
+	mov	r14, &__llvm_gcov_ctr.105+42
+	mov	r13, &__llvm_gcov_ctr.105+44
+	mov	r12, &__llvm_gcov_ctr.105+46
 	jmp	.LBB105_15
 .LBB105_15:
 	add	#16, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end105:
 	.size	__cmovd, .Lfunc_end105-__cmovd
@@ -20123,6 +29743,7 @@ __cmovd:                                ; @__cmovd
 	.type	__cmovh,@function
 __cmovh:                                ; @__cmovh
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#14, r1
 	mov	r12, 12(r1)
@@ -20169,10 +29790,10 @@ __cmovh:                                ; @__cmovh
 	jlo	.LBB106_3
 	jmp	.LBB106_1
 .LBB106_1:
-	mov	&.L__profc___cmovh+22, r12
-	mov	&.L__profc___cmovh+20, r11
-	mov	&.L__profc___cmovh+18, r14
-	mov	&.L__profc___cmovh+16, r15
+	mov	&__llvm_gcov_ctr.106+6, r12
+	mov	&__llvm_gcov_ctr.106+4, r11
+	mov	&__llvm_gcov_ctr.106+2, r14
+	mov	&__llvm_gcov_ctr.106, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20188,8 +29809,35 @@ __cmovh:                                ; @__cmovh
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.106
+	mov	r14, &__llvm_gcov_ctr.106+2
+	mov	r13, &__llvm_gcov_ctr.106+4
+	mov	r12, &__llvm_gcov_ctr.106+6
+	mov	&.L__profc___cmovh+22, r12
+	mov	&.L__profc___cmovh+20, r10
+	mov	&.L__profc___cmovh+18, r14
+	mov	&.L__profc___cmovh+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovh+16
@@ -20306,20 +29954,10 @@ __cmovh:                                ; @__cmovh
 	mov	r13, 0(r12)
 	jmp	.LBB106_6
 .LBB106_6:                              ;   in Loop: Header=BB106_4 Depth=1
-	mov	6(r1), r12
-	inc	r12
-	mov	r12, 6(r1)
-	jmp	.LBB106_4
-.LBB106_7:
-	mov.b	8(r1), r12
-	bit.b	#1, r12
-	jeq	.LBB106_9
-	jmp	.LBB106_8
-.LBB106_8:
-	mov	&.L__profc___cmovh+46, r12
-	mov	&.L__profc___cmovh+44, r11
-	mov	&.L__profc___cmovh+42, r14
-	mov	&.L__profc___cmovh+40, r15
+	mov	&__llvm_gcov_ctr.106+14, r12
+	mov	&__llvm_gcov_ctr.106+12, r11
+	mov	&__llvm_gcov_ctr.106+10, r14
+	mov	&__llvm_gcov_ctr.106+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20337,6 +29975,70 @@ __cmovh:                                ; @__cmovh
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.106+8
+	mov	r14, &__llvm_gcov_ctr.106+10
+	mov	r13, &__llvm_gcov_ctr.106+12
+	mov	r12, &__llvm_gcov_ctr.106+14
+	mov	6(r1), r12
+	inc	r12
+	mov	r12, 6(r1)
+	jmp	.LBB106_4
+.LBB106_7:
+	mov.b	8(r1), r12
+	bit.b	#1, r12
+	jeq	.LBB106_9
+	jmp	.LBB106_8
+.LBB106_8:
+	mov	&__llvm_gcov_ctr.106+22, r12
+	mov	&__llvm_gcov_ctr.106+20, r11
+	mov	&__llvm_gcov_ctr.106+18, r14
+	mov	&__llvm_gcov_ctr.106+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.106+16
+	mov	r14, &__llvm_gcov_ctr.106+18
+	mov	r13, &__llvm_gcov_ctr.106+20
+	mov	r12, &__llvm_gcov_ctr.106+22
+	mov	&.L__profc___cmovh+46, r12
+	mov	&.L__profc___cmovh+44, r10
+	mov	&.L__profc___cmovh+42, r14
+	mov	&.L__profc___cmovh+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovh+40
@@ -20353,22 +30055,10 @@ __cmovh:                                ; @__cmovh
 	mov.b	r13, 0(r12)
 	jmp	.LBB106_9
 .LBB106_9:
-	jmp	.LBB106_14
-.LBB106_10:
-	jmp	.LBB106_11
-.LBB106_11:                             ; =>This Inner Loop Header: Depth=1
-	mov	8(r1), r12
-	mov	r12, r13
-	add	#-1, r13
-	mov	r13, 8(r1)
-	tst	r12
-	jeq	.LBB106_13
-	jmp	.LBB106_12
-.LBB106_12:                             ;   in Loop: Header=BB106_11 Depth=1
-	mov	&.L__profc___cmovh+54, r12
-	mov	&.L__profc___cmovh+52, r11
-	mov	&.L__profc___cmovh+50, r14
-	mov	&.L__profc___cmovh+48, r15
+	mov	&__llvm_gcov_ctr.106+30, r12
+	mov	&__llvm_gcov_ctr.106+28, r11
+	mov	&__llvm_gcov_ctr.106+26, r14
+	mov	&__llvm_gcov_ctr.106+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20388,6 +30078,72 @@ __cmovh:                                ; @__cmovh
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.106+24
+	mov	r14, &__llvm_gcov_ctr.106+26
+	mov	r13, &__llvm_gcov_ctr.106+28
+	mov	r12, &__llvm_gcov_ctr.106+30
+	jmp	.LBB106_14
+.LBB106_10:
+	jmp	.LBB106_11
+.LBB106_11:                             ; =>This Inner Loop Header: Depth=1
+	mov	8(r1), r12
+	mov	r12, r13
+	add	#-1, r13
+	mov	r13, 8(r1)
+	tst	r12
+	jeq	.LBB106_13
+	jmp	.LBB106_12
+.LBB106_12:                             ;   in Loop: Header=BB106_11 Depth=1
+	mov	&__llvm_gcov_ctr.106+38, r12
+	mov	&__llvm_gcov_ctr.106+36, r11
+	mov	&__llvm_gcov_ctr.106+34, r14
+	mov	&__llvm_gcov_ctr.106+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.106+32
+	mov	r14, &__llvm_gcov_ctr.106+34
+	mov	r13, &__llvm_gcov_ctr.106+36
+	mov	r12, &__llvm_gcov_ctr.106+38
+	mov	&.L__profc___cmovh+54, r12
+	mov	&.L__profc___cmovh+52, r10
+	mov	&.L__profc___cmovh+50, r14
+	mov	&.L__profc___cmovh+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc___cmovh+48
 	mov	r14, &.L__profc___cmovh+50
 	mov	r13, &.L__profc___cmovh+52
@@ -20401,10 +30157,38 @@ __cmovh:                                ; @__cmovh
 	mov.b	r13, 0(r12)
 	jmp	.LBB106_11
 .LBB106_13:
+	mov	&__llvm_gcov_ctr.106+46, r12
+	mov	&__llvm_gcov_ctr.106+44, r11
+	mov	&__llvm_gcov_ctr.106+42, r14
+	mov	&__llvm_gcov_ctr.106+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.106+40
+	mov	r14, &__llvm_gcov_ctr.106+42
+	mov	r13, &__llvm_gcov_ctr.106+44
+	mov	r12, &__llvm_gcov_ctr.106+46
 	jmp	.LBB106_14
 .LBB106_14:
 	add	#14, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end106:
 	.size	__cmovh, .Lfunc_end106-__cmovh
@@ -20414,6 +30198,7 @@ __cmovh:                                ; @__cmovh
 	.type	__cmovw,@function
 __cmovw:                                ; @__cmovw
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#16, r1
 	mov	r12, 14(r1)
@@ -20464,10 +30249,10 @@ __cmovw:                                ; @__cmovw
 	jlo	.LBB107_3
 	jmp	.LBB107_1
 .LBB107_1:
-	mov	&.L__profc___cmovw+22, r12
-	mov	&.L__profc___cmovw+20, r11
-	mov	&.L__profc___cmovw+18, r14
-	mov	&.L__profc___cmovw+16, r15
+	mov	&__llvm_gcov_ctr.107+6, r12
+	mov	&__llvm_gcov_ctr.107+4, r11
+	mov	&__llvm_gcov_ctr.107+2, r14
+	mov	&__llvm_gcov_ctr.107, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20483,8 +30268,35 @@ __cmovw:                                ; @__cmovw
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.107
+	mov	r14, &__llvm_gcov_ctr.107+2
+	mov	r13, &__llvm_gcov_ctr.107+4
+	mov	r12, &__llvm_gcov_ctr.107+6
+	mov	&.L__profc___cmovw+22, r12
+	mov	&.L__profc___cmovw+20, r10
+	mov	&.L__profc___cmovw+18, r14
+	mov	&.L__profc___cmovw+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovw+16
@@ -20601,23 +30413,10 @@ __cmovw:                                ; @__cmovw
 	mov	r13, 0(r12)
 	jmp	.LBB107_6
 .LBB107_6:                              ;   in Loop: Header=BB107_4 Depth=1
-	mov	8(r1), r12
-	inc	r12
-	mov	r12, 8(r1)
-	jmp	.LBB107_4
-.LBB107_7:
-	jmp	.LBB107_8
-.LBB107_8:                              ; =>This Inner Loop Header: Depth=1
-	mov	10(r1), r13
-	mov	4(r1), r12
-	cmp	r13, r12
-	jhs	.LBB107_10
-	jmp	.LBB107_9
-.LBB107_9:                              ;   in Loop: Header=BB107_8 Depth=1
-	mov	&.L__profc___cmovw+46, r12
-	mov	&.L__profc___cmovw+44, r11
-	mov	&.L__profc___cmovw+42, r14
-	mov	&.L__profc___cmovw+40, r15
+	mov	&__llvm_gcov_ctr.107+14, r12
+	mov	&__llvm_gcov_ctr.107+12, r11
+	mov	&__llvm_gcov_ctr.107+10, r14
+	mov	&__llvm_gcov_ctr.107+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20635,6 +30434,73 @@ __cmovw:                                ; @__cmovw
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.107+8
+	mov	r14, &__llvm_gcov_ctr.107+10
+	mov	r13, &__llvm_gcov_ctr.107+12
+	mov	r12, &__llvm_gcov_ctr.107+14
+	mov	8(r1), r12
+	inc	r12
+	mov	r12, 8(r1)
+	jmp	.LBB107_4
+.LBB107_7:
+	jmp	.LBB107_8
+.LBB107_8:                              ; =>This Inner Loop Header: Depth=1
+	mov	10(r1), r13
+	mov	4(r1), r12
+	cmp	r13, r12
+	jhs	.LBB107_10
+	jmp	.LBB107_9
+.LBB107_9:                              ;   in Loop: Header=BB107_8 Depth=1
+	mov	&__llvm_gcov_ctr.107+22, r12
+	mov	&__llvm_gcov_ctr.107+20, r11
+	mov	&__llvm_gcov_ctr.107+18, r14
+	mov	&__llvm_gcov_ctr.107+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.107+16
+	mov	r14, &__llvm_gcov_ctr.107+18
+	mov	r13, &__llvm_gcov_ctr.107+20
+	mov	r12, &__llvm_gcov_ctr.107+22
+	mov	&.L__profc___cmovw+46, r12
+	mov	&.L__profc___cmovw+44, r10
+	mov	&.L__profc___cmovw+42, r14
+	mov	&.L__profc___cmovw+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovw+40
@@ -20653,22 +30519,10 @@ __cmovw:                                ; @__cmovw
 	mov	r12, 4(r1)
 	jmp	.LBB107_8
 .LBB107_10:
-	jmp	.LBB107_15
-.LBB107_11:
-	jmp	.LBB107_12
-.LBB107_12:                             ; =>This Inner Loop Header: Depth=1
-	mov	10(r1), r12
-	mov	r12, r13
-	add	#-1, r13
-	mov	r13, 10(r1)
-	tst	r12
-	jeq	.LBB107_14
-	jmp	.LBB107_13
-.LBB107_13:                             ;   in Loop: Header=BB107_12 Depth=1
-	mov	&.L__profc___cmovw+54, r12
-	mov	&.L__profc___cmovw+52, r11
-	mov	&.L__profc___cmovw+50, r14
-	mov	&.L__profc___cmovw+48, r15
+	mov	&__llvm_gcov_ctr.107+30, r12
+	mov	&__llvm_gcov_ctr.107+28, r11
+	mov	&__llvm_gcov_ctr.107+26, r14
+	mov	&__llvm_gcov_ctr.107+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -20686,6 +30540,72 @@ __cmovw:                                ; @__cmovw
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.107+24
+	mov	r14, &__llvm_gcov_ctr.107+26
+	mov	r13, &__llvm_gcov_ctr.107+28
+	mov	r12, &__llvm_gcov_ctr.107+30
+	jmp	.LBB107_15
+.LBB107_11:
+	jmp	.LBB107_12
+.LBB107_12:                             ; =>This Inner Loop Header: Depth=1
+	mov	10(r1), r12
+	mov	r12, r13
+	add	#-1, r13
+	mov	r13, 10(r1)
+	tst	r12
+	jeq	.LBB107_14
+	jmp	.LBB107_13
+.LBB107_13:                             ;   in Loop: Header=BB107_12 Depth=1
+	mov	&__llvm_gcov_ctr.107+38, r12
+	mov	&__llvm_gcov_ctr.107+36, r11
+	mov	&__llvm_gcov_ctr.107+34, r14
+	mov	&__llvm_gcov_ctr.107+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.107+32
+	mov	r14, &__llvm_gcov_ctr.107+34
+	mov	r13, &__llvm_gcov_ctr.107+36
+	mov	r12, &__llvm_gcov_ctr.107+38
+	mov	&.L__profc___cmovw+54, r12
+	mov	&.L__profc___cmovw+52, r10
+	mov	&.L__profc___cmovw+50, r14
+	mov	&.L__profc___cmovw+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmovw+48
@@ -20701,10 +30621,38 @@ __cmovw:                                ; @__cmovw
 	mov.b	r13, 0(r12)
 	jmp	.LBB107_12
 .LBB107_14:
+	mov	&__llvm_gcov_ctr.107+46, r12
+	mov	&__llvm_gcov_ctr.107+44, r11
+	mov	&__llvm_gcov_ctr.107+42, r14
+	mov	&__llvm_gcov_ctr.107+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.107+40
+	mov	r14, &__llvm_gcov_ctr.107+42
+	mov	r13, &__llvm_gcov_ctr.107+44
+	mov	r12, &__llvm_gcov_ctr.107+46
 	jmp	.LBB107_15
 .LBB107_15:
 	add	#16, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end107:
 	.size	__cmovw, .Lfunc_end107-__cmovw
@@ -20714,12 +30662,43 @@ __cmovw:                                ; @__cmovw
 	.type	__modi,@function
 __modi:                                 ; @__modi
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.108+6, r14
+	mov	&__llvm_gcov_ctr.108+4, r11
+	mov	&__llvm_gcov_ctr.108+2, r10
+	mov	&__llvm_gcov_ctr.108, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.108
+	mov	r10, &__llvm_gcov_ctr.108+2
+	mov	r15, &__llvm_gcov_ctr.108+4
+	mov	r14, &__llvm_gcov_ctr.108+6
 	mov	r12, 2(r1)
 	mov	r13, 0(r1)
 	mov	&.L__profc___modi+6, r12
-	mov	&.L__profc___modi+4, r11
+	mov	&.L__profc___modi+4, r10
 	mov	&.L__profc___modi+2, r14
 	mov	&.L__profc___modi, r15
 	inc	r15
@@ -20731,14 +30710,13 @@ __modi:                                 ; @__modi
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___modi
@@ -20750,6 +30728,9 @@ __modi:                                 ; @__modi
 	call	#__mspabi_remi
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end108:
 	.size	__modi, .Lfunc_end108-__modi
@@ -20759,11 +30740,41 @@ __modi:                                 ; @__modi
 	.type	__uitod,@function
 __uitod:                                ; @__uitod
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#2, r1
+	mov	&__llvm_gcov_ctr.109+6, r13
+	mov	&__llvm_gcov_ctr.109+4, r11
+	mov	&__llvm_gcov_ctr.109+2, r15
+	mov	&__llvm_gcov_ctr.109, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.109
+	mov	r15, &__llvm_gcov_ctr.109+2
+	mov	r14, &__llvm_gcov_ctr.109+4
+	mov	r13, &__llvm_gcov_ctr.109+6
 	mov	r12, 0(r1)
 	mov	&.L__profc___uitod+6, r12
-	mov	&.L__profc___uitod+4, r11
+	mov	&.L__profc___uitod+4, r10
 	mov	&.L__profc___uitod+2, r14
 	mov	&.L__profc___uitod, r15
 	inc	r15
@@ -20775,14 +30786,13 @@ __uitod:                                ; @__uitod
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___uitod
@@ -20794,6 +30804,8 @@ __uitod:                                ; @__uitod
 	call	#__mspabi_fltuld
 	add	#2, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end109:
 	.size	__uitod, .Lfunc_end109-__uitod
@@ -20803,11 +30815,41 @@ __uitod:                                ; @__uitod
 	.type	__uitof,@function
 __uitof:                                ; @__uitof
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#2, r1
+	mov	&__llvm_gcov_ctr.110+6, r13
+	mov	&__llvm_gcov_ctr.110+4, r11
+	mov	&__llvm_gcov_ctr.110+2, r15
+	mov	&__llvm_gcov_ctr.110, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.110
+	mov	r15, &__llvm_gcov_ctr.110+2
+	mov	r14, &__llvm_gcov_ctr.110+4
+	mov	r13, &__llvm_gcov_ctr.110+6
 	mov	r12, 0(r1)
 	mov	&.L__profc___uitof+6, r12
-	mov	&.L__profc___uitof+4, r11
+	mov	&.L__profc___uitof+4, r10
 	mov	&.L__profc___uitof+2, r14
 	mov	&.L__profc___uitof, r15
 	inc	r15
@@ -20819,14 +30861,13 @@ __uitof:                                ; @__uitof
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___uitof
@@ -20838,6 +30879,8 @@ __uitof:                                ; @__uitof
 	call	#__mspabi_fltulf
 	add	#2, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end110:
 	.size	__uitof, .Lfunc_end110-__uitof
@@ -20847,18 +30890,51 @@ __uitof:                                ; @__uitof
 	.type	__ulltod,@function
 __ulltod:                               ; @__ulltod
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.111+6, r10
+	mov	&__llvm_gcov_ctr.111+4, r11
+	mov	&__llvm_gcov_ctr.111+2, r8
+	mov	&__llvm_gcov_ctr.111, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.111
+	mov	r8, &__llvm_gcov_ctr.111+2
+	mov	r9, &__llvm_gcov_ctr.111+4
+	mov	r10, &__llvm_gcov_ctr.111+6
 	mov	r15, 6(r1)
 	mov	r14, 4(r1)
 	mov	r13, 2(r1)
 	mov	r12, 0(r1)
 	mov	&.L__profc___ulltod+6, r12
-	mov	&.L__profc___ulltod+4, r11
+	mov	&.L__profc___ulltod+4, r10
 	mov	&.L__profc___ulltod+2, r14
 	mov	&.L__profc___ulltod, r15
 	inc	r15
@@ -20870,14 +30946,13 @@ __ulltod:                               ; @__ulltod
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ulltod
@@ -20891,6 +30966,11 @@ __ulltod:                               ; @__ulltod
 	call	#__mspabi_fltulld
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end111:
 	.size	__ulltod, .Lfunc_end111-__ulltod
@@ -20900,18 +30980,51 @@ __ulltod:                               ; @__ulltod
 	.type	__ulltof,@function
 __ulltof:                               ; @__ulltof
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.112+6, r10
+	mov	&__llvm_gcov_ctr.112+4, r11
+	mov	&__llvm_gcov_ctr.112+2, r8
+	mov	&__llvm_gcov_ctr.112, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.112
+	mov	r8, &__llvm_gcov_ctr.112+2
+	mov	r9, &__llvm_gcov_ctr.112+4
+	mov	r10, &__llvm_gcov_ctr.112+6
 	mov	r15, 6(r1)
 	mov	r14, 4(r1)
 	mov	r13, 2(r1)
 	mov	r12, 0(r1)
 	mov	&.L__profc___ulltof+6, r12
-	mov	&.L__profc___ulltof+4, r11
+	mov	&.L__profc___ulltof+4, r10
 	mov	&.L__profc___ulltof+2, r14
 	mov	&.L__profc___ulltof, r15
 	inc	r15
@@ -20923,14 +31036,13 @@ __ulltof:                               ; @__ulltof
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ulltof
@@ -20944,6 +31056,11 @@ __ulltof:                               ; @__ulltof
 	call	#__mspabi_fltullf
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end112:
 	.size	__ulltof, .Lfunc_end112-__ulltof
@@ -20953,12 +31070,43 @@ __ulltof:                               ; @__ulltof
 	.type	__umodi,@function
 __umodi:                                ; @__umodi
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
+	mov	&__llvm_gcov_ctr.113+6, r14
+	mov	&__llvm_gcov_ctr.113+4, r11
+	mov	&__llvm_gcov_ctr.113+2, r10
+	mov	&__llvm_gcov_ctr.113, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.113
+	mov	r10, &__llvm_gcov_ctr.113+2
+	mov	r15, &__llvm_gcov_ctr.113+4
+	mov	r14, &__llvm_gcov_ctr.113+6
 	mov	r12, 2(r1)
 	mov	r13, 0(r1)
 	mov	&.L__profc___umodi+6, r12
-	mov	&.L__profc___umodi+4, r11
+	mov	&.L__profc___umodi+4, r10
 	mov	&.L__profc___umodi+2, r14
 	mov	&.L__profc___umodi, r15
 	inc	r15
@@ -20970,14 +31118,13 @@ __umodi:                                ; @__umodi
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___umodi
@@ -20989,6 +31136,9 @@ __umodi:                                ; @__umodi
 	call	#__mspabi_remu
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end113:
 	.size	__umodi, .Lfunc_end113-__umodi
@@ -20998,11 +31148,41 @@ __umodi:                                ; @__umodi
 	.type	__clzhi2,@function
 __clzhi2:                               ; @__clzhi2
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
+	mov	&__llvm_gcov_ctr.114+6, r13
+	mov	&__llvm_gcov_ctr.114+4, r11
+	mov	&__llvm_gcov_ctr.114+2, r15
+	mov	&__llvm_gcov_ctr.114, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.114
+	mov	r15, &__llvm_gcov_ctr.114+2
+	mov	r14, &__llvm_gcov_ctr.114+4
+	mov	r13, &__llvm_gcov_ctr.114+6
 	mov	r12, 6(r1)
 	mov	&.L__profc___clzhi2+6, r12
-	mov	&.L__profc___clzhi2+4, r11
+	mov	&.L__profc___clzhi2+4, r10
 	mov	&.L__profc___clzhi2+2, r14
 	mov	&.L__profc___clzhi2, r15
 	inc	r15
@@ -21014,14 +31194,13 @@ __clzhi2:                               ; @__clzhi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___clzhi2
@@ -21088,10 +31267,68 @@ __clzhi2:                               ; @__clzhi2
 	jeq	.LBB114_6
 	jmp	.LBB114_5
 .LBB114_5:
+	mov	&__llvm_gcov_ctr.114+14, r12
+	mov	&__llvm_gcov_ctr.114+12, r11
+	mov	&__llvm_gcov_ctr.114+10, r14
+	mov	&__llvm_gcov_ctr.114+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.114+8
+	mov	r14, &__llvm_gcov_ctr.114+10
+	mov	r13, &__llvm_gcov_ctr.114+12
+	mov	r12, &__llvm_gcov_ctr.114+14
 	mov	&.L__profc___clzhi2+22, r12
-	mov	&.L__profc___clzhi2+20, r11
+	mov	&.L__profc___clzhi2+20, r10
 	mov	&.L__profc___clzhi2+18, r14
 	mov	&.L__profc___clzhi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___clzhi2+16
+	mov	r14, &.L__profc___clzhi2+18
+	mov	r13, &.L__profc___clzhi2+20
+	mov	r12, &.L__profc___clzhi2+22
+	jmp	.LBB114_8
+.LBB114_6:                              ;   in Loop: Header=BB114_1 Depth=1
+	jmp	.LBB114_7
+.LBB114_7:                              ;   in Loop: Header=BB114_1 Depth=1
+	mov	&__llvm_gcov_ctr.114+22, r12
+	mov	&__llvm_gcov_ctr.114+20, r11
+	mov	&__llvm_gcov_ctr.114+18, r14
+	mov	&__llvm_gcov_ctr.114+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21111,14 +31348,10 @@ __clzhi2:                               ; @__clzhi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___clzhi2+16
-	mov	r14, &.L__profc___clzhi2+18
-	mov	r13, &.L__profc___clzhi2+20
-	mov	r12, &.L__profc___clzhi2+22
-	jmp	.LBB114_8
-.LBB114_6:                              ;   in Loop: Header=BB114_1 Depth=1
-	jmp	.LBB114_7
-.LBB114_7:                              ;   in Loop: Header=BB114_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.114+16
+	mov	r14, &__llvm_gcov_ctr.114+18
+	mov	r13, &__llvm_gcov_ctr.114+20
+	mov	r12, &__llvm_gcov_ctr.114+22
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
@@ -21127,6 +31360,8 @@ __clzhi2:                               ; @__clzhi2
 	mov	4(r1), r12
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end114:
 	.size	__clzhi2, .Lfunc_end114-__clzhi2
@@ -21136,11 +31371,41 @@ __clzhi2:                               ; @__clzhi2
 	.type	__ctzhi2,@function
 __ctzhi2:                               ; @__ctzhi2
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
+	mov	&__llvm_gcov_ctr.115+6, r13
+	mov	&__llvm_gcov_ctr.115+4, r11
+	mov	&__llvm_gcov_ctr.115+2, r15
+	mov	&__llvm_gcov_ctr.115, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.115
+	mov	r15, &__llvm_gcov_ctr.115+2
+	mov	r14, &__llvm_gcov_ctr.115+4
+	mov	r13, &__llvm_gcov_ctr.115+6
 	mov	r12, 6(r1)
 	mov	&.L__profc___ctzhi2+6, r12
-	mov	&.L__profc___ctzhi2+4, r11
+	mov	&.L__profc___ctzhi2+4, r10
 	mov	&.L__profc___ctzhi2+2, r14
 	mov	&.L__profc___ctzhi2, r15
 	inc	r15
@@ -21152,14 +31417,13 @@ __ctzhi2:                               ; @__ctzhi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ctzhi2
@@ -21224,10 +31488,68 @@ __ctzhi2:                               ; @__ctzhi2
 	jeq	.LBB115_6
 	jmp	.LBB115_5
 .LBB115_5:
+	mov	&__llvm_gcov_ctr.115+14, r12
+	mov	&__llvm_gcov_ctr.115+12, r11
+	mov	&__llvm_gcov_ctr.115+10, r14
+	mov	&__llvm_gcov_ctr.115+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.115+8
+	mov	r14, &__llvm_gcov_ctr.115+10
+	mov	r13, &__llvm_gcov_ctr.115+12
+	mov	r12, &__llvm_gcov_ctr.115+14
 	mov	&.L__profc___ctzhi2+22, r12
-	mov	&.L__profc___ctzhi2+20, r11
+	mov	&.L__profc___ctzhi2+20, r10
 	mov	&.L__profc___ctzhi2+18, r14
 	mov	&.L__profc___ctzhi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___ctzhi2+16
+	mov	r14, &.L__profc___ctzhi2+18
+	mov	r13, &.L__profc___ctzhi2+20
+	mov	r12, &.L__profc___ctzhi2+22
+	jmp	.LBB115_8
+.LBB115_6:                              ;   in Loop: Header=BB115_1 Depth=1
+	jmp	.LBB115_7
+.LBB115_7:                              ;   in Loop: Header=BB115_1 Depth=1
+	mov	&__llvm_gcov_ctr.115+22, r12
+	mov	&__llvm_gcov_ctr.115+20, r11
+	mov	&__llvm_gcov_ctr.115+18, r14
+	mov	&__llvm_gcov_ctr.115+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21247,14 +31569,10 @@ __ctzhi2:                               ; @__ctzhi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___ctzhi2+16
-	mov	r14, &.L__profc___ctzhi2+18
-	mov	r13, &.L__profc___ctzhi2+20
-	mov	r12, &.L__profc___ctzhi2+22
-	jmp	.LBB115_8
-.LBB115_6:                              ;   in Loop: Header=BB115_1 Depth=1
-	jmp	.LBB115_7
-.LBB115_7:                              ;   in Loop: Header=BB115_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.115+16
+	mov	r14, &__llvm_gcov_ctr.115+18
+	mov	r13, &__llvm_gcov_ctr.115+20
+	mov	r12, &__llvm_gcov_ctr.115+22
 	mov	4(r1), r12
 	inc	r12
 	mov	r12, 4(r1)
@@ -21263,6 +31581,8 @@ __ctzhi2:                               ; @__ctzhi2
 	mov	4(r1), r12
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end115:
 	.size	__ctzhi2, .Lfunc_end115-__ctzhi2
@@ -21272,6 +31592,7 @@ __ctzhi2:                               ; @__ctzhi2
 	.type	__fixunssfsi,@function
 __fixunssfsi:                           ; @__fixunssfsi
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
                                         ; kill: def $r14 killed $r13
@@ -21314,10 +31635,10 @@ __fixunssfsi:                           ; @__fixunssfsi
 	jl	.LBB116_2
 	jmp	.LBB116_1
 .LBB116_1:
-	mov	&.L__profc___fixunssfsi+14, r12
-	mov	&.L__profc___fixunssfsi+12, r11
-	mov	&.L__profc___fixunssfsi+10, r14
-	mov	&.L__profc___fixunssfsi+8, r15
+	mov	&__llvm_gcov_ctr.116+6, r12
+	mov	&__llvm_gcov_ctr.116+4, r11
+	mov	&__llvm_gcov_ctr.116+2, r14
+	mov	&__llvm_gcov_ctr.116, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21333,9 +31654,36 @@ __fixunssfsi:                           ; @__fixunssfsi
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
 	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.116
+	mov	r14, &__llvm_gcov_ctr.116+2
+	mov	r13, &__llvm_gcov_ctr.116+4
+	mov	r12, &__llvm_gcov_ctr.116+6
+	mov	&.L__profc___fixunssfsi+14, r12
+	mov	&.L__profc___fixunssfsi+12, r10
+	mov	&.L__profc___fixunssfsi+10, r14
+	mov	&.L__profc___fixunssfsi+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___fixunssfsi+8
@@ -21360,33 +31708,10 @@ __fixunssfsi:                           ; @__fixunssfsi
 	mov	r13, 8(r1)
 	jmp	.LBB116_3
 .LBB116_2:
-	mov	2(r1), r12
-	mov	4(r1), r13
-	call	#__mspabi_fixfli
-	mov	r13, 8(r1)
-	mov	r12, 6(r1)
-	jmp	.LBB116_3
-.LBB116_3:
-	mov	6(r1), r12
-	mov	8(r1), r13
-	add	#10, r1
-	pop	r10
-	ret
-.Lfunc_end116:
-	.size	__fixunssfsi, .Lfunc_end116-__fixunssfsi
-                                        ; -- End function
-	.globl	__parityhi2                     ; -- Begin function __parityhi2
-	.p2align	1
-	.type	__parityhi2,@function
-__parityhi2:                            ; @__parityhi2
-; %bb.0:
-	push	r10
-	sub	#10, r1
-	mov	r12, 8(r1)
-	mov	&.L__profc___parityhi2+6, r12
-	mov	&.L__profc___parityhi2+4, r11
-	mov	&.L__profc___parityhi2+2, r14
-	mov	&.L__profc___parityhi2, r15
+	mov	&__llvm_gcov_ctr.116+14, r12
+	mov	&__llvm_gcov_ctr.116+12, r11
+	mov	&__llvm_gcov_ctr.116+10, r14
+	mov	&__llvm_gcov_ctr.116+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21404,6 +31729,86 @@ __parityhi2:                            ; @__parityhi2
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.116+8
+	mov	r14, &__llvm_gcov_ctr.116+10
+	mov	r13, &__llvm_gcov_ctr.116+12
+	mov	r12, &__llvm_gcov_ctr.116+14
+	mov	2(r1), r12
+	mov	4(r1), r13
+	call	#__mspabi_fixfli
+	mov	r13, 8(r1)
+	mov	r12, 6(r1)
+	jmp	.LBB116_3
+.LBB116_3:
+	mov	6(r1), r12
+	mov	8(r1), r13
+	add	#10, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end116:
+	.size	__fixunssfsi, .Lfunc_end116-__fixunssfsi
+                                        ; -- End function
+	.globl	__parityhi2                     ; -- Begin function __parityhi2
+	.p2align	1
+	.type	__parityhi2,@function
+__parityhi2:                            ; @__parityhi2
+; %bb.0:
+	push	r8
+	push	r9
+	push	r10
+	sub	#10, r1
+	mov	&__llvm_gcov_ctr.117+6, r13
+	mov	&__llvm_gcov_ctr.117+4, r11
+	mov	&__llvm_gcov_ctr.117+2, r15
+	mov	&__llvm_gcov_ctr.117, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.117
+	mov	r15, &__llvm_gcov_ctr.117+2
+	mov	r14, &__llvm_gcov_ctr.117+4
+	mov	r13, &__llvm_gcov_ctr.117+6
+	mov	r12, 8(r1)
+	mov	&.L__profc___parityhi2+6, r12
+	mov	&.L__profc___parityhi2+4, r10
+	mov	&.L__profc___parityhi2+2, r14
+	mov	&.L__profc___parityhi2, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___parityhi2
@@ -21469,10 +31874,71 @@ __parityhi2:                            ; @__parityhi2
 	jeq	.LBB117_6
 	jmp	.LBB117_5
 .LBB117_5:                              ;   in Loop: Header=BB117_1 Depth=1
+	mov	&__llvm_gcov_ctr.117+14, r12
+	mov	&__llvm_gcov_ctr.117+12, r11
+	mov	&__llvm_gcov_ctr.117+10, r14
+	mov	&__llvm_gcov_ctr.117+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.117+8
+	mov	r14, &__llvm_gcov_ctr.117+10
+	mov	r13, &__llvm_gcov_ctr.117+12
+	mov	r12, &__llvm_gcov_ctr.117+14
 	mov	&.L__profc___parityhi2+22, r12
-	mov	&.L__profc___parityhi2+20, r11
+	mov	&.L__profc___parityhi2+20, r10
 	mov	&.L__profc___parityhi2+18, r14
 	mov	&.L__profc___parityhi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___parityhi2+16
+	mov	r14, &.L__profc___parityhi2+18
+	mov	r13, &.L__profc___parityhi2+20
+	mov	r12, &.L__profc___parityhi2+22
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	jmp	.LBB117_6
+.LBB117_6:                              ;   in Loop: Header=BB117_1 Depth=1
+	jmp	.LBB117_7
+.LBB117_7:                              ;   in Loop: Header=BB117_1 Depth=1
+	mov	&__llvm_gcov_ctr.117+22, r12
+	mov	&__llvm_gcov_ctr.117+20, r11
+	mov	&__llvm_gcov_ctr.117+18, r14
+	mov	&__llvm_gcov_ctr.117+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21492,17 +31958,10 @@ __parityhi2:                            ; @__parityhi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___parityhi2+16
-	mov	r14, &.L__profc___parityhi2+18
-	mov	r13, &.L__profc___parityhi2+20
-	mov	r12, &.L__profc___parityhi2+22
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	jmp	.LBB117_6
-.LBB117_6:                              ;   in Loop: Header=BB117_1 Depth=1
-	jmp	.LBB117_7
-.LBB117_7:                              ;   in Loop: Header=BB117_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.117+16
+	mov	r14, &__llvm_gcov_ctr.117+18
+	mov	r13, &__llvm_gcov_ctr.117+20
+	mov	r12, &__llvm_gcov_ctr.117+22
 	mov	6(r1), r12
 	inc	r12
 	mov	r12, 6(r1)
@@ -21512,6 +31971,8 @@ __parityhi2:                            ; @__parityhi2
 	and	#1, r12
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end117:
 	.size	__parityhi2, .Lfunc_end117-__parityhi2
@@ -21521,11 +31982,41 @@ __parityhi2:                            ; @__parityhi2
 	.type	__popcounthi2,@function
 __popcounthi2:                          ; @__popcounthi2
 ; %bb.0:
+	push	r8
+	push	r9
 	push	r10
 	sub	#10, r1
+	mov	&__llvm_gcov_ctr.118+6, r13
+	mov	&__llvm_gcov_ctr.118+4, r11
+	mov	&__llvm_gcov_ctr.118+2, r15
+	mov	&__llvm_gcov_ctr.118, r10
+	inc	r10
+	tst	r10
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r10, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r11, r14
+	add	r9, r14
+	cmp	r11, r14
+	mov	r2, r8
+	mov	#1, r11
+	mov	r11, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r10, &__llvm_gcov_ctr.118
+	mov	r15, &__llvm_gcov_ctr.118+2
+	mov	r14, &__llvm_gcov_ctr.118+4
+	mov	r13, &__llvm_gcov_ctr.118+6
 	mov	r12, 8(r1)
 	mov	&.L__profc___popcounthi2+6, r12
-	mov	&.L__profc___popcounthi2+4, r11
+	mov	&.L__profc___popcounthi2+4, r10
 	mov	&.L__profc___popcounthi2+2, r14
 	mov	&.L__profc___popcounthi2, r15
 	inc	r15
@@ -21537,14 +32028,13 @@ __popcounthi2:                          ; @__popcounthi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___popcounthi2
@@ -21610,10 +32100,71 @@ __popcounthi2:                          ; @__popcounthi2
 	jeq	.LBB118_6
 	jmp	.LBB118_5
 .LBB118_5:                              ;   in Loop: Header=BB118_1 Depth=1
+	mov	&__llvm_gcov_ctr.118+14, r12
+	mov	&__llvm_gcov_ctr.118+12, r11
+	mov	&__llvm_gcov_ctr.118+10, r14
+	mov	&__llvm_gcov_ctr.118+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.118+8
+	mov	r14, &__llvm_gcov_ctr.118+10
+	mov	r13, &__llvm_gcov_ctr.118+12
+	mov	r12, &__llvm_gcov_ctr.118+14
 	mov	&.L__profc___popcounthi2+22, r12
-	mov	&.L__profc___popcounthi2+20, r11
+	mov	&.L__profc___popcounthi2+20, r10
 	mov	&.L__profc___popcounthi2+18, r14
 	mov	&.L__profc___popcounthi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___popcounthi2+16
+	mov	r14, &.L__profc___popcounthi2+18
+	mov	r13, &.L__profc___popcounthi2+20
+	mov	r12, &.L__profc___popcounthi2+22
+	mov	4(r1), r12
+	inc	r12
+	mov	r12, 4(r1)
+	jmp	.LBB118_6
+.LBB118_6:                              ;   in Loop: Header=BB118_1 Depth=1
+	jmp	.LBB118_7
+.LBB118_7:                              ;   in Loop: Header=BB118_1 Depth=1
+	mov	&__llvm_gcov_ctr.118+22, r12
+	mov	&__llvm_gcov_ctr.118+20, r11
+	mov	&__llvm_gcov_ctr.118+18, r14
+	mov	&__llvm_gcov_ctr.118+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21633,17 +32184,10 @@ __popcounthi2:                          ; @__popcounthi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___popcounthi2+16
-	mov	r14, &.L__profc___popcounthi2+18
-	mov	r13, &.L__profc___popcounthi2+20
-	mov	r12, &.L__profc___popcounthi2+22
-	mov	4(r1), r12
-	inc	r12
-	mov	r12, 4(r1)
-	jmp	.LBB118_6
-.LBB118_6:                              ;   in Loop: Header=BB118_1 Depth=1
-	jmp	.LBB118_7
-.LBB118_7:                              ;   in Loop: Header=BB118_1 Depth=1
+	mov	r15, &__llvm_gcov_ctr.118+16
+	mov	r14, &__llvm_gcov_ctr.118+18
+	mov	r13, &__llvm_gcov_ctr.118+20
+	mov	r12, &__llvm_gcov_ctr.118+22
 	mov	6(r1), r12
 	inc	r12
 	mov	r12, 6(r1)
@@ -21652,6 +32196,8 @@ __popcounthi2:                          ; @__popcounthi2
 	mov	4(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
+	pop	r8
 	ret
 .Lfunc_end118:
 	.size	__popcounthi2, .Lfunc_end118-__popcounthi2
@@ -21661,6 +32207,10 @@ __popcounthi2:                          ; @__popcounthi2
 	.type	__mulsi3_iq2000,@function
 __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
 	push	r9
 	push	r10
 	sub	#12, r1
@@ -21668,12 +32218,40 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.119+6, r10
+	mov	&__llvm_gcov_ctr.119+4, r11
+	mov	&__llvm_gcov_ctr.119+2, r8
+	mov	&__llvm_gcov_ctr.119, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.119
+	mov	r8, &__llvm_gcov_ctr.119+2
+	mov	r9, &__llvm_gcov_ctr.119+4
+	mov	r10, &__llvm_gcov_ctr.119+6
 	mov	r13, 10(r1)
 	mov	r12, 8(r1)
 	mov	r15, 6(r1)
 	mov	r14, 4(r1)
 	mov	&.L__profc___mulsi3_iq2000+6, r12
-	mov	&.L__profc___mulsi3_iq2000+4, r11
+	mov	&.L__profc___mulsi3_iq2000+4, r10
 	mov	&.L__profc___mulsi3_iq2000+2, r14
 	mov	&.L__profc___mulsi3_iq2000, r15
 	inc	r15
@@ -21685,14 +32263,13 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mulsi3_iq2000
@@ -21742,10 +32319,10 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	jeq	.LBB119_4
 	jmp	.LBB119_3
 .LBB119_3:                              ;   in Loop: Header=BB119_1 Depth=1
-	mov	&.L__profc___mulsi3_iq2000+22, r12
-	mov	&.L__profc___mulsi3_iq2000+20, r14
-	mov	&.L__profc___mulsi3_iq2000+18, r15
-	mov	&.L__profc___mulsi3_iq2000+16, r11
+	mov	&__llvm_gcov_ctr.119+14, r12
+	mov	&__llvm_gcov_ctr.119+12, r14
+	mov	&__llvm_gcov_ctr.119+10, r15
+	mov	&__llvm_gcov_ctr.119+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -21763,6 +32340,33 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	cmp	r14, r13
 	mov	r2, r9
 	mov	#1, r14
+	mov	r14, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.119+8
+	mov	r15, &__llvm_gcov_ctr.119+10
+	mov	r13, &__llvm_gcov_ctr.119+12
+	mov	r12, &__llvm_gcov_ctr.119+14
+	mov	&.L__profc___mulsi3_iq2000+22, r12
+	mov	&.L__profc___mulsi3_iq2000+20, r10
+	mov	&.L__profc___mulsi3_iq2000+18, r15
+	mov	&.L__profc___mulsi3_iq2000+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r15
+	mov	r11, r13
+	bis	r15, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r14, r10
 	bic	r9, r10
 	add	r10, r12
@@ -21785,6 +32389,33 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	mov	r12, 2(r1)
 	jmp	.LBB119_4
 .LBB119_4:                              ;   in Loop: Header=BB119_1 Depth=1
+	mov	&__llvm_gcov_ctr.119+22, r12
+	mov	&__llvm_gcov_ctr.119+20, r11
+	mov	&__llvm_gcov_ctr.119+18, r14
+	mov	&__llvm_gcov_ctr.119+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.119+16
+	mov	r14, &__llvm_gcov_ctr.119+18
+	mov	r13, &__llvm_gcov_ctr.119+20
+	mov	r12, &__llvm_gcov_ctr.119+22
 	mov	10(r1), r13
 	mov	8(r1), r12
 	clrc
@@ -21829,6 +32460,10 @@ __mulsi3_iq2000:                        ; @__mulsi3_iq2000
 	add	#12, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end119:
 	.size	__mulsi3_iq2000, .Lfunc_end119-__mulsi3_iq2000
@@ -21885,10 +32520,68 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	jne	.LBB120_2
 	jmp	.LBB120_1
 .LBB120_1:
+	mov	&__llvm_gcov_ctr.120+14, r12
+	mov	&__llvm_gcov_ctr.120+12, r11
+	mov	&__llvm_gcov_ctr.120+10, r14
+	mov	&__llvm_gcov_ctr.120+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.120+8
+	mov	r14, &__llvm_gcov_ctr.120+10
+	mov	r13, &__llvm_gcov_ctr.120+12
+	mov	r12, &__llvm_gcov_ctr.120+14
 	mov	&.L__profc___mulsi3_lm32+14, r12
-	mov	&.L__profc___mulsi3_lm32+12, r11
+	mov	&.L__profc___mulsi3_lm32+12, r10
 	mov	&.L__profc___mulsi3_lm32+10, r14
 	mov	&.L__profc___mulsi3_lm32+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___mulsi3_lm32+8
+	mov	r14, &.L__profc___mulsi3_lm32+10
+	mov	r13, &.L__profc___mulsi3_lm32+12
+	mov	r12, &.L__profc___mulsi3_lm32+14
+	clr	14(r1)
+	clr	12(r1)
+	jmp	.LBB120_8
+.LBB120_2:
+	mov	&__llvm_gcov_ctr.120+6, r12
+	mov	&__llvm_gcov_ctr.120+4, r11
+	mov	&__llvm_gcov_ctr.120+2, r14
+	mov	&__llvm_gcov_ctr.120, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -21908,14 +32601,10 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___mulsi3_lm32+8
-	mov	r14, &.L__profc___mulsi3_lm32+10
-	mov	r13, &.L__profc___mulsi3_lm32+12
-	mov	r12, &.L__profc___mulsi3_lm32+14
-	clr	14(r1)
-	clr	12(r1)
-	jmp	.LBB120_8
-.LBB120_2:
+	mov	r15, &__llvm_gcov_ctr.120
+	mov	r14, &__llvm_gcov_ctr.120+2
+	mov	r13, &__llvm_gcov_ctr.120+4
+	mov	r12, &__llvm_gcov_ctr.120+6
 	jmp	.LBB120_3
 .LBB120_3:                              ; =>This Inner Loop Header: Depth=1
 	mov	6(r1), r13
@@ -21957,10 +32646,10 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	jeq	.LBB120_6
 	jmp	.LBB120_5
 .LBB120_5:                              ;   in Loop: Header=BB120_3 Depth=1
-	mov	&.L__profc___mulsi3_lm32+30, r12
-	mov	&.L__profc___mulsi3_lm32+28, r14
-	mov	&.L__profc___mulsi3_lm32+26, r15
-	mov	&.L__profc___mulsi3_lm32+24, r11
+	mov	&__llvm_gcov_ctr.120+22, r12
+	mov	&__llvm_gcov_ctr.120+20, r14
+	mov	&__llvm_gcov_ctr.120+18, r15
+	mov	&__llvm_gcov_ctr.120+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -21978,6 +32667,33 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	cmp	r14, r13
 	mov	r2, r9
 	mov	#1, r14
+	mov	r14, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.120+16
+	mov	r15, &__llvm_gcov_ctr.120+18
+	mov	r13, &__llvm_gcov_ctr.120+20
+	mov	r12, &__llvm_gcov_ctr.120+22
+	mov	&.L__profc___mulsi3_lm32+30, r12
+	mov	&.L__profc___mulsi3_lm32+28, r10
+	mov	&.L__profc___mulsi3_lm32+26, r15
+	mov	&.L__profc___mulsi3_lm32+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r15
+	mov	r11, r13
+	bis	r15, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r14, r10
 	bic	r9, r10
 	add	r10, r12
@@ -22000,6 +32716,33 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	mov	r12, 2(r1)
 	jmp	.LBB120_6
 .LBB120_6:                              ;   in Loop: Header=BB120_3 Depth=1
+	mov	&__llvm_gcov_ctr.120+30, r12
+	mov	&__llvm_gcov_ctr.120+28, r11
+	mov	&__llvm_gcov_ctr.120+26, r14
+	mov	&__llvm_gcov_ctr.120+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.120+24
+	mov	r14, &__llvm_gcov_ctr.120+26
+	mov	r13, &__llvm_gcov_ctr.120+28
+	mov	r12, &__llvm_gcov_ctr.120+30
 	mov	8(r1), r13
 	mov	10(r1), r12
 	add	r12, r12
@@ -22059,6 +32802,7 @@ __mulsi3_lm32:                          ; @__mulsi3_lm32
 	.type	__udivmodsi4,@function
 __udivmodsi4:                           ; @__udivmodsi4
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#30, r1
@@ -22066,7 +32810,7 @@ __udivmodsi4:                           ; @__udivmodsi4
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	36(r1), r11
+	mov	38(r1), r11
 	mov	r13, 24(r1)
 	mov	r12, 22(r1)
 	mov	r15, 20(r1)
@@ -22129,10 +32873,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	jne	.LBB121_8
 	jmp	.LBB121_4
 .LBB121_4:                              ;   in Loop: Header=BB121_1 Depth=1
-	mov	&.L__profc___udivmodsi4+38, r12
-	mov	&.L__profc___udivmodsi4+36, r11
-	mov	&.L__profc___udivmodsi4+34, r14
-	mov	&.L__profc___udivmodsi4+32, r15
+	mov	&__llvm_gcov_ctr.121+6, r12
+	mov	&__llvm_gcov_ctr.121+4, r11
+	mov	&__llvm_gcov_ctr.121+2, r14
+	mov	&__llvm_gcov_ctr.121, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22148,8 +32892,35 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.121
+	mov	r14, &__llvm_gcov_ctr.121+2
+	mov	r13, &__llvm_gcov_ctr.121+4
+	mov	r12, &__llvm_gcov_ctr.121+6
+	mov	&.L__profc___udivmodsi4+38, r12
+	mov	&.L__profc___udivmodsi4+36, r10
+	mov	&.L__profc___udivmodsi4+34, r14
+	mov	&.L__profc___udivmodsi4+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4+32
@@ -22165,10 +32936,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	jeq	.LBB121_8
 	jmp	.LBB121_5
 .LBB121_5:                              ;   in Loop: Header=BB121_1 Depth=1
-	mov	&.L__profc___udivmodsi4+46, r12
-	mov	&.L__profc___udivmodsi4+44, r11
-	mov	&.L__profc___udivmodsi4+42, r14
-	mov	&.L__profc___udivmodsi4+40, r15
+	mov	&__llvm_gcov_ctr.121+14, r12
+	mov	&__llvm_gcov_ctr.121+12, r11
+	mov	&__llvm_gcov_ctr.121+10, r14
+	mov	&__llvm_gcov_ctr.121+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22184,8 +32955,35 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.121+8
+	mov	r14, &__llvm_gcov_ctr.121+10
+	mov	r13, &__llvm_gcov_ctr.121+12
+	mov	r12, &__llvm_gcov_ctr.121+14
+	mov	&.L__profc___udivmodsi4+46, r12
+	mov	&.L__profc___udivmodsi4+44, r10
+	mov	&.L__profc___udivmodsi4+42, r14
+	mov	&.L__profc___udivmodsi4+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4+40
@@ -22235,10 +33033,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	jmp	.LBB121_7
 .LBB121_7:                              ;   in Loop: Header=BB121_1 Depth=1
 	mov.b	4(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc___udivmodsi4+30, r13
-	mov	&.L__profc___udivmodsi4+28, r10
-	mov	&.L__profc___udivmodsi4+26, r15
-	mov	&.L__profc___udivmodsi4+24, r11
+	mov	&__llvm_gcov_ctr.121+22, r13
+	mov	&__llvm_gcov_ctr.121+20, r10
+	mov	&__llvm_gcov_ctr.121+18, r15
+	mov	&__llvm_gcov_ctr.121+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -22254,8 +33052,35 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.121+16
+	mov	r15, &__llvm_gcov_ctr.121+18
+	mov	r14, &__llvm_gcov_ctr.121+20
+	mov	r13, &__llvm_gcov_ctr.121+22
+	mov	&.L__profc___udivmodsi4+30, r13
+	mov	&.L__profc___udivmodsi4+28, r9
+	mov	&.L__profc___udivmodsi4+26, r15
+	mov	&.L__profc___udivmodsi4+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc___udivmodsi4+24
@@ -22271,10 +33096,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	jeq	.LBB121_10
 	jmp	.LBB121_9
 .LBB121_9:                              ;   in Loop: Header=BB121_1 Depth=1
-	mov	&.L__profc___udivmodsi4+14, r12
-	mov	&.L__profc___udivmodsi4+12, r11
-	mov	&.L__profc___udivmodsi4+10, r14
-	mov	&.L__profc___udivmodsi4+8, r15
+	mov	&__llvm_gcov_ctr.121+30, r12
+	mov	&__llvm_gcov_ctr.121+28, r11
+	mov	&__llvm_gcov_ctr.121+26, r14
+	mov	&__llvm_gcov_ctr.121+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22290,8 +33115,35 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.121+24
+	mov	r14, &__llvm_gcov_ctr.121+26
+	mov	r13, &__llvm_gcov_ctr.121+28
+	mov	r12, &__llvm_gcov_ctr.121+30
+	mov	&.L__profc___udivmodsi4+14, r12
+	mov	&.L__profc___udivmodsi4+12, r10
+	mov	&.L__profc___udivmodsi4+10, r14
+	mov	&.L__profc___udivmodsi4+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4+8
@@ -22397,10 +33249,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	jne	.LBB121_16
 	jmp	.LBB121_15
 .LBB121_15:                             ;   in Loop: Header=BB121_11 Depth=1
-	mov	&.L__profc___udivmodsi4+62, r12
-	mov	&.L__profc___udivmodsi4+60, r15
-	mov	&.L__profc___udivmodsi4+58, r14
-	mov	&.L__profc___udivmodsi4+56, r11
+	mov	&__llvm_gcov_ctr.121+38, r12
+	mov	&__llvm_gcov_ctr.121+36, r15
+	mov	&__llvm_gcov_ctr.121+34, r14
+	mov	&__llvm_gcov_ctr.121+32, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -22418,6 +33270,33 @@ __udivmodsi4:                           ; @__udivmodsi4
 	cmp	r15, r13
 	mov	r2, r9
 	mov	#1, r15
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.121+32
+	mov	r14, &__llvm_gcov_ctr.121+34
+	mov	r13, &__llvm_gcov_ctr.121+36
+	mov	r12, &__llvm_gcov_ctr.121+38
+	mov	&.L__profc___udivmodsi4+62, r12
+	mov	&.L__profc___udivmodsi4+60, r10
+	mov	&.L__profc___udivmodsi4+58, r14
+	mov	&.L__profc___udivmodsi4+56, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r15, r10
 	bic	r9, r10
 	add	r10, r12
@@ -22447,6 +33326,33 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r12, 10(r1)
 	jmp	.LBB121_16
 .LBB121_16:                             ;   in Loop: Header=BB121_11 Depth=1
+	mov	&__llvm_gcov_ctr.121+46, r12
+	mov	&__llvm_gcov_ctr.121+44, r11
+	mov	&__llvm_gcov_ctr.121+42, r14
+	mov	&__llvm_gcov_ctr.121+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.121+40
+	mov	r14, &__llvm_gcov_ctr.121+42
+	mov	r13, &__llvm_gcov_ctr.121+44
+	mov	r12, &__llvm_gcov_ctr.121+46
 	mov	16(r1), r13
 	mov	14(r1), r12
 	clrc
@@ -22487,15 +33393,75 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	r12, 18(r1)
 	jmp	.LBB121_11
 .LBB121_17:
-	mov	36(r1), r12
+	mov	38(r1), r12
 	tst	r12
 	jeq	.LBB121_19
 	jmp	.LBB121_18
 .LBB121_18:
+	mov	&__llvm_gcov_ctr.121+54, r12
+	mov	&__llvm_gcov_ctr.121+52, r11
+	mov	&__llvm_gcov_ctr.121+50, r14
+	mov	&__llvm_gcov_ctr.121+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.121+48
+	mov	r14, &__llvm_gcov_ctr.121+50
+	mov	r13, &__llvm_gcov_ctr.121+52
+	mov	r12, &__llvm_gcov_ctr.121+54
 	mov	&.L__profc___udivmodsi4+70, r12
-	mov	&.L__profc___udivmodsi4+68, r11
+	mov	&.L__profc___udivmodsi4+68, r10
 	mov	&.L__profc___udivmodsi4+66, r14
 	mov	&.L__profc___udivmodsi4+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___udivmodsi4+64
+	mov	r14, &.L__profc___udivmodsi4+66
+	mov	r13, &.L__profc___udivmodsi4+68
+	mov	r12, &.L__profc___udivmodsi4+70
+	mov	22(r1), r12
+	mov	24(r1), r13
+	mov	r13, 28(r1)
+	mov	r12, 26(r1)
+	jmp	.LBB121_20
+.LBB121_19:
+	mov	&__llvm_gcov_ctr.121+62, r12
+	mov	&__llvm_gcov_ctr.121+60, r11
+	mov	&__llvm_gcov_ctr.121+58, r14
+	mov	&__llvm_gcov_ctr.121+56, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22515,16 +33481,10 @@ __udivmodsi4:                           ; @__udivmodsi4
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___udivmodsi4+64
-	mov	r14, &.L__profc___udivmodsi4+66
-	mov	r13, &.L__profc___udivmodsi4+68
-	mov	r12, &.L__profc___udivmodsi4+70
-	mov	22(r1), r12
-	mov	24(r1), r13
-	mov	r13, 28(r1)
-	mov	r12, 26(r1)
-	jmp	.LBB121_20
-.LBB121_19:
+	mov	r15, &__llvm_gcov_ctr.121+56
+	mov	r14, &__llvm_gcov_ctr.121+58
+	mov	r13, &__llvm_gcov_ctr.121+60
+	mov	r12, &__llvm_gcov_ctr.121+62
 	mov	10(r1), r12
 	mov	12(r1), r13
 	mov	r13, 28(r1)
@@ -22536,6 +33496,7 @@ __udivmodsi4:                           ; @__udivmodsi4
 	add	#30, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end121:
 	.size	__udivmodsi4, .Lfunc_end121-__udivmodsi4
@@ -22545,6 +33506,7 @@ __udivmodsi4:                           ; @__udivmodsi4
 	.type	__mspabi_cmpf,@function
 __mspabi_cmpf:                          ; @__mspabi_cmpf
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#10, r1
                                         ; kill: def $r11 killed $r15
@@ -22591,10 +33553,10 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	jge	.LBB122_2
 	jmp	.LBB122_1
 .LBB122_1:
-	mov	&.L__profc___mspabi_cmpf+14, r12
-	mov	&.L__profc___mspabi_cmpf+12, r11
-	mov	&.L__profc___mspabi_cmpf+10, r14
-	mov	&.L__profc___mspabi_cmpf+8, r15
+	mov	&__llvm_gcov_ctr.122+6, r12
+	mov	&__llvm_gcov_ctr.122+4, r11
+	mov	&__llvm_gcov_ctr.122+2, r14
+	mov	&__llvm_gcov_ctr.122, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22610,8 +33572,35 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.122
+	mov	r14, &__llvm_gcov_ctr.122+2
+	mov	r13, &__llvm_gcov_ctr.122+4
+	mov	r12, &__llvm_gcov_ctr.122+6
+	mov	&.L__profc___mspabi_cmpf+14, r12
+	mov	&.L__profc___mspabi_cmpf+12, r10
+	mov	&.L__profc___mspabi_cmpf+10, r14
+	mov	&.L__profc___mspabi_cmpf+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mspabi_cmpf+8
@@ -22630,10 +33619,67 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	jl	.LBB122_4
 	jmp	.LBB122_3
 .LBB122_3:
+	mov	&__llvm_gcov_ctr.122+14, r12
+	mov	&__llvm_gcov_ctr.122+12, r11
+	mov	&__llvm_gcov_ctr.122+10, r14
+	mov	&__llvm_gcov_ctr.122+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.122+8
+	mov	r14, &__llvm_gcov_ctr.122+10
+	mov	r13, &__llvm_gcov_ctr.122+12
+	mov	r12, &__llvm_gcov_ctr.122+14
 	mov	&.L__profc___mspabi_cmpf+22, r12
-	mov	&.L__profc___mspabi_cmpf+20, r11
+	mov	&.L__profc___mspabi_cmpf+20, r10
 	mov	&.L__profc___mspabi_cmpf+18, r14
 	mov	&.L__profc___mspabi_cmpf+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___mspabi_cmpf+16
+	mov	r14, &.L__profc___mspabi_cmpf+18
+	mov	r13, &.L__profc___mspabi_cmpf+20
+	mov	r12, &.L__profc___mspabi_cmpf+22
+	mov	#1, 8(r1)
+	jmp	.LBB122_5
+.LBB122_4:
+	mov	&__llvm_gcov_ctr.122+22, r12
+	mov	&__llvm_gcov_ctr.122+20, r11
+	mov	&__llvm_gcov_ctr.122+18, r14
+	mov	&__llvm_gcov_ctr.122+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22653,19 +33699,17 @@ __mspabi_cmpf:                          ; @__mspabi_cmpf
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___mspabi_cmpf+16
-	mov	r14, &.L__profc___mspabi_cmpf+18
-	mov	r13, &.L__profc___mspabi_cmpf+20
-	mov	r12, &.L__profc___mspabi_cmpf+22
-	mov	#1, 8(r1)
-	jmp	.LBB122_5
-.LBB122_4:
+	mov	r15, &__llvm_gcov_ctr.122+16
+	mov	r14, &__llvm_gcov_ctr.122+18
+	mov	r13, &__llvm_gcov_ctr.122+20
+	mov	r12, &__llvm_gcov_ctr.122+22
 	clr	8(r1)
 	jmp	.LBB122_5
 .LBB122_5:
 	mov	8(r1), r12
 	add	#10, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end122:
 	.size	__mspabi_cmpf, .Lfunc_end122-__mspabi_cmpf
@@ -22740,10 +33784,10 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	jge	.LBB123_2
 	jmp	.LBB123_1
 .LBB123_1:
-	mov	&.L__profc___mspabi_cmpd+14, r12
-	mov	&.L__profc___mspabi_cmpd+12, r11
-	mov	&.L__profc___mspabi_cmpd+10, r14
-	mov	&.L__profc___mspabi_cmpd+8, r15
+	mov	&__llvm_gcov_ctr.123+6, r12
+	mov	&__llvm_gcov_ctr.123+4, r11
+	mov	&__llvm_gcov_ctr.123+2, r14
+	mov	&__llvm_gcov_ctr.123, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22759,8 +33803,35 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.123
+	mov	r14, &__llvm_gcov_ctr.123+2
+	mov	r13, &__llvm_gcov_ctr.123+4
+	mov	r12, &__llvm_gcov_ctr.123+6
+	mov	&.L__profc___mspabi_cmpd+14, r12
+	mov	&.L__profc___mspabi_cmpd+12, r10
+	mov	&.L__profc___mspabi_cmpd+10, r14
+	mov	&.L__profc___mspabi_cmpd+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mspabi_cmpd+8
@@ -22783,10 +33854,67 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	jl	.LBB123_4
 	jmp	.LBB123_3
 .LBB123_3:
+	mov	&__llvm_gcov_ctr.123+14, r12
+	mov	&__llvm_gcov_ctr.123+12, r11
+	mov	&__llvm_gcov_ctr.123+10, r14
+	mov	&__llvm_gcov_ctr.123+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.123+8
+	mov	r14, &__llvm_gcov_ctr.123+10
+	mov	r13, &__llvm_gcov_ctr.123+12
+	mov	r12, &__llvm_gcov_ctr.123+14
 	mov	&.L__profc___mspabi_cmpd+22, r12
-	mov	&.L__profc___mspabi_cmpd+20, r11
+	mov	&.L__profc___mspabi_cmpd+20, r10
 	mov	&.L__profc___mspabi_cmpd+18, r14
 	mov	&.L__profc___mspabi_cmpd+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___mspabi_cmpd+16
+	mov	r14, &.L__profc___mspabi_cmpd+18
+	mov	r13, &.L__profc___mspabi_cmpd+20
+	mov	r12, &.L__profc___mspabi_cmpd+22
+	mov	#1, 16(r1)
+	jmp	.LBB123_5
+.LBB123_4:
+	mov	&__llvm_gcov_ctr.123+22, r12
+	mov	&__llvm_gcov_ctr.123+20, r11
+	mov	&__llvm_gcov_ctr.123+18, r14
+	mov	&__llvm_gcov_ctr.123+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -22806,13 +33934,10 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___mspabi_cmpd+16
-	mov	r14, &.L__profc___mspabi_cmpd+18
-	mov	r13, &.L__profc___mspabi_cmpd+20
-	mov	r12, &.L__profc___mspabi_cmpd+22
-	mov	#1, 16(r1)
-	jmp	.LBB123_5
-.LBB123_4:
+	mov	r15, &__llvm_gcov_ctr.123+16
+	mov	r14, &__llvm_gcov_ctr.123+18
+	mov	r13, &__llvm_gcov_ctr.123+20
+	mov	r12, &__llvm_gcov_ctr.123+22
 	clr	16(r1)
 	jmp	.LBB123_5
 .LBB123_5:
@@ -22831,6 +33956,9 @@ __mspabi_cmpd:                          ; @__mspabi_cmpd
 	.type	__mspabi_mpysll,@function
 __mspabi_mpysll:                        ; @__mspabi_mpysll
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
@@ -22839,12 +33967,40 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.124+6, r10
+	mov	&__llvm_gcov_ctr.124+4, r11
+	mov	&__llvm_gcov_ctr.124+2, r8
+	mov	&__llvm_gcov_ctr.124, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.124
+	mov	r8, &__llvm_gcov_ctr.124+2
+	mov	r9, &__llvm_gcov_ctr.124+4
+	mov	r10, &__llvm_gcov_ctr.124+6
 	mov	r13, 6(r1)
 	mov	r12, 4(r1)
 	mov	r15, 2(r1)
 	mov	r14, 0(r1)
 	mov	&.L__profc___mspabi_mpysll+6, r12
-	mov	&.L__profc___mspabi_mpysll+4, r11
+	mov	&.L__profc___mspabi_mpysll+4, r10
 	mov	&.L__profc___mspabi_mpysll+2, r14
 	mov	&.L__profc___mspabi_mpysll, r15
 	inc	r15
@@ -22856,14 +34012,13 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mspabi_mpysll
@@ -22901,6 +34056,9 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end124:
 	.size	__mspabi_mpysll, .Lfunc_end124-__mspabi_mpysll
@@ -22910,6 +34068,9 @@ __mspabi_mpysll:                        ; @__mspabi_mpysll
 	.type	__mspabi_mpyull,@function
 __mspabi_mpyull:                        ; @__mspabi_mpyull
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
 	push	r8
 	push	r9
 	push	r10
@@ -22918,12 +34079,40 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.125+6, r10
+	mov	&__llvm_gcov_ctr.125+4, r11
+	mov	&__llvm_gcov_ctr.125+2, r8
+	mov	&__llvm_gcov_ctr.125, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.125
+	mov	r8, &__llvm_gcov_ctr.125+2
+	mov	r9, &__llvm_gcov_ctr.125+4
+	mov	r10, &__llvm_gcov_ctr.125+6
 	mov	r13, 6(r1)
 	mov	r12, 4(r1)
 	mov	r15, 2(r1)
 	mov	r14, 0(r1)
 	mov	&.L__profc___mspabi_mpyull+6, r12
-	mov	&.L__profc___mspabi_mpyull+4, r11
+	mov	&.L__profc___mspabi_mpyull+4, r10
 	mov	&.L__profc___mspabi_mpyull+2, r14
 	mov	&.L__profc___mspabi_mpyull, r15
 	inc	r15
@@ -22935,14 +34124,13 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mspabi_mpyull
@@ -22962,6 +34150,9 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	pop	r10
 	pop	r9
 	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end125:
 	.size	__mspabi_mpyull, .Lfunc_end125-__mspabi_mpyull
@@ -22971,6 +34162,7 @@ __mspabi_mpyull:                        ; @__mspabi_mpyull
 	.type	__mulhi3,@function
 __mulhi3:                               ; @__mulhi3
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#14, r1
@@ -23010,10 +34202,10 @@ __mulhi3:                               ; @__mulhi3
 	jge	.LBB126_2
 	jmp	.LBB126_1
 .LBB126_1:
-	mov	&.L__profc___mulhi3+14, r12
-	mov	&.L__profc___mulhi3+12, r11
-	mov	&.L__profc___mulhi3+10, r14
-	mov	&.L__profc___mulhi3+8, r15
+	mov	&__llvm_gcov_ctr.126+6, r12
+	mov	&__llvm_gcov_ctr.126+4, r11
+	mov	&__llvm_gcov_ctr.126+2, r14
+	mov	&__llvm_gcov_ctr.126, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23029,8 +34221,35 @@ __mulhi3:                               ; @__mulhi3
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.126
+	mov	r14, &__llvm_gcov_ctr.126+2
+	mov	r13, &__llvm_gcov_ctr.126+4
+	mov	r12, &__llvm_gcov_ctr.126+6
+	mov	&.L__profc___mulhi3+14, r12
+	mov	&.L__profc___mulhi3+12, r10
+	mov	&.L__profc___mulhi3+10, r14
+	mov	&.L__profc___mulhi3+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mulhi3+8
@@ -23054,10 +34273,10 @@ __mulhi3:                               ; @__mulhi3
 	jeq	.LBB126_6
 	jmp	.LBB126_4
 .LBB126_4:                              ;   in Loop: Header=BB126_3 Depth=1
-	mov	&.L__profc___mulhi3+30, r13
-	mov	&.L__profc___mulhi3+28, r12
-	mov	&.L__profc___mulhi3+26, r15
-	mov	&.L__profc___mulhi3+24, r11
+	mov	&__llvm_gcov_ctr.126+14, r13
+	mov	&__llvm_gcov_ctr.126+12, r12
+	mov	&__llvm_gcov_ctr.126+10, r15
+	mov	&__llvm_gcov_ctr.126+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23078,6 +34297,33 @@ __mulhi3:                               ; @__mulhi3
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.126+8
+	mov	r15, &__llvm_gcov_ctr.126+10
+	mov	r14, &__llvm_gcov_ctr.126+12
+	mov	r13, &__llvm_gcov_ctr.126+14
+	mov	&.L__profc___mulhi3+30, r13
+	mov	&.L__profc___mulhi3+28, r10
+	mov	&.L__profc___mulhi3+26, r15
+	mov	&.L__profc___mulhi3+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
 	mov	r11, &.L__profc___mulhi3+24
 	mov	r15, &.L__profc___mulhi3+26
 	mov	r14, &.L__profc___mulhi3+28
@@ -23095,10 +34341,10 @@ __mulhi3:                               ; @__mulhi3
 	jmp	.LBB126_5
 .LBB126_5:                              ;   in Loop: Header=BB126_3 Depth=1
 	mov.b	2(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc___mulhi3+38, r13
-	mov	&.L__profc___mulhi3+36, r10
-	mov	&.L__profc___mulhi3+34, r15
-	mov	&.L__profc___mulhi3+32, r11
+	mov	&__llvm_gcov_ctr.126+22, r13
+	mov	&__llvm_gcov_ctr.126+20, r10
+	mov	&__llvm_gcov_ctr.126+18, r15
+	mov	&__llvm_gcov_ctr.126+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23114,8 +34360,35 @@ __mulhi3:                               ; @__mulhi3
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.126+16
+	mov	r15, &__llvm_gcov_ctr.126+18
+	mov	r14, &__llvm_gcov_ctr.126+20
+	mov	r13, &__llvm_gcov_ctr.126+22
+	mov	&.L__profc___mulhi3+38, r13
+	mov	&.L__profc___mulhi3+36, r9
+	mov	&.L__profc___mulhi3+34, r15
+	mov	&.L__profc___mulhi3+32, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc___mulhi3+32
@@ -23163,10 +34436,10 @@ __mulhi3:                               ; @__mulhi3
 	jeq	.LBB126_9
 	jmp	.LBB126_8
 .LBB126_8:                              ;   in Loop: Header=BB126_3 Depth=1
-	mov	&.L__profc___mulhi3+46, r12
-	mov	&.L__profc___mulhi3+44, r11
-	mov	&.L__profc___mulhi3+42, r14
-	mov	&.L__profc___mulhi3+40, r15
+	mov	&__llvm_gcov_ctr.126+30, r12
+	mov	&__llvm_gcov_ctr.126+28, r11
+	mov	&__llvm_gcov_ctr.126+26, r14
+	mov	&__llvm_gcov_ctr.126+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23182,8 +34455,35 @@ __mulhi3:                               ; @__mulhi3
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.126+24
+	mov	r14, &__llvm_gcov_ctr.126+26
+	mov	r13, &__llvm_gcov_ctr.126+28
+	mov	r12, &__llvm_gcov_ctr.126+30
+	mov	&.L__profc___mulhi3+46, r12
+	mov	&.L__profc___mulhi3+44, r10
+	mov	&.L__profc___mulhi3+42, r14
+	mov	&.L__profc___mulhi3+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mulhi3+40
@@ -23204,20 +34504,10 @@ __mulhi3:                               ; @__mulhi3
 	mov	r12, 10(r1)
 	jmp	.LBB126_10
 .LBB126_10:                             ;   in Loop: Header=BB126_3 Depth=1
-	mov.b	9(r1), r12
-	inc.b	r12
-	mov.b	r12, 9(r1)
-	jmp	.LBB126_3
-.LBB126_11:
-	mov	6(r1), r12
-	tst	r12
-	jeq	.LBB126_13
-	jmp	.LBB126_12
-.LBB126_12:
-	mov	&.L__profc___mulhi3+54, r12
-	mov	&.L__profc___mulhi3+52, r11
-	mov	&.L__profc___mulhi3+50, r14
-	mov	&.L__profc___mulhi3+48, r15
+	mov	&__llvm_gcov_ctr.126+38, r12
+	mov	&__llvm_gcov_ctr.126+36, r11
+	mov	&__llvm_gcov_ctr.126+34, r14
+	mov	&__llvm_gcov_ctr.126+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23235,6 +34525,70 @@ __mulhi3:                               ; @__mulhi3
 	cmp	r11, r13
 	mov	r2, r10
 	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.126+32
+	mov	r14, &__llvm_gcov_ctr.126+34
+	mov	r13, &__llvm_gcov_ctr.126+36
+	mov	r12, &__llvm_gcov_ctr.126+38
+	mov.b	9(r1), r12
+	inc.b	r12
+	mov.b	r12, 9(r1)
+	jmp	.LBB126_3
+.LBB126_11:
+	mov	6(r1), r12
+	tst	r12
+	jeq	.LBB126_13
+	jmp	.LBB126_12
+.LBB126_12:
+	mov	&__llvm_gcov_ctr.126+46, r12
+	mov	&__llvm_gcov_ctr.126+44, r11
+	mov	&__llvm_gcov_ctr.126+42, r14
+	mov	&__llvm_gcov_ctr.126+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.126+40
+	mov	r14, &__llvm_gcov_ctr.126+42
+	mov	r13, &__llvm_gcov_ctr.126+44
+	mov	r12, &__llvm_gcov_ctr.126+46
+	mov	&.L__profc___mulhi3+54, r12
+	mov	&.L__profc___mulhi3+52, r10
+	mov	&.L__profc___mulhi3+50, r14
+	mov	&.L__profc___mulhi3+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___mulhi3+48
@@ -23247,38 +34601,10 @@ __mulhi3:                               ; @__mulhi3
 	mov	r12, 0(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB126_14
 .LBB126_13:
-	mov	4(r1), r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
-	jmp	.LBB126_14
-.LBB126_14:
-	mov	0(r1), r12                      ; 2-byte Folded Reload
-	add	#14, r1
-	pop	r10
-	pop	r9
-	ret
-.Lfunc_end126:
-	.size	__mulhi3, .Lfunc_end126-__mulhi3
-                                        ; -- End function
-	.globl	__divsi3                        ; -- Begin function __divsi3
-	.p2align	1
-	.type	__divsi3,@function
-__divsi3:                               ; @__divsi3
-; %bb.0:
-	push	r9
-	push	r10
-	sub	#16, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	r13, 14(r1)
-	mov	r12, 12(r1)
-	mov	r15, 10(r1)
-	mov	r14, 8(r1)
-	mov	&.L__profc___divsi3+6, r12
-	mov	&.L__profc___divsi3+4, r11
-	mov	&.L__profc___divsi3+2, r14
-	mov	&.L__profc___divsi3, r15
+	mov	&__llvm_gcov_ctr.126+54, r12
+	mov	&__llvm_gcov_ctr.126+52, r11
+	mov	&__llvm_gcov_ctr.126+50, r14
+	mov	&__llvm_gcov_ctr.126+48, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23298,6 +34624,93 @@ __divsi3:                               ; @__divsi3
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.126+48
+	mov	r14, &__llvm_gcov_ctr.126+50
+	mov	r13, &__llvm_gcov_ctr.126+52
+	mov	r12, &__llvm_gcov_ctr.126+54
+	mov	4(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	jmp	.LBB126_14
+.LBB126_14:
+	mov	0(r1), r12                      ; 2-byte Folded Reload
+	add	#14, r1
+	pop	r10
+	pop	r9
+	pop	r8
+	ret
+.Lfunc_end126:
+	.size	__mulhi3, .Lfunc_end126-__mulhi3
+                                        ; -- End function
+	.globl	__divsi3                        ; -- Begin function __divsi3
+	.p2align	1
+	.type	__divsi3,@function
+__divsi3:                               ; @__divsi3
+; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
+	push	r10
+	sub	#16, r1
+                                        ; kill: def $r11 killed $r15
+                                        ; kill: def $r11 killed $r14
+                                        ; kill: def $r11 killed $r13
+                                        ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.127+6, r10
+	mov	&__llvm_gcov_ctr.127+4, r11
+	mov	&__llvm_gcov_ctr.127+2, r8
+	mov	&__llvm_gcov_ctr.127, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.127
+	mov	r8, &__llvm_gcov_ctr.127+2
+	mov	r9, &__llvm_gcov_ctr.127+4
+	mov	r10, &__llvm_gcov_ctr.127+6
+	mov	r13, 14(r1)
+	mov	r12, 12(r1)
+	mov	r15, 10(r1)
+	mov	r14, 8(r1)
+	mov	&.L__profc___divsi3+6, r12
+	mov	&.L__profc___divsi3+4, r10
+	mov	&.L__profc___divsi3+2, r14
+	mov	&.L__profc___divsi3, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc___divsi3
 	mov	r14, &.L__profc___divsi3+2
 	mov	r13, &.L__profc___divsi3+4
@@ -23308,10 +34721,10 @@ __divsi3:                               ; @__divsi3
 	jge	.LBB127_2
 	jmp	.LBB127_1
 .LBB127_1:
-	mov	&.L__profc___divsi3+14, r13
-	mov	&.L__profc___divsi3+12, r12
-	mov	&.L__profc___divsi3+10, r15
-	mov	&.L__profc___divsi3+8, r11
+	mov	&__llvm_gcov_ctr.127+14, r13
+	mov	&__llvm_gcov_ctr.127+12, r12
+	mov	&__llvm_gcov_ctr.127+10, r15
+	mov	&__llvm_gcov_ctr.127+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23329,6 +34742,33 @@ __divsi3:                               ; @__divsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.127+8
+	mov	r15, &__llvm_gcov_ctr.127+10
+	mov	r14, &__llvm_gcov_ctr.127+12
+	mov	r13, &__llvm_gcov_ctr.127+14
+	mov	&.L__profc___divsi3+14, r13
+	mov	&.L__profc___divsi3+12, r10
+	mov	&.L__profc___divsi3+10, r15
+	mov	&.L__profc___divsi3+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23362,10 +34802,10 @@ __divsi3:                               ; @__divsi3
 	jge	.LBB127_4
 	jmp	.LBB127_3
 .LBB127_3:
-	mov	&.L__profc___divsi3+22, r13
-	mov	&.L__profc___divsi3+20, r12
-	mov	&.L__profc___divsi3+18, r15
-	mov	&.L__profc___divsi3+16, r11
+	mov	&__llvm_gcov_ctr.127+22, r13
+	mov	&__llvm_gcov_ctr.127+20, r12
+	mov	&__llvm_gcov_ctr.127+18, r15
+	mov	&__llvm_gcov_ctr.127+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23383,6 +34823,33 @@ __divsi3:                               ; @__divsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.127+16
+	mov	r15, &__llvm_gcov_ctr.127+18
+	mov	r14, &__llvm_gcov_ctr.127+20
+	mov	r13, &__llvm_gcov_ctr.127+22
+	mov	&.L__profc___divsi3+22, r13
+	mov	&.L__profc___divsi3+20, r10
+	mov	&.L__profc___divsi3+18, r15
+	mov	&.L__profc___divsi3+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23425,10 +34892,10 @@ __divsi3:                               ; @__divsi3
 	jeq	.LBB127_6
 	jmp	.LBB127_5
 .LBB127_5:
-	mov	&.L__profc___divsi3+30, r13
-	mov	&.L__profc___divsi3+28, r12
-	mov	&.L__profc___divsi3+26, r15
-	mov	&.L__profc___divsi3+24, r11
+	mov	&__llvm_gcov_ctr.127+30, r13
+	mov	&__llvm_gcov_ctr.127+28, r12
+	mov	&__llvm_gcov_ctr.127+26, r15
+	mov	&__llvm_gcov_ctr.127+24, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23446,6 +34913,33 @@ __divsi3:                               ; @__divsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.127+24
+	mov	r15, &__llvm_gcov_ctr.127+26
+	mov	r14, &__llvm_gcov_ctr.127+28
+	mov	r13, &__llvm_gcov_ctr.127+30
+	mov	&.L__profc___divsi3+30, r13
+	mov	&.L__profc___divsi3+28, r10
+	mov	&.L__profc___divsi3+26, r15
+	mov	&.L__profc___divsi3+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23473,6 +34967,10 @@ __divsi3:                               ; @__divsi3
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end127:
 	.size	__divsi3, .Lfunc_end127-__divsi3
@@ -23482,6 +34980,10 @@ __divsi3:                               ; @__divsi3
 	.type	__modsi3,@function
 __modsi3:                               ; @__modsi3
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
 	push	r9
 	push	r10
 	sub	#16, r1
@@ -23489,12 +34991,40 @@ __modsi3:                               ; @__modsi3
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.128+6, r10
+	mov	&__llvm_gcov_ctr.128+4, r11
+	mov	&__llvm_gcov_ctr.128+2, r8
+	mov	&__llvm_gcov_ctr.128, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.128
+	mov	r8, &__llvm_gcov_ctr.128+2
+	mov	r9, &__llvm_gcov_ctr.128+4
+	mov	r10, &__llvm_gcov_ctr.128+6
 	mov	r13, 14(r1)
 	mov	r12, 12(r1)
 	mov	r15, 10(r1)
 	mov	r14, 8(r1)
 	mov	&.L__profc___modsi3+6, r12
-	mov	&.L__profc___modsi3+4, r11
+	mov	&.L__profc___modsi3+4, r10
 	mov	&.L__profc___modsi3+2, r14
 	mov	&.L__profc___modsi3, r15
 	inc	r15
@@ -23506,14 +35036,13 @@ __modsi3:                               ; @__modsi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___modsi3
@@ -23526,10 +35055,10 @@ __modsi3:                               ; @__modsi3
 	jge	.LBB128_2
 	jmp	.LBB128_1
 .LBB128_1:
-	mov	&.L__profc___modsi3+14, r13
-	mov	&.L__profc___modsi3+12, r12
-	mov	&.L__profc___modsi3+10, r15
-	mov	&.L__profc___modsi3+8, r11
+	mov	&__llvm_gcov_ctr.128+14, r13
+	mov	&__llvm_gcov_ctr.128+12, r12
+	mov	&__llvm_gcov_ctr.128+10, r15
+	mov	&__llvm_gcov_ctr.128+8, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23547,6 +35076,33 @@ __modsi3:                               ; @__modsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.128+8
+	mov	r15, &__llvm_gcov_ctr.128+10
+	mov	r14, &__llvm_gcov_ctr.128+12
+	mov	r13, &__llvm_gcov_ctr.128+14
+	mov	&.L__profc___modsi3+14, r13
+	mov	&.L__profc___modsi3+12, r10
+	mov	&.L__profc___modsi3+10, r15
+	mov	&.L__profc___modsi3+8, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23575,10 +35131,10 @@ __modsi3:                               ; @__modsi3
 	jge	.LBB128_4
 	jmp	.LBB128_3
 .LBB128_3:
-	mov	&.L__profc___modsi3+22, r13
-	mov	&.L__profc___modsi3+20, r12
-	mov	&.L__profc___modsi3+18, r15
-	mov	&.L__profc___modsi3+16, r11
+	mov	&__llvm_gcov_ctr.128+22, r13
+	mov	&__llvm_gcov_ctr.128+20, r12
+	mov	&__llvm_gcov_ctr.128+18, r15
+	mov	&__llvm_gcov_ctr.128+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23596,6 +35152,33 @@ __modsi3:                               ; @__modsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.128+16
+	mov	r15, &__llvm_gcov_ctr.128+18
+	mov	r14, &__llvm_gcov_ctr.128+20
+	mov	r13, &__llvm_gcov_ctr.128+22
+	mov	&.L__profc___modsi3+22, r13
+	mov	&.L__profc___modsi3+20, r10
+	mov	&.L__profc___modsi3+18, r15
+	mov	&.L__profc___modsi3+16, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23632,10 +35215,10 @@ __modsi3:                               ; @__modsi3
 	jeq	.LBB128_6
 	jmp	.LBB128_5
 .LBB128_5:
-	mov	&.L__profc___modsi3+30, r13
-	mov	&.L__profc___modsi3+28, r12
-	mov	&.L__profc___modsi3+26, r15
-	mov	&.L__profc___modsi3+24, r11
+	mov	&__llvm_gcov_ctr.128+30, r13
+	mov	&__llvm_gcov_ctr.128+28, r12
+	mov	&__llvm_gcov_ctr.128+26, r15
+	mov	&__llvm_gcov_ctr.128+24, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23653,6 +35236,33 @@ __modsi3:                               ; @__modsi3
 	cmp	r12, r14
 	mov	r2, r9
 	mov	#1, r12
+	mov	r12, r10
+	bic	r9, r10
+	add	r10, r13
+	mov	r11, &__llvm_gcov_ctr.128+24
+	mov	r15, &__llvm_gcov_ctr.128+26
+	mov	r14, &__llvm_gcov_ctr.128+28
+	mov	r13, &__llvm_gcov_ctr.128+30
+	mov	&.L__profc___modsi3+30, r13
+	mov	&.L__profc___modsi3+28, r10
+	mov	&.L__profc___modsi3+26, r15
+	mov	&.L__profc___modsi3+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -23680,6 +35290,10 @@ __modsi3:                               ; @__modsi3
 	add	#16, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end128:
 	.size	__modsi3, .Lfunc_end128-__modsi3
@@ -23689,6 +35303,7 @@ __modsi3:                               ; @__modsi3
 	.type	__udivmodhi4,@function
 __udivmodhi4:                           ; @__udivmodhi4
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#14, r1
@@ -23734,10 +35349,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	jhs	.LBB129_6
 	jmp	.LBB129_2
 .LBB129_2:                              ;   in Loop: Header=BB129_1 Depth=1
-	mov	&.L__profc___udivmodhi4+38, r12
-	mov	&.L__profc___udivmodhi4+36, r11
-	mov	&.L__profc___udivmodhi4+34, r14
-	mov	&.L__profc___udivmodhi4+32, r15
+	mov	&__llvm_gcov_ctr.129+6, r12
+	mov	&__llvm_gcov_ctr.129+4, r11
+	mov	&__llvm_gcov_ctr.129+2, r14
+	mov	&__llvm_gcov_ctr.129, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23753,8 +35368,35 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.129
+	mov	r14, &__llvm_gcov_ctr.129+2
+	mov	r13, &__llvm_gcov_ctr.129+4
+	mov	r12, &__llvm_gcov_ctr.129+6
+	mov	&.L__profc___udivmodhi4+38, r12
+	mov	&.L__profc___udivmodhi4+36, r10
+	mov	&.L__profc___udivmodhi4+34, r14
+	mov	&.L__profc___udivmodhi4+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodhi4+32
@@ -23768,10 +35410,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	jeq	.LBB129_6
 	jmp	.LBB129_3
 .LBB129_3:                              ;   in Loop: Header=BB129_1 Depth=1
-	mov	&.L__profc___udivmodhi4+46, r12
-	mov	&.L__profc___udivmodhi4+44, r11
-	mov	&.L__profc___udivmodhi4+42, r14
-	mov	&.L__profc___udivmodhi4+40, r15
+	mov	&__llvm_gcov_ctr.129+14, r12
+	mov	&__llvm_gcov_ctr.129+12, r11
+	mov	&__llvm_gcov_ctr.129+10, r14
+	mov	&__llvm_gcov_ctr.129+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23787,8 +35429,35 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.129+8
+	mov	r14, &__llvm_gcov_ctr.129+10
+	mov	r13, &__llvm_gcov_ctr.129+12
+	mov	r12, &__llvm_gcov_ctr.129+14
+	mov	&.L__profc___udivmodhi4+46, r12
+	mov	&.L__profc___udivmodhi4+44, r10
+	mov	&.L__profc___udivmodhi4+42, r14
+	mov	&.L__profc___udivmodhi4+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodhi4+40
@@ -23838,10 +35507,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	jmp	.LBB129_5
 .LBB129_5:                              ;   in Loop: Header=BB129_1 Depth=1
 	mov.b	0(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc___udivmodhi4+30, r13
-	mov	&.L__profc___udivmodhi4+28, r10
-	mov	&.L__profc___udivmodhi4+26, r15
-	mov	&.L__profc___udivmodhi4+24, r11
+	mov	&__llvm_gcov_ctr.129+22, r13
+	mov	&__llvm_gcov_ctr.129+20, r10
+	mov	&__llvm_gcov_ctr.129+18, r15
+	mov	&__llvm_gcov_ctr.129+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -23857,8 +35526,35 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.129+16
+	mov	r15, &__llvm_gcov_ctr.129+18
+	mov	r14, &__llvm_gcov_ctr.129+20
+	mov	r13, &__llvm_gcov_ctr.129+22
+	mov	&.L__profc___udivmodhi4+30, r13
+	mov	&.L__profc___udivmodhi4+28, r9
+	mov	&.L__profc___udivmodhi4+26, r15
+	mov	&.L__profc___udivmodhi4+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc___udivmodhi4+24
@@ -23874,10 +35570,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	jeq	.LBB129_8
 	jmp	.LBB129_7
 .LBB129_7:                              ;   in Loop: Header=BB129_1 Depth=1
-	mov	&.L__profc___udivmodhi4+14, r12
-	mov	&.L__profc___udivmodhi4+12, r11
-	mov	&.L__profc___udivmodhi4+10, r14
-	mov	&.L__profc___udivmodhi4+8, r15
+	mov	&__llvm_gcov_ctr.129+30, r12
+	mov	&__llvm_gcov_ctr.129+28, r11
+	mov	&__llvm_gcov_ctr.129+26, r14
+	mov	&__llvm_gcov_ctr.129+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23893,8 +35589,35 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.129+24
+	mov	r14, &__llvm_gcov_ctr.129+26
+	mov	r13, &__llvm_gcov_ctr.129+28
+	mov	r12, &__llvm_gcov_ctr.129+30
+	mov	&.L__profc___udivmodhi4+14, r12
+	mov	&.L__profc___udivmodhi4+12, r10
+	mov	&.L__profc___udivmodhi4+10, r14
+	mov	&.L__profc___udivmodhi4+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodhi4+8
@@ -23949,10 +35672,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	jlo	.LBB129_12
 	jmp	.LBB129_11
 .LBB129_11:                             ;   in Loop: Header=BB129_9 Depth=1
-	mov	&.L__profc___udivmodhi4+62, r12
-	mov	&.L__profc___udivmodhi4+60, r11
-	mov	&.L__profc___udivmodhi4+58, r14
-	mov	&.L__profc___udivmodhi4+56, r15
+	mov	&__llvm_gcov_ctr.129+38, r12
+	mov	&__llvm_gcov_ctr.129+36, r11
+	mov	&__llvm_gcov_ctr.129+34, r14
+	mov	&__llvm_gcov_ctr.129+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -23968,8 +35691,35 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.129+32
+	mov	r14, &__llvm_gcov_ctr.129+34
+	mov	r13, &__llvm_gcov_ctr.129+36
+	mov	r12, &__llvm_gcov_ctr.129+38
+	mov	&.L__profc___udivmodhi4+62, r12
+	mov	&.L__profc___udivmodhi4+60, r10
+	mov	&.L__profc___udivmodhi4+58, r14
+	mov	&.L__profc___udivmodhi4+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodhi4+56
@@ -23986,25 +35736,10 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r12, 2(r1)
 	jmp	.LBB129_12
 .LBB129_12:                             ;   in Loop: Header=BB129_9 Depth=1
-	mov	4(r1), r12
-	clrc
-	rrc	r12
-	mov	r12, 4(r1)
-	mov	8(r1), r12
-	clrc
-	rrc	r12
-	mov	r12, 8(r1)
-	jmp	.LBB129_9
-.LBB129_13:
-	mov	6(r1), r12
-	tst	r12
-	jeq	.LBB129_15
-	jmp	.LBB129_14
-.LBB129_14:
-	mov	&.L__profc___udivmodhi4+70, r12
-	mov	&.L__profc___udivmodhi4+68, r11
-	mov	&.L__profc___udivmodhi4+66, r14
-	mov	&.L__profc___udivmodhi4+64, r15
+	mov	&__llvm_gcov_ctr.129+46, r12
+	mov	&__llvm_gcov_ctr.129+44, r11
+	mov	&__llvm_gcov_ctr.129+42, r14
+	mov	&__llvm_gcov_ctr.129+40, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24024,6 +35759,75 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.129+40
+	mov	r14, &__llvm_gcov_ctr.129+42
+	mov	r13, &__llvm_gcov_ctr.129+44
+	mov	r12, &__llvm_gcov_ctr.129+46
+	mov	4(r1), r12
+	clrc
+	rrc	r12
+	mov	r12, 4(r1)
+	mov	8(r1), r12
+	clrc
+	rrc	r12
+	mov	r12, 8(r1)
+	jmp	.LBB129_9
+.LBB129_13:
+	mov	6(r1), r12
+	tst	r12
+	jeq	.LBB129_15
+	jmp	.LBB129_14
+.LBB129_14:
+	mov	&__llvm_gcov_ctr.129+54, r12
+	mov	&__llvm_gcov_ctr.129+52, r11
+	mov	&__llvm_gcov_ctr.129+50, r14
+	mov	&__llvm_gcov_ctr.129+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.129+48
+	mov	r14, &__llvm_gcov_ctr.129+50
+	mov	r13, &__llvm_gcov_ctr.129+52
+	mov	r12, &__llvm_gcov_ctr.129+54
+	mov	&.L__profc___udivmodhi4+70, r12
+	mov	&.L__profc___udivmodhi4+68, r10
+	mov	&.L__profc___udivmodhi4+66, r14
+	mov	&.L__profc___udivmodhi4+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc___udivmodhi4+64
 	mov	r14, &.L__profc___udivmodhi4+66
 	mov	r13, &.L__profc___udivmodhi4+68
@@ -24032,6 +35836,33 @@ __udivmodhi4:                           ; @__udivmodhi4
 	mov	r12, 12(r1)
 	jmp	.LBB129_16
 .LBB129_15:
+	mov	&__llvm_gcov_ctr.129+62, r12
+	mov	&__llvm_gcov_ctr.129+60, r11
+	mov	&__llvm_gcov_ctr.129+58, r14
+	mov	&__llvm_gcov_ctr.129+56, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.129+56
+	mov	r14, &__llvm_gcov_ctr.129+58
+	mov	r13, &__llvm_gcov_ctr.129+60
+	mov	r12, &__llvm_gcov_ctr.129+62
 	mov	2(r1), r12
 	mov	r12, 12(r1)
 	jmp	.LBB129_16
@@ -24040,6 +35871,7 @@ __udivmodhi4:                           ; @__udivmodhi4
 	add	#14, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end129:
 	.size	__udivmodhi4, .Lfunc_end129-__udivmodhi4
@@ -24049,6 +35881,7 @@ __udivmodhi4:                           ; @__udivmodhi4
 	.type	__udivmodsi4_libgcc,@function
 __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 ; %bb.0:
+	push	r8
 	push	r9
 	push	r10
 	sub	#30, r1
@@ -24056,7 +35889,7 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	36(r1), r11
+	mov	38(r1), r11
 	mov	r13, 24(r1)
 	mov	r12, 22(r1)
 	mov	r15, 20(r1)
@@ -24119,10 +35952,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	jne	.LBB130_8
 	jmp	.LBB130_4
 .LBB130_4:                              ;   in Loop: Header=BB130_1 Depth=1
-	mov	&.L__profc___udivmodsi4_libgcc+38, r12
-	mov	&.L__profc___udivmodsi4_libgcc+36, r11
-	mov	&.L__profc___udivmodsi4_libgcc+34, r14
-	mov	&.L__profc___udivmodsi4_libgcc+32, r15
+	mov	&__llvm_gcov_ctr.130+6, r12
+	mov	&__llvm_gcov_ctr.130+4, r11
+	mov	&__llvm_gcov_ctr.130+2, r14
+	mov	&__llvm_gcov_ctr.130, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24138,8 +35971,35 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.130
+	mov	r14, &__llvm_gcov_ctr.130+2
+	mov	r13, &__llvm_gcov_ctr.130+4
+	mov	r12, &__llvm_gcov_ctr.130+6
+	mov	&.L__profc___udivmodsi4_libgcc+38, r12
+	mov	&.L__profc___udivmodsi4_libgcc+36, r10
+	mov	&.L__profc___udivmodsi4_libgcc+34, r14
+	mov	&.L__profc___udivmodsi4_libgcc+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4_libgcc+32
@@ -24155,10 +36015,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	jeq	.LBB130_8
 	jmp	.LBB130_5
 .LBB130_5:                              ;   in Loop: Header=BB130_1 Depth=1
-	mov	&.L__profc___udivmodsi4_libgcc+46, r12
-	mov	&.L__profc___udivmodsi4_libgcc+44, r11
-	mov	&.L__profc___udivmodsi4_libgcc+42, r14
-	mov	&.L__profc___udivmodsi4_libgcc+40, r15
+	mov	&__llvm_gcov_ctr.130+14, r12
+	mov	&__llvm_gcov_ctr.130+12, r11
+	mov	&__llvm_gcov_ctr.130+10, r14
+	mov	&__llvm_gcov_ctr.130+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24174,8 +36034,35 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.130+8
+	mov	r14, &__llvm_gcov_ctr.130+10
+	mov	r13, &__llvm_gcov_ctr.130+12
+	mov	r12, &__llvm_gcov_ctr.130+14
+	mov	&.L__profc___udivmodsi4_libgcc+46, r12
+	mov	&.L__profc___udivmodsi4_libgcc+44, r10
+	mov	&.L__profc___udivmodsi4_libgcc+42, r14
+	mov	&.L__profc___udivmodsi4_libgcc+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4_libgcc+40
@@ -24225,10 +36112,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	jmp	.LBB130_7
 .LBB130_7:                              ;   in Loop: Header=BB130_1 Depth=1
 	mov.b	4(r1), r12                      ; 1-byte Folded Reload
-	mov	&.L__profc___udivmodsi4_libgcc+30, r13
-	mov	&.L__profc___udivmodsi4_libgcc+28, r10
-	mov	&.L__profc___udivmodsi4_libgcc+26, r15
-	mov	&.L__profc___udivmodsi4_libgcc+24, r11
+	mov	&__llvm_gcov_ctr.130+22, r13
+	mov	&__llvm_gcov_ctr.130+20, r10
+	mov	&__llvm_gcov_ctr.130+18, r15
+	mov	&__llvm_gcov_ctr.130+16, r11
 	inc	r11
 	tst	r11
 	mov	r2, r14
@@ -24244,8 +36131,35 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r10, r14
 	add	r9, r14
 	cmp	r10, r14
-	mov	r2, r9
+	mov	r2, r8
 	mov	#1, r10
+	mov	r10, r9
+	bic	r8, r9
+	add	r9, r13
+	mov	r11, &__llvm_gcov_ctr.130+16
+	mov	r15, &__llvm_gcov_ctr.130+18
+	mov	r14, &__llvm_gcov_ctr.130+20
+	mov	r13, &__llvm_gcov_ctr.130+22
+	mov	&.L__profc___udivmodsi4_libgcc+30, r13
+	mov	&.L__profc___udivmodsi4_libgcc+28, r9
+	mov	&.L__profc___udivmodsi4_libgcc+26, r15
+	mov	&.L__profc___udivmodsi4_libgcc+24, r11
+	inc	r11
+	tst	r11
+	mov	r2, r14
+	rra	r14
+	and	#1, r14
+	add	r14, r15
+	mov	r11, r14
+	bis	r15, r14
+	tst	r14
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r9, r14
+	add	r8, r14
+	cmp	r9, r14
+	mov	r2, r9
 	bic	r9, r10
 	add	r10, r13
 	mov	r11, &.L__profc___udivmodsi4_libgcc+24
@@ -24261,10 +36175,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	jeq	.LBB130_10
 	jmp	.LBB130_9
 .LBB130_9:                              ;   in Loop: Header=BB130_1 Depth=1
-	mov	&.L__profc___udivmodsi4_libgcc+14, r12
-	mov	&.L__profc___udivmodsi4_libgcc+12, r11
-	mov	&.L__profc___udivmodsi4_libgcc+10, r14
-	mov	&.L__profc___udivmodsi4_libgcc+8, r15
+	mov	&__llvm_gcov_ctr.130+30, r12
+	mov	&__llvm_gcov_ctr.130+28, r11
+	mov	&__llvm_gcov_ctr.130+26, r14
+	mov	&__llvm_gcov_ctr.130+24, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24280,8 +36194,35 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.130+24
+	mov	r14, &__llvm_gcov_ctr.130+26
+	mov	r13, &__llvm_gcov_ctr.130+28
+	mov	r12, &__llvm_gcov_ctr.130+30
+	mov	&.L__profc___udivmodsi4_libgcc+14, r12
+	mov	&.L__profc___udivmodsi4_libgcc+12, r10
+	mov	&.L__profc___udivmodsi4_libgcc+10, r14
+	mov	&.L__profc___udivmodsi4_libgcc+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___udivmodsi4_libgcc+8
@@ -24387,10 +36328,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	jne	.LBB130_16
 	jmp	.LBB130_15
 .LBB130_15:                             ;   in Loop: Header=BB130_11 Depth=1
-	mov	&.L__profc___udivmodsi4_libgcc+62, r12
-	mov	&.L__profc___udivmodsi4_libgcc+60, r15
-	mov	&.L__profc___udivmodsi4_libgcc+58, r14
-	mov	&.L__profc___udivmodsi4_libgcc+56, r11
+	mov	&__llvm_gcov_ctr.130+38, r12
+	mov	&__llvm_gcov_ctr.130+36, r15
+	mov	&__llvm_gcov_ctr.130+34, r14
+	mov	&__llvm_gcov_ctr.130+32, r11
 	inc	r11
 	tst	r11
 	mov	r2, r13
@@ -24408,6 +36349,33 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	cmp	r15, r13
 	mov	r2, r9
 	mov	#1, r15
+	mov	r15, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r11, &__llvm_gcov_ctr.130+32
+	mov	r14, &__llvm_gcov_ctr.130+34
+	mov	r13, &__llvm_gcov_ctr.130+36
+	mov	r12, &__llvm_gcov_ctr.130+38
+	mov	&.L__profc___udivmodsi4_libgcc+62, r12
+	mov	&.L__profc___udivmodsi4_libgcc+60, r10
+	mov	&.L__profc___udivmodsi4_libgcc+58, r14
+	mov	&.L__profc___udivmodsi4_libgcc+56, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r11, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r15, r10
 	bic	r9, r10
 	add	r10, r12
@@ -24437,6 +36405,33 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r12, 10(r1)
 	jmp	.LBB130_16
 .LBB130_16:                             ;   in Loop: Header=BB130_11 Depth=1
+	mov	&__llvm_gcov_ctr.130+46, r12
+	mov	&__llvm_gcov_ctr.130+44, r11
+	mov	&__llvm_gcov_ctr.130+42, r14
+	mov	&__llvm_gcov_ctr.130+40, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.130+40
+	mov	r14, &__llvm_gcov_ctr.130+42
+	mov	r13, &__llvm_gcov_ctr.130+44
+	mov	r12, &__llvm_gcov_ctr.130+46
 	mov	16(r1), r13
 	mov	14(r1), r12
 	clrc
@@ -24477,15 +36472,75 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	r12, 18(r1)
 	jmp	.LBB130_11
 .LBB130_17:
-	mov	36(r1), r12
+	mov	38(r1), r12
 	tst	r12
 	jeq	.LBB130_19
 	jmp	.LBB130_18
 .LBB130_18:
+	mov	&__llvm_gcov_ctr.130+54, r12
+	mov	&__llvm_gcov_ctr.130+52, r11
+	mov	&__llvm_gcov_ctr.130+50, r14
+	mov	&__llvm_gcov_ctr.130+48, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.130+48
+	mov	r14, &__llvm_gcov_ctr.130+50
+	mov	r13, &__llvm_gcov_ctr.130+52
+	mov	r12, &__llvm_gcov_ctr.130+54
 	mov	&.L__profc___udivmodsi4_libgcc+70, r12
-	mov	&.L__profc___udivmodsi4_libgcc+68, r11
+	mov	&.L__profc___udivmodsi4_libgcc+68, r10
 	mov	&.L__profc___udivmodsi4_libgcc+66, r14
 	mov	&.L__profc___udivmodsi4_libgcc+64, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___udivmodsi4_libgcc+64
+	mov	r14, &.L__profc___udivmodsi4_libgcc+66
+	mov	r13, &.L__profc___udivmodsi4_libgcc+68
+	mov	r12, &.L__profc___udivmodsi4_libgcc+70
+	mov	22(r1), r12
+	mov	24(r1), r13
+	mov	r13, 28(r1)
+	mov	r12, 26(r1)
+	jmp	.LBB130_20
+.LBB130_19:
+	mov	&__llvm_gcov_ctr.130+62, r12
+	mov	&__llvm_gcov_ctr.130+60, r11
+	mov	&__llvm_gcov_ctr.130+58, r14
+	mov	&__llvm_gcov_ctr.130+56, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24505,16 +36560,10 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___udivmodsi4_libgcc+64
-	mov	r14, &.L__profc___udivmodsi4_libgcc+66
-	mov	r13, &.L__profc___udivmodsi4_libgcc+68
-	mov	r12, &.L__profc___udivmodsi4_libgcc+70
-	mov	22(r1), r12
-	mov	24(r1), r13
-	mov	r13, 28(r1)
-	mov	r12, 26(r1)
-	jmp	.LBB130_20
-.LBB130_19:
+	mov	r15, &__llvm_gcov_ctr.130+56
+	mov	r14, &__llvm_gcov_ctr.130+58
+	mov	r13, &__llvm_gcov_ctr.130+60
+	mov	r12, &__llvm_gcov_ctr.130+62
 	mov	10(r1), r12
 	mov	12(r1), r13
 	mov	r13, 28(r1)
@@ -24526,6 +36575,7 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	add	#30, r1
 	pop	r10
 	pop	r9
+	pop	r8
 	ret
 .Lfunc_end130:
 	.size	__udivmodsi4_libgcc, .Lfunc_end130-__udivmodsi4_libgcc
@@ -24535,13 +36585,14 @@ __udivmodsi4_libgcc:                    ; @__udivmodsi4_libgcc
 	.type	__ashldi3,@function
 __ashldi3:                              ; @__ashldi3
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#40, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	44(r1), r11
+	mov	46(r1), r11
 	mov	r15, 30(r1)
 	mov	r14, 28(r1)
 	mov	r13, 26(r1)
@@ -24582,13 +36633,41 @@ __ashldi3:                              ; @__ashldi3
 	mov	r14, 18(r1)
 	mov	r13, 16(r1)
 	mov	r12, 14(r1)
-	mov.b	44(r1), r12
+	mov.b	46(r1), r12
 	bit.b	#32, r12
 	jeq	.LBB131_2
 	jmp	.LBB131_1
 .LBB131_1:
+	mov	&__llvm_gcov_ctr.131+6, r12
+	mov	&__llvm_gcov_ctr.131+4, r11
+	mov	&__llvm_gcov_ctr.131+2, r14
+	mov	&__llvm_gcov_ctr.131, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.131
+	mov	r14, &__llvm_gcov_ctr.131+2
+	mov	r13, &__llvm_gcov_ctr.131+4
+	mov	r12, &__llvm_gcov_ctr.131+6
 	mov	&.L__profc___ashldi3+14, r12
-	mov	&.L__profc___ashldi3+12, r11
+	mov	&.L__profc___ashldi3+12, r10
 	mov	&.L__profc___ashldi3+10, r14
 	mov	&.L__profc___ashldi3+8, r15
 	inc	r15
@@ -24600,14 +36679,13 @@ __ashldi3:                              ; @__ashldi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ashldi3+8
@@ -24618,7 +36696,7 @@ __ashldi3:                              ; @__ashldi3
 	clr	6(r1)
 	mov	14(r1), r12
 	mov	16(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	add.b	#-32, r14
                                         ; kill: def $r14 killed $r14b
 	call	#__mspabi_slll
@@ -24626,15 +36704,15 @@ __ashldi3:                              ; @__ashldi3
 	mov	r12, 10(r1)
 	jmp	.LBB131_5
 .LBB131_2:
-	mov	44(r1), r12
+	mov	46(r1), r12
 	tst	r12
 	jne	.LBB131_4
 	jmp	.LBB131_3
 .LBB131_3:
-	mov	&.L__profc___ashldi3+22, r12
-	mov	&.L__profc___ashldi3+20, r11
-	mov	&.L__profc___ashldi3+18, r14
-	mov	&.L__profc___ashldi3+16, r15
+	mov	&__llvm_gcov_ctr.131+14, r12
+	mov	&__llvm_gcov_ctr.131+12, r11
+	mov	&__llvm_gcov_ctr.131+10, r14
+	mov	&__llvm_gcov_ctr.131+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24650,8 +36728,35 @@ __ashldi3:                              ; @__ashldi3
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.131+8
+	mov	r14, &__llvm_gcov_ctr.131+10
+	mov	r13, &__llvm_gcov_ctr.131+12
+	mov	r12, &__llvm_gcov_ctr.131+14
+	mov	&.L__profc___ashldi3+22, r12
+	mov	&.L__profc___ashldi3+20, r10
+	mov	&.L__profc___ashldi3+18, r14
+	mov	&.L__profc___ashldi3+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ashldi3+16
@@ -24668,15 +36773,42 @@ __ashldi3:                              ; @__ashldi3
 	mov	r12, 32(r1)
 	jmp	.LBB131_6
 .LBB131_4:
+	mov	&__llvm_gcov_ctr.131+22, r12
+	mov	&__llvm_gcov_ctr.131+20, r11
+	mov	&__llvm_gcov_ctr.131+18, r14
+	mov	&__llvm_gcov_ctr.131+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.131+16
+	mov	r14, &__llvm_gcov_ctr.131+18
+	mov	r13, &__llvm_gcov_ctr.131+20
+	mov	r12, &__llvm_gcov_ctr.131+22
 	mov	14(r1), r12
 	mov	16(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	call	#__mspabi_slll
 	mov	r13, 8(r1)
 	mov	r12, 6(r1)
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	mov.b	r14, r15
 	mov.b	r15, 1(r1)                      ; 1-byte Folded Spill
 	call	#__mspabi_slll
@@ -24715,6 +36847,7 @@ __ashldi3:                              ; @__ashldi3
 	mov	38(r1), r15
 	add	#40, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end131:
 	.size	__ashldi3, .Lfunc_end131-__ashldi3
@@ -24724,13 +36857,14 @@ __ashldi3:                              ; @__ashldi3
 	.type	__ashrdi3,@function
 __ashrdi3:                              ; @__ashrdi3
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#40, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	44(r1), r11
+	mov	46(r1), r11
 	mov	r15, 30(r1)
 	mov	r14, 28(r1)
 	mov	r13, 26(r1)
@@ -24771,15 +36905,15 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	r14, 18(r1)
 	mov	r13, 16(r1)
 	mov	r12, 14(r1)
-	mov.b	44(r1), r12
+	mov.b	46(r1), r12
 	bit.b	#32, r12
 	jeq	.LBB132_2
 	jmp	.LBB132_1
 .LBB132_1:
-	mov	&.L__profc___ashrdi3+14, r12
-	mov	&.L__profc___ashrdi3+12, r11
-	mov	&.L__profc___ashrdi3+10, r14
-	mov	&.L__profc___ashrdi3+8, r15
+	mov	&__llvm_gcov_ctr.132+6, r12
+	mov	&__llvm_gcov_ctr.132+4, r11
+	mov	&__llvm_gcov_ctr.132+2, r14
+	mov	&__llvm_gcov_ctr.132, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24795,8 +36929,35 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.132
+	mov	r14, &__llvm_gcov_ctr.132+2
+	mov	r13, &__llvm_gcov_ctr.132+4
+	mov	r12, &__llvm_gcov_ctr.132+6
+	mov	&.L__profc___ashrdi3+14, r12
+	mov	&.L__profc___ashrdi3+12, r10
+	mov	&.L__profc___ashrdi3+10, r14
+	mov	&.L__profc___ashrdi3+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ashrdi3+8
@@ -24817,7 +36978,7 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	r12, 10(r1)
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	add.b	#-32, r14
                                         ; kill: def $r14 killed $r14b
 	call	#__mspabi_sral
@@ -24825,15 +36986,79 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	r12, 6(r1)
 	jmp	.LBB132_5
 .LBB132_2:
-	mov	44(r1), r12
+	mov	46(r1), r12
 	tst	r12
 	jne	.LBB132_4
 	jmp	.LBB132_3
 .LBB132_3:
+	mov	&__llvm_gcov_ctr.132+14, r12
+	mov	&__llvm_gcov_ctr.132+12, r11
+	mov	&__llvm_gcov_ctr.132+10, r14
+	mov	&__llvm_gcov_ctr.132+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.132+8
+	mov	r14, &__llvm_gcov_ctr.132+10
+	mov	r13, &__llvm_gcov_ctr.132+12
+	mov	r12, &__llvm_gcov_ctr.132+14
 	mov	&.L__profc___ashrdi3+22, r12
-	mov	&.L__profc___ashrdi3+20, r11
+	mov	&.L__profc___ashrdi3+20, r10
 	mov	&.L__profc___ashrdi3+18, r14
 	mov	&.L__profc___ashrdi3+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___ashrdi3+16
+	mov	r14, &.L__profc___ashrdi3+18
+	mov	r13, &.L__profc___ashrdi3+20
+	mov	r12, &.L__profc___ashrdi3+22
+	mov	24(r1), r12
+	mov	26(r1), r13
+	mov	28(r1), r14
+	mov	30(r1), r15
+	mov	r15, 38(r1)
+	mov	r14, 36(r1)
+	mov	r13, 34(r1)
+	mov	r12, 32(r1)
+	jmp	.LBB132_6
+.LBB132_4:
+	mov	&__llvm_gcov_ctr.132+22, r12
+	mov	&__llvm_gcov_ctr.132+20, r11
+	mov	&__llvm_gcov_ctr.132+18, r14
+	mov	&__llvm_gcov_ctr.132+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -24853,29 +37078,19 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___ashrdi3+16
-	mov	r14, &.L__profc___ashrdi3+18
-	mov	r13, &.L__profc___ashrdi3+20
-	mov	r12, &.L__profc___ashrdi3+22
-	mov	24(r1), r12
-	mov	26(r1), r13
-	mov	28(r1), r14
-	mov	30(r1), r15
-	mov	r15, 38(r1)
-	mov	r14, 36(r1)
-	mov	r13, 34(r1)
-	mov	r12, 32(r1)
-	jmp	.LBB132_6
-.LBB132_4:
+	mov	r15, &__llvm_gcov_ctr.132+16
+	mov	r14, &__llvm_gcov_ctr.132+18
+	mov	r13, &__llvm_gcov_ctr.132+20
+	mov	r12, &__llvm_gcov_ctr.132+22
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	call	#__mspabi_sral
 	mov	r13, 12(r1)
 	mov	r12, 10(r1)
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	mov	r14, 0(r1)                      ; 2-byte Folded Spill
 	mov.b	r14, r15
 	mov.b	#32, r14
@@ -24914,6 +37129,7 @@ __ashrdi3:                              ; @__ashrdi3
 	mov	38(r1), r15
 	add	#40, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end132:
 	.size	__ashrdi3, .Lfunc_end132-__ashrdi3
@@ -24923,18 +37139,51 @@ __ashrdi3:                              ; @__ashrdi3
 	.type	__bswapdi2,@function
 __bswapdi2:                             ; @__bswapdi2
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#8, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.133+6, r10
+	mov	&__llvm_gcov_ctr.133+4, r11
+	mov	&__llvm_gcov_ctr.133+2, r8
+	mov	&__llvm_gcov_ctr.133, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.133
+	mov	r8, &__llvm_gcov_ctr.133+2
+	mov	r9, &__llvm_gcov_ctr.133+4
+	mov	r10, &__llvm_gcov_ctr.133+6
 	mov	r15, 6(r1)
 	mov	r14, 4(r1)
 	mov	r13, 2(r1)
 	mov	r12, 0(r1)
 	mov	&.L__profc___bswapdi2+6, r12
-	mov	&.L__profc___bswapdi2+4, r11
+	mov	&.L__profc___bswapdi2+4, r10
 	mov	&.L__profc___bswapdi2+2, r14
 	mov	&.L__profc___bswapdi2, r15
 	inc	r15
@@ -24946,14 +37195,13 @@ __bswapdi2:                             ; @__bswapdi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___bswapdi2
@@ -24970,6 +37218,11 @@ __bswapdi2:                             ; @__bswapdi2
 	swpb	r15
 	add	#8, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end133:
 	.size	__bswapdi2, .Lfunc_end133-__bswapdi2
@@ -24979,14 +37232,45 @@ __bswapdi2:                             ; @__bswapdi2
 	.type	__bswapsi2,@function
 __bswapsi2:                             ; @__bswapsi2
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#4, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.134+6, r14
+	mov	&__llvm_gcov_ctr.134+4, r11
+	mov	&__llvm_gcov_ctr.134+2, r10
+	mov	&__llvm_gcov_ctr.134, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.134
+	mov	r10, &__llvm_gcov_ctr.134+2
+	mov	r15, &__llvm_gcov_ctr.134+4
+	mov	r14, &__llvm_gcov_ctr.134+6
 	mov	r13, 2(r1)
 	mov	r12, 0(r1)
 	mov	&.L__profc___bswapsi2+6, r12
-	mov	&.L__profc___bswapsi2+4, r11
+	mov	&.L__profc___bswapsi2+4, r10
 	mov	&.L__profc___bswapsi2+2, r14
 	mov	&.L__profc___bswapsi2, r15
 	inc	r15
@@ -24998,14 +37282,13 @@ __bswapsi2:                             ; @__bswapsi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___bswapsi2
@@ -25018,6 +37301,9 @@ __bswapsi2:                             ; @__bswapsi2
 	swpb	r13
 	add	#4, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end134:
 	.size	__bswapsi2, .Lfunc_end134-__bswapsi2
@@ -25027,14 +37313,46 @@ __bswapsi2:                             ; @__bswapsi2
 	.type	__clzsi2,@function
 __clzsi2:                               ; @__clzsi2
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.135+6, r14
+	mov	&__llvm_gcov_ctr.135+4, r11
+	mov	&__llvm_gcov_ctr.135+2, r10
+	mov	&__llvm_gcov_ctr.135, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.135
+	mov	r10, &__llvm_gcov_ctr.135+2
+	mov	r15, &__llvm_gcov_ctr.135+4
+	mov	r14, &__llvm_gcov_ctr.135+6
 	mov	r13, 16(r1)
 	mov	r12, 14(r1)
 	mov	&.L__profc___clzsi2+6, r12
-	mov	&.L__profc___clzsi2+4, r11
+	mov	&.L__profc___clzsi2+4, r10
 	mov	&.L__profc___clzsi2+2, r14
 	mov	&.L__profc___clzsi2, r15
 	inc	r15
@@ -25046,15 +37364,13 @@ __clzsi2:                               ; @__clzsi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
-	mov	r11, 0(r1)                      ; 2-byte Folded Spill
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___clzsi2
@@ -25200,6 +37516,9 @@ __clzsi2:                               ; @__clzsi2
 	add	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end135:
 	.size	__clzsi2, .Lfunc_end135-__clzsi2
@@ -25316,10 +37635,10 @@ __cmpdi2:                               ; @__cmpdi2
 	jne	.LBB136_6
 	jmp	.LBB136_5
 .LBB136_5:
-	mov	&.L__profc___cmpdi2+14, r12
-	mov	&.L__profc___cmpdi2+12, r11
-	mov	&.L__profc___cmpdi2+10, r14
-	mov	&.L__profc___cmpdi2+8, r15
+	mov	&__llvm_gcov_ctr.136+6, r12
+	mov	&__llvm_gcov_ctr.136+4, r11
+	mov	&__llvm_gcov_ctr.136+2, r14
+	mov	&__llvm_gcov_ctr.136, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -25335,8 +37654,35 @@ __cmpdi2:                               ; @__cmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.136
+	mov	r14, &__llvm_gcov_ctr.136+2
+	mov	r13, &__llvm_gcov_ctr.136+4
+	mov	r12, &__llvm_gcov_ctr.136+6
+	mov	&.L__profc___cmpdi2+14, r12
+	mov	&.L__profc___cmpdi2+12, r10
+	mov	&.L__profc___cmpdi2+10, r14
+	mov	&.L__profc___cmpdi2+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmpdi2+8
@@ -25386,10 +37732,10 @@ __cmpdi2:                               ; @__cmpdi2
 	jne	.LBB136_12
 	jmp	.LBB136_11
 .LBB136_11:
-	mov	&.L__profc___cmpdi2+22, r12
-	mov	&.L__profc___cmpdi2+20, r11
-	mov	&.L__profc___cmpdi2+18, r14
-	mov	&.L__profc___cmpdi2+16, r15
+	mov	&__llvm_gcov_ctr.136+14, r12
+	mov	&__llvm_gcov_ctr.136+12, r11
+	mov	&__llvm_gcov_ctr.136+10, r14
+	mov	&__llvm_gcov_ctr.136+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -25405,8 +37751,35 @@ __cmpdi2:                               ; @__cmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.136+8
+	mov	r14, &__llvm_gcov_ctr.136+10
+	mov	r13, &__llvm_gcov_ctr.136+12
+	mov	r12, &__llvm_gcov_ctr.136+14
+	mov	&.L__profc___cmpdi2+22, r12
+	mov	&.L__profc___cmpdi2+20, r10
+	mov	&.L__profc___cmpdi2+18, r14
+	mov	&.L__profc___cmpdi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmpdi2+16
@@ -25440,10 +37813,10 @@ __cmpdi2:                               ; @__cmpdi2
 	jne	.LBB136_16
 	jmp	.LBB136_15
 .LBB136_15:
-	mov	&.L__profc___cmpdi2+30, r12
-	mov	&.L__profc___cmpdi2+28, r11
-	mov	&.L__profc___cmpdi2+26, r14
-	mov	&.L__profc___cmpdi2+24, r15
+	mov	&__llvm_gcov_ctr.136+22, r12
+	mov	&__llvm_gcov_ctr.136+20, r11
+	mov	&__llvm_gcov_ctr.136+18, r14
+	mov	&__llvm_gcov_ctr.136+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -25459,8 +37832,35 @@ __cmpdi2:                               ; @__cmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.136+16
+	mov	r14, &__llvm_gcov_ctr.136+18
+	mov	r13, &__llvm_gcov_ctr.136+20
+	mov	r12, &__llvm_gcov_ctr.136+22
+	mov	&.L__profc___cmpdi2+30, r12
+	mov	&.L__profc___cmpdi2+28, r10
+	mov	&.L__profc___cmpdi2+26, r14
+	mov	&.L__profc___cmpdi2+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___cmpdi2+24
@@ -25494,10 +37894,68 @@ __cmpdi2:                               ; @__cmpdi2
 	jne	.LBB136_20
 	jmp	.LBB136_19
 .LBB136_19:
+	mov	&__llvm_gcov_ctr.136+30, r12
+	mov	&__llvm_gcov_ctr.136+28, r11
+	mov	&__llvm_gcov_ctr.136+26, r14
+	mov	&__llvm_gcov_ctr.136+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.136+24
+	mov	r14, &__llvm_gcov_ctr.136+26
+	mov	r13, &__llvm_gcov_ctr.136+28
+	mov	r12, &__llvm_gcov_ctr.136+30
 	mov	&.L__profc___cmpdi2+38, r12
-	mov	&.L__profc___cmpdi2+36, r11
+	mov	&.L__profc___cmpdi2+36, r10
 	mov	&.L__profc___cmpdi2+34, r14
 	mov	&.L__profc___cmpdi2+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___cmpdi2+32
+	mov	r14, &.L__profc___cmpdi2+34
+	mov	r13, &.L__profc___cmpdi2+36
+	mov	r12, &.L__profc___cmpdi2+38
+	clr	74(r1)
+	mov	#2, 72(r1)
+	jmp	.LBB136_21
+.LBB136_20:
+	mov	&__llvm_gcov_ctr.136+38, r12
+	mov	&__llvm_gcov_ctr.136+36, r11
+	mov	&__llvm_gcov_ctr.136+34, r14
+	mov	&__llvm_gcov_ctr.136+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -25517,14 +37975,10 @@ __cmpdi2:                               ; @__cmpdi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___cmpdi2+32
-	mov	r14, &.L__profc___cmpdi2+34
-	mov	r13, &.L__profc___cmpdi2+36
-	mov	r12, &.L__profc___cmpdi2+38
-	clr	74(r1)
-	mov	#2, 72(r1)
-	jmp	.LBB136_21
-.LBB136_20:
+	mov	r15, &__llvm_gcov_ctr.136+32
+	mov	r14, &__llvm_gcov_ctr.136+34
+	mov	r13, &__llvm_gcov_ctr.136+36
+	mov	r12, &__llvm_gcov_ctr.136+38
 	clr	74(r1)
 	mov	#1, 72(r1)
 	jmp	.LBB136_21
@@ -25545,33 +37999,69 @@ __cmpdi2:                               ; @__cmpdi2
 	.type	__aeabi_lcmp,@function
 __aeabi_lcmp:                           ; @__aeabi_lcmp
 ; %bb.0:
+	push	r4
+	push	r5
+	push	r6
 	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#24, r1
-	mov	r15, r8
-	mov	r14, r9
-	mov	r13, r10
-	mov	r12, r11
-	mov	40(r1), r15
-	mov	38(r1), r14
-	mov	36(r1), r13
-	mov	34(r1), r12
-                                        ; kill: def $r7 killed $r8
-                                        ; kill: def $r7 killed $r9
-                                        ; kill: def $r7 killed $r10
-                                        ; kill: def $r7 killed $r11
-	mov	r8, 22(r1)
-	mov	r9, 20(r1)
-	mov	r10, 18(r1)
-	mov	r11, 16(r1)
-	mov	r15, 14(r1)
-	mov	r14, 12(r1)
-	mov	r13, 10(r1)
-	mov	r12, 8(r1)
+	sub	#30, r1
+	mov	r15, r7
+	mov	r14, r8
+	mov	r13, r9
+	mov	r12, r10
+	mov	52(r1), r15
+	mov	50(r1), r14
+	mov	48(r1), r12
+	mov	r12, 8(r1)                      ; 2-byte Folded Spill
+	mov	46(r1), r12
+	mov	r12, 12(r1)                     ; 2-byte Folded Spill
+                                        ; kill: def $r12 killed $r7
+                                        ; kill: def $r12 killed $r8
+                                        ; kill: def $r13 killed $r9
+                                        ; kill: def $r12 killed $r10
+	mov	&__llvm_gcov_ctr.137+6, r6
+	mov	&__llvm_gcov_ctr.137+4, r12
+	mov	&__llvm_gcov_ctr.137+2, r4
+	mov	&__llvm_gcov_ctr.137, r13
+	inc	r13
+	mov	r13, 10(r1)                     ; 2-byte Folded Spill
+	tst	r13
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r4
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r11
+	mov	r11, r12
+	bic	r13, r12
+	mov	8(r1), r13                      ; 2-byte Folded Reload
+	add	r12, r6
+	mov	10(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, &__llvm_gcov_ctr.137
+	mov	12(r1), r12                     ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.137+2
+	mov	r5, &__llvm_gcov_ctr.137+4
+	mov	r6, &__llvm_gcov_ctr.137+6
+	mov	r7, 28(r1)
+	mov	r8, 26(r1)
+	mov	r9, 24(r1)
+	mov	r10, 22(r1)
+	mov	r15, 20(r1)
+	mov	r14, 18(r1)
+	mov	r13, 16(r1)
+	mov	r12, 14(r1)
 	mov	&.L__profc___aeabi_lcmp+6, r12
-	mov	&.L__profc___aeabi_lcmp+4, r11
+	mov	&.L__profc___aeabi_lcmp+4, r10
 	mov	&.L__profc___aeabi_lcmp+2, r14
 	mov	&.L__profc___aeabi_lcmp, r15
 	inc	r15
@@ -25583,28 +38073,27 @@ __aeabi_lcmp:                           ; @__aeabi_lcmp
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___aeabi_lcmp
 	mov	r14, &.L__profc___aeabi_lcmp+2
 	mov	r13, &.L__profc___aeabi_lcmp+4
 	mov	r12, &.L__profc___aeabi_lcmp+6
-	mov	22(r1), r15
-	mov	20(r1), r14
-	mov	18(r1), r13
-	mov	16(r1), r12
-	mov	8(r1), r10
-	mov	10(r1), r9
-	mov	12(r1), r8
-	mov	14(r1), r7
+	mov	28(r1), r15
+	mov	26(r1), r14
+	mov	24(r1), r13
+	mov	22(r1), r12
+	mov	14(r1), r10
+	mov	16(r1), r9
+	mov	18(r1), r8
+	mov	20(r1), r7
 	mov	r1, r11
 	mov	r7, 6(r11)
 	mov	r8, 4(r11)
@@ -25617,11 +38106,14 @@ __aeabi_lcmp:                           ; @__aeabi_lcmp
 	and	#1, r14
 	sub	r14, r13
 	add	#-1, r12
-	add	#24, r1
+	add	#30, r1
 	pop	r10
 	pop	r9
 	pop	r8
 	pop	r7
+	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end137:
 	.size	__aeabi_lcmp, .Lfunc_end137-__aeabi_lcmp
@@ -25631,14 +38123,46 @@ __aeabi_lcmp:                           ; @__aeabi_lcmp
 	.type	__ctzsi2,@function
 __ctzsi2:                               ; @__ctzsi2
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#18, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.138+6, r14
+	mov	&__llvm_gcov_ctr.138+4, r11
+	mov	&__llvm_gcov_ctr.138+2, r10
+	mov	&__llvm_gcov_ctr.138, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, 0(r1)                      ; 2-byte Folded Spill
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.138
+	mov	r10, &__llvm_gcov_ctr.138+2
+	mov	r15, &__llvm_gcov_ctr.138+4
+	mov	r14, &__llvm_gcov_ctr.138+6
 	mov	r13, 16(r1)
 	mov	r12, 14(r1)
 	mov	&.L__profc___ctzsi2+6, r12
-	mov	&.L__profc___ctzsi2+4, r11
+	mov	&.L__profc___ctzsi2+4, r10
 	mov	&.L__profc___ctzsi2+2, r14
 	mov	&.L__profc___ctzsi2, r15
 	inc	r15
@@ -25650,15 +38174,13 @@ __ctzsi2:                               ; @__ctzsi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
-	mov	r11, 0(r1)                      ; 2-byte Folded Spill
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ctzsi2
@@ -25804,6 +38326,9 @@ __ctzsi2:                               ; @__ctzsi2
 	add	r13, r12
 	add	#18, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end138:
 	.size	__ctzsi2, .Lfunc_end138-__ctzsi2
@@ -25813,13 +38338,14 @@ __ctzsi2:                               ; @__ctzsi2
 	.type	__lshrdi3,@function
 __lshrdi3:                              ; @__lshrdi3
 ; %bb.0:
+	push	r9
 	push	r10
 	sub	#40, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
-	mov	44(r1), r11
+	mov	46(r1), r11
 	mov	r15, 30(r1)
 	mov	r14, 28(r1)
 	mov	r13, 26(r1)
@@ -25860,13 +38386,41 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	r14, 18(r1)
 	mov	r13, 16(r1)
 	mov	r12, 14(r1)
-	mov.b	44(r1), r12
+	mov.b	46(r1), r12
 	bit.b	#32, r12
 	jeq	.LBB139_2
 	jmp	.LBB139_1
 .LBB139_1:
+	mov	&__llvm_gcov_ctr.139+6, r12
+	mov	&__llvm_gcov_ctr.139+4, r11
+	mov	&__llvm_gcov_ctr.139+2, r14
+	mov	&__llvm_gcov_ctr.139, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.139
+	mov	r14, &__llvm_gcov_ctr.139+2
+	mov	r13, &__llvm_gcov_ctr.139+4
+	mov	r12, &__llvm_gcov_ctr.139+6
 	mov	&.L__profc___lshrdi3+14, r12
-	mov	&.L__profc___lshrdi3+12, r11
+	mov	&.L__profc___lshrdi3+12, r10
 	mov	&.L__profc___lshrdi3+10, r14
 	mov	&.L__profc___lshrdi3+8, r15
 	inc	r15
@@ -25878,14 +38432,13 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___lshrdi3+8
@@ -25896,7 +38449,7 @@ __lshrdi3:                              ; @__lshrdi3
 	clr	10(r1)
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	add.b	#-32, r14
                                         ; kill: def $r14 killed $r14b
 	call	#__mspabi_srll
@@ -25904,15 +38457,15 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	r12, 6(r1)
 	jmp	.LBB139_5
 .LBB139_2:
-	mov	44(r1), r12
+	mov	46(r1), r12
 	tst	r12
 	jne	.LBB139_4
 	jmp	.LBB139_3
 .LBB139_3:
-	mov	&.L__profc___lshrdi3+22, r12
-	mov	&.L__profc___lshrdi3+20, r11
-	mov	&.L__profc___lshrdi3+18, r14
-	mov	&.L__profc___lshrdi3+16, r15
+	mov	&__llvm_gcov_ctr.139+14, r12
+	mov	&__llvm_gcov_ctr.139+12, r11
+	mov	&__llvm_gcov_ctr.139+10, r14
+	mov	&__llvm_gcov_ctr.139+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -25928,8 +38481,35 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.139+8
+	mov	r14, &__llvm_gcov_ctr.139+10
+	mov	r13, &__llvm_gcov_ctr.139+12
+	mov	r12, &__llvm_gcov_ctr.139+14
+	mov	&.L__profc___lshrdi3+22, r12
+	mov	&.L__profc___lshrdi3+20, r10
+	mov	&.L__profc___lshrdi3+18, r14
+	mov	&.L__profc___lshrdi3+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___lshrdi3+16
@@ -25946,15 +38526,42 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	r12, 32(r1)
 	jmp	.LBB139_6
 .LBB139_4:
+	mov	&__llvm_gcov_ctr.139+22, r12
+	mov	&__llvm_gcov_ctr.139+20, r11
+	mov	&__llvm_gcov_ctr.139+18, r14
+	mov	&__llvm_gcov_ctr.139+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.139+16
+	mov	r14, &__llvm_gcov_ctr.139+18
+	mov	r13, &__llvm_gcov_ctr.139+20
+	mov	r12, &__llvm_gcov_ctr.139+22
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	call	#__mspabi_srll
 	mov	r13, 12(r1)
 	mov	r12, 10(r1)
 	mov	18(r1), r12
 	mov	20(r1), r13
-	mov.b	44(r1), r14
+	mov.b	46(r1), r14
 	mov	r14, 0(r1)                      ; 2-byte Folded Spill
 	mov.b	r14, r15
 	mov.b	#32, r14
@@ -25993,6 +38600,7 @@ __lshrdi3:                              ; @__lshrdi3
 	mov	38(r1), r15
 	add	#40, r1
 	pop	r10
+	pop	r9
 	ret
 .Lfunc_end139:
 	.size	__lshrdi3, .Lfunc_end139-__lshrdi3
@@ -26002,18 +38610,52 @@ __lshrdi3:                              ; @__lshrdi3
 	.type	__muldsi3,@function
 __muldsi3:                              ; @__muldsi3
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#30, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.140+6, r10
+	mov	&__llvm_gcov_ctr.140+4, r11
+	mov	&__llvm_gcov_ctr.140+2, r8
+	mov	&__llvm_gcov_ctr.140, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, 2(r1)                      ; 2-byte Folded Spill
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.140
+	mov	r8, &__llvm_gcov_ctr.140+2
+	mov	r9, &__llvm_gcov_ctr.140+4
+	mov	r10, &__llvm_gcov_ctr.140+6
 	mov	r13, 28(r1)
 	mov	r12, 26(r1)
 	mov	r15, 24(r1)
 	mov	r14, 22(r1)
 	mov	&.L__profc___muldsi3+6, r12
-	mov	&.L__profc___muldsi3+4, r11
+	mov	&.L__profc___muldsi3+4, r10
 	mov	&.L__profc___muldsi3+2, r14
 	mov	&.L__profc___muldsi3, r15
 	inc	r15
@@ -26025,15 +38667,13 @@ __muldsi3:                              ; @__muldsi3
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
-	mov	r11, 2(r1)                      ; 2-byte Folded Spill
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___muldsi3
@@ -26146,6 +38786,11 @@ __muldsi3:                              ; @__muldsi3
 	mov	20(r1), r15
 	add	#30, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end140:
 	.size	__muldsi3, .Lfunc_end140-__muldsi3
@@ -26155,33 +38800,69 @@ __muldsi3:                              ; @__muldsi3
 	.type	__muldi3_compiler_rt,@function
 __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 ; %bb.0:
+	push	r4
+	push	r5
+	push	r6
 	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#46, r1
-	mov	r15, r8
-	mov	r14, r9
-	mov	r13, r10
-	mov	r12, r11
-	mov	62(r1), r15
-	mov	60(r1), r14
-	mov	58(r1), r13
-	mov	56(r1), r12
-                                        ; kill: def $r7 killed $r8
-                                        ; kill: def $r7 killed $r9
-                                        ; kill: def $r7 killed $r10
-                                        ; kill: def $r7 killed $r11
-	mov	r8, 44(r1)
-	mov	r9, 42(r1)
-	mov	r10, 40(r1)
-	mov	r11, 38(r1)
-	mov	r15, 36(r1)
-	mov	r14, 34(r1)
-	mov	r13, 32(r1)
-	mov	r12, 30(r1)
+	sub	#50, r1
+	mov	r15, r7
+	mov	r14, r8
+	mov	r13, r9
+	mov	r12, r10
+	mov	72(r1), r15
+	mov	70(r1), r14
+	mov	68(r1), r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	66(r1), r12
+	mov	r12, 2(r1)                      ; 2-byte Folded Spill
+                                        ; kill: def $r12 killed $r7
+                                        ; kill: def $r12 killed $r8
+                                        ; kill: def $r13 killed $r9
+                                        ; kill: def $r12 killed $r10
+	mov	&__llvm_gcov_ctr.141+6, r6
+	mov	&__llvm_gcov_ctr.141+4, r12
+	mov	&__llvm_gcov_ctr.141+2, r4
+	mov	&__llvm_gcov_ctr.141, r11
+	inc	r11
+	tst	r11
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r4
+	mov	r11, r13
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r12
+	mov	r12, 4(r1)                      ; 2-byte Folded Spill
+	bic	r13, r12
+	mov	0(r1), r13                      ; 2-byte Folded Reload
+	add	r12, r6
+	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	r11, &__llvm_gcov_ctr.141
+	mov	4(r1), r11                      ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.141+2
+	mov	r5, &__llvm_gcov_ctr.141+4
+	mov	r6, &__llvm_gcov_ctr.141+6
+	mov	r7, 48(r1)
+	mov	r8, 46(r1)
+	mov	r9, 44(r1)
+	mov	r10, 42(r1)
+	mov	r15, 40(r1)
+	mov	r14, 38(r1)
+	mov	r13, 36(r1)
+	mov	r12, 34(r1)
 	mov	&.L__profc___muldi3_compiler_rt+6, r12
-	mov	&.L__profc___muldi3_compiler_rt+4, r11
+	mov	&.L__profc___muldi3_compiler_rt+4, r10
 	mov	&.L__profc___muldi3_compiler_rt+2, r14
 	mov	&.L__profc___muldi3_compiler_rt, r15
 	inc	r15
@@ -26193,63 +38874,61 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
-	mov	r11, 0(r1)                      ; 2-byte Folded Spill
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___muldi3_compiler_rt
 	mov	r14, &.L__profc___muldi3_compiler_rt+2
 	mov	r13, &.L__profc___muldi3_compiler_rt+4
 	mov	r12, &.L__profc___muldi3_compiler_rt+6
-	mov	38(r1), r12
-	mov	40(r1), r13
-	mov	42(r1), r14
-	mov	44(r1), r15
-	mov	r15, 28(r1)
-	mov	r14, 26(r1)
-	mov	r13, 24(r1)
-	mov	r12, 22(r1)
+	mov	42(r1), r12
+	mov	44(r1), r13
+	mov	46(r1), r14
+	mov	48(r1), r15
+	mov	r15, 32(r1)
+	mov	r14, 30(r1)
+	mov	r13, 28(r1)
+	mov	r12, 26(r1)
+	mov	34(r1), r12
+	mov	36(r1), r13
+	mov	38(r1), r14
+	mov	40(r1), r15
+	mov	r15, 24(r1)
+	mov	r14, 22(r1)
+	mov	r13, 20(r1)
+	mov	r12, 18(r1)
+	mov	28(r1), r13
+	mov	26(r1), r12
+	mov	20(r1), r15
+	mov	18(r1), r14
+	call	#__muldsi3
+	mov	r15, 16(r1)
+	mov	r14, 14(r1)
+	mov	r13, 12(r1)
+	mov	r12, 10(r1)
 	mov	30(r1), r12
 	mov	32(r1), r13
-	mov	34(r1), r14
-	mov	36(r1), r15
-	mov	r15, 20(r1)
-	mov	r14, 18(r1)
-	mov	r13, 16(r1)
-	mov	r12, 14(r1)
-	mov	24(r1), r13
-	mov	22(r1), r12
-	mov	16(r1), r15
-	mov	14(r1), r14
-	call	#__muldsi3
-	mov	r15, 12(r1)
-	mov	r14, 10(r1)
-	mov	r13, 8(r1)
-	mov	r12, 6(r1)
-	mov	26(r1), r12
-	mov	28(r1), r13
-	mov	14(r1), r14
-	mov	16(r1), r15
-	call	#__mspabi_mpyl
-	mov	r12, 2(r1)                      ; 2-byte Folded Spill
-	mov	r13, 4(r1)                      ; 2-byte Folded Spill
-	mov	22(r1), r12
-	mov	24(r1), r13
 	mov	18(r1), r14
 	mov	20(r1), r15
 	call	#__mspabi_mpyl
-	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	mov	r13, 8(r1)                      ; 2-byte Folded Spill
+	mov	26(r1), r12
+	mov	28(r1), r13
+	mov	22(r1), r14
+	mov	24(r1), r15
+	call	#__mspabi_mpyl
+	mov	4(r1), r14                      ; 2-byte Folded Reload
 	mov	r12, r15
-	mov	2(r1), r12                      ; 2-byte Folded Reload
+	mov	6(r1), r12                      ; 2-byte Folded Reload
 	mov	r13, r11
-	mov	4(r1), r13                      ; 2-byte Folded Reload
+	mov	8(r1), r13                      ; 2-byte Folded Reload
 	add	r11, r13
 	mov	r12, r11
 	add	r15, r11
@@ -26258,8 +38937,8 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	mov	r14, r12
 	bic	r15, r12
 	add	r12, r13
-	mov	10(r1), r15
-	mov	12(r1), r12
+	mov	14(r1), r15
+	mov	16(r1), r12
 	add	r13, r12
 	mov	r15, r13
 	add	r11, r13
@@ -26267,17 +38946,20 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	mov	r2, r15
 	bic	r15, r14
 	add	r14, r12
-	mov	r13, 10(r1)
-	mov	r12, 12(r1)
-	mov	6(r1), r12
-	mov	8(r1), r13
-	mov	10(r1), r14
-	mov	12(r1), r15
-	add	#46, r1
+	mov	r13, 14(r1)
+	mov	r12, 16(r1)
+	mov	10(r1), r12
+	mov	12(r1), r13
+	mov	14(r1), r14
+	mov	16(r1), r15
+	add	#50, r1
 	pop	r10
 	pop	r9
 	pop	r8
 	pop	r7
+	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end141:
 	.size	__muldi3_compiler_rt, .Lfunc_end141-__muldi3_compiler_rt
@@ -26287,22 +38969,56 @@ __muldi3_compiler_rt:                   ; @__muldi3_compiler_rt
 	.type	__negdi2,@function
 __negdi2:                               ; @__negdi2
 ; %bb.0:
+	push	r5
 	push	r6
 	push	r7
 	push	r8
 	push	r9
 	push	r10
 	sub	#24, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	r15, 22(r1)
-	mov	r14, 20(r1)
-	mov	r13, 18(r1)
-	mov	r12, 16(r1)
+	mov	r15, r11
+	mov	r14, r15
+	mov	r13, r14
+	mov	r12, r13
+                                        ; kill: def $r12 killed $r11
+                                        ; kill: def $r12 killed $r15
+                                        ; kill: def $r12 killed $r14
+                                        ; kill: def $r12 killed $r13
+	mov	&__llvm_gcov_ctr.142+6, r10
+	mov	&__llvm_gcov_ctr.142+4, r12
+	mov	&__llvm_gcov_ctr.142+2, r8
+	mov	&__llvm_gcov_ctr.142, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r12, r9
+	add	r6, r9
+	cmp	r12, r9
+	mov	r2, r5
+	mov	#1, r12
+	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	mov	r12, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.142
+	mov	r8, &__llvm_gcov_ctr.142+2
+	mov	r9, &__llvm_gcov_ctr.142+4
+	mov	r10, &__llvm_gcov_ctr.142+6
+	mov	r11, 22(r1)
+	mov	r15, 20(r1)
+	mov	r14, 18(r1)
+	mov	r13, 16(r1)
 	mov	&.L__profc___negdi2+6, r13
-	mov	&.L__profc___negdi2+4, r12
+	mov	&.L__profc___negdi2+4, r10
 	mov	&.L__profc___negdi2+2, r15
 	mov	&.L__profc___negdi2, r11
 	inc	r11
@@ -26314,15 +39030,13 @@ __negdi2:                               ; @__negdi2
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
-	mov	r12, 0(r1)                      ; 2-byte Folded Spill
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -26390,6 +39104,7 @@ __negdi2:                               ; @__negdi2
 	pop	r8
 	pop	r7
 	pop	r6
+	pop	r5
 	ret
 .Lfunc_end142:
 	.size	__negdi2, .Lfunc_end142-__negdi2
@@ -26399,18 +39114,51 @@ __negdi2:                               ; @__negdi2
 	.type	__paritydi2,@function
 __paritydi2:                            ; @__paritydi2
 ; %bb.0:
+	push	r5
+	push	r6
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#24, r1
                                         ; kill: def $r11 killed $r15
                                         ; kill: def $r11 killed $r14
                                         ; kill: def $r11 killed $r13
                                         ; kill: def $r11 killed $r12
+	mov	&__llvm_gcov_ctr.143+6, r10
+	mov	&__llvm_gcov_ctr.143+4, r11
+	mov	&__llvm_gcov_ctr.143+2, r8
+	mov	&__llvm_gcov_ctr.143, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r11, r9
+	add	r6, r9
+	cmp	r11, r9
+	mov	r2, r5
+	mov	#1, r11
+	mov	r11, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.143
+	mov	r8, &__llvm_gcov_ctr.143+2
+	mov	r9, &__llvm_gcov_ctr.143+4
+	mov	r10, &__llvm_gcov_ctr.143+6
 	mov	r15, 22(r1)
 	mov	r14, 20(r1)
 	mov	r13, 18(r1)
 	mov	r12, 16(r1)
 	mov	&.L__profc___paritydi2+6, r12
-	mov	&.L__profc___paritydi2+4, r11
+	mov	&.L__profc___paritydi2+4, r10
 	mov	&.L__profc___paritydi2+2, r14
 	mov	&.L__profc___paritydi2, r15
 	inc	r15
@@ -26422,14 +39170,13 @@ __paritydi2:                            ; @__paritydi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___paritydi2
@@ -26519,6 +39266,11 @@ __paritydi2:                            ; @__paritydi2
 	and	#1, r12
 	add	#24, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
+	pop	r6
+	pop	r5
 	ret
 .Lfunc_end143:
 	.size	__paritydi2, .Lfunc_end143-__paritydi2
@@ -26528,14 +39280,45 @@ __paritydi2:                            ; @__paritydi2
 	.type	__paritysi2,@function
 __paritysi2:                            ; @__paritysi2
 ; %bb.0:
+	push	r7
+	push	r8
+	push	r9
 	push	r10
 	sub	#12, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.144+6, r14
+	mov	&__llvm_gcov_ctr.144+4, r11
+	mov	&__llvm_gcov_ctr.144+2, r10
+	mov	&__llvm_gcov_ctr.144, r9
+	inc	r9
+	tst	r9
+	mov	r2, r15
+	rra	r15
+	and	#1, r15
+	add	r15, r10
+	mov	r9, r15
+	bis	r10, r15
+	tst	r15
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r11, r15
+	add	r8, r15
+	cmp	r11, r15
+	mov	r2, r7
+	mov	#1, r11
+	mov	r11, r8
+	bic	r7, r8
+	add	r8, r14
+	mov	r9, &__llvm_gcov_ctr.144
+	mov	r10, &__llvm_gcov_ctr.144+2
+	mov	r15, &__llvm_gcov_ctr.144+4
+	mov	r14, &__llvm_gcov_ctr.144+6
 	mov	r13, 10(r1)
 	mov	r12, 8(r1)
 	mov	&.L__profc___paritysi2+6, r12
-	mov	&.L__profc___paritysi2+4, r11
+	mov	&.L__profc___paritysi2+4, r10
 	mov	&.L__profc___paritysi2+2, r14
 	mov	&.L__profc___paritysi2, r15
 	inc	r15
@@ -26547,14 +39330,13 @@ __paritysi2:                            ; @__paritysi2
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___paritysi2
@@ -26632,6 +39414,9 @@ __paritysi2:                            ; @__paritysi2
 	and	#1, r12
 	add	#12, r1
 	pop	r10
+	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end144:
 	.size	__paritysi2, .Lfunc_end144-__paritysi2
@@ -26648,16 +39433,49 @@ __popcountdi2:                          ; @__popcountdi2
 	push	r9
 	push	r10
 	sub	#74, r1
-                                        ; kill: def $r11 killed $r15
-                                        ; kill: def $r11 killed $r14
-                                        ; kill: def $r11 killed $r13
-                                        ; kill: def $r11 killed $r12
-	mov	r15, 72(r1)
-	mov	r14, 70(r1)
-	mov	r13, 68(r1)
-	mov	r12, 66(r1)
+	mov	r15, r11
+	mov	r14, r15
+	mov	r13, r14
+	mov	r12, r13
+                                        ; kill: def $r12 killed $r11
+                                        ; kill: def $r12 killed $r15
+                                        ; kill: def $r12 killed $r14
+                                        ; kill: def $r12 killed $r13
+	mov	&__llvm_gcov_ctr.145+6, r10
+	mov	&__llvm_gcov_ctr.145+4, r12
+	mov	&__llvm_gcov_ctr.145+2, r8
+	mov	&__llvm_gcov_ctr.145, r7
+	inc	r7
+	tst	r7
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	add	r9, r8
+	mov	r7, r9
+	bis	r8, r9
+	tst	r9
+	mov	r2, r6
+	rra	r6
+	and	#1, r6
+	mov	r12, r9
+	add	r6, r9
+	cmp	r12, r9
+	mov	r2, r5
+	mov	#1, r12
+	mov	r12, 32(r1)                     ; 2-byte Folded Spill
+	mov	r12, r6
+	bic	r5, r6
+	add	r6, r10
+	mov	r7, &__llvm_gcov_ctr.145
+	mov	r8, &__llvm_gcov_ctr.145+2
+	mov	r9, &__llvm_gcov_ctr.145+4
+	mov	r10, &__llvm_gcov_ctr.145+6
+	mov	r11, 72(r1)
+	mov	r15, 70(r1)
+	mov	r14, 68(r1)
+	mov	r13, 66(r1)
 	mov	&.L__profc___popcountdi2+6, r13
-	mov	&.L__profc___popcountdi2+4, r12
+	mov	&.L__profc___popcountdi2+4, r10
 	mov	&.L__profc___popcountdi2+2, r15
 	mov	&.L__profc___popcountdi2, r11
 	inc	r11
@@ -26669,15 +39487,13 @@ __popcountdi2:                          ; @__popcountdi2
 	mov	r11, r14
 	bis	r15, r14
 	tst	r14
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r12, r14
-	add	r10, r14
-	cmp	r12, r14
 	mov	r2, r9
-	mov	#1, r12
-	mov	r12, 32(r1)                     ; 2-byte Folded Spill
+	rra	r9
+	and	#1, r9
+	mov	r10, r14
+	add	r9, r14
+	cmp	r10, r14
+	mov	r2, r9
 	mov	r12, r10
 	bic	r9, r10
 	add	r10, r13
@@ -26999,15 +39815,45 @@ __popcountdi2:                          ; @__popcountdi2
 	.type	__popcountsi2,@function
 __popcountsi2:                          ; @__popcountsi2
 ; %bb.0:
+	push	r7
+	push	r8
 	push	r9
 	push	r10
 	sub	#8, r1
                                         ; kill: def $r14 killed $r13
                                         ; kill: def $r14 killed $r12
+	mov	&__llvm_gcov_ctr.146+6, r15
+	mov	&__llvm_gcov_ctr.146+4, r14
+	mov	&__llvm_gcov_ctr.146+2, r10
+	mov	&__llvm_gcov_ctr.146, r9
+	inc	r9
+	tst	r9
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r10
+	mov	r9, r11
+	bis	r10, r11
+	tst	r11
+	mov	r2, r8
+	rra	r8
+	and	#1, r8
+	mov	r14, r11
+	add	r8, r11
+	cmp	r14, r11
+	mov	r2, r7
+	mov	#1, r14
+	mov	r14, r8
+	bic	r7, r8
+	add	r8, r15
+	mov	r9, &__llvm_gcov_ctr.146
+	mov	r10, &__llvm_gcov_ctr.146+2
+	mov	r11, &__llvm_gcov_ctr.146+4
+	mov	r15, &__llvm_gcov_ctr.146+6
 	mov	r13, 6(r1)
 	mov	r12, 4(r1)
 	mov	&.L__profc___popcountsi2+6, r12
-	mov	&.L__profc___popcountsi2+4, r14
+	mov	&.L__profc___popcountsi2+4, r10
 	mov	&.L__profc___popcountsi2+2, r15
 	mov	&.L__profc___popcountsi2, r11
 	inc	r11
@@ -27019,14 +39865,13 @@ __popcountsi2:                          ; @__popcountsi2
 	mov	r11, r13
 	bis	r15, r13
 	tst	r13
-	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r14, r13
-	add	r10, r13
-	cmp	r14, r13
 	mov	r2, r9
-	mov	#1, r14
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r9
 	mov	r14, r10
 	bic	r9, r10
 	add	r10, r12
@@ -27133,6 +39978,8 @@ __popcountsi2:                          ; @__popcountsi2
 	add	#8, r1
 	pop	r10
 	pop	r9
+	pop	r8
+	pop	r7
 	ret
 .Lfunc_end146:
 	.size	__popcountsi2, .Lfunc_end146-__popcountsi2
@@ -27233,10 +40080,10 @@ __powidf2:                              ; @__powidf2
 	jeq	.LBB147_5
 	jmp	.LBB147_4
 .LBB147_4:                              ;   in Loop: Header=BB147_3 Depth=1
-	mov	&.L__profc___powidf2+22, r12
-	mov	&.L__profc___powidf2+20, r11
-	mov	&.L__profc___powidf2+18, r14
-	mov	&.L__profc___powidf2+16, r15
+	mov	&__llvm_gcov_ctr.147+6, r12
+	mov	&__llvm_gcov_ctr.147+4, r11
+	mov	&__llvm_gcov_ctr.147+2, r14
+	mov	&__llvm_gcov_ctr.147, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27252,8 +40099,35 @@ __powidf2:                              ; @__powidf2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.147
+	mov	r14, &__llvm_gcov_ctr.147+2
+	mov	r13, &__llvm_gcov_ctr.147+4
+	mov	r12, &__llvm_gcov_ctr.147+6
+	mov	&.L__profc___powidf2+22, r12
+	mov	&.L__profc___powidf2+20, r10
+	mov	&.L__profc___powidf2+18, r14
+	mov	&.L__profc___powidf2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___powidf2+16
@@ -27324,6 +40198,33 @@ __powidf2:                              ; @__powidf2
 	mov	r12, &.L__profc___powidf2+30
 	jmp	.LBB147_8
 .LBB147_7:                              ;   in Loop: Header=BB147_3 Depth=1
+	mov	&__llvm_gcov_ctr.147+14, r12
+	mov	&__llvm_gcov_ctr.147+12, r11
+	mov	&__llvm_gcov_ctr.147+10, r14
+	mov	&__llvm_gcov_ctr.147+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.147+8
+	mov	r14, &__llvm_gcov_ctr.147+10
+	mov	r13, &__llvm_gcov_ctr.147+12
+	mov	r12, &__llvm_gcov_ctr.147+14
 	mov	22(r1), r12
 	mov	24(r1), r13
 	mov	26(r1), r14
@@ -27344,10 +40245,10 @@ __powidf2:                              ; @__powidf2
 	jeq	.LBB147_10
 	jmp	.LBB147_9
 .LBB147_9:
-	mov	&.L__profc___powidf2+38, r12
-	mov	&.L__profc___powidf2+36, r11
-	mov	&.L__profc___powidf2+34, r14
-	mov	&.L__profc___powidf2+32, r15
+	mov	&__llvm_gcov_ctr.147+22, r12
+	mov	&__llvm_gcov_ctr.147+20, r11
+	mov	&__llvm_gcov_ctr.147+18, r14
+	mov	&__llvm_gcov_ctr.147+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27363,8 +40264,35 @@ __powidf2:                              ; @__powidf2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.147+16
+	mov	r14, &__llvm_gcov_ctr.147+18
+	mov	r13, &__llvm_gcov_ctr.147+20
+	mov	r12, &__llvm_gcov_ctr.147+22
+	mov	&.L__profc___powidf2+38, r12
+	mov	&.L__profc___powidf2+36, r10
+	mov	&.L__profc___powidf2+34, r14
+	mov	&.L__profc___powidf2+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___powidf2+32
@@ -27386,6 +40314,33 @@ __powidf2:                              ; @__powidf2
 	mov	r15, 6(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB147_11
 .LBB147_10:
+	mov	&__llvm_gcov_ctr.147+30, r12
+	mov	&__llvm_gcov_ctr.147+28, r11
+	mov	&__llvm_gcov_ctr.147+26, r14
+	mov	&__llvm_gcov_ctr.147+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.147+24
+	mov	r14, &__llvm_gcov_ctr.147+26
+	mov	r13, &__llvm_gcov_ctr.147+28
+	mov	r12, &__llvm_gcov_ctr.147+30
 	mov	18(r1), r12
 	mov	16(r1), r13
 	mov	14(r1), r14
@@ -27497,10 +40452,10 @@ __powisf2:                              ; @__powisf2
 	jeq	.LBB148_5
 	jmp	.LBB148_4
 .LBB148_4:                              ;   in Loop: Header=BB148_3 Depth=1
-	mov	&.L__profc___powisf2+22, r12
-	mov	&.L__profc___powisf2+20, r11
-	mov	&.L__profc___powisf2+18, r14
-	mov	&.L__profc___powisf2+16, r15
+	mov	&__llvm_gcov_ctr.148+6, r12
+	mov	&__llvm_gcov_ctr.148+4, r11
+	mov	&__llvm_gcov_ctr.148+2, r14
+	mov	&__llvm_gcov_ctr.148, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27516,8 +40471,35 @@ __powisf2:                              ; @__powisf2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.148
+	mov	r14, &__llvm_gcov_ctr.148+2
+	mov	r13, &__llvm_gcov_ctr.148+4
+	mov	r12, &__llvm_gcov_ctr.148+6
+	mov	&.L__profc___powisf2+22, r12
+	mov	&.L__profc___powisf2+20, r10
+	mov	&.L__profc___powisf2+18, r14
+	mov	&.L__profc___powisf2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___powisf2+16
@@ -27582,24 +40564,10 @@ __powisf2:                              ; @__powisf2
 	mov	r12, &.L__profc___powisf2+30
 	jmp	.LBB148_8
 .LBB148_7:                              ;   in Loop: Header=BB148_3 Depth=1
-	mov	16(r1), r14
-	mov	18(r1), r15
-	mov	r14, r12
-	mov	r15, r13
-	call	#__mspabi_mpyf
-	mov	r13, 18(r1)
-	mov	r12, 16(r1)
-	jmp	.LBB148_3
-.LBB148_8:
-	mov	12(r1), r12
-	tst	r12
-	jeq	.LBB148_10
-	jmp	.LBB148_9
-.LBB148_9:
-	mov	&.L__profc___powisf2+38, r12
-	mov	&.L__profc___powisf2+36, r11
-	mov	&.L__profc___powisf2+34, r14
-	mov	&.L__profc___powisf2+32, r15
+	mov	&__llvm_gcov_ctr.148+14, r12
+	mov	&__llvm_gcov_ctr.148+12, r11
+	mov	&__llvm_gcov_ctr.148+10, r14
+	mov	&__llvm_gcov_ctr.148+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27619,6 +40587,74 @@ __powisf2:                              ; @__powisf2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.148+8
+	mov	r14, &__llvm_gcov_ctr.148+10
+	mov	r13, &__llvm_gcov_ctr.148+12
+	mov	r12, &__llvm_gcov_ctr.148+14
+	mov	16(r1), r14
+	mov	18(r1), r15
+	mov	r14, r12
+	mov	r15, r13
+	call	#__mspabi_mpyf
+	mov	r13, 18(r1)
+	mov	r12, 16(r1)
+	jmp	.LBB148_3
+.LBB148_8:
+	mov	12(r1), r12
+	tst	r12
+	jeq	.LBB148_10
+	jmp	.LBB148_9
+.LBB148_9:
+	mov	&__llvm_gcov_ctr.148+22, r12
+	mov	&__llvm_gcov_ctr.148+20, r11
+	mov	&__llvm_gcov_ctr.148+18, r14
+	mov	&__llvm_gcov_ctr.148+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.148+16
+	mov	r14, &__llvm_gcov_ctr.148+18
+	mov	r13, &__llvm_gcov_ctr.148+20
+	mov	r12, &__llvm_gcov_ctr.148+22
+	mov	&.L__profc___powisf2+38, r12
+	mov	&.L__profc___powisf2+36, r10
+	mov	&.L__profc___powisf2+34, r14
+	mov	&.L__profc___powisf2+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
 	mov	r15, &.L__profc___powisf2+32
 	mov	r14, &.L__profc___powisf2+34
 	mov	r13, &.L__profc___powisf2+36
@@ -27632,6 +40668,33 @@ __powisf2:                              ; @__powisf2
 	mov	r13, 2(r1)                      ; 2-byte Folded Spill
 	jmp	.LBB148_11
 .LBB148_10:
+	mov	&__llvm_gcov_ctr.148+30, r12
+	mov	&__llvm_gcov_ctr.148+28, r11
+	mov	&__llvm_gcov_ctr.148+26, r14
+	mov	&__llvm_gcov_ctr.148+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r10
+	mov	#1, r11
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &__llvm_gcov_ctr.148+24
+	mov	r14, &__llvm_gcov_ctr.148+26
+	mov	r13, &__llvm_gcov_ctr.148+28
+	mov	r12, &__llvm_gcov_ctr.148+30
 	mov	10(r1), r12
 	mov	8(r1), r13
 	mov	r13, 0(r1)                      ; 2-byte Folded Spill
@@ -27743,10 +40806,10 @@ __ucmpdi2:                              ; @__ucmpdi2
 	jne	.LBB149_4
 	jmp	.LBB149_3
 .LBB149_3:
-	mov	&.L__profc___ucmpdi2+14, r12
-	mov	&.L__profc___ucmpdi2+12, r11
-	mov	&.L__profc___ucmpdi2+10, r14
-	mov	&.L__profc___ucmpdi2+8, r15
+	mov	&__llvm_gcov_ctr.149+6, r12
+	mov	&__llvm_gcov_ctr.149+4, r11
+	mov	&__llvm_gcov_ctr.149+2, r14
+	mov	&__llvm_gcov_ctr.149, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27762,8 +40825,35 @@ __ucmpdi2:                              ; @__ucmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.149
+	mov	r14, &__llvm_gcov_ctr.149+2
+	mov	r13, &__llvm_gcov_ctr.149+4
+	mov	r12, &__llvm_gcov_ctr.149+6
+	mov	&.L__profc___ucmpdi2+14, r12
+	mov	&.L__profc___ucmpdi2+12, r10
+	mov	&.L__profc___ucmpdi2+10, r14
+	mov	&.L__profc___ucmpdi2+8, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ucmpdi2+8
@@ -27797,10 +40887,10 @@ __ucmpdi2:                              ; @__ucmpdi2
 	jne	.LBB149_8
 	jmp	.LBB149_7
 .LBB149_7:
-	mov	&.L__profc___ucmpdi2+22, r12
-	mov	&.L__profc___ucmpdi2+20, r11
-	mov	&.L__profc___ucmpdi2+18, r14
-	mov	&.L__profc___ucmpdi2+16, r15
+	mov	&__llvm_gcov_ctr.149+14, r12
+	mov	&__llvm_gcov_ctr.149+12, r11
+	mov	&__llvm_gcov_ctr.149+10, r14
+	mov	&__llvm_gcov_ctr.149+8, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27816,8 +40906,35 @@ __ucmpdi2:                              ; @__ucmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.149+8
+	mov	r14, &__llvm_gcov_ctr.149+10
+	mov	r13, &__llvm_gcov_ctr.149+12
+	mov	r12, &__llvm_gcov_ctr.149+14
+	mov	&.L__profc___ucmpdi2+22, r12
+	mov	&.L__profc___ucmpdi2+20, r10
+	mov	&.L__profc___ucmpdi2+18, r14
+	mov	&.L__profc___ucmpdi2+16, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ucmpdi2+16
@@ -27851,10 +40968,10 @@ __ucmpdi2:                              ; @__ucmpdi2
 	jne	.LBB149_12
 	jmp	.LBB149_11
 .LBB149_11:
-	mov	&.L__profc___ucmpdi2+30, r12
-	mov	&.L__profc___ucmpdi2+28, r11
-	mov	&.L__profc___ucmpdi2+26, r14
-	mov	&.L__profc___ucmpdi2+24, r15
+	mov	&__llvm_gcov_ctr.149+22, r12
+	mov	&__llvm_gcov_ctr.149+20, r11
+	mov	&__llvm_gcov_ctr.149+18, r14
+	mov	&__llvm_gcov_ctr.149+16, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27870,8 +40987,35 @@ __ucmpdi2:                              ; @__ucmpdi2
 	mov	r11, r13
 	add	r10, r13
 	cmp	r11, r13
-	mov	r2, r10
+	mov	r2, r9
 	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.149+16
+	mov	r14, &__llvm_gcov_ctr.149+18
+	mov	r13, &__llvm_gcov_ctr.149+20
+	mov	r12, &__llvm_gcov_ctr.149+22
+	mov	&.L__profc___ucmpdi2+30, r12
+	mov	&.L__profc___ucmpdi2+28, r10
+	mov	&.L__profc___ucmpdi2+26, r14
+	mov	&.L__profc___ucmpdi2+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___ucmpdi2+24
@@ -27905,10 +41049,68 @@ __ucmpdi2:                              ; @__ucmpdi2
 	jne	.LBB149_16
 	jmp	.LBB149_15
 .LBB149_15:
+	mov	&__llvm_gcov_ctr.149+30, r12
+	mov	&__llvm_gcov_ctr.149+28, r11
+	mov	&__llvm_gcov_ctr.149+26, r14
+	mov	&__llvm_gcov_ctr.149+24, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r10
+	rra	r10
+	and	#1, r10
+	mov	r11, r13
+	add	r10, r13
+	cmp	r11, r13
+	mov	r2, r9
+	mov	#1, r11
+	mov	r11, r10
+	bic	r9, r10
+	add	r10, r12
+	mov	r15, &__llvm_gcov_ctr.149+24
+	mov	r14, &__llvm_gcov_ctr.149+26
+	mov	r13, &__llvm_gcov_ctr.149+28
+	mov	r12, &__llvm_gcov_ctr.149+30
 	mov	&.L__profc___ucmpdi2+38, r12
-	mov	&.L__profc___ucmpdi2+36, r11
+	mov	&.L__profc___ucmpdi2+36, r10
 	mov	&.L__profc___ucmpdi2+34, r14
 	mov	&.L__profc___ucmpdi2+32, r15
+	inc	r15
+	tst	r15
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	add	r13, r14
+	mov	r15, r13
+	bis	r14, r13
+	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
+	mov	r2, r10
+	bic	r10, r11
+	add	r11, r12
+	mov	r15, &.L__profc___ucmpdi2+32
+	mov	r14, &.L__profc___ucmpdi2+34
+	mov	r13, &.L__profc___ucmpdi2+36
+	mov	r12, &.L__profc___ucmpdi2+38
+	clr	50(r1)
+	mov	#2, 48(r1)
+	jmp	.LBB149_17
+.LBB149_16:
+	mov	&__llvm_gcov_ctr.149+38, r12
+	mov	&__llvm_gcov_ctr.149+36, r11
+	mov	&__llvm_gcov_ctr.149+34, r14
+	mov	&__llvm_gcov_ctr.149+32, r15
 	inc	r15
 	tst	r15
 	mov	r2, r13
@@ -27928,14 +41130,10 @@ __ucmpdi2:                              ; @__ucmpdi2
 	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
-	mov	r15, &.L__profc___ucmpdi2+32
-	mov	r14, &.L__profc___ucmpdi2+34
-	mov	r13, &.L__profc___ucmpdi2+36
-	mov	r12, &.L__profc___ucmpdi2+38
-	clr	50(r1)
-	mov	#2, 48(r1)
-	jmp	.LBB149_17
-.LBB149_16:
+	mov	r15, &__llvm_gcov_ctr.149+32
+	mov	r14, &__llvm_gcov_ctr.149+34
+	mov	r13, &__llvm_gcov_ctr.149+36
+	mov	r12, &__llvm_gcov_ctr.149+38
 	clr	50(r1)
 	mov	#1, 48(r1)
 	jmp	.LBB149_17
@@ -27956,33 +41154,69 @@ __ucmpdi2:                              ; @__ucmpdi2
 	.type	__aeabi_ulcmp,@function
 __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 ; %bb.0:
+	push	r4
+	push	r5
+	push	r6
 	push	r7
 	push	r8
 	push	r9
 	push	r10
-	sub	#24, r1
-	mov	r15, r8
-	mov	r14, r9
-	mov	r13, r10
-	mov	r12, r11
-	mov	40(r1), r15
-	mov	38(r1), r14
-	mov	36(r1), r13
-	mov	34(r1), r12
-                                        ; kill: def $r7 killed $r8
-                                        ; kill: def $r7 killed $r9
-                                        ; kill: def $r7 killed $r10
-                                        ; kill: def $r7 killed $r11
-	mov	r8, 22(r1)
-	mov	r9, 20(r1)
-	mov	r10, 18(r1)
-	mov	r11, 16(r1)
-	mov	r15, 14(r1)
-	mov	r14, 12(r1)
-	mov	r13, 10(r1)
-	mov	r12, 8(r1)
+	sub	#30, r1
+	mov	r15, r7
+	mov	r14, r8
+	mov	r13, r9
+	mov	r12, r10
+	mov	52(r1), r15
+	mov	50(r1), r14
+	mov	48(r1), r12
+	mov	r12, 8(r1)                      ; 2-byte Folded Spill
+	mov	46(r1), r12
+	mov	r12, 12(r1)                     ; 2-byte Folded Spill
+                                        ; kill: def $r12 killed $r7
+                                        ; kill: def $r12 killed $r8
+                                        ; kill: def $r13 killed $r9
+                                        ; kill: def $r12 killed $r10
+	mov	&__llvm_gcov_ctr.150+6, r6
+	mov	&__llvm_gcov_ctr.150+4, r12
+	mov	&__llvm_gcov_ctr.150+2, r4
+	mov	&__llvm_gcov_ctr.150, r13
+	inc	r13
+	mov	r13, 10(r1)                     ; 2-byte Folded Spill
+	tst	r13
+	mov	r2, r11
+	rra	r11
+	and	#1, r11
+	add	r11, r4
+	bis	r4, r13
+	tst	r13
+	mov	r2, r13
+	rra	r13
+	and	#1, r13
+	mov	r12, r5
+	add	r13, r5
+	cmp	r12, r5
+	mov	r2, r13
+	mov	#1, r11
+	mov	r11, r12
+	bic	r13, r12
+	mov	8(r1), r13                      ; 2-byte Folded Reload
+	add	r12, r6
+	mov	10(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, &__llvm_gcov_ctr.150
+	mov	12(r1), r12                     ; 2-byte Folded Reload
+	mov	r4, &__llvm_gcov_ctr.150+2
+	mov	r5, &__llvm_gcov_ctr.150+4
+	mov	r6, &__llvm_gcov_ctr.150+6
+	mov	r7, 28(r1)
+	mov	r8, 26(r1)
+	mov	r9, 24(r1)
+	mov	r10, 22(r1)
+	mov	r15, 20(r1)
+	mov	r14, 18(r1)
+	mov	r13, 16(r1)
+	mov	r12, 14(r1)
 	mov	&.L__profc___aeabi_ulcmp+6, r12
-	mov	&.L__profc___aeabi_ulcmp+4, r11
+	mov	&.L__profc___aeabi_ulcmp+4, r10
 	mov	&.L__profc___aeabi_ulcmp+2, r14
 	mov	&.L__profc___aeabi_ulcmp, r15
 	inc	r15
@@ -27994,28 +41228,27 @@ __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 	mov	r15, r13
 	bis	r14, r13
 	tst	r13
+	mov	r2, r9
+	rra	r9
+	and	#1, r9
+	mov	r10, r13
+	add	r9, r13
+	cmp	r10, r13
 	mov	r2, r10
-	rra	r10
-	and	#1, r10
-	mov	r11, r13
-	add	r10, r13
-	cmp	r11, r13
-	mov	r2, r10
-	mov	#1, r11
 	bic	r10, r11
 	add	r11, r12
 	mov	r15, &.L__profc___aeabi_ulcmp
 	mov	r14, &.L__profc___aeabi_ulcmp+2
 	mov	r13, &.L__profc___aeabi_ulcmp+4
 	mov	r12, &.L__profc___aeabi_ulcmp+6
-	mov	22(r1), r15
-	mov	20(r1), r14
-	mov	18(r1), r13
-	mov	16(r1), r12
-	mov	8(r1), r10
-	mov	10(r1), r9
-	mov	12(r1), r8
-	mov	14(r1), r7
+	mov	28(r1), r15
+	mov	26(r1), r14
+	mov	24(r1), r13
+	mov	22(r1), r12
+	mov	14(r1), r10
+	mov	16(r1), r9
+	mov	18(r1), r8
+	mov	20(r1), r7
 	mov	r1, r11
 	mov	r7, 6(r11)
 	mov	r8, 4(r11)
@@ -28028,14 +41261,1053 @@ __aeabi_ulcmp:                          ; @__aeabi_ulcmp
 	and	#1, r14
 	sub	r14, r13
 	add	#-1, r12
-	add	#24, r1
+	add	#30, r1
 	pop	r10
 	pop	r9
 	pop	r8
 	pop	r7
+	pop	r6
+	pop	r5
+	pop	r4
 	ret
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
+                                        ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   ; @__llvm_gcov_writeout
+; %bb.0:
+	push	r9
+	push	r10
+	sub	#66, r1
+	clr	r12
+	mov	r12, r13
+	mov	r13, 62(r1)                     ; 2-byte Folded Spill
+	mov	r12, 64(r1)                     ; 2-byte Folded Spill
+	jmp	.LBB151_1
+.LBB151_1:                              ; =>This Loop Header: Depth=1
+                                        ;     Child Loop BB151_6 Depth 2
+	mov	62(r1), r12                     ; 2-byte Folded Reload
+	mov	64(r1), r13                     ; 2-byte Folded Reload
+	mov	r13, 44(r1)                     ; 2-byte Folded Spill
+	mov	r12, 46(r1)                     ; 2-byte Folded Spill
+	mov	#18, r13
+	call	#__mspabi_mpyi
+	mov	r12, r11
+	mov	r11, 48(r1)                     ; 2-byte Folded Spill
+	mov	__llvm_internal_gcov_emit_file_info(r11), r12
+	mov	__llvm_internal_gcov_emit_file_info+4(r11), r14
+	mov	__llvm_internal_gcov_emit_file_info+2(r11), r13
+	mov	__llvm_internal_gcov_emit_file_info+6(r11), r15
+	mov	__llvm_internal_gcov_emit_file_info+8(r11), r10
+	mov	r1, r11
+	mov	r10, 0(r11)
+	call	#llvm_gcda_start_file
+	mov	48(r1), r12                     ; 2-byte Folded Reload
+	mov	__llvm_internal_gcov_emit_file_info+10(r12), r13
+	mov	r13, 50(r1)                     ; 2-byte Folded Spill
+	mov	__llvm_internal_gcov_emit_file_info+12(r12), r13
+	mov	r13, 52(r1)                     ; 2-byte Folded Spill
+	mov	__llvm_internal_gcov_emit_file_info+14(r12), r14
+	mov	r14, 54(r1)                     ; 2-byte Folded Spill
+	mov	__llvm_internal_gcov_emit_file_info+16(r12), r12
+	mov	r12, 56(r1)                     ; 2-byte Folded Spill
+	clr	r12
+	mov	r12, 58(r1)                     ; 2-byte Folded Spill
+	mov	#1, r12
+	tst	r13
+	mov	r12, 60(r1)                     ; 2-byte Folded Spill
+	jl	.LBB151_3
+; %bb.2:                                ;   in Loop: Header=BB151_1 Depth=1
+	mov	58(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, 60(r1)                     ; 2-byte Folded Spill
+.LBB151_3:                              ;   in Loop: Header=BB151_1 Depth=1
+	mov	52(r1), r13                     ; 2-byte Folded Reload
+	mov	50(r1), r12                     ; 2-byte Folded Reload
+	mov	60(r1), r14                     ; 2-byte Folded Reload
+	mov	r14, 40(r1)                     ; 2-byte Folded Spill
+	tst	r12
+	mov	r2, r12
+	rra	r12
+	and	#1, r12
+	tst	r13
+	mov	r12, 42(r1)                     ; 2-byte Folded Spill
+	jeq	.LBB151_5
+; %bb.4:                                ;   in Loop: Header=BB151_1 Depth=1
+	mov	40(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, 42(r1)                     ; 2-byte Folded Spill
+.LBB151_5:                              ;   in Loop: Header=BB151_1 Depth=1
+	mov	58(r1), r12                     ; 2-byte Folded Reload
+	mov	42(r1), r14                     ; 2-byte Folded Reload
+	mov	r12, r13
+	bit	#1, r14
+	mov	r13, 36(r1)                     ; 2-byte Folded Spill
+	mov	r12, 38(r1)                     ; 2-byte Folded Spill
+	jne	.LBB151_11
+	jmp	.LBB151_6
+.LBB151_6:                              ;   Parent Loop BB151_1 Depth=1
+                                        ; =>  This Inner Loop Header: Depth=2
+	mov	36(r1), r12                     ; 2-byte Folded Reload
+	mov	38(r1), r13                     ; 2-byte Folded Reload
+	mov	r13, 22(r1)                     ; 2-byte Folded Spill
+	mov	r12, 24(r1)                     ; 2-byte Folded Spill
+	mov	#12, r13
+	call	#__mspabi_mpyi
+	mov	54(r1), r11                     ; 2-byte Folded Reload
+	add	r12, r11
+	mov	2(r11), r13
+	mov	0(r11), r12
+	mov	6(r11), r15
+	mov	4(r11), r14
+	mov	8(r11), r10
+	mov	10(r11), r9
+	mov	r1, r11
+	mov	r9, 2(r11)
+	mov	r10, 0(r11)
+	call	#llvm_gcda_emit_function
+	mov	24(r1), r12                     ; 2-byte Folded Reload
+	mov	#6, r13
+	call	#__mspabi_mpyi
+	mov	56(r1), r14                     ; 2-byte Folded Reload
+	add	r12, r14
+	mov	2(r14), r13
+	mov	0(r14), r12
+	mov	4(r14), r14
+	call	#llvm_gcda_emit_arcs
+	mov	52(r1), r14                     ; 2-byte Folded Reload
+	mov	22(r1), r13                     ; 2-byte Folded Reload
+	mov	24(r1), r12                     ; 2-byte Folded Reload
+	inc	r12
+	mov	r12, 26(r1)                     ; 2-byte Folded Spill
+	tst	r12
+	mov	r2, r12
+	rra	r12
+	and	#1, r12
+	add	r12, r13
+	mov	r13, 28(r1)                     ; 2-byte Folded Spill
+	clr	r12
+	mov	r12, 30(r1)                     ; 2-byte Folded Spill
+	mov	#1, r12
+	mov	r12, 32(r1)                     ; 2-byte Folded Spill
+	cmp	r14, r13
+	mov	r12, 34(r1)                     ; 2-byte Folded Spill
+	jl	.LBB151_8
+; %bb.7:                                ;   in Loop: Header=BB151_6 Depth=2
+	mov	30(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, 34(r1)                     ; 2-byte Folded Spill
+.LBB151_8:                              ;   in Loop: Header=BB151_6 Depth=2
+	mov	28(r1), r13                     ; 2-byte Folded Reload
+	mov	52(r1), r14                     ; 2-byte Folded Reload
+	mov	32(r1), r12                     ; 2-byte Folded Reload
+	mov	26(r1), r15                     ; 2-byte Folded Reload
+	mov	50(r1), r11                     ; 2-byte Folded Reload
+	mov	34(r1), r10                     ; 2-byte Folded Reload
+	mov	r10, 18(r1)                     ; 2-byte Folded Spill
+	cmp	r11, r15
+	mov	r2, r15
+	bic	r15, r12
+	cmp	r14, r13
+	mov	r12, 20(r1)                     ; 2-byte Folded Spill
+	jeq	.LBB151_10
+; %bb.9:                                ;   in Loop: Header=BB151_6 Depth=2
+	mov	18(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, 20(r1)                     ; 2-byte Folded Spill
+.LBB151_10:                             ;   in Loop: Header=BB151_6 Depth=2
+	mov	28(r1), r12                     ; 2-byte Folded Reload
+	mov	26(r1), r13                     ; 2-byte Folded Reload
+	mov	20(r1), r14                     ; 2-byte Folded Reload
+	bit	#1, r14
+	mov	r13, 36(r1)                     ; 2-byte Folded Spill
+	mov	r12, 38(r1)                     ; 2-byte Folded Spill
+	jne	.LBB151_6
+	jmp	.LBB151_11
+.LBB151_11:                             ;   in Loop: Header=BB151_1 Depth=1
+	call	#llvm_gcda_summary_info
+	call	#llvm_gcda_end_file
+	mov	44(r1), r13                     ; 2-byte Folded Reload
+	mov	46(r1), r12                     ; 2-byte Folded Reload
+	inc	r12
+	mov	r12, 8(r1)                      ; 2-byte Folded Spill
+	tst	r12
+	mov	r2, r12
+	rra	r12
+	and	#1, r12
+	mov	r12, 10(r1)                     ; 2-byte Folded Spill
+	add	r12, r13
+	mov	r13, 12(r1)                     ; 2-byte Folded Spill
+	clr	r12
+	mov	r12, 14(r1)                     ; 2-byte Folded Spill
+	mov	#1, r12
+	tst	r13
+	mov	r12, 16(r1)                     ; 2-byte Folded Spill
+	jl	.LBB151_13
+; %bb.12:                               ;   in Loop: Header=BB151_1 Depth=1
+	mov	14(r1), r12                     ; 2-byte Folded Reload
+	mov	r12, 16(r1)                     ; 2-byte Folded Spill
+.LBB151_13:                             ;   in Loop: Header=BB151_1 Depth=1
+	mov	10(r1), r12                     ; 2-byte Folded Reload
+	mov	12(r1), r13                     ; 2-byte Folded Reload
+	mov	16(r1), r14                     ; 2-byte Folded Reload
+	mov	r14, 4(r1)                      ; 2-byte Folded Spill
+	tst	r13
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+	jeq	.LBB151_15
+; %bb.14:                               ;   in Loop: Header=BB151_1 Depth=1
+	mov	4(r1), r12                      ; 2-byte Folded Reload
+	mov	r12, 6(r1)                      ; 2-byte Folded Spill
+.LBB151_15:                             ;   in Loop: Header=BB151_1 Depth=1
+	mov	12(r1), r12                     ; 2-byte Folded Reload
+	mov	8(r1), r13                      ; 2-byte Folded Reload
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	bit	#1, r14
+	mov	r13, 62(r1)                     ; 2-byte Folded Spill
+	mov	r12, 64(r1)                     ; 2-byte Folded Spill
+	jne	.LBB151_1
+	jmp	.LBB151_16
+.LBB151_16:
+	add	#66, r1
+	pop	r10
+	pop	r9
+	ret
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+                                        ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      ; @__llvm_gcov_reset
+; %bb.0:
+	sub	#16, r1
+	mov	#__llvm_gcov_ctr, r12
+	clr	r13
+	mov	r13, 14(r1)                     ; 2-byte Folded Spill
+	mov	#40, r14
+	mov	r14, 12(r1)                     ; 2-byte Folded Spill
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.1, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.2, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.3, r12
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.4, r12
+	mov	#16, r14
+	mov	r14, 2(r1)                      ; 2-byte Folded Spill
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.5, r12
+	mov	#24, r14
+	mov	r14, 8(r1)                      ; 2-byte Folded Spill
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.6, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.7, r12
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.8, r12
+	mov	#32, r14
+	mov	r14, 10(r1)                     ; 2-byte Folded Spill
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.9, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.10, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.11, r12
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.12, r12
+	mov	#56, r14
+	mov	r14, 4(r1)                      ; 2-byte Folded Spill
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.13, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.14+7
+	clr.b	&__llvm_gcov_ctr.14+6
+	clr.b	&__llvm_gcov_ctr.14+5
+	clr.b	&__llvm_gcov_ctr.14+4
+	clr.b	&__llvm_gcov_ctr.14+3
+	clr.b	&__llvm_gcov_ctr.14+2
+	clr.b	&__llvm_gcov_ctr.14+1
+	clr.b	&__llvm_gcov_ctr.14
+	clr.b	&__llvm_gcov_ctr.15+7
+	clr.b	&__llvm_gcov_ctr.15+6
+	clr.b	&__llvm_gcov_ctr.15+5
+	clr.b	&__llvm_gcov_ctr.15+4
+	clr.b	&__llvm_gcov_ctr.15+3
+	clr.b	&__llvm_gcov_ctr.15+2
+	clr.b	&__llvm_gcov_ctr.15+1
+	clr.b	&__llvm_gcov_ctr.15
+	mov	#__llvm_gcov_ctr.16, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.17, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.18+7
+	clr.b	&__llvm_gcov_ctr.18+6
+	clr.b	&__llvm_gcov_ctr.18+5
+	clr.b	&__llvm_gcov_ctr.18+4
+	clr.b	&__llvm_gcov_ctr.18+3
+	clr.b	&__llvm_gcov_ctr.18+2
+	clr.b	&__llvm_gcov_ctr.18+1
+	clr.b	&__llvm_gcov_ctr.18
+	clr.b	&__llvm_gcov_ctr.19+7
+	clr.b	&__llvm_gcov_ctr.19+6
+	clr.b	&__llvm_gcov_ctr.19+5
+	clr.b	&__llvm_gcov_ctr.19+4
+	clr.b	&__llvm_gcov_ctr.19+3
+	clr.b	&__llvm_gcov_ctr.19+2
+	clr.b	&__llvm_gcov_ctr.19+1
+	clr.b	&__llvm_gcov_ctr.19
+	clr.b	&__llvm_gcov_ctr.20+7
+	clr.b	&__llvm_gcov_ctr.20+6
+	clr.b	&__llvm_gcov_ctr.20+5
+	clr.b	&__llvm_gcov_ctr.20+4
+	clr.b	&__llvm_gcov_ctr.20+3
+	clr.b	&__llvm_gcov_ctr.20+2
+	clr.b	&__llvm_gcov_ctr.20+1
+	clr.b	&__llvm_gcov_ctr.20
+	clr.b	&__llvm_gcov_ctr.21+7
+	clr.b	&__llvm_gcov_ctr.21+6
+	clr.b	&__llvm_gcov_ctr.21+5
+	clr.b	&__llvm_gcov_ctr.21+4
+	clr.b	&__llvm_gcov_ctr.21+3
+	clr.b	&__llvm_gcov_ctr.21+2
+	clr.b	&__llvm_gcov_ctr.21+1
+	clr.b	&__llvm_gcov_ctr.21
+	mov	#__llvm_gcov_ctr.22, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.23+7
+	clr.b	&__llvm_gcov_ctr.23+6
+	clr.b	&__llvm_gcov_ctr.23+5
+	clr.b	&__llvm_gcov_ctr.23+4
+	clr.b	&__llvm_gcov_ctr.23+3
+	clr.b	&__llvm_gcov_ctr.23+2
+	clr.b	&__llvm_gcov_ctr.23+1
+	clr.b	&__llvm_gcov_ctr.23
+	mov	#__llvm_gcov_ctr.24, r12
+	call	#memset
+	mov	4(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.25+7
+	clr.b	&__llvm_gcov_ctr.25+6
+	clr.b	&__llvm_gcov_ctr.25+5
+	clr.b	&__llvm_gcov_ctr.25+4
+	clr.b	&__llvm_gcov_ctr.25+3
+	clr.b	&__llvm_gcov_ctr.25+2
+	clr.b	&__llvm_gcov_ctr.25+1
+	clr.b	&__llvm_gcov_ctr.25
+	mov	#__llvm_gcov_ctr.26, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.27, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.28+7
+	clr.b	&__llvm_gcov_ctr.28+6
+	clr.b	&__llvm_gcov_ctr.28+5
+	clr.b	&__llvm_gcov_ctr.28+4
+	clr.b	&__llvm_gcov_ctr.28+3
+	clr.b	&__llvm_gcov_ctr.28+2
+	clr.b	&__llvm_gcov_ctr.28+1
+	clr.b	&__llvm_gcov_ctr.28
+	mov	#__llvm_gcov_ctr.29, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.30, r12
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.31, r12
+	mov	#48, r14
+	mov	r14, 0(r1)                      ; 2-byte Folded Spill
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.32, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.33, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.34, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.35, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.36, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.37, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.38+7
+	clr.b	&__llvm_gcov_ctr.38+6
+	clr.b	&__llvm_gcov_ctr.38+5
+	clr.b	&__llvm_gcov_ctr.38+4
+	clr.b	&__llvm_gcov_ctr.38+3
+	clr.b	&__llvm_gcov_ctr.38+2
+	clr.b	&__llvm_gcov_ctr.38+1
+	clr.b	&__llvm_gcov_ctr.38
+	clr.b	&__llvm_gcov_ctr.39+7
+	clr.b	&__llvm_gcov_ctr.39+6
+	clr.b	&__llvm_gcov_ctr.39+5
+	clr.b	&__llvm_gcov_ctr.39+4
+	clr.b	&__llvm_gcov_ctr.39+3
+	clr.b	&__llvm_gcov_ctr.39+2
+	clr.b	&__llvm_gcov_ctr.39+1
+	clr.b	&__llvm_gcov_ctr.39
+	mov	#__llvm_gcov_ctr.40, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.41, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.42, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.43, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.44, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.45, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.46, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.47, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.48, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.49, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.50+7
+	clr.b	&__llvm_gcov_ctr.50+6
+	clr.b	&__llvm_gcov_ctr.50+5
+	clr.b	&__llvm_gcov_ctr.50+4
+	clr.b	&__llvm_gcov_ctr.50+3
+	clr.b	&__llvm_gcov_ctr.50+2
+	clr.b	&__llvm_gcov_ctr.50+1
+	clr.b	&__llvm_gcov_ctr.50
+	mov	#__llvm_gcov_ctr.51, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.52+7
+	clr.b	&__llvm_gcov_ctr.52+6
+	clr.b	&__llvm_gcov_ctr.52+5
+	clr.b	&__llvm_gcov_ctr.52+4
+	clr.b	&__llvm_gcov_ctr.52+3
+	clr.b	&__llvm_gcov_ctr.52+2
+	clr.b	&__llvm_gcov_ctr.52+1
+	clr.b	&__llvm_gcov_ctr.52
+	mov	#__llvm_gcov_ctr.53, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.54+7
+	clr.b	&__llvm_gcov_ctr.54+6
+	clr.b	&__llvm_gcov_ctr.54+5
+	clr.b	&__llvm_gcov_ctr.54+4
+	clr.b	&__llvm_gcov_ctr.54+3
+	clr.b	&__llvm_gcov_ctr.54+2
+	clr.b	&__llvm_gcov_ctr.54+1
+	clr.b	&__llvm_gcov_ctr.54
+	mov	#__llvm_gcov_ctr.55, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.56+7
+	clr.b	&__llvm_gcov_ctr.56+6
+	clr.b	&__llvm_gcov_ctr.56+5
+	clr.b	&__llvm_gcov_ctr.56+4
+	clr.b	&__llvm_gcov_ctr.56+3
+	clr.b	&__llvm_gcov_ctr.56+2
+	clr.b	&__llvm_gcov_ctr.56+1
+	clr.b	&__llvm_gcov_ctr.56
+	mov	#__llvm_gcov_ctr.57, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.58, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.59, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.60, r12
+	call	#memset
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.61, r12
+	mov	#64, r14
+	mov	r14, 6(r1)                      ; 2-byte Folded Spill
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.62, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.63, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.64, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.65, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.66, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.67, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.68+7
+	clr.b	&__llvm_gcov_ctr.68+6
+	clr.b	&__llvm_gcov_ctr.68+5
+	clr.b	&__llvm_gcov_ctr.68+4
+	clr.b	&__llvm_gcov_ctr.68+3
+	clr.b	&__llvm_gcov_ctr.68+2
+	clr.b	&__llvm_gcov_ctr.68+1
+	clr.b	&__llvm_gcov_ctr.68
+	clr.b	&__llvm_gcov_ctr.69+7
+	clr.b	&__llvm_gcov_ctr.69+6
+	clr.b	&__llvm_gcov_ctr.69+5
+	clr.b	&__llvm_gcov_ctr.69+4
+	clr.b	&__llvm_gcov_ctr.69+3
+	clr.b	&__llvm_gcov_ctr.69+2
+	clr.b	&__llvm_gcov_ctr.69+1
+	clr.b	&__llvm_gcov_ctr.69
+	clr.b	&__llvm_gcov_ctr.70+7
+	clr.b	&__llvm_gcov_ctr.70+6
+	clr.b	&__llvm_gcov_ctr.70+5
+	clr.b	&__llvm_gcov_ctr.70+4
+	clr.b	&__llvm_gcov_ctr.70+3
+	clr.b	&__llvm_gcov_ctr.70+2
+	clr.b	&__llvm_gcov_ctr.70+1
+	clr.b	&__llvm_gcov_ctr.70
+	clr.b	&__llvm_gcov_ctr.71+7
+	clr.b	&__llvm_gcov_ctr.71+6
+	clr.b	&__llvm_gcov_ctr.71+5
+	clr.b	&__llvm_gcov_ctr.71+4
+	clr.b	&__llvm_gcov_ctr.71+3
+	clr.b	&__llvm_gcov_ctr.71+2
+	clr.b	&__llvm_gcov_ctr.71+1
+	clr.b	&__llvm_gcov_ctr.71
+	clr.b	&__llvm_gcov_ctr.72+7
+	clr.b	&__llvm_gcov_ctr.72+6
+	clr.b	&__llvm_gcov_ctr.72+5
+	clr.b	&__llvm_gcov_ctr.72+4
+	clr.b	&__llvm_gcov_ctr.72+3
+	clr.b	&__llvm_gcov_ctr.72+2
+	clr.b	&__llvm_gcov_ctr.72+1
+	clr.b	&__llvm_gcov_ctr.72
+	clr.b	&__llvm_gcov_ctr.73+7
+	clr.b	&__llvm_gcov_ctr.73+6
+	clr.b	&__llvm_gcov_ctr.73+5
+	clr.b	&__llvm_gcov_ctr.73+4
+	clr.b	&__llvm_gcov_ctr.73+3
+	clr.b	&__llvm_gcov_ctr.73+2
+	clr.b	&__llvm_gcov_ctr.73+1
+	clr.b	&__llvm_gcov_ctr.73
+	clr.b	&__llvm_gcov_ctr.74+7
+	clr.b	&__llvm_gcov_ctr.74+6
+	clr.b	&__llvm_gcov_ctr.74+5
+	clr.b	&__llvm_gcov_ctr.74+4
+	clr.b	&__llvm_gcov_ctr.74+3
+	clr.b	&__llvm_gcov_ctr.74+2
+	clr.b	&__llvm_gcov_ctr.74+1
+	clr.b	&__llvm_gcov_ctr.74
+	clr.b	&__llvm_gcov_ctr.75+7
+	clr.b	&__llvm_gcov_ctr.75+6
+	clr.b	&__llvm_gcov_ctr.75+5
+	clr.b	&__llvm_gcov_ctr.75+4
+	clr.b	&__llvm_gcov_ctr.75+3
+	clr.b	&__llvm_gcov_ctr.75+2
+	clr.b	&__llvm_gcov_ctr.75+1
+	clr.b	&__llvm_gcov_ctr.75
+	clr.b	&__llvm_gcov_ctr.76+7
+	clr.b	&__llvm_gcov_ctr.76+6
+	clr.b	&__llvm_gcov_ctr.76+5
+	clr.b	&__llvm_gcov_ctr.76+4
+	clr.b	&__llvm_gcov_ctr.76+3
+	clr.b	&__llvm_gcov_ctr.76+2
+	clr.b	&__llvm_gcov_ctr.76+1
+	clr.b	&__llvm_gcov_ctr.76
+	clr.b	&__llvm_gcov_ctr.77+7
+	clr.b	&__llvm_gcov_ctr.77+6
+	clr.b	&__llvm_gcov_ctr.77+5
+	clr.b	&__llvm_gcov_ctr.77+4
+	clr.b	&__llvm_gcov_ctr.77+3
+	clr.b	&__llvm_gcov_ctr.77+2
+	clr.b	&__llvm_gcov_ctr.77+1
+	clr.b	&__llvm_gcov_ctr.77
+	clr.b	&__llvm_gcov_ctr.78+7
+	clr.b	&__llvm_gcov_ctr.78+6
+	clr.b	&__llvm_gcov_ctr.78+5
+	clr.b	&__llvm_gcov_ctr.78+4
+	clr.b	&__llvm_gcov_ctr.78+3
+	clr.b	&__llvm_gcov_ctr.78+2
+	clr.b	&__llvm_gcov_ctr.78+1
+	clr.b	&__llvm_gcov_ctr.78
+	clr.b	&__llvm_gcov_ctr.79+7
+	clr.b	&__llvm_gcov_ctr.79+6
+	clr.b	&__llvm_gcov_ctr.79+5
+	clr.b	&__llvm_gcov_ctr.79+4
+	clr.b	&__llvm_gcov_ctr.79+3
+	clr.b	&__llvm_gcov_ctr.79+2
+	clr.b	&__llvm_gcov_ctr.79+1
+	clr.b	&__llvm_gcov_ctr.79
+	clr.b	&__llvm_gcov_ctr.80+7
+	clr.b	&__llvm_gcov_ctr.80+6
+	clr.b	&__llvm_gcov_ctr.80+5
+	clr.b	&__llvm_gcov_ctr.80+4
+	clr.b	&__llvm_gcov_ctr.80+3
+	clr.b	&__llvm_gcov_ctr.80+2
+	clr.b	&__llvm_gcov_ctr.80+1
+	clr.b	&__llvm_gcov_ctr.80
+	mov	#__llvm_gcov_ctr.81, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.82, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.83, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.84, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.85, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.86+7
+	clr.b	&__llvm_gcov_ctr.86+6
+	clr.b	&__llvm_gcov_ctr.86+5
+	clr.b	&__llvm_gcov_ctr.86+4
+	clr.b	&__llvm_gcov_ctr.86+3
+	clr.b	&__llvm_gcov_ctr.86+2
+	clr.b	&__llvm_gcov_ctr.86+1
+	clr.b	&__llvm_gcov_ctr.86
+	mov	#__llvm_gcov_ctr.87, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.88, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.89, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.90, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.91, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.92, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.93, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.94, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.95, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.96, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.97, r12
+	call	#memset
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.98+7
+	clr.b	&__llvm_gcov_ctr.98+6
+	clr.b	&__llvm_gcov_ctr.98+5
+	clr.b	&__llvm_gcov_ctr.98+4
+	clr.b	&__llvm_gcov_ctr.98+3
+	clr.b	&__llvm_gcov_ctr.98+2
+	clr.b	&__llvm_gcov_ctr.98+1
+	clr.b	&__llvm_gcov_ctr.98
+	mov	#__llvm_gcov_ctr.99, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.100, r12
+	call	#memset
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.101, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.102, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.103, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.104, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.105, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.106, r12
+	call	#memset
+	mov	0(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.107, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.108+7
+	clr.b	&__llvm_gcov_ctr.108+6
+	clr.b	&__llvm_gcov_ctr.108+5
+	clr.b	&__llvm_gcov_ctr.108+4
+	clr.b	&__llvm_gcov_ctr.108+3
+	clr.b	&__llvm_gcov_ctr.108+2
+	clr.b	&__llvm_gcov_ctr.108+1
+	clr.b	&__llvm_gcov_ctr.108
+	clr.b	&__llvm_gcov_ctr.109+7
+	clr.b	&__llvm_gcov_ctr.109+6
+	clr.b	&__llvm_gcov_ctr.109+5
+	clr.b	&__llvm_gcov_ctr.109+4
+	clr.b	&__llvm_gcov_ctr.109+3
+	clr.b	&__llvm_gcov_ctr.109+2
+	clr.b	&__llvm_gcov_ctr.109+1
+	clr.b	&__llvm_gcov_ctr.109
+	clr.b	&__llvm_gcov_ctr.110+7
+	clr.b	&__llvm_gcov_ctr.110+6
+	clr.b	&__llvm_gcov_ctr.110+5
+	clr.b	&__llvm_gcov_ctr.110+4
+	clr.b	&__llvm_gcov_ctr.110+3
+	clr.b	&__llvm_gcov_ctr.110+2
+	clr.b	&__llvm_gcov_ctr.110+1
+	clr.b	&__llvm_gcov_ctr.110
+	clr.b	&__llvm_gcov_ctr.111+7
+	clr.b	&__llvm_gcov_ctr.111+6
+	clr.b	&__llvm_gcov_ctr.111+5
+	clr.b	&__llvm_gcov_ctr.111+4
+	clr.b	&__llvm_gcov_ctr.111+3
+	clr.b	&__llvm_gcov_ctr.111+2
+	clr.b	&__llvm_gcov_ctr.111+1
+	clr.b	&__llvm_gcov_ctr.111
+	clr.b	&__llvm_gcov_ctr.112+7
+	clr.b	&__llvm_gcov_ctr.112+6
+	clr.b	&__llvm_gcov_ctr.112+5
+	clr.b	&__llvm_gcov_ctr.112+4
+	clr.b	&__llvm_gcov_ctr.112+3
+	clr.b	&__llvm_gcov_ctr.112+2
+	clr.b	&__llvm_gcov_ctr.112+1
+	clr.b	&__llvm_gcov_ctr.112
+	clr.b	&__llvm_gcov_ctr.113+7
+	clr.b	&__llvm_gcov_ctr.113+6
+	clr.b	&__llvm_gcov_ctr.113+5
+	clr.b	&__llvm_gcov_ctr.113+4
+	clr.b	&__llvm_gcov_ctr.113+3
+	clr.b	&__llvm_gcov_ctr.113+2
+	clr.b	&__llvm_gcov_ctr.113+1
+	clr.b	&__llvm_gcov_ctr.113
+	mov	#__llvm_gcov_ctr.114, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.115, r12
+	call	#memset
+	mov	2(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.116, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.117, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.118, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.119, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.120, r12
+	call	#memset
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.121, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.122, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.123, r12
+	call	#memset
+	mov	4(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.124+7
+	clr.b	&__llvm_gcov_ctr.124+6
+	clr.b	&__llvm_gcov_ctr.124+5
+	clr.b	&__llvm_gcov_ctr.124+4
+	clr.b	&__llvm_gcov_ctr.124+3
+	clr.b	&__llvm_gcov_ctr.124+2
+	clr.b	&__llvm_gcov_ctr.124+1
+	clr.b	&__llvm_gcov_ctr.124
+	clr.b	&__llvm_gcov_ctr.125+7
+	clr.b	&__llvm_gcov_ctr.125+6
+	clr.b	&__llvm_gcov_ctr.125+5
+	clr.b	&__llvm_gcov_ctr.125+4
+	clr.b	&__llvm_gcov_ctr.125+3
+	clr.b	&__llvm_gcov_ctr.125+2
+	clr.b	&__llvm_gcov_ctr.125+1
+	clr.b	&__llvm_gcov_ctr.125
+	mov	#__llvm_gcov_ctr.126, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.127, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.128, r12
+	call	#memset
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.129, r12
+	call	#memset
+	mov	6(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.130, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.131, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.132, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.133+7
+	clr.b	&__llvm_gcov_ctr.133+6
+	clr.b	&__llvm_gcov_ctr.133+5
+	clr.b	&__llvm_gcov_ctr.133+4
+	clr.b	&__llvm_gcov_ctr.133+3
+	clr.b	&__llvm_gcov_ctr.133+2
+	clr.b	&__llvm_gcov_ctr.133+1
+	clr.b	&__llvm_gcov_ctr.133
+	clr.b	&__llvm_gcov_ctr.134+7
+	clr.b	&__llvm_gcov_ctr.134+6
+	clr.b	&__llvm_gcov_ctr.134+5
+	clr.b	&__llvm_gcov_ctr.134+4
+	clr.b	&__llvm_gcov_ctr.134+3
+	clr.b	&__llvm_gcov_ctr.134+2
+	clr.b	&__llvm_gcov_ctr.134+1
+	clr.b	&__llvm_gcov_ctr.134
+	clr.b	&__llvm_gcov_ctr.135+7
+	clr.b	&__llvm_gcov_ctr.135+6
+	clr.b	&__llvm_gcov_ctr.135+5
+	clr.b	&__llvm_gcov_ctr.135+4
+	clr.b	&__llvm_gcov_ctr.135+3
+	clr.b	&__llvm_gcov_ctr.135+2
+	clr.b	&__llvm_gcov_ctr.135+1
+	clr.b	&__llvm_gcov_ctr.135
+	mov	#__llvm_gcov_ctr.136, r12
+	call	#memset
+	mov	8(r1), r14                      ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.137+7
+	clr.b	&__llvm_gcov_ctr.137+6
+	clr.b	&__llvm_gcov_ctr.137+5
+	clr.b	&__llvm_gcov_ctr.137+4
+	clr.b	&__llvm_gcov_ctr.137+3
+	clr.b	&__llvm_gcov_ctr.137+2
+	clr.b	&__llvm_gcov_ctr.137+1
+	clr.b	&__llvm_gcov_ctr.137
+	clr.b	&__llvm_gcov_ctr.138+7
+	clr.b	&__llvm_gcov_ctr.138+6
+	clr.b	&__llvm_gcov_ctr.138+5
+	clr.b	&__llvm_gcov_ctr.138+4
+	clr.b	&__llvm_gcov_ctr.138+3
+	clr.b	&__llvm_gcov_ctr.138+2
+	clr.b	&__llvm_gcov_ctr.138+1
+	clr.b	&__llvm_gcov_ctr.138
+	mov	#__llvm_gcov_ctr.139, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	clr.b	&__llvm_gcov_ctr.140+7
+	clr.b	&__llvm_gcov_ctr.140+6
+	clr.b	&__llvm_gcov_ctr.140+5
+	clr.b	&__llvm_gcov_ctr.140+4
+	clr.b	&__llvm_gcov_ctr.140+3
+	clr.b	&__llvm_gcov_ctr.140+2
+	clr.b	&__llvm_gcov_ctr.140+1
+	clr.b	&__llvm_gcov_ctr.140
+	clr.b	&__llvm_gcov_ctr.141+7
+	clr.b	&__llvm_gcov_ctr.141+6
+	clr.b	&__llvm_gcov_ctr.141+5
+	clr.b	&__llvm_gcov_ctr.141+4
+	clr.b	&__llvm_gcov_ctr.141+3
+	clr.b	&__llvm_gcov_ctr.141+2
+	clr.b	&__llvm_gcov_ctr.141+1
+	clr.b	&__llvm_gcov_ctr.141
+	clr.b	&__llvm_gcov_ctr.142+7
+	clr.b	&__llvm_gcov_ctr.142+6
+	clr.b	&__llvm_gcov_ctr.142+5
+	clr.b	&__llvm_gcov_ctr.142+4
+	clr.b	&__llvm_gcov_ctr.142+3
+	clr.b	&__llvm_gcov_ctr.142+2
+	clr.b	&__llvm_gcov_ctr.142+1
+	clr.b	&__llvm_gcov_ctr.142
+	clr.b	&__llvm_gcov_ctr.143+7
+	clr.b	&__llvm_gcov_ctr.143+6
+	clr.b	&__llvm_gcov_ctr.143+5
+	clr.b	&__llvm_gcov_ctr.143+4
+	clr.b	&__llvm_gcov_ctr.143+3
+	clr.b	&__llvm_gcov_ctr.143+2
+	clr.b	&__llvm_gcov_ctr.143+1
+	clr.b	&__llvm_gcov_ctr.143
+	clr.b	&__llvm_gcov_ctr.144+7
+	clr.b	&__llvm_gcov_ctr.144+6
+	clr.b	&__llvm_gcov_ctr.144+5
+	clr.b	&__llvm_gcov_ctr.144+4
+	clr.b	&__llvm_gcov_ctr.144+3
+	clr.b	&__llvm_gcov_ctr.144+2
+	clr.b	&__llvm_gcov_ctr.144+1
+	clr.b	&__llvm_gcov_ctr.144
+	clr.b	&__llvm_gcov_ctr.145+7
+	clr.b	&__llvm_gcov_ctr.145+6
+	clr.b	&__llvm_gcov_ctr.145+5
+	clr.b	&__llvm_gcov_ctr.145+4
+	clr.b	&__llvm_gcov_ctr.145+3
+	clr.b	&__llvm_gcov_ctr.145+2
+	clr.b	&__llvm_gcov_ctr.145+1
+	clr.b	&__llvm_gcov_ctr.145
+	clr.b	&__llvm_gcov_ctr.146+7
+	clr.b	&__llvm_gcov_ctr.146+6
+	clr.b	&__llvm_gcov_ctr.146+5
+	clr.b	&__llvm_gcov_ctr.146+4
+	clr.b	&__llvm_gcov_ctr.146+3
+	clr.b	&__llvm_gcov_ctr.146+2
+	clr.b	&__llvm_gcov_ctr.146+1
+	clr.b	&__llvm_gcov_ctr.146
+	mov	#__llvm_gcov_ctr.147, r12
+	call	#memset
+	mov	10(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.148, r12
+	call	#memset
+	mov	12(r1), r14                     ; 2-byte Folded Reload
+	mov	14(r1), r13                     ; 2-byte Folded Reload
+	mov	#__llvm_gcov_ctr.149, r12
+	call	#memset
+	clr.b	&__llvm_gcov_ctr.150+7
+	clr.b	&__llvm_gcov_ctr.150+6
+	clr.b	&__llvm_gcov_ctr.150+5
+	clr.b	&__llvm_gcov_ctr.150+4
+	clr.b	&__llvm_gcov_ctr.150+3
+	clr.b	&__llvm_gcov_ctr.150+2
+	clr.b	&__llvm_gcov_ctr.150+1
+	clr.b	&__llvm_gcov_ctr.150
+	add	#16, r1
+	ret
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+                                        ; -- End function
+	.p2align	1                               ; -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       ; @__llvm_gcov_init
+; %bb.0:
+	mov	#__llvm_gcov_writeout, r12
+	mov	#__llvm_gcov_reset, r13
+	call	#llvm_gcov_init
+	ret
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
                                         ; -- End function
 	.type	l64a.s,@object                  ; @l64a.s
 	.local	l64a.s
@@ -28049,6 +42321,1245 @@ digits:
 	.type	seed,@object                    ; @seed
 	.local	seed
 	.comm	seed,8,2
+	.type	__llvm_gcov_ctr,@object         ; @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       ; @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       ; @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       ; @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       ; @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,2
+	.type	__llvm_gcov_ctr.5,@object       ; @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       ; @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,2
+	.type	__llvm_gcov_ctr.7,@object       ; @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,2
+	.type	__llvm_gcov_ctr.8,@object       ; @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       ; @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      ; @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      ; @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,2
+	.type	__llvm_gcov_ctr.12,@object      ; @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      ; @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,2
+	.type	__llvm_gcov_ctr.14,@object      ; @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,2
+	.type	__llvm_gcov_ctr.15,@object      ; @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,2
+	.type	__llvm_gcov_ctr.16,@object      ; @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      ; @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      ; @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,2
+	.type	__llvm_gcov_ctr.19,@object      ; @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,2
+	.type	__llvm_gcov_ctr.20,@object      ; @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,2
+	.type	__llvm_gcov_ctr.21,@object      ; @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,2
+	.type	__llvm_gcov_ctr.22,@object      ; @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      ; @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,2
+	.type	__llvm_gcov_ctr.24,@object      ; @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      ; @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,2
+	.type	__llvm_gcov_ctr.26,@object      ; @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      ; @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      ; @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,2
+	.type	__llvm_gcov_ctr.29,@object      ; @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      ; @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      ; @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      ; @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      ; @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      ; @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      ; @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      ; @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      ; @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,2
+	.type	__llvm_gcov_ctr.38,@object      ; @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,2
+	.type	__llvm_gcov_ctr.39,@object      ; @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,2
+	.type	__llvm_gcov_ctr.40,@object      ; @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      ; @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      ; @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      ; @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      ; @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,16,2
+	.type	__llvm_gcov_ctr.45,@object      ; @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      ; @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      ; @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      ; @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      ; @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      ; @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,2
+	.type	__llvm_gcov_ctr.51,@object      ; @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,2
+	.type	__llvm_gcov_ctr.52,@object      ; @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,2
+	.type	__llvm_gcov_ctr.53,@object      ; @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,2
+	.type	__llvm_gcov_ctr.54,@object      ; @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,2
+	.type	__llvm_gcov_ctr.55,@object      ; @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,2
+	.type	__llvm_gcov_ctr.56,@object      ; @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,2
+	.type	__llvm_gcov_ctr.57,@object      ; @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      ; @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      ; @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,16,2
+	.type	__llvm_gcov_ctr.60,@object      ; @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,16,2
+	.type	__llvm_gcov_ctr.61,@object      ; @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      ; @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      ; @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      ; @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,2
+	.type	__llvm_gcov_ctr.65,@object      ; @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      ; @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,2
+	.type	__llvm_gcov_ctr.67,@object      ; @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      ; @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,2
+	.type	__llvm_gcov_ctr.69,@object      ; @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,2
+	.type	__llvm_gcov_ctr.70,@object      ; @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,2
+	.type	__llvm_gcov_ctr.71,@object      ; @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,2
+	.type	__llvm_gcov_ctr.72,@object      ; @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,2
+	.type	__llvm_gcov_ctr.73,@object      ; @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,2
+	.type	__llvm_gcov_ctr.74,@object      ; @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,2
+	.type	__llvm_gcov_ctr.75,@object      ; @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,2
+	.type	__llvm_gcov_ctr.76,@object      ; @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,2
+	.type	__llvm_gcov_ctr.77,@object      ; @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,2
+	.type	__llvm_gcov_ctr.78,@object      ; @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,2
+	.type	__llvm_gcov_ctr.79,@object      ; @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,2
+	.type	__llvm_gcov_ctr.80,@object      ; @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,2
+	.type	__llvm_gcov_ctr.81,@object      ; @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      ; @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      ; @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      ; @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      ; @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      ; @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,2
+	.type	__llvm_gcov_ctr.87,@object      ; @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      ; @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      ; @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      ; @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,16,2
+	.type	__llvm_gcov_ctr.91,@object      ; @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      ; @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      ; @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      ; @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      ; @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      ; @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      ; @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      ; @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,2
+	.type	__llvm_gcov_ctr.99,@object      ; @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     ; @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     ; @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     ; @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     ; @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     ; @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     ; @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     ; @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     ; @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     ; @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,2
+	.type	__llvm_gcov_ctr.109,@object     ; @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,2
+	.type	__llvm_gcov_ctr.110,@object     ; @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,2
+	.type	__llvm_gcov_ctr.111,@object     ; @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,2
+	.type	__llvm_gcov_ctr.112,@object     ; @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,2
+	.type	__llvm_gcov_ctr.113,@object     ; @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,2
+	.type	__llvm_gcov_ctr.114,@object     ; @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     ; @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     ; @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,16,2
+	.type	__llvm_gcov_ctr.117,@object     ; @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     ; @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     ; @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     ; @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     ; @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     ; @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     ; @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     ; @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,8,2
+	.type	__llvm_gcov_ctr.125,@object     ; @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,8,2
+	.type	__llvm_gcov_ctr.126,@object     ; @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     ; @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     ; @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     ; @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     ; @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     ; @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     ; @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     ; @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,2
+	.type	__llvm_gcov_ctr.134,@object     ; @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,8,2
+	.type	__llvm_gcov_ctr.135,@object     ; @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,2
+	.type	__llvm_gcov_ctr.136,@object     ; @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     ; @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,2
+	.type	__llvm_gcov_ctr.138,@object     ; @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,2
+	.type	__llvm_gcov_ctr.139,@object     ; @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     ; @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,2
+	.type	__llvm_gcov_ctr.141,@object     ; @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,2
+	.type	__llvm_gcov_ctr.142,@object     ; @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,2
+	.type	__llvm_gcov_ctr.143,@object     ; @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,2
+	.type	__llvm_gcov_ctr.144,@object     ; @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,2
+	.type	__llvm_gcov_ctr.145,@object     ; @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,2
+	.type	__llvm_gcov_ctr.146,@object     ; @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,8,2
+	.type	__llvm_gcov_ctr.147,@object     ; @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     ; @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     ; @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     ; @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,2
+	.type	.L__unnamed_1,@object           ; @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-msp430.gcda"
+	.size	.L__unnamed_1, 50
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object ; @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               ; 0x0
+	.long	560687177                       ; 0x216b6849
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	1                               ; 0x1
+	.long	1589591758                      ; 0x5ebf3ece
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	2                               ; 0x2
+	.long	2176136383                      ; 0x81b534bf
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	3                               ; 0x3
+	.long	3586625172                      ; 0xd5c78e94
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	4                               ; 0x4
+	.long	2323119728                      ; 0x8a77fe70
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	5                               ; 0x5
+	.long	2314569740                      ; 0x89f5880c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	6                               ; 0x6
+	.long	2833673551                      ; 0xa8e66d4f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	7                               ; 0x7
+	.long	1458633189                      ; 0x56f0f9e5
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	8                               ; 0x8
+	.long	1190300833                      ; 0x46f28ca1
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	9                               ; 0x9
+	.long	758327989                       ; 0x2d332ab5
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	10                              ; 0xa
+	.long	1651479037                      ; 0x626f91fd
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	11                              ; 0xb
+	.long	4132343275                      ; 0xf64e8deb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	12                              ; 0xc
+	.long	734262523                       ; 0x2bc3f4fb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	13                              ; 0xd
+	.long	2463424677                      ; 0x92d4e0a5
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	14                              ; 0xe
+	.long	1419026334                      ; 0x54949f9e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	15                              ; 0xf
+	.long	3154471370                      ; 0xbc0569ca
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	16                              ; 0x10
+	.long	2077973487                      ; 0x7bdb5bef
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	17                              ; 0x11
+	.long	1474691227                      ; 0x57e6009b
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	18                              ; 0x12
+	.long	3710986016                      ; 0xdd312720
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	19                              ; 0x13
+	.long	1305101473                      ; 0x4dca44a1
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	20                              ; 0x14
+	.long	3762036564                      ; 0xe03c1f54
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	21                              ; 0x15
+	.long	477914433                       ; 0x1c7c6541
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	22                              ; 0x16
+	.long	3923035234                      ; 0xe9d4c462
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	23                              ; 0x17
+	.long	951651702                       ; 0x38b90d76
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	24                              ; 0x18
+	.long	4206925919                      ; 0xfac0985f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	25                              ; 0x19
+	.long	32773942                        ; 0x1f41736
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	26                              ; 0x1a
+	.long	2877267246                      ; 0xab7f9d2e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	27                              ; 0x1b
+	.long	860405771                       ; 0x3348c00b
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	28                              ; 0x1c
+	.long	815674877                       ; 0x309e35fd
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	29                              ; 0x1d
+	.long	1778838753                      ; 0x6a06ece1
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	30                              ; 0x1e
+	.long	2718307199                      ; 0xa206137f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	31                              ; 0x1f
+	.long	856224820                       ; 0x3308f434
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	32                              ; 0x20
+	.long	1111195143                      ; 0x423b7e07
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	33                              ; 0x21
+	.long	1178414519                      ; 0x463d2db7
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	34                              ; 0x22
+	.long	3477640633                      ; 0xcf4895b9
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	35                              ; 0x23
+	.long	4294770115                      ; 0xfffcfdc3
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	36                              ; 0x24
+	.long	3650660234                      ; 0xd998a78a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	37                              ; 0x25
+	.long	289327647                       ; 0x113eca1f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	38                              ; 0x26
+	.long	2093612798                      ; 0x7cc9fefe
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	39                              ; 0x27
+	.long	4177956716                      ; 0xf9068f6c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	40                              ; 0x28
+	.long	3434808461                      ; 0xccbb048d
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	41                              ; 0x29
+	.long	3206497114                      ; 0xbf1f435a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	42                              ; 0x2a
+	.long	1537257434                      ; 0x5ba0afda
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	43                              ; 0x2b
+	.long	3028077325                      ; 0xb47ccb0d
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	44                              ; 0x2c
+	.long	1369848209                      ; 0x51a63991
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	45                              ; 0x2d
+	.long	938831176                       ; 0x37f56d48
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	46                              ; 0x2e
+	.long	1663146323                      ; 0x63219953
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	47                              ; 0x2f
+	.long	4111410217                      ; 0xf50f2429
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	48                              ; 0x30
+	.long	1475378556                      ; 0x57f07d7c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	49                              ; 0x31
+	.long	3356195547                      ; 0xc80b7adb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	50                              ; 0x32
+	.long	514931786                       ; 0x1eb13c4a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	51                              ; 0x33
+	.long	2854034444                      ; 0xaa1d1c0c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	52                              ; 0x34
+	.long	2747937306                      ; 0xa3ca321a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	53                              ; 0x35
+	.long	4192776208                      ; 0xf9e8b010
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	54                              ; 0x36
+	.long	984436227                       ; 0x3aad4e03
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	55                              ; 0x37
+	.long	1477657574                      ; 0x581343e6
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	56                              ; 0x38
+	.long	1339127973                      ; 0x4fd178a5
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	57                              ; 0x39
+	.long	2960567906                      ; 0xb076ae62
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	58                              ; 0x3a
+	.long	3390076872                      ; 0xca1077c8
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	59                              ; 0x3b
+	.long	1543282230                      ; 0x5bfc9e36
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	60                              ; 0x3c
+	.long	2934101789                      ; 0xaee2d71d
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	61                              ; 0x3d
+	.long	3737986119                      ; 0xdecd2447
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	62                              ; 0x3e
+	.long	49556427                        ; 0x2f42bcb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	63                              ; 0x3f
+	.long	234051526                       ; 0xdf357c6
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	64                              ; 0x40
+	.long	2341800126                      ; 0x8b9508be
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	65                              ; 0x41
+	.long	3256799948                      ; 0xc21ed2cc
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	66                              ; 0x42
+	.long	777295480                       ; 0x2e549678
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	67                              ; 0x43
+	.long	14040531                        ; 0xd63dd3
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	68                              ; 0x44
+	.long	8047973                         ; 0x7acd65
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	69                              ; 0x45
+	.long	719459161                       ; 0x2ae21359
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	70                              ; 0x46
+	.long	243358501                       ; 0xe815b25
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	71                              ; 0x47
+	.long	3262173932                      ; 0xc270d2ec
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	72                              ; 0x48
+	.long	398910553                       ; 0x17c6e459
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	73                              ; 0x49
+	.long	3354219739                      ; 0xc7ed54db
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	74                              ; 0x4a
+	.long	2570308788                      ; 0x9933ccb4
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	75                              ; 0x4b
+	.long	982429111                       ; 0x3a8eadb7
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	76                              ; 0x4c
+	.long	211491241                       ; 0xc9b19a9
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	77                              ; 0x4d
+	.long	1075683319                      ; 0x401d9ff7
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	78                              ; 0x4e
+	.long	1886352651                      ; 0x706f750b
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	79                              ; 0x4f
+	.long	248637203                       ; 0xed1e713
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	80                              ; 0x50
+	.long	703327087                       ; 0x29ebeb6f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	81                              ; 0x51
+	.long	3690160730                      ; 0xdbf3625a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	82                              ; 0x52
+	.long	787048238                       ; 0x2ee9672e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	83                              ; 0x53
+	.long	1937497967                      ; 0x737bdf6f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	84                              ; 0x54
+	.long	4205062514                      ; 0xfaa42972
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	85                              ; 0x55
+	.long	694462539                       ; 0x2964a84b
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	86                              ; 0x56
+	.long	85970907                        ; 0x51fcfdb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	87                              ; 0x57
+	.long	3681984728                      ; 0xdb76a0d8
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	88                              ; 0x58
+	.long	3620297642                      ; 0xd7c95baa
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	89                              ; 0x59
+	.long	3394804480                      ; 0xca589b00
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	90                              ; 0x5a
+	.long	2119330183                      ; 0x7e526987
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	91                              ; 0x5b
+	.long	1963040266                      ; 0x75019e0a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	92                              ; 0x5c
+	.long	1603391838                      ; 0x5f91d15e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	93                              ; 0x5d
+	.long	2340921237                      ; 0x8b879f95
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	94                              ; 0x5e
+	.long	3028177438                      ; 0xb47e521e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	95                              ; 0x5f
+	.long	2265525308                      ; 0x87092c3c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	96                              ; 0x60
+	.long	2598903994                      ; 0x9ae820ba
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	97                              ; 0x61
+	.long	139524705                       ; 0x850fa61
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	98                              ; 0x62
+	.long	1076410600                      ; 0x4028b8e8
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	99                              ; 0x63
+	.long	220237413                       ; 0xd208e65
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	100                             ; 0x64
+	.long	3913623866                      ; 0xe945293a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	101                             ; 0x65
+	.long	3453026372                      ; 0xcdd10044
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	102                             ; 0x66
+	.long	2321387380                      ; 0x8a5d8f74
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	103                             ; 0x67
+	.long	3319939363                      ; 0xc5e24123
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	104                             ; 0x68
+	.long	398991913                       ; 0x17c82229
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	105                             ; 0x69
+	.long	333429647                       ; 0x13dfbb8f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	106                             ; 0x6a
+	.long	3927133990                      ; 0xea134f26
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	107                             ; 0x6b
+	.long	1797971294                      ; 0x6b2add5e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	108                             ; 0x6c
+	.long	1622314776                      ; 0x60b28f18
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	109                             ; 0x6d
+	.long	1092862330                      ; 0x4123c17a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	110                             ; 0x6e
+	.long	2568657322                      ; 0x991a99aa
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	111                             ; 0x6f
+	.long	2168129897                      ; 0x813b0969
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	112                             ; 0x70
+	.long	2890303119                      ; 0xac46868f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	113                             ; 0x71
+	.long	1713332582                      ; 0x661f6166
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	114                             ; 0x72
+	.long	2375727721                      ; 0x8d9aba69
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	115                             ; 0x73
+	.long	3586767156                      ; 0xd5c9b934
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	116                             ; 0x74
+	.long	2191348475                      ; 0x829d52fb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	117                             ; 0x75
+	.long	3910023869                      ; 0xe90e3abd
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	118                             ; 0x76
+	.long	4189915105                      ; 0xf9bd07e1
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	119                             ; 0x77
+	.long	2527353334                      ; 0x96a459f6
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	120                             ; 0x78
+	.long	3429265923                      ; 0xcc667203
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	121                             ; 0x79
+	.long	1283962724                      ; 0x4c87b764
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	122                             ; 0x7a
+	.long	1970290990                      ; 0x7570412e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	123                             ; 0x7b
+	.long	2615950861                      ; 0x9bec3e0d
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	124                             ; 0x7c
+	.long	3338450337                      ; 0xc6fcb5a1
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	125                             ; 0x7d
+	.long	3971836509                      ; 0xecbd6a5d
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	126                             ; 0x7e
+	.long	4260339231                      ; 0xfdef9e1f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	127                             ; 0x7f
+	.long	4160738226                      ; 0xf7ffd3b2
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	128                             ; 0x80
+	.long	1309372079                      ; 0x4e0b6eaf
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	129                             ; 0x81
+	.long	3151575564                      ; 0xbbd93a0c
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	130                             ; 0x82
+	.long	3938977714                      ; 0xeac807b2
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	131                             ; 0x83
+	.long	3228738087                      ; 0xc072a227
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	132                             ; 0x84
+	.long	3135705803                      ; 0xbae712cb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	133                             ; 0x85
+	.long	4061147315                      ; 0xf21030b3
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	134                             ; 0x86
+	.long	2783543715                      ; 0xa5e981a3
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	135                             ; 0x87
+	.long	2471046843                      ; 0x93492ebb
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	136                             ; 0x88
+	.long	260073473                       ; 0xf806801
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	137                             ; 0x89
+	.long	1259876295                      ; 0x4b182fc7
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	138                             ; 0x8a
+	.long	2579807359                      ; 0x99c4bc7f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	139                             ; 0x8b
+	.long	90061610                        ; 0x55e3b2a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	140                             ; 0x8c
+	.long	3598610789                      ; 0xd67e7165
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	141                             ; 0x8d
+	.long	2351688191                      ; 0x8c2be9ff
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	142                             ; 0x8e
+	.long	1438161982                      ; 0x55b89c3e
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	143                             ; 0x8f
+	.long	2438880600                      ; 0x915e5d58
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	144                             ; 0x90
+	.long	3593193962                      ; 0xd62bc9ea
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	145                             ; 0x91
+	.long	1755082314                      ; 0x689c6e4a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	146                             ; 0x92
+	.long	3432612426                      ; 0xcc99824a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	147                             ; 0x93
+	.long	3374828335                      ; 0xc927cb2f
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	148                             ; 0x94
+	.long	3311814731                      ; 0xc566484b
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	149                             ; 0x95
+	.long	413908966                       ; 0x18abbfe6
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	150                             ; 0x96
+	.long	3027808697                      ; 0xb478b1b9
+	.long	2328296705                      ; 0x8ac6fd01
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object ; @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.1
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.2
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.3
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.4
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.5
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.6
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.7
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.8
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.9
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.10
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.11
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.12
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.13
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.14
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.15
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.16
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.17
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.18
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.19
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.20
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.21
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.22
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.23
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.24
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.25
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.26
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.27
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.28
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.29
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.30
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.31
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.32
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.33
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.34
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.35
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.36
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.37
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.38
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.39
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.40
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.41
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.42
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.43
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.44
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.45
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.46
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.47
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.48
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.49
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.50
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.51
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.52
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.53
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.54
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.55
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.56
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.57
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.58
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.59
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.60
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.61
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.62
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.63
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.64
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.65
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.66
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.67
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.68
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.69
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.70
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.71
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.72
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.73
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.74
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.75
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.76
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.77
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.78
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.79
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.80
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.81
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.82
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.83
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.84
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.85
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.86
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.87
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.88
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.89
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.90
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.91
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.92
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.93
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.94
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.95
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.96
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.97
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.98
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.99
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.100
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.101
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.102
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.103
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.104
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.105
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.106
+	.long	6                               ; 0x6
+	.short	__llvm_gcov_ctr.107
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.108
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.109
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.110
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.111
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.112
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.113
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.114
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.115
+	.long	2                               ; 0x2
+	.short	__llvm_gcov_ctr.116
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.117
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.118
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.119
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.120
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.121
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.122
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.123
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.124
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.125
+	.long	7                               ; 0x7
+	.short	__llvm_gcov_ctr.126
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.127
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.128
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.129
+	.long	8                               ; 0x8
+	.short	__llvm_gcov_ctr.130
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.131
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.132
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.133
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.134
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.135
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.136
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.137
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.138
+	.long	3                               ; 0x3
+	.short	__llvm_gcov_ctr.139
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.140
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.141
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.142
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.143
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.144
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.145
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.146
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.147
+	.long	4                               ; 0x4
+	.short	__llvm_gcov_ctr.148
+	.long	5                               ; 0x5
+	.short	__llvm_gcov_ctr.149
+	.long	1                               ; 0x1
+	.short	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 906
+
+	.type	__llvm_internal_gcov_emit_file_info,@object ; @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.short	.L__unnamed_1
+	.long	875575338                       ; 0x3430382a
+	.long	2328296705                      ; 0x8ac6fd01
+	.long	151                             ; 0x97
+	.short	__llvm_internal_gcov_emit_function_args.0
+	.short	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 18
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	1, 0x0
+	.short	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       ; @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -31391,9 +46902,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

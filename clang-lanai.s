@@ -34,6 +34,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_1
 	nop
 .LBB0_1:
+	mov	hi(__llvm_gcov_ctr), %r3
+	or	%r3, lo(__llvm_gcov_ctr), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmove+8), %r3
 	or	%r3, lo(.L__profc_memmove+8), %r9
 	ld	0[%r9], %r3
@@ -85,6 +97,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_4
 	st.b	%r3, -1[%r9]
 .LBB0_4:                                !   in Loop: Header=BB0_2 Depth=1
+	mov	hi(__llvm_gcov_ctr+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	bt	.LBB0_2
@@ -122,6 +146,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_9
 	nop
 .LBB0_9:                                !   in Loop: Header=BB0_8 Depth=1
+	mov	hi(__llvm_gcov_ctr+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmove+32), %r3
 	or	%r3, lo(.L__profc_memmove+32), %r9
 	ld	0[%r9], %r3
@@ -149,11 +185,33 @@ memmove:                                ! @memmove
 	bt	.LBB0_8
 	st	%r3, -20[%fp]
 .LBB0_11:
+	mov	hi(__llvm_gcov_ctr+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB0_12
-	nop
+	st	%r3, 0[%r9]
 .LBB0_12:
+	mov	hi(__llvm_gcov_ctr+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB0_13
-	nop
+	st	%r3, 0[%r9]
 .LBB0_13:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
@@ -204,6 +262,18 @@ memccpy:                                ! @memccpy
 	bt	.LBB1_2
 	nop
 .LBB1_2:                                !   in Loop: Header=BB1_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.1), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.1+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.1+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memccpy+16), %r3
 	or	%r3, lo(.L__profc_memccpy+16), %r9
 	ld	0[%r9], %r3
@@ -231,6 +301,18 @@ memccpy:                                ! @memccpy
 	nop
 .LBB1_3:                                !   in Loop: Header=BB1_1 Depth=1
 	ld	-44[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.1+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.1+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.1+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.1+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_memccpy+24), %r9
 	or	%r9, lo(.L__profc_memccpy+24), %r12
 	ld	0[%r12], %r9
@@ -269,6 +351,18 @@ memccpy:                                ! @memccpy
 	bt	.LBB1_6
 	st	%r3, 0[%r9]
 .LBB1_6:                                !   in Loop: Header=BB1_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.1+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.1+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.1+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.1+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -287,6 +381,18 @@ memccpy:                                ! @memccpy
 	bt	.LBB1_8
 	nop
 .LBB1_8:
+	mov	hi(__llvm_gcov_ctr.1+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.1+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.1+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.1+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memccpy+32), %r3
 	or	%r3, lo(.L__profc_memccpy+32), %r9
 	ld	0[%r9], %r3
@@ -304,6 +410,18 @@ memccpy:                                ! @memccpy
 	bt	.LBB1_10
 	st	%r3, -12[%fp]
 .LBB1_9:
+	mov	hi(__llvm_gcov_ctr.1+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.1+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.1+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.1+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB1_10
 	st	%r3, -12[%fp]
@@ -354,6 +472,18 @@ memchr:                                 ! @memchr
 	bt	.LBB2_2
 	nop
 .LBB2_2:                                !   in Loop: Header=BB2_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.2), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.2+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memchr+16), %r3
 	or	%r3, lo(.L__profc_memchr+16), %r9
 	ld	0[%r9], %r3
@@ -379,6 +509,18 @@ memchr:                                 ! @memchr
 	nop
 .LBB2_3:                                !   in Loop: Header=BB2_1 Depth=1
 	ld	-32[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.2+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.2+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.2+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.2+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_memchr+24), %r9
 	or	%r9, lo(.L__profc_memchr+24), %r12
 	ld	0[%r12], %r9
@@ -417,6 +559,18 @@ memchr:                                 ! @memchr
 	bt	.LBB2_6
 	st	%r3, 0[%r9]
 .LBB2_6:                                !   in Loop: Header=BB2_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.2+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.2+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -24[%fp]
@@ -432,6 +586,18 @@ memchr:                                 ! @memchr
 	bt	.LBB2_8
 	nop
 .LBB2_8:
+	mov	hi(__llvm_gcov_ctr.2+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.2+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.2+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.2+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memchr+32), %r3
 	or	%r3, lo(.L__profc_memchr+32), %r9
 	ld	0[%r9], %r3
@@ -448,6 +614,18 @@ memchr:                                 ! @memchr
 	bt	.LBB2_10
 	st	%r3, -36[%fp]
 .LBB2_9:
+	mov	hi(__llvm_gcov_ctr.2+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.2+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.2+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.2+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB2_10
 	st	%r3, -36[%fp]
@@ -496,6 +674,18 @@ memcmp:                                 ! @memcmp
 	bt	.LBB3_2
 	nop
 .LBB3_2:                                !   in Loop: Header=BB3_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.3), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.3+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memcmp+16), %r3
 	or	%r3, lo(.L__profc_memcmp+16), %r9
 	ld	0[%r9], %r3
@@ -522,6 +712,18 @@ memcmp:                                 ! @memcmp
 	nop
 .LBB3_3:                                !   in Loop: Header=BB3_1 Depth=1
 	ld	-36[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.3+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.3+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.3+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.3+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_memcmp+24), %r9
 	or	%r9, lo(.L__profc_memcmp+24), %r12
 	ld	0[%r12], %r9
@@ -560,6 +762,18 @@ memcmp:                                 ! @memcmp
 	bt	.LBB3_6
 	st	%r3, 0[%r9]
 .LBB3_6:                                !   in Loop: Header=BB3_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.3+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.3+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -578,6 +792,18 @@ memcmp:                                 ! @memcmp
 	bt	.LBB3_8
 	nop
 .LBB3_8:
+	mov	hi(__llvm_gcov_ctr.3+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.3+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.3+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.3+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memcmp+32), %r3
 	or	%r3, lo(.L__profc_memcmp+32), %r9
 	ld	0[%r9], %r3
@@ -598,6 +824,18 @@ memcmp:                                 ! @memcmp
 	bt	.LBB3_10
 	st	%r3, -40[%fp]
 .LBB3_9:
+	mov	hi(__llvm_gcov_ctr.3+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.3+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.3+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.3+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB3_10
 	st	%r3, -40[%fp]
@@ -617,6 +855,18 @@ memcpy:                                 ! @memcpy
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
+	mov	hi(__llvm_gcov_ctr.4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.4+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.4+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -667,6 +917,18 @@ memcpy:                                 ! @memcpy
 	bt	.LBB4_3
 	st.b	%r3, 0[%r9]
 .LBB4_3:                                !   in Loop: Header=BB4_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.4+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.4+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.4+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	bt	.LBB4_1
@@ -740,6 +1002,18 @@ memrchr:                                ! @memrchr
 	bt	.LBB5_3
 	nop
 .LBB5_3:
+	mov	hi(__llvm_gcov_ctr.5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.5), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.5+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.5+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memrchr+16), %r3
 	or	%r3, lo(.L__profc_memrchr+16), %r9
 	ld	0[%r9], %r3
@@ -758,9 +1032,32 @@ memrchr:                                ! @memrchr
 	bt	.LBB5_6
 	st	%r3, -12[%fp]
 .LBB5_4:                                !   in Loop: Header=BB5_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.5+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.5+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.5+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.5+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB5_1
-	nop
+	st	%r3, 0[%r9]
 .LBB5_5:
+	mov	hi(__llvm_gcov_ctr.5+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.5+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.5+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.5+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB5_6
 	st	%r3, -12[%fp]
@@ -780,6 +1077,18 @@ memset:                                 ! @memset
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
+	mov	hi(__llvm_gcov_ctr.6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.6+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.6+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -823,6 +1132,18 @@ memset:                                 ! @memset
 	bt	.LBB6_3
 	st.b	%r3, 0[%r9]
 .LBB6_3:                                !   in Loop: Header=BB6_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.6+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.6+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.6+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -846,6 +1167,18 @@ stpcpy:                                 ! @stpcpy
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.7+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.7+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_stpcpy), %r3
@@ -885,6 +1218,18 @@ stpcpy:                                 ! @stpcpy
 	bt	.LBB7_3
 	st	%r3, 0[%r9]
 .LBB7_3:                                !   in Loop: Header=BB7_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.7+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.7+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.7+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -16[%fp]
@@ -908,6 +1253,18 @@ strchrnul:                              ! @strchrnul
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.8+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.8+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_strchrnul), %r3
@@ -937,6 +1294,18 @@ strchrnul:                              ! @strchrnul
 	bt	.LBB8_2
 	nop
 .LBB8_2:                                !   in Loop: Header=BB8_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.8+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.8+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.8+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.8+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strchrnul+16), %r3
 	or	%r3, lo(.L__profc_strchrnul+16), %r9
 	ld	0[%r9], %r3
@@ -962,6 +1331,18 @@ strchrnul:                              ! @strchrnul
 	nop
 .LBB8_3:                                !   in Loop: Header=BB8_1 Depth=1
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.8+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.8+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.8+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.8+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_strchrnul+24), %r9
 	or	%r9, lo(.L__profc_strchrnul+24), %r12
 	ld	0[%r12], %r9
@@ -1000,6 +1381,18 @@ strchrnul:                              ! @strchrnul
 	bt	.LBB8_6
 	st	%r3, 0[%r9]
 .LBB8_6:                                !   in Loop: Header=BB8_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.8+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.8+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.8+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.8+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB8_1
@@ -1036,6 +1429,18 @@ strchr:                                 ! @strchr
 	bt	.LBB9_2
 	st	%r3, 0[%r9]
 .LBB9_1:                                !   in Loop: Header=BB9_2 Depth=1
+	mov	hi(__llvm_gcov_ctr.9+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.9+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.9+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.9+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strchr+8), %r3
 	or	%r3, lo(.L__profc_strchr+8), %r9
 	ld	0[%r9], %r3
@@ -1059,6 +1464,18 @@ strchr:                                 ! @strchr
 	bt	.LBB9_3
 	nop
 .LBB9_3:
+	mov	hi(__llvm_gcov_ctr.9), %r3
+	or	%r3, lo(__llvm_gcov_ctr.9), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.9+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.9+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strchr+16), %r3
 	or	%r3, lo(.L__profc_strchr+16), %r9
 	ld	0[%r9], %r3
@@ -1088,6 +1505,18 @@ strchr:                                 ! @strchr
 	bt	.LBB9_6
 	nop
 .LBB9_6:
+	mov	hi(__llvm_gcov_ctr.9+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.9+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.9+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.9+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB9_7
 	st	%r3, -12[%fp]
@@ -1107,6 +1536,18 @@ strcmp:                                 ! @strcmp
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.10), %r3
+	or	%r3, lo(__llvm_gcov_ctr.10), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.10+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.10+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_strcmp), %r3
@@ -1134,6 +1575,18 @@ strcmp:                                 ! @strcmp
 	bt	.LBB10_2
 	nop
 .LBB10_2:                               !   in Loop: Header=BB10_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.10+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.10+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.10+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.10+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strcmp+16), %r3
 	or	%r3, lo(.L__profc_strcmp+16), %r9
 	ld	0[%r9], %r3
@@ -1158,6 +1611,18 @@ strcmp:                                 ! @strcmp
 	nop
 .LBB10_3:                               !   in Loop: Header=BB10_1 Depth=1
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.10+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.10+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.10+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.10+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_strcmp+24), %r9
 	or	%r9, lo(.L__profc_strcmp+24), %r12
 	ld	0[%r12], %r9
@@ -1196,6 +1661,18 @@ strcmp:                                 ! @strcmp
 	bt	.LBB10_6
 	st	%r3, 0[%r9]
 .LBB10_6:                               !   in Loop: Header=BB10_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.10+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.10+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.10+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.10+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -12[%fp]
@@ -1223,6 +1700,18 @@ strlen:                                 ! @strlen
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.11), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.11+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.11+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_strlen), %r3
 	or	%r3, lo(.L__profc_strlen), %r9
@@ -1262,6 +1751,18 @@ strlen:                                 ! @strlen
 	bt	.LBB11_3
 	st	%r3, 0[%r9]
 .LBB11_3:                               !   in Loop: Header=BB11_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.11+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.11+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.11+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB11_1
@@ -1311,6 +1812,18 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_1
 	nop
 .LBB12_1:
+	mov	hi(__llvm_gcov_ctr.12+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncmp+8), %r3
 	or	%r3, lo(.L__profc_strncmp+8), %r9
 	ld	0[%r9], %r3
@@ -1327,8 +1840,19 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_14
 	st	%r3, -12[%fp]
 .LBB12_2:
+	mov	hi(__llvm_gcov_ctr.12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB12_3
-	nop
+	st	%r3, 0[%r9]
 .LBB12_3:                               ! =>This Inner Loop Header: Depth=1
 	ld	-28[%fp], %r3
 	uld.b	0[%r3], %r9
@@ -1339,6 +1863,18 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_4
 	nop
 .LBB12_4:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.12+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncmp+56), %r3
 	or	%r3, lo(.L__profc_strncmp+56), %r9
 	ld	0[%r9], %r3
@@ -1360,6 +1896,18 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_5
 	nop
 .LBB12_5:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.12+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncmp+64), %r3
 	or	%r3, lo(.L__profc_strncmp+64), %r9
 	ld	0[%r9], %r3
@@ -1394,6 +1942,18 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_7
 	nop
 .LBB12_7:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.12+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncmp+48), %r3
 	or	%r3, lo(.L__profc_strncmp+48), %r9
 	ld	0[%r9], %r3
@@ -1434,6 +1994,18 @@ strncmp:                                ! @strncmp
 	nop
 .LBB12_9:                               !   in Loop: Header=BB12_3 Depth=1
 	ld	-40[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.12+40), %r9
+	or	%r9, lo(__llvm_gcov_ctr.12+40), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.12+44), %r13
+	or	%r13, lo(__llvm_gcov_ctr.12+44), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_strncmp+32), %r9
 	or	%r9, lo(.L__profc_strncmp+32), %r12
 	ld	0[%r12], %r9
@@ -1472,6 +2044,18 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_12
 	st	%r3, 0[%r9]
 .LBB12_12:                              !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.12+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.12+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.12+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -1506,6 +2090,18 @@ swab:                                   ! @swab
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
+	mov	hi(__llvm_gcov_ctr.13), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.13+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.13+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -1562,6 +2158,18 @@ swab:                                   ! @swab
 	bt	.LBB13_3
 	st	%r3, -24[%fp]
 .LBB13_3:                               !   in Loop: Header=BB13_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.13+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.13+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.13+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x2, %r3
 	bt	.LBB13_1
@@ -1581,6 +2189,18 @@ isalpha:                                ! @isalpha
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.14), %r3
+	or	%r3, lo(__llvm_gcov_ctr.14), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.14+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.14+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isalpha), %r3
 	or	%r3, lo(.L__profc_isalpha), %r9
@@ -1613,6 +2233,18 @@ isascii:                                ! @isascii
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.15), %r3
+	or	%r3, lo(__llvm_gcov_ctr.15), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.15+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.15+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isascii), %r3
 	or	%r3, lo(.L__profc_isascii), %r9
@@ -1644,6 +2276,18 @@ isblank:                                ! @isblank
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.16+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.16+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isblank), %r3
 	or	%r3, lo(.L__profc_isblank), %r9
@@ -1665,6 +2309,18 @@ isblank:                                ! @isblank
 	bt	.LBB16_1
 	nop
 .LBB16_1:
+	mov	hi(__llvm_gcov_ctr.16+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.16+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.16+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.16+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_isblank+8), %r3
 	or	%r3, lo(.L__profc_isblank+8), %r9
 	ld	0[%r9], %r3
@@ -1688,6 +2344,18 @@ isblank:                                ! @isblank
 	nop
 .LBB16_2:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.16+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.16+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.16+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.16+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_isblank+16), %r9
 	or	%r9, lo(.L__profc_isblank+16), %r12
 	ld	0[%r12], %r9
@@ -1720,6 +2388,18 @@ iscntrl:                                ! @iscntrl
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.17), %r3
+	or	%r3, lo(__llvm_gcov_ctr.17), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.17+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.17+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_iscntrl), %r3
 	or	%r3, lo(.L__profc_iscntrl), %r9
@@ -1741,6 +2421,18 @@ iscntrl:                                ! @iscntrl
 	bt	.LBB17_1
 	nop
 .LBB17_1:
+	mov	hi(__llvm_gcov_ctr.17+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.17+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.17+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.17+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iscntrl+8), %r3
 	or	%r3, lo(.L__profc_iscntrl+8), %r9
 	ld	0[%r9], %r3
@@ -1764,6 +2456,18 @@ iscntrl:                                ! @iscntrl
 	nop
 .LBB17_2:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.17+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.17+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.17+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.17+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_iscntrl+16), %r9
 	or	%r9, lo(.L__profc_iscntrl+16), %r12
 	ld	0[%r12], %r9
@@ -1796,6 +2500,18 @@ isdigit:                                ! @isdigit
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.18), %r3
+	or	%r3, lo(__llvm_gcov_ctr.18), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.18+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.18+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isdigit), %r3
 	or	%r3, lo(.L__profc_isdigit), %r9
@@ -1827,6 +2543,18 @@ isgraph:                                ! @isgraph
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.19), %r3
+	or	%r3, lo(__llvm_gcov_ctr.19), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.19+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.19+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isgraph), %r3
 	or	%r3, lo(.L__profc_isgraph), %r9
@@ -1858,6 +2586,18 @@ islower:                                ! @islower
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.20), %r3
+	or	%r3, lo(__llvm_gcov_ctr.20), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.20+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.20+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_islower), %r3
 	or	%r3, lo(.L__profc_islower), %r9
@@ -1889,6 +2629,18 @@ isprint:                                ! @isprint
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.21), %r3
+	or	%r3, lo(__llvm_gcov_ctr.21), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.21+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.21+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isprint), %r3
 	or	%r3, lo(.L__profc_isprint), %r9
@@ -1920,6 +2672,18 @@ isspace:                                ! @isspace
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.22), %r3
+	or	%r3, lo(__llvm_gcov_ctr.22), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.22+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.22+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isspace), %r3
 	or	%r3, lo(.L__profc_isspace), %r9
@@ -1941,6 +2705,18 @@ isspace:                                ! @isspace
 	bt	.LBB22_1
 	nop
 .LBB22_1:
+	mov	hi(__llvm_gcov_ctr.22+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.22+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.22+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.22+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_isspace+8), %r3
 	or	%r3, lo(.L__profc_isspace+8), %r9
 	ld	0[%r9], %r3
@@ -1965,6 +2741,18 @@ isspace:                                ! @isspace
 	nop
 .LBB22_2:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.22+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.22+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.22+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.22+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_isspace+16), %r9
 	or	%r9, lo(.L__profc_isspace+16), %r12
 	ld	0[%r12], %r9
@@ -1997,6 +2785,18 @@ isupper:                                ! @isupper
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.23), %r3
+	or	%r3, lo(__llvm_gcov_ctr.23), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.23+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.23+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_isupper), %r3
 	or	%r3, lo(.L__profc_isupper), %r9
@@ -2028,6 +2828,18 @@ iswcntrl:                               ! @iswcntrl
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.24+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.24+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_iswcntrl), %r3
 	or	%r3, lo(.L__profc_iswcntrl), %r9
@@ -2049,6 +2861,18 @@ iswcntrl:                               ! @iswcntrl
 	bt	.LBB24_1
 	nop
 .LBB24_1:
+	mov	hi(__llvm_gcov_ctr.24+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.24+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.24+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.24+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswcntrl+40), %r3
 	or	%r3, lo(.L__profc_iswcntrl+40), %r9
 	ld	0[%r9], %r3
@@ -2070,6 +2894,18 @@ iswcntrl:                               ! @iswcntrl
 	bt	.LBB24_2
 	nop
 .LBB24_2:
+	mov	hi(__llvm_gcov_ctr.24+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.24+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.24+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.24+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswcntrl+48), %r3
 	or	%r3, lo(.L__profc_iswcntrl+48), %r9
 	ld	0[%r9], %r3
@@ -2105,6 +2941,18 @@ iswcntrl:                               ! @iswcntrl
 	bt	.LBB24_4
 	nop
 .LBB24_4:
+	mov	hi(__llvm_gcov_ctr.24+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.24+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.24+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.24+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswcntrl+32), %r3
 	or	%r3, lo(.L__profc_iswcntrl+32), %r9
 	ld	0[%r9], %r3
@@ -2144,6 +2992,18 @@ iswcntrl:                               ! @iswcntrl
 	nop
 .LBB24_6:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.24+32), %r9
+	or	%r9, lo(__llvm_gcov_ctr.24+32), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.24+36), %r13
+	or	%r13, lo(__llvm_gcov_ctr.24+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_iswcntrl+16), %r9
 	or	%r9, lo(.L__profc_iswcntrl+16), %r12
 	ld	0[%r12], %r9
@@ -2176,6 +3036,18 @@ iswdigit:                               ! @iswdigit
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.25), %r3
+	or	%r3, lo(__llvm_gcov_ctr.25), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.25+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.25+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_iswdigit), %r3
 	or	%r3, lo(.L__profc_iswdigit), %r9
@@ -2226,6 +3098,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_1
 	nop
 .LBB26_1:
+	mov	hi(__llvm_gcov_ctr.26), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+8), %r3
 	or	%r3, lo(.L__profc_iswprint+8), %r9
 	ld	0[%r9], %r3
@@ -2254,6 +3138,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_3
 	nop
 .LBB26_3:
+	mov	hi(__llvm_gcov_ctr.26+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+40), %r3
 	or	%r3, lo(.L__profc_iswprint+40), %r9
 	ld	0[%r9], %r3
@@ -2274,6 +3170,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_4
 	nop
 .LBB26_4:
+	mov	hi(__llvm_gcov_ctr.26+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+48), %r3
 	or	%r3, lo(.L__profc_iswprint+48), %r9
 	ld	0[%r9], %r3
@@ -2323,6 +3231,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_8
 	st	%r3, 0[%r9]
 .LBB26_7:
+	mov	hi(__llvm_gcov_ctr.26+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+16), %r3
 	or	%r3, lo(.L__profc_iswprint+16), %r9
 	ld	0[%r9], %r3
@@ -2349,6 +3269,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_9
 	nop
 .LBB26_9:
+	mov	hi(__llvm_gcov_ctr.26+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+64), %r3
 	or	%r3, lo(.L__profc_iswprint+64), %r9
 	ld	0[%r9], %r3
@@ -2384,6 +3316,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_12
 	st	%r3, 0[%r9]
 .LBB26_11:
+	mov	hi(__llvm_gcov_ctr.26+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswprint+56), %r3
 	or	%r3, lo(.L__profc_iswprint+56), %r9
 	ld	0[%r9], %r3
@@ -2400,6 +3344,18 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_13
 	st	%r3, -12[%fp]
 .LBB26_12:
+	mov	hi(__llvm_gcov_ctr.26+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.26+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.26+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.26+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB26_13
 	st	%r3, -12[%fp]
@@ -2419,6 +3375,18 @@ iswxdigit:                              ! @iswxdigit
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.27), %r3
+	or	%r3, lo(__llvm_gcov_ctr.27), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.27+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.27+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_iswxdigit), %r3
 	or	%r3, lo(.L__profc_iswxdigit), %r9
@@ -2441,6 +3409,18 @@ iswxdigit:                              ! @iswxdigit
 	bt	.LBB27_1
 	nop
 .LBB27_1:
+	mov	hi(__llvm_gcov_ctr.27+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.27+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.27+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.27+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_iswxdigit+8), %r3
 	or	%r3, lo(.L__profc_iswxdigit+8), %r9
 	ld	0[%r9], %r3
@@ -2466,6 +3446,18 @@ iswxdigit:                              ! @iswxdigit
 	nop
 .LBB27_2:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.27+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.27+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.27+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.27+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_iswxdigit+16), %r9
 	or	%r9, lo(.L__profc_iswxdigit+16), %r12
 	ld	0[%r12], %r9
@@ -2498,6 +3490,18 @@ toascii:                                ! @toascii
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.28), %r3
+	or	%r3, lo(__llvm_gcov_ctr.28), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.28+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.28+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_toascii), %r3
 	or	%r3, lo(.L__profc_toascii), %r9
@@ -2567,6 +3571,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_1
 	nop
 .LBB29_1:
+	mov	hi(__llvm_gcov_ctr.29), %r3
+	or	%r3, lo(__llvm_gcov_ctr.29), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.29+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.29+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdim+8), %r3
 	or	%r3, lo(.L__profc_fdim+8), %r9
 	ld	0[%r9], %r3
@@ -2606,6 +3622,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_3
 	nop
 .LBB29_3:
+	mov	hi(__llvm_gcov_ctr.29+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.29+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.29+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.29+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdim+16), %r3
 	or	%r3, lo(.L__profc_fdim+16), %r9
 	ld	0[%r9], %r3
@@ -2645,6 +3673,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_5
 	nop
 .LBB29_5:
+	mov	hi(__llvm_gcov_ctr.29+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.29+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.29+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.29+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdim+24), %r3
 	or	%r3, lo(.L__profc_fdim+24), %r9
 	ld	0[%r9], %r3
@@ -2675,6 +3715,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_7
 	st	%r3, -36[%fp]
 .LBB29_6:
+	mov	hi(__llvm_gcov_ctr.29+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.29+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.29+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.29+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r9
 	or	%r9, 0x0, %r3
 	st	%r9, -40[%fp]
@@ -2733,6 +3785,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_1
 	nop
 .LBB30_1:
+	mov	hi(__llvm_gcov_ctr.30), %r3
+	or	%r3, lo(__llvm_gcov_ctr.30), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.30+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.30+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdimf+8), %r3
 	or	%r3, lo(.L__profc_fdimf+8), %r9
 	ld	0[%r9], %r3
@@ -2759,6 +3823,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_3
 	nop
 .LBB30_3:
+	mov	hi(__llvm_gcov_ctr.30+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.30+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.30+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.30+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdimf+16), %r3
 	or	%r3, lo(.L__profc_fdimf+16), %r9
 	ld	0[%r9], %r3
@@ -2786,6 +3862,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_5
 	nop
 .LBB30_5:
+	mov	hi(__llvm_gcov_ctr.30+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.30+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.30+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.30+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fdimf+24), %r3
 	or	%r3, lo(.L__profc_fdimf+24), %r9
 	ld	0[%r9], %r3
@@ -2807,6 +3895,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_7
 	st	%r3, -24[%fp]
 .LBB30_6:
+	mov	hi(__llvm_gcov_ctr.30+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.30+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.30+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.30+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB30_7
 	st	%r3, -24[%fp]
@@ -2869,6 +3969,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_1
 	nop
 .LBB31_1:
+	mov	hi(__llvm_gcov_ctr.31), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmax+8), %r3
 	or	%r3, lo(.L__profc_fmax+8), %r9
 	ld	0[%r9], %r3
@@ -2908,6 +4020,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_3
 	nop
 .LBB31_3:
+	mov	hi(__llvm_gcov_ctr.31+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmax+16), %r3
 	or	%r3, lo(.L__profc_fmax+16), %r9
 	ld	0[%r9], %r3
@@ -2959,6 +4083,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_6
 	nop
 .LBB31_6:
+	mov	hi(__llvm_gcov_ctr.31+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmax+32), %r3
 	or	%r3, lo(.L__profc_fmax+32), %r9
 	ld	0[%r9], %r3
@@ -2979,6 +4115,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_8
 	st	%r3, -36[%fp]
 .LBB31_7:
+	mov	hi(__llvm_gcov_ctr.31+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3012,6 +4160,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_10
 	nop
 .LBB31_10:
+	mov	hi(__llvm_gcov_ctr.31+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmax+40), %r3
 	or	%r3, lo(.L__profc_fmax+40), %r9
 	ld	0[%r9], %r3
@@ -3032,6 +4192,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_12
 	st	%r3, -44[%fp]
 .LBB31_11:
+	mov	hi(__llvm_gcov_ctr.31+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.31+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.31+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3092,6 +4264,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_1
 	nop
 .LBB32_1:
+	mov	hi(__llvm_gcov_ctr.32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxf+8), %r3
 	or	%r3, lo(.L__profc_fmaxf+8), %r9
 	ld	0[%r9], %r3
@@ -3118,6 +4302,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_3
 	nop
 .LBB32_3:
+	mov	hi(__llvm_gcov_ctr.32+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxf+16), %r3
 	or	%r3, lo(.L__profc_fmaxf+16), %r9
 	ld	0[%r9], %r3
@@ -3163,6 +4359,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_6
 	nop
 .LBB32_6:
+	mov	hi(__llvm_gcov_ctr.32+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxf+32), %r3
 	or	%r3, lo(.L__profc_fmaxf+32), %r9
 	ld	0[%r9], %r3
@@ -3179,6 +4387,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_8
 	st	%r3, -24[%fp]
 .LBB32_7:
+	mov	hi(__llvm_gcov_ctr.32+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB32_8
 	st	%r3, -24[%fp]
@@ -3198,6 +4418,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_10
 	nop
 .LBB32_10:
+	mov	hi(__llvm_gcov_ctr.32+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxf+40), %r3
 	or	%r3, lo(.L__profc_fmaxf+40), %r9
 	ld	0[%r9], %r3
@@ -3214,6 +4446,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_12
 	st	%r3, -28[%fp]
 .LBB32_11:
+	mov	hi(__llvm_gcov_ctr.32+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.32+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.32+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.32+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB32_12
 	st	%r3, -28[%fp]
@@ -3276,6 +4520,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_1
 	nop
 .LBB33_1:
+	mov	hi(__llvm_gcov_ctr.33), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxl+8), %r3
 	or	%r3, lo(.L__profc_fmaxl+8), %r9
 	ld	0[%r9], %r3
@@ -3315,6 +4571,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_3
 	nop
 .LBB33_3:
+	mov	hi(__llvm_gcov_ctr.33+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxl+16), %r3
 	or	%r3, lo(.L__profc_fmaxl+16), %r9
 	ld	0[%r9], %r3
@@ -3366,6 +4634,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_6
 	nop
 .LBB33_6:
+	mov	hi(__llvm_gcov_ctr.33+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxl+32), %r3
 	or	%r3, lo(.L__profc_fmaxl+32), %r9
 	ld	0[%r9], %r3
@@ -3386,6 +4666,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_8
 	st	%r3, -36[%fp]
 .LBB33_7:
+	mov	hi(__llvm_gcov_ctr.33+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3419,6 +4711,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_10
 	nop
 .LBB33_10:
+	mov	hi(__llvm_gcov_ctr.33+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmaxl+40), %r3
 	or	%r3, lo(.L__profc_fmaxl+40), %r9
 	ld	0[%r9], %r3
@@ -3439,6 +4743,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_12
 	st	%r3, -44[%fp]
 .LBB33_11:
+	mov	hi(__llvm_gcov_ctr.33+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.33+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.33+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.33+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3512,6 +4828,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_1
 	nop
 .LBB34_1:
+	mov	hi(__llvm_gcov_ctr.34), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmin+8), %r3
 	or	%r3, lo(.L__profc_fmin+8), %r9
 	ld	0[%r9], %r3
@@ -3551,6 +4879,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_3
 	nop
 .LBB34_3:
+	mov	hi(__llvm_gcov_ctr.34+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmin+16), %r3
 	or	%r3, lo(.L__profc_fmin+16), %r9
 	ld	0[%r9], %r3
@@ -3602,6 +4942,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_6
 	nop
 .LBB34_6:
+	mov	hi(__llvm_gcov_ctr.34+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmin+32), %r3
 	or	%r3, lo(.L__profc_fmin+32), %r9
 	ld	0[%r9], %r3
@@ -3622,6 +4974,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_8
 	st	%r3, -36[%fp]
 .LBB34_7:
+	mov	hi(__llvm_gcov_ctr.34+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3655,6 +5019,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_10
 	nop
 .LBB34_10:
+	mov	hi(__llvm_gcov_ctr.34+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fmin+40), %r3
 	or	%r3, lo(.L__profc_fmin+40), %r9
 	ld	0[%r9], %r3
@@ -3675,6 +5051,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_12
 	st	%r3, -44[%fp]
 .LBB34_11:
+	mov	hi(__llvm_gcov_ctr.34+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.34+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.34+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.34+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3735,6 +5123,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_1
 	nop
 .LBB35_1:
+	mov	hi(__llvm_gcov_ctr.35), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminf+8), %r3
 	or	%r3, lo(.L__profc_fminf+8), %r9
 	ld	0[%r9], %r3
@@ -3761,6 +5161,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_3
 	nop
 .LBB35_3:
+	mov	hi(__llvm_gcov_ctr.35+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminf+16), %r3
 	or	%r3, lo(.L__profc_fminf+16), %r9
 	ld	0[%r9], %r3
@@ -3806,6 +5218,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_6
 	nop
 .LBB35_6:
+	mov	hi(__llvm_gcov_ctr.35+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminf+32), %r3
 	or	%r3, lo(.L__profc_fminf+32), %r9
 	ld	0[%r9], %r3
@@ -3822,6 +5246,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_8
 	st	%r3, -24[%fp]
 .LBB35_7:
+	mov	hi(__llvm_gcov_ctr.35+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB35_8
 	st	%r3, -24[%fp]
@@ -3841,6 +5277,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_10
 	nop
 .LBB35_10:
+	mov	hi(__llvm_gcov_ctr.35+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminf+40), %r3
 	or	%r3, lo(.L__profc_fminf+40), %r9
 	ld	0[%r9], %r3
@@ -3857,6 +5305,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_12
 	st	%r3, -28[%fp]
 .LBB35_11:
+	mov	hi(__llvm_gcov_ctr.35+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.35+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.35+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.35+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB35_12
 	st	%r3, -28[%fp]
@@ -3919,6 +5379,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_1
 	nop
 .LBB36_1:
+	mov	hi(__llvm_gcov_ctr.36), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminl+8), %r3
 	or	%r3, lo(.L__profc_fminl+8), %r9
 	ld	0[%r9], %r3
@@ -3958,6 +5430,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_3
 	nop
 .LBB36_3:
+	mov	hi(__llvm_gcov_ctr.36+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminl+16), %r3
 	or	%r3, lo(.L__profc_fminl+16), %r9
 	ld	0[%r9], %r3
@@ -4009,6 +5493,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_6
 	nop
 .LBB36_6:
+	mov	hi(__llvm_gcov_ctr.36+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminl+32), %r3
 	or	%r3, lo(.L__profc_fminl+32), %r9
 	ld	0[%r9], %r3
@@ -4029,6 +5525,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_8
 	st	%r3, -36[%fp]
 .LBB36_7:
+	mov	hi(__llvm_gcov_ctr.36+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -4062,6 +5570,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_10
 	nop
 .LBB36_10:
+	mov	hi(__llvm_gcov_ctr.36+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_fminl+40), %r3
 	or	%r3, lo(.L__profc_fminl+40), %r9
 	ld	0[%r9], %r3
@@ -4082,6 +5602,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_12
 	st	%r3, -44[%fp]
 .LBB36_11:
+	mov	hi(__llvm_gcov_ctr.36+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.36+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.36+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.36+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -4116,6 +5648,18 @@ l64a:                                   ! @l64a
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.37), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.37+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.37+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_l64a), %r3
 	or	%r3, lo(.L__profc_l64a), %r9
@@ -4166,6 +5710,18 @@ l64a:                                   ! @l64a
 	bt	.LBB37_3
 	st.b	%r3, 0[%r9]
 .LBB37_3:                               !   in Loop: Header=BB37_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.37+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.37+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.37+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -16[%fp]
@@ -4193,6 +5749,18 @@ srand:                                  ! @srand
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.38), %r3
+	or	%r3, lo(__llvm_gcov_ctr.38), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.38+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.38+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_srand), %r3
 	or	%r3, lo(.L__profc_srand), %r9
@@ -4229,6 +5797,18 @@ rand:                                   ! @rand
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.39), %r3
+	or	%r3, lo(__llvm_gcov_ctr.39), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.39+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.39+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_rand), %r3
 	or	%r3, lo(.L__profc_rand), %r9
 	ld	0[%r9], %r3
@@ -4304,6 +5884,18 @@ insque:                                 ! @insque
 	bt	.LBB40_1
 	nop
 .LBB40_1:
+	mov	hi(__llvm_gcov_ctr.40+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.40+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.40+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.40+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_insque+8), %r3
 	or	%r3, lo(.L__profc_insque+8), %r9
 	ld	0[%r9], %r3
@@ -4323,6 +5915,18 @@ insque:                                 ! @insque
 	bt	.LBB40_4
 	st	%r3, 0[%r9]
 .LBB40_2:
+	mov	hi(__llvm_gcov_ctr.40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.40+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.40+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-20[%fp], %r9
@@ -4341,6 +5945,18 @@ insque:                                 ! @insque
 	bt	.LBB40_3
 	nop
 .LBB40_3:
+	mov	hi(__llvm_gcov_ctr.40+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.40+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.40+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.40+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_insque+16), %r3
 	or	%r3, lo(.L__profc_insque+16), %r9
 	ld	0[%r9], %r3
@@ -4371,6 +5987,18 @@ remque:                                 ! @remque
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
+	mov	hi(__llvm_gcov_ctr.41), %r3
+	or	%r3, lo(__llvm_gcov_ctr.41), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.41+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.41+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_remque), %r3
 	or	%r3, lo(.L__profc_remque), %r9
@@ -4394,6 +6022,18 @@ remque:                                 ! @remque
 	bt	.LBB41_1
 	nop
 .LBB41_1:
+	mov	hi(__llvm_gcov_ctr.41+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.41+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.41+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.41+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_remque+8), %r3
 	or	%r3, lo(.L__profc_remque+8), %r9
 	ld	0[%r9], %r3
@@ -4420,6 +6060,18 @@ remque:                                 ! @remque
 	bt	.LBB41_3
 	nop
 .LBB41_3:
+	mov	hi(__llvm_gcov_ctr.41+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.41+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.41+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.41+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_remque+16), %r3
 	or	%r3, lo(.L__profc_remque+16), %r9
 	ld	0[%r9], %r3
@@ -4525,6 +6177,18 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_3:
 	ld	-44[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.42), %r3
+	or	%r3, lo(__llvm_gcov_ctr.42), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.42+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.42+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_lsearch+16), %r3
 	or	%r3, lo(.L__profc_lsearch+16), %r9
 	ld	0[%r9], %r3
@@ -4551,12 +6215,36 @@ lsearch:                                ! @lsearch
 	bt	.LBB42_5
 	nop
 .LBB42_5:                               !   in Loop: Header=BB42_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.42+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.42+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.42+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.42+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB42_1
 	st	%r3, -40[%fp]
 .LBB42_6:
 	ld	-44[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.42+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.42+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.42+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.42+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	add	%r3, 0x1, %r3
 	ld	-24[%fp], %r9
@@ -4667,6 +6355,18 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_3:
 	ld	-44[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.43), %r3
+	or	%r3, lo(__llvm_gcov_ctr.43), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.43+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.43+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_lfind+16), %r3
 	or	%r3, lo(.L__profc_lfind+16), %r9
 	ld	0[%r9], %r3
@@ -4693,11 +6393,35 @@ lfind:                                  ! @lfind
 	bt	.LBB43_5
 	nop
 .LBB43_5:                               !   in Loop: Header=BB43_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.43+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.43+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.43+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.43+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB43_1
 	st	%r3, -40[%fp]
 .LBB43_6:
+	mov	hi(__llvm_gcov_ctr.43+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.43+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.43+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.43+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB43_7
 	st	%r3, -12[%fp]
@@ -4736,6 +6460,18 @@ abs:                                    ! @abs
 	bt	.LBB44_1
 	nop
 .LBB44_1:
+	mov	hi(__llvm_gcov_ctr.44), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.44+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.44+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_abs+8), %r3
 	or	%r3, lo(.L__profc_abs+8), %r9
 	ld	0[%r9], %r3
@@ -4752,6 +6488,18 @@ abs:                                    ! @abs
 	bt	.LBB44_3
 	st	%r3, -16[%fp]
 .LBB44_2:
+	mov	hi(__llvm_gcov_ctr.44+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.44+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.44+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -4802,6 +6550,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_2
 	nop
 .LBB45_2:                               !   in Loop: Header=BB45_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.45), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoi+8), %r3
 	or	%r3, lo(.L__profc_atoi+8), %r9
 	ld	0[%r9], %r3
@@ -4834,6 +6594,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_4
 	nop
 .LBB45_4:
+	mov	hi(__llvm_gcov_ctr.45+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoi+24), %r3
 	or	%r3, lo(.L__profc_atoi+24), %r9
 	ld	0[%r9], %r3
@@ -4850,6 +6622,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_6
 	st	%r3, -20[%fp]
 .LBB45_5:
+	mov	hi(__llvm_gcov_ctr.45+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoi+32), %r3
 	or	%r3, lo(.L__profc_atoi+32), %r9
 	ld	0[%r9], %r3
@@ -4894,6 +6678,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_9
 	nop
 .LBB45_9:                               !   in Loop: Header=BB45_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.45+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoi+40), %r3
 	or	%r3, lo(.L__profc_atoi+40), %r9
 	ld	0[%r9], %r3
@@ -4926,6 +6722,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_11
 	nop
 .LBB45_11:
+	mov	hi(__llvm_gcov_ctr.45+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoi+48), %r3
 	or	%r3, lo(.L__profc_atoi+48), %r9
 	ld	0[%r9], %r3
@@ -4942,6 +6750,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_13
 	st	%r3, -28[%fp]
 .LBB45_12:
+	mov	hi(__llvm_gcov_ctr.45+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.45+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.45+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.45+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -4992,6 +6812,18 @@ atol:                                   ! @atol
 	bt	.LBB46_2
 	nop
 .LBB46_2:                               !   in Loop: Header=BB46_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.46), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atol+8), %r3
 	or	%r3, lo(.L__profc_atol+8), %r9
 	ld	0[%r9], %r3
@@ -5024,6 +6856,18 @@ atol:                                   ! @atol
 	bt	.LBB46_4
 	nop
 .LBB46_4:
+	mov	hi(__llvm_gcov_ctr.46+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atol+24), %r3
 	or	%r3, lo(.L__profc_atol+24), %r9
 	ld	0[%r9], %r3
@@ -5040,6 +6884,18 @@ atol:                                   ! @atol
 	bt	.LBB46_6
 	st	%r3, -20[%fp]
 .LBB46_5:
+	mov	hi(__llvm_gcov_ctr.46+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atol+32), %r3
 	or	%r3, lo(.L__profc_atol+32), %r9
 	ld	0[%r9], %r3
@@ -5084,6 +6940,18 @@ atol:                                   ! @atol
 	bt	.LBB46_9
 	nop
 .LBB46_9:                               !   in Loop: Header=BB46_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.46+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atol+40), %r3
 	or	%r3, lo(.L__profc_atol+40), %r9
 	ld	0[%r9], %r3
@@ -5116,6 +6984,18 @@ atol:                                   ! @atol
 	bt	.LBB46_11
 	nop
 .LBB46_11:
+	mov	hi(__llvm_gcov_ctr.46+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atol+48), %r3
 	or	%r3, lo(.L__profc_atol+48), %r9
 	ld	0[%r9], %r3
@@ -5132,6 +7012,18 @@ atol:                                   ! @atol
 	bt	.LBB46_13
 	st	%r3, -28[%fp]
 .LBB46_12:
+	mov	hi(__llvm_gcov_ctr.46+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.46+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.46+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.46+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -5185,6 +7077,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_2
 	nop
 .LBB47_2:                               !   in Loop: Header=BB47_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.47), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoll+8), %r3
 	or	%r3, lo(.L__profc_atoll+8), %r9
 	ld	0[%r9], %r3
@@ -5217,6 +7121,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_4
 	nop
 .LBB47_4:
+	mov	hi(__llvm_gcov_ctr.47+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoll+24), %r3
 	or	%r3, lo(.L__profc_atoll+24), %r9
 	ld	0[%r9], %r3
@@ -5233,6 +7149,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_6
 	st	%r3, -28[%fp]
 .LBB47_5:
+	mov	hi(__llvm_gcov_ctr.47+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoll+32), %r3
 	or	%r3, lo(.L__profc_atoll+32), %r9
 	ld	0[%r9], %r3
@@ -5277,6 +7205,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_9
 	nop
 .LBB47_9:                               !   in Loop: Header=BB47_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.47+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoll+40), %r3
 	or	%r3, lo(.L__profc_atoll+40), %r9
 	ld	0[%r9], %r3
@@ -5322,6 +7262,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_11
 	nop
 .LBB47_11:
+	mov	hi(__llvm_gcov_ctr.47+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_atoll+48), %r3
 	or	%r3, lo(.L__profc_atoll+48), %r9
 	ld	0[%r9], %r3
@@ -5342,6 +7294,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_13
 	st	%r3, -40[%fp]
 .LBB47_12:
+	mov	hi(__llvm_gcov_ctr.47+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.47+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.47+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.47+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r13
@@ -5435,6 +7399,18 @@ bsearch:                                ! @bsearch
 	bt	.LBB48_3
 	nop
 .LBB48_3:                               !   in Loop: Header=BB48_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.48+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.48+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.48+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.48+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_bsearch+16), %r3
 	or	%r3, lo(.L__profc_bsearch+16), %r9
 	ld	0[%r9], %r3
@@ -5483,16 +7459,51 @@ bsearch:                                ! @bsearch
 	bt	.LBB48_7
 	st	%r3, -24[%fp]
 .LBB48_6:
+	mov	hi(__llvm_gcov_ctr.48+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.48+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.48+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.48+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	bt	.LBB48_10
 	st	%r3, -12[%fp]
 .LBB48_7:                               !   in Loop: Header=BB48_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.48+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.48+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.48+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.48+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB48_8
-	nop
+	st	%r3, 0[%r9]
 .LBB48_8:                               !   in Loop: Header=BB48_1 Depth=1
 	bt	.LBB48_1
 	nop
 .LBB48_9:
+	mov	hi(__llvm_gcov_ctr.48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.48+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.48+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB48_10
 	st	%r3, -12[%fp]
@@ -5581,6 +7592,18 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_3
 	nop
 .LBB49_3:
+	mov	hi(__llvm_gcov_ctr.49), %r3
+	or	%r3, lo(__llvm_gcov_ctr.49), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.49+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.49+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_bsearch_r+16), %r3
 	or	%r3, lo(.L__profc_bsearch_r+16), %r9
 	ld	0[%r9], %r3
@@ -5604,6 +7627,18 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_5
 	nop
 .LBB49_5:                               !   in Loop: Header=BB49_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.49+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.49+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.49+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.49+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_bsearch_r+24), %r3
 	or	%r3, lo(.L__profc_bsearch_r+24), %r9
 	ld	0[%r9], %r3
@@ -5628,11 +7663,35 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_7
 	nop
 .LBB49_7:                               !   in Loop: Header=BB49_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.49+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.49+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.49+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.49+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	sha	%r3, -0x1, %r3
 	bt	.LBB49_1
 	st	%r3, -36[%fp]
 .LBB49_8:
+	mov	hi(__llvm_gcov_ctr.49+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.49+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.49+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.49+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB49_9
 	st	%r3, -12[%fp]
@@ -5655,6 +7714,18 @@ div:                                    ! @div
 	ld	0[%fp], %r3
 	st	%r3, -24[%fp]
 	st	%r3, -20[%fp]
+	mov	hi(__llvm_gcov_ctr.50), %r3
+	or	%r3, lo(__llvm_gcov_ctr.50), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.50+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.50+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_div), %r3
@@ -5731,6 +7802,18 @@ imaxabs:                                ! @imaxabs
 	bt	.LBB51_1
 	nop
 .LBB51_1:
+	mov	hi(__llvm_gcov_ctr.51), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.51+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.51+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_imaxabs+8), %r3
 	or	%r3, lo(.L__profc_imaxabs+8), %r9
 	ld	0[%r9], %r3
@@ -5751,6 +7834,18 @@ imaxabs:                                ! @imaxabs
 	bt	.LBB51_3
 	st	%r3, -20[%fp]
 .LBB51_2:
+	mov	hi(__llvm_gcov_ctr.51+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.51+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.51+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r13
@@ -5788,6 +7883,18 @@ imaxdiv:                                ! @imaxdiv
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.52), %r3
+	or	%r3, lo(__llvm_gcov_ctr.52), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.52+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.52+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r9, -36[%fp]
@@ -5869,6 +7976,18 @@ labs:                                   ! @labs
 	bt	.LBB53_1
 	nop
 .LBB53_1:
+	mov	hi(__llvm_gcov_ctr.53), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.53+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.53+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_labs+8), %r3
 	or	%r3, lo(.L__profc_labs+8), %r9
 	ld	0[%r9], %r3
@@ -5885,6 +8004,18 @@ labs:                                   ! @labs
 	bt	.LBB53_3
 	st	%r3, -16[%fp]
 .LBB53_2:
+	mov	hi(__llvm_gcov_ctr.53+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.53+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.53+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -5909,6 +8040,18 @@ ldiv:                                   ! @ldiv
 	ld	0[%fp], %r3
 	st	%r3, -24[%fp]
 	st	%r3, -20[%fp]
+	mov	hi(__llvm_gcov_ctr.54), %r3
+	or	%r3, lo(__llvm_gcov_ctr.54), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.54+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.54+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_ldiv), %r3
@@ -5985,6 +8128,18 @@ llabs:                                  ! @llabs
 	bt	.LBB55_1
 	nop
 .LBB55_1:
+	mov	hi(__llvm_gcov_ctr.55), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.55+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.55+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_llabs+8), %r3
 	or	%r3, lo(.L__profc_llabs+8), %r9
 	ld	0[%r9], %r3
@@ -6005,6 +8160,18 @@ llabs:                                  ! @llabs
 	bt	.LBB55_3
 	st	%r3, -20[%fp]
 .LBB55_2:
+	mov	hi(__llvm_gcov_ctr.55+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.55+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.55+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r13
@@ -6042,6 +8209,18 @@ lldiv:                                  ! @lldiv
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.56+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.56+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r9, -36[%fp]
@@ -6129,6 +8308,18 @@ wcschr:                                 ! @wcschr
 	bt	.LBB57_2
 	nop
 .LBB57_2:                               !   in Loop: Header=BB57_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.57), %r3
+	or	%r3, lo(__llvm_gcov_ctr.57), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.57+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.57+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcschr+16), %r3
 	or	%r3, lo(.L__profc_wcschr+16), %r9
 	ld	0[%r9], %r3
@@ -6154,6 +8345,18 @@ wcschr:                                 ! @wcschr
 	nop
 .LBB57_3:                               !   in Loop: Header=BB57_1 Depth=1
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.57+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.57+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.57+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.57+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_wcschr+24), %r9
 	or	%r9, lo(.L__profc_wcschr+24), %r12
 	ld	0[%r12], %r9
@@ -6192,6 +8395,18 @@ wcschr:                                 ! @wcschr
 	bt	.LBB57_6
 	st	%r3, 0[%r9]
 .LBB57_6:                               !   in Loop: Header=BB57_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.57+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.57+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.57+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.57+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
 	bt	.LBB57_1
@@ -6205,6 +8420,18 @@ wcschr:                                 ! @wcschr
 	bt	.LBB57_8
 	nop
 .LBB57_8:
+	mov	hi(__llvm_gcov_ctr.57+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.57+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.57+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.57+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcschr+32), %r3
 	or	%r3, lo(.L__profc_wcschr+32), %r9
 	ld	0[%r9], %r3
@@ -6221,6 +8448,18 @@ wcschr:                                 ! @wcschr
 	bt	.LBB57_10
 	st	%r3, -28[%fp]
 .LBB57_9:
+	mov	hi(__llvm_gcov_ctr.57+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.57+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.57+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.57+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB57_10
 	st	%r3, -28[%fp]
@@ -6267,6 +8506,18 @@ wcscmp:                                 ! @wcscmp
 	bt	.LBB58_2
 	nop
 .LBB58_2:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.58), %r3
+	or	%r3, lo(__llvm_gcov_ctr.58), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.58+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.58+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcscmp+32), %r3
 	or	%r3, lo(.L__profc_wcscmp+32), %r9
 	ld	0[%r9], %r3
@@ -6288,6 +8539,18 @@ wcscmp:                                 ! @wcscmp
 	bt	.LBB58_3
 	nop
 .LBB58_3:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.58+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.58+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.58+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.58+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcscmp+40), %r3
 	or	%r3, lo(.L__profc_wcscmp+40), %r9
 	ld	0[%r9], %r3
@@ -6326,6 +8589,18 @@ wcscmp:                                 ! @wcscmp
 	nop
 .LBB58_5:                               !   in Loop: Header=BB58_1 Depth=1
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.58+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.58+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.58+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.58+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_wcscmp+24), %r9
 	or	%r9, lo(.L__profc_wcscmp+24), %r12
 	ld	0[%r12], %r9
@@ -6364,6 +8639,18 @@ wcscmp:                                 ! @wcscmp
 	bt	.LBB58_8
 	st	%r3, 0[%r9]
 .LBB58_8:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.58+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.58+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.58+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.58+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
 	st	%r3, -12[%fp]
@@ -6382,6 +8669,18 @@ wcscmp:                                 ! @wcscmp
 	bt	.LBB58_10
 	nop
 .LBB58_10:
+	mov	hi(__llvm_gcov_ctr.58+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.58+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.58+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.58+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcscmp+48), %r3
 	or	%r3, lo(.L__profc_wcscmp+48), %r9
 	ld	0[%r9], %r3
@@ -6398,6 +8697,18 @@ wcscmp:                                 ! @wcscmp
 	bt	.LBB58_12
 	st	%r3, -28[%fp]
 .LBB58_11:
+	mov	hi(__llvm_gcov_ctr.58+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.58+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.58+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.58+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
@@ -6422,6 +8733,18 @@ wcscpy:                                 ! @wcscpy
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.59), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.59+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.59+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_wcscpy), %r3
@@ -6453,6 +8776,18 @@ wcscpy:                                 ! @wcscpy
 	bt	.LBB59_2
 	nop
 .LBB59_2:                               !   in Loop: Header=BB59_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.59+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.59+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.59+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcscpy+8), %r3
 	or	%r3, lo(.L__profc_wcscpy+8), %r9
 	ld	0[%r9], %r3
@@ -6482,6 +8817,18 @@ wcslen:                                 ! @wcslen
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.60), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.60+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.60+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_wcslen), %r3
 	or	%r3, lo(.L__profc_wcslen), %r9
@@ -6521,6 +8868,18 @@ wcslen:                                 ! @wcslen
 	bt	.LBB60_3
 	st	%r3, 0[%r9]
 .LBB60_3:                               !   in Loop: Header=BB60_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.60+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.60+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.60+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
 	bt	.LBB60_1
@@ -6569,6 +8928,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_2
 	nop
 .LBB61_2:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.61), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcsncmp+48), %r3
 	or	%r3, lo(.L__profc_wcsncmp+48), %r9
 	ld	0[%r9], %r3
@@ -6592,6 +8963,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_3
 	nop
 .LBB61_3:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.61+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcsncmp+56), %r3
 	or	%r3, lo(.L__profc_wcsncmp+56), %r9
 	ld	0[%r9], %r3
@@ -6627,6 +9010,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_5
 	nop
 .LBB61_5:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.61+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcsncmp+40), %r3
 	or	%r3, lo(.L__profc_wcsncmp+40), %r9
 	ld	0[%r9], %r3
@@ -6665,6 +9060,18 @@ wcsncmp:                                ! @wcsncmp
 	nop
 .LBB61_7:                               !   in Loop: Header=BB61_1 Depth=1
 	ld	-28[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.61+24), %r9
+	or	%r9, lo(__llvm_gcov_ctr.61+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.61+28), %r13
+	or	%r13, lo(__llvm_gcov_ctr.61+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_wcsncmp+24), %r9
 	or	%r9, lo(.L__profc_wcsncmp+24), %r12
 	ld	0[%r12], %r9
@@ -6703,6 +9110,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_10
 	st	%r3, 0[%r9]
 .LBB61_10:                              !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.61+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -6743,6 +9162,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_13
 	nop
 .LBB61_13:
+	mov	hi(__llvm_gcov_ctr.61+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wcsncmp+72), %r3
 	or	%r3, lo(.L__profc_wcsncmp+72), %r9
 	ld	0[%r9], %r3
@@ -6759,6 +9190,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_15
 	st	%r3, -32[%fp]
 .LBB61_14:
+	mov	hi(__llvm_gcov_ctr.61+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
@@ -6772,6 +9215,18 @@ wcsncmp:                                ! @wcsncmp
 	bt	.LBB61_17
 	st	%r3, -36[%fp]
 .LBB61_16:
+	mov	hi(__llvm_gcov_ctr.61+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.61+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.61+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB61_17
 	st	%r3, -36[%fp]
@@ -6816,6 +9271,18 @@ wmemchr:                                ! @wmemchr
 	bt	.LBB62_2
 	nop
 .LBB62_2:                               !   in Loop: Header=BB62_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.62), %r3
+	or	%r3, lo(__llvm_gcov_ctr.62), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.62+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.62+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemchr+16), %r3
 	or	%r3, lo(.L__profc_wmemchr+16), %r9
 	ld	0[%r9], %r3
@@ -6841,6 +9308,18 @@ wmemchr:                                ! @wmemchr
 	nop
 .LBB62_3:                               !   in Loop: Header=BB62_1 Depth=1
 	ld	-28[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.62+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.62+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.62+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.62+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_wmemchr+24), %r9
 	or	%r9, lo(.L__profc_wmemchr+24), %r12
 	ld	0[%r12], %r9
@@ -6879,6 +9358,18 @@ wmemchr:                                ! @wmemchr
 	bt	.LBB62_6
 	st	%r3, 0[%r9]
 .LBB62_6:                               !   in Loop: Header=BB62_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.62+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.62+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.62+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.62+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -6894,6 +9385,18 @@ wmemchr:                                ! @wmemchr
 	bt	.LBB62_8
 	nop
 .LBB62_8:
+	mov	hi(__llvm_gcov_ctr.62+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.62+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.62+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.62+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemchr+32), %r3
 	or	%r3, lo(.L__profc_wmemchr+32), %r9
 	ld	0[%r9], %r3
@@ -6910,6 +9413,18 @@ wmemchr:                                ! @wmemchr
 	bt	.LBB62_10
 	st	%r3, -32[%fp]
 .LBB62_9:
+	mov	hi(__llvm_gcov_ctr.62+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.62+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.62+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.62+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB62_10
 	st	%r3, -32[%fp]
@@ -6954,6 +9469,18 @@ wmemcmp:                                ! @wmemcmp
 	bt	.LBB63_2
 	nop
 .LBB63_2:                               !   in Loop: Header=BB63_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.63), %r3
+	or	%r3, lo(__llvm_gcov_ctr.63), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.63+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.63+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemcmp+16), %r3
 	or	%r3, lo(.L__profc_wmemcmp+16), %r9
 	ld	0[%r9], %r3
@@ -6980,6 +9507,18 @@ wmemcmp:                                ! @wmemcmp
 	nop
 .LBB63_3:                               !   in Loop: Header=BB63_1 Depth=1
 	ld	-28[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.63+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.63+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.63+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.63+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_wmemcmp+24), %r9
 	or	%r9, lo(.L__profc_wmemcmp+24), %r12
 	ld	0[%r12], %r9
@@ -7018,6 +9557,18 @@ wmemcmp:                                ! @wmemcmp
 	bt	.LBB63_6
 	st	%r3, 0[%r9]
 .LBB63_6:                               !   in Loop: Header=BB63_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.63+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.63+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.63+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.63+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -7058,6 +9609,18 @@ wmemcmp:                                ! @wmemcmp
 	bt	.LBB63_9
 	nop
 .LBB63_9:
+	mov	hi(__llvm_gcov_ctr.63+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.63+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.63+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.63+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemcmp+40), %r3
 	or	%r3, lo(.L__profc_wmemcmp+40), %r9
 	ld	0[%r9], %r3
@@ -7074,6 +9637,18 @@ wmemcmp:                                ! @wmemcmp
 	bt	.LBB63_11
 	st	%r3, -32[%fp]
 .LBB63_10:
+	mov	hi(__llvm_gcov_ctr.63+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.63+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.63+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.63+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
@@ -7087,6 +9662,18 @@ wmemcmp:                                ! @wmemcmp
 	bt	.LBB63_13
 	st	%r3, -36[%fp]
 .LBB63_12:
+	mov	hi(__llvm_gcov_ctr.63+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.63+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.63+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.63+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB63_13
 	st	%r3, -36[%fp]
@@ -7106,6 +9693,18 @@ wmemcpy:                                ! @wmemcpy
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.64), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.64+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.64+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -7133,6 +9732,18 @@ wmemcpy:                                ! @wmemcpy
 	bt	.LBB64_2
 	nop
 .LBB64_2:                               !   in Loop: Header=BB64_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.64+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.64+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.64+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemcpy+8), %r3
 	or	%r3, lo(.L__profc_wmemcpy+8), %r9
 	ld	0[%r9], %r3
@@ -7194,6 +9805,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_1
 	nop
 .LBB65_1:
+	mov	hi(__llvm_gcov_ctr.65), %r3
+	or	%r3, lo(__llvm_gcov_ctr.65), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.65+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.65+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemmove+8), %r3
 	or	%r3, lo(.L__profc_wmemmove+8), %r9
 	ld	0[%r9], %r3
@@ -7221,6 +9844,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_3
 	nop
 .LBB65_3:
+	mov	hi(__llvm_gcov_ctr.65+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.65+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.65+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.65+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemmove+16), %r3
 	or	%r3, lo(.L__profc_wmemmove+16), %r9
 	ld	0[%r9], %r3
@@ -7243,6 +9878,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_5
 	nop
 .LBB65_5:                               !   in Loop: Header=BB65_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.65+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.65+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.65+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.65+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemmove+24), %r3
 	or	%r3, lo(.L__profc_wmemmove+24), %r9
 	ld	0[%r9], %r3
@@ -7278,6 +9925,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_9
 	nop
 .LBB65_9:                               !   in Loop: Header=BB65_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.65+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.65+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.65+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.65+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemmove+32), %r3
 	or	%r3, lo(.L__profc_wmemmove+32), %r9
 	ld	0[%r9], %r3
@@ -7300,8 +9959,19 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_8
 	st	%r3, 0[%r9]
 .LBB65_10:
+	mov	hi(__llvm_gcov_ctr.65+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.65+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.65+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.65+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB65_11
-	nop
+	st	%r3, 0[%r9]
 .LBB65_11:
 	ld	-28[%fp], %r3
 	bt	.LBB65_12
@@ -7322,6 +9992,18 @@ wmemset:                                ! @wmemset
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.66), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.66+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.66+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -7349,6 +10031,18 @@ wmemset:                                ! @wmemset
 	bt	.LBB66_2
 	nop
 .LBB66_2:                               !   in Loop: Header=BB66_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.66+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.66+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.66+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_wmemset+8), %r3
 	or	%r3, lo(.L__profc_wmemset+8), %r9
 	ld	0[%r9], %r3
@@ -7409,6 +10103,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_1
 	nop
 .LBB67_1:
+	mov	hi(__llvm_gcov_ctr.67), %r3
+	or	%r3, lo(__llvm_gcov_ctr.67), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.67+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.67+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_bcopy+8), %r3
 	or	%r3, lo(.L__profc_bcopy+8), %r9
 	ld	0[%r9], %r3
@@ -7460,6 +10166,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_4
 	st.b	%r3, -1[%r9]
 .LBB67_4:                               !   in Loop: Header=BB67_2 Depth=1
+	mov	hi(__llvm_gcov_ctr.67+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.67+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.67+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.67+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	bt	.LBB67_2
@@ -7497,6 +10215,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_9
 	nop
 .LBB67_9:                               !   in Loop: Header=BB67_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.67+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.67+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.67+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.67+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_bcopy+32), %r3
 	or	%r3, lo(.L__profc_bcopy+32), %r9
 	ld	0[%r9], %r3
@@ -7524,11 +10254,33 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_8
 	st	%r3, -20[%fp]
 .LBB67_11:
+	mov	hi(__llvm_gcov_ctr.67+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.67+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.67+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.67+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB67_12
-	nop
+	st	%r3, 0[%r9]
 .LBB67_12:
+	mov	hi(__llvm_gcov_ctr.67+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.67+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.67+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.67+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB67_13
-	nop
+	st	%r3, 0[%r9]
 .LBB67_13:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -7546,6 +10298,18 @@ rotl64:                                 ! @rotl64
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.68), %r3
+	or	%r3, lo(__llvm_gcov_ctr.68), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.68+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.68+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -7614,6 +10378,18 @@ rotr64:                                 ! @rotr64
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.69), %r3
+	or	%r3, lo(__llvm_gcov_ctr.69), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.69+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.69+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -7679,6 +10455,18 @@ rotl32:                                 ! @rotl32
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.70), %r3
+	or	%r3, lo(__llvm_gcov_ctr.70), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.70+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.70+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotl32), %r3
@@ -7715,6 +10503,18 @@ rotr32:                                 ! @rotr32
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.71), %r3
+	or	%r3, lo(__llvm_gcov_ctr.71), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.71+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.71+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotr32), %r3
@@ -7751,6 +10551,18 @@ rotl_sz:                                ! @rotl_sz
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.72), %r3
+	or	%r3, lo(__llvm_gcov_ctr.72), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.72+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.72+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotl_sz), %r3
@@ -7787,6 +10599,18 @@ rotr_sz:                                ! @rotr_sz
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.73), %r3
+	or	%r3, lo(__llvm_gcov_ctr.73), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.73+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.73+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotr_sz), %r3
@@ -7824,6 +10648,18 @@ rotl16:                                 ! @rotl16
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.74), %r3
+	or	%r3, lo(__llvm_gcov_ctr.74), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.74+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.74+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotl16), %r3
@@ -7862,6 +10698,18 @@ rotr16:                                 ! @rotr16
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.75), %r3
+	or	%r3, lo(__llvm_gcov_ctr.75), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.75+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.75+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotr16), %r3
@@ -7900,6 +10748,18 @@ rotl8:                                  ! @rotl8
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.76), %r3
+	or	%r3, lo(__llvm_gcov_ctr.76), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.76+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.76+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.b	%r6, -9[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotl8), %r3
@@ -7939,6 +10799,18 @@ rotr8:                                  ! @rotr8
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.77), %r3
+	or	%r3, lo(__llvm_gcov_ctr.77), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.77+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.77+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.b	%r6, -9[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_rotr8), %r3
@@ -7978,6 +10850,18 @@ bswap_16:                               ! @bswap_16
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.78), %r3
+	or	%r3, lo(__llvm_gcov_ctr.78), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.78+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.78+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	mov	hi(.L__profc_bswap_16), %r3
 	or	%r3, lo(.L__profc_bswap_16), %r9
@@ -8016,6 +10900,18 @@ bswap_32:                               ! @bswap_32
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.79), %r3
+	or	%r3, lo(__llvm_gcov_ctr.79), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.79+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.79+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_bswap_32), %r3
 	or	%r3, lo(.L__profc_bswap_32), %r9
@@ -8062,6 +10958,18 @@ bswap_64:                               ! @bswap_64
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.80), %r3
+	or	%r3, lo(__llvm_gcov_ctr.80), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.80+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.80+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r7, 0[%r9]
@@ -8182,6 +11090,18 @@ ffs:                                    ! @ffs
 	bt	.LBB81_3
 	nop
 .LBB81_3:
+	mov	hi(__llvm_gcov_ctr.81), %r3
+	or	%r3, lo(__llvm_gcov_ctr.81), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.81+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.81+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ffs+16), %r3
 	or	%r3, lo(.L__profc_ffs+16), %r9
 	ld	0[%r9], %r3
@@ -8202,11 +11122,35 @@ ffs:                                    ! @ffs
 	bt	.LBB81_5
 	nop
 .LBB81_5:                               !   in Loop: Header=BB81_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.81+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.81+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.81+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.81+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB81_1
 	st	%r3, -20[%fp]
 .LBB81_6:
+	mov	hi(__llvm_gcov_ctr.81+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.81+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.81+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.81+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB81_7
 	st	%r3, -12[%fp]
@@ -8245,6 +11189,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	bt	.LBB82_1
 	nop
 .LBB82_1:
+	mov	hi(__llvm_gcov_ctr.82+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.82+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.82+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.82+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_libiberty_ffs+8), %r3
 	or	%r3, lo(.L__profc_libiberty_ffs+8), %r9
 	ld	0[%r9], %r3
@@ -8261,6 +11217,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	bt	.LBB82_7
 	st	%r3, -12[%fp]
 .LBB82_2:
+	mov	hi(__llvm_gcov_ctr.82), %r3
+	or	%r3, lo(__llvm_gcov_ctr.82), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.82+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.82+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB82_3
 	st	%r3, -20[%fp]
@@ -8293,6 +11261,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	bt	.LBB82_5
 	st	%r3, -16[%fp]
 .LBB82_5:                               !   in Loop: Header=BB82_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.82+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.82+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.82+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.82+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB82_3
@@ -8318,6 +11298,18 @@ gl_isinff:                              ! @gl_isinff
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.83), %r3
+	or	%r3, lo(__llvm_gcov_ctr.83), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.83+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.83+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc_gl_isinff), %r3
 	or	%r3, lo(.L__profc_gl_isinff), %r9
@@ -8343,6 +11335,18 @@ gl_isinff:                              ! @gl_isinff
 	bt	.LBB83_1
 	nop
 .LBB83_1:
+	mov	hi(__llvm_gcov_ctr.83+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.83+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.83+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.83+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_gl_isinff+8), %r3
 	or	%r3, lo(.L__profc_gl_isinff+8), %r9
 	ld	0[%r9], %r3
@@ -8370,6 +11374,18 @@ gl_isinff:                              ! @gl_isinff
 	nop
 .LBB83_2:
 	ld	-20[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.83+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.83+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.83+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.83+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_gl_isinff+16), %r9
 	or	%r9, lo(.L__profc_gl_isinff+16), %r12
 	ld	0[%r12], %r9
@@ -8404,6 +11420,18 @@ gl_isinfd:                              ! @gl_isinfd
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.84), %r3
+	or	%r3, lo(__llvm_gcov_ctr.84), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.84+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.84+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -8434,6 +11462,18 @@ gl_isinfd:                              ! @gl_isinfd
 	bt	.LBB84_1
 	nop
 .LBB84_1:
+	mov	hi(__llvm_gcov_ctr.84+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.84+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.84+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.84+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_gl_isinfd+8), %r3
 	or	%r3, lo(.L__profc_gl_isinfd+8), %r9
 	ld	0[%r9], %r3
@@ -8465,6 +11505,18 @@ gl_isinfd:                              ! @gl_isinfd
 	nop
 .LBB84_2:
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.84+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.84+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.84+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.84+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_gl_isinfd+16), %r9
 	or	%r9, lo(.L__profc_gl_isinfd+16), %r12
 	ld	0[%r12], %r9
@@ -8499,6 +11551,18 @@ gl_isinfl:                              ! @gl_isinfl
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.85), %r3
+	or	%r3, lo(__llvm_gcov_ctr.85), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.85+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.85+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -8529,6 +11593,18 @@ gl_isinfl:                              ! @gl_isinfl
 	bt	.LBB85_1
 	nop
 .LBB85_1:
+	mov	hi(__llvm_gcov_ctr.85+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.85+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.85+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.85+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_gl_isinfl+8), %r3
 	or	%r3, lo(.L__profc_gl_isinfl+8), %r9
 	ld	0[%r9], %r3
@@ -8560,6 +11636,18 @@ gl_isinfl:                              ! @gl_isinfl
 	nop
 .LBB85_2:
 	ld	-24[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.85+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.85+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.85+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.85+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_gl_isinfl+16), %r9
 	or	%r9, lo(.L__profc_gl_isinfl+16), %r12
 	ld	0[%r12], %r9
@@ -8592,6 +11680,18 @@ _Qp_itoq:                               ! @_Qp_itoq
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.86), %r3
+	or	%r3, lo(__llvm_gcov_ctr.86), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.86+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.86+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc__Qp_itoq), %r3
@@ -8628,6 +11728,18 @@ ldexpf:                                 ! @ldexpf
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.87), %r3
+	or	%r3, lo(__llvm_gcov_ctr.87), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.87+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.87+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_ldexpf), %r3
@@ -8650,6 +11762,18 @@ ldexpf:                                 ! @ldexpf
 	bt	.LBB87_1
 	nop
 .LBB87_1:
+	mov	hi(__llvm_gcov_ctr.87+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.87+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.87+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.87+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpf+16), %r3
 	or	%r3, lo(.L__profc_ldexpf+16), %r9
 	ld	0[%r9], %r3
@@ -8679,6 +11803,18 @@ ldexpf:                                 ! @ldexpf
 	bt	.LBB87_2
 	nop
 .LBB87_2:
+	mov	hi(__llvm_gcov_ctr.87+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.87+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.87+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.87+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpf+24), %r3
 	or	%r3, lo(.L__profc_ldexpf+24), %r9
 	ld	0[%r9], %r3
@@ -8752,6 +11888,18 @@ ldexpf:                                 ! @ldexpf
 	bt	.LBB87_5
 	nop
 .LBB87_5:                               !   in Loop: Header=BB87_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.87+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.87+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.87+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.87+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpf+48), %r3
 	or	%r3, lo(.L__profc_ldexpf+48), %r9
 	ld	0[%r9], %r3
@@ -8798,6 +11946,18 @@ ldexpf:                                 ! @ldexpf
 	bt	.LBB87_9
 	st	%r3, 0[%r9]
 .LBB87_8:                               !   in Loop: Header=BB87_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.87+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.87+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.87+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.87+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -8826,6 +11986,18 @@ ldexp:                                  ! @ldexp
 	sub	%sp, 0x30, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.88), %r3
+	or	%r3, lo(__llvm_gcov_ctr.88), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.88+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.88+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -8858,6 +12030,18 @@ ldexp:                                  ! @ldexp
 	bt	.LBB88_1
 	nop
 .LBB88_1:
+	mov	hi(__llvm_gcov_ctr.88+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.88+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.88+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.88+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexp+16), %r3
 	or	%r3, lo(.L__profc_ldexp+16), %r9
 	ld	0[%r9], %r3
@@ -8894,6 +12078,18 @@ ldexp:                                  ! @ldexp
 	bt	.LBB88_2
 	nop
 .LBB88_2:
+	mov	hi(__llvm_gcov_ctr.88+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.88+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.88+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.88+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexp+24), %r3
 	or	%r3, lo(.L__profc_ldexp+24), %r9
 	ld	0[%r9], %r3
@@ -8971,6 +12167,18 @@ ldexp:                                  ! @ldexp
 	bt	.LBB88_5
 	nop
 .LBB88_5:                               !   in Loop: Header=BB88_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.88+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.88+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.88+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.88+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexp+48), %r3
 	or	%r3, lo(.L__profc_ldexp+48), %r9
 	ld	0[%r9], %r3
@@ -9026,6 +12234,18 @@ ldexp:                                  ! @ldexp
 	bt	.LBB88_9
 	st	%r3, 0[%r9]
 .LBB88_8:                               !   in Loop: Header=BB88_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.88+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.88+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.88+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.88+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -48[%fp]
@@ -9064,6 +12284,18 @@ ldexpl:                                 ! @ldexpl
 	sub	%sp, 0x30, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.89), %r3
+	or	%r3, lo(__llvm_gcov_ctr.89), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.89+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.89+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -9096,6 +12328,18 @@ ldexpl:                                 ! @ldexpl
 	bt	.LBB89_1
 	nop
 .LBB89_1:
+	mov	hi(__llvm_gcov_ctr.89+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.89+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.89+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.89+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpl+16), %r3
 	or	%r3, lo(.L__profc_ldexpl+16), %r9
 	ld	0[%r9], %r3
@@ -9132,6 +12376,18 @@ ldexpl:                                 ! @ldexpl
 	bt	.LBB89_2
 	nop
 .LBB89_2:
+	mov	hi(__llvm_gcov_ctr.89+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.89+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.89+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.89+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpl+24), %r3
 	or	%r3, lo(.L__profc_ldexpl+24), %r9
 	ld	0[%r9], %r3
@@ -9209,6 +12465,18 @@ ldexpl:                                 ! @ldexpl
 	bt	.LBB89_5
 	nop
 .LBB89_5:                               !   in Loop: Header=BB89_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.89+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.89+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.89+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.89+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_ldexpl+48), %r3
 	or	%r3, lo(.L__profc_ldexpl+48), %r9
 	ld	0[%r9], %r3
@@ -9264,6 +12532,18 @@ ldexpl:                                 ! @ldexpl
 	bt	.LBB89_9
 	st	%r3, 0[%r9]
 .LBB89_8:                               !   in Loop: Header=BB89_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.89+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.89+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.89+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.89+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -48[%fp]
@@ -9300,6 +12580,18 @@ memxor:                                 ! @memxor
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
+	mov	hi(__llvm_gcov_ctr.90), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.90+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.90+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -9352,6 +12644,18 @@ memxor:                                 ! @memxor
 	bt	.LBB90_3
 	st.b	%r3, 0[%r9]
 .LBB90_3:                               !   in Loop: Header=BB90_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.90+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.90+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.90+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	bt	.LBB90_1
@@ -9405,6 +12709,18 @@ strncat:                                ! @strncat
 	bt	.LBB91_2
 	nop
 .LBB91_2:                               !   in Loop: Header=BB91_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.91), %r3
+	or	%r3, lo(__llvm_gcov_ctr.91), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.91+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.91+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncat+16), %r3
 	or	%r3, lo(.L__profc_strncat+16), %r9
 	ld	0[%r9], %r3
@@ -9431,6 +12747,18 @@ strncat:                                ! @strncat
 	nop
 .LBB91_3:                               !   in Loop: Header=BB91_1 Depth=1
 	ld	-36[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.91+8), %r9
+	or	%r9, lo(__llvm_gcov_ctr.91+8), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.91+12), %r13
+	or	%r13, lo(__llvm_gcov_ctr.91+12), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_strncat+24), %r9
 	or	%r9, lo(.L__profc_strncat+24), %r12
 	ld	0[%r12], %r9
@@ -9469,6 +12797,18 @@ strncat:                                ! @strncat
 	bt	.LBB91_6
 	st	%r3, 0[%r9]
 .LBB91_6:                               !   in Loop: Header=BB91_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.91+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.91+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.91+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.91+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -16[%fp]
@@ -9480,6 +12820,18 @@ strncat:                                ! @strncat
 	bt	.LBB91_1
 	st	%r3, -20[%fp]
 .LBB91_7:
+	mov	hi(__llvm_gcov_ctr.91+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.91+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.91+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.91+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bne	.LBB91_9
@@ -9487,6 +12839,18 @@ strncat:                                ! @strncat
 	bt	.LBB91_8
 	nop
 .LBB91_8:
+	mov	hi(__llvm_gcov_ctr.91+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.91+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.91+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.91+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strncat+32), %r3
 	or	%r3, lo(.L__profc_strncat+32), %r9
 	ld	0[%r9], %r3
@@ -9519,6 +12883,18 @@ strnlen:                                ! @strnlen
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
+	mov	hi(__llvm_gcov_ctr.92), %r3
+	or	%r3, lo(__llvm_gcov_ctr.92), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.92+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.92+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_strnlen), %r3
@@ -9546,6 +12922,18 @@ strnlen:                                ! @strnlen
 	bt	.LBB92_2
 	nop
 .LBB92_2:                               !   in Loop: Header=BB92_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.92+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.92+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.92+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.92+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strnlen+16), %r3
 	or	%r3, lo(.L__profc_strnlen+16), %r9
 	ld	0[%r9], %r3
@@ -9571,6 +12959,18 @@ strnlen:                                ! @strnlen
 	nop
 .LBB92_3:                               !   in Loop: Header=BB92_1 Depth=1
 	ld	-28[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.92+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.92+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.92+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.92+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_strnlen+24), %r9
 	or	%r9, lo(.L__profc_strnlen+24), %r12
 	ld	0[%r12], %r9
@@ -9609,6 +13009,18 @@ strnlen:                                ! @strnlen
 	bt	.LBB92_6
 	st	%r3, 0[%r9]
 .LBB92_6:                               !   in Loop: Header=BB92_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.92+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.92+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.92+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.92+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB92_1
@@ -9703,6 +13115,18 @@ strpbrk:                                ! @strpbrk
 	bt	.LBB93_5
 	nop
 .LBB93_5:
+	mov	hi(__llvm_gcov_ctr.93+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.93+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.93+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.93+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strpbrk+24), %r3
 	or	%r3, lo(.L__profc_strpbrk+24), %r9
 	ld	0[%r9], %r3
@@ -9719,14 +13143,49 @@ strpbrk:                                ! @strpbrk
 	bt	.LBB93_9
 	st	%r3, -12[%fp]
 .LBB93_6:                               !   in Loop: Header=BB93_3 Depth=2
+	mov	hi(__llvm_gcov_ctr.93+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.93+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.93+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.93+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB93_3
-	nop
+	st	%r3, 0[%r9]
 .LBB93_7:                               !   in Loop: Header=BB93_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.93+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.93+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.93+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.93+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB93_1
 	st	%r3, -16[%fp]
 .LBB93_8:
+	mov	hi(__llvm_gcov_ctr.93), %r3
+	or	%r3, lo(__llvm_gcov_ctr.93), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.93+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.93+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB93_9
 	st	%r3, -12[%fp]
@@ -9746,6 +13205,18 @@ strrchr:                                ! @strrchr
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.94), %r3
+	or	%r3, lo(__llvm_gcov_ctr.94), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.94+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.94+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc_strrchr), %r3
@@ -9764,6 +13235,18 @@ strrchr:                                ! @strrchr
 	bt	.LBB94_2
 	st	%r3, -20[%fp]
 .LBB94_1:                               !   in Loop: Header=BB94_2 Depth=1
+	mov	hi(__llvm_gcov_ctr.94+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.94+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.94+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.94+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strrchr+8), %r3
 	or	%r3, lo(.L__profc_strrchr+8), %r9
 	ld	0[%r9], %r3
@@ -9787,6 +13270,18 @@ strrchr:                                ! @strrchr
 	bt	.LBB94_3
 	nop
 .LBB94_3:                               !   in Loop: Header=BB94_2 Depth=1
+	mov	hi(__llvm_gcov_ctr.94+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.94+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.94+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.94+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strrchr+16), %r3
 	or	%r3, lo(.L__profc_strrchr+16), %r9
 	ld	0[%r9], %r3
@@ -9859,6 +13354,18 @@ strstr:                                 ! @strstr
 	bt	.LBB95_1
 	nop
 .LBB95_1:
+	mov	hi(__llvm_gcov_ctr.95), %r3
+	or	%r3, lo(__llvm_gcov_ctr.95), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.95+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.95+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strstr+8), %r3
 	or	%r3, lo(.L__profc_strstr+8), %r9
 	ld	0[%r9], %r3
@@ -9914,6 +13421,18 @@ strstr:                                 ! @strstr
 	bt	.LBB95_5
 	nop
 .LBB95_5:
+	mov	hi(__llvm_gcov_ctr.95+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.95+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.95+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.95+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_strstr+24), %r3
 	or	%r3, lo(.L__profc_strstr+24), %r9
 	ld	0[%r9], %r3
@@ -9933,11 +13452,35 @@ strstr:                                 ! @strstr
 	bt	.LBB95_7
 	nop
 .LBB95_7:                               !   in Loop: Header=BB95_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.95+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.95+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.95+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.95+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB95_3
 	st	%r3, -24[%fp]
 .LBB95_8:
+	mov	hi(__llvm_gcov_ctr.95+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.95+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.95+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.95+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB95_9
 	st	%r3, -12[%fp]
@@ -9994,6 +13537,18 @@ copysign:                               ! @copysign
 	bt	.LBB96_1
 	nop
 .LBB96_1:
+	mov	hi(__llvm_gcov_ctr.96), %r3
+	or	%r3, lo(__llvm_gcov_ctr.96), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.96+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.96+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_copysign+24), %r3
 	or	%r3, lo(.L__profc_copysign+24), %r9
 	ld	0[%r9], %r3
@@ -10021,6 +13576,18 @@ copysign:                               ! @copysign
 	bt	.LBB96_2
 	nop
 .LBB96_2:
+	mov	hi(__llvm_gcov_ctr.96+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.96+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.96+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.96+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_copysign+32), %r3
 	or	%r3, lo(.L__profc_copysign+32), %r9
 	ld	0[%r9], %r3
@@ -10062,6 +13629,18 @@ copysign:                               ! @copysign
 	bt	.LBB96_4
 	nop
 .LBB96_4:
+	mov	hi(__llvm_gcov_ctr.96+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.96+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.96+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.96+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_copysign+40), %r3
 	or	%r3, lo(.L__profc_copysign+40), %r9
 	ld	0[%r9], %r3
@@ -10089,6 +13668,18 @@ copysign:                               ! @copysign
 	bt	.LBB96_5
 	nop
 .LBB96_5:
+	mov	hi(__llvm_gcov_ctr.96+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.96+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.96+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.96+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_copysign+48), %r3
 	or	%r3, lo(.L__profc_copysign+48), %r9
 	ld	0[%r9], %r3
@@ -10126,6 +13717,18 @@ copysign:                               ! @copysign
 	bt	.LBB96_8
 	st	%r3, -16[%fp]
 .LBB96_7:
+	mov	hi(__llvm_gcov_ctr.96+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.96+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.96+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.96+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -10182,6 +13785,18 @@ memmem:                                 ! @memmem
 	bt	.LBB97_1
 	nop
 .LBB97_1:
+	mov	hi(__llvm_gcov_ctr.97), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmem+8), %r3
 	or	%r3, lo(.L__profc_memmem+8), %r9
 	ld	0[%r9], %r3
@@ -10206,6 +13821,18 @@ memmem:                                 ! @memmem
 	bt	.LBB97_3
 	nop
 .LBB97_3:
+	mov	hi(__llvm_gcov_ctr.97+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmem+16), %r3
 	or	%r3, lo(.L__profc_memmem+16), %r9
 	ld	0[%r9], %r3
@@ -10256,6 +13883,18 @@ memmem:                                 ! @memmem
 	bt	.LBB97_7
 	nop
 .LBB97_7:                               !   in Loop: Header=BB97_5 Depth=1
+	mov	hi(__llvm_gcov_ctr.97+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmem+40), %r3
 	or	%r3, lo(.L__profc_memmem+40), %r9
 	ld	0[%r9], %r3
@@ -10283,6 +13922,18 @@ memmem:                                 ! @memmem
 	bt	.LBB97_8
 	nop
 .LBB97_8:
+	mov	hi(__llvm_gcov_ctr.97+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_memmem+48), %r3
 	or	%r3, lo(.L__profc_memmem+48), %r9
 	ld	0[%r9], %r3
@@ -10316,11 +13967,35 @@ memmem:                                 ! @memmem
 	bt	.LBB97_11
 	nop
 .LBB97_11:                              !   in Loop: Header=BB97_5 Depth=1
+	mov	hi(__llvm_gcov_ctr.97+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB97_5
 	st	%r3, -32[%fp]
 .LBB97_12:
+	mov	hi(__llvm_gcov_ctr.97+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.97+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.97+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.97+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB97_13
 	st	%r3, -12[%fp]
@@ -10340,6 +14015,18 @@ mempcpy:                                ! @mempcpy
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.98), %r3
+	or	%r3, lo(__llvm_gcov_ctr.98), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.98+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.98+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
@@ -10413,6 +14100,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_1
 	nop
 .LBB99_1:
+	mov	hi(__llvm_gcov_ctr.99), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+8), %r3
 	or	%r3, lo(.L__profc_frexp+8), %r9
 	ld	0[%r9], %r3
@@ -10447,6 +14146,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_3
 	nop
 .LBB99_3:
+	mov	hi(__llvm_gcov_ctr.99+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+16), %r3
 	or	%r3, lo(.L__profc_frexp+16), %r9
 	ld	0[%r9], %r3
@@ -10476,6 +14187,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_5
 	nop
 .LBB99_5:                               !   in Loop: Header=BB99_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.99+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+24), %r3
 	or	%r3, lo(.L__profc_frexp+24), %r9
 	ld	0[%r9], %r3
@@ -10524,6 +14247,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_8
 	nop
 .LBB99_8:
+	mov	hi(__llvm_gcov_ctr.99+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+40), %r3
 	or	%r3, lo(.L__profc_frexp+40), %r9
 	ld	0[%r9], %r3
@@ -10594,6 +14329,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_12
 	nop
 .LBB99_12:                              !   in Loop: Header=BB99_11 Depth=1
+	mov	hi(__llvm_gcov_ctr.99+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+56), %r3
 	or	%r3, lo(.L__profc_frexp+56), %r9
 	ld	0[%r9], %r3
@@ -10624,11 +14371,33 @@ frexp:                                  ! @frexp
 	bt	.LBB99_11
 	st	%rv, -16[%fp]
 .LBB99_13:
+	mov	hi(__llvm_gcov_ctr.99+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB99_14
-	nop
+	st	%r3, 0[%r9]
 .LBB99_14:
+	mov	hi(__llvm_gcov_ctr.99+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB99_15
-	nop
+	st	%r3, 0[%r9]
 .LBB99_15:
 	ld	-28[%fp], %r3
 	ld	-20[%fp], %r9
@@ -10640,6 +14409,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_16
 	nop
 .LBB99_16:
+	mov	hi(__llvm_gcov_ctr.99+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.99+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.99+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.99+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_frexp+64), %r3
 	or	%r3, lo(.L__profc_frexp+64), %r9
 	ld	0[%r9], %r3
@@ -10679,6 +14460,18 @@ __muldi3:                               ! @__muldi3
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.100), %r3
+	or	%r3, lo(__llvm_gcov_ctr.100), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.100+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.100+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -10746,6 +14539,18 @@ __muldi3:                               ! @__muldi3
 	bt	.LBB100_3
 	nop
 .LBB100_3:                              !   in Loop: Header=BB100_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.100+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.100+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.100+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.100+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___muldi3+16), %r3
 	or	%r3, lo(.L__profc___muldi3+16), %r9
 	ld	0[%r9], %r3
@@ -10775,12 +14580,24 @@ __muldi3:                               ! @__muldi3
 	bt	.LBB100_4
 	st	%r3, -32[%fp]
 .LBB100_4:                              !   in Loop: Header=BB100_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.100+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.100+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.100+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.100+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r12
 	ld	0[%r12], %r9
 	ld	-24[%fp], %r3
-	sh	%r3, 0x1, %r3
 	sh	%r9, -0x1f, %r13
+	sh	%r3, 0x1, %r3
 	or	%r3, %r13, %r3
 	sh	%r9, 0x1, %r9
 	st	%r9, 0[%r12]
@@ -10845,6 +14662,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_2
 	nop
 .LBB101_2:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.101), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_udivmodsi4+32), %r3
 	or	%r3, lo(.L__profc_udivmodsi4+32), %r9
 	ld	0[%r9], %r3
@@ -10865,6 +14694,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_3
 	nop
 .LBB101_3:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.101+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_udivmodsi4+40), %r3
 	or	%r3, lo(.L__profc_udivmodsi4+40), %r9
 	ld	0[%r9], %r3
@@ -10904,6 +14745,18 @@ udivmodsi4:                             ! @udivmodsi4
 	nop
 .LBB101_5:                              !   in Loop: Header=BB101_1 Depth=1
 	ld	-40[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.101+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.101+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.101+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.101+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc_udivmodsi4+24), %r9
 	or	%r9, lo(.L__profc_udivmodsi4+24), %r12
 	ld	0[%r12], %r9
@@ -10928,6 +14781,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_7
 	nop
 .LBB101_7:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.101+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_udivmodsi4+8), %r3
 	or	%r3, lo(.L__profc_udivmodsi4+8), %r9
 	ld	0[%r9], %r3
@@ -10978,6 +14843,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_11
 	nop
 .LBB101_11:                             !   in Loop: Header=BB101_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.101+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_udivmodsi4+56), %r3
 	or	%r3, lo(.L__profc_udivmodsi4+56), %r9
 	ld	0[%r9], %r3
@@ -11000,6 +14877,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_12
 	st	%r3, -32[%fp]
 .LBB101_12:                             !   in Loop: Header=BB101_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.101+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
@@ -11015,6 +14904,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_14
 	nop
 .LBB101_14:
+	mov	hi(__llvm_gcov_ctr.101+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc_udivmodsi4+64), %r3
 	or	%r3, lo(.L__profc_udivmodsi4+64), %r9
 	ld	0[%r9], %r3
@@ -11031,6 +14932,18 @@ udivmodsi4:                             ! @udivmodsi4
 	bt	.LBB101_16
 	st	%r3, -12[%fp]
 .LBB101_15:
+	mov	hi(__llvm_gcov_ctr.101+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.101+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.101+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.101+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	bt	.LBB101_16
 	st	%r3, -12[%fp]
@@ -11071,6 +14984,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	bt	.LBB102_1
 	nop
 .LBB102_1:
+	mov	hi(__llvm_gcov_ctr.102), %r3
+	or	%r3, lo(__llvm_gcov_ctr.102), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.102+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.102+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___clrsbqi2+8), %r3
 	or	%r3, lo(.L__profc___clrsbqi2+8), %r9
 	ld	0[%r9], %r3
@@ -11096,6 +15021,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	bt	.LBB102_3
 	nop
 .LBB102_3:
+	mov	hi(__llvm_gcov_ctr.102+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.102+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.102+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.102+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___clrsbqi2+16), %r3
 	or	%r3, lo(.L__profc___clrsbqi2+16), %r9
 	ld	0[%r9], %r3
@@ -11112,6 +15049,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	bt	.LBB102_5
 	st	%r3, -12[%fp]
 .LBB102_4:
+	mov	hi(__llvm_gcov_ctr.102+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.102+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.102+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.102+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld.b	-13[%fp], %r3
 	sh	%r3, 0x8, %r3
 	leadz	%r3, %r3
@@ -11161,6 +15110,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	bt	.LBB103_1
 	nop
 .LBB103_1:
+	mov	hi(__llvm_gcov_ctr.103), %r3
+	or	%r3, lo(__llvm_gcov_ctr.103), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.103+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.103+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___clrsbdi2+8), %r3
 	or	%r3, lo(.L__profc___clrsbdi2+8), %r9
 	ld	0[%r9], %r3
@@ -11195,6 +15156,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	bt	.LBB103_3
 	nop
 .LBB103_3:
+	mov	hi(__llvm_gcov_ctr.103+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.103+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.103+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.103+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___clrsbdi2+16), %r3
 	or	%r3, lo(.L__profc___clrsbdi2+16), %r9
 	ld	0[%r9], %r3
@@ -11211,6 +15184,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	bt	.LBB103_5
 	st	%r3, -12[%fp]
 .LBB103_4:
+	mov	hi(__llvm_gcov_ctr.103+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.103+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.103+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.103+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -11241,6 +15226,18 @@ __mulsi3:                               ! @__mulsi3
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.104), %r3
+	or	%r3, lo(__llvm_gcov_ctr.104), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.104+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.104+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___mulsi3), %r3
@@ -11289,6 +15286,18 @@ __mulsi3:                               ! @__mulsi3
 	bt	.LBB104_3
 	nop
 .LBB104_3:                              !   in Loop: Header=BB104_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.104+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.104+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.104+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.104+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulsi3+16), %r3
 	or	%r3, lo(.L__profc___mulsi3+16), %r9
 	ld	0[%r9], %r3
@@ -11307,6 +15316,18 @@ __mulsi3:                               ! @__mulsi3
 	bt	.LBB104_4
 	st	%r3, -20[%fp]
 .LBB104_4:                              !   in Loop: Header=BB104_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.104+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.104+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.104+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.104+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -12[%fp]
@@ -11362,6 +15383,18 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_1
 	nop
 .LBB105_1:
+	mov	hi(__llvm_gcov_ctr.105), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovd+16), %r3
 	or	%r3, lo(.L__profc___cmovd+16), %r9
 	ld	0[%r9], %r3
@@ -11446,6 +15479,18 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_6
 	st	%r3, 4[%r9]
 .LBB105_6:                              !   in Loop: Header=BB105_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.105+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB105_4
@@ -11462,6 +15507,18 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_9
 	nop
 .LBB105_9:                              !   in Loop: Header=BB105_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.105+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovd+40), %r3
 	or	%r3, lo(.L__profc___cmovd+40), %r9
 	ld	0[%r9], %r3
@@ -11485,8 +15542,19 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_8
 	st	%r3, -32[%fp]
 .LBB105_10:
+	mov	hi(__llvm_gcov_ctr.105+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB105_15
-	nop
+	st	%r3, 0[%r9]
 .LBB105_11:
 	bt	.LBB105_12
 	nop
@@ -11499,6 +15567,18 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_13
 	nop
 .LBB105_13:                             !   in Loop: Header=BB105_12 Depth=1
+	mov	hi(__llvm_gcov_ctr.105+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovd+48), %r3
 	or	%r3, lo(.L__profc___cmovd+48), %r9
 	ld	0[%r9], %r3
@@ -11519,8 +15599,19 @@ __cmovd:                                ! @__cmovd
 	bt	.LBB105_12
 	st.b	%r3, [%r9 add %r12]
 .LBB105_14:
+	mov	hi(__llvm_gcov_ctr.105+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.105+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.105+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.105+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB105_15
-	nop
+	st	%r3, 0[%r9]
 .LBB105_15:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -11565,6 +15656,18 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_1
 	nop
 .LBB106_1:
+	mov	hi(__llvm_gcov_ctr.106), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovh+16), %r3
 	or	%r3, lo(.L__profc___cmovh+16), %r9
 	ld	0[%r9], %r3
@@ -11646,6 +15749,18 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_6
 	st.h	%r3, [%r9 add %r12]
 .LBB106_6:                              !   in Loop: Header=BB106_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.106+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB106_4
@@ -11662,6 +15777,18 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_8
 	nop
 .LBB106_8:
+	mov	hi(__llvm_gcov_ctr.106+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovh+40), %r3
 	or	%r3, lo(.L__profc___cmovh+40), %r9
 	ld	0[%r9], %r3
@@ -11683,8 +15810,19 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_9
 	st.b	%r3, [%r9 add %r12]
 .LBB106_9:
+	mov	hi(__llvm_gcov_ctr.106+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB106_14
-	nop
+	st	%r3, 0[%r9]
 .LBB106_10:
 	bt	.LBB106_11
 	nop
@@ -11697,6 +15835,18 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_12
 	nop
 .LBB106_12:                             !   in Loop: Header=BB106_11 Depth=1
+	mov	hi(__llvm_gcov_ctr.106+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovh+48), %r3
 	or	%r3, lo(.L__profc___cmovh+48), %r9
 	ld	0[%r9], %r3
@@ -11717,8 +15867,19 @@ __cmovh:                                ! @__cmovh
 	bt	.LBB106_11
 	st.b	%r3, [%r9 add %r12]
 .LBB106_13:
+	mov	hi(__llvm_gcov_ctr.106+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.106+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.106+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.106+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB106_14
-	nop
+	st	%r3, 0[%r9]
 .LBB106_14:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -11766,6 +15927,18 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_1
 	nop
 .LBB107_1:
+	mov	hi(__llvm_gcov_ctr.107), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovw+16), %r3
 	or	%r3, lo(.L__profc___cmovw+16), %r9
 	ld	0[%r9], %r3
@@ -11847,6 +16020,18 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_6
 	st	%r3, [%r9 add %r12]
 .LBB107_6:                              !   in Loop: Header=BB107_4 Depth=1
+	mov	hi(__llvm_gcov_ctr.107+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB107_4
@@ -11863,6 +16048,18 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_9
 	nop
 .LBB107_9:                              !   in Loop: Header=BB107_8 Depth=1
+	mov	hi(__llvm_gcov_ctr.107+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovw+40), %r3
 	or	%r3, lo(.L__profc___cmovw+40), %r9
 	ld	0[%r9], %r3
@@ -11886,8 +16083,19 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_8
 	st	%r3, -32[%fp]
 .LBB107_10:
+	mov	hi(__llvm_gcov_ctr.107+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB107_15
-	nop
+	st	%r3, 0[%r9]
 .LBB107_11:
 	bt	.LBB107_12
 	nop
@@ -11900,6 +16108,18 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_13
 	nop
 .LBB107_13:                             !   in Loop: Header=BB107_12 Depth=1
+	mov	hi(__llvm_gcov_ctr.107+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmovw+48), %r3
 	or	%r3, lo(.L__profc___cmovw+48), %r9
 	ld	0[%r9], %r3
@@ -11920,8 +16140,19 @@ __cmovw:                                ! @__cmovw
 	bt	.LBB107_12
 	st.b	%r3, [%r9 add %r12]
 .LBB107_14:
+	mov	hi(__llvm_gcov_ctr.107+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.107+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.107+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.107+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB107_15
-	nop
+	st	%r3, 0[%r9]
 .LBB107_15:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -11937,6 +16168,18 @@ __modi:                                 ! @__modi
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.108), %r3
+	or	%r3, lo(__llvm_gcov_ctr.108), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.108+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.108+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___modi), %r3
@@ -11970,6 +16213,18 @@ __uitod:                                ! @__uitod
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.109), %r3
+	or	%r3, lo(__llvm_gcov_ctr.109), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.109+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.109+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___uitod), %r3
 	or	%r3, lo(.L__profc___uitod), %r9
@@ -12001,6 +16256,18 @@ __uitof:                                ! @__uitof
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.110), %r3
+	or	%r3, lo(__llvm_gcov_ctr.110), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.110+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.110+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___uitof), %r3
 	or	%r3, lo(.L__profc___uitof), %r9
@@ -12034,6 +16301,18 @@ __ulltod:                               ! @__ulltod
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.111), %r3
+	or	%r3, lo(__llvm_gcov_ctr.111), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.111+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.111+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -12071,6 +16350,18 @@ __ulltof:                               ! @__ulltof
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.112), %r3
+	or	%r3, lo(__llvm_gcov_ctr.112), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.112+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.112+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -12106,6 +16397,18 @@ __umodi:                                ! @__umodi
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.113), %r3
+	or	%r3, lo(__llvm_gcov_ctr.113), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.113+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.113+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___umodi), %r3
@@ -12140,6 +16443,18 @@ __clzhi2:                               ! @__clzhi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.114), %r3
+	or	%r3, lo(__llvm_gcov_ctr.114), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.114+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.114+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	mov	hi(.L__profc___clzhi2), %r3
 	or	%r3, lo(.L__profc___clzhi2), %r9
@@ -12190,6 +16505,18 @@ __clzhi2:                               ! @__clzhi2
 	bt	.LBB114_3
 	nop
 .LBB114_3:
+	mov	hi(__llvm_gcov_ctr.114+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.114+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.114+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.114+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___clzhi2+16), %r3
 	or	%r3, lo(.L__profc___clzhi2+16), %r9
 	ld	0[%r9], %r3
@@ -12207,6 +16534,18 @@ __clzhi2:                               ! @__clzhi2
 	bt	.LBB114_5
 	nop
 .LBB114_5:                              !   in Loop: Header=BB114_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.114+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.114+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.114+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.114+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB114_1
@@ -12228,6 +16567,18 @@ __ctzhi2:                               ! @__ctzhi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.115), %r3
+	or	%r3, lo(__llvm_gcov_ctr.115), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.115+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.115+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	mov	hi(.L__profc___ctzhi2), %r3
 	or	%r3, lo(.L__profc___ctzhi2), %r9
@@ -12276,6 +16627,18 @@ __ctzhi2:                               ! @__ctzhi2
 	bt	.LBB115_3
 	nop
 .LBB115_3:
+	mov	hi(__llvm_gcov_ctr.115+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.115+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.115+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.115+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ctzhi2+16), %r3
 	or	%r3, lo(.L__profc___ctzhi2+16), %r9
 	ld	0[%r9], %r3
@@ -12293,6 +16656,18 @@ __ctzhi2:                               ! @__ctzhi2
 	bt	.LBB115_5
 	nop
 .LBB115_5:                              !   in Loop: Header=BB115_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.115+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.115+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.115+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.115+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB115_1
@@ -12338,6 +16713,18 @@ __fixunssfsi:                           ! @__fixunssfsi
 	bt	.LBB116_1
 	nop
 .LBB116_1:
+	mov	hi(__llvm_gcov_ctr.116), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.116+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.116+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___fixunssfsi+8), %r3
 	or	%r3, lo(.L__profc___fixunssfsi+8), %r9
 	ld	0[%r9], %r3
@@ -12363,6 +16750,18 @@ __fixunssfsi:                           ! @__fixunssfsi
 	bt	.LBB116_3
 	st	%r3, -12[%fp]
 .LBB116_2:
+	mov	hi(__llvm_gcov_ctr.116+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.116+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.116+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__fixsfsi
@@ -12386,6 +16785,18 @@ __parityhi2:                            ! @__parityhi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.117), %r3
+	or	%r3, lo(__llvm_gcov_ctr.117), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.117+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.117+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	mov	hi(.L__profc___parityhi2), %r3
 	or	%r3, lo(.L__profc___parityhi2), %r9
@@ -12435,6 +16846,18 @@ __parityhi2:                            ! @__parityhi2
 	bt	.LBB117_3
 	nop
 .LBB117_3:                              !   in Loop: Header=BB117_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.117+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.117+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.117+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.117+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___parityhi2+16), %r3
 	or	%r3, lo(.L__profc___parityhi2+16), %r9
 	ld	0[%r9], %r3
@@ -12455,6 +16878,18 @@ __parityhi2:                            ! @__parityhi2
 	bt	.LBB117_5
 	nop
 .LBB117_5:                              !   in Loop: Header=BB117_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.117+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.117+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.117+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.117+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB117_1
@@ -12478,6 +16913,18 @@ __popcounthi2:                          ! @__popcounthi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.118), %r3
+	or	%r3, lo(__llvm_gcov_ctr.118), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.118+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.118+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st.h	%r6, -10[%fp]
 	mov	hi(.L__profc___popcounthi2), %r3
 	or	%r3, lo(.L__profc___popcounthi2), %r9
@@ -12527,6 +16974,18 @@ __popcounthi2:                          ! @__popcounthi2
 	bt	.LBB118_3
 	nop
 .LBB118_3:                              !   in Loop: Header=BB118_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.118+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.118+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.118+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.118+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___popcounthi2+16), %r3
 	or	%r3, lo(.L__profc___popcounthi2+16), %r9
 	ld	0[%r9], %r3
@@ -12547,6 +17006,18 @@ __popcounthi2:                          ! @__popcounthi2
 	bt	.LBB118_5
 	nop
 .LBB118_5:                              !   in Loop: Header=BB118_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.118+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.118+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.118+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.118+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB118_1
@@ -12567,6 +17038,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.119), %r3
+	or	%r3, lo(__llvm_gcov_ctr.119), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.119+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.119+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___mulsi3_iq2000), %r3
@@ -12615,6 +17098,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	bt	.LBB119_3
 	nop
 .LBB119_3:                              !   in Loop: Header=BB119_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.119+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.119+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.119+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.119+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulsi3_iq2000+16), %r3
 	or	%r3, lo(.L__profc___mulsi3_iq2000+16), %r9
 	ld	0[%r9], %r3
@@ -12633,6 +17128,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	bt	.LBB119_4
 	st	%r3, -20[%fp]
 .LBB119_4:                              !   in Loop: Header=BB119_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.119+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.119+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.119+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.119+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -12[%fp]
@@ -12678,6 +17185,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_1
 	nop
 .LBB120_1:
+	mov	hi(__llvm_gcov_ctr.120+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.120+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.120+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.120+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulsi3_lm32+8), %r3
 	or	%r3, lo(.L__profc___mulsi3_lm32+8), %r9
 	ld	0[%r9], %r3
@@ -12694,8 +17213,19 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_8
 	st	%r3, -12[%fp]
 .LBB120_2:
+	mov	hi(__llvm_gcov_ctr.120), %r3
+	or	%r3, lo(__llvm_gcov_ctr.120), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.120+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.120+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB120_3
-	nop
+	st	%r3, 0[%r9]
 .LBB120_3:                              ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
@@ -12727,6 +17257,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_5
 	nop
 .LBB120_5:                              !   in Loop: Header=BB120_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.120+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.120+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.120+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.120+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulsi3_lm32+24), %r3
 	or	%r3, lo(.L__profc___mulsi3_lm32+24), %r9
 	ld	0[%r9], %r3
@@ -12745,6 +17287,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_6
 	st	%r3, -24[%fp]
 .LBB120_6:                              !   in Loop: Header=BB120_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.120+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.120+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.120+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.120+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st	%r3, -16[%fp]
@@ -12802,6 +17356,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_2
 	nop
 .LBB121_2:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.121), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4+32), %r3
 	or	%r3, lo(.L__profc___udivmodsi4+32), %r9
 	ld	0[%r9], %r3
@@ -12822,6 +17388,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_3
 	nop
 .LBB121_3:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.121+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4+40), %r3
 	or	%r3, lo(.L__profc___udivmodsi4+40), %r9
 	ld	0[%r9], %r3
@@ -12861,6 +17439,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	nop
 .LBB121_5:                              !   in Loop: Header=BB121_1 Depth=1
 	ld	-40[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.121+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.121+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.121+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.121+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc___udivmodsi4+24), %r9
 	or	%r9, lo(.L__profc___udivmodsi4+24), %r12
 	ld	0[%r12], %r9
@@ -12885,6 +17475,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_7
 	nop
 .LBB121_7:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.121+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4+8), %r3
 	or	%r3, lo(.L__profc___udivmodsi4+8), %r9
 	ld	0[%r9], %r3
@@ -12935,6 +17537,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_11
 	nop
 .LBB121_11:                             !   in Loop: Header=BB121_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.121+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4+56), %r3
 	or	%r3, lo(.L__profc___udivmodsi4+56), %r9
 	ld	0[%r9], %r3
@@ -12957,6 +17571,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_12
 	st	%r3, -32[%fp]
 .LBB121_12:                             !   in Loop: Header=BB121_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.121+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
@@ -12972,6 +17598,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_14
 	nop
 .LBB121_14:
+	mov	hi(__llvm_gcov_ctr.121+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4+64), %r3
 	or	%r3, lo(.L__profc___udivmodsi4+64), %r9
 	ld	0[%r9], %r3
@@ -12988,6 +17626,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	bt	.LBB121_16
 	st	%r3, -12[%fp]
 .LBB121_15:
+	mov	hi(__llvm_gcov_ctr.121+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.121+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.121+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.121+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	bt	.LBB121_16
 	st	%r3, -12[%fp]
@@ -13034,6 +17684,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	bt	.LBB122_1
 	nop
 .LBB122_1:
+	mov	hi(__llvm_gcov_ctr.122), %r3
+	or	%r3, lo(__llvm_gcov_ctr.122), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.122+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.122+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mspabi_cmpf+8), %r3
 	or	%r3, lo(.L__profc___mspabi_cmpf+8), %r9
 	ld	0[%r9], %r3
@@ -13061,6 +17723,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	bt	.LBB122_3
 	nop
 .LBB122_3:
+	mov	hi(__llvm_gcov_ctr.122+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.122+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.122+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.122+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mspabi_cmpf+16), %r3
 	or	%r3, lo(.L__profc___mspabi_cmpf+16), %r9
 	ld	0[%r9], %r3
@@ -13077,6 +17751,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	bt	.LBB122_5
 	st	%r3, -12[%fp]
 .LBB122_4:
+	mov	hi(__llvm_gcov_ctr.122+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.122+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.122+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.122+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB122_5
 	st	%r3, -12[%fp]
@@ -13133,6 +17819,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	bt	.LBB123_1
 	nop
 .LBB123_1:
+	mov	hi(__llvm_gcov_ctr.123), %r3
+	or	%r3, lo(__llvm_gcov_ctr.123), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.123+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.123+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mspabi_cmpd+8), %r3
 	or	%r3, lo(.L__profc___mspabi_cmpd+8), %r9
 	ld	0[%r9], %r3
@@ -13166,6 +17864,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	bt	.LBB123_3
 	nop
 .LBB123_3:
+	mov	hi(__llvm_gcov_ctr.123+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.123+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.123+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.123+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mspabi_cmpd+16), %r3
 	or	%r3, lo(.L__profc___mspabi_cmpd+16), %r9
 	ld	0[%r9], %r3
@@ -13182,6 +17892,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	bt	.LBB123_5
 	st	%r3, -12[%fp]
 .LBB123_4:
+	mov	hi(__llvm_gcov_ctr.123+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.123+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.123+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.123+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB123_5
 	st	%r3, -12[%fp]
@@ -13201,6 +17923,18 @@ __mspabi_mpysll:                        ! @__mspabi_mpysll
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.124), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.124+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.124+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___mspabi_mpysll), %r3
@@ -13236,6 +17970,18 @@ __mspabi_mpyull:                        ! @__mspabi_mpyull
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.125), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.125+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.125+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___mspabi_mpyull), %r3
@@ -13294,6 +18040,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_1
 	nop
 .LBB126_1:
+	mov	hi(__llvm_gcov_ctr.126), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulhi3+8), %r3
 	or	%r3, lo(.L__profc___mulhi3+8), %r9
 	ld	0[%r9], %r3
@@ -13326,6 +18084,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_4
 	nop
 .LBB126_4:                              !   in Loop: Header=BB126_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.126+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulhi3+24), %r3
 	or	%r3, lo(.L__profc___mulhi3+24), %r9
 	ld	0[%r9], %r3
@@ -13349,6 +18119,18 @@ __mulhi3:                               ! @__mulhi3
 	nop
 .LBB126_5:                              !   in Loop: Header=BB126_3 Depth=1
 	ld	-36[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.126+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.126+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.126+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.126+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc___mulhi3+32), %r9
 	or	%r9, lo(.L__profc___mulhi3+32), %r12
 	ld	0[%r12], %r9
@@ -13396,6 +18178,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_8
 	nop
 .LBB126_8:                              !   in Loop: Header=BB126_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.126+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulhi3+40), %r3
 	or	%r3, lo(.L__profc___mulhi3+40), %r9
 	ld	0[%r9], %r3
@@ -13422,6 +18216,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_10
 	st	%r3, -16[%fp]
 .LBB126_10:                             !   in Loop: Header=BB126_3 Depth=1
+	mov	hi(__llvm_gcov_ctr.126+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.b	-17[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB126_3
@@ -13434,6 +18240,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_12
 	nop
 .LBB126_12:
+	mov	hi(__llvm_gcov_ctr.126+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___mulhi3+48), %r3
 	or	%r3, lo(.L__profc___mulhi3+48), %r9
 	ld	0[%r9], %r3
@@ -13452,6 +18270,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_14
 	st	%r3, -40[%fp]
 .LBB126_13:
+	mov	hi(__llvm_gcov_ctr.126+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.126+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.126+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.126+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	bt	.LBB126_14
 	st	%r3, -40[%fp]
@@ -13470,6 +18300,18 @@ __divsi3:                               ! @__divsi3
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
+	mov	hi(__llvm_gcov_ctr.127), %r3
+	or	%r3, lo(__llvm_gcov_ctr.127), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.127+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.127+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___divsi3), %r3
@@ -13493,6 +18335,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_1
 	nop
 .LBB127_1:
+	mov	hi(__llvm_gcov_ctr.127+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.127+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.127+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.127+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___divsi3+8), %r3
 	or	%r3, lo(.L__profc___divsi3+8), %r9
 	ld	0[%r9], %r3
@@ -13522,6 +18376,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_3
 	nop
 .LBB127_3:
+	mov	hi(__llvm_gcov_ctr.127+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.127+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.127+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.127+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___divsi3+16), %r3
 	or	%r3, lo(.L__profc___divsi3+16), %r9
 	ld	0[%r9], %r3
@@ -13558,6 +18424,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_5
 	nop
 .LBB127_5:
+	mov	hi(__llvm_gcov_ctr.127+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.127+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.127+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.127+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___divsi3+24), %r3
 	or	%r3, lo(.L__profc___divsi3+24), %r9
 	ld	0[%r9], %r3
@@ -13590,6 +18468,18 @@ __modsi3:                               ! @__modsi3
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
+	mov	hi(__llvm_gcov_ctr.128), %r3
+	or	%r3, lo(__llvm_gcov_ctr.128), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.128+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.128+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___modsi3), %r3
@@ -13613,6 +18503,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_1
 	nop
 .LBB128_1:
+	mov	hi(__llvm_gcov_ctr.128+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.128+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.128+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.128+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___modsi3+8), %r3
 	or	%r3, lo(.L__profc___modsi3+8), %r9
 	ld	0[%r9], %r3
@@ -13640,6 +18542,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_3
 	nop
 .LBB128_3:
+	mov	hi(__llvm_gcov_ctr.128+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.128+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.128+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.128+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___modsi3+16), %r3
 	or	%r3, lo(.L__profc___modsi3+16), %r9
 	ld	0[%r9], %r3
@@ -13672,6 +18586,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_5
 	nop
 .LBB128_5:
+	mov	hi(__llvm_gcov_ctr.128+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.128+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.128+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.128+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___modsi3+24), %r3
 	or	%r3, lo(.L__profc___modsi3+24), %r9
 	ld	0[%r9], %r3
@@ -13737,6 +18663,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_2
 	nop
 .LBB129_2:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.129), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodhi4+32), %r3
 	or	%r3, lo(.L__profc___udivmodhi4+32), %r9
 	ld	0[%r9], %r3
@@ -13757,6 +18695,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_3
 	nop
 .LBB129_3:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.129+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodhi4+40), %r3
 	or	%r3, lo(.L__profc___udivmodhi4+40), %r9
 	ld	0[%r9], %r3
@@ -13796,6 +18746,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	nop
 .LBB129_5:                              !   in Loop: Header=BB129_1 Depth=1
 	ld	-32[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.129+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.129+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.129+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.129+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc___udivmodhi4+24), %r9
 	or	%r9, lo(.L__profc___udivmodhi4+24), %r12
 	ld	0[%r12], %r9
@@ -13820,6 +18782,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_7
 	nop
 .LBB129_7:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.129+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodhi4+8), %r3
 	or	%r3, lo(.L__profc___udivmodhi4+8), %r9
 	ld	0[%r9], %r3
@@ -13870,6 +18844,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_11
 	nop
 .LBB129_11:                             !   in Loop: Header=BB129_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.129+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodhi4+56), %r3
 	or	%r3, lo(.L__profc___udivmodhi4+56), %r9
 	ld	0[%r9], %r3
@@ -13892,6 +18878,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_12
 	st.h	%r3, -24[%fp]
 .LBB129_12:                             !   in Loop: Header=BB129_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.129+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-22[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st.h	%r3, -22[%fp]
@@ -13907,6 +18905,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_14
 	nop
 .LBB129_14:
+	mov	hi(__llvm_gcov_ctr.129+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodhi4+64), %r3
 	or	%r3, lo(.L__profc___udivmodhi4+64), %r9
 	ld	0[%r9], %r3
@@ -13923,6 +18933,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	bt	.LBB129_16
 	st.h	%r3, -10[%fp]
 .LBB129_15:
+	mov	hi(__llvm_gcov_ctr.129+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.129+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.129+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.129+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-24[%fp], %r3
 	bt	.LBB129_16
 	st.h	%r3, -10[%fp]
@@ -13972,6 +18994,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_2
 	nop
 .LBB130_2:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.130), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4_libgcc+32), %r3
 	or	%r3, lo(.L__profc___udivmodsi4_libgcc+32), %r9
 	ld	0[%r9], %r3
@@ -13992,6 +19026,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_3
 	nop
 .LBB130_3:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.130+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4_libgcc+40), %r3
 	or	%r3, lo(.L__profc___udivmodsi4_libgcc+40), %r9
 	ld	0[%r9], %r3
@@ -14031,6 +19077,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	nop
 .LBB130_5:                              !   in Loop: Header=BB130_1 Depth=1
 	ld	-40[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.130+16), %r9
+	or	%r9, lo(__llvm_gcov_ctr.130+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(__llvm_gcov_ctr.130+20), %r13
+	or	%r13, lo(__llvm_gcov_ctr.130+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	hi(.L__profc___udivmodsi4_libgcc+24), %r9
 	or	%r9, lo(.L__profc___udivmodsi4_libgcc+24), %r12
 	ld	0[%r12], %r9
@@ -14055,6 +19113,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_7
 	nop
 .LBB130_7:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.130+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4_libgcc+8), %r3
 	or	%r3, lo(.L__profc___udivmodsi4_libgcc+8), %r9
 	ld	0[%r9], %r3
@@ -14105,6 +19175,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_11
 	nop
 .LBB130_11:                             !   in Loop: Header=BB130_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.130+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4_libgcc+56), %r3
 	or	%r3, lo(.L__profc___udivmodsi4_libgcc+56), %r9
 	ld	0[%r9], %r3
@@ -14127,6 +19209,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_12
 	st	%r3, -32[%fp]
 .LBB130_12:                             !   in Loop: Header=BB130_9 Depth=1
+	mov	hi(__llvm_gcov_ctr.130+40), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+44), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
@@ -14142,6 +19236,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_14
 	nop
 .LBB130_14:
+	mov	hi(__llvm_gcov_ctr.130+48), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+52), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___udivmodsi4_libgcc+64), %r3
 	or	%r3, lo(.L__profc___udivmodsi4_libgcc+64), %r9
 	ld	0[%r9], %r3
@@ -14158,6 +19264,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	bt	.LBB130_16
 	st	%r3, -12[%fp]
 .LBB130_15:
+	mov	hi(__llvm_gcov_ctr.130+56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.130+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.130+60), %r12
+	or	%r12, lo(__llvm_gcov_ctr.130+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	bt	.LBB130_16
 	st	%r3, -12[%fp]
@@ -14214,6 +19332,18 @@ __ashldi3:                              ! @__ashldi3
 	bt	.LBB131_1
 	nop
 .LBB131_1:
+	mov	hi(__llvm_gcov_ctr.131), %r3
+	or	%r3, lo(__llvm_gcov_ctr.131), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.131+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.131+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ashldi3+8), %r3
 	or	%r3, lo(.L__profc___ashldi3+8), %r9
 	ld	0[%r9], %r3
@@ -14246,6 +19376,18 @@ __ashldi3:                              ! @__ashldi3
 	bt	.LBB131_3
 	nop
 .LBB131_3:
+	mov	hi(__llvm_gcov_ctr.131+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.131+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.131+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.131+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ashldi3+16), %r3
 	or	%r3, lo(.L__profc___ashldi3+16), %r9
 	ld	0[%r9], %r3
@@ -14268,6 +19410,18 @@ __ashldi3:                              ! @__ashldi3
 	bt	.LBB131_6
 	st	%r3, -16[%fp]
 .LBB131_4:
+	mov	hi(__llvm_gcov_ctr.131+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.131+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.131+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.131+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x28, %r3
 	or	%r3, 0x4, %r9
 	ld	0[%r9], %r3
@@ -14353,6 +19507,18 @@ __ashrdi3:                              ! @__ashrdi3
 	bt	.LBB132_1
 	nop
 .LBB132_1:
+	mov	hi(__llvm_gcov_ctr.132), %r3
+	or	%r3, lo(__llvm_gcov_ctr.132), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.132+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.132+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ashrdi3+8), %r3
 	or	%r3, lo(.L__profc___ashrdi3+8), %r9
 	ld	0[%r9], %r3
@@ -14385,6 +19551,18 @@ __ashrdi3:                              ! @__ashrdi3
 	bt	.LBB132_3
 	nop
 .LBB132_3:
+	mov	hi(__llvm_gcov_ctr.132+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.132+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.132+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.132+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ashrdi3+16), %r3
 	or	%r3, lo(.L__profc___ashrdi3+16), %r9
 	ld	0[%r9], %r3
@@ -14407,6 +19585,18 @@ __ashrdi3:                              ! @__ashrdi3
 	bt	.LBB132_6
 	st	%r3, -16[%fp]
 .LBB132_4:
+	mov	hi(__llvm_gcov_ctr.132+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.132+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.132+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.132+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-28[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -14458,6 +19648,18 @@ __bswapdi2:                             ! @__bswapdi2
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.133), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.133+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.133+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -14510,6 +19712,18 @@ __bswapsi2:                             ! @__bswapsi2
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.134), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.134+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.134+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___bswapsi2), %r3
 	or	%r3, lo(.L__profc___bswapsi2), %r9
@@ -14549,6 +19763,18 @@ __clzsi2:                               ! @__clzsi2
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.135), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.135+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.135+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___clzsi2), %r3
 	or	%r3, lo(.L__profc___clzsi2), %r9
@@ -14702,6 +19928,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_1
 	nop
 .LBB136_1:
+	mov	hi(__llvm_gcov_ctr.136), %r3
+	or	%r3, lo(__llvm_gcov_ctr.136), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.136+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.136+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmpdi2+8), %r3
 	or	%r3, lo(.L__profc___cmpdi2+8), %r9
 	ld	0[%r9], %r3
@@ -14726,6 +19964,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_3
 	nop
 .LBB136_3:
+	mov	hi(__llvm_gcov_ctr.136+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.136+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.136+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.136+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmpdi2+16), %r3
 	or	%r3, lo(.L__profc___cmpdi2+16), %r9
 	ld	0[%r9], %r3
@@ -14754,6 +20004,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_5
 	nop
 .LBB136_5:
+	mov	hi(__llvm_gcov_ctr.136+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.136+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.136+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.136+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmpdi2+24), %r3
 	or	%r3, lo(.L__profc___cmpdi2+24), %r9
 	ld	0[%r9], %r3
@@ -14782,6 +20044,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_7
 	nop
 .LBB136_7:
+	mov	hi(__llvm_gcov_ctr.136+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.136+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.136+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.136+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___cmpdi2+32), %r3
 	or	%r3, lo(.L__profc___cmpdi2+32), %r9
 	ld	0[%r9], %r3
@@ -14798,6 +20072,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
 .LBB136_8:
+	mov	hi(__llvm_gcov_ctr.136+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.136+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.136+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.136+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
@@ -14821,6 +20107,18 @@ __aeabi_lcmp:                           ! @__aeabi_lcmp
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.137), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.137+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.137+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r7, 0[%r9]
@@ -14863,6 +20161,18 @@ __ctzsi2:                               ! @__ctzsi2
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
+	mov	hi(__llvm_gcov_ctr.138), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.138+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.138+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___ctzsi2), %r3
 	or	%r3, lo(.L__profc___ctzsi2), %r9
@@ -15003,6 +20313,18 @@ __lshrdi3:                              ! @__lshrdi3
 	bt	.LBB139_1
 	nop
 .LBB139_1:
+	mov	hi(__llvm_gcov_ctr.139), %r3
+	or	%r3, lo(__llvm_gcov_ctr.139), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.139+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.139+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___lshrdi3+8), %r3
 	or	%r3, lo(.L__profc___lshrdi3+8), %r9
 	ld	0[%r9], %r3
@@ -15034,6 +20356,18 @@ __lshrdi3:                              ! @__lshrdi3
 	bt	.LBB139_3
 	nop
 .LBB139_3:
+	mov	hi(__llvm_gcov_ctr.139+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.139+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.139+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.139+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___lshrdi3+16), %r3
 	or	%r3, lo(.L__profc___lshrdi3+16), %r9
 	ld	0[%r9], %r3
@@ -15056,6 +20390,18 @@ __lshrdi3:                              ! @__lshrdi3
 	bt	.LBB139_6
 	st	%r3, -16[%fp]
 .LBB139_4:
+	mov	hi(__llvm_gcov_ctr.139+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.139+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.139+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.139+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-28[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -15105,6 +20451,18 @@ __muldsi3:                              ! @__muldsi3
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x38, %sp
+	mov	hi(__llvm_gcov_ctr.140), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.140+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.140+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	mov	hi(.L__profc___muldsi3), %r3
@@ -15214,6 +20572,18 @@ __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.141), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.141+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.141+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r7, 0[%r9]
@@ -15296,6 +20666,18 @@ __negdi2:                               ! @__negdi2
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.142), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.142+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.142+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -15336,6 +20718,18 @@ __paritydi2:                            ! @__paritydi2
 	sub	%sp, 0x20, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.143), %r3
+	or	%r3, lo(__llvm_gcov_ctr.143), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.143+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.143+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -15396,6 +20790,18 @@ __paritysi2:                            ! @__paritysi2
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.144), %r3
+	or	%r3, lo(__llvm_gcov_ctr.144), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.144+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.144+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___paritysi2), %r3
 	or	%r3, lo(.L__profc___paritysi2), %r9
@@ -15447,6 +20853,18 @@ __popcountdi2:                          ! @__popcountdi2
 	sub	%sp, 0x20, %sp
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.145), %r3
+	or	%r3, lo(__llvm_gcov_ctr.145), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.145+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.145+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
@@ -15545,6 +20963,18 @@ __popcountsi2:                          ! @__popcountsi2
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_ctr.146), %r3
+	or	%r3, lo(__llvm_gcov_ctr.146), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.146+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.146+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	st	%r6, -12[%fp]
 	mov	hi(.L__profc___popcountsi2), %r3
 	or	%r3, lo(.L__profc___popcountsi2), %r9
@@ -15658,6 +21088,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_2
 	nop
 .LBB147_2:                              !   in Loop: Header=BB147_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.147), %r3
+	or	%r3, lo(__llvm_gcov_ctr.147), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.147+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.147+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___powidf2+16), %r3
 	or	%r3, lo(.L__profc___powidf2+16), %r9
 	ld	0[%r9], %r3
@@ -15713,6 +21155,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_6
 	st	%r3, 0[%r9]
 .LBB147_5:                              !   in Loop: Header=BB147_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.147+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.147+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.147+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.147+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -40[%fp]
@@ -15735,6 +21189,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_7
 	nop
 .LBB147_7:
+	mov	hi(__llvm_gcov_ctr.147+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.147+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.147+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.147+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___powidf2+32), %r3
 	or	%r3, lo(.L__profc___powidf2+32), %r9
 	ld	0[%r9], %r3
@@ -15760,6 +21226,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_9
 	st	%r9, -44[%fp]
 .LBB147_8:
+	mov	hi(__llvm_gcov_ctr.147+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.147+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.147+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.147+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -15829,6 +21307,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_2
 	nop
 .LBB148_2:                              !   in Loop: Header=BB148_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.148), %r3
+	or	%r3, lo(__llvm_gcov_ctr.148), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.148+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.148+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___powisf2+16), %r3
 	or	%r3, lo(.L__profc___powisf2+16), %r9
 	ld	0[%r9], %r3
@@ -15875,6 +21365,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_6
 	st	%r3, 0[%r9]
 .LBB148_5:                              !   in Loop: Header=BB148_1 Depth=1
+	mov	hi(__llvm_gcov_ctr.148+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.148+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.148+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.148+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -15890,6 +21392,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_7
 	nop
 .LBB148_7:
+	mov	hi(__llvm_gcov_ctr.148+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.148+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.148+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.148+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___powisf2+32), %r3
 	or	%r3, lo(.L__profc___powisf2+32), %r9
 	ld	0[%r9], %r3
@@ -15910,6 +21424,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_9
 	st	%rv, -28[%fp]
 .LBB148_8:
+	mov	hi(__llvm_gcov_ctr.148+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.148+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.148+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.148+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	bt	.LBB148_9
 	st	%r3, -28[%fp]
@@ -15973,6 +21499,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_1
 	nop
 .LBB149_1:
+	mov	hi(__llvm_gcov_ctr.149), %r3
+	or	%r3, lo(__llvm_gcov_ctr.149), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.149+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.149+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ucmpdi2+8), %r3
 	or	%r3, lo(.L__profc___ucmpdi2+8), %r9
 	ld	0[%r9], %r3
@@ -15997,6 +21535,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_3
 	nop
 .LBB149_3:
+	mov	hi(__llvm_gcov_ctr.149+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.149+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.149+12), %r12
+	or	%r12, lo(__llvm_gcov_ctr.149+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ucmpdi2+16), %r3
 	or	%r3, lo(.L__profc___ucmpdi2+16), %r9
 	ld	0[%r9], %r3
@@ -16025,6 +21575,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_5
 	nop
 .LBB149_5:
+	mov	hi(__llvm_gcov_ctr.149+16), %r3
+	or	%r3, lo(__llvm_gcov_ctr.149+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.149+20), %r12
+	or	%r12, lo(__llvm_gcov_ctr.149+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ucmpdi2+24), %r3
 	or	%r3, lo(.L__profc___ucmpdi2+24), %r9
 	ld	0[%r9], %r3
@@ -16053,6 +21615,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_7
 	nop
 .LBB149_7:
+	mov	hi(__llvm_gcov_ctr.149+24), %r3
+	or	%r3, lo(__llvm_gcov_ctr.149+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.149+28), %r12
+	or	%r12, lo(__llvm_gcov_ctr.149+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(.L__profc___ucmpdi2+32), %r3
 	or	%r3, lo(.L__profc___ucmpdi2+32), %r9
 	ld	0[%r9], %r3
@@ -16069,6 +21643,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
 .LBB149_8:
+	mov	hi(__llvm_gcov_ctr.149+32), %r3
+	or	%r3, lo(__llvm_gcov_ctr.149+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.149+36), %r12
+	or	%r12, lo(__llvm_gcov_ctr.149+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
@@ -16092,6 +21678,18 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
                                         ! kill: def $r3 killed $r18
                                         ! kill: def $r3 killed $r7
                                         ! kill: def $r3 killed $r6
+	mov	hi(__llvm_gcov_ctr.150), %r3
+	or	%r3, lo(__llvm_gcov_ctr.150), %r9
+	ld	0[%r9], %r3
+	mov	hi(__llvm_gcov_ctr.150+4), %r12
+	or	%r12, lo(__llvm_gcov_ctr.150+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r9
 	st	%r7, 0[%r9]
@@ -16126,6 +21724,1454 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
                                         ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   ! @__llvm_gcov_writeout
+! %bb.0:
+	st	%fp, [--%sp]
+	add	%sp, 0x8, %fp
+	sub	%sp, 0x38, %sp
+	or	%r0, 0x0, %r3
+	st	%r3, -12[%fp]
+.LBB151_1:                              ! =>This Loop Header: Depth=1
+                                        !     Child Loop BB151_2 Depth 2
+	ld	-12[%fp], %r3
+	st	%r3, -36[%fp]
+	sh	%r3, 0x3, %r9
+	sh	%r3, 0x5, %r3
+	sub	%r3, %r9, %r9
+	st	%r9, -32[%fp]
+	mov	hi(__llvm_internal_gcov_emit_file_info), %r3
+	or	%r3, lo(__llvm_internal_gcov_emit_file_info), %r3
+	add	%r9, %r3, %r3
+	ld	0[%r3], %r3
+	mov	hi(__llvm_internal_gcov_emit_file_info+4), %r12
+	or	%r12, lo(__llvm_internal_gcov_emit_file_info+4), %r12
+	add	%r9, %r12, %r12
+	ld	0[%r12], %r12
+	mov	hi(__llvm_internal_gcov_emit_file_info+8), %r13
+	or	%r13, lo(__llvm_internal_gcov_emit_file_info+8), %r13
+	add	%r9, %r13, %r9
+	ld	0[%r9], %r13
+	or	%sp, 0x0, %r9
+	st	%r13, 8[%r9]
+	st	%r12, 4[%r9]
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcda_start_file
+	st	%r3, 0[%r9]
+	ld	-32[%fp], %r3
+	mov	hi(__llvm_internal_gcov_emit_file_info+12), %r9
+	or	%r9, lo(__llvm_internal_gcov_emit_file_info+12), %r9
+	add	%r3, %r9, %r9
+	ld	0[%r9], %r9
+	st	%r9, -28[%fp]
+	mov	hi(__llvm_internal_gcov_emit_file_info+16), %r12
+	or	%r12, lo(__llvm_internal_gcov_emit_file_info+16), %r12
+	add	%r3, %r12, %r12
+	ld	0[%r12], %r12
+	st	%r12, -24[%fp]
+	mov	hi(__llvm_internal_gcov_emit_file_info+20), %r12
+	or	%r12, lo(__llvm_internal_gcov_emit_file_info+20), %r12
+	add	%r3, %r12, %r3
+	ld	0[%r3], %r3
+	st	%r3, -20[%fp]
+	or	%r0, 0x0, %r3
+	sub.f	%r9, 0x1, %r0
+	blt	.LBB151_3
+	st	%r3, -16[%fp]
+	bt	.LBB151_2
+	nop
+.LBB151_2:                              !   Parent Loop BB151_1 Depth=1
+                                        ! =>  This Inner Loop Header: Depth=2
+	ld	-16[%fp], %r9
+	ld	-24[%fp], %r3
+	st	%r9, -40[%fp]
+	sh	%r9, 0x2, %r12
+	sh	%r9, 0x4, %r9
+	sub	%r9, %r12, %r9
+	add	%r3, %r9, %r9
+	ld	0[%r9], %r3
+	ld	4[%r9], %r12
+	ld	8[%r9], %r13
+	or	%sp, 0x0, %r9
+	st	%r13, 8[%r9]
+	st	%r12, 4[%r9]
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcda_emit_function
+	st	%r3, 0[%r9]
+	ld	-20[%fp], %r3
+	ld	-40[%fp], %r9
+	sh	%r9, 0x3, %r9
+	add	%r3, %r9, %r9
+	ld	0[%r9], %r3
+	ld	4[%r9], %r12
+	or	%sp, 0x0, %r9
+	st	%r12, 4[%r9]
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcda_emit_arcs
+	st	%r3, 0[%r9]
+	ld	-40[%fp], %r3
+	ld	-28[%fp], %r9
+	add	%r3, 0x1, %r3
+	sub.f	%r3, %r9, %r0
+	blt	.LBB151_2
+	st	%r3, -16[%fp]
+	bt	.LBB151_3
+	nop
+.LBB151_3:                              !   in Loop: Header=BB151_1 Depth=1
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcda_summary_info
+	nop
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcda_end_file
+	nop
+	ld	-36[%fp], %r3
+	add	%r3, 0x1, %r3
+	sub.f	%r3, 0x1, %r0
+	blt	.LBB151_1
+	st	%r3, -12[%fp]
+	bt	.LBB151_4
+	nop
+.LBB151_4:
+	ld	-4[%fp], %pc ! return
+	add	%fp, 0x0, %sp
+	ld	-8[%fp], %fp
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      ! @__llvm_gcov_reset
+! %bb.0:
+	st	%fp, [--%sp]
+	add	%sp, 0x8, %fp
+	sub	%sp, 0x28, %sp
+	mov	hi(__llvm_gcov_ctr), %r3
+	or	%r3, lo(__llvm_gcov_ctr), %r6
+	or	%r0, 0x0, %r7
+	st	%r7, -12[%fp]
+	mov	0x28, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -16[%fp]
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.1), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.1), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.2), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.2), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.3), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.3), %r6
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.4+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.4+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.4+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.4+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.5), %r6
+	mov	0x18, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -24[%fp]
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.6+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.6+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.6+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.6+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.7+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.7+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.7+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.7+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.8), %r6
+	mov	0x20, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -20[%fp]
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.9), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.9), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.10), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.10), %r6
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.11), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.11+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.11+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.11+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.11+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.12), %r6
+	mov	0x38, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -32[%fp]
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.13), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.13+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.13+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.13+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.13+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.14), %r3
+	or	%r3, lo(__llvm_gcov_ctr.14), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.14+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.14+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.15+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.15+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.15), %r3
+	or	%r3, lo(__llvm_gcov_ctr.15), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.16), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.16), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.17), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.17), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.18), %r3
+	or	%r3, lo(__llvm_gcov_ctr.18), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.18+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.18+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.19), %r3
+	or	%r3, lo(__llvm_gcov_ctr.19), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.19+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.19+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.20), %r3
+	or	%r3, lo(__llvm_gcov_ctr.20), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.20+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.20+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.21+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.21+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.21), %r3
+	or	%r3, lo(__llvm_gcov_ctr.21), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.22), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.22), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.23), %r3
+	or	%r3, lo(__llvm_gcov_ctr.23), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.23+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.23+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.24), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.24), %r6
+	ld	-32[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.25), %r3
+	or	%r3, lo(__llvm_gcov_ctr.25), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.25+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.25+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.26), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.26), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.27), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.27), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.28), %r3
+	or	%r3, lo(__llvm_gcov_ctr.28), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.28+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.28+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.29), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.29), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.30), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.30), %r6
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.31), %r3
+	or	%r3, lo(__llvm_gcov_ctr.31), %r6
+	mov	0x30, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -36[%fp]
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.32), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.32), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.33), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.33), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.34), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.34), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.35), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.35), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.36), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.36), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.37), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.37+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.37+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.37+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.37+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.38), %r3
+	or	%r3, lo(__llvm_gcov_ctr.38), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.38+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.38+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.39+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.39+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.39), %r3
+	or	%r3, lo(__llvm_gcov_ctr.39), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.40), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.40), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.41), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.41), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.42), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.42), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.43), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.43), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.44), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.44+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.44+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.44+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.44+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.45), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.45), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.46), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.46), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.47), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.47), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.48), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.48), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.49), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.49), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.50), %r3
+	or	%r3, lo(__llvm_gcov_ctr.50), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.50+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.50+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.51), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.51+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.51+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.51+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.51+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.52+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.52+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.52), %r3
+	or	%r3, lo(__llvm_gcov_ctr.52), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.53+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.53+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.53+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.53), %r3
+	or	%r3, lo(__llvm_gcov_ctr.53), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.54+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.54+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.54), %r3
+	or	%r3, lo(__llvm_gcov_ctr.54), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.55+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.55+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.55+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.55), %r3
+	or	%r3, lo(__llvm_gcov_ctr.55), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.56+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.56+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.56), %r3
+	or	%r3, lo(__llvm_gcov_ctr.56), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.57), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.57), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.58), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.58), %r6
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.59), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.59+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.59+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.59+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.59+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.60), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.60+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.60+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.60+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.60+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.61), %r3
+	or	%r3, lo(__llvm_gcov_ctr.61), %r6
+	mov	0x40, %r18
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	st	%r18, -28[%fp]
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.62), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.62), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.63), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.63), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.64), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.64+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.64+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.64+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.64+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.65), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.65), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.66), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.66+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.66+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.66+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.66+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.67), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.67), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.68), %r3
+	or	%r3, lo(__llvm_gcov_ctr.68), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.68+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.68+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.69), %r3
+	or	%r3, lo(__llvm_gcov_ctr.69), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.69+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.69+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.70), %r3
+	or	%r3, lo(__llvm_gcov_ctr.70), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.70+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.70+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.71), %r3
+	or	%r3, lo(__llvm_gcov_ctr.71), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.71+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.71+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.72), %r3
+	or	%r3, lo(__llvm_gcov_ctr.72), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.72+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.72+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.73), %r3
+	or	%r3, lo(__llvm_gcov_ctr.73), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.73+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.73+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.74), %r3
+	or	%r3, lo(__llvm_gcov_ctr.74), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.74+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.74+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.75+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.75+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.75), %r3
+	or	%r3, lo(__llvm_gcov_ctr.75), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.76+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.76+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.76), %r3
+	or	%r3, lo(__llvm_gcov_ctr.76), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.77+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.77+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.77), %r3
+	or	%r3, lo(__llvm_gcov_ctr.77), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.78+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.78+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.78), %r3
+	or	%r3, lo(__llvm_gcov_ctr.78), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.79+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.79+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.79), %r3
+	or	%r3, lo(__llvm_gcov_ctr.79), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.80+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.80+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.80), %r3
+	or	%r3, lo(__llvm_gcov_ctr.80), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.81), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.81), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.82), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.82), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.83), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.83), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.84), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.84), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.85), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.85), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.86), %r3
+	or	%r3, lo(__llvm_gcov_ctr.86), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.86+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.86+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.87), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.87), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.88), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.88), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.89), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.89), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.90), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.90+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.90+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.90+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.90+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.91), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.91), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.92), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.92), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.93), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.93), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.94), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.94), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.95), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.95), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.96), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.96), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.97), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.97), %r6
+	ld	-28[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.98), %r3
+	or	%r3, lo(__llvm_gcov_ctr.98), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.98+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.98+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.99), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.99), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.100), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.100), %r6
+	ld	-28[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.101), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.101), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.102), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.102), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.103), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.103), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.104), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.104), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.105), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.105), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.106), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.106), %r6
+	ld	-36[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.107), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.107), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.108), %r3
+	or	%r3, lo(__llvm_gcov_ctr.108), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.108+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.108+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.109), %r3
+	or	%r3, lo(__llvm_gcov_ctr.109), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.109+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.109+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.110), %r3
+	or	%r3, lo(__llvm_gcov_ctr.110), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.110+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.110+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.111), %r3
+	or	%r3, lo(__llvm_gcov_ctr.111), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.111+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.111+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.112), %r3
+	or	%r3, lo(__llvm_gcov_ctr.112), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.112+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.112+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.113), %r3
+	or	%r3, lo(__llvm_gcov_ctr.113), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.113+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.113+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.114), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.114), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.115), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.115), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.116), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.116+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.116+8), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116+8), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.116+12), %r3
+	or	%r3, lo(__llvm_gcov_ctr.116+12), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.117), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.117), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.118), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.118), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.119), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.119), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.120), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.120), %r6
+	ld	-28[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.121), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.121), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.122), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.122), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.123), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.123), %r6
+	ld	-32[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.124), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.124+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.124+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.125+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.125+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.126), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.126), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.127), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.127), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.128), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.128), %r6
+	ld	-28[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.129), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.129), %r6
+	ld	-28[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.130), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.130), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.131), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.131), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.132), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.132), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.133), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.133+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.133+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.134+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.134+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.135+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.135+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.136), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.136), %r6
+	ld	-24[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.137), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.137+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.137+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.138+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.138+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.139), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.139), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.140), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.140+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.140+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.141+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.141+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+1), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+1), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+2), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+2), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+3), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+3), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+4), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+5), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+5), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+6), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+6), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.142+7), %r3
+	or	%r3, lo(__llvm_gcov_ctr.142+7), %r3
+	st.b	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.143+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.143+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.143), %r3
+	or	%r3, lo(__llvm_gcov_ctr.143), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.144), %r3
+	or	%r3, lo(__llvm_gcov_ctr.144), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.144+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.144+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.145), %r3
+	or	%r3, lo(__llvm_gcov_ctr.145), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.145+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.145+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.146), %r3
+	or	%r3, lo(__llvm_gcov_ctr.146), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.146+4), %r3
+	or	%r3, lo(__llvm_gcov_ctr.146+4), %r3
+	st	%r7, 0[%r3]
+	mov	hi(__llvm_gcov_ctr.147), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.147), %r6
+	ld	-20[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.148), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.148), %r6
+	ld	-16[%fp], %r18
+	ld	-12[%fp], %r7
+	mov	hi(__llvm_gcov_ctr.149), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	memset
+	or	%r3, lo(__llvm_gcov_ctr.149), %r6
+	ld	-12[%fp], %r3
+	mov	hi(__llvm_gcov_ctr.150), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+1), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+1), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+2), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+2), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+3), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+3), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+4), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+4), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+5), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+5), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+6), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+6), %r9
+	st.b	%r3, 0[%r9]
+	mov	hi(__llvm_gcov_ctr.150+7), %r9
+	or	%r9, lo(__llvm_gcov_ctr.150+7), %r9
+	st.b	%r3, 0[%r9]
+	ld	-4[%fp], %pc ! return
+	add	%fp, 0x0, %sp
+	ld	-8[%fp], %fp
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+                                        ! -- End function
+	.p2align	2                               ! -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       ! @__llvm_gcov_init
+! %bb.0:
+	st	%fp, [--%sp]
+	add	%sp, 0x8, %fp
+	sub	%sp, 0x10, %sp
+	mov	hi(__llvm_gcov_reset), %r3
+	or	%r3, lo(__llvm_gcov_reset), %r3
+	or	%sp, 0x0, %r9
+	st	%r3, 4[%r9]
+	mov	hi(__llvm_gcov_writeout), %r3
+	or	%r3, lo(__llvm_gcov_writeout), %r3
+	add	%pc, 0x10, %rca
+	st	%rca, [--%sp]
+	bt	llvm_gcov_init
+	st	%r3, 0[%r9]
+	ld	-4[%fp], %pc ! return
+	add	%fp, 0x0, %sp
+	ld	-8[%fp], %fp
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
+                                        ! -- End function
 	.type	l64a.s,@object                  ! @l64a.s
 	.local	l64a.s
 	.comm	l64a.s,7,4
@@ -16139,6 +23185,1245 @@ digits:
 	.type	seed,@object                    ! @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         ! @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       ! @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       ! @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       ! @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       ! @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       ! @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       ! @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       ! @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       ! @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       ! @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      ! @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      ! @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      ! @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      ! @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      ! @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      ! @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      ! @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      ! @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      ! @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      ! @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      ! @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      ! @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      ! @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      ! @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      ! @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      ! @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      ! @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      ! @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      ! @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      ! @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      ! @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      ! @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      ! @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      ! @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      ! @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      ! @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      ! @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      ! @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      ! @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,@object      ! @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,@object      ! @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      ! @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      ! @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      ! @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      ! @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,@object      ! @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      ! @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      ! @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      ! @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      ! @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      ! @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      ! @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      ! @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      ! @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      ! @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      ! @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      ! @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      ! @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      ! @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      ! @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,@object      ! @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,@object      ! @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      ! @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      ! @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      ! @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      ! @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      ! @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      ! @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      ! @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      ! @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      ! @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      ! @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      ! @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      ! @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      ! @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      ! @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      ! @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      ! @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      ! @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      ! @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      ! @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      ! @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      ! @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      ! @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      ! @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      ! @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      ! @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      ! @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      ! @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      ! @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      ! @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,@object      ! @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      ! @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      ! @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      ! @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      ! @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      ! @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      ! @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      ! @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      ! @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     ! @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     ! @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     ! @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     ! @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     ! @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     ! @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     ! @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     ! @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     ! @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     ! @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     ! @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     ! @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     ! @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     ! @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     ! @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     ! @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     ! @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,@object     ! @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     ! @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     ! @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     ! @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     ! @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     ! @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     ! @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     ! @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,@object     ! @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,@object     ! @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     ! @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     ! @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     ! @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     ! @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     ! @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     ! @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     ! @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     ! @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,@object     ! @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     ! @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     ! @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     ! @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     ! @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     ! @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     ! @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     ! @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     ! @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     ! @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     ! @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     ! @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,@object     ! @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     ! @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     ! @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     ! @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,@object           ! @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-lanai.gcda"
+	.size	.L__unnamed_1, 49
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object ! @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               ! 0x0
+	.long	560687177                       ! 0x216b6849
+	.long	3469251760                      ! 0xcec894b0
+	.long	1                               ! 0x1
+	.long	1589591758                      ! 0x5ebf3ece
+	.long	3469251760                      ! 0xcec894b0
+	.long	2                               ! 0x2
+	.long	2176136383                      ! 0x81b534bf
+	.long	3469251760                      ! 0xcec894b0
+	.long	3                               ! 0x3
+	.long	3586625172                      ! 0xd5c78e94
+	.long	3469251760                      ! 0xcec894b0
+	.long	4                               ! 0x4
+	.long	2323119728                      ! 0x8a77fe70
+	.long	3469251760                      ! 0xcec894b0
+	.long	5                               ! 0x5
+	.long	2314569740                      ! 0x89f5880c
+	.long	3469251760                      ! 0xcec894b0
+	.long	6                               ! 0x6
+	.long	2833673551                      ! 0xa8e66d4f
+	.long	3469251760                      ! 0xcec894b0
+	.long	7                               ! 0x7
+	.long	1458633189                      ! 0x56f0f9e5
+	.long	3469251760                      ! 0xcec894b0
+	.long	8                               ! 0x8
+	.long	1190300833                      ! 0x46f28ca1
+	.long	3469251760                      ! 0xcec894b0
+	.long	9                               ! 0x9
+	.long	758327989                       ! 0x2d332ab5
+	.long	3469251760                      ! 0xcec894b0
+	.long	10                              ! 0xa
+	.long	1651479037                      ! 0x626f91fd
+	.long	3469251760                      ! 0xcec894b0
+	.long	11                              ! 0xb
+	.long	4132343275                      ! 0xf64e8deb
+	.long	3469251760                      ! 0xcec894b0
+	.long	12                              ! 0xc
+	.long	734262523                       ! 0x2bc3f4fb
+	.long	3469251760                      ! 0xcec894b0
+	.long	13                              ! 0xd
+	.long	2463424677                      ! 0x92d4e0a5
+	.long	3469251760                      ! 0xcec894b0
+	.long	14                              ! 0xe
+	.long	1419026334                      ! 0x54949f9e
+	.long	3469251760                      ! 0xcec894b0
+	.long	15                              ! 0xf
+	.long	3154471370                      ! 0xbc0569ca
+	.long	3469251760                      ! 0xcec894b0
+	.long	16                              ! 0x10
+	.long	2077973487                      ! 0x7bdb5bef
+	.long	3469251760                      ! 0xcec894b0
+	.long	17                              ! 0x11
+	.long	1474691227                      ! 0x57e6009b
+	.long	3469251760                      ! 0xcec894b0
+	.long	18                              ! 0x12
+	.long	3710986016                      ! 0xdd312720
+	.long	3469251760                      ! 0xcec894b0
+	.long	19                              ! 0x13
+	.long	1305101473                      ! 0x4dca44a1
+	.long	3469251760                      ! 0xcec894b0
+	.long	20                              ! 0x14
+	.long	3762036564                      ! 0xe03c1f54
+	.long	3469251760                      ! 0xcec894b0
+	.long	21                              ! 0x15
+	.long	477914433                       ! 0x1c7c6541
+	.long	3469251760                      ! 0xcec894b0
+	.long	22                              ! 0x16
+	.long	3923035234                      ! 0xe9d4c462
+	.long	3469251760                      ! 0xcec894b0
+	.long	23                              ! 0x17
+	.long	951651702                       ! 0x38b90d76
+	.long	3469251760                      ! 0xcec894b0
+	.long	24                              ! 0x18
+	.long	4206925919                      ! 0xfac0985f
+	.long	3469251760                      ! 0xcec894b0
+	.long	25                              ! 0x19
+	.long	32773942                        ! 0x1f41736
+	.long	3469251760                      ! 0xcec894b0
+	.long	26                              ! 0x1a
+	.long	2877267246                      ! 0xab7f9d2e
+	.long	3469251760                      ! 0xcec894b0
+	.long	27                              ! 0x1b
+	.long	860405771                       ! 0x3348c00b
+	.long	3469251760                      ! 0xcec894b0
+	.long	28                              ! 0x1c
+	.long	815674877                       ! 0x309e35fd
+	.long	3469251760                      ! 0xcec894b0
+	.long	29                              ! 0x1d
+	.long	1778838753                      ! 0x6a06ece1
+	.long	3469251760                      ! 0xcec894b0
+	.long	30                              ! 0x1e
+	.long	2718307199                      ! 0xa206137f
+	.long	3469251760                      ! 0xcec894b0
+	.long	31                              ! 0x1f
+	.long	856224820                       ! 0x3308f434
+	.long	3469251760                      ! 0xcec894b0
+	.long	32                              ! 0x20
+	.long	1111195143                      ! 0x423b7e07
+	.long	3469251760                      ! 0xcec894b0
+	.long	33                              ! 0x21
+	.long	1178414519                      ! 0x463d2db7
+	.long	3469251760                      ! 0xcec894b0
+	.long	34                              ! 0x22
+	.long	3477640633                      ! 0xcf4895b9
+	.long	3469251760                      ! 0xcec894b0
+	.long	35                              ! 0x23
+	.long	4294770115                      ! 0xfffcfdc3
+	.long	3469251760                      ! 0xcec894b0
+	.long	36                              ! 0x24
+	.long	3650660234                      ! 0xd998a78a
+	.long	3469251760                      ! 0xcec894b0
+	.long	37                              ! 0x25
+	.long	289327647                       ! 0x113eca1f
+	.long	3469251760                      ! 0xcec894b0
+	.long	38                              ! 0x26
+	.long	2093612798                      ! 0x7cc9fefe
+	.long	3469251760                      ! 0xcec894b0
+	.long	39                              ! 0x27
+	.long	4177956716                      ! 0xf9068f6c
+	.long	3469251760                      ! 0xcec894b0
+	.long	40                              ! 0x28
+	.long	3434808461                      ! 0xccbb048d
+	.long	3469251760                      ! 0xcec894b0
+	.long	41                              ! 0x29
+	.long	3206497114                      ! 0xbf1f435a
+	.long	3469251760                      ! 0xcec894b0
+	.long	42                              ! 0x2a
+	.long	1537257434                      ! 0x5ba0afda
+	.long	3469251760                      ! 0xcec894b0
+	.long	43                              ! 0x2b
+	.long	3028077325                      ! 0xb47ccb0d
+	.long	3469251760                      ! 0xcec894b0
+	.long	44                              ! 0x2c
+	.long	1369848209                      ! 0x51a63991
+	.long	3469251760                      ! 0xcec894b0
+	.long	45                              ! 0x2d
+	.long	938831176                       ! 0x37f56d48
+	.long	3469251760                      ! 0xcec894b0
+	.long	46                              ! 0x2e
+	.long	1663146323                      ! 0x63219953
+	.long	3469251760                      ! 0xcec894b0
+	.long	47                              ! 0x2f
+	.long	4111410217                      ! 0xf50f2429
+	.long	3469251760                      ! 0xcec894b0
+	.long	48                              ! 0x30
+	.long	1475378556                      ! 0x57f07d7c
+	.long	3469251760                      ! 0xcec894b0
+	.long	49                              ! 0x31
+	.long	3356195547                      ! 0xc80b7adb
+	.long	3469251760                      ! 0xcec894b0
+	.long	50                              ! 0x32
+	.long	514931786                       ! 0x1eb13c4a
+	.long	3469251760                      ! 0xcec894b0
+	.long	51                              ! 0x33
+	.long	2854034444                      ! 0xaa1d1c0c
+	.long	3469251760                      ! 0xcec894b0
+	.long	52                              ! 0x34
+	.long	2747937306                      ! 0xa3ca321a
+	.long	3469251760                      ! 0xcec894b0
+	.long	53                              ! 0x35
+	.long	4192776208                      ! 0xf9e8b010
+	.long	3469251760                      ! 0xcec894b0
+	.long	54                              ! 0x36
+	.long	984436227                       ! 0x3aad4e03
+	.long	3469251760                      ! 0xcec894b0
+	.long	55                              ! 0x37
+	.long	1477657574                      ! 0x581343e6
+	.long	3469251760                      ! 0xcec894b0
+	.long	56                              ! 0x38
+	.long	1339127973                      ! 0x4fd178a5
+	.long	3469251760                      ! 0xcec894b0
+	.long	57                              ! 0x39
+	.long	2960567906                      ! 0xb076ae62
+	.long	3469251760                      ! 0xcec894b0
+	.long	58                              ! 0x3a
+	.long	3390076872                      ! 0xca1077c8
+	.long	3469251760                      ! 0xcec894b0
+	.long	59                              ! 0x3b
+	.long	1543282230                      ! 0x5bfc9e36
+	.long	3469251760                      ! 0xcec894b0
+	.long	60                              ! 0x3c
+	.long	2934101789                      ! 0xaee2d71d
+	.long	3469251760                      ! 0xcec894b0
+	.long	61                              ! 0x3d
+	.long	3737986119                      ! 0xdecd2447
+	.long	3469251760                      ! 0xcec894b0
+	.long	62                              ! 0x3e
+	.long	49556427                        ! 0x2f42bcb
+	.long	3469251760                      ! 0xcec894b0
+	.long	63                              ! 0x3f
+	.long	234051526                       ! 0xdf357c6
+	.long	3469251760                      ! 0xcec894b0
+	.long	64                              ! 0x40
+	.long	2341800126                      ! 0x8b9508be
+	.long	3469251760                      ! 0xcec894b0
+	.long	65                              ! 0x41
+	.long	3256799948                      ! 0xc21ed2cc
+	.long	3469251760                      ! 0xcec894b0
+	.long	66                              ! 0x42
+	.long	777295480                       ! 0x2e549678
+	.long	3469251760                      ! 0xcec894b0
+	.long	67                              ! 0x43
+	.long	14040531                        ! 0xd63dd3
+	.long	3469251760                      ! 0xcec894b0
+	.long	68                              ! 0x44
+	.long	8047973                         ! 0x7acd65
+	.long	3469251760                      ! 0xcec894b0
+	.long	69                              ! 0x45
+	.long	719459161                       ! 0x2ae21359
+	.long	3469251760                      ! 0xcec894b0
+	.long	70                              ! 0x46
+	.long	243358501                       ! 0xe815b25
+	.long	3469251760                      ! 0xcec894b0
+	.long	71                              ! 0x47
+	.long	3262173932                      ! 0xc270d2ec
+	.long	3469251760                      ! 0xcec894b0
+	.long	72                              ! 0x48
+	.long	398910553                       ! 0x17c6e459
+	.long	3469251760                      ! 0xcec894b0
+	.long	73                              ! 0x49
+	.long	3354219739                      ! 0xc7ed54db
+	.long	3469251760                      ! 0xcec894b0
+	.long	74                              ! 0x4a
+	.long	2570308788                      ! 0x9933ccb4
+	.long	3469251760                      ! 0xcec894b0
+	.long	75                              ! 0x4b
+	.long	982429111                       ! 0x3a8eadb7
+	.long	3469251760                      ! 0xcec894b0
+	.long	76                              ! 0x4c
+	.long	211491241                       ! 0xc9b19a9
+	.long	3469251760                      ! 0xcec894b0
+	.long	77                              ! 0x4d
+	.long	1075683319                      ! 0x401d9ff7
+	.long	3469251760                      ! 0xcec894b0
+	.long	78                              ! 0x4e
+	.long	1886352651                      ! 0x706f750b
+	.long	3469251760                      ! 0xcec894b0
+	.long	79                              ! 0x4f
+	.long	248637203                       ! 0xed1e713
+	.long	3469251760                      ! 0xcec894b0
+	.long	80                              ! 0x50
+	.long	703327087                       ! 0x29ebeb6f
+	.long	3469251760                      ! 0xcec894b0
+	.long	81                              ! 0x51
+	.long	3690160730                      ! 0xdbf3625a
+	.long	3469251760                      ! 0xcec894b0
+	.long	82                              ! 0x52
+	.long	787048238                       ! 0x2ee9672e
+	.long	3469251760                      ! 0xcec894b0
+	.long	83                              ! 0x53
+	.long	1937497967                      ! 0x737bdf6f
+	.long	3469251760                      ! 0xcec894b0
+	.long	84                              ! 0x54
+	.long	4205062514                      ! 0xfaa42972
+	.long	3469251760                      ! 0xcec894b0
+	.long	85                              ! 0x55
+	.long	694462539                       ! 0x2964a84b
+	.long	3469251760                      ! 0xcec894b0
+	.long	86                              ! 0x56
+	.long	85970907                        ! 0x51fcfdb
+	.long	3469251760                      ! 0xcec894b0
+	.long	87                              ! 0x57
+	.long	3681984728                      ! 0xdb76a0d8
+	.long	3469251760                      ! 0xcec894b0
+	.long	88                              ! 0x58
+	.long	3620297642                      ! 0xd7c95baa
+	.long	3469251760                      ! 0xcec894b0
+	.long	89                              ! 0x59
+	.long	3394804480                      ! 0xca589b00
+	.long	3469251760                      ! 0xcec894b0
+	.long	90                              ! 0x5a
+	.long	2119330183                      ! 0x7e526987
+	.long	3469251760                      ! 0xcec894b0
+	.long	91                              ! 0x5b
+	.long	1963040266                      ! 0x75019e0a
+	.long	3469251760                      ! 0xcec894b0
+	.long	92                              ! 0x5c
+	.long	1603391838                      ! 0x5f91d15e
+	.long	3469251760                      ! 0xcec894b0
+	.long	93                              ! 0x5d
+	.long	2340921237                      ! 0x8b879f95
+	.long	3469251760                      ! 0xcec894b0
+	.long	94                              ! 0x5e
+	.long	3028177438                      ! 0xb47e521e
+	.long	3469251760                      ! 0xcec894b0
+	.long	95                              ! 0x5f
+	.long	2265525308                      ! 0x87092c3c
+	.long	3469251760                      ! 0xcec894b0
+	.long	96                              ! 0x60
+	.long	2598903994                      ! 0x9ae820ba
+	.long	3469251760                      ! 0xcec894b0
+	.long	97                              ! 0x61
+	.long	139524705                       ! 0x850fa61
+	.long	3469251760                      ! 0xcec894b0
+	.long	98                              ! 0x62
+	.long	1076410600                      ! 0x4028b8e8
+	.long	3469251760                      ! 0xcec894b0
+	.long	99                              ! 0x63
+	.long	220237413                       ! 0xd208e65
+	.long	3469251760                      ! 0xcec894b0
+	.long	100                             ! 0x64
+	.long	3913623866                      ! 0xe945293a
+	.long	3469251760                      ! 0xcec894b0
+	.long	101                             ! 0x65
+	.long	3453026372                      ! 0xcdd10044
+	.long	3469251760                      ! 0xcec894b0
+	.long	102                             ! 0x66
+	.long	2321387380                      ! 0x8a5d8f74
+	.long	3469251760                      ! 0xcec894b0
+	.long	103                             ! 0x67
+	.long	3319939363                      ! 0xc5e24123
+	.long	3469251760                      ! 0xcec894b0
+	.long	104                             ! 0x68
+	.long	398991913                       ! 0x17c82229
+	.long	3469251760                      ! 0xcec894b0
+	.long	105                             ! 0x69
+	.long	333429647                       ! 0x13dfbb8f
+	.long	3469251760                      ! 0xcec894b0
+	.long	106                             ! 0x6a
+	.long	3927133990                      ! 0xea134f26
+	.long	3469251760                      ! 0xcec894b0
+	.long	107                             ! 0x6b
+	.long	1797971294                      ! 0x6b2add5e
+	.long	3469251760                      ! 0xcec894b0
+	.long	108                             ! 0x6c
+	.long	1622314776                      ! 0x60b28f18
+	.long	3469251760                      ! 0xcec894b0
+	.long	109                             ! 0x6d
+	.long	1092862330                      ! 0x4123c17a
+	.long	3469251760                      ! 0xcec894b0
+	.long	110                             ! 0x6e
+	.long	2568657322                      ! 0x991a99aa
+	.long	3469251760                      ! 0xcec894b0
+	.long	111                             ! 0x6f
+	.long	2168129897                      ! 0x813b0969
+	.long	3469251760                      ! 0xcec894b0
+	.long	112                             ! 0x70
+	.long	2890303119                      ! 0xac46868f
+	.long	3469251760                      ! 0xcec894b0
+	.long	113                             ! 0x71
+	.long	1713332582                      ! 0x661f6166
+	.long	3469251760                      ! 0xcec894b0
+	.long	114                             ! 0x72
+	.long	2375727721                      ! 0x8d9aba69
+	.long	3469251760                      ! 0xcec894b0
+	.long	115                             ! 0x73
+	.long	3586767156                      ! 0xd5c9b934
+	.long	3469251760                      ! 0xcec894b0
+	.long	116                             ! 0x74
+	.long	2191348475                      ! 0x829d52fb
+	.long	3469251760                      ! 0xcec894b0
+	.long	117                             ! 0x75
+	.long	3910023869                      ! 0xe90e3abd
+	.long	3469251760                      ! 0xcec894b0
+	.long	118                             ! 0x76
+	.long	4189915105                      ! 0xf9bd07e1
+	.long	3469251760                      ! 0xcec894b0
+	.long	119                             ! 0x77
+	.long	2527353334                      ! 0x96a459f6
+	.long	3469251760                      ! 0xcec894b0
+	.long	120                             ! 0x78
+	.long	3429265923                      ! 0xcc667203
+	.long	3469251760                      ! 0xcec894b0
+	.long	121                             ! 0x79
+	.long	1283962724                      ! 0x4c87b764
+	.long	3469251760                      ! 0xcec894b0
+	.long	122                             ! 0x7a
+	.long	1970290990                      ! 0x7570412e
+	.long	3469251760                      ! 0xcec894b0
+	.long	123                             ! 0x7b
+	.long	2615950861                      ! 0x9bec3e0d
+	.long	3469251760                      ! 0xcec894b0
+	.long	124                             ! 0x7c
+	.long	3338450337                      ! 0xc6fcb5a1
+	.long	3469251760                      ! 0xcec894b0
+	.long	125                             ! 0x7d
+	.long	3971836509                      ! 0xecbd6a5d
+	.long	3469251760                      ! 0xcec894b0
+	.long	126                             ! 0x7e
+	.long	4260339231                      ! 0xfdef9e1f
+	.long	3469251760                      ! 0xcec894b0
+	.long	127                             ! 0x7f
+	.long	4160738226                      ! 0xf7ffd3b2
+	.long	3469251760                      ! 0xcec894b0
+	.long	128                             ! 0x80
+	.long	1309372079                      ! 0x4e0b6eaf
+	.long	3469251760                      ! 0xcec894b0
+	.long	129                             ! 0x81
+	.long	3151575564                      ! 0xbbd93a0c
+	.long	3469251760                      ! 0xcec894b0
+	.long	130                             ! 0x82
+	.long	3938977714                      ! 0xeac807b2
+	.long	3469251760                      ! 0xcec894b0
+	.long	131                             ! 0x83
+	.long	3228738087                      ! 0xc072a227
+	.long	3469251760                      ! 0xcec894b0
+	.long	132                             ! 0x84
+	.long	3135705803                      ! 0xbae712cb
+	.long	3469251760                      ! 0xcec894b0
+	.long	133                             ! 0x85
+	.long	4061147315                      ! 0xf21030b3
+	.long	3469251760                      ! 0xcec894b0
+	.long	134                             ! 0x86
+	.long	2783543715                      ! 0xa5e981a3
+	.long	3469251760                      ! 0xcec894b0
+	.long	135                             ! 0x87
+	.long	2471046843                      ! 0x93492ebb
+	.long	3469251760                      ! 0xcec894b0
+	.long	136                             ! 0x88
+	.long	260073473                       ! 0xf806801
+	.long	3469251760                      ! 0xcec894b0
+	.long	137                             ! 0x89
+	.long	1259876295                      ! 0x4b182fc7
+	.long	3469251760                      ! 0xcec894b0
+	.long	138                             ! 0x8a
+	.long	2579807359                      ! 0x99c4bc7f
+	.long	3469251760                      ! 0xcec894b0
+	.long	139                             ! 0x8b
+	.long	90061610                        ! 0x55e3b2a
+	.long	3469251760                      ! 0xcec894b0
+	.long	140                             ! 0x8c
+	.long	3598610789                      ! 0xd67e7165
+	.long	3469251760                      ! 0xcec894b0
+	.long	141                             ! 0x8d
+	.long	2351688191                      ! 0x8c2be9ff
+	.long	3469251760                      ! 0xcec894b0
+	.long	142                             ! 0x8e
+	.long	1438161982                      ! 0x55b89c3e
+	.long	3469251760                      ! 0xcec894b0
+	.long	143                             ! 0x8f
+	.long	2438880600                      ! 0x915e5d58
+	.long	3469251760                      ! 0xcec894b0
+	.long	144                             ! 0x90
+	.long	3593193962                      ! 0xd62bc9ea
+	.long	3469251760                      ! 0xcec894b0
+	.long	145                             ! 0x91
+	.long	1755082314                      ! 0x689c6e4a
+	.long	3469251760                      ! 0xcec894b0
+	.long	146                             ! 0x92
+	.long	3432612426                      ! 0xcc99824a
+	.long	3469251760                      ! 0xcec894b0
+	.long	147                             ! 0x93
+	.long	3374828335                      ! 0xc927cb2f
+	.long	3469251760                      ! 0xcec894b0
+	.long	148                             ! 0x94
+	.long	3311814731                      ! 0xc566484b
+	.long	3469251760                      ! 0xcec894b0
+	.long	149                             ! 0x95
+	.long	413908966                       ! 0x18abbfe6
+	.long	3469251760                      ! 0xcec894b0
+	.long	150                             ! 0x96
+	.long	3027808697                      ! 0xb478b1b9
+	.long	3469251760                      ! 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object ! @__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.1
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.2
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.3
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.4
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.5
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.6
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.7
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.8
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.9
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.10
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.11
+	.long	7                               ! 0x7
+	.long	__llvm_gcov_ctr.12
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.13
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.14
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.15
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.16
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.17
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.18
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.19
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.20
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.21
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.22
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.23
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.24
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.25
+	.long	7                               ! 0x7
+	.long	__llvm_gcov_ctr.26
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.27
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.28
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.29
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.30
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.31
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.32
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.33
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.34
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.35
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.36
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.37
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.38
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.39
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.40
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.41
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.42
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.43
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.44
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.45
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.46
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.47
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.48
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.49
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.50
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.51
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.52
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.53
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.54
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.55
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.56
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.57
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.58
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.59
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.60
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.61
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.62
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.63
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.64
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.65
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.66
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.67
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.68
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.69
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.70
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.71
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.72
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.73
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.74
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.75
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.76
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.77
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.78
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.79
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.80
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.81
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.82
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.83
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.84
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.85
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.86
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.87
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.88
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.89
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.90
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.91
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.92
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.93
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.94
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.95
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.96
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.97
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.98
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.99
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.100
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.101
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.102
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.103
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.104
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.105
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.106
+	.long	6                               ! 0x6
+	.long	__llvm_gcov_ctr.107
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.108
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.109
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.110
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.111
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.112
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.113
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.114
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.115
+	.long	2                               ! 0x2
+	.long	__llvm_gcov_ctr.116
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.117
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.118
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.119
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.120
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.121
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.122
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.123
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.124
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.125
+	.long	7                               ! 0x7
+	.long	__llvm_gcov_ctr.126
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.127
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.128
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.129
+	.long	8                               ! 0x8
+	.long	__llvm_gcov_ctr.130
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.131
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.132
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.133
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.134
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.135
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.136
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.137
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.138
+	.long	3                               ! 0x3
+	.long	__llvm_gcov_ctr.139
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.140
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.141
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.142
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.143
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.144
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.145
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.146
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.147
+	.long	4                               ! 0x4
+	.long	__llvm_gcov_ctr.148
+	.long	5                               ! 0x5
+	.long	__llvm_gcov_ctr.149
+	.long	1                               ! 0x1
+	.long	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,@object ! @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.long	.L__unnamed_1
+	.long	875575338                       ! 0x3430382a
+	.long	3469251760                      ! 0xcec894b0
+	.long	151                             ! 0x97
+	.long	__llvm_internal_gcov_emit_function_args.0
+	.long	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.long	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       ! @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -19632,9 +27917,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

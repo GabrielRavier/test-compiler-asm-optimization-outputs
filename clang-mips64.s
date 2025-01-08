@@ -26,6 +26,10 @@ make_ti:                                # @make_ti
 	lui	$1, %hi(%neg(%gp_rel(make_ti)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(make_ti)))
+	ld	$3, %got_page(__llvm_gcov_ctr)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr)($3)
 	sd	$4, 24($fp)
 	sd	$5, 16($fp)
 	ld	$2, %got_page(.L__profc_make_ti)($1)
@@ -72,6 +76,10 @@ make_tu:                                # @make_tu
 	lui	$1, %hi(%neg(%gp_rel(make_tu)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(make_tu)))
+	ld	$3, %got_page(__llvm_gcov_ctr.1)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.1)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.1)($3)
 	sd	$4, 24($fp)
 	sd	$5, 16($fp)
 	ld	$2, %got_page(.L__profc_make_tu)($1)
@@ -140,6 +148,10 @@ memmove:                                # @memmove
 	nop
 .LBB2_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.2)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.2)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.2)($3)
 	ld	$1, %got_page(.L__profc_memmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmove)
 	ld	$1, 8($2)
@@ -180,6 +192,12 @@ memmove:                                # @memmove
 	b	.LBB2_6
 	nop
 .LBB2_6:                                #   in Loop: Header=BB2_3 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.2)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.2)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -214,6 +232,11 @@ memmove:                                # @memmove
 	nop
 .LBB2_13:                               #   in Loop: Header=BB2_11 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.2)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.2)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_memmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmove)
 	ld	$1, 32($2)
@@ -236,9 +259,21 @@ memmove:                                # @memmove
 	b	.LBB2_11
 	nop
 .LBB2_15:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.2)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.2)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB2_16
 	nop
 .LBB2_16:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.2)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.2)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	b	.LBB2_17
 	nop
 .LBB2_17:
@@ -306,6 +341,10 @@ memccpy:                                # @memccpy
 	nop
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.3)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.3)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.3)($3)
 	ld	$1, %got_page(.L__profc_memccpy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memccpy)
 	ld	$1, 16($2)
@@ -328,6 +367,11 @@ memccpy:                                # @memccpy
 .LBB3_5:                                #   in Loop: Header=BB3_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.3)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.3)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_memccpy)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_memccpy)
 	ld	$2, 24($3)
@@ -354,6 +398,12 @@ memccpy:                                # @memccpy
 	b	.LBB3_9
 	nop
 .LBB3_9:                                #   in Loop: Header=BB3_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.3)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.3)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 40($fp)
@@ -374,6 +424,11 @@ memccpy:                                # @memccpy
 	nop
 .LBB3_12:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.3)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.3)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_memccpy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memccpy)
 	ld	$1, 32($2)
@@ -385,6 +440,12 @@ memccpy:                                # @memccpy
 	b	.LBB3_14
 	nop
 .LBB3_13:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.3)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.3)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 72($fp)
 	b	.LBB3_14
@@ -451,6 +512,10 @@ memchr:                                 # @memchr
 	nop
 .LBB4_3:                                #   in Loop: Header=BB4_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.4)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.4)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.4)($3)
 	ld	$1, %got_page(.L__profc_memchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memchr)
 	ld	$1, 16($2)
@@ -471,6 +536,11 @@ memchr:                                 # @memchr
 .LBB4_5:                                #   in Loop: Header=BB4_1 Depth=1
 	lw	$1, 16($fp)                     # 4-byte Folded Reload
 	ld	$2, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.4)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.4)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_memchr)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_memchr)
 	ld	$2, 24($3)
@@ -497,6 +567,12 @@ memchr:                                 # @memchr
 	b	.LBB4_9
 	nop
 .LBB4_9:                                #   in Loop: Header=BB4_1 Depth=1
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.4)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.4)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 32($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 32($fp)
@@ -514,6 +590,11 @@ memchr:                                 # @memchr
 	nop
 .LBB4_12:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.4)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.4)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_memchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memchr)
 	ld	$1, 32($2)
@@ -524,6 +605,12 @@ memchr:                                 # @memchr
 	b	.LBB4_14
 	nop
 .LBB4_13:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.4)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.4)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	daddiu	$1, $zero, 0
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	b	.LBB4_14
@@ -589,6 +676,10 @@ memcmp:                                 # @memcmp
 	nop
 .LBB5_3:                                #   in Loop: Header=BB5_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.5)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.5)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.5)($3)
 	ld	$1, %got_page(.L__profc_memcmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memcmp)
 	ld	$1, 16($2)
@@ -610,6 +701,11 @@ memcmp:                                 # @memcmp
 .LBB5_5:                                #   in Loop: Header=BB5_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.5)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.5)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_memcmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_memcmp)
 	ld	$2, 24($3)
@@ -636,6 +732,12 @@ memcmp:                                 # @memcmp
 	b	.LBB5_9
 	nop
 .LBB5_9:                                #   in Loop: Header=BB5_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.5)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.5)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 40($fp)
@@ -656,6 +758,11 @@ memcmp:                                 # @memcmp
 	nop
 .LBB5_12:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.5)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.5)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_memcmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memcmp)
 	ld	$1, 32($2)
@@ -670,6 +777,12 @@ memcmp:                                 # @memcmp
 	b	.LBB5_14
 	nop
 .LBB5_13:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.5)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.5)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	addiu	$1, $zero, 0
 	sw	$1, 4($fp)                      # 4-byte Folded Spill
 	b	.LBB5_14
@@ -712,6 +825,10 @@ memcpy:                                 # @memcpy
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(memcpy)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.6)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.6)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.6)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	sd	$6, 24($fp)
@@ -750,6 +867,12 @@ memcpy:                                 # @memcpy
 	b	.LBB6_4
 	nop
 .LBB6_4:                                #   in Loop: Header=BB6_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.6)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.6)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -834,6 +957,10 @@ memrchr:                                # @memrchr
 	nop
 .LBB7_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.7)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.7)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.7)($3)
 	ld	$1, %got_page(.L__profc_memrchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memrchr)
 	ld	$1, 16($2)
@@ -846,9 +973,21 @@ memrchr:                                # @memrchr
 	b	.LBB7_8
 	nop
 .LBB7_6:                                #   in Loop: Header=BB7_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.7)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.7)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	b	.LBB7_1
 	nop
 .LBB7_7:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.7)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.7)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 40($fp)
 	b	.LBB7_8
@@ -891,6 +1030,10 @@ memset:                                 # @memset
 	daddiu	$1, $1, %lo(%neg(%gp_rel(memset)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.8)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.8)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.8)($5)
 	sd	$4, 40($fp)
 	sw	$2, 36($fp)
 	sd	$6, 24($fp)
@@ -922,6 +1065,12 @@ memset:                                 # @memset
 	b	.LBB8_4
 	nop
 .LBB8_4:                                #   in Loop: Header=BB8_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.8)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.8)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -967,6 +1116,10 @@ stpcpy:                                 # @stpcpy
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(stpcpy)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.9)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.9)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.9)($3)
 	sd	$4, 24($fp)
 	sd	$5, 16($fp)
 	ld	$2, %got_page(.L__profc_stpcpy)($1)
@@ -995,6 +1148,12 @@ stpcpy:                                 # @stpcpy
 	b	.LBB9_4
 	nop
 .LBB9_4:                                #   in Loop: Header=BB9_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.9)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.9)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 16($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 16($fp)
@@ -1041,6 +1200,10 @@ strchrnul:                              # @strchrnul
 	daddiu	$1, $1, %lo(%neg(%gp_rel(strchrnul)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.10)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.10)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.10)($5)
 	sd	$4, 24($fp)
 	sw	$2, 20($fp)
 	ld	$2, %got_page(.L__profc_strchrnul)($1)
@@ -1063,6 +1226,11 @@ strchrnul:                              # @strchrnul
 	nop
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.10)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.10)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strchrnul)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strchrnul)
 	ld	$1, 16($2)
@@ -1083,6 +1251,11 @@ strchrnul:                              # @strchrnul
 .LBB10_5:                               #   in Loop: Header=BB10_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.10)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.10)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_strchrnul)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_strchrnul)
 	ld	$2, 24($3)
@@ -1109,6 +1282,12 @@ strchrnul:                              # @strchrnul
 	b	.LBB10_9
 	nop
 .LBB10_9:                               #   in Loop: Header=BB10_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.10)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.10)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
@@ -1162,6 +1341,11 @@ strchr:                                 # @strchr
 	nop
 .LBB11_1:                               #   in Loop: Header=BB11_2 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.11)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.11)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strchr)
 	ld	$1, 8($2)
@@ -1180,6 +1364,10 @@ strchr:                                 # @strchr
 	nop
 .LBB11_4:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.11)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.11)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.11)($3)
 	ld	$1, %got_page(.L__profc_strchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strchr)
 	ld	$1, 16($2)
@@ -1203,6 +1391,12 @@ strchr:                                 # @strchr
 	b	.LBB11_8
 	nop
 .LBB11_8:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.11)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.11)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 24($fp)
 	b	.LBB11_9
@@ -1244,6 +1438,10 @@ strcmp:                                 # @strcmp
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(strcmp)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.12)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.12)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.12)($3)
 	sd	$4, 24($fp)
 	sd	$5, 16($fp)
 	ld	$2, %got_page(.L__profc_strcmp)($1)
@@ -1266,6 +1464,11 @@ strcmp:                                 # @strcmp
 	nop
 .LBB12_3:                               #   in Loop: Header=BB12_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.12)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.12)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strcmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strcmp)
 	ld	$1, 16($2)
@@ -1284,6 +1487,11 @@ strcmp:                                 # @strcmp
 .LBB12_5:                               #   in Loop: Header=BB12_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.12)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.12)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_strcmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_strcmp)
 	ld	$2, 24($3)
@@ -1310,6 +1518,12 @@ strcmp:                                 # @strcmp
 	b	.LBB12_9
 	nop
 .LBB12_9:                               #   in Loop: Header=BB12_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.12)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.12)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
@@ -1361,6 +1575,10 @@ strlen:                                 # @strlen
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(strlen)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.13)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.13)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.13)($3)
 	sd	$4, 24($fp)
 	ld	$2, %got_page(.L__profc_strlen)($1)
 	ld	$1, %got_ofst(.L__profc_strlen)($2)
@@ -1388,6 +1606,12 @@ strlen:                                 # @strlen
 	b	.LBB13_4
 	nop
 .LBB13_4:                               #   in Loop: Header=BB13_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.13)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.13)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
@@ -1453,6 +1677,11 @@ strncmp:                                # @strncmp
 	nop
 .LBB14_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.14)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncmp)
 	ld	$1, 8($2)
@@ -1462,6 +1691,11 @@ strncmp:                                # @strncmp
 	b	.LBB14_20
 	nop
 .LBB14_3:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.14)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.14)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.14)($2)
 	b	.LBB14_4
 	nop
 .LBB14_4:                               # =>This Inner Loop Header: Depth=1
@@ -1476,6 +1710,11 @@ strncmp:                                # @strncmp
 	nop
 .LBB14_6:                               #   in Loop: Header=BB14_4 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.14)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_strncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncmp)
 	ld	$1, 56($2)
@@ -1492,6 +1731,11 @@ strncmp:                                # @strncmp
 	nop
 .LBB14_8:                               #   in Loop: Header=BB14_4 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.14)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_strncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncmp)
 	ld	$1, 64($2)
@@ -1516,6 +1760,11 @@ strncmp:                                # @strncmp
 	nop
 .LBB14_11:                              #   in Loop: Header=BB14_4 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.14)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_strncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncmp)
 	ld	$1, 48($2)
@@ -1546,6 +1795,11 @@ strncmp:                                # @strncmp
 .LBB14_14:                              #   in Loop: Header=BB14_4 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.14)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$3, 40($4)
+	daddiu	$3, $3, 1
+	sd	$3, 40($4)
 	ld	$2, %got_page(.L__profc_strncmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_strncmp)
 	ld	$2, 32($3)
@@ -1572,6 +1826,12 @@ strncmp:                                # @strncmp
 	b	.LBB14_18
 	nop
 .LBB14_18:                              #   in Loop: Header=BB14_4 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.14)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$1, 48($2)
+	daddiu	$1, $1, 1
+	sd	$1, 48($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
@@ -1629,6 +1889,10 @@ swab:                                   # @swab
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(swab)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.15)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.15)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.15)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	sd	$6, 24($fp)
@@ -1674,6 +1938,12 @@ swab:                                   # @swab
 	b	.LBB15_4
 	nop
 .LBB15_4:                               #   in Loop: Header=BB15_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.15)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.15)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -2
 	sd	$1, 24($fp)
@@ -1715,6 +1985,10 @@ isalpha:                                # @isalpha
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isalpha)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.16)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.16)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.16)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isalpha)($1)
 	ld	$1, %got_ofst(.L__profc_isalpha)($2)
@@ -1761,6 +2035,10 @@ isascii:                                # @isascii
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isascii)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.17)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.17)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.17)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isascii)($1)
 	ld	$1, %got_ofst(.L__profc_isascii)($2)
@@ -1808,6 +2086,10 @@ isblank:                                # @isblank
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isblank)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.18)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.18)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.18)($4)
 	sw	$2, 28($fp)
 	ld	$2, %got_page(.L__profc_isblank)($1)
 	ld	$1, %got_ofst(.L__profc_isblank)($2)
@@ -1824,6 +2106,11 @@ isblank:                                # @isblank
 	nop
 .LBB18_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.18)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.18)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_isblank)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_isblank)
 	ld	$1, 8($2)
@@ -1843,6 +2130,11 @@ isblank:                                # @isblank
 .LBB18_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.18)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.18)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_isblank)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_isblank)
 	ld	$2, 16($3)
@@ -1892,6 +2184,10 @@ iscntrl:                                # @iscntrl
 	daddiu	$1, $1, %lo(%neg(%gp_rel(iscntrl)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.19)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.19)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.19)($4)
 	sw	$2, 28($fp)
 	ld	$2, %got_page(.L__profc_iscntrl)($1)
 	ld	$1, %got_ofst(.L__profc_iscntrl)($2)
@@ -1908,6 +2204,11 @@ iscntrl:                                # @iscntrl
 	nop
 .LBB19_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.19)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.19)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_iscntrl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iscntrl)
 	ld	$1, 8($2)
@@ -1927,6 +2228,11 @@ iscntrl:                                # @iscntrl
 .LBB19_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.19)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.19)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_iscntrl)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_iscntrl)
 	ld	$2, 16($3)
@@ -1975,6 +2281,10 @@ isdigit:                                # @isdigit
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isdigit)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.20)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.20)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.20)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isdigit)($1)
 	ld	$1, %got_ofst(.L__profc_isdigit)($2)
@@ -2020,6 +2330,10 @@ isgraph:                                # @isgraph
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isgraph)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.21)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.21)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.21)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isgraph)($1)
 	ld	$1, %got_ofst(.L__profc_isgraph)($2)
@@ -2065,6 +2379,10 @@ islower:                                # @islower
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(islower)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.22)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.22)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.22)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_islower)($1)
 	ld	$1, %got_ofst(.L__profc_islower)($2)
@@ -2110,6 +2428,10 @@ isprint:                                # @isprint
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isprint)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.23)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.23)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.23)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isprint)($1)
 	ld	$1, %got_ofst(.L__profc_isprint)($2)
@@ -2156,6 +2478,10 @@ isspace:                                # @isspace
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isspace)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.24)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.24)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.24)($4)
 	sw	$2, 28($fp)
 	ld	$2, %got_page(.L__profc_isspace)($1)
 	ld	$1, %got_ofst(.L__profc_isspace)($2)
@@ -2172,6 +2498,11 @@ isspace:                                # @isspace
 	nop
 .LBB24_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.24)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.24)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_isspace)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_isspace)
 	ld	$1, 8($2)
@@ -2191,6 +2522,11 @@ isspace:                                # @isspace
 .LBB24_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.24)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.24)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_isspace)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_isspace)
 	ld	$2, 16($3)
@@ -2239,6 +2575,10 @@ isupper:                                # @isupper
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(isupper)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.25)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.25)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.25)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_isupper)($1)
 	ld	$1, %got_ofst(.L__profc_isupper)($2)
@@ -2285,6 +2625,10 @@ iswcntrl:                               # @iswcntrl
 	daddiu	$1, $1, %lo(%neg(%gp_rel(iswcntrl)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.26)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.26)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.26)($4)
 	sw	$2, 28($fp)
 	ld	$2, %got_page(.L__profc_iswcntrl)($1)
 	ld	$1, %got_ofst(.L__profc_iswcntrl)($2)
@@ -2301,6 +2645,11 @@ iswcntrl:                               # @iswcntrl
 	nop
 .LBB26_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.26)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.26)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_iswcntrl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswcntrl)
 	ld	$1, 40($2)
@@ -2318,6 +2667,11 @@ iswcntrl:                               # @iswcntrl
 	nop
 .LBB26_4:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.26)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.26)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_iswcntrl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswcntrl)
 	ld	$1, 48($2)
@@ -2344,6 +2698,11 @@ iswcntrl:                               # @iswcntrl
 	nop
 .LBB26_7:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.26)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.26)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_iswcntrl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswcntrl)
 	ld	$1, 32($2)
@@ -2374,6 +2733,11 @@ iswcntrl:                               # @iswcntrl
 .LBB26_10:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.26)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.26)
+	ld	$3, 32($4)
+	daddiu	$3, $3, 1
+	sd	$3, 32($4)
 	ld	$2, %got_page(.L__profc_iswcntrl)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_iswcntrl)
 	ld	$2, 16($3)
@@ -2422,6 +2786,10 @@ iswdigit:                               # @iswdigit
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(iswdigit)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.27)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.27)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.27)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_iswdigit)($1)
 	ld	$1, %got_ofst(.L__profc_iswdigit)($2)
@@ -2482,6 +2850,10 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.28)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.28)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.28)($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 8($2)
@@ -2505,6 +2877,11 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 40($2)
@@ -2521,6 +2898,11 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_7:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 48($2)
@@ -2556,6 +2938,11 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_11:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 16($2)
@@ -2580,6 +2967,11 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_14:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 64($2)
@@ -2604,6 +2996,11 @@ iswprint:                               # @iswprint
 	nop
 .LBB28_17:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$2, 40($3)
+	daddiu	$2, $2, 1
+	sd	$2, 40($3)
 	ld	$1, %got_page(.L__profc_iswprint)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswprint)
 	ld	$1, 56($2)
@@ -2613,6 +3010,12 @@ iswprint:                               # @iswprint
 	b	.LBB28_19
 	nop
 .LBB28_18:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.28)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$1, 48($2)
+	daddiu	$1, $1, 1
+	sd	$1, 48($2)
 	addiu	$1, $zero, 1
 	sw	$1, 12($fp)
 	b	.LBB28_19
@@ -2655,6 +3058,10 @@ iswxdigit:                              # @iswxdigit
 	daddiu	$1, $1, %lo(%neg(%gp_rel(iswxdigit)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.29)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.29)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.29)($4)
 	sw	$2, 28($fp)
 	ld	$2, %got_page(.L__profc_iswxdigit)($1)
 	ld	$1, %got_ofst(.L__profc_iswxdigit)($2)
@@ -2672,6 +3079,11 @@ iswxdigit:                              # @iswxdigit
 	nop
 .LBB29_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.29)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.29)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_iswxdigit)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_iswxdigit)
 	ld	$1, 8($2)
@@ -2692,6 +3104,11 @@ iswxdigit:                              # @iswxdigit
 .LBB29_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.29)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.29)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_iswxdigit)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_iswxdigit)
 	ld	$2, 16($3)
@@ -2740,6 +3157,10 @@ toascii:                                # @toascii
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(toascii)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.30)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.30)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.30)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_toascii)($1)
 	ld	$1, %got_ofst(.L__profc_toascii)($2)
@@ -2809,6 +3230,10 @@ fdim:                                   # @fdim
 	nop
 .LBB31_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.31)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.31)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.31)($3)
 	ld	$1, %got_page(.L__profc_fdim)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdim)
 	ld	$1, 8($2)
@@ -2835,6 +3260,11 @@ fdim:                                   # @fdim
 	nop
 .LBB31_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.31)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.31)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fdim)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdim)
 	ld	$1, 16($2)
@@ -2860,6 +3290,11 @@ fdim:                                   # @fdim
 	nop
 .LBB31_8:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.31)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.31)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc_fdim)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdim)
 	ld	$1, 24($2)
@@ -2876,6 +3311,12 @@ fdim:                                   # @fdim
 	b	.LBB31_10
 	nop
 .LBB31_9:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.31)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.31)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	daddiu	$1, $zero, 0
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	b	.LBB31_10
@@ -2946,6 +3387,10 @@ fdimf:                                  # @fdimf
 	nop
 .LBB32_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.32)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.32)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.32)($3)
 	ld	$1, %got_page(.L__profc_fdimf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdimf)
 	ld	$1, 8($2)
@@ -2970,6 +3415,11 @@ fdimf:                                  # @fdimf
 	nop
 .LBB32_5:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.32)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.32)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fdimf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdimf)
 	ld	$1, 16($2)
@@ -2995,6 +3445,11 @@ fdimf:                                  # @fdimf
 	nop
 .LBB32_8:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.32)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.32)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc_fdimf)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_fdimf)
 	ld	$1, 24($2)
@@ -3011,6 +3466,12 @@ fdimf:                                  # @fdimf
 	b	.LBB32_10
 	nop
 .LBB32_9:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.32)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.32)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	addiu	$1, $zero, 0
 	sw	$1, 12($fp)                     # 4-byte Folded Spill
 	b	.LBB32_10
@@ -3083,6 +3544,10 @@ fmax:                                   # @fmax
 	nop
 .LBB33_2:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.33)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.33)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.33)($3)
 	ld	$1, %got_page(.L__profc_fmax)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmax)
 	ld	$1, 8($2)
@@ -3109,6 +3574,11 @@ fmax:                                   # @fmax
 	nop
 .LBB33_5:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.33)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fmax)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmax)
 	ld	$1, 16($2)
@@ -3147,6 +3617,11 @@ fmax:                                   # @fmax
 	nop
 .LBB33_10:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.33)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fmax)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmax)
 	ld	$1, 32($2)
@@ -3157,6 +3632,12 @@ fmax:                                   # @fmax
 	b	.LBB33_12
 	nop
 .LBB33_11:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.33)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 40($fp)
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	b	.LBB33_12
@@ -3182,6 +3663,11 @@ fmax:                                   # @fmax
 	nop
 .LBB33_15:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.33)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fmax)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmax)
 	ld	$1, 40($2)
@@ -3192,6 +3678,12 @@ fmax:                                   # @fmax
 	b	.LBB33_17
 	nop
 .LBB33_16:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.33)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 40($fp)
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	b	.LBB33_17
@@ -3262,6 +3754,10 @@ fmaxf:                                  # @fmaxf
 	nop
 .LBB34_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.34)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.34)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.34)($3)
 	ld	$1, %got_page(.L__profc_fmaxf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxf)
 	ld	$1, 8($2)
@@ -3286,6 +3782,11 @@ fmaxf:                                  # @fmaxf
 	nop
 .LBB34_5:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.34)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fmaxf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxf)
 	ld	$1, 16($2)
@@ -3320,6 +3821,11 @@ fmaxf:                                  # @fmaxf
 	nop
 .LBB34_10:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.34)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fmaxf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxf)
 	ld	$1, 32($2)
@@ -3330,6 +3836,12 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_12
 	nop
 .LBB34_11:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.34)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	lw	$1, 32($fp)
 	sw	$1, 12($fp)                     # 4-byte Folded Spill
 	b	.LBB34_12
@@ -3355,6 +3867,11 @@ fmaxf:                                  # @fmaxf
 	nop
 .LBB34_15:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.34)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fmaxf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxf)
 	ld	$1, 40($2)
@@ -3365,6 +3882,12 @@ fmaxf:                                  # @fmaxf
 	b	.LBB34_17
 	nop
 .LBB34_16:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.34)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lw	$1, 32($fp)
 	sw	$1, 8($fp)                      # 4-byte Folded Spill
 	b	.LBB34_17
@@ -3453,6 +3976,10 @@ fmaxl:                                  # @fmaxl
 	nop
 .LBB35_4:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.35)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.35)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.35)($3)
 	ld	$1, %got_page(.L__profc_fmaxl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxl)
 	ld	$1, 8($2)
@@ -3493,6 +4020,11 @@ fmaxl:                                  # @fmaxl
 	nop
 .LBB35_9:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.35)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fmaxl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxl)
 	ld	$1, 16($2)
@@ -3533,6 +4065,11 @@ fmaxl:                                  # @fmaxl
 	nop
 .LBB35_14:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.35)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fmaxl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxl)
 	ld	$1, 32($2)
@@ -3545,6 +4082,12 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_16
 	nop
 .LBB35_15:
+	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.35)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 88($fp)
 	ld	$2, 80($fp)
 	sd	$2, 24($fp)                     # 8-byte Folded Spill
@@ -3576,6 +4119,11 @@ fmaxl:                                  # @fmaxl
 	nop
 .LBB35_19:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.35)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fmaxl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmaxl)
 	ld	$1, 40($2)
@@ -3588,6 +4136,12 @@ fmaxl:                                  # @fmaxl
 	b	.LBB35_21
 	nop
 .LBB35_20:
+	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.35)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 88($fp)
 	ld	$2, 80($fp)
 	sd	$2, 8($fp)                      # 8-byte Folded Spill
@@ -3665,6 +4219,10 @@ fmin:                                   # @fmin
 	nop
 .LBB36_2:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.36)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.36)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.36)($3)
 	ld	$1, %got_page(.L__profc_fmin)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmin)
 	ld	$1, 8($2)
@@ -3691,6 +4249,11 @@ fmin:                                   # @fmin
 	nop
 .LBB36_5:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.36)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fmin)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmin)
 	ld	$1, 16($2)
@@ -3729,6 +4292,11 @@ fmin:                                   # @fmin
 	nop
 .LBB36_10:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.36)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fmin)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmin)
 	ld	$1, 32($2)
@@ -3739,6 +4307,12 @@ fmin:                                   # @fmin
 	b	.LBB36_12
 	nop
 .LBB36_11:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.36)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 32($fp)
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	b	.LBB36_12
@@ -3764,6 +4338,11 @@ fmin:                                   # @fmin
 	nop
 .LBB36_15:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.36)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fmin)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fmin)
 	ld	$1, 40($2)
@@ -3774,6 +4353,12 @@ fmin:                                   # @fmin
 	b	.LBB36_17
 	nop
 .LBB36_16:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.36)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 32($fp)
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	b	.LBB36_17
@@ -3844,6 +4429,10 @@ fminf:                                  # @fminf
 	nop
 .LBB37_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.37)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.37)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.37)($3)
 	ld	$1, %got_page(.L__profc_fminf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminf)
 	ld	$1, 8($2)
@@ -3868,6 +4457,11 @@ fminf:                                  # @fminf
 	nop
 .LBB37_5:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.37)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fminf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminf)
 	ld	$1, 16($2)
@@ -3902,6 +4496,11 @@ fminf:                                  # @fminf
 	nop
 .LBB37_10:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.37)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fminf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminf)
 	ld	$1, 32($2)
@@ -3912,6 +4511,12 @@ fminf:                                  # @fminf
 	b	.LBB37_12
 	nop
 .LBB37_11:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.37)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	lw	$1, 28($fp)
 	sw	$1, 12($fp)                     # 4-byte Folded Spill
 	b	.LBB37_12
@@ -3937,6 +4542,11 @@ fminf:                                  # @fminf
 	nop
 .LBB37_15:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.37)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fminf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminf)
 	ld	$1, 40($2)
@@ -3947,6 +4557,12 @@ fminf:                                  # @fminf
 	b	.LBB37_17
 	nop
 .LBB37_16:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.37)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lw	$1, 28($fp)
 	sw	$1, 8($fp)                      # 4-byte Folded Spill
 	b	.LBB37_17
@@ -4035,6 +4651,10 @@ fminl:                                  # @fminl
 	nop
 .LBB38_4:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.38)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.38)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.38)($3)
 	ld	$1, %got_page(.L__profc_fminl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminl)
 	ld	$1, 8($2)
@@ -4075,6 +4695,11 @@ fminl:                                  # @fminl
 	nop
 .LBB38_9:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.38)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_fminl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminl)
 	ld	$1, 16($2)
@@ -4115,6 +4740,11 @@ fminl:                                  # @fminl
 	nop
 .LBB38_14:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.38)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_fminl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminl)
 	ld	$1, 32($2)
@@ -4127,6 +4757,12 @@ fminl:                                  # @fminl
 	b	.LBB38_16
 	nop
 .LBB38_15:
+	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.38)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 72($fp)
 	ld	$2, 64($fp)
 	sd	$2, 24($fp)                     # 8-byte Folded Spill
@@ -4158,6 +4794,11 @@ fminl:                                  # @fminl
 	nop
 .LBB38_19:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.38)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_fminl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_fminl)
 	ld	$1, 40($2)
@@ -4170,6 +4811,12 @@ fminl:                                  # @fminl
 	b	.LBB38_21
 	nop
 .LBB38_20:
+	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.38)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 72($fp)
 	ld	$2, 64($fp)
 	sd	$2, 8($fp)                      # 8-byte Folded Spill
@@ -4222,6 +4869,10 @@ l64a:                                   # @l64a
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(l64a)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.39)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.39)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.39)($3)
 	sd	$4, 24($fp)
 	ld	$3, %got_page(.L__profc_l64a)($1)
 	ld	$2, %got_ofst(.L__profc_l64a)($3)
@@ -4261,6 +4912,12 @@ l64a:                                   # @l64a
 	b	.LBB39_4
 	nop
 .LBB39_4:                               #   in Loop: Header=BB39_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.39)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.39)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 16($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 16($fp)
@@ -4311,6 +4968,10 @@ srand:                                  # @srand
 	daddu	$1, $1, $25
 	daddiu	$2, $1, %lo(%neg(%gp_rel(srand)))
 	move	$1, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.40)($2)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.40)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.40)($4)
 	sw	$1, 12($fp)
 	ld	$3, %got_page(.L__profc_srand)($2)
 	ld	$1, %got_ofst(.L__profc_srand)($3)
@@ -4356,6 +5017,10 @@ rand:                                   # @rand
 	lui	$1, %hi(%neg(%gp_rel(rand)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rand)))
+	ld	$3, %got_page(__llvm_gcov_ctr.41)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.41)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.41)($3)
 	ld	$3, %got_page(.L__profc_rand)($1)
 	ld	$2, %got_ofst(.L__profc_rand)($3)
 	daddiu	$2, $2, 1
@@ -4427,6 +5092,11 @@ insque:                                 # @insque
 	nop
 .LBB42_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.42)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.42)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_insque)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_insque)
 	ld	$1, 8($2)
@@ -4440,6 +5110,11 @@ insque:                                 # @insque
 	b	.LBB42_6
 	nop
 .LBB42_3:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.42)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.42)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.42)($2)
 	ld	$1, 16($fp)
 	ld	$1, 0($1)
 	ld	$2, 24($fp)
@@ -4459,6 +5134,11 @@ insque:                                 # @insque
 	nop
 .LBB42_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.42)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.42)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_insque)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_insque)
 	ld	$1, 16($2)
@@ -4505,6 +5185,10 @@ remque:                                 # @remque
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(remque)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.43)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.43)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.43)($3)
 	sd	$4, 24($fp)
 	ld	$2, %got_page(.L__profc_remque)($1)
 	ld	$1, %got_ofst(.L__profc_remque)($2)
@@ -4521,6 +5205,11 @@ remque:                                 # @remque
 	nop
 .LBB43_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.43)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.43)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_remque)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_remque)
 	ld	$1, 8($2)
@@ -4542,6 +5231,11 @@ remque:                                 # @remque
 	nop
 .LBB43_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.43)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.43)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_remque)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_remque)
 	ld	$1, 16($2)
@@ -4644,6 +5338,10 @@ lsearch:                                # @lsearch
 .LBB44_5:
 	ld	$3, 24($fp)                     # 8-byte Folded Reload
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$4, %got_page(__llvm_gcov_ctr.44)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.44)($4)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.44)($4)
 	ld	$1, %got_page(.L__profc_lsearch)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_lsearch)
 	ld	$1, 16($2)
@@ -4661,6 +5359,12 @@ lsearch:                                # @lsearch
 	b	.LBB44_7
 	nop
 .LBB44_7:                               #   in Loop: Header=BB44_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.44)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.44)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 32($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 32($fp)
@@ -4669,6 +5373,11 @@ lsearch:                                # @lsearch
 .LBB44_8:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
 	ld	$3, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.44)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.44)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, 1
 	ld	$2, 72($fp)
@@ -4782,6 +5491,10 @@ lfind:                                  # @lfind
 .LBB45_5:
 	ld	$3, 16($fp)                     # 8-byte Folded Reload
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$4, %got_page(__llvm_gcov_ctr.45)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.45)($4)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.45)($4)
 	ld	$1, %got_page(.L__profc_lfind)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_lfind)
 	ld	$1, 16($2)
@@ -4799,12 +5512,24 @@ lfind:                                  # @lfind
 	b	.LBB45_7
 	nop
 .LBB45_7:                               #   in Loop: Header=BB45_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.45)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.45)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
 	b	.LBB45_1
 	nop
 .LBB45_8:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.45)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.45)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 88($fp)
 	b	.LBB45_9
@@ -4860,6 +5585,10 @@ abs:                                    # @abs
 	nop
 .LBB46_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.46)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.46)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.46)($3)
 	ld	$1, %got_page(.L__profc_abs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_abs)
 	ld	$1, 8($2)
@@ -4870,6 +5599,12 @@ abs:                                    # @abs
 	b	.LBB46_4
 	nop
 .LBB46_3:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.46)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.46)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$1, 28($fp)
 	addiu	$2, $zero, 0
 	negu	$1, $1
@@ -4940,6 +5675,10 @@ atoi:                                   # @atoi
 	nop
 .LBB47_3:                               #   in Loop: Header=BB47_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.47)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.47)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.47)($3)
 	ld	$1, %got_page(.L__profc_atoi)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoi)
 	ld	$1, 8($2)
@@ -4970,6 +5709,11 @@ atoi:                                   # @atoi
 	nop
 .LBB47_8:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.47)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_atoi)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoi)
 	ld	$1, 24($2)
@@ -4981,6 +5725,11 @@ atoi:                                   # @atoi
 	nop
 .LBB47_9:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.47)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_atoi)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoi)
 	ld	$1, 32($2)
@@ -5019,6 +5768,11 @@ atoi:                                   # @atoi
 	nop
 .LBB47_14:                              #   in Loop: Header=BB47_12 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.47)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_atoi)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoi)
 	ld	$1, 40($2)
@@ -5046,6 +5800,11 @@ atoi:                                   # @atoi
 	nop
 .LBB47_17:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.47)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_atoi)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoi)
 	ld	$1, 48($2)
@@ -5056,6 +5815,12 @@ atoi:                                   # @atoi
 	b	.LBB47_19
 	nop
 .LBB47_18:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.47)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lw	$1, 28($fp)
 	addiu	$2, $zero, 0
 	negu	$1, $1
@@ -5128,6 +5893,10 @@ atol:                                   # @atol
 	nop
 .LBB48_3:                               #   in Loop: Header=BB48_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.48)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.48)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.48)($3)
 	ld	$1, %got_page(.L__profc_atol)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atol)
 	ld	$1, 8($2)
@@ -5158,6 +5927,11 @@ atol:                                   # @atol
 	nop
 .LBB48_8:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.48)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_atol)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atol)
 	ld	$1, 24($2)
@@ -5169,6 +5943,11 @@ atol:                                   # @atol
 	nop
 .LBB48_9:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.48)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_atol)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atol)
 	ld	$1, 32($2)
@@ -5207,6 +5986,11 @@ atol:                                   # @atol
 	nop
 .LBB48_14:                              #   in Loop: Header=BB48_12 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.48)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_atol)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atol)
 	ld	$1, 40($2)
@@ -5236,6 +6020,11 @@ atol:                                   # @atol
 	nop
 .LBB48_17:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.48)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_atol)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atol)
 	ld	$1, 48($2)
@@ -5246,6 +6035,12 @@ atol:                                   # @atol
 	b	.LBB48_19
 	nop
 .LBB48_18:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.48)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 40($fp)
 	daddiu	$2, $zero, 0
 	dnegu	$1, $1
@@ -5317,6 +6112,10 @@ atoll:                                  # @atoll
 	nop
 .LBB49_3:                               #   in Loop: Header=BB49_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.49)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.49)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.49)($3)
 	ld	$1, %got_page(.L__profc_atoll)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoll)
 	ld	$1, 8($2)
@@ -5347,6 +6146,11 @@ atoll:                                  # @atoll
 	nop
 .LBB49_8:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.49)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_atoll)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoll)
 	ld	$1, 24($2)
@@ -5358,6 +6162,11 @@ atoll:                                  # @atoll
 	nop
 .LBB49_9:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.49)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_atoll)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoll)
 	ld	$1, 32($2)
@@ -5396,6 +6205,11 @@ atoll:                                  # @atoll
 	nop
 .LBB49_14:                              #   in Loop: Header=BB49_12 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.49)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_atoll)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoll)
 	ld	$1, 40($2)
@@ -5425,6 +6239,11 @@ atoll:                                  # @atoll
 	nop
 .LBB49_17:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.49)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_atoll)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_atoll)
 	ld	$1, 48($2)
@@ -5435,6 +6254,12 @@ atoll:                                  # @atoll
 	b	.LBB49_19
 	nop
 .LBB49_18:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.49)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 40($fp)
 	daddiu	$2, $zero, 0
 	dnegu	$1, $1
@@ -5526,6 +6351,11 @@ bsearch:                                # @bsearch
 	nop
 .LBB50_5:                               #   in Loop: Header=BB50_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.50)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.50)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_bsearch)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_bsearch)
 	ld	$1, 16($2)
@@ -5563,17 +6393,34 @@ bsearch:                                # @bsearch
 	b	.LBB50_10
 	nop
 .LBB50_9:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.50)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.50)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 24($fp)
 	sd	$1, 72($fp)
 	b	.LBB50_13
 	nop
 .LBB50_10:                              #   in Loop: Header=BB50_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.50)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.50)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB50_11
 	nop
 .LBB50_11:                              #   in Loop: Header=BB50_1 Depth=1
 	b	.LBB50_1
 	nop
 .LBB50_12:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.50)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.50)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.50)($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 72($fp)
 	b	.LBB50_13
@@ -5670,6 +6517,10 @@ bsearch_r:                              # @bsearch_r
 	nop
 .LBB51_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.51)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.51)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.51)($3)
 	ld	$1, %got_page(.L__profc_bsearch_r)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_bsearch_r)
 	ld	$1, 16($2)
@@ -5688,6 +6539,11 @@ bsearch_r:                              # @bsearch_r
 	nop
 .LBB51_8:                               #   in Loop: Header=BB51_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.51)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.51)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_bsearch_r)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_bsearch_r)
 	ld	$1, 24($2)
@@ -5706,12 +6562,24 @@ bsearch_r:                              # @bsearch_r
 	b	.LBB51_10
 	nop
 .LBB51_10:                              #   in Loop: Header=BB51_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.51)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.51)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 28($fp)
 	sra	$1, $1, 1
 	sw	$1, 28($fp)
 	b	.LBB51_1
 	nop
 .LBB51_11:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.51)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.51)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 88($fp)
 	b	.LBB51_12
@@ -5754,6 +6622,10 @@ div:                                    # @div
 	daddiu	$1, $1, %lo(%neg(%gp_rel(div)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.52)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.52)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.52)($5)
 	sw	$3, 4($fp)
 	sw	$2, 0($fp)
 	ld	$2, %got_page(.L__profc_div)($1)
@@ -5823,6 +6695,10 @@ imaxabs:                                # @imaxabs
 	nop
 .LBB53_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.53)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.53)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.53)($3)
 	ld	$1, %got_page(.L__profc_imaxabs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_imaxabs)
 	ld	$1, 8($2)
@@ -5833,6 +6709,12 @@ imaxabs:                                # @imaxabs
 	b	.LBB53_4
 	nop
 .LBB53_3:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.53)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.53)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$2, $zero, 0
 	dnegu	$1, $1
@@ -5875,6 +6757,10 @@ imaxdiv:                                # @imaxdiv
 	lui	$1, %hi(%neg(%gp_rel(imaxdiv)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(imaxdiv)))
+	ld	$3, %got_page(__llvm_gcov_ctr.54)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.54)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.54)($3)
 	sd	$4, 8($fp)
 	sd	$5, 0($fp)
 	ld	$2, %got_page(.L__profc_imaxdiv)($1)
@@ -5943,6 +6829,10 @@ labs:                                   # @labs
 	nop
 .LBB55_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.55)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.55)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.55)($3)
 	ld	$1, %got_page(.L__profc_labs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_labs)
 	ld	$1, 8($2)
@@ -5953,6 +6843,12 @@ labs:                                   # @labs
 	b	.LBB55_4
 	nop
 .LBB55_3:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.55)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.55)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$2, $zero, 0
 	dnegu	$1, $1
@@ -5995,6 +6891,10 @@ ldiv:                                   # @ldiv
 	lui	$1, %hi(%neg(%gp_rel(ldiv)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(ldiv)))
+	ld	$3, %got_page(__llvm_gcov_ctr.56)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.56)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.56)($3)
 	sd	$4, 8($fp)
 	sd	$5, 0($fp)
 	ld	$2, %got_page(.L__profc_ldiv)($1)
@@ -6063,6 +6963,10 @@ llabs:                                  # @llabs
 	nop
 .LBB57_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.57)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.57)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.57)($3)
 	ld	$1, %got_page(.L__profc_llabs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_llabs)
 	ld	$1, 8($2)
@@ -6073,6 +6977,12 @@ llabs:                                  # @llabs
 	b	.LBB57_4
 	nop
 .LBB57_3:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.57)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.57)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$2, $zero, 0
 	dnegu	$1, $1
@@ -6115,6 +7025,10 @@ lldiv:                                  # @lldiv
 	lui	$1, %hi(%neg(%gp_rel(lldiv)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(lldiv)))
+	ld	$3, %got_page(__llvm_gcov_ctr.58)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.58)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.58)($3)
 	sd	$4, 8($fp)
 	sd	$5, 0($fp)
 	ld	$2, %got_page(.L__profc_lldiv)($1)
@@ -6191,6 +7105,10 @@ wcschr:                                 # @wcschr
 	nop
 .LBB59_3:                               #   in Loop: Header=BB59_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.59)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.59)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.59)($3)
 	ld	$1, %got_page(.L__profc_wcschr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcschr)
 	ld	$1, 16($2)
@@ -6211,6 +7129,11 @@ wcschr:                                 # @wcschr
 .LBB59_5:                               #   in Loop: Header=BB59_1 Depth=1
 	lw	$1, 16($fp)                     # 4-byte Folded Reload
 	ld	$2, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.59)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.59)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_wcschr)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_wcschr)
 	ld	$2, 24($3)
@@ -6237,6 +7160,12 @@ wcschr:                                 # @wcschr
 	b	.LBB59_9
 	nop
 .LBB59_9:                               #   in Loop: Header=BB59_1 Depth=1
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.59)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.59)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, 4
 	sd	$1, 40($fp)
@@ -6252,6 +7181,11 @@ wcschr:                                 # @wcschr
 	nop
 .LBB59_12:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.59)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.59)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_wcschr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcschr)
 	ld	$1, 32($2)
@@ -6262,6 +7196,12 @@ wcschr:                                 # @wcschr
 	b	.LBB59_14
 	nop
 .LBB59_13:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.59)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.59)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	daddiu	$1, $zero, 0
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	b	.LBB59_14
@@ -6325,6 +7265,10 @@ wcscmp:                                 # @wcscmp
 	nop
 .LBB60_3:                               #   in Loop: Header=BB60_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.60)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.60)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.60)($3)
 	ld	$1, %got_page(.L__profc_wcscmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcscmp)
 	ld	$1, 32($2)
@@ -6341,6 +7285,11 @@ wcscmp:                                 # @wcscmp
 	nop
 .LBB60_5:                               #   in Loop: Header=BB60_1 Depth=1
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.60)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wcscmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcscmp)
 	ld	$1, 40($2)
@@ -6368,6 +7317,11 @@ wcscmp:                                 # @wcscmp
 .LBB60_8:                               #   in Loop: Header=BB60_1 Depth=1
 	lw	$1, 16($fp)                     # 4-byte Folded Reload
 	ld	$2, 24($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.60)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_wcscmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_wcscmp)
 	ld	$2, 24($3)
@@ -6394,6 +7348,12 @@ wcscmp:                                 # @wcscmp
 	b	.LBB60_12
 	nop
 .LBB60_12:                              #   in Loop: Header=BB60_1 Depth=1
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.60)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, 4
 	sd	$1, 40($fp)
@@ -6415,6 +7375,11 @@ wcscmp:                                 # @wcscmp
 	nop
 .LBB60_15:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.60)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_wcscmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcscmp)
 	ld	$1, 48($2)
@@ -6425,6 +7390,12 @@ wcscmp:                                 # @wcscmp
 	b	.LBB60_17
 	nop
 .LBB60_16:
+	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.60)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 40($fp)
 	lw	$2, 0($1)
 	ld	$1, 32($fp)
@@ -6471,6 +7442,10 @@ wcscpy:                                 # @wcscpy
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(wcscpy)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.61)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.61)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.61)($3)
 	sd	$4, 24($fp)
 	sd	$5, 16($fp)
 	ld	$2, %got_page(.L__profc_wcscpy)($1)
@@ -6497,6 +7472,11 @@ wcscpy:                                 # @wcscpy
 	nop
 .LBB61_3:                               #   in Loop: Header=BB61_1 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.61)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.61)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wcscpy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcscpy)
 	ld	$1, 8($2)
@@ -6541,6 +7521,10 @@ wcslen:                                 # @wcslen
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(wcslen)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.62)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.62)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.62)($3)
 	sd	$4, 24($fp)
 	ld	$2, %got_page(.L__profc_wcslen)($1)
 	ld	$1, %got_ofst(.L__profc_wcslen)($2)
@@ -6568,6 +7552,12 @@ wcslen:                                 # @wcslen
 	b	.LBB62_4
 	nop
 .LBB62_4:                               #   in Loop: Header=BB62_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.62)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.62)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 4
 	sd	$1, 24($fp)
@@ -6633,6 +7623,10 @@ wcsncmp:                                # @wcsncmp
 	nop
 .LBB63_3:                               #   in Loop: Header=BB63_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.63)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.63)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.63)($3)
 	ld	$1, %got_page(.L__profc_wcsncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcsncmp)
 	ld	$1, 48($2)
@@ -6651,6 +7645,11 @@ wcsncmp:                                # @wcsncmp
 	nop
 .LBB63_5:                               #   in Loop: Header=BB63_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wcsncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcsncmp)
 	ld	$1, 56($2)
@@ -6676,6 +7675,11 @@ wcsncmp:                                # @wcsncmp
 	nop
 .LBB63_8:                               #   in Loop: Header=BB63_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_wcsncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcsncmp)
 	ld	$1, 40($2)
@@ -6703,6 +7707,11 @@ wcsncmp:                                # @wcsncmp
 .LBB63_11:                              #   in Loop: Header=BB63_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.63)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$3, 24($4)
+	daddiu	$3, $3, 1
+	sd	$3, 24($4)
 	ld	$2, %got_page(.L__profc_wcsncmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_wcsncmp)
 	ld	$2, 24($3)
@@ -6729,6 +7738,12 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_15
 	nop
 .LBB63_15:                              #   in Loop: Header=BB63_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -6766,6 +7781,11 @@ wcsncmp:                                # @wcsncmp
 	nop
 .LBB63_20:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$2, 40($3)
+	daddiu	$2, $2, 1
+	sd	$2, 40($3)
 	ld	$1, %got_page(.L__profc_wcsncmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wcsncmp)
 	ld	$1, 72($2)
@@ -6776,6 +7796,12 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_22
 	nop
 .LBB63_21:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$1, 48($2)
+	daddiu	$1, $1, 1
+	sd	$1, 48($2)
 	ld	$1, 40($fp)
 	lw	$2, 0($1)
 	ld	$1, 32($fp)
@@ -6790,6 +7816,12 @@ wcsncmp:                                # @wcsncmp
 	b	.LBB63_24
 	nop
 .LBB63_23:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.63)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$1, 56($2)
+	daddiu	$1, $1, 1
+	sd	$1, 56($2)
 	addiu	$1, $zero, 0
 	sw	$1, 0($fp)                      # 4-byte Folded Spill
 	b	.LBB63_24
@@ -6853,6 +7885,10 @@ wmemchr:                                # @wmemchr
 	nop
 .LBB64_3:                               #   in Loop: Header=BB64_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.64)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.64)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.64)($3)
 	ld	$1, %got_page(.L__profc_wmemchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemchr)
 	ld	$1, 16($2)
@@ -6873,6 +7909,11 @@ wmemchr:                                # @wmemchr
 .LBB64_5:                               #   in Loop: Header=BB64_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.64)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.64)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_wmemchr)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_wmemchr)
 	ld	$2, 24($3)
@@ -6899,6 +7940,12 @@ wmemchr:                                # @wmemchr
 	b	.LBB64_9
 	nop
 .LBB64_9:                               #   in Loop: Header=BB64_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.64)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.64)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -6916,6 +7963,11 @@ wmemchr:                                # @wmemchr
 	nop
 .LBB64_12:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.64)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.64)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_wmemchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemchr)
 	ld	$1, 32($2)
@@ -6926,6 +7978,12 @@ wmemchr:                                # @wmemchr
 	b	.LBB64_14
 	nop
 .LBB64_13:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.64)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.64)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	daddiu	$1, $zero, 0
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	b	.LBB64_14
@@ -6987,6 +8045,10 @@ wmemcmp:                                # @wmemcmp
 	nop
 .LBB65_3:                               #   in Loop: Header=BB65_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.65)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.65)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.65)($3)
 	ld	$1, %got_page(.L__profc_wmemcmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemcmp)
 	ld	$1, 16($2)
@@ -7008,6 +8070,11 @@ wmemcmp:                                # @wmemcmp
 .LBB65_5:                               #   in Loop: Header=BB65_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.65)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_wmemcmp)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_wmemcmp)
 	ld	$2, 24($3)
@@ -7034,6 +8101,12 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_9
 	nop
 .LBB65_9:                               #   in Loop: Header=BB65_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.65)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -7071,6 +8144,11 @@ wmemcmp:                                # @wmemcmp
 	nop
 .LBB65_14:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.65)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_wmemcmp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemcmp)
 	ld	$1, 40($2)
@@ -7081,6 +8159,12 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_16
 	nop
 .LBB65_15:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.65)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$1, 40($fp)
 	lw	$2, 0($1)
 	ld	$1, 32($fp)
@@ -7095,6 +8179,12 @@ wmemcmp:                                # @wmemcmp
 	b	.LBB65_18
 	nop
 .LBB65_17:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.65)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	addiu	$1, $zero, 0
 	sw	$1, 0($fp)                      # 4-byte Folded Spill
 	b	.LBB65_18
@@ -7137,6 +8227,10 @@ wmemcpy:                                # @wmemcpy
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(wmemcpy)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.66)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.66)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.66)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	sd	$6, 24($fp)
@@ -7159,6 +8253,11 @@ wmemcpy:                                # @wmemcpy
 	nop
 .LBB66_3:                               #   in Loop: Header=BB66_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.66)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.66)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wmemcpy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemcpy)
 	ld	$1, 8($2)
@@ -7229,6 +8328,10 @@ wmemmove:                               # @wmemmove
 	nop
 .LBB67_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.67)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.67)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.67)($3)
 	ld	$1, %got_page(.L__profc_wmemmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemmove)
 	ld	$1, 8($2)
@@ -7252,6 +8355,11 @@ wmemmove:                               # @wmemmove
 	nop
 .LBB67_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.67)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.67)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wmemmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemmove)
 	ld	$1, 16($2)
@@ -7270,6 +8378,11 @@ wmemmove:                               # @wmemmove
 	nop
 .LBB67_8:                               #   in Loop: Header=BB67_6 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.67)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.67)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_wmemmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemmove)
 	ld	$1, 24($2)
@@ -7302,6 +8415,11 @@ wmemmove:                               # @wmemmove
 	nop
 .LBB67_13:                              #   in Loop: Header=BB67_11 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.67)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.67)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_wmemmove)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemmove)
 	ld	$1, 32($2)
@@ -7318,6 +8436,12 @@ wmemmove:                               # @wmemmove
 	b	.LBB67_11
 	nop
 .LBB67_14:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.67)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.67)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	b	.LBB67_15
 	nop
 .LBB67_15:
@@ -7363,6 +8487,10 @@ wmemset:                                # @wmemset
 	daddiu	$1, $1, %lo(%neg(%gp_rel(wmemset)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.68)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.68)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.68)($5)
 	sd	$4, 40($fp)
 	sw	$2, 36($fp)
 	sd	$6, 24($fp)
@@ -7385,6 +8513,11 @@ wmemset:                                # @wmemset
 	nop
 .LBB68_3:                               #   in Loop: Header=BB68_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.68)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.68)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_wmemset)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_wmemset)
 	ld	$1, 8($2)
@@ -7455,6 +8588,10 @@ bcopy:                                  # @bcopy
 	nop
 .LBB69_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.69)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.69)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.69)($3)
 	ld	$1, %got_page(.L__profc_bcopy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_bcopy)
 	ld	$1, 8($2)
@@ -7495,6 +8632,12 @@ bcopy:                                  # @bcopy
 	b	.LBB69_6
 	nop
 .LBB69_6:                               #   in Loop: Header=BB69_3 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.69)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.69)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -7529,6 +8672,11 @@ bcopy:                                  # @bcopy
 	nop
 .LBB69_13:                              #   in Loop: Header=BB69_11 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.69)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.69)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_bcopy)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_bcopy)
 	ld	$1, 32($2)
@@ -7551,9 +8699,21 @@ bcopy:                                  # @bcopy
 	b	.LBB69_11
 	nop
 .LBB69_15:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.69)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.69)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB69_16
 	nop
 .LBB69_16:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.69)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.69)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	b	.LBB69_17
 	nop
 .LBB69_17:
@@ -7592,6 +8752,10 @@ rotl64:                                 # @rotl64
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotl64)))
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.70)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.70)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.70)($5)
 	sd	$4, 8($fp)
 	sw	$2, 4($fp)
 	ld	$2, %got_page(.L__profc_rotl64)($1)
@@ -7640,6 +8804,10 @@ rotr64:                                 # @rotr64
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotr64)))
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.71)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.71)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.71)($5)
 	sd	$4, 8($fp)
 	sw	$2, 4($fp)
 	ld	$2, %got_page(.L__profc_rotr64)($1)
@@ -7689,6 +8857,10 @@ rotl32:                                 # @rotl32
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotl32)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.72)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.72)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.72)($5)
 	sw	$3, 12($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotl32)($1)
@@ -7739,6 +8911,10 @@ rotr32:                                 # @rotr32
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotr32)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.73)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.73)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.73)($5)
 	sw	$3, 12($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotr32)($1)
@@ -7788,6 +8964,10 @@ rotl_sz:                                # @rotl_sz
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotl_sz)))
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.74)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.74)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.74)($5)
 	sd	$4, 8($fp)
 	sw	$2, 4($fp)
 	ld	$2, %got_page(.L__profc_rotl_sz)($1)
@@ -7836,6 +9016,10 @@ rotr_sz:                                # @rotr_sz
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotr_sz)))
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.75)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.75)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.75)($5)
 	sd	$4, 8($fp)
 	sw	$2, 4($fp)
 	ld	$2, %got_page(.L__profc_rotr_sz)($1)
@@ -7885,6 +9069,10 @@ rotl16:                                 # @rotl16
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotl16)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.76)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.76)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.76)($5)
 	sh	$3, 14($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotl16)($1)
@@ -7935,6 +9123,10 @@ rotr16:                                 # @rotr16
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotr16)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.77)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.77)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.77)($5)
 	sh	$3, 14($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotr16)($1)
@@ -7985,6 +9177,10 @@ rotl8:                                  # @rotl8
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotl8)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.78)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.78)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.78)($5)
 	sb	$3, 15($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotl8)($1)
@@ -8035,6 +9231,10 @@ rotr8:                                  # @rotr8
 	daddiu	$1, $1, %lo(%neg(%gp_rel(rotr8)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.79)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.79)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.79)($5)
 	sb	$3, 15($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc_rotr8)($1)
@@ -8084,6 +9284,10 @@ bswap_16:                               # @bswap_16
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(bswap_16)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.80)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.80)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.80)($4)
 	sh	$2, 14($fp)
 	ld	$2, %got_page(.L__profc_bswap_16)($1)
 	ld	$1, %got_ofst(.L__profc_bswap_16)($2)
@@ -8135,6 +9339,10 @@ bswap_32:                               # @bswap_32
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(bswap_32)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.81)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.81)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.81)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc_bswap_32)($1)
 	ld	$1, %got_ofst(.L__profc_bswap_32)($2)
@@ -8192,6 +9400,10 @@ bswap_64:                               # @bswap_64
 	lui	$1, %hi(%neg(%gp_rel(bswap_64)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(bswap_64)))
+	ld	$3, %got_page(__llvm_gcov_ctr.82)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.82)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.82)($3)
 	sd	$4, 8($fp)
 	ld	$2, %got_page(.L__profc_bswap_64)($1)
 	ld	$1, %got_ofst(.L__profc_bswap_64)($2)
@@ -8298,6 +9510,10 @@ ffs:                                    # @ffs
 	nop
 .LBB83_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.83)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.83)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.83)($3)
 	ld	$1, %got_page(.L__profc_ffs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_ffs)
 	ld	$1, 16($2)
@@ -8312,12 +9528,24 @@ ffs:                                    # @ffs
 	b	.LBB83_7
 	nop
 .LBB83_7:                               #   in Loop: Header=BB83_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.83)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.83)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$1, 20($fp)
 	addiu	$1, $1, 1
 	sw	$1, 20($fp)
 	b	.LBB83_1
 	nop
 .LBB83_8:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.83)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.83)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	sw	$zero, 28($fp)
 	b	.LBB83_9
 	nop
@@ -8372,6 +9600,11 @@ libiberty_ffs:                          # @libiberty_ffs
 	nop
 .LBB84_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.84)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.84)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_libiberty_ffs)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_libiberty_ffs)
 	ld	$1, 8($2)
@@ -8381,6 +9614,11 @@ libiberty_ffs:                          # @libiberty_ffs
 	b	.LBB84_9
 	nop
 .LBB84_3:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.84)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.84)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.84)($2)
 	addiu	$1, $zero, 1
 	sw	$1, 20($fp)
 	b	.LBB84_4
@@ -8406,6 +9644,12 @@ libiberty_ffs:                          # @libiberty_ffs
 	b	.LBB84_7
 	nop
 .LBB84_7:                               #   in Loop: Header=BB84_4 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.84)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.84)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 20($fp)
 	addiu	$1, $1, 1
 	sw	$1, 20($fp)
@@ -8455,6 +9699,10 @@ gl_isinff:                              # @gl_isinff
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(gl_isinff)))
 	sd	$gp, 8($fp)                     # 8-byte Folded Spill
                                         # kill: def $at killed $a0
+	ld	$2, %got_page(__llvm_gcov_ctr.85)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.85)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.85)($2)
 	sw	$4, 20($fp)
 	ld	$2, %got_page(.L__profc_gl_isinff)($gp)
 	ld	$1, %got_ofst(.L__profc_gl_isinff)($2)
@@ -8477,6 +9725,11 @@ gl_isinff:                              # @gl_isinff
 	nop
 .LBB85_2:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.85)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.85)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_gl_isinff)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_gl_isinff)
 	ld	$1, 8($2)
@@ -8502,6 +9755,11 @@ gl_isinff:                              # @gl_isinff
 .LBB85_4:
 	lw	$1, 4($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.85)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.85)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_gl_isinff)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_gl_isinff)
 	ld	$2, 16($3)
@@ -8553,6 +9811,10 @@ gl_isinfd:                              # @gl_isinfd
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(gl_isinfd)))
 	sd	$gp, 16($fp)                    # 8-byte Folded Spill
                                         # kill: def $at_64 killed $a0_64
+	ld	$2, %got_page(__llvm_gcov_ctr.86)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.86)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.86)($2)
 	sd	$4, 32($fp)
 	ld	$2, %got_page(.L__profc_gl_isinfd)($gp)
 	ld	$1, %got_ofst(.L__profc_gl_isinfd)($2)
@@ -8576,6 +9838,11 @@ gl_isinfd:                              # @gl_isinfd
 	nop
 .LBB86_2:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.86)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.86)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_gl_isinfd)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_gl_isinfd)
 	ld	$1, 8($2)
@@ -8602,6 +9869,11 @@ gl_isinfd:                              # @gl_isinfd
 .LBB86_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.86)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.86)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_gl_isinfd)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_gl_isinfd)
 	ld	$2, 16($3)
@@ -8654,6 +9926,10 @@ gl_isinfl:                              # @gl_isinfl
 	sd	$gp, 16($fp)                    # 8-byte Folded Spill
                                         # kill: def $at_64 killed $a1_64
                                         # kill: def $at_64 killed $a0_64
+	ld	$2, %got_page(__llvm_gcov_ctr.87)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.87)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.87)($2)
 	sd	$5, 40($fp)
 	sd	$4, 32($fp)
 	ld	$2, %got_page(.L__profc_gl_isinfl)($gp)
@@ -8679,6 +9955,11 @@ gl_isinfl:                              # @gl_isinfl
 	nop
 .LBB87_2:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.87)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.87)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_gl_isinfl)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_gl_isinfl)
 	ld	$1, 8($2)
@@ -8707,6 +9988,11 @@ gl_isinfl:                              # @gl_isinfl
 .LBB87_4:
 	lw	$1, 12($fp)                     # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.87)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.87)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_gl_isinfl)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_gl_isinfl)
 	ld	$2, 16($3)
@@ -8758,6 +10044,10 @@ _Qp_itoq:                               # @_Qp_itoq
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(_Qp_itoq)))
 	sd	$gp, 0($fp)                     # 8-byte Folded Spill
 	move	$1, $5
+	ld	$3, %got_page(__llvm_gcov_ctr.88)($gp)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.88)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.88)($3)
 	sd	$4, 16($fp)
 	sw	$1, 12($fp)
 	ld	$2, %got_page(.L__profc__Qp_itoq)($gp)
@@ -8819,6 +10109,10 @@ ldexpf:                                 # @ldexpf
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
 	move	$2, $5
                                         # kill: def $v1 killed $a0
+	ld	$5, %got_page(__llvm_gcov_ctr.89)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.89)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.89)($5)
 	sw	$4, 36($fp)
 	sw	$2, 32($fp)
 	ld	$2, %got_page(.L__profc_ldexpf)($1)
@@ -8838,6 +10132,11 @@ ldexpf:                                 # @ldexpf
 	nop
 .LBB89_2:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.89)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.89)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_ldexpf)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpf)
 	ld	$1, 16($2)
@@ -8866,6 +10165,11 @@ ldexpf:                                 # @ldexpf
 	nop
 .LBB89_4:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.89)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.89)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_ldexpf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpf)
 	ld	$1, 24($2)
@@ -8922,6 +10226,11 @@ ldexpf:                                 # @ldexpf
 	nop
 .LBB89_10:                              #   in Loop: Header=BB89_8 Depth=1
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.89)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.89)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, %got_page(.L__profc_ldexpf)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpf)
 	ld	$1, 48($2)
@@ -8960,6 +10269,11 @@ ldexpf:                                 # @ldexpf
 	nop
 .LBB89_14:                              #   in Loop: Header=BB89_8 Depth=1
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.89)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.89)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	lw	$5, 28($fp)
 	ld	$25, %call16(__mulsf3)($gp)
 	move	$4, $5
@@ -9014,6 +10328,10 @@ ldexp:                                  # @ldexp
 	sd	$1, 24($fp)                     # 8-byte Folded Spill
 	move	$2, $5
                                         # kill: def $v1_64 killed $a0_64
+	ld	$5, %got_page(__llvm_gcov_ctr.90)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.90)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.90)($5)
 	sd	$4, 48($fp)
 	sw	$2, 44($fp)
 	ld	$2, %got_page(.L__profc_ldexp)($1)
@@ -9035,6 +10353,11 @@ ldexp:                                  # @ldexp
 	nop
 .LBB90_2:
 	ld	$gp, 24($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.90)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.90)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_ldexp)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexp)
 	ld	$1, 16($2)
@@ -9063,6 +10386,11 @@ ldexp:                                  # @ldexp
 	nop
 .LBB90_4:
 	ld	$1, 24($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.90)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.90)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_ldexp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexp)
 	ld	$1, 24($2)
@@ -9121,6 +10449,11 @@ ldexp:                                  # @ldexp
 	nop
 .LBB90_10:                              #   in Loop: Header=BB90_8 Depth=1
 	ld	$gp, 24($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.90)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.90)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, %got_page(.L__profc_ldexp)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexp)
 	ld	$1, 48($2)
@@ -9159,6 +10492,11 @@ ldexp:                                  # @ldexp
 	nop
 .LBB90_14:                              #   in Loop: Header=BB90_8 Depth=1
 	ld	$gp, 24($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.90)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.90)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$5, 32($fp)
 	ld	$25, %call16(__muldf3)($gp)
 	move	$4, $5
@@ -9214,6 +10552,10 @@ ldexpl:                                 # @ldexpl
 	move	$2, $6
                                         # kill: def $v1_64 killed $a1_64
                                         # kill: def $v1_64 killed $a0_64
+	ld	$6, %got_page(__llvm_gcov_ctr.91)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.91)($6)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.91)($6)
 	sd	$5, 104($fp)
 	sd	$4, 96($fp)
 	sw	$2, 92($fp)
@@ -9249,6 +10591,11 @@ ldexpl:                                 # @ldexpl
 	nop
 .LBB91_4:
 	ld	$gp, 48($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.91)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.91)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, %got_page(.L__profc_ldexpl)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpl)
 	ld	$1, 16($2)
@@ -9283,6 +10630,11 @@ ldexpl:                                 # @ldexpl
 	nop
 .LBB91_6:
 	ld	$1, 48($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.91)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.91)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_ldexpl)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpl)
 	ld	$1, 24($2)
@@ -9343,6 +10695,11 @@ ldexpl:                                 # @ldexpl
 	nop
 .LBB91_12:                              #   in Loop: Header=BB91_10 Depth=1
 	ld	$gp, 48($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.91)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.91)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, %got_page(.L__profc_ldexpl)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_ldexpl)
 	ld	$1, 48($2)
@@ -9384,6 +10741,11 @@ ldexpl:                                 # @ldexpl
 	nop
 .LBB91_16:                              #   in Loop: Header=BB91_10 Depth=1
 	ld	$gp, 48($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.91)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.91)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$6, 64($fp)
 	ld	$7, 72($fp)
 	ld	$25, %call16(__multf3)($gp)
@@ -9439,6 +10801,10 @@ memxor:                                 # @memxor
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(memxor)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.92)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.92)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.92)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	sd	$6, 24($fp)
@@ -9479,6 +10845,12 @@ memxor:                                 # @memxor
 	b	.LBB92_4
 	nop
 .LBB92_4:                               #   in Loop: Header=BB92_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.92)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.92)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, -1
 	sd	$1, 24($fp)
@@ -9552,6 +10924,10 @@ strncat:                                # @strncat
 	nop
 .LBB93_3:                               #   in Loop: Header=BB93_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.93)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.93)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.93)($3)
 	ld	$1, %got_page(.L__profc_strncat)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncat)
 	ld	$1, 16($2)
@@ -9572,6 +10948,11 @@ strncat:                                # @strncat
 .LBB93_5:                               #   in Loop: Header=BB93_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.93)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.93)
+	ld	$3, 8($4)
+	daddiu	$3, $3, 1
+	sd	$3, 8($4)
 	ld	$2, %got_page(.L__profc_strncat)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_strncat)
 	ld	$2, 24($3)
@@ -9598,6 +10979,12 @@ strncat:                                # @strncat
 	b	.LBB93_9
 	nop
 .LBB93_9:                               #   in Loop: Header=BB93_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.93)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.93)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 40($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 40($fp)
@@ -9610,6 +10997,12 @@ strncat:                                # @strncat
 	b	.LBB93_1
 	nop
 .LBB93_10:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.93)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.93)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 32($fp)
 	bnez	$1, .LBB93_13
 	nop
@@ -9618,6 +11011,11 @@ strncat:                                # @strncat
 	nop
 .LBB93_12:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.93)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.93)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_strncat)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strncat)
 	ld	$1, 32($2)
@@ -9666,6 +11064,10 @@ strnlen:                                # @strnlen
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(strnlen)))
 	sd	$1, 16($fp)                     # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.94)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.94)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.94)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	ld	$2, %got_page(.L__profc_strnlen)($1)
@@ -9689,6 +11091,11 @@ strnlen:                                # @strnlen
 	nop
 .LBB94_3:                               #   in Loop: Header=BB94_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.94)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.94)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strnlen)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strnlen)
 	ld	$1, 16($2)
@@ -9709,6 +11116,11 @@ strnlen:                                # @strnlen
 .LBB94_5:                               #   in Loop: Header=BB94_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.94)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.94)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_strnlen)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_strnlen)
 	ld	$2, 24($3)
@@ -9735,6 +11147,12 @@ strnlen:                                # @strnlen
 	b	.LBB94_9
 	nop
 .LBB94_9:                               #   in Loop: Header=BB94_1 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.94)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.94)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
@@ -9834,6 +11252,11 @@ strpbrk:                                # @strpbrk
 	nop
 .LBB95_8:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.95)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.95)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strpbrk)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strpbrk)
 	ld	$1, 24($2)
@@ -9844,15 +11267,32 @@ strpbrk:                                # @strpbrk
 	b	.LBB95_12
 	nop
 .LBB95_9:                               #   in Loop: Header=BB95_4 Depth=2
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.95)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.95)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	b	.LBB95_4
 	nop
 .LBB95_10:                              #   in Loop: Header=BB95_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.95)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.95)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 32($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 32($fp)
 	b	.LBB95_1
 	nop
 .LBB95_11:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.95)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.95)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.95)($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 40($fp)
 	b	.LBB95_12
@@ -9895,6 +11335,10 @@ strrchr:                                # @strrchr
 	daddiu	$1, $1, %lo(%neg(%gp_rel(strrchr)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	move	$2, $5
+	ld	$5, %got_page(__llvm_gcov_ctr.96)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.96)($5)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.96)($5)
 	sd	$4, 24($fp)
 	sw	$2, 20($fp)
 	ld	$2, %got_page(.L__profc_strrchr)($1)
@@ -9907,6 +11351,11 @@ strrchr:                                # @strrchr
 	nop
 .LBB96_1:                               #   in Loop: Header=BB96_2 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.96)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.96)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc_strrchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strrchr)
 	ld	$1, 8($2)
@@ -9925,6 +11374,11 @@ strrchr:                                # @strrchr
 	nop
 .LBB96_4:                               #   in Loop: Header=BB96_2 Depth=1
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.96)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.96)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strrchr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strrchr)
 	ld	$1, 16($2)
@@ -10008,6 +11462,10 @@ strstr:                                 # @strstr
 	nop
 .LBB97_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.97)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.97)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.97)($3)
 	ld	$1, %got_page(.L__profc_strstr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strstr)
 	ld	$1, 8($2)
@@ -10058,6 +11516,11 @@ strstr:                                 # @strstr
 	nop
 .LBB97_8:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.97)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.97)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_strstr)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_strstr)
 	ld	$1, 24($2)
@@ -10071,12 +11534,24 @@ strstr:                                 # @strstr
 	b	.LBB97_10
 	nop
 .LBB97_10:                              #   in Loop: Header=BB97_4 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.97)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.97)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
 	b	.LBB97_4
 	nop
 .LBB97_11:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.97)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.97)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 48($fp)
 	b	.LBB97_12
@@ -10142,6 +11617,10 @@ copysign:                               # @copysign
 	nop
 .LBB98_2:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.98)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.98)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.98)($2)
 	ld	$1, %got_page(.L__profc_copysign)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_copysign)
 	ld	$1, 24($2)
@@ -10161,6 +11640,11 @@ copysign:                               # @copysign
 	nop
 .LBB98_4:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.98)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.98)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_copysign)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_copysign)
 	ld	$1, 32($2)
@@ -10189,6 +11673,11 @@ copysign:                               # @copysign
 	nop
 .LBB98_7:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.98)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.98)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc_copysign)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_copysign)
 	ld	$1, 40($2)
@@ -10208,6 +11697,11 @@ copysign:                               # @copysign
 	nop
 .LBB98_9:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.98)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.98)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_copysign)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_copysign)
 	ld	$1, 48($2)
@@ -10230,6 +11724,12 @@ copysign:                               # @copysign
 	b	.LBB98_12
 	nop
 .LBB98_11:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.98)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.98)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$1, 24($fp)
 	sd	$1, 32($fp)
 	b	.LBB98_12
@@ -10295,6 +11795,10 @@ memmem:                                 # @memmem
 	nop
 .LBB99_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.99)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.99)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.99)($3)
 	ld	$1, %got_page(.L__profc_memmem)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmem)
 	ld	$1, 8($2)
@@ -10315,6 +11819,11 @@ memmem:                                 # @memmem
 	nop
 .LBB99_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.99)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_memmem)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmem)
 	ld	$1, 16($2)
@@ -10356,6 +11865,11 @@ memmem:                                 # @memmem
 	nop
 .LBB99_11:                              #   in Loop: Header=BB99_7 Depth=1
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.99)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc_memmem)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmem)
 	ld	$1, 40($2)
@@ -10379,6 +11893,11 @@ memmem:                                 # @memmem
 	nop
 .LBB99_13:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.99)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_memmem)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_memmem)
 	ld	$1, 48($2)
@@ -10401,12 +11920,24 @@ memmem:                                 # @memmem
 	b	.LBB99_16
 	nop
 .LBB99_16:                              #   in Loop: Header=BB99_7 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.99)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$1, 24($fp)
 	daddiu	$1, $1, 1
 	sd	$1, 24($fp)
 	b	.LBB99_7
 	nop
 .LBB99_17:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.99)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	daddiu	$1, $zero, 0
 	sd	$zero, 64($fp)
 	b	.LBB99_18
@@ -10449,6 +11980,10 @@ mempcpy:                                # @mempcpy
 	lui	$1, %hi(%neg(%gp_rel(mempcpy)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(mempcpy)))
+	ld	$2, %got_page(__llvm_gcov_ctr.100)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.100)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.100)($2)
 	sd	$4, 32($fp)
 	sd	$5, 24($fp)
 	sd	$6, 16($fp)
@@ -10528,6 +12063,10 @@ frexp:                                  # @frexp
 	nop
 .LBB101_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.101)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.101)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.101)($3)
 	ld	$1, %got_page(.L__profc_frexp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 8($2)
@@ -10559,6 +12098,11 @@ frexp:                                  # @frexp
 	nop
 .LBB101_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.101)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_frexp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 16($2)
@@ -10583,6 +12127,11 @@ frexp:                                  # @frexp
 	nop
 .LBB101_8:                              #   in Loop: Header=BB101_6 Depth=1
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc_frexp)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 24($2)
@@ -10622,6 +12171,11 @@ frexp:                                  # @frexp
 	nop
 .LBB101_12:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, %got_page(.L__profc_frexp)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 40($2)
@@ -10674,6 +12228,11 @@ frexp:                                  # @frexp
 	nop
 .LBB101_18:                             #   in Loop: Header=BB101_16 Depth=1
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	ld	$1, %got_page(.L__profc_frexp)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 56($2)
@@ -10693,9 +12252,21 @@ frexp:                                  # @frexp
 	b	.LBB101_16
 	nop
 .LBB101_19:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	b	.LBB101_20
 	nop
 .LBB101_20:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$1, 48($2)
+	daddiu	$1, $1, 1
+	sd	$1, 48($2)
 	b	.LBB101_21
 	nop
 .LBB101_21:
@@ -10710,6 +12281,11 @@ frexp:                                  # @frexp
 	nop
 .LBB101_23:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.101)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$2, 56($3)
+	daddiu	$2, $2, 1
+	sd	$2, 56($3)
 	ld	$1, %got_page(.L__profc_frexp)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_frexp)
 	ld	$1, 64($2)
@@ -10760,6 +12336,10 @@ __muldi3:                               # @__muldi3
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__muldi3)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.102)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.102)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.102)($3)
 	sd	$4, 40($fp)
 	sd	$5, 32($fp)
 	ld	$2, %got_page(.L__profc___muldi3)($1)
@@ -10795,6 +12375,11 @@ __muldi3:                               # @__muldi3
 	nop
 .LBB102_5:                              #   in Loop: Header=BB102_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.102)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.102)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___muldi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___muldi3)
 	ld	$1, 16($2)
@@ -10807,6 +12392,12 @@ __muldi3:                               # @__muldi3
 	b	.LBB102_6
 	nop
 .LBB102_6:                              #   in Loop: Header=BB102_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.102)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.102)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 32($fp)
 	dsll	$1, $1, 1
 	sd	$1, 32($fp)
@@ -10879,6 +12470,10 @@ udivmodsi4:                             # @udivmodsi4
 	nop
 .LBB103_3:                              #   in Loop: Header=BB103_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.103)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.103)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.103)($3)
 	ld	$1, %got_page(.L__profc_udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_udivmodsi4)
 	ld	$1, 32($2)
@@ -10894,6 +12489,11 @@ udivmodsi4:                             # @udivmodsi4
 	nop
 .LBB103_5:                              #   in Loop: Header=BB103_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc_udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_udivmodsi4)
 	ld	$1, 40($2)
@@ -10925,6 +12525,11 @@ udivmodsi4:                             # @udivmodsi4
 .LBB103_8:                              #   in Loop: Header=BB103_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.103)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc_udivmodsi4)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc_udivmodsi4)
 	ld	$2, 24($3)
@@ -10943,6 +12548,11 @@ udivmodsi4:                             # @udivmodsi4
 	nop
 .LBB103_11:                             #   in Loop: Header=BB103_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc_udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_udivmodsi4)
 	ld	$1, 8($2)
@@ -10983,6 +12593,11 @@ udivmodsi4:                             # @udivmodsi4
 	nop
 .LBB103_17:                             #   in Loop: Header=BB103_13 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc_udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_udivmodsi4)
 	ld	$1, 56($2)
@@ -10999,6 +12614,12 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_18
 	nop
 .LBB103_18:                             #   in Loop: Header=BB103_13 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lw	$1, 20($fp)
 	srl	$1, $1, 1
 	sw	$1, 20($fp)
@@ -11016,6 +12637,11 @@ udivmodsi4:                             # @udivmodsi4
 	nop
 .LBB103_21:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$2, 48($3)
+	daddiu	$2, $2, 1
+	sd	$2, 48($3)
 	ld	$1, %got_page(.L__profc_udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc_udivmodsi4)
 	ld	$1, 64($2)
@@ -11026,6 +12652,12 @@ udivmodsi4:                             # @udivmodsi4
 	b	.LBB103_23
 	nop
 .LBB103_22:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.103)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$1, 56($2)
+	daddiu	$1, $1, 1
+	sd	$1, 56($2)
 	lw	$1, 16($fp)
 	sw	$1, 44($fp)
 	b	.LBB103_23
@@ -11081,6 +12713,10 @@ __clrsbqi2:                             # @__clrsbqi2
 	nop
 .LBB104_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.104)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.104)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.104)($3)
 	ld	$1, %got_page(.L__profc___clrsbqi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___clrsbqi2)
 	ld	$1, 8($2)
@@ -11100,6 +12736,11 @@ __clrsbqi2:                             # @__clrsbqi2
 	nop
 .LBB104_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.104)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.104)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___clrsbqi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___clrsbqi2)
 	ld	$1, 16($2)
@@ -11110,6 +12751,12 @@ __clrsbqi2:                             # @__clrsbqi2
 	b	.LBB104_7
 	nop
 .LBB104_6:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.104)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.104)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lb	$1, 27($fp)
 	sll	$1, $1, 8
 	srl	$2, $1, 1
@@ -11201,6 +12848,10 @@ __clrsbdi2:                             # @__clrsbdi2
 	nop
 .LBB105_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.105)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.105)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.105)($3)
 	ld	$1, %got_page(.L__profc___clrsbdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___clrsbdi2)
 	ld	$1, 8($2)
@@ -11221,6 +12872,11 @@ __clrsbdi2:                             # @__clrsbdi2
 	nop
 .LBB105_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.105)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.105)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___clrsbdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___clrsbdi2)
 	ld	$1, 16($2)
@@ -11231,6 +12887,12 @@ __clrsbdi2:                             # @__clrsbdi2
 	b	.LBB105_7
 	nop
 .LBB105_6:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.105)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.105)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 16($fp)
 	dsrl	$2, $1, 1
 	or	$1, $1, $2
@@ -11326,6 +12988,10 @@ __mulsi3:                               # @__mulsi3
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.106)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.106)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.106)($5)
 	sw	$3, 28($fp)
 	sw	$2, 24($fp)
 	ld	$2, %got_page(.L__profc___mulsi3)($1)
@@ -11358,6 +13024,11 @@ __mulsi3:                               # @__mulsi3
 	nop
 .LBB106_5:                              #   in Loop: Header=BB106_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.106)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.106)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mulsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulsi3)
 	ld	$1, 16($2)
@@ -11370,6 +13041,12 @@ __mulsi3:                               # @__mulsi3
 	b	.LBB106_6
 	nop
 .LBB106_6:                              #   in Loop: Header=BB106_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.106)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.106)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 28($fp)
 	srl	$1, $1, 1
 	sw	$1, 28($fp)
@@ -11444,6 +13121,10 @@ __cmovd:                                # @__cmovd
 	nop
 .LBB107_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.107)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.107)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.107)($3)
 	ld	$1, %got_page(.L__profc___cmovd)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovd)
 	ld	$1, 16($2)
@@ -11505,6 +13186,12 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_9
 	nop
 .LBB107_9:                              #   in Loop: Header=BB107_6 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.107)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$1, 40($fp)
 	addiu	$1, $1, 1
 	sw	$1, 40($fp)
@@ -11524,6 +13211,11 @@ __cmovd:                                # @__cmovd
 	nop
 .LBB107_13:                             #   in Loop: Header=BB107_11 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.107)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___cmovd)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovd)
 	ld	$1, 40($2)
@@ -11542,6 +13234,12 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_11
 	nop
 .LBB107_14:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.107)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB107_20
 	nop
 .LBB107_15:
@@ -11558,6 +13256,11 @@ __cmovd:                                # @__cmovd
 	nop
 .LBB107_18:                             #   in Loop: Header=BB107_16 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.107)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___cmovd)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovd)
 	ld	$1, 48($2)
@@ -11573,6 +13276,12 @@ __cmovd:                                # @__cmovd
 	b	.LBB107_16
 	nop
 .LBB107_19:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.107)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	b	.LBB107_20
 	nop
 .LBB107_20:
@@ -11636,6 +13345,10 @@ __cmovh:                                # @__cmovh
 	nop
 .LBB108_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.108)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.108)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.108)($3)
 	ld	$1, %got_page(.L__profc___cmovh)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovh)
 	ld	$1, 16($2)
@@ -11697,6 +13410,12 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_9
 	nop
 .LBB108_9:                              #   in Loop: Header=BB108_6 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.108)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$1, 40($fp)
 	addiu	$1, $1, 1
 	sw	$1, 40($fp)
@@ -11712,6 +13431,11 @@ __cmovh:                                # @__cmovh
 	nop
 .LBB108_12:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.108)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___cmovh)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovh)
 	ld	$1, 40($2)
@@ -11730,6 +13454,12 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_13
 	nop
 .LBB108_13:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.108)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB108_19
 	nop
 .LBB108_14:
@@ -11746,6 +13476,11 @@ __cmovh:                                # @__cmovh
 	nop
 .LBB108_17:                             #   in Loop: Header=BB108_15 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.108)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___cmovh)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovh)
 	ld	$1, 48($2)
@@ -11761,6 +13496,12 @@ __cmovh:                                # @__cmovh
 	b	.LBB108_15
 	nop
 .LBB108_18:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.108)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	b	.LBB108_19
 	nop
 .LBB108_19:
@@ -11828,6 +13569,10 @@ __cmovw:                                # @__cmovw
 	nop
 .LBB109_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.109)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.109)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.109)($3)
 	ld	$1, %got_page(.L__profc___cmovw)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovw)
 	ld	$1, 16($2)
@@ -11889,6 +13634,12 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_9
 	nop
 .LBB109_9:                              #   in Loop: Header=BB109_6 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.109)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$1, 40($fp)
 	addiu	$1, $1, 1
 	sw	$1, 40($fp)
@@ -11908,6 +13659,11 @@ __cmovw:                                # @__cmovw
 	nop
 .LBB109_13:                             #   in Loop: Header=BB109_11 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.109)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___cmovw)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovw)
 	ld	$1, 40($2)
@@ -11926,6 +13682,12 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_11
 	nop
 .LBB109_14:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.109)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	b	.LBB109_20
 	nop
 .LBB109_15:
@@ -11942,6 +13704,11 @@ __cmovw:                                # @__cmovw
 	nop
 .LBB109_18:                             #   in Loop: Header=BB109_16 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.109)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___cmovw)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmovw)
 	ld	$1, 48($2)
@@ -11957,6 +13724,12 @@ __cmovw:                                # @__cmovw
 	b	.LBB109_16
 	nop
 .LBB109_19:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.109)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	b	.LBB109_20
 	nop
 .LBB109_20:
@@ -11996,6 +13769,10 @@ __modi:                                 # @__modi
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__modi)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.110)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.110)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.110)($5)
 	sw	$3, 12($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc___modi)($1)
@@ -12045,6 +13822,10 @@ __uitod:                                # @__uitod
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__uitod)))
 	move	$1, $4
+	ld	$3, %got_page(__llvm_gcov_ctr.111)($gp)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.111)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.111)($3)
 	sw	$1, 4($fp)
 	ld	$2, %got_page(.L__profc___uitod)($gp)
 	ld	$1, %got_ofst(.L__profc___uitod)($2)
@@ -12093,6 +13874,10 @@ __uitof:                                # @__uitof
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__uitof)))
 	move	$1, $4
+	ld	$3, %got_page(__llvm_gcov_ctr.112)($gp)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.112)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.112)($3)
 	sw	$1, 4($fp)
 	ld	$2, %got_page(.L__profc___uitof)($gp)
 	ld	$1, %got_ofst(.L__profc___uitof)($2)
@@ -12140,6 +13925,10 @@ __ulltod:                               # @__ulltod
 	lui	$1, %hi(%neg(%gp_rel(__ulltod)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__ulltod)))
+	ld	$2, %got_page(__llvm_gcov_ctr.113)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.113)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.113)($2)
 	sd	$4, 0($fp)
 	ld	$2, %got_page(.L__profc___ulltod)($gp)
 	ld	$1, %got_ofst(.L__profc___ulltod)($2)
@@ -12187,6 +13976,10 @@ __ulltof:                               # @__ulltof
 	lui	$1, %hi(%neg(%gp_rel(__ulltof)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__ulltof)))
+	ld	$2, %got_page(__llvm_gcov_ctr.114)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.114)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.114)($2)
 	sd	$4, 0($fp)
 	ld	$2, %got_page(.L__profc___ulltof)($gp)
 	ld	$1, %got_ofst(.L__profc___ulltof)($2)
@@ -12235,6 +14028,10 @@ __umodi:                                # @__umodi
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__umodi)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.115)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.115)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.115)($5)
 	sw	$3, 12($fp)
 	sw	$2, 8($fp)
 	ld	$2, %got_page(.L__profc___umodi)($1)
@@ -12284,6 +14081,10 @@ __clzhi2:                               # @__clzhi2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__clzhi2)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.116)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.116)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.116)($4)
 	sh	$2, 14($fp)
 	ld	$2, %got_page(.L__profc___clzhi2)($1)
 	ld	$1, %got_ofst(.L__profc___clzhi2)($2)
@@ -12320,6 +14121,11 @@ __clzhi2:                               # @__clzhi2
 	nop
 .LBB116_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.116)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.116)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___clzhi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___clzhi2)
 	ld	$1, 16($2)
@@ -12331,6 +14137,12 @@ __clzhi2:                               # @__clzhi2
 	b	.LBB116_7
 	nop
 .LBB116_7:                              #   in Loop: Header=BB116_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.116)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.116)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 8($fp)
 	addiu	$1, $1, 1
 	sw	$1, 8($fp)
@@ -12374,6 +14186,10 @@ __ctzhi2:                               # @__ctzhi2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__ctzhi2)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.117)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.117)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.117)($4)
 	sh	$2, 14($fp)
 	ld	$2, %got_page(.L__profc___ctzhi2)($1)
 	ld	$1, %got_ofst(.L__profc___ctzhi2)($2)
@@ -12408,6 +14224,11 @@ __ctzhi2:                               # @__ctzhi2
 	nop
 .LBB117_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.117)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.117)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ctzhi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ctzhi2)
 	ld	$1, 16($2)
@@ -12419,6 +14240,12 @@ __ctzhi2:                               # @__ctzhi2
 	b	.LBB117_7
 	nop
 .LBB117_7:                              #   in Loop: Header=BB117_1 Depth=1
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.117)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.117)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 8($fp)
 	addiu	$1, $1, 1
 	sw	$1, 8($fp)
@@ -12482,6 +14309,10 @@ __fixunssfsi:                           # @__fixunssfsi
 	nop
 .LBB118_2:
 	ld	$gp, 0($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.118)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.118)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.118)($2)
 	ld	$1, %got_page(.L__profc___fixunssfsi)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc___fixunssfsi)
 	ld	$1, 8($2)
@@ -12508,6 +14339,11 @@ __fixunssfsi:                           # @__fixunssfsi
 	nop
 .LBB118_3:
 	ld	$gp, 0($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.118)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.118)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$4, 12($fp)
 	ld	$25, %call16(__fixsfdi)($gp)
 	.reloc .Ltmp62, R_MIPS_JALR, __fixsfdi
@@ -12556,6 +14392,10 @@ __parityhi2:                            # @__parityhi2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__parityhi2)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.119)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.119)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.119)($4)
 	sh	$2, 30($fp)
 	ld	$2, %got_page(.L__profc___parityhi2)($1)
 	ld	$1, %got_ofst(.L__profc___parityhi2)($2)
@@ -12591,6 +14431,11 @@ __parityhi2:                            # @__parityhi2
 	nop
 .LBB119_5:                              #   in Loop: Header=BB119_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.119)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.119)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___parityhi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___parityhi2)
 	ld	$1, 16($2)
@@ -12605,6 +14450,12 @@ __parityhi2:                            # @__parityhi2
 	b	.LBB119_7
 	nop
 .LBB119_7:                              #   in Loop: Header=BB119_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.119)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.119)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 24($fp)
 	addiu	$1, $1, 1
 	sw	$1, 24($fp)
@@ -12651,6 +14502,10 @@ __popcounthi2:                          # @__popcounthi2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__popcounthi2)))
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.120)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.120)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.120)($4)
 	sh	$2, 30($fp)
 	ld	$2, %got_page(.L__profc___popcounthi2)($1)
 	ld	$1, %got_ofst(.L__profc___popcounthi2)($2)
@@ -12686,6 +14541,11 @@ __popcounthi2:                          # @__popcounthi2
 	nop
 .LBB120_5:                              #   in Loop: Header=BB120_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.120)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.120)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___popcounthi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___popcounthi2)
 	ld	$1, 16($2)
@@ -12700,6 +14560,12 @@ __popcounthi2:                          # @__popcounthi2
 	b	.LBB120_7
 	nop
 .LBB120_7:                              #   in Loop: Header=BB120_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.120)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.120)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 24($fp)
 	addiu	$1, $1, 1
 	sw	$1, 24($fp)
@@ -12744,6 +14610,10 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	sd	$1, 8($fp)                      # 8-byte Folded Spill
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.121)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.121)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.121)($5)
 	sw	$3, 28($fp)
 	sw	$2, 24($fp)
 	ld	$2, %got_page(.L__profc___mulsi3_iq2000)($1)
@@ -12776,6 +14646,11 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	nop
 .LBB121_5:                              #   in Loop: Header=BB121_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.121)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.121)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mulsi3_iq2000)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulsi3_iq2000)
 	ld	$1, 16($2)
@@ -12788,6 +14663,12 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	b	.LBB121_6
 	nop
 .LBB121_6:                              #   in Loop: Header=BB121_1 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.121)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.121)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 28($fp)
 	srl	$1, $1, 1
 	sw	$1, 28($fp)
@@ -12850,6 +14731,11 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	nop
 .LBB122_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.122)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.122)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mulsi3_lm32)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulsi3_lm32)
 	ld	$1, 8($2)
@@ -12859,6 +14745,11 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	b	.LBB122_11
 	nop
 .LBB122_3:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.122)($1)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.122)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.122)($2)
 	b	.LBB122_4
 	nop
 .LBB122_4:                              # =>This Inner Loop Header: Depth=1
@@ -12884,6 +14775,11 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	nop
 .LBB122_8:                              #   in Loop: Header=BB122_4 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.122)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.122)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___mulsi3_lm32)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulsi3_lm32)
 	ld	$1, 24($2)
@@ -12896,6 +14792,12 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	b	.LBB122_9
 	nop
 .LBB122_9:                              #   in Loop: Header=BB122_4 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.122)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.122)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	lw	$1, 24($fp)
 	sll	$1, $1, 1
 	sw	$1, 24($fp)
@@ -12974,6 +14876,10 @@ __udivmodsi4:                           # @__udivmodsi4
 	nop
 .LBB123_3:                              #   in Loop: Header=BB123_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.123)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.123)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.123)($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4)
 	ld	$1, 32($2)
@@ -12989,6 +14895,11 @@ __udivmodsi4:                           # @__udivmodsi4
 	nop
 .LBB123_5:                              #   in Loop: Header=BB123_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4)
 	ld	$1, 40($2)
@@ -13020,6 +14931,11 @@ __udivmodsi4:                           # @__udivmodsi4
 .LBB123_8:                              #   in Loop: Header=BB123_1 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.123)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc___udivmodsi4)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc___udivmodsi4)
 	ld	$2, 24($3)
@@ -13038,6 +14954,11 @@ __udivmodsi4:                           # @__udivmodsi4
 	nop
 .LBB123_11:                             #   in Loop: Header=BB123_1 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4)
 	ld	$1, 8($2)
@@ -13078,6 +14999,11 @@ __udivmodsi4:                           # @__udivmodsi4
 	nop
 .LBB123_17:                             #   in Loop: Header=BB123_13 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4)
 	ld	$1, 56($2)
@@ -13094,6 +15020,12 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_18
 	nop
 .LBB123_18:                             #   in Loop: Header=BB123_13 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lw	$1, 28($fp)
 	srl	$1, $1, 1
 	sw	$1, 28($fp)
@@ -13111,6 +15043,11 @@ __udivmodsi4:                           # @__udivmodsi4
 	nop
 .LBB123_21:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$2, 48($3)
+	daddiu	$2, $2, 1
+	sd	$2, 48($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4)
 	ld	$1, 64($2)
@@ -13121,6 +15058,12 @@ __udivmodsi4:                           # @__udivmodsi4
 	b	.LBB123_23
 	nop
 .LBB123_22:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.123)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$1, 56($2)
+	daddiu	$1, $1, 1
+	sd	$1, 56($2)
 	lw	$1, 24($fp)
 	sw	$1, 44($fp)
 	b	.LBB123_23
@@ -13185,6 +15128,10 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	nop
 .LBB124_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.124)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.124)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.124)($3)
 	ld	$1, %got_page(.L__profc___mspabi_cmpf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mspabi_cmpf)
 	ld	$1, 8($2)
@@ -13210,6 +15157,11 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	nop
 .LBB124_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.124)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.124)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mspabi_cmpf)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mspabi_cmpf)
 	ld	$1, 16($2)
@@ -13220,6 +15172,12 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	b	.LBB124_7
 	nop
 .LBB124_6:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.124)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.124)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	sw	$zero, 20($fp)
 	b	.LBB124_7
 	nop
@@ -13284,6 +15242,10 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	nop
 .LBB125_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.125)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.125)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.125)($3)
 	ld	$1, %got_page(.L__profc___mspabi_cmpd)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mspabi_cmpd)
 	ld	$1, 8($2)
@@ -13309,6 +15271,11 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	nop
 .LBB125_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.125)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.125)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mspabi_cmpd)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mspabi_cmpd)
 	ld	$1, 16($2)
@@ -13319,6 +15286,12 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	b	.LBB125_7
 	nop
 .LBB125_6:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.125)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.125)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	sw	$zero, 36($fp)
 	b	.LBB125_7
 	nop
@@ -13359,6 +15332,10 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	lui	$1, %hi(%neg(%gp_rel(__mspabi_mpysll)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__mspabi_mpysll)))
+	ld	$3, %got_page(__llvm_gcov_ctr.126)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.126)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.126)($3)
 	sd	$4, 8($fp)
 	sd	$5, 0($fp)
 	ld	$2, %got_page(.L__profc___mspabi_mpysll)($1)
@@ -13403,6 +15380,10 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	lui	$1, %hi(%neg(%gp_rel(__mspabi_mpyull)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__mspabi_mpyull)))
+	ld	$3, %got_page(__llvm_gcov_ctr.127)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.127)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.127)($3)
 	sd	$4, 8($fp)
 	sd	$5, 0($fp)
 	ld	$2, %got_page(.L__profc___mspabi_mpyull)($1)
@@ -13466,6 +15447,10 @@ __mulhi3:                               # @__mulhi3
 	nop
 .LBB128_2:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.128)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.128)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.128)($3)
 	ld	$1, %got_page(.L__profc___mulhi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulhi3)
 	ld	$1, 8($2)
@@ -13495,6 +15480,11 @@ __mulhi3:                               # @__mulhi3
 	nop
 .LBB128_6:                              #   in Loop: Header=BB128_4 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.128)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___mulhi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulhi3)
 	ld	$1, 24($2)
@@ -13513,6 +15503,11 @@ __mulhi3:                               # @__mulhi3
 .LBB128_8:                              #   in Loop: Header=BB128_4 Depth=1
 	lw	$1, 8($fp)                      # 4-byte Folded Reload
 	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.128)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc___mulhi3)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc___mulhi3)
 	ld	$2, 32($3)
@@ -13545,6 +15540,11 @@ __mulhi3:                               # @__mulhi3
 	nop
 .LBB128_13:                             #   in Loop: Header=BB128_4 Depth=1
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.128)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___mulhi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulhi3)
 	ld	$1, 40($2)
@@ -13566,6 +15566,12 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_15
 	nop
 .LBB128_15:                             #   in Loop: Header=BB128_4 Depth=1
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.128)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	lbu	$1, 39($fp)
 	addiu	$1, $1, 1
 	sb	$1, 39($fp)
@@ -13580,6 +15586,11 @@ __mulhi3:                               # @__mulhi3
 	nop
 .LBB128_18:
 	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.128)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$2, 40($3)
+	daddiu	$2, $2, 1
+	sd	$2, 40($3)
 	ld	$1, %got_page(.L__profc___mulhi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___mulhi3)
 	ld	$1, 48($2)
@@ -13592,6 +15603,12 @@ __mulhi3:                               # @__mulhi3
 	b	.LBB128_20
 	nop
 .LBB128_19:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.128)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$1, 48($2)
+	daddiu	$1, $1, 1
+	sd	$1, 48($2)
 	lw	$1, 28($fp)
 	sw	$1, 4($fp)                      # 4-byte Folded Spill
 	b	.LBB128_20
@@ -13635,6 +15652,10 @@ __divsi3:                               # @__divsi3
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__divsi3)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.129)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.129)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.129)($3)
 	sd	$4, 32($fp)
 	sd	$5, 24($fp)
 	ld	$2, %got_page(.L__profc___divsi3)($1)
@@ -13650,6 +15671,11 @@ __divsi3:                               # @__divsi3
 	nop
 .LBB129_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.129)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.129)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___divsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___divsi3)
 	ld	$1, 8($2)
@@ -13673,6 +15699,11 @@ __divsi3:                               # @__divsi3
 	nop
 .LBB129_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.129)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.129)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___divsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___divsi3)
 	ld	$1, 16($2)
@@ -13708,6 +15739,11 @@ __divsi3:                               # @__divsi3
 	nop
 .LBB129_8:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.129)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.129)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___divsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___divsi3)
 	ld	$1, 24($2)
@@ -13758,6 +15794,10 @@ __modsi3:                               # @__modsi3
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__modsi3)))
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
+	ld	$3, %got_page(__llvm_gcov_ctr.130)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.130)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.130)($3)
 	sd	$4, 32($fp)
 	sd	$5, 24($fp)
 	ld	$2, %got_page(.L__profc___modsi3)($1)
@@ -13773,6 +15813,11 @@ __modsi3:                               # @__modsi3
 	nop
 .LBB130_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.130)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.130)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___modsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___modsi3)
 	ld	$1, 8($2)
@@ -13795,6 +15840,11 @@ __modsi3:                               # @__modsi3
 	nop
 .LBB130_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.130)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.130)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___modsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___modsi3)
 	ld	$1, 16($2)
@@ -13827,6 +15877,11 @@ __modsi3:                               # @__modsi3
 	nop
 .LBB130_8:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.130)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.130)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___modsi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___modsi3)
 	ld	$1, 24($2)
@@ -13905,6 +15960,10 @@ __udivmodhi4:                           # @__udivmodhi4
 	nop
 .LBB131_3:                              #   in Loop: Header=BB131_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.131)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.131)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.131)($3)
 	ld	$1, %got_page(.L__profc___udivmodhi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodhi4)
 	ld	$1, 32($2)
@@ -13920,6 +15979,11 @@ __udivmodhi4:                           # @__udivmodhi4
 	nop
 .LBB131_5:                              #   in Loop: Header=BB131_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___udivmodhi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodhi4)
 	ld	$1, 40($2)
@@ -13947,6 +16011,11 @@ __udivmodhi4:                           # @__udivmodhi4
 .LBB131_8:                              #   in Loop: Header=BB131_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.131)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc___udivmodhi4)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc___udivmodhi4)
 	ld	$2, 24($3)
@@ -13965,6 +16034,11 @@ __udivmodhi4:                           # @__udivmodhi4
 	nop
 .LBB131_11:                             #   in Loop: Header=BB131_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___udivmodhi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodhi4)
 	ld	$1, 8($2)
@@ -14005,6 +16079,11 @@ __udivmodhi4:                           # @__udivmodhi4
 	nop
 .LBB131_17:                             #   in Loop: Header=BB131_13 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___udivmodhi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodhi4)
 	ld	$1, 56($2)
@@ -14021,6 +16100,12 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_18
 	nop
 .LBB131_18:                             #   in Loop: Header=BB131_13 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	lhu	$1, 18($fp)
 	srl	$1, $1, 1
 	sh	$1, 18($fp)
@@ -14038,6 +16123,11 @@ __udivmodhi4:                           # @__udivmodhi4
 	nop
 .LBB131_21:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$2, 48($3)
+	daddiu	$2, $2, 1
+	sd	$2, 48($3)
 	ld	$1, %got_page(.L__profc___udivmodhi4)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodhi4)
 	ld	$1, 64($2)
@@ -14048,6 +16138,12 @@ __udivmodhi4:                           # @__udivmodhi4
 	b	.LBB131_23
 	nop
 .LBB131_22:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.131)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$1, 56($2)
+	daddiu	$1, $1, 1
+	sd	$1, 56($2)
 	lhu	$1, 16($fp)
 	sh	$1, 30($fp)
 	b	.LBB131_23
@@ -14116,6 +16212,10 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	nop
 .LBB132_3:                              #   in Loop: Header=BB132_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.132)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.132)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.132)($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4_libgcc)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$1, 32($2)
@@ -14131,6 +16231,11 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	nop
 .LBB132_5:                              #   in Loop: Header=BB132_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4_libgcc)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$1, 40($2)
@@ -14160,6 +16265,11 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 .LBB132_8:                              #   in Loop: Header=BB132_1 Depth=1
 	lw	$1, 0($fp)                      # 4-byte Folded Reload
 	ld	$2, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.132)($2)
+	daddiu	$4, $3, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$3, 16($4)
+	daddiu	$3, $3, 1
+	sd	$3, 16($4)
 	ld	$2, %got_page(.L__profc___udivmodsi4_libgcc)($2)
 	daddiu	$3, $2, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$2, 24($3)
@@ -14178,6 +16288,11 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	nop
 .LBB132_11:                             #   in Loop: Header=BB132_1 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4_libgcc)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$1, 8($2)
@@ -14218,6 +16333,11 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	nop
 .LBB132_17:                             #   in Loop: Header=BB132_13 Depth=1
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$2, 32($3)
+	daddiu	$2, $2, 1
+	sd	$2, 32($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4_libgcc)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$1, 56($2)
@@ -14234,6 +16354,12 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_18
 	nop
 .LBB132_18:                             #   in Loop: Header=BB132_13 Depth=1
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$1, 40($2)
+	daddiu	$1, $1, 1
+	sd	$1, 40($2)
 	ld	$1, 24($fp)
 	dsrl	$1, $1, 1
 	sd	$1, 24($fp)
@@ -14251,6 +16377,11 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	nop
 .LBB132_21:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$2, 48($3)
+	daddiu	$2, $2, 1
+	sd	$2, 48($3)
 	ld	$1, %got_page(.L__profc___udivmodsi4_libgcc)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___udivmodsi4_libgcc)
 	ld	$1, 64($2)
@@ -14261,6 +16392,12 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b	.LBB132_23
 	nop
 .LBB132_22:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.132)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$1, 56($2)
+	daddiu	$1, $1, 1
+	sd	$1, 56($2)
 	ld	$1, 16($fp)
 	sd	$1, 56($fp)
 	b	.LBB132_23
@@ -14322,6 +16459,10 @@ __ashldi3:                              # @__ashldi3
 	nop
 .LBB133_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.133)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.133)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.133)($3)
 	ld	$1, %got_page(.L__profc___ashldi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashldi3)
 	ld	$1, 8($2)
@@ -14344,6 +16485,11 @@ __ashldi3:                              # @__ashldi3
 	nop
 .LBB133_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.133)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.133)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ashldi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashldi3)
 	ld	$1, 16($2)
@@ -14354,6 +16500,12 @@ __ashldi3:                              # @__ashldi3
 	b	.LBB133_8
 	nop
 .LBB133_6:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.133)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.133)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 16($fp)
 	lw	$2, 28($fp)
 	sllv	$1, $1, $2
@@ -14436,6 +16588,10 @@ __ashlti3:                              # @__ashlti3
 	nop
 .LBB134_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.134)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.134)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.134)($3)
 	ld	$1, %got_page(.L__profc___ashlti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashlti3)
 	ld	$1, 8($2)
@@ -14459,6 +16615,11 @@ __ashlti3:                              # @__ashlti3
 	nop
 .LBB134_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.134)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.134)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ashlti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashlti3)
 	ld	$1, 16($2)
@@ -14471,6 +16632,12 @@ __ashlti3:                              # @__ashlti3
 	b	.LBB134_8
 	nop
 .LBB134_6:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.134)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.134)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 32($fp)
 	lw	$2, 60($fp)
 	dsllv	$1, $1, $2
@@ -14551,6 +16718,10 @@ __ashrdi3:                              # @__ashrdi3
 	nop
 .LBB135_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.135)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.135)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.135)($3)
 	ld	$1, %got_page(.L__profc___ashrdi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashrdi3)
 	ld	$1, 8($2)
@@ -14575,6 +16746,11 @@ __ashrdi3:                              # @__ashrdi3
 	nop
 .LBB135_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.135)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.135)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ashrdi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashrdi3)
 	ld	$1, 16($2)
@@ -14585,6 +16761,12 @@ __ashrdi3:                              # @__ashrdi3
 	b	.LBB135_8
 	nop
 .LBB135_6:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.135)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.135)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 20($fp)
 	lw	$2, 28($fp)
 	srav	$1, $1, $2
@@ -14667,6 +16849,10 @@ __ashrti3:                              # @__ashrti3
 	nop
 .LBB136_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.136)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.136)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.136)($3)
 	ld	$1, %got_page(.L__profc___ashrti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashrti3)
 	ld	$1, 8($2)
@@ -14691,6 +16877,11 @@ __ashrti3:                              # @__ashrti3
 	nop
 .LBB136_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.136)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.136)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ashrti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ashrti3)
 	ld	$1, 16($2)
@@ -14703,6 +16894,12 @@ __ashrti3:                              # @__ashrti3
 	b	.LBB136_8
 	nop
 .LBB136_6:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.136)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.136)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	lw	$2, 60($fp)
 	dsrav	$1, $1, $2
@@ -14762,6 +16959,10 @@ __bswapdi2:                             # @__bswapdi2
 	lui	$1, %hi(%neg(%gp_rel(__bswapdi2)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__bswapdi2)))
+	ld	$3, %got_page(__llvm_gcov_ctr.137)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.137)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.137)($3)
 	sd	$4, 8($fp)
 	ld	$2, %got_page(.L__profc___bswapdi2)($1)
 	ld	$1, %got_ofst(.L__profc___bswapdi2)($2)
@@ -14830,6 +17031,10 @@ __bswapsi2:                             # @__bswapsi2
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__bswapsi2)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.138)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.138)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.138)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc___bswapsi2)($1)
 	ld	$1, %got_ofst(.L__profc___bswapsi2)($2)
@@ -14882,6 +17087,10 @@ __clzsi2:                               # @__clzsi2
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__clzsi2)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.139)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.139)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.139)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc___clzsi2)($1)
 	ld	$1, %got_ofst(.L__profc___clzsi2)($2)
@@ -14994,6 +17203,10 @@ __clzti2:                               # @__clzti2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__clzti2)))
                                         # kill: def $v0_64 killed $a1_64
                                         # kill: def $v0_64 killed $a0_64
+	ld	$3, %got_page(__llvm_gcov_ctr.140)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.140)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.140)($3)
 	sd	$5, 40($fp)
 	sd	$4, 32($fp)
 	ld	$2, %got_page(.L__profc___clzti2)($1)
@@ -15131,6 +17344,10 @@ __cmpdi2:                               # @__cmpdi2
 	nop
 .LBB141_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.141)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.141)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.141)($3)
 	ld	$1, %got_page(.L__profc___cmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpdi2)
 	ld	$1, 8($2)
@@ -15150,6 +17367,11 @@ __cmpdi2:                               # @__cmpdi2
 	nop
 .LBB141_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.141)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.141)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___cmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpdi2)
 	ld	$1, 16($2)
@@ -15170,6 +17392,11 @@ __cmpdi2:                               # @__cmpdi2
 	nop
 .LBB141_8:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.141)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.141)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___cmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpdi2)
 	ld	$1, 24($2)
@@ -15189,6 +17416,11 @@ __cmpdi2:                               # @__cmpdi2
 	nop
 .LBB141_11:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.141)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.141)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___cmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpdi2)
 	ld	$1, 32($2)
@@ -15199,6 +17431,12 @@ __cmpdi2:                               # @__cmpdi2
 	b	.LBB141_13
 	nop
 .LBB141_12:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.141)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.141)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	addiu	$1, $zero, 1
 	sw	$1, 44($fp)
 	b	.LBB141_13
@@ -15240,6 +17478,10 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
 	lui	$1, %hi(%neg(%gp_rel(__aeabi_lcmp)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__aeabi_lcmp)))
+	ld	$2, %got_page(__llvm_gcov_ctr.142)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.142)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.142)($2)
 	sd	$4, 16($fp)
 	sd	$5, 8($fp)
 	ld	$2, %got_page(.L__profc___aeabi_lcmp)($gp)
@@ -15322,6 +17564,10 @@ __cmpti2:                               # @__cmpti2
 	nop
 .LBB143_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.143)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.143)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.143)($3)
 	ld	$1, %got_page(.L__profc___cmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpti2)
 	ld	$1, 8($2)
@@ -15341,6 +17587,11 @@ __cmpti2:                               # @__cmpti2
 	nop
 .LBB143_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.143)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.143)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___cmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpti2)
 	ld	$1, 16($2)
@@ -15361,6 +17612,11 @@ __cmpti2:                               # @__cmpti2
 	nop
 .LBB143_8:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.143)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.143)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___cmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpti2)
 	ld	$1, 24($2)
@@ -15380,6 +17636,11 @@ __cmpti2:                               # @__cmpti2
 	nop
 .LBB143_11:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.143)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.143)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___cmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___cmpti2)
 	ld	$1, 32($2)
@@ -15390,6 +17651,12 @@ __cmpti2:                               # @__cmpti2
 	b	.LBB143_13
 	nop
 .LBB143_12:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.143)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.143)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	addiu	$1, $zero, 1
 	sw	$1, 92($fp)
 	b	.LBB143_13
@@ -15431,6 +17698,10 @@ __ctzsi2:                               # @__ctzsi2
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__ctzsi2)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.144)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.144)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.144)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc___ctzsi2)($1)
 	ld	$1, %got_ofst(.L__profc___ctzsi2)($2)
@@ -15541,6 +17812,10 @@ __ctzti2:                               # @__ctzti2
 	daddiu	$2, $1, %lo(%neg(%gp_rel(__ctzti2)))
                                         # kill: def $at_64 killed $a1_64
                                         # kill: def $at_64 killed $a0_64
+	ld	$3, %got_page(__llvm_gcov_ctr.145)($2)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.145)($3)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.145)($3)
 	sd	$5, 56($fp)
 	sd	$4, 48($fp)
 	ld	$3, %got_page(.L__profc___ctzti2)($2)
@@ -15675,6 +17950,11 @@ __ffsti2:                               # @__ffsti2
 	nop
 .LBB146_4:
 	ld	$1, 40($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.146)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.146)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ffsti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ffsti2)
 	ld	$1, 16($2)
@@ -15685,6 +17965,11 @@ __ffsti2:                               # @__ffsti2
 	nop
 .LBB146_5:
 	ld	$2, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.146)($2)
+	daddiu	$3, $1, %got_ofst(__llvm_gcov_ctr.146)
+	ld	$1, 16($3)
+	daddiu	$1, $1, 1
+	sd	$1, 16($3)
 	ld	$1, 56($fp)
 	daddiu	$3, $zero, 0
 	dnegu	$3, $1
@@ -15719,6 +18004,10 @@ __ffsti2:                               # @__ffsti2
 	nop
 .LBB146_8:
 	ld	$2, 40($fp)                     # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.146)($2)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.146)($3)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.146)($3)
 	ld	$1, 48($fp)
 	daddiu	$3, $zero, 0
 	dnegu	$3, $1
@@ -15810,6 +18099,10 @@ __lshrdi3:                              # @__lshrdi3
 	nop
 .LBB147_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.147)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.147)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.147)($3)
 	ld	$1, %got_page(.L__profc___lshrdi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___lshrdi3)
 	ld	$1, 8($2)
@@ -15832,6 +18125,11 @@ __lshrdi3:                              # @__lshrdi3
 	nop
 .LBB147_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.147)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.147)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___lshrdi3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___lshrdi3)
 	ld	$1, 16($2)
@@ -15842,6 +18140,12 @@ __lshrdi3:                              # @__lshrdi3
 	b	.LBB147_8
 	nop
 .LBB147_6:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.147)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.147)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	lw	$1, 20($fp)
 	lw	$2, 28($fp)
 	srlv	$1, $1, $2
@@ -15924,6 +18228,10 @@ __lshrti3:                              # @__lshrti3
 	nop
 .LBB148_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.148)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.148)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.148)($3)
 	ld	$1, %got_page(.L__profc___lshrti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___lshrti3)
 	ld	$1, 8($2)
@@ -15947,6 +18255,11 @@ __lshrti3:                              # @__lshrti3
 	nop
 .LBB148_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.148)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.148)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___lshrti3)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___lshrti3)
 	ld	$1, 16($2)
@@ -15959,6 +18272,12 @@ __lshrti3:                              # @__lshrti3
 	b	.LBB148_8
 	nop
 .LBB148_6:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.148)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.148)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, 40($fp)
 	lw	$2, 60($fp)
 	dsrlv	$1, $1, $2
@@ -16020,6 +18339,10 @@ __muldsi3:                              # @__muldsi3
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__muldsi3)))
 	move	$2, $5
 	move	$3, $4
+	ld	$5, %got_page(__llvm_gcov_ctr.149)($1)
+	ld	$4, %got_ofst(__llvm_gcov_ctr.149)($5)
+	daddiu	$4, $4, 1
+	sd	$4, %got_ofst(__llvm_gcov_ctr.149)($5)
 	sw	$3, 28($fp)
 	sw	$2, 24($fp)
 	ld	$2, %got_page(.L__profc___muldsi3)($1)
@@ -16116,6 +18439,10 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
 	lui	$1, %hi(%neg(%gp_rel(__muldi3_compiler_rt)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__muldi3_compiler_rt)))
+	ld	$2, %got_page(__llvm_gcov_ctr.150)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.150)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.150)($2)
 	sd	$4, 32($fp)
 	sd	$5, 24($fp)
 	ld	$2, %got_page(.L__profc___muldi3_compiler_rt)($gp)
@@ -16182,6 +18509,10 @@ __mulddi3:                              # @__mulddi3
 	lui	$1, %hi(%neg(%gp_rel(__mulddi3)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__mulddi3)))
+	ld	$3, %got_page(__llvm_gcov_ctr.151)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.151)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.151)($3)
 	sd	$4, 56($fp)
 	sd	$5, 48($fp)
 	ld	$2, %got_page(.L__profc___mulddi3)($1)
@@ -16285,6 +18616,10 @@ __multi3:                               # @__multi3
                                         # kill: def $at_64 killed $a2_64
                                         # kill: def $at_64 killed $a1_64
                                         # kill: def $at_64 killed $a0_64
+	ld	$2, %got_page(__llvm_gcov_ctr.152)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.152)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.152)($2)
 	sd	$5, 72($fp)
 	sd	$4, 64($fp)
 	sd	$7, 56($fp)
@@ -16359,6 +18694,10 @@ __negdi2:                               # @__negdi2
 	lui	$1, %hi(%neg(%gp_rel(__negdi2)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__negdi2)))
+	ld	$3, %got_page(__llvm_gcov_ctr.153)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.153)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.153)($3)
 	sd	$4, 8($fp)
 	ld	$2, %got_page(.L__profc___negdi2)($1)
 	ld	$1, %got_ofst(.L__profc___negdi2)($2)
@@ -16403,6 +18742,10 @@ __negti2:                               # @__negti2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__negti2)))
                                         # kill: def $v0_64 killed $a1_64
                                         # kill: def $v0_64 killed $a0_64
+	ld	$3, %got_page(__llvm_gcov_ctr.154)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.154)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.154)($3)
 	sd	$5, 8($fp)
 	sd	$4, 0($fp)
 	ld	$2, %got_page(.L__profc___negti2)($1)
@@ -16452,6 +18795,10 @@ __paritydi2:                            # @__paritydi2
 	lui	$1, %hi(%neg(%gp_rel(__paritydi2)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__paritydi2)))
+	ld	$3, %got_page(__llvm_gcov_ctr.155)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.155)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.155)($3)
 	sd	$4, 24($fp)
 	ld	$2, %got_page(.L__profc___paritydi2)($1)
 	ld	$1, %got_ofst(.L__profc___paritydi2)($2)
@@ -16518,6 +18865,10 @@ __parityti2:                            # @__parityti2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__parityti2)))
                                         # kill: def $v0_64 killed $a1_64
                                         # kill: def $v0_64 killed $a0_64
+	ld	$3, %got_page(__llvm_gcov_ctr.156)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.156)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.156)($3)
 	sd	$5, 40($fp)
 	sd	$4, 32($fp)
 	ld	$2, %got_page(.L__profc___parityti2)($1)
@@ -16590,6 +18941,10 @@ __paritysi2:                            # @__paritysi2
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__paritysi2)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.157)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.157)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.157)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc___paritysi2)($1)
 	ld	$1, %got_ofst(.L__profc___paritysi2)($2)
@@ -16650,6 +19005,10 @@ __popcountdi2:                          # @__popcountdi2
 	lui	$1, %hi(%neg(%gp_rel(__popcountdi2)))
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__popcountdi2)))
+	ld	$3, %got_page(__llvm_gcov_ctr.158)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.158)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.158)($3)
 	sd	$4, 24($fp)
 	ld	$2, %got_page(.L__profc___popcountdi2)($1)
 	ld	$1, %got_ofst(.L__profc___popcountdi2)($2)
@@ -16740,6 +19099,10 @@ __popcountsi2:                          # @__popcountsi2
 	daddu	$1, $1, $25
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__popcountsi2)))
 	move	$2, $4
+	ld	$4, %got_page(__llvm_gcov_ctr.159)($1)
+	ld	$3, %got_ofst(__llvm_gcov_ctr.159)($4)
+	daddiu	$3, $3, 1
+	sd	$3, %got_ofst(__llvm_gcov_ctr.159)($4)
 	sw	$2, 12($fp)
 	ld	$2, %got_page(.L__profc___popcountsi2)($1)
 	ld	$1, %got_ofst(.L__profc___popcountsi2)($2)
@@ -16815,6 +19178,10 @@ __popcountti2:                          # @__popcountti2
 	daddiu	$1, $1, %lo(%neg(%gp_rel(__popcountti2)))
                                         # kill: def $v0_64 killed $a1_64
                                         # kill: def $v0_64 killed $a0_64
+	ld	$3, %got_page(__llvm_gcov_ctr.160)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.160)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.160)($3)
 	sd	$5, 40($fp)
 	sd	$4, 32($fp)
 	ld	$2, %got_page(.L__profc___popcountti2)($1)
@@ -16975,6 +19342,10 @@ __powidf2:                              # @__powidf2
 	nop
 .LBB161_3:                              #   in Loop: Header=BB161_1 Depth=1
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.161)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.161)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.161)($2)
 	ld	$1, %got_page(.L__profc___powidf2)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc___powidf2)
 	ld	$1, 16($2)
@@ -17013,6 +19384,11 @@ __powidf2:                              # @__powidf2
 	nop
 .LBB161_7:                              #   in Loop: Header=BB161_1 Depth=1
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.161)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.161)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	ld	$5, 32($fp)
 	ld	$25, %call16(__muldf3)($gp)
 	move	$4, $5
@@ -17032,6 +19408,11 @@ __powidf2:                              # @__powidf2
 	nop
 .LBB161_10:
 	ld	$gp, 8($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.161)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.161)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc___powidf2)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc___powidf2)
 	ld	$1, 32($2)
@@ -17049,6 +19430,12 @@ __powidf2:                              # @__powidf2
 	b	.LBB161_12
 	nop
 .LBB161_11:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.161)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.161)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	ld	$1, 16($fp)
 	sd	$1, 0($fp)                      # 8-byte Folded Spill
 	b	.LBB161_12
@@ -17123,6 +19510,10 @@ __powisf2:                              # @__powisf2
 	nop
 .LBB162_3:                              #   in Loop: Header=BB162_1 Depth=1
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.162)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.162)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.162)($2)
 	ld	$1, %got_page(.L__profc___powisf2)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc___powisf2)
 	ld	$1, 16($2)
@@ -17161,6 +19552,11 @@ __powisf2:                              # @__powisf2
 	nop
 .LBB162_7:                              #   in Loop: Header=BB162_1 Depth=1
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.162)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.162)
+	ld	$1, 8($2)
+	daddiu	$1, $1, 1
+	sd	$1, 8($2)
 	lw	$5, 36($fp)
 	ld	$25, %call16(__mulsf3)($gp)
 	move	$4, $5
@@ -17180,6 +19576,11 @@ __powisf2:                              # @__powisf2
 	nop
 .LBB162_10:
 	ld	$gp, 16($fp)                    # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.162)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.162)
+	ld	$1, 16($2)
+	daddiu	$1, $1, 1
+	sd	$1, 16($2)
 	ld	$1, %got_page(.L__profc___powisf2)($gp)
 	daddiu	$2, $1, %got_ofst(.L__profc___powisf2)
 	ld	$1, 32($2)
@@ -17196,6 +19597,12 @@ __powisf2:                              # @__powisf2
 	b	.LBB162_12
 	nop
 .LBB162_11:
+	ld	$1, 16($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.162)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.162)
+	ld	$1, 24($2)
+	daddiu	$1, $1, 1
+	sd	$1, 24($2)
 	lw	$1, 24($fp)
 	sw	$1, 12($fp)                     # 4-byte Folded Spill
 	b	.LBB162_12
@@ -17258,6 +19665,10 @@ __ucmpdi2:                              # @__ucmpdi2
 	nop
 .LBB163_2:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.163)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.163)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.163)($3)
 	ld	$1, %got_page(.L__profc___ucmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpdi2)
 	ld	$1, 8($2)
@@ -17277,6 +19688,11 @@ __ucmpdi2:                              # @__ucmpdi2
 	nop
 .LBB163_5:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.163)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.163)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ucmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpdi2)
 	ld	$1, 16($2)
@@ -17297,6 +19713,11 @@ __ucmpdi2:                              # @__ucmpdi2
 	nop
 .LBB163_8:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.163)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.163)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___ucmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpdi2)
 	ld	$1, 24($2)
@@ -17316,6 +19737,11 @@ __ucmpdi2:                              # @__ucmpdi2
 	nop
 .LBB163_11:
 	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.163)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.163)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___ucmpdi2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpdi2)
 	ld	$1, 32($2)
@@ -17326,6 +19752,12 @@ __ucmpdi2:                              # @__ucmpdi2
 	b	.LBB163_13
 	nop
 .LBB163_12:
+	ld	$1, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.163)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.163)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	addiu	$1, $zero, 1
 	sw	$1, 44($fp)
 	b	.LBB163_13
@@ -17367,6 +19799,10 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	lui	$1, %hi(%neg(%gp_rel(__aeabi_ulcmp)))
 	daddu	$1, $1, $25
 	daddiu	$gp, $1, %lo(%neg(%gp_rel(__aeabi_ulcmp)))
+	ld	$2, %got_page(__llvm_gcov_ctr.164)($gp)
+	ld	$1, %got_ofst(__llvm_gcov_ctr.164)($2)
+	daddiu	$1, $1, 1
+	sd	$1, %got_ofst(__llvm_gcov_ctr.164)($2)
 	sd	$4, 16($fp)
 	sd	$5, 8($fp)
 	ld	$2, %got_page(.L__profc___aeabi_ulcmp)($gp)
@@ -17449,6 +19885,10 @@ __ucmpti2:                              # @__ucmpti2
 	nop
 .LBB165_2:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$3, %got_page(__llvm_gcov_ctr.165)($1)
+	ld	$2, %got_ofst(__llvm_gcov_ctr.165)($3)
+	daddiu	$2, $2, 1
+	sd	$2, %got_ofst(__llvm_gcov_ctr.165)($3)
 	ld	$1, %got_page(.L__profc___ucmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpti2)
 	ld	$1, 8($2)
@@ -17468,6 +19908,11 @@ __ucmpti2:                              # @__ucmpti2
 	nop
 .LBB165_5:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.165)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.165)
+	ld	$2, 8($3)
+	daddiu	$2, $2, 1
+	sd	$2, 8($3)
 	ld	$1, %got_page(.L__profc___ucmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpti2)
 	ld	$1, 16($2)
@@ -17488,6 +19933,11 @@ __ucmpti2:                              # @__ucmpti2
 	nop
 .LBB165_8:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.165)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.165)
+	ld	$2, 16($3)
+	daddiu	$2, $2, 1
+	sd	$2, 16($3)
 	ld	$1, %got_page(.L__profc___ucmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpti2)
 	ld	$1, 24($2)
@@ -17507,6 +19957,11 @@ __ucmpti2:                              # @__ucmpti2
 	nop
 .LBB165_11:
 	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$2, %got_page(__llvm_gcov_ctr.165)($1)
+	daddiu	$3, $2, %got_ofst(__llvm_gcov_ctr.165)
+	ld	$2, 24($3)
+	daddiu	$2, $2, 1
+	sd	$2, 24($3)
 	ld	$1, %got_page(.L__profc___ucmpti2)($1)
 	daddiu	$2, $1, %got_ofst(.L__profc___ucmpti2)
 	ld	$1, 32($2)
@@ -17517,6 +19972,12 @@ __ucmpti2:                              # @__ucmpti2
 	b	.LBB165_13
 	nop
 .LBB165_12:
+	ld	$1, 8($fp)                      # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.165)($1)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.165)
+	ld	$1, 32($2)
+	daddiu	$1, $1, 1
+	sd	$1, 32($2)
 	addiu	$1, $zero, 1
 	sw	$1, 92($fp)
 	b	.LBB165_13
@@ -17536,6 +19997,1899 @@ __ucmpti2:                              # @__ucmpti2
 .Lfunc_end165:
 	.size	__ucmpti2, .Lfunc_end165-__ucmpti2
                                         # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+	.set	nomicromips
+	.set	nomips16
+	.ent	__llvm_gcov_writeout
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+	.frame	$fp,96,$ra
+	.mask 	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	.set	noat
+# %bb.0:
+	daddiu	$sp, $sp, -96
+	sd	$ra, 88($sp)                    # 8-byte Folded Spill
+	sd	$fp, 80($sp)                    # 8-byte Folded Spill
+	sd	$gp, 72($sp)                    # 8-byte Folded Spill
+	move	$fp, $sp
+	lui	$1, %hi(%neg(%gp_rel(__llvm_gcov_writeout)))
+	daddu	$1, $1, $25
+	daddiu	$1, $1, %lo(%neg(%gp_rel(__llvm_gcov_writeout)))
+	sd	$1, 56($fp)                     # 8-byte Folded Spill
+	addiu	$1, $zero, 0
+	sw	$1, 68($fp)                     # 4-byte Folded Spill
+	b	.LBB166_1
+	nop
+.LBB166_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB166_3 Depth 2
+	ld	$gp, 56($fp)                    # 8-byte Folded Reload
+	lw	$1, 68($fp)                     # 4-byte Folded Reload
+	sw	$1, 12($fp)                     # 4-byte Folded Spill
+	sll	$1, $1, 0
+	dsll	$2, $1, 3
+	dsll	$1, $1, 5
+	daddu	$2, $1, $2
+	ld	$1, %got_page(__llvm_internal_gcov_emit_file_info)($gp)
+	daddiu	$1, $1, %got_ofst(__llvm_internal_gcov_emit_file_info)
+	daddu	$1, $1, $2
+	sd	$1, 16($fp)                     # 8-byte Folded Spill
+	ld	$4, 0($1)
+	lw	$5, 8($1)
+	lw	$6, 12($1)
+	ld	$25, %call16(llvm_gcda_start_file)($gp)
+	.reloc .Ltmp79, R_MIPS_JALR, llvm_gcda_start_file
+.Ltmp79:
+	jalr	$25
+	nop
+	ld	$2, 16($fp)                     # 8-byte Folded Reload
+	lw	$1, 16($2)
+	sw	$1, 28($fp)                     # 4-byte Folded Spill
+	ld	$3, 24($2)
+	sd	$3, 32($fp)                     # 8-byte Folded Spill
+	ld	$2, 32($2)
+	sd	$2, 40($fp)                     # 8-byte Folded Spill
+	addiu	$2, $zero, 0
+	sw	$2, 52($fp)                     # 4-byte Folded Spill
+	blez	$1, .LBB166_5
+	nop
+# %bb.2:                                #   in Loop: Header=BB166_1 Depth=1
+	b	.LBB166_3
+	nop
+.LBB166_3:                              #   Parent Loop BB166_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	lw	$2, 52($fp)                     # 4-byte Folded Reload
+	ld	$gp, 56($fp)                    # 8-byte Folded Reload
+	ld	$1, 32($fp)                     # 8-byte Folded Reload
+	sw	$2, 8($fp)                      # 4-byte Folded Spill
+	sll	$2, $2, 0
+	sd	$2, 0($fp)                      # 8-byte Folded Spill
+	dsll	$3, $2, 2
+	dsll	$2, $2, 3
+	daddu	$2, $2, $3
+	daddu	$1, $1, $2
+	lw	$4, 0($1)
+	lw	$5, 4($1)
+	lw	$6, 8($1)
+	ld	$25, %call16(llvm_gcda_emit_function)($gp)
+	.reloc .Ltmp80, R_MIPS_JALR, llvm_gcda_emit_function
+.Ltmp80:
+	jalr	$25
+	nop
+	ld	$gp, 56($fp)                    # 8-byte Folded Reload
+	ld	$2, 0($fp)                      # 8-byte Folded Reload
+	ld	$1, 40($fp)                     # 8-byte Folded Reload
+	dsll	$2, $2, 4
+	daddu	$1, $1, $2
+	lw	$4, 0($1)
+	ld	$5, 8($1)
+	ld	$25, %call16(llvm_gcda_emit_arcs)($gp)
+	.reloc .Ltmp81, R_MIPS_JALR, llvm_gcda_emit_arcs
+.Ltmp81:
+	jalr	$25
+	nop
+	lw	$2, 8($fp)                      # 4-byte Folded Reload
+	lw	$1, 28($fp)                     # 4-byte Folded Reload
+	addiu	$2, $2, 1
+	slt	$1, $2, $1
+	sw	$2, 52($fp)                     # 4-byte Folded Spill
+	bnez	$1, .LBB166_3
+	nop
+# %bb.4:                                #   in Loop: Header=BB166_1 Depth=1
+	b	.LBB166_5
+	nop
+.LBB166_5:                              #   in Loop: Header=BB166_1 Depth=1
+	ld	$gp, 56($fp)                    # 8-byte Folded Reload
+	ld	$25, %call16(llvm_gcda_summary_info)($gp)
+	.reloc .Ltmp82, R_MIPS_JALR, llvm_gcda_summary_info
+.Ltmp82:
+	jalr	$25
+	nop
+	ld	$gp, 56($fp)                    # 8-byte Folded Reload
+	ld	$25, %call16(llvm_gcda_end_file)($gp)
+	.reloc .Ltmp83, R_MIPS_JALR, llvm_gcda_end_file
+.Ltmp83:
+	jalr	$25
+	nop
+	lw	$1, 12($fp)                     # 4-byte Folded Reload
+	addiu	$1, $1, 1
+	move	$2, $1
+	sw	$2, 68($fp)                     # 4-byte Folded Spill
+	blez	$1, .LBB166_1
+	nop
+# %bb.6:
+	b	.LBB166_7
+	nop
+.LBB166_7:
+	move	$sp, $fp
+	ld	$gp, 72($sp)                    # 8-byte Folded Reload
+	ld	$fp, 80($sp)                    # 8-byte Folded Reload
+	ld	$ra, 88($sp)                    # 8-byte Folded Reload
+	daddiu	$sp, $sp, 96
+	jr	$ra
+	nop
+	.set	at
+	.set	macro
+	.set	reorder
+	.end	__llvm_gcov_writeout
+.Lfunc_end166:
+	.size	__llvm_gcov_writeout, .Lfunc_end166-__llvm_gcov_writeout
+                                        # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+	.set	nomicromips
+	.set	nomips16
+	.ent	__llvm_gcov_reset
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+	.frame	$fp,80,$ra
+	.mask 	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	.set	noat
+# %bb.0:
+	daddiu	$sp, $sp, -80
+	sd	$ra, 72($sp)                    # 8-byte Folded Spill
+	sd	$fp, 64($sp)                    # 8-byte Folded Spill
+	sd	$gp, 56($sp)                    # 8-byte Folded Spill
+	move	$fp, $sp
+	lui	$1, %hi(%neg(%gp_rel(__llvm_gcov_reset)))
+	daddu	$1, $1, $25
+	daddiu	$gp, $1, %lo(%neg(%gp_rel(__llvm_gcov_reset)))
+	sd	$gp, 32($fp)                    # 8-byte Folded Spill
+	ld	$1, %got_page(__llvm_gcov_ctr)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr)
+	addiu	$3, $zero, 0
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.1)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.1)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.1)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.2)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.2)
+	ld	$25, %call16(memset)($gp)
+	daddiu	$5, $zero, 0
+	sd	$5, 40($fp)                     # 8-byte Folded Spill
+	daddiu	$6, $zero, 40
+	sd	$6, 48($fp)                     # 8-byte Folded Spill
+	.reloc .Ltmp84, R_MIPS_JALR, memset
+.Ltmp84:
+	jalr	$25
+	nop
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.3)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.3)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp85, R_MIPS_JALR, memset
+.Ltmp85:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.4)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.4)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp86, R_MIPS_JALR, memset
+.Ltmp86:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.5)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.5)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp87, R_MIPS_JALR, memset
+.Ltmp87:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.6)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.6)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.6)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.7)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.7)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.7)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.8)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.8)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.8)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.9)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.9)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.9)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.10)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.10)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.10)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.11)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.11)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.11)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.12)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.12)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.12)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.13)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.13)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.13)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.14)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.14)
+	ld	$25, %call16(memset)($gp)
+	daddiu	$6, $zero, 56
+	sd	$6, 16($fp)                     # 8-byte Folded Spill
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp88, R_MIPS_JALR, memset
+.Ltmp88:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.15)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.15)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.15)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.16)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.16)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.16)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.17)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.17)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.17)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.18)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.18)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.18)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.19)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.19)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.19)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.20)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.20)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.20)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.21)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.21)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.21)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.22)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.22)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.22)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.23)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.23)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.23)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.24)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.24)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.24)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.25)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.25)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.25)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.26)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.26)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp89, R_MIPS_JALR, memset
+.Ltmp89:
+	jalr	$25
+	nop
+	ld	$6, 16($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.27)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.27)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.27)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.28)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.28)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp90, R_MIPS_JALR, memset
+.Ltmp90:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.29)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.29)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.29)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.30)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.30)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.30)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.31)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.31)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.31)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.32)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.32)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.32)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.33)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.33)
+	ld	$25, %call16(memset)($gp)
+	daddiu	$6, $zero, 48
+	sd	$6, 8($fp)                      # 8-byte Folded Spill
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp91, R_MIPS_JALR, memset
+.Ltmp91:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.34)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.34)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp92, R_MIPS_JALR, memset
+.Ltmp92:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.35)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.35)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp93, R_MIPS_JALR, memset
+.Ltmp93:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.36)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.36)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp94, R_MIPS_JALR, memset
+.Ltmp94:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.37)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.37)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp95, R_MIPS_JALR, memset
+.Ltmp95:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.38)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.38)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp96, R_MIPS_JALR, memset
+.Ltmp96:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.39)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.39)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.39)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.40)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.40)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.40)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.41)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.41)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.41)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.42)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.42)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.42)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.43)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.43)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.43)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.44)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.44)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.44)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.45)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.45)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.45)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.46)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.46)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.46)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.47)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.47)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp97, R_MIPS_JALR, memset
+.Ltmp97:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.48)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.48)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp98, R_MIPS_JALR, memset
+.Ltmp98:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.49)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.49)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp99, R_MIPS_JALR, memset
+.Ltmp99:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.50)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.50)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.50)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.51)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.51)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.51)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.52)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.52)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.52)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.53)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.53)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.53)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.54)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.54)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.54)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.55)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.55)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.55)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.56)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.56)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.56)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.57)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.57)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.57)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.58)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.58)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.58)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.59)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.59)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp100, R_MIPS_JALR, memset
+.Ltmp100:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.60)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.60)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp101, R_MIPS_JALR, memset
+.Ltmp101:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.61)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.61)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.61)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.62)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.62)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.62)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.63)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.63)
+	ld	$25, %call16(memset)($gp)
+	daddiu	$6, $zero, 64
+	sd	$6, 24($fp)                     # 8-byte Folded Spill
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp102, R_MIPS_JALR, memset
+.Ltmp102:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.64)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.64)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp103, R_MIPS_JALR, memset
+.Ltmp103:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.65)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.65)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp104, R_MIPS_JALR, memset
+.Ltmp104:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.66)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.66)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.66)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.67)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.67)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp105, R_MIPS_JALR, memset
+.Ltmp105:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.68)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.68)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.68)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.69)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.69)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp106, R_MIPS_JALR, memset
+.Ltmp106:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.70)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.70)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.70)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.71)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.71)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.71)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.72)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.72)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.72)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.73)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.73)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.73)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.74)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.74)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.74)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.75)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.75)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.75)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.76)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.76)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.76)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.77)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.77)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.77)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.78)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.78)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.78)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.79)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.79)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.79)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.80)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.80)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.80)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.81)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.81)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.81)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.82)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.82)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.82)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.83)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.83)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.83)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.84)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.84)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.84)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.85)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.85)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.85)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.86)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.86)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.86)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.87)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.87)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.87)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.88)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.88)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.88)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.89)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.89)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp107, R_MIPS_JALR, memset
+.Ltmp107:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.90)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.90)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp108, R_MIPS_JALR, memset
+.Ltmp108:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.91)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.91)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp109, R_MIPS_JALR, memset
+.Ltmp109:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.92)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.92)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.92)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.93)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.93)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp110, R_MIPS_JALR, memset
+.Ltmp110:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.94)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.94)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.94)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.95)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.95)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.95)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.96)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.96)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.96)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.97)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.97)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.97)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.98)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.98)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp111, R_MIPS_JALR, memset
+.Ltmp111:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.99)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.99)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp112, R_MIPS_JALR, memset
+.Ltmp112:
+	jalr	$25
+	nop
+	ld	$6, 24($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.100)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.100)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.100)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.101)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.101)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp113, R_MIPS_JALR, memset
+.Ltmp113:
+	jalr	$25
+	nop
+	ld	$6, 24($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.102)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.102)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.102)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.103)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.103)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp114, R_MIPS_JALR, memset
+.Ltmp114:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.104)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.104)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.104)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.105)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.105)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.105)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.106)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.106)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.106)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.107)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.107)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp115, R_MIPS_JALR, memset
+.Ltmp115:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.108)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.108)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp116, R_MIPS_JALR, memset
+.Ltmp116:
+	jalr	$25
+	nop
+	ld	$6, 8($fp)                      # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.109)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.109)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp117, R_MIPS_JALR, memset
+.Ltmp117:
+	jalr	$25
+	nop
+	ld	$6, 24($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.110)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.110)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.110)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.111)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.111)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.111)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.112)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.112)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.112)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.113)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.113)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.113)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.114)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.114)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.114)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.115)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.115)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.115)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.116)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.116)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.116)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.117)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.117)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.117)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.118)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.118)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.118)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.119)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.119)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.119)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.120)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.120)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.120)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.121)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.121)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.121)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.122)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.122)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.122)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.123)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.123)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp118, R_MIPS_JALR, memset
+.Ltmp118:
+	jalr	$25
+	nop
+	ld	$6, 16($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.124)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.124)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.124)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.125)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.125)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.125)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.126)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.126)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.126)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.127)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.127)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.127)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.128)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.128)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp119, R_MIPS_JALR, memset
+.Ltmp119:
+	jalr	$25
+	nop
+	ld	$6, 24($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.129)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.129)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.129)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.130)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.130)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.130)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.131)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.131)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp120, R_MIPS_JALR, memset
+.Ltmp120:
+	jalr	$25
+	nop
+	ld	$6, 24($fp)                     # 8-byte Folded Reload
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.132)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.132)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp121, R_MIPS_JALR, memset
+.Ltmp121:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.133)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.133)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.133)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.134)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.134)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.134)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.135)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.135)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.135)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.136)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.136)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.136)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.137)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.137)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.137)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.138)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.138)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.138)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.139)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.139)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.139)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.140)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.140)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.140)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.141)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.141)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp122, R_MIPS_JALR, memset
+.Ltmp122:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.142)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.142)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.142)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.143)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.143)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp123, R_MIPS_JALR, memset
+.Ltmp123:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.144)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.144)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.144)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.145)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.145)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.145)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.146)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.146)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.146)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.147)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.147)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.147)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.148)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.148)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.148)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.149)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.149)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.149)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.150)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.150)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.150)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.151)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.151)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.151)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.152)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.152)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.152)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.153)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.153)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.153)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.154)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.154)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.154)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.155)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.155)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.155)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.156)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.156)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.156)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.157)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.157)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.157)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.158)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.158)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.158)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.159)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.159)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.159)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.160)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.160)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.160)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.161)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.161)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.161)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.162)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.162)
+	swl	$zero, 31($2)
+	swl	$zero, 27($2)
+	swl	$zero, 23($2)
+	swl	$zero, 19($2)
+	swl	$zero, 15($2)
+	swl	$zero, 11($2)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 28($2)
+	swr	$zero, 24($2)
+	swr	$zero, 20($2)
+	swr	$zero, 16($2)
+	swr	$zero, 12($2)
+	swr	$zero, 8($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.162)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.163)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.163)
+	ld	$25, %call16(memset)($gp)
+	ld	$gp, 32($fp)                    # 8-byte Folded Reload
+	.reloc .Ltmp124, R_MIPS_JALR, memset
+.Ltmp124:
+	jalr	$25
+	nop
+	ld	$5, 40($fp)                     # 8-byte Folded Reload
+	ld	$6, 48($fp)                     # 8-byte Folded Reload
+	ld	$1, %got_page(__llvm_gcov_ctr.164)($gp)
+	daddiu	$2, $1, %got_ofst(__llvm_gcov_ctr.164)
+	swl	$zero, 7($2)
+	swl	$zero, 3($2)
+	swr	$zero, 4($2)
+	swr	$zero, %got_ofst(__llvm_gcov_ctr.164)($1)
+	ld	$1, %got_page(__llvm_gcov_ctr.165)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_ctr.165)
+	ld	$25, %call16(memset)($gp)
+	.reloc .Ltmp125, R_MIPS_JALR, memset
+.Ltmp125:
+	jalr	$25
+	nop
+	move	$sp, $fp
+	ld	$gp, 56($sp)                    # 8-byte Folded Reload
+	ld	$fp, 64($sp)                    # 8-byte Folded Reload
+	ld	$ra, 72($sp)                    # 8-byte Folded Reload
+	daddiu	$sp, $sp, 80
+	jr	$ra
+	nop
+	.set	at
+	.set	macro
+	.set	reorder
+	.end	__llvm_gcov_reset
+.Lfunc_end167:
+	.size	__llvm_gcov_reset, .Lfunc_end167-__llvm_gcov_reset
+                                        # -- End function
+	.p2align	3                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+	.set	nomicromips
+	.set	nomips16
+	.ent	__llvm_gcov_init
+__llvm_gcov_init:                       # @__llvm_gcov_init
+	.frame	$fp,32,$ra
+	.mask 	0x00000000,0
+	.fmask	0x00000000,0
+	.set	noreorder
+	.set	nomacro
+	.set	noat
+# %bb.0:
+	daddiu	$sp, $sp, -32
+	sd	$ra, 24($sp)                    # 8-byte Folded Spill
+	sd	$fp, 16($sp)                    # 8-byte Folded Spill
+	sd	$gp, 8($sp)                     # 8-byte Folded Spill
+	move	$fp, $sp
+	lui	$1, %hi(%neg(%gp_rel(__llvm_gcov_init)))
+	daddu	$1, $1, $25
+	daddiu	$gp, $1, %lo(%neg(%gp_rel(__llvm_gcov_init)))
+	ld	$1, %got_page(__llvm_gcov_writeout)($gp)
+	daddiu	$4, $1, %got_ofst(__llvm_gcov_writeout)
+	ld	$1, %got_page(__llvm_gcov_reset)($gp)
+	daddiu	$5, $1, %got_ofst(__llvm_gcov_reset)
+	ld	$25, %call16(llvm_gcov_init)($gp)
+	.reloc .Ltmp126, R_MIPS_JALR, llvm_gcov_init
+.Ltmp126:
+	jalr	$25
+	nop
+	move	$sp, $fp
+	ld	$gp, 8($sp)                     # 8-byte Folded Reload
+	ld	$fp, 16($sp)                    # 8-byte Folded Reload
+	ld	$ra, 24($sp)                    # 8-byte Folded Reload
+	daddiu	$sp, $sp, 32
+	jr	$ra
+	nop
+	.set	at
+	.set	macro
+	.set	reorder
+	.end	__llvm_gcov_init
+.Lfunc_end168:
+	.size	__llvm_gcov_init, .Lfunc_end168-__llvm_gcov_init
+                                        # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.local	l64a.s
 	.comm	l64a.s,7,1
@@ -17548,6 +21902,1533 @@ digits:
 	.type	seed,@object                    # @seed
 	.local	seed
 	.comm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.local	__llvm_gcov_ctr
+	.comm	__llvm_gcov_ctr,8,8
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.local	__llvm_gcov_ctr.1
+	.comm	__llvm_gcov_ctr.1,8,8
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.local	__llvm_gcov_ctr.2
+	.comm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.local	__llvm_gcov_ctr.3
+	.comm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.local	__llvm_gcov_ctr.4
+	.comm	__llvm_gcov_ctr.4,40,16
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.local	__llvm_gcov_ctr.5
+	.comm	__llvm_gcov_ctr.5,40,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.local	__llvm_gcov_ctr.6
+	.comm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.local	__llvm_gcov_ctr.7
+	.comm	__llvm_gcov_ctr.7,24,16
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.local	__llvm_gcov_ctr.8
+	.comm	__llvm_gcov_ctr.8,16,8
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.local	__llvm_gcov_ctr.9
+	.comm	__llvm_gcov_ctr.9,16,8
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.local	__llvm_gcov_ctr.10
+	.comm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.local	__llvm_gcov_ctr.11
+	.comm	__llvm_gcov_ctr.11,24,16
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.local	__llvm_gcov_ctr.12
+	.comm	__llvm_gcov_ctr.12,32,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.local	__llvm_gcov_ctr.13
+	.comm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.local	__llvm_gcov_ctr.14
+	.comm	__llvm_gcov_ctr.14,56,16
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.local	__llvm_gcov_ctr.15
+	.comm	__llvm_gcov_ctr.15,16,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.local	__llvm_gcov_ctr.16
+	.comm	__llvm_gcov_ctr.16,8,8
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.local	__llvm_gcov_ctr.17
+	.comm	__llvm_gcov_ctr.17,8,8
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.local	__llvm_gcov_ctr.18
+	.comm	__llvm_gcov_ctr.18,24,16
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.local	__llvm_gcov_ctr.19
+	.comm	__llvm_gcov_ctr.19,24,16
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.local	__llvm_gcov_ctr.20
+	.comm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.local	__llvm_gcov_ctr.21
+	.comm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.local	__llvm_gcov_ctr.22
+	.comm	__llvm_gcov_ctr.22,8,8
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.local	__llvm_gcov_ctr.23
+	.comm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.local	__llvm_gcov_ctr.24
+	.comm	__llvm_gcov_ctr.24,24,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.local	__llvm_gcov_ctr.25
+	.comm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.local	__llvm_gcov_ctr.26
+	.comm	__llvm_gcov_ctr.26,40,16
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.local	__llvm_gcov_ctr.27
+	.comm	__llvm_gcov_ctr.27,8,8
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.local	__llvm_gcov_ctr.28
+	.comm	__llvm_gcov_ctr.28,56,16
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.local	__llvm_gcov_ctr.29
+	.comm	__llvm_gcov_ctr.29,24,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.local	__llvm_gcov_ctr.30
+	.comm	__llvm_gcov_ctr.30,8,8
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.local	__llvm_gcov_ctr.31
+	.comm	__llvm_gcov_ctr.31,32,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.local	__llvm_gcov_ctr.32
+	.comm	__llvm_gcov_ctr.32,32,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.local	__llvm_gcov_ctr.33
+	.comm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.local	__llvm_gcov_ctr.34
+	.comm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.local	__llvm_gcov_ctr.35
+	.comm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.local	__llvm_gcov_ctr.36
+	.comm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.local	__llvm_gcov_ctr.37
+	.comm	__llvm_gcov_ctr.37,48,16
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.local	__llvm_gcov_ctr.38
+	.comm	__llvm_gcov_ctr.38,48,16
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.local	__llvm_gcov_ctr.39
+	.comm	__llvm_gcov_ctr.39,16,8
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.local	__llvm_gcov_ctr.40
+	.comm	__llvm_gcov_ctr.40,8,8
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.local	__llvm_gcov_ctr.41
+	.comm	__llvm_gcov_ctr.41,8,8
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.local	__llvm_gcov_ctr.42
+	.comm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.local	__llvm_gcov_ctr.43
+	.comm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.local	__llvm_gcov_ctr.44
+	.comm	__llvm_gcov_ctr.44,24,16
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.local	__llvm_gcov_ctr.45
+	.comm	__llvm_gcov_ctr.45,24,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.local	__llvm_gcov_ctr.46
+	.comm	__llvm_gcov_ctr.46,16,8
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.local	__llvm_gcov_ctr.47
+	.comm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.local	__llvm_gcov_ctr.48
+	.comm	__llvm_gcov_ctr.48,48,16
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.local	__llvm_gcov_ctr.49
+	.comm	__llvm_gcov_ctr.49,48,16
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.local	__llvm_gcov_ctr.50
+	.comm	__llvm_gcov_ctr.50,32,16
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.local	__llvm_gcov_ctr.51
+	.comm	__llvm_gcov_ctr.51,32,16
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.local	__llvm_gcov_ctr.52
+	.comm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.local	__llvm_gcov_ctr.53
+	.comm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.local	__llvm_gcov_ctr.54
+	.comm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.local	__llvm_gcov_ctr.55
+	.comm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.local	__llvm_gcov_ctr.56
+	.comm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.local	__llvm_gcov_ctr.57
+	.comm	__llvm_gcov_ctr.57,16,8
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.local	__llvm_gcov_ctr.58
+	.comm	__llvm_gcov_ctr.58,8,8
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.local	__llvm_gcov_ctr.59
+	.comm	__llvm_gcov_ctr.59,40,16
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.local	__llvm_gcov_ctr.60
+	.comm	__llvm_gcov_ctr.60,48,16
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.local	__llvm_gcov_ctr.61
+	.comm	__llvm_gcov_ctr.61,16,8
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.local	__llvm_gcov_ctr.62
+	.comm	__llvm_gcov_ctr.62,16,8
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.local	__llvm_gcov_ctr.63
+	.comm	__llvm_gcov_ctr.63,64,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.local	__llvm_gcov_ctr.64
+	.comm	__llvm_gcov_ctr.64,40,16
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.local	__llvm_gcov_ctr.65
+	.comm	__llvm_gcov_ctr.65,48,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.local	__llvm_gcov_ctr.66
+	.comm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.local	__llvm_gcov_ctr.67
+	.comm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.local	__llvm_gcov_ctr.68
+	.comm	__llvm_gcov_ctr.68,16,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.local	__llvm_gcov_ctr.69
+	.comm	__llvm_gcov_ctr.69,40,16
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.local	__llvm_gcov_ctr.70
+	.comm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.local	__llvm_gcov_ctr.71
+	.comm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.local	__llvm_gcov_ctr.72
+	.comm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.local	__llvm_gcov_ctr.73
+	.comm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.local	__llvm_gcov_ctr.74
+	.comm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.local	__llvm_gcov_ctr.75
+	.comm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.local	__llvm_gcov_ctr.76
+	.comm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.local	__llvm_gcov_ctr.77
+	.comm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.local	__llvm_gcov_ctr.78
+	.comm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.local	__llvm_gcov_ctr.79
+	.comm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.local	__llvm_gcov_ctr.80
+	.comm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.local	__llvm_gcov_ctr.81
+	.comm	__llvm_gcov_ctr.81,8,8
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.local	__llvm_gcov_ctr.82
+	.comm	__llvm_gcov_ctr.82,8,8
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.local	__llvm_gcov_ctr.83
+	.comm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.local	__llvm_gcov_ctr.84
+	.comm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.local	__llvm_gcov_ctr.85
+	.comm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.local	__llvm_gcov_ctr.86
+	.comm	__llvm_gcov_ctr.86,24,16
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.local	__llvm_gcov_ctr.87
+	.comm	__llvm_gcov_ctr.87,24,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.local	__llvm_gcov_ctr.88
+	.comm	__llvm_gcov_ctr.88,8,8
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.local	__llvm_gcov_ctr.89
+	.comm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.local	__llvm_gcov_ctr.90
+	.comm	__llvm_gcov_ctr.90,40,16
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.local	__llvm_gcov_ctr.91
+	.comm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.local	__llvm_gcov_ctr.92
+	.comm	__llvm_gcov_ctr.92,16,8
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.local	__llvm_gcov_ctr.93
+	.comm	__llvm_gcov_ctr.93,40,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.local	__llvm_gcov_ctr.94
+	.comm	__llvm_gcov_ctr.94,32,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.local	__llvm_gcov_ctr.95
+	.comm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.local	__llvm_gcov_ctr.96
+	.comm	__llvm_gcov_ctr.96,24,16
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.local	__llvm_gcov_ctr.97
+	.comm	__llvm_gcov_ctr.97,32,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.local	__llvm_gcov_ctr.98
+	.comm	__llvm_gcov_ctr.98,40,16
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.local	__llvm_gcov_ctr.99
+	.comm	__llvm_gcov_ctr.99,48,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.local	__llvm_gcov_ctr.100
+	.comm	__llvm_gcov_ctr.100,8,8
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.local	__llvm_gcov_ctr.101
+	.comm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.local	__llvm_gcov_ctr.102
+	.comm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.local	__llvm_gcov_ctr.103
+	.comm	__llvm_gcov_ctr.103,64,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.local	__llvm_gcov_ctr.104
+	.comm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.local	__llvm_gcov_ctr.105
+	.comm	__llvm_gcov_ctr.105,24,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.local	__llvm_gcov_ctr.106
+	.comm	__llvm_gcov_ctr.106,24,16
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.local	__llvm_gcov_ctr.107
+	.comm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.local	__llvm_gcov_ctr.108
+	.comm	__llvm_gcov_ctr.108,48,16
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.local	__llvm_gcov_ctr.109
+	.comm	__llvm_gcov_ctr.109,48,16
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.local	__llvm_gcov_ctr.110
+	.comm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.local	__llvm_gcov_ctr.111
+	.comm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.local	__llvm_gcov_ctr.112
+	.comm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.local	__llvm_gcov_ctr.113
+	.comm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.local	__llvm_gcov_ctr.114
+	.comm	__llvm_gcov_ctr.114,8,8
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.local	__llvm_gcov_ctr.115
+	.comm	__llvm_gcov_ctr.115,8,8
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.local	__llvm_gcov_ctr.116
+	.comm	__llvm_gcov_ctr.116,24,16
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.local	__llvm_gcov_ctr.117
+	.comm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.local	__llvm_gcov_ctr.118
+	.comm	__llvm_gcov_ctr.118,16,8
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.local	__llvm_gcov_ctr.119
+	.comm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.local	__llvm_gcov_ctr.120
+	.comm	__llvm_gcov_ctr.120,24,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.local	__llvm_gcov_ctr.121
+	.comm	__llvm_gcov_ctr.121,24,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.local	__llvm_gcov_ctr.122
+	.comm	__llvm_gcov_ctr.122,32,16
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.local	__llvm_gcov_ctr.123
+	.comm	__llvm_gcov_ctr.123,64,16
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.local	__llvm_gcov_ctr.124
+	.comm	__llvm_gcov_ctr.124,24,16
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.local	__llvm_gcov_ctr.125
+	.comm	__llvm_gcov_ctr.125,24,16
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.local	__llvm_gcov_ctr.126
+	.comm	__llvm_gcov_ctr.126,8,8
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.local	__llvm_gcov_ctr.127
+	.comm	__llvm_gcov_ctr.127,8,8
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.local	__llvm_gcov_ctr.128
+	.comm	__llvm_gcov_ctr.128,56,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.local	__llvm_gcov_ctr.129
+	.comm	__llvm_gcov_ctr.129,32,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.local	__llvm_gcov_ctr.130
+	.comm	__llvm_gcov_ctr.130,32,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.local	__llvm_gcov_ctr.131
+	.comm	__llvm_gcov_ctr.131,64,16
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.local	__llvm_gcov_ctr.132
+	.comm	__llvm_gcov_ctr.132,64,16
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.local	__llvm_gcov_ctr.133
+	.comm	__llvm_gcov_ctr.133,24,16
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.local	__llvm_gcov_ctr.134
+	.comm	__llvm_gcov_ctr.134,24,16
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.local	__llvm_gcov_ctr.135
+	.comm	__llvm_gcov_ctr.135,24,16
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.local	__llvm_gcov_ctr.136
+	.comm	__llvm_gcov_ctr.136,24,16
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.local	__llvm_gcov_ctr.137
+	.comm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.local	__llvm_gcov_ctr.138
+	.comm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.local	__llvm_gcov_ctr.139
+	.comm	__llvm_gcov_ctr.139,8,8
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.local	__llvm_gcov_ctr.140
+	.comm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.local	__llvm_gcov_ctr.141
+	.comm	__llvm_gcov_ctr.141,40,16
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.local	__llvm_gcov_ctr.142
+	.comm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.local	__llvm_gcov_ctr.143
+	.comm	__llvm_gcov_ctr.143,40,16
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.local	__llvm_gcov_ctr.144
+	.comm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.local	__llvm_gcov_ctr.145
+	.comm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.local	__llvm_gcov_ctr.146
+	.comm	__llvm_gcov_ctr.146,24,16
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.local	__llvm_gcov_ctr.147
+	.comm	__llvm_gcov_ctr.147,24,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.local	__llvm_gcov_ctr.148
+	.comm	__llvm_gcov_ctr.148,24,16
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.local	__llvm_gcov_ctr.149
+	.comm	__llvm_gcov_ctr.149,8,8
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.local	__llvm_gcov_ctr.150
+	.comm	__llvm_gcov_ctr.150,8,8
+	.type	__llvm_gcov_ctr.151,@object     # @__llvm_gcov_ctr.151
+	.local	__llvm_gcov_ctr.151
+	.comm	__llvm_gcov_ctr.151,8,8
+	.type	__llvm_gcov_ctr.152,@object     # @__llvm_gcov_ctr.152
+	.local	__llvm_gcov_ctr.152
+	.comm	__llvm_gcov_ctr.152,8,8
+	.type	__llvm_gcov_ctr.153,@object     # @__llvm_gcov_ctr.153
+	.local	__llvm_gcov_ctr.153
+	.comm	__llvm_gcov_ctr.153,8,8
+	.type	__llvm_gcov_ctr.154,@object     # @__llvm_gcov_ctr.154
+	.local	__llvm_gcov_ctr.154
+	.comm	__llvm_gcov_ctr.154,8,8
+	.type	__llvm_gcov_ctr.155,@object     # @__llvm_gcov_ctr.155
+	.local	__llvm_gcov_ctr.155
+	.comm	__llvm_gcov_ctr.155,8,8
+	.type	__llvm_gcov_ctr.156,@object     # @__llvm_gcov_ctr.156
+	.local	__llvm_gcov_ctr.156
+	.comm	__llvm_gcov_ctr.156,8,8
+	.type	__llvm_gcov_ctr.157,@object     # @__llvm_gcov_ctr.157
+	.local	__llvm_gcov_ctr.157
+	.comm	__llvm_gcov_ctr.157,8,8
+	.type	__llvm_gcov_ctr.158,@object     # @__llvm_gcov_ctr.158
+	.local	__llvm_gcov_ctr.158
+	.comm	__llvm_gcov_ctr.158,8,8
+	.type	__llvm_gcov_ctr.159,@object     # @__llvm_gcov_ctr.159
+	.local	__llvm_gcov_ctr.159
+	.comm	__llvm_gcov_ctr.159,8,8
+	.type	__llvm_gcov_ctr.160,@object     # @__llvm_gcov_ctr.160
+	.local	__llvm_gcov_ctr.160
+	.comm	__llvm_gcov_ctr.160,8,8
+	.type	__llvm_gcov_ctr.161,@object     # @__llvm_gcov_ctr.161
+	.local	__llvm_gcov_ctr.161
+	.comm	__llvm_gcov_ctr.161,32,16
+	.type	__llvm_gcov_ctr.162,@object     # @__llvm_gcov_ctr.162
+	.local	__llvm_gcov_ctr.162
+	.comm	__llvm_gcov_ctr.162,32,16
+	.type	__llvm_gcov_ctr.163,@object     # @__llvm_gcov_ctr.163
+	.local	__llvm_gcov_ctr.163
+	.comm	__llvm_gcov_ctr.163,40,16
+	.type	__llvm_gcov_ctr.164,@object     # @__llvm_gcov_ctr.164
+	.local	__llvm_gcov_ctr.164
+	.comm	__llvm_gcov_ctr.164,8,8
+	.type	__llvm_gcov_ctr.165,@object     # @__llvm_gcov_ctr.165
+	.local	__llvm_gcov_ctr.165
+	.comm	__llvm_gcov_ctr.165,40,16
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-mips64.gcda"
+	.size	.L__unnamed_1, 50
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.4byte	0                               # 0x0
+	.4byte	3759012176                      # 0xe00df950
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	1                               # 0x1
+	.4byte	3518812481                      # 0xd1bcd141
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	2                               # 0x2
+	.4byte	560687177                       # 0x216b6849
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	3                               # 0x3
+	.4byte	1589591758                      # 0x5ebf3ece
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	4                               # 0x4
+	.4byte	2176136383                      # 0x81b534bf
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	5                               # 0x5
+	.4byte	3586625172                      # 0xd5c78e94
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	6                               # 0x6
+	.4byte	2323119728                      # 0x8a77fe70
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	7                               # 0x7
+	.4byte	2314569740                      # 0x89f5880c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	8                               # 0x8
+	.4byte	2833673551                      # 0xa8e66d4f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	9                               # 0x9
+	.4byte	1458633189                      # 0x56f0f9e5
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	10                              # 0xa
+	.4byte	1190300833                      # 0x46f28ca1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	11                              # 0xb
+	.4byte	758327989                       # 0x2d332ab5
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	12                              # 0xc
+	.4byte	1651479037                      # 0x626f91fd
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	13                              # 0xd
+	.4byte	4132343275                      # 0xf64e8deb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	14                              # 0xe
+	.4byte	734262523                       # 0x2bc3f4fb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	15                              # 0xf
+	.4byte	2463424677                      # 0x92d4e0a5
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	16                              # 0x10
+	.4byte	1419026334                      # 0x54949f9e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	17                              # 0x11
+	.4byte	3154471370                      # 0xbc0569ca
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	18                              # 0x12
+	.4byte	2077973487                      # 0x7bdb5bef
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	19                              # 0x13
+	.4byte	1474691227                      # 0x57e6009b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	20                              # 0x14
+	.4byte	3710986016                      # 0xdd312720
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	21                              # 0x15
+	.4byte	1305101473                      # 0x4dca44a1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	22                              # 0x16
+	.4byte	3762036564                      # 0xe03c1f54
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	23                              # 0x17
+	.4byte	477914433                       # 0x1c7c6541
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	24                              # 0x18
+	.4byte	3923035234                      # 0xe9d4c462
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	25                              # 0x19
+	.4byte	951651702                       # 0x38b90d76
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	26                              # 0x1a
+	.4byte	4206925919                      # 0xfac0985f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	27                              # 0x1b
+	.4byte	32773942                        # 0x1f41736
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	28                              # 0x1c
+	.4byte	2877267246                      # 0xab7f9d2e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	29                              # 0x1d
+	.4byte	860405771                       # 0x3348c00b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	30                              # 0x1e
+	.4byte	815674877                       # 0x309e35fd
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	31                              # 0x1f
+	.4byte	1778838753                      # 0x6a06ece1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	32                              # 0x20
+	.4byte	2718307199                      # 0xa206137f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	33                              # 0x21
+	.4byte	856224820                       # 0x3308f434
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	34                              # 0x22
+	.4byte	1111195143                      # 0x423b7e07
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	35                              # 0x23
+	.4byte	1178414519                      # 0x463d2db7
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	36                              # 0x24
+	.4byte	3477640633                      # 0xcf4895b9
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	37                              # 0x25
+	.4byte	4294770115                      # 0xfffcfdc3
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	38                              # 0x26
+	.4byte	3650660234                      # 0xd998a78a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	39                              # 0x27
+	.4byte	289327647                       # 0x113eca1f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	40                              # 0x28
+	.4byte	2093612798                      # 0x7cc9fefe
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	41                              # 0x29
+	.4byte	4177956716                      # 0xf9068f6c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	42                              # 0x2a
+	.4byte	3434808461                      # 0xccbb048d
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	43                              # 0x2b
+	.4byte	3206497114                      # 0xbf1f435a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	44                              # 0x2c
+	.4byte	1537257434                      # 0x5ba0afda
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	45                              # 0x2d
+	.4byte	3028077325                      # 0xb47ccb0d
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	46                              # 0x2e
+	.4byte	1369848209                      # 0x51a63991
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	47                              # 0x2f
+	.4byte	938831176                       # 0x37f56d48
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	48                              # 0x30
+	.4byte	1663146323                      # 0x63219953
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	49                              # 0x31
+	.4byte	4111410217                      # 0xf50f2429
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	50                              # 0x32
+	.4byte	1475378556                      # 0x57f07d7c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	51                              # 0x33
+	.4byte	3356195547                      # 0xc80b7adb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	52                              # 0x34
+	.4byte	514931786                       # 0x1eb13c4a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	53                              # 0x35
+	.4byte	2854034444                      # 0xaa1d1c0c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	54                              # 0x36
+	.4byte	2747937306                      # 0xa3ca321a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	55                              # 0x37
+	.4byte	4192776208                      # 0xf9e8b010
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	56                              # 0x38
+	.4byte	984436227                       # 0x3aad4e03
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	57                              # 0x39
+	.4byte	1477657574                      # 0x581343e6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	58                              # 0x3a
+	.4byte	1339127973                      # 0x4fd178a5
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	59                              # 0x3b
+	.4byte	2960567906                      # 0xb076ae62
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	60                              # 0x3c
+	.4byte	3390076872                      # 0xca1077c8
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	61                              # 0x3d
+	.4byte	1543282230                      # 0x5bfc9e36
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	62                              # 0x3e
+	.4byte	2934101789                      # 0xaee2d71d
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	63                              # 0x3f
+	.4byte	3737986119                      # 0xdecd2447
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	64                              # 0x40
+	.4byte	49556427                        # 0x2f42bcb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	65                              # 0x41
+	.4byte	234051526                       # 0xdf357c6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	66                              # 0x42
+	.4byte	2341800126                      # 0x8b9508be
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	67                              # 0x43
+	.4byte	3256799948                      # 0xc21ed2cc
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	68                              # 0x44
+	.4byte	777295480                       # 0x2e549678
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	69                              # 0x45
+	.4byte	14040531                        # 0xd63dd3
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	70                              # 0x46
+	.4byte	8047973                         # 0x7acd65
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	71                              # 0x47
+	.4byte	719459161                       # 0x2ae21359
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	72                              # 0x48
+	.4byte	243358501                       # 0xe815b25
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	73                              # 0x49
+	.4byte	3262173932                      # 0xc270d2ec
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	74                              # 0x4a
+	.4byte	398910553                       # 0x17c6e459
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	75                              # 0x4b
+	.4byte	3354219739                      # 0xc7ed54db
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	76                              # 0x4c
+	.4byte	2570308788                      # 0x9933ccb4
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	77                              # 0x4d
+	.4byte	982429111                       # 0x3a8eadb7
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	78                              # 0x4e
+	.4byte	211491241                       # 0xc9b19a9
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	79                              # 0x4f
+	.4byte	1075683319                      # 0x401d9ff7
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	80                              # 0x50
+	.4byte	1886352651                      # 0x706f750b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	81                              # 0x51
+	.4byte	248637203                       # 0xed1e713
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	82                              # 0x52
+	.4byte	703327087                       # 0x29ebeb6f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	83                              # 0x53
+	.4byte	3690160730                      # 0xdbf3625a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	84                              # 0x54
+	.4byte	787048238                       # 0x2ee9672e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	85                              # 0x55
+	.4byte	1937497967                      # 0x737bdf6f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	86                              # 0x56
+	.4byte	4205062514                      # 0xfaa42972
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	87                              # 0x57
+	.4byte	694462539                       # 0x2964a84b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	88                              # 0x58
+	.4byte	85970907                        # 0x51fcfdb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	89                              # 0x59
+	.4byte	3681984728                      # 0xdb76a0d8
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	90                              # 0x5a
+	.4byte	3620297642                      # 0xd7c95baa
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	91                              # 0x5b
+	.4byte	3394804480                      # 0xca589b00
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	92                              # 0x5c
+	.4byte	2119330183                      # 0x7e526987
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	93                              # 0x5d
+	.4byte	1963040266                      # 0x75019e0a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	94                              # 0x5e
+	.4byte	1603391838                      # 0x5f91d15e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	95                              # 0x5f
+	.4byte	2340921237                      # 0x8b879f95
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	96                              # 0x60
+	.4byte	3028177438                      # 0xb47e521e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	97                              # 0x61
+	.4byte	2265525308                      # 0x87092c3c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	98                              # 0x62
+	.4byte	2598903994                      # 0x9ae820ba
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	99                              # 0x63
+	.4byte	139524705                       # 0x850fa61
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	100                             # 0x64
+	.4byte	1076410600                      # 0x4028b8e8
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	101                             # 0x65
+	.4byte	220237413                       # 0xd208e65
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	102                             # 0x66
+	.4byte	3913623866                      # 0xe945293a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	103                             # 0x67
+	.4byte	3453026372                      # 0xcdd10044
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	104                             # 0x68
+	.4byte	2321387380                      # 0x8a5d8f74
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	105                             # 0x69
+	.4byte	3319939363                      # 0xc5e24123
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	106                             # 0x6a
+	.4byte	398991913                       # 0x17c82229
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	107                             # 0x6b
+	.4byte	333429647                       # 0x13dfbb8f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	108                             # 0x6c
+	.4byte	3927133990                      # 0xea134f26
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	109                             # 0x6d
+	.4byte	1797971294                      # 0x6b2add5e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	110                             # 0x6e
+	.4byte	1622314776                      # 0x60b28f18
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	111                             # 0x6f
+	.4byte	1092862330                      # 0x4123c17a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	112                             # 0x70
+	.4byte	2568657322                      # 0x991a99aa
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	113                             # 0x71
+	.4byte	2168129897                      # 0x813b0969
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	114                             # 0x72
+	.4byte	2890303119                      # 0xac46868f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	115                             # 0x73
+	.4byte	1713332582                      # 0x661f6166
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	116                             # 0x74
+	.4byte	2375727721                      # 0x8d9aba69
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	117                             # 0x75
+	.4byte	3586767156                      # 0xd5c9b934
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	118                             # 0x76
+	.4byte	2191348475                      # 0x829d52fb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	119                             # 0x77
+	.4byte	3910023869                      # 0xe90e3abd
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	120                             # 0x78
+	.4byte	4189915105                      # 0xf9bd07e1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	121                             # 0x79
+	.4byte	2527353334                      # 0x96a459f6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	122                             # 0x7a
+	.4byte	3429265923                      # 0xcc667203
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	123                             # 0x7b
+	.4byte	1283962724                      # 0x4c87b764
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	124                             # 0x7c
+	.4byte	1970290990                      # 0x7570412e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	125                             # 0x7d
+	.4byte	2615950861                      # 0x9bec3e0d
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	126                             # 0x7e
+	.4byte	3338450337                      # 0xc6fcb5a1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	127                             # 0x7f
+	.4byte	3971836509                      # 0xecbd6a5d
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	128                             # 0x80
+	.4byte	4260339231                      # 0xfdef9e1f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	129                             # 0x81
+	.4byte	4160738226                      # 0xf7ffd3b2
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	130                             # 0x82
+	.4byte	1309372079                      # 0x4e0b6eaf
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	131                             # 0x83
+	.4byte	3151575564                      # 0xbbd93a0c
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	132                             # 0x84
+	.4byte	3938977714                      # 0xeac807b2
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	133                             # 0x85
+	.4byte	3228738087                      # 0xc072a227
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	134                             # 0x86
+	.4byte	2262837051                      # 0x86e0273b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	135                             # 0x87
+	.4byte	3135705803                      # 0xbae712cb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	136                             # 0x88
+	.4byte	990447104                       # 0x3b090600
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	137                             # 0x89
+	.4byte	4061147315                      # 0xf21030b3
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	138                             # 0x8a
+	.4byte	2783543715                      # 0xa5e981a3
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	139                             # 0x8b
+	.4byte	2471046843                      # 0x93492ebb
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	140                             # 0x8c
+	.4byte	403058134                       # 0x18062dd6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	141                             # 0x8d
+	.4byte	260073473                       # 0xf806801
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	142                             # 0x8e
+	.4byte	1259876295                      # 0x4b182fc7
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	143                             # 0x8f
+	.4byte	2975678116                      # 0xb15d3ea4
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	144                             # 0x90
+	.4byte	2579807359                      # 0x99c4bc7f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	145                             # 0x91
+	.4byte	863102422                       # 0x3371e5d6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	146                             # 0x92
+	.4byte	650832017                       # 0x26cae891
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	147                             # 0x93
+	.4byte	90061610                        # 0x55e3b2a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	148                             # 0x94
+	.4byte	2446954539                      # 0x91d9902b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	149                             # 0x95
+	.4byte	3598610789                      # 0xd67e7165
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	150                             # 0x96
+	.4byte	2351688191                      # 0x8c2be9ff
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	151                             # 0x97
+	.4byte	1743478091                      # 0x67eb5d4b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	152                             # 0x98
+	.4byte	2798805217                      # 0xa6d260e1
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	153                             # 0x99
+	.4byte	1438161982                      # 0x55b89c3e
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	154                             # 0x9a
+	.4byte	273416875                       # 0x104c02ab
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	155                             # 0x9b
+	.4byte	2438880600                      # 0x915e5d58
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	156                             # 0x9c
+	.4byte	1284541841                      # 0x4c908d91
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	157                             # 0x9d
+	.4byte	3593193962                      # 0xd62bc9ea
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	158                             # 0x9e
+	.4byte	1755082314                      # 0x689c6e4a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	159                             # 0x9f
+	.4byte	3432612426                      # 0xcc99824a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	160                             # 0xa0
+	.4byte	1404964820                      # 0x53be0fd4
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	161                             # 0xa1
+	.4byte	3374828335                      # 0xc927cb2f
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	162                             # 0xa2
+	.4byte	3311814731                      # 0xc566484b
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	163                             # 0xa3
+	.4byte	413908966                       # 0x18abbfe6
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	164                             # 0xa4
+	.4byte	3027808697                      # 0xb478b1b9
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	165                             # 0xa5
+	.4byte	540762785                       # 0x203b62a1
+	.4byte	2102079853                      # 0x7d4b316d
+	.size	__llvm_internal_gcov_emit_function_args.0, 1992
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.section	.data.rel.ro,"aw",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.1
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.2
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.3
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.4
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.5
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.6
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.7
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.8
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.9
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.10
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.11
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.12
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.13
+	.4byte	7                               # 0x7
+	.space	4
+	.8byte	__llvm_gcov_ctr.14
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.15
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.16
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.17
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.18
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.19
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.20
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.21
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.22
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.23
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.24
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.25
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.26
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.27
+	.4byte	7                               # 0x7
+	.space	4
+	.8byte	__llvm_gcov_ctr.28
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.29
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.30
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.31
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.32
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.33
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.34
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.35
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.36
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.37
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.38
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.39
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.40
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.41
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.42
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.43
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.44
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.45
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.46
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.47
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.48
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.49
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.50
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.51
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.52
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.53
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.54
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.55
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.56
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.57
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.58
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.59
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.60
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.61
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.62
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.63
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.64
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.65
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.66
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.67
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.68
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.69
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.70
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.71
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.72
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.73
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.74
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.75
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.76
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.77
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.78
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.79
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.80
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.81
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.82
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.83
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.84
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.85
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.86
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.87
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.88
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.89
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.90
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.91
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.92
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.93
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.94
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.95
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.96
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.97
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.98
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.99
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.100
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.101
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.102
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.103
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.104
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.105
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.106
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.107
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.108
+	.4byte	6                               # 0x6
+	.space	4
+	.8byte	__llvm_gcov_ctr.109
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.110
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.111
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.112
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.113
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.114
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.115
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.116
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.117
+	.4byte	2                               # 0x2
+	.space	4
+	.8byte	__llvm_gcov_ctr.118
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.119
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.120
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.121
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.122
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.123
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.124
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.125
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.126
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.127
+	.4byte	7                               # 0x7
+	.space	4
+	.8byte	__llvm_gcov_ctr.128
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.129
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.130
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.131
+	.4byte	8                               # 0x8
+	.space	4
+	.8byte	__llvm_gcov_ctr.132
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.133
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.134
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.135
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.136
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.137
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.138
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.139
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.140
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.141
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.142
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.143
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.144
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.145
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.146
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.147
+	.4byte	3                               # 0x3
+	.space	4
+	.8byte	__llvm_gcov_ctr.148
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.149
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.150
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.151
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.152
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.153
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.154
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.155
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.156
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.157
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.158
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.159
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.160
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.161
+	.4byte	4                               # 0x4
+	.space	4
+	.8byte	__llvm_gcov_ctr.162
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.163
+	.4byte	1                               # 0x1
+	.space	4
+	.8byte	__llvm_gcov_ctr.164
+	.4byte	5                               # 0x5
+	.space	4
+	.8byte	__llvm_gcov_ctr.165
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 2656
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.8byte	.L__unnamed_1
+	.4byte	875575338                       # 0x3430382a
+	.4byte	2102079853                      # 0x7d4b316d
+	.4byte	166                             # 0xa6
+	.space	4
+	.8byte	__llvm_internal_gcov_emit_function_args.0
+	.8byte	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 40
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	3, 0x0
+	.8byte	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_make_ti,@object       # @__profc_make_ti
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
@@ -21387,9 +27268,181 @@ digits:
 	.addrsig_sym __muldsi3
 	.addrsig_sym __mulddi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
+	.addrsig_sym __llvm_gcov_ctr.151
+	.addrsig_sym __llvm_gcov_ctr.152
+	.addrsig_sym __llvm_gcov_ctr.153
+	.addrsig_sym __llvm_gcov_ctr.154
+	.addrsig_sym __llvm_gcov_ctr.155
+	.addrsig_sym __llvm_gcov_ctr.156
+	.addrsig_sym __llvm_gcov_ctr.157
+	.addrsig_sym __llvm_gcov_ctr.158
+	.addrsig_sym __llvm_gcov_ctr.159
+	.addrsig_sym __llvm_gcov_ctr.160
+	.addrsig_sym __llvm_gcov_ctr.161
+	.addrsig_sym __llvm_gcov_ctr.162
+	.addrsig_sym __llvm_gcov_ctr.163
+	.addrsig_sym __llvm_gcov_ctr.164
+	.addrsig_sym __llvm_gcov_ctr.165
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_make_ti
 	.addrsig_sym .L__profd_make_ti

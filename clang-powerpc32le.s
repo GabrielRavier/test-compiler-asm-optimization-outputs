@@ -33,6 +33,13 @@ memmove:                                # @memmove
 	bge %cr0, .LBB0_6
 	b .LBB0_1
 .LBB0_1:
+	lis %r4, __llvm_gcov_ctr@ha
+	lwzu %r3, __llvm_gcov_ctr@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memmove@ha
 	la %r4, .L__profc_memmove@l(%r3)
 	lwz %r3, 8(%r4)
@@ -74,6 +81,14 @@ memmove:                                # @memmove
 	stb %r3, -1(%r4)
 	b .LBB0_4
 .LBB0_4:                                #   in Loop: Header=BB0_2 Depth=1
+	lis %r3, __llvm_gcov_ctr@ha
+	la %r4, __llvm_gcov_ctr@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 16(%r31)
@@ -102,6 +117,14 @@ memmove:                                # @memmove
 	beq	%cr0, .LBB0_11
 	b .LBB0_9
 .LBB0_9:                                #   in Loop: Header=BB0_8 Depth=1
+	lis %r3, __llvm_gcov_ctr@ha
+	la %r4, __llvm_gcov_ctr@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_memmove@ha
 	la %r4, .L__profc_memmove@l(%r3)
 	lwz %r3, 32(%r4)
@@ -125,8 +148,24 @@ memmove:                                # @memmove
 	stw %r3, 16(%r31)
 	b .LBB0_8
 .LBB0_11:
+	lis %r3, __llvm_gcov_ctr@ha
+	la %r4, __llvm_gcov_ctr@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB0_12
 .LBB0_12:
+	lis %r3, __llvm_gcov_ctr@ha
+	la %r4, __llvm_gcov_ctr@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	b .LBB0_13
 .LBB0_13:
 	lwz %r3, 24(%r31)
@@ -176,6 +215,13 @@ memccpy:                                # @memccpy
 	beq	%cr0, .LBB1_4
 	b .LBB1_2
 .LBB1_2:                                #   in Loop: Header=BB1_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.1@ha
+	lwzu %r3, __llvm_gcov_ctr.1@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memccpy@ha
 	la %r4, .L__profc_memccpy@l(%r3)
 	lwz %r3, 16(%r4)
@@ -199,6 +245,14 @@ memccpy:                                # @memccpy
 	b .LBB1_3
 .LBB1_3:                                #   in Loop: Header=BB1_1 Depth=1
 	lwz %r3, 8(%r31)                        # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.1@ha
+	la %r5, __llvm_gcov_ctr.1@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_memccpy@ha
 	la %r5, .L__profc_memccpy@l(%r4)
 	lwz %r4, 24(%r5)
@@ -226,6 +280,14 @@ memccpy:                                # @memccpy
 	stw %r3, 8(%r4)
 	b .LBB1_6
 .LBB1_6:                                #   in Loop: Header=BB1_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.1@ha
+	la %r4, __llvm_gcov_ctr.1@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 24(%r31)
@@ -242,6 +304,14 @@ memccpy:                                # @memccpy
 	beq	%cr0, .LBB1_9
 	b .LBB1_8
 .LBB1_8:
+	lis %r3, __llvm_gcov_ctr.1@ha
+	la %r4, __llvm_gcov_ctr.1@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_memccpy@ha
 	la %r4, .L__profc_memccpy@l(%r3)
 	lwz %r3, 32(%r4)
@@ -255,6 +325,14 @@ memccpy:                                # @memccpy
 	stw %r3, 40(%r31)
 	b .LBB1_10
 .LBB1_9:
+	lis %r3, __llvm_gcov_ctr.1@ha
+	la %r4, __llvm_gcov_ctr.1@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 0
 	stw %r3, 40(%r31)
 	b .LBB1_10
@@ -303,6 +381,13 @@ memchr:                                 # @memchr
 	beq	%cr0, .LBB2_4
 	b .LBB2_2
 .LBB2_2:                                #   in Loop: Header=BB2_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.2@ha
+	lwzu %r3, __llvm_gcov_ctr.2@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memchr@ha
 	la %r4, .L__profc_memchr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -324,6 +409,14 @@ memchr:                                 # @memchr
 	b .LBB2_3
 .LBB2_3:                                #   in Loop: Header=BB2_1 Depth=1
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.2@ha
+	la %r5, __llvm_gcov_ctr.2@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_memchr@ha
 	la %r5, .L__profc_memchr@l(%r4)
 	lwz %r4, 24(%r5)
@@ -351,6 +444,14 @@ memchr:                                 # @memchr
 	stw %r3, 8(%r4)
 	b .LBB2_6
 .LBB2_6:                                #   in Loop: Header=BB2_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.2@ha
+	la %r4, __llvm_gcov_ctr.2@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 28(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 28(%r31)
@@ -364,6 +465,14 @@ memchr:                                 # @memchr
 	beq	%cr0, .LBB2_9
 	b .LBB2_8
 .LBB2_8:
+	lis %r3, __llvm_gcov_ctr.2@ha
+	la %r4, __llvm_gcov_ctr.2@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_memchr@ha
 	la %r4, .L__profc_memchr@l(%r3)
 	lwz %r3, 32(%r4)
@@ -376,6 +485,14 @@ memchr:                                 # @memchr
 	stw %r3, 16(%r31)                       # 4-byte Folded Spill
 	b .LBB2_10
 .LBB2_9:
+	lis %r3, __llvm_gcov_ctr.2@ha
+	la %r4, __llvm_gcov_ctr.2@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 0
 	stw %r3, 16(%r31)                       # 4-byte Folded Spill
 	b .LBB2_10
@@ -424,6 +541,13 @@ memcmp:                                 # @memcmp
 	beq	%cr0, .LBB3_4
 	b .LBB3_2
 .LBB3_2:                                #   in Loop: Header=BB3_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.3@ha
+	lwzu %r3, __llvm_gcov_ctr.3@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memcmp@ha
 	la %r4, .L__profc_memcmp@l(%r3)
 	lwz %r3, 16(%r4)
@@ -446,6 +570,14 @@ memcmp:                                 # @memcmp
 	b .LBB3_3
 .LBB3_3:                                #   in Loop: Header=BB3_1 Depth=1
 	lwz %r3, 16(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.3@ha
+	la %r5, __llvm_gcov_ctr.3@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_memcmp@ha
 	la %r5, .L__profc_memcmp@l(%r4)
 	lwz %r4, 24(%r5)
@@ -473,6 +605,14 @@ memcmp:                                 # @memcmp
 	stw %r3, 8(%r4)
 	b .LBB3_6
 .LBB3_6:                                #   in Loop: Header=BB3_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.3@ha
+	la %r4, __llvm_gcov_ctr.3@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 32(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 32(%r31)
@@ -489,6 +629,14 @@ memcmp:                                 # @memcmp
 	beq	%cr0, .LBB3_9
 	b .LBB3_8
 .LBB3_8:
+	lis %r3, __llvm_gcov_ctr.3@ha
+	la %r4, __llvm_gcov_ctr.3@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_memcmp@ha
 	la %r4, .L__profc_memcmp@l(%r3)
 	lwz %r3, 32(%r4)
@@ -505,6 +653,14 @@ memcmp:                                 # @memcmp
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB3_10
 .LBB3_9:
+	lis %r3, __llvm_gcov_ctr.3@ha
+	la %r4, __llvm_gcov_ctr.3@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 0
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB3_10
@@ -530,6 +686,13 @@ memcpy:                                 # @memcpy
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.4@ha
+	lwzu %r6, __llvm_gcov_ctr.4@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -569,6 +732,14 @@ memcpy:                                 # @memcpy
 	stb %r3, 0(%r4)
 	b .LBB4_3
 .LBB4_3:                                #   in Loop: Header=BB4_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.4@ha
+	la %r4, __llvm_gcov_ctr.4@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 16(%r31)
@@ -634,6 +805,13 @@ memrchr:                                # @memrchr
 	bne	%cr0, .LBB5_4
 	b .LBB5_3
 .LBB5_3:
+	lis %r4, __llvm_gcov_ctr.5@ha
+	lwzu %r3, __llvm_gcov_ctr.5@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memrchr@ha
 	la %r4, .L__profc_memrchr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -648,8 +826,24 @@ memrchr:                                # @memrchr
 	stw %r3, 24(%r31)
 	b .LBB5_6
 .LBB5_4:                                #   in Loop: Header=BB5_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.5@ha
+	la %r4, __llvm_gcov_ctr.5@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	b .LBB5_1
 .LBB5_5:
+	lis %r3, __llvm_gcov_ctr.5@ha
+	la %r4, __llvm_gcov_ctr.5@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB5_6
@@ -675,6 +869,13 @@ memset:                                 # @memset
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.6@ha
+	lwzu %r6, __llvm_gcov_ctr.6@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -707,6 +908,14 @@ memset:                                 # @memset
 	stb %r3, 0(%r4)
 	b .LBB6_3
 .LBB6_3:                                #   in Loop: Header=BB6_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.6@ha
+	la %r4, __llvm_gcov_ctr.6@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 16(%r31)
@@ -736,6 +945,13 @@ stpcpy:                                 # @stpcpy
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.7@ha
+	lwzu %r5, __llvm_gcov_ctr.7@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_stpcpy@ha
@@ -765,6 +981,14 @@ stpcpy:                                 # @stpcpy
 	stw %r3, 8(%r4)
 	b .LBB7_3
 .LBB7_3:                                #   in Loop: Header=BB7_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.7@ha
+	la %r4, __llvm_gcov_ctr.7@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -794,6 +1018,13 @@ strchrnul:                              # @strchrnul
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.8@ha
+	lwzu %r5, __llvm_gcov_ctr.8@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_strchrnul@ha
@@ -815,6 +1046,14 @@ strchrnul:                              # @strchrnul
 	beq	%cr0, .LBB8_4
 	b .LBB8_2
 .LBB8_2:                                #   in Loop: Header=BB8_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.8@ha
+	la %r4, __llvm_gcov_ctr.8@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strchrnul@ha
 	la %r4, .L__profc_strchrnul@l(%r3)
 	lwz %r3, 16(%r4)
@@ -836,6 +1075,14 @@ strchrnul:                              # @strchrnul
 	b .LBB8_3
 .LBB8_3:                                #   in Loop: Header=BB8_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.8@ha
+	la %r5, __llvm_gcov_ctr.8@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_strchrnul@ha
 	la %r5, .L__profc_strchrnul@l(%r4)
 	lwz %r4, 24(%r5)
@@ -863,6 +1110,14 @@ strchrnul:                              # @strchrnul
 	stw %r3, 8(%r4)
 	b .LBB8_6
 .LBB8_6:                                #   in Loop: Header=BB8_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.8@ha
+	la %r4, __llvm_gcov_ctr.8@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -900,6 +1155,14 @@ strchr:                                 # @strchr
 	stw %r3, 0(%r4)
 	b .LBB9_2
 .LBB9_1:                                #   in Loop: Header=BB9_2 Depth=1
+	lis %r3, __llvm_gcov_ctr.9@ha
+	la %r4, __llvm_gcov_ctr.9@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strchr@ha
 	la %r4, .L__profc_strchr@l(%r3)
 	lwz %r3, 8(%r4)
@@ -917,6 +1180,13 @@ strchr:                                 # @strchr
 	bne	%cr0, .LBB9_4
 	b .LBB9_3
 .LBB9_3:
+	lis %r4, __llvm_gcov_ctr.9@ha
+	lwzu %r3, __llvm_gcov_ctr.9@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_strchr@ha
 	la %r4, .L__profc_strchr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -939,6 +1209,14 @@ strchr:                                 # @strchr
 	bne	%cr0, .LBB9_1
 	b .LBB9_6
 .LBB9_6:
+	lis %r3, __llvm_gcov_ctr.9@ha
+	la %r4, __llvm_gcov_ctr.9@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB9_7
@@ -964,6 +1242,13 @@ strcmp:                                 # @strcmp
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.10@ha
+	lwzu %r5, __llvm_gcov_ctr.10@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_strcmp@ha
@@ -985,6 +1270,14 @@ strcmp:                                 # @strcmp
 	bne	%cr0, .LBB10_4
 	b .LBB10_2
 .LBB10_2:                               #   in Loop: Header=BB10_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.10@ha
+	la %r4, __llvm_gcov_ctr.10@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strcmp@ha
 	la %r4, .L__profc_strcmp@l(%r3)
 	lwz %r3, 16(%r4)
@@ -1004,6 +1297,14 @@ strcmp:                                 # @strcmp
 	b .LBB10_3
 .LBB10_3:                               #   in Loop: Header=BB10_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.10@ha
+	la %r5, __llvm_gcov_ctr.10@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_strcmp@ha
 	la %r5, .L__profc_strcmp@l(%r4)
 	lwz %r4, 24(%r5)
@@ -1031,6 +1332,14 @@ strcmp:                                 # @strcmp
 	stw %r3, 8(%r4)
 	b .LBB10_6
 .LBB10_6:                               #   in Loop: Header=BB10_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.10@ha
+	la %r4, __llvm_gcov_ctr.10@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -1064,6 +1373,13 @@ strlen:                                 # @strlen
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.11@ha
+	lwzu %r4, __llvm_gcov_ctr.11@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_strlen@ha
 	lwzu %r3, .L__profc_strlen@l(%r4)
@@ -1092,6 +1408,14 @@ strlen:                                 # @strlen
 	stw %r3, 8(%r4)
 	b .LBB11_3
 .LBB11_3:                               #   in Loop: Header=BB11_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.11@ha
+	la %r4, __llvm_gcov_ctr.11@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -1141,6 +1465,14 @@ strncmp:                                # @strncmp
 	bne	%cr0, .LBB12_2
 	b .LBB12_1
 .LBB12_1:
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r4, __llvm_gcov_ctr.12@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strncmp@ha
 	la %r4, .L__profc_strncmp@l(%r3)
 	lwz %r3, 8(%r4)
@@ -1153,6 +1485,13 @@ strncmp:                                # @strncmp
 	stw %r3, 40(%r31)
 	b .LBB12_14
 .LBB12_2:
+	lis %r4, __llvm_gcov_ctr.12@ha
+	lwzu %r3, __llvm_gcov_ctr.12@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	b .LBB12_3
 .LBB12_3:                               # =>This Inner Loop Header: Depth=1
 	lwz %r3, 24(%r31)
@@ -1163,6 +1502,14 @@ strncmp:                                # @strncmp
 	beq	%cr0, .LBB12_10
 	b .LBB12_4
 .LBB12_4:                               #   in Loop: Header=BB12_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r4, __llvm_gcov_ctr.12@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_strncmp@ha
 	la %r4, .L__profc_strncmp@l(%r3)
 	lwz %r3, 56(%r4)
@@ -1179,6 +1526,14 @@ strncmp:                                # @strncmp
 	beq	%cr0, .LBB12_10
 	b .LBB12_5
 .LBB12_5:                               #   in Loop: Header=BB12_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r4, __llvm_gcov_ctr.12@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_strncmp@ha
 	la %r4, .L__profc_strncmp@l(%r3)
 	lwz %r3, 64(%r4)
@@ -1204,6 +1559,14 @@ strncmp:                                # @strncmp
 	beq	%cr0, .LBB12_10
 	b .LBB12_7
 .LBB12_7:                               #   in Loop: Header=BB12_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r4, __llvm_gcov_ctr.12@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_strncmp@ha
 	la %r4, .L__profc_strncmp@l(%r3)
 	lwz %r3, 48(%r4)
@@ -1236,6 +1599,14 @@ strncmp:                                # @strncmp
 	b .LBB12_9
 .LBB12_9:                               #   in Loop: Header=BB12_3 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.12@ha
+	la %r5, __llvm_gcov_ctr.12@l(%r4)
+	lwz %r4, 40(%r5)
+	lwz %r6, 44(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 44(%r5)
+	stw %r4, 40(%r5)
 	lis %r4, .L__profc_strncmp@ha
 	la %r5, .L__profc_strncmp@l(%r4)
 	lwz %r4, 32(%r5)
@@ -1263,6 +1634,14 @@ strncmp:                                # @strncmp
 	stw %r3, 16(%r4)
 	b .LBB12_12
 .LBB12_12:                              #   in Loop: Header=BB12_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r4, __llvm_gcov_ctr.12@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -1303,6 +1682,13 @@ swab:                                   # @swab
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.13@ha
+	lwzu %r6, __llvm_gcov_ctr.13@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -1348,6 +1734,14 @@ swab:                                   # @swab
 	stw %r3, 12(%r31)
 	b .LBB13_3
 .LBB13_3:                               #   in Loop: Header=BB13_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.13@ha
+	la %r4, __llvm_gcov_ctr.13@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -2
 	stw %r3, 16(%r31)
@@ -1373,6 +1767,13 @@ isalpha:                                # @isalpha
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.14@ha
+	lwzu %r4, __llvm_gcov_ctr.14@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isalpha@ha
 	lwzu %r3, .L__profc_isalpha@l(%r4)
@@ -1415,6 +1816,13 @@ isascii:                                # @isascii
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.15@ha
+	lwzu %r4, __llvm_gcov_ctr.15@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc_isascii@ha
 	lwzu %r3, .L__profc_isascii@l(%r4)
@@ -1447,6 +1855,13 @@ isblank:                                # @isblank
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.16@ha
+	lwzu %r4, __llvm_gcov_ctr.16@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isblank@ha
 	lwzu %r3, .L__profc_isblank@l(%r4)
@@ -1462,6 +1877,14 @@ isblank:                                # @isblank
 	beq	%cr0, .LBB16_3
 	b .LBB16_1
 .LBB16_1:
+	lis %r3, __llvm_gcov_ctr.16@ha
+	la %r4, __llvm_gcov_ctr.16@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_isblank@ha
 	la %r4, .L__profc_isblank@l(%r3)
 	lwz %r3, 8(%r4)
@@ -1481,6 +1904,14 @@ isblank:                                # @isblank
 	b .LBB16_2
 .LBB16_2:
 	lwz %r3, 16(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.16@ha
+	la %r5, __llvm_gcov_ctr.16@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_isblank@ha
 	la %r5, .L__profc_isblank@l(%r4)
 	lwz %r4, 16(%r5)
@@ -1514,6 +1945,13 @@ iscntrl:                                # @iscntrl
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.17@ha
+	lwzu %r4, __llvm_gcov_ctr.17@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_iscntrl@ha
 	lwzu %r3, .L__profc_iscntrl@l(%r4)
@@ -1529,6 +1967,14 @@ iscntrl:                                # @iscntrl
 	blt	%cr0, .LBB17_3
 	b .LBB17_1
 .LBB17_1:
+	lis %r3, __llvm_gcov_ctr.17@ha
+	la %r4, __llvm_gcov_ctr.17@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_iscntrl@ha
 	la %r4, .L__profc_iscntrl@l(%r3)
 	lwz %r3, 8(%r4)
@@ -1548,6 +1994,14 @@ iscntrl:                                # @iscntrl
 	b .LBB17_2
 .LBB17_2:
 	lwz %r3, 16(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.17@ha
+	la %r5, __llvm_gcov_ctr.17@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_iscntrl@ha
 	la %r5, .L__profc_iscntrl@l(%r4)
 	lwz %r4, 16(%r5)
@@ -1581,6 +2035,13 @@ isdigit:                                # @isdigit
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.18@ha
+	lwzu %r4, __llvm_gcov_ctr.18@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isdigit@ha
 	lwzu %r3, .L__profc_isdigit@l(%r4)
@@ -1622,6 +2083,13 @@ isgraph:                                # @isgraph
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.19@ha
+	lwzu %r4, __llvm_gcov_ctr.19@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isgraph@ha
 	lwzu %r3, .L__profc_isgraph@l(%r4)
@@ -1663,6 +2131,13 @@ islower:                                # @islower
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.20@ha
+	lwzu %r4, __llvm_gcov_ctr.20@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_islower@ha
 	lwzu %r3, .L__profc_islower@l(%r4)
@@ -1704,6 +2179,13 @@ isprint:                                # @isprint
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.21@ha
+	lwzu %r4, __llvm_gcov_ctr.21@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isprint@ha
 	lwzu %r3, .L__profc_isprint@l(%r4)
@@ -1745,6 +2227,13 @@ isspace:                                # @isspace
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.22@ha
+	lwzu %r4, __llvm_gcov_ctr.22@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 40(%r31)
 	lis %r4, .L__profc_isspace@ha
 	lwzu %r3, .L__profc_isspace@l(%r4)
@@ -1760,6 +2249,14 @@ isspace:                                # @isspace
 	beq	%cr0, .LBB22_5
 	b .LBB22_1
 .LBB22_1:
+	lis %r3, __llvm_gcov_ctr.22@ha
+	la %r4, __llvm_gcov_ctr.22@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_isspace@ha
 	la %r4, .L__profc_isspace@l(%r3)
 	lwz %r3, 8(%r4)
@@ -1791,6 +2288,14 @@ isspace:                                # @isspace
 	b .LBB22_4
 .LBB22_4:
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.22@ha
+	la %r5, __llvm_gcov_ctr.22@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_isspace@ha
 	la %r5, .L__profc_isspace@l(%r4)
 	lwz %r4, 16(%r5)
@@ -1824,6 +2329,13 @@ isupper:                                # @isupper
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.23@ha
+	lwzu %r4, __llvm_gcov_ctr.23@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_isupper@ha
 	lwzu %r3, .L__profc_isupper@l(%r4)
@@ -1865,6 +2377,13 @@ iswcntrl:                               # @iswcntrl
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.24@ha
+	lwzu %r4, __llvm_gcov_ctr.24@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 40(%r31)
 	lis %r4, .L__profc_iswcntrl@ha
 	lwzu %r3, .L__profc_iswcntrl@l(%r4)
@@ -1880,6 +2399,14 @@ iswcntrl:                               # @iswcntrl
 	blt	%cr0, .LBB24_9
 	b .LBB24_1
 .LBB24_1:
+	lis %r3, __llvm_gcov_ctr.24@ha
+	la %r4, __llvm_gcov_ctr.24@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_iswcntrl@ha
 	la %r4, .L__profc_iswcntrl@l(%r3)
 	lwz %r3, 40(%r4)
@@ -1896,6 +2423,14 @@ iswcntrl:                               # @iswcntrl
 	blt	%cr0, .LBB24_9
 	b .LBB24_2
 .LBB24_2:
+	lis %r3, __llvm_gcov_ctr.24@ha
+	la %r4, __llvm_gcov_ctr.24@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_iswcntrl@ha
 	la %r4, .L__profc_iswcntrl@l(%r3)
 	lwz %r3, 48(%r4)
@@ -1922,6 +2457,14 @@ iswcntrl:                               # @iswcntrl
 	blt	%cr0, .LBB24_9
 	b .LBB24_4
 .LBB24_4:
+	lis %r3, __llvm_gcov_ctr.24@ha
+	la %r4, __llvm_gcov_ctr.24@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_iswcntrl@ha
 	la %r4, .L__profc_iswcntrl@l(%r3)
 	lwz %r3, 32(%r4)
@@ -1964,6 +2507,14 @@ iswcntrl:                               # @iswcntrl
 	b .LBB24_8
 .LBB24_8:
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.24@ha
+	la %r5, __llvm_gcov_ctr.24@l(%r4)
+	lwz %r4, 32(%r5)
+	lwz %r6, 36(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 36(%r5)
+	stw %r4, 32(%r5)
 	lis %r4, .L__profc_iswcntrl@ha
 	la %r5, .L__profc_iswcntrl@l(%r4)
 	lwz %r4, 16(%r5)
@@ -1997,6 +2548,13 @@ iswdigit:                               # @iswdigit
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.25@ha
+	lwzu %r4, __llvm_gcov_ctr.25@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_iswdigit@ha
 	lwzu %r3, .L__profc_iswdigit@l(%r4)
@@ -2051,6 +2609,13 @@ iswprint:                               # @iswprint
 	bgt	%cr0, .LBB26_4
 	b .LBB26_1
 .LBB26_1:
+	lis %r4, __llvm_gcov_ctr.26@ha
+	lwzu %r3, __llvm_gcov_ctr.26@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2081,6 +2646,14 @@ iswprint:                               # @iswprint
 	blt	%cr0, .LBB26_9
 	b .LBB26_5
 .LBB26_5:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 40(%r4)
@@ -2095,6 +2668,14 @@ iswprint:                               # @iswprint
 	blt	%cr0, .LBB26_9
 	b .LBB26_6
 .LBB26_6:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 48(%r4)
@@ -2130,6 +2711,14 @@ iswprint:                               # @iswprint
 	stw %r3, 32(%r4)
 	b .LBB26_10
 .LBB26_9:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 16(%r4)
@@ -2151,6 +2740,14 @@ iswprint:                               # @iswprint
 	bgt	%cr0, .LBB26_13
 	b .LBB26_11
 .LBB26_11:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 64(%r4)
@@ -2176,6 +2773,14 @@ iswprint:                               # @iswprint
 	stw %r3, 72(%r4)
 	b .LBB26_14
 .LBB26_13:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lis %r3, .L__profc_iswprint@ha
 	la %r4, .L__profc_iswprint@l(%r3)
 	lwz %r3, 56(%r4)
@@ -2188,6 +2793,14 @@ iswprint:                               # @iswprint
 	stw %r3, 24(%r31)
 	b .LBB26_15
 .LBB26_14:
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r4, __llvm_gcov_ctr.26@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	li %r3, 1
 	stw %r3, 24(%r31)
 	b .LBB26_15
@@ -2213,6 +2826,13 @@ iswxdigit:                              # @iswxdigit
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.27@ha
+	lwzu %r4, __llvm_gcov_ctr.27@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 40(%r31)
 	lis %r4, .L__profc_iswxdigit@ha
 	lwzu %r3, .L__profc_iswxdigit@l(%r4)
@@ -2229,6 +2849,14 @@ iswxdigit:                              # @iswxdigit
 	blt	%cr0, .LBB27_5
 	b .LBB27_1
 .LBB27_1:
+	lis %r3, __llvm_gcov_ctr.27@ha
+	la %r4, __llvm_gcov_ctr.27@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_iswxdigit@ha
 	la %r4, .L__profc_iswxdigit@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2261,6 +2889,14 @@ iswxdigit:                              # @iswxdigit
 	b .LBB27_4
 .LBB27_4:
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.27@ha
+	la %r5, __llvm_gcov_ctr.27@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_iswxdigit@ha
 	la %r5, .L__profc_iswxdigit@l(%r4)
 	lwz %r4, 16(%r5)
@@ -2294,6 +2930,13 @@ toascii:                                # @toascii
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.28@ha
+	lwzu %r4, __llvm_gcov_ctr.28@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc_toascii@ha
 	lwzu %r3, .L__profc_toascii@l(%r4)
@@ -2377,6 +3020,13 @@ fdim:                                   # @fdim
 	bne	%cr0, .LBB29_6
 	b .LBB29_5
 .LBB29_5:
+	lis %r4, __llvm_gcov_ctr.29@ha
+	lwzu %r3, __llvm_gcov_ctr.29@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fdim@ha
 	la %r4, .L__profc_fdim@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2426,6 +3076,14 @@ fdim:                                   # @fdim
 	bne	%cr0, .LBB29_12
 	b .LBB29_11
 .LBB29_11:
+	lis %r3, __llvm_gcov_ctr.29@ha
+	la %r4, __llvm_gcov_ctr.29@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fdim@ha
 	la %r4, .L__profc_fdim@l(%r3)
 	lwz %r3, 16(%r4)
@@ -2449,6 +3107,14 @@ fdim:                                   # @fdim
 	blt	%cr0, .LBB29_14
 	b .LBB29_13
 .LBB29_13:
+	lis %r3, __llvm_gcov_ctr.29@ha
+	la %r4, __llvm_gcov_ctr.29@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fdim@ha
 	la %r4, .L__profc_fdim@l(%r3)
 	lwz %r3, 24(%r4)
@@ -2466,6 +3132,14 @@ fdim:                                   # @fdim
 	stw %r4, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB29_15
 .LBB29_14:
+	lis %r3, __llvm_gcov_ctr.29@ha
+	la %r4, __llvm_gcov_ctr.29@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	li %r3, 0
 	mr	%r4, %r3
 	stw %r4, 8(%r31)                        # 4-byte Folded Spill
@@ -2524,6 +3198,13 @@ fdimf:                                  # @fdimf
 	blt	%cr0, .LBB30_2
 	b .LBB30_1
 .LBB30_1:
+	lis %r4, __llvm_gcov_ctr.30@ha
+	lwzu %r3, __llvm_gcov_ctr.30@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fdimf@ha
 	la %r4, .L__profc_fdimf@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2544,6 +3225,14 @@ fdimf:                                  # @fdimf
 	blt	%cr0, .LBB30_4
 	b .LBB30_3
 .LBB30_3:
+	lis %r3, __llvm_gcov_ctr.30@ha
+	la %r4, __llvm_gcov_ctr.30@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fdimf@ha
 	la %r4, .L__profc_fdimf@l(%r3)
 	lwz %r3, 16(%r4)
@@ -2563,6 +3252,14 @@ fdimf:                                  # @fdimf
 	blt	%cr0, .LBB30_6
 	b .LBB30_5
 .LBB30_5:
+	lis %r3, __llvm_gcov_ctr.30@ha
+	la %r4, __llvm_gcov_ctr.30@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fdimf@ha
 	la %r4, .L__profc_fdimf@l(%r3)
 	lwz %r3, 24(%r4)
@@ -2577,6 +3274,14 @@ fdimf:                                  # @fdimf
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB30_7
 .LBB30_6:
+	lis %r3, __llvm_gcov_ctr.30@ha
+	la %r4, __llvm_gcov_ctr.30@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	li %r3, 0
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB30_7
@@ -2661,6 +3366,13 @@ fmax:                                   # @fmax
 	bne	%cr0, .LBB31_6
 	b .LBB31_5
 .LBB31_5:
+	lis %r4, __llvm_gcov_ctr.31@ha
+	lwzu %r3, __llvm_gcov_ctr.31@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fmax@ha
 	la %r4, .L__profc_fmax@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2710,6 +3422,14 @@ fmax:                                   # @fmax
 	bne	%cr0, .LBB31_12
 	b .LBB31_11
 .LBB31_11:
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r4, __llvm_gcov_ctr.31@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fmax@ha
 	la %r4, .L__profc_fmax@l(%r3)
 	lwz %r3, 16(%r4)
@@ -2745,6 +3465,14 @@ fmax:                                   # @fmax
 	bgt	%cr0, .LBB31_15
 	b .LBB31_14
 .LBB31_14:
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r4, __llvm_gcov_ctr.31@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fmax@ha
 	la %r4, .L__profc_fmax@l(%r3)
 	lwz %r3, 32(%r4)
@@ -2759,6 +3487,14 @@ fmax:                                   # @fmax
 	stw %r3, 28(%r31)                       # 4-byte Folded Spill
 	b .LBB31_16
 .LBB31_15:
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r4, __llvm_gcov_ctr.31@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 92(%r31)
 	lwz %r4, 88(%r31)
 	stw %r4, 24(%r31)                       # 4-byte Folded Spill
@@ -2780,6 +3516,14 @@ fmax:                                   # @fmax
 	bgt	%cr0, .LBB31_19
 	b .LBB31_18
 .LBB31_18:
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r4, __llvm_gcov_ctr.31@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fmax@ha
 	la %r4, .L__profc_fmax@l(%r3)
 	lwz %r3, 40(%r4)
@@ -2794,6 +3538,14 @@ fmax:                                   # @fmax
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB31_20
 .LBB31_19:
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r4, __llvm_gcov_ctr.31@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 92(%r31)
 	lwz %r4, 88(%r31)
 	stw %r4, 16(%r31)                       # 4-byte Folded Spill
@@ -2852,6 +3604,13 @@ fmaxf:                                  # @fmaxf
 	blt	%cr0, .LBB32_2
 	b .LBB32_1
 .LBB32_1:
+	lis %r4, __llvm_gcov_ctr.32@ha
+	lwzu %r3, __llvm_gcov_ctr.32@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fmaxf@ha
 	la %r4, .L__profc_fmaxf@l(%r3)
 	lwz %r3, 8(%r4)
@@ -2872,6 +3631,14 @@ fmaxf:                                  # @fmaxf
 	blt	%cr0, .LBB32_4
 	b .LBB32_3
 .LBB32_3:
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r4, __llvm_gcov_ctr.32@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fmaxf@ha
 	la %r4, .L__profc_fmaxf@l(%r3)
 	lwz %r3, 16(%r4)
@@ -2905,6 +3672,14 @@ fmaxf:                                  # @fmaxf
 	bgt	%cr0, .LBB32_7
 	b .LBB32_6
 .LBB32_6:
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r4, __llvm_gcov_ctr.32@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fmaxf@ha
 	la %r4, .L__profc_fmaxf@l(%r3)
 	lwz %r3, 32(%r4)
@@ -2917,6 +3692,14 @@ fmaxf:                                  # @fmaxf
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB32_8
 .LBB32_7:
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r4, __llvm_gcov_ctr.32@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 20(%r31)
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB32_8
@@ -2932,6 +3715,14 @@ fmaxf:                                  # @fmaxf
 	bgt	%cr0, .LBB32_11
 	b .LBB32_10
 .LBB32_10:
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r4, __llvm_gcov_ctr.32@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fmaxf@ha
 	la %r4, .L__profc_fmaxf@l(%r3)
 	lwz %r3, 40(%r4)
@@ -2944,6 +3735,14 @@ fmaxf:                                  # @fmaxf
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB32_12
 .LBB32_11:
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r4, __llvm_gcov_ctr.32@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 20(%r31)
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB32_12
@@ -3036,6 +3835,13 @@ fmaxl:                                  # @fmaxl
 	bne	%cr0, .LBB33_6
 	b .LBB33_5
 .LBB33_5:
+	lis %r4, __llvm_gcov_ctr.33@ha
+	lwzu %r3, __llvm_gcov_ctr.33@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fmaxl@ha
 	la %r4, .L__profc_fmaxl@l(%r3)
 	lwz %r3, 8(%r4)
@@ -3089,6 +3895,14 @@ fmaxl:                                  # @fmaxl
 	bne	%cr0, .LBB33_12
 	b .LBB33_11
 .LBB33_11:
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r4, __llvm_gcov_ctr.33@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fmaxl@ha
 	la %r4, .L__profc_fmaxl@l(%r3)
 	lwz %r3, 16(%r4)
@@ -3128,6 +3942,14 @@ fmaxl:                                  # @fmaxl
 	bgt	%cr0, .LBB33_15
 	b .LBB33_14
 .LBB33_14:
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r4, __llvm_gcov_ctr.33@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fmaxl@ha
 	la %r4, .L__profc_fmaxl@l(%r3)
 	lwz %r3, 32(%r4)
@@ -3146,6 +3968,14 @@ fmaxl:                                  # @fmaxl
 	stw %r3, 44(%r31)                       # 4-byte Folded Spill
 	b .LBB33_16
 .LBB33_15:
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r4, __llvm_gcov_ctr.33@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 124(%r31)
 	lwz %r4, 120(%r31)
 	lwz %r5, 116(%r31)
@@ -3179,6 +4009,14 @@ fmaxl:                                  # @fmaxl
 	bgt	%cr0, .LBB33_19
 	b .LBB33_18
 .LBB33_18:
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r4, __llvm_gcov_ctr.33@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fmaxl@ha
 	la %r4, .L__profc_fmaxl@l(%r3)
 	lwz %r3, 40(%r4)
@@ -3197,6 +4035,14 @@ fmaxl:                                  # @fmaxl
 	stw %r3, 28(%r31)                       # 4-byte Folded Spill
 	b .LBB33_20
 .LBB33_19:
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r4, __llvm_gcov_ctr.33@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 124(%r31)
 	lwz %r4, 120(%r31)
 	lwz %r5, 116(%r31)
@@ -3296,6 +4142,13 @@ fmin:                                   # @fmin
 	bne	%cr0, .LBB34_6
 	b .LBB34_5
 .LBB34_5:
+	lis %r4, __llvm_gcov_ctr.34@ha
+	lwzu %r3, __llvm_gcov_ctr.34@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fmin@ha
 	la %r4, .L__profc_fmin@l(%r3)
 	lwz %r3, 8(%r4)
@@ -3345,6 +4198,14 @@ fmin:                                   # @fmin
 	bne	%cr0, .LBB34_12
 	b .LBB34_11
 .LBB34_11:
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r4, __llvm_gcov_ctr.34@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fmin@ha
 	la %r4, .L__profc_fmin@l(%r3)
 	lwz %r3, 16(%r4)
@@ -3380,6 +4241,14 @@ fmin:                                   # @fmin
 	bgt	%cr0, .LBB34_15
 	b .LBB34_14
 .LBB34_14:
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r4, __llvm_gcov_ctr.34@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fmin@ha
 	la %r4, .L__profc_fmin@l(%r3)
 	lwz %r3, 32(%r4)
@@ -3394,6 +4263,14 @@ fmin:                                   # @fmin
 	stw %r3, 28(%r31)                       # 4-byte Folded Spill
 	b .LBB34_16
 .LBB34_15:
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r4, __llvm_gcov_ctr.34@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 84(%r31)
 	lwz %r4, 80(%r31)
 	stw %r4, 24(%r31)                       # 4-byte Folded Spill
@@ -3415,6 +4292,14 @@ fmin:                                   # @fmin
 	bgt	%cr0, .LBB34_19
 	b .LBB34_18
 .LBB34_18:
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r4, __llvm_gcov_ctr.34@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fmin@ha
 	la %r4, .L__profc_fmin@l(%r3)
 	lwz %r3, 40(%r4)
@@ -3429,6 +4314,14 @@ fmin:                                   # @fmin
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB34_20
 .LBB34_19:
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r4, __llvm_gcov_ctr.34@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 84(%r31)
 	lwz %r4, 80(%r31)
 	stw %r4, 16(%r31)                       # 4-byte Folded Spill
@@ -3487,6 +4380,13 @@ fminf:                                  # @fminf
 	blt	%cr0, .LBB35_2
 	b .LBB35_1
 .LBB35_1:
+	lis %r4, __llvm_gcov_ctr.35@ha
+	lwzu %r3, __llvm_gcov_ctr.35@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fminf@ha
 	la %r4, .L__profc_fminf@l(%r3)
 	lwz %r3, 8(%r4)
@@ -3507,6 +4407,14 @@ fminf:                                  # @fminf
 	blt	%cr0, .LBB35_4
 	b .LBB35_3
 .LBB35_3:
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r4, __llvm_gcov_ctr.35@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fminf@ha
 	la %r4, .L__profc_fminf@l(%r3)
 	lwz %r3, 16(%r4)
@@ -3540,6 +4448,14 @@ fminf:                                  # @fminf
 	bgt	%cr0, .LBB35_7
 	b .LBB35_6
 .LBB35_6:
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r4, __llvm_gcov_ctr.35@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fminf@ha
 	la %r4, .L__profc_fminf@l(%r3)
 	lwz %r3, 32(%r4)
@@ -3552,6 +4468,14 @@ fminf:                                  # @fminf
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB35_8
 .LBB35_7:
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r4, __llvm_gcov_ctr.35@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 16(%r31)
 	stw %r3, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB35_8
@@ -3567,6 +4491,14 @@ fminf:                                  # @fminf
 	bgt	%cr0, .LBB35_11
 	b .LBB35_10
 .LBB35_10:
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r4, __llvm_gcov_ctr.35@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fminf@ha
 	la %r4, .L__profc_fminf@l(%r3)
 	lwz %r3, 40(%r4)
@@ -3579,6 +4511,14 @@ fminf:                                  # @fminf
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB35_12
 .LBB35_11:
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r4, __llvm_gcov_ctr.35@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 16(%r31)
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB35_12
@@ -3671,6 +4611,13 @@ fminl:                                  # @fminl
 	bne	%cr0, .LBB36_6
 	b .LBB36_5
 .LBB36_5:
+	lis %r4, __llvm_gcov_ctr.36@ha
+	lwzu %r3, __llvm_gcov_ctr.36@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_fminl@ha
 	la %r4, .L__profc_fminl@l(%r3)
 	lwz %r3, 8(%r4)
@@ -3724,6 +4671,14 @@ fminl:                                  # @fminl
 	bne	%cr0, .LBB36_12
 	b .LBB36_11
 .LBB36_11:
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r4, __llvm_gcov_ctr.36@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_fminl@ha
 	la %r4, .L__profc_fminl@l(%r3)
 	lwz %r3, 16(%r4)
@@ -3763,6 +4718,14 @@ fminl:                                  # @fminl
 	bgt	%cr0, .LBB36_15
 	b .LBB36_14
 .LBB36_14:
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r4, __llvm_gcov_ctr.36@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_fminl@ha
 	la %r4, .L__profc_fminl@l(%r3)
 	lwz %r3, 32(%r4)
@@ -3781,6 +4744,14 @@ fminl:                                  # @fminl
 	stw %r3, 44(%r31)                       # 4-byte Folded Spill
 	b .LBB36_16
 .LBB36_15:
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r4, __llvm_gcov_ctr.36@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 108(%r31)
 	lwz %r4, 104(%r31)
 	lwz %r5, 100(%r31)
@@ -3814,6 +4785,14 @@ fminl:                                  # @fminl
 	bgt	%cr0, .LBB36_19
 	b .LBB36_18
 .LBB36_18:
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r4, __llvm_gcov_ctr.36@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_fminl@ha
 	la %r4, .L__profc_fminl@l(%r3)
 	lwz %r3, 40(%r4)
@@ -3832,6 +4811,14 @@ fminl:                                  # @fminl
 	stw %r3, 28(%r31)                       # 4-byte Folded Spill
 	b .LBB36_20
 .LBB36_19:
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r4, __llvm_gcov_ctr.36@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 108(%r31)
 	lwz %r4, 104(%r31)
 	lwz %r5, 100(%r31)
@@ -3878,6 +4865,13 @@ l64a:                                   # @l64a
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.37@ha
+	lwzu %r4, __llvm_gcov_ctr.37@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_l64a@ha
 	lwzu %r3, .L__profc_l64a@l(%r4)
@@ -3915,6 +4909,14 @@ l64a:                                   # @l64a
 	stb %r3, 0(%r4)
 	b .LBB37_3
 .LBB37_3:                               #   in Loop: Header=BB37_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.37@ha
+	la %r4, __llvm_gcov_ctr.37@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -3948,6 +4950,13 @@ srand:                                  # @srand
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.38@ha
+	lwzu %r4, __llvm_gcov_ctr.38@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc_srand@ha
 	lwzu %r3, .L__profc_srand@l(%r4)
@@ -3982,6 +4991,13 @@ rand:                                   # @rand
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r4, __llvm_gcov_ctr.39@ha
+	lwzu %r3, __llvm_gcov_ctr.39@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r4, .L__profc_rand@ha
 	lwzu %r3, .L__profc_rand@l(%r4)
 	lwz %r5, 4(%r4)
@@ -4046,6 +5062,14 @@ insque:                                 # @insque
 	bne	%cr0, .LBB40_2
 	b .LBB40_1
 .LBB40_1:
+	lis %r3, __llvm_gcov_ctr.40@ha
+	la %r4, __llvm_gcov_ctr.40@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_insque@ha
 	la %r4, .L__profc_insque@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4061,6 +5085,13 @@ insque:                                 # @insque
 	stw %r3, 0(%r4)
 	b .LBB40_4
 .LBB40_2:
+	lis %r4, __llvm_gcov_ctr.40@ha
+	lwzu %r3, __llvm_gcov_ctr.40@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lwz %r3, 12(%r31)
 	lwz %r3, 0(%r3)
 	lwz %r4, 16(%r31)
@@ -4077,6 +5108,14 @@ insque:                                 # @insque
 	beq	%cr0, .LBB40_4
 	b .LBB40_3
 .LBB40_3:
+	lis %r3, __llvm_gcov_ctr.40@ha
+	la %r4, __llvm_gcov_ctr.40@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_insque@ha
 	la %r4, .L__profc_insque@l(%r3)
 	lwz %r3, 16(%r4)
@@ -4110,6 +5149,13 @@ remque:                                 # @remque
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.41@ha
+	lwzu %r4, __llvm_gcov_ctr.41@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_remque@ha
 	lwzu %r3, .L__profc_remque@l(%r4)
@@ -4126,6 +5172,14 @@ remque:                                 # @remque
 	beq	%cr0, .LBB41_2
 	b .LBB41_1
 .LBB41_1:
+	lis %r3, __llvm_gcov_ctr.41@ha
+	la %r4, __llvm_gcov_ctr.41@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_remque@ha
 	la %r4, .L__profc_remque@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4146,6 +5200,14 @@ remque:                                 # @remque
 	beq	%cr0, .LBB41_4
 	b .LBB41_3
 .LBB41_3:
+	lis %r3, __llvm_gcov_ctr.41@ha
+	la %r4, __llvm_gcov_ctr.41@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_remque@ha
 	la %r4, .L__profc_remque@l(%r3)
 	lwz %r3, 16(%r4)
@@ -4234,6 +5296,13 @@ lsearch:                                # @lsearch
 	b .LBB42_3
 .LBB42_3:
 	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.42@ha
+	lwzu %r3, __llvm_gcov_ctr.42@l(%r4)
+	lwz %r6, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r6, %r6
+	stw %r6, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_lsearch@ha
 	la %r4, .L__profc_lsearch@l(%r3)
 	lwz %r3, 16(%r4)
@@ -4251,12 +5320,28 @@ lsearch:                                # @lsearch
 .LBB42_4:                               #   in Loop: Header=BB42_1 Depth=1
 	b .LBB42_5
 .LBB42_5:                               #   in Loop: Header=BB42_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.42@ha
+	la %r4, __llvm_gcov_ctr.42@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
 	b .LBB42_1
 .LBB42_6:
 	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.42@ha
+	la %r4, __llvm_gcov_ctr.42@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r6, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r6, %r6
+	stw %r6, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 28(%r31)
 	addi %r3, %r3, 1
 	lwz %r4, 44(%r31)
@@ -4351,6 +5436,13 @@ lfind:                                  # @lfind
 	b .LBB43_3
 .LBB43_3:
 	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.43@ha
+	lwzu %r3, __llvm_gcov_ctr.43@l(%r4)
+	lwz %r6, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r6, %r6
+	stw %r6, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_lfind@ha
 	la %r4, .L__profc_lfind@l(%r3)
 	lwz %r3, 16(%r4)
@@ -4368,11 +5460,27 @@ lfind:                                  # @lfind
 .LBB43_4:                               #   in Loop: Header=BB43_1 Depth=1
 	b .LBB43_5
 .LBB43_5:                               #   in Loop: Header=BB43_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.43@ha
+	la %r4, __llvm_gcov_ctr.43@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 24(%r31)
 	b .LBB43_1
 .LBB43_6:
+	lis %r3, __llvm_gcov_ctr.43@ha
+	la %r4, __llvm_gcov_ctr.43@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 56(%r31)
 	b .LBB43_7
@@ -4413,6 +5521,13 @@ abs:                                    # @abs
 	blt	%cr0, .LBB44_2
 	b .LBB44_1
 .LBB44_1:
+	lis %r4, __llvm_gcov_ctr.44@ha
+	lwzu %r3, __llvm_gcov_ctr.44@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_abs@ha
 	la %r4, .L__profc_abs@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4425,6 +5540,14 @@ abs:                                    # @abs
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB44_3
 .LBB44_2:
+	lis %r3, __llvm_gcov_ctr.44@ha
+	la %r4, __llvm_gcov_ctr.44@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	neg %r3, %r3
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
@@ -4477,6 +5600,13 @@ atoi:                                   # @atoi
 	beq	%cr0, .LBB45_3
 	b .LBB45_2
 .LBB45_2:                               #   in Loop: Header=BB45_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.45@ha
+	lwzu %r3, __llvm_gcov_ctr.45@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_atoi@ha
 	la %r4, .L__profc_atoi@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4502,6 +5632,14 @@ atoi:                                   # @atoi
 	bne	%cr0, .LBB45_8
 	b .LBB45_5
 .LBB45_5:
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r4, __llvm_gcov_ctr.45@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_atoi@ha
 	la %r4, .L__profc_atoi@l(%r3)
 	lwz %r3, 24(%r4)
@@ -4514,6 +5652,14 @@ atoi:                                   # @atoi
 	stw %r3, 16(%r31)
 	b .LBB45_7
 .LBB45_6:
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r4, __llvm_gcov_ctr.45@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_atoi@ha
 	la %r4, .L__profc_atoi@l(%r3)
 	lwz %r3, 32(%r4)
@@ -4549,6 +5695,14 @@ atoi:                                   # @atoi
 	beq	%cr0, .LBB45_11
 	b .LBB45_10
 .LBB45_10:                              #   in Loop: Header=BB45_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r4, __llvm_gcov_ctr.45@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_atoi@ha
 	la %r4, .L__profc_atoi@l(%r3)
 	lwz %r3, 40(%r4)
@@ -4573,6 +5727,14 @@ atoi:                                   # @atoi
 	beq	%cr0, .LBB45_13
 	b .LBB45_12
 .LBB45_12:
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r4, __llvm_gcov_ctr.45@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_atoi@ha
 	la %r4, .L__profc_atoi@l(%r3)
 	lwz %r3, 48(%r4)
@@ -4585,6 +5747,14 @@ atoi:                                   # @atoi
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB45_14
 .LBB45_13:
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r4, __llvm_gcov_ctr.45@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 20(%r31)
 	neg %r3, %r3
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
@@ -4639,6 +5809,13 @@ atol:                                   # @atol
 	beq	%cr0, .LBB46_3
 	b .LBB46_2
 .LBB46_2:                               #   in Loop: Header=BB46_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.46@ha
+	lwzu %r3, __llvm_gcov_ctr.46@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_atol@ha
 	la %r4, .L__profc_atol@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4664,6 +5841,14 @@ atol:                                   # @atol
 	bne	%cr0, .LBB46_8
 	b .LBB46_5
 .LBB46_5:
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r4, __llvm_gcov_ctr.46@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_atol@ha
 	la %r4, .L__profc_atol@l(%r3)
 	lwz %r3, 24(%r4)
@@ -4676,6 +5861,14 @@ atol:                                   # @atol
 	stw %r3, 16(%r31)
 	b .LBB46_7
 .LBB46_6:
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r4, __llvm_gcov_ctr.46@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_atol@ha
 	la %r4, .L__profc_atol@l(%r3)
 	lwz %r3, 32(%r4)
@@ -4711,6 +5904,14 @@ atol:                                   # @atol
 	beq	%cr0, .LBB46_11
 	b .LBB46_10
 .LBB46_10:                              #   in Loop: Header=BB46_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r4, __llvm_gcov_ctr.46@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_atol@ha
 	la %r4, .L__profc_atol@l(%r3)
 	lwz %r3, 40(%r4)
@@ -4735,6 +5936,14 @@ atol:                                   # @atol
 	beq	%cr0, .LBB46_13
 	b .LBB46_12
 .LBB46_12:
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r4, __llvm_gcov_ctr.46@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_atol@ha
 	la %r4, .L__profc_atol@l(%r3)
 	lwz %r3, 48(%r4)
@@ -4747,6 +5956,14 @@ atol:                                   # @atol
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB46_14
 .LBB46_13:
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r4, __llvm_gcov_ctr.46@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 20(%r31)
 	neg %r3, %r3
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
@@ -4802,6 +6019,13 @@ atoll:                                  # @atoll
 	beq	%cr0, .LBB47_3
 	b .LBB47_2
 .LBB47_2:                               #   in Loop: Header=BB47_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.47@ha
+	lwzu %r3, __llvm_gcov_ctr.47@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_atoll@ha
 	la %r4, .L__profc_atoll@l(%r3)
 	lwz %r3, 8(%r4)
@@ -4827,6 +6051,14 @@ atoll:                                  # @atoll
 	bne	%cr0, .LBB47_8
 	b .LBB47_5
 .LBB47_5:
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r4, __llvm_gcov_ctr.47@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_atoll@ha
 	la %r4, .L__profc_atoll@l(%r3)
 	lwz %r3, 24(%r4)
@@ -4839,6 +6071,14 @@ atoll:                                  # @atoll
 	stw %r3, 28(%r31)
 	b .LBB47_7
 .LBB47_6:
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r4, __llvm_gcov_ctr.47@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_atoll@ha
 	la %r4, .L__profc_atoll@l(%r3)
 	lwz %r3, 32(%r4)
@@ -4874,6 +6114,14 @@ atoll:                                  # @atoll
 	beq	%cr0, .LBB47_11
 	b .LBB47_10
 .LBB47_10:                              #   in Loop: Header=BB47_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r4, __llvm_gcov_ctr.47@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_atoll@ha
 	la %r4, .L__profc_atoll@l(%r3)
 	lwz %r3, 40(%r4)
@@ -4906,6 +6154,14 @@ atoll:                                  # @atoll
 	beq	%cr0, .LBB47_13
 	b .LBB47_12
 .LBB47_12:
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r4, __llvm_gcov_ctr.47@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_atoll@ha
 	la %r4, .L__profc_atoll@l(%r3)
 	lwz %r3, 48(%r4)
@@ -4920,6 +6176,14 @@ atoll:                                  # @atoll
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB47_14
 .LBB47_13:
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r4, __llvm_gcov_ctr.47@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r4, 32(%r31)
 	lwz %r3, 36(%r31)
 	subfic %r4, %r4, 0
@@ -5000,6 +6264,14 @@ bsearch:                                # @bsearch
 	bgt	%cr0, .LBB48_4
 	b .LBB48_3
 .LBB48_3:                               #   in Loop: Header=BB48_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.48@ha
+	la %r4, __llvm_gcov_ctr.48@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_bsearch@ha
 	la %r4, .L__profc_bsearch@l(%r3)
 	lwz %r3, 16(%r4)
@@ -5037,14 +6309,37 @@ bsearch:                                # @bsearch
 	stw %r3, 28(%r31)
 	b .LBB48_7
 .LBB48_6:
+	lis %r3, __llvm_gcov_ctr.48@ha
+	la %r4, __llvm_gcov_ctr.48@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 16(%r31)
 	stw %r3, 40(%r31)
 	b .LBB48_10
 .LBB48_7:                               #   in Loop: Header=BB48_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.48@ha
+	la %r4, __llvm_gcov_ctr.48@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB48_8
 .LBB48_8:                               #   in Loop: Header=BB48_1 Depth=1
 	b .LBB48_1
 .LBB48_9:
+	lis %r4, __llvm_gcov_ctr.48@ha
+	lwzu %r3, __llvm_gcov_ctr.48@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	li %r3, 0
 	stw %r3, 40(%r31)
 	b .LBB48_10
@@ -5126,6 +6421,13 @@ bsearch_r:                              # @bsearch_r
 	bne	%cr0, .LBB49_4
 	b .LBB49_3
 .LBB49_3:
+	lis %r4, __llvm_gcov_ctr.49@ha
+	lwzu %r3, __llvm_gcov_ctr.49@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_bsearch_r@ha
 	la %r4, .L__profc_bsearch_r@l(%r3)
 	lwz %r3, 16(%r4)
@@ -5143,6 +6445,14 @@ bsearch_r:                              # @bsearch_r
 	blt	%cr0, .LBB49_6
 	b .LBB49_5
 .LBB49_5:                               #   in Loop: Header=BB49_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.49@ha
+	la %r4, __llvm_gcov_ctr.49@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_bsearch_r@ha
 	la %r4, .L__profc_bsearch_r@l(%r3)
 	lwz %r3, 24(%r4)
@@ -5162,11 +6472,27 @@ bsearch_r:                              # @bsearch_r
 .LBB49_6:                               #   in Loop: Header=BB49_1 Depth=1
 	b .LBB49_7
 .LBB49_7:                               #   in Loop: Header=BB49_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.49@ha
+	la %r4, __llvm_gcov_ctr.49@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	srawi %r3, %r3, 1
 	stw %r3, 24(%r31)
 	b .LBB49_1
 .LBB49_8:
+	lis %r3, __llvm_gcov_ctr.49@ha
+	la %r4, __llvm_gcov_ctr.49@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	li %r3, 0
 	stw %r3, 56(%r31)
 	b .LBB49_9
@@ -5194,6 +6520,13 @@ div:                                    # @div
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.50@ha
+	lwzu %r5, __llvm_gcov_ctr.50@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 16(%r31)
 	stw %r4, 12(%r31)
 	lis %r4, .L__profc_div@ha
@@ -5264,6 +6597,13 @@ imaxabs:                                # @imaxabs
 	bne	%cr0, .LBB51_4
 	b .LBB51_3
 .LBB51_3:
+	lis %r4, __llvm_gcov_ctr.51@ha
+	lwzu %r3, __llvm_gcov_ctr.51@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_imaxabs@ha
 	la %r4, .L__profc_imaxabs@l(%r3)
 	lwz %r3, 8(%r4)
@@ -5278,6 +6618,14 @@ imaxabs:                                # @imaxabs
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB51_5
 .LBB51_4:
+	lis %r3, __llvm_gcov_ctr.51@ha
+	la %r4, __llvm_gcov_ctr.51@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r4, 32(%r31)
 	lwz %r3, 36(%r31)
 	subfic %r4, %r4, 0
@@ -5316,6 +6664,13 @@ imaxdiv:                                # @imaxdiv
                                         # kill: def $r3 killed $r7
                                         # kill: def $r3 killed $r6
                                         # kill: def $r3 killed $r5
+	lis %r4, __llvm_gcov_ctr.52@ha
+	lwzu %r3, __llvm_gcov_ctr.52@l(%r4)
+	lwz %r9, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r9, %r9
+	stw %r9, 4(%r4)
+	stw %r3, 0(%r4)
 	stw %r6, 36(%r31)
 	stw %r5, 32(%r31)
 	stw %r8, 28(%r31)
@@ -5380,6 +6735,13 @@ labs:                                   # @labs
 	blt	%cr0, .LBB53_2
 	b .LBB53_1
 .LBB53_1:
+	lis %r4, __llvm_gcov_ctr.53@ha
+	lwzu %r3, __llvm_gcov_ctr.53@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_labs@ha
 	la %r4, .L__profc_labs@l(%r3)
 	lwz %r3, 8(%r4)
@@ -5392,6 +6754,14 @@ labs:                                   # @labs
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB53_3
 .LBB53_2:
+	lis %r3, __llvm_gcov_ctr.53@ha
+	la %r4, __llvm_gcov_ctr.53@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	neg %r3, %r3
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
@@ -5418,6 +6788,13 @@ ldiv:                                   # @ldiv
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.54@ha
+	lwzu %r5, __llvm_gcov_ctr.54@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 16(%r31)
 	stw %r4, 12(%r31)
 	lis %r4, .L__profc_ldiv@ha
@@ -5488,6 +6865,13 @@ llabs:                                  # @llabs
 	bne	%cr0, .LBB55_4
 	b .LBB55_3
 .LBB55_3:
+	lis %r4, __llvm_gcov_ctr.55@ha
+	lwzu %r3, __llvm_gcov_ctr.55@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_llabs@ha
 	la %r4, .L__profc_llabs@l(%r3)
 	lwz %r3, 8(%r4)
@@ -5502,6 +6886,14 @@ llabs:                                  # @llabs
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB55_5
 .LBB55_4:
+	lis %r3, __llvm_gcov_ctr.55@ha
+	la %r4, __llvm_gcov_ctr.55@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r4, 32(%r31)
 	lwz %r3, 36(%r31)
 	subfic %r4, %r4, 0
@@ -5540,6 +6932,13 @@ lldiv:                                  # @lldiv
                                         # kill: def $r3 killed $r7
                                         # kill: def $r3 killed $r6
                                         # kill: def $r3 killed $r5
+	lis %r4, __llvm_gcov_ctr.56@ha
+	lwzu %r3, __llvm_gcov_ctr.56@l(%r4)
+	lwz %r9, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r9, %r9
+	stw %r9, 4(%r4)
+	stw %r3, 0(%r4)
 	stw %r6, 36(%r31)
 	stw %r5, 32(%r31)
 	stw %r8, 28(%r31)
@@ -5610,6 +7009,13 @@ wcschr:                                 # @wcschr
 	beq	%cr0, .LBB57_4
 	b .LBB57_2
 .LBB57_2:                               #   in Loop: Header=BB57_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.57@ha
+	lwzu %r3, __llvm_gcov_ctr.57@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wcschr@ha
 	la %r4, .L__profc_wcschr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -5631,6 +7037,14 @@ wcschr:                                 # @wcschr
 	b .LBB57_3
 .LBB57_3:                               #   in Loop: Header=BB57_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.57@ha
+	la %r5, __llvm_gcov_ctr.57@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_wcschr@ha
 	la %r5, .L__profc_wcschr@l(%r4)
 	lwz %r4, 24(%r5)
@@ -5658,6 +7072,14 @@ wcschr:                                 # @wcschr
 	stw %r3, 8(%r4)
 	b .LBB57_6
 .LBB57_6:                               #   in Loop: Header=BB57_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.57@ha
+	la %r4, __llvm_gcov_ctr.57@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 4
 	stw %r3, 24(%r31)
@@ -5669,6 +7091,14 @@ wcschr:                                 # @wcschr
 	beq	%cr0, .LBB57_9
 	b .LBB57_8
 .LBB57_8:
+	lis %r3, __llvm_gcov_ctr.57@ha
+	la %r4, __llvm_gcov_ctr.57@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_wcschr@ha
 	la %r4, .L__profc_wcschr@l(%r3)
 	lwz %r3, 32(%r4)
@@ -5681,6 +7111,14 @@ wcschr:                                 # @wcschr
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB57_10
 .LBB57_9:
+	lis %r3, __llvm_gcov_ctr.57@ha
+	la %r4, __llvm_gcov_ctr.57@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 0
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB57_10
@@ -5727,6 +7165,13 @@ wcscmp:                                 # @wcscmp
 	bne	%cr0, .LBB58_6
 	b .LBB58_2
 .LBB58_2:                               #   in Loop: Header=BB58_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.58@ha
+	lwzu %r3, __llvm_gcov_ctr.58@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wcscmp@ha
 	la %r4, .L__profc_wcscmp@l(%r3)
 	lwz %r3, 32(%r4)
@@ -5743,6 +7188,14 @@ wcscmp:                                 # @wcscmp
 	beq	%cr0, .LBB58_6
 	b .LBB58_3
 .LBB58_3:                               #   in Loop: Header=BB58_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.58@ha
+	la %r4, __llvm_gcov_ctr.58@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wcscmp@ha
 	la %r4, .L__profc_wcscmp@l(%r3)
 	lwz %r3, 40(%r4)
@@ -5772,6 +7225,14 @@ wcscmp:                                 # @wcscmp
 	b .LBB58_5
 .LBB58_5:                               #   in Loop: Header=BB58_1 Depth=1
 	lwz %r3, 28(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.58@ha
+	la %r5, __llvm_gcov_ctr.58@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_wcscmp@ha
 	la %r5, .L__profc_wcscmp@l(%r4)
 	lwz %r4, 24(%r5)
@@ -5799,6 +7260,14 @@ wcscmp:                                 # @wcscmp
 	stw %r3, 8(%r4)
 	b .LBB58_8
 .LBB58_8:                               #   in Loop: Header=BB58_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.58@ha
+	la %r4, __llvm_gcov_ctr.58@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 40(%r31)
 	addi %r3, %r3, 4
 	stw %r3, 40(%r31)
@@ -5815,6 +7284,14 @@ wcscmp:                                 # @wcscmp
 	bge %cr0, .LBB58_11
 	b .LBB58_10
 .LBB58_10:
+	lis %r3, __llvm_gcov_ctr.58@ha
+	la %r4, __llvm_gcov_ctr.58@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_wcscmp@ha
 	la %r4, .L__profc_wcscmp@l(%r3)
 	lwz %r3, 48(%r4)
@@ -5827,6 +7304,14 @@ wcscmp:                                 # @wcscmp
 	stw %r3, 24(%r31)                       # 4-byte Folded Spill
 	b .LBB58_14
 .LBB58_11:
+	lis %r3, __llvm_gcov_ctr.58@ha
+	la %r4, __llvm_gcov_ctr.58@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 40(%r31)
 	lwz %r3, 0(%r3)
 	lwz %r4, 36(%r31)
@@ -5866,6 +7351,13 @@ wcscpy:                                 # @wcscpy
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.59@ha
+	lwzu %r5, __llvm_gcov_ctr.59@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_wcscpy@ha
@@ -5891,6 +7383,14 @@ wcscpy:                                 # @wcscpy
 	beq	%cr0, .LBB59_3
 	b .LBB59_2
 .LBB59_2:                               #   in Loop: Header=BB59_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.59@ha
+	la %r4, __llvm_gcov_ctr.59@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wcscpy@ha
 	la %r4, .L__profc_wcscpy@l(%r3)
 	lwz %r3, 8(%r4)
@@ -5922,6 +7422,13 @@ wcslen:                                 # @wcslen
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.60@ha
+	lwzu %r4, __llvm_gcov_ctr.60@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_wcslen@ha
 	lwzu %r3, .L__profc_wcslen@l(%r4)
@@ -5950,6 +7457,14 @@ wcslen:                                 # @wcslen
 	stw %r3, 8(%r4)
 	b .LBB60_3
 .LBB60_3:                               #   in Loop: Header=BB60_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.60@ha
+	la %r4, __llvm_gcov_ctr.60@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 24(%r31)
 	addi %r3, %r3, 4
 	stw %r3, 24(%r31)
@@ -5998,6 +7513,13 @@ wcsncmp:                                # @wcsncmp
 	beq	%cr0, .LBB61_8
 	b .LBB61_2
 .LBB61_2:                               #   in Loop: Header=BB61_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.61@ha
+	lwzu %r3, __llvm_gcov_ctr.61@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wcsncmp@ha
 	la %r4, .L__profc_wcsncmp@l(%r3)
 	lwz %r3, 48(%r4)
@@ -6016,6 +7538,14 @@ wcsncmp:                                # @wcsncmp
 	bne	%cr0, .LBB61_8
 	b .LBB61_3
 .LBB61_3:                               #   in Loop: Header=BB61_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wcsncmp@ha
 	la %r4, .L__profc_wcsncmp@l(%r3)
 	lwz %r3, 56(%r4)
@@ -6042,6 +7572,14 @@ wcsncmp:                                # @wcsncmp
 	beq	%cr0, .LBB61_8
 	b .LBB61_5
 .LBB61_5:                               #   in Loop: Header=BB61_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_wcsncmp@ha
 	la %r4, .L__profc_wcsncmp@l(%r3)
 	lwz %r3, 40(%r4)
@@ -6071,6 +7609,14 @@ wcsncmp:                                # @wcsncmp
 	b .LBB61_7
 .LBB61_7:                               #   in Loop: Header=BB61_1 Depth=1
 	lwz %r3, 24(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.61@ha
+	la %r5, __llvm_gcov_ctr.61@l(%r4)
+	lwz %r4, 24(%r5)
+	lwz %r6, 28(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 28(%r5)
+	stw %r4, 24(%r5)
 	lis %r4, .L__profc_wcsncmp@ha
 	la %r5, .L__profc_wcsncmp@l(%r4)
 	lwz %r4, 24(%r5)
@@ -6098,6 +7644,14 @@ wcsncmp:                                # @wcsncmp
 	stw %r3, 8(%r4)
 	b .LBB61_10
 .LBB61_10:                              #   in Loop: Header=BB61_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r3, 32(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 32(%r31)
@@ -6130,6 +7684,14 @@ wcsncmp:                                # @wcsncmp
 	bge %cr0, .LBB61_14
 	b .LBB61_13
 .LBB61_13:
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lis %r3, .L__profc_wcsncmp@ha
 	la %r4, .L__profc_wcsncmp@l(%r3)
 	lwz %r3, 72(%r4)
@@ -6142,6 +7704,14 @@ wcsncmp:                                # @wcsncmp
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB61_17
 .LBB61_14:
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lwz %r3, 40(%r31)
 	lwz %r3, 0(%r3)
 	lwz %r4, 36(%r31)
@@ -6164,6 +7734,14 @@ wcsncmp:                                # @wcsncmp
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB61_19
 .LBB61_18:
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r4, __llvm_gcov_ctr.61@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	li %r3, 0
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB61_19
@@ -6208,6 +7786,13 @@ wmemchr:                                # @wmemchr
 	beq	%cr0, .LBB62_4
 	b .LBB62_2
 .LBB62_2:                               #   in Loop: Header=BB62_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.62@ha
+	lwzu %r3, __llvm_gcov_ctr.62@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wmemchr@ha
 	la %r4, .L__profc_wmemchr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -6229,6 +7814,14 @@ wmemchr:                                # @wmemchr
 	b .LBB62_3
 .LBB62_3:                               #   in Loop: Header=BB62_1 Depth=1
 	lwz %r3, 24(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.62@ha
+	la %r5, __llvm_gcov_ctr.62@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_wmemchr@ha
 	la %r5, .L__profc_wmemchr@l(%r4)
 	lwz %r4, 24(%r5)
@@ -6256,6 +7849,14 @@ wmemchr:                                # @wmemchr
 	stw %r3, 8(%r4)
 	b .LBB62_6
 .LBB62_6:                               #   in Loop: Header=BB62_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.62@ha
+	la %r4, __llvm_gcov_ctr.62@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 32(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 32(%r31)
@@ -6269,6 +7870,14 @@ wmemchr:                                # @wmemchr
 	beq	%cr0, .LBB62_9
 	b .LBB62_8
 .LBB62_8:
+	lis %r3, __llvm_gcov_ctr.62@ha
+	la %r4, __llvm_gcov_ctr.62@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_wmemchr@ha
 	la %r4, .L__profc_wmemchr@l(%r3)
 	lwz %r3, 32(%r4)
@@ -6281,6 +7890,14 @@ wmemchr:                                # @wmemchr
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB62_10
 .LBB62_9:
+	lis %r3, __llvm_gcov_ctr.62@ha
+	la %r4, __llvm_gcov_ctr.62@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 0
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB62_10
@@ -6325,6 +7942,13 @@ wmemcmp:                                # @wmemcmp
 	beq	%cr0, .LBB63_4
 	b .LBB63_2
 .LBB63_2:                               #   in Loop: Header=BB63_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.63@ha
+	lwzu %r3, __llvm_gcov_ctr.63@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wmemcmp@ha
 	la %r4, .L__profc_wmemcmp@l(%r3)
 	lwz %r3, 16(%r4)
@@ -6347,6 +7971,14 @@ wmemcmp:                                # @wmemcmp
 	b .LBB63_3
 .LBB63_3:                               #   in Loop: Header=BB63_1 Depth=1
 	lwz %r3, 24(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.63@ha
+	la %r5, __llvm_gcov_ctr.63@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_wmemcmp@ha
 	la %r5, .L__profc_wmemcmp@l(%r4)
 	lwz %r4, 24(%r5)
@@ -6374,6 +8006,14 @@ wmemcmp:                                # @wmemcmp
 	stw %r3, 8(%r4)
 	b .LBB63_6
 .LBB63_6:                               #   in Loop: Header=BB63_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.63@ha
+	la %r4, __llvm_gcov_ctr.63@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 32(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 32(%r31)
@@ -6406,6 +8046,14 @@ wmemcmp:                                # @wmemcmp
 	bge %cr0, .LBB63_10
 	b .LBB63_9
 .LBB63_9:
+	lis %r3, __llvm_gcov_ctr.63@ha
+	la %r4, __llvm_gcov_ctr.63@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_wmemcmp@ha
 	la %r4, .L__profc_wmemcmp@l(%r3)
 	lwz %r3, 40(%r4)
@@ -6418,6 +8066,14 @@ wmemcmp:                                # @wmemcmp
 	stw %r3, 20(%r31)                       # 4-byte Folded Spill
 	b .LBB63_13
 .LBB63_10:
+	lis %r3, __llvm_gcov_ctr.63@ha
+	la %r4, __llvm_gcov_ctr.63@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r3, 40(%r31)
 	lwz %r3, 0(%r3)
 	lwz %r4, 36(%r31)
@@ -6440,6 +8096,14 @@ wmemcmp:                                # @wmemcmp
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB63_15
 .LBB63_14:
+	lis %r3, __llvm_gcov_ctr.63@ha
+	la %r4, __llvm_gcov_ctr.63@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	li %r3, 0
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB63_15
@@ -6465,6 +8129,13 @@ wmemcpy:                                # @wmemcpy
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.64@ha
+	lwzu %r6, __llvm_gcov_ctr.64@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -6486,6 +8157,14 @@ wmemcpy:                                # @wmemcpy
 	beq	%cr0, .LBB64_3
 	b .LBB64_2
 .LBB64_2:                               #   in Loop: Header=BB64_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.64@ha
+	la %r4, __llvm_gcov_ctr.64@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wmemcpy@ha
 	la %r4, .L__profc_wmemcpy@l(%r3)
 	lwz %r3, 8(%r4)
@@ -6543,6 +8222,13 @@ wmemmove:                               # @wmemmove
 	bne	%cr0, .LBB65_2
 	b .LBB65_1
 .LBB65_1:
+	lis %r4, __llvm_gcov_ctr.65@ha
+	lwzu %r3, __llvm_gcov_ctr.65@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_wmemmove@ha
 	la %r4, .L__profc_wmemmove@l(%r3)
 	lwz %r3, 8(%r4)
@@ -6564,6 +8250,14 @@ wmemmove:                               # @wmemmove
 	bge %cr0, .LBB65_7
 	b .LBB65_3
 .LBB65_3:
+	lis %r3, __llvm_gcov_ctr.65@ha
+	la %r4, __llvm_gcov_ctr.65@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wmemmove@ha
 	la %r4, .L__profc_wmemmove@l(%r3)
 	lwz %r3, 16(%r4)
@@ -6581,6 +8275,14 @@ wmemmove:                               # @wmemmove
 	beq	%cr0, .LBB65_6
 	b .LBB65_5
 .LBB65_5:                               #   in Loop: Header=BB65_4 Depth=1
+	lis %r3, __llvm_gcov_ctr.65@ha
+	la %r4, __llvm_gcov_ctr.65@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_wmemmove@ha
 	la %r4, .L__profc_wmemmove@l(%r3)
 	lwz %r3, 24(%r4)
@@ -6608,6 +8310,14 @@ wmemmove:                               # @wmemmove
 	beq	%cr0, .LBB65_10
 	b .LBB65_9
 .LBB65_9:                               #   in Loop: Header=BB65_8 Depth=1
+	lis %r3, __llvm_gcov_ctr.65@ha
+	la %r4, __llvm_gcov_ctr.65@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_wmemmove@ha
 	la %r4, .L__profc_wmemmove@l(%r3)
 	lwz %r3, 32(%r4)
@@ -6626,6 +8336,14 @@ wmemmove:                               # @wmemmove
 	stw %r3, 0(%r4)
 	b .LBB65_8
 .LBB65_10:
+	lis %r3, __llvm_gcov_ctr.65@ha
+	la %r4, __llvm_gcov_ctr.65@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	b .LBB65_11
 .LBB65_11:
 	lwz %r3, 8(%r31)
@@ -6653,6 +8371,13 @@ wmemset:                                # @wmemset
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.66@ha
+	lwzu %r6, __llvm_gcov_ctr.66@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -6674,6 +8399,14 @@ wmemset:                                # @wmemset
 	beq	%cr0, .LBB66_3
 	b .LBB66_2
 .LBB66_2:                               #   in Loop: Header=BB66_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.66@ha
+	la %r4, __llvm_gcov_ctr.66@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_wmemset@ha
 	la %r4, .L__profc_wmemset@l(%r3)
 	lwz %r3, 8(%r4)
@@ -6730,6 +8463,13 @@ bcopy:                                  # @bcopy
 	bge %cr0, .LBB67_6
 	b .LBB67_1
 .LBB67_1:
+	lis %r4, __llvm_gcov_ctr.67@ha
+	lwzu %r3, __llvm_gcov_ctr.67@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_bcopy@ha
 	la %r4, .L__profc_bcopy@l(%r3)
 	lwz %r3, 8(%r4)
@@ -6771,6 +8511,14 @@ bcopy:                                  # @bcopy
 	stb %r3, -1(%r4)
 	b .LBB67_4
 .LBB67_4:                               #   in Loop: Header=BB67_2 Depth=1
+	lis %r3, __llvm_gcov_ctr.67@ha
+	la %r4, __llvm_gcov_ctr.67@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 16(%r31)
@@ -6799,6 +8547,14 @@ bcopy:                                  # @bcopy
 	beq	%cr0, .LBB67_11
 	b .LBB67_9
 .LBB67_9:                               #   in Loop: Header=BB67_8 Depth=1
+	lis %r3, __llvm_gcov_ctr.67@ha
+	la %r4, __llvm_gcov_ctr.67@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_bcopy@ha
 	la %r4, .L__profc_bcopy@l(%r3)
 	lwz %r3, 32(%r4)
@@ -6822,8 +8578,24 @@ bcopy:                                  # @bcopy
 	stw %r3, 16(%r31)
 	b .LBB67_8
 .LBB67_11:
+	lis %r3, __llvm_gcov_ctr.67@ha
+	la %r4, __llvm_gcov_ctr.67@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB67_12
 .LBB67_12:
+	lis %r3, __llvm_gcov_ctr.67@ha
+	la %r4, __llvm_gcov_ctr.67@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	b .LBB67_13
 .LBB67_13:
 	lwz %r31, 28(%r1)
@@ -6848,6 +8620,13 @@ rotl64:                                 # @rotl64
 	.cfi_def_cfa_register r31
                                         # kill: def $r6 killed $r4
                                         # kill: def $r6 killed $r3
+	lis %r7, __llvm_gcov_ctr.68@ha
+	lwzu %r6, __llvm_gcov_ctr.68@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	stw %r5, 12(%r31)
@@ -6901,6 +8680,13 @@ rotr64:                                 # @rotr64
 	.cfi_def_cfa_register r31
                                         # kill: def $r6 killed $r4
                                         # kill: def $r6 killed $r3
+	lis %r7, __llvm_gcov_ctr.69@ha
+	lwzu %r6, __llvm_gcov_ctr.69@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	stw %r5, 12(%r31)
@@ -6952,6 +8738,13 @@ rotl32:                                 # @rotl32
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.70@ha
+	lwzu %r5, __llvm_gcov_ctr.70@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotl32@ha
@@ -6984,6 +8777,13 @@ rotr32:                                 # @rotr32
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.71@ha
+	lwzu %r5, __llvm_gcov_ctr.71@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotr32@ha
@@ -7017,6 +8817,13 @@ rotl_sz:                                # @rotl_sz
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.72@ha
+	lwzu %r5, __llvm_gcov_ctr.72@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotl_sz@ha
@@ -7049,6 +8856,13 @@ rotr_sz:                                # @rotr_sz
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.73@ha
+	lwzu %r5, __llvm_gcov_ctr.73@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotr_sz@ha
@@ -7083,6 +8897,13 @@ rotl16:                                 # @rotl16
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.74@ha
+	lwzu %r5, __llvm_gcov_ctr.74@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	sth %r3, 26(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotl16@ha
@@ -7120,6 +8941,13 @@ rotr16:                                 # @rotr16
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.75@ha
+	lwzu %r5, __llvm_gcov_ctr.75@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	sth %r3, 26(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotr16@ha
@@ -7157,6 +8985,13 @@ rotl8:                                  # @rotl8
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.76@ha
+	lwzu %r5, __llvm_gcov_ctr.76@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stb %r3, 27(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotl8@ha
@@ -7194,6 +9029,13 @@ rotr8:                                  # @rotr8
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.77@ha
+	lwzu %r5, __llvm_gcov_ctr.77@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stb %r3, 27(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_rotr8@ha
@@ -7231,6 +9073,13 @@ bswap_16:                               # @bswap_16
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.78@ha
+	lwzu %r4, __llvm_gcov_ctr.78@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	sth %r3, 10(%r31)
 	lis %r4, .L__profc_bswap_16@ha
 	lwzu %r3, .L__profc_bswap_16@l(%r4)
@@ -7269,6 +9118,13 @@ bswap_32:                               # @bswap_32
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.79@ha
+	lwzu %r4, __llvm_gcov_ctr.79@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc_bswap_32@ha
 	lwzu %r3, .L__profc_bswap_32@l(%r4)
@@ -7315,6 +9171,13 @@ bswap_64:                               # @bswap_64
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.80@ha
+	lwzu %r5, __llvm_gcov_ctr.80@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	lis %r4, .L__profc_bswap_64@ha
@@ -7414,6 +9277,13 @@ ffs:                                    # @ffs
 	beq	%cr0, .LBB81_4
 	b .LBB81_3
 .LBB81_3:
+	lis %r4, __llvm_gcov_ctr.81@ha
+	lwzu %r3, __llvm_gcov_ctr.81@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_ffs@ha
 	la %r4, .L__profc_ffs@l(%r3)
 	lwz %r3, 16(%r4)
@@ -7429,11 +9299,27 @@ ffs:                                    # @ffs
 .LBB81_4:                               #   in Loop: Header=BB81_1 Depth=1
 	b .LBB81_5
 .LBB81_5:                               #   in Loop: Header=BB81_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.81@ha
+	la %r4, __llvm_gcov_ctr.81@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 16(%r31)
 	b .LBB81_1
 .LBB81_6:
+	lis %r3, __llvm_gcov_ctr.81@ha
+	la %r4, __llvm_gcov_ctr.81@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB81_7
@@ -7472,6 +9358,14 @@ libiberty_ffs:                          # @libiberty_ffs
 	bne	%cr0, .LBB82_2
 	b .LBB82_1
 .LBB82_1:
+	lis %r3, __llvm_gcov_ctr.82@ha
+	la %r4, __llvm_gcov_ctr.82@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_libiberty_ffs@ha
 	la %r4, .L__profc_libiberty_ffs@l(%r3)
 	lwz %r3, 8(%r4)
@@ -7484,6 +9378,13 @@ libiberty_ffs:                          # @libiberty_ffs
 	stw %r3, 24(%r31)
 	b .LBB82_7
 .LBB82_2:
+	lis %r4, __llvm_gcov_ctr.82@ha
+	lwzu %r3, __llvm_gcov_ctr.82@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	li %r3, 1
 	stw %r3, 16(%r31)
 	b .LBB82_3
@@ -7507,6 +9408,14 @@ libiberty_ffs:                          # @libiberty_ffs
 	stw %r3, 20(%r31)
 	b .LBB82_5
 .LBB82_5:                               #   in Loop: Header=BB82_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.82@ha
+	la %r4, __llvm_gcov_ctr.82@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 16(%r31)
@@ -7541,6 +9450,13 @@ gl_isinff:                              # @gl_isinff
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.83@ha
+	lwzu %r4, __llvm_gcov_ctr.83@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 40(%r31)
 	lis %r4, .L__profc_gl_isinff@ha
 	lwzu %r3, .L__profc_gl_isinff@l(%r4)
@@ -7560,6 +9476,14 @@ gl_isinff:                              # @gl_isinff
 	blt	%cr0, .LBB83_5
 	b .LBB83_1
 .LBB83_1:
+	lis %r3, __llvm_gcov_ctr.83@ha
+	la %r4, __llvm_gcov_ctr.83@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_gl_isinff@ha
 	la %r4, .L__profc_gl_isinff@l(%r3)
 	lwz %r3, 8(%r4)
@@ -7593,6 +9517,14 @@ gl_isinff:                              # @gl_isinff
 	b .LBB83_4
 .LBB83_4:
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.83@ha
+	la %r5, __llvm_gcov_ctr.83@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_gl_isinff@ha
 	la %r5, .L__profc_gl_isinff@l(%r4)
 	lwz %r4, 16(%r5)
@@ -7633,6 +9565,13 @@ gl_isinfd:                              # @gl_isinfd
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.84@ha
+	lwzu %r5, __llvm_gcov_ctr.84@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 52(%r31)
 	stw %r3, 48(%r31)
 	lis %r4, .L__profc_gl_isinfd@ha
@@ -7655,6 +9594,14 @@ gl_isinfd:                              # @gl_isinfd
 	blt	%cr0, .LBB84_5
 	b .LBB84_1
 .LBB84_1:
+	lis %r3, __llvm_gcov_ctr.84@ha
+	la %r4, __llvm_gcov_ctr.84@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_gl_isinfd@ha
 	la %r4, .L__profc_gl_isinfd@l(%r3)
 	lwz %r3, 8(%r4)
@@ -7690,6 +9637,14 @@ gl_isinfd:                              # @gl_isinfd
 	b .LBB84_4
 .LBB84_4:
 	lwz %r3, 28(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.84@ha
+	la %r5, __llvm_gcov_ctr.84@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_gl_isinfd@ha
 	la %r5, .L__profc_gl_isinfd@l(%r4)
 	lwz %r4, 16(%r5)
@@ -7732,6 +9687,13 @@ gl_isinfl:                              # @gl_isinfl
                                         # kill: def $r7 killed $r5
                                         # kill: def $r7 killed $r4
                                         # kill: def $r7 killed $r3
+	lis %r8, __llvm_gcov_ctr.85@ha
+	lwzu %r7, __llvm_gcov_ctr.85@l(%r8)
+	lwz %r9, 4(%r8)
+	addic %r7, %r7, 1
+	addze %r9, %r9
+	stw %r9, 4(%r8)
+	stw %r7, 0(%r8)
 	stw %r6, 60(%r31)
 	stw %r5, 56(%r31)
 	stw %r4, 52(%r31)
@@ -7761,6 +9723,14 @@ gl_isinfl:                              # @gl_isinfl
 	blt	%cr0, .LBB85_5
 	b .LBB85_1
 .LBB85_1:
+	lis %r3, __llvm_gcov_ctr.85@ha
+	la %r4, __llvm_gcov_ctr.85@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_gl_isinfl@ha
 	la %r4, .L__profc_gl_isinfl@l(%r3)
 	lwz %r3, 8(%r4)
@@ -7801,6 +9771,14 @@ gl_isinfl:                              # @gl_isinfl
 	b .LBB85_4
 .LBB85_4:
 	lwz %r3, 28(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.85@ha
+	la %r5, __llvm_gcov_ctr.85@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_gl_isinfl@ha
 	la %r5, .L__profc_gl_isinfl@l(%r4)
 	lwz %r4, 16(%r5)
@@ -7839,6 +9817,13 @@ _Qp_itoq:                               # @_Qp_itoq
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.86@ha
+	lwzu %r5, __llvm_gcov_ctr.86@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc__Qp_itoq@ha
@@ -7888,6 +9873,13 @@ ldexpf:                                 # @ldexpf
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.87@ha
+	lwzu %r5, __llvm_gcov_ctr.87@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 40(%r31)
 	stw %r4, 36(%r31)
 	lis %r4, .L__profc_ldexpf@ha
@@ -7904,6 +9896,14 @@ ldexpf:                                 # @ldexpf
 	bgt	%cr0, .LBB87_12
 	b .LBB87_1
 .LBB87_1:
+	lis %r3, __llvm_gcov_ctr.87@ha
+	la %r4, __llvm_gcov_ctr.87@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_ldexpf@ha
 	la %r4, .L__profc_ldexpf@l(%r3)
 	lwz %r3, 16(%r4)
@@ -7922,6 +9922,14 @@ ldexpf:                                 # @ldexpf
 	beq	%cr0, .LBB87_12
 	b .LBB87_2
 .LBB87_2:
+	lis %r3, __llvm_gcov_ctr.87@ha
+	la %r4, __llvm_gcov_ctr.87@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_ldexpf@ha
 	la %r4, .L__profc_ldexpf@l(%r3)
 	lwz %r3, 24(%r4)
@@ -7980,6 +9988,14 @@ ldexpf:                                 # @ldexpf
 	beq	%cr0, .LBB87_8
 	b .LBB87_7
 .LBB87_7:                               #   in Loop: Header=BB87_6 Depth=1
+	lis %r3, __llvm_gcov_ctr.87@ha
+	la %r4, __llvm_gcov_ctr.87@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_ldexpf@ha
 	la %r4, .L__profc_ldexpf@l(%r3)
 	lwz %r3, 48(%r4)
@@ -8013,6 +10029,14 @@ ldexpf:                                 # @ldexpf
 	stw %r3, 56(%r4)
 	b .LBB87_11
 .LBB87_10:                              #   in Loop: Header=BB87_6 Depth=1
+	lis %r3, __llvm_gcov_ctr.87@ha
+	la %r4, __llvm_gcov_ctr.87@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r4, 32(%r31)
 	mr	%r3, %r4
 	bl __mulsf3
@@ -8049,6 +10073,13 @@ ldexp:                                  # @ldexp
 	.cfi_def_cfa_register r31
                                         # kill: def $r6 killed $r4
                                         # kill: def $r6 killed $r3
+	lis %r7, __llvm_gcov_ctr.88@ha
+	lwzu %r6, __llvm_gcov_ctr.88@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r4, 84(%r31)
 	stw %r3, 80(%r31)
 	stw %r5, 76(%r31)
@@ -8094,6 +10125,14 @@ ldexp:                                  # @ldexp
 	bne	%cr0, .LBB88_16
 	b .LBB88_5
 .LBB88_5:
+	lis %r3, __llvm_gcov_ctr.88@ha
+	la %r4, __llvm_gcov_ctr.88@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_ldexp@ha
 	la %r4, .L__profc_ldexp@l(%r3)
 	lwz %r3, 16(%r4)
@@ -8116,6 +10155,14 @@ ldexp:                                  # @ldexp
 	beq	%cr0, .LBB88_16
 	b .LBB88_6
 .LBB88_6:
+	lis %r3, __llvm_gcov_ctr.88@ha
+	la %r4, __llvm_gcov_ctr.88@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_ldexp@ha
 	la %r4, .L__profc_ldexp@l(%r3)
 	lwz %r3, 24(%r4)
@@ -8176,6 +10223,14 @@ ldexp:                                  # @ldexp
 	beq	%cr0, .LBB88_12
 	b .LBB88_11
 .LBB88_11:                              #   in Loop: Header=BB88_10 Depth=1
+	lis %r3, __llvm_gcov_ctr.88@ha
+	la %r4, __llvm_gcov_ctr.88@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_ldexp@ha
 	la %r4, .L__profc_ldexp@l(%r3)
 	lwz %r3, 48(%r4)
@@ -8212,6 +10267,14 @@ ldexp:                                  # @ldexp
 	stw %r3, 56(%r4)
 	b .LBB88_15
 .LBB88_14:                              #   in Loop: Header=BB88_10 Depth=1
+	lis %r3, __llvm_gcov_ctr.88@ha
+	la %r4, __llvm_gcov_ctr.88@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r5, 64(%r31)
 	lwz %r6, 68(%r31)
 	mr	%r3, %r5
@@ -8254,6 +10317,13 @@ ldexpl:                                 # @ldexpl
                                         # kill: def $r8 killed $r5
                                         # kill: def $r8 killed $r4
                                         # kill: def $r8 killed $r3
+	lis %r9, __llvm_gcov_ctr.89@ha
+	lwzu %r8, __llvm_gcov_ctr.89@l(%r9)
+	lwz %r10, 4(%r9)
+	addic %r8, %r8, 1
+	addze %r10, %r10
+	stw %r10, 4(%r9)
+	stw %r8, 0(%r9)
 	stw %r6, 108(%r31)
 	stw %r5, 104(%r31)
 	stw %r4, 100(%r31)
@@ -8301,6 +10371,14 @@ ldexpl:                                 # @ldexpl
 	bne	%cr0, .LBB89_16
 	b .LBB89_5
 .LBB89_5:
+	lis %r3, __llvm_gcov_ctr.89@ha
+	la %r4, __llvm_gcov_ctr.89@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_ldexpl@ha
 	la %r4, .L__profc_ldexpl@l(%r3)
 	lwz %r3, 16(%r4)
@@ -8331,6 +10409,14 @@ ldexpl:                                 # @ldexpl
 	beq	%cr0, .LBB89_16
 	b .LBB89_6
 .LBB89_6:
+	lis %r3, __llvm_gcov_ctr.89@ha
+	la %r4, __llvm_gcov_ctr.89@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_ldexpl@ha
 	la %r4, .L__profc_ldexpl@l(%r3)
 	lwz %r3, 24(%r4)
@@ -8393,6 +10479,14 @@ ldexpl:                                 # @ldexpl
 	beq	%cr0, .LBB89_12
 	b .LBB89_11
 .LBB89_11:                              #   in Loop: Header=BB89_10 Depth=1
+	lis %r3, __llvm_gcov_ctr.89@ha
+	la %r4, __llvm_gcov_ctr.89@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_ldexpl@ha
 	la %r4, .L__profc_ldexpl@l(%r3)
 	lwz %r3, 48(%r4)
@@ -8435,6 +10529,14 @@ ldexpl:                                 # @ldexpl
 	stw %r3, 56(%r4)
 	b .LBB89_15
 .LBB89_14:                              #   in Loop: Header=BB89_10 Depth=1
+	lis %r3, __llvm_gcov_ctr.89@ha
+	la %r4, __llvm_gcov_ctr.89@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r7, 64(%r31)
 	lwz %r8, 68(%r31)
 	lwz %r9, 72(%r31)
@@ -8478,6 +10580,13 @@ memxor:                                 # @memxor
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.90@ha
+	lwzu %r6, __llvm_gcov_ctr.90@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -8519,6 +10628,14 @@ memxor:                                 # @memxor
 	stb %r3, 0(%r4)
 	b .LBB90_3
 .LBB90_3:                               #   in Loop: Header=BB90_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.90@ha
+	la %r4, __llvm_gcov_ctr.90@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, -1
 	stw %r3, 16(%r31)
@@ -8577,6 +10694,13 @@ strncat:                                # @strncat
 	beq	%cr0, .LBB91_4
 	b .LBB91_2
 .LBB91_2:                               #   in Loop: Header=BB91_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.91@ha
+	lwzu %r3, __llvm_gcov_ctr.91@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_strncat@ha
 	la %r4, .L__profc_strncat@l(%r3)
 	lwz %r3, 16(%r4)
@@ -8598,6 +10722,14 @@ strncat:                                # @strncat
 	b .LBB91_3
 .LBB91_3:                               #   in Loop: Header=BB91_1 Depth=1
 	lwz %r3, 16(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.91@ha
+	la %r5, __llvm_gcov_ctr.91@l(%r4)
+	lwz %r4, 8(%r5)
+	lwz %r6, 12(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 12(%r5)
+	stw %r4, 8(%r5)
 	lis %r4, .L__profc_strncat@ha
 	la %r5, .L__profc_strncat@l(%r4)
 	lwz %r4, 24(%r5)
@@ -8625,6 +10757,14 @@ strncat:                                # @strncat
 	stw %r3, 8(%r4)
 	b .LBB91_6
 .LBB91_6:                               #   in Loop: Header=BB91_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.91@ha
+	la %r4, __llvm_gcov_ctr.91@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 36(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 36(%r31)
@@ -8636,11 +10776,27 @@ strncat:                                # @strncat
 	stw %r3, 32(%r31)
 	b .LBB91_1
 .LBB91_7:
+	lis %r3, __llvm_gcov_ctr.91@ha
+	la %r4, __llvm_gcov_ctr.91@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 32(%r31)
 	cmplwi	%r3, 0
 	bne	%cr0, .LBB91_9
 	b .LBB91_8
 .LBB91_8:
+	lis %r3, __llvm_gcov_ctr.91@ha
+	la %r4, __llvm_gcov_ctr.91@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_strncat@ha
 	la %r4, .L__profc_strncat@l(%r3)
 	lwz %r3, 32(%r4)
@@ -8677,6 +10833,13 @@ strnlen:                                # @strnlen
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.92@ha
+	lwzu %r5, __llvm_gcov_ctr.92@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_strnlen@ha
@@ -8698,6 +10861,14 @@ strnlen:                                # @strnlen
 	bge %cr0, .LBB92_4
 	b .LBB92_2
 .LBB92_2:                               #   in Loop: Header=BB92_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.92@ha
+	la %r4, __llvm_gcov_ctr.92@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strnlen@ha
 	la %r4, .L__profc_strnlen@l(%r3)
 	lwz %r3, 16(%r4)
@@ -8718,6 +10889,14 @@ strnlen:                                # @strnlen
 	b .LBB92_3
 .LBB92_3:                               #   in Loop: Header=BB92_1 Depth=1
 	lwz %r3, 8(%r31)                        # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.92@ha
+	la %r5, __llvm_gcov_ctr.92@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_strnlen@ha
 	la %r5, .L__profc_strnlen@l(%r4)
 	lwz %r4, 24(%r5)
@@ -8745,6 +10924,14 @@ strnlen:                                # @strnlen
 	stw %r3, 8(%r4)
 	b .LBB92_6
 .LBB92_6:                               #   in Loop: Header=BB92_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.92@ha
+	la %r4, __llvm_gcov_ctr.92@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 16(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 16(%r31)
@@ -8826,6 +11013,14 @@ strpbrk:                                # @strpbrk
 	bne	%cr0, .LBB93_6
 	b .LBB93_5
 .LBB93_5:
+	lis %r3, __llvm_gcov_ctr.93@ha
+	la %r4, __llvm_gcov_ctr.93@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strpbrk@ha
 	la %r4, .L__profc_strpbrk@l(%r3)
 	lwz %r3, 24(%r4)
@@ -8838,13 +11033,36 @@ strpbrk:                                # @strpbrk
 	stw %r3, 24(%r31)
 	b .LBB93_9
 .LBB93_6:                               #   in Loop: Header=BB93_3 Depth=2
+	lis %r3, __llvm_gcov_ctr.93@ha
+	la %r4, __llvm_gcov_ctr.93@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	b .LBB93_3
 .LBB93_7:                               #   in Loop: Header=BB93_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.93@ha
+	la %r4, __llvm_gcov_ctr.93@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
 	b .LBB93_1
 .LBB93_8:
+	lis %r4, __llvm_gcov_ctr.93@ha
+	lwzu %r3, __llvm_gcov_ctr.93@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB93_9
@@ -8870,6 +11088,13 @@ strrchr:                                # @strrchr
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.94@ha
+	lwzu %r5, __llvm_gcov_ctr.94@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc_strrchr@ha
@@ -8883,6 +11108,14 @@ strrchr:                                # @strrchr
 	stw %r3, 16(%r31)
 	b .LBB94_2
 .LBB94_1:                               #   in Loop: Header=BB94_2 Depth=1
+	lis %r3, __llvm_gcov_ctr.94@ha
+	la %r4, __llvm_gcov_ctr.94@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_strrchr@ha
 	la %r4, .L__profc_strrchr@l(%r3)
 	lwz %r3, 8(%r4)
@@ -8900,6 +11133,14 @@ strrchr:                                # @strrchr
 	bne	%cr0, .LBB94_4
 	b .LBB94_3
 .LBB94_3:                               #   in Loop: Header=BB94_2 Depth=1
+	lis %r3, __llvm_gcov_ctr.94@ha
+	la %r4, __llvm_gcov_ctr.94@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strrchr@ha
 	la %r4, .L__profc_strrchr@l(%r3)
 	lwz %r3, 16(%r4)
@@ -8968,6 +11209,13 @@ strstr:                                 # @strstr
 	bne	%cr0, .LBB95_2
 	b .LBB95_1
 .LBB95_1:
+	lis %r4, __llvm_gcov_ctr.95@ha
+	lwzu %r3, __llvm_gcov_ctr.95@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_strstr@ha
 	la %r4, .L__profc_strstr@l(%r3)
 	lwz %r3, 8(%r4)
@@ -9013,6 +11261,14 @@ strstr:                                 # @strstr
 	bne	%cr0, .LBB95_6
 	b .LBB95_5
 .LBB95_5:
+	lis %r3, __llvm_gcov_ctr.95@ha
+	la %r4, __llvm_gcov_ctr.95@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_strstr@ha
 	la %r4, .L__profc_strstr@l(%r3)
 	lwz %r3, 24(%r4)
@@ -9027,11 +11283,27 @@ strstr:                                 # @strstr
 .LBB95_6:                               #   in Loop: Header=BB95_3 Depth=1
 	b .LBB95_7
 .LBB95_7:                               #   in Loop: Header=BB95_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.95@ha
+	la %r4, __llvm_gcov_ctr.95@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 12(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 12(%r31)
 	b .LBB95_3
 .LBB95_8:
+	lis %r3, __llvm_gcov_ctr.95@ha
+	la %r4, __llvm_gcov_ctr.95@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB95_9
@@ -9086,6 +11358,13 @@ copysign:                               # @copysign
 	bgt	%cr0, .LBB96_3
 	b .LBB96_1
 .LBB96_1:
+	lis %r4, __llvm_gcov_ctr.96@ha
+	lwzu %r3, __llvm_gcov_ctr.96@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_copysign@ha
 	la %r4, .L__profc_copysign@l(%r3)
 	lwz %r3, 24(%r4)
@@ -9103,6 +11382,14 @@ copysign:                               # @copysign
 	blt	%cr0, .LBB96_3
 	b .LBB96_2
 .LBB96_2:
+	lis %r3, __llvm_gcov_ctr.96@ha
+	la %r4, __llvm_gcov_ctr.96@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_copysign@ha
 	la %r4, .L__profc_copysign@l(%r3)
 	lwz %r3, 32(%r4)
@@ -9130,6 +11417,14 @@ copysign:                               # @copysign
 	blt	%cr0, .LBB96_7
 	b .LBB96_4
 .LBB96_4:
+	lis %r3, __llvm_gcov_ctr.96@ha
+	la %r4, __llvm_gcov_ctr.96@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_copysign@ha
 	la %r4, .L__profc_copysign@l(%r3)
 	lwz %r3, 40(%r4)
@@ -9147,6 +11442,14 @@ copysign:                               # @copysign
 	bgt	%cr0, .LBB96_7
 	b .LBB96_5
 .LBB96_5:
+	lis %r3, __llvm_gcov_ctr.96@ha
+	la %r4, __llvm_gcov_ctr.96@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_copysign@ha
 	la %r4, .L__profc_copysign@l(%r3)
 	lwz %r3, 48(%r4)
@@ -9172,6 +11475,14 @@ copysign:                               # @copysign
 	stw %r3, 36(%r31)
 	b .LBB96_8
 .LBB96_7:
+	lis %r3, __llvm_gcov_ctr.96@ha
+	la %r4, __llvm_gcov_ctr.96@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r3, 24(%r31)
 	lwz %r4, 28(%r31)
 	stw %r4, 36(%r31)
@@ -9227,6 +11538,13 @@ memmem:                                 # @memmem
 	bne	%cr0, .LBB97_2
 	b .LBB97_1
 .LBB97_1:
+	lis %r4, __llvm_gcov_ctr.97@ha
+	lwzu %r3, __llvm_gcov_ctr.97@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_memmem@ha
 	la %r4, .L__profc_memmem@l(%r3)
 	lwz %r3, 8(%r4)
@@ -9245,6 +11563,14 @@ memmem:                                 # @memmem
 	bge %cr0, .LBB97_4
 	b .LBB97_3
 .LBB97_3:
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r4, __llvm_gcov_ctr.97@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_memmem@ha
 	la %r4, .L__profc_memmem@l(%r3)
 	lwz %r3, 16(%r4)
@@ -9283,6 +11609,14 @@ memmem:                                 # @memmem
 	bne	%cr0, .LBB97_10
 	b .LBB97_7
 .LBB97_7:                               #   in Loop: Header=BB97_5 Depth=1
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r4, __llvm_gcov_ctr.97@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_memmem@ha
 	la %r4, .L__profc_memmem@l(%r3)
 	lwz %r3, 40(%r4)
@@ -9305,6 +11639,14 @@ memmem:                                 # @memmem
 	bne	%cr0, .LBB97_10
 	b .LBB97_8
 .LBB97_8:
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r4, __llvm_gcov_ctr.97@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_memmem@ha
 	la %r4, .L__profc_memmem@l(%r3)
 	lwz %r3, 48(%r4)
@@ -9329,11 +11671,27 @@ memmem:                                 # @memmem
 .LBB97_10:                              #   in Loop: Header=BB97_5 Depth=1
 	b .LBB97_11
 .LBB97_11:                              #   in Loop: Header=BB97_5 Depth=1
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r4, __llvm_gcov_ctr.97@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
 	b .LBB97_5
 .LBB97_12:
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r4, __llvm_gcov_ctr.97@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	li %r3, 0
 	stw %r3, 40(%r31)
 	b .LBB97_13
@@ -9364,6 +11722,13 @@ mempcpy:                                # @mempcpy
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r7, __llvm_gcov_ctr.98@ha
+	lwzu %r6, __llvm_gcov_ctr.98@l(%r7)
+	lwz %r8, 4(%r7)
+	addic %r6, %r6, 1
+	addze %r8, %r8
+	stw %r8, 4(%r7)
+	stw %r6, 0(%r7)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	stw %r5, 16(%r31)
@@ -9431,6 +11796,13 @@ frexp:                                  # @frexp
 	bgt	%cr0, .LBB99_2
 	b .LBB99_1
 .LBB99_1:
+	lis %r4, __llvm_gcov_ctr.99@ha
+	lwzu %r3, __llvm_gcov_ctr.99@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 8(%r4)
@@ -9455,6 +11827,14 @@ frexp:                                  # @frexp
 	blt	%cr0, .LBB99_7
 	b .LBB99_3
 .LBB99_3:
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 16(%r4)
@@ -9474,6 +11854,14 @@ frexp:                                  # @frexp
 	blt	%cr0, .LBB99_6
 	b .LBB99_5
 .LBB99_5:                               #   in Loop: Header=BB99_4 Depth=1
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 24(%r4)
@@ -9505,6 +11893,14 @@ frexp:                                  # @frexp
 	bgt	%cr0, .LBB99_14
 	b .LBB99_8
 .LBB99_8:
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 40(%r4)
@@ -9551,6 +11947,14 @@ frexp:                                  # @frexp
 	bgt	%cr0, .LBB99_13
 	b .LBB99_12
 .LBB99_12:                              #   in Loop: Header=BB99_11 Depth=1
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 56(%r4)
@@ -9571,8 +11975,24 @@ frexp:                                  # @frexp
 	stw %r3, 32(%r31)
 	b .LBB99_11
 .LBB99_13:
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	b .LBB99_14
 .LBB99_14:
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	b .LBB99_15
 .LBB99_15:
 	lwz %r3, 20(%r31)
@@ -9583,6 +12003,14 @@ frexp:                                  # @frexp
 	beq	%cr0, .LBB99_17
 	b .LBB99_16
 .LBB99_16:
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r4, __llvm_gcov_ctr.99@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	lis %r3, .L__profc_frexp@ha
 	la %r4, .L__profc_frexp@l(%r3)
 	lwz %r3, 64(%r4)
@@ -9624,6 +12052,13 @@ __muldi3:                               # @__muldi3
                                         # kill: def $r7 killed $r5
                                         # kill: def $r7 killed $r4
                                         # kill: def $r7 killed $r3
+	lis %r8, __llvm_gcov_ctr.100@ha
+	lwzu %r7, __llvm_gcov_ctr.100@l(%r8)
+	lwz %r9, 4(%r8)
+	addic %r7, %r7, 1
+	addze %r9, %r9
+	stw %r9, 4(%r8)
+	stw %r7, 0(%r8)
 	stw %r4, 36(%r31)
 	stw %r3, 32(%r31)
 	stw %r6, 28(%r31)
@@ -9665,6 +12100,14 @@ __muldi3:                               # @__muldi3
 	beq	%cr0, .LBB100_4
 	b .LBB100_3
 .LBB100_3:                              #   in Loop: Header=BB100_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.100@ha
+	la %r4, __llvm_gcov_ctr.100@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___muldi3@ha
 	la %r4, .L__profc___muldi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -9683,6 +12126,14 @@ __muldi3:                               # @__muldi3
 	stw %r3, 16(%r31)
 	b .LBB100_4
 .LBB100_4:                              #   in Loop: Header=BB100_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.100@ha
+	la %r4, __llvm_gcov_ctr.100@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r5, 28(%r31)
 	lwz %r4, 24(%r31)
 	rotlwi	%r3, %r4, 1
@@ -9745,6 +12196,13 @@ udivmodsi4:                             # @udivmodsi4
 	bge %cr0, .LBB101_6
 	b .LBB101_2
 .LBB101_2:                              #   in Loop: Header=BB101_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.101@ha
+	lwzu %r3, __llvm_gcov_ctr.101@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc_udivmodsi4@ha
 	la %r4, .L__profc_udivmodsi4@l(%r3)
 	lwz %r3, 32(%r4)
@@ -9760,6 +12218,14 @@ udivmodsi4:                             # @udivmodsi4
 	beq	%cr0, .LBB101_6
 	b .LBB101_3
 .LBB101_3:                              #   in Loop: Header=BB101_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc_udivmodsi4@ha
 	la %r4, .L__profc_udivmodsi4@l(%r3)
 	lwz %r3, 40(%r4)
@@ -9789,6 +12255,14 @@ udivmodsi4:                             # @udivmodsi4
 	b .LBB101_5
 .LBB101_5:                              #   in Loop: Header=BB101_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.101@ha
+	la %r5, __llvm_gcov_ctr.101@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc_udivmodsi4@ha
 	la %r5, .L__profc_udivmodsi4@l(%r4)
 	lwz %r4, 24(%r5)
@@ -9806,6 +12280,14 @@ udivmodsi4:                             # @udivmodsi4
 	beq	%cr0, .LBB101_8
 	b .LBB101_7
 .LBB101_7:                              #   in Loop: Header=BB101_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc_udivmodsi4@ha
 	la %r4, .L__profc_udivmodsi4@l(%r3)
 	lwz %r3, 8(%r4)
@@ -9843,6 +12325,14 @@ udivmodsi4:                             # @udivmodsi4
 	blt	%cr0, .LBB101_12
 	b .LBB101_11
 .LBB101_11:                             #   in Loop: Header=BB101_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc_udivmodsi4@ha
 	la %r4, .L__profc_udivmodsi4@l(%r3)
 	lwz %r3, 56(%r4)
@@ -9861,6 +12351,14 @@ udivmodsi4:                             # @udivmodsi4
 	stw %r3, 20(%r31)
 	b .LBB101_12
 .LBB101_12:                             #   in Loop: Header=BB101_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 24(%r31)
 	srwi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -9874,6 +12372,14 @@ udivmodsi4:                             # @udivmodsi4
 	beq	%cr0, .LBB101_15
 	b .LBB101_14
 .LBB101_14:
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lis %r3, .L__profc_udivmodsi4@ha
 	la %r4, .L__profc_udivmodsi4@l(%r3)
 	lwz %r3, 64(%r4)
@@ -9886,6 +12392,14 @@ udivmodsi4:                             # @udivmodsi4
 	stw %r3, 40(%r31)
 	b .LBB101_16
 .LBB101_15:
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r4, __llvm_gcov_ctr.101@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	lwz %r3, 20(%r31)
 	stw %r3, 40(%r31)
 	b .LBB101_16
@@ -9925,6 +12439,13 @@ __clrsbqi2:                             # @__clrsbqi2
 	bgt	%cr0, .LBB102_2
 	b .LBB102_1
 .LBB102_1:
+	lis %r4, __llvm_gcov_ctr.102@ha
+	lwzu %r3, __llvm_gcov_ctr.102@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___clrsbqi2@ha
 	la %r4, .L__profc___clrsbqi2@l(%r3)
 	lwz %r3, 8(%r4)
@@ -9943,6 +12464,14 @@ __clrsbqi2:                             # @__clrsbqi2
 	bne	%cr0, .LBB102_4
 	b .LBB102_3
 .LBB102_3:
+	lis %r3, __llvm_gcov_ctr.102@ha
+	la %r4, __llvm_gcov_ctr.102@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___clrsbqi2@ha
 	la %r4, .L__profc___clrsbqi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -9955,6 +12484,14 @@ __clrsbqi2:                             # @__clrsbqi2
 	stw %r3, 24(%r31)
 	b .LBB102_5
 .LBB102_4:
+	lis %r3, __llvm_gcov_ctr.102@ha
+	la %r4, __llvm_gcov_ctr.102@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lbz %r3, 23(%r31)
 	slwi %r3, %r3, 8
 	cntlzw	%r3, %r3
@@ -10001,6 +12538,13 @@ __clrsbdi2:                             # @__clrsbdi2
 	bgt	%cr0, .LBB103_2
 	b .LBB103_1
 .LBB103_1:
+	lis %r4, __llvm_gcov_ctr.103@ha
+	lwzu %r3, __llvm_gcov_ctr.103@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___clrsbdi2@ha
 	la %r4, .L__profc___clrsbdi2@l(%r3)
 	lwz %r3, 8(%r4)
@@ -10024,6 +12568,14 @@ __clrsbdi2:                             # @__clrsbdi2
 	bne	%cr0, .LBB103_4
 	b .LBB103_3
 .LBB103_3:
+	lis %r3, __llvm_gcov_ctr.103@ha
+	la %r4, __llvm_gcov_ctr.103@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___clrsbdi2@ha
 	la %r4, .L__profc___clrsbdi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10036,6 +12588,14 @@ __clrsbdi2:                             # @__clrsbdi2
 	stw %r3, 40(%r31)
 	b .LBB103_7
 .LBB103_4:
+	lis %r3, __llvm_gcov_ctr.103@ha
+	la %r4, __llvm_gcov_ctr.103@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r4, 32(%r31)
 	lwz %r5, 36(%r31)
 	cntlzw	%r3, %r5
@@ -10077,6 +12637,13 @@ __mulsi3:                               # @__mulsi3
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.104@ha
+	lwzu %r5, __llvm_gcov_ctr.104@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___mulsi3@ha
@@ -10109,6 +12676,14 @@ __mulsi3:                               # @__mulsi3
 	beq	%cr0, .LBB104_4
 	b .LBB104_3
 .LBB104_3:                              #   in Loop: Header=BB104_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.104@ha
+	la %r4, __llvm_gcov_ctr.104@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mulsi3@ha
 	la %r4, .L__profc___mulsi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10123,6 +12698,14 @@ __mulsi3:                               # @__mulsi3
 	stw %r3, 16(%r31)
 	b .LBB104_4
 .LBB104_4:                              #   in Loop: Header=BB104_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.104@ha
+	la %r4, __llvm_gcov_ctr.104@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	srwi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -10178,6 +12761,13 @@ __cmovd:                                # @__cmovd
 	blt	%cr0, .LBB105_3
 	b .LBB105_1
 .LBB105_1:
+	lis %r4, __llvm_gcov_ctr.105@ha
+	lwzu %r3, __llvm_gcov_ctr.105@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___cmovd@ha
 	la %r4, .L__profc___cmovd@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10240,6 +12830,14 @@ __cmovd:                                # @__cmovd
 	stw %r3, 4(%r4)
 	b .LBB105_6
 .LBB105_6:                              #   in Loop: Header=BB105_4 Depth=1
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r4, __llvm_gcov_ctr.105@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 28(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 28(%r31)
@@ -10253,6 +12851,14 @@ __cmovd:                                # @__cmovd
 	ble %cr0, .LBB105_10
 	b .LBB105_9
 .LBB105_9:                              #   in Loop: Header=BB105_8 Depth=1
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r4, __llvm_gcov_ctr.105@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___cmovd@ha
 	la %r4, .L__profc___cmovd@l(%r3)
 	lwz %r3, 40(%r4)
@@ -10271,6 +12877,14 @@ __cmovd:                                # @__cmovd
 	stw %r3, 20(%r31)
 	b .LBB105_8
 .LBB105_10:
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r4, __llvm_gcov_ctr.105@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB105_15
 .LBB105_11:
 	b .LBB105_12
@@ -10282,6 +12896,14 @@ __cmovd:                                # @__cmovd
 	beq	%cr0, .LBB105_14
 	b .LBB105_13
 .LBB105_13:                             #   in Loop: Header=BB105_12 Depth=1
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r4, __llvm_gcov_ctr.105@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___cmovd@ha
 	la %r4, .L__profc___cmovd@l(%r3)
 	lwz %r3, 48(%r4)
@@ -10297,6 +12919,14 @@ __cmovd:                                # @__cmovd
 	stbx %r3, %r4, %r5
 	b .LBB105_12
 .LBB105_14:
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r4, __llvm_gcov_ctr.105@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	b .LBB105_15
 .LBB105_15:
 	lwz %r31, 44(%r1)
@@ -10342,6 +12972,13 @@ __cmovh:                                # @__cmovh
 	blt	%cr0, .LBB106_3
 	b .LBB106_1
 .LBB106_1:
+	lis %r4, __llvm_gcov_ctr.106@ha
+	lwzu %r3, __llvm_gcov_ctr.106@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___cmovh@ha
 	la %r4, .L__profc___cmovh@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10402,6 +13039,14 @@ __cmovh:                                # @__cmovh
 	sthx %r3, %r4, %r5
 	b .LBB106_6
 .LBB106_6:                              #   in Loop: Header=BB106_4 Depth=1
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r4, __llvm_gcov_ctr.106@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 28(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 28(%r31)
@@ -10413,6 +13058,14 @@ __cmovh:                                # @__cmovh
 	beq	%cr0, .LBB106_9
 	b .LBB106_8
 .LBB106_8:
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r4, __llvm_gcov_ctr.106@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___cmovh@ha
 	la %r4, .L__profc___cmovh@l(%r3)
 	lwz %r3, 40(%r4)
@@ -10429,6 +13082,14 @@ __cmovh:                                # @__cmovh
 	stbx %r3, %r4, %r5
 	b .LBB106_9
 .LBB106_9:
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r4, __llvm_gcov_ctr.106@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB106_14
 .LBB106_10:
 	b .LBB106_11
@@ -10440,6 +13101,14 @@ __cmovh:                                # @__cmovh
 	beq	%cr0, .LBB106_13
 	b .LBB106_12
 .LBB106_12:                             #   in Loop: Header=BB106_11 Depth=1
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r4, __llvm_gcov_ctr.106@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___cmovh@ha
 	la %r4, .L__profc___cmovh@l(%r3)
 	lwz %r3, 48(%r4)
@@ -10455,6 +13124,14 @@ __cmovh:                                # @__cmovh
 	stbx %r3, %r4, %r5
 	b .LBB106_11
 .LBB106_13:
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r4, __llvm_gcov_ctr.106@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	b .LBB106_14
 .LBB106_14:
 	lwz %r31, 44(%r1)
@@ -10503,6 +13180,13 @@ __cmovw:                                # @__cmovw
 	blt	%cr0, .LBB107_3
 	b .LBB107_1
 .LBB107_1:
+	lis %r4, __llvm_gcov_ctr.107@ha
+	lwzu %r3, __llvm_gcov_ctr.107@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___cmovw@ha
 	la %r4, .L__profc___cmovw@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10563,6 +13247,14 @@ __cmovw:                                # @__cmovw
 	stwx %r3, %r4, %r5
 	b .LBB107_6
 .LBB107_6:                              #   in Loop: Header=BB107_4 Depth=1
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r4, __llvm_gcov_ctr.107@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 28(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 28(%r31)
@@ -10576,6 +13268,14 @@ __cmovw:                                # @__cmovw
 	ble %cr0, .LBB107_10
 	b .LBB107_9
 .LBB107_9:                              #   in Loop: Header=BB107_8 Depth=1
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r4, __llvm_gcov_ctr.107@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___cmovw@ha
 	la %r4, .L__profc___cmovw@l(%r3)
 	lwz %r3, 40(%r4)
@@ -10594,6 +13294,14 @@ __cmovw:                                # @__cmovw
 	stw %r3, 20(%r31)
 	b .LBB107_8
 .LBB107_10:
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r4, __llvm_gcov_ctr.107@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	b .LBB107_15
 .LBB107_11:
 	b .LBB107_12
@@ -10605,6 +13313,14 @@ __cmovw:                                # @__cmovw
 	beq	%cr0, .LBB107_14
 	b .LBB107_13
 .LBB107_13:                             #   in Loop: Header=BB107_12 Depth=1
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r4, __llvm_gcov_ctr.107@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___cmovw@ha
 	la %r4, .L__profc___cmovw@l(%r3)
 	lwz %r3, 48(%r4)
@@ -10620,6 +13336,14 @@ __cmovw:                                # @__cmovw
 	stbx %r3, %r4, %r5
 	b .LBB107_12
 .LBB107_14:
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r4, __llvm_gcov_ctr.107@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	b .LBB107_15
 .LBB107_15:
 	lwz %r31, 44(%r1)
@@ -10642,6 +13366,13 @@ __modi:                                 # @__modi
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.108@ha
+	lwzu %r5, __llvm_gcov_ctr.108@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___modi@ha
@@ -10679,6 +13410,13 @@ __uitod:                                # @__uitod
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.109@ha
+	lwzu %r4, __llvm_gcov_ctr.109@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc___uitod@ha
 	lwzu %r3, .L__profc___uitod@l(%r4)
@@ -10714,6 +13452,13 @@ __uitof:                                # @__uitof
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.110@ha
+	lwzu %r4, __llvm_gcov_ctr.110@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc___uitof@ha
 	lwzu %r3, .L__profc___uitof@l(%r4)
@@ -10751,6 +13496,13 @@ __ulltod:                               # @__ulltod
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.111@ha
+	lwzu %r5, __llvm_gcov_ctr.111@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	lis %r4, .L__profc___ulltod@ha
@@ -10790,6 +13542,13 @@ __ulltof:                               # @__ulltof
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.112@ha
+	lwzu %r5, __llvm_gcov_ctr.112@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	lis %r4, .L__profc___ulltof@ha
@@ -10824,6 +13583,13 @@ __umodi:                                # @__umodi
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.113@ha
+	lwzu %r5, __llvm_gcov_ctr.113@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___umodi@ha
@@ -10859,6 +13625,13 @@ __clzhi2:                               # @__clzhi2
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.114@ha
+	lwzu %r4, __llvm_gcov_ctr.114@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	sth %r3, 26(%r31)
 	lis %r4, .L__profc___clzhi2@ha
 	lwzu %r3, .L__profc___clzhi2@l(%r4)
@@ -10893,6 +13666,14 @@ __clzhi2:                               # @__clzhi2
 	beq	%cr0, .LBB114_4
 	b .LBB114_3
 .LBB114_3:
+	lis %r3, __llvm_gcov_ctr.114@ha
+	la %r4, __llvm_gcov_ctr.114@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___clzhi2@ha
 	la %r4, .L__profc___clzhi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10905,6 +13686,14 @@ __clzhi2:                               # @__clzhi2
 .LBB114_4:                              #   in Loop: Header=BB114_1 Depth=1
 	b .LBB114_5
 .LBB114_5:                              #   in Loop: Header=BB114_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.114@ha
+	la %r4, __llvm_gcov_ctr.114@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -10932,6 +13721,13 @@ __ctzhi2:                               # @__ctzhi2
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.115@ha
+	lwzu %r4, __llvm_gcov_ctr.115@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	sth %r3, 26(%r31)
 	lis %r4, .L__profc___ctzhi2@ha
 	lwzu %r3, .L__profc___ctzhi2@l(%r4)
@@ -10965,6 +13761,14 @@ __ctzhi2:                               # @__ctzhi2
 	beq	%cr0, .LBB115_4
 	b .LBB115_3
 .LBB115_3:
+	lis %r3, __llvm_gcov_ctr.115@ha
+	la %r4, __llvm_gcov_ctr.115@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___ctzhi2@ha
 	la %r4, .L__profc___ctzhi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -10977,6 +13781,14 @@ __ctzhi2:                               # @__ctzhi2
 .LBB115_4:                              #   in Loop: Header=BB115_1 Depth=1
 	b .LBB115_5
 .LBB115_5:                              #   in Loop: Header=BB115_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.115@ha
+	la %r4, __llvm_gcov_ctr.115@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -11022,6 +13834,13 @@ __fixunssfsi:                           # @__fixunssfsi
 	blt	%cr0, .LBB116_2
 	b .LBB116_1
 .LBB116_1:
+	lis %r4, __llvm_gcov_ctr.116@ha
+	lwzu %r3, __llvm_gcov_ctr.116@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___fixunssfsi@ha
 	la %r4, .L__profc___fixunssfsi@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11039,6 +13858,14 @@ __fixunssfsi:                           # @__fixunssfsi
 	stw %r3, 24(%r31)
 	b .LBB116_3
 .LBB116_2:
+	lis %r3, __llvm_gcov_ctr.116@ha
+	la %r4, __llvm_gcov_ctr.116@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r3, 20(%r31)
 	bl __fixsfsi
 	stw %r3, 24(%r31)
@@ -11068,6 +13895,13 @@ __parityhi2:                            # @__parityhi2
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.117@ha
+	lwzu %r4, __llvm_gcov_ctr.117@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	sth %r3, 26(%r31)
 	lis %r4, .L__profc___parityhi2@ha
 	lwzu %r3, .L__profc___parityhi2@l(%r4)
@@ -11102,6 +13936,14 @@ __parityhi2:                            # @__parityhi2
 	beq	%cr0, .LBB117_4
 	b .LBB117_3
 .LBB117_3:                              #   in Loop: Header=BB117_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.117@ha
+	la %r4, __llvm_gcov_ctr.117@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___parityhi2@ha
 	la %r4, .L__profc___parityhi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -11117,6 +13959,14 @@ __parityhi2:                            # @__parityhi2
 .LBB117_4:                              #   in Loop: Header=BB117_1 Depth=1
 	b .LBB117_5
 .LBB117_5:                              #   in Loop: Header=BB117_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.117@ha
+	la %r4, __llvm_gcov_ctr.117@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -11145,6 +13995,13 @@ __popcounthi2:                          # @__popcounthi2
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
                                         # kill: def $r4 killed $r3
+	lis %r5, __llvm_gcov_ctr.118@ha
+	lwzu %r4, __llvm_gcov_ctr.118@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	sth %r3, 26(%r31)
 	lis %r4, .L__profc___popcounthi2@ha
 	lwzu %r3, .L__profc___popcounthi2@l(%r4)
@@ -11179,6 +14036,14 @@ __popcounthi2:                          # @__popcounthi2
 	beq	%cr0, .LBB118_4
 	b .LBB118_3
 .LBB118_3:                              #   in Loop: Header=BB118_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.118@ha
+	la %r4, __llvm_gcov_ctr.118@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___popcounthi2@ha
 	la %r4, .L__profc___popcounthi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -11194,6 +14059,14 @@ __popcounthi2:                          # @__popcounthi2
 .LBB118_4:                              #   in Loop: Header=BB118_1 Depth=1
 	b .LBB118_5
 .LBB118_5:                              #   in Loop: Header=BB118_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.118@ha
+	la %r4, __llvm_gcov_ctr.118@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 20(%r31)
 	addi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -11220,6 +14093,13 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.119@ha
+	lwzu %r5, __llvm_gcov_ctr.119@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___mulsi3_iq2000@ha
@@ -11252,6 +14132,14 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	beq	%cr0, .LBB119_4
 	b .LBB119_3
 .LBB119_3:                              #   in Loop: Header=BB119_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.119@ha
+	la %r4, __llvm_gcov_ctr.119@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mulsi3_iq2000@ha
 	la %r4, .L__profc___mulsi3_iq2000@l(%r3)
 	lwz %r3, 16(%r4)
@@ -11266,6 +14154,14 @@ __mulsi3_iq2000:                        # @__mulsi3_iq2000
 	stw %r3, 16(%r31)
 	b .LBB119_4
 .LBB119_4:                              #   in Loop: Header=BB119_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.119@ha
+	la %r4, __llvm_gcov_ctr.119@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	srwi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -11311,6 +14207,14 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	bne	%cr0, .LBB120_2
 	b .LBB120_1
 .LBB120_1:
+	lis %r3, __llvm_gcov_ctr.120@ha
+	la %r4, __llvm_gcov_ctr.120@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mulsi3_lm32@ha
 	la %r4, .L__profc___mulsi3_lm32@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11323,6 +14227,13 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	stw %r3, 24(%r31)
 	b .LBB120_8
 .LBB120_2:
+	lis %r4, __llvm_gcov_ctr.120@ha
+	lwzu %r3, __llvm_gcov_ctr.120@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	b .LBB120_3
 .LBB120_3:                              # =>This Inner Loop Header: Depth=1
 	lwz %r3, 16(%r31)
@@ -11344,6 +14255,14 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	beq	%cr0, .LBB120_6
 	b .LBB120_5
 .LBB120_5:                              #   in Loop: Header=BB120_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.120@ha
+	la %r4, __llvm_gcov_ctr.120@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___mulsi3_lm32@ha
 	la %r4, .L__profc___mulsi3_lm32@l(%r3)
 	lwz %r3, 24(%r4)
@@ -11358,6 +14277,14 @@ __mulsi3_lm32:                          # @__mulsi3_lm32
 	stw %r3, 12(%r31)
 	b .LBB120_6
 .LBB120_6:                              #   in Loop: Header=BB120_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.120@ha
+	la %r4, __llvm_gcov_ctr.120@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 20(%r31)
 	slwi %r3, %r3, 1
 	stw %r3, 20(%r31)
@@ -11415,6 +14342,13 @@ __udivmodsi4:                           # @__udivmodsi4
 	bge %cr0, .LBB121_6
 	b .LBB121_2
 .LBB121_2:                              #   in Loop: Header=BB121_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.121@ha
+	lwzu %r3, __llvm_gcov_ctr.121@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___udivmodsi4@ha
 	la %r4, .L__profc___udivmodsi4@l(%r3)
 	lwz %r3, 32(%r4)
@@ -11430,6 +14364,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	beq	%cr0, .LBB121_6
 	b .LBB121_3
 .LBB121_3:                              #   in Loop: Header=BB121_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___udivmodsi4@ha
 	la %r4, .L__profc___udivmodsi4@l(%r3)
 	lwz %r3, 40(%r4)
@@ -11459,6 +14401,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	b .LBB121_5
 .LBB121_5:                              #   in Loop: Header=BB121_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.121@ha
+	la %r5, __llvm_gcov_ctr.121@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc___udivmodsi4@ha
 	la %r5, .L__profc___udivmodsi4@l(%r4)
 	lwz %r4, 24(%r5)
@@ -11476,6 +14426,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	beq	%cr0, .LBB121_8
 	b .LBB121_7
 .LBB121_7:                              #   in Loop: Header=BB121_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___udivmodsi4@ha
 	la %r4, .L__profc___udivmodsi4@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11513,6 +14471,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	blt	%cr0, .LBB121_12
 	b .LBB121_11
 .LBB121_11:                             #   in Loop: Header=BB121_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___udivmodsi4@ha
 	la %r4, .L__profc___udivmodsi4@l(%r3)
 	lwz %r3, 56(%r4)
@@ -11531,6 +14497,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	stw %r3, 20(%r31)
 	b .LBB121_12
 .LBB121_12:                             #   in Loop: Header=BB121_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 24(%r31)
 	srwi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -11544,6 +14518,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	beq	%cr0, .LBB121_15
 	b .LBB121_14
 .LBB121_14:
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lis %r3, .L__profc___udivmodsi4@ha
 	la %r4, .L__profc___udivmodsi4@l(%r3)
 	lwz %r3, 64(%r4)
@@ -11556,6 +14538,14 @@ __udivmodsi4:                           # @__udivmodsi4
 	stw %r3, 40(%r31)
 	b .LBB121_16
 .LBB121_15:
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r4, __llvm_gcov_ctr.121@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	lwz %r3, 20(%r31)
 	stw %r3, 40(%r31)
 	b .LBB121_16
@@ -11602,6 +14592,13 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	bgt	%cr0, .LBB122_2
 	b .LBB122_1
 .LBB122_1:
+	lis %r4, __llvm_gcov_ctr.122@ha
+	lwzu %r3, __llvm_gcov_ctr.122@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___mspabi_cmpf@ha
 	la %r4, .L__profc___mspabi_cmpf@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11621,6 +14618,14 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	blt	%cr0, .LBB122_4
 	b .LBB122_3
 .LBB122_3:
+	lis %r3, __llvm_gcov_ctr.122@ha
+	la %r4, __llvm_gcov_ctr.122@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mspabi_cmpf@ha
 	la %r4, .L__profc___mspabi_cmpf@l(%r3)
 	lwz %r3, 16(%r4)
@@ -11633,6 +14638,14 @@ __mspabi_cmpf:                          # @__mspabi_cmpf
 	stw %r3, 24(%r31)
 	b .LBB122_5
 .LBB122_4:
+	lis %r3, __llvm_gcov_ctr.122@ha
+	la %r4, __llvm_gcov_ctr.122@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB122_5
@@ -11687,6 +14700,13 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	bgt	%cr0, .LBB123_2
 	b .LBB123_1
 .LBB123_1:
+	lis %r4, __llvm_gcov_ctr.123@ha
+	lwzu %r3, __llvm_gcov_ctr.123@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___mspabi_cmpd@ha
 	la %r4, .L__profc___mspabi_cmpd@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11708,6 +14728,14 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	blt	%cr0, .LBB123_4
 	b .LBB123_3
 .LBB123_3:
+	lis %r3, __llvm_gcov_ctr.123@ha
+	la %r4, __llvm_gcov_ctr.123@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mspabi_cmpd@ha
 	la %r4, .L__profc___mspabi_cmpd@l(%r3)
 	lwz %r3, 16(%r4)
@@ -11720,6 +14748,14 @@ __mspabi_cmpd:                          # @__mspabi_cmpd
 	stw %r3, 24(%r31)
 	b .LBB123_5
 .LBB123_4:
+	lis %r3, __llvm_gcov_ctr.123@ha
+	la %r4, __llvm_gcov_ctr.123@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	li %r3, 0
 	stw %r3, 24(%r31)
 	b .LBB123_5
@@ -11747,6 +14783,13 @@ __mspabi_mpysll:                        # @__mspabi_mpysll
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.124@ha
+	lwzu %r5, __llvm_gcov_ctr.124@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___mspabi_mpysll@ha
@@ -11780,6 +14823,13 @@ __mspabi_mpyull:                        # @__mspabi_mpyull
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.125@ha
+	lwzu %r5, __llvm_gcov_ctr.125@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___mspabi_mpyull@ha
@@ -11830,6 +14880,13 @@ __mulhi3:                               # @__mulhi3
 	bgt	%cr0, .LBB126_2
 	b .LBB126_1
 .LBB126_1:
+	lis %r4, __llvm_gcov_ctr.126@ha
+	lwzu %r3, __llvm_gcov_ctr.126@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___mulhi3@ha
 	la %r4, .L__profc___mulhi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -11856,6 +14913,14 @@ __mulhi3:                               # @__mulhi3
 	beq	%cr0, .LBB126_8
 	b .LBB126_4
 .LBB126_4:                              #   in Loop: Header=BB126_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r4, __llvm_gcov_ctr.126@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___mulhi3@ha
 	la %r4, .L__profc___mulhi3@l(%r3)
 	lwz %r3, 24(%r4)
@@ -11885,6 +14950,14 @@ __mulhi3:                               # @__mulhi3
 	b .LBB126_7
 .LBB126_7:                              #   in Loop: Header=BB126_3 Depth=1
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.126@ha
+	la %r5, __llvm_gcov_ctr.126@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc___mulhi3@ha
 	la %r5, .L__profc___mulhi3@l(%r4)
 	lwz %r4, 32(%r5)
@@ -11916,6 +14989,14 @@ __mulhi3:                               # @__mulhi3
 	beq	%cr0, .LBB126_11
 	b .LBB126_10
 .LBB126_10:                             #   in Loop: Header=BB126_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r4, __llvm_gcov_ctr.126@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___mulhi3@ha
 	la %r4, .L__profc___mulhi3@l(%r3)
 	lwz %r3, 40(%r4)
@@ -11938,6 +15019,14 @@ __mulhi3:                               # @__mulhi3
 	stw %r3, 52(%r31)
 	b .LBB126_12
 .LBB126_12:                             #   in Loop: Header=BB126_3 Depth=1
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r4, __llvm_gcov_ctr.126@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lbz %r3, 51(%r31)
 	addi %r3, %r3, 1
 	stb %r3, 51(%r31)
@@ -11948,6 +15037,14 @@ __mulhi3:                               # @__mulhi3
 	beq	%cr0, .LBB126_15
 	b .LBB126_14
 .LBB126_14:
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r4, __llvm_gcov_ctr.126@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lis %r3, .L__profc___mulhi3@ha
 	la %r4, .L__profc___mulhi3@l(%r3)
 	lwz %r3, 48(%r4)
@@ -11961,6 +15058,14 @@ __mulhi3:                               # @__mulhi3
 	stw %r3, 16(%r31)                       # 4-byte Folded Spill
 	b .LBB126_16
 .LBB126_15:
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r4, __llvm_gcov_ctr.126@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lwz %r3, 40(%r31)
 	stw %r3, 16(%r31)                       # 4-byte Folded Spill
 	b .LBB126_16
@@ -11989,6 +15094,13 @@ __divsi3:                               # @__divsi3
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.127@ha
+	lwzu %r5, __llvm_gcov_ctr.127@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___divsi3@ha
@@ -12005,6 +15117,14 @@ __divsi3:                               # @__divsi3
 	bgt	%cr0, .LBB127_2
 	b .LBB127_1
 .LBB127_1:
+	lis %r3, __llvm_gcov_ctr.127@ha
+	la %r4, __llvm_gcov_ctr.127@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___divsi3@ha
 	la %r4, .L__profc___divsi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12027,6 +15147,14 @@ __divsi3:                               # @__divsi3
 	bgt	%cr0, .LBB127_4
 	b .LBB127_3
 .LBB127_3:
+	lis %r3, __llvm_gcov_ctr.127@ha
+	la %r4, __llvm_gcov_ctr.127@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___divsi3@ha
 	la %r4, .L__profc___divsi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -12057,6 +15185,14 @@ __divsi3:                               # @__divsi3
 	beq	%cr0, .LBB127_6
 	b .LBB127_5
 .LBB127_5:
+	lis %r3, __llvm_gcov_ctr.127@ha
+	la %r4, __llvm_gcov_ctr.127@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___divsi3@ha
 	la %r4, .L__profc___divsi3@l(%r3)
 	lwz %r3, 24(%r4)
@@ -12096,6 +15232,13 @@ __modsi3:                               # @__modsi3
 	.cfi_offset lr, 4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.128@ha
+	lwzu %r5, __llvm_gcov_ctr.128@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 24(%r31)
 	stw %r4, 20(%r31)
 	lis %r4, .L__profc___modsi3@ha
@@ -12112,6 +15255,14 @@ __modsi3:                               # @__modsi3
 	bgt	%cr0, .LBB128_2
 	b .LBB128_1
 .LBB128_1:
+	lis %r3, __llvm_gcov_ctr.128@ha
+	la %r4, __llvm_gcov_ctr.128@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___modsi3@ha
 	la %r4, .L__profc___modsi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12132,6 +15283,14 @@ __modsi3:                               # @__modsi3
 	bgt	%cr0, .LBB128_4
 	b .LBB128_3
 .LBB128_3:
+	lis %r3, __llvm_gcov_ctr.128@ha
+	la %r4, __llvm_gcov_ctr.128@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___modsi3@ha
 	la %r4, .L__profc___modsi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -12158,6 +15317,14 @@ __modsi3:                               # @__modsi3
 	beq	%cr0, .LBB128_6
 	b .LBB128_5
 .LBB128_5:
+	lis %r3, __llvm_gcov_ctr.128@ha
+	la %r4, __llvm_gcov_ctr.128@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___modsi3@ha
 	la %r4, .L__profc___modsi3@l(%r3)
 	lwz %r3, 24(%r4)
@@ -12220,6 +15387,13 @@ __udivmodhi4:                           # @__udivmodhi4
 	bge %cr0, .LBB129_6
 	b .LBB129_2
 .LBB129_2:                              #   in Loop: Header=BB129_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.129@ha
+	lwzu %r3, __llvm_gcov_ctr.129@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___udivmodhi4@ha
 	la %r4, .L__profc___udivmodhi4@l(%r3)
 	lwz %r3, 32(%r4)
@@ -12235,6 +15409,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	beq	%cr0, .LBB129_6
 	b .LBB129_3
 .LBB129_3:                              #   in Loop: Header=BB129_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___udivmodhi4@ha
 	la %r4, .L__profc___udivmodhi4@l(%r3)
 	lwz %r3, 40(%r4)
@@ -12264,6 +15446,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	b .LBB129_5
 .LBB129_5:                              #   in Loop: Header=BB129_1 Depth=1
 	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.129@ha
+	la %r5, __llvm_gcov_ctr.129@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc___udivmodhi4@ha
 	la %r5, .L__profc___udivmodhi4@l(%r4)
 	lwz %r4, 24(%r5)
@@ -12281,6 +15471,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	beq	%cr0, .LBB129_8
 	b .LBB129_7
 .LBB129_7:                              #   in Loop: Header=BB129_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___udivmodhi4@ha
 	la %r4, .L__profc___udivmodhi4@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12318,6 +15516,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	blt	%cr0, .LBB129_12
 	b .LBB129_11
 .LBB129_11:                             #   in Loop: Header=BB129_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___udivmodhi4@ha
 	la %r4, .L__profc___udivmodhi4@l(%r3)
 	lwz %r3, 56(%r4)
@@ -12336,6 +15542,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	sth %r3, 28(%r31)
 	b .LBB129_12
 .LBB129_12:                             #   in Loop: Header=BB129_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lhz %r3, 30(%r31)
 	srwi %r3, %r3, 1
 	sth %r3, 30(%r31)
@@ -12349,6 +15563,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	beq	%cr0, .LBB129_15
 	b .LBB129_14
 .LBB129_14:
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lis %r3, .L__profc___udivmodhi4@ha
 	la %r4, .L__profc___udivmodhi4@l(%r3)
 	lwz %r3, 64(%r4)
@@ -12361,6 +15583,14 @@ __udivmodhi4:                           # @__udivmodhi4
 	sth %r3, 42(%r31)
 	b .LBB129_16
 .LBB129_15:
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r4, __llvm_gcov_ctr.129@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	lhz %r3, 28(%r31)
 	sth %r3, 42(%r31)
 	b .LBB129_16
@@ -12410,6 +15640,13 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	bge %cr0, .LBB130_6
 	b .LBB130_2
 .LBB130_2:                              #   in Loop: Header=BB130_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.130@ha
+	lwzu %r3, __llvm_gcov_ctr.130@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___udivmodsi4_libgcc@ha
 	la %r4, .L__profc___udivmodsi4_libgcc@l(%r3)
 	lwz %r3, 32(%r4)
@@ -12425,6 +15662,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beq	%cr0, .LBB130_6
 	b .LBB130_3
 .LBB130_3:                              #   in Loop: Header=BB130_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___udivmodsi4_libgcc@ha
 	la %r4, .L__profc___udivmodsi4_libgcc@l(%r3)
 	lwz %r3, 40(%r4)
@@ -12454,6 +15699,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	b .LBB130_5
 .LBB130_5:                              #   in Loop: Header=BB130_1 Depth=1
 	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.130@ha
+	la %r5, __llvm_gcov_ctr.130@l(%r4)
+	lwz %r4, 16(%r5)
+	lwz %r6, 20(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 20(%r5)
+	stw %r4, 16(%r5)
 	lis %r4, .L__profc___udivmodsi4_libgcc@ha
 	la %r5, .L__profc___udivmodsi4_libgcc@l(%r4)
 	lwz %r4, 24(%r5)
@@ -12471,6 +15724,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beq	%cr0, .LBB130_8
 	b .LBB130_7
 .LBB130_7:                              #   in Loop: Header=BB130_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___udivmodsi4_libgcc@ha
 	la %r4, .L__profc___udivmodsi4_libgcc@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12508,6 +15769,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	blt	%cr0, .LBB130_12
 	b .LBB130_11
 .LBB130_11:                             #   in Loop: Header=BB130_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	lis %r3, .L__profc___udivmodsi4_libgcc@ha
 	la %r4, .L__profc___udivmodsi4_libgcc@l(%r3)
 	lwz %r3, 56(%r4)
@@ -12526,6 +15795,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	stw %r3, 20(%r31)
 	b .LBB130_12
 .LBB130_12:                             #   in Loop: Header=BB130_9 Depth=1
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 40(%r4)
+	lwz %r5, 44(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 44(%r4)
+	stw %r3, 40(%r4)
 	lwz %r3, 24(%r31)
 	srwi %r3, %r3, 1
 	stw %r3, 24(%r31)
@@ -12539,6 +15816,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	beq	%cr0, .LBB130_15
 	b .LBB130_14
 .LBB130_14:
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 48(%r4)
+	lwz %r5, 52(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 52(%r4)
+	stw %r3, 48(%r4)
 	lis %r3, .L__profc___udivmodsi4_libgcc@ha
 	la %r4, .L__profc___udivmodsi4_libgcc@l(%r3)
 	lwz %r3, 64(%r4)
@@ -12551,6 +15836,14 @@ __udivmodsi4_libgcc:                    # @__udivmodsi4_libgcc
 	stw %r3, 40(%r31)
 	b .LBB130_16
 .LBB130_15:
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r4, __llvm_gcov_ctr.130@l(%r3)
+	lwz %r3, 56(%r4)
+	lwz %r5, 60(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 60(%r4)
+	stw %r3, 56(%r4)
 	lwz %r3, 20(%r31)
 	stw %r3, 40(%r31)
 	b .LBB130_16
@@ -12600,6 +15893,13 @@ __ashldi3:                              # @__ashldi3
 	beq	%cr0, .LBB131_2
 	b .LBB131_1
 .LBB131_1:
+	lis %r4, __llvm_gcov_ctr.131@ha
+	lwzu %r3, __llvm_gcov_ctr.131@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___ashldi3@ha
 	la %r4, .L__profc___ashldi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12622,6 +15922,14 @@ __ashldi3:                              # @__ashldi3
 	bne	%cr0, .LBB131_4
 	b .LBB131_3
 .LBB131_3:
+	lis %r3, __llvm_gcov_ctr.131@ha
+	la %r4, __llvm_gcov_ctr.131@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___ashldi3@ha
 	la %r4, .L__profc___ashldi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -12636,6 +15944,14 @@ __ashldi3:                              # @__ashldi3
 	stw %r3, 48(%r31)
 	b .LBB131_6
 .LBB131_4:
+	lis %r3, __llvm_gcov_ctr.131@ha
+	la %r4, __llvm_gcov_ctr.131@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 24(%r31)
 	lwz %r4, 36(%r31)
 	slw %r3, %r3, %r4
@@ -12703,6 +16019,13 @@ __ashrdi3:                              # @__ashrdi3
 	beq	%cr0, .LBB132_2
 	b .LBB132_1
 .LBB132_1:
+	lis %r4, __llvm_gcov_ctr.132@ha
+	lwzu %r3, __llvm_gcov_ctr.132@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___ashrdi3@ha
 	la %r4, .L__profc___ashrdi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12726,6 +16049,14 @@ __ashrdi3:                              # @__ashrdi3
 	bne	%cr0, .LBB132_4
 	b .LBB132_3
 .LBB132_3:
+	lis %r3, __llvm_gcov_ctr.132@ha
+	la %r4, __llvm_gcov_ctr.132@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___ashrdi3@ha
 	la %r4, .L__profc___ashrdi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -12740,6 +16071,14 @@ __ashrdi3:                              # @__ashrdi3
 	stw %r3, 48(%r31)
 	b .LBB132_6
 .LBB132_4:
+	lis %r3, __llvm_gcov_ctr.132@ha
+	la %r4, __llvm_gcov_ctr.132@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 28(%r31)
 	lwz %r4, 36(%r31)
 	sraw %r3, %r3, %r4
@@ -12785,6 +16124,13 @@ __bswapdi2:                             # @__bswapdi2
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.133@ha
+	lwzu %r5, __llvm_gcov_ctr.133@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	lis %r4, .L__profc___bswapdi2@ha
@@ -12822,6 +16168,13 @@ __bswapsi2:                             # @__bswapsi2
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.134@ha
+	lwzu %r4, __llvm_gcov_ctr.134@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 8(%r31)
 	lis %r4, .L__profc___bswapsi2@ha
 	lwzu %r3, .L__profc___bswapsi2@l(%r4)
@@ -12854,6 +16207,13 @@ __clzsi2:                               # @__clzsi2
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.135@ha
+	lwzu %r4, __llvm_gcov_ctr.135@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc___clzsi2@ha
 	lwzu %r3, .L__profc___clzsi2@l(%r4)
@@ -12975,6 +16335,13 @@ __cmpdi2:                               # @__cmpdi2
 	bge %cr0, .LBB136_2
 	b .LBB136_1
 .LBB136_1:
+	lis %r4, __llvm_gcov_ctr.136@ha
+	lwzu %r3, __llvm_gcov_ctr.136@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___cmpdi2@ha
 	la %r4, .L__profc___cmpdi2@l(%r3)
 	lwz %r3, 8(%r4)
@@ -12993,6 +16360,14 @@ __cmpdi2:                               # @__cmpdi2
 	ble %cr0, .LBB136_4
 	b .LBB136_3
 .LBB136_3:
+	lis %r3, __llvm_gcov_ctr.136@ha
+	la %r4, __llvm_gcov_ctr.136@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___cmpdi2@ha
 	la %r4, .L__profc___cmpdi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -13011,6 +16386,14 @@ __cmpdi2:                               # @__cmpdi2
 	bge %cr0, .LBB136_6
 	b .LBB136_5
 .LBB136_5:
+	lis %r3, __llvm_gcov_ctr.136@ha
+	la %r4, __llvm_gcov_ctr.136@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___cmpdi2@ha
 	la %r4, .L__profc___cmpdi2@l(%r3)
 	lwz %r3, 24(%r4)
@@ -13029,6 +16412,14 @@ __cmpdi2:                               # @__cmpdi2
 	ble %cr0, .LBB136_8
 	b .LBB136_7
 .LBB136_7:
+	lis %r3, __llvm_gcov_ctr.136@ha
+	la %r4, __llvm_gcov_ctr.136@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___cmpdi2@ha
 	la %r4, .L__profc___cmpdi2@l(%r3)
 	lwz %r3, 32(%r4)
@@ -13041,6 +16432,14 @@ __cmpdi2:                               # @__cmpdi2
 	stw %r3, 40(%r31)
 	b .LBB136_9
 .LBB136_8:
+	lis %r3, __llvm_gcov_ctr.136@ha
+	la %r4, __llvm_gcov_ctr.136@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 1
 	stw %r3, 40(%r31)
 	b .LBB136_9
@@ -13073,6 +16472,13 @@ __aeabi_lcmp:                           # @__aeabi_lcmp
                                         # kill: def $r7 killed $r5
                                         # kill: def $r7 killed $r4
                                         # kill: def $r7 killed $r3
+	lis %r8, __llvm_gcov_ctr.137@ha
+	lwzu %r7, __llvm_gcov_ctr.137@l(%r8)
+	lwz %r9, 4(%r8)
+	addic %r7, %r7, 1
+	addze %r9, %r9
+	stw %r9, 4(%r8)
+	stw %r7, 0(%r8)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	stw %r6, 12(%r31)
@@ -13115,6 +16521,13 @@ __ctzsi2:                               # @__ctzsi2
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.138@ha
+	lwzu %r4, __llvm_gcov_ctr.138@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc___ctzsi2@ha
 	lwzu %r3, .L__profc___ctzsi2@l(%r4)
@@ -13228,6 +16641,13 @@ __lshrdi3:                              # @__lshrdi3
 	beq	%cr0, .LBB139_2
 	b .LBB139_1
 .LBB139_1:
+	lis %r4, __llvm_gcov_ctr.139@ha
+	lwzu %r3, __llvm_gcov_ctr.139@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___lshrdi3@ha
 	la %r4, .L__profc___lshrdi3@l(%r3)
 	lwz %r3, 8(%r4)
@@ -13250,6 +16670,14 @@ __lshrdi3:                              # @__lshrdi3
 	bne	%cr0, .LBB139_4
 	b .LBB139_3
 .LBB139_3:
+	lis %r3, __llvm_gcov_ctr.139@ha
+	la %r4, __llvm_gcov_ctr.139@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___lshrdi3@ha
 	la %r4, .L__profc___lshrdi3@l(%r3)
 	lwz %r3, 16(%r4)
@@ -13264,6 +16692,14 @@ __lshrdi3:                              # @__lshrdi3
 	stw %r3, 48(%r31)
 	b .LBB139_6
 .LBB139_4:
+	lis %r3, __llvm_gcov_ctr.139@ha
+	la %r4, __llvm_gcov_ctr.139@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lwz %r3, 28(%r31)
 	lwz %r4, 36(%r31)
 	srw %r3, %r3, %r4
@@ -13307,6 +16743,13 @@ __muldsi3:                              # @__muldsi3
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r6, __llvm_gcov_ctr.140@ha
+	lwzu %r5, __llvm_gcov_ctr.140@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r3, 40(%r31)
 	stw %r4, 36(%r31)
 	lis %r4, .L__profc___muldsi3@ha
@@ -13396,6 +16839,13 @@ __muldi3_compiler_rt:                   # @__muldi3_compiler_rt
                                         # kill: def $r7 killed $r5
                                         # kill: def $r7 killed $r4
                                         # kill: def $r7 killed $r3
+	lis %r8, __llvm_gcov_ctr.141@ha
+	lwzu %r7, __llvm_gcov_ctr.141@l(%r8)
+	lwz %r9, 4(%r8)
+	addic %r7, %r7, 1
+	addze %r9, %r9
+	stw %r9, 4(%r8)
+	stw %r7, 0(%r8)
 	stw %r4, 52(%r31)
 	stw %r3, 48(%r31)
 	stw %r6, 44(%r31)
@@ -13459,6 +16909,13 @@ __negdi2:                               # @__negdi2
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.142@ha
+	lwzu %r5, __llvm_gcov_ctr.142@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	lis %r4, .L__profc___negdi2@ha
@@ -13494,6 +16951,13 @@ __paritydi2:                            # @__paritydi2
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.143@ha
+	lwzu %r5, __llvm_gcov_ctr.143@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 36(%r31)
 	stw %r3, 32(%r31)
 	lis %r4, .L__profc___paritydi2@ha
@@ -13548,6 +17012,13 @@ __paritysi2:                            # @__paritysi2
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.144@ha
+	lwzu %r4, __llvm_gcov_ctr.144@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc___paritysi2@ha
 	lwzu %r3, .L__profc___paritysi2@l(%r4)
@@ -13597,6 +17068,13 @@ __popcountdi2:                          # @__popcountdi2
 	.cfi_def_cfa_register r31
                                         # kill: def $r5 killed $r4
                                         # kill: def $r5 killed $r3
+	lis %r6, __llvm_gcov_ctr.145@ha
+	lwzu %r5, __llvm_gcov_ctr.145@l(%r6)
+	lwz %r7, 4(%r6)
+	addic %r5, %r5, 1
+	addze %r7, %r7
+	stw %r7, 4(%r6)
+	stw %r5, 0(%r6)
 	stw %r4, 36(%r31)
 	stw %r3, 32(%r31)
 	lis %r4, .L__profc___popcountdi2@ha
@@ -13687,6 +17165,13 @@ __popcountsi2:                          # @__popcountsi2
 	.cfi_offset r31, -4
 	mr	%r31, %r1
 	.cfi_def_cfa_register r31
+	lis %r5, __llvm_gcov_ctr.146@ha
+	lwzu %r4, __llvm_gcov_ctr.146@l(%r5)
+	lwz %r6, 4(%r5)
+	addic %r4, %r4, 1
+	addze %r6, %r6
+	stw %r6, 4(%r5)
+	stw %r4, 0(%r5)
 	stw %r3, 24(%r31)
 	lis %r4, .L__profc___popcountsi2@ha
 	lwzu %r3, .L__profc___popcountsi2@l(%r4)
@@ -13787,6 +17272,13 @@ __powidf2:                              # @__powidf2
 	beq	%cr0, .LBB147_3
 	b .LBB147_2
 .LBB147_2:                              #   in Loop: Header=BB147_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.147@ha
+	lwzu %r3, __llvm_gcov_ctr.147@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___powidf2@ha
 	la %r4, .L__profc___powidf2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -13823,6 +17315,14 @@ __powidf2:                              # @__powidf2
 	stw %r3, 24(%r4)
 	b .LBB147_6
 .LBB147_5:                              #   in Loop: Header=BB147_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.147@ha
+	la %r4, __llvm_gcov_ctr.147@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r5, 32(%r31)
 	lwz %r6, 36(%r31)
 	mr	%r3, %r5
@@ -13837,6 +17337,14 @@ __powidf2:                              # @__powidf2
 	beq	%cr0, .LBB147_8
 	b .LBB147_7
 .LBB147_7:
+	lis %r3, __llvm_gcov_ctr.147@ha
+	la %r4, __llvm_gcov_ctr.147@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___powidf2@ha
 	la %r4, .L__profc___powidf2@l(%r3)
 	lwz %r3, 32(%r4)
@@ -13854,6 +17362,14 @@ __powidf2:                              # @__powidf2
 	stw %r4, 12(%r31)                       # 4-byte Folded Spill
 	b .LBB147_9
 .LBB147_8:
+	lis %r3, __llvm_gcov_ctr.147@ha
+	la %r4, __llvm_gcov_ctr.147@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 20(%r31)
 	lwz %r4, 16(%r31)
 	stw %r4, 8(%r31)                        # 4-byte Folded Spill
@@ -13918,6 +17434,13 @@ __powisf2:                              # @__powisf2
 	beq	%cr0, .LBB148_3
 	b .LBB148_2
 .LBB148_2:                              #   in Loop: Header=BB148_1 Depth=1
+	lis %r4, __llvm_gcov_ctr.148@ha
+	lwzu %r3, __llvm_gcov_ctr.148@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___powisf2@ha
 	la %r4, .L__profc___powisf2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -13951,6 +17474,14 @@ __powisf2:                              # @__powisf2
 	stw %r3, 24(%r4)
 	b .LBB148_6
 .LBB148_5:                              #   in Loop: Header=BB148_1 Depth=1
+	lis %r3, __llvm_gcov_ctr.148@ha
+	la %r4, __llvm_gcov_ctr.148@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lwz %r4, 24(%r31)
 	mr	%r3, %r4
 	bl __mulsf3
@@ -13962,6 +17493,14 @@ __powisf2:                              # @__powisf2
 	beq	%cr0, .LBB148_8
 	b .LBB148_7
 .LBB148_7:
+	lis %r3, __llvm_gcov_ctr.148@ha
+	la %r4, __llvm_gcov_ctr.148@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___powisf2@ha
 	la %r4, .L__profc___powisf2@l(%r3)
 	lwz %r3, 32(%r4)
@@ -13976,6 +17515,14 @@ __powisf2:                              # @__powisf2
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB148_9
 .LBB148_8:
+	lis %r3, __llvm_gcov_ctr.148@ha
+	la %r4, __llvm_gcov_ctr.148@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lwz %r3, 12(%r31)
 	stw %r3, 8(%r31)                        # 4-byte Folded Spill
 	b .LBB148_9
@@ -14032,6 +17579,13 @@ __ucmpdi2:                              # @__ucmpdi2
 	bge %cr0, .LBB149_2
 	b .LBB149_1
 .LBB149_1:
+	lis %r4, __llvm_gcov_ctr.149@ha
+	lwzu %r3, __llvm_gcov_ctr.149@l(%r4)
+	lwz %r5, 4(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 4(%r4)
+	stw %r3, 0(%r4)
 	lis %r3, .L__profc___ucmpdi2@ha
 	la %r4, .L__profc___ucmpdi2@l(%r3)
 	lwz %r3, 8(%r4)
@@ -14050,6 +17604,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	ble %cr0, .LBB149_4
 	b .LBB149_3
 .LBB149_3:
+	lis %r3, __llvm_gcov_ctr.149@ha
+	la %r4, __llvm_gcov_ctr.149@l(%r3)
+	lwz %r3, 8(%r4)
+	lwz %r5, 12(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 12(%r4)
+	stw %r3, 8(%r4)
 	lis %r3, .L__profc___ucmpdi2@ha
 	la %r4, .L__profc___ucmpdi2@l(%r3)
 	lwz %r3, 16(%r4)
@@ -14068,6 +17630,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	bge %cr0, .LBB149_6
 	b .LBB149_5
 .LBB149_5:
+	lis %r3, __llvm_gcov_ctr.149@ha
+	la %r4, __llvm_gcov_ctr.149@l(%r3)
+	lwz %r3, 16(%r4)
+	lwz %r5, 20(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 20(%r4)
+	stw %r3, 16(%r4)
 	lis %r3, .L__profc___ucmpdi2@ha
 	la %r4, .L__profc___ucmpdi2@l(%r3)
 	lwz %r3, 24(%r4)
@@ -14086,6 +17656,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	ble %cr0, .LBB149_8
 	b .LBB149_7
 .LBB149_7:
+	lis %r3, __llvm_gcov_ctr.149@ha
+	la %r4, __llvm_gcov_ctr.149@l(%r3)
+	lwz %r3, 24(%r4)
+	lwz %r5, 28(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 28(%r4)
+	stw %r3, 24(%r4)
 	lis %r3, .L__profc___ucmpdi2@ha
 	la %r4, .L__profc___ucmpdi2@l(%r3)
 	lwz %r3, 32(%r4)
@@ -14098,6 +17676,14 @@ __ucmpdi2:                              # @__ucmpdi2
 	stw %r3, 40(%r31)
 	b .LBB149_9
 .LBB149_8:
+	lis %r3, __llvm_gcov_ctr.149@ha
+	la %r4, __llvm_gcov_ctr.149@l(%r3)
+	lwz %r3, 32(%r4)
+	lwz %r5, 36(%r4)
+	addic %r3, %r3, 1
+	addze %r5, %r5
+	stw %r5, 36(%r4)
+	stw %r3, 32(%r4)
 	li %r3, 1
 	stw %r3, 40(%r31)
 	b .LBB149_9
@@ -14130,6 +17716,13 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
                                         # kill: def $r7 killed $r5
                                         # kill: def $r7 killed $r4
                                         # kill: def $r7 killed $r3
+	lis %r8, __llvm_gcov_ctr.150@ha
+	lwzu %r7, __llvm_gcov_ctr.150@l(%r8)
+	lwz %r9, 4(%r8)
+	addic %r7, %r7, 1
+	addze %r9, %r9
+	stw %r9, 4(%r8)
+	stw %r7, 0(%r8)
 	stw %r4, 20(%r31)
 	stw %r3, 16(%r31)
 	stw %r6, 12(%r31)
@@ -14159,6 +17752,937 @@ __aeabi_ulcmp:                          # @__aeabi_ulcmp
 	.size	__aeabi_ulcmp, .Lfunc_end150-.Lfunc_begin150
 	.cfi_endproc
                                         # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_writeout
+	.type	__llvm_gcov_writeout,@function
+__llvm_gcov_writeout:                   # @__llvm_gcov_writeout
+.Lfunc_begin151:
+	.cfi_startproc
+# %bb.0:
+	mflr %r0
+	stwu %r1, -48(%r1)
+	stw %r31, 44(%r1)
+	stw %r0, 52(%r1)
+	.cfi_def_cfa_offset 48
+	.cfi_offset r31, -4
+	.cfi_offset lr, 4
+	mr	%r31, %r1
+	.cfi_def_cfa_register r31
+	li %r3, 0
+	stw %r3, 40(%r31)                       # 4-byte Folded Spill
+	b .LBB151_1
+.LBB151_1:                              # =>This Loop Header: Depth=1
+                                        #     Child Loop BB151_2 Depth 2
+	lwz %r3, 40(%r31)                       # 4-byte Folded Reload
+	stw %r3, 16(%r31)                       # 4-byte Folded Spill
+	mulli %r3, %r3, 24
+	lis %r4, __llvm_internal_gcov_emit_file_info@ha
+	la %r5, __llvm_internal_gcov_emit_file_info@l(%r4)
+	lwzux %r3, %r5, %r3
+	stw %r5, 20(%r31)                       # 4-byte Folded Spill
+	lwz %r4, 4(%r5)
+	lwz %r5, 8(%r5)
+	lis %r6, llvm_gcda_start_file@ha
+	la %r6, llvm_gcda_start_file@l(%r6)
+	mtctr %r6
+	bctrl
+	lwz %r3, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 12(%r3)
+	stw %r4, 24(%r31)                       # 4-byte Folded Spill
+	lwz %r5, 16(%r3)
+	stw %r5, 28(%r31)                       # 4-byte Folded Spill
+	lwz %r3, 20(%r3)
+	stw %r3, 32(%r31)                       # 4-byte Folded Spill
+	li %r3, 0
+	cmpwi	%r4, 1
+	stw %r3, 36(%r31)                       # 4-byte Folded Spill
+	blt	%cr0, .LBB151_3
+	b .LBB151_2
+.LBB151_2:                              #   Parent Loop BB151_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	lwz %r3, 36(%r31)                       # 4-byte Folded Reload
+	lwz %r5, 28(%r31)                       # 4-byte Folded Reload
+	stw %r3, 12(%r31)                       # 4-byte Folded Spill
+	mulli %r3, %r3, 12
+	lwzux %r3, %r5, %r3
+	lwz %r4, 4(%r5)
+	lwz %r5, 8(%r5)
+	lis %r6, llvm_gcda_emit_function@ha
+	la %r6, llvm_gcda_emit_function@l(%r6)
+	mtctr %r6
+	bctrl
+	lwz %r4, 32(%r31)                       # 4-byte Folded Reload
+	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	slwi %r3, %r3, 3
+	lwzux %r3, %r4, %r3
+	lwz %r4, 4(%r4)
+	lis %r5, llvm_gcda_emit_arcs@ha
+	la %r5, llvm_gcda_emit_arcs@l(%r5)
+	mtctr %r5
+	bctrl
+	lwz %r3, 12(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	addi %r3, %r3, 1
+	cmpw	%r3, %r4
+	stw %r3, 36(%r31)                       # 4-byte Folded Spill
+	blt	%cr0, .LBB151_2
+	b .LBB151_3
+.LBB151_3:                              #   in Loop: Header=BB151_1 Depth=1
+	lis %r3, llvm_gcda_summary_info@ha
+	la %r3, llvm_gcda_summary_info@l(%r3)
+	mtctr %r3
+	bctrl
+	lis %r3, llvm_gcda_end_file@ha
+	la %r3, llvm_gcda_end_file@l(%r3)
+	mtctr %r3
+	bctrl
+	lwz %r3, 16(%r31)                       # 4-byte Folded Reload
+	addi %r3, %r3, 1
+	cmpwi	%r3, 1
+	stw %r3, 40(%r31)                       # 4-byte Folded Spill
+	blt	%cr0, .LBB151_1
+	b .LBB151_4
+.LBB151_4:
+	lwz %r0, 52(%r1)
+	lwz %r31, 44(%r1)
+	addi %r1, %r1, 48
+	mtlr %r0
+	blr
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-.Lfunc_begin151
+	.cfi_endproc
+                                        # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_reset
+	.type	__llvm_gcov_reset,@function
+__llvm_gcov_reset:                      # @__llvm_gcov_reset
+.Lfunc_begin152:
+	.cfi_startproc
+# %bb.0:
+	mflr %r0
+	stwu %r1, -32(%r1)
+	stw %r31, 28(%r1)
+	stw %r0, 36(%r1)
+	.cfi_def_cfa_offset 32
+	.cfi_offset r31, -4
+	.cfi_offset lr, 4
+	mr	%r31, %r1
+	.cfi_def_cfa_register r31
+	lis %r3, __llvm_gcov_ctr@ha
+	la %r3, __llvm_gcov_ctr@l(%r3)
+	li %r4, 0
+	stw %r4, 24(%r31)                       # 4-byte Folded Spill
+	li %r5, 40
+	stw %r5, 20(%r31)                       # 4-byte Folded Spill
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.1@ha
+	la %r3, __llvm_gcov_ctr.1@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.2@ha
+	la %r3, __llvm_gcov_ctr.2@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.3@ha
+	la %r3, __llvm_gcov_ctr.3@l(%r3)
+	bl memset
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.4@ha
+	stwu %r4, __llvm_gcov_ctr.4@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.5@ha
+	stwu %r4, __llvm_gcov_ctr.5@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.6@ha
+	stwu %r4, __llvm_gcov_ctr.6@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.7@ha
+	stwu %r4, __llvm_gcov_ctr.7@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.8@ha
+	stwu %r4, __llvm_gcov_ctr.8@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.9@ha
+	stwu %r4, __llvm_gcov_ctr.9@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.10@ha
+	stwu %r4, __llvm_gcov_ctr.10@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.11@ha
+	stwu %r4, __llvm_gcov_ctr.11@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.12@ha
+	la %r3, __llvm_gcov_ctr.12@l(%r3)
+	li %r5, 56
+	stw %r5, 12(%r31)                       # 4-byte Folded Spill
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.13@ha
+	stwu %r4, __llvm_gcov_ctr.13@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.14@ha
+	stwu %r4, __llvm_gcov_ctr.14@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.15@ha
+	stwu %r4, __llvm_gcov_ctr.15@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.16@ha
+	stwu %r4, __llvm_gcov_ctr.16@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.17@ha
+	stwu %r4, __llvm_gcov_ctr.17@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.18@ha
+	stwu %r4, __llvm_gcov_ctr.18@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.19@ha
+	stwu %r4, __llvm_gcov_ctr.19@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.20@ha
+	stwu %r4, __llvm_gcov_ctr.20@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.21@ha
+	stwu %r4, __llvm_gcov_ctr.21@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.22@ha
+	stwu %r4, __llvm_gcov_ctr.22@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.23@ha
+	stwu %r4, __llvm_gcov_ctr.23@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.24@ha
+	la %r3, __llvm_gcov_ctr.24@l(%r3)
+	bl memset
+	lwz %r5, 12(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.25@ha
+	stwu %r4, __llvm_gcov_ctr.25@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.26@ha
+	la %r3, __llvm_gcov_ctr.26@l(%r3)
+	bl memset
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.27@ha
+	stwu %r4, __llvm_gcov_ctr.27@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.28@ha
+	stwu %r4, __llvm_gcov_ctr.28@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.29@ha
+	stwu %r4, __llvm_gcov_ctr.29@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.30@ha
+	stwu %r4, __llvm_gcov_ctr.30@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.31@ha
+	la %r3, __llvm_gcov_ctr.31@l(%r3)
+	li %r5, 48
+	stw %r5, 8(%r31)                        # 4-byte Folded Spill
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.32@ha
+	la %r3, __llvm_gcov_ctr.32@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.33@ha
+	la %r3, __llvm_gcov_ctr.33@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.34@ha
+	la %r3, __llvm_gcov_ctr.34@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.35@ha
+	la %r3, __llvm_gcov_ctr.35@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.36@ha
+	la %r3, __llvm_gcov_ctr.36@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.37@ha
+	stwu %r4, __llvm_gcov_ctr.37@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.38@ha
+	stwu %r4, __llvm_gcov_ctr.38@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.39@ha
+	stwu %r4, __llvm_gcov_ctr.39@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.40@ha
+	stwu %r4, __llvm_gcov_ctr.40@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.41@ha
+	stwu %r4, __llvm_gcov_ctr.41@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.42@ha
+	stwu %r4, __llvm_gcov_ctr.42@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.43@ha
+	stwu %r4, __llvm_gcov_ctr.43@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.44@ha
+	stwu %r4, __llvm_gcov_ctr.44@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.45@ha
+	la %r3, __llvm_gcov_ctr.45@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.46@ha
+	la %r3, __llvm_gcov_ctr.46@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.47@ha
+	la %r3, __llvm_gcov_ctr.47@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.48@ha
+	stwu %r4, __llvm_gcov_ctr.48@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.49@ha
+	stwu %r4, __llvm_gcov_ctr.49@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.50@ha
+	stwu %r4, __llvm_gcov_ctr.50@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.51@ha
+	stwu %r4, __llvm_gcov_ctr.51@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.52@ha
+	stwu %r4, __llvm_gcov_ctr.52@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.53@ha
+	stwu %r4, __llvm_gcov_ctr.53@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.54@ha
+	stwu %r4, __llvm_gcov_ctr.54@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.55@ha
+	stwu %r4, __llvm_gcov_ctr.55@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.56@ha
+	stwu %r4, __llvm_gcov_ctr.56@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.57@ha
+	la %r3, __llvm_gcov_ctr.57@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.58@ha
+	la %r3, __llvm_gcov_ctr.58@l(%r3)
+	bl memset
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.59@ha
+	stwu %r4, __llvm_gcov_ctr.59@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.60@ha
+	stwu %r4, __llvm_gcov_ctr.60@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.61@ha
+	la %r3, __llvm_gcov_ctr.61@l(%r3)
+	li %r5, 64
+	stw %r5, 16(%r31)                       # 4-byte Folded Spill
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.62@ha
+	la %r3, __llvm_gcov_ctr.62@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.63@ha
+	la %r3, __llvm_gcov_ctr.63@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.64@ha
+	stwu %r4, __llvm_gcov_ctr.64@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.65@ha
+	la %r3, __llvm_gcov_ctr.65@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.66@ha
+	stwu %r4, __llvm_gcov_ctr.66@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.67@ha
+	la %r3, __llvm_gcov_ctr.67@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.68@ha
+	stwu %r4, __llvm_gcov_ctr.68@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.69@ha
+	stwu %r4, __llvm_gcov_ctr.69@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.70@ha
+	stwu %r4, __llvm_gcov_ctr.70@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.71@ha
+	stwu %r4, __llvm_gcov_ctr.71@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.72@ha
+	stwu %r4, __llvm_gcov_ctr.72@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.73@ha
+	stwu %r4, __llvm_gcov_ctr.73@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.74@ha
+	stwu %r4, __llvm_gcov_ctr.74@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.75@ha
+	stwu %r4, __llvm_gcov_ctr.75@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.76@ha
+	stwu %r4, __llvm_gcov_ctr.76@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.77@ha
+	stwu %r4, __llvm_gcov_ctr.77@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.78@ha
+	stwu %r4, __llvm_gcov_ctr.78@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.79@ha
+	stwu %r4, __llvm_gcov_ctr.79@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.80@ha
+	stwu %r4, __llvm_gcov_ctr.80@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.81@ha
+	stwu %r4, __llvm_gcov_ctr.81@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.82@ha
+	stwu %r4, __llvm_gcov_ctr.82@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.83@ha
+	stwu %r4, __llvm_gcov_ctr.83@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.84@ha
+	stwu %r4, __llvm_gcov_ctr.84@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.85@ha
+	stwu %r4, __llvm_gcov_ctr.85@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.86@ha
+	stwu %r4, __llvm_gcov_ctr.86@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.87@ha
+	la %r3, __llvm_gcov_ctr.87@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.88@ha
+	la %r3, __llvm_gcov_ctr.88@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.89@ha
+	la %r3, __llvm_gcov_ctr.89@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.90@ha
+	stwu %r4, __llvm_gcov_ctr.90@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.91@ha
+	la %r3, __llvm_gcov_ctr.91@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.92@ha
+	stwu %r4, __llvm_gcov_ctr.92@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.93@ha
+	stwu %r4, __llvm_gcov_ctr.93@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.94@ha
+	stwu %r4, __llvm_gcov_ctr.94@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.95@ha
+	stwu %r4, __llvm_gcov_ctr.95@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.96@ha
+	la %r3, __llvm_gcov_ctr.96@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.97@ha
+	la %r3, __llvm_gcov_ctr.97@l(%r3)
+	bl memset
+	lwz %r5, 16(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.98@ha
+	stwu %r4, __llvm_gcov_ctr.98@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.99@ha
+	la %r3, __llvm_gcov_ctr.99@l(%r3)
+	bl memset
+	lwz %r5, 16(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.100@ha
+	stwu %r4, __llvm_gcov_ctr.100@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.101@ha
+	la %r3, __llvm_gcov_ctr.101@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.102@ha
+	stwu %r4, __llvm_gcov_ctr.102@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.103@ha
+	stwu %r4, __llvm_gcov_ctr.103@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.104@ha
+	stwu %r4, __llvm_gcov_ctr.104@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.105@ha
+	la %r3, __llvm_gcov_ctr.105@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.106@ha
+	la %r3, __llvm_gcov_ctr.106@l(%r3)
+	bl memset
+	lwz %r5, 8(%r31)                        # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.107@ha
+	la %r3, __llvm_gcov_ctr.107@l(%r3)
+	bl memset
+	lwz %r5, 16(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.108@ha
+	stwu %r4, __llvm_gcov_ctr.108@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.109@ha
+	stwu %r4, __llvm_gcov_ctr.109@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.110@ha
+	stwu %r4, __llvm_gcov_ctr.110@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.111@ha
+	stwu %r4, __llvm_gcov_ctr.111@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.112@ha
+	stwu %r4, __llvm_gcov_ctr.112@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.113@ha
+	stwu %r4, __llvm_gcov_ctr.113@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.114@ha
+	stwu %r4, __llvm_gcov_ctr.114@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.115@ha
+	stwu %r4, __llvm_gcov_ctr.115@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.116@ha
+	stwu %r4, __llvm_gcov_ctr.116@l(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.117@ha
+	stwu %r4, __llvm_gcov_ctr.117@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.118@ha
+	stwu %r4, __llvm_gcov_ctr.118@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.119@ha
+	stwu %r4, __llvm_gcov_ctr.119@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.120@ha
+	stwu %r4, __llvm_gcov_ctr.120@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.121@ha
+	la %r3, __llvm_gcov_ctr.121@l(%r3)
+	bl memset
+	lwz %r5, 12(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.122@ha
+	stwu %r4, __llvm_gcov_ctr.122@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.123@ha
+	stwu %r4, __llvm_gcov_ctr.123@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.124@ha
+	stwu %r4, __llvm_gcov_ctr.124@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.125@ha
+	stwu %r4, __llvm_gcov_ctr.125@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.126@ha
+	la %r3, __llvm_gcov_ctr.126@l(%r3)
+	bl memset
+	lwz %r5, 16(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.127@ha
+	stwu %r4, __llvm_gcov_ctr.127@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.128@ha
+	stwu %r4, __llvm_gcov_ctr.128@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.129@ha
+	la %r3, __llvm_gcov_ctr.129@l(%r3)
+	bl memset
+	lwz %r5, 16(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.130@ha
+	la %r3, __llvm_gcov_ctr.130@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.131@ha
+	stwu %r4, __llvm_gcov_ctr.131@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.132@ha
+	stwu %r4, __llvm_gcov_ctr.132@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.133@ha
+	stwu %r4, __llvm_gcov_ctr.133@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.134@ha
+	stwu %r4, __llvm_gcov_ctr.134@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.135@ha
+	stwu %r4, __llvm_gcov_ctr.135@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.136@ha
+	la %r3, __llvm_gcov_ctr.136@l(%r3)
+	bl memset
+	lwz %r5, 20(%r31)                       # 4-byte Folded Reload
+	lwz %r4, 24(%r31)                       # 4-byte Folded Reload
+	lis %r3, __llvm_gcov_ctr.137@ha
+	stwu %r4, __llvm_gcov_ctr.137@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.138@ha
+	stwu %r4, __llvm_gcov_ctr.138@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.139@ha
+	stwu %r4, __llvm_gcov_ctr.139@l(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.140@ha
+	stwu %r4, __llvm_gcov_ctr.140@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.141@ha
+	stwu %r4, __llvm_gcov_ctr.141@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.142@ha
+	stwu %r4, __llvm_gcov_ctr.142@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.143@ha
+	stwu %r4, __llvm_gcov_ctr.143@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.144@ha
+	stwu %r4, __llvm_gcov_ctr.144@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.145@ha
+	stwu %r4, __llvm_gcov_ctr.145@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.146@ha
+	stwu %r4, __llvm_gcov_ctr.146@l(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.147@ha
+	stwu %r4, __llvm_gcov_ctr.147@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.148@ha
+	stwu %r4, __llvm_gcov_ctr.148@l(%r3)
+	stw %r4, 28(%r3)
+	stw %r4, 24(%r3)
+	stw %r4, 20(%r3)
+	stw %r4, 16(%r3)
+	stw %r4, 12(%r3)
+	stw %r4, 8(%r3)
+	stw %r4, 4(%r3)
+	lis %r3, __llvm_gcov_ctr.149@ha
+	la %r3, __llvm_gcov_ctr.149@l(%r3)
+	bl memset
+                                        # kill: def $r4 killed $r3
+	lwz %r3, 24(%r31)                       # 4-byte Folded Reload
+	lis %r4, __llvm_gcov_ctr.150@ha
+	stwu %r3, __llvm_gcov_ctr.150@l(%r4)
+	stw %r3, 4(%r4)
+	lwz %r0, 36(%r1)
+	lwz %r31, 28(%r1)
+	addi %r1, %r1, 32
+	mtlr %r0
+	blr
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-.Lfunc_begin152
+	.cfi_endproc
+                                        # -- End function
+	.p2align	2                               # -- Begin function __llvm_gcov_init
+	.type	__llvm_gcov_init,@function
+__llvm_gcov_init:                       # @__llvm_gcov_init
+.Lfunc_begin153:
+	.cfi_startproc
+# %bb.0:
+	mflr %r0
+	stwu %r1, -16(%r1)
+	stw %r31, 12(%r1)
+	stw %r0, 20(%r1)
+	.cfi_def_cfa_offset 16
+	.cfi_offset r31, -4
+	.cfi_offset lr, 4
+	mr	%r31, %r1
+	.cfi_def_cfa_register r31
+	lis %r3, __llvm_gcov_writeout@ha
+	la %r3, __llvm_gcov_writeout@l(%r3)
+	lis %r4, __llvm_gcov_reset@ha
+	la %r4, __llvm_gcov_reset@l(%r4)
+	lis %r5, llvm_gcov_init@ha
+	la %r5, llvm_gcov_init@l(%r5)
+	mtctr %r5
+	bctrl
+	lwz %r0, 20(%r1)
+	lwz %r31, 12(%r1)
+	addi %r1, %r1, 16
+	mtlr %r0
+	blr
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-.Lfunc_begin153
+	.cfi_endproc
+                                        # -- End function
 	.type	l64a.s,@object                  # @l64a.s
 	.lcomm	l64a.s,7
 	.type	digits,@object                  # @digits
@@ -14169,6 +18693,1095 @@ digits:
 
 	.type	seed,@object                    # @seed
 	.lcomm	seed,8,8
+	.type	__llvm_gcov_ctr,@object         # @__llvm_gcov_ctr
+	.lcomm	__llvm_gcov_ctr,40,16
+	.type	__llvm_gcov_ctr.1,@object       # @__llvm_gcov_ctr.1
+	.lcomm	__llvm_gcov_ctr.1,40,16
+	.type	__llvm_gcov_ctr.2,@object       # @__llvm_gcov_ctr.2
+	.lcomm	__llvm_gcov_ctr.2,40,16
+	.type	__llvm_gcov_ctr.3,@object       # @__llvm_gcov_ctr.3
+	.lcomm	__llvm_gcov_ctr.3,40,16
+	.type	__llvm_gcov_ctr.4,@object       # @__llvm_gcov_ctr.4
+	.lcomm	__llvm_gcov_ctr.4,16,8
+	.type	__llvm_gcov_ctr.5,@object       # @__llvm_gcov_ctr.5
+	.lcomm	__llvm_gcov_ctr.5,24,16
+	.type	__llvm_gcov_ctr.6,@object       # @__llvm_gcov_ctr.6
+	.lcomm	__llvm_gcov_ctr.6,16,8
+	.type	__llvm_gcov_ctr.7,@object       # @__llvm_gcov_ctr.7
+	.lcomm	__llvm_gcov_ctr.7,16,8
+	.type	__llvm_gcov_ctr.8,@object       # @__llvm_gcov_ctr.8
+	.lcomm	__llvm_gcov_ctr.8,32,16
+	.type	__llvm_gcov_ctr.9,@object       # @__llvm_gcov_ctr.9
+	.lcomm	__llvm_gcov_ctr.9,24,16
+	.type	__llvm_gcov_ctr.10,@object      # @__llvm_gcov_ctr.10
+	.lcomm	__llvm_gcov_ctr.10,32,16
+	.type	__llvm_gcov_ctr.11,@object      # @__llvm_gcov_ctr.11
+	.lcomm	__llvm_gcov_ctr.11,16,8
+	.type	__llvm_gcov_ctr.12,@object      # @__llvm_gcov_ctr.12
+	.lcomm	__llvm_gcov_ctr.12,56,16
+	.type	__llvm_gcov_ctr.13,@object      # @__llvm_gcov_ctr.13
+	.lcomm	__llvm_gcov_ctr.13,16,8
+	.type	__llvm_gcov_ctr.14,@object      # @__llvm_gcov_ctr.14
+	.lcomm	__llvm_gcov_ctr.14,8,8
+	.type	__llvm_gcov_ctr.15,@object      # @__llvm_gcov_ctr.15
+	.lcomm	__llvm_gcov_ctr.15,8,8
+	.type	__llvm_gcov_ctr.16,@object      # @__llvm_gcov_ctr.16
+	.lcomm	__llvm_gcov_ctr.16,24,16
+	.type	__llvm_gcov_ctr.17,@object      # @__llvm_gcov_ctr.17
+	.lcomm	__llvm_gcov_ctr.17,24,16
+	.type	__llvm_gcov_ctr.18,@object      # @__llvm_gcov_ctr.18
+	.lcomm	__llvm_gcov_ctr.18,8,8
+	.type	__llvm_gcov_ctr.19,@object      # @__llvm_gcov_ctr.19
+	.lcomm	__llvm_gcov_ctr.19,8,8
+	.type	__llvm_gcov_ctr.20,@object      # @__llvm_gcov_ctr.20
+	.lcomm	__llvm_gcov_ctr.20,8,8
+	.type	__llvm_gcov_ctr.21,@object      # @__llvm_gcov_ctr.21
+	.lcomm	__llvm_gcov_ctr.21,8,8
+	.type	__llvm_gcov_ctr.22,@object      # @__llvm_gcov_ctr.22
+	.lcomm	__llvm_gcov_ctr.22,24,16
+	.type	__llvm_gcov_ctr.23,@object      # @__llvm_gcov_ctr.23
+	.lcomm	__llvm_gcov_ctr.23,8,8
+	.type	__llvm_gcov_ctr.24,@object      # @__llvm_gcov_ctr.24
+	.lcomm	__llvm_gcov_ctr.24,40,16
+	.type	__llvm_gcov_ctr.25,@object      # @__llvm_gcov_ctr.25
+	.lcomm	__llvm_gcov_ctr.25,8,8
+	.type	__llvm_gcov_ctr.26,@object      # @__llvm_gcov_ctr.26
+	.lcomm	__llvm_gcov_ctr.26,56,16
+	.type	__llvm_gcov_ctr.27,@object      # @__llvm_gcov_ctr.27
+	.lcomm	__llvm_gcov_ctr.27,24,16
+	.type	__llvm_gcov_ctr.28,@object      # @__llvm_gcov_ctr.28
+	.lcomm	__llvm_gcov_ctr.28,8,8
+	.type	__llvm_gcov_ctr.29,@object      # @__llvm_gcov_ctr.29
+	.lcomm	__llvm_gcov_ctr.29,32,16
+	.type	__llvm_gcov_ctr.30,@object      # @__llvm_gcov_ctr.30
+	.lcomm	__llvm_gcov_ctr.30,32,16
+	.type	__llvm_gcov_ctr.31,@object      # @__llvm_gcov_ctr.31
+	.lcomm	__llvm_gcov_ctr.31,48,16
+	.type	__llvm_gcov_ctr.32,@object      # @__llvm_gcov_ctr.32
+	.lcomm	__llvm_gcov_ctr.32,48,16
+	.type	__llvm_gcov_ctr.33,@object      # @__llvm_gcov_ctr.33
+	.lcomm	__llvm_gcov_ctr.33,48,16
+	.type	__llvm_gcov_ctr.34,@object      # @__llvm_gcov_ctr.34
+	.lcomm	__llvm_gcov_ctr.34,48,16
+	.type	__llvm_gcov_ctr.35,@object      # @__llvm_gcov_ctr.35
+	.lcomm	__llvm_gcov_ctr.35,48,16
+	.type	__llvm_gcov_ctr.36,@object      # @__llvm_gcov_ctr.36
+	.lcomm	__llvm_gcov_ctr.36,48,16
+	.type	__llvm_gcov_ctr.37,@object      # @__llvm_gcov_ctr.37
+	.lcomm	__llvm_gcov_ctr.37,16,8
+	.type	__llvm_gcov_ctr.38,@object      # @__llvm_gcov_ctr.38
+	.lcomm	__llvm_gcov_ctr.38,8,8
+	.type	__llvm_gcov_ctr.39,@object      # @__llvm_gcov_ctr.39
+	.lcomm	__llvm_gcov_ctr.39,8,8
+	.type	__llvm_gcov_ctr.40,@object      # @__llvm_gcov_ctr.40
+	.lcomm	__llvm_gcov_ctr.40,24,16
+	.type	__llvm_gcov_ctr.41,@object      # @__llvm_gcov_ctr.41
+	.lcomm	__llvm_gcov_ctr.41,24,16
+	.type	__llvm_gcov_ctr.42,@object      # @__llvm_gcov_ctr.42
+	.lcomm	__llvm_gcov_ctr.42,24,16
+	.type	__llvm_gcov_ctr.43,@object      # @__llvm_gcov_ctr.43
+	.lcomm	__llvm_gcov_ctr.43,24,16
+	.type	__llvm_gcov_ctr.44,@object      # @__llvm_gcov_ctr.44
+	.lcomm	__llvm_gcov_ctr.44,16,8
+	.type	__llvm_gcov_ctr.45,@object      # @__llvm_gcov_ctr.45
+	.lcomm	__llvm_gcov_ctr.45,48,16
+	.type	__llvm_gcov_ctr.46,@object      # @__llvm_gcov_ctr.46
+	.lcomm	__llvm_gcov_ctr.46,48,16
+	.type	__llvm_gcov_ctr.47,@object      # @__llvm_gcov_ctr.47
+	.lcomm	__llvm_gcov_ctr.47,48,16
+	.type	__llvm_gcov_ctr.48,@object      # @__llvm_gcov_ctr.48
+	.lcomm	__llvm_gcov_ctr.48,32,16
+	.type	__llvm_gcov_ctr.49,@object      # @__llvm_gcov_ctr.49
+	.lcomm	__llvm_gcov_ctr.49,32,16
+	.type	__llvm_gcov_ctr.50,@object      # @__llvm_gcov_ctr.50
+	.lcomm	__llvm_gcov_ctr.50,8,8
+	.type	__llvm_gcov_ctr.51,@object      # @__llvm_gcov_ctr.51
+	.lcomm	__llvm_gcov_ctr.51,16,8
+	.type	__llvm_gcov_ctr.52,@object      # @__llvm_gcov_ctr.52
+	.lcomm	__llvm_gcov_ctr.52,8,8
+	.type	__llvm_gcov_ctr.53,@object      # @__llvm_gcov_ctr.53
+	.lcomm	__llvm_gcov_ctr.53,16,8
+	.type	__llvm_gcov_ctr.54,@object      # @__llvm_gcov_ctr.54
+	.lcomm	__llvm_gcov_ctr.54,8,8
+	.type	__llvm_gcov_ctr.55,@object      # @__llvm_gcov_ctr.55
+	.lcomm	__llvm_gcov_ctr.55,16,8
+	.type	__llvm_gcov_ctr.56,@object      # @__llvm_gcov_ctr.56
+	.lcomm	__llvm_gcov_ctr.56,8,8
+	.type	__llvm_gcov_ctr.57,@object      # @__llvm_gcov_ctr.57
+	.lcomm	__llvm_gcov_ctr.57,40,16
+	.type	__llvm_gcov_ctr.58,@object      # @__llvm_gcov_ctr.58
+	.lcomm	__llvm_gcov_ctr.58,48,16
+	.type	__llvm_gcov_ctr.59,@object      # @__llvm_gcov_ctr.59
+	.lcomm	__llvm_gcov_ctr.59,16,8
+	.type	__llvm_gcov_ctr.60,@object      # @__llvm_gcov_ctr.60
+	.lcomm	__llvm_gcov_ctr.60,16,8
+	.type	__llvm_gcov_ctr.61,@object      # @__llvm_gcov_ctr.61
+	.lcomm	__llvm_gcov_ctr.61,64,16
+	.type	__llvm_gcov_ctr.62,@object      # @__llvm_gcov_ctr.62
+	.lcomm	__llvm_gcov_ctr.62,40,16
+	.type	__llvm_gcov_ctr.63,@object      # @__llvm_gcov_ctr.63
+	.lcomm	__llvm_gcov_ctr.63,48,16
+	.type	__llvm_gcov_ctr.64,@object      # @__llvm_gcov_ctr.64
+	.lcomm	__llvm_gcov_ctr.64,16,8
+	.type	__llvm_gcov_ctr.65,@object      # @__llvm_gcov_ctr.65
+	.lcomm	__llvm_gcov_ctr.65,40,16
+	.type	__llvm_gcov_ctr.66,@object      # @__llvm_gcov_ctr.66
+	.lcomm	__llvm_gcov_ctr.66,16,8
+	.type	__llvm_gcov_ctr.67,@object      # @__llvm_gcov_ctr.67
+	.lcomm	__llvm_gcov_ctr.67,40,16
+	.type	__llvm_gcov_ctr.68,@object      # @__llvm_gcov_ctr.68
+	.lcomm	__llvm_gcov_ctr.68,8,8
+	.type	__llvm_gcov_ctr.69,@object      # @__llvm_gcov_ctr.69
+	.lcomm	__llvm_gcov_ctr.69,8,8
+	.type	__llvm_gcov_ctr.70,@object      # @__llvm_gcov_ctr.70
+	.lcomm	__llvm_gcov_ctr.70,8,8
+	.type	__llvm_gcov_ctr.71,@object      # @__llvm_gcov_ctr.71
+	.lcomm	__llvm_gcov_ctr.71,8,8
+	.type	__llvm_gcov_ctr.72,@object      # @__llvm_gcov_ctr.72
+	.lcomm	__llvm_gcov_ctr.72,8,8
+	.type	__llvm_gcov_ctr.73,@object      # @__llvm_gcov_ctr.73
+	.lcomm	__llvm_gcov_ctr.73,8,8
+	.type	__llvm_gcov_ctr.74,@object      # @__llvm_gcov_ctr.74
+	.lcomm	__llvm_gcov_ctr.74,8,8
+	.type	__llvm_gcov_ctr.75,@object      # @__llvm_gcov_ctr.75
+	.lcomm	__llvm_gcov_ctr.75,8,8
+	.type	__llvm_gcov_ctr.76,@object      # @__llvm_gcov_ctr.76
+	.lcomm	__llvm_gcov_ctr.76,8,8
+	.type	__llvm_gcov_ctr.77,@object      # @__llvm_gcov_ctr.77
+	.lcomm	__llvm_gcov_ctr.77,8,8
+	.type	__llvm_gcov_ctr.78,@object      # @__llvm_gcov_ctr.78
+	.lcomm	__llvm_gcov_ctr.78,8,8
+	.type	__llvm_gcov_ctr.79,@object      # @__llvm_gcov_ctr.79
+	.lcomm	__llvm_gcov_ctr.79,8,8
+	.type	__llvm_gcov_ctr.80,@object      # @__llvm_gcov_ctr.80
+	.lcomm	__llvm_gcov_ctr.80,8,8
+	.type	__llvm_gcov_ctr.81,@object      # @__llvm_gcov_ctr.81
+	.lcomm	__llvm_gcov_ctr.81,24,16
+	.type	__llvm_gcov_ctr.82,@object      # @__llvm_gcov_ctr.82
+	.lcomm	__llvm_gcov_ctr.82,24,16
+	.type	__llvm_gcov_ctr.83,@object      # @__llvm_gcov_ctr.83
+	.lcomm	__llvm_gcov_ctr.83,24,16
+	.type	__llvm_gcov_ctr.84,@object      # @__llvm_gcov_ctr.84
+	.lcomm	__llvm_gcov_ctr.84,24,16
+	.type	__llvm_gcov_ctr.85,@object      # @__llvm_gcov_ctr.85
+	.lcomm	__llvm_gcov_ctr.85,24,16
+	.type	__llvm_gcov_ctr.86,@object      # @__llvm_gcov_ctr.86
+	.lcomm	__llvm_gcov_ctr.86,8,8
+	.type	__llvm_gcov_ctr.87,@object      # @__llvm_gcov_ctr.87
+	.lcomm	__llvm_gcov_ctr.87,40,16
+	.type	__llvm_gcov_ctr.88,@object      # @__llvm_gcov_ctr.88
+	.lcomm	__llvm_gcov_ctr.88,40,16
+	.type	__llvm_gcov_ctr.89,@object      # @__llvm_gcov_ctr.89
+	.lcomm	__llvm_gcov_ctr.89,40,16
+	.type	__llvm_gcov_ctr.90,@object      # @__llvm_gcov_ctr.90
+	.lcomm	__llvm_gcov_ctr.90,16,8
+	.type	__llvm_gcov_ctr.91,@object      # @__llvm_gcov_ctr.91
+	.lcomm	__llvm_gcov_ctr.91,40,16
+	.type	__llvm_gcov_ctr.92,@object      # @__llvm_gcov_ctr.92
+	.lcomm	__llvm_gcov_ctr.92,32,16
+	.type	__llvm_gcov_ctr.93,@object      # @__llvm_gcov_ctr.93
+	.lcomm	__llvm_gcov_ctr.93,32,16
+	.type	__llvm_gcov_ctr.94,@object      # @__llvm_gcov_ctr.94
+	.lcomm	__llvm_gcov_ctr.94,24,16
+	.type	__llvm_gcov_ctr.95,@object      # @__llvm_gcov_ctr.95
+	.lcomm	__llvm_gcov_ctr.95,32,16
+	.type	__llvm_gcov_ctr.96,@object      # @__llvm_gcov_ctr.96
+	.lcomm	__llvm_gcov_ctr.96,40,16
+	.type	__llvm_gcov_ctr.97,@object      # @__llvm_gcov_ctr.97
+	.lcomm	__llvm_gcov_ctr.97,48,16
+	.type	__llvm_gcov_ctr.98,@object      # @__llvm_gcov_ctr.98
+	.lcomm	__llvm_gcov_ctr.98,8,8
+	.type	__llvm_gcov_ctr.99,@object      # @__llvm_gcov_ctr.99
+	.lcomm	__llvm_gcov_ctr.99,64,16
+	.type	__llvm_gcov_ctr.100,@object     # @__llvm_gcov_ctr.100
+	.lcomm	__llvm_gcov_ctr.100,24,16
+	.type	__llvm_gcov_ctr.101,@object     # @__llvm_gcov_ctr.101
+	.lcomm	__llvm_gcov_ctr.101,64,16
+	.type	__llvm_gcov_ctr.102,@object     # @__llvm_gcov_ctr.102
+	.lcomm	__llvm_gcov_ctr.102,24,16
+	.type	__llvm_gcov_ctr.103,@object     # @__llvm_gcov_ctr.103
+	.lcomm	__llvm_gcov_ctr.103,24,16
+	.type	__llvm_gcov_ctr.104,@object     # @__llvm_gcov_ctr.104
+	.lcomm	__llvm_gcov_ctr.104,24,16
+	.type	__llvm_gcov_ctr.105,@object     # @__llvm_gcov_ctr.105
+	.lcomm	__llvm_gcov_ctr.105,48,16
+	.type	__llvm_gcov_ctr.106,@object     # @__llvm_gcov_ctr.106
+	.lcomm	__llvm_gcov_ctr.106,48,16
+	.type	__llvm_gcov_ctr.107,@object     # @__llvm_gcov_ctr.107
+	.lcomm	__llvm_gcov_ctr.107,48,16
+	.type	__llvm_gcov_ctr.108,@object     # @__llvm_gcov_ctr.108
+	.lcomm	__llvm_gcov_ctr.108,8,8
+	.type	__llvm_gcov_ctr.109,@object     # @__llvm_gcov_ctr.109
+	.lcomm	__llvm_gcov_ctr.109,8,8
+	.type	__llvm_gcov_ctr.110,@object     # @__llvm_gcov_ctr.110
+	.lcomm	__llvm_gcov_ctr.110,8,8
+	.type	__llvm_gcov_ctr.111,@object     # @__llvm_gcov_ctr.111
+	.lcomm	__llvm_gcov_ctr.111,8,8
+	.type	__llvm_gcov_ctr.112,@object     # @__llvm_gcov_ctr.112
+	.lcomm	__llvm_gcov_ctr.112,8,8
+	.type	__llvm_gcov_ctr.113,@object     # @__llvm_gcov_ctr.113
+	.lcomm	__llvm_gcov_ctr.113,8,8
+	.type	__llvm_gcov_ctr.114,@object     # @__llvm_gcov_ctr.114
+	.lcomm	__llvm_gcov_ctr.114,24,16
+	.type	__llvm_gcov_ctr.115,@object     # @__llvm_gcov_ctr.115
+	.lcomm	__llvm_gcov_ctr.115,24,16
+	.type	__llvm_gcov_ctr.116,@object     # @__llvm_gcov_ctr.116
+	.lcomm	__llvm_gcov_ctr.116,16,8
+	.type	__llvm_gcov_ctr.117,@object     # @__llvm_gcov_ctr.117
+	.lcomm	__llvm_gcov_ctr.117,24,16
+	.type	__llvm_gcov_ctr.118,@object     # @__llvm_gcov_ctr.118
+	.lcomm	__llvm_gcov_ctr.118,24,16
+	.type	__llvm_gcov_ctr.119,@object     # @__llvm_gcov_ctr.119
+	.lcomm	__llvm_gcov_ctr.119,24,16
+	.type	__llvm_gcov_ctr.120,@object     # @__llvm_gcov_ctr.120
+	.lcomm	__llvm_gcov_ctr.120,32,16
+	.type	__llvm_gcov_ctr.121,@object     # @__llvm_gcov_ctr.121
+	.lcomm	__llvm_gcov_ctr.121,64,16
+	.type	__llvm_gcov_ctr.122,@object     # @__llvm_gcov_ctr.122
+	.lcomm	__llvm_gcov_ctr.122,24,16
+	.type	__llvm_gcov_ctr.123,@object     # @__llvm_gcov_ctr.123
+	.lcomm	__llvm_gcov_ctr.123,24,16
+	.type	__llvm_gcov_ctr.124,@object     # @__llvm_gcov_ctr.124
+	.lcomm	__llvm_gcov_ctr.124,8,8
+	.type	__llvm_gcov_ctr.125,@object     # @__llvm_gcov_ctr.125
+	.lcomm	__llvm_gcov_ctr.125,8,8
+	.type	__llvm_gcov_ctr.126,@object     # @__llvm_gcov_ctr.126
+	.lcomm	__llvm_gcov_ctr.126,56,16
+	.type	__llvm_gcov_ctr.127,@object     # @__llvm_gcov_ctr.127
+	.lcomm	__llvm_gcov_ctr.127,32,16
+	.type	__llvm_gcov_ctr.128,@object     # @__llvm_gcov_ctr.128
+	.lcomm	__llvm_gcov_ctr.128,32,16
+	.type	__llvm_gcov_ctr.129,@object     # @__llvm_gcov_ctr.129
+	.lcomm	__llvm_gcov_ctr.129,64,16
+	.type	__llvm_gcov_ctr.130,@object     # @__llvm_gcov_ctr.130
+	.lcomm	__llvm_gcov_ctr.130,64,16
+	.type	__llvm_gcov_ctr.131,@object     # @__llvm_gcov_ctr.131
+	.lcomm	__llvm_gcov_ctr.131,24,16
+	.type	__llvm_gcov_ctr.132,@object     # @__llvm_gcov_ctr.132
+	.lcomm	__llvm_gcov_ctr.132,24,16
+	.type	__llvm_gcov_ctr.133,@object     # @__llvm_gcov_ctr.133
+	.lcomm	__llvm_gcov_ctr.133,8,8
+	.type	__llvm_gcov_ctr.134,@object     # @__llvm_gcov_ctr.134
+	.lcomm	__llvm_gcov_ctr.134,8,8
+	.type	__llvm_gcov_ctr.135,@object     # @__llvm_gcov_ctr.135
+	.lcomm	__llvm_gcov_ctr.135,8,8
+	.type	__llvm_gcov_ctr.136,@object     # @__llvm_gcov_ctr.136
+	.lcomm	__llvm_gcov_ctr.136,40,16
+	.type	__llvm_gcov_ctr.137,@object     # @__llvm_gcov_ctr.137
+	.lcomm	__llvm_gcov_ctr.137,8,8
+	.type	__llvm_gcov_ctr.138,@object     # @__llvm_gcov_ctr.138
+	.lcomm	__llvm_gcov_ctr.138,8,8
+	.type	__llvm_gcov_ctr.139,@object     # @__llvm_gcov_ctr.139
+	.lcomm	__llvm_gcov_ctr.139,24,16
+	.type	__llvm_gcov_ctr.140,@object     # @__llvm_gcov_ctr.140
+	.lcomm	__llvm_gcov_ctr.140,8,8
+	.type	__llvm_gcov_ctr.141,@object     # @__llvm_gcov_ctr.141
+	.lcomm	__llvm_gcov_ctr.141,8,8
+	.type	__llvm_gcov_ctr.142,@object     # @__llvm_gcov_ctr.142
+	.lcomm	__llvm_gcov_ctr.142,8,8
+	.type	__llvm_gcov_ctr.143,@object     # @__llvm_gcov_ctr.143
+	.lcomm	__llvm_gcov_ctr.143,8,8
+	.type	__llvm_gcov_ctr.144,@object     # @__llvm_gcov_ctr.144
+	.lcomm	__llvm_gcov_ctr.144,8,8
+	.type	__llvm_gcov_ctr.145,@object     # @__llvm_gcov_ctr.145
+	.lcomm	__llvm_gcov_ctr.145,8,8
+	.type	__llvm_gcov_ctr.146,@object     # @__llvm_gcov_ctr.146
+	.lcomm	__llvm_gcov_ctr.146,8,8
+	.type	__llvm_gcov_ctr.147,@object     # @__llvm_gcov_ctr.147
+	.lcomm	__llvm_gcov_ctr.147,32,16
+	.type	__llvm_gcov_ctr.148,@object     # @__llvm_gcov_ctr.148
+	.lcomm	__llvm_gcov_ctr.148,32,16
+	.type	__llvm_gcov_ctr.149,@object     # @__llvm_gcov_ctr.149
+	.lcomm	__llvm_gcov_ctr.149,40,16
+	.type	__llvm_gcov_ctr.150,@object     # @__llvm_gcov_ctr.150
+	.lcomm	__llvm_gcov_ctr.150,8,8
+	.type	.L__unnamed_1,@object           # @0
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L__unnamed_1:
+	.asciz	"/home/gravier/tmp/some-libc-opt/clang-powerpc32le.gcda"
+	.size	.L__unnamed_1, 55
+
+	.type	__llvm_internal_gcov_emit_function_args.0,@object # @__llvm_internal_gcov_emit_function_args.0
+	.section	.rodata,"a",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0                               # 0x0
+	.long	560687177                       # 0x216b6849
+	.long	3469251760                      # 0xcec894b0
+	.long	1                               # 0x1
+	.long	1589591758                      # 0x5ebf3ece
+	.long	3469251760                      # 0xcec894b0
+	.long	2                               # 0x2
+	.long	2176136383                      # 0x81b534bf
+	.long	3469251760                      # 0xcec894b0
+	.long	3                               # 0x3
+	.long	3586625172                      # 0xd5c78e94
+	.long	3469251760                      # 0xcec894b0
+	.long	4                               # 0x4
+	.long	2323119728                      # 0x8a77fe70
+	.long	3469251760                      # 0xcec894b0
+	.long	5                               # 0x5
+	.long	2314569740                      # 0x89f5880c
+	.long	3469251760                      # 0xcec894b0
+	.long	6                               # 0x6
+	.long	2833673551                      # 0xa8e66d4f
+	.long	3469251760                      # 0xcec894b0
+	.long	7                               # 0x7
+	.long	1458633189                      # 0x56f0f9e5
+	.long	3469251760                      # 0xcec894b0
+	.long	8                               # 0x8
+	.long	1190300833                      # 0x46f28ca1
+	.long	3469251760                      # 0xcec894b0
+	.long	9                               # 0x9
+	.long	758327989                       # 0x2d332ab5
+	.long	3469251760                      # 0xcec894b0
+	.long	10                              # 0xa
+	.long	1651479037                      # 0x626f91fd
+	.long	3469251760                      # 0xcec894b0
+	.long	11                              # 0xb
+	.long	4132343275                      # 0xf64e8deb
+	.long	3469251760                      # 0xcec894b0
+	.long	12                              # 0xc
+	.long	734262523                       # 0x2bc3f4fb
+	.long	3469251760                      # 0xcec894b0
+	.long	13                              # 0xd
+	.long	2463424677                      # 0x92d4e0a5
+	.long	3469251760                      # 0xcec894b0
+	.long	14                              # 0xe
+	.long	1419026334                      # 0x54949f9e
+	.long	3469251760                      # 0xcec894b0
+	.long	15                              # 0xf
+	.long	3154471370                      # 0xbc0569ca
+	.long	3469251760                      # 0xcec894b0
+	.long	16                              # 0x10
+	.long	2077973487                      # 0x7bdb5bef
+	.long	3469251760                      # 0xcec894b0
+	.long	17                              # 0x11
+	.long	1474691227                      # 0x57e6009b
+	.long	3469251760                      # 0xcec894b0
+	.long	18                              # 0x12
+	.long	3710986016                      # 0xdd312720
+	.long	3469251760                      # 0xcec894b0
+	.long	19                              # 0x13
+	.long	1305101473                      # 0x4dca44a1
+	.long	3469251760                      # 0xcec894b0
+	.long	20                              # 0x14
+	.long	3762036564                      # 0xe03c1f54
+	.long	3469251760                      # 0xcec894b0
+	.long	21                              # 0x15
+	.long	477914433                       # 0x1c7c6541
+	.long	3469251760                      # 0xcec894b0
+	.long	22                              # 0x16
+	.long	3923035234                      # 0xe9d4c462
+	.long	3469251760                      # 0xcec894b0
+	.long	23                              # 0x17
+	.long	951651702                       # 0x38b90d76
+	.long	3469251760                      # 0xcec894b0
+	.long	24                              # 0x18
+	.long	4206925919                      # 0xfac0985f
+	.long	3469251760                      # 0xcec894b0
+	.long	25                              # 0x19
+	.long	32773942                        # 0x1f41736
+	.long	3469251760                      # 0xcec894b0
+	.long	26                              # 0x1a
+	.long	2877267246                      # 0xab7f9d2e
+	.long	3469251760                      # 0xcec894b0
+	.long	27                              # 0x1b
+	.long	860405771                       # 0x3348c00b
+	.long	3469251760                      # 0xcec894b0
+	.long	28                              # 0x1c
+	.long	815674877                       # 0x309e35fd
+	.long	3469251760                      # 0xcec894b0
+	.long	29                              # 0x1d
+	.long	1778838753                      # 0x6a06ece1
+	.long	3469251760                      # 0xcec894b0
+	.long	30                              # 0x1e
+	.long	2718307199                      # 0xa206137f
+	.long	3469251760                      # 0xcec894b0
+	.long	31                              # 0x1f
+	.long	856224820                       # 0x3308f434
+	.long	3469251760                      # 0xcec894b0
+	.long	32                              # 0x20
+	.long	1111195143                      # 0x423b7e07
+	.long	3469251760                      # 0xcec894b0
+	.long	33                              # 0x21
+	.long	1178414519                      # 0x463d2db7
+	.long	3469251760                      # 0xcec894b0
+	.long	34                              # 0x22
+	.long	3477640633                      # 0xcf4895b9
+	.long	3469251760                      # 0xcec894b0
+	.long	35                              # 0x23
+	.long	4294770115                      # 0xfffcfdc3
+	.long	3469251760                      # 0xcec894b0
+	.long	36                              # 0x24
+	.long	3650660234                      # 0xd998a78a
+	.long	3469251760                      # 0xcec894b0
+	.long	37                              # 0x25
+	.long	289327647                       # 0x113eca1f
+	.long	3469251760                      # 0xcec894b0
+	.long	38                              # 0x26
+	.long	2093612798                      # 0x7cc9fefe
+	.long	3469251760                      # 0xcec894b0
+	.long	39                              # 0x27
+	.long	4177956716                      # 0xf9068f6c
+	.long	3469251760                      # 0xcec894b0
+	.long	40                              # 0x28
+	.long	3434808461                      # 0xccbb048d
+	.long	3469251760                      # 0xcec894b0
+	.long	41                              # 0x29
+	.long	3206497114                      # 0xbf1f435a
+	.long	3469251760                      # 0xcec894b0
+	.long	42                              # 0x2a
+	.long	1537257434                      # 0x5ba0afda
+	.long	3469251760                      # 0xcec894b0
+	.long	43                              # 0x2b
+	.long	3028077325                      # 0xb47ccb0d
+	.long	3469251760                      # 0xcec894b0
+	.long	44                              # 0x2c
+	.long	1369848209                      # 0x51a63991
+	.long	3469251760                      # 0xcec894b0
+	.long	45                              # 0x2d
+	.long	938831176                       # 0x37f56d48
+	.long	3469251760                      # 0xcec894b0
+	.long	46                              # 0x2e
+	.long	1663146323                      # 0x63219953
+	.long	3469251760                      # 0xcec894b0
+	.long	47                              # 0x2f
+	.long	4111410217                      # 0xf50f2429
+	.long	3469251760                      # 0xcec894b0
+	.long	48                              # 0x30
+	.long	1475378556                      # 0x57f07d7c
+	.long	3469251760                      # 0xcec894b0
+	.long	49                              # 0x31
+	.long	3356195547                      # 0xc80b7adb
+	.long	3469251760                      # 0xcec894b0
+	.long	50                              # 0x32
+	.long	514931786                       # 0x1eb13c4a
+	.long	3469251760                      # 0xcec894b0
+	.long	51                              # 0x33
+	.long	2854034444                      # 0xaa1d1c0c
+	.long	3469251760                      # 0xcec894b0
+	.long	52                              # 0x34
+	.long	2747937306                      # 0xa3ca321a
+	.long	3469251760                      # 0xcec894b0
+	.long	53                              # 0x35
+	.long	4192776208                      # 0xf9e8b010
+	.long	3469251760                      # 0xcec894b0
+	.long	54                              # 0x36
+	.long	984436227                       # 0x3aad4e03
+	.long	3469251760                      # 0xcec894b0
+	.long	55                              # 0x37
+	.long	1477657574                      # 0x581343e6
+	.long	3469251760                      # 0xcec894b0
+	.long	56                              # 0x38
+	.long	1339127973                      # 0x4fd178a5
+	.long	3469251760                      # 0xcec894b0
+	.long	57                              # 0x39
+	.long	2960567906                      # 0xb076ae62
+	.long	3469251760                      # 0xcec894b0
+	.long	58                              # 0x3a
+	.long	3390076872                      # 0xca1077c8
+	.long	3469251760                      # 0xcec894b0
+	.long	59                              # 0x3b
+	.long	1543282230                      # 0x5bfc9e36
+	.long	3469251760                      # 0xcec894b0
+	.long	60                              # 0x3c
+	.long	2934101789                      # 0xaee2d71d
+	.long	3469251760                      # 0xcec894b0
+	.long	61                              # 0x3d
+	.long	3737986119                      # 0xdecd2447
+	.long	3469251760                      # 0xcec894b0
+	.long	62                              # 0x3e
+	.long	49556427                        # 0x2f42bcb
+	.long	3469251760                      # 0xcec894b0
+	.long	63                              # 0x3f
+	.long	234051526                       # 0xdf357c6
+	.long	3469251760                      # 0xcec894b0
+	.long	64                              # 0x40
+	.long	2341800126                      # 0x8b9508be
+	.long	3469251760                      # 0xcec894b0
+	.long	65                              # 0x41
+	.long	3256799948                      # 0xc21ed2cc
+	.long	3469251760                      # 0xcec894b0
+	.long	66                              # 0x42
+	.long	777295480                       # 0x2e549678
+	.long	3469251760                      # 0xcec894b0
+	.long	67                              # 0x43
+	.long	14040531                        # 0xd63dd3
+	.long	3469251760                      # 0xcec894b0
+	.long	68                              # 0x44
+	.long	8047973                         # 0x7acd65
+	.long	3469251760                      # 0xcec894b0
+	.long	69                              # 0x45
+	.long	719459161                       # 0x2ae21359
+	.long	3469251760                      # 0xcec894b0
+	.long	70                              # 0x46
+	.long	243358501                       # 0xe815b25
+	.long	3469251760                      # 0xcec894b0
+	.long	71                              # 0x47
+	.long	3262173932                      # 0xc270d2ec
+	.long	3469251760                      # 0xcec894b0
+	.long	72                              # 0x48
+	.long	398910553                       # 0x17c6e459
+	.long	3469251760                      # 0xcec894b0
+	.long	73                              # 0x49
+	.long	3354219739                      # 0xc7ed54db
+	.long	3469251760                      # 0xcec894b0
+	.long	74                              # 0x4a
+	.long	2570308788                      # 0x9933ccb4
+	.long	3469251760                      # 0xcec894b0
+	.long	75                              # 0x4b
+	.long	982429111                       # 0x3a8eadb7
+	.long	3469251760                      # 0xcec894b0
+	.long	76                              # 0x4c
+	.long	211491241                       # 0xc9b19a9
+	.long	3469251760                      # 0xcec894b0
+	.long	77                              # 0x4d
+	.long	1075683319                      # 0x401d9ff7
+	.long	3469251760                      # 0xcec894b0
+	.long	78                              # 0x4e
+	.long	1886352651                      # 0x706f750b
+	.long	3469251760                      # 0xcec894b0
+	.long	79                              # 0x4f
+	.long	248637203                       # 0xed1e713
+	.long	3469251760                      # 0xcec894b0
+	.long	80                              # 0x50
+	.long	703327087                       # 0x29ebeb6f
+	.long	3469251760                      # 0xcec894b0
+	.long	81                              # 0x51
+	.long	3690160730                      # 0xdbf3625a
+	.long	3469251760                      # 0xcec894b0
+	.long	82                              # 0x52
+	.long	787048238                       # 0x2ee9672e
+	.long	3469251760                      # 0xcec894b0
+	.long	83                              # 0x53
+	.long	1937497967                      # 0x737bdf6f
+	.long	3469251760                      # 0xcec894b0
+	.long	84                              # 0x54
+	.long	4205062514                      # 0xfaa42972
+	.long	3469251760                      # 0xcec894b0
+	.long	85                              # 0x55
+	.long	694462539                       # 0x2964a84b
+	.long	3469251760                      # 0xcec894b0
+	.long	86                              # 0x56
+	.long	85970907                        # 0x51fcfdb
+	.long	3469251760                      # 0xcec894b0
+	.long	87                              # 0x57
+	.long	3681984728                      # 0xdb76a0d8
+	.long	3469251760                      # 0xcec894b0
+	.long	88                              # 0x58
+	.long	3620297642                      # 0xd7c95baa
+	.long	3469251760                      # 0xcec894b0
+	.long	89                              # 0x59
+	.long	3394804480                      # 0xca589b00
+	.long	3469251760                      # 0xcec894b0
+	.long	90                              # 0x5a
+	.long	2119330183                      # 0x7e526987
+	.long	3469251760                      # 0xcec894b0
+	.long	91                              # 0x5b
+	.long	1963040266                      # 0x75019e0a
+	.long	3469251760                      # 0xcec894b0
+	.long	92                              # 0x5c
+	.long	1603391838                      # 0x5f91d15e
+	.long	3469251760                      # 0xcec894b0
+	.long	93                              # 0x5d
+	.long	2340921237                      # 0x8b879f95
+	.long	3469251760                      # 0xcec894b0
+	.long	94                              # 0x5e
+	.long	3028177438                      # 0xb47e521e
+	.long	3469251760                      # 0xcec894b0
+	.long	95                              # 0x5f
+	.long	2265525308                      # 0x87092c3c
+	.long	3469251760                      # 0xcec894b0
+	.long	96                              # 0x60
+	.long	2598903994                      # 0x9ae820ba
+	.long	3469251760                      # 0xcec894b0
+	.long	97                              # 0x61
+	.long	139524705                       # 0x850fa61
+	.long	3469251760                      # 0xcec894b0
+	.long	98                              # 0x62
+	.long	1076410600                      # 0x4028b8e8
+	.long	3469251760                      # 0xcec894b0
+	.long	99                              # 0x63
+	.long	220237413                       # 0xd208e65
+	.long	3469251760                      # 0xcec894b0
+	.long	100                             # 0x64
+	.long	3913623866                      # 0xe945293a
+	.long	3469251760                      # 0xcec894b0
+	.long	101                             # 0x65
+	.long	3453026372                      # 0xcdd10044
+	.long	3469251760                      # 0xcec894b0
+	.long	102                             # 0x66
+	.long	2321387380                      # 0x8a5d8f74
+	.long	3469251760                      # 0xcec894b0
+	.long	103                             # 0x67
+	.long	3319939363                      # 0xc5e24123
+	.long	3469251760                      # 0xcec894b0
+	.long	104                             # 0x68
+	.long	398991913                       # 0x17c82229
+	.long	3469251760                      # 0xcec894b0
+	.long	105                             # 0x69
+	.long	333429647                       # 0x13dfbb8f
+	.long	3469251760                      # 0xcec894b0
+	.long	106                             # 0x6a
+	.long	3927133990                      # 0xea134f26
+	.long	3469251760                      # 0xcec894b0
+	.long	107                             # 0x6b
+	.long	1797971294                      # 0x6b2add5e
+	.long	3469251760                      # 0xcec894b0
+	.long	108                             # 0x6c
+	.long	1622314776                      # 0x60b28f18
+	.long	3469251760                      # 0xcec894b0
+	.long	109                             # 0x6d
+	.long	1092862330                      # 0x4123c17a
+	.long	3469251760                      # 0xcec894b0
+	.long	110                             # 0x6e
+	.long	2568657322                      # 0x991a99aa
+	.long	3469251760                      # 0xcec894b0
+	.long	111                             # 0x6f
+	.long	2168129897                      # 0x813b0969
+	.long	3469251760                      # 0xcec894b0
+	.long	112                             # 0x70
+	.long	2890303119                      # 0xac46868f
+	.long	3469251760                      # 0xcec894b0
+	.long	113                             # 0x71
+	.long	1713332582                      # 0x661f6166
+	.long	3469251760                      # 0xcec894b0
+	.long	114                             # 0x72
+	.long	2375727721                      # 0x8d9aba69
+	.long	3469251760                      # 0xcec894b0
+	.long	115                             # 0x73
+	.long	3586767156                      # 0xd5c9b934
+	.long	3469251760                      # 0xcec894b0
+	.long	116                             # 0x74
+	.long	2191348475                      # 0x829d52fb
+	.long	3469251760                      # 0xcec894b0
+	.long	117                             # 0x75
+	.long	3910023869                      # 0xe90e3abd
+	.long	3469251760                      # 0xcec894b0
+	.long	118                             # 0x76
+	.long	4189915105                      # 0xf9bd07e1
+	.long	3469251760                      # 0xcec894b0
+	.long	119                             # 0x77
+	.long	2527353334                      # 0x96a459f6
+	.long	3469251760                      # 0xcec894b0
+	.long	120                             # 0x78
+	.long	3429265923                      # 0xcc667203
+	.long	3469251760                      # 0xcec894b0
+	.long	121                             # 0x79
+	.long	1283962724                      # 0x4c87b764
+	.long	3469251760                      # 0xcec894b0
+	.long	122                             # 0x7a
+	.long	1970290990                      # 0x7570412e
+	.long	3469251760                      # 0xcec894b0
+	.long	123                             # 0x7b
+	.long	2615950861                      # 0x9bec3e0d
+	.long	3469251760                      # 0xcec894b0
+	.long	124                             # 0x7c
+	.long	3338450337                      # 0xc6fcb5a1
+	.long	3469251760                      # 0xcec894b0
+	.long	125                             # 0x7d
+	.long	3971836509                      # 0xecbd6a5d
+	.long	3469251760                      # 0xcec894b0
+	.long	126                             # 0x7e
+	.long	4260339231                      # 0xfdef9e1f
+	.long	3469251760                      # 0xcec894b0
+	.long	127                             # 0x7f
+	.long	4160738226                      # 0xf7ffd3b2
+	.long	3469251760                      # 0xcec894b0
+	.long	128                             # 0x80
+	.long	1309372079                      # 0x4e0b6eaf
+	.long	3469251760                      # 0xcec894b0
+	.long	129                             # 0x81
+	.long	3151575564                      # 0xbbd93a0c
+	.long	3469251760                      # 0xcec894b0
+	.long	130                             # 0x82
+	.long	3938977714                      # 0xeac807b2
+	.long	3469251760                      # 0xcec894b0
+	.long	131                             # 0x83
+	.long	3228738087                      # 0xc072a227
+	.long	3469251760                      # 0xcec894b0
+	.long	132                             # 0x84
+	.long	3135705803                      # 0xbae712cb
+	.long	3469251760                      # 0xcec894b0
+	.long	133                             # 0x85
+	.long	4061147315                      # 0xf21030b3
+	.long	3469251760                      # 0xcec894b0
+	.long	134                             # 0x86
+	.long	2783543715                      # 0xa5e981a3
+	.long	3469251760                      # 0xcec894b0
+	.long	135                             # 0x87
+	.long	2471046843                      # 0x93492ebb
+	.long	3469251760                      # 0xcec894b0
+	.long	136                             # 0x88
+	.long	260073473                       # 0xf806801
+	.long	3469251760                      # 0xcec894b0
+	.long	137                             # 0x89
+	.long	1259876295                      # 0x4b182fc7
+	.long	3469251760                      # 0xcec894b0
+	.long	138                             # 0x8a
+	.long	2579807359                      # 0x99c4bc7f
+	.long	3469251760                      # 0xcec894b0
+	.long	139                             # 0x8b
+	.long	90061610                        # 0x55e3b2a
+	.long	3469251760                      # 0xcec894b0
+	.long	140                             # 0x8c
+	.long	3598610789                      # 0xd67e7165
+	.long	3469251760                      # 0xcec894b0
+	.long	141                             # 0x8d
+	.long	2351688191                      # 0x8c2be9ff
+	.long	3469251760                      # 0xcec894b0
+	.long	142                             # 0x8e
+	.long	1438161982                      # 0x55b89c3e
+	.long	3469251760                      # 0xcec894b0
+	.long	143                             # 0x8f
+	.long	2438880600                      # 0x915e5d58
+	.long	3469251760                      # 0xcec894b0
+	.long	144                             # 0x90
+	.long	3593193962                      # 0xd62bc9ea
+	.long	3469251760                      # 0xcec894b0
+	.long	145                             # 0x91
+	.long	1755082314                      # 0x689c6e4a
+	.long	3469251760                      # 0xcec894b0
+	.long	146                             # 0x92
+	.long	3432612426                      # 0xcc99824a
+	.long	3469251760                      # 0xcec894b0
+	.long	147                             # 0x93
+	.long	3374828335                      # 0xc927cb2f
+	.long	3469251760                      # 0xcec894b0
+	.long	148                             # 0x94
+	.long	3311814731                      # 0xc566484b
+	.long	3469251760                      # 0xcec894b0
+	.long	149                             # 0x95
+	.long	413908966                       # 0x18abbfe6
+	.long	3469251760                      # 0xcec894b0
+	.long	150                             # 0x96
+	.long	3027808697                      # 0xb478b1b9
+	.long	3469251760                      # 0xcec894b0
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object # @__llvm_internal_gcov_emit_arcs_args.0
+	.section	.data.rel.ro,"aw",@progbits
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.1
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.2
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.3
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.4
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.5
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.6
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.7
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.8
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.9
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.10
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.11
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.12
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.13
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.14
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.15
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.16
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.17
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.18
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.19
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.20
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.21
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.22
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.23
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.24
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.25
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.26
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.27
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.28
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.29
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.30
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.31
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.32
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.33
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.34
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.35
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.36
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.37
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.38
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.39
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.40
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.41
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.42
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.43
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.44
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.45
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.46
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.47
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.48
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.49
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.50
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.51
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.52
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.53
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.54
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.55
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.56
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.57
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.58
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.59
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.60
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.61
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.62
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.63
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.64
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.65
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.66
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.67
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.68
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.69
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.70
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.71
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.72
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.73
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.74
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.75
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.76
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.77
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.78
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.79
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.80
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.81
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.82
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.83
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.84
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.85
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.86
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.87
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.88
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.89
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.90
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.91
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.92
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.93
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.94
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.95
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.96
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.97
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.98
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.99
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.100
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.101
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.102
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.103
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.104
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.105
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.106
+	.long	6                               # 0x6
+	.long	__llvm_gcov_ctr.107
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.108
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.109
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.110
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.111
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.112
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.113
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.114
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.115
+	.long	2                               # 0x2
+	.long	__llvm_gcov_ctr.116
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.117
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.118
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.119
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.120
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.121
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.122
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.123
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.124
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.125
+	.long	7                               # 0x7
+	.long	__llvm_gcov_ctr.126
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.127
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.128
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.129
+	.long	8                               # 0x8
+	.long	__llvm_gcov_ctr.130
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.131
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.132
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.133
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.134
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.135
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.136
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.137
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.138
+	.long	3                               # 0x3
+	.long	__llvm_gcov_ctr.139
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.140
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.141
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.142
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.143
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.144
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.145
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.146
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.147
+	.long	4                               # 0x4
+	.long	__llvm_gcov_ctr.148
+	.long	5                               # 0x5
+	.long	__llvm_gcov_ctr.149
+	.long	1                               # 0x1
+	.long	__llvm_gcov_ctr.150
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+
+	.type	__llvm_internal_gcov_emit_file_info,@object # @__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+__llvm_internal_gcov_emit_file_info:
+	.long	.L__unnamed_1
+	.long	875575338                       # 0x3430382a
+	.long	3469251760                      # 0xcec894b0
+	.long	151                             # 0x97
+	.long	__llvm_internal_gcov_emit_function_args.0
+	.long	__llvm_internal_gcov_emit_arcs_args.0
+	.size	__llvm_internal_gcov_emit_file_info, 24
+
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.long	__llvm_gcov_init
 	.hidden	__llvm_profile_runtime
 	.type	.L__profc_memmove,@object       # @__profc_memmove
 	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
@@ -17964,9 +23577,166 @@ digits:
 	.addrsig_sym __cmpdi2
 	.addrsig_sym __muldsi3
 	.addrsig_sym __ucmpdi2
+	.addrsig_sym llvm_gcda_start_file
+	.addrsig_sym llvm_gcda_emit_function
+	.addrsig_sym llvm_gcda_emit_arcs
+	.addrsig_sym llvm_gcda_summary_info
+	.addrsig_sym llvm_gcda_end_file
+	.addrsig_sym llvm_gcov_init
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_gcov_ctr
+	.addrsig_sym __llvm_gcov_ctr.1
+	.addrsig_sym __llvm_gcov_ctr.2
+	.addrsig_sym __llvm_gcov_ctr.3
+	.addrsig_sym __llvm_gcov_ctr.4
+	.addrsig_sym __llvm_gcov_ctr.5
+	.addrsig_sym __llvm_gcov_ctr.6
+	.addrsig_sym __llvm_gcov_ctr.7
+	.addrsig_sym __llvm_gcov_ctr.8
+	.addrsig_sym __llvm_gcov_ctr.9
+	.addrsig_sym __llvm_gcov_ctr.10
+	.addrsig_sym __llvm_gcov_ctr.11
+	.addrsig_sym __llvm_gcov_ctr.12
+	.addrsig_sym __llvm_gcov_ctr.13
+	.addrsig_sym __llvm_gcov_ctr.14
+	.addrsig_sym __llvm_gcov_ctr.15
+	.addrsig_sym __llvm_gcov_ctr.16
+	.addrsig_sym __llvm_gcov_ctr.17
+	.addrsig_sym __llvm_gcov_ctr.18
+	.addrsig_sym __llvm_gcov_ctr.19
+	.addrsig_sym __llvm_gcov_ctr.20
+	.addrsig_sym __llvm_gcov_ctr.21
+	.addrsig_sym __llvm_gcov_ctr.22
+	.addrsig_sym __llvm_gcov_ctr.23
+	.addrsig_sym __llvm_gcov_ctr.24
+	.addrsig_sym __llvm_gcov_ctr.25
+	.addrsig_sym __llvm_gcov_ctr.26
+	.addrsig_sym __llvm_gcov_ctr.27
+	.addrsig_sym __llvm_gcov_ctr.28
+	.addrsig_sym __llvm_gcov_ctr.29
+	.addrsig_sym __llvm_gcov_ctr.30
+	.addrsig_sym __llvm_gcov_ctr.31
+	.addrsig_sym __llvm_gcov_ctr.32
+	.addrsig_sym __llvm_gcov_ctr.33
+	.addrsig_sym __llvm_gcov_ctr.34
+	.addrsig_sym __llvm_gcov_ctr.35
+	.addrsig_sym __llvm_gcov_ctr.36
+	.addrsig_sym __llvm_gcov_ctr.37
+	.addrsig_sym __llvm_gcov_ctr.38
+	.addrsig_sym __llvm_gcov_ctr.39
+	.addrsig_sym __llvm_gcov_ctr.40
+	.addrsig_sym __llvm_gcov_ctr.41
+	.addrsig_sym __llvm_gcov_ctr.42
+	.addrsig_sym __llvm_gcov_ctr.43
+	.addrsig_sym __llvm_gcov_ctr.44
+	.addrsig_sym __llvm_gcov_ctr.45
+	.addrsig_sym __llvm_gcov_ctr.46
+	.addrsig_sym __llvm_gcov_ctr.47
+	.addrsig_sym __llvm_gcov_ctr.48
+	.addrsig_sym __llvm_gcov_ctr.49
+	.addrsig_sym __llvm_gcov_ctr.50
+	.addrsig_sym __llvm_gcov_ctr.51
+	.addrsig_sym __llvm_gcov_ctr.52
+	.addrsig_sym __llvm_gcov_ctr.53
+	.addrsig_sym __llvm_gcov_ctr.54
+	.addrsig_sym __llvm_gcov_ctr.55
+	.addrsig_sym __llvm_gcov_ctr.56
+	.addrsig_sym __llvm_gcov_ctr.57
+	.addrsig_sym __llvm_gcov_ctr.58
+	.addrsig_sym __llvm_gcov_ctr.59
+	.addrsig_sym __llvm_gcov_ctr.60
+	.addrsig_sym __llvm_gcov_ctr.61
+	.addrsig_sym __llvm_gcov_ctr.62
+	.addrsig_sym __llvm_gcov_ctr.63
+	.addrsig_sym __llvm_gcov_ctr.64
+	.addrsig_sym __llvm_gcov_ctr.65
+	.addrsig_sym __llvm_gcov_ctr.66
+	.addrsig_sym __llvm_gcov_ctr.67
+	.addrsig_sym __llvm_gcov_ctr.68
+	.addrsig_sym __llvm_gcov_ctr.69
+	.addrsig_sym __llvm_gcov_ctr.70
+	.addrsig_sym __llvm_gcov_ctr.71
+	.addrsig_sym __llvm_gcov_ctr.72
+	.addrsig_sym __llvm_gcov_ctr.73
+	.addrsig_sym __llvm_gcov_ctr.74
+	.addrsig_sym __llvm_gcov_ctr.75
+	.addrsig_sym __llvm_gcov_ctr.76
+	.addrsig_sym __llvm_gcov_ctr.77
+	.addrsig_sym __llvm_gcov_ctr.78
+	.addrsig_sym __llvm_gcov_ctr.79
+	.addrsig_sym __llvm_gcov_ctr.80
+	.addrsig_sym __llvm_gcov_ctr.81
+	.addrsig_sym __llvm_gcov_ctr.82
+	.addrsig_sym __llvm_gcov_ctr.83
+	.addrsig_sym __llvm_gcov_ctr.84
+	.addrsig_sym __llvm_gcov_ctr.85
+	.addrsig_sym __llvm_gcov_ctr.86
+	.addrsig_sym __llvm_gcov_ctr.87
+	.addrsig_sym __llvm_gcov_ctr.88
+	.addrsig_sym __llvm_gcov_ctr.89
+	.addrsig_sym __llvm_gcov_ctr.90
+	.addrsig_sym __llvm_gcov_ctr.91
+	.addrsig_sym __llvm_gcov_ctr.92
+	.addrsig_sym __llvm_gcov_ctr.93
+	.addrsig_sym __llvm_gcov_ctr.94
+	.addrsig_sym __llvm_gcov_ctr.95
+	.addrsig_sym __llvm_gcov_ctr.96
+	.addrsig_sym __llvm_gcov_ctr.97
+	.addrsig_sym __llvm_gcov_ctr.98
+	.addrsig_sym __llvm_gcov_ctr.99
+	.addrsig_sym __llvm_gcov_ctr.100
+	.addrsig_sym __llvm_gcov_ctr.101
+	.addrsig_sym __llvm_gcov_ctr.102
+	.addrsig_sym __llvm_gcov_ctr.103
+	.addrsig_sym __llvm_gcov_ctr.104
+	.addrsig_sym __llvm_gcov_ctr.105
+	.addrsig_sym __llvm_gcov_ctr.106
+	.addrsig_sym __llvm_gcov_ctr.107
+	.addrsig_sym __llvm_gcov_ctr.108
+	.addrsig_sym __llvm_gcov_ctr.109
+	.addrsig_sym __llvm_gcov_ctr.110
+	.addrsig_sym __llvm_gcov_ctr.111
+	.addrsig_sym __llvm_gcov_ctr.112
+	.addrsig_sym __llvm_gcov_ctr.113
+	.addrsig_sym __llvm_gcov_ctr.114
+	.addrsig_sym __llvm_gcov_ctr.115
+	.addrsig_sym __llvm_gcov_ctr.116
+	.addrsig_sym __llvm_gcov_ctr.117
+	.addrsig_sym __llvm_gcov_ctr.118
+	.addrsig_sym __llvm_gcov_ctr.119
+	.addrsig_sym __llvm_gcov_ctr.120
+	.addrsig_sym __llvm_gcov_ctr.121
+	.addrsig_sym __llvm_gcov_ctr.122
+	.addrsig_sym __llvm_gcov_ctr.123
+	.addrsig_sym __llvm_gcov_ctr.124
+	.addrsig_sym __llvm_gcov_ctr.125
+	.addrsig_sym __llvm_gcov_ctr.126
+	.addrsig_sym __llvm_gcov_ctr.127
+	.addrsig_sym __llvm_gcov_ctr.128
+	.addrsig_sym __llvm_gcov_ctr.129
+	.addrsig_sym __llvm_gcov_ctr.130
+	.addrsig_sym __llvm_gcov_ctr.131
+	.addrsig_sym __llvm_gcov_ctr.132
+	.addrsig_sym __llvm_gcov_ctr.133
+	.addrsig_sym __llvm_gcov_ctr.134
+	.addrsig_sym __llvm_gcov_ctr.135
+	.addrsig_sym __llvm_gcov_ctr.136
+	.addrsig_sym __llvm_gcov_ctr.137
+	.addrsig_sym __llvm_gcov_ctr.138
+	.addrsig_sym __llvm_gcov_ctr.139
+	.addrsig_sym __llvm_gcov_ctr.140
+	.addrsig_sym __llvm_gcov_ctr.141
+	.addrsig_sym __llvm_gcov_ctr.142
+	.addrsig_sym __llvm_gcov_ctr.143
+	.addrsig_sym __llvm_gcov_ctr.144
+	.addrsig_sym __llvm_gcov_ctr.145
+	.addrsig_sym __llvm_gcov_ctr.146
+	.addrsig_sym __llvm_gcov_ctr.147
+	.addrsig_sym __llvm_gcov_ctr.148
+	.addrsig_sym __llvm_gcov_ctr.149
+	.addrsig_sym __llvm_gcov_ctr.150
 	.addrsig_sym __llvm_profile_runtime
 	.addrsig_sym .L__profc_memmove
 	.addrsig_sym .L__profd_memmove

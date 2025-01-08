@@ -27,10 +27,16 @@ memmove:
 	bf r0, .LBB0_6
 	bu .LBB0_1
 .LBB0_1:
-	ldw r0, dp[.L__profc_memmove+12]
-	ldw r1, dp[.L__profc_memmove+8]
+	ldw r0, dp[__llvm_gcov_ctr+4]
+	ldw r1, dp[__llvm_gcov_ctr]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr]
+	stw r0, dp[__llvm_gcov_ctr+4]
+	ldw r0, dp[.L__profc_memmove+12]
+	ldw r1, dp[.L__profc_memmove+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memmove+8]
@@ -68,6 +74,14 @@ memmove:
 	st8 r0, r1[r2]
 	bu .LBB0_4
 .LBB0_4:
+	ldw r0, dp[__llvm_gcov_ctr+12]
+	ldw r1, dp[__llvm_gcov_ctr+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr+8]
+	stw r0, dp[__llvm_gcov_ctr+12]
 	ldw r0, sp[2]
 	sub r0, r0, 1
 	stw r0, sp[2]
@@ -95,10 +109,16 @@ memmove:
 	bf r0, .LBB0_11
 	bu .LBB0_9
 .LBB0_9:
-	ldw r0, dp[.L__profc_memmove+36]
-	ldw r1, dp[.L__profc_memmove+32]
+	ldw r0, dp[__llvm_gcov_ctr+20]
+	ldw r1, dp[__llvm_gcov_ctr+16]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr+16]
+	stw r0, dp[__llvm_gcov_ctr+20]
+	ldw r0, dp[.L__profc_memmove+36]
+	ldw r1, dp[.L__profc_memmove+32]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memmove+32]
@@ -118,8 +138,24 @@ memmove:
 	stw r0, sp[2]
 	bu .LBB0_8
 .LBB0_11:
+	ldw r0, dp[__llvm_gcov_ctr+28]
+	ldw r1, dp[__llvm_gcov_ctr+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr+24]
+	stw r0, dp[__llvm_gcov_ctr+28]
 	bu .LBB0_12
 .LBB0_12:
+	ldw r0, dp[__llvm_gcov_ctr+36]
+	ldw r1, dp[__llvm_gcov_ctr+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr+32]
+	stw r0, dp[__llvm_gcov_ctr+36]
 	bu .LBB0_13
 .LBB0_13:
 	ldw r0, sp[4]
@@ -133,7 +169,8 @@ memmove:
 	.type	memccpy,@function
 	.cc_top memccpy.function,memccpy
 memccpy:
-	entsp 9
+	entsp 10
+	stw r4, sp[9]
 	stw r0, sp[7]
 	stw r1, sp[6]
 	stw r2, sp[5]
@@ -161,10 +198,16 @@ memccpy:
 	bf r0, .LBB1_4
 	bu .LBB1_2
 .LBB1_2:
-	ldw r0, dp[.L__profc_memccpy+20]
-	ldw r1, dp[.L__profc_memccpy+16]
+	ldw r0, dp[__llvm_gcov_ctr.1+4]
+	ldw r1, dp[__llvm_gcov_ctr.1]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.1]
+	stw r0, dp[__llvm_gcov_ctr.1+4]
+	ldw r0, dp[.L__profc_memccpy+20]
+	ldw r1, dp[.L__profc_memccpy+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memccpy+16]
@@ -182,10 +225,16 @@ memccpy:
 	bu .LBB1_3
 .LBB1_3:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_memccpy+28]
-	ldw r2, dp[.L__profc_memccpy+24]
+	ldw r1, dp[__llvm_gcov_ctr.1+12]
+	ldw r2, dp[__llvm_gcov_ctr.1+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.1+8]
+	stw r1, dp[__llvm_gcov_ctr.1+12]
+	ldw r1, dp[.L__profc_memccpy+28]
+	ldw r2, dp[.L__profc_memccpy+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_memccpy+24]
@@ -208,6 +257,14 @@ memccpy:
 	stw r0, dp[.L__profc_memccpy+12]
 	bu .LBB1_6
 .LBB1_6:
+	ldw r0, dp[__llvm_gcov_ctr.1+20]
+	ldw r1, dp[__llvm_gcov_ctr.1+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.1+16]
+	stw r0, dp[__llvm_gcov_ctr.1+20]
 	ldw r0, sp[4]
 	sub r0, r0, 1
 	stw r0, sp[4]
@@ -223,10 +280,16 @@ memccpy:
 	bf r0, .LBB1_9
 	bu .LBB1_8
 .LBB1_8:
-	ldw r0, dp[.L__profc_memccpy+36]
-	ldw r1, dp[.L__profc_memccpy+32]
+	ldw r0, dp[__llvm_gcov_ctr.1+28]
+	ldw r1, dp[__llvm_gcov_ctr.1+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.1+24]
+	stw r0, dp[__llvm_gcov_ctr.1+28]
+	ldw r0, dp[.L__profc_memccpy+36]
+	ldw r1, dp[.L__profc_memccpy+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memccpy+32]
@@ -236,12 +299,20 @@ memccpy:
 	stw r0, sp[8]
 	bu .LBB1_10
 .LBB1_9:
+	ldw r1, dp[__llvm_gcov_ctr.1+36]
+	ldw r2, dp[__llvm_gcov_ctr.1+32]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.1+32]
+	stw r1, dp[__llvm_gcov_ctr.1+36]
 	stw r0, sp[8]
 	bu .LBB1_10
 .LBB1_10:
 	ldw r0, sp[8]
-	retsp 9
+	ldw r4, sp[9]
+	retsp 10
 	.cc_bottom memccpy.function
 .Lfunc_end1:
 	.size	memccpy, .Lfunc_end1-memccpy
@@ -251,7 +322,8 @@ memccpy:
 	.type	memchr,@function
 	.cc_top memchr.function,memchr
 memchr:
-	entsp 7
+	entsp 8
+	stw r4, sp[7]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -276,10 +348,16 @@ memchr:
 	bf r0, .LBB2_4
 	bu .LBB2_2
 .LBB2_2:
-	ldw r0, dp[.L__profc_memchr+20]
-	ldw r2, dp[.L__profc_memchr+16]
+	ldw r0, dp[__llvm_gcov_ctr.2+4]
+	ldw r2, dp[__llvm_gcov_ctr.2]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.2]
+	stw r0, dp[__llvm_gcov_ctr.2+4]
+	ldw r0, dp[.L__profc_memchr+20]
+	ldw r2, dp[.L__profc_memchr+16]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_memchr+16]
@@ -295,10 +373,16 @@ memchr:
 	bu .LBB2_3
 .LBB2_3:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_memchr+28]
-	ldw r2, dp[.L__profc_memchr+24]
+	ldw r1, dp[__llvm_gcov_ctr.2+12]
+	ldw r2, dp[__llvm_gcov_ctr.2+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.2+8]
+	stw r1, dp[__llvm_gcov_ctr.2+12]
+	ldw r1, dp[.L__profc_memchr+28]
+	ldw r2, dp[.L__profc_memchr+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_memchr+24]
@@ -321,6 +405,14 @@ memchr:
 	stw r0, dp[.L__profc_memchr+12]
 	bu .LBB2_6
 .LBB2_6:
+	ldw r0, dp[__llvm_gcov_ctr.2+20]
+	ldw r1, dp[__llvm_gcov_ctr.2+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.2+16]
+	stw r0, dp[__llvm_gcov_ctr.2+20]
 	ldw r0, sp[3]
 	add r0, r0, 1
 	stw r0, sp[3]
@@ -333,10 +425,16 @@ memchr:
 	bf r0, .LBB2_9
 	bu .LBB2_8
 .LBB2_8:
-	ldw r0, dp[.L__profc_memchr+36]
-	ldw r1, dp[.L__profc_memchr+32]
+	ldw r0, dp[__llvm_gcov_ctr.2+28]
+	ldw r1, dp[__llvm_gcov_ctr.2+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.2+24]
+	stw r0, dp[__llvm_gcov_ctr.2+28]
+	ldw r0, dp[.L__profc_memchr+36]
+	ldw r1, dp[.L__profc_memchr+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memchr+32]
@@ -345,12 +443,20 @@ memchr:
 	stw r0, sp[0]
 	bu .LBB2_10
 .LBB2_9:
+	ldw r1, dp[__llvm_gcov_ctr.2+36]
+	ldw r2, dp[__llvm_gcov_ctr.2+32]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.2+32]
+	stw r1, dp[__llvm_gcov_ctr.2+36]
 	stw r0, sp[0]
 	bu .LBB2_10
 .LBB2_10:
 	ldw r0, sp[0]
-	retsp 7
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom memchr.function
 .Lfunc_end2:
 	.size	memchr, .Lfunc_end2-memchr
@@ -360,7 +466,8 @@ memchr:
 	.type	memcmp,@function
 	.cc_top memcmp.function,memcmp
 memcmp:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[7]
 	stw r1, sp[6]
 	stw r2, sp[5]
@@ -384,10 +491,16 @@ memcmp:
 	bf r0, .LBB3_4
 	bu .LBB3_2
 .LBB3_2:
-	ldw r0, dp[.L__profc_memcmp+20]
-	ldw r1, dp[.L__profc_memcmp+16]
+	ldw r0, dp[__llvm_gcov_ctr.3+4]
+	ldw r1, dp[__llvm_gcov_ctr.3]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.3]
+	stw r0, dp[__llvm_gcov_ctr.3+4]
+	ldw r0, dp[.L__profc_memcmp+20]
+	ldw r1, dp[.L__profc_memcmp+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memcmp+16]
@@ -404,10 +517,16 @@ memcmp:
 	bu .LBB3_3
 .LBB3_3:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_memcmp+28]
-	ldw r2, dp[.L__profc_memcmp+24]
+	ldw r1, dp[__llvm_gcov_ctr.3+12]
+	ldw r2, dp[__llvm_gcov_ctr.3+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.3+8]
+	stw r1, dp[__llvm_gcov_ctr.3+12]
+	ldw r1, dp[.L__profc_memcmp+28]
+	ldw r2, dp[.L__profc_memcmp+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_memcmp+24]
@@ -430,6 +549,14 @@ memcmp:
 	stw r0, dp[.L__profc_memcmp+12]
 	bu .LBB3_6
 .LBB3_6:
+	ldw r0, dp[__llvm_gcov_ctr.3+20]
+	ldw r1, dp[__llvm_gcov_ctr.3+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.3+16]
+	stw r0, dp[__llvm_gcov_ctr.3+20]
 	ldw r0, sp[5]
 	sub r0, r0, 1
 	stw r0, sp[5]
@@ -445,10 +572,16 @@ memcmp:
 	bf r0, .LBB3_9
 	bu .LBB3_8
 .LBB3_8:
-	ldw r0, dp[.L__profc_memcmp+36]
-	ldw r1, dp[.L__profc_memcmp+32]
+	ldw r0, dp[__llvm_gcov_ctr.3+28]
+	ldw r1, dp[__llvm_gcov_ctr.3+24]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.3+24]
+	stw r0, dp[__llvm_gcov_ctr.3+28]
+	ldw r0, dp[.L__profc_memcmp+36]
+	ldw r1, dp[.L__profc_memcmp+32]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memcmp+32]
@@ -461,12 +594,20 @@ memcmp:
 	stw r0, sp[0]
 	bu .LBB3_10
 .LBB3_9:
+	ldw r1, dp[__llvm_gcov_ctr.3+36]
+	ldw r2, dp[__llvm_gcov_ctr.3+32]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.3+32]
+	stw r1, dp[__llvm_gcov_ctr.3+36]
 	stw r0, sp[0]
 	bu .LBB3_10
 .LBB3_10:
 	ldw r0, sp[0]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom memcmp.function
 .Lfunc_end3:
 	.size	memcmp, .Lfunc_end3-memcmp
@@ -476,25 +617,37 @@ memcmp:
 	.type	memcpy,@function
 	.cc_top memcpy.function,memcpy
 memcpy:
-	entsp 5
-	stw r0, sp[4]
-	stw r1, sp[3]
-	stw r2, sp[2]
-	ldw r0, dp[.L__profc_memcpy+4]
-	ldw r1, dp[.L__profc_memcpy]
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	stw r6, sp[6]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.4+4]
+	ldw r5, dp[__llvm_gcov_ctr.4]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.4]
+	stw r4, dp[__llvm_gcov_ctr.4+4]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_memcpy+4]
+	ldw r1, dp[.L__profc_memcpy]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memcpy]
 	stw r0, dp[.L__profc_memcpy+4]
+	ldw r0, sp[5]
+	stw r0, sp[2]
 	ldw r0, sp[4]
 	stw r0, sp[1]
-	ldw r0, sp[3]
-	stw r0, sp[0]
 	bu .LBB4_1
 .LBB4_1:
-	ldw r0, sp[2]
+	ldw r0, sp[3]
 	bf r0, .LBB4_4
 	bu .LBB4_2
 .LBB4_2:
@@ -506,23 +659,34 @@ memcpy:
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memcpy+8]
 	stw r0, dp[.L__profc_memcpy+12]
-	ldw r0, sp[0]
+	ldw r0, sp[1]
 	add r1, r0, 1
-	stw r1, sp[0]
+	stw r1, sp[1]
 	ld8u r0, r0[r2]
-	ldw r1, sp[1]
+	ldw r1, sp[2]
 	add r3, r1, 1
-	stw r3, sp[1]
+	stw r3, sp[2]
 	st8 r0, r1[r2]
 	bu .LBB4_3
 .LBB4_3:
-	ldw r0, sp[2]
+	ldw r0, dp[__llvm_gcov_ctr.4+12]
+	ldw r1, dp[__llvm_gcov_ctr.4+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.4+8]
+	stw r0, dp[__llvm_gcov_ctr.4+12]
+	ldw r0, sp[3]
 	sub r0, r0, 1
-	stw r0, sp[2]
+	stw r0, sp[3]
 	bu .LBB4_1
 .LBB4_4:
-	ldw r0, sp[4]
-	retsp 5
+	ldw r0, sp[5]
+	ldw r6, sp[6]
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom memcpy.function
 .Lfunc_end4:
 	.size	memcpy, .Lfunc_end4-memcpy
@@ -573,10 +737,16 @@ memrchr:
 	bf r0, .LBB5_4
 	bu .LBB5_3
 .LBB5_3:
-	ldw r0, dp[.L__profc_memrchr+20]
-	ldw r1, dp[.L__profc_memrchr+16]
+	ldw r0, dp[__llvm_gcov_ctr.5+4]
+	ldw r1, dp[__llvm_gcov_ctr.5]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.5]
+	stw r0, dp[__llvm_gcov_ctr.5+4]
+	ldw r0, dp[.L__profc_memrchr+20]
+	ldw r1, dp[.L__profc_memrchr+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memrchr+16]
@@ -587,9 +757,24 @@ memrchr:
 	stw r0, sp[4]
 	bu .LBB5_6
 .LBB5_4:
+	ldw r0, dp[__llvm_gcov_ctr.5+12]
+	ldw r1, dp[__llvm_gcov_ctr.5+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.5+8]
+	stw r0, dp[__llvm_gcov_ctr.5+12]
 	bu .LBB5_1
 .LBB5_5:
+	ldw r1, dp[__llvm_gcov_ctr.5+20]
+	ldw r2, dp[__llvm_gcov_ctr.5+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.5+16]
+	stw r1, dp[__llvm_gcov_ctr.5+20]
 	stw r0, sp[4]
 	bu .LBB5_6
 .LBB5_6:
@@ -604,23 +789,35 @@ memrchr:
 	.type	memset,@function
 	.cc_top memset.function,memset
 memset:
-	entsp 5
-	stw r0, sp[4]
-	stw r1, sp[3]
-	stw r2, sp[2]
-	ldw r0, dp[.L__profc_memset+4]
-	ldw r1, dp[.L__profc_memset]
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	stw r6, sp[6]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.6+4]
+	ldw r5, dp[__llvm_gcov_ctr.6]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.6]
+	stw r4, dp[__llvm_gcov_ctr.6+4]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_memset+4]
+	ldw r1, dp[.L__profc_memset]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memset]
 	stw r0, dp[.L__profc_memset+4]
-	ldw r0, sp[4]
-	stw r0, sp[1]
+	ldw r0, sp[5]
+	stw r0, sp[2]
 	bu .LBB6_1
 .LBB6_1:
-	ldw r0, sp[2]
+	ldw r0, sp[3]
 	bf r0, .LBB6_4
 	bu .LBB6_2
 .LBB6_2:
@@ -632,21 +829,32 @@ memset:
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memset+8]
 	stw r0, dp[.L__profc_memset+12]
-	ldw r0, sp[3]
-	ldw r1, sp[1]
+	ldw r0, sp[4]
+	ldw r1, sp[2]
 	st8 r0, r1[r2]
 	bu .LBB6_3
 .LBB6_3:
-	ldw r0, sp[2]
+	ldw r0, dp[__llvm_gcov_ctr.6+12]
+	ldw r1, dp[__llvm_gcov_ctr.6+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.6+8]
+	stw r0, dp[__llvm_gcov_ctr.6+12]
+	ldw r0, sp[3]
 	sub r0, r0, 1
-	stw r0, sp[2]
-	ldw r0, sp[1]
+	stw r0, sp[3]
+	ldw r0, sp[2]
 	add r0, r0, 1
-	stw r0, sp[1]
+	stw r0, sp[2]
 	bu .LBB6_1
 .LBB6_4:
-	ldw r0, sp[4]
-	retsp 5
+	ldw r0, sp[5]
+	ldw r6, sp[6]
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom memset.function
 .Lfunc_end6:
 	.size	memset, .Lfunc_end6-memset
@@ -656,13 +864,21 @@ memset:
 	.type	stpcpy,@function
 	.cc_top stpcpy.function,stpcpy
 stpcpy:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.7+4]
+	ldw r4, dp[__llvm_gcov_ctr.7]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.7]
+	stw r11, dp[__llvm_gcov_ctr.7+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc_stpcpy+4]
 	ldw r1, dp[.L__profc_stpcpy]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_stpcpy]
@@ -687,6 +903,14 @@ stpcpy:
 	stw r0, dp[.L__profc_stpcpy+12]
 	bu .LBB7_3
 .LBB7_3:
+	ldw r0, dp[__llvm_gcov_ctr.7+12]
+	ldw r1, dp[__llvm_gcov_ctr.7+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.7+8]
+	stw r0, dp[__llvm_gcov_ctr.7+12]
 	ldw r0, sp[0]
 	add r0, r0, 1
 	stw r0, sp[0]
@@ -696,7 +920,9 @@ stpcpy:
 	bu .LBB7_1
 .LBB7_4:
 	ldw r0, sp[1]
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom stpcpy.function
 .Lfunc_end7:
 	.size	stpcpy, .Lfunc_end7-stpcpy
@@ -706,40 +932,57 @@ stpcpy:
 	.type	strchrnul,@function
 	.cc_top strchrnul.function,strchrnul
 strchrnul:
-	entsp 4
-	stw r0, sp[3]
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
 	stw r1, sp[2]
-	ldw r0, dp[.L__profc_strchrnul+4]
-	ldw r2, dp[.L__profc_strchrnul]
+	mov r2, r0
+	ldw r0, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.8+4]
+	ldw r4, dp[__llvm_gcov_ctr.8]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r1
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.8]
+	stw r11, dp[__llvm_gcov_ctr.8+4]
+	stw r2, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_strchrnul+4]
+	ldw r2, dp[.L__profc_strchrnul]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_strchrnul]
 	stw r0, dp[.L__profc_strchrnul+4]
-	ldaw r0, sp[2]
+	ldaw r0, sp[3]
 	ld8u r0, r0[r1]
-	stw r0, sp[2]
+	stw r0, sp[3]
 	bu .LBB8_1
 .LBB8_1:
-	ldw r0, sp[3]
+	ldw r0, sp[4]
 	ldc r1, 0
 	ld8u r0, r0[r1]
 	stw r1, sp[1]
 	bf r0, .LBB8_4
 	bu .LBB8_2
 .LBB8_2:
-	ldw r0, dp[.L__profc_strchrnul+20]
-	ldw r2, dp[.L__profc_strchrnul+16]
+	ldw r0, dp[__llvm_gcov_ctr.8+12]
+	ldw r2, dp[__llvm_gcov_ctr.8+8]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.8+8]
+	stw r0, dp[__llvm_gcov_ctr.8+12]
+	ldw r0, dp[.L__profc_strchrnul+20]
+	ldw r2, dp[.L__profc_strchrnul+16]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_strchrnul+16]
 	stw r0, dp[.L__profc_strchrnul+20]
-	ldw r0, sp[3]
+	ldw r0, sp[4]
 	ld8u r0, r0[r1]
-	ldw r1, sp[2]
+	ldw r1, sp[3]
 	eq r0, r0, r1
 	eq r1, r0, 0
 	stw r1, sp[0]
@@ -748,10 +991,16 @@ strchrnul:
 	bu .LBB8_3
 .LBB8_3:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_strchrnul+28]
-	ldw r2, dp[.L__profc_strchrnul+24]
+	ldw r1, dp[__llvm_gcov_ctr.8+20]
+	ldw r2, dp[__llvm_gcov_ctr.8+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.8+16]
+	stw r1, dp[__llvm_gcov_ctr.8+20]
+	ldw r1, dp[.L__profc_strchrnul+28]
+	ldw r2, dp[.L__profc_strchrnul+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strchrnul+24]
@@ -774,13 +1023,23 @@ strchrnul:
 	stw r0, dp[.L__profc_strchrnul+12]
 	bu .LBB8_6
 .LBB8_6:
-	ldw r0, sp[3]
+	ldw r0, dp[__llvm_gcov_ctr.8+28]
+	ldw r1, dp[__llvm_gcov_ctr.8+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.8+24]
+	stw r0, dp[__llvm_gcov_ctr.8+28]
+	ldw r0, sp[4]
 	add r0, r0, 1
-	stw r0, sp[3]
+	stw r0, sp[4]
 	bu .LBB8_1
 .LBB8_7:
-	ldw r0, sp[3]
-	retsp 4
+	ldw r0, sp[4]
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom strchrnul.function
 .Lfunc_end8:
 	.size	strchrnul, .Lfunc_end8-strchrnul
@@ -803,10 +1062,16 @@ strchr:
 	stw r0, dp[.L__profc_strchr+4]
 	bu .LBB9_2
 .LBB9_1:
-	ldw r0, dp[.L__profc_strchr+12]
-	ldw r1, dp[.L__profc_strchr+8]
+	ldw r0, dp[__llvm_gcov_ctr.9+12]
+	ldw r1, dp[__llvm_gcov_ctr.9+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.9+8]
+	stw r0, dp[__llvm_gcov_ctr.9+12]
+	ldw r0, dp[.L__profc_strchr+12]
+	ldw r1, dp[.L__profc_strchr+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strchr+8]
@@ -821,10 +1086,16 @@ strchr:
 	bf r0, .LBB9_4
 	bu .LBB9_3
 .LBB9_3:
-	ldw r0, dp[.L__profc_strchr+20]
-	ldw r1, dp[.L__profc_strchr+16]
+	ldw r0, dp[__llvm_gcov_ctr.9+4]
+	ldw r1, dp[__llvm_gcov_ctr.9]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.9]
+	stw r0, dp[__llvm_gcov_ctr.9+4]
+	ldw r0, dp[.L__profc_strchr+20]
+	ldw r1, dp[.L__profc_strchr+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strchr+16]
@@ -843,7 +1114,14 @@ strchr:
 	bt r0, .LBB9_1
 	bu .LBB9_6
 .LBB9_6:
+	ldw r1, dp[__llvm_gcov_ctr.9+20]
+	ldw r2, dp[__llvm_gcov_ctr.9+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.9+16]
+	stw r1, dp[__llvm_gcov_ctr.9+20]
 	stw r0, sp[2]
 	bu .LBB9_7
 .LBB9_7:
@@ -858,13 +1136,21 @@ strchr:
 	.type	strcmp,@function
 	.cc_top strcmp.function,strcmp
 strcmp:
-	entsp 4
+	entsp 6
+	stw r4, sp[5]
+	stw r5, sp[4]
+	ldw r11, dp[__llvm_gcov_ctr.10+4]
+	ldw r4, dp[__llvm_gcov_ctr.10]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.10]
+	stw r11, dp[__llvm_gcov_ctr.10+4]
 	stw r0, sp[3]
 	stw r1, sp[2]
 	ldw r0, dp[.L__profc_strcmp+4]
 	ldw r1, dp[.L__profc_strcmp]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strcmp]
@@ -881,10 +1167,16 @@ strcmp:
 	bf r0, .LBB10_4
 	bu .LBB10_2
 .LBB10_2:
-	ldw r0, dp[.L__profc_strcmp+20]
-	ldw r2, dp[.L__profc_strcmp+16]
+	ldw r0, dp[__llvm_gcov_ctr.10+12]
+	ldw r2, dp[__llvm_gcov_ctr.10+8]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.10+8]
+	stw r0, dp[__llvm_gcov_ctr.10+12]
+	ldw r0, dp[.L__profc_strcmp+20]
+	ldw r2, dp[.L__profc_strcmp+16]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_strcmp+16]
@@ -899,10 +1191,16 @@ strcmp:
 	bu .LBB10_3
 .LBB10_3:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_strcmp+28]
-	ldw r2, dp[.L__profc_strcmp+24]
+	ldw r1, dp[__llvm_gcov_ctr.10+20]
+	ldw r2, dp[__llvm_gcov_ctr.10+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.10+16]
+	stw r1, dp[__llvm_gcov_ctr.10+20]
+	ldw r1, dp[.L__profc_strcmp+28]
+	ldw r2, dp[.L__profc_strcmp+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strcmp+24]
@@ -925,6 +1223,14 @@ strcmp:
 	stw r0, dp[.L__profc_strcmp+12]
 	bu .LBB10_6
 .LBB10_6:
+	ldw r0, dp[__llvm_gcov_ctr.10+28]
+	ldw r1, dp[__llvm_gcov_ctr.10+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.10+24]
+	stw r0, dp[__llvm_gcov_ctr.10+28]
 	ldw r0, sp[3]
 	add r0, r0, 1
 	stw r0, sp[3]
@@ -939,7 +1245,9 @@ strcmp:
 	ldw r1, sp[2]
 	ld8u r1, r1[r2]
 	sub r0, r0, r1
-	retsp 4
+	ldw r5, sp[4]
+	ldw r4, sp[5]
+	retsp 6
 	.cc_bottom strcmp.function
 .Lfunc_end10:
 	.size	strcmp, .Lfunc_end10-strcmp
@@ -949,12 +1257,19 @@ strcmp:
 	.type	strlen,@function
 	.cc_top strlen.function,strlen
 strlen:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.11+4]
+	ldw r11, dp[__llvm_gcov_ctr.11]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.11]
+	stw r1, dp[__llvm_gcov_ctr.11+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc_strlen+4]
 	ldw r1, dp[.L__profc_strlen]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strlen]
@@ -979,6 +1294,14 @@ strlen:
 	stw r0, dp[.L__profc_strlen+12]
 	bu .LBB11_3
 .LBB11_3:
+	ldw r0, dp[__llvm_gcov_ctr.11+12]
+	ldw r1, dp[__llvm_gcov_ctr.11+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.11+8]
+	stw r0, dp[__llvm_gcov_ctr.11+12]
 	ldw r0, sp[1]
 	add r0, r0, 1
 	stw r0, sp[1]
@@ -987,7 +1310,8 @@ strlen:
 	ldw r0, sp[1]
 	ldw r1, sp[0]
 	sub r0, r0, r1
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom strlen.function
 .Lfunc_end11:
 	.size	strlen, .Lfunc_end11-strlen
@@ -997,7 +1321,8 @@ strlen:
 	.type	strncmp,@function
 	.cc_top strncmp.function,strncmp
 strncmp:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -1019,10 +1344,16 @@ strncmp:
 	bt r0, .LBB12_2
 	bu .LBB12_1
 .LBB12_1:
-	ldw r1, dp[.L__profc_strncmp+12]
-	ldw r2, dp[.L__profc_strncmp+8]
+	ldw r1, dp[__llvm_gcov_ctr.12+12]
+	ldw r2, dp[__llvm_gcov_ctr.12+8]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.12+8]
+	stw r1, dp[__llvm_gcov_ctr.12+12]
+	ldw r1, dp[.L__profc_strncmp+12]
+	ldw r2, dp[.L__profc_strncmp+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strncmp+8]
@@ -1030,6 +1361,14 @@ strncmp:
 	stw r0, sp[7]
 	bu .LBB12_14
 .LBB12_2:
+	ldw r0, dp[__llvm_gcov_ctr.12+4]
+	ldw r1, dp[__llvm_gcov_ctr.12]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.12]
+	stw r0, dp[__llvm_gcov_ctr.12+4]
 	bu .LBB12_3
 .LBB12_3:
 	ldw r0, sp[3]
@@ -1039,10 +1378,16 @@ strncmp:
 	bf r0, .LBB12_10
 	bu .LBB12_4
 .LBB12_4:
-	ldw r0, dp[.L__profc_strncmp+60]
-	ldw r2, dp[.L__profc_strncmp+56]
+	ldw r0, dp[__llvm_gcov_ctr.12+20]
+	ldw r2, dp[__llvm_gcov_ctr.12+16]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.12+16]
+	stw r0, dp[__llvm_gcov_ctr.12+20]
+	ldw r0, dp[.L__profc_strncmp+60]
+	ldw r2, dp[.L__profc_strncmp+56]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_strncmp+56]
@@ -1053,10 +1398,16 @@ strncmp:
 	bf r0, .LBB12_10
 	bu .LBB12_5
 .LBB12_5:
-	ldw r0, dp[.L__profc_strncmp+68]
-	ldw r1, dp[.L__profc_strncmp+64]
+	ldw r0, dp[__llvm_gcov_ctr.12+28]
+	ldw r1, dp[__llvm_gcov_ctr.12+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.12+24]
+	stw r0, dp[__llvm_gcov_ctr.12+28]
+	ldw r0, dp[.L__profc_strncmp+68]
+	ldw r1, dp[.L__profc_strncmp+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strncmp+64]
@@ -1076,10 +1427,16 @@ strncmp:
 	bf r0, .LBB12_10
 	bu .LBB12_7
 .LBB12_7:
-	ldw r0, dp[.L__profc_strncmp+52]
-	ldw r1, dp[.L__profc_strncmp+48]
+	ldw r0, dp[__llvm_gcov_ctr.12+36]
+	ldw r1, dp[__llvm_gcov_ctr.12+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.12+32]
+	stw r0, dp[__llvm_gcov_ctr.12+36]
+	ldw r0, dp[.L__profc_strncmp+52]
+	ldw r1, dp[.L__profc_strncmp+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strncmp+48]
@@ -1106,10 +1463,16 @@ strncmp:
 	bu .LBB12_9
 .LBB12_9:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_strncmp+36]
-	ldw r2, dp[.L__profc_strncmp+32]
+	ldw r1, dp[__llvm_gcov_ctr.12+44]
+	ldw r2, dp[__llvm_gcov_ctr.12+40]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.12+40]
+	stw r1, dp[__llvm_gcov_ctr.12+44]
+	ldw r1, dp[.L__profc_strncmp+36]
+	ldw r2, dp[.L__profc_strncmp+32]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strncmp+32]
@@ -1132,6 +1495,14 @@ strncmp:
 	stw r0, dp[.L__profc_strncmp+20]
 	bu .LBB12_12
 .LBB12_12:
+	ldw r0, dp[__llvm_gcov_ctr.12+52]
+	ldw r1, dp[__llvm_gcov_ctr.12+48]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.12+48]
+	stw r0, dp[__llvm_gcov_ctr.12+52]
 	ldw r0, sp[3]
 	add r0, r0, 1
 	stw r0, sp[3]
@@ -1153,7 +1524,8 @@ strncmp:
 	bu .LBB12_14
 .LBB12_14:
 	ldw r0, sp[7]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom strncmp.function
 .Lfunc_end12:
 	.size	strncmp, .Lfunc_end12-strncmp
@@ -1163,25 +1535,37 @@ strncmp:
 	.type	swab,@function
 	.cc_top swab.function,swab
 swab:
-	entsp 5
-	stw r0, sp[4]
-	stw r1, sp[3]
-	stw r2, sp[2]
-	ldw r0, dp[.L__profc_swab+4]
-	ldw r1, dp[.L__profc_swab]
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	stw r6, sp[6]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.13+4]
+	ldw r5, dp[__llvm_gcov_ctr.13]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.13]
+	stw r4, dp[__llvm_gcov_ctr.13+4]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_swab+4]
+	ldw r1, dp[.L__profc_swab]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_swab]
 	stw r0, dp[.L__profc_swab+4]
+	ldw r0, sp[5]
+	stw r0, sp[2]
 	ldw r0, sp[4]
 	stw r0, sp[1]
-	ldw r0, sp[3]
-	stw r0, sp[0]
 	bu .LBB13_1
 .LBB13_1:
-	ldw r0, sp[2]
+	ldw r0, sp[3]
 	ldc r1, 2
 	lss r0, r0, r1
 	bt r0, .LBB13_4
@@ -1195,28 +1579,39 @@ swab:
 	add r0, r0, r11
 	stw r3, dp[.L__profc_swab+8]
 	stw r0, dp[.L__profc_swab+12]
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	ld8u r0, r0[r2]
-	ldw r3, sp[0]
+	ldw r3, sp[1]
 	st8 r0, r3[r1]
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	ld8u r0, r0[r1]
-	ldw r1, sp[0]
+	ldw r1, sp[1]
 	st8 r0, r1[r2]
-	ldw r0, sp[0]
-	add r0, r0, 2
-	stw r0, sp[0]
 	ldw r0, sp[1]
 	add r0, r0, 2
 	stw r0, sp[1]
+	ldw r0, sp[2]
+	add r0, r0, 2
+	stw r0, sp[2]
 	bu .LBB13_3
 .LBB13_3:
-	ldw r0, sp[2]
+	ldw r0, dp[__llvm_gcov_ctr.13+12]
+	ldw r1, dp[__llvm_gcov_ctr.13+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.13+8]
+	stw r0, dp[__llvm_gcov_ctr.13+12]
+	ldw r0, sp[3]
 	sub r0, r0, 2
-	stw r0, sp[2]
+	stw r0, sp[3]
 	bu .LBB13_1
 .LBB13_4:
-	retsp 5
+	ldw r6, sp[6]
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom swab.function
 .Lfunc_end13:
 	.size	swab, .Lfunc_end13-swab
@@ -1231,12 +1626,19 @@ swab:
 	.type	isalpha,@function
 	.cc_top isalpha.function,isalpha
 isalpha:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.14+4]
+	ldw r11, dp[__llvm_gcov_ctr.14]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.14]
+	stw r1, dp[__llvm_gcov_ctr.14+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isalpha+4]
 	ldw r1, dp[.L__profc_isalpha]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isalpha]
@@ -1248,7 +1650,8 @@ isalpha:
 	add r0, r0, r1
 	ldc r1, 26
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isalpha.function
 .Lfunc_end14:
 	.size	isalpha, .Lfunc_end14-isalpha
@@ -1263,12 +1666,19 @@ isalpha:
 	.type	isascii,@function
 	.cc_top isascii.function,isascii
 isascii:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.15+4]
+	ldw r11, dp[__llvm_gcov_ctr.15]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.15]
+	stw r1, dp[__llvm_gcov_ctr.15+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isascii+4]
 	ldw r1, dp[.L__profc_isascii]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isascii]
@@ -1277,7 +1687,8 @@ isascii:
 	ldw r1, cp[.LCPI15_0]
 	and r0, r0, r1
 	eq r0, r0, 0
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isascii.function
 .Lfunc_end15:
 	.size	isascii, .Lfunc_end15-isascii
@@ -1287,12 +1698,19 @@ isascii:
 	.type	isblank,@function
 	.cc_top isblank.function,isblank
 isblank:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r2, dp[__llvm_gcov_ctr.16+4]
+	ldw r11, dp[__llvm_gcov_ctr.16]
+	ldc r3, 0
+	mkmsk r1, 1
+	ladd r4, r11, r11, r1, r3
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.16]
+	stw r2, dp[__llvm_gcov_ctr.16+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_isblank+4]
 	ldw r2, dp[.L__profc_isblank]
-	ldc r3, 0
-	mkmsk r1, 1
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_isblank]
@@ -1304,10 +1722,16 @@ isblank:
 	bt r0, .LBB16_3
 	bu .LBB16_1
 .LBB16_1:
-	ldw r0, dp[.L__profc_isblank+12]
-	ldw r1, dp[.L__profc_isblank+8]
+	ldw r0, dp[__llvm_gcov_ctr.16+12]
+	ldw r1, dp[__llvm_gcov_ctr.16+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.16+8]
+	stw r0, dp[__llvm_gcov_ctr.16+12]
+	ldw r0, dp[.L__profc_isblank+12]
+	ldw r1, dp[.L__profc_isblank+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isblank+8]
@@ -1321,10 +1745,16 @@ isblank:
 	bu .LBB16_2
 .LBB16_2:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_isblank+20]
-	ldw r2, dp[.L__profc_isblank+16]
+	ldw r1, dp[__llvm_gcov_ctr.16+20]
+	ldw r2, dp[__llvm_gcov_ctr.16+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.16+16]
+	stw r1, dp[__llvm_gcov_ctr.16+20]
+	ldw r1, dp[.L__profc_isblank+20]
+	ldw r2, dp[.L__profc_isblank+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_isblank+16]
@@ -1334,7 +1764,8 @@ isblank:
 .LBB16_3:
 	ldw r0, sp[1]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom isblank.function
 .Lfunc_end16:
 	.size	isblank, .Lfunc_end16-isblank
@@ -1344,12 +1775,19 @@ isblank:
 	.type	iscntrl,@function
 	.cc_top iscntrl.function,iscntrl
 iscntrl:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r2, dp[__llvm_gcov_ctr.17+4]
+	ldw r11, dp[__llvm_gcov_ctr.17]
+	ldc r3, 0
+	mkmsk r1, 1
+	ladd r4, r11, r11, r1, r3
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.17]
+	stw r2, dp[__llvm_gcov_ctr.17+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_iscntrl+4]
 	ldw r2, dp[.L__profc_iscntrl]
-	ldc r3, 0
-	mkmsk r1, 1
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_iscntrl]
@@ -1361,10 +1799,16 @@ iscntrl:
 	bt r0, .LBB17_3
 	bu .LBB17_1
 .LBB17_1:
-	ldw r0, dp[.L__profc_iscntrl+12]
-	ldw r1, dp[.L__profc_iscntrl+8]
+	ldw r0, dp[__llvm_gcov_ctr.17+12]
+	ldw r1, dp[__llvm_gcov_ctr.17+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.17+8]
+	stw r0, dp[__llvm_gcov_ctr.17+12]
+	ldw r0, dp[.L__profc_iscntrl+12]
+	ldw r1, dp[.L__profc_iscntrl+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iscntrl+8]
@@ -1379,10 +1823,16 @@ iscntrl:
 	bu .LBB17_2
 .LBB17_2:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_iscntrl+20]
-	ldw r2, dp[.L__profc_iscntrl+16]
+	ldw r1, dp[__llvm_gcov_ctr.17+20]
+	ldw r2, dp[__llvm_gcov_ctr.17+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.17+16]
+	stw r1, dp[__llvm_gcov_ctr.17+20]
+	ldw r1, dp[.L__profc_iscntrl+20]
+	ldw r2, dp[.L__profc_iscntrl+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_iscntrl+16]
@@ -1392,7 +1842,8 @@ iscntrl:
 .LBB17_3:
 	ldw r0, sp[1]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom iscntrl.function
 .Lfunc_end17:
 	.size	iscntrl, .Lfunc_end17-iscntrl
@@ -1407,12 +1858,19 @@ iscntrl:
 	.type	isdigit,@function
 	.cc_top isdigit.function,isdigit
 isdigit:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.18+4]
+	ldw r11, dp[__llvm_gcov_ctr.18]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.18]
+	stw r1, dp[__llvm_gcov_ctr.18+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isdigit+4]
 	ldw r1, dp[.L__profc_isdigit]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isdigit]
@@ -1422,7 +1880,8 @@ isdigit:
 	add r0, r0, r1
 	ldc r1, 10
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isdigit.function
 .Lfunc_end18:
 	.size	isdigit, .Lfunc_end18-isdigit
@@ -1437,12 +1896,19 @@ isdigit:
 	.type	isgraph,@function
 	.cc_top isgraph.function,isgraph
 isgraph:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.19+4]
+	ldw r11, dp[__llvm_gcov_ctr.19]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.19]
+	stw r1, dp[__llvm_gcov_ctr.19+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isgraph+4]
 	ldw r1, dp[.L__profc_isgraph]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isgraph]
@@ -1452,7 +1918,8 @@ isgraph:
 	add r0, r0, r1
 	ldc r1, 94
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isgraph.function
 .Lfunc_end19:
 	.size	isgraph, .Lfunc_end19-isgraph
@@ -1467,12 +1934,19 @@ isgraph:
 	.type	islower,@function
 	.cc_top islower.function,islower
 islower:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.20+4]
+	ldw r11, dp[__llvm_gcov_ctr.20]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.20]
+	stw r1, dp[__llvm_gcov_ctr.20+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_islower+4]
 	ldw r1, dp[.L__profc_islower]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_islower]
@@ -1482,7 +1956,8 @@ islower:
 	add r0, r0, r1
 	ldc r1, 26
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom islower.function
 .Lfunc_end20:
 	.size	islower, .Lfunc_end20-islower
@@ -1492,12 +1967,19 @@ islower:
 	.type	isprint,@function
 	.cc_top isprint.function,isprint
 isprint:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.21+4]
+	ldw r11, dp[__llvm_gcov_ctr.21]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.21]
+	stw r1, dp[__llvm_gcov_ctr.21+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isprint+4]
 	ldw r1, dp[.L__profc_isprint]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isprint]
@@ -1506,7 +1988,8 @@ isprint:
 	ldaw r0, r0[-8]
 	ldc r1, 95
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isprint.function
 .Lfunc_end21:
 	.size	isprint, .Lfunc_end21-isprint
@@ -1516,12 +1999,19 @@ isprint:
 	.type	isspace,@function
 	.cc_top isspace.function,isspace
 isspace:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r2, dp[__llvm_gcov_ctr.22+4]
+	ldw r11, dp[__llvm_gcov_ctr.22]
+	ldc r3, 0
+	mkmsk r1, 1
+	ladd r4, r11, r11, r1, r3
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.22]
+	stw r2, dp[__llvm_gcov_ctr.22+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_isspace+4]
 	ldw r2, dp[.L__profc_isspace]
-	ldc r3, 0
-	mkmsk r1, 1
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_isspace]
@@ -1533,10 +2023,16 @@ isspace:
 	bt r0, .LBB22_3
 	bu .LBB22_1
 .LBB22_1:
-	ldw r0, dp[.L__profc_isspace+12]
-	ldw r1, dp[.L__profc_isspace+8]
+	ldw r0, dp[__llvm_gcov_ctr.22+12]
+	ldw r1, dp[__llvm_gcov_ctr.22+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.22+8]
+	stw r0, dp[__llvm_gcov_ctr.22+12]
+	ldw r0, dp[.L__profc_isspace+12]
+	ldw r1, dp[.L__profc_isspace+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isspace+8]
@@ -1552,10 +2048,16 @@ isspace:
 	bu .LBB22_2
 .LBB22_2:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_isspace+20]
-	ldw r2, dp[.L__profc_isspace+16]
+	ldw r1, dp[__llvm_gcov_ctr.22+20]
+	ldw r2, dp[__llvm_gcov_ctr.22+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.22+16]
+	stw r1, dp[__llvm_gcov_ctr.22+20]
+	ldw r1, dp[.L__profc_isspace+20]
+	ldw r2, dp[.L__profc_isspace+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_isspace+16]
@@ -1565,7 +2067,8 @@ isspace:
 .LBB22_3:
 	ldw r0, sp[1]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom isspace.function
 .Lfunc_end22:
 	.size	isspace, .Lfunc_end22-isspace
@@ -1580,12 +2083,19 @@ isspace:
 	.type	isupper,@function
 	.cc_top isupper.function,isupper
 isupper:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.23+4]
+	ldw r11, dp[__llvm_gcov_ctr.23]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.23]
+	stw r1, dp[__llvm_gcov_ctr.23+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_isupper+4]
 	ldw r1, dp[.L__profc_isupper]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_isupper]
@@ -1595,7 +2105,8 @@ isupper:
 	add r0, r0, r1
 	ldc r1, 26
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom isupper.function
 .Lfunc_end23:
 	.size	isupper, .Lfunc_end23-isupper
@@ -1614,12 +2125,19 @@ isupper:
 	.type	iswcntrl,@function
 	.cc_top iswcntrl.function,iswcntrl
 iswcntrl:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r2, dp[__llvm_gcov_ctr.24+4]
+	ldw r11, dp[__llvm_gcov_ctr.24]
+	ldc r3, 0
+	mkmsk r1, 1
+	ladd r4, r11, r11, r1, r3
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.24]
+	stw r2, dp[__llvm_gcov_ctr.24+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_iswcntrl+4]
 	ldw r2, dp[.L__profc_iswcntrl]
-	ldc r3, 0
-	mkmsk r1, 1
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_iswcntrl]
@@ -1631,10 +2149,16 @@ iswcntrl:
 	bt r0, .LBB24_7
 	bu .LBB24_1
 .LBB24_1:
-	ldw r0, dp[.L__profc_iswcntrl+44]
-	ldw r2, dp[.L__profc_iswcntrl+40]
+	ldw r0, dp[__llvm_gcov_ctr.24+12]
+	ldw r2, dp[__llvm_gcov_ctr.24+8]
 	ldc r3, 0
 	mkmsk r1, 1
+	ladd r11, r2, r2, r1, r3
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.24+8]
+	stw r0, dp[__llvm_gcov_ctr.24+12]
+	ldw r0, dp[.L__profc_iswcntrl+44]
+	ldw r2, dp[.L__profc_iswcntrl+40]
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_iswcntrl+40]
@@ -1648,10 +2172,16 @@ iswcntrl:
 	bt r0, .LBB24_7
 	bu .LBB24_2
 .LBB24_2:
-	ldw r0, dp[.L__profc_iswcntrl+52]
-	ldw r1, dp[.L__profc_iswcntrl+48]
+	ldw r0, dp[__llvm_gcov_ctr.24+20]
+	ldw r1, dp[__llvm_gcov_ctr.24+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.24+16]
+	stw r0, dp[__llvm_gcov_ctr.24+20]
+	ldw r0, dp[.L__profc_iswcntrl+52]
+	ldw r1, dp[.L__profc_iswcntrl+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswcntrl+48]
@@ -1675,10 +2205,16 @@ iswcntrl:
 	bt r0, .LBB24_7
 	bu .LBB24_4
 .LBB24_4:
-	ldw r0, dp[.L__profc_iswcntrl+36]
-	ldw r1, dp[.L__profc_iswcntrl+32]
+	ldw r0, dp[__llvm_gcov_ctr.24+28]
+	ldw r1, dp[__llvm_gcov_ctr.24+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.24+24]
+	stw r0, dp[__llvm_gcov_ctr.24+28]
+	ldw r0, dp[.L__profc_iswcntrl+36]
+	ldw r1, dp[.L__profc_iswcntrl+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswcntrl+32]
@@ -1705,10 +2241,16 @@ iswcntrl:
 	bu .LBB24_6
 .LBB24_6:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_iswcntrl+20]
-	ldw r2, dp[.L__profc_iswcntrl+16]
+	ldw r1, dp[__llvm_gcov_ctr.24+36]
+	ldw r2, dp[__llvm_gcov_ctr.24+32]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.24+32]
+	stw r1, dp[__llvm_gcov_ctr.24+36]
+	ldw r1, dp[.L__profc_iswcntrl+20]
+	ldw r2, dp[.L__profc_iswcntrl+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_iswcntrl+16]
@@ -1718,7 +2260,8 @@ iswcntrl:
 .LBB24_7:
 	ldw r0, sp[1]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom iswcntrl.function
 .Lfunc_end24:
 	.size	iswcntrl, .Lfunc_end24-iswcntrl
@@ -1733,12 +2276,19 @@ iswcntrl:
 	.type	iswdigit,@function
 	.cc_top iswdigit.function,iswdigit
 iswdigit:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.25+4]
+	ldw r11, dp[__llvm_gcov_ctr.25]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.25]
+	stw r1, dp[__llvm_gcov_ctr.25+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_iswdigit+4]
 	ldw r1, dp[.L__profc_iswdigit]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswdigit]
@@ -1748,7 +2298,8 @@ iswdigit:
 	add r0, r0, r1
 	ldc r1, 10
 	lsu r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom iswdigit.function
 .Lfunc_end25:
 	.size	iswdigit, .Lfunc_end25-iswdigit
@@ -1785,10 +2336,16 @@ iswprint:
 	bt r0, .LBB26_2
 	bu .LBB26_1
 .LBB26_1:
-	ldw r0, dp[.L__profc_iswprint+12]
-	ldw r1, dp[.L__profc_iswprint+8]
+	ldw r0, dp[__llvm_gcov_ctr.26+4]
+	ldw r1, dp[__llvm_gcov_ctr.26]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.26]
+	stw r0, dp[__llvm_gcov_ctr.26+4]
+	ldw r0, dp[.L__profc_iswprint+12]
+	ldw r1, dp[.L__profc_iswprint+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswprint+8]
@@ -1807,10 +2364,16 @@ iswprint:
 	bt r0, .LBB26_7
 	bu .LBB26_3
 .LBB26_3:
-	ldw r0, dp[.L__profc_iswprint+44]
-	ldw r1, dp[.L__profc_iswprint+40]
+	ldw r0, dp[__llvm_gcov_ctr.26+12]
+	ldw r1, dp[__llvm_gcov_ctr.26+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.26+8]
+	stw r0, dp[__llvm_gcov_ctr.26+12]
+	ldw r0, dp[.L__profc_iswprint+44]
+	ldw r1, dp[.L__profc_iswprint+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswprint+40]
@@ -1823,10 +2386,16 @@ iswprint:
 	bt r0, .LBB26_7
 	bu .LBB26_4
 .LBB26_4:
-	ldw r0, dp[.L__profc_iswprint+52]
-	ldw r1, dp[.L__profc_iswprint+48]
+	ldw r0, dp[__llvm_gcov_ctr.26+20]
+	ldw r1, dp[__llvm_gcov_ctr.26+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.26+16]
+	stw r0, dp[__llvm_gcov_ctr.26+20]
+	ldw r0, dp[.L__profc_iswprint+52]
+	ldw r1, dp[.L__profc_iswprint+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswprint+48]
@@ -1859,10 +2428,16 @@ iswprint:
 	stw r0, dp[.L__profc_iswprint+36]
 	bu .LBB26_8
 .LBB26_7:
-	ldw r1, dp[.L__profc_iswprint+20]
-	ldw r2, dp[.L__profc_iswprint+16]
+	ldw r1, dp[__llvm_gcov_ctr.26+28]
+	ldw r2, dp[__llvm_gcov_ctr.26+24]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.26+24]
+	stw r1, dp[__llvm_gcov_ctr.26+28]
+	ldw r1, dp[.L__profc_iswprint+20]
+	ldw r2, dp[.L__profc_iswprint+16]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc_iswprint+16]
@@ -1878,10 +2453,16 @@ iswprint:
 	bt r0, .LBB26_11
 	bu .LBB26_9
 .LBB26_9:
-	ldw r0, dp[.L__profc_iswprint+68]
-	ldw r1, dp[.L__profc_iswprint+64]
+	ldw r0, dp[__llvm_gcov_ctr.26+36]
+	ldw r1, dp[__llvm_gcov_ctr.26+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.26+32]
+	stw r0, dp[__llvm_gcov_ctr.26+36]
+	ldw r0, dp[.L__profc_iswprint+68]
+	ldw r1, dp[.L__profc_iswprint+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswprint+64]
@@ -1903,10 +2484,16 @@ iswprint:
 	stw r0, dp[.L__profc_iswprint+76]
 	bu .LBB26_12
 .LBB26_11:
-	ldw r1, dp[.L__profc_iswprint+60]
-	ldw r2, dp[.L__profc_iswprint+56]
+	ldw r1, dp[__llvm_gcov_ctr.26+44]
+	ldw r2, dp[__llvm_gcov_ctr.26+40]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.26+40]
+	stw r1, dp[__llvm_gcov_ctr.26+44]
+	ldw r1, dp[.L__profc_iswprint+60]
+	ldw r2, dp[.L__profc_iswprint+56]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_iswprint+56]
@@ -1914,7 +2501,14 @@ iswprint:
 	stw r0, sp[1]
 	bu .LBB26_13
 .LBB26_12:
+	ldw r1, dp[__llvm_gcov_ctr.26+52]
+	ldw r2, dp[__llvm_gcov_ctr.26+48]
+	ldc r3, 0
 	mkmsk r0, 1
+	ladd r3, r2, r2, r0, r3
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.26+48]
+	stw r1, dp[__llvm_gcov_ctr.26+52]
 	stw r0, sp[1]
 	bu .LBB26_13
 .LBB26_13:
@@ -1936,12 +2530,19 @@ iswprint:
 	.type	iswxdigit,@function
 	.cc_top iswxdigit.function,iswxdigit
 iswxdigit:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r2, dp[__llvm_gcov_ctr.27+4]
+	ldw r11, dp[__llvm_gcov_ctr.27]
+	ldc r3, 0
+	mkmsk r1, 1
+	ladd r4, r11, r11, r1, r3
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.27]
+	stw r2, dp[__llvm_gcov_ctr.27+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_iswxdigit+4]
 	ldw r2, dp[.L__profc_iswxdigit]
-	ldc r3, 0
-	mkmsk r1, 1
 	ladd r3, r2, r2, r1, r3
 	add r0, r0, r3
 	stw r2, dp[.L__profc_iswxdigit]
@@ -1955,10 +2556,16 @@ iswxdigit:
 	bt r0, .LBB27_3
 	bu .LBB27_1
 .LBB27_1:
-	ldw r0, dp[.L__profc_iswxdigit+12]
-	ldw r1, dp[.L__profc_iswxdigit+8]
+	ldw r0, dp[__llvm_gcov_ctr.27+12]
+	ldw r1, dp[__llvm_gcov_ctr.27+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.27+8]
+	stw r0, dp[__llvm_gcov_ctr.27+12]
+	ldw r0, dp[.L__profc_iswxdigit+12]
+	ldw r1, dp[.L__profc_iswxdigit+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_iswxdigit+8]
@@ -1977,10 +2584,16 @@ iswxdigit:
 	bu .LBB27_2
 .LBB27_2:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_iswxdigit+20]
-	ldw r2, dp[.L__profc_iswxdigit+16]
+	ldw r1, dp[__llvm_gcov_ctr.27+20]
+	ldw r2, dp[__llvm_gcov_ctr.27+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.27+16]
+	stw r1, dp[__llvm_gcov_ctr.27+20]
+	ldw r1, dp[.L__profc_iswxdigit+20]
+	ldw r2, dp[.L__profc_iswxdigit+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_iswxdigit+16]
@@ -1990,7 +2603,8 @@ iswxdigit:
 .LBB27_3:
 	ldw r0, sp[1]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom iswxdigit.function
 .Lfunc_end27:
 	.size	iswxdigit, .Lfunc_end27-iswxdigit
@@ -2000,19 +2614,27 @@ iswxdigit:
 	.type	toascii,@function
 	.cc_top toascii.function,toascii
 toascii:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.28+4]
+	ldw r11, dp[__llvm_gcov_ctr.28]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.28]
+	stw r1, dp[__llvm_gcov_ctr.28+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_toascii+4]
 	ldw r1, dp[.L__profc_toascii]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_toascii]
 	stw r0, dp[.L__profc_toascii+4]
 	ldw r0, sp[0]
 	zext r0, 7
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom toascii.function
 .Lfunc_end28:
 	.size	toascii, .Lfunc_end28-toascii
@@ -2060,10 +2682,16 @@ fdim:
 	bt r0, .LBB29_2
 	bu .LBB29_1
 .LBB29_1:
-	ldw r0, dp[.L__profc_fdim+12]
-	ldw r1, dp[.L__profc_fdim+8]
+	ldw r0, dp[__llvm_gcov_ctr.29+4]
+	ldw r1, dp[__llvm_gcov_ctr.29]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.29]
+	stw r0, dp[__llvm_gcov_ctr.29+4]
+	ldw r0, dp[.L__profc_fdim+12]
+	ldw r1, dp[.L__profc_fdim+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdim+8]
@@ -2092,10 +2720,16 @@ fdim:
 	bt r0, .LBB29_4
 	bu .LBB29_3
 .LBB29_3:
-	ldw r0, dp[.L__profc_fdim+20]
-	ldw r1, dp[.L__profc_fdim+16]
+	ldw r0, dp[__llvm_gcov_ctr.29+12]
+	ldw r1, dp[__llvm_gcov_ctr.29+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.29+8]
+	stw r0, dp[__llvm_gcov_ctr.29+12]
+	ldw r0, dp[.L__profc_fdim+20]
+	ldw r1, dp[.L__profc_fdim+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdim+16]
@@ -2116,10 +2750,16 @@ fdim:
 	bt r0, .LBB29_6
 	bu .LBB29_5
 .LBB29_5:
-	ldw r0, dp[.L__profc_fdim+28]
-	ldw r1, dp[.L__profc_fdim+24]
+	ldw r0, dp[__llvm_gcov_ctr.29+20]
+	ldw r1, dp[__llvm_gcov_ctr.29+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.29+16]
+	stw r0, dp[__llvm_gcov_ctr.29+20]
+	ldw r0, dp[.L__profc_fdim+28]
+	ldw r1, dp[.L__profc_fdim+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdim+24]
@@ -2133,7 +2773,14 @@ fdim:
 	stw r1, sp[2]
 	bu .LBB29_7
 .LBB29_6:
+	ldw r1, dp[__llvm_gcov_ctr.29+28]
+	ldw r2, dp[__llvm_gcov_ctr.29+24]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.29+24]
+	stw r1, dp[__llvm_gcov_ctr.29+28]
 	mov r1, r0
 	stw r1, sp[1]
 	stw r0, sp[2]
@@ -2183,10 +2830,16 @@ fdimf:
 	bt r0, .LBB30_2
 	bu .LBB30_1
 .LBB30_1:
-	ldw r0, dp[.L__profc_fdimf+12]
-	ldw r1, dp[.L__profc_fdimf+8]
+	ldw r0, dp[__llvm_gcov_ctr.30+4]
+	ldw r1, dp[__llvm_gcov_ctr.30]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.30]
+	stw r0, dp[__llvm_gcov_ctr.30+4]
+	ldw r0, dp[.L__profc_fdimf+12]
+	ldw r1, dp[.L__profc_fdimf+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdimf+8]
@@ -2203,10 +2856,16 @@ fdimf:
 	bt r0, .LBB30_4
 	bu .LBB30_3
 .LBB30_3:
-	ldw r0, dp[.L__profc_fdimf+20]
-	ldw r1, dp[.L__profc_fdimf+16]
+	ldw r0, dp[__llvm_gcov_ctr.30+12]
+	ldw r1, dp[__llvm_gcov_ctr.30+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.30+8]
+	stw r0, dp[__llvm_gcov_ctr.30+12]
+	ldw r0, dp[.L__profc_fdimf+20]
+	ldw r1, dp[.L__profc_fdimf+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdimf+16]
@@ -2223,10 +2882,16 @@ fdimf:
 	bt r0, .LBB30_6
 	bu .LBB30_5
 .LBB30_5:
-	ldw r0, dp[.L__profc_fdimf+28]
-	ldw r1, dp[.L__profc_fdimf+24]
+	ldw r0, dp[__llvm_gcov_ctr.30+20]
+	ldw r1, dp[__llvm_gcov_ctr.30+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.30+16]
+	stw r0, dp[__llvm_gcov_ctr.30+20]
+	ldw r0, dp[.L__profc_fdimf+28]
+	ldw r1, dp[.L__profc_fdimf+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fdimf+24]
@@ -2237,7 +2902,14 @@ fdimf:
 	stw r0, sp[1]
 	bu .LBB30_7
 .LBB30_6:
+	ldw r1, dp[__llvm_gcov_ctr.30+28]
+	ldw r2, dp[__llvm_gcov_ctr.30+24]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.30+24]
+	stw r1, dp[__llvm_gcov_ctr.30+28]
 	stw r0, sp[1]
 	bu .LBB30_7
 .LBB30_7:
@@ -2294,10 +2966,16 @@ fmax:
 	bt r0, .LBB31_2
 	bu .LBB31_1
 .LBB31_1:
-	ldw r0, dp[.L__profc_fmax+12]
-	ldw r1, dp[.L__profc_fmax+8]
+	ldw r0, dp[__llvm_gcov_ctr.31+4]
+	ldw r1, dp[__llvm_gcov_ctr.31]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.31]
+	stw r0, dp[__llvm_gcov_ctr.31+4]
+	ldw r0, dp[.L__profc_fmax+12]
+	ldw r1, dp[.L__profc_fmax+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmax+8]
@@ -2326,10 +3004,16 @@ fmax:
 	bt r0, .LBB31_4
 	bu .LBB31_3
 .LBB31_3:
-	ldw r0, dp[.L__profc_fmax+20]
-	ldw r1, dp[.L__profc_fmax+16]
+	ldw r0, dp[__llvm_gcov_ctr.31+12]
+	ldw r1, dp[__llvm_gcov_ctr.31+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.31+8]
+	stw r0, dp[__llvm_gcov_ctr.31+12]
+	ldw r0, dp[.L__profc_fmax+20]
+	ldw r1, dp[.L__profc_fmax+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmax+16]
@@ -2362,10 +3046,16 @@ fmax:
 	bf r0, .LBB31_7
 	bu .LBB31_6
 .LBB31_6:
-	ldw r0, dp[.L__profc_fmax+36]
-	ldw r1, dp[.L__profc_fmax+32]
+	ldw r0, dp[__llvm_gcov_ctr.31+20]
+	ldw r1, dp[__llvm_gcov_ctr.31+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.31+16]
+	stw r0, dp[__llvm_gcov_ctr.31+20]
+	ldw r0, dp[.L__profc_fmax+36]
+	ldw r1, dp[.L__profc_fmax+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmax+32]
@@ -2376,6 +3066,14 @@ fmax:
 	stw r0, sp[4]
 	bu .LBB31_8
 .LBB31_7:
+	ldw r0, dp[__llvm_gcov_ctr.31+28]
+	ldw r1, dp[__llvm_gcov_ctr.31+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.31+24]
+	stw r0, dp[__llvm_gcov_ctr.31+28]
 	ldw r0, sp[12]
 	ldw r1, sp[11]
 	stw r1, sp[3]
@@ -2397,10 +3095,16 @@ fmax:
 	bf r0, .LBB31_11
 	bu .LBB31_10
 .LBB31_10:
-	ldw r0, dp[.L__profc_fmax+44]
-	ldw r1, dp[.L__profc_fmax+40]
+	ldw r0, dp[__llvm_gcov_ctr.31+36]
+	ldw r1, dp[__llvm_gcov_ctr.31+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.31+32]
+	stw r0, dp[__llvm_gcov_ctr.31+36]
+	ldw r0, dp[.L__profc_fmax+44]
+	ldw r1, dp[.L__profc_fmax+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmax+40]
@@ -2411,6 +3115,14 @@ fmax:
 	stw r0, sp[2]
 	bu .LBB31_12
 .LBB31_11:
+	ldw r0, dp[__llvm_gcov_ctr.31+44]
+	ldw r1, dp[__llvm_gcov_ctr.31+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.31+40]
+	stw r0, dp[__llvm_gcov_ctr.31+44]
 	ldw r0, sp[12]
 	ldw r1, sp[11]
 	stw r1, sp[1]
@@ -2461,10 +3173,16 @@ fmaxf:
 	bt r0, .LBB32_2
 	bu .LBB32_1
 .LBB32_1:
-	ldw r0, dp[.L__profc_fmaxf+12]
-	ldw r1, dp[.L__profc_fmaxf+8]
+	ldw r0, dp[__llvm_gcov_ctr.32+4]
+	ldw r1, dp[__llvm_gcov_ctr.32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.32]
+	stw r0, dp[__llvm_gcov_ctr.32+4]
+	ldw r0, dp[.L__profc_fmaxf+12]
+	ldw r1, dp[.L__profc_fmaxf+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxf+8]
@@ -2481,10 +3199,16 @@ fmaxf:
 	bt r0, .LBB32_4
 	bu .LBB32_3
 .LBB32_3:
-	ldw r0, dp[.L__profc_fmaxf+20]
-	ldw r1, dp[.L__profc_fmaxf+16]
+	ldw r0, dp[__llvm_gcov_ctr.32+12]
+	ldw r1, dp[__llvm_gcov_ctr.32+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.32+8]
+	stw r0, dp[__llvm_gcov_ctr.32+12]
+	ldw r0, dp[.L__profc_fmaxf+20]
+	ldw r1, dp[.L__profc_fmaxf+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxf+16]
@@ -2515,10 +3239,16 @@ fmaxf:
 	bf r0, .LBB32_7
 	bu .LBB32_6
 .LBB32_6:
-	ldw r0, dp[.L__profc_fmaxf+36]
-	ldw r1, dp[.L__profc_fmaxf+32]
+	ldw r0, dp[__llvm_gcov_ctr.32+20]
+	ldw r1, dp[__llvm_gcov_ctr.32+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.32+16]
+	stw r0, dp[__llvm_gcov_ctr.32+20]
+	ldw r0, dp[.L__profc_fmaxf+36]
+	ldw r1, dp[.L__profc_fmaxf+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxf+32]
@@ -2527,6 +3257,14 @@ fmaxf:
 	stw r0, sp[2]
 	bu .LBB32_8
 .LBB32_7:
+	ldw r0, dp[__llvm_gcov_ctr.32+28]
+	ldw r1, dp[__llvm_gcov_ctr.32+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.32+24]
+	stw r0, dp[__llvm_gcov_ctr.32+28]
 	ldw r0, sp[4]
 	stw r0, sp[2]
 	bu .LBB32_8
@@ -2542,10 +3280,16 @@ fmaxf:
 	bf r0, .LBB32_11
 	bu .LBB32_10
 .LBB32_10:
-	ldw r0, dp[.L__profc_fmaxf+44]
-	ldw r1, dp[.L__profc_fmaxf+40]
+	ldw r0, dp[__llvm_gcov_ctr.32+36]
+	ldw r1, dp[__llvm_gcov_ctr.32+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.32+32]
+	stw r0, dp[__llvm_gcov_ctr.32+36]
+	ldw r0, dp[.L__profc_fmaxf+44]
+	ldw r1, dp[.L__profc_fmaxf+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxf+40]
@@ -2554,6 +3298,14 @@ fmaxf:
 	stw r0, sp[1]
 	bu .LBB32_12
 .LBB32_11:
+	ldw r0, dp[__llvm_gcov_ctr.32+44]
+	ldw r1, dp[__llvm_gcov_ctr.32+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.32+40]
+	stw r0, dp[__llvm_gcov_ctr.32+44]
 	ldw r0, sp[4]
 	stw r0, sp[1]
 	bu .LBB32_12
@@ -2611,10 +3363,16 @@ fmaxl:
 	bt r0, .LBB33_2
 	bu .LBB33_1
 .LBB33_1:
-	ldw r0, dp[.L__profc_fmaxl+12]
-	ldw r1, dp[.L__profc_fmaxl+8]
+	ldw r0, dp[__llvm_gcov_ctr.33+4]
+	ldw r1, dp[__llvm_gcov_ctr.33]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.33]
+	stw r0, dp[__llvm_gcov_ctr.33+4]
+	ldw r0, dp[.L__profc_fmaxl+12]
+	ldw r1, dp[.L__profc_fmaxl+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxl+8]
@@ -2643,10 +3401,16 @@ fmaxl:
 	bt r0, .LBB33_4
 	bu .LBB33_3
 .LBB33_3:
-	ldw r0, dp[.L__profc_fmaxl+20]
-	ldw r1, dp[.L__profc_fmaxl+16]
+	ldw r0, dp[__llvm_gcov_ctr.33+12]
+	ldw r1, dp[__llvm_gcov_ctr.33+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.33+8]
+	stw r0, dp[__llvm_gcov_ctr.33+12]
+	ldw r0, dp[.L__profc_fmaxl+20]
+	ldw r1, dp[.L__profc_fmaxl+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxl+16]
@@ -2679,10 +3443,16 @@ fmaxl:
 	bf r0, .LBB33_7
 	bu .LBB33_6
 .LBB33_6:
-	ldw r0, dp[.L__profc_fmaxl+36]
-	ldw r1, dp[.L__profc_fmaxl+32]
+	ldw r0, dp[__llvm_gcov_ctr.33+20]
+	ldw r1, dp[__llvm_gcov_ctr.33+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.33+16]
+	stw r0, dp[__llvm_gcov_ctr.33+20]
+	ldw r0, dp[.L__profc_fmaxl+36]
+	ldw r1, dp[.L__profc_fmaxl+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxl+32]
@@ -2693,6 +3463,14 @@ fmaxl:
 	stw r0, sp[4]
 	bu .LBB33_8
 .LBB33_7:
+	ldw r0, dp[__llvm_gcov_ctr.33+28]
+	ldw r1, dp[__llvm_gcov_ctr.33+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.33+24]
+	stw r0, dp[__llvm_gcov_ctr.33+28]
 	ldw r0, sp[12]
 	ldw r1, sp[11]
 	stw r1, sp[3]
@@ -2714,10 +3492,16 @@ fmaxl:
 	bf r0, .LBB33_11
 	bu .LBB33_10
 .LBB33_10:
-	ldw r0, dp[.L__profc_fmaxl+44]
-	ldw r1, dp[.L__profc_fmaxl+40]
+	ldw r0, dp[__llvm_gcov_ctr.33+36]
+	ldw r1, dp[__llvm_gcov_ctr.33+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.33+32]
+	stw r0, dp[__llvm_gcov_ctr.33+36]
+	ldw r0, dp[.L__profc_fmaxl+44]
+	ldw r1, dp[.L__profc_fmaxl+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmaxl+40]
@@ -2728,6 +3512,14 @@ fmaxl:
 	stw r0, sp[2]
 	bu .LBB33_12
 .LBB33_11:
+	ldw r0, dp[__llvm_gcov_ctr.33+44]
+	ldw r1, dp[__llvm_gcov_ctr.33+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.33+40]
+	stw r0, dp[__llvm_gcov_ctr.33+44]
 	ldw r0, sp[12]
 	ldw r1, sp[11]
 	stw r1, sp[1]
@@ -2790,10 +3582,16 @@ fmin:
 	bt r0, .LBB34_2
 	bu .LBB34_1
 .LBB34_1:
-	ldw r0, dp[.L__profc_fmin+12]
-	ldw r1, dp[.L__profc_fmin+8]
+	ldw r0, dp[__llvm_gcov_ctr.34+4]
+	ldw r1, dp[__llvm_gcov_ctr.34]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.34]
+	stw r0, dp[__llvm_gcov_ctr.34+4]
+	ldw r0, dp[.L__profc_fmin+12]
+	ldw r1, dp[.L__profc_fmin+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmin+8]
@@ -2822,10 +3620,16 @@ fmin:
 	bt r0, .LBB34_4
 	bu .LBB34_3
 .LBB34_3:
-	ldw r0, dp[.L__profc_fmin+20]
-	ldw r1, dp[.L__profc_fmin+16]
+	ldw r0, dp[__llvm_gcov_ctr.34+12]
+	ldw r1, dp[__llvm_gcov_ctr.34+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.34+8]
+	stw r0, dp[__llvm_gcov_ctr.34+12]
+	ldw r0, dp[.L__profc_fmin+20]
+	ldw r1, dp[.L__profc_fmin+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmin+16]
@@ -2858,10 +3662,16 @@ fmin:
 	bf r0, .LBB34_7
 	bu .LBB34_6
 .LBB34_6:
-	ldw r0, dp[.L__profc_fmin+36]
-	ldw r1, dp[.L__profc_fmin+32]
+	ldw r0, dp[__llvm_gcov_ctr.34+20]
+	ldw r1, dp[__llvm_gcov_ctr.34+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.34+16]
+	stw r0, dp[__llvm_gcov_ctr.34+20]
+	ldw r0, dp[.L__profc_fmin+36]
+	ldw r1, dp[.L__profc_fmin+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmin+32]
@@ -2872,6 +3682,14 @@ fmin:
 	stw r0, sp[4]
 	bu .LBB34_8
 .LBB34_7:
+	ldw r0, dp[__llvm_gcov_ctr.34+28]
+	ldw r1, dp[__llvm_gcov_ctr.34+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.34+24]
+	stw r0, dp[__llvm_gcov_ctr.34+28]
 	ldw r0, sp[10]
 	ldw r1, sp[9]
 	stw r1, sp[3]
@@ -2893,10 +3711,16 @@ fmin:
 	bf r0, .LBB34_11
 	bu .LBB34_10
 .LBB34_10:
-	ldw r0, dp[.L__profc_fmin+44]
-	ldw r1, dp[.L__profc_fmin+40]
+	ldw r0, dp[__llvm_gcov_ctr.34+36]
+	ldw r1, dp[__llvm_gcov_ctr.34+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.34+32]
+	stw r0, dp[__llvm_gcov_ctr.34+36]
+	ldw r0, dp[.L__profc_fmin+44]
+	ldw r1, dp[.L__profc_fmin+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fmin+40]
@@ -2907,6 +3731,14 @@ fmin:
 	stw r0, sp[2]
 	bu .LBB34_12
 .LBB34_11:
+	ldw r0, dp[__llvm_gcov_ctr.34+44]
+	ldw r1, dp[__llvm_gcov_ctr.34+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.34+40]
+	stw r0, dp[__llvm_gcov_ctr.34+44]
 	ldw r0, sp[10]
 	ldw r1, sp[9]
 	stw r1, sp[1]
@@ -2957,10 +3789,16 @@ fminf:
 	bt r0, .LBB35_2
 	bu .LBB35_1
 .LBB35_1:
-	ldw r0, dp[.L__profc_fminf+12]
-	ldw r1, dp[.L__profc_fminf+8]
+	ldw r0, dp[__llvm_gcov_ctr.35+4]
+	ldw r1, dp[__llvm_gcov_ctr.35]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.35]
+	stw r0, dp[__llvm_gcov_ctr.35+4]
+	ldw r0, dp[.L__profc_fminf+12]
+	ldw r1, dp[.L__profc_fminf+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminf+8]
@@ -2977,10 +3815,16 @@ fminf:
 	bt r0, .LBB35_4
 	bu .LBB35_3
 .LBB35_3:
-	ldw r0, dp[.L__profc_fminf+20]
-	ldw r1, dp[.L__profc_fminf+16]
+	ldw r0, dp[__llvm_gcov_ctr.35+12]
+	ldw r1, dp[__llvm_gcov_ctr.35+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.35+8]
+	stw r0, dp[__llvm_gcov_ctr.35+12]
+	ldw r0, dp[.L__profc_fminf+20]
+	ldw r1, dp[.L__profc_fminf+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminf+16]
@@ -3011,10 +3855,16 @@ fminf:
 	bf r0, .LBB35_7
 	bu .LBB35_6
 .LBB35_6:
-	ldw r0, dp[.L__profc_fminf+36]
-	ldw r1, dp[.L__profc_fminf+32]
+	ldw r0, dp[__llvm_gcov_ctr.35+20]
+	ldw r1, dp[__llvm_gcov_ctr.35+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.35+16]
+	stw r0, dp[__llvm_gcov_ctr.35+20]
+	ldw r0, dp[.L__profc_fminf+36]
+	ldw r1, dp[.L__profc_fminf+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminf+32]
@@ -3023,6 +3873,14 @@ fminf:
 	stw r0, sp[2]
 	bu .LBB35_8
 .LBB35_7:
+	ldw r0, dp[__llvm_gcov_ctr.35+28]
+	ldw r1, dp[__llvm_gcov_ctr.35+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.35+24]
+	stw r0, dp[__llvm_gcov_ctr.35+28]
 	ldw r0, sp[3]
 	stw r0, sp[2]
 	bu .LBB35_8
@@ -3038,10 +3896,16 @@ fminf:
 	bf r0, .LBB35_11
 	bu .LBB35_10
 .LBB35_10:
-	ldw r0, dp[.L__profc_fminf+44]
-	ldw r1, dp[.L__profc_fminf+40]
+	ldw r0, dp[__llvm_gcov_ctr.35+36]
+	ldw r1, dp[__llvm_gcov_ctr.35+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.35+32]
+	stw r0, dp[__llvm_gcov_ctr.35+36]
+	ldw r0, dp[.L__profc_fminf+44]
+	ldw r1, dp[.L__profc_fminf+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminf+40]
@@ -3050,6 +3914,14 @@ fminf:
 	stw r0, sp[1]
 	bu .LBB35_12
 .LBB35_11:
+	ldw r0, dp[__llvm_gcov_ctr.35+44]
+	ldw r1, dp[__llvm_gcov_ctr.35+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.35+40]
+	stw r0, dp[__llvm_gcov_ctr.35+44]
 	ldw r0, sp[3]
 	stw r0, sp[1]
 	bu .LBB35_12
@@ -3107,10 +3979,16 @@ fminl:
 	bt r0, .LBB36_2
 	bu .LBB36_1
 .LBB36_1:
-	ldw r0, dp[.L__profc_fminl+12]
-	ldw r1, dp[.L__profc_fminl+8]
+	ldw r0, dp[__llvm_gcov_ctr.36+4]
+	ldw r1, dp[__llvm_gcov_ctr.36]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.36]
+	stw r0, dp[__llvm_gcov_ctr.36+4]
+	ldw r0, dp[.L__profc_fminl+12]
+	ldw r1, dp[.L__profc_fminl+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminl+8]
@@ -3139,10 +4017,16 @@ fminl:
 	bt r0, .LBB36_4
 	bu .LBB36_3
 .LBB36_3:
-	ldw r0, dp[.L__profc_fminl+20]
-	ldw r1, dp[.L__profc_fminl+16]
+	ldw r0, dp[__llvm_gcov_ctr.36+12]
+	ldw r1, dp[__llvm_gcov_ctr.36+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.36+8]
+	stw r0, dp[__llvm_gcov_ctr.36+12]
+	ldw r0, dp[.L__profc_fminl+20]
+	ldw r1, dp[.L__profc_fminl+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminl+16]
@@ -3175,10 +4059,16 @@ fminl:
 	bf r0, .LBB36_7
 	bu .LBB36_6
 .LBB36_6:
-	ldw r0, dp[.L__profc_fminl+36]
-	ldw r1, dp[.L__profc_fminl+32]
+	ldw r0, dp[__llvm_gcov_ctr.36+20]
+	ldw r1, dp[__llvm_gcov_ctr.36+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.36+16]
+	stw r0, dp[__llvm_gcov_ctr.36+20]
+	ldw r0, dp[.L__profc_fminl+36]
+	ldw r1, dp[.L__profc_fminl+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminl+32]
@@ -3189,6 +4079,14 @@ fminl:
 	stw r0, sp[4]
 	bu .LBB36_8
 .LBB36_7:
+	ldw r0, dp[__llvm_gcov_ctr.36+28]
+	ldw r1, dp[__llvm_gcov_ctr.36+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.36+24]
+	stw r0, dp[__llvm_gcov_ctr.36+28]
 	ldw r0, sp[10]
 	ldw r1, sp[9]
 	stw r1, sp[3]
@@ -3210,10 +4108,16 @@ fminl:
 	bf r0, .LBB36_11
 	bu .LBB36_10
 .LBB36_10:
-	ldw r0, dp[.L__profc_fminl+44]
-	ldw r1, dp[.L__profc_fminl+40]
+	ldw r0, dp[__llvm_gcov_ctr.36+36]
+	ldw r1, dp[__llvm_gcov_ctr.36+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.36+32]
+	stw r0, dp[__llvm_gcov_ctr.36+36]
+	ldw r0, dp[.L__profc_fminl+44]
+	ldw r1, dp[.L__profc_fminl+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_fminl+40]
@@ -3224,6 +4128,14 @@ fminl:
 	stw r0, sp[2]
 	bu .LBB36_12
 .LBB36_11:
+	ldw r0, dp[__llvm_gcov_ctr.36+44]
+	ldw r1, dp[__llvm_gcov_ctr.36+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.36+40]
+	stw r0, dp[__llvm_gcov_ctr.36+44]
 	ldw r0, sp[10]
 	ldw r1, sp[9]
 	stw r1, sp[1]
@@ -3248,12 +4160,19 @@ fminl:
 	.type	l64a,@function
 	.cc_top l64a.function,l64a
 l64a:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
+	ldw r1, dp[__llvm_gcov_ctr.37+4]
+	ldw r11, dp[__llvm_gcov_ctr.37]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.37]
+	stw r1, dp[__llvm_gcov_ctr.37+4]
 	stw r0, sp[2]
 	ldw r0, dp[.L__profc_l64a+4]
 	ldw r1, dp[.L__profc_l64a]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_l64a]
@@ -3284,6 +4203,14 @@ l64a:
 	st8 r0, r1[r2]
 	bu .LBB37_3
 .LBB37_3:
+	ldw r0, dp[__llvm_gcov_ctr.37+12]
+	ldw r1, dp[__llvm_gcov_ctr.37+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.37+8]
+	stw r0, dp[__llvm_gcov_ctr.37+12]
 	ldw r0, sp[1]
 	add r0, r0, 1
 	stw r0, sp[1]
@@ -3296,7 +4223,8 @@ l64a:
 	ldc r0, 0
 	st8 r0, r1[r0]
 	ldaw r0, dp[l64a.s]
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom l64a.function
 .Lfunc_end37:
 	.size	l64a, .Lfunc_end37-l64a
@@ -3306,12 +4234,19 @@ l64a:
 	.type	srand,@function
 	.cc_top srand.function,srand
 srand:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r2, dp[__llvm_gcov_ctr.38+4]
+	ldw r11, dp[__llvm_gcov_ctr.38]
+	ldc r1, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r1
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.38]
+	stw r2, dp[__llvm_gcov_ctr.38+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc_srand+4]
 	ldw r2, dp[.L__profc_srand]
-	ldc r1, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_srand]
@@ -3320,7 +4255,8 @@ srand:
 	sub r0, r0, 1
 	stw r1, dp[seed+4]
 	stw r0, dp[seed]
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom srand.function
 .Lfunc_end38:
 	.size	srand, .Lfunc_end38-srand
@@ -3339,10 +4275,16 @@ srand:
 rand:
 	extsp 1
 	stw r4, sp[0]
-	ldw r0, dp[.L__profc_rand+4]
-	ldw r2, dp[.L__profc_rand]
+	ldw r0, dp[__llvm_gcov_ctr.39+4]
+	ldw r2, dp[__llvm_gcov_ctr.39]
 	ldc r3, 0
 	mkmsk r1, 1
+	ladd r11, r2, r2, r1, r3
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.39]
+	stw r0, dp[__llvm_gcov_ctr.39+4]
+	ldw r0, dp[.L__profc_rand+4]
+	ldw r2, dp[.L__profc_rand]
 	ladd r11, r2, r2, r1, r3
 	add r0, r0, r11
 	stw r2, dp[.L__profc_rand]
@@ -3389,10 +4331,16 @@ insque:
 	bt r0, .LBB40_2
 	bu .LBB40_1
 .LBB40_1:
-	ldw r1, dp[.L__profc_insque+12]
-	ldw r2, dp[.L__profc_insque+8]
+	ldw r1, dp[__llvm_gcov_ctr.40+12]
+	ldw r2, dp[__llvm_gcov_ctr.40+8]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.40+8]
+	stw r1, dp[__llvm_gcov_ctr.40+12]
+	ldw r1, dp[.L__profc_insque+12]
+	ldw r2, dp[.L__profc_insque+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_insque+8]
@@ -3403,6 +4351,14 @@ insque:
 	stw r0, r1[0]
 	bu .LBB40_4
 .LBB40_2:
+	ldw r0, dp[__llvm_gcov_ctr.40+4]
+	ldw r1, dp[__llvm_gcov_ctr.40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.40]
+	stw r0, dp[__llvm_gcov_ctr.40+4]
 	ldw r0, sp[0]
 	ldw r0, r0[0]
 	ldw r1, sp[1]
@@ -3418,10 +4374,16 @@ insque:
 	bf r0, .LBB40_4
 	bu .LBB40_3
 .LBB40_3:
-	ldw r0, dp[.L__profc_insque+20]
-	ldw r1, dp[.L__profc_insque+16]
+	ldw r0, dp[__llvm_gcov_ctr.40+20]
+	ldw r1, dp[__llvm_gcov_ctr.40+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.40+16]
+	stw r0, dp[__llvm_gcov_ctr.40+20]
+	ldw r0, dp[.L__profc_insque+20]
+	ldw r1, dp[.L__profc_insque+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_insque+16]
@@ -3441,12 +4403,19 @@ insque:
 	.type	remque,@function
 	.cc_top remque.function,remque
 remque:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.41+4]
+	ldw r11, dp[__llvm_gcov_ctr.41]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.41]
+	stw r1, dp[__llvm_gcov_ctr.41+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc_remque+4]
 	ldw r1, dp[.L__profc_remque]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_remque]
@@ -3458,10 +4427,16 @@ remque:
 	bf r0, .LBB41_2
 	bu .LBB41_1
 .LBB41_1:
-	ldw r0, dp[.L__profc_remque+12]
-	ldw r1, dp[.L__profc_remque+8]
+	ldw r0, dp[__llvm_gcov_ctr.41+12]
+	ldw r1, dp[__llvm_gcov_ctr.41+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.41+8]
+	stw r0, dp[__llvm_gcov_ctr.41+12]
+	ldw r0, dp[.L__profc_remque+12]
+	ldw r1, dp[.L__profc_remque+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_remque+8]
@@ -3477,10 +4452,16 @@ remque:
 	bf r0, .LBB41_4
 	bu .LBB41_3
 .LBB41_3:
-	ldw r0, dp[.L__profc_remque+20]
-	ldw r1, dp[.L__profc_remque+16]
+	ldw r0, dp[__llvm_gcov_ctr.41+20]
+	ldw r1, dp[__llvm_gcov_ctr.41+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.41+16]
+	stw r0, dp[__llvm_gcov_ctr.41+20]
+	ldw r0, dp[.L__profc_remque+20]
+	ldw r1, dp[.L__profc_remque+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_remque+16]
@@ -3491,7 +4472,8 @@ remque:
 	stw r0, r1[0]
 	bu .LBB41_4
 .LBB41_4:
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom remque.function
 .Lfunc_end41:
 	.size	remque, .Lfunc_end41-remque
@@ -3501,8 +4483,9 @@ remque:
 	.type	lsearch,@function
 	.cc_top lsearch.function,lsearch
 lsearch:
-	entsp 11
-	ldw r11, sp[12]
+	entsp 12
+	stw r4, sp[11]
+	ldw r11, sp[13]
 	stw r0, sp[9]
 	stw r1, sp[8]
 	stw r2, sp[7]
@@ -3540,7 +4523,7 @@ lsearch:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_lsearch+8]
 	stw r0, dp[.L__profc_lsearch+12]
-	ldw r2, sp[12]
+	ldw r2, sp[13]
 	ldw r0, sp[9]
 	ldw r1, sp[5]
 	ldw r3, sp[3]
@@ -3551,10 +4534,16 @@ lsearch:
 	bu .LBB42_3
 .LBB42_3:
 	ldw r2, sp[2]
-	ldw r0, dp[.L__profc_lsearch+20]
-	ldw r1, dp[.L__profc_lsearch+16]
+	ldw r0, dp[__llvm_gcov_ctr.42+4]
+	ldw r1, dp[__llvm_gcov_ctr.42]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r1, r1, r3, r11
+	add r0, r0, r4
+	stw r1, dp[__llvm_gcov_ctr.42]
+	stw r0, dp[__llvm_gcov_ctr.42+4]
+	ldw r0, dp[.L__profc_lsearch+20]
+	ldw r1, dp[.L__profc_lsearch+16]
 	ladd r3, r1, r1, r3, r11
 	add r0, r0, r3
 	stw r1, dp[.L__profc_lsearch+16]
@@ -3568,12 +4557,28 @@ lsearch:
 .LBB42_4:
 	bu .LBB42_5
 .LBB42_5:
+	ldw r0, dp[__llvm_gcov_ctr.42+12]
+	ldw r1, dp[__llvm_gcov_ctr.42+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.42+8]
+	stw r0, dp[__llvm_gcov_ctr.42+12]
 	ldw r0, sp[3]
 	add r0, r0, 1
 	stw r0, sp[3]
 	bu .LBB42_1
 .LBB42_6:
 	ldw r2, sp[2]
+	ldw r0, dp[__llvm_gcov_ctr.42+20]
+	ldw r1, dp[__llvm_gcov_ctr.42+16]
+	ldc r11, 0
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r11
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.42+16]
+	stw r0, dp[__llvm_gcov_ctr.42+20]
 	ldw r0, sp[4]
 	add r0, r0, 1
 	ldw r1, sp[7]
@@ -3591,7 +4596,8 @@ lsearch:
 	bu .LBB42_7
 .LBB42_7:
 	ldw r0, sp[10]
-	retsp 11
+	ldw r4, sp[11]
+	retsp 12
 	.cc_bottom lsearch.function
 .Lfunc_end42:
 	.size	lsearch, .Lfunc_end42-lsearch
@@ -3601,8 +4607,9 @@ lsearch:
 	.type	lfind,@function
 	.cc_top lfind.function,lfind
 lfind:
-	entsp 10
-	ldw r11, sp[11]
+	entsp 11
+	stw r4, sp[10]
+	ldw r11, sp[12]
 	stw r0, sp[8]
 	stw r1, sp[7]
 	stw r2, sp[6]
@@ -3640,7 +4647,7 @@ lfind:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_lfind+8]
 	stw r0, dp[.L__profc_lfind+12]
-	ldw r2, sp[11]
+	ldw r2, sp[12]
 	ldw r0, sp[8]
 	ldw r1, sp[4]
 	ldw r3, sp[2]
@@ -3651,10 +4658,16 @@ lfind:
 	bu .LBB43_3
 .LBB43_3:
 	ldw r2, sp[1]
-	ldw r0, dp[.L__profc_lfind+20]
-	ldw r1, dp[.L__profc_lfind+16]
+	ldw r0, dp[__llvm_gcov_ctr.43+4]
+	ldw r1, dp[__llvm_gcov_ctr.43]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r1, r1, r3, r11
+	add r0, r0, r4
+	stw r1, dp[__llvm_gcov_ctr.43]
+	stw r0, dp[__llvm_gcov_ctr.43+4]
+	ldw r0, dp[.L__profc_lfind+20]
+	ldw r1, dp[.L__profc_lfind+16]
 	ladd r3, r1, r1, r3, r11
 	add r0, r0, r3
 	stw r1, dp[.L__profc_lfind+16]
@@ -3668,17 +4681,33 @@ lfind:
 .LBB43_4:
 	bu .LBB43_5
 .LBB43_5:
+	ldw r0, dp[__llvm_gcov_ctr.43+12]
+	ldw r1, dp[__llvm_gcov_ctr.43+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.43+8]
+	stw r0, dp[__llvm_gcov_ctr.43+12]
 	ldw r0, sp[2]
 	add r0, r0, 1
 	stw r0, sp[2]
 	bu .LBB43_1
 .LBB43_6:
+	ldw r1, dp[__llvm_gcov_ctr.43+20]
+	ldw r2, dp[__llvm_gcov_ctr.43+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.43+16]
+	stw r1, dp[__llvm_gcov_ctr.43+20]
 	stw r0, sp[9]
 	bu .LBB43_7
 .LBB43_7:
 	ldw r0, sp[9]
-	retsp 10
+	ldw r4, sp[10]
+	retsp 11
 	.cc_bottom lfind.function
 .Lfunc_end43:
 	.size	lfind, .Lfunc_end43-lfind
@@ -3703,10 +4732,16 @@ abs:
 	bt r0, .LBB44_2
 	bu .LBB44_1
 .LBB44_1:
-	ldw r0, dp[.L__profc_abs+12]
-	ldw r1, dp[.L__profc_abs+8]
+	ldw r0, dp[__llvm_gcov_ctr.44+4]
+	ldw r1, dp[__llvm_gcov_ctr.44]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.44]
+	stw r0, dp[__llvm_gcov_ctr.44+4]
+	ldw r0, dp[.L__profc_abs+12]
+	ldw r1, dp[.L__profc_abs+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_abs+8]
@@ -3715,6 +4750,14 @@ abs:
 	stw r0, sp[0]
 	bu .LBB44_3
 .LBB44_2:
+	ldw r0, dp[__llvm_gcov_ctr.44+12]
+	ldw r1, dp[__llvm_gcov_ctr.44+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.44+8]
+	stw r0, dp[__llvm_gcov_ctr.44+12]
 	ldw r0, sp[1]
 	neg r0, r0
 	stw r0, sp[0]
@@ -3752,10 +4795,16 @@ atoi:
 	bf r0, .LBB45_3
 	bu .LBB45_2
 .LBB45_2:
-	ldw r0, dp[.L__profc_atoi+12]
-	ldw r1, dp[.L__profc_atoi+8]
+	ldw r0, dp[__llvm_gcov_ctr.45+4]
+	ldw r1, dp[__llvm_gcov_ctr.45]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.45]
+	stw r0, dp[__llvm_gcov_ctr.45+4]
+	ldw r0, dp[.L__profc_atoi+12]
+	ldw r1, dp[.L__profc_atoi+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoi+8]
@@ -3780,10 +4829,16 @@ atoi:
 	bf r0, .LBB45_7
 	bu .LBB45_4
 .LBB45_4:
-	ldw r1, dp[.L__profc_atoi+28]
-	ldw r2, dp[.L__profc_atoi+24]
+	ldw r1, dp[__llvm_gcov_ctr.45+12]
+	ldw r2, dp[__llvm_gcov_ctr.45+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.45+8]
+	stw r1, dp[__llvm_gcov_ctr.45+12]
+	ldw r1, dp[.L__profc_atoi+28]
+	ldw r2, dp[.L__profc_atoi+24]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc_atoi+24]
@@ -3791,10 +4846,16 @@ atoi:
 	stw r0, sp[3]
 	bu .LBB45_6
 .LBB45_5:
-	ldw r0, dp[.L__profc_atoi+36]
-	ldw r1, dp[.L__profc_atoi+32]
+	ldw r0, dp[__llvm_gcov_ctr.45+20]
+	ldw r1, dp[__llvm_gcov_ctr.45+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.45+16]
+	stw r0, dp[__llvm_gcov_ctr.45+20]
+	ldw r0, dp[.L__profc_atoi+36]
+	ldw r1, dp[.L__profc_atoi+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoi+32]
@@ -3823,10 +4884,16 @@ atoi:
 	bf r0, .LBB45_10
 	bu .LBB45_9
 .LBB45_9:
-	ldw r0, dp[.L__profc_atoi+44]
-	ldw r1, dp[.L__profc_atoi+40]
+	ldw r0, dp[__llvm_gcov_ctr.45+28]
+	ldw r1, dp[__llvm_gcov_ctr.45+24]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.45+24]
+	stw r0, dp[__llvm_gcov_ctr.45+28]
+	ldw r0, dp[.L__profc_atoi+44]
+	ldw r1, dp[.L__profc_atoi+40]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_atoi+40]
@@ -3848,10 +4915,16 @@ atoi:
 	bf r0, .LBB45_12
 	bu .LBB45_11
 .LBB45_11:
-	ldw r0, dp[.L__profc_atoi+52]
-	ldw r1, dp[.L__profc_atoi+48]
+	ldw r0, dp[__llvm_gcov_ctr.45+36]
+	ldw r1, dp[__llvm_gcov_ctr.45+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.45+32]
+	stw r0, dp[__llvm_gcov_ctr.45+36]
+	ldw r0, dp[.L__profc_atoi+52]
+	ldw r1, dp[.L__profc_atoi+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoi+48]
@@ -3860,6 +4933,14 @@ atoi:
 	stw r0, sp[1]
 	bu .LBB45_13
 .LBB45_12:
+	ldw r0, dp[__llvm_gcov_ctr.45+44]
+	ldw r1, dp[__llvm_gcov_ctr.45+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.45+40]
+	stw r0, dp[__llvm_gcov_ctr.45+44]
 	ldw r0, sp[4]
 	neg r0, r0
 	stw r0, sp[1]
@@ -3897,10 +4978,16 @@ atol:
 	bf r0, .LBB46_3
 	bu .LBB46_2
 .LBB46_2:
-	ldw r0, dp[.L__profc_atol+12]
-	ldw r1, dp[.L__profc_atol+8]
+	ldw r0, dp[__llvm_gcov_ctr.46+4]
+	ldw r1, dp[__llvm_gcov_ctr.46]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.46]
+	stw r0, dp[__llvm_gcov_ctr.46+4]
+	ldw r0, dp[.L__profc_atol+12]
+	ldw r1, dp[.L__profc_atol+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atol+8]
@@ -3925,10 +5012,16 @@ atol:
 	bf r0, .LBB46_7
 	bu .LBB46_4
 .LBB46_4:
-	ldw r1, dp[.L__profc_atol+28]
-	ldw r2, dp[.L__profc_atol+24]
+	ldw r1, dp[__llvm_gcov_ctr.46+12]
+	ldw r2, dp[__llvm_gcov_ctr.46+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.46+8]
+	stw r1, dp[__llvm_gcov_ctr.46+12]
+	ldw r1, dp[.L__profc_atol+28]
+	ldw r2, dp[.L__profc_atol+24]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc_atol+24]
@@ -3936,10 +5029,16 @@ atol:
 	stw r0, sp[3]
 	bu .LBB46_6
 .LBB46_5:
-	ldw r0, dp[.L__profc_atol+36]
-	ldw r1, dp[.L__profc_atol+32]
+	ldw r0, dp[__llvm_gcov_ctr.46+20]
+	ldw r1, dp[__llvm_gcov_ctr.46+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.46+16]
+	stw r0, dp[__llvm_gcov_ctr.46+20]
+	ldw r0, dp[.L__profc_atol+36]
+	ldw r1, dp[.L__profc_atol+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atol+32]
@@ -3968,10 +5067,16 @@ atol:
 	bf r0, .LBB46_10
 	bu .LBB46_9
 .LBB46_9:
-	ldw r0, dp[.L__profc_atol+44]
-	ldw r1, dp[.L__profc_atol+40]
+	ldw r0, dp[__llvm_gcov_ctr.46+28]
+	ldw r1, dp[__llvm_gcov_ctr.46+24]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.46+24]
+	stw r0, dp[__llvm_gcov_ctr.46+28]
+	ldw r0, dp[.L__profc_atol+44]
+	ldw r1, dp[.L__profc_atol+40]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_atol+40]
@@ -3993,10 +5098,16 @@ atol:
 	bf r0, .LBB46_12
 	bu .LBB46_11
 .LBB46_11:
-	ldw r0, dp[.L__profc_atol+52]
-	ldw r1, dp[.L__profc_atol+48]
+	ldw r0, dp[__llvm_gcov_ctr.46+36]
+	ldw r1, dp[__llvm_gcov_ctr.46+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.46+32]
+	stw r0, dp[__llvm_gcov_ctr.46+36]
+	ldw r0, dp[.L__profc_atol+52]
+	ldw r1, dp[.L__profc_atol+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atol+48]
@@ -4005,6 +5116,14 @@ atol:
 	stw r0, sp[1]
 	bu .LBB46_13
 .LBB46_12:
+	ldw r0, dp[__llvm_gcov_ctr.46+44]
+	ldw r1, dp[__llvm_gcov_ctr.46+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.46+40]
+	stw r0, dp[__llvm_gcov_ctr.46+44]
 	ldw r0, sp[4]
 	neg r0, r0
 	stw r0, sp[1]
@@ -4048,10 +5167,16 @@ atoll:
 	bf r0, .LBB47_3
 	bu .LBB47_2
 .LBB47_2:
-	ldw r0, dp[.L__profc_atoll+12]
-	ldw r1, dp[.L__profc_atoll+8]
+	ldw r0, dp[__llvm_gcov_ctr.47+4]
+	ldw r1, dp[__llvm_gcov_ctr.47]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.47]
+	stw r0, dp[__llvm_gcov_ctr.47+4]
+	ldw r0, dp[.L__profc_atoll+12]
+	ldw r1, dp[.L__profc_atoll+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoll+8]
@@ -4076,10 +5201,16 @@ atoll:
 	bf r0, .LBB47_7
 	bu .LBB47_4
 .LBB47_4:
-	ldw r1, dp[.L__profc_atoll+28]
-	ldw r2, dp[.L__profc_atoll+24]
+	ldw r1, dp[__llvm_gcov_ctr.47+12]
+	ldw r2, dp[__llvm_gcov_ctr.47+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.47+8]
+	stw r1, dp[__llvm_gcov_ctr.47+12]
+	ldw r1, dp[.L__profc_atoll+28]
+	ldw r2, dp[.L__profc_atoll+24]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc_atoll+24]
@@ -4087,10 +5218,16 @@ atoll:
 	stw r0, sp[4]
 	bu .LBB47_6
 .LBB47_5:
-	ldw r0, dp[.L__profc_atoll+36]
-	ldw r1, dp[.L__profc_atoll+32]
+	ldw r0, dp[__llvm_gcov_ctr.47+20]
+	ldw r1, dp[__llvm_gcov_ctr.47+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.47+16]
+	stw r0, dp[__llvm_gcov_ctr.47+20]
+	ldw r0, dp[.L__profc_atoll+36]
+	ldw r1, dp[.L__profc_atoll+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoll+32]
@@ -4119,10 +5256,16 @@ atoll:
 	bf r0, .LBB47_10
 	bu .LBB47_9
 .LBB47_9:
-	ldw r0, dp[.L__profc_atoll+44]
-	ldw r1, dp[.L__profc_atoll+40]
+	ldw r0, dp[__llvm_gcov_ctr.47+28]
+	ldw r1, dp[__llvm_gcov_ctr.47+24]
 	ldc r11, 0
 	mkmsk r2, 1
+	ladd r3, r1, r1, r2, r11
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.47+24]
+	stw r0, dp[__llvm_gcov_ctr.47+28]
+	ldw r0, dp[.L__profc_atoll+44]
+	ldw r1, dp[.L__profc_atoll+40]
 	ladd r2, r1, r1, r2, r11
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoll+40]
@@ -4150,10 +5293,16 @@ atoll:
 	bf r0, .LBB47_12
 	bu .LBB47_11
 .LBB47_11:
-	ldw r0, dp[.L__profc_atoll+52]
-	ldw r1, dp[.L__profc_atoll+48]
+	ldw r0, dp[__llvm_gcov_ctr.47+36]
+	ldw r1, dp[__llvm_gcov_ctr.47+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.47+32]
+	stw r0, dp[__llvm_gcov_ctr.47+36]
+	ldw r0, dp[.L__profc_atoll+52]
+	ldw r1, dp[.L__profc_atoll+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_atoll+48]
@@ -4164,9 +5313,16 @@ atoll:
 	stw r0, sp[2]
 	bu .LBB47_13
 .LBB47_12:
+	ldw r1, dp[__llvm_gcov_ctr.47+44]
+	ldw r2, dp[__llvm_gcov_ctr.47+40]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.47+40]
+	stw r1, dp[__llvm_gcov_ctr.47+44]
 	ldw r2, sp[6]
 	ldw r1, sp[5]
-	ldc r0, 0
 	lsub r3, r1, r0, r1, r0
 	lsub r2, r0, r0, r2, r3
 	stw r1, sp[1]
@@ -4230,10 +5386,16 @@ bsearch:
 	bf r0, .LBB48_4
 	bu .LBB48_3
 .LBB48_3:
-	ldw r0, dp[.L__profc_bsearch+20]
-	ldw r1, dp[.L__profc_bsearch+16]
+	ldw r0, dp[__llvm_gcov_ctr.48+12]
+	ldw r1, dp[__llvm_gcov_ctr.48+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.48+8]
+	stw r0, dp[__llvm_gcov_ctr.48+12]
+	ldw r0, dp[.L__profc_bsearch+20]
+	ldw r1, dp[.L__profc_bsearch+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_bsearch+16]
@@ -4268,15 +5430,38 @@ bsearch:
 	stw r0, sp[4]
 	bu .LBB48_7
 .LBB48_6:
+	ldw r0, dp[__llvm_gcov_ctr.48+20]
+	ldw r1, dp[__llvm_gcov_ctr.48+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.48+16]
+	stw r0, dp[__llvm_gcov_ctr.48+20]
 	ldw r0, sp[2]
 	stw r0, sp[7]
 	bu .LBB48_10
 .LBB48_7:
+	ldw r0, dp[__llvm_gcov_ctr.48+28]
+	ldw r1, dp[__llvm_gcov_ctr.48+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.48+24]
+	stw r0, dp[__llvm_gcov_ctr.48+28]
 	bu .LBB48_8
 .LBB48_8:
 	bu .LBB48_1
 .LBB48_9:
+	ldw r1, dp[__llvm_gcov_ctr.48+4]
+	ldw r2, dp[__llvm_gcov_ctr.48]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.48]
+	stw r1, dp[__llvm_gcov_ctr.48+4]
 	stw r0, sp[7]
 	bu .LBB48_10
 .LBB48_10:
@@ -4341,10 +5526,16 @@ bsearch_r:
 	bt r0, .LBB49_4
 	bu .LBB49_3
 .LBB49_3:
-	ldw r0, dp[.L__profc_bsearch_r+20]
-	ldw r1, dp[.L__profc_bsearch_r+16]
+	ldw r0, dp[__llvm_gcov_ctr.49+4]
+	ldw r1, dp[__llvm_gcov_ctr.49]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.49]
+	stw r0, dp[__llvm_gcov_ctr.49+4]
+	ldw r0, dp[.L__profc_bsearch_r+20]
+	ldw r1, dp[.L__profc_bsearch_r+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_bsearch_r+16]
@@ -4359,10 +5550,16 @@ bsearch_r:
 	bt r0, .LBB49_6
 	bu .LBB49_5
 .LBB49_5:
-	ldw r0, dp[.L__profc_bsearch_r+28]
-	ldw r1, dp[.L__profc_bsearch_r+24]
+	ldw r0, dp[__llvm_gcov_ctr.49+12]
+	ldw r1, dp[__llvm_gcov_ctr.49+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.49+8]
+	stw r0, dp[__llvm_gcov_ctr.49+12]
+	ldw r0, dp[.L__profc_bsearch_r+28]
+	ldw r1, dp[.L__profc_bsearch_r+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_bsearch_r+24]
@@ -4378,12 +5575,27 @@ bsearch_r:
 .LBB49_6:
 	bu .LBB49_7
 .LBB49_7:
+	ldw r0, dp[__llvm_gcov_ctr.49+20]
+	ldw r1, dp[__llvm_gcov_ctr.49+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.49+16]
+	stw r0, dp[__llvm_gcov_ctr.49+20]
 	ldw r0, sp[3]
 	ashr r0, r0, 1
 	stw r0, sp[3]
 	bu .LBB49_1
 .LBB49_8:
+	ldw r1, dp[__llvm_gcov_ctr.49+28]
+	ldw r2, dp[__llvm_gcov_ctr.49+24]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.49+24]
+	stw r1, dp[__llvm_gcov_ctr.49+28]
 	stw r0, sp[9]
 	bu .LBB49_9
 .LBB49_9:
@@ -4398,16 +5610,25 @@ bsearch_r:
 	.type	div,@function
 	.cc_top div.function,div
 div:
-	entsp 3
+	entsp 6
+	stw r4, sp[5]
+	stw r5, sp[4]
+	stw r6, sp[3]
 	stw r1, sp[0]
 	mov r1, r0
 	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.50+4]
+	ldw r5, dp[__llvm_gcov_ctr.50]
+	ldc r11, 0
+	mkmsk r3, 1
+	ladd r6, r5, r5, r3, r11
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.50]
+	stw r4, dp[__llvm_gcov_ctr.50+4]
 	stw r0, sp[2]
 	stw r2, sp[1]
 	ldw r0, dp[.L__profc_div+4]
 	ldw r2, dp[.L__profc_div]
-	ldc r11, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r11
 	add r0, r0, r3
 	stw r2, dp[.L__profc_div]
@@ -4420,7 +5641,10 @@ div:
 	ldw r2, sp[1]
 	rems r0, r0, r2
 	stw r0, r1[1]
-	retsp 3
+	ldw r6, sp[3]
+	ldw r5, sp[4]
+	ldw r4, sp[5]
+	retsp 6
 	.cc_bottom div.function
 .Lfunc_end50:
 	.size	div, .Lfunc_end50-div
@@ -4455,10 +5679,16 @@ imaxabs:
 	bt r0, .LBB51_2
 	bu .LBB51_1
 .LBB51_1:
-	ldw r0, dp[.L__profc_imaxabs+12]
-	ldw r1, dp[.L__profc_imaxabs+8]
+	ldw r0, dp[__llvm_gcov_ctr.51+4]
+	ldw r1, dp[__llvm_gcov_ctr.51]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.51]
+	stw r0, dp[__llvm_gcov_ctr.51+4]
+	ldw r0, dp[.L__profc_imaxabs+12]
+	ldw r1, dp[.L__profc_imaxabs+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_imaxabs+8]
@@ -4469,9 +5699,16 @@ imaxabs:
 	stw r0, sp[1]
 	bu .LBB51_3
 .LBB51_2:
+	ldw r1, dp[__llvm_gcov_ctr.51+12]
+	ldw r2, dp[__llvm_gcov_ctr.51+8]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.51+8]
+	stw r1, dp[__llvm_gcov_ctr.51+12]
 	ldw r2, sp[5]
 	ldw r1, sp[4]
-	ldc r0, 0
 	lsub r3, r1, r0, r1, r0
 	lsub r2, r0, r0, r2, r3
 	stw r1, sp[0]
@@ -4490,40 +5727,59 @@ imaxabs:
 	.type	imaxdiv,@function
 	.cc_top imaxdiv.function,imaxdiv
 imaxdiv:
-	entsp 6
-	stw r0, sp[1]
-	ldw r0, sp[7]
-	stw r2, sp[5]
-	stw r1, sp[4]
-	stw r0, sp[3]
-	stw r3, sp[2]
-	ldw r0, dp[.L__profc_imaxdiv+4]
-	ldw r1, dp[.L__profc_imaxdiv]
+	entsp 11
+	stw r4, sp[10]
+	stw r5, sp[9]
+	stw r6, sp[8]
+	stw r7, sp[7]
+	stw r3, sp[1]
+	mov r4, r2
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[1]
+	stw r1, sp[2]
+	ldw r1, sp[12]
+	ldw r5, dp[__llvm_gcov_ctr.52+4]
+	ldw r6, dp[__llvm_gcov_ctr.52]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r7, r6, r6, r2, r3
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.52]
+	stw r5, dp[__llvm_gcov_ctr.52+4]
+	stw r4, sp[6]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_imaxdiv+4]
+	ldw r1, dp[.L__profc_imaxdiv]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_imaxdiv]
 	stw r0, dp[.L__profc_imaxdiv+4]
-	ldw r0, sp[4]
-	ldw r1, sp[5]
-	ldw r2, sp[2]
-	ldw r3, sp[3]
+	ldw r0, sp[5]
+	ldw r1, sp[6]
+	ldw r2, sp[3]
+	ldw r3, sp[4]
 	bl __divdi3
 	mov r2, r1
-	ldw r1, sp[1]
+	ldw r1, sp[2]
 	stw r2, r1[1]
 	stw r0, r1[0]
-	ldw r0, sp[4]
-	ldw r1, sp[5]
-	ldw r2, sp[2]
-	ldw r3, sp[3]
+	ldw r0, sp[5]
+	ldw r1, sp[6]
+	ldw r2, sp[3]
+	ldw r3, sp[4]
 	bl __moddi3
 	mov r2, r1
-	ldw r1, sp[1]
+	ldw r1, sp[2]
 	stw r2, r1[3]
 	stw r0, r1[2]
-	retsp 6
+	ldw r7, sp[7]
+	ldw r6, sp[8]
+	ldw r5, sp[9]
+	ldw r4, sp[10]
+	retsp 11
 	.cc_bottom imaxdiv.function
 .Lfunc_end52:
 	.size	imaxdiv, .Lfunc_end52-imaxdiv
@@ -4548,10 +5804,16 @@ labs:
 	bt r0, .LBB53_2
 	bu .LBB53_1
 .LBB53_1:
-	ldw r0, dp[.L__profc_labs+12]
-	ldw r1, dp[.L__profc_labs+8]
+	ldw r0, dp[__llvm_gcov_ctr.53+4]
+	ldw r1, dp[__llvm_gcov_ctr.53]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.53]
+	stw r0, dp[__llvm_gcov_ctr.53+4]
+	ldw r0, dp[.L__profc_labs+12]
+	ldw r1, dp[.L__profc_labs+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_labs+8]
@@ -4560,6 +5822,14 @@ labs:
 	stw r0, sp[0]
 	bu .LBB53_3
 .LBB53_2:
+	ldw r0, dp[__llvm_gcov_ctr.53+12]
+	ldw r1, dp[__llvm_gcov_ctr.53+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.53+8]
+	stw r0, dp[__llvm_gcov_ctr.53+12]
 	ldw r0, sp[1]
 	neg r0, r0
 	stw r0, sp[0]
@@ -4576,16 +5846,25 @@ labs:
 	.type	ldiv,@function
 	.cc_top ldiv.function,ldiv
 ldiv:
-	entsp 3
+	entsp 6
+	stw r4, sp[5]
+	stw r5, sp[4]
+	stw r6, sp[3]
 	stw r1, sp[0]
 	mov r1, r0
 	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.54+4]
+	ldw r5, dp[__llvm_gcov_ctr.54]
+	ldc r11, 0
+	mkmsk r3, 1
+	ladd r6, r5, r5, r3, r11
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.54]
+	stw r4, dp[__llvm_gcov_ctr.54+4]
 	stw r0, sp[2]
 	stw r2, sp[1]
 	ldw r0, dp[.L__profc_ldiv+4]
 	ldw r2, dp[.L__profc_ldiv]
-	ldc r11, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r11
 	add r0, r0, r3
 	stw r2, dp[.L__profc_ldiv]
@@ -4598,7 +5877,10 @@ ldiv:
 	ldw r2, sp[1]
 	rems r0, r0, r2
 	stw r0, r1[1]
-	retsp 3
+	ldw r6, sp[3]
+	ldw r5, sp[4]
+	ldw r4, sp[5]
+	retsp 6
 	.cc_bottom ldiv.function
 .Lfunc_end54:
 	.size	ldiv, .Lfunc_end54-ldiv
@@ -4633,10 +5915,16 @@ llabs:
 	bt r0, .LBB55_2
 	bu .LBB55_1
 .LBB55_1:
-	ldw r0, dp[.L__profc_llabs+12]
-	ldw r1, dp[.L__profc_llabs+8]
+	ldw r0, dp[__llvm_gcov_ctr.55+4]
+	ldw r1, dp[__llvm_gcov_ctr.55]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.55]
+	stw r0, dp[__llvm_gcov_ctr.55+4]
+	ldw r0, dp[.L__profc_llabs+12]
+	ldw r1, dp[.L__profc_llabs+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_llabs+8]
@@ -4647,9 +5935,16 @@ llabs:
 	stw r0, sp[1]
 	bu .LBB55_3
 .LBB55_2:
+	ldw r1, dp[__llvm_gcov_ctr.55+12]
+	ldw r2, dp[__llvm_gcov_ctr.55+8]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.55+8]
+	stw r1, dp[__llvm_gcov_ctr.55+12]
 	ldw r2, sp[5]
 	ldw r1, sp[4]
-	ldc r0, 0
 	lsub r3, r1, r0, r1, r0
 	lsub r2, r0, r0, r2, r3
 	stw r1, sp[0]
@@ -4668,40 +5963,59 @@ llabs:
 	.type	lldiv,@function
 	.cc_top lldiv.function,lldiv
 lldiv:
-	entsp 6
-	stw r0, sp[1]
-	ldw r0, sp[7]
-	stw r2, sp[5]
-	stw r1, sp[4]
-	stw r0, sp[3]
-	stw r3, sp[2]
-	ldw r0, dp[.L__profc_lldiv+4]
-	ldw r1, dp[.L__profc_lldiv]
+	entsp 11
+	stw r4, sp[10]
+	stw r5, sp[9]
+	stw r6, sp[8]
+	stw r7, sp[7]
+	stw r3, sp[1]
+	mov r4, r2
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[1]
+	stw r1, sp[2]
+	ldw r1, sp[12]
+	ldw r5, dp[__llvm_gcov_ctr.56+4]
+	ldw r6, dp[__llvm_gcov_ctr.56]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r7, r6, r6, r2, r3
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.56]
+	stw r5, dp[__llvm_gcov_ctr.56+4]
+	stw r4, sp[6]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_lldiv+4]
+	ldw r1, dp[.L__profc_lldiv]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_lldiv]
 	stw r0, dp[.L__profc_lldiv+4]
-	ldw r0, sp[4]
-	ldw r1, sp[5]
-	ldw r2, sp[2]
-	ldw r3, sp[3]
+	ldw r0, sp[5]
+	ldw r1, sp[6]
+	ldw r2, sp[3]
+	ldw r3, sp[4]
 	bl __divdi3
 	mov r2, r1
-	ldw r1, sp[1]
+	ldw r1, sp[2]
 	stw r2, r1[1]
 	stw r0, r1[0]
-	ldw r0, sp[4]
-	ldw r1, sp[5]
-	ldw r2, sp[2]
-	ldw r3, sp[3]
+	ldw r0, sp[5]
+	ldw r1, sp[6]
+	ldw r2, sp[3]
+	ldw r3, sp[4]
 	bl __moddi3
 	mov r2, r1
-	ldw r1, sp[1]
+	ldw r1, sp[2]
 	stw r2, r1[3]
 	stw r0, r1[2]
-	retsp 6
+	ldw r7, sp[7]
+	ldw r6, sp[8]
+	ldw r5, sp[9]
+	ldw r4, sp[10]
+	retsp 11
 	.cc_bottom lldiv.function
 .Lfunc_end56:
 	.size	lldiv, .Lfunc_end56-lldiv
@@ -4711,7 +6025,8 @@ lldiv:
 	.type	wcschr,@function
 	.cc_top wcschr.function,wcschr
 wcschr:
-	entsp 5
+	entsp 6
+	stw r4, sp[5]
 	stw r0, sp[4]
 	ldc r3, 0
 	ldaw r0, sp[3]
@@ -4732,10 +6047,16 @@ wcschr:
 	bf r0, .LBB57_4
 	bu .LBB57_2
 .LBB57_2:
-	ldw r0, dp[.L__profc_wcschr+20]
-	ldw r1, dp[.L__profc_wcschr+16]
+	ldw r0, dp[__llvm_gcov_ctr.57+4]
+	ldw r1, dp[__llvm_gcov_ctr.57]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.57]
+	stw r0, dp[__llvm_gcov_ctr.57+4]
+	ldw r0, dp[.L__profc_wcschr+20]
+	ldw r1, dp[.L__profc_wcschr+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wcschr+16]
@@ -4752,10 +6073,16 @@ wcschr:
 	bu .LBB57_3
 .LBB57_3:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_wcschr+28]
-	ldw r2, dp[.L__profc_wcschr+24]
+	ldw r1, dp[__llvm_gcov_ctr.57+12]
+	ldw r2, dp[__llvm_gcov_ctr.57+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.57+8]
+	stw r1, dp[__llvm_gcov_ctr.57+12]
+	ldw r1, dp[.L__profc_wcschr+28]
+	ldw r2, dp[.L__profc_wcschr+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_wcschr+24]
@@ -4778,6 +6105,14 @@ wcschr:
 	stw r0, dp[.L__profc_wcschr+12]
 	bu .LBB57_6
 .LBB57_6:
+	ldw r0, dp[__llvm_gcov_ctr.57+20]
+	ldw r1, dp[__llvm_gcov_ctr.57+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.57+16]
+	stw r0, dp[__llvm_gcov_ctr.57+20]
 	ldw r0, sp[4]
 	add r0, r0, 1
 	stw r0, sp[4]
@@ -4789,10 +6124,16 @@ wcschr:
 	bf r0, .LBB57_9
 	bu .LBB57_8
 .LBB57_8:
-	ldw r0, dp[.L__profc_wcschr+36]
-	ldw r1, dp[.L__profc_wcschr+32]
+	ldw r0, dp[__llvm_gcov_ctr.57+28]
+	ldw r1, dp[__llvm_gcov_ctr.57+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.57+24]
+	stw r0, dp[__llvm_gcov_ctr.57+28]
+	ldw r0, dp[.L__profc_wcschr+36]
+	ldw r1, dp[.L__profc_wcschr+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcschr+32]
@@ -4801,12 +6142,20 @@ wcschr:
 	stw r0, sp[0]
 	bu .LBB57_10
 .LBB57_9:
+	ldw r1, dp[__llvm_gcov_ctr.57+36]
+	ldw r2, dp[__llvm_gcov_ctr.57+32]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.57+32]
+	stw r1, dp[__llvm_gcov_ctr.57+36]
 	stw r0, sp[0]
 	bu .LBB57_10
 .LBB57_10:
 	ldw r0, sp[0]
-	retsp 5
+	ldw r4, sp[5]
+	retsp 6
 	.cc_bottom wcschr.function
 .Lfunc_end57:
 	.size	wcschr, .Lfunc_end57-wcschr
@@ -4816,7 +6165,8 @@ wcschr:
 	.type	wcscmp,@function
 	.cc_top wcscmp.function,wcscmp
 wcscmp:
-	entsp 5
+	entsp 6
+	stw r4, sp[5]
 	stw r0, sp[4]
 	stw r1, sp[3]
 	ldw r0, dp[.L__profc_wcscmp+4]
@@ -4839,10 +6189,16 @@ wcscmp:
 	bf r0, .LBB58_6
 	bu .LBB58_2
 .LBB58_2:
-	ldw r0, dp[.L__profc_wcscmp+36]
-	ldw r2, dp[.L__profc_wcscmp+32]
+	ldw r0, dp[__llvm_gcov_ctr.58+4]
+	ldw r2, dp[__llvm_gcov_ctr.58]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.58]
+	stw r0, dp[__llvm_gcov_ctr.58+4]
+	ldw r0, dp[.L__profc_wcscmp+36]
+	ldw r2, dp[.L__profc_wcscmp+32]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_wcscmp+32]
@@ -4853,10 +6209,16 @@ wcscmp:
 	bf r0, .LBB58_6
 	bu .LBB58_3
 .LBB58_3:
-	ldw r0, dp[.L__profc_wcscmp+44]
-	ldw r1, dp[.L__profc_wcscmp+40]
+	ldw r0, dp[__llvm_gcov_ctr.58+12]
+	ldw r1, dp[__llvm_gcov_ctr.58+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.58+8]
+	stw r0, dp[__llvm_gcov_ctr.58+12]
+	ldw r0, dp[.L__profc_wcscmp+44]
+	ldw r1, dp[.L__profc_wcscmp+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcscmp+40]
@@ -4881,10 +6243,16 @@ wcscmp:
 	bu .LBB58_5
 .LBB58_5:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_wcscmp+28]
-	ldw r2, dp[.L__profc_wcscmp+24]
+	ldw r1, dp[__llvm_gcov_ctr.58+20]
+	ldw r2, dp[__llvm_gcov_ctr.58+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.58+16]
+	stw r1, dp[__llvm_gcov_ctr.58+20]
+	ldw r1, dp[.L__profc_wcscmp+28]
+	ldw r2, dp[.L__profc_wcscmp+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_wcscmp+24]
@@ -4907,6 +6275,14 @@ wcscmp:
 	stw r0, dp[.L__profc_wcscmp+12]
 	bu .LBB58_8
 .LBB58_8:
+	ldw r0, dp[__llvm_gcov_ctr.58+28]
+	ldw r1, dp[__llvm_gcov_ctr.58+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.58+24]
+	stw r0, dp[__llvm_gcov_ctr.58+28]
 	ldw r0, sp[4]
 	add r0, r0, 1
 	stw r0, sp[4]
@@ -4924,10 +6300,16 @@ wcscmp:
 	bf r0, .LBB58_11
 	bu .LBB58_10
 .LBB58_10:
-	ldw r0, dp[.L__profc_wcscmp+52]
-	ldw r1, dp[.L__profc_wcscmp+48]
+	ldw r0, dp[__llvm_gcov_ctr.58+36]
+	ldw r1, dp[__llvm_gcov_ctr.58+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.58+32]
+	stw r0, dp[__llvm_gcov_ctr.58+36]
+	ldw r0, dp[.L__profc_wcscmp+52]
+	ldw r1, dp[.L__profc_wcscmp+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcscmp+48]
@@ -4936,8 +6318,15 @@ wcscmp:
 	stw r0, sp[0]
 	bu .LBB58_12
 .LBB58_11:
-	ldw r0, sp[4]
+	ldw r0, dp[__llvm_gcov_ctr.58+44]
+	ldw r1, dp[__llvm_gcov_ctr.58+40]
 	ldc r2, 0
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.58+40]
+	stw r0, dp[__llvm_gcov_ctr.58+44]
+	ldw r0, sp[4]
 	ld8u r1, r0[r2]
 	ldw r0, sp[3]
 	ld8u r0, r0[r2]
@@ -4946,7 +6335,8 @@ wcscmp:
 	bu .LBB58_12
 .LBB58_12:
 	ldw r0, sp[0]
-	retsp 5
+	ldw r4, sp[5]
+	retsp 6
 	.cc_bottom wcscmp.function
 .Lfunc_end58:
 	.size	wcscmp, .Lfunc_end58-wcscmp
@@ -4956,13 +6346,21 @@ wcscmp:
 	.type	wcscpy,@function
 	.cc_top wcscpy.function,wcscpy
 wcscpy:
-	entsp 3
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	ldw r11, dp[__llvm_gcov_ctr.59+4]
+	ldw r4, dp[__llvm_gcov_ctr.59]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.59]
+	stw r11, dp[__llvm_gcov_ctr.59+4]
 	stw r0, sp[2]
 	stw r1, sp[1]
 	ldw r0, dp[.L__profc_wcscpy+4]
 	ldw r1, dp[.L__profc_wcscpy]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcscpy]
@@ -4983,10 +6381,16 @@ wcscpy:
 	bf r0, .LBB59_3
 	bu .LBB59_2
 .LBB59_2:
-	ldw r0, dp[.L__profc_wcscpy+12]
-	ldw r1, dp[.L__profc_wcscpy+8]
+	ldw r0, dp[__llvm_gcov_ctr.59+12]
+	ldw r1, dp[__llvm_gcov_ctr.59+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.59+8]
+	stw r0, dp[__llvm_gcov_ctr.59+12]
+	ldw r0, dp[.L__profc_wcscpy+12]
+	ldw r1, dp[.L__profc_wcscpy+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcscpy+8]
@@ -4994,7 +6398,9 @@ wcscpy:
 	bu .LBB59_1
 .LBB59_3:
 	ldw r0, sp[0]
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom wcscpy.function
 .Lfunc_end59:
 	.size	wcscpy, .Lfunc_end59-wcscpy
@@ -5004,12 +6410,19 @@ wcscpy:
 	.type	wcslen,@function
 	.cc_top wcslen.function,wcslen
 wcslen:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.60+4]
+	ldw r11, dp[__llvm_gcov_ctr.60]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.60]
+	stw r1, dp[__llvm_gcov_ctr.60+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc_wcslen+4]
 	ldw r1, dp[.L__profc_wcslen]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcslen]
@@ -5034,6 +6447,14 @@ wcslen:
 	stw r0, dp[.L__profc_wcslen+12]
 	bu .LBB60_3
 .LBB60_3:
+	ldw r0, dp[__llvm_gcov_ctr.60+12]
+	ldw r1, dp[__llvm_gcov_ctr.60+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.60+8]
+	stw r0, dp[__llvm_gcov_ctr.60+12]
 	ldw r0, sp[1]
 	add r0, r0, 1
 	stw r0, sp[1]
@@ -5042,7 +6463,8 @@ wcslen:
 	ldw r0, sp[1]
 	ldw r1, sp[0]
 	sub r0, r0, r1
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom wcslen.function
 .Lfunc_end60:
 	.size	wcslen, .Lfunc_end60-wcslen
@@ -5052,7 +6474,8 @@ wcslen:
 	.type	wcsncmp,@function
 	.cc_top wcsncmp.function,wcsncmp
 wcsncmp:
-	entsp 7
+	entsp 8
+	stw r4, sp[7]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -5072,10 +6495,16 @@ wcsncmp:
 	bf r0, .LBB61_8
 	bu .LBB61_2
 .LBB61_2:
-	ldw r0, dp[.L__profc_wcsncmp+52]
-	ldw r2, dp[.L__profc_wcsncmp+48]
+	ldw r0, dp[__llvm_gcov_ctr.61+4]
+	ldw r2, dp[__llvm_gcov_ctr.61]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.61]
+	stw r0, dp[__llvm_gcov_ctr.61+4]
+	ldw r0, dp[.L__profc_wcsncmp+52]
+	ldw r2, dp[.L__profc_wcsncmp+48]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_wcsncmp+48]
@@ -5089,10 +6518,16 @@ wcsncmp:
 	bf r0, .LBB61_8
 	bu .LBB61_3
 .LBB61_3:
-	ldw r0, dp[.L__profc_wcsncmp+60]
-	ldw r1, dp[.L__profc_wcsncmp+56]
+	ldw r0, dp[__llvm_gcov_ctr.61+12]
+	ldw r1, dp[__llvm_gcov_ctr.61+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.61+8]
+	stw r0, dp[__llvm_gcov_ctr.61+12]
+	ldw r0, dp[.L__profc_wcsncmp+60]
+	ldw r1, dp[.L__profc_wcsncmp+56]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcsncmp+56]
@@ -5113,10 +6548,16 @@ wcsncmp:
 	bf r0, .LBB61_8
 	bu .LBB61_5
 .LBB61_5:
-	ldw r0, dp[.L__profc_wcsncmp+44]
-	ldw r1, dp[.L__profc_wcsncmp+40]
+	ldw r0, dp[__llvm_gcov_ctr.61+20]
+	ldw r1, dp[__llvm_gcov_ctr.61+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.61+16]
+	stw r0, dp[__llvm_gcov_ctr.61+20]
+	ldw r0, dp[.L__profc_wcsncmp+44]
+	ldw r1, dp[.L__profc_wcsncmp+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcsncmp+40]
@@ -5141,10 +6582,16 @@ wcsncmp:
 	bu .LBB61_7
 .LBB61_7:
 	ldw r0, sp[2]
-	ldw r1, dp[.L__profc_wcsncmp+28]
-	ldw r2, dp[.L__profc_wcsncmp+24]
+	ldw r1, dp[__llvm_gcov_ctr.61+28]
+	ldw r2, dp[__llvm_gcov_ctr.61+24]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.61+24]
+	stw r1, dp[__llvm_gcov_ctr.61+28]
+	ldw r1, dp[.L__profc_wcsncmp+28]
+	ldw r2, dp[.L__profc_wcsncmp+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_wcsncmp+24]
@@ -5167,6 +6614,14 @@ wcsncmp:
 	stw r0, dp[.L__profc_wcsncmp+12]
 	bu .LBB61_10
 .LBB61_10:
+	ldw r0, dp[__llvm_gcov_ctr.61+36]
+	ldw r1, dp[__llvm_gcov_ctr.61+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.61+32]
+	stw r0, dp[__llvm_gcov_ctr.61+36]
 	ldw r0, sp[4]
 	sub r0, r0, 1
 	stw r0, sp[4]
@@ -5198,10 +6653,16 @@ wcsncmp:
 	bf r0, .LBB61_14
 	bu .LBB61_13
 .LBB61_13:
-	ldw r0, dp[.L__profc_wcsncmp+76]
-	ldw r1, dp[.L__profc_wcsncmp+72]
+	ldw r0, dp[__llvm_gcov_ctr.61+44]
+	ldw r1, dp[__llvm_gcov_ctr.61+40]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.61+40]
+	stw r0, dp[__llvm_gcov_ctr.61+44]
+	ldw r0, dp[.L__profc_wcsncmp+76]
+	ldw r1, dp[.L__profc_wcsncmp+72]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wcsncmp+72]
@@ -5210,8 +6671,15 @@ wcsncmp:
 	stw r0, sp[1]
 	bu .LBB61_15
 .LBB61_14:
-	ldw r0, sp[6]
+	ldw r0, dp[__llvm_gcov_ctr.61+52]
+	ldw r1, dp[__llvm_gcov_ctr.61+48]
 	ldc r2, 0
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.61+48]
+	stw r0, dp[__llvm_gcov_ctr.61+52]
+	ldw r0, sp[6]
 	ld8u r1, r0[r2]
 	ldw r0, sp[5]
 	ld8u r0, r0[r2]
@@ -5223,12 +6691,20 @@ wcsncmp:
 	stw r0, sp[0]
 	bu .LBB61_17
 .LBB61_16:
+	ldw r1, dp[__llvm_gcov_ctr.61+60]
+	ldw r2, dp[__llvm_gcov_ctr.61+56]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.61+56]
+	stw r1, dp[__llvm_gcov_ctr.61+60]
 	stw r0, sp[0]
 	bu .LBB61_17
 .LBB61_17:
 	ldw r0, sp[0]
-	retsp 7
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom wcsncmp.function
 .Lfunc_end61:
 	.size	wcsncmp, .Lfunc_end61-wcsncmp
@@ -5238,7 +6714,8 @@ wcsncmp:
 	.type	wmemchr,@function
 	.cc_top wmemchr.function,wmemchr
 wmemchr:
-	entsp 6
+	entsp 7
+	stw r4, sp[6]
 	stw r0, sp[5]
 	ldc r3, 0
 	ldaw r0, sp[4]
@@ -5259,10 +6736,16 @@ wmemchr:
 	bf r0, .LBB62_4
 	bu .LBB62_2
 .LBB62_2:
-	ldw r0, dp[.L__profc_wmemchr+20]
-	ldw r1, dp[.L__profc_wmemchr+16]
+	ldw r0, dp[__llvm_gcov_ctr.62+4]
+	ldw r1, dp[__llvm_gcov_ctr.62]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.62]
+	stw r0, dp[__llvm_gcov_ctr.62+4]
+	ldw r0, dp[.L__profc_wmemchr+20]
+	ldw r1, dp[.L__profc_wmemchr+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wmemchr+16]
@@ -5279,10 +6762,16 @@ wmemchr:
 	bu .LBB62_3
 .LBB62_3:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_wmemchr+28]
-	ldw r2, dp[.L__profc_wmemchr+24]
+	ldw r1, dp[__llvm_gcov_ctr.62+12]
+	ldw r2, dp[__llvm_gcov_ctr.62+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.62+8]
+	stw r1, dp[__llvm_gcov_ctr.62+12]
+	ldw r1, dp[.L__profc_wmemchr+28]
+	ldw r2, dp[.L__profc_wmemchr+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_wmemchr+24]
@@ -5305,6 +6794,14 @@ wmemchr:
 	stw r0, dp[.L__profc_wmemchr+12]
 	bu .LBB62_6
 .LBB62_6:
+	ldw r0, dp[__llvm_gcov_ctr.62+20]
+	ldw r1, dp[__llvm_gcov_ctr.62+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.62+16]
+	stw r0, dp[__llvm_gcov_ctr.62+20]
 	ldw r0, sp[3]
 	sub r0, r0, 1
 	stw r0, sp[3]
@@ -5317,10 +6814,16 @@ wmemchr:
 	bf r0, .LBB62_9
 	bu .LBB62_8
 .LBB62_8:
-	ldw r0, dp[.L__profc_wmemchr+36]
-	ldw r1, dp[.L__profc_wmemchr+32]
+	ldw r0, dp[__llvm_gcov_ctr.62+28]
+	ldw r1, dp[__llvm_gcov_ctr.62+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.62+24]
+	stw r0, dp[__llvm_gcov_ctr.62+28]
+	ldw r0, dp[.L__profc_wmemchr+36]
+	ldw r1, dp[.L__profc_wmemchr+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemchr+32]
@@ -5329,12 +6832,20 @@ wmemchr:
 	stw r0, sp[0]
 	bu .LBB62_10
 .LBB62_9:
+	ldw r1, dp[__llvm_gcov_ctr.62+36]
+	ldw r2, dp[__llvm_gcov_ctr.62+32]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.62+32]
+	stw r1, dp[__llvm_gcov_ctr.62+36]
 	stw r0, sp[0]
 	bu .LBB62_10
 .LBB62_10:
 	ldw r0, sp[0]
-	retsp 6
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom wmemchr.function
 .Lfunc_end62:
 	.size	wmemchr, .Lfunc_end62-wmemchr
@@ -5344,7 +6855,8 @@ wmemchr:
 	.type	wmemcmp,@function
 	.cc_top wmemcmp.function,wmemcmp
 wmemcmp:
-	entsp 7
+	entsp 8
+	stw r4, sp[7]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -5364,10 +6876,16 @@ wmemcmp:
 	bf r0, .LBB63_4
 	bu .LBB63_2
 .LBB63_2:
-	ldw r0, dp[.L__profc_wmemcmp+20]
-	ldw r1, dp[.L__profc_wmemcmp+16]
+	ldw r0, dp[__llvm_gcov_ctr.63+4]
+	ldw r1, dp[__llvm_gcov_ctr.63]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.63]
+	stw r0, dp[__llvm_gcov_ctr.63+4]
+	ldw r0, dp[.L__profc_wmemcmp+20]
+	ldw r1, dp[.L__profc_wmemcmp+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wmemcmp+16]
@@ -5384,10 +6902,16 @@ wmemcmp:
 	bu .LBB63_3
 .LBB63_3:
 	ldw r0, sp[2]
-	ldw r1, dp[.L__profc_wmemcmp+28]
-	ldw r2, dp[.L__profc_wmemcmp+24]
+	ldw r1, dp[__llvm_gcov_ctr.63+12]
+	ldw r2, dp[__llvm_gcov_ctr.63+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.63+8]
+	stw r1, dp[__llvm_gcov_ctr.63+12]
+	ldw r1, dp[.L__profc_wmemcmp+28]
+	ldw r2, dp[.L__profc_wmemcmp+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_wmemcmp+24]
@@ -5410,6 +6934,14 @@ wmemcmp:
 	stw r0, dp[.L__profc_wmemcmp+12]
 	bu .LBB63_6
 .LBB63_6:
+	ldw r0, dp[__llvm_gcov_ctr.63+20]
+	ldw r1, dp[__llvm_gcov_ctr.63+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.63+16]
+	stw r0, dp[__llvm_gcov_ctr.63+20]
 	ldw r0, sp[4]
 	sub r0, r0, 1
 	stw r0, sp[4]
@@ -5441,10 +6973,16 @@ wmemcmp:
 	bf r0, .LBB63_10
 	bu .LBB63_9
 .LBB63_9:
-	ldw r0, dp[.L__profc_wmemcmp+44]
-	ldw r1, dp[.L__profc_wmemcmp+40]
+	ldw r0, dp[__llvm_gcov_ctr.63+28]
+	ldw r1, dp[__llvm_gcov_ctr.63+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.63+24]
+	stw r0, dp[__llvm_gcov_ctr.63+28]
+	ldw r0, dp[.L__profc_wmemcmp+44]
+	ldw r1, dp[.L__profc_wmemcmp+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemcmp+40]
@@ -5453,8 +6991,15 @@ wmemcmp:
 	stw r0, sp[1]
 	bu .LBB63_11
 .LBB63_10:
-	ldw r0, sp[6]
+	ldw r0, dp[__llvm_gcov_ctr.63+36]
+	ldw r1, dp[__llvm_gcov_ctr.63+32]
 	ldc r2, 0
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.63+32]
+	stw r0, dp[__llvm_gcov_ctr.63+36]
+	ldw r0, sp[6]
 	ld8u r1, r0[r2]
 	ldw r0, sp[5]
 	ld8u r0, r0[r2]
@@ -5466,12 +7011,20 @@ wmemcmp:
 	stw r0, sp[0]
 	bu .LBB63_13
 .LBB63_12:
+	ldw r1, dp[__llvm_gcov_ctr.63+44]
+	ldw r2, dp[__llvm_gcov_ctr.63+40]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.63+40]
+	stw r1, dp[__llvm_gcov_ctr.63+44]
 	stw r0, sp[0]
 	bu .LBB63_13
 .LBB63_13:
 	ldw r0, sp[0]
-	retsp 7
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom wmemcmp.function
 .Lfunc_end63:
 	.size	wmemcmp, .Lfunc_end63-wmemcmp
@@ -5481,48 +7034,69 @@ wmemcmp:
 	.type	wmemcpy,@function
 	.cc_top wmemcpy.function,wmemcpy
 wmemcpy:
-	entsp 4
-	stw r0, sp[3]
-	stw r1, sp[2]
-	stw r2, sp[1]
-	ldw r0, dp[.L__profc_wmemcpy+4]
-	ldw r1, dp[.L__profc_wmemcpy]
+	entsp 8
+	stw r4, sp[7]
+	stw r5, sp[6]
+	stw r6, sp[5]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.64+4]
+	ldw r5, dp[__llvm_gcov_ctr.64]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.64]
+	stw r4, dp[__llvm_gcov_ctr.64+4]
+	stw r11, sp[4]
+	stw r1, sp[3]
+	stw r0, sp[2]
+	ldw r0, dp[.L__profc_wmemcpy+4]
+	ldw r1, dp[.L__profc_wmemcpy]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemcpy]
 	stw r0, dp[.L__profc_wmemcpy+4]
-	ldw r0, sp[3]
-	stw r0, sp[0]
+	ldw r0, sp[4]
+	stw r0, sp[1]
 	bu .LBB64_1
 .LBB64_1:
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	sub r1, r0, 1
-	stw r1, sp[1]
+	stw r1, sp[2]
 	bf r0, .LBB64_3
 	bu .LBB64_2
 .LBB64_2:
-	ldw r0, dp[.L__profc_wmemcpy+12]
-	ldw r1, dp[.L__profc_wmemcpy+8]
+	ldw r0, dp[__llvm_gcov_ctr.64+12]
+	ldw r1, dp[__llvm_gcov_ctr.64+8]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.64+8]
+	stw r0, dp[__llvm_gcov_ctr.64+12]
+	ldw r0, dp[.L__profc_wmemcpy+12]
+	ldw r1, dp[.L__profc_wmemcpy+8]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wmemcpy+8]
 	stw r0, dp[.L__profc_wmemcpy+12]
-	ldw r0, sp[2]
+	ldw r0, sp[3]
 	add r1, r0, 1
-	stw r1, sp[2]
+	stw r1, sp[3]
 	ld8u r0, r0[r2]
-	ldw r1, sp[3]
+	ldw r1, sp[4]
 	add r3, r1, 1
-	stw r3, sp[3]
+	stw r3, sp[4]
 	st8 r0, r1[r2]
 	bu .LBB64_1
 .LBB64_3:
-	ldw r0, sp[0]
-	retsp 4
+	ldw r0, sp[1]
+	ldw r6, sp[5]
+	ldw r5, sp[6]
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom wmemcpy.function
 .Lfunc_end64:
 	.size	wmemcpy, .Lfunc_end64-wmemcpy
@@ -5552,10 +7126,16 @@ wmemmove:
 	bf r0, .LBB65_2
 	bu .LBB65_1
 .LBB65_1:
-	ldw r0, dp[.L__profc_wmemmove+12]
-	ldw r1, dp[.L__profc_wmemmove+8]
+	ldw r0, dp[__llvm_gcov_ctr.65+4]
+	ldw r1, dp[__llvm_gcov_ctr.65]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.65]
+	stw r0, dp[__llvm_gcov_ctr.65+4]
+	ldw r0, dp[.L__profc_wmemmove+12]
+	ldw r1, dp[.L__profc_wmemmove+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemmove+8]
@@ -5572,10 +7152,16 @@ wmemmove:
 	bf r0, .LBB65_7
 	bu .LBB65_3
 .LBB65_3:
-	ldw r0, dp[.L__profc_wmemmove+20]
-	ldw r1, dp[.L__profc_wmemmove+16]
+	ldw r0, dp[__llvm_gcov_ctr.65+12]
+	ldw r1, dp[__llvm_gcov_ctr.65+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.65+8]
+	stw r0, dp[__llvm_gcov_ctr.65+12]
+	ldw r0, dp[.L__profc_wmemmove+20]
+	ldw r1, dp[.L__profc_wmemmove+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemmove+16]
@@ -5588,10 +7174,16 @@ wmemmove:
 	bf r0, .LBB65_6
 	bu .LBB65_5
 .LBB65_5:
-	ldw r0, dp[.L__profc_wmemmove+28]
-	ldw r1, dp[.L__profc_wmemmove+24]
+	ldw r0, dp[__llvm_gcov_ctr.65+20]
+	ldw r1, dp[__llvm_gcov_ctr.65+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.65+16]
+	stw r0, dp[__llvm_gcov_ctr.65+20]
+	ldw r0, dp[.L__profc_wmemmove+28]
+	ldw r1, dp[.L__profc_wmemmove+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemmove+24]
@@ -5613,10 +7205,16 @@ wmemmove:
 	bf r0, .LBB65_10
 	bu .LBB65_9
 .LBB65_9:
-	ldw r0, dp[.L__profc_wmemmove+36]
-	ldw r1, dp[.L__profc_wmemmove+32]
+	ldw r0, dp[__llvm_gcov_ctr.65+28]
+	ldw r1, dp[__llvm_gcov_ctr.65+24]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.65+24]
+	stw r0, dp[__llvm_gcov_ctr.65+28]
+	ldw r0, dp[.L__profc_wmemmove+36]
+	ldw r1, dp[.L__profc_wmemmove+32]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wmemmove+32]
@@ -5631,6 +7229,14 @@ wmemmove:
 	st8 r0, r1[r2]
 	bu .LBB65_8
 .LBB65_10:
+	ldw r0, dp[__llvm_gcov_ctr.65+36]
+	ldw r1, dp[__llvm_gcov_ctr.65+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.65+32]
+	stw r0, dp[__llvm_gcov_ctr.65+36]
 	bu .LBB65_11
 .LBB65_11:
 	ldw r0, sp[0]
@@ -5648,47 +7254,68 @@ wmemmove:
 	.type	wmemset,@function
 	.cc_top wmemset.function,wmemset
 wmemset:
-	entsp 4
-	stw r0, sp[3]
+	entsp 8
+	stw r4, sp[7]
+	stw r5, sp[6]
+	stw r6, sp[5]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.66+4]
+	ldw r5, dp[__llvm_gcov_ctr.66]
 	ldc r3, 0
-	ldaw r0, sp[2]
-	st8 r1, r0[r3]
-	stw r2, sp[1]
+	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.66]
+	stw r4, dp[__llvm_gcov_ctr.66+4]
+	stw r11, sp[4]
+	ldaw r11, sp[3]
+	st8 r1, r11[r3]
+	stw r0, sp[2]
 	ldw r0, dp[.L__profc_wmemset+4]
 	ldw r1, dp[.L__profc_wmemset]
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_wmemset]
 	stw r0, dp[.L__profc_wmemset+4]
-	ldw r0, sp[3]
-	stw r0, sp[0]
+	ldw r0, sp[4]
+	stw r0, sp[1]
 	bu .LBB66_1
 .LBB66_1:
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	sub r1, r0, 1
-	stw r1, sp[1]
+	stw r1, sp[2]
 	bf r0, .LBB66_3
 	bu .LBB66_2
 .LBB66_2:
-	ldw r0, dp[.L__profc_wmemset+12]
-	ldw r1, dp[.L__profc_wmemset+8]
+	ldw r0, dp[__llvm_gcov_ctr.66+12]
+	ldw r1, dp[__llvm_gcov_ctr.66+8]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.66+8]
+	stw r0, dp[__llvm_gcov_ctr.66+12]
+	ldw r0, dp[.L__profc_wmemset+12]
+	ldw r1, dp[.L__profc_wmemset+8]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_wmemset+8]
 	stw r0, dp[.L__profc_wmemset+12]
-	ldaw r0, sp[2]
+	ldaw r0, sp[3]
 	ld8u r0, r0[r2]
-	ldw r1, sp[3]
+	ldw r1, sp[4]
 	add r3, r1, 1
-	stw r3, sp[3]
+	stw r3, sp[4]
 	st8 r0, r1[r2]
 	bu .LBB66_1
 .LBB66_3:
-	ldw r0, sp[0]
-	retsp 4
+	ldw r0, sp[1]
+	ldw r6, sp[5]
+	ldw r5, sp[6]
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom wmemset.function
 .Lfunc_end66:
 	.size	wmemset, .Lfunc_end66-wmemset
@@ -5720,10 +7347,16 @@ bcopy:
 	bf r0, .LBB67_6
 	bu .LBB67_1
 .LBB67_1:
-	ldw r0, dp[.L__profc_bcopy+12]
-	ldw r1, dp[.L__profc_bcopy+8]
+	ldw r0, dp[__llvm_gcov_ctr.67+4]
+	ldw r1, dp[__llvm_gcov_ctr.67]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.67]
+	stw r0, dp[__llvm_gcov_ctr.67+4]
+	ldw r0, dp[.L__profc_bcopy+12]
+	ldw r1, dp[.L__profc_bcopy+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_bcopy+8]
@@ -5761,6 +7394,14 @@ bcopy:
 	st8 r0, r1[r2]
 	bu .LBB67_4
 .LBB67_4:
+	ldw r0, dp[__llvm_gcov_ctr.67+12]
+	ldw r1, dp[__llvm_gcov_ctr.67+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.67+8]
+	stw r0, dp[__llvm_gcov_ctr.67+12]
 	ldw r0, sp[2]
 	sub r0, r0, 1
 	stw r0, sp[2]
@@ -5788,10 +7429,16 @@ bcopy:
 	bf r0, .LBB67_11
 	bu .LBB67_9
 .LBB67_9:
-	ldw r0, dp[.L__profc_bcopy+36]
-	ldw r1, dp[.L__profc_bcopy+32]
+	ldw r0, dp[__llvm_gcov_ctr.67+20]
+	ldw r1, dp[__llvm_gcov_ctr.67+16]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.67+16]
+	stw r0, dp[__llvm_gcov_ctr.67+20]
+	ldw r0, dp[.L__profc_bcopy+36]
+	ldw r1, dp[.L__profc_bcopy+32]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_bcopy+32]
@@ -5811,8 +7458,24 @@ bcopy:
 	stw r0, sp[2]
 	bu .LBB67_8
 .LBB67_11:
+	ldw r0, dp[__llvm_gcov_ctr.67+28]
+	ldw r1, dp[__llvm_gcov_ctr.67+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.67+24]
+	stw r0, dp[__llvm_gcov_ctr.67+28]
 	bu .LBB67_12
 .LBB67_12:
+	ldw r0, dp[__llvm_gcov_ctr.67+36]
+	ldw r1, dp[__llvm_gcov_ctr.67+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.67+32]
+	stw r0, dp[__llvm_gcov_ctr.67+36]
 	bu .LBB67_13
 .LBB67_13:
 	retsp 5
@@ -5825,42 +7488,58 @@ bcopy:
 	.type	rotl64,@function
 	.cc_top rotl64.function,rotl64
 rotl64:
-	entsp 9
-	stw r1, sp[8]
-	stw r0, sp[7]
-	stw r2, sp[6]
-	ldw r0, dp[.L__profc_rotl64+4]
-	ldw r1, dp[.L__profc_rotl64]
+	entsp 13
+	stw r4, sp[12]
+	stw r5, sp[11]
+	stw r6, sp[10]
+	stw r2, sp[1]
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[1]
+	ldw r4, dp[__llvm_gcov_ctr.68+4]
+	ldw r5, dp[__llvm_gcov_ctr.68]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.68]
+	stw r4, dp[__llvm_gcov_ctr.68+4]
+	stw r11, sp[9]
+	stw r1, sp[8]
+	stw r0, sp[7]
+	ldw r0, dp[.L__profc_rotl64+4]
+	ldw r1, dp[.L__profc_rotl64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotl64]
 	stw r0, dp[.L__profc_rotl64+4]
-	ldw r0, sp[7]
-	stw r0, sp[2]
-	ldw r1, sp[8]
-	stw r1, sp[3]
-	ldw r2, sp[6]
-	stw r2, sp[1]
+	ldw r0, sp[8]
+	stw r0, sp[3]
+	ldw r1, sp[9]
+	stw r1, sp[4]
+	ldw r2, sp[7]
+	stw r2, sp[2]
 	bl __ashldi3
-	ldw r3, sp[1]
+	ldw r3, sp[2]
 	mov r2, r0
-	ldw r0, sp[2]
-	stw r2, sp[4]
-	mov r2, r1
-	ldw r1, sp[3]
+	ldw r0, sp[3]
 	stw r2, sp[5]
+	mov r2, r1
+	ldw r1, sp[4]
+	stw r2, sp[6]
 	ldc r2, 64
 	sub r2, r2, r3
 	bl __lshrdi3
 	mov r3, r0
-	ldw r0, sp[4]
+	ldw r0, sp[5]
 	mov r2, r1
-	ldw r1, sp[5]
+	ldw r1, sp[6]
 	or r0, r0, r3
 	or r1, r1, r2
-	retsp 9
+	ldw r6, sp[10]
+	ldw r5, sp[11]
+	ldw r4, sp[12]
+	retsp 13
 	.cc_bottom rotl64.function
 .Lfunc_end68:
 	.size	rotl64, .Lfunc_end68-rotl64
@@ -5870,42 +7549,58 @@ rotl64:
 	.type	rotr64,@function
 	.cc_top rotr64.function,rotr64
 rotr64:
-	entsp 9
-	stw r1, sp[8]
-	stw r0, sp[7]
-	stw r2, sp[6]
-	ldw r0, dp[.L__profc_rotr64+4]
-	ldw r1, dp[.L__profc_rotr64]
+	entsp 13
+	stw r4, sp[12]
+	stw r5, sp[11]
+	stw r6, sp[10]
+	stw r2, sp[1]
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[1]
+	ldw r4, dp[__llvm_gcov_ctr.69+4]
+	ldw r5, dp[__llvm_gcov_ctr.69]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.69]
+	stw r4, dp[__llvm_gcov_ctr.69+4]
+	stw r11, sp[9]
+	stw r1, sp[8]
+	stw r0, sp[7]
+	ldw r0, dp[.L__profc_rotr64+4]
+	ldw r1, dp[.L__profc_rotr64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotr64]
 	stw r0, dp[.L__profc_rotr64+4]
-	ldw r0, sp[7]
-	stw r0, sp[2]
-	ldw r1, sp[8]
-	stw r1, sp[3]
-	ldw r2, sp[6]
-	stw r2, sp[1]
+	ldw r0, sp[8]
+	stw r0, sp[3]
+	ldw r1, sp[9]
+	stw r1, sp[4]
+	ldw r2, sp[7]
+	stw r2, sp[2]
 	bl __lshrdi3
-	ldw r3, sp[1]
+	ldw r3, sp[2]
 	mov r2, r0
-	ldw r0, sp[2]
-	stw r2, sp[4]
-	mov r2, r1
-	ldw r1, sp[3]
+	ldw r0, sp[3]
 	stw r2, sp[5]
+	mov r2, r1
+	ldw r1, sp[4]
+	stw r2, sp[6]
 	ldc r2, 64
 	sub r2, r2, r3
 	bl __ashldi3
 	mov r3, r0
-	ldw r0, sp[4]
+	ldw r0, sp[5]
 	mov r2, r1
-	ldw r1, sp[5]
+	ldw r1, sp[6]
 	or r0, r0, r3
 	or r1, r1, r2
-	retsp 9
+	ldw r6, sp[10]
+	ldw r5, sp[11]
+	ldw r4, sp[12]
+	retsp 13
 	.cc_bottom rotr64.function
 .Lfunc_end69:
 	.size	rotr64, .Lfunc_end69-rotr64
@@ -5915,13 +7610,21 @@ rotr64:
 	.type	rotl32,@function
 	.cc_top rotl32.function,rotl32
 rotl32:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.70+4]
+	ldw r4, dp[__llvm_gcov_ctr.70]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.70]
+	stw r11, dp[__llvm_gcov_ctr.70+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc_rotl32+4]
 	ldw r1, dp[.L__profc_rotl32]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotl32]
@@ -5933,7 +7636,9 @@ rotl32:
 	sub r2, r2, r3
 	shr r1, r1, r2
 	or r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotl32.function
 .Lfunc_end70:
 	.size	rotl32, .Lfunc_end70-rotl32
@@ -5943,13 +7648,21 @@ rotl32:
 	.type	rotr32,@function
 	.cc_top rotr32.function,rotr32
 rotr32:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.71+4]
+	ldw r4, dp[__llvm_gcov_ctr.71]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.71]
+	stw r11, dp[__llvm_gcov_ctr.71+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc_rotr32+4]
 	ldw r1, dp[.L__profc_rotr32]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotr32]
@@ -5961,7 +7674,9 @@ rotr32:
 	sub r2, r2, r3
 	shl r1, r1, r2
 	or r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotr32.function
 .Lfunc_end71:
 	.size	rotr32, .Lfunc_end71-rotr32
@@ -5971,13 +7686,21 @@ rotr32:
 	.type	rotl_sz,@function
 	.cc_top rotl_sz.function,rotl_sz
 rotl_sz:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.72+4]
+	ldw r4, dp[__llvm_gcov_ctr.72]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.72]
+	stw r11, dp[__llvm_gcov_ctr.72+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc_rotl_sz+4]
 	ldw r1, dp[.L__profc_rotl_sz]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotl_sz]
@@ -5989,7 +7712,9 @@ rotl_sz:
 	sub r2, r2, r3
 	shr r1, r1, r2
 	or r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotl_sz.function
 .Lfunc_end72:
 	.size	rotl_sz, .Lfunc_end72-rotl_sz
@@ -5999,13 +7724,21 @@ rotl_sz:
 	.type	rotr_sz,@function
 	.cc_top rotr_sz.function,rotr_sz
 rotr_sz:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.73+4]
+	ldw r4, dp[__llvm_gcov_ctr.73]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.73]
+	stw r11, dp[__llvm_gcov_ctr.73+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc_rotr_sz+4]
 	ldw r1, dp[.L__profc_rotr_sz]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_rotr_sz]
@@ -6017,7 +7750,9 @@ rotr_sz:
 	sub r2, r2, r3
 	shl r1, r1, r2
 	or r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotr_sz.function
 .Lfunc_end73:
 	.size	rotr_sz, .Lfunc_end73-rotr_sz
@@ -6027,16 +7762,24 @@ rotr_sz:
 	.type	rotl16,@function
 	.cc_top rotl16.function,rotl16
 rotl16:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
 	mov r2, r1
 	mov r3, r0
+	ldw r0, dp[__llvm_gcov_ctr.74+4]
+	ldw r4, dp[__llvm_gcov_ctr.74]
 	ldc r1, 0
+	mkmsk r11, 1
+	ladd r5, r4, r4, r11, r1
+	add r0, r0, r5
+	stw r4, dp[__llvm_gcov_ctr.74]
+	stw r0, dp[__llvm_gcov_ctr.74+4]
 	ldaw r0, sp[1]
 	st16 r3, r0[r1]
 	stw r2, sp[0]
 	ldw r2, dp[.L__profc_rotl16+4]
 	ldw r3, dp[.L__profc_rotl16]
-	mkmsk r11, 1
 	ladd r11, r3, r3, r11, r1
 	add r2, r2, r11
 	stw r3, dp[.L__profc_rotl16]
@@ -6050,7 +7793,9 @@ rotl16:
 	shr r1, r1, r2
 	or r0, r0, r1
 	zext r0, 16
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotl16.function
 .Lfunc_end74:
 	.size	rotl16, .Lfunc_end74-rotl16
@@ -6060,16 +7805,24 @@ rotl16:
 	.type	rotr16,@function
 	.cc_top rotr16.function,rotr16
 rotr16:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
 	mov r2, r1
 	mov r3, r0
+	ldw r0, dp[__llvm_gcov_ctr.75+4]
+	ldw r4, dp[__llvm_gcov_ctr.75]
 	ldc r1, 0
+	mkmsk r11, 1
+	ladd r5, r4, r4, r11, r1
+	add r0, r0, r5
+	stw r4, dp[__llvm_gcov_ctr.75]
+	stw r0, dp[__llvm_gcov_ctr.75+4]
 	ldaw r0, sp[1]
 	st16 r3, r0[r1]
 	stw r2, sp[0]
 	ldw r2, dp[.L__profc_rotr16+4]
 	ldw r3, dp[.L__profc_rotr16]
-	mkmsk r11, 1
 	ladd r11, r3, r3, r11, r1
 	add r2, r2, r11
 	stw r3, dp[.L__profc_rotr16]
@@ -6083,7 +7836,9 @@ rotr16:
 	shl r1, r1, r2
 	or r0, r0, r1
 	zext r0, 16
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotr16.function
 .Lfunc_end75:
 	.size	rotr16, .Lfunc_end75-rotr16
@@ -6093,16 +7848,24 @@ rotr16:
 	.type	rotl8,@function
 	.cc_top rotl8.function,rotl8
 rotl8:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
 	mov r2, r1
 	mov r3, r0
+	ldw r0, dp[__llvm_gcov_ctr.76+4]
+	ldw r4, dp[__llvm_gcov_ctr.76]
 	ldc r1, 0
+	mkmsk r11, 1
+	ladd r5, r4, r4, r11, r1
+	add r0, r0, r5
+	stw r4, dp[__llvm_gcov_ctr.76]
+	stw r0, dp[__llvm_gcov_ctr.76+4]
 	ldaw r0, sp[1]
 	st8 r3, r0[r1]
 	stw r2, sp[0]
 	ldw r2, dp[.L__profc_rotl8+4]
 	ldw r3, dp[.L__profc_rotl8]
-	mkmsk r11, 1
 	ladd r11, r3, r3, r11, r1
 	add r2, r2, r11
 	stw r3, dp[.L__profc_rotl8]
@@ -6115,7 +7878,9 @@ rotl8:
 	shr r1, r1, r2
 	or r0, r0, r1
 	zext r0, 8
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotl8.function
 .Lfunc_end76:
 	.size	rotl8, .Lfunc_end76-rotl8
@@ -6125,16 +7890,24 @@ rotl8:
 	.type	rotr8,@function
 	.cc_top rotr8.function,rotr8
 rotr8:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
 	mov r2, r1
 	mov r3, r0
+	ldw r0, dp[__llvm_gcov_ctr.77+4]
+	ldw r4, dp[__llvm_gcov_ctr.77]
 	ldc r1, 0
+	mkmsk r11, 1
+	ladd r5, r4, r4, r11, r1
+	add r0, r0, r5
+	stw r4, dp[__llvm_gcov_ctr.77]
+	stw r0, dp[__llvm_gcov_ctr.77+4]
 	ldaw r0, sp[1]
 	st8 r3, r0[r1]
 	stw r2, sp[0]
 	ldw r2, dp[.L__profc_rotr8+4]
 	ldw r3, dp[.L__profc_rotr8]
-	mkmsk r11, 1
 	ladd r11, r3, r3, r11, r1
 	add r2, r2, r11
 	stw r3, dp[.L__profc_rotr8]
@@ -6147,7 +7920,9 @@ rotr8:
 	shl r1, r1, r2
 	or r0, r0, r1
 	zext r0, 8
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom rotr8.function
 .Lfunc_end77:
 	.size	rotr8, .Lfunc_end77-rotr8
@@ -6157,13 +7932,20 @@ rotr8:
 	.type	bswap_16,@function
 	.cc_top bswap_16.function,bswap_16
 bswap_16:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.78+4]
+	ldw r3, dp[__llvm_gcov_ctr.78]
 	ldc r2, 0
+	mkmsk r11, 1
+	ladd r4, r3, r3, r11, r2
+	add r1, r1, r4
+	stw r3, dp[__llvm_gcov_ctr.78]
+	stw r1, dp[__llvm_gcov_ctr.78+4]
 	ldaw r1, sp[0]
 	st16 r0, r1[r2]
 	ldw r0, dp[.L__profc_bswap_16+4]
 	ldw r3, dp[.L__profc_bswap_16]
-	mkmsk r11, 1
 	ladd r11, r3, r3, r11, r2
 	add r0, r0, r11
 	stw r3, dp[.L__profc_bswap_16]
@@ -6182,7 +7964,8 @@ bswap_16:
 	shl r1, r1, 8
 	or r0, r0, r1
 	zext r0, 16
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom bswap_16.function
 .Lfunc_end78:
 	.size	bswap_16, .Lfunc_end78-bswap_16
@@ -6192,12 +7975,19 @@ bswap_16:
 	.type	bswap_32,@function
 	.cc_top bswap_32.function,bswap_32
 bswap_32:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.79+4]
+	ldw r11, dp[__llvm_gcov_ctr.79]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.79]
+	stw r1, dp[__llvm_gcov_ctr.79+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc_bswap_32+4]
 	ldw r1, dp[.L__profc_bswap_32]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_bswap_32]
@@ -6219,7 +8009,8 @@ bswap_32:
 	and r1, r1, r2
 	shl r1, r1, 24
 	or r0, r0, r1
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom bswap_32.function
 .Lfunc_end79:
 	.size	bswap_32, .Lfunc_end79-bswap_32
@@ -6234,12 +8025,20 @@ bswap_64:
 	stw r5, sp[6]
 	stw r6, sp[5]
 	stw r7, sp[4]
-	stw r1, sp[3]
-	stw r0, sp[2]
-	ldw r1, dp[.L__profc_bswap_64+4]
-	ldw r2, dp[.L__profc_bswap_64]
+	mov r2, r1
+	mov r1, r0
+	ldw r11, dp[__llvm_gcov_ctr.80+4]
+	ldw r4, dp[__llvm_gcov_ctr.80]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.80]
+	stw r11, dp[__llvm_gcov_ctr.80+4]
+	stw r2, sp[3]
+	stw r1, sp[2]
+	ldw r1, dp[.L__profc_bswap_64+4]
+	ldw r2, dp[.L__profc_bswap_64]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_bswap_64]
@@ -6331,10 +8130,16 @@ ffs:
 	bf r0, .LBB81_4
 	bu .LBB81_3
 .LBB81_3:
-	ldw r0, dp[.L__profc_ffs+20]
-	ldw r1, dp[.L__profc_ffs+16]
+	ldw r0, dp[__llvm_gcov_ctr.81+4]
+	ldw r1, dp[__llvm_gcov_ctr.81]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.81]
+	stw r0, dp[__llvm_gcov_ctr.81+4]
+	ldw r0, dp[.L__profc_ffs+20]
+	ldw r1, dp[.L__profc_ffs+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ffs+16]
@@ -6346,12 +8151,27 @@ ffs:
 .LBB81_4:
 	bu .LBB81_5
 .LBB81_5:
+	ldw r0, dp[__llvm_gcov_ctr.81+12]
+	ldw r1, dp[__llvm_gcov_ctr.81+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.81+8]
+	stw r0, dp[__llvm_gcov_ctr.81+12]
 	ldw r0, sp[0]
 	add r0, r0, 1
 	stw r0, sp[0]
 	bu .LBB81_1
 .LBB81_6:
+	ldw r1, dp[__llvm_gcov_ctr.81+20]
+	ldw r2, dp[__llvm_gcov_ctr.81+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.81+16]
+	stw r1, dp[__llvm_gcov_ctr.81+20]
 	stw r0, sp[2]
 	bu .LBB81_7
 .LBB81_7:
@@ -6380,10 +8200,16 @@ libiberty_ffs:
 	bt r0, .LBB82_2
 	bu .LBB82_1
 .LBB82_1:
-	ldw r1, dp[.L__profc_libiberty_ffs+12]
-	ldw r2, dp[.L__profc_libiberty_ffs+8]
+	ldw r1, dp[__llvm_gcov_ctr.82+12]
+	ldw r2, dp[__llvm_gcov_ctr.82+8]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.82+8]
+	stw r1, dp[__llvm_gcov_ctr.82+12]
+	ldw r1, dp[.L__profc_libiberty_ffs+12]
+	ldw r2, dp[.L__profc_libiberty_ffs+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_libiberty_ffs+8]
@@ -6391,7 +8217,14 @@ libiberty_ffs:
 	stw r0, sp[2]
 	bu .LBB82_7
 .LBB82_2:
+	ldw r1, dp[__llvm_gcov_ctr.82+4]
+	ldw r2, dp[__llvm_gcov_ctr.82]
+	ldc r3, 0
 	mkmsk r0, 1
+	ladd r3, r2, r2, r0, r3
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.82]
+	stw r1, dp[__llvm_gcov_ctr.82+4]
 	stw r0, sp[0]
 	bu .LBB82_3
 .LBB82_3:
@@ -6415,6 +8248,14 @@ libiberty_ffs:
 	stw r0, sp[1]
 	bu .LBB82_5
 .LBB82_5:
+	ldw r0, dp[__llvm_gcov_ctr.82+20]
+	ldw r1, dp[__llvm_gcov_ctr.82+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.82+16]
+	stw r0, dp[__llvm_gcov_ctr.82+20]
 	ldw r0, sp[0]
 	add r0, r0, 1
 	stw r0, sp[0]
@@ -6442,13 +8283,20 @@ libiberty_ffs:
 	.type	gl_isinff,@function
 	.cc_top gl_isinff.function,gl_isinff
 gl_isinff:
-	entsp 6
-	stw r0, sp[5]
-	ldw r0, dp[.L__profc_gl_isinff+4]
-	ldw r1, dp[.L__profc_gl_isinff]
+	entsp 7
+	stw r4, sp[6]
+	ldw r1, dp[__llvm_gcov_ctr.83+4]
+	ldw r11, dp[__llvm_gcov_ctr.83]
 	ldc r3, 0
 	mkmsk r2, 1
 	stw r2, sp[3]
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.83]
+	stw r1, dp[__llvm_gcov_ctr.83+4]
+	stw r0, sp[5]
+	ldw r0, dp[.L__profc_gl_isinff+4]
+	ldw r1, dp[.L__profc_gl_isinff]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinff]
@@ -6462,11 +8310,17 @@ gl_isinff:
 	bt r0, .LBB83_3
 	bu .LBB83_1
 .LBB83_1:
-	ldw r0, dp[.L__profc_gl_isinff+12]
-	ldw r1, dp[.L__profc_gl_isinff+8]
+	ldw r0, dp[__llvm_gcov_ctr.83+12]
+	ldw r1, dp[__llvm_gcov_ctr.83+8]
 	ldc r3, 0
 	stw r3, sp[1]
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.83+8]
+	stw r0, dp[__llvm_gcov_ctr.83+12]
+	ldw r0, dp[.L__profc_gl_isinff+12]
+	ldw r1, dp[.L__profc_gl_isinff+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinff+8]
@@ -6484,10 +8338,16 @@ gl_isinff:
 	bu .LBB83_2
 .LBB83_2:
 	ldw r0, sp[2]
-	ldw r1, dp[.L__profc_gl_isinff+20]
-	ldw r2, dp[.L__profc_gl_isinff+16]
+	ldw r1, dp[__llvm_gcov_ctr.83+20]
+	ldw r2, dp[__llvm_gcov_ctr.83+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.83+16]
+	stw r1, dp[__llvm_gcov_ctr.83+20]
+	ldw r1, dp[.L__profc_gl_isinff+20]
+	ldw r2, dp[.L__profc_gl_isinff+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_gl_isinff+16]
@@ -6497,7 +8357,8 @@ gl_isinff:
 .LBB83_3:
 	ldw r0, sp[4]
 	zext r0, 1
-	retsp 6
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom gl_isinff.function
 .Lfunc_end83:
 	.size	gl_isinff, .Lfunc_end83-gl_isinff
@@ -6514,14 +8375,22 @@ gl_isinff:
 	.type	gl_isinfd,@function
 	.cc_top gl_isinfd.function,gl_isinfd
 gl_isinfd:
-	entsp 7
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	ldw r11, dp[__llvm_gcov_ctr.84+4]
+	ldw r4, dp[__llvm_gcov_ctr.84]
+	ldc r3, 0
+	mkmsk r2, 1
+	stw r2, sp[3]
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.84]
+	stw r11, dp[__llvm_gcov_ctr.84+4]
 	stw r1, sp[6]
 	stw r0, sp[5]
 	ldw r0, dp[.L__profc_gl_isinfd+4]
 	ldw r1, dp[.L__profc_gl_isinfd]
-	ldc r3, 0
-	mkmsk r2, 1
-	stw r2, sp[3]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinfd]
@@ -6537,11 +8406,17 @@ gl_isinfd:
 	bt r0, .LBB84_3
 	bu .LBB84_1
 .LBB84_1:
-	ldw r0, dp[.L__profc_gl_isinfd+12]
-	ldw r1, dp[.L__profc_gl_isinfd+8]
+	ldw r0, dp[__llvm_gcov_ctr.84+12]
+	ldw r1, dp[__llvm_gcov_ctr.84+8]
 	ldc r3, 0
 	stw r3, sp[1]
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.84+8]
+	stw r0, dp[__llvm_gcov_ctr.84+12]
+	ldw r0, dp[.L__profc_gl_isinfd+12]
+	ldw r1, dp[.L__profc_gl_isinfd+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinfd+8]
@@ -6561,10 +8436,16 @@ gl_isinfd:
 	bu .LBB84_2
 .LBB84_2:
 	ldw r0, sp[2]
-	ldw r1, dp[.L__profc_gl_isinfd+20]
-	ldw r2, dp[.L__profc_gl_isinfd+16]
+	ldw r1, dp[__llvm_gcov_ctr.84+20]
+	ldw r2, dp[__llvm_gcov_ctr.84+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.84+16]
+	stw r1, dp[__llvm_gcov_ctr.84+20]
+	ldw r1, dp[.L__profc_gl_isinfd+20]
+	ldw r2, dp[.L__profc_gl_isinfd+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_gl_isinfd+16]
@@ -6574,7 +8455,9 @@ gl_isinfd:
 .LBB84_3:
 	ldw r0, sp[4]
 	zext r0, 1
-	retsp 7
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom gl_isinfd.function
 .Lfunc_end84:
 	.size	gl_isinfd, .Lfunc_end84-gl_isinfd
@@ -6591,14 +8474,22 @@ gl_isinfd:
 	.type	gl_isinfl,@function
 	.cc_top gl_isinfl.function,gl_isinfl
 gl_isinfl:
-	entsp 7
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	ldw r11, dp[__llvm_gcov_ctr.85+4]
+	ldw r4, dp[__llvm_gcov_ctr.85]
+	ldc r3, 0
+	mkmsk r2, 1
+	stw r2, sp[3]
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.85]
+	stw r11, dp[__llvm_gcov_ctr.85+4]
 	stw r1, sp[6]
 	stw r0, sp[5]
 	ldw r0, dp[.L__profc_gl_isinfl+4]
 	ldw r1, dp[.L__profc_gl_isinfl]
-	ldc r3, 0
-	mkmsk r2, 1
-	stw r2, sp[3]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinfl]
@@ -6614,11 +8505,17 @@ gl_isinfl:
 	bt r0, .LBB85_3
 	bu .LBB85_1
 .LBB85_1:
-	ldw r0, dp[.L__profc_gl_isinfl+12]
-	ldw r1, dp[.L__profc_gl_isinfl+8]
+	ldw r0, dp[__llvm_gcov_ctr.85+12]
+	ldw r1, dp[__llvm_gcov_ctr.85+8]
 	ldc r3, 0
 	stw r3, sp[1]
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.85+8]
+	stw r0, dp[__llvm_gcov_ctr.85+12]
+	ldw r0, dp[.L__profc_gl_isinfl+12]
+	ldw r1, dp[.L__profc_gl_isinfl+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_gl_isinfl+8]
@@ -6638,10 +8535,16 @@ gl_isinfl:
 	bu .LBB85_2
 .LBB85_2:
 	ldw r0, sp[2]
-	ldw r1, dp[.L__profc_gl_isinfl+20]
-	ldw r2, dp[.L__profc_gl_isinfl+16]
+	ldw r1, dp[__llvm_gcov_ctr.85+20]
+	ldw r2, dp[__llvm_gcov_ctr.85+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.85+16]
+	stw r1, dp[__llvm_gcov_ctr.85+20]
+	ldw r1, dp[.L__profc_gl_isinfl+20]
+	ldw r2, dp[.L__profc_gl_isinfl+16]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_gl_isinfl+16]
@@ -6651,7 +8554,9 @@ gl_isinfl:
 .LBB85_3:
 	ldw r0, sp[4]
 	zext r0, 1
-	retsp 7
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom gl_isinfl.function
 .Lfunc_end85:
 	.size	gl_isinfl, .Lfunc_end85-gl_isinfl
@@ -6661,13 +8566,21 @@ gl_isinfl:
 	.type	_Qp_itoq,@function
 	.cc_top _Qp_itoq.function,_Qp_itoq
 _Qp_itoq:
-	entsp 3
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	ldw r11, dp[__llvm_gcov_ctr.86+4]
+	ldw r4, dp[__llvm_gcov_ctr.86]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.86]
+	stw r11, dp[__llvm_gcov_ctr.86+4]
 	stw r0, sp[2]
 	stw r1, sp[1]
 	ldw r0, dp[.L__profc__Qp_itoq+4]
 	ldw r1, dp[.L__profc__Qp_itoq]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc__Qp_itoq]
@@ -6678,7 +8591,9 @@ _Qp_itoq:
 	ldw r1, sp[2]
 	stw r2, r1[1]
 	stw r0, r1[0]
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom _Qp_itoq.function
 .Lfunc_end86:
 	.size	_Qp_itoq, .Lfunc_end86-_Qp_itoq
@@ -6701,13 +8616,21 @@ _Qp_itoq:
 	.type	ldexpf,@function
 	.cc_top ldexpf.function,ldexpf
 ldexpf:
-	entsp 7
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	ldw r11, dp[__llvm_gcov_ctr.87+4]
+	ldw r4, dp[__llvm_gcov_ctr.87]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.87]
+	stw r11, dp[__llvm_gcov_ctr.87+4]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	ldw r0, dp[.L__profc_ldexpf+4]
 	ldw r1, dp[.L__profc_ldexpf]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpf]
@@ -6720,10 +8643,16 @@ ldexpf:
 	bt r0, .LBB87_10
 	bu .LBB87_1
 .LBB87_1:
-	ldw r0, dp[.L__profc_ldexpf+20]
-	ldw r1, dp[.L__profc_ldexpf+16]
+	ldw r0, dp[__llvm_gcov_ctr.87+12]
+	ldw r1, dp[__llvm_gcov_ctr.87+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.87+8]
+	stw r0, dp[__llvm_gcov_ctr.87+12]
+	ldw r0, dp[.L__profc_ldexpf+20]
+	ldw r1, dp[.L__profc_ldexpf+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpf+16]
@@ -6737,10 +8666,16 @@ ldexpf:
 	bf r0, .LBB87_10
 	bu .LBB87_2
 .LBB87_2:
-	ldw r0, dp[.L__profc_ldexpf+28]
-	ldw r1, dp[.L__profc_ldexpf+24]
+	ldw r0, dp[__llvm_gcov_ctr.87+20]
+	ldw r1, dp[__llvm_gcov_ctr.87+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.87+16]
+	stw r0, dp[__llvm_gcov_ctr.87+20]
+	ldw r0, dp[.L__profc_ldexpf+28]
+	ldw r1, dp[.L__profc_ldexpf+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpf+24]
@@ -6795,10 +8730,16 @@ ldexpf:
 	bf r0, .LBB87_6
 	bu .LBB87_5
 .LBB87_5:
-	ldw r0, dp[.L__profc_ldexpf+52]
-	ldw r1, dp[.L__profc_ldexpf+48]
+	ldw r0, dp[__llvm_gcov_ctr.87+28]
+	ldw r1, dp[__llvm_gcov_ctr.87+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.87+24]
+	stw r0, dp[__llvm_gcov_ctr.87+28]
+	ldw r0, dp[.L__profc_ldexpf+52]
+	ldw r1, dp[.L__profc_ldexpf+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpf+48]
@@ -6829,6 +8770,14 @@ ldexpf:
 	stw r0, dp[.L__profc_ldexpf+60]
 	bu .LBB87_9
 .LBB87_8:
+	ldw r0, dp[__llvm_gcov_ctr.87+36]
+	ldw r1, dp[__llvm_gcov_ctr.87+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.87+32]
+	stw r0, dp[__llvm_gcov_ctr.87+36]
 	ldw r1, sp[4]
 	mov r0, r1
 	bl __mulsf3
@@ -6838,7 +8787,9 @@ ldexpf:
 	bu .LBB87_10
 .LBB87_10:
 	ldw r0, sp[6]
-	retsp 7
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom ldexpf.function
 .Lfunc_end87:
 	.size	ldexpf, .Lfunc_end87-ldexpf
@@ -6861,48 +8812,67 @@ ldexpf:
 	.type	ldexp,@function
 	.cc_top ldexp.function,ldexp
 ldexp:
-	entsp 13
-	stw r1, sp[12]
-	stw r0, sp[11]
-	stw r2, sp[10]
-	ldw r0, dp[.L__profc_ldexp+4]
-	ldw r1, dp[.L__profc_ldexp]
+	entsp 17
+	stw r4, sp[16]
+	stw r5, sp[15]
+	stw r6, sp[14]
+	stw r2, sp[6]
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[6]
+	ldw r4, dp[__llvm_gcov_ctr.88+4]
+	ldw r5, dp[__llvm_gcov_ctr.88]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.88]
+	stw r4, dp[__llvm_gcov_ctr.88+4]
+	stw r11, sp[13]
+	stw r1, sp[12]
+	stw r0, sp[11]
+	ldw r0, dp[.L__profc_ldexp+4]
+	ldw r1, dp[.L__profc_ldexp]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp]
 	stw r0, dp[.L__profc_ldexp+4]
-	ldw r1, sp[11]
-	ldw r0, sp[12]
+	ldw r1, sp[12]
+	ldw r0, sp[13]
 	ldw r2, cp[.LCPI88_0]
 	and r0, r0, r2
 	ldw r2, cp[.LCPI88_1]
 	lss r3, r2, r0
-	stw r3, sp[6]
+	stw r3, sp[7]
 	eq r0, r0, r2
 	eq r1, r1, 0
 	eq r1, r1, 0
-	stw r1, sp[7]
+	stw r1, sp[8]
 	bt r0, .LBB88_12
-	ldw r0, sp[6]
-	stw r0, sp[7]
-.LBB88_12:
 	ldw r0, sp[7]
+	stw r0, sp[8]
+.LBB88_12:
+	ldw r0, sp[8]
 	bt r0, .LBB88_10
 	bu .LBB88_1
 .LBB88_1:
-	ldw r0, dp[.L__profc_ldexp+20]
-	ldw r1, dp[.L__profc_ldexp+16]
+	ldw r0, dp[__llvm_gcov_ctr.88+12]
+	ldw r1, dp[__llvm_gcov_ctr.88+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.88+8]
+	stw r0, dp[__llvm_gcov_ctr.88+12]
+	ldw r0, dp[.L__profc_ldexp+20]
+	ldw r1, dp[.L__profc_ldexp+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp+16]
 	stw r0, dp[.L__profc_ldexp+20]
-	ldw r2, sp[11]
+	ldw r2, sp[12]
 	stw r2, sp[5]
-	ldw r3, sp[12]
+	ldw r3, sp[13]
 	stw r3, sp[4]
 	mov r0, r2
 	mov r1, r3
@@ -6913,10 +8883,16 @@ ldexp:
 	bf r0, .LBB88_10
 	bu .LBB88_2
 .LBB88_2:
-	ldw r0, dp[.L__profc_ldexp+28]
-	ldw r1, dp[.L__profc_ldexp+24]
+	ldw r0, dp[__llvm_gcov_ctr.88+20]
+	ldw r1, dp[__llvm_gcov_ctr.88+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.88+16]
+	stw r0, dp[__llvm_gcov_ctr.88+20]
+	ldw r0, dp[.L__profc_ldexp+28]
+	ldw r1, dp[.L__profc_ldexp+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp+24]
@@ -6932,7 +8908,7 @@ ldexp:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp+8]
 	stw r0, dp[.L__profc_ldexp+12]
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r3, r0, r1
 	ldw r1, dp[.L__profc_ldexp+36]
@@ -6952,8 +8928,8 @@ ldexp:
 .LBB88_14:
 	ldw r0, sp[1]
 	ldw r1, sp[3]
-	stw r1, sp[9]
-	stw r0, sp[8]
+	stw r1, sp[10]
+	stw r0, sp[9]
 	bu .LBB88_4
 .LBB88_4:
 	ldw r0, dp[.L__profc_ldexp+44]
@@ -6964,7 +8940,7 @@ ldexp:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp+40]
 	stw r0, dp[.L__profc_ldexp+44]
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r1, r0, r1
 	add r1, r0, r1
@@ -6974,30 +8950,36 @@ ldexp:
 	bf r0, .LBB88_6
 	bu .LBB88_5
 .LBB88_5:
-	ldw r0, dp[.L__profc_ldexp+52]
-	ldw r1, dp[.L__profc_ldexp+48]
+	ldw r0, dp[__llvm_gcov_ctr.88+28]
+	ldw r1, dp[__llvm_gcov_ctr.88+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.88+24]
+	stw r0, dp[__llvm_gcov_ctr.88+28]
+	ldw r0, dp[.L__profc_ldexp+52]
+	ldw r1, dp[.L__profc_ldexp+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexp+48]
 	stw r0, dp[.L__profc_ldexp+52]
-	ldw r2, sp[8]
-	ldw r3, sp[9]
-	ldw r0, sp[11]
-	ldw r1, sp[12]
+	ldw r2, sp[9]
+	ldw r3, sp[10]
+	ldw r0, sp[12]
+	ldw r1, sp[13]
 	bl __muldf3
-	stw r1, sp[12]
-	stw r0, sp[11]
+	stw r1, sp[13]
+	stw r0, sp[12]
 	bu .LBB88_6
 .LBB88_6:
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r1, r0, r1
 	add r0, r0, r1
 	ashr r0, r0, 1
-	stw r0, sp[10]
-	ldw r0, sp[10]
+	stw r0, sp[11]
+	ldw r0, sp[11]
 	bt r0, .LBB88_8
 	bu .LBB88_7
 .LBB88_7:
@@ -7011,20 +8993,31 @@ ldexp:
 	stw r0, dp[.L__profc_ldexp+60]
 	bu .LBB88_9
 .LBB88_8:
-	ldw r2, sp[8]
-	ldw r3, sp[9]
+	ldw r0, dp[__llvm_gcov_ctr.88+36]
+	ldw r1, dp[__llvm_gcov_ctr.88+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.88+32]
+	stw r0, dp[__llvm_gcov_ctr.88+36]
+	ldw r2, sp[9]
+	ldw r3, sp[10]
 	mov r0, r2
 	mov r1, r3
 	bl __muldf3
-	stw r1, sp[9]
-	stw r0, sp[8]
+	stw r1, sp[10]
+	stw r0, sp[9]
 	bu .LBB88_4
 .LBB88_9:
 	bu .LBB88_10
 .LBB88_10:
-	ldw r0, sp[11]
-	ldw r1, sp[12]
-	retsp 13
+	ldw r0, sp[12]
+	ldw r1, sp[13]
+	ldw r6, sp[14]
+	ldw r5, sp[15]
+	ldw r4, sp[16]
+	retsp 17
 	.cc_bottom ldexp.function
 .Lfunc_end88:
 	.size	ldexp, .Lfunc_end88-ldexp
@@ -7047,48 +9040,67 @@ ldexp:
 	.type	ldexpl,@function
 	.cc_top ldexpl.function,ldexpl
 ldexpl:
-	entsp 13
-	stw r1, sp[12]
-	stw r0, sp[11]
-	stw r2, sp[10]
-	ldw r0, dp[.L__profc_ldexpl+4]
-	ldw r1, dp[.L__profc_ldexpl]
+	entsp 17
+	stw r4, sp[16]
+	stw r5, sp[15]
+	stw r6, sp[14]
+	stw r2, sp[6]
+	mov r11, r1
+	mov r1, r0
+	ldw r0, sp[6]
+	ldw r4, dp[__llvm_gcov_ctr.89+4]
+	ldw r5, dp[__llvm_gcov_ctr.89]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.89]
+	stw r4, dp[__llvm_gcov_ctr.89+4]
+	stw r11, sp[13]
+	stw r1, sp[12]
+	stw r0, sp[11]
+	ldw r0, dp[.L__profc_ldexpl+4]
+	ldw r1, dp[.L__profc_ldexpl]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl]
 	stw r0, dp[.L__profc_ldexpl+4]
-	ldw r1, sp[11]
-	ldw r0, sp[12]
+	ldw r1, sp[12]
+	ldw r0, sp[13]
 	ldw r2, cp[.LCPI89_0]
 	and r0, r0, r2
 	ldw r2, cp[.LCPI89_1]
 	lss r3, r2, r0
-	stw r3, sp[6]
+	stw r3, sp[7]
 	eq r0, r0, r2
 	eq r1, r1, 0
 	eq r1, r1, 0
-	stw r1, sp[7]
+	stw r1, sp[8]
 	bt r0, .LBB89_12
-	ldw r0, sp[6]
-	stw r0, sp[7]
-.LBB89_12:
 	ldw r0, sp[7]
+	stw r0, sp[8]
+.LBB89_12:
+	ldw r0, sp[8]
 	bt r0, .LBB89_10
 	bu .LBB89_1
 .LBB89_1:
-	ldw r0, dp[.L__profc_ldexpl+20]
-	ldw r1, dp[.L__profc_ldexpl+16]
+	ldw r0, dp[__llvm_gcov_ctr.89+12]
+	ldw r1, dp[__llvm_gcov_ctr.89+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.89+8]
+	stw r0, dp[__llvm_gcov_ctr.89+12]
+	ldw r0, dp[.L__profc_ldexpl+20]
+	ldw r1, dp[.L__profc_ldexpl+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl+16]
 	stw r0, dp[.L__profc_ldexpl+20]
-	ldw r2, sp[11]
+	ldw r2, sp[12]
 	stw r2, sp[5]
-	ldw r3, sp[12]
+	ldw r3, sp[13]
 	stw r3, sp[4]
 	mov r0, r2
 	mov r1, r3
@@ -7099,10 +9111,16 @@ ldexpl:
 	bf r0, .LBB89_10
 	bu .LBB89_2
 .LBB89_2:
-	ldw r0, dp[.L__profc_ldexpl+28]
-	ldw r1, dp[.L__profc_ldexpl+24]
+	ldw r0, dp[__llvm_gcov_ctr.89+20]
+	ldw r1, dp[__llvm_gcov_ctr.89+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.89+16]
+	stw r0, dp[__llvm_gcov_ctr.89+20]
+	ldw r0, dp[.L__profc_ldexpl+28]
+	ldw r1, dp[.L__profc_ldexpl+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl+24]
@@ -7118,7 +9136,7 @@ ldexpl:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl+8]
 	stw r0, dp[.L__profc_ldexpl+12]
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r3, r0, r1
 	ldw r1, dp[.L__profc_ldexpl+36]
@@ -7138,8 +9156,8 @@ ldexpl:
 .LBB89_14:
 	ldw r0, sp[1]
 	ldw r1, sp[3]
-	stw r1, sp[9]
-	stw r0, sp[8]
+	stw r1, sp[10]
+	stw r0, sp[9]
 	bu .LBB89_4
 .LBB89_4:
 	ldw r0, dp[.L__profc_ldexpl+44]
@@ -7150,7 +9168,7 @@ ldexpl:
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl+40]
 	stw r0, dp[.L__profc_ldexpl+44]
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r1, r0, r1
 	add r1, r0, r1
@@ -7160,30 +9178,36 @@ ldexpl:
 	bf r0, .LBB89_6
 	bu .LBB89_5
 .LBB89_5:
-	ldw r0, dp[.L__profc_ldexpl+52]
-	ldw r1, dp[.L__profc_ldexpl+48]
+	ldw r0, dp[__llvm_gcov_ctr.89+28]
+	ldw r1, dp[__llvm_gcov_ctr.89+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.89+24]
+	stw r0, dp[__llvm_gcov_ctr.89+28]
+	ldw r0, dp[.L__profc_ldexpl+52]
+	ldw r1, dp[.L__profc_ldexpl+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_ldexpl+48]
 	stw r0, dp[.L__profc_ldexpl+52]
-	ldw r2, sp[8]
-	ldw r3, sp[9]
-	ldw r0, sp[11]
-	ldw r1, sp[12]
+	ldw r2, sp[9]
+	ldw r3, sp[10]
+	ldw r0, sp[12]
+	ldw r1, sp[13]
 	bl __muldf3
-	stw r1, sp[12]
-	stw r0, sp[11]
+	stw r1, sp[13]
+	stw r0, sp[12]
 	bu .LBB89_6
 .LBB89_6:
-	ldw r0, sp[10]
+	ldw r0, sp[11]
 	mkmsk r1, 5
 	shr r1, r0, r1
 	add r0, r0, r1
 	ashr r0, r0, 1
-	stw r0, sp[10]
-	ldw r0, sp[10]
+	stw r0, sp[11]
+	ldw r0, sp[11]
 	bt r0, .LBB89_8
 	bu .LBB89_7
 .LBB89_7:
@@ -7197,20 +9221,31 @@ ldexpl:
 	stw r0, dp[.L__profc_ldexpl+60]
 	bu .LBB89_9
 .LBB89_8:
-	ldw r2, sp[8]
-	ldw r3, sp[9]
+	ldw r0, dp[__llvm_gcov_ctr.89+36]
+	ldw r1, dp[__llvm_gcov_ctr.89+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.89+32]
+	stw r0, dp[__llvm_gcov_ctr.89+36]
+	ldw r2, sp[9]
+	ldw r3, sp[10]
 	mov r0, r2
 	mov r1, r3
 	bl __muldf3
-	stw r1, sp[9]
-	stw r0, sp[8]
+	stw r1, sp[10]
+	stw r0, sp[9]
 	bu .LBB89_4
 .LBB89_9:
 	bu .LBB89_10
 .LBB89_10:
-	ldw r0, sp[11]
-	ldw r1, sp[12]
-	retsp 13
+	ldw r0, sp[12]
+	ldw r1, sp[13]
+	ldw r6, sp[14]
+	ldw r5, sp[15]
+	ldw r4, sp[16]
+	retsp 17
 	.cc_bottom ldexpl.function
 .Lfunc_end89:
 	.size	ldexpl, .Lfunc_end89-ldexpl
@@ -7220,25 +9255,37 @@ ldexpl:
 	.type	memxor,@function
 	.cc_top memxor.function,memxor
 memxor:
-	entsp 5
-	stw r0, sp[4]
-	stw r1, sp[3]
-	stw r2, sp[2]
-	ldw r0, dp[.L__profc_memxor+4]
-	ldw r1, dp[.L__profc_memxor]
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	stw r6, sp[6]
+	stw r2, sp[0]
+	mov r11, r0
+	ldw r0, sp[0]
+	ldw r4, dp[__llvm_gcov_ctr.90+4]
+	ldw r5, dp[__llvm_gcov_ctr.90]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.90]
+	stw r4, dp[__llvm_gcov_ctr.90+4]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_memxor+4]
+	ldw r1, dp[.L__profc_memxor]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memxor]
 	stw r0, dp[.L__profc_memxor+4]
-	ldw r0, sp[3]
-	stw r0, sp[1]
 	ldw r0, sp[4]
-	stw r0, sp[0]
+	stw r0, sp[2]
+	ldw r0, sp[5]
+	stw r0, sp[1]
 	bu .LBB90_1
 .LBB90_1:
-	ldw r0, sp[2]
+	ldw r0, sp[3]
 	bf r0, .LBB90_4
 	bu .LBB90_2
 .LBB90_2:
@@ -7250,25 +9297,36 @@ memxor:
 	add r0, r0, r3
 	stw r1, dp[.L__profc_memxor+8]
 	stw r0, dp[.L__profc_memxor+12]
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	add r1, r0, 1
-	stw r1, sp[1]
+	stw r1, sp[2]
 	ld8u r3, r0[r2]
-	ldw r1, sp[0]
+	ldw r1, sp[1]
 	add r0, r1, 1
-	stw r0, sp[0]
+	stw r0, sp[1]
 	ld8u r0, r1[r2]
 	xor r0, r0, r3
 	st8 r0, r1[r2]
 	bu .LBB90_3
 .LBB90_3:
-	ldw r0, sp[2]
+	ldw r0, dp[__llvm_gcov_ctr.90+12]
+	ldw r1, dp[__llvm_gcov_ctr.90+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.90+8]
+	stw r0, dp[__llvm_gcov_ctr.90+12]
+	ldw r0, sp[3]
 	sub r0, r0, 1
-	stw r0, sp[2]
+	stw r0, sp[3]
 	bu .LBB90_1
 .LBB90_4:
-	ldw r0, sp[4]
-	retsp 5
+	ldw r0, sp[5]
+	ldw r6, sp[6]
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom memxor.function
 .Lfunc_end90:
 	.size	memxor, .Lfunc_end90-memxor
@@ -7278,7 +9336,8 @@ memxor:
 	.type	strncat,@function
 	.cc_top strncat.function,strncat
 strncat:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[7]
 	stw r1, sp[6]
 	stw r2, sp[5]
@@ -7305,10 +9364,16 @@ strncat:
 	bf r0, .LBB91_4
 	bu .LBB91_2
 .LBB91_2:
-	ldw r0, dp[.L__profc_strncat+20]
-	ldw r1, dp[.L__profc_strncat+16]
+	ldw r0, dp[__llvm_gcov_ctr.91+4]
+	ldw r1, dp[__llvm_gcov_ctr.91]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.91]
+	stw r0, dp[__llvm_gcov_ctr.91+4]
+	ldw r0, dp[.L__profc_strncat+20]
+	ldw r1, dp[.L__profc_strncat+16]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_strncat+16]
@@ -7325,10 +9390,16 @@ strncat:
 	bu .LBB91_3
 .LBB91_3:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc_strncat+28]
-	ldw r2, dp[.L__profc_strncat+24]
+	ldw r1, dp[__llvm_gcov_ctr.91+12]
+	ldw r2, dp[__llvm_gcov_ctr.91+8]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.91+8]
+	stw r1, dp[__llvm_gcov_ctr.91+12]
+	ldw r1, dp[.L__profc_strncat+28]
+	ldw r2, dp[.L__profc_strncat+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strncat+24]
@@ -7351,6 +9422,14 @@ strncat:
 	stw r0, dp[.L__profc_strncat+12]
 	bu .LBB91_6
 .LBB91_6:
+	ldw r0, dp[__llvm_gcov_ctr.91+28]
+	ldw r1, dp[__llvm_gcov_ctr.91+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.91+24]
+	stw r0, dp[__llvm_gcov_ctr.91+28]
 	ldw r0, sp[6]
 	add r0, r0, 1
 	stw r0, sp[6]
@@ -7362,14 +9441,28 @@ strncat:
 	stw r0, sp[5]
 	bu .LBB91_1
 .LBB91_7:
+	ldw r0, dp[__llvm_gcov_ctr.91+20]
+	ldw r1, dp[__llvm_gcov_ctr.91+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.91+16]
+	stw r0, dp[__llvm_gcov_ctr.91+20]
 	ldw r0, sp[5]
 	bt r0, .LBB91_9
 	bu .LBB91_8
 .LBB91_8:
-	ldw r1, dp[.L__profc_strncat+36]
-	ldw r2, dp[.L__profc_strncat+32]
+	ldw r1, dp[__llvm_gcov_ctr.91+36]
+	ldw r2, dp[__llvm_gcov_ctr.91+32]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.91+32]
+	stw r1, dp[__llvm_gcov_ctr.91+36]
+	ldw r1, dp[.L__profc_strncat+36]
+	ldw r2, dp[.L__profc_strncat+32]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strncat+32]
@@ -7379,7 +9472,8 @@ strncat:
 	bu .LBB91_9
 .LBB91_9:
 	ldw r0, sp[7]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom strncat.function
 .Lfunc_end91:
 	.size	strncat, .Lfunc_end91-strncat
@@ -7389,13 +9483,22 @@ strncat:
 	.type	strnlen,@function
 	.cc_top strnlen.function,strnlen
 strnlen:
-	entsp 5
-	stw r0, sp[4]
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.92+4]
+	ldw r4, dp[__llvm_gcov_ctr.92]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.92]
+	stw r11, dp[__llvm_gcov_ctr.92+4]
+	stw r2, sp[4]
 	stw r1, sp[3]
 	ldw r1, dp[.L__profc_strnlen+4]
 	ldw r2, dp[.L__profc_strnlen]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strnlen]
@@ -7411,10 +9514,16 @@ strnlen:
 	bf r0, .LBB92_4
 	bu .LBB92_2
 .LBB92_2:
-	ldw r0, dp[.L__profc_strnlen+20]
-	ldw r1, dp[.L__profc_strnlen+16]
+	ldw r0, dp[__llvm_gcov_ctr.92+12]
+	ldw r1, dp[__llvm_gcov_ctr.92+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.92+8]
+	stw r0, dp[__llvm_gcov_ctr.92+12]
+	ldw r0, dp[.L__profc_strnlen+20]
+	ldw r1, dp[.L__profc_strnlen+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strnlen+16]
@@ -7430,10 +9539,16 @@ strnlen:
 	bu .LBB92_3
 .LBB92_3:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_strnlen+28]
-	ldw r2, dp[.L__profc_strnlen+24]
+	ldw r1, dp[__llvm_gcov_ctr.92+20]
+	ldw r2, dp[__llvm_gcov_ctr.92+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.92+16]
+	stw r1, dp[__llvm_gcov_ctr.92+20]
+	ldw r1, dp[.L__profc_strnlen+28]
+	ldw r2, dp[.L__profc_strnlen+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strnlen+24]
@@ -7456,13 +9571,23 @@ strnlen:
 	stw r0, dp[.L__profc_strnlen+12]
 	bu .LBB92_6
 .LBB92_6:
+	ldw r0, dp[__llvm_gcov_ctr.92+28]
+	ldw r1, dp[__llvm_gcov_ctr.92+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.92+24]
+	stw r0, dp[__llvm_gcov_ctr.92+28]
 	ldw r0, sp[2]
 	add r0, r0, 1
 	stw r0, sp[2]
 	bu .LBB92_1
 .LBB92_7:
 	ldw r0, sp[2]
-	retsp 5
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom strnlen.function
 .Lfunc_end92:
 	.size	strnlen, .Lfunc_end92-strnlen
@@ -7527,10 +9652,16 @@ strpbrk:
 	bf r0, .LBB93_6
 	bu .LBB93_5
 .LBB93_5:
-	ldw r0, dp[.L__profc_strpbrk+28]
-	ldw r1, dp[.L__profc_strpbrk+24]
+	ldw r0, dp[__llvm_gcov_ctr.93+12]
+	ldw r1, dp[__llvm_gcov_ctr.93+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.93+8]
+	stw r0, dp[__llvm_gcov_ctr.93+12]
+	ldw r0, dp[.L__profc_strpbrk+28]
+	ldw r1, dp[.L__profc_strpbrk+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strpbrk+24]
@@ -7539,14 +9670,37 @@ strpbrk:
 	stw r0, sp[3]
 	bu .LBB93_9
 .LBB93_6:
+	ldw r0, dp[__llvm_gcov_ctr.93+20]
+	ldw r1, dp[__llvm_gcov_ctr.93+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.93+16]
+	stw r0, dp[__llvm_gcov_ctr.93+20]
 	bu .LBB93_3
 .LBB93_7:
+	ldw r0, dp[__llvm_gcov_ctr.93+28]
+	ldw r1, dp[__llvm_gcov_ctr.93+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.93+24]
+	stw r0, dp[__llvm_gcov_ctr.93+28]
 	ldw r0, sp[2]
 	add r0, r0, 1
 	stw r0, sp[2]
 	bu .LBB93_1
 .LBB93_8:
+	ldw r1, dp[__llvm_gcov_ctr.93+4]
+	ldw r2, dp[__llvm_gcov_ctr.93]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.93]
+	stw r1, dp[__llvm_gcov_ctr.93+4]
 	stw r0, sp[3]
 	bu .LBB93_9
 .LBB93_9:
@@ -7561,13 +9715,22 @@ strpbrk:
 	.type	strrchr,@function
 	.cc_top strrchr.function,strrchr
 strrchr:
-	entsp 3
-	stw r0, sp[2]
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.94+4]
+	ldw r4, dp[__llvm_gcov_ctr.94]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.94]
+	stw r11, dp[__llvm_gcov_ctr.94+4]
+	stw r2, sp[2]
 	stw r1, sp[1]
 	ldw r1, dp[.L__profc_strrchr+4]
 	ldw r2, dp[.L__profc_strrchr]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_strrchr]
@@ -7575,10 +9738,16 @@ strrchr:
 	stw r0, sp[0]
 	bu .LBB94_2
 .LBB94_1:
-	ldw r0, dp[.L__profc_strrchr+12]
-	ldw r1, dp[.L__profc_strrchr+8]
+	ldw r0, dp[__llvm_gcov_ctr.94+20]
+	ldw r1, dp[__llvm_gcov_ctr.94+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.94+16]
+	stw r0, dp[__llvm_gcov_ctr.94+20]
+	ldw r0, dp[.L__profc_strrchr+12]
+	ldw r1, dp[.L__profc_strrchr+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strrchr+8]
@@ -7593,10 +9762,16 @@ strrchr:
 	bf r0, .LBB94_4
 	bu .LBB94_3
 .LBB94_3:
-	ldw r0, dp[.L__profc_strrchr+20]
-	ldw r1, dp[.L__profc_strrchr+16]
+	ldw r0, dp[__llvm_gcov_ctr.94+12]
+	ldw r1, dp[__llvm_gcov_ctr.94+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.94+8]
+	stw r0, dp[__llvm_gcov_ctr.94+12]
+	ldw r0, dp[.L__profc_strrchr+20]
+	ldw r1, dp[.L__profc_strrchr+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strrchr+16]
@@ -7616,7 +9791,9 @@ strrchr:
 	bu .LBB94_6
 .LBB94_6:
 	ldw r0, sp[0]
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom strrchr.function
 .Lfunc_end94:
 	.size	strrchr, .Lfunc_end94-strrchr
@@ -7646,10 +9823,16 @@ strstr:
 	bt r0, .LBB95_2
 	bu .LBB95_1
 .LBB95_1:
-	ldw r0, dp[.L__profc_strstr+12]
-	ldw r1, dp[.L__profc_strstr+8]
+	ldw r0, dp[__llvm_gcov_ctr.95+4]
+	ldw r1, dp[__llvm_gcov_ctr.95]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.95]
+	stw r0, dp[__llvm_gcov_ctr.95+4]
+	ldw r0, dp[.L__profc_strstr+12]
+	ldw r1, dp[.L__profc_strstr+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strstr+8]
@@ -7684,10 +9867,16 @@ strstr:
 	bt r0, .LBB95_6
 	bu .LBB95_5
 .LBB95_5:
-	ldw r0, dp[.L__profc_strstr+28]
-	ldw r1, dp[.L__profc_strstr+24]
+	ldw r0, dp[__llvm_gcov_ctr.95+12]
+	ldw r1, dp[__llvm_gcov_ctr.95+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.95+8]
+	stw r0, dp[__llvm_gcov_ctr.95+12]
+	ldw r0, dp[.L__profc_strstr+28]
+	ldw r1, dp[.L__profc_strstr+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_strstr+24]
@@ -7698,12 +9887,27 @@ strstr:
 .LBB95_6:
 	bu .LBB95_7
 .LBB95_7:
+	ldw r0, dp[__llvm_gcov_ctr.95+20]
+	ldw r1, dp[__llvm_gcov_ctr.95+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.95+16]
+	stw r0, dp[__llvm_gcov_ctr.95+20]
 	ldw r0, sp[2]
 	add r0, r0, 1
 	stw r0, sp[2]
 	bu .LBB95_3
 .LBB95_8:
+	ldw r1, dp[__llvm_gcov_ctr.95+28]
+	ldw r2, dp[__llvm_gcov_ctr.95+24]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.95+24]
+	stw r1, dp[__llvm_gcov_ctr.95+28]
 	stw r0, sp[5]
 	bu .LBB95_9
 .LBB95_9:
@@ -7744,11 +9948,17 @@ copysign:
 	bf r0, .LBB96_3
 	bu .LBB96_1
 .LBB96_1:
-	ldw r0, dp[.L__profc_copysign+28]
-	ldw r1, dp[.L__profc_copysign+24]
+	ldw r0, dp[__llvm_gcov_ctr.96+4]
+	ldw r1, dp[__llvm_gcov_ctr.96]
 	ldc r3, 0
 	mkmsk r2, 1
 	stw r2, sp[2]
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.96]
+	stw r0, dp[__llvm_gcov_ctr.96+4]
+	ldw r0, dp[.L__profc_copysign+28]
+	ldw r1, dp[.L__profc_copysign+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_copysign+24]
@@ -7762,10 +9972,16 @@ copysign:
 	bt r0, .LBB96_3
 	bu .LBB96_2
 .LBB96_2:
-	ldw r0, dp[.L__profc_copysign+36]
-	ldw r1, dp[.L__profc_copysign+32]
+	ldw r0, dp[__llvm_gcov_ctr.96+12]
+	ldw r1, dp[__llvm_gcov_ctr.96+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.96+8]
+	stw r0, dp[__llvm_gcov_ctr.96+12]
+	ldw r0, dp[.L__profc_copysign+36]
+	ldw r1, dp[.L__profc_copysign+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_copysign+32]
@@ -7790,10 +10006,16 @@ copysign:
 	bt r0, .LBB96_7
 	bu .LBB96_4
 .LBB96_4:
-	ldw r0, dp[.L__profc_copysign+44]
-	ldw r1, dp[.L__profc_copysign+40]
+	ldw r0, dp[__llvm_gcov_ctr.96+20]
+	ldw r1, dp[__llvm_gcov_ctr.96+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.96+16]
+	stw r0, dp[__llvm_gcov_ctr.96+20]
+	ldw r0, dp[.L__profc_copysign+44]
+	ldw r1, dp[.L__profc_copysign+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_copysign+40]
@@ -7806,10 +10028,16 @@ copysign:
 	bf r0, .LBB96_7
 	bu .LBB96_5
 .LBB96_5:
-	ldw r0, dp[.L__profc_copysign+52]
-	ldw r1, dp[.L__profc_copysign+48]
+	ldw r0, dp[__llvm_gcov_ctr.96+28]
+	ldw r1, dp[__llvm_gcov_ctr.96+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.96+24]
+	stw r0, dp[__llvm_gcov_ctr.96+28]
+	ldw r0, dp[.L__profc_copysign+52]
+	ldw r1, dp[.L__profc_copysign+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_copysign+48]
@@ -7832,6 +10060,14 @@ copysign:
 	stw r0, sp[8]
 	bu .LBB96_8
 .LBB96_7:
+	ldw r0, dp[__llvm_gcov_ctr.96+36]
+	ldw r1, dp[__llvm_gcov_ctr.96+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.96+32]
+	stw r0, dp[__llvm_gcov_ctr.96+36]
 	ldw r0, sp[5]
 	ldw r1, sp[6]
 	stw r1, sp[8]
@@ -7873,10 +10109,16 @@ memmem:
 	bt r0, .LBB97_2
 	bu .LBB97_1
 .LBB97_1:
-	ldw r0, dp[.L__profc_memmem+12]
-	ldw r1, dp[.L__profc_memmem+8]
+	ldw r0, dp[__llvm_gcov_ctr.97+4]
+	ldw r1, dp[__llvm_gcov_ctr.97]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.97]
+	stw r0, dp[__llvm_gcov_ctr.97+4]
+	ldw r0, dp[.L__profc_memmem+12]
+	ldw r1, dp[.L__profc_memmem+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memmem+8]
@@ -7891,10 +10133,16 @@ memmem:
 	bf r0, .LBB97_4
 	bu .LBB97_3
 .LBB97_3:
-	ldw r1, dp[.L__profc_memmem+20]
-	ldw r2, dp[.L__profc_memmem+16]
+	ldw r1, dp[__llvm_gcov_ctr.97+12]
+	ldw r2, dp[__llvm_gcov_ctr.97+8]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.97+8]
+	stw r1, dp[__llvm_gcov_ctr.97+12]
+	ldw r1, dp[.L__profc_memmem+20]
+	ldw r2, dp[.L__profc_memmem+16]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc_memmem+16]
@@ -7928,10 +10176,16 @@ memmem:
 	bf r0, .LBB97_10
 	bu .LBB97_7
 .LBB97_7:
-	ldw r0, dp[.L__profc_memmem+44]
-	ldw r1, dp[.L__profc_memmem+40]
+	ldw r0, dp[__llvm_gcov_ctr.97+20]
+	ldw r1, dp[__llvm_gcov_ctr.97+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.97+16]
+	stw r0, dp[__llvm_gcov_ctr.97+20]
+	ldw r0, dp[.L__profc_memmem+44]
+	ldw r1, dp[.L__profc_memmem+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memmem+40]
@@ -7946,10 +10200,16 @@ memmem:
 	bt r0, .LBB97_10
 	bu .LBB97_8
 .LBB97_8:
-	ldw r0, dp[.L__profc_memmem+52]
-	ldw r1, dp[.L__profc_memmem+48]
+	ldw r0, dp[__llvm_gcov_ctr.97+28]
+	ldw r1, dp[__llvm_gcov_ctr.97+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.97+24]
+	stw r0, dp[__llvm_gcov_ctr.97+28]
+	ldw r0, dp[.L__profc_memmem+52]
+	ldw r1, dp[.L__profc_memmem+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_memmem+48]
@@ -7970,12 +10230,27 @@ memmem:
 .LBB97_10:
 	bu .LBB97_11
 .LBB97_11:
+	ldw r0, dp[__llvm_gcov_ctr.97+36]
+	ldw r1, dp[__llvm_gcov_ctr.97+32]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.97+32]
+	stw r0, dp[__llvm_gcov_ctr.97+36]
 	ldw r0, sp[2]
 	add r0, r0, 1
 	stw r0, sp[2]
 	bu .LBB97_5
 .LBB97_12:
+	ldw r1, dp[__llvm_gcov_ctr.97+44]
+	ldw r2, dp[__llvm_gcov_ctr.97+40]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.97+40]
+	stw r1, dp[__llvm_gcov_ctr.97+44]
 	stw r0, sp[7]
 	bu .LBB97_13
 .LBB97_13:
@@ -7990,27 +10265,42 @@ memmem:
 	.type	mempcpy,@function
 	.cc_top mempcpy.function,mempcpy
 mempcpy:
-	entsp 5
-	stw r0, sp[4]
-	stw r1, sp[3]
-	stw r2, sp[2]
-	ldw r0, dp[.L__profc_mempcpy+4]
-	ldw r1, dp[.L__profc_mempcpy]
+	entsp 9
+	stw r4, sp[8]
+	stw r5, sp[7]
+	stw r6, sp[6]
+	stw r2, sp[1]
+	mov r11, r0
+	ldw r0, sp[1]
+	ldw r4, dp[__llvm_gcov_ctr.98+4]
+	ldw r5, dp[__llvm_gcov_ctr.98]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r6, r5, r5, r2, r3
+	add r4, r4, r6
+	stw r5, dp[__llvm_gcov_ctr.98]
+	stw r4, dp[__llvm_gcov_ctr.98+4]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc_mempcpy+4]
+	ldw r1, dp[.L__profc_mempcpy]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_mempcpy]
 	stw r0, dp[.L__profc_mempcpy+4]
-	ldw r0, sp[4]
-	stw r0, sp[1]
-	ldw r1, sp[3]
-	ldw r2, sp[2]
+	ldw r0, sp[5]
+	stw r0, sp[2]
+	ldw r1, sp[4]
+	ldw r2, sp[3]
 	bl memcpy
-	ldw r0, sp[1]
-	ldw r1, sp[2]
+	ldw r0, sp[2]
+	ldw r1, sp[3]
 	add r0, r0, r1
-	retsp 5
+	ldw r6, sp[6]
+	ldw r5, sp[7]
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom mempcpy.function
 .Lfunc_end98:
 	.size	mempcpy, .Lfunc_end98-mempcpy
@@ -8051,10 +10341,16 @@ frexp:
 	bf r0, .LBB99_2
 	bu .LBB99_1
 .LBB99_1:
-	ldw r1, dp[.L__profc_frexp+12]
-	ldw r2, dp[.L__profc_frexp+8]
+	ldw r1, dp[__llvm_gcov_ctr.99+4]
+	ldw r2, dp[__llvm_gcov_ctr.99]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.99]
+	stw r1, dp[__llvm_gcov_ctr.99+4]
+	ldw r1, dp[.L__profc_frexp+12]
+	ldw r2, dp[.L__profc_frexp+8]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc_frexp+8]
@@ -8075,10 +10371,16 @@ frexp:
 	bt r0, .LBB99_7
 	bu .LBB99_3
 .LBB99_3:
-	ldw r0, dp[.L__profc_frexp+20]
-	ldw r1, dp[.L__profc_frexp+16]
+	ldw r0, dp[__llvm_gcov_ctr.99+12]
+	ldw r1, dp[__llvm_gcov_ctr.99+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.99+8]
+	stw r0, dp[__llvm_gcov_ctr.99+12]
+	ldw r0, dp[.L__profc_frexp+20]
+	ldw r1, dp[.L__profc_frexp+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_frexp+16]
@@ -8094,10 +10396,16 @@ frexp:
 	bt r0, .LBB99_6
 	bu .LBB99_5
 .LBB99_5:
-	ldw r0, dp[.L__profc_frexp+28]
-	ldw r1, dp[.L__profc_frexp+24]
+	ldw r0, dp[__llvm_gcov_ctr.99+20]
+	ldw r1, dp[__llvm_gcov_ctr.99+16]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.99+16]
+	stw r0, dp[__llvm_gcov_ctr.99+20]
+	ldw r0, dp[.L__profc_frexp+28]
+	ldw r1, dp[.L__profc_frexp+24]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc_frexp+24]
@@ -8124,10 +10432,16 @@ frexp:
 	bf r0, .LBB99_14
 	bu .LBB99_8
 .LBB99_8:
-	ldw r0, dp[.L__profc_frexp+44]
-	ldw r1, dp[.L__profc_frexp+40]
+	ldw r0, dp[__llvm_gcov_ctr.99+28]
+	ldw r1, dp[__llvm_gcov_ctr.99+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.99+24]
+	stw r0, dp[__llvm_gcov_ctr.99+28]
+	ldw r0, dp[.L__profc_frexp+44]
+	ldw r1, dp[.L__profc_frexp+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_frexp+40]
@@ -8168,10 +10482,16 @@ frexp:
 	bf r0, .LBB99_13
 	bu .LBB99_12
 .LBB99_12:
-	ldw r0, dp[.L__profc_frexp+60]
-	ldw r1, dp[.L__profc_frexp+56]
+	ldw r0, dp[__llvm_gcov_ctr.99+36]
+	ldw r1, dp[__llvm_gcov_ctr.99+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.99+32]
+	stw r0, dp[__llvm_gcov_ctr.99+36]
+	ldw r0, dp[.L__profc_frexp+60]
+	ldw r1, dp[.L__profc_frexp+56]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_frexp+56]
@@ -8188,8 +10508,24 @@ frexp:
 	stw r0, sp[4]
 	bu .LBB99_11
 .LBB99_13:
+	ldw r0, dp[__llvm_gcov_ctr.99+44]
+	ldw r1, dp[__llvm_gcov_ctr.99+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.99+40]
+	stw r0, dp[__llvm_gcov_ctr.99+44]
 	bu .LBB99_14
 .LBB99_14:
+	ldw r0, dp[__llvm_gcov_ctr.99+52]
+	ldw r1, dp[__llvm_gcov_ctr.99+48]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.99+48]
+	stw r0, dp[__llvm_gcov_ctr.99+52]
 	bu .LBB99_15
 .LBB99_15:
 	ldw r0, sp[1]
@@ -8199,10 +10535,16 @@ frexp:
 	bf r0, .LBB99_17
 	bu .LBB99_16
 .LBB99_16:
-	ldw r0, dp[.L__profc_frexp+68]
-	ldw r1, dp[.L__profc_frexp+64]
+	ldw r0, dp[__llvm_gcov_ctr.99+60]
+	ldw r1, dp[__llvm_gcov_ctr.99+56]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.99+56]
+	stw r0, dp[__llvm_gcov_ctr.99+60]
+	ldw r0, dp[.L__profc_frexp+68]
+	ldw r1, dp[.L__profc_frexp+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_frexp+64]
@@ -8225,29 +10567,43 @@ frexp:
 	.type	__muldi3,@function
 	.cc_top __muldi3.function,__muldi3
 __muldi3:
-	entsp 8
-	stw r1, sp[7]
-	stw r0, sp[6]
-	stw r3, sp[5]
-	stw r2, sp[4]
-	ldw r1, dp[.L__profc___muldi3+4]
-	ldw r2, dp[.L__profc___muldi3]
+	entsp 13
+	stw r4, sp[12]
+	stw r5, sp[11]
+	stw r6, sp[10]
+	stw r7, sp[9]
+	stw r3, sp[0]
+	mov r4, r1
+	ldw r1, sp[0]
+	mov r11, r0
+	ldw r5, dp[__llvm_gcov_ctr.100+4]
+	ldw r6, dp[__llvm_gcov_ctr.100]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r7, r6, r6, r3, r0
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.100]
+	stw r5, dp[__llvm_gcov_ctr.100+4]
+	stw r4, sp[8]
+	stw r11, sp[7]
+	stw r1, sp[6]
+	stw r2, sp[5]
+	ldw r1, dp[.L__profc___muldi3+4]
+	ldw r2, dp[.L__profc___muldi3]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___muldi3]
 	stw r1, dp[.L__profc___muldi3+4]
+	stw r0, sp[4]
 	stw r0, sp[3]
-	stw r0, sp[2]
-	ldw r0, sp[6]
-	ldw r1, sp[7]
-	stw r1, sp[1]
-	stw r0, sp[0]
+	ldw r0, sp[7]
+	ldw r1, sp[8]
+	stw r1, sp[2]
+	stw r0, sp[1]
 	bu .LBB100_1
 .LBB100_1:
-	ldw r1, sp[1]
-	ldw r0, sp[0]
+	ldw r1, sp[2]
+	ldw r0, sp[1]
 	or r0, r0, r1
 	bf r0, .LBB100_5
 	bu .LBB100_2
@@ -8260,52 +10616,70 @@ __muldi3:
 	add r0, r0, r3
 	stw r2, dp[.L__profc___muldi3+8]
 	stw r0, dp[.L__profc___muldi3+12]
-	ldaw r0, sp[0]
+	ldaw r0, sp[1]
 	ld8u r0, r0[r1]
 	zext r0, 1
 	bf r0, .LBB100_4
 	bu .LBB100_3
 .LBB100_3:
-	ldw r0, dp[.L__profc___muldi3+20]
-	ldw r1, dp[.L__profc___muldi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.100+12]
+	ldw r1, dp[__llvm_gcov_ctr.100+8]
 	ldc r11, 0
 	mkmsk r2, 1
+	ladd r3, r1, r1, r2, r11
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.100+8]
+	stw r0, dp[__llvm_gcov_ctr.100+12]
+	ldw r0, dp[.L__profc___muldi3+20]
+	ldw r1, dp[.L__profc___muldi3+16]
 	ladd r2, r1, r1, r2, r11
 	add r0, r0, r2
 	stw r1, dp[.L__profc___muldi3+16]
 	stw r0, dp[.L__profc___muldi3+20]
-	ldw r2, sp[5]
-	ldw r3, sp[4]
-	ldw r0, sp[3]
-	ldw r1, sp[2]
+	ldw r2, sp[6]
+	ldw r3, sp[5]
+	ldw r0, sp[4]
+	ldw r1, sp[3]
 	ladd r3, r1, r1, r3, r11
 	ladd r2, r0, r0, r2, r3
-	stw r1, sp[2]
-	stw r0, sp[3]
+	stw r1, sp[3]
+	stw r0, sp[4]
 	bu .LBB100_4
 .LBB100_4:
-	ldw r0, sp[5]
-	ldw r1, sp[4]
+	ldw r0, dp[__llvm_gcov_ctr.100+20]
+	ldw r1, dp[__llvm_gcov_ctr.100+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.100+16]
+	stw r0, dp[__llvm_gcov_ctr.100+20]
+	ldw r0, sp[6]
+	ldw r1, sp[5]
 	mkmsk r2, 5
 	shr r3, r1, r2
 	shl r0, r0, 1
 	or r0, r0, r3
 	shl r1, r1, 1
-	stw r1, sp[4]
-	stw r0, sp[5]
-	ldw r0, sp[0]
-	ldw r1, sp[1]
+	stw r1, sp[5]
+	stw r0, sp[6]
+	ldw r0, sp[1]
+	ldw r1, sp[2]
 	shl r2, r1, r2
 	shr r0, r0, 1
 	or r0, r0, r2
 	shr r1, r1, 1
-	stw r1, sp[1]
-	stw r0, sp[0]
+	stw r1, sp[2]
+	stw r0, sp[1]
 	bu .LBB100_1
 .LBB100_5:
-	ldw r0, sp[2]
-	ldw r1, sp[3]
-	retsp 8
+	ldw r0, sp[3]
+	ldw r1, sp[4]
+	ldw r7, sp[9]
+	ldw r6, sp[10]
+	ldw r5, sp[11]
+	ldw r4, sp[12]
+	retsp 13
 	.cc_bottom __muldi3.function
 .Lfunc_end100:
 	.size	__muldi3, .Lfunc_end100-__muldi3
@@ -8320,7 +10694,8 @@ __muldi3:
 	.type	udivmodsi4,@function
 	.cc_top udivmodsi4.function,udivmodsi4
 udivmodsi4:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -8344,10 +10719,16 @@ udivmodsi4:
 	bf r0, .LBB101_6
 	bu .LBB101_2
 .LBB101_2:
-	ldw r0, dp[.L__profc_udivmodsi4+36]
-	ldw r2, dp[.L__profc_udivmodsi4+32]
+	ldw r0, dp[__llvm_gcov_ctr.101+4]
+	ldw r2, dp[__llvm_gcov_ctr.101]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.101]
+	stw r0, dp[__llvm_gcov_ctr.101+4]
+	ldw r0, dp[.L__profc_udivmodsi4+36]
+	ldw r2, dp[.L__profc_udivmodsi4+32]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc_udivmodsi4+32]
@@ -8357,10 +10738,16 @@ udivmodsi4:
 	bf r0, .LBB101_6
 	bu .LBB101_3
 .LBB101_3:
-	ldw r0, dp[.L__profc_udivmodsi4+44]
-	ldw r1, dp[.L__profc_udivmodsi4+40]
+	ldw r0, dp[__llvm_gcov_ctr.101+12]
+	ldw r1, dp[__llvm_gcov_ctr.101+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.101+8]
+	stw r0, dp[__llvm_gcov_ctr.101+12]
+	ldw r0, dp[.L__profc_udivmodsi4+44]
+	ldw r1, dp[.L__profc_udivmodsi4+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_udivmodsi4+40]
@@ -8385,10 +10772,16 @@ udivmodsi4:
 	bu .LBB101_5
 .LBB101_5:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc_udivmodsi4+28]
-	ldw r2, dp[.L__profc_udivmodsi4+24]
+	ldw r1, dp[__llvm_gcov_ctr.101+20]
+	ldw r2, dp[__llvm_gcov_ctr.101+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.101+16]
+	stw r1, dp[__llvm_gcov_ctr.101+20]
+	ldw r1, dp[.L__profc_udivmodsi4+28]
+	ldw r2, dp[.L__profc_udivmodsi4+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc_udivmodsi4+24]
@@ -8401,10 +10794,16 @@ udivmodsi4:
 	bf r0, .LBB101_8
 	bu .LBB101_7
 .LBB101_7:
-	ldw r0, dp[.L__profc_udivmodsi4+12]
-	ldw r1, dp[.L__profc_udivmodsi4+8]
+	ldw r0, dp[__llvm_gcov_ctr.101+28]
+	ldw r1, dp[__llvm_gcov_ctr.101+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.101+24]
+	stw r0, dp[__llvm_gcov_ctr.101+28]
+	ldw r0, dp[.L__profc_udivmodsi4+12]
+	ldw r1, dp[.L__profc_udivmodsi4+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_udivmodsi4+8]
@@ -8437,10 +10836,16 @@ udivmodsi4:
 	bt r0, .LBB101_12
 	bu .LBB101_11
 .LBB101_11:
-	ldw r0, dp[.L__profc_udivmodsi4+60]
-	ldw r1, dp[.L__profc_udivmodsi4+56]
+	ldw r0, dp[__llvm_gcov_ctr.101+36]
+	ldw r1, dp[__llvm_gcov_ctr.101+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.101+32]
+	stw r0, dp[__llvm_gcov_ctr.101+36]
+	ldw r0, dp[.L__profc_udivmodsi4+60]
+	ldw r1, dp[.L__profc_udivmodsi4+56]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_udivmodsi4+56]
@@ -8455,6 +10860,14 @@ udivmodsi4:
 	stw r0, sp[2]
 	bu .LBB101_12
 .LBB101_12:
+	ldw r0, dp[__llvm_gcov_ctr.101+44]
+	ldw r1, dp[__llvm_gcov_ctr.101+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.101+40]
+	stw r0, dp[__llvm_gcov_ctr.101+44]
 	ldw r0, sp[3]
 	shr r0, r0, 1
 	stw r0, sp[3]
@@ -8467,10 +10880,16 @@ udivmodsi4:
 	bf r0, .LBB101_15
 	bu .LBB101_14
 .LBB101_14:
-	ldw r0, dp[.L__profc_udivmodsi4+68]
-	ldw r1, dp[.L__profc_udivmodsi4+64]
+	ldw r0, dp[__llvm_gcov_ctr.101+52]
+	ldw r1, dp[__llvm_gcov_ctr.101+48]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.101+48]
+	stw r0, dp[__llvm_gcov_ctr.101+52]
+	ldw r0, dp[.L__profc_udivmodsi4+68]
+	ldw r1, dp[.L__profc_udivmodsi4+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc_udivmodsi4+64]
@@ -8479,12 +10898,21 @@ udivmodsi4:
 	stw r0, sp[7]
 	bu .LBB101_16
 .LBB101_15:
+	ldw r0, dp[__llvm_gcov_ctr.101+60]
+	ldw r1, dp[__llvm_gcov_ctr.101+56]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.101+56]
+	stw r0, dp[__llvm_gcov_ctr.101+60]
 	ldw r0, sp[2]
 	stw r0, sp[7]
 	bu .LBB101_16
 .LBB101_16:
 	ldw r0, sp[7]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom udivmodsi4.function
 .Lfunc_end101:
 	.size	udivmodsi4, .Lfunc_end101-udivmodsi4
@@ -8508,10 +10936,16 @@ __clrsbqi2:
 	bt r0, .LBB102_2
 	bu .LBB102_1
 .LBB102_1:
-	ldw r0, dp[.L__profc___clrsbqi2+12]
-	ldw r1, dp[.L__profc___clrsbqi2+8]
+	ldw r0, dp[__llvm_gcov_ctr.102+4]
+	ldw r1, dp[__llvm_gcov_ctr.102]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.102]
+	stw r0, dp[__llvm_gcov_ctr.102+4]
+	ldw r0, dp[.L__profc___clrsbqi2+12]
+	ldw r1, dp[.L__profc___clrsbqi2+8]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___clrsbqi2+8]
@@ -8528,10 +10962,16 @@ __clrsbqi2:
 	bt r0, .LBB102_4
 	bu .LBB102_3
 .LBB102_3:
-	ldw r0, dp[.L__profc___clrsbqi2+20]
-	ldw r1, dp[.L__profc___clrsbqi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.102+12]
+	ldw r1, dp[__llvm_gcov_ctr.102+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.102+8]
+	stw r0, dp[__llvm_gcov_ctr.102+12]
+	ldw r0, dp[.L__profc___clrsbqi2+20]
+	ldw r1, dp[.L__profc___clrsbqi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___clrsbqi2+16]
@@ -8540,7 +10980,14 @@ __clrsbqi2:
 	stw r0, sp[2]
 	bu .LBB102_5
 .LBB102_4:
+	ldw r0, dp[__llvm_gcov_ctr.102+20]
+	ldw r2, dp[__llvm_gcov_ctr.102+16]
 	ldc r1, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r1
+	add r0, r0, r3
+	stw r2, dp[__llvm_gcov_ctr.102+16]
+	stw r0, dp[__llvm_gcov_ctr.102+20]
 	ldaw r0, sp[1]
 	ld8u r0, r0[r1]
 	shl r0, r0, 8
@@ -8578,10 +11025,16 @@ __clrsbdi2:
 	bf r0, .LBB103_2
 	bu .LBB103_1
 .LBB103_1:
-	ldw r0, dp[.L__profc___clrsbdi2+12]
-	ldw r1, dp[.L__profc___clrsbdi2+8]
+	ldw r0, dp[__llvm_gcov_ctr.103+4]
+	ldw r1, dp[__llvm_gcov_ctr.103]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.103]
+	stw r0, dp[__llvm_gcov_ctr.103+4]
+	ldw r0, dp[.L__profc___clrsbdi2+12]
+	ldw r1, dp[.L__profc___clrsbdi2+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___clrsbdi2+8]
@@ -8600,10 +11053,16 @@ __clrsbdi2:
 	bt r0, .LBB103_4
 	bu .LBB103_3
 .LBB103_3:
-	ldw r0, dp[.L__profc___clrsbdi2+20]
-	ldw r1, dp[.L__profc___clrsbdi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.103+12]
+	ldw r1, dp[__llvm_gcov_ctr.103+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.103+8]
+	stw r0, dp[__llvm_gcov_ctr.103+12]
+	ldw r0, dp[.L__profc___clrsbdi2+20]
+	ldw r1, dp[.L__profc___clrsbdi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___clrsbdi2+16]
@@ -8612,6 +11071,14 @@ __clrsbdi2:
 	stw r0, sp[5]
 	bu .LBB103_5
 .LBB103_4:
+	ldw r0, dp[__llvm_gcov_ctr.103+20]
+	ldw r1, dp[__llvm_gcov_ctr.103+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.103+16]
+	stw r0, dp[__llvm_gcov_ctr.103+20]
 	ldw r2, sp[3]
 	ldw r0, sp[4]
 	clz r1, r0
@@ -8641,13 +11108,22 @@ __clrsbdi2:
 	.type	__mulsi3,@function
 	.cc_top __mulsi3.function,__mulsi3
 __mulsi3:
-	entsp 3
-	stw r0, sp[2]
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.104+4]
+	ldw r4, dp[__llvm_gcov_ctr.104]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.104]
+	stw r11, dp[__llvm_gcov_ctr.104+4]
+	stw r2, sp[2]
 	stw r1, sp[1]
 	ldw r1, dp[.L__profc___mulsi3+4]
 	ldw r2, dp[.L__profc___mulsi3]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mulsi3]
@@ -8673,10 +11149,16 @@ __mulsi3:
 	bf r0, .LBB104_4
 	bu .LBB104_3
 .LBB104_3:
-	ldw r0, dp[.L__profc___mulsi3+20]
-	ldw r1, dp[.L__profc___mulsi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.104+12]
+	ldw r1, dp[__llvm_gcov_ctr.104+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.104+8]
+	stw r0, dp[__llvm_gcov_ctr.104+12]
+	ldw r0, dp[.L__profc___mulsi3+20]
+	ldw r1, dp[.L__profc___mulsi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mulsi3+16]
@@ -8687,6 +11169,14 @@ __mulsi3:
 	stw r0, sp[0]
 	bu .LBB104_4
 .LBB104_4:
+	ldw r0, dp[__llvm_gcov_ctr.104+20]
+	ldw r1, dp[__llvm_gcov_ctr.104+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.104+16]
+	stw r0, dp[__llvm_gcov_ctr.104+20]
 	ldw r0, sp[2]
 	shr r0, r0, 1
 	stw r0, sp[2]
@@ -8696,7 +11186,9 @@ __mulsi3:
 	bu .LBB104_1
 .LBB104_5:
 	ldw r0, sp[0]
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom __mulsi3.function
 .Lfunc_end104:
 	.size	__mulsi3, .Lfunc_end104-__mulsi3
@@ -8740,10 +11232,16 @@ __cmovd:
 	bt r0, .LBB105_3
 	bu .LBB105_1
 .LBB105_1:
-	ldw r0, dp[.L__profc___cmovd+20]
-	ldw r1, dp[.L__profc___cmovd+16]
+	ldw r0, dp[__llvm_gcov_ctr.105+4]
+	ldw r1, dp[__llvm_gcov_ctr.105]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.105]
+	stw r0, dp[__llvm_gcov_ctr.105+4]
+	ldw r0, dp[.L__profc___cmovd+20]
+	ldw r1, dp[.L__profc___cmovd+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovd+16]
@@ -8803,6 +11301,14 @@ __cmovd:
 	stw r0, r1[0]
 	bu .LBB105_6
 .LBB105_6:
+	ldw r0, dp[__llvm_gcov_ctr.105+12]
+	ldw r1, dp[__llvm_gcov_ctr.105+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.105+8]
+	stw r0, dp[__llvm_gcov_ctr.105+12]
 	ldw r0, sp[4]
 	add r0, r0, 1
 	stw r0, sp[4]
@@ -8816,10 +11322,16 @@ __cmovd:
 	bf r0, .LBB105_10
 	bu .LBB105_9
 .LBB105_9:
-	ldw r0, dp[.L__profc___cmovd+44]
-	ldw r1, dp[.L__profc___cmovd+40]
+	ldw r0, dp[__llvm_gcov_ctr.105+20]
+	ldw r1, dp[__llvm_gcov_ctr.105+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.105+16]
+	stw r0, dp[__llvm_gcov_ctr.105+20]
+	ldw r0, dp[.L__profc___cmovd+44]
+	ldw r1, dp[.L__profc___cmovd+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovd+40]
@@ -8834,6 +11346,14 @@ __cmovd:
 	stw r0, sp[2]
 	bu .LBB105_8
 .LBB105_10:
+	ldw r0, dp[__llvm_gcov_ctr.105+28]
+	ldw r1, dp[__llvm_gcov_ctr.105+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.105+24]
+	stw r0, dp[__llvm_gcov_ctr.105+28]
 	bu .LBB105_15
 .LBB105_11:
 	bu .LBB105_12
@@ -8844,10 +11364,16 @@ __cmovd:
 	bf r0, .LBB105_14
 	bu .LBB105_13
 .LBB105_13:
-	ldw r0, dp[.L__profc___cmovd+52]
-	ldw r1, dp[.L__profc___cmovd+48]
+	ldw r0, dp[__llvm_gcov_ctr.105+36]
+	ldw r1, dp[__llvm_gcov_ctr.105+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.105+32]
+	stw r0, dp[__llvm_gcov_ctr.105+36]
+	ldw r0, dp[.L__profc___cmovd+52]
+	ldw r1, dp[.L__profc___cmovd+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovd+48]
@@ -8859,6 +11385,14 @@ __cmovd:
 	st8 r0, r1[r2]
 	bu .LBB105_12
 .LBB105_14:
+	ldw r0, dp[__llvm_gcov_ctr.105+44]
+	ldw r1, dp[__llvm_gcov_ctr.105+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.105+40]
+	stw r0, dp[__llvm_gcov_ctr.105+44]
 	bu .LBB105_15
 .LBB105_15:
 	retsp 8
@@ -8896,10 +11430,16 @@ __cmovh:
 	bt r0, .LBB106_3
 	bu .LBB106_1
 .LBB106_1:
-	ldw r0, dp[.L__profc___cmovh+20]
-	ldw r1, dp[.L__profc___cmovh+16]
+	ldw r0, dp[__llvm_gcov_ctr.106+4]
+	ldw r1, dp[__llvm_gcov_ctr.106]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.106]
+	stw r0, dp[__llvm_gcov_ctr.106+4]
+	ldw r0, dp[.L__profc___cmovh+20]
+	ldw r1, dp[.L__profc___cmovh+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovh+16]
@@ -8954,6 +11494,14 @@ __cmovh:
 	st16 r0, r1[r2]
 	bu .LBB106_6
 .LBB106_6:
+	ldw r0, dp[__llvm_gcov_ctr.106+12]
+	ldw r1, dp[__llvm_gcov_ctr.106+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.106+8]
+	stw r0, dp[__llvm_gcov_ctr.106+12]
 	ldw r0, sp[3]
 	add r0, r0, 1
 	stw r0, sp[3]
@@ -8966,10 +11514,16 @@ __cmovh:
 	bf r0, .LBB106_9
 	bu .LBB106_8
 .LBB106_8:
-	ldw r0, dp[.L__profc___cmovh+44]
-	ldw r1, dp[.L__profc___cmovh+40]
+	ldw r0, dp[__llvm_gcov_ctr.106+20]
+	ldw r1, dp[__llvm_gcov_ctr.106+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.106+16]
+	stw r0, dp[__llvm_gcov_ctr.106+20]
+	ldw r0, dp[.L__profc___cmovh+44]
+	ldw r1, dp[.L__profc___cmovh+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovh+40]
@@ -8982,6 +11536,14 @@ __cmovh:
 	st8 r0, r1[r2]
 	bu .LBB106_9
 .LBB106_9:
+	ldw r0, dp[__llvm_gcov_ctr.106+28]
+	ldw r1, dp[__llvm_gcov_ctr.106+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.106+24]
+	stw r0, dp[__llvm_gcov_ctr.106+28]
 	bu .LBB106_14
 .LBB106_10:
 	bu .LBB106_11
@@ -8992,10 +11554,16 @@ __cmovh:
 	bf r0, .LBB106_13
 	bu .LBB106_12
 .LBB106_12:
-	ldw r0, dp[.L__profc___cmovh+52]
-	ldw r1, dp[.L__profc___cmovh+48]
+	ldw r0, dp[__llvm_gcov_ctr.106+36]
+	ldw r1, dp[__llvm_gcov_ctr.106+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.106+32]
+	stw r0, dp[__llvm_gcov_ctr.106+36]
+	ldw r0, dp[.L__profc___cmovh+52]
+	ldw r1, dp[.L__profc___cmovh+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovh+48]
@@ -9007,6 +11575,14 @@ __cmovh:
 	st8 r0, r1[r2]
 	bu .LBB106_11
 .LBB106_13:
+	ldw r0, dp[__llvm_gcov_ctr.106+44]
+	ldw r1, dp[__llvm_gcov_ctr.106+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.106+40]
+	stw r0, dp[__llvm_gcov_ctr.106+44]
 	bu .LBB106_14
 .LBB106_14:
 	retsp 7
@@ -9053,10 +11629,16 @@ __cmovw:
 	bt r0, .LBB107_3
 	bu .LBB107_1
 .LBB107_1:
-	ldw r0, dp[.L__profc___cmovw+20]
-	ldw r1, dp[.L__profc___cmovw+16]
+	ldw r0, dp[__llvm_gcov_ctr.107+4]
+	ldw r1, dp[__llvm_gcov_ctr.107]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.107]
+	stw r0, dp[__llvm_gcov_ctr.107+4]
+	ldw r0, dp[.L__profc___cmovw+20]
+	ldw r1, dp[.L__profc___cmovw+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovw+16]
@@ -9111,6 +11693,14 @@ __cmovw:
 	stw r0, r1[r2]
 	bu .LBB107_6
 .LBB107_6:
+	ldw r0, dp[__llvm_gcov_ctr.107+12]
+	ldw r1, dp[__llvm_gcov_ctr.107+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.107+8]
+	stw r0, dp[__llvm_gcov_ctr.107+12]
 	ldw r0, sp[4]
 	add r0, r0, 1
 	stw r0, sp[4]
@@ -9124,10 +11714,16 @@ __cmovw:
 	bf r0, .LBB107_10
 	bu .LBB107_9
 .LBB107_9:
-	ldw r0, dp[.L__profc___cmovw+44]
-	ldw r1, dp[.L__profc___cmovw+40]
+	ldw r0, dp[__llvm_gcov_ctr.107+20]
+	ldw r1, dp[__llvm_gcov_ctr.107+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.107+16]
+	stw r0, dp[__llvm_gcov_ctr.107+20]
+	ldw r0, dp[.L__profc___cmovw+44]
+	ldw r1, dp[.L__profc___cmovw+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovw+40]
@@ -9142,6 +11738,14 @@ __cmovw:
 	stw r0, sp[2]
 	bu .LBB107_8
 .LBB107_10:
+	ldw r0, dp[__llvm_gcov_ctr.107+28]
+	ldw r1, dp[__llvm_gcov_ctr.107+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.107+24]
+	stw r0, dp[__llvm_gcov_ctr.107+28]
 	bu .LBB107_15
 .LBB107_11:
 	bu .LBB107_12
@@ -9152,10 +11756,16 @@ __cmovw:
 	bf r0, .LBB107_14
 	bu .LBB107_13
 .LBB107_13:
-	ldw r0, dp[.L__profc___cmovw+52]
-	ldw r1, dp[.L__profc___cmovw+48]
+	ldw r0, dp[__llvm_gcov_ctr.107+36]
+	ldw r1, dp[__llvm_gcov_ctr.107+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.107+32]
+	stw r0, dp[__llvm_gcov_ctr.107+36]
+	ldw r0, dp[.L__profc___cmovw+52]
+	ldw r1, dp[.L__profc___cmovw+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmovw+48]
@@ -9167,6 +11777,14 @@ __cmovw:
 	st8 r0, r1[r2]
 	bu .LBB107_12
 .LBB107_14:
+	ldw r0, dp[__llvm_gcov_ctr.107+44]
+	ldw r1, dp[__llvm_gcov_ctr.107+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.107+40]
+	stw r0, dp[__llvm_gcov_ctr.107+44]
 	bu .LBB107_15
 .LBB107_15:
 	retsp 8
@@ -9179,13 +11797,21 @@ __cmovw:
 	.type	__modi,@function
 	.cc_top __modi.function,__modi
 __modi:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.108+4]
+	ldw r4, dp[__llvm_gcov_ctr.108]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.108]
+	stw r11, dp[__llvm_gcov_ctr.108+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc___modi+4]
 	ldw r1, dp[.L__profc___modi]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___modi]
@@ -9193,7 +11819,9 @@ __modi:
 	ldw r0, sp[1]
 	ldw r1, sp[0]
 	rems r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __modi.function
 .Lfunc_end108:
 	.size	__modi, .Lfunc_end108-__modi
@@ -9203,19 +11831,27 @@ __modi:
 	.type	__uitod,@function
 	.cc_top __uitod.function,__uitod
 __uitod:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.109+4]
+	ldw r11, dp[__llvm_gcov_ctr.109]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.109]
+	stw r1, dp[__llvm_gcov_ctr.109+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___uitod+4]
 	ldw r1, dp[.L__profc___uitod]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___uitod]
 	stw r0, dp[.L__profc___uitod+4]
 	ldw r0, sp[1]
 	bl __floatunsidf
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __uitod.function
 .Lfunc_end109:
 	.size	__uitod, .Lfunc_end109-__uitod
@@ -9225,19 +11861,27 @@ __uitod:
 	.type	__uitof,@function
 	.cc_top __uitof.function,__uitof
 __uitof:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.110+4]
+	ldw r11, dp[__llvm_gcov_ctr.110]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.110]
+	stw r1, dp[__llvm_gcov_ctr.110+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___uitof+4]
 	ldw r1, dp[.L__profc___uitof]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___uitof]
 	stw r0, dp[.L__profc___uitof+4]
 	ldw r0, sp[1]
 	bl __floatunsisf
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __uitof.function
 .Lfunc_end110:
 	.size	__uitof, .Lfunc_end110-__uitof
@@ -9247,13 +11891,21 @@ __uitof:
 	.type	__ulltod,@function
 	.cc_top __ulltod.function,__ulltod
 __ulltod:
-	entsp 3
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	ldw r11, dp[__llvm_gcov_ctr.111+4]
+	ldw r4, dp[__llvm_gcov_ctr.111]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.111]
+	stw r11, dp[__llvm_gcov_ctr.111+4]
 	stw r1, sp[2]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___ulltod+4]
 	ldw r1, dp[.L__profc___ulltod]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ulltod]
@@ -9261,7 +11913,9 @@ __ulltod:
 	ldw r0, sp[1]
 	ldw r1, sp[2]
 	bl __floatundidf
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom __ulltod.function
 .Lfunc_end111:
 	.size	__ulltod, .Lfunc_end111-__ulltod
@@ -9271,13 +11925,21 @@ __ulltod:
 	.type	__ulltof,@function
 	.cc_top __ulltof.function,__ulltof
 __ulltof:
-	entsp 3
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	ldw r11, dp[__llvm_gcov_ctr.112+4]
+	ldw r4, dp[__llvm_gcov_ctr.112]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.112]
+	stw r11, dp[__llvm_gcov_ctr.112+4]
 	stw r1, sp[2]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___ulltof+4]
 	ldw r1, dp[.L__profc___ulltof]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ulltof]
@@ -9285,7 +11947,9 @@ __ulltof:
 	ldw r0, sp[1]
 	ldw r1, sp[2]
 	bl __floatundisf
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom __ulltof.function
 .Lfunc_end112:
 	.size	__ulltof, .Lfunc_end112-__ulltof
@@ -9295,13 +11959,21 @@ __ulltof:
 	.type	__umodi,@function
 	.cc_top __umodi.function,__umodi
 __umodi:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.113+4]
+	ldw r4, dp[__llvm_gcov_ctr.113]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.113]
+	stw r11, dp[__llvm_gcov_ctr.113+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc___umodi+4]
 	ldw r1, dp[.L__profc___umodi]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___umodi]
@@ -9309,7 +11981,9 @@ __umodi:
 	ldw r0, sp[1]
 	ldw r1, sp[0]
 	remu r0, r0, r1
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __umodi.function
 .Lfunc_end113:
 	.size	__umodi, .Lfunc_end113-__umodi
@@ -9319,14 +11993,21 @@ __umodi:
 	.type	__clzhi2,@function
 	.cc_top __clzhi2.function,__clzhi2
 __clzhi2:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
 	mov r1, r0
+	ldw r2, dp[__llvm_gcov_ctr.114+4]
+	ldw r11, dp[__llvm_gcov_ctr.114]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r0
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.114]
+	stw r2, dp[__llvm_gcov_ctr.114+4]
 	ldaw r2, sp[1]
 	st16 r1, r2[r0]
 	ldw r1, dp[.L__profc___clzhi2+4]
 	ldw r2, dp[.L__profc___clzhi2]
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___clzhi2]
@@ -9359,10 +12040,16 @@ __clzhi2:
 	bf r0, .LBB114_4
 	bu .LBB114_3
 .LBB114_3:
-	ldw r0, dp[.L__profc___clzhi2+20]
-	ldw r1, dp[.L__profc___clzhi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.114+12]
+	ldw r1, dp[__llvm_gcov_ctr.114+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.114+8]
+	stw r0, dp[__llvm_gcov_ctr.114+12]
+	ldw r0, dp[.L__profc___clzhi2+20]
+	ldw r1, dp[.L__profc___clzhi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___clzhi2+16]
@@ -9371,13 +12058,22 @@ __clzhi2:
 .LBB114_4:
 	bu .LBB114_5
 .LBB114_5:
+	ldw r0, dp[__llvm_gcov_ctr.114+20]
+	ldw r1, dp[__llvm_gcov_ctr.114+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.114+16]
+	stw r0, dp[__llvm_gcov_ctr.114+20]
 	ldw r0, sp[0]
 	add r0, r0, 1
 	stw r0, sp[0]
 	bu .LBB114_1
 .LBB114_6:
 	ldw r0, sp[0]
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __clzhi2.function
 .Lfunc_end114:
 	.size	__clzhi2, .Lfunc_end114-__clzhi2
@@ -9387,14 +12083,21 @@ __clzhi2:
 	.type	__ctzhi2,@function
 	.cc_top __ctzhi2.function,__ctzhi2
 __ctzhi2:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
 	mov r1, r0
+	ldw r2, dp[__llvm_gcov_ctr.115+4]
+	ldw r11, dp[__llvm_gcov_ctr.115]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r0
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.115]
+	stw r2, dp[__llvm_gcov_ctr.115+4]
 	ldaw r2, sp[1]
 	st16 r1, r2[r0]
 	ldw r1, dp[.L__profc___ctzhi2+4]
 	ldw r2, dp[.L__profc___ctzhi2]
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___ctzhi2]
@@ -9425,10 +12128,16 @@ __ctzhi2:
 	bf r0, .LBB115_4
 	bu .LBB115_3
 .LBB115_3:
-	ldw r0, dp[.L__profc___ctzhi2+20]
-	ldw r1, dp[.L__profc___ctzhi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.115+12]
+	ldw r1, dp[__llvm_gcov_ctr.115+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.115+8]
+	stw r0, dp[__llvm_gcov_ctr.115+12]
+	ldw r0, dp[.L__profc___ctzhi2+20]
+	ldw r1, dp[.L__profc___ctzhi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ctzhi2+16]
@@ -9437,13 +12146,22 @@ __ctzhi2:
 .LBB115_4:
 	bu .LBB115_5
 .LBB115_5:
+	ldw r0, dp[__llvm_gcov_ctr.115+20]
+	ldw r1, dp[__llvm_gcov_ctr.115+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.115+16]
+	stw r0, dp[__llvm_gcov_ctr.115+20]
 	ldw r0, sp[0]
 	add r0, r0, 1
 	stw r0, sp[0]
 	bu .LBB115_1
 .LBB115_6:
 	ldw r0, sp[0]
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __ctzhi2.function
 .Lfunc_end115:
 	.size	__ctzhi2, .Lfunc_end115-__ctzhi2
@@ -9477,10 +12195,16 @@ __fixunssfsi:
 	bt r0, .LBB116_2
 	bu .LBB116_1
 .LBB116_1:
-	ldw r0, dp[.L__profc___fixunssfsi+12]
-	ldw r1, dp[.L__profc___fixunssfsi+8]
+	ldw r0, dp[__llvm_gcov_ctr.116+4]
+	ldw r1, dp[__llvm_gcov_ctr.116]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.116]
+	stw r0, dp[__llvm_gcov_ctr.116+4]
+	ldw r0, dp[.L__profc___fixunssfsi+12]
+	ldw r1, dp[.L__profc___fixunssfsi+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___fixunssfsi+8]
@@ -9494,6 +12218,14 @@ __fixunssfsi:
 	stw r0, sp[2]
 	bu .LBB116_3
 .LBB116_2:
+	ldw r0, dp[__llvm_gcov_ctr.116+12]
+	ldw r1, dp[__llvm_gcov_ctr.116+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.116+8]
+	stw r0, dp[__llvm_gcov_ctr.116+12]
 	ldw r0, sp[1]
 	bl __fixsfsi
 	stw r0, sp[2]
@@ -9510,14 +12242,21 @@ __fixunssfsi:
 	.type	__parityhi2,@function
 	.cc_top __parityhi2.function,__parityhi2
 __parityhi2:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
 	mov r1, r0
+	ldw r2, dp[__llvm_gcov_ctr.117+4]
+	ldw r11, dp[__llvm_gcov_ctr.117]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r0
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.117]
+	stw r2, dp[__llvm_gcov_ctr.117+4]
 	ldaw r2, sp[2]
 	st16 r1, r2[r0]
 	ldw r1, dp[.L__profc___parityhi2+4]
 	ldw r2, dp[.L__profc___parityhi2]
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___parityhi2]
@@ -9549,10 +12288,16 @@ __parityhi2:
 	bf r0, .LBB117_4
 	bu .LBB117_3
 .LBB117_3:
-	ldw r0, dp[.L__profc___parityhi2+20]
-	ldw r1, dp[.L__profc___parityhi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.117+12]
+	ldw r1, dp[__llvm_gcov_ctr.117+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.117+8]
+	stw r0, dp[__llvm_gcov_ctr.117+12]
+	ldw r0, dp[.L__profc___parityhi2+20]
+	ldw r1, dp[.L__profc___parityhi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___parityhi2+16]
@@ -9564,6 +12309,14 @@ __parityhi2:
 .LBB117_4:
 	bu .LBB117_5
 .LBB117_5:
+	ldw r0, dp[__llvm_gcov_ctr.117+20]
+	ldw r1, dp[__llvm_gcov_ctr.117+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.117+16]
+	stw r0, dp[__llvm_gcov_ctr.117+20]
 	ldw r0, sp[1]
 	add r0, r0, 1
 	stw r0, sp[1]
@@ -9571,7 +12324,8 @@ __parityhi2:
 .LBB117_6:
 	ldw r0, sp[0]
 	zext r0, 1
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __parityhi2.function
 .Lfunc_end117:
 	.size	__parityhi2, .Lfunc_end117-__parityhi2
@@ -9581,14 +12335,21 @@ __parityhi2:
 	.type	__popcounthi2,@function
 	.cc_top __popcounthi2.function,__popcounthi2
 __popcounthi2:
-	entsp 3
+	entsp 4
+	stw r4, sp[3]
 	mov r1, r0
+	ldw r2, dp[__llvm_gcov_ctr.118+4]
+	ldw r11, dp[__llvm_gcov_ctr.118]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r0
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.118]
+	stw r2, dp[__llvm_gcov_ctr.118+4]
 	ldaw r2, sp[2]
 	st16 r1, r2[r0]
 	ldw r1, dp[.L__profc___popcounthi2+4]
 	ldw r2, dp[.L__profc___popcounthi2]
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___popcounthi2]
@@ -9620,10 +12381,16 @@ __popcounthi2:
 	bf r0, .LBB118_4
 	bu .LBB118_3
 .LBB118_3:
-	ldw r0, dp[.L__profc___popcounthi2+20]
-	ldw r1, dp[.L__profc___popcounthi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.118+12]
+	ldw r1, dp[__llvm_gcov_ctr.118+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.118+8]
+	stw r0, dp[__llvm_gcov_ctr.118+12]
+	ldw r0, dp[.L__profc___popcounthi2+20]
+	ldw r1, dp[.L__profc___popcounthi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___popcounthi2+16]
@@ -9635,13 +12402,22 @@ __popcounthi2:
 .LBB118_4:
 	bu .LBB118_5
 .LBB118_5:
+	ldw r0, dp[__llvm_gcov_ctr.118+20]
+	ldw r1, dp[__llvm_gcov_ctr.118+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.118+16]
+	stw r0, dp[__llvm_gcov_ctr.118+20]
 	ldw r0, sp[1]
 	add r0, r0, 1
 	stw r0, sp[1]
 	bu .LBB118_1
 .LBB118_6:
 	ldw r0, sp[0]
-	retsp 3
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __popcounthi2.function
 .Lfunc_end118:
 	.size	__popcounthi2, .Lfunc_end118-__popcounthi2
@@ -9651,13 +12427,22 @@ __popcounthi2:
 	.type	__mulsi3_iq2000,@function
 	.cc_top __mulsi3_iq2000.function,__mulsi3_iq2000
 __mulsi3_iq2000:
-	entsp 3
-	stw r0, sp[2]
+	entsp 5
+	stw r4, sp[4]
+	stw r5, sp[3]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.119+4]
+	ldw r4, dp[__llvm_gcov_ctr.119]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.119]
+	stw r11, dp[__llvm_gcov_ctr.119+4]
+	stw r2, sp[2]
 	stw r1, sp[1]
 	ldw r1, dp[.L__profc___mulsi3_iq2000+4]
 	ldw r2, dp[.L__profc___mulsi3_iq2000]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mulsi3_iq2000]
@@ -9683,10 +12468,16 @@ __mulsi3_iq2000:
 	bf r0, .LBB119_4
 	bu .LBB119_3
 .LBB119_3:
-	ldw r0, dp[.L__profc___mulsi3_iq2000+20]
-	ldw r1, dp[.L__profc___mulsi3_iq2000+16]
+	ldw r0, dp[__llvm_gcov_ctr.119+12]
+	ldw r1, dp[__llvm_gcov_ctr.119+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.119+8]
+	stw r0, dp[__llvm_gcov_ctr.119+12]
+	ldw r0, dp[.L__profc___mulsi3_iq2000+20]
+	ldw r1, dp[.L__profc___mulsi3_iq2000+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mulsi3_iq2000+16]
@@ -9697,6 +12488,14 @@ __mulsi3_iq2000:
 	stw r0, sp[0]
 	bu .LBB119_4
 .LBB119_4:
+	ldw r0, dp[__llvm_gcov_ctr.119+20]
+	ldw r1, dp[__llvm_gcov_ctr.119+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.119+16]
+	stw r0, dp[__llvm_gcov_ctr.119+20]
 	ldw r0, sp[2]
 	shr r0, r0, 1
 	stw r0, sp[2]
@@ -9706,7 +12505,9 @@ __mulsi3_iq2000:
 	bu .LBB119_1
 .LBB119_5:
 	ldw r0, sp[0]
-	retsp 3
+	ldw r5, sp[3]
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom __mulsi3_iq2000.function
 .Lfunc_end119:
 	.size	__mulsi3_iq2000, .Lfunc_end119-__mulsi3_iq2000
@@ -9732,10 +12533,16 @@ __mulsi3_lm32:
 	bt r0, .LBB120_2
 	bu .LBB120_1
 .LBB120_1:
-	ldw r1, dp[.L__profc___mulsi3_lm32+12]
-	ldw r2, dp[.L__profc___mulsi3_lm32+8]
+	ldw r1, dp[__llvm_gcov_ctr.120+12]
+	ldw r2, dp[__llvm_gcov_ctr.120+8]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.120+8]
+	stw r1, dp[__llvm_gcov_ctr.120+12]
+	ldw r1, dp[.L__profc___mulsi3_lm32+12]
+	ldw r2, dp[.L__profc___mulsi3_lm32+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mulsi3_lm32+8]
@@ -9743,6 +12550,14 @@ __mulsi3_lm32:
 	stw r0, sp[3]
 	bu .LBB120_8
 .LBB120_2:
+	ldw r0, dp[__llvm_gcov_ctr.120+4]
+	ldw r1, dp[__llvm_gcov_ctr.120]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.120]
+	stw r0, dp[__llvm_gcov_ctr.120+4]
 	bu .LBB120_3
 .LBB120_3:
 	ldw r0, sp[1]
@@ -9763,10 +12578,16 @@ __mulsi3_lm32:
 	bf r0, .LBB120_6
 	bu .LBB120_5
 .LBB120_5:
-	ldw r0, dp[.L__profc___mulsi3_lm32+28]
-	ldw r1, dp[.L__profc___mulsi3_lm32+24]
+	ldw r0, dp[__llvm_gcov_ctr.120+20]
+	ldw r1, dp[__llvm_gcov_ctr.120+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.120+16]
+	stw r0, dp[__llvm_gcov_ctr.120+20]
+	ldw r0, dp[.L__profc___mulsi3_lm32+28]
+	ldw r1, dp[.L__profc___mulsi3_lm32+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mulsi3_lm32+24]
@@ -9777,6 +12598,14 @@ __mulsi3_lm32:
 	stw r0, sp[0]
 	bu .LBB120_6
 .LBB120_6:
+	ldw r0, dp[__llvm_gcov_ctr.120+28]
+	ldw r1, dp[__llvm_gcov_ctr.120+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.120+24]
+	stw r0, dp[__llvm_gcov_ctr.120+28]
 	ldw r0, sp[2]
 	shl r0, r0, 1
 	stw r0, sp[2]
@@ -9805,7 +12634,8 @@ __mulsi3_lm32:
 	.type	__udivmodsi4,@function
 	.cc_top __udivmodsi4.function,__udivmodsi4
 __udivmodsi4:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -9829,10 +12659,16 @@ __udivmodsi4:
 	bf r0, .LBB121_6
 	bu .LBB121_2
 .LBB121_2:
-	ldw r0, dp[.L__profc___udivmodsi4+36]
-	ldw r2, dp[.L__profc___udivmodsi4+32]
+	ldw r0, dp[__llvm_gcov_ctr.121+4]
+	ldw r2, dp[__llvm_gcov_ctr.121]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.121]
+	stw r0, dp[__llvm_gcov_ctr.121+4]
+	ldw r0, dp[.L__profc___udivmodsi4+36]
+	ldw r2, dp[.L__profc___udivmodsi4+32]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___udivmodsi4+32]
@@ -9842,10 +12678,16 @@ __udivmodsi4:
 	bf r0, .LBB121_6
 	bu .LBB121_3
 .LBB121_3:
-	ldw r0, dp[.L__profc___udivmodsi4+44]
-	ldw r1, dp[.L__profc___udivmodsi4+40]
+	ldw r0, dp[__llvm_gcov_ctr.121+12]
+	ldw r1, dp[__llvm_gcov_ctr.121+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.121+8]
+	stw r0, dp[__llvm_gcov_ctr.121+12]
+	ldw r0, dp[.L__profc___udivmodsi4+44]
+	ldw r1, dp[.L__profc___udivmodsi4+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4+40]
@@ -9870,10 +12712,16 @@ __udivmodsi4:
 	bu .LBB121_5
 .LBB121_5:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc___udivmodsi4+28]
-	ldw r2, dp[.L__profc___udivmodsi4+24]
+	ldw r1, dp[__llvm_gcov_ctr.121+20]
+	ldw r2, dp[__llvm_gcov_ctr.121+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.121+16]
+	stw r1, dp[__llvm_gcov_ctr.121+20]
+	ldw r1, dp[.L__profc___udivmodsi4+28]
+	ldw r2, dp[.L__profc___udivmodsi4+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc___udivmodsi4+24]
@@ -9886,10 +12734,16 @@ __udivmodsi4:
 	bf r0, .LBB121_8
 	bu .LBB121_7
 .LBB121_7:
-	ldw r0, dp[.L__profc___udivmodsi4+12]
-	ldw r1, dp[.L__profc___udivmodsi4+8]
+	ldw r0, dp[__llvm_gcov_ctr.121+28]
+	ldw r1, dp[__llvm_gcov_ctr.121+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.121+24]
+	stw r0, dp[__llvm_gcov_ctr.121+28]
+	ldw r0, dp[.L__profc___udivmodsi4+12]
+	ldw r1, dp[.L__profc___udivmodsi4+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4+8]
@@ -9922,10 +12776,16 @@ __udivmodsi4:
 	bt r0, .LBB121_12
 	bu .LBB121_11
 .LBB121_11:
-	ldw r0, dp[.L__profc___udivmodsi4+60]
-	ldw r1, dp[.L__profc___udivmodsi4+56]
+	ldw r0, dp[__llvm_gcov_ctr.121+36]
+	ldw r1, dp[__llvm_gcov_ctr.121+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.121+32]
+	stw r0, dp[__llvm_gcov_ctr.121+36]
+	ldw r0, dp[.L__profc___udivmodsi4+60]
+	ldw r1, dp[.L__profc___udivmodsi4+56]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4+56]
@@ -9940,6 +12800,14 @@ __udivmodsi4:
 	stw r0, sp[2]
 	bu .LBB121_12
 .LBB121_12:
+	ldw r0, dp[__llvm_gcov_ctr.121+44]
+	ldw r1, dp[__llvm_gcov_ctr.121+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.121+40]
+	stw r0, dp[__llvm_gcov_ctr.121+44]
 	ldw r0, sp[3]
 	shr r0, r0, 1
 	stw r0, sp[3]
@@ -9952,10 +12820,16 @@ __udivmodsi4:
 	bf r0, .LBB121_15
 	bu .LBB121_14
 .LBB121_14:
-	ldw r0, dp[.L__profc___udivmodsi4+68]
-	ldw r1, dp[.L__profc___udivmodsi4+64]
+	ldw r0, dp[__llvm_gcov_ctr.121+52]
+	ldw r1, dp[__llvm_gcov_ctr.121+48]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.121+48]
+	stw r0, dp[__llvm_gcov_ctr.121+52]
+	ldw r0, dp[.L__profc___udivmodsi4+68]
+	ldw r1, dp[.L__profc___udivmodsi4+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4+64]
@@ -9964,12 +12838,21 @@ __udivmodsi4:
 	stw r0, sp[7]
 	bu .LBB121_16
 .LBB121_15:
+	ldw r0, dp[__llvm_gcov_ctr.121+60]
+	ldw r1, dp[__llvm_gcov_ctr.121+56]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.121+56]
+	stw r0, dp[__llvm_gcov_ctr.121+60]
 	ldw r0, sp[2]
 	stw r0, sp[7]
 	bu .LBB121_16
 .LBB121_16:
 	ldw r0, sp[7]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom __udivmodsi4.function
 .Lfunc_end121:
 	.size	__udivmodsi4, .Lfunc_end121-__udivmodsi4
@@ -9997,10 +12880,16 @@ __mspabi_cmpf:
 	bf r0, .LBB122_2
 	bu .LBB122_1
 .LBB122_1:
-	ldw r0, dp[.L__profc___mspabi_cmpf+12]
-	ldw r1, dp[.L__profc___mspabi_cmpf+8]
+	ldw r0, dp[__llvm_gcov_ctr.122+4]
+	ldw r1, dp[__llvm_gcov_ctr.122]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.122]
+	stw r0, dp[__llvm_gcov_ctr.122+4]
+	ldw r0, dp[.L__profc___mspabi_cmpf+12]
+	ldw r1, dp[.L__profc___mspabi_cmpf+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mspabi_cmpf+8]
@@ -10017,10 +12906,16 @@ __mspabi_cmpf:
 	bt r0, .LBB122_4
 	bu .LBB122_3
 .LBB122_3:
-	ldw r1, dp[.L__profc___mspabi_cmpf+20]
-	ldw r2, dp[.L__profc___mspabi_cmpf+16]
+	ldw r1, dp[__llvm_gcov_ctr.122+12]
+	ldw r2, dp[__llvm_gcov_ctr.122+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.122+8]
+	stw r1, dp[__llvm_gcov_ctr.122+12]
+	ldw r1, dp[.L__profc___mspabi_cmpf+20]
+	ldw r2, dp[.L__profc___mspabi_cmpf+16]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mspabi_cmpf+16]
@@ -10028,7 +12923,14 @@ __mspabi_cmpf:
 	stw r0, sp[3]
 	bu .LBB122_5
 .LBB122_4:
+	ldw r1, dp[__llvm_gcov_ctr.122+20]
+	ldw r2, dp[__llvm_gcov_ctr.122+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.122+16]
+	stw r1, dp[__llvm_gcov_ctr.122+20]
 	stw r0, sp[3]
 	bu .LBB122_5
 .LBB122_5:
@@ -10065,10 +12967,16 @@ __mspabi_cmpd:
 	bf r0, .LBB123_2
 	bu .LBB123_1
 .LBB123_1:
-	ldw r0, dp[.L__profc___mspabi_cmpd+12]
-	ldw r1, dp[.L__profc___mspabi_cmpd+8]
+	ldw r0, dp[__llvm_gcov_ctr.123+4]
+	ldw r1, dp[__llvm_gcov_ctr.123]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.123]
+	stw r0, dp[__llvm_gcov_ctr.123+4]
+	ldw r0, dp[.L__profc___mspabi_cmpd+12]
+	ldw r1, dp[.L__profc___mspabi_cmpd+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mspabi_cmpd+8]
@@ -10087,10 +12995,16 @@ __mspabi_cmpd:
 	bt r0, .LBB123_4
 	bu .LBB123_3
 .LBB123_3:
-	ldw r1, dp[.L__profc___mspabi_cmpd+20]
-	ldw r2, dp[.L__profc___mspabi_cmpd+16]
+	ldw r1, dp[__llvm_gcov_ctr.123+12]
+	ldw r2, dp[__llvm_gcov_ctr.123+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.123+8]
+	stw r1, dp[__llvm_gcov_ctr.123+12]
+	ldw r1, dp[.L__profc___mspabi_cmpd+20]
+	ldw r2, dp[.L__profc___mspabi_cmpd+16]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mspabi_cmpd+16]
@@ -10098,7 +13012,14 @@ __mspabi_cmpd:
 	stw r0, sp[5]
 	bu .LBB123_5
 .LBB123_4:
+	ldw r1, dp[__llvm_gcov_ctr.123+20]
+	ldw r2, dp[__llvm_gcov_ctr.123+16]
 	ldc r0, 0
+	mkmsk r3, 1
+	ladd r3, r2, r2, r3, r0
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.123+16]
+	stw r1, dp[__llvm_gcov_ctr.123+20]
 	stw r0, sp[5]
 	bu .LBB123_5
 .LBB123_5:
@@ -10113,13 +13034,22 @@ __mspabi_cmpd:
 	.type	__mspabi_mpysll,@function
 	.cc_top __mspabi_mpysll.function,__mspabi_mpysll
 __mspabi_mpysll:
-	entsp 2
-	stw r0, sp[1]
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.124+4]
+	ldw r4, dp[__llvm_gcov_ctr.124]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.124]
+	stw r11, dp[__llvm_gcov_ctr.124+4]
+	stw r2, sp[1]
 	stw r1, sp[0]
 	ldw r1, dp[.L__profc___mspabi_mpysll+4]
 	ldw r2, dp[.L__profc___mspabi_mpysll]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mspabi_mpysll]
@@ -10128,7 +13058,9 @@ __mspabi_mpysll:
 	ldw r3, sp[0]
 	mov r1, r0
 	maccs r1, r0, r2, r3
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __mspabi_mpysll.function
 .Lfunc_end124:
 	.size	__mspabi_mpysll, .Lfunc_end124-__mspabi_mpysll
@@ -10138,13 +13070,21 @@ __mspabi_mpysll:
 	.type	__mspabi_mpyull,@function
 	.cc_top __mspabi_mpyull.function,__mspabi_mpyull
 __mspabi_mpyull:
-	entsp 2
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.125+4]
+	ldw r4, dp[__llvm_gcov_ctr.125]
+	ldc r2, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r2
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.125]
+	stw r11, dp[__llvm_gcov_ctr.125+4]
 	stw r0, sp[1]
 	stw r1, sp[0]
 	ldw r0, dp[.L__profc___mspabi_mpyull+4]
 	ldw r1, dp[.L__profc___mspabi_mpyull]
-	ldc r2, 0
-	mkmsk r3, 1
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___mspabi_mpyull]
@@ -10152,7 +13092,9 @@ __mspabi_mpyull:
 	ldw r0, sp[1]
 	ldw r1, sp[0]
 	lmul r1, r0, r0, r1, r2, r2
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __mspabi_mpyull.function
 .Lfunc_end125:
 	.size	__mspabi_mpyull, .Lfunc_end125-__mspabi_mpyull
@@ -10162,7 +13104,8 @@ __mspabi_mpyull:
 	.type	__mulhi3,@function
 	.cc_top __mulhi3.function,__mulhi3
 __mulhi3:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[7]
 	stw r1, sp[6]
 	ldw r1, dp[.L__profc___mulhi3+4]
@@ -10180,10 +13123,16 @@ __mulhi3:
 	bf r0, .LBB126_2
 	bu .LBB126_1
 .LBB126_1:
-	ldw r1, dp[.L__profc___mulhi3+12]
-	ldw r2, dp[.L__profc___mulhi3+8]
+	ldw r1, dp[__llvm_gcov_ctr.126+4]
+	ldw r2, dp[__llvm_gcov_ctr.126]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.126]
+	stw r1, dp[__llvm_gcov_ctr.126+4]
+	ldw r1, dp[.L__profc___mulhi3+12]
+	ldw r2, dp[.L__profc___mulhi3+8]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mulhi3+8]
@@ -10205,10 +13154,16 @@ __mulhi3:
 	bf r0, .LBB126_6
 	bu .LBB126_4
 .LBB126_4:
-	ldw r0, dp[.L__profc___mulhi3+28]
-	ldw r2, dp[.L__profc___mulhi3+24]
+	ldw r0, dp[__llvm_gcov_ctr.126+12]
+	ldw r2, dp[__llvm_gcov_ctr.126+8]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.126+8]
+	stw r0, dp[__llvm_gcov_ctr.126+12]
+	ldw r0, dp[.L__profc___mulhi3+28]
+	ldw r2, dp[.L__profc___mulhi3+24]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___mulhi3+24]
@@ -10225,10 +13180,16 @@ __mulhi3:
 	bu .LBB126_5
 .LBB126_5:
 	ldw r0, sp[1]
-	ldw r1, dp[.L__profc___mulhi3+36]
-	ldw r2, dp[.L__profc___mulhi3+32]
+	ldw r1, dp[__llvm_gcov_ctr.126+20]
+	ldw r2, dp[__llvm_gcov_ctr.126+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.126+16]
+	stw r1, dp[__llvm_gcov_ctr.126+20]
+	ldw r1, dp[.L__profc___mulhi3+36]
+	ldw r2, dp[.L__profc___mulhi3+32]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc___mulhi3+32]
@@ -10255,10 +13216,16 @@ __mulhi3:
 	bf r0, .LBB126_9
 	bu .LBB126_8
 .LBB126_8:
-	ldw r0, dp[.L__profc___mulhi3+44]
-	ldw r1, dp[.L__profc___mulhi3+40]
+	ldw r0, dp[__llvm_gcov_ctr.126+28]
+	ldw r1, dp[__llvm_gcov_ctr.126+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.126+24]
+	stw r0, dp[__llvm_gcov_ctr.126+28]
+	ldw r0, dp[.L__profc___mulhi3+44]
+	ldw r1, dp[.L__profc___mulhi3+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mulhi3+40]
@@ -10277,7 +13244,14 @@ __mulhi3:
 	stw r0, sp[6]
 	bu .LBB126_10
 .LBB126_10:
+	ldw r0, dp[__llvm_gcov_ctr.126+36]
+	ldw r1, dp[__llvm_gcov_ctr.126+32]
 	ldc r2, 0
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.126+32]
+	stw r0, dp[__llvm_gcov_ctr.126+36]
 	ldaw r1, sp[5]
 	ld8u r0, r1[r2]
 	add r0, r0, 1
@@ -10288,10 +13262,16 @@ __mulhi3:
 	bf r0, .LBB126_13
 	bu .LBB126_12
 .LBB126_12:
-	ldw r0, dp[.L__profc___mulhi3+52]
-	ldw r1, dp[.L__profc___mulhi3+48]
+	ldw r0, dp[__llvm_gcov_ctr.126+44]
+	ldw r1, dp[__llvm_gcov_ctr.126+40]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.126+40]
+	stw r0, dp[__llvm_gcov_ctr.126+44]
+	ldw r0, dp[.L__profc___mulhi3+52]
+	ldw r1, dp[.L__profc___mulhi3+48]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___mulhi3+48]
@@ -10301,12 +13281,21 @@ __mulhi3:
 	stw r0, sp[0]
 	bu .LBB126_14
 .LBB126_13:
+	ldw r0, dp[__llvm_gcov_ctr.126+52]
+	ldw r1, dp[__llvm_gcov_ctr.126+48]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.126+48]
+	stw r0, dp[__llvm_gcov_ctr.126+52]
 	ldw r0, sp[3]
 	stw r0, sp[0]
 	bu .LBB126_14
 .LBB126_14:
 	ldw r0, sp[0]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom __mulhi3.function
 .Lfunc_end126:
 	.size	__mulhi3, .Lfunc_end126-__mulhi3
@@ -10316,13 +13305,22 @@ __mulhi3:
 	.type	__divsi3,@function
 	.cc_top __divsi3.function,__divsi3
 __divsi3:
-	entsp 5
-	stw r0, sp[4]
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.127+4]
+	ldw r4, dp[__llvm_gcov_ctr.127]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.127]
+	stw r11, dp[__llvm_gcov_ctr.127+4]
+	stw r2, sp[4]
 	stw r1, sp[3]
 	ldw r1, dp[.L__profc___divsi3+4]
 	ldw r2, dp[.L__profc___divsi3]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___divsi3]
@@ -10333,10 +13331,16 @@ __divsi3:
 	bf r0, .LBB127_2
 	bu .LBB127_1
 .LBB127_1:
-	ldw r0, dp[.L__profc___divsi3+12]
-	ldw r1, dp[.L__profc___divsi3+8]
+	ldw r0, dp[__llvm_gcov_ctr.127+12]
+	ldw r1, dp[__llvm_gcov_ctr.127+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.127+8]
+	stw r0, dp[__llvm_gcov_ctr.127+12]
+	ldw r0, dp[.L__profc___divsi3+12]
+	ldw r1, dp[.L__profc___divsi3+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___divsi3+8]
@@ -10354,10 +13358,16 @@ __divsi3:
 	bf r0, .LBB127_4
 	bu .LBB127_3
 .LBB127_3:
-	ldw r0, dp[.L__profc___divsi3+20]
-	ldw r1, dp[.L__profc___divsi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.127+20]
+	ldw r1, dp[__llvm_gcov_ctr.127+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.127+16]
+	stw r0, dp[__llvm_gcov_ctr.127+20]
+	ldw r0, dp[.L__profc___divsi3+20]
+	ldw r1, dp[.L__profc___divsi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___divsi3+16]
@@ -10379,10 +13389,16 @@ __divsi3:
 	bf r0, .LBB127_6
 	bu .LBB127_5
 .LBB127_5:
-	ldw r0, dp[.L__profc___divsi3+28]
-	ldw r1, dp[.L__profc___divsi3+24]
+	ldw r0, dp[__llvm_gcov_ctr.127+28]
+	ldw r1, dp[__llvm_gcov_ctr.127+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.127+24]
+	stw r0, dp[__llvm_gcov_ctr.127+28]
+	ldw r0, dp[.L__profc___divsi3+28]
+	ldw r1, dp[.L__profc___divsi3+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___divsi3+24]
@@ -10393,7 +13409,9 @@ __divsi3:
 	bu .LBB127_6
 .LBB127_6:
 	ldw r0, sp[1]
-	retsp 5
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom __divsi3.function
 .Lfunc_end127:
 	.size	__divsi3, .Lfunc_end127-__divsi3
@@ -10403,13 +13421,22 @@ __divsi3:
 	.type	__modsi3,@function
 	.cc_top __modsi3.function,__modsi3
 __modsi3:
-	entsp 5
-	stw r0, sp[4]
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
+	mov r2, r0
+	ldw r11, dp[__llvm_gcov_ctr.128+4]
+	ldw r4, dp[__llvm_gcov_ctr.128]
+	ldc r0, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r0
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.128]
+	stw r11, dp[__llvm_gcov_ctr.128+4]
+	stw r2, sp[4]
 	stw r1, sp[3]
 	ldw r1, dp[.L__profc___modsi3+4]
 	ldw r2, dp[.L__profc___modsi3]
-	ldc r0, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___modsi3]
@@ -10420,10 +13447,16 @@ __modsi3:
 	bf r0, .LBB128_2
 	bu .LBB128_1
 .LBB128_1:
-	ldw r1, dp[.L__profc___modsi3+12]
-	ldw r2, dp[.L__profc___modsi3+8]
+	ldw r1, dp[__llvm_gcov_ctr.128+12]
+	ldw r2, dp[__llvm_gcov_ctr.128+8]
 	ldc r3, 0
 	mkmsk r0, 1
+	ladd r11, r2, r2, r0, r3
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.128+8]
+	stw r1, dp[__llvm_gcov_ctr.128+12]
+	ldw r1, dp[.L__profc___modsi3+12]
+	ldw r2, dp[.L__profc___modsi3+8]
 	ladd r3, r2, r2, r0, r3
 	add r1, r1, r3
 	stw r2, dp[.L__profc___modsi3+8]
@@ -10439,10 +13472,16 @@ __modsi3:
 	bf r0, .LBB128_4
 	bu .LBB128_3
 .LBB128_3:
-	ldw r0, dp[.L__profc___modsi3+20]
-	ldw r1, dp[.L__profc___modsi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.128+20]
+	ldw r1, dp[__llvm_gcov_ctr.128+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.128+16]
+	stw r0, dp[__llvm_gcov_ctr.128+20]
+	ldw r0, dp[.L__profc___modsi3+20]
+	ldw r1, dp[.L__profc___modsi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___modsi3+16]
@@ -10461,10 +13500,16 @@ __modsi3:
 	bf r0, .LBB128_6
 	bu .LBB128_5
 .LBB128_5:
-	ldw r0, dp[.L__profc___modsi3+28]
-	ldw r1, dp[.L__profc___modsi3+24]
+	ldw r0, dp[__llvm_gcov_ctr.128+28]
+	ldw r1, dp[__llvm_gcov_ctr.128+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.128+24]
+	stw r0, dp[__llvm_gcov_ctr.128+28]
+	ldw r0, dp[.L__profc___modsi3+28]
+	ldw r1, dp[.L__profc___modsi3+24]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___modsi3+24]
@@ -10475,7 +13520,9 @@ __modsi3:
 	bu .LBB128_6
 .LBB128_6:
 	ldw r0, sp[1]
-	retsp 5
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom __modsi3.function
 .Lfunc_end128:
 	.size	__modsi3, .Lfunc_end128-__modsi3
@@ -10485,14 +13532,15 @@ __modsi3:
 	.type	__udivmodhi4,@function
 	.cc_top __udivmodhi4.function,__udivmodhi4
 __udivmodhi4:
-	entsp 6
+	entsp 8
+	stw r4, sp[7]
 	mov r3, r0
 	ldc r0, 0
-	ldaw r11, sp[5]
+	ldaw r11, sp[6]
 	st16 r3, r11[r0]
-	ldaw r3, sp[4]
+	ldaw r3, sp[5]
 	st16 r1, r3[r0]
-	stw r2, sp[3]
+	stw r2, sp[4]
 	ldw r2, dp[.L__profc___udivmodhi4+4]
 	ldw r3, dp[.L__profc___udivmodhi4]
 	mkmsk r1, 1
@@ -10500,43 +13548,55 @@ __udivmodhi4:
 	add r2, r2, r11
 	stw r3, dp[.L__profc___udivmodhi4]
 	stw r2, dp[.L__profc___udivmodhi4+4]
-	ldaw r2, sp[2]
+	ldaw r2, sp[3]
 	st16 r1, r2[r0]
-	ldaw r1, sp[2]
+	ldaw r1, sp[3]
 	st16 r0, r1[r0]
 	bu .LBB129_1
 .LBB129_1:
 	ldc r1, 0
-	ldaw r0, sp[4]
+	ldaw r0, sp[5]
 	ld16s r0, r0[r1]
 	zext r0, 16
-	ldaw r2, sp[5]
+	ldaw r2, sp[6]
 	ld16s r2, r2[r1]
 	zext r2, 16
 	lss r0, r0, r2
-	stw r1, sp[1]
+	stw r1, sp[2]
 	bf r0, .LBB129_6
 	bu .LBB129_2
 .LBB129_2:
-	ldw r0, dp[.L__profc___udivmodhi4+36]
-	ldw r2, dp[.L__profc___udivmodhi4+32]
+	ldw r0, dp[__llvm_gcov_ctr.129+4]
+	ldw r2, dp[__llvm_gcov_ctr.129]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.129]
+	stw r0, dp[__llvm_gcov_ctr.129+4]
+	ldw r0, dp[.L__profc___udivmodhi4+36]
+	ldw r2, dp[.L__profc___udivmodhi4+32]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___udivmodhi4+32]
 	stw r0, dp[.L__profc___udivmodhi4+36]
-	ldaw r0, sp[2]
+	ldaw r0, sp[3]
 	ld16s r0, r0[r1]
 	zext r0, 16
-	stw r1, sp[1]
+	stw r1, sp[2]
 	bf r0, .LBB129_6
 	bu .LBB129_3
 .LBB129_3:
-	ldw r0, dp[.L__profc___udivmodhi4+44]
-	ldw r1, dp[.L__profc___udivmodhi4+40]
+	ldw r0, dp[__llvm_gcov_ctr.129+12]
+	ldw r1, dp[__llvm_gcov_ctr.129+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.129+8]
+	stw r0, dp[__llvm_gcov_ctr.129+12]
+	ldw r0, dp[.L__profc___udivmodhi4+44]
+	ldw r1, dp[.L__profc___udivmodhi4+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodhi4+40]
@@ -10551,46 +13611,58 @@ __udivmodhi4:
 	add r0, r0, r3
 	stw r2, dp[.L__profc___udivmodhi4+16]
 	stw r0, dp[.L__profc___udivmodhi4+20]
-	ldaw r0, sp[4]
+	ldaw r0, sp[5]
 	ld16s r0, r0[r1]
 	ldc r1, 32768
 	and r0, r0, r1
 	eq r1, r0, 0
-	stw r1, sp[0]
 	stw r1, sp[1]
+	stw r1, sp[2]
 	bt r0, .LBB129_6
 	bu .LBB129_5
 .LBB129_5:
-	ldw r0, sp[0]
-	ldw r1, dp[.L__profc___udivmodhi4+28]
-	ldw r2, dp[.L__profc___udivmodhi4+24]
+	ldw r0, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.129+20]
+	ldw r2, dp[__llvm_gcov_ctr.129+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.129+16]
+	stw r1, dp[__llvm_gcov_ctr.129+20]
+	ldw r1, dp[.L__profc___udivmodhi4+28]
+	ldw r2, dp[.L__profc___udivmodhi4+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc___udivmodhi4+24]
 	stw r1, dp[.L__profc___udivmodhi4+28]
-	stw r0, sp[1]
+	stw r0, sp[2]
 	bu .LBB129_6
 .LBB129_6:
-	ldw r0, sp[1]
+	ldw r0, sp[2]
 	zext r0, 1
 	bf r0, .LBB129_8
 	bu .LBB129_7
 .LBB129_7:
-	ldw r0, dp[.L__profc___udivmodhi4+12]
-	ldw r1, dp[.L__profc___udivmodhi4+8]
+	ldw r0, dp[__llvm_gcov_ctr.129+28]
+	ldw r1, dp[__llvm_gcov_ctr.129+24]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.129+24]
+	stw r0, dp[__llvm_gcov_ctr.129+28]
+	ldw r0, dp[.L__profc___udivmodhi4+12]
+	ldw r1, dp[.L__profc___udivmodhi4+8]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___udivmodhi4+8]
 	stw r0, dp[.L__profc___udivmodhi4+12]
-	ldaw r1, sp[4]
+	ldaw r1, sp[5]
 	ld16s r0, r1[r2]
 	shl r0, r0, 1
 	st16 r0, r1[r2]
-	ldaw r1, sp[2]
+	ldaw r1, sp[3]
 	ld16s r0, r1[r2]
 	shl r0, r0, 1
 	st16 r0, r1[r2]
@@ -10599,7 +13671,7 @@ __udivmodhi4:
 	bu .LBB129_9
 .LBB129_9:
 	ldc r1, 0
-	ldaw r0, sp[2]
+	ldaw r0, sp[3]
 	ld16s r0, r0[r1]
 	zext r0, 16
 	bf r0, .LBB129_13
@@ -10613,82 +13685,110 @@ __udivmodhi4:
 	add r0, r0, r3
 	stw r1, dp[.L__profc___udivmodhi4+48]
 	stw r0, dp[.L__profc___udivmodhi4+52]
-	ldaw r0, sp[5]
+	ldaw r0, sp[6]
 	ld16s r0, r0[r2]
 	zext r0, 16
-	ldaw r1, sp[4]
+	ldaw r1, sp[5]
 	ld16s r1, r1[r2]
 	zext r1, 16
 	lss r0, r0, r1
 	bt r0, .LBB129_12
 	bu .LBB129_11
 .LBB129_11:
+	ldw r0, dp[__llvm_gcov_ctr.129+36]
+	ldw r1, dp[__llvm_gcov_ctr.129+32]
+	ldc r2, 0
+	stw r2, sp[0]
+	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.129+32]
+	stw r0, dp[__llvm_gcov_ctr.129+36]
 	ldw r0, dp[.L__profc___udivmodhi4+60]
 	ldw r1, dp[.L__profc___udivmodhi4+56]
-	ldc r2, 0
-	mkmsk r3, 1
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___udivmodhi4+56]
 	stw r0, dp[.L__profc___udivmodhi4+60]
-	ldaw r0, sp[4]
+	ldaw r0, sp[5]
 	ld16s r3, r0[r2]
-	ldaw r1, sp[5]
+	ldaw r1, sp[6]
 	ld16s r0, r1[r2]
 	sub r0, r0, r3
 	st16 r0, r1[r2]
-	ldaw r0, sp[2]
+	ldaw r0, sp[3]
 	ld16s r3, r0[r2]
-	ldaw r1, sp[2]
+	ldaw r1, sp[3]
 	ld16s r0, r1[r2]
 	or r0, r0, r3
 	st16 r0, r1[r2]
 	bu .LBB129_12
 .LBB129_12:
+	ldw r0, dp[__llvm_gcov_ctr.129+44]
+	ldw r1, dp[__llvm_gcov_ctr.129+40]
 	ldc r2, 0
-	ldaw r1, sp[2]
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.129+40]
+	stw r0, dp[__llvm_gcov_ctr.129+44]
+	ldaw r1, sp[3]
 	ld16s r0, r1[r2]
 	ldc r3, 65534
 	and r0, r0, r3
 	shr r0, r0, 1
 	st16 r0, r1[r2]
-	ldaw r1, sp[4]
+	ldaw r1, sp[5]
 	ld16s r0, r1[r2]
 	and r0, r0, r3
 	shr r0, r0, 1
 	st16 r0, r1[r2]
 	bu .LBB129_9
 .LBB129_13:
-	ldw r0, sp[3]
+	ldw r0, sp[4]
 	bf r0, .LBB129_15
 	bu .LBB129_14
 .LBB129_14:
-	ldw r0, dp[.L__profc___udivmodhi4+68]
-	ldw r1, dp[.L__profc___udivmodhi4+64]
+	ldw r0, dp[__llvm_gcov_ctr.129+52]
+	ldw r1, dp[__llvm_gcov_ctr.129+48]
 	ldc r2, 0
 	mkmsk r3, 1
+	ladd r11, r1, r1, r3, r2
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.129+48]
+	stw r0, dp[__llvm_gcov_ctr.129+52]
+	ldw r0, dp[.L__profc___udivmodhi4+68]
+	ldw r1, dp[.L__profc___udivmodhi4+64]
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___udivmodhi4+64]
 	stw r0, dp[.L__profc___udivmodhi4+68]
-	ldaw r0, sp[5]
+	ldaw r0, sp[6]
 	ld16s r0, r0[r2]
-	ldaw r1, sp[5]
+	ldaw r1, sp[6]
 	st16 r0, r1[r2]
 	bu .LBB129_16
 .LBB129_15:
+	ldw r0, dp[__llvm_gcov_ctr.129+60]
+	ldw r1, dp[__llvm_gcov_ctr.129+56]
 	ldc r2, 0
-	ldaw r0, sp[2]
+	mkmsk r3, 1
+	ladd r3, r1, r1, r3, r2
+	add r0, r0, r3
+	stw r1, dp[__llvm_gcov_ctr.129+56]
+	stw r0, dp[__llvm_gcov_ctr.129+60]
+	ldaw r0, sp[3]
 	ld16s r0, r0[r2]
-	ldaw r1, sp[5]
+	ldaw r1, sp[6]
 	st16 r0, r1[r2]
 	bu .LBB129_16
 .LBB129_16:
 	ldc r1, 0
-	ldaw r0, sp[5]
+	ldaw r0, sp[6]
 	ld16s r0, r0[r1]
 	zext r0, 16
-	retsp 6
+	ldw r4, sp[7]
+	retsp 8
 	.cc_bottom __udivmodhi4.function
 .Lfunc_end129:
 	.size	__udivmodhi4, .Lfunc_end129-__udivmodhi4
@@ -10703,7 +13803,8 @@ __udivmodhi4:
 	.type	__udivmodsi4_libgcc,@function
 	.cc_top __udivmodsi4_libgcc.function,__udivmodsi4_libgcc
 __udivmodsi4_libgcc:
-	entsp 8
+	entsp 9
+	stw r4, sp[8]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	stw r2, sp[4]
@@ -10727,10 +13828,16 @@ __udivmodsi4_libgcc:
 	bf r0, .LBB130_6
 	bu .LBB130_2
 .LBB130_2:
-	ldw r0, dp[.L__profc___udivmodsi4_libgcc+36]
-	ldw r2, dp[.L__profc___udivmodsi4_libgcc+32]
+	ldw r0, dp[__llvm_gcov_ctr.130+4]
+	ldw r2, dp[__llvm_gcov_ctr.130]
 	ldc r1, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r1
+	add r0, r0, r11
+	stw r2, dp[__llvm_gcov_ctr.130]
+	stw r0, dp[__llvm_gcov_ctr.130+4]
+	ldw r0, dp[.L__profc___udivmodsi4_libgcc+36]
+	ldw r2, dp[.L__profc___udivmodsi4_libgcc+32]
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___udivmodsi4_libgcc+32]
@@ -10740,10 +13847,16 @@ __udivmodsi4_libgcc:
 	bf r0, .LBB130_6
 	bu .LBB130_3
 .LBB130_3:
-	ldw r0, dp[.L__profc___udivmodsi4_libgcc+44]
-	ldw r1, dp[.L__profc___udivmodsi4_libgcc+40]
+	ldw r0, dp[__llvm_gcov_ctr.130+12]
+	ldw r1, dp[__llvm_gcov_ctr.130+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.130+8]
+	stw r0, dp[__llvm_gcov_ctr.130+12]
+	ldw r0, dp[.L__profc___udivmodsi4_libgcc+44]
+	ldw r1, dp[.L__profc___udivmodsi4_libgcc+40]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4_libgcc+40]
@@ -10768,10 +13881,16 @@ __udivmodsi4_libgcc:
 	bu .LBB130_5
 .LBB130_5:
 	ldw r0, sp[0]
-	ldw r1, dp[.L__profc___udivmodsi4_libgcc+28]
-	ldw r2, dp[.L__profc___udivmodsi4_libgcc+24]
+	ldw r1, dp[__llvm_gcov_ctr.130+20]
+	ldw r2, dp[__llvm_gcov_ctr.130+16]
 	ldc r11, 0
 	mkmsk r3, 1
+	ladd r4, r2, r2, r3, r11
+	add r1, r1, r4
+	stw r2, dp[__llvm_gcov_ctr.130+16]
+	stw r1, dp[__llvm_gcov_ctr.130+20]
+	ldw r1, dp[.L__profc___udivmodsi4_libgcc+28]
+	ldw r2, dp[.L__profc___udivmodsi4_libgcc+24]
 	ladd r3, r2, r2, r3, r11
 	add r1, r1, r3
 	stw r2, dp[.L__profc___udivmodsi4_libgcc+24]
@@ -10784,10 +13903,16 @@ __udivmodsi4_libgcc:
 	bf r0, .LBB130_8
 	bu .LBB130_7
 .LBB130_7:
-	ldw r0, dp[.L__profc___udivmodsi4_libgcc+12]
-	ldw r1, dp[.L__profc___udivmodsi4_libgcc+8]
+	ldw r0, dp[__llvm_gcov_ctr.130+28]
+	ldw r1, dp[__llvm_gcov_ctr.130+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.130+24]
+	stw r0, dp[__llvm_gcov_ctr.130+28]
+	ldw r0, dp[.L__profc___udivmodsi4_libgcc+12]
+	ldw r1, dp[.L__profc___udivmodsi4_libgcc+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4_libgcc+8]
@@ -10820,10 +13945,16 @@ __udivmodsi4_libgcc:
 	bt r0, .LBB130_12
 	bu .LBB130_11
 .LBB130_11:
-	ldw r0, dp[.L__profc___udivmodsi4_libgcc+60]
-	ldw r1, dp[.L__profc___udivmodsi4_libgcc+56]
+	ldw r0, dp[__llvm_gcov_ctr.130+36]
+	ldw r1, dp[__llvm_gcov_ctr.130+32]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.130+32]
+	stw r0, dp[__llvm_gcov_ctr.130+36]
+	ldw r0, dp[.L__profc___udivmodsi4_libgcc+60]
+	ldw r1, dp[.L__profc___udivmodsi4_libgcc+56]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4_libgcc+56]
@@ -10838,6 +13969,14 @@ __udivmodsi4_libgcc:
 	stw r0, sp[2]
 	bu .LBB130_12
 .LBB130_12:
+	ldw r0, dp[__llvm_gcov_ctr.130+44]
+	ldw r1, dp[__llvm_gcov_ctr.130+40]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.130+40]
+	stw r0, dp[__llvm_gcov_ctr.130+44]
 	ldw r0, sp[3]
 	shr r0, r0, 1
 	stw r0, sp[3]
@@ -10850,10 +13989,16 @@ __udivmodsi4_libgcc:
 	bf r0, .LBB130_15
 	bu .LBB130_14
 .LBB130_14:
-	ldw r0, dp[.L__profc___udivmodsi4_libgcc+68]
-	ldw r1, dp[.L__profc___udivmodsi4_libgcc+64]
+	ldw r0, dp[__llvm_gcov_ctr.130+52]
+	ldw r1, dp[__llvm_gcov_ctr.130+48]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.130+48]
+	stw r0, dp[__llvm_gcov_ctr.130+52]
+	ldw r0, dp[.L__profc___udivmodsi4_libgcc+68]
+	ldw r1, dp[.L__profc___udivmodsi4_libgcc+64]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___udivmodsi4_libgcc+64]
@@ -10862,12 +14007,21 @@ __udivmodsi4_libgcc:
 	stw r0, sp[7]
 	bu .LBB130_16
 .LBB130_15:
+	ldw r0, dp[__llvm_gcov_ctr.130+60]
+	ldw r1, dp[__llvm_gcov_ctr.130+56]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.130+56]
+	stw r0, dp[__llvm_gcov_ctr.130+60]
 	ldw r0, sp[2]
 	stw r0, sp[7]
 	bu .LBB130_16
 .LBB130_16:
 	ldw r0, sp[7]
-	retsp 8
+	ldw r4, sp[8]
+	retsp 9
 	.cc_bottom __udivmodsi4_libgcc.function
 .Lfunc_end130:
 	.size	__udivmodsi4_libgcc, .Lfunc_end130-__udivmodsi4_libgcc
@@ -10901,10 +14055,16 @@ __ashldi3:
 	bf r0, .LBB131_2
 	bu .LBB131_1
 .LBB131_1:
-	ldw r1, dp[.L__profc___ashldi3+12]
-	ldw r2, dp[.L__profc___ashldi3+8]
+	ldw r1, dp[__llvm_gcov_ctr.131+4]
+	ldw r2, dp[__llvm_gcov_ctr.131]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.131]
+	stw r1, dp[__llvm_gcov_ctr.131+4]
+	ldw r1, dp[.L__profc___ashldi3+12]
+	ldw r2, dp[.L__profc___ashldi3+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___ashldi3+8]
@@ -10921,10 +14081,16 @@ __ashldi3:
 	bt r0, .LBB131_4
 	bu .LBB131_3
 .LBB131_3:
-	ldw r0, dp[.L__profc___ashldi3+20]
-	ldw r1, dp[.L__profc___ashldi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.131+12]
+	ldw r1, dp[__llvm_gcov_ctr.131+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.131+8]
+	stw r0, dp[__llvm_gcov_ctr.131+12]
+	ldw r0, dp[.L__profc___ashldi3+20]
+	ldw r1, dp[.L__profc___ashldi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ashldi3+16]
@@ -10935,6 +14101,14 @@ __ashldi3:
 	stw r0, sp[8]
 	bu .LBB131_6
 .LBB131_4:
+	ldw r0, dp[__llvm_gcov_ctr.131+20]
+	ldw r1, dp[__llvm_gcov_ctr.131+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.131+16]
+	stw r0, dp[__llvm_gcov_ctr.131+20]
 	ldw r0, sp[2]
 	ldw r1, sp[5]
 	shl r0, r0, r1
@@ -10992,10 +14166,16 @@ __ashrdi3:
 	bf r0, .LBB132_2
 	bu .LBB132_1
 .LBB132_1:
-	ldw r0, dp[.L__profc___ashrdi3+12]
-	ldw r1, dp[.L__profc___ashrdi3+8]
+	ldw r0, dp[__llvm_gcov_ctr.132+4]
+	ldw r1, dp[__llvm_gcov_ctr.132]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.132]
+	stw r0, dp[__llvm_gcov_ctr.132+4]
+	ldw r0, dp[.L__profc___ashrdi3+12]
+	ldw r1, dp[.L__profc___ashrdi3+8]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ashrdi3+8]
@@ -11014,10 +14194,16 @@ __ashrdi3:
 	bt r0, .LBB132_4
 	bu .LBB132_3
 .LBB132_3:
-	ldw r0, dp[.L__profc___ashrdi3+20]
-	ldw r1, dp[.L__profc___ashrdi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.132+12]
+	ldw r1, dp[__llvm_gcov_ctr.132+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.132+8]
+	stw r0, dp[__llvm_gcov_ctr.132+12]
+	ldw r0, dp[.L__profc___ashrdi3+20]
+	ldw r1, dp[.L__profc___ashrdi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ashrdi3+16]
@@ -11028,6 +14214,14 @@ __ashrdi3:
 	stw r0, sp[8]
 	bu .LBB132_6
 .LBB132_4:
+	ldw r0, dp[__llvm_gcov_ctr.132+20]
+	ldw r1, dp[__llvm_gcov_ctr.132+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.132+16]
+	stw r0, dp[__llvm_gcov_ctr.132+20]
 	ldw r0, sp[3]
 	ldw r1, sp[5]
 	ashr r0, r0, r1
@@ -11066,14 +14260,21 @@ __ashrdi3:
 	.type	__bswapdi2,@function
 	.cc_top __bswapdi2.function,__bswapdi2
 __bswapdi2:
-	entsp 3
-	stw r4, sp[2]
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	ldw r11, dp[__llvm_gcov_ctr.133+4]
+	ldw r4, dp[__llvm_gcov_ctr.133]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.133]
+	stw r11, dp[__llvm_gcov_ctr.133+4]
 	stw r1, sp[1]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc___bswapdi2+4]
 	ldw r1, dp[.L__profc___bswapdi2]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___bswapdi2]
@@ -11100,8 +14301,9 @@ __bswapdi2:
 	or r1, r1, r3
 	shl r2, r2, 24
 	or r1, r1, r2
-	ldw r4, sp[2]
-	retsp 3
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __bswapdi2.function
 .Lfunc_end133:
 	.size	__bswapdi2, .Lfunc_end133-__bswapdi2
@@ -11116,12 +14318,19 @@ __bswapdi2:
 	.type	__bswapsi2,@function
 	.cc_top __bswapsi2.function,__bswapsi2
 __bswapsi2:
-	entsp 1
+	entsp 2
+	stw r4, sp[1]
+	ldw r1, dp[__llvm_gcov_ctr.134+4]
+	ldw r11, dp[__llvm_gcov_ctr.134]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.134]
+	stw r1, dp[__llvm_gcov_ctr.134+4]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc___bswapsi2+4]
 	ldw r1, dp[.L__profc___bswapsi2]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___bswapsi2]
@@ -11138,7 +14347,8 @@ __bswapsi2:
 	or r0, r0, r2
 	shl r1, r1, 24
 	or r0, r0, r1
-	retsp 1
+	ldw r4, sp[1]
+	retsp 2
 	.cc_bottom __bswapsi2.function
 .Lfunc_end134:
 	.size	__bswapsi2, .Lfunc_end134-__bswapsi2
@@ -11150,11 +14360,17 @@ __bswapsi2:
 __clzsi2:
 	entsp 5
 	stw r4, sp[4]
+	ldw r3, dp[__llvm_gcov_ctr.135+4]
+	ldw r11, dp[__llvm_gcov_ctr.135]
+	ldc r1, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r1
+	add r3, r3, r4
+	stw r11, dp[__llvm_gcov_ctr.135]
+	stw r3, dp[__llvm_gcov_ctr.135+4]
 	stw r0, sp[3]
 	ldw r0, dp[.L__profc___clzsi2+4]
 	ldw r3, dp[.L__profc___clzsi2]
-	ldc r1, 0
-	mkmsk r2, 1
 	ladd r11, r3, r3, r2, r1
 	add r0, r0, r11
 	stw r3, dp[.L__profc___clzsi2]
@@ -11270,10 +14486,16 @@ __cmpdi2:
 	bf r0, .LBB136_2
 	bu .LBB136_1
 .LBB136_1:
-	ldw r1, dp[.L__profc___cmpdi2+12]
-	ldw r2, dp[.L__profc___cmpdi2+8]
+	ldw r1, dp[__llvm_gcov_ctr.136+4]
+	ldw r2, dp[__llvm_gcov_ctr.136]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.136]
+	stw r1, dp[__llvm_gcov_ctr.136+4]
+	ldw r1, dp[.L__profc___cmpdi2+12]
+	ldw r2, dp[.L__profc___cmpdi2+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___cmpdi2+8]
@@ -11287,10 +14509,16 @@ __cmpdi2:
 	bf r0, .LBB136_4
 	bu .LBB136_3
 .LBB136_3:
-	ldw r0, dp[.L__profc___cmpdi2+20]
-	ldw r1, dp[.L__profc___cmpdi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.136+12]
+	ldw r1, dp[__llvm_gcov_ctr.136+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.136+8]
+	stw r0, dp[__llvm_gcov_ctr.136+12]
+	ldw r0, dp[.L__profc___cmpdi2+20]
+	ldw r1, dp[.L__profc___cmpdi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmpdi2+16]
@@ -11305,10 +14533,16 @@ __cmpdi2:
 	bf r0, .LBB136_6
 	bu .LBB136_5
 .LBB136_5:
-	ldw r1, dp[.L__profc___cmpdi2+28]
-	ldw r2, dp[.L__profc___cmpdi2+24]
+	ldw r1, dp[__llvm_gcov_ctr.136+20]
+	ldw r2, dp[__llvm_gcov_ctr.136+16]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.136+16]
+	stw r1, dp[__llvm_gcov_ctr.136+20]
+	ldw r1, dp[.L__profc___cmpdi2+28]
+	ldw r2, dp[.L__profc___cmpdi2+24]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___cmpdi2+24]
@@ -11322,10 +14556,16 @@ __cmpdi2:
 	bf r0, .LBB136_8
 	bu .LBB136_7
 .LBB136_7:
-	ldw r0, dp[.L__profc___cmpdi2+36]
-	ldw r1, dp[.L__profc___cmpdi2+32]
+	ldw r0, dp[__llvm_gcov_ctr.136+28]
+	ldw r1, dp[__llvm_gcov_ctr.136+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.136+24]
+	stw r0, dp[__llvm_gcov_ctr.136+28]
+	ldw r0, dp[.L__profc___cmpdi2+36]
+	ldw r1, dp[.L__profc___cmpdi2+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___cmpdi2+32]
@@ -11334,7 +14574,14 @@ __cmpdi2:
 	stw r0, sp[8]
 	bu .LBB136_9
 .LBB136_8:
+	ldw r1, dp[__llvm_gcov_ctr.136+36]
+	ldw r2, dp[__llvm_gcov_ctr.136+32]
+	ldc r3, 0
 	mkmsk r0, 1
+	ladd r3, r2, r2, r0, r3
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.136+32]
+	stw r1, dp[__llvm_gcov_ctr.136+36]
 	stw r0, sp[8]
 	bu .LBB136_9
 .LBB136_9:
@@ -11349,26 +14596,46 @@ __cmpdi2:
 	.type	__aeabi_lcmp,@function
 	.cc_top __aeabi_lcmp.function,__aeabi_lcmp
 __aeabi_lcmp:
-	entsp 5
-	stw r1, sp[4]
-	stw r0, sp[3]
-	stw r3, sp[2]
-	stw r2, sp[1]
-	ldw r0, dp[.L__profc___aeabi_lcmp+4]
-	ldw r1, dp[.L__profc___aeabi_lcmp]
+	entsp 11
+	stw r4, sp[10]
+	stw r5, sp[9]
+	stw r6, sp[8]
+	stw r7, sp[7]
+	stw r3, sp[1]
+	stw r2, sp[2]
+	mov r4, r1
+	ldw r1, sp[1]
+	mov r11, r0
+	ldw r0, sp[2]
+	ldw r5, dp[__llvm_gcov_ctr.137+4]
+	ldw r6, dp[__llvm_gcov_ctr.137]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r7, r6, r6, r2, r3
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.137]
+	stw r5, dp[__llvm_gcov_ctr.137+4]
+	stw r4, sp[6]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc___aeabi_lcmp+4]
+	ldw r1, dp[.L__profc___aeabi_lcmp]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___aeabi_lcmp]
 	stw r0, dp[.L__profc___aeabi_lcmp+4]
-	ldw r1, sp[4]
-	ldw r0, sp[3]
-	ldw r3, sp[2]
-	ldw r2, sp[1]
+	ldw r1, sp[6]
+	ldw r0, sp[5]
+	ldw r3, sp[4]
+	ldw r2, sp[3]
 	bl __cmpdi2
 	sub r0, r0, 1
-	retsp 5
+	ldw r7, sp[7]
+	ldw r6, sp[8]
+	ldw r5, sp[9]
+	ldw r4, sp[10]
+	retsp 11
 	.cc_bottom __aeabi_lcmp.function
 .Lfunc_end137:
 	.size	__aeabi_lcmp, .Lfunc_end137-__aeabi_lcmp
@@ -11378,12 +14645,19 @@ __aeabi_lcmp:
 	.type	__ctzsi2,@function
 	.cc_top __ctzsi2.function,__ctzsi2
 __ctzsi2:
-	entsp 4
+	entsp 5
+	stw r4, sp[4]
+	ldw r2, dp[__llvm_gcov_ctr.138+4]
+	ldw r11, dp[__llvm_gcov_ctr.138]
+	ldc r1, 0
+	mkmsk r3, 1
+	ladd r4, r11, r11, r3, r1
+	add r2, r2, r4
+	stw r11, dp[__llvm_gcov_ctr.138]
+	stw r2, dp[__llvm_gcov_ctr.138+4]
 	stw r0, sp[3]
 	ldw r0, dp[.L__profc___ctzsi2+4]
 	ldw r2, dp[.L__profc___ctzsi2]
-	ldc r1, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___ctzsi2]
@@ -11452,7 +14726,8 @@ __ctzsi2:
 	sub r2, r2, 1
 	and r1, r1, r2
 	add r0, r0, r1
-	retsp 4
+	ldw r4, sp[4]
+	retsp 5
 	.cc_bottom __ctzsi2.function
 .Lfunc_end138:
 	.size	__ctzsi2, .Lfunc_end138-__ctzsi2
@@ -11486,10 +14761,16 @@ __lshrdi3:
 	bf r0, .LBB139_2
 	bu .LBB139_1
 .LBB139_1:
-	ldw r1, dp[.L__profc___lshrdi3+12]
-	ldw r2, dp[.L__profc___lshrdi3+8]
+	ldw r1, dp[__llvm_gcov_ctr.139+4]
+	ldw r2, dp[__llvm_gcov_ctr.139]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.139]
+	stw r1, dp[__llvm_gcov_ctr.139+4]
+	ldw r1, dp[.L__profc___lshrdi3+12]
+	ldw r2, dp[.L__profc___lshrdi3+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___lshrdi3+8]
@@ -11506,10 +14787,16 @@ __lshrdi3:
 	bt r0, .LBB139_4
 	bu .LBB139_3
 .LBB139_3:
-	ldw r0, dp[.L__profc___lshrdi3+20]
-	ldw r1, dp[.L__profc___lshrdi3+16]
+	ldw r0, dp[__llvm_gcov_ctr.139+12]
+	ldw r1, dp[__llvm_gcov_ctr.139+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.139+8]
+	stw r0, dp[__llvm_gcov_ctr.139+12]
+	ldw r0, dp[.L__profc___lshrdi3+20]
+	ldw r1, dp[.L__profc___lshrdi3+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___lshrdi3+16]
@@ -11520,6 +14807,14 @@ __lshrdi3:
 	stw r0, sp[8]
 	bu .LBB139_6
 .LBB139_4:
+	ldw r0, dp[__llvm_gcov_ctr.139+20]
+	ldw r1, dp[__llvm_gcov_ctr.139+16]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.139+16]
+	stw r0, dp[__llvm_gcov_ctr.139+20]
 	ldw r0, sp[3]
 	ldw r1, sp[5]
 	shr r0, r0, r1
@@ -11558,12 +14853,18 @@ __muldsi3:
 	stw r5, sp[9]
 	stw r6, sp[8]
 	stw r7, sp[7]
+	ldw r11, dp[__llvm_gcov_ctr.140+4]
+	ldw r4, dp[__llvm_gcov_ctr.140]
+	ldc r2, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r2
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.140]
+	stw r11, dp[__llvm_gcov_ctr.140+4]
 	stw r0, sp[6]
 	stw r1, sp[5]
 	ldw r0, dp[.L__profc___muldsi3+4]
 	ldw r1, dp[.L__profc___muldsi3]
-	ldc r2, 0
-	mkmsk r3, 1
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___muldsi3]
@@ -11657,43 +14958,63 @@ __muldsi3:
 	.type	__muldi3_compiler_rt,@function
 	.cc_top __muldi3_compiler_rt.function,__muldi3_compiler_rt
 __muldi3_compiler_rt:
-	entsp 11
-	stw r1, sp[10]
-	stw r0, sp[9]
-	stw r3, sp[8]
-	stw r2, sp[7]
-	ldw r0, dp[.L__profc___muldi3_compiler_rt+4]
-	ldw r1, dp[.L__profc___muldi3_compiler_rt]
+	entsp 17
+	stw r4, sp[16]
+	stw r5, sp[15]
+	stw r6, sp[14]
+	stw r7, sp[13]
+	stw r3, sp[1]
+	stw r2, sp[2]
+	mov r4, r1
+	ldw r1, sp[1]
+	mov r11, r0
+	ldw r0, sp[2]
+	ldw r5, dp[__llvm_gcov_ctr.141+4]
+	ldw r6, dp[__llvm_gcov_ctr.141]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r7, r6, r6, r2, r3
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.141]
+	stw r5, dp[__llvm_gcov_ctr.141+4]
+	stw r4, sp[12]
+	stw r11, sp[11]
+	stw r1, sp[10]
+	stw r0, sp[9]
+	ldw r0, dp[.L__profc___muldi3_compiler_rt+4]
+	ldw r1, dp[.L__profc___muldi3_compiler_rt]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___muldi3_compiler_rt]
 	stw r0, dp[.L__profc___muldi3_compiler_rt+4]
+	ldw r0, sp[11]
+	ldw r1, sp[12]
+	stw r1, sp[8]
+	stw r0, sp[7]
 	ldw r0, sp[9]
 	ldw r1, sp[10]
 	stw r1, sp[6]
 	stw r0, sp[5]
 	ldw r0, sp[7]
-	ldw r1, sp[8]
+	ldw r1, sp[5]
+	bl __muldsi3
 	stw r1, sp[4]
 	stw r0, sp[3]
-	ldw r0, sp[5]
-	ldw r1, sp[3]
-	bl __muldsi3
-	stw r1, sp[2]
-	stw r0, sp[1]
-	ldw r0, sp[6]
-	ldw r1, sp[3]
-	ldw r2, sp[5]
-	ldw r3, sp[4]
+	ldw r0, sp[8]
+	ldw r1, sp[5]
+	ldw r2, sp[7]
+	ldw r3, sp[6]
 	mul r2, r2, r3
-	ldw r3, sp[2]
+	ldw r3, sp[4]
 	lmul r1, r0, r0, r1, r2, r3
-	stw r0, sp[2]
-	ldw r0, sp[1]
-	ldw r1, sp[2]
-	retsp 11
+	stw r0, sp[4]
+	ldw r0, sp[3]
+	ldw r1, sp[4]
+	ldw r7, sp[13]
+	ldw r6, sp[14]
+	ldw r5, sp[15]
+	ldw r4, sp[16]
+	retsp 17
 	.cc_bottom __muldi3_compiler_rt.function
 .Lfunc_end141:
 	.size	__muldi3_compiler_rt, .Lfunc_end141-__muldi3_compiler_rt
@@ -11703,13 +15024,22 @@ __muldi3_compiler_rt:
 	.type	__negdi2,@function
 	.cc_top __negdi2.function,__negdi2
 __negdi2:
-	entsp 2
-	stw r1, sp[1]
+	entsp 4
+	stw r4, sp[3]
+	stw r5, sp[2]
+	mov r2, r1
+	ldw r11, dp[__llvm_gcov_ctr.142+4]
+	ldw r4, dp[__llvm_gcov_ctr.142]
+	ldc r1, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r1
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.142]
+	stw r11, dp[__llvm_gcov_ctr.142+4]
+	stw r2, sp[1]
 	stw r0, sp[0]
 	ldw r0, dp[.L__profc___negdi2+4]
 	ldw r2, dp[.L__profc___negdi2]
-	ldc r1, 0
-	mkmsk r3, 1
 	ladd r3, r2, r2, r3, r1
 	add r0, r0, r3
 	stw r2, dp[.L__profc___negdi2]
@@ -11718,7 +15048,9 @@ __negdi2:
 	ldw r0, sp[0]
 	lsub r3, r0, r1, r0, r1
 	lsub r2, r1, r1, r2, r3
-	retsp 2
+	ldw r5, sp[2]
+	ldw r4, sp[3]
+	retsp 4
 	.cc_bottom __negdi2.function
 .Lfunc_end142:
 	.size	__negdi2, .Lfunc_end142-__negdi2
@@ -11728,13 +15060,21 @@ __negdi2:
 	.type	__paritydi2,@function
 	.cc_top __paritydi2.function,__paritydi2
 __paritydi2:
-	entsp 5
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
+	ldw r11, dp[__llvm_gcov_ctr.143+4]
+	ldw r4, dp[__llvm_gcov_ctr.143]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r5, r4, r4, r2, r3
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.143]
+	stw r11, dp[__llvm_gcov_ctr.143+4]
 	stw r1, sp[4]
 	stw r0, sp[3]
 	ldw r0, dp[.L__profc___paritydi2+4]
 	ldw r1, dp[.L__profc___paritydi2]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___paritydi2]
@@ -11764,7 +15104,9 @@ __paritydi2:
 	ldc r0, 27030
 	shr r0, r0, r1
 	zext r0, 1
-	retsp 5
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom __paritydi2.function
 .Lfunc_end143:
 	.size	__paritydi2, .Lfunc_end143-__paritydi2
@@ -11774,12 +15116,19 @@ __paritydi2:
 	.type	__paritysi2,@function
 	.cc_top __paritysi2.function,__paritysi2
 __paritysi2:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.144+4]
+	ldw r11, dp[__llvm_gcov_ctr.144]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.144]
+	stw r1, dp[__llvm_gcov_ctr.144+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___paritysi2+4]
 	ldw r1, dp[.L__profc___paritysi2]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___paritysi2]
@@ -11803,7 +15152,8 @@ __paritysi2:
 	ldc r0, 27030
 	shr r0, r0, r1
 	zext r0, 1
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __paritysi2.function
 .Lfunc_end144:
 	.size	__paritysi2, .Lfunc_end144-__paritysi2
@@ -11822,14 +15172,21 @@ __paritysi2:
 	.type	__popcountdi2,@function
 	.cc_top __popcountdi2.function,__popcountdi2
 __popcountdi2:
-	entsp 6
-	stw r4, sp[5]
+	entsp 7
+	stw r4, sp[6]
+	stw r5, sp[5]
+	ldw r11, dp[__llvm_gcov_ctr.145+4]
+	ldw r4, dp[__llvm_gcov_ctr.145]
+	ldc r2, 0
+	mkmsk r3, 1
+	ladd r5, r4, r4, r3, r2
+	add r11, r11, r5
+	stw r4, dp[__llvm_gcov_ctr.145]
+	stw r11, dp[__llvm_gcov_ctr.145+4]
 	stw r1, sp[4]
 	stw r0, sp[3]
 	ldw r0, dp[.L__profc___popcountdi2+4]
 	ldw r1, dp[.L__profc___popcountdi2]
-	ldc r2, 0
-	mkmsk r3, 1
 	ladd r3, r1, r1, r3, r2
 	add r0, r0, r3
 	stw r1, dp[.L__profc___popcountdi2]
@@ -11888,8 +15245,9 @@ __popcountdi2:
 	shr r1, r0, 8
 	add r0, r0, r1
 	zext r0, 7
-	ldw r4, sp[5]
-	retsp 6
+	ldw r5, sp[5]
+	ldw r4, sp[6]
+	retsp 7
 	.cc_bottom __popcountdi2.function
 .Lfunc_end145:
 	.size	__popcountdi2, .Lfunc_end145-__popcountdi2
@@ -11908,12 +15266,19 @@ __popcountdi2:
 	.type	__popcountsi2,@function
 	.cc_top __popcountsi2.function,__popcountsi2
 __popcountsi2:
-	entsp 2
+	entsp 3
+	stw r4, sp[2]
+	ldw r1, dp[__llvm_gcov_ctr.146+4]
+	ldw r11, dp[__llvm_gcov_ctr.146]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r4, r11, r11, r2, r3
+	add r1, r1, r4
+	stw r11, dp[__llvm_gcov_ctr.146]
+	stw r1, dp[__llvm_gcov_ctr.146+4]
 	stw r0, sp[1]
 	ldw r0, dp[.L__profc___popcountsi2+4]
 	ldw r1, dp[.L__profc___popcountsi2]
-	ldc r3, 0
-	mkmsk r2, 1
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___popcountsi2]
@@ -11947,7 +15312,8 @@ __popcountsi2:
 	shr r1, r0, 8
 	add r0, r0, r1
 	zext r0, 6
-	retsp 2
+	ldw r4, sp[2]
+	retsp 3
 	.cc_bottom __popcountsi2.function
 .Lfunc_end146:
 	.size	__popcountsi2, .Lfunc_end146-__popcountsi2
@@ -11997,10 +15363,16 @@ __powidf2:
 	bf r0, .LBB147_3
 	bu .LBB147_2
 .LBB147_2:
-	ldw r0, dp[.L__profc___powidf2+20]
-	ldw r1, dp[.L__profc___powidf2+16]
+	ldw r0, dp[__llvm_gcov_ctr.147+4]
+	ldw r1, dp[__llvm_gcov_ctr.147]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.147]
+	stw r0, dp[__llvm_gcov_ctr.147+4]
+	ldw r0, dp[.L__profc___powidf2+20]
+	ldw r1, dp[.L__profc___powidf2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___powidf2+16]
@@ -12034,6 +15406,14 @@ __powidf2:
 	stw r0, dp[.L__profc___powidf2+28]
 	bu .LBB147_6
 .LBB147_5:
+	ldw r0, dp[__llvm_gcov_ctr.147+12]
+	ldw r1, dp[__llvm_gcov_ctr.147+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.147+8]
+	stw r0, dp[__llvm_gcov_ctr.147+12]
 	ldw r2, sp[7]
 	ldw r3, sp[8]
 	mov r0, r2
@@ -12047,10 +15427,16 @@ __powidf2:
 	bf r0, .LBB147_8
 	bu .LBB147_7
 .LBB147_7:
-	ldw r1, dp[.L__profc___powidf2+36]
-	ldw r2, dp[.L__profc___powidf2+32]
+	ldw r1, dp[__llvm_gcov_ctr.147+20]
+	ldw r2, dp[__llvm_gcov_ctr.147+16]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.147+16]
+	stw r1, dp[__llvm_gcov_ctr.147+20]
+	ldw r1, dp[.L__profc___powidf2+36]
+	ldw r2, dp[.L__profc___powidf2+32]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___powidf2+32]
@@ -12063,6 +15449,14 @@ __powidf2:
 	stw r1, sp[2]
 	bu .LBB147_9
 .LBB147_8:
+	ldw r0, dp[__llvm_gcov_ctr.147+28]
+	ldw r1, dp[__llvm_gcov_ctr.147+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.147+24]
+	stw r0, dp[__llvm_gcov_ctr.147+28]
 	ldw r0, sp[4]
 	ldw r1, sp[3]
 	stw r1, sp[1]
@@ -12119,10 +15513,16 @@ __powisf2:
 	bf r0, .LBB148_3
 	bu .LBB148_2
 .LBB148_2:
-	ldw r0, dp[.L__profc___powisf2+20]
-	ldw r1, dp[.L__profc___powisf2+16]
+	ldw r0, dp[__llvm_gcov_ctr.148+4]
+	ldw r1, dp[__llvm_gcov_ctr.148]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.148]
+	stw r0, dp[__llvm_gcov_ctr.148+4]
+	ldw r0, dp[.L__profc___powisf2+20]
+	ldw r1, dp[.L__profc___powisf2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___powisf2+16]
@@ -12153,6 +15553,14 @@ __powisf2:
 	stw r0, dp[.L__profc___powisf2+28]
 	bu .LBB148_6
 .LBB148_5:
+	ldw r0, dp[__llvm_gcov_ctr.148+12]
+	ldw r1, dp[__llvm_gcov_ctr.148+8]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.148+8]
+	stw r0, dp[__llvm_gcov_ctr.148+12]
 	ldw r1, sp[5]
 	mov r0, r1
 	bl __mulsf3
@@ -12163,10 +15571,16 @@ __powisf2:
 	bf r0, .LBB148_8
 	bu .LBB148_7
 .LBB148_7:
-	ldw r0, dp[.L__profc___powisf2+36]
-	ldw r1, dp[.L__profc___powisf2+32]
+	ldw r0, dp[__llvm_gcov_ctr.148+20]
+	ldw r1, dp[__llvm_gcov_ctr.148+16]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.148+16]
+	stw r0, dp[__llvm_gcov_ctr.148+20]
+	ldw r0, dp[.L__profc___powisf2+36]
+	ldw r1, dp[.L__profc___powisf2+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___powisf2+32]
@@ -12177,6 +15591,14 @@ __powisf2:
 	stw r0, sp[1]
 	bu .LBB148_9
 .LBB148_8:
+	ldw r0, dp[__llvm_gcov_ctr.148+28]
+	ldw r1, dp[__llvm_gcov_ctr.148+24]
+	ldc r3, 0
+	mkmsk r2, 1
+	ladd r2, r1, r1, r2, r3
+	add r0, r0, r2
+	stw r1, dp[__llvm_gcov_ctr.148+24]
+	stw r0, dp[__llvm_gcov_ctr.148+28]
 	ldw r0, sp[2]
 	stw r0, sp[1]
 	bu .LBB148_9
@@ -12219,10 +15641,16 @@ __ucmpdi2:
 	bf r0, .LBB149_2
 	bu .LBB149_1
 .LBB149_1:
-	ldw r1, dp[.L__profc___ucmpdi2+12]
-	ldw r2, dp[.L__profc___ucmpdi2+8]
+	ldw r1, dp[__llvm_gcov_ctr.149+4]
+	ldw r2, dp[__llvm_gcov_ctr.149]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.149]
+	stw r1, dp[__llvm_gcov_ctr.149+4]
+	ldw r1, dp[.L__profc___ucmpdi2+12]
+	ldw r2, dp[.L__profc___ucmpdi2+8]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___ucmpdi2+8]
@@ -12236,10 +15664,16 @@ __ucmpdi2:
 	bf r0, .LBB149_4
 	bu .LBB149_3
 .LBB149_3:
-	ldw r0, dp[.L__profc___ucmpdi2+20]
-	ldw r1, dp[.L__profc___ucmpdi2+16]
+	ldw r0, dp[__llvm_gcov_ctr.149+12]
+	ldw r1, dp[__llvm_gcov_ctr.149+8]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.149+8]
+	stw r0, dp[__llvm_gcov_ctr.149+12]
+	ldw r0, dp[.L__profc___ucmpdi2+20]
+	ldw r1, dp[.L__profc___ucmpdi2+16]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ucmpdi2+16]
@@ -12254,10 +15688,16 @@ __ucmpdi2:
 	bf r0, .LBB149_6
 	bu .LBB149_5
 .LBB149_5:
-	ldw r1, dp[.L__profc___ucmpdi2+28]
-	ldw r2, dp[.L__profc___ucmpdi2+24]
+	ldw r1, dp[__llvm_gcov_ctr.149+20]
+	ldw r2, dp[__llvm_gcov_ctr.149+16]
 	ldc r0, 0
 	mkmsk r3, 1
+	ladd r11, r2, r2, r3, r0
+	add r1, r1, r11
+	stw r2, dp[__llvm_gcov_ctr.149+16]
+	stw r1, dp[__llvm_gcov_ctr.149+20]
+	ldw r1, dp[.L__profc___ucmpdi2+28]
+	ldw r2, dp[.L__profc___ucmpdi2+24]
 	ladd r3, r2, r2, r3, r0
 	add r1, r1, r3
 	stw r2, dp[.L__profc___ucmpdi2+24]
@@ -12271,10 +15711,16 @@ __ucmpdi2:
 	bf r0, .LBB149_8
 	bu .LBB149_7
 .LBB149_7:
-	ldw r0, dp[.L__profc___ucmpdi2+36]
-	ldw r1, dp[.L__profc___ucmpdi2+32]
+	ldw r0, dp[__llvm_gcov_ctr.149+28]
+	ldw r1, dp[__llvm_gcov_ctr.149+24]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r11, r1, r1, r2, r3
+	add r0, r0, r11
+	stw r1, dp[__llvm_gcov_ctr.149+24]
+	stw r0, dp[__llvm_gcov_ctr.149+28]
+	ldw r0, dp[.L__profc___ucmpdi2+36]
+	ldw r1, dp[.L__profc___ucmpdi2+32]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___ucmpdi2+32]
@@ -12283,7 +15729,14 @@ __ucmpdi2:
 	stw r0, sp[8]
 	bu .LBB149_9
 .LBB149_8:
+	ldw r1, dp[__llvm_gcov_ctr.149+36]
+	ldw r2, dp[__llvm_gcov_ctr.149+32]
+	ldc r3, 0
 	mkmsk r0, 1
+	ladd r3, r2, r2, r0, r3
+	add r1, r1, r3
+	stw r2, dp[__llvm_gcov_ctr.149+32]
+	stw r1, dp[__llvm_gcov_ctr.149+36]
 	stw r0, sp[8]
 	bu .LBB149_9
 .LBB149_9:
@@ -12298,29 +15751,771 @@ __ucmpdi2:
 	.type	__aeabi_ulcmp,@function
 	.cc_top __aeabi_ulcmp.function,__aeabi_ulcmp
 __aeabi_ulcmp:
-	entsp 5
-	stw r1, sp[4]
-	stw r0, sp[3]
-	stw r3, sp[2]
-	stw r2, sp[1]
-	ldw r0, dp[.L__profc___aeabi_ulcmp+4]
-	ldw r1, dp[.L__profc___aeabi_ulcmp]
+	entsp 11
+	stw r4, sp[10]
+	stw r5, sp[9]
+	stw r6, sp[8]
+	stw r7, sp[7]
+	stw r3, sp[1]
+	stw r2, sp[2]
+	mov r4, r1
+	ldw r1, sp[1]
+	mov r11, r0
+	ldw r0, sp[2]
+	ldw r5, dp[__llvm_gcov_ctr.150+4]
+	ldw r6, dp[__llvm_gcov_ctr.150]
 	ldc r3, 0
 	mkmsk r2, 1
+	ladd r7, r6, r6, r2, r3
+	add r5, r5, r7
+	stw r6, dp[__llvm_gcov_ctr.150]
+	stw r5, dp[__llvm_gcov_ctr.150+4]
+	stw r4, sp[6]
+	stw r11, sp[5]
+	stw r1, sp[4]
+	stw r0, sp[3]
+	ldw r0, dp[.L__profc___aeabi_ulcmp+4]
+	ldw r1, dp[.L__profc___aeabi_ulcmp]
 	ladd r2, r1, r1, r2, r3
 	add r0, r0, r2
 	stw r1, dp[.L__profc___aeabi_ulcmp]
 	stw r0, dp[.L__profc___aeabi_ulcmp+4]
-	ldw r1, sp[4]
-	ldw r0, sp[3]
-	ldw r3, sp[2]
-	ldw r2, sp[1]
+	ldw r1, sp[6]
+	ldw r0, sp[5]
+	ldw r3, sp[4]
+	ldw r2, sp[3]
 	bl __ucmpdi2
 	sub r0, r0, 1
-	retsp 5
+	ldw r7, sp[7]
+	ldw r6, sp[8]
+	ldw r5, sp[9]
+	ldw r4, sp[10]
+	retsp 11
 	.cc_bottom __aeabi_ulcmp.function
 .Lfunc_end150:
 	.size	__aeabi_ulcmp, .Lfunc_end150-__aeabi_ulcmp
+
+	.p2align	2
+	.type	__llvm_gcov_writeout,@function
+	.cc_top __llvm_gcov_writeout.function,__llvm_gcov_writeout
+__llvm_gcov_writeout:
+	entsp 9
+	ldc r0, 0
+	stw r0, sp[8]
+	bu .LBB151_1
+.LBB151_1:
+	ldw r0, sp[8]
+	stw r0, sp[2]
+	ldc r1, 24
+	mul r2, r0, r1
+	stw r2, sp[3]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info]
+	add r0, r2, r11
+	ldw r0, r0[0]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info+4]
+	add r1, r2, r11
+	ldw r1, r1[0]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info+8]
+	add r2, r2, r11
+	ldw r2, r2[0]
+	bl llvm_gcda_start_file
+	ldw r1, sp[3]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info+12]
+	add r0, r1, r11
+	ldw r0, r0[0]
+	stw r0, sp[4]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info+16]
+	add r2, r1, r11
+	ldw r2, r2[0]
+	stw r2, sp[5]
+	ldaw r11, cp[__llvm_internal_gcov_emit_file_info+20]
+	add r1, r1, r11
+	ldw r1, r1[0]
+	stw r1, sp[6]
+	mkmsk r1, 1
+	lss r0, r0, r1
+	ldc r1, 0
+	stw r1, sp[7]
+	bt r0, .LBB151_3
+	bu .LBB151_2
+.LBB151_2:
+	ldw r1, sp[7]
+	ldw r0, sp[5]
+	stw r1, sp[1]
+	ldc r2, 12
+	mul r1, r1, r2
+	add r2, r0, r1
+	ldw r0, r2[0]
+	ldw r1, r2[1]
+	ldw r2, r2[2]
+	bl llvm_gcda_emit_function
+	ldw r1, sp[1]
+	ldw r0, sp[6]
+	shl r1, r1, 3
+	add r1, r0, r1
+	ldw r0, r1[0]
+	ldw r1, r1[1]
+	bl llvm_gcda_emit_arcs
+	ldw r1, sp[1]
+	ldw r0, sp[4]
+	add r1, r1, 1
+	lss r0, r1, r0
+	stw r1, sp[7]
+	bt r0, .LBB151_2
+	bu .LBB151_3
+.LBB151_3:
+	bl llvm_gcda_summary_info
+	bl llvm_gcda_end_file
+	ldw r0, sp[2]
+	add r1, r0, 1
+	mkmsk r0, 1
+	lss r0, r1, r0
+	stw r1, sp[8]
+	bt r0, .LBB151_1
+	bu .LBB151_4
+.LBB151_4:
+	retsp 9
+	.cc_bottom __llvm_gcov_writeout.function
+.Lfunc_end151:
+	.size	__llvm_gcov_writeout, .Lfunc_end151-__llvm_gcov_writeout
+
+	.p2align	2
+	.type	__llvm_gcov_reset,@function
+	.cc_top __llvm_gcov_reset.function,__llvm_gcov_reset
+__llvm_gcov_reset:
+	entsp 10
+	ldaw r0, dp[__llvm_gcov_ctr]
+	ldc r1, 0
+	stw r1, sp[9]
+	ldc r2, 40
+	stw r2, sp[7]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.1]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.2]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.3]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.4]
+	ldc r2, 16
+	stw r2, sp[2]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.5]
+	ldc r2, 24
+	stw r2, sp[5]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.6]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.7]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.8]
+	ldc r2, 32
+	stw r2, sp[6]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.9]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.10]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.11]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.12]
+	ldc r2, 56
+	stw r2, sp[3]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.13]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.14]
+	ldc r2, 8
+	stw r2, sp[8]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.15]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.16]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.17]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.18]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.19]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.20]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.21]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.22]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.23]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.24]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.25]
+	bl memset
+	ldw r2, sp[3]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.26]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.27]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.28]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.29]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.30]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.31]
+	ldc r2, 48
+	stw r2, sp[1]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.32]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.33]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.34]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.35]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.36]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.37]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.38]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.39]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.40]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.41]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.42]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.43]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.44]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.45]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.46]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.47]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.48]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.49]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.50]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.51]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.52]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.53]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.54]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.55]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.56]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.57]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.58]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.59]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.60]
+	bl memset
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.61]
+	ldc r2, 64
+	stw r2, sp[4]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.62]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.63]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.64]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.65]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.66]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.67]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.68]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.69]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.70]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.71]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.72]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.73]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.74]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.75]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.76]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.77]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.78]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.79]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.80]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.81]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.82]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.83]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.84]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.85]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.86]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.87]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.88]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.89]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.90]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.91]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.92]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.93]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.94]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.95]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.96]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.97]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.98]
+	bl memset
+	ldw r2, sp[4]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.99]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.100]
+	bl memset
+	ldw r2, sp[4]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.101]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.102]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.103]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.104]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.105]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.106]
+	bl memset
+	ldw r2, sp[1]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.107]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.108]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.109]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.110]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.111]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.112]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.113]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.114]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.115]
+	bl memset
+	ldw r2, sp[2]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.116]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.117]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.118]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.119]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.120]
+	bl memset
+	ldw r2, sp[4]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.121]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.122]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.123]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.124]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.125]
+	bl memset
+	ldw r2, sp[3]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.126]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.127]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.128]
+	bl memset
+	ldw r2, sp[4]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.129]
+	bl memset
+	ldw r2, sp[4]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.130]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.131]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.132]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.133]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.134]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.135]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.136]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.137]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.138]
+	bl memset
+	ldw r2, sp[5]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.139]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.140]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.141]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.142]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.143]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.144]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.145]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.146]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.147]
+	bl memset
+	ldw r2, sp[6]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.148]
+	bl memset
+	ldw r2, sp[7]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.149]
+	bl memset
+	ldw r2, sp[8]
+	ldw r1, sp[9]
+	ldaw r0, dp[__llvm_gcov_ctr.150]
+	bl memset
+	retsp 10
+	.cc_bottom __llvm_gcov_reset.function
+.Lfunc_end152:
+	.size	__llvm_gcov_reset, .Lfunc_end152-__llvm_gcov_reset
+
+	.p2align	2
+	.type	__llvm_gcov_init,@function
+	.cc_top __llvm_gcov_init.function,__llvm_gcov_init
+__llvm_gcov_init:
+	entsp 1
+	ldap r11, __llvm_gcov_writeout
+	mov r0, r11
+	ldap r11, __llvm_gcov_reset
+	mov r1, r11
+	bl llvm_gcov_init
+	retsp 1
+	.cc_bottom __llvm_gcov_init.function
+.Lfunc_end153:
+	.size	__llvm_gcov_init, .Lfunc_end153-__llvm_gcov_init
 
 	.section	.dp.bss,"awd",@nobits
 	.cc_top l64a.s.data,l64a.s
@@ -12347,6 +16542,1854 @@ seed:
 	.long	0
 	.long	0
 	.cc_bottom seed.data
+	.cc_top __llvm_gcov_ctr.data,__llvm_gcov_ctr
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr,@object
+	.size	__llvm_gcov_ctr, 40
+__llvm_gcov_ctr:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.data
+	.cc_top __llvm_gcov_ctr.1.data,__llvm_gcov_ctr.1
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.1,@object
+	.size	__llvm_gcov_ctr.1, 40
+__llvm_gcov_ctr.1:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.1.data
+	.cc_top __llvm_gcov_ctr.2.data,__llvm_gcov_ctr.2
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.2,@object
+	.size	__llvm_gcov_ctr.2, 40
+__llvm_gcov_ctr.2:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.2.data
+	.cc_top __llvm_gcov_ctr.3.data,__llvm_gcov_ctr.3
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.3,@object
+	.size	__llvm_gcov_ctr.3, 40
+__llvm_gcov_ctr.3:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.3.data
+	.cc_top __llvm_gcov_ctr.4.data,__llvm_gcov_ctr.4
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.4,@object
+	.size	__llvm_gcov_ctr.4, 16
+__llvm_gcov_ctr.4:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.4.data
+	.cc_top __llvm_gcov_ctr.5.data,__llvm_gcov_ctr.5
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.5,@object
+	.size	__llvm_gcov_ctr.5, 24
+__llvm_gcov_ctr.5:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.5.data
+	.cc_top __llvm_gcov_ctr.6.data,__llvm_gcov_ctr.6
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.6,@object
+	.size	__llvm_gcov_ctr.6, 16
+__llvm_gcov_ctr.6:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.6.data
+	.cc_top __llvm_gcov_ctr.7.data,__llvm_gcov_ctr.7
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.7,@object
+	.size	__llvm_gcov_ctr.7, 16
+__llvm_gcov_ctr.7:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.7.data
+	.cc_top __llvm_gcov_ctr.8.data,__llvm_gcov_ctr.8
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.8,@object
+	.size	__llvm_gcov_ctr.8, 32
+__llvm_gcov_ctr.8:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.8.data
+	.cc_top __llvm_gcov_ctr.9.data,__llvm_gcov_ctr.9
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.9,@object
+	.size	__llvm_gcov_ctr.9, 24
+__llvm_gcov_ctr.9:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.9.data
+	.cc_top __llvm_gcov_ctr.10.data,__llvm_gcov_ctr.10
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.10,@object
+	.size	__llvm_gcov_ctr.10, 32
+__llvm_gcov_ctr.10:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.10.data
+	.cc_top __llvm_gcov_ctr.11.data,__llvm_gcov_ctr.11
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.11,@object
+	.size	__llvm_gcov_ctr.11, 16
+__llvm_gcov_ctr.11:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.11.data
+	.cc_top __llvm_gcov_ctr.12.data,__llvm_gcov_ctr.12
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.12,@object
+	.size	__llvm_gcov_ctr.12, 56
+__llvm_gcov_ctr.12:
+	.space	56
+	.cc_bottom __llvm_gcov_ctr.12.data
+	.cc_top __llvm_gcov_ctr.13.data,__llvm_gcov_ctr.13
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.13,@object
+	.size	__llvm_gcov_ctr.13, 16
+__llvm_gcov_ctr.13:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.13.data
+	.cc_top __llvm_gcov_ctr.14.data,__llvm_gcov_ctr.14
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.14,@object
+	.size	__llvm_gcov_ctr.14, 8
+__llvm_gcov_ctr.14:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.14.data
+	.cc_top __llvm_gcov_ctr.15.data,__llvm_gcov_ctr.15
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.15,@object
+	.size	__llvm_gcov_ctr.15, 8
+__llvm_gcov_ctr.15:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.15.data
+	.cc_top __llvm_gcov_ctr.16.data,__llvm_gcov_ctr.16
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.16,@object
+	.size	__llvm_gcov_ctr.16, 24
+__llvm_gcov_ctr.16:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.16.data
+	.cc_top __llvm_gcov_ctr.17.data,__llvm_gcov_ctr.17
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.17,@object
+	.size	__llvm_gcov_ctr.17, 24
+__llvm_gcov_ctr.17:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.17.data
+	.cc_top __llvm_gcov_ctr.18.data,__llvm_gcov_ctr.18
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.18,@object
+	.size	__llvm_gcov_ctr.18, 8
+__llvm_gcov_ctr.18:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.18.data
+	.cc_top __llvm_gcov_ctr.19.data,__llvm_gcov_ctr.19
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.19,@object
+	.size	__llvm_gcov_ctr.19, 8
+__llvm_gcov_ctr.19:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.19.data
+	.cc_top __llvm_gcov_ctr.20.data,__llvm_gcov_ctr.20
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.20,@object
+	.size	__llvm_gcov_ctr.20, 8
+__llvm_gcov_ctr.20:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.20.data
+	.cc_top __llvm_gcov_ctr.21.data,__llvm_gcov_ctr.21
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.21,@object
+	.size	__llvm_gcov_ctr.21, 8
+__llvm_gcov_ctr.21:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.21.data
+	.cc_top __llvm_gcov_ctr.22.data,__llvm_gcov_ctr.22
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.22,@object
+	.size	__llvm_gcov_ctr.22, 24
+__llvm_gcov_ctr.22:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.22.data
+	.cc_top __llvm_gcov_ctr.23.data,__llvm_gcov_ctr.23
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.23,@object
+	.size	__llvm_gcov_ctr.23, 8
+__llvm_gcov_ctr.23:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.23.data
+	.cc_top __llvm_gcov_ctr.24.data,__llvm_gcov_ctr.24
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.24,@object
+	.size	__llvm_gcov_ctr.24, 40
+__llvm_gcov_ctr.24:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.24.data
+	.cc_top __llvm_gcov_ctr.25.data,__llvm_gcov_ctr.25
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.25,@object
+	.size	__llvm_gcov_ctr.25, 8
+__llvm_gcov_ctr.25:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.25.data
+	.cc_top __llvm_gcov_ctr.26.data,__llvm_gcov_ctr.26
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.26,@object
+	.size	__llvm_gcov_ctr.26, 56
+__llvm_gcov_ctr.26:
+	.space	56
+	.cc_bottom __llvm_gcov_ctr.26.data
+	.cc_top __llvm_gcov_ctr.27.data,__llvm_gcov_ctr.27
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.27,@object
+	.size	__llvm_gcov_ctr.27, 24
+__llvm_gcov_ctr.27:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.27.data
+	.cc_top __llvm_gcov_ctr.28.data,__llvm_gcov_ctr.28
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.28,@object
+	.size	__llvm_gcov_ctr.28, 8
+__llvm_gcov_ctr.28:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.28.data
+	.cc_top __llvm_gcov_ctr.29.data,__llvm_gcov_ctr.29
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.29,@object
+	.size	__llvm_gcov_ctr.29, 32
+__llvm_gcov_ctr.29:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.29.data
+	.cc_top __llvm_gcov_ctr.30.data,__llvm_gcov_ctr.30
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.30,@object
+	.size	__llvm_gcov_ctr.30, 32
+__llvm_gcov_ctr.30:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.30.data
+	.cc_top __llvm_gcov_ctr.31.data,__llvm_gcov_ctr.31
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.31,@object
+	.size	__llvm_gcov_ctr.31, 48
+__llvm_gcov_ctr.31:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.31.data
+	.cc_top __llvm_gcov_ctr.32.data,__llvm_gcov_ctr.32
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.32,@object
+	.size	__llvm_gcov_ctr.32, 48
+__llvm_gcov_ctr.32:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.32.data
+	.cc_top __llvm_gcov_ctr.33.data,__llvm_gcov_ctr.33
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.33,@object
+	.size	__llvm_gcov_ctr.33, 48
+__llvm_gcov_ctr.33:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.33.data
+	.cc_top __llvm_gcov_ctr.34.data,__llvm_gcov_ctr.34
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.34,@object
+	.size	__llvm_gcov_ctr.34, 48
+__llvm_gcov_ctr.34:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.34.data
+	.cc_top __llvm_gcov_ctr.35.data,__llvm_gcov_ctr.35
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.35,@object
+	.size	__llvm_gcov_ctr.35, 48
+__llvm_gcov_ctr.35:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.35.data
+	.cc_top __llvm_gcov_ctr.36.data,__llvm_gcov_ctr.36
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.36,@object
+	.size	__llvm_gcov_ctr.36, 48
+__llvm_gcov_ctr.36:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.36.data
+	.cc_top __llvm_gcov_ctr.37.data,__llvm_gcov_ctr.37
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.37,@object
+	.size	__llvm_gcov_ctr.37, 16
+__llvm_gcov_ctr.37:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.37.data
+	.cc_top __llvm_gcov_ctr.38.data,__llvm_gcov_ctr.38
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.38,@object
+	.size	__llvm_gcov_ctr.38, 8
+__llvm_gcov_ctr.38:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.38.data
+	.cc_top __llvm_gcov_ctr.39.data,__llvm_gcov_ctr.39
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.39,@object
+	.size	__llvm_gcov_ctr.39, 8
+__llvm_gcov_ctr.39:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.39.data
+	.cc_top __llvm_gcov_ctr.40.data,__llvm_gcov_ctr.40
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.40,@object
+	.size	__llvm_gcov_ctr.40, 24
+__llvm_gcov_ctr.40:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.40.data
+	.cc_top __llvm_gcov_ctr.41.data,__llvm_gcov_ctr.41
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.41,@object
+	.size	__llvm_gcov_ctr.41, 24
+__llvm_gcov_ctr.41:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.41.data
+	.cc_top __llvm_gcov_ctr.42.data,__llvm_gcov_ctr.42
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.42,@object
+	.size	__llvm_gcov_ctr.42, 24
+__llvm_gcov_ctr.42:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.42.data
+	.cc_top __llvm_gcov_ctr.43.data,__llvm_gcov_ctr.43
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.43,@object
+	.size	__llvm_gcov_ctr.43, 24
+__llvm_gcov_ctr.43:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.43.data
+	.cc_top __llvm_gcov_ctr.44.data,__llvm_gcov_ctr.44
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.44,@object
+	.size	__llvm_gcov_ctr.44, 16
+__llvm_gcov_ctr.44:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.44.data
+	.cc_top __llvm_gcov_ctr.45.data,__llvm_gcov_ctr.45
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.45,@object
+	.size	__llvm_gcov_ctr.45, 48
+__llvm_gcov_ctr.45:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.45.data
+	.cc_top __llvm_gcov_ctr.46.data,__llvm_gcov_ctr.46
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.46,@object
+	.size	__llvm_gcov_ctr.46, 48
+__llvm_gcov_ctr.46:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.46.data
+	.cc_top __llvm_gcov_ctr.47.data,__llvm_gcov_ctr.47
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.47,@object
+	.size	__llvm_gcov_ctr.47, 48
+__llvm_gcov_ctr.47:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.47.data
+	.cc_top __llvm_gcov_ctr.48.data,__llvm_gcov_ctr.48
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.48,@object
+	.size	__llvm_gcov_ctr.48, 32
+__llvm_gcov_ctr.48:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.48.data
+	.cc_top __llvm_gcov_ctr.49.data,__llvm_gcov_ctr.49
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.49,@object
+	.size	__llvm_gcov_ctr.49, 32
+__llvm_gcov_ctr.49:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.49.data
+	.cc_top __llvm_gcov_ctr.50.data,__llvm_gcov_ctr.50
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.50,@object
+	.size	__llvm_gcov_ctr.50, 8
+__llvm_gcov_ctr.50:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.50.data
+	.cc_top __llvm_gcov_ctr.51.data,__llvm_gcov_ctr.51
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.51,@object
+	.size	__llvm_gcov_ctr.51, 16
+__llvm_gcov_ctr.51:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.51.data
+	.cc_top __llvm_gcov_ctr.52.data,__llvm_gcov_ctr.52
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.52,@object
+	.size	__llvm_gcov_ctr.52, 8
+__llvm_gcov_ctr.52:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.52.data
+	.cc_top __llvm_gcov_ctr.53.data,__llvm_gcov_ctr.53
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.53,@object
+	.size	__llvm_gcov_ctr.53, 16
+__llvm_gcov_ctr.53:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.53.data
+	.cc_top __llvm_gcov_ctr.54.data,__llvm_gcov_ctr.54
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.54,@object
+	.size	__llvm_gcov_ctr.54, 8
+__llvm_gcov_ctr.54:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.54.data
+	.cc_top __llvm_gcov_ctr.55.data,__llvm_gcov_ctr.55
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.55,@object
+	.size	__llvm_gcov_ctr.55, 16
+__llvm_gcov_ctr.55:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.55.data
+	.cc_top __llvm_gcov_ctr.56.data,__llvm_gcov_ctr.56
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.56,@object
+	.size	__llvm_gcov_ctr.56, 8
+__llvm_gcov_ctr.56:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.56.data
+	.cc_top __llvm_gcov_ctr.57.data,__llvm_gcov_ctr.57
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.57,@object
+	.size	__llvm_gcov_ctr.57, 40
+__llvm_gcov_ctr.57:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.57.data
+	.cc_top __llvm_gcov_ctr.58.data,__llvm_gcov_ctr.58
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.58,@object
+	.size	__llvm_gcov_ctr.58, 48
+__llvm_gcov_ctr.58:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.58.data
+	.cc_top __llvm_gcov_ctr.59.data,__llvm_gcov_ctr.59
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.59,@object
+	.size	__llvm_gcov_ctr.59, 16
+__llvm_gcov_ctr.59:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.59.data
+	.cc_top __llvm_gcov_ctr.60.data,__llvm_gcov_ctr.60
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.60,@object
+	.size	__llvm_gcov_ctr.60, 16
+__llvm_gcov_ctr.60:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.60.data
+	.cc_top __llvm_gcov_ctr.61.data,__llvm_gcov_ctr.61
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.61,@object
+	.size	__llvm_gcov_ctr.61, 64
+__llvm_gcov_ctr.61:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.61.data
+	.cc_top __llvm_gcov_ctr.62.data,__llvm_gcov_ctr.62
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.62,@object
+	.size	__llvm_gcov_ctr.62, 40
+__llvm_gcov_ctr.62:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.62.data
+	.cc_top __llvm_gcov_ctr.63.data,__llvm_gcov_ctr.63
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.63,@object
+	.size	__llvm_gcov_ctr.63, 48
+__llvm_gcov_ctr.63:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.63.data
+	.cc_top __llvm_gcov_ctr.64.data,__llvm_gcov_ctr.64
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.64,@object
+	.size	__llvm_gcov_ctr.64, 16
+__llvm_gcov_ctr.64:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.64.data
+	.cc_top __llvm_gcov_ctr.65.data,__llvm_gcov_ctr.65
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.65,@object
+	.size	__llvm_gcov_ctr.65, 40
+__llvm_gcov_ctr.65:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.65.data
+	.cc_top __llvm_gcov_ctr.66.data,__llvm_gcov_ctr.66
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.66,@object
+	.size	__llvm_gcov_ctr.66, 16
+__llvm_gcov_ctr.66:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.66.data
+	.cc_top __llvm_gcov_ctr.67.data,__llvm_gcov_ctr.67
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.67,@object
+	.size	__llvm_gcov_ctr.67, 40
+__llvm_gcov_ctr.67:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.67.data
+	.cc_top __llvm_gcov_ctr.68.data,__llvm_gcov_ctr.68
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.68,@object
+	.size	__llvm_gcov_ctr.68, 8
+__llvm_gcov_ctr.68:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.68.data
+	.cc_top __llvm_gcov_ctr.69.data,__llvm_gcov_ctr.69
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.69,@object
+	.size	__llvm_gcov_ctr.69, 8
+__llvm_gcov_ctr.69:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.69.data
+	.cc_top __llvm_gcov_ctr.70.data,__llvm_gcov_ctr.70
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.70,@object
+	.size	__llvm_gcov_ctr.70, 8
+__llvm_gcov_ctr.70:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.70.data
+	.cc_top __llvm_gcov_ctr.71.data,__llvm_gcov_ctr.71
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.71,@object
+	.size	__llvm_gcov_ctr.71, 8
+__llvm_gcov_ctr.71:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.71.data
+	.cc_top __llvm_gcov_ctr.72.data,__llvm_gcov_ctr.72
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.72,@object
+	.size	__llvm_gcov_ctr.72, 8
+__llvm_gcov_ctr.72:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.72.data
+	.cc_top __llvm_gcov_ctr.73.data,__llvm_gcov_ctr.73
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.73,@object
+	.size	__llvm_gcov_ctr.73, 8
+__llvm_gcov_ctr.73:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.73.data
+	.cc_top __llvm_gcov_ctr.74.data,__llvm_gcov_ctr.74
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.74,@object
+	.size	__llvm_gcov_ctr.74, 8
+__llvm_gcov_ctr.74:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.74.data
+	.cc_top __llvm_gcov_ctr.75.data,__llvm_gcov_ctr.75
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.75,@object
+	.size	__llvm_gcov_ctr.75, 8
+__llvm_gcov_ctr.75:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.75.data
+	.cc_top __llvm_gcov_ctr.76.data,__llvm_gcov_ctr.76
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.76,@object
+	.size	__llvm_gcov_ctr.76, 8
+__llvm_gcov_ctr.76:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.76.data
+	.cc_top __llvm_gcov_ctr.77.data,__llvm_gcov_ctr.77
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.77,@object
+	.size	__llvm_gcov_ctr.77, 8
+__llvm_gcov_ctr.77:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.77.data
+	.cc_top __llvm_gcov_ctr.78.data,__llvm_gcov_ctr.78
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.78,@object
+	.size	__llvm_gcov_ctr.78, 8
+__llvm_gcov_ctr.78:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.78.data
+	.cc_top __llvm_gcov_ctr.79.data,__llvm_gcov_ctr.79
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.79,@object
+	.size	__llvm_gcov_ctr.79, 8
+__llvm_gcov_ctr.79:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.79.data
+	.cc_top __llvm_gcov_ctr.80.data,__llvm_gcov_ctr.80
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.80,@object
+	.size	__llvm_gcov_ctr.80, 8
+__llvm_gcov_ctr.80:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.80.data
+	.cc_top __llvm_gcov_ctr.81.data,__llvm_gcov_ctr.81
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.81,@object
+	.size	__llvm_gcov_ctr.81, 24
+__llvm_gcov_ctr.81:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.81.data
+	.cc_top __llvm_gcov_ctr.82.data,__llvm_gcov_ctr.82
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.82,@object
+	.size	__llvm_gcov_ctr.82, 24
+__llvm_gcov_ctr.82:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.82.data
+	.cc_top __llvm_gcov_ctr.83.data,__llvm_gcov_ctr.83
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.83,@object
+	.size	__llvm_gcov_ctr.83, 24
+__llvm_gcov_ctr.83:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.83.data
+	.cc_top __llvm_gcov_ctr.84.data,__llvm_gcov_ctr.84
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.84,@object
+	.size	__llvm_gcov_ctr.84, 24
+__llvm_gcov_ctr.84:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.84.data
+	.cc_top __llvm_gcov_ctr.85.data,__llvm_gcov_ctr.85
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.85,@object
+	.size	__llvm_gcov_ctr.85, 24
+__llvm_gcov_ctr.85:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.85.data
+	.cc_top __llvm_gcov_ctr.86.data,__llvm_gcov_ctr.86
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.86,@object
+	.size	__llvm_gcov_ctr.86, 8
+__llvm_gcov_ctr.86:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.86.data
+	.cc_top __llvm_gcov_ctr.87.data,__llvm_gcov_ctr.87
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.87,@object
+	.size	__llvm_gcov_ctr.87, 40
+__llvm_gcov_ctr.87:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.87.data
+	.cc_top __llvm_gcov_ctr.88.data,__llvm_gcov_ctr.88
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.88,@object
+	.size	__llvm_gcov_ctr.88, 40
+__llvm_gcov_ctr.88:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.88.data
+	.cc_top __llvm_gcov_ctr.89.data,__llvm_gcov_ctr.89
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.89,@object
+	.size	__llvm_gcov_ctr.89, 40
+__llvm_gcov_ctr.89:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.89.data
+	.cc_top __llvm_gcov_ctr.90.data,__llvm_gcov_ctr.90
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.90,@object
+	.size	__llvm_gcov_ctr.90, 16
+__llvm_gcov_ctr.90:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.90.data
+	.cc_top __llvm_gcov_ctr.91.data,__llvm_gcov_ctr.91
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.91,@object
+	.size	__llvm_gcov_ctr.91, 40
+__llvm_gcov_ctr.91:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.91.data
+	.cc_top __llvm_gcov_ctr.92.data,__llvm_gcov_ctr.92
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.92,@object
+	.size	__llvm_gcov_ctr.92, 32
+__llvm_gcov_ctr.92:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.92.data
+	.cc_top __llvm_gcov_ctr.93.data,__llvm_gcov_ctr.93
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.93,@object
+	.size	__llvm_gcov_ctr.93, 32
+__llvm_gcov_ctr.93:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.93.data
+	.cc_top __llvm_gcov_ctr.94.data,__llvm_gcov_ctr.94
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.94,@object
+	.size	__llvm_gcov_ctr.94, 24
+__llvm_gcov_ctr.94:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.94.data
+	.cc_top __llvm_gcov_ctr.95.data,__llvm_gcov_ctr.95
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.95,@object
+	.size	__llvm_gcov_ctr.95, 32
+__llvm_gcov_ctr.95:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.95.data
+	.cc_top __llvm_gcov_ctr.96.data,__llvm_gcov_ctr.96
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.96,@object
+	.size	__llvm_gcov_ctr.96, 40
+__llvm_gcov_ctr.96:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.96.data
+	.cc_top __llvm_gcov_ctr.97.data,__llvm_gcov_ctr.97
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.97,@object
+	.size	__llvm_gcov_ctr.97, 48
+__llvm_gcov_ctr.97:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.97.data
+	.cc_top __llvm_gcov_ctr.98.data,__llvm_gcov_ctr.98
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.98,@object
+	.size	__llvm_gcov_ctr.98, 8
+__llvm_gcov_ctr.98:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.98.data
+	.cc_top __llvm_gcov_ctr.99.data,__llvm_gcov_ctr.99
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.99,@object
+	.size	__llvm_gcov_ctr.99, 64
+__llvm_gcov_ctr.99:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.99.data
+	.cc_top __llvm_gcov_ctr.100.data,__llvm_gcov_ctr.100
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.100,@object
+	.size	__llvm_gcov_ctr.100, 24
+__llvm_gcov_ctr.100:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.100.data
+	.cc_top __llvm_gcov_ctr.101.data,__llvm_gcov_ctr.101
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.101,@object
+	.size	__llvm_gcov_ctr.101, 64
+__llvm_gcov_ctr.101:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.101.data
+	.cc_top __llvm_gcov_ctr.102.data,__llvm_gcov_ctr.102
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.102,@object
+	.size	__llvm_gcov_ctr.102, 24
+__llvm_gcov_ctr.102:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.102.data
+	.cc_top __llvm_gcov_ctr.103.data,__llvm_gcov_ctr.103
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.103,@object
+	.size	__llvm_gcov_ctr.103, 24
+__llvm_gcov_ctr.103:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.103.data
+	.cc_top __llvm_gcov_ctr.104.data,__llvm_gcov_ctr.104
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.104,@object
+	.size	__llvm_gcov_ctr.104, 24
+__llvm_gcov_ctr.104:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.104.data
+	.cc_top __llvm_gcov_ctr.105.data,__llvm_gcov_ctr.105
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.105,@object
+	.size	__llvm_gcov_ctr.105, 48
+__llvm_gcov_ctr.105:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.105.data
+	.cc_top __llvm_gcov_ctr.106.data,__llvm_gcov_ctr.106
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.106,@object
+	.size	__llvm_gcov_ctr.106, 48
+__llvm_gcov_ctr.106:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.106.data
+	.cc_top __llvm_gcov_ctr.107.data,__llvm_gcov_ctr.107
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.107,@object
+	.size	__llvm_gcov_ctr.107, 48
+__llvm_gcov_ctr.107:
+	.space	48
+	.cc_bottom __llvm_gcov_ctr.107.data
+	.cc_top __llvm_gcov_ctr.108.data,__llvm_gcov_ctr.108
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.108,@object
+	.size	__llvm_gcov_ctr.108, 8
+__llvm_gcov_ctr.108:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.108.data
+	.cc_top __llvm_gcov_ctr.109.data,__llvm_gcov_ctr.109
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.109,@object
+	.size	__llvm_gcov_ctr.109, 8
+__llvm_gcov_ctr.109:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.109.data
+	.cc_top __llvm_gcov_ctr.110.data,__llvm_gcov_ctr.110
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.110,@object
+	.size	__llvm_gcov_ctr.110, 8
+__llvm_gcov_ctr.110:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.110.data
+	.cc_top __llvm_gcov_ctr.111.data,__llvm_gcov_ctr.111
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.111,@object
+	.size	__llvm_gcov_ctr.111, 8
+__llvm_gcov_ctr.111:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.111.data
+	.cc_top __llvm_gcov_ctr.112.data,__llvm_gcov_ctr.112
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.112,@object
+	.size	__llvm_gcov_ctr.112, 8
+__llvm_gcov_ctr.112:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.112.data
+	.cc_top __llvm_gcov_ctr.113.data,__llvm_gcov_ctr.113
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.113,@object
+	.size	__llvm_gcov_ctr.113, 8
+__llvm_gcov_ctr.113:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.113.data
+	.cc_top __llvm_gcov_ctr.114.data,__llvm_gcov_ctr.114
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.114,@object
+	.size	__llvm_gcov_ctr.114, 24
+__llvm_gcov_ctr.114:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.114.data
+	.cc_top __llvm_gcov_ctr.115.data,__llvm_gcov_ctr.115
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.115,@object
+	.size	__llvm_gcov_ctr.115, 24
+__llvm_gcov_ctr.115:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.115.data
+	.cc_top __llvm_gcov_ctr.116.data,__llvm_gcov_ctr.116
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.116,@object
+	.size	__llvm_gcov_ctr.116, 16
+__llvm_gcov_ctr.116:
+	.space	16
+	.cc_bottom __llvm_gcov_ctr.116.data
+	.cc_top __llvm_gcov_ctr.117.data,__llvm_gcov_ctr.117
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.117,@object
+	.size	__llvm_gcov_ctr.117, 24
+__llvm_gcov_ctr.117:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.117.data
+	.cc_top __llvm_gcov_ctr.118.data,__llvm_gcov_ctr.118
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.118,@object
+	.size	__llvm_gcov_ctr.118, 24
+__llvm_gcov_ctr.118:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.118.data
+	.cc_top __llvm_gcov_ctr.119.data,__llvm_gcov_ctr.119
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.119,@object
+	.size	__llvm_gcov_ctr.119, 24
+__llvm_gcov_ctr.119:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.119.data
+	.cc_top __llvm_gcov_ctr.120.data,__llvm_gcov_ctr.120
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.120,@object
+	.size	__llvm_gcov_ctr.120, 32
+__llvm_gcov_ctr.120:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.120.data
+	.cc_top __llvm_gcov_ctr.121.data,__llvm_gcov_ctr.121
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.121,@object
+	.size	__llvm_gcov_ctr.121, 64
+__llvm_gcov_ctr.121:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.121.data
+	.cc_top __llvm_gcov_ctr.122.data,__llvm_gcov_ctr.122
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.122,@object
+	.size	__llvm_gcov_ctr.122, 24
+__llvm_gcov_ctr.122:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.122.data
+	.cc_top __llvm_gcov_ctr.123.data,__llvm_gcov_ctr.123
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.123,@object
+	.size	__llvm_gcov_ctr.123, 24
+__llvm_gcov_ctr.123:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.123.data
+	.cc_top __llvm_gcov_ctr.124.data,__llvm_gcov_ctr.124
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.124,@object
+	.size	__llvm_gcov_ctr.124, 8
+__llvm_gcov_ctr.124:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.124.data
+	.cc_top __llvm_gcov_ctr.125.data,__llvm_gcov_ctr.125
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.125,@object
+	.size	__llvm_gcov_ctr.125, 8
+__llvm_gcov_ctr.125:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.125.data
+	.cc_top __llvm_gcov_ctr.126.data,__llvm_gcov_ctr.126
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.126,@object
+	.size	__llvm_gcov_ctr.126, 56
+__llvm_gcov_ctr.126:
+	.space	56
+	.cc_bottom __llvm_gcov_ctr.126.data
+	.cc_top __llvm_gcov_ctr.127.data,__llvm_gcov_ctr.127
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.127,@object
+	.size	__llvm_gcov_ctr.127, 32
+__llvm_gcov_ctr.127:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.127.data
+	.cc_top __llvm_gcov_ctr.128.data,__llvm_gcov_ctr.128
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.128,@object
+	.size	__llvm_gcov_ctr.128, 32
+__llvm_gcov_ctr.128:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.128.data
+	.cc_top __llvm_gcov_ctr.129.data,__llvm_gcov_ctr.129
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.129,@object
+	.size	__llvm_gcov_ctr.129, 64
+__llvm_gcov_ctr.129:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.129.data
+	.cc_top __llvm_gcov_ctr.130.data,__llvm_gcov_ctr.130
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.130,@object
+	.size	__llvm_gcov_ctr.130, 64
+__llvm_gcov_ctr.130:
+	.space	64
+	.cc_bottom __llvm_gcov_ctr.130.data
+	.cc_top __llvm_gcov_ctr.131.data,__llvm_gcov_ctr.131
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.131,@object
+	.size	__llvm_gcov_ctr.131, 24
+__llvm_gcov_ctr.131:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.131.data
+	.cc_top __llvm_gcov_ctr.132.data,__llvm_gcov_ctr.132
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.132,@object
+	.size	__llvm_gcov_ctr.132, 24
+__llvm_gcov_ctr.132:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.132.data
+	.cc_top __llvm_gcov_ctr.133.data,__llvm_gcov_ctr.133
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.133,@object
+	.size	__llvm_gcov_ctr.133, 8
+__llvm_gcov_ctr.133:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.133.data
+	.cc_top __llvm_gcov_ctr.134.data,__llvm_gcov_ctr.134
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.134,@object
+	.size	__llvm_gcov_ctr.134, 8
+__llvm_gcov_ctr.134:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.134.data
+	.cc_top __llvm_gcov_ctr.135.data,__llvm_gcov_ctr.135
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.135,@object
+	.size	__llvm_gcov_ctr.135, 8
+__llvm_gcov_ctr.135:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.135.data
+	.cc_top __llvm_gcov_ctr.136.data,__llvm_gcov_ctr.136
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.136,@object
+	.size	__llvm_gcov_ctr.136, 40
+__llvm_gcov_ctr.136:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.136.data
+	.cc_top __llvm_gcov_ctr.137.data,__llvm_gcov_ctr.137
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.137,@object
+	.size	__llvm_gcov_ctr.137, 8
+__llvm_gcov_ctr.137:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.137.data
+	.cc_top __llvm_gcov_ctr.138.data,__llvm_gcov_ctr.138
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.138,@object
+	.size	__llvm_gcov_ctr.138, 8
+__llvm_gcov_ctr.138:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.138.data
+	.cc_top __llvm_gcov_ctr.139.data,__llvm_gcov_ctr.139
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.139,@object
+	.size	__llvm_gcov_ctr.139, 24
+__llvm_gcov_ctr.139:
+	.space	24
+	.cc_bottom __llvm_gcov_ctr.139.data
+	.cc_top __llvm_gcov_ctr.140.data,__llvm_gcov_ctr.140
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.140,@object
+	.size	__llvm_gcov_ctr.140, 8
+__llvm_gcov_ctr.140:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.140.data
+	.cc_top __llvm_gcov_ctr.141.data,__llvm_gcov_ctr.141
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.141,@object
+	.size	__llvm_gcov_ctr.141, 8
+__llvm_gcov_ctr.141:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.141.data
+	.cc_top __llvm_gcov_ctr.142.data,__llvm_gcov_ctr.142
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.142,@object
+	.size	__llvm_gcov_ctr.142, 8
+__llvm_gcov_ctr.142:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.142.data
+	.cc_top __llvm_gcov_ctr.143.data,__llvm_gcov_ctr.143
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.143,@object
+	.size	__llvm_gcov_ctr.143, 8
+__llvm_gcov_ctr.143:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.143.data
+	.cc_top __llvm_gcov_ctr.144.data,__llvm_gcov_ctr.144
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.144,@object
+	.size	__llvm_gcov_ctr.144, 8
+__llvm_gcov_ctr.144:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.144.data
+	.cc_top __llvm_gcov_ctr.145.data,__llvm_gcov_ctr.145
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.145,@object
+	.size	__llvm_gcov_ctr.145, 8
+__llvm_gcov_ctr.145:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.145.data
+	.cc_top __llvm_gcov_ctr.146.data,__llvm_gcov_ctr.146
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.146,@object
+	.size	__llvm_gcov_ctr.146, 8
+__llvm_gcov_ctr.146:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.146.data
+	.cc_top __llvm_gcov_ctr.147.data,__llvm_gcov_ctr.147
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.147,@object
+	.size	__llvm_gcov_ctr.147, 32
+__llvm_gcov_ctr.147:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.147.data
+	.cc_top __llvm_gcov_ctr.148.data,__llvm_gcov_ctr.148
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.148,@object
+	.size	__llvm_gcov_ctr.148, 32
+__llvm_gcov_ctr.148:
+	.space	32
+	.cc_bottom __llvm_gcov_ctr.148.data
+	.cc_top __llvm_gcov_ctr.149.data,__llvm_gcov_ctr.149
+	.p2align	4, 0x0
+	.type	__llvm_gcov_ctr.149,@object
+	.size	__llvm_gcov_ctr.149, 40
+__llvm_gcov_ctr.149:
+	.space	40
+	.cc_bottom __llvm_gcov_ctr.149.data
+	.cc_top __llvm_gcov_ctr.150.data,__llvm_gcov_ctr.150
+	.p2align	2, 0x0
+	.type	__llvm_gcov_ctr.150,@object
+	.size	__llvm_gcov_ctr.150, 8
+__llvm_gcov_ctr.150:
+	.space	8
+	.cc_bottom __llvm_gcov_ctr.150.data
+	.section	.cp.rodata.string,"aMSc",@progbits
+	.cc_top .L__unnamed_1.data,.L__unnamed_1
+	.p2align	2, 0x0
+	.type	.L__unnamed_1,@object
+	.size	.L__unnamed_1, 49
+.L__unnamed_1:
+.asciiz"/home/gravier/tmp/some-libc-opt/clang-xcore.gcda"
+	.cc_bottom .L__unnamed_1.data
+	.section	.cp.rodata,"ac",@progbits
+	.cc_top __llvm_internal_gcov_emit_function_args.0.data,__llvm_internal_gcov_emit_function_args.0
+	.p2align	4, 0x0
+	.type	__llvm_internal_gcov_emit_function_args.0,@object
+	.size	__llvm_internal_gcov_emit_function_args.0, 1812
+__llvm_internal_gcov_emit_function_args.0:
+	.long	0
+	.long	560687177
+	.long	3469251760
+	.long	1
+	.long	1589591758
+	.long	3469251760
+	.long	2
+	.long	2176136383
+	.long	3469251760
+	.long	3
+	.long	3586625172
+	.long	3469251760
+	.long	4
+	.long	2323119728
+	.long	3469251760
+	.long	5
+	.long	2314569740
+	.long	3469251760
+	.long	6
+	.long	2833673551
+	.long	3469251760
+	.long	7
+	.long	1458633189
+	.long	3469251760
+	.long	8
+	.long	1190300833
+	.long	3469251760
+	.long	9
+	.long	758327989
+	.long	3469251760
+	.long	10
+	.long	1651479037
+	.long	3469251760
+	.long	11
+	.long	4132343275
+	.long	3469251760
+	.long	12
+	.long	734262523
+	.long	3469251760
+	.long	13
+	.long	2463424677
+	.long	3469251760
+	.long	14
+	.long	1419026334
+	.long	3469251760
+	.long	15
+	.long	3154471370
+	.long	3469251760
+	.long	16
+	.long	2077973487
+	.long	3469251760
+	.long	17
+	.long	1474691227
+	.long	3469251760
+	.long	18
+	.long	3710986016
+	.long	3469251760
+	.long	19
+	.long	1305101473
+	.long	3469251760
+	.long	20
+	.long	3762036564
+	.long	3469251760
+	.long	21
+	.long	477914433
+	.long	3469251760
+	.long	22
+	.long	3923035234
+	.long	3469251760
+	.long	23
+	.long	951651702
+	.long	3469251760
+	.long	24
+	.long	4206925919
+	.long	3469251760
+	.long	25
+	.long	32773942
+	.long	3469251760
+	.long	26
+	.long	2877267246
+	.long	3469251760
+	.long	27
+	.long	860405771
+	.long	3469251760
+	.long	28
+	.long	815674877
+	.long	3469251760
+	.long	29
+	.long	1778838753
+	.long	3469251760
+	.long	30
+	.long	2718307199
+	.long	3469251760
+	.long	31
+	.long	856224820
+	.long	3469251760
+	.long	32
+	.long	1111195143
+	.long	3469251760
+	.long	33
+	.long	1178414519
+	.long	3469251760
+	.long	34
+	.long	3477640633
+	.long	3469251760
+	.long	35
+	.long	4294770115
+	.long	3469251760
+	.long	36
+	.long	3650660234
+	.long	3469251760
+	.long	37
+	.long	289327647
+	.long	3469251760
+	.long	38
+	.long	2093612798
+	.long	3469251760
+	.long	39
+	.long	4177956716
+	.long	3469251760
+	.long	40
+	.long	3434808461
+	.long	3469251760
+	.long	41
+	.long	3206497114
+	.long	3469251760
+	.long	42
+	.long	1537257434
+	.long	3469251760
+	.long	43
+	.long	3028077325
+	.long	3469251760
+	.long	44
+	.long	1369848209
+	.long	3469251760
+	.long	45
+	.long	938831176
+	.long	3469251760
+	.long	46
+	.long	1663146323
+	.long	3469251760
+	.long	47
+	.long	4111410217
+	.long	3469251760
+	.long	48
+	.long	1475378556
+	.long	3469251760
+	.long	49
+	.long	3356195547
+	.long	3469251760
+	.long	50
+	.long	514931786
+	.long	3469251760
+	.long	51
+	.long	2854034444
+	.long	3469251760
+	.long	52
+	.long	2747937306
+	.long	3469251760
+	.long	53
+	.long	4192776208
+	.long	3469251760
+	.long	54
+	.long	984436227
+	.long	3469251760
+	.long	55
+	.long	1477657574
+	.long	3469251760
+	.long	56
+	.long	1339127973
+	.long	3469251760
+	.long	57
+	.long	2960567906
+	.long	3469251760
+	.long	58
+	.long	3390076872
+	.long	3469251760
+	.long	59
+	.long	1543282230
+	.long	3469251760
+	.long	60
+	.long	2934101789
+	.long	3469251760
+	.long	61
+	.long	3737986119
+	.long	3469251760
+	.long	62
+	.long	49556427
+	.long	3469251760
+	.long	63
+	.long	234051526
+	.long	3469251760
+	.long	64
+	.long	2341800126
+	.long	3469251760
+	.long	65
+	.long	3256799948
+	.long	3469251760
+	.long	66
+	.long	777295480
+	.long	3469251760
+	.long	67
+	.long	14040531
+	.long	3469251760
+	.long	68
+	.long	8047973
+	.long	3469251760
+	.long	69
+	.long	719459161
+	.long	3469251760
+	.long	70
+	.long	243358501
+	.long	3469251760
+	.long	71
+	.long	3262173932
+	.long	3469251760
+	.long	72
+	.long	398910553
+	.long	3469251760
+	.long	73
+	.long	3354219739
+	.long	3469251760
+	.long	74
+	.long	2570308788
+	.long	3469251760
+	.long	75
+	.long	982429111
+	.long	3469251760
+	.long	76
+	.long	211491241
+	.long	3469251760
+	.long	77
+	.long	1075683319
+	.long	3469251760
+	.long	78
+	.long	1886352651
+	.long	3469251760
+	.long	79
+	.long	248637203
+	.long	3469251760
+	.long	80
+	.long	703327087
+	.long	3469251760
+	.long	81
+	.long	3690160730
+	.long	3469251760
+	.long	82
+	.long	787048238
+	.long	3469251760
+	.long	83
+	.long	1937497967
+	.long	3469251760
+	.long	84
+	.long	4205062514
+	.long	3469251760
+	.long	85
+	.long	694462539
+	.long	3469251760
+	.long	86
+	.long	85970907
+	.long	3469251760
+	.long	87
+	.long	3681984728
+	.long	3469251760
+	.long	88
+	.long	3620297642
+	.long	3469251760
+	.long	89
+	.long	3394804480
+	.long	3469251760
+	.long	90
+	.long	2119330183
+	.long	3469251760
+	.long	91
+	.long	1963040266
+	.long	3469251760
+	.long	92
+	.long	1603391838
+	.long	3469251760
+	.long	93
+	.long	2340921237
+	.long	3469251760
+	.long	94
+	.long	3028177438
+	.long	3469251760
+	.long	95
+	.long	2265525308
+	.long	3469251760
+	.long	96
+	.long	2598903994
+	.long	3469251760
+	.long	97
+	.long	139524705
+	.long	3469251760
+	.long	98
+	.long	1076410600
+	.long	3469251760
+	.long	99
+	.long	220237413
+	.long	3469251760
+	.long	100
+	.long	3913623866
+	.long	3469251760
+	.long	101
+	.long	3453026372
+	.long	3469251760
+	.long	102
+	.long	2321387380
+	.long	3469251760
+	.long	103
+	.long	3319939363
+	.long	3469251760
+	.long	104
+	.long	398991913
+	.long	3469251760
+	.long	105
+	.long	333429647
+	.long	3469251760
+	.long	106
+	.long	3927133990
+	.long	3469251760
+	.long	107
+	.long	1797971294
+	.long	3469251760
+	.long	108
+	.long	1622314776
+	.long	3469251760
+	.long	109
+	.long	1092862330
+	.long	3469251760
+	.long	110
+	.long	2568657322
+	.long	3469251760
+	.long	111
+	.long	2168129897
+	.long	3469251760
+	.long	112
+	.long	2890303119
+	.long	3469251760
+	.long	113
+	.long	1713332582
+	.long	3469251760
+	.long	114
+	.long	2375727721
+	.long	3469251760
+	.long	115
+	.long	3586767156
+	.long	3469251760
+	.long	116
+	.long	2191348475
+	.long	3469251760
+	.long	117
+	.long	3910023869
+	.long	3469251760
+	.long	118
+	.long	4189915105
+	.long	3469251760
+	.long	119
+	.long	2527353334
+	.long	3469251760
+	.long	120
+	.long	3429265923
+	.long	3469251760
+	.long	121
+	.long	1283962724
+	.long	3469251760
+	.long	122
+	.long	1970290990
+	.long	3469251760
+	.long	123
+	.long	2615950861
+	.long	3469251760
+	.long	124
+	.long	3338450337
+	.long	3469251760
+	.long	125
+	.long	3971836509
+	.long	3469251760
+	.long	126
+	.long	4260339231
+	.long	3469251760
+	.long	127
+	.long	4160738226
+	.long	3469251760
+	.long	128
+	.long	1309372079
+	.long	3469251760
+	.long	129
+	.long	3151575564
+	.long	3469251760
+	.long	130
+	.long	3938977714
+	.long	3469251760
+	.long	131
+	.long	3228738087
+	.long	3469251760
+	.long	132
+	.long	3135705803
+	.long	3469251760
+	.long	133
+	.long	4061147315
+	.long	3469251760
+	.long	134
+	.long	2783543715
+	.long	3469251760
+	.long	135
+	.long	2471046843
+	.long	3469251760
+	.long	136
+	.long	260073473
+	.long	3469251760
+	.long	137
+	.long	1259876295
+	.long	3469251760
+	.long	138
+	.long	2579807359
+	.long	3469251760
+	.long	139
+	.long	90061610
+	.long	3469251760
+	.long	140
+	.long	3598610789
+	.long	3469251760
+	.long	141
+	.long	2351688191
+	.long	3469251760
+	.long	142
+	.long	1438161982
+	.long	3469251760
+	.long	143
+	.long	2438880600
+	.long	3469251760
+	.long	144
+	.long	3593193962
+	.long	3469251760
+	.long	145
+	.long	1755082314
+	.long	3469251760
+	.long	146
+	.long	3432612426
+	.long	3469251760
+	.long	147
+	.long	3374828335
+	.long	3469251760
+	.long	148
+	.long	3311814731
+	.long	3469251760
+	.long	149
+	.long	413908966
+	.long	3469251760
+	.long	150
+	.long	3027808697
+	.long	3469251760
+	.cc_bottom __llvm_internal_gcov_emit_function_args.0.data
+	.cc_top __llvm_internal_gcov_emit_arcs_args.0.data,__llvm_internal_gcov_emit_arcs_args.0
+	.p2align	4, 0x0
+	.type	__llvm_internal_gcov_emit_arcs_args.0,@object
+	.size	__llvm_internal_gcov_emit_arcs_args.0, 1208
+__llvm_internal_gcov_emit_arcs_args.0:
+	.long	5
+	.long	__llvm_gcov_ctr
+	.long	5
+	.long	__llvm_gcov_ctr.1
+	.long	5
+	.long	__llvm_gcov_ctr.2
+	.long	5
+	.long	__llvm_gcov_ctr.3
+	.long	2
+	.long	__llvm_gcov_ctr.4
+	.long	3
+	.long	__llvm_gcov_ctr.5
+	.long	2
+	.long	__llvm_gcov_ctr.6
+	.long	2
+	.long	__llvm_gcov_ctr.7
+	.long	4
+	.long	__llvm_gcov_ctr.8
+	.long	3
+	.long	__llvm_gcov_ctr.9
+	.long	4
+	.long	__llvm_gcov_ctr.10
+	.long	2
+	.long	__llvm_gcov_ctr.11
+	.long	7
+	.long	__llvm_gcov_ctr.12
+	.long	2
+	.long	__llvm_gcov_ctr.13
+	.long	1
+	.long	__llvm_gcov_ctr.14
+	.long	1
+	.long	__llvm_gcov_ctr.15
+	.long	3
+	.long	__llvm_gcov_ctr.16
+	.long	3
+	.long	__llvm_gcov_ctr.17
+	.long	1
+	.long	__llvm_gcov_ctr.18
+	.long	1
+	.long	__llvm_gcov_ctr.19
+	.long	1
+	.long	__llvm_gcov_ctr.20
+	.long	1
+	.long	__llvm_gcov_ctr.21
+	.long	3
+	.long	__llvm_gcov_ctr.22
+	.long	1
+	.long	__llvm_gcov_ctr.23
+	.long	5
+	.long	__llvm_gcov_ctr.24
+	.long	1
+	.long	__llvm_gcov_ctr.25
+	.long	7
+	.long	__llvm_gcov_ctr.26
+	.long	3
+	.long	__llvm_gcov_ctr.27
+	.long	1
+	.long	__llvm_gcov_ctr.28
+	.long	4
+	.long	__llvm_gcov_ctr.29
+	.long	4
+	.long	__llvm_gcov_ctr.30
+	.long	6
+	.long	__llvm_gcov_ctr.31
+	.long	6
+	.long	__llvm_gcov_ctr.32
+	.long	6
+	.long	__llvm_gcov_ctr.33
+	.long	6
+	.long	__llvm_gcov_ctr.34
+	.long	6
+	.long	__llvm_gcov_ctr.35
+	.long	6
+	.long	__llvm_gcov_ctr.36
+	.long	2
+	.long	__llvm_gcov_ctr.37
+	.long	1
+	.long	__llvm_gcov_ctr.38
+	.long	1
+	.long	__llvm_gcov_ctr.39
+	.long	3
+	.long	__llvm_gcov_ctr.40
+	.long	3
+	.long	__llvm_gcov_ctr.41
+	.long	3
+	.long	__llvm_gcov_ctr.42
+	.long	3
+	.long	__llvm_gcov_ctr.43
+	.long	2
+	.long	__llvm_gcov_ctr.44
+	.long	6
+	.long	__llvm_gcov_ctr.45
+	.long	6
+	.long	__llvm_gcov_ctr.46
+	.long	6
+	.long	__llvm_gcov_ctr.47
+	.long	4
+	.long	__llvm_gcov_ctr.48
+	.long	4
+	.long	__llvm_gcov_ctr.49
+	.long	1
+	.long	__llvm_gcov_ctr.50
+	.long	2
+	.long	__llvm_gcov_ctr.51
+	.long	1
+	.long	__llvm_gcov_ctr.52
+	.long	2
+	.long	__llvm_gcov_ctr.53
+	.long	1
+	.long	__llvm_gcov_ctr.54
+	.long	2
+	.long	__llvm_gcov_ctr.55
+	.long	1
+	.long	__llvm_gcov_ctr.56
+	.long	5
+	.long	__llvm_gcov_ctr.57
+	.long	6
+	.long	__llvm_gcov_ctr.58
+	.long	2
+	.long	__llvm_gcov_ctr.59
+	.long	2
+	.long	__llvm_gcov_ctr.60
+	.long	8
+	.long	__llvm_gcov_ctr.61
+	.long	5
+	.long	__llvm_gcov_ctr.62
+	.long	6
+	.long	__llvm_gcov_ctr.63
+	.long	2
+	.long	__llvm_gcov_ctr.64
+	.long	5
+	.long	__llvm_gcov_ctr.65
+	.long	2
+	.long	__llvm_gcov_ctr.66
+	.long	5
+	.long	__llvm_gcov_ctr.67
+	.long	1
+	.long	__llvm_gcov_ctr.68
+	.long	1
+	.long	__llvm_gcov_ctr.69
+	.long	1
+	.long	__llvm_gcov_ctr.70
+	.long	1
+	.long	__llvm_gcov_ctr.71
+	.long	1
+	.long	__llvm_gcov_ctr.72
+	.long	1
+	.long	__llvm_gcov_ctr.73
+	.long	1
+	.long	__llvm_gcov_ctr.74
+	.long	1
+	.long	__llvm_gcov_ctr.75
+	.long	1
+	.long	__llvm_gcov_ctr.76
+	.long	1
+	.long	__llvm_gcov_ctr.77
+	.long	1
+	.long	__llvm_gcov_ctr.78
+	.long	1
+	.long	__llvm_gcov_ctr.79
+	.long	1
+	.long	__llvm_gcov_ctr.80
+	.long	3
+	.long	__llvm_gcov_ctr.81
+	.long	3
+	.long	__llvm_gcov_ctr.82
+	.long	3
+	.long	__llvm_gcov_ctr.83
+	.long	3
+	.long	__llvm_gcov_ctr.84
+	.long	3
+	.long	__llvm_gcov_ctr.85
+	.long	1
+	.long	__llvm_gcov_ctr.86
+	.long	5
+	.long	__llvm_gcov_ctr.87
+	.long	5
+	.long	__llvm_gcov_ctr.88
+	.long	5
+	.long	__llvm_gcov_ctr.89
+	.long	2
+	.long	__llvm_gcov_ctr.90
+	.long	5
+	.long	__llvm_gcov_ctr.91
+	.long	4
+	.long	__llvm_gcov_ctr.92
+	.long	4
+	.long	__llvm_gcov_ctr.93
+	.long	3
+	.long	__llvm_gcov_ctr.94
+	.long	4
+	.long	__llvm_gcov_ctr.95
+	.long	5
+	.long	__llvm_gcov_ctr.96
+	.long	6
+	.long	__llvm_gcov_ctr.97
+	.long	1
+	.long	__llvm_gcov_ctr.98
+	.long	8
+	.long	__llvm_gcov_ctr.99
+	.long	3
+	.long	__llvm_gcov_ctr.100
+	.long	8
+	.long	__llvm_gcov_ctr.101
+	.long	3
+	.long	__llvm_gcov_ctr.102
+	.long	3
+	.long	__llvm_gcov_ctr.103
+	.long	3
+	.long	__llvm_gcov_ctr.104
+	.long	6
+	.long	__llvm_gcov_ctr.105
+	.long	6
+	.long	__llvm_gcov_ctr.106
+	.long	6
+	.long	__llvm_gcov_ctr.107
+	.long	1
+	.long	__llvm_gcov_ctr.108
+	.long	1
+	.long	__llvm_gcov_ctr.109
+	.long	1
+	.long	__llvm_gcov_ctr.110
+	.long	1
+	.long	__llvm_gcov_ctr.111
+	.long	1
+	.long	__llvm_gcov_ctr.112
+	.long	1
+	.long	__llvm_gcov_ctr.113
+	.long	3
+	.long	__llvm_gcov_ctr.114
+	.long	3
+	.long	__llvm_gcov_ctr.115
+	.long	2
+	.long	__llvm_gcov_ctr.116
+	.long	3
+	.long	__llvm_gcov_ctr.117
+	.long	3
+	.long	__llvm_gcov_ctr.118
+	.long	3
+	.long	__llvm_gcov_ctr.119
+	.long	4
+	.long	__llvm_gcov_ctr.120
+	.long	8
+	.long	__llvm_gcov_ctr.121
+	.long	3
+	.long	__llvm_gcov_ctr.122
+	.long	3
+	.long	__llvm_gcov_ctr.123
+	.long	1
+	.long	__llvm_gcov_ctr.124
+	.long	1
+	.long	__llvm_gcov_ctr.125
+	.long	7
+	.long	__llvm_gcov_ctr.126
+	.long	4
+	.long	__llvm_gcov_ctr.127
+	.long	4
+	.long	__llvm_gcov_ctr.128
+	.long	8
+	.long	__llvm_gcov_ctr.129
+	.long	8
+	.long	__llvm_gcov_ctr.130
+	.long	3
+	.long	__llvm_gcov_ctr.131
+	.long	3
+	.long	__llvm_gcov_ctr.132
+	.long	1
+	.long	__llvm_gcov_ctr.133
+	.long	1
+	.long	__llvm_gcov_ctr.134
+	.long	1
+	.long	__llvm_gcov_ctr.135
+	.long	5
+	.long	__llvm_gcov_ctr.136
+	.long	1
+	.long	__llvm_gcov_ctr.137
+	.long	1
+	.long	__llvm_gcov_ctr.138
+	.long	3
+	.long	__llvm_gcov_ctr.139
+	.long	1
+	.long	__llvm_gcov_ctr.140
+	.long	1
+	.long	__llvm_gcov_ctr.141
+	.long	1
+	.long	__llvm_gcov_ctr.142
+	.long	1
+	.long	__llvm_gcov_ctr.143
+	.long	1
+	.long	__llvm_gcov_ctr.144
+	.long	1
+	.long	__llvm_gcov_ctr.145
+	.long	1
+	.long	__llvm_gcov_ctr.146
+	.long	4
+	.long	__llvm_gcov_ctr.147
+	.long	4
+	.long	__llvm_gcov_ctr.148
+	.long	5
+	.long	__llvm_gcov_ctr.149
+	.long	1
+	.long	__llvm_gcov_ctr.150
+	.cc_bottom __llvm_internal_gcov_emit_arcs_args.0.data
+	.cc_top __llvm_internal_gcov_emit_file_info.data,__llvm_internal_gcov_emit_file_info
+	.p2align	4, 0x0
+	.type	__llvm_internal_gcov_emit_file_info,@object
+	.size	__llvm_internal_gcov_emit_file_info, 24
+__llvm_internal_gcov_emit_file_info:
+	.long	.L__unnamed_1
+	.long	875575338
+	.long	3469251760
+	.long	151
+	.long	__llvm_internal_gcov_emit_function_args.0
+	.long	__llvm_internal_gcov_emit_arcs_args.0
+	.cc_bottom __llvm_internal_gcov_emit_file_info.data
+	.section	.init_array.0,"aw",@init_array
+	.p2align	2, 0x0
+	.long	__llvm_gcov_init
 	.section	__llvm_prf_cnts,"awd",@progbits
 	.cc_top .L__profc_memmove.data,.L__profc_memmove
 	.p2align	3, 0x0
