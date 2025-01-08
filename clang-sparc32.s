@@ -9,6 +9,16 @@ memmove:                                ! @memmove
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memmove), %i0
+	ldd [%i0+%lo(.L__profc_memmove)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memmove)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-8], %i0
@@ -21,6 +31,17 @@ memmove:                                ! @memmove
 	ba .LBB0_1
 	nop
 .LBB0_1:
+	sethi %hi(.L__profc_memmove), %i0
+	add %i0, %lo(.L__profc_memmove), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i1
 	ld [%fp+-20], %i0
 	add %i0, %i1, %i0
@@ -38,6 +59,17 @@ memmove:                                ! @memmove
 	ba .LBB0_3
 	nop
 .LBB0_3:                                !   in Loop: Header=BB0_2 Depth=1
+	sethi %hi(.L__profc_memmove), %i0
+	add %i0, %lo(.L__profc_memmove), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-20], %i0
 	add %i0, -1, %i1
 	st %i1, [%fp+-20]
@@ -64,8 +96,18 @@ memmove:                                ! @memmove
 	ba .LBB0_7
 	nop
 .LBB0_7:
+	sethi %hi(.L__profc_memmove), %i0
+	add %i0, %lo(.L__profc_memmove), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB0_8
-	nop
+	std %i2, [%i0+24]
 .LBB0_8:                                ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
@@ -74,6 +116,17 @@ memmove:                                ! @memmove
 	ba .LBB0_9
 	nop
 .LBB0_9:                                !   in Loop: Header=BB0_8 Depth=1
+	sethi %hi(.L__profc_memmove), %i0
+	add %i0, %lo(.L__profc_memmove), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-20], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-20]
@@ -106,11 +159,21 @@ memmove:                                ! @memmove
 	.type	memccpy,@function
 memccpy:                                ! @memccpy
 ! %bb.0:
-	save %sp, -136, %sp
+	save %sp, -144, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
 	st %i3, [%fp+-20]
+	sethi %hi(.L__profc_memccpy), %i0
+	ldd [%i0+%lo(.L__profc_memccpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memccpy)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-24]
 	ld [%fp+-12], %i0
@@ -122,16 +185,29 @@ memccpy:                                ! @memccpy
 	ld [%fp+-20], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB1_5
+	be	.LBB1_6
 	st %i0, [%fp+-32]
 	ba .LBB1_2
 	nop
 .LBB1_2:                                !   in Loop: Header=BB1_1 Depth=1
+	sethi %hi(.L__profc_memccpy), %i0
+	add %i0, %lo(.L__profc_memccpy), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-28], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-48]                       ! 4-byte Folded Spill
 	ld [%fp+-24], %i0
 	stb %i1, [%i0]
 	ld [%fp+-16], %i2
+	st %i2, [%fp+-44]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -142,21 +218,52 @@ memccpy:                                ! @memccpy
 	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
 .LBB1_4:                                !   in Loop: Header=BB1_1 Depth=1
+	ld [%fp+-48], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-44], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
-	ba .LBB1_5
+	st %i0, [%fp+-52]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	be	.LBB1_6
 	st %i0, [%fp+-32]
+	ba .LBB1_5
+	nop
 .LBB1_5:                                !   in Loop: Header=BB1_1 Depth=1
+	ld [%fp+-52], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_memccpy), %i1
+	add %i1, %lo(.L__profc_memccpy), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB1_6
+	st %i0, [%fp+-32]
+.LBB1_6:                                !   in Loop: Header=BB1_1 Depth=1
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB1_8
+	be	.LBB1_9
 	nop
-	ba .LBB1_6
-	nop
-.LBB1_6:                                !   in Loop: Header=BB1_1 Depth=1
 	ba .LBB1_7
 	nop
 .LBB1_7:                                !   in Loop: Header=BB1_1 Depth=1
+	sethi %hi(.L__profc_memccpy), %i0
+	add %i0, %lo(.L__profc_memccpy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB1_8
+	std %i2, [%i0+8]
+.LBB1_8:                                !   in Loop: Header=BB1_1 Depth=1
 	ld [%fp+-20], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-20]
@@ -167,22 +274,33 @@ memccpy:                                ! @memccpy
 	add %i0, 1, %i0
 	ba .LBB1_1
 	st %i0, [%fp+-24]
-.LBB1_8:
+.LBB1_9:
 	ld [%fp+-20], %i0
 	cmp	%i0, 0
-	be	.LBB1_10
+	be	.LBB1_11
 	nop
-	ba .LBB1_9
+	ba .LBB1_10
 	nop
-.LBB1_9:
+.LBB1_10:
+	sethi %hi(.L__profc_memccpy), %i0
+	add %i0, %lo(.L__profc_memccpy), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-24], %i0
 	add %i0, 1, %i0
-	ba .LBB1_11
+	ba .LBB1_12
 	st %i0, [%fp+-4]
-.LBB1_10:
-	ba .LBB1_11
-	st %g0, [%fp+-4]
 .LBB1_11:
+	ba .LBB1_12
+	st %g0, [%fp+-4]
+.LBB1_12:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -194,10 +312,20 @@ memccpy:                                ! @memccpy
 	.type	memchr,@function
 memchr:                                 ! @memchr
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memchr), %i0
+	ldd [%i0+%lo(.L__profc_memchr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memchr)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ldub [%fp+-8], %i0
@@ -207,14 +335,27 @@ memchr:                                 ! @memchr
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB2_5
+	be	.LBB2_6
 	st %i0, [%fp+-20]
 	ba .LBB2_2
 	nop
 .LBB2_2:                                !   in Loop: Header=BB2_1 Depth=1
+	sethi %hi(.L__profc_memchr), %i0
+	add %i0, %lo(.L__profc_memchr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-36]                       ! 4-byte Folded Spill
 	ld [%fp+-8], %i2
+	st %i2, [%fp+-32]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -225,21 +366,52 @@ memchr:                                 ! @memchr
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 .LBB2_4:                                !   in Loop: Header=BB2_1 Depth=1
+	ld [%fp+-36], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-32], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
-	ba .LBB2_5
+	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	be	.LBB2_6
 	st %i0, [%fp+-20]
+	ba .LBB2_5
+	nop
 .LBB2_5:                                !   in Loop: Header=BB2_1 Depth=1
+	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_memchr), %i1
+	add %i1, %lo(.L__profc_memchr), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB2_6
+	st %i0, [%fp+-20]
+.LBB2_6:                                !   in Loop: Header=BB2_1 Depth=1
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB2_8
+	be	.LBB2_9
 	nop
-	ba .LBB2_6
-	nop
-.LBB2_6:                                !   in Loop: Header=BB2_1 Depth=1
 	ba .LBB2_7
 	nop
 .LBB2_7:                                !   in Loop: Header=BB2_1 Depth=1
+	sethi %hi(.L__profc_memchr), %i0
+	add %i0, %lo(.L__profc_memchr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB2_8
+	std %i2, [%i0+8]
+.LBB2_8:                                !   in Loop: Header=BB2_1 Depth=1
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-16]
@@ -247,23 +419,34 @@ memchr:                                 ! @memchr
 	add %i0, -1, %i0
 	ba .LBB2_1
 	st %i0, [%fp+-12]
-.LBB2_8:
+.LBB2_9:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB2_10
+	be	.LBB2_11
 	nop
-	ba .LBB2_9
+	ba .LBB2_10
 	nop
-.LBB2_9:
-	ld [%fp+-16], %i0
-	ba .LBB2_11
-	st %i0, [%fp+-32]
 .LBB2_10:
-	mov	%g0, %i0
-	ba .LBB2_11
-	st %i0, [%fp+-32]
+	sethi %hi(.L__profc_memchr), %i0
+	add %i0, %lo(.L__profc_memchr), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
+	ld [%fp+-16], %i0
+	ba .LBB2_12
+	st %i0, [%fp+-44]
 .LBB2_11:
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	mov	%g0, %i0
+	ba .LBB2_12
+	st %i0, [%fp+-44]
+.LBB2_12:
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end2:
@@ -274,10 +457,20 @@ memchr:                                 ! @memchr
 	.type	memcmp,@function
 memcmp:                                 ! @memcmp
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -144, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memcmp), %i0
+	ldd [%i0+%lo(.L__profc_memcmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memcmp)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-8], %i0
@@ -287,15 +480,28 @@ memcmp:                                 ! @memcmp
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB3_5
+	be	.LBB3_6
 	st %i0, [%fp+-24]
 	ba .LBB3_2
 	nop
 .LBB3_2:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(.L__profc_memcmp), %i0
+	add %i0, %lo(.L__profc_memcmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-40]                       ! 4-byte Folded Spill
 	ld [%fp+-20], %i0
 	ldub [%i0], %i2
+	st %i2, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -306,21 +512,52 @@ memcmp:                                 ! @memcmp
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
 .LBB3_4:                                !   in Loop: Header=BB3_1 Depth=1
+	ld [%fp+-40], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-36], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	ba .LBB3_5
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	bne	.LBB3_6
 	st %i0, [%fp+-24]
+	ba .LBB3_5
+	nop
 .LBB3_5:                                !   in Loop: Header=BB3_1 Depth=1
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_memcmp), %i1
+	add %i1, %lo(.L__profc_memcmp), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB3_6
+	st %i0, [%fp+-24]
+.LBB3_6:                                !   in Loop: Header=BB3_1 Depth=1
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB3_8
+	be	.LBB3_9
 	nop
-	ba .LBB3_6
-	nop
-.LBB3_6:                                !   in Loop: Header=BB3_1 Depth=1
 	ba .LBB3_7
 	nop
 .LBB3_7:                                !   in Loop: Header=BB3_1 Depth=1
+	sethi %hi(.L__profc_memcmp), %i0
+	add %i0, %lo(.L__profc_memcmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB3_8
+	std %i2, [%i0+8]
+.LBB3_8:                                !   in Loop: Header=BB3_1 Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -331,27 +568,38 @@ memcmp:                                 ! @memcmp
 	add %i0, 1, %i0
 	ba .LBB3_1
 	st %i0, [%fp+-20]
-.LBB3_8:
+.LBB3_9:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB3_10
+	be	.LBB3_11
 	nop
-	ba .LBB3_9
+	ba .LBB3_10
 	nop
-.LBB3_9:
+.LBB3_10:
+	sethi %hi(.L__profc_memcmp), %i0
+	add %i0, %lo(.L__profc_memcmp), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-16], %i0
 	ldub [%i0], %i0
 	ld [%fp+-20], %i1
 	ldub [%i1], %i1
 	sub %i0, %i1, %i0
-	ba .LBB3_11
-	st %i0, [%fp+-36]
-.LBB3_10:
-	mov	%g0, %i0
-	ba .LBB3_11
-	st %i0, [%fp+-36]
+	ba .LBB3_12
+	st %i0, [%fp+-48]
 .LBB3_11:
-	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	mov	%g0, %i0
+	ba .LBB3_12
+	st %i0, [%fp+-48]
+.LBB3_12:
+	ld [%fp+-48], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end3:
@@ -366,6 +614,16 @@ memcpy:                                 ! @memcpy
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memcpy), %i0
+	ldd [%i0+%lo(.L__profc_memcpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memcpy)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-8], %i0
@@ -379,6 +637,17 @@ memcpy:                                 ! @memcpy
 	ba .LBB4_2
 	nop
 .LBB4_2:                                !   in Loop: Header=BB4_1 Depth=1
+	sethi %hi(.L__profc_memcpy), %i0
+	add %i0, %lo(.L__profc_memcpy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-20], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-20]
@@ -409,6 +678,16 @@ memrchr:                                ! @memrchr
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc_memrchr), %i0
+	ldd [%i0+%lo(.L__profc_memrchr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memrchr)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-20]
 	ldub [%fp+-12], %i0
@@ -423,6 +702,17 @@ memrchr:                                ! @memrchr
 	ba .LBB5_2
 	nop
 .LBB5_2:                                !   in Loop: Header=BB5_1 Depth=1
+	sethi %hi(.L__profc_memrchr), %i0
+	add %i0, %lo(.L__profc_memrchr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-20], %i0
 	ld [%fp+-16], %i1
 	ldub [%i0+%i1], %i0
@@ -433,6 +723,17 @@ memrchr:                                ! @memrchr
 	ba .LBB5_3
 	nop
 .LBB5_3:
+	sethi %hi(.L__profc_memrchr), %i0
+	add %i0, %lo(.L__profc_memrchr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-20], %i0
 	ld [%fp+-16], %i1
 	add %i0, %i1, %i0
@@ -460,6 +761,16 @@ memset:                                 ! @memset
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memset), %i0
+	ldd [%i0+%lo(.L__profc_memset)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memset)]
 	ld [%fp+-4], %i0
 	ba .LBB6_1
 	st %i0, [%fp+-16]
@@ -471,6 +782,17 @@ memset:                                 ! @memset
 	ba .LBB6_2
 	nop
 .LBB6_2:                                !   in Loop: Header=BB6_1 Depth=1
+	sethi %hi(.L__profc_memset), %i0
+	add %i0, %lo(.L__profc_memset), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i1
 	ld [%fp+-16], %i0
 	ba .LBB6_3
@@ -497,8 +819,18 @@ stpcpy:                                 ! @stpcpy
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
-	ba .LBB7_1
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_stpcpy), %i0
+	ldd [%i0+%lo(.L__profc_stpcpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB7_1
+	std %i2, [%i0+%lo(.L__profc_stpcpy)]
 .LBB7_1:                                ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-8], %i0
 	ldub [%i0], %i0
@@ -510,8 +842,18 @@ stpcpy:                                 ! @stpcpy
 	ba .LBB7_2
 	nop
 .LBB7_2:                                !   in Loop: Header=BB7_1 Depth=1
+	sethi %hi(.L__profc_stpcpy), %i0
+	add %i0, %lo(.L__profc_stpcpy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB7_3
-	nop
+	std %i2, [%i0+8]
 .LBB7_3:                                !   in Loop: Header=BB7_1 Depth=1
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
@@ -532,9 +874,19 @@ stpcpy:                                 ! @stpcpy
 	.type	strchrnul,@function
 strchrnul:                              ! @strchrnul
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -128, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_strchrnul), %i0
+	ldd [%i0+%lo(.L__profc_strchrnul)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strchrnul)]
 	ldub [%fp+-8], %i0
 	ba .LBB8_1
 	st %i0, [%fp+-8]
@@ -543,14 +895,27 @@ strchrnul:                              ! @strchrnul
 	ldsb [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB8_5
+	be	.LBB8_6
 	st %i0, [%fp+-12]
 	ba .LBB8_2
 	nop
 .LBB8_2:                                !   in Loop: Header=BB8_1 Depth=1
+	sethi %hi(.L__profc_strchrnul), %i0
+	add %i0, %lo(.L__profc_strchrnul), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-28]                       ! 4-byte Folded Spill
 	ld [%fp+-8], %i2
+	st %i2, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -561,26 +926,57 @@ strchrnul:                              ! @strchrnul
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 .LBB8_4:                                !   in Loop: Header=BB8_1 Depth=1
+	ld [%fp+-28], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-24], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB8_5
+	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	be	.LBB8_6
 	st %i0, [%fp+-12]
+	ba .LBB8_5
+	nop
 .LBB8_5:                                !   in Loop: Header=BB8_1 Depth=1
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_strchrnul), %i1
+	add %i1, %lo(.L__profc_strchrnul), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB8_6
+	st %i0, [%fp+-12]
+.LBB8_6:                                !   in Loop: Header=BB8_1 Depth=1
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB8_8
+	be	.LBB8_9
 	nop
-	ba .LBB8_6
-	nop
-.LBB8_6:                                !   in Loop: Header=BB8_1 Depth=1
 	ba .LBB8_7
 	nop
 .LBB8_7:                                !   in Loop: Header=BB8_1 Depth=1
+	sethi %hi(.L__profc_strchrnul), %i0
+	add %i0, %lo(.L__profc_strchrnul), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB8_8
+	std %i2, [%i0+8]
+.LBB8_8:                                !   in Loop: Header=BB8_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB8_1
 	st %i0, [%fp+-4]
-.LBB8_8:
+.LBB8_9:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -594,25 +990,59 @@ strchr:                                 ! @strchr
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-8]
-	ba .LBB9_1
 	st %i1, [%fp+-12]
-.LBB9_1:                                ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc_strchr), %i0
+	ldd [%i0+%lo(.L__profc_strchr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB9_2
+	std %i2, [%i0+%lo(.L__profc_strchr)]
+.LBB9_1:                                !   in Loop: Header=BB9_2 Depth=1
+	sethi %hi(.L__profc_strchr), %i0
+	add %i0, %lo(.L__profc_strchr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB9_2
+	std %i2, [%i0+8]
+.LBB9_2:                                ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-8], %i0
 	ldsb [%i0], %i0
 	ld [%fp+-12], %i1
 	cmp	%i0, %i1
-	bne	.LBB9_3
+	bne	.LBB9_4
 	nop
-	ba .LBB9_2
+	ba .LBB9_3
 	nop
-.LBB9_2:
+.LBB9_3:
+	sethi %hi(.L__profc_strchr), %i0
+	add %i0, %lo(.L__profc_strchr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
-	ba .LBB9_6
+	ba .LBB9_7
 	st %i0, [%fp+-4]
-.LBB9_3:                                !   in Loop: Header=BB9_1 Depth=1
-	ba .LBB9_4
+.LBB9_4:                                !   in Loop: Header=BB9_2 Depth=1
+	ba .LBB9_5
 	nop
-.LBB9_4:                                !   in Loop: Header=BB9_1 Depth=1
+.LBB9_5:                                !   in Loop: Header=BB9_2 Depth=1
 	ld [%fp+-8], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-8]
@@ -620,12 +1050,12 @@ strchr:                                 ! @strchr
 	cmp	%i0, 0
 	bne	.LBB9_1
 	nop
-	ba .LBB9_5
-	nop
-.LBB9_5:
 	ba .LBB9_6
-	st %g0, [%fp+-4]
+	nop
 .LBB9_6:
+	ba .LBB9_7
+	st %g0, [%fp+-4]
+.LBB9_7:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -637,10 +1067,20 @@ strchr:                                 ! @strchr
 	.type	strcmp,@function
 strcmp:                                 ! @strcmp
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
-	ba .LBB10_1
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_strcmp), %i0
+	ldd [%i0+%lo(.L__profc_strcmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB10_1
+	std %i2, [%i0+%lo(.L__profc_strcmp)]
 .LBB10_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	ldsb [%i0], %i1
@@ -648,13 +1088,25 @@ strcmp:                                 ! @strcmp
 	ldsb [%i0], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bne	.LBB10_5
+	bne	.LBB10_6
 	st %i0, [%fp+-12]
 	ba .LBB10_2
 	nop
 .LBB10_2:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(.L__profc_strcmp), %i0
+	add %i0, %lo(.L__profc_strcmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ldsb [%i0], %i1
+	st %i1, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -665,21 +1117,51 @@ strcmp:                                 ! @strcmp
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 .LBB10_4:                               !   in Loop: Header=BB10_1 Depth=1
+	ld [%fp+-24], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB10_5
+	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	be	.LBB10_6
 	st %i0, [%fp+-12]
+	ba .LBB10_5
+	nop
 .LBB10_5:                               !   in Loop: Header=BB10_1 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_strcmp), %i1
+	add %i1, %lo(.L__profc_strcmp), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB10_6
+	st %i0, [%fp+-12]
+.LBB10_6:                               !   in Loop: Header=BB10_1 Depth=1
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB10_8
+	be	.LBB10_9
 	nop
-	ba .LBB10_6
-	nop
-.LBB10_6:                               !   in Loop: Header=BB10_1 Depth=1
 	ba .LBB10_7
 	nop
 .LBB10_7:                               !   in Loop: Header=BB10_1 Depth=1
+	sethi %hi(.L__profc_strcmp), %i0
+	add %i0, %lo(.L__profc_strcmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB10_8
+	std %i2, [%i0+8]
+.LBB10_8:                               !   in Loop: Header=BB10_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-4]
@@ -687,7 +1169,7 @@ strcmp:                                 ! @strcmp
 	add %i0, 1, %i0
 	ba .LBB10_1
 	st %i0, [%fp+-8]
-.LBB10_8:
+.LBB10_9:
 	ld [%fp+-4], %i0
 	ldub [%i0], %i0
 	ld [%fp+-8], %i1
@@ -705,6 +1187,16 @@ strlen:                                 ! @strlen
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_strlen), %i0
+	ldd [%i0+%lo(.L__profc_strlen)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strlen)]
 	ld [%fp+-4], %i0
 	ba .LBB11_1
 	st %i0, [%fp+-8]
@@ -717,8 +1209,18 @@ strlen:                                 ! @strlen
 	ba .LBB11_2
 	nop
 .LBB11_2:                               !   in Loop: Header=BB11_1 Depth=1
+	sethi %hi(.L__profc_strlen), %i0
+	add %i0, %lo(.L__profc_strlen), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB11_3
-	nop
+	std %i2, [%i0+8]
 .LBB11_3:                               !   in Loop: Header=BB11_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
@@ -738,10 +1240,20 @@ strlen:                                 ! @strlen
 	.type	strncmp,@function
 strncmp:                                ! @strncmp
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -144, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc_strncmp), %i0
+	ldd [%i0+%lo(.L__profc_strncmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strncmp)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-20]
 	ld [%fp+-12], %i0
@@ -754,7 +1266,18 @@ strncmp:                                ! @strncmp
 	ba .LBB12_1
 	nop
 .LBB12_1:
-	ba .LBB12_13
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
+	ba .LBB12_16
 	st %g0, [%fp+-4]
 .LBB12_2:
 	ba .LBB12_3
@@ -764,57 +1287,149 @@ strncmp:                                ! @strncmp
 	ldub [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB12_9
+	be	.LBB12_12
 	st %i0, [%fp+-28]
 	ba .LBB12_4
 	nop
 .LBB12_4:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-24], %i0
 	ldub [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB12_9
+	be	.LBB12_12
 	st %i0, [%fp+-28]
 	ba .LBB12_5
 	nop
 .LBB12_5:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB12_6
+	std %i2, [%i0+64]
+.LBB12_6:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-16], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB12_9
+	be	.LBB12_12
 	st %i0, [%fp+-28]
-	ba .LBB12_6
+	ba .LBB12_7
 	nop
-.LBB12_6:                               !   in Loop: Header=BB12_3 Depth=1
+.LBB12_7:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB12_8
+	std %i2, [%i0+48]
+.LBB12_8:                               !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-20], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-44]                       ! 4-byte Folded Spill
 	ld [%fp+-24], %i0
 	ldub [%i0], %i2
+	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, %i2
-	be	.LBB12_8
+	be	.LBB12_10
 	st %i0, [%fp+-32]
-! %bb.7:                                !   in Loop: Header=BB12_3 Depth=1
+! %bb.9:                                !   in Loop: Header=BB12_3 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB12_8:                               !   in Loop: Header=BB12_3 Depth=1
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB12_9
-	st %i0, [%fp+-28]
-.LBB12_9:                               !   in Loop: Header=BB12_3 Depth=1
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB12_12
-	nop
-	ba .LBB12_10
-	nop
 .LBB12_10:                              !   in Loop: Header=BB12_3 Depth=1
+	ld [%fp+-44], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-48]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	bne	.LBB12_12
+	st %i0, [%fp+-28]
 	ba .LBB12_11
 	nop
 .LBB12_11:                              !   in Loop: Header=BB12_3 Depth=1
+	ld [%fp+-48], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_strncmp), %i1
+	add %i1, %lo(.L__profc_strncmp), %i1
+	ldd [%i1+32], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+32]
+	ba .LBB12_12
+	st %i0, [%fp+-28]
+.LBB12_12:                              !   in Loop: Header=BB12_3 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB12_15
+	nop
+	ba .LBB12_13
+	nop
+.LBB12_13:                              !   in Loop: Header=BB12_3 Depth=1
+	sethi %hi(.L__profc_strncmp), %i0
+	add %i0, %lo(.L__profc_strncmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB12_14
+	std %i2, [%i0+16]
+.LBB12_14:                              !   in Loop: Header=BB12_3 Depth=1
 	ld [%fp+-20], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -825,15 +1440,15 @@ strncmp:                                ! @strncmp
 	add %i0, -1, %i0
 	ba .LBB12_3
 	st %i0, [%fp+-16]
-.LBB12_12:
+.LBB12_15:
 	ld [%fp+-20], %i0
 	ldub [%i0], %i0
 	ld [%fp+-24], %i1
 	ldub [%i1], %i1
 	sub %i0, %i1, %i0
-	ba .LBB12_13
+	ba .LBB12_16
 	st %i0, [%fp+-4]
-.LBB12_13:
+.LBB12_16:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -849,6 +1464,16 @@ swab:                                   ! @swab
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_swab), %i0
+	ldd [%i0+%lo(.L__profc_swab)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_swab)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-8], %i0
@@ -862,6 +1487,17 @@ swab:                                   ! @swab
 	ba .LBB13_2
 	nop
 .LBB13_2:                               !   in Loop: Header=BB13_1 Depth=1
+	sethi %hi(.L__profc_swab), %i0
+	add %i0, %lo(.L__profc_swab), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-16], %i0
 	ldub [%i0+1], %i1
 	ld [%fp+-20], %i0
@@ -895,6 +1531,16 @@ isalpha:                                ! @isalpha
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isalpha), %i0
+	ldd [%i0+%lo(.L__profc_isalpha)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isalpha)]
 	ld [%fp+-4], %i0
 	or %i0, 32, %i0
 	add %i0, -97, %i1
@@ -921,6 +1567,16 @@ isascii:                                ! @isascii
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isascii), %i0
+	ldd [%i0+%lo(.L__profc_isascii)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isascii)]
 	ld [%fp+-4], %i0
 	and %i0, -128, %i1
 	mov	%g0, %i0
@@ -944,17 +1600,39 @@ isascii:                                ! @isascii
 	.type	isblank,@function
 isblank:                                ! @isblank
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isblank), %i0
+	ldd [%i0+%lo(.L__profc_isblank)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isblank)]
 	ld [%fp+-4], %i1
 	mov	1, %i0
 	cmp	%i1, 32
-	be	.LBB16_4
+	be	.LBB16_5
 	st %i0, [%fp+-8]
 	ba .LBB16_1
 	nop
 .LBB16_1:
+	sethi %hi(.L__profc_isblank), %i0
+	add %i0, %lo(.L__profc_isblank), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -965,10 +1643,30 @@ isblank:                                ! @isblank
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB16_3:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB16_4
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 9
+	be	.LBB16_5
 	st %i0, [%fp+-8]
+	ba .LBB16_4
+	nop
 .LBB16_4:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_isblank), %i1
+	add %i1, %lo(.L__profc_isblank), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB16_5
+	st %i0, [%fp+-8]
+.LBB16_5:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -981,17 +1679,39 @@ isblank:                                ! @isblank
 	.type	iscntrl,@function
 iscntrl:                                ! @iscntrl
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_iscntrl), %i0
+	ldd [%i0+%lo(.L__profc_iscntrl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_iscntrl)]
 	ld [%fp+-4], %i1
 	mov	1, %i0
 	cmp	%i1, 32
-	bcs	.LBB17_4
+	bcs	.LBB17_5
 	st %i0, [%fp+-8]
 	ba .LBB17_1
 	nop
 .LBB17_1:
+	sethi %hi(.L__profc_iscntrl), %i0
+	add %i0, %lo(.L__profc_iscntrl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -1002,10 +1722,30 @@ iscntrl:                                ! @iscntrl
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB17_3:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB17_4
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 127
+	be	.LBB17_5
 	st %i0, [%fp+-8]
+	ba .LBB17_4
+	nop
 .LBB17_4:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_iscntrl), %i1
+	add %i1, %lo(.L__profc_iscntrl), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB17_5
+	st %i0, [%fp+-8]
+.LBB17_5:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -1020,6 +1760,16 @@ isdigit:                                ! @isdigit
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isdigit), %i0
+	ldd [%i0+%lo(.L__profc_isdigit)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isdigit)]
 	ld [%fp+-4], %i0
 	add %i0, -48, %i1
 	mov	%g0, %i0
@@ -1045,6 +1795,16 @@ isgraph:                                ! @isgraph
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isgraph), %i0
+	ldd [%i0+%lo(.L__profc_isgraph)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isgraph)]
 	ld [%fp+-4], %i0
 	add %i0, -33, %i1
 	mov	%g0, %i0
@@ -1070,6 +1830,16 @@ islower:                                ! @islower
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_islower), %i0
+	ldd [%i0+%lo(.L__profc_islower)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_islower)]
 	ld [%fp+-4], %i0
 	add %i0, -97, %i1
 	mov	%g0, %i0
@@ -1095,6 +1865,16 @@ isprint:                                ! @isprint
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isprint), %i0
+	ldd [%i0+%lo(.L__profc_isprint)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isprint)]
 	ld [%fp+-4], %i0
 	add %i0, -32, %i1
 	mov	%g0, %i0
@@ -1118,18 +1898,40 @@ isprint:                                ! @isprint
 	.type	isspace,@function
 isspace:                                ! @isspace
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isspace), %i0
+	ldd [%i0+%lo(.L__profc_isspace)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isspace)]
 	ld [%fp+-4], %i1
 	mov	1, %i0
 	cmp	%i1, 32
-	be	.LBB22_4
+	be	.LBB22_5
 	st %i0, [%fp+-8]
 	ba .LBB22_1
 	nop
 .LBB22_1:
+	sethi %hi(.L__profc_isspace), %i0
+	add %i0, %lo(.L__profc_isspace), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, -9, %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -1140,10 +1942,30 @@ isspace:                                ! @isspace
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB22_3:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB22_4
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 5
+	bcs	.LBB22_5
 	st %i0, [%fp+-8]
+	ba .LBB22_4
+	nop
 .LBB22_4:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_isspace), %i1
+	add %i1, %lo(.L__profc_isspace), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB22_5
+	st %i0, [%fp+-8]
+.LBB22_5:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -1158,6 +1980,16 @@ isupper:                                ! @isupper
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_isupper), %i0
+	ldd [%i0+%lo(.L__profc_isupper)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_isupper)]
 	ld [%fp+-4], %i0
 	add %i0, -65, %i1
 	mov	%g0, %i0
@@ -1181,54 +2013,144 @@ isupper:                                ! @isupper
 	.type	iswcntrl,@function
 iswcntrl:                               ! @iswcntrl
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_iswcntrl), %i0
+	ldd [%i0+%lo(.L__profc_iswcntrl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_iswcntrl)]
 	ld [%fp+-4], %i1
 	mov	1, %i0
 	cmp	%i1, 32
-	bcs	.LBB24_6
+	bcs	.LBB24_9
 	st %i0, [%fp+-8]
 	ba .LBB24_1
 	nop
 .LBB24_1:
+	sethi %hi(.L__profc_iswcntrl), %i0
+	add %i0, %lo(.L__profc_iswcntrl), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-4], %i0
 	add %i0, -127, %i1
 	mov	1, %i0
 	cmp	%i1, 33
-	bcs	.LBB24_6
+	bcs	.LBB24_9
 	st %i0, [%fp+-8]
 	ba .LBB24_2
 	nop
 .LBB24_2:
+	sethi %hi(.L__profc_iswcntrl), %i0
+	add %i0, %lo(.L__profc_iswcntrl), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB24_3
+	std %i2, [%i0+48]
+.LBB24_3:
+	sethi %hi(.L__profc_iswcntrl), %i0
+	add %i0, %lo(.L__profc_iswcntrl), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-4], %i0
 	sethi 4194295, %i1
 	or %i1, 984, %i1
 	add %i0, %i1, %i1
 	mov	1, %i0
 	cmp	%i1, 2
-	bcs	.LBB24_6
+	bcs	.LBB24_9
 	st %i0, [%fp+-8]
-	ba .LBB24_3
+	ba .LBB24_4
 	nop
-.LBB24_3:
+.LBB24_4:
+	sethi %hi(.L__profc_iswcntrl), %i0
+	add %i0, %lo(.L__profc_iswcntrl), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB24_5
+	std %i2, [%i0+32]
+.LBB24_5:
+	sethi %hi(.L__profc_iswcntrl), %i0
+	add %i0, %lo(.L__profc_iswcntrl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	sethi 4194240, %i1
 	or %i1, 7, %i1
 	add %i0, %i1, %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 3
-	bcs	.LBB24_5
+	bcs	.LBB24_7
 	st %i0, [%fp+-12]
-! %bb.4:
+! %bb.6:
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
-.LBB24_5:
+.LBB24_7:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB24_6
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 3
+	bcs	.LBB24_9
 	st %i0, [%fp+-8]
-.LBB24_6:
+	ba .LBB24_8
+	nop
+.LBB24_8:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_iswcntrl), %i1
+	add %i1, %lo(.L__profc_iswcntrl), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB24_9
+	st %i0, [%fp+-8]
+.LBB24_9:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -1243,6 +2165,16 @@ iswdigit:                               ! @iswdigit
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_iswdigit), %i0
+	ldd [%i0+%lo(.L__profc_iswdigit)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_iswdigit)]
 	ld [%fp+-4], %i0
 	add %i0, -48, %i1
 	mov	%g0, %i0
@@ -1268,6 +2200,16 @@ iswprint:                               ! @iswprint
 ! %bb.0:
 	save %sp, -112, %sp
 	st %i0, [%fp+-8]
+	sethi %hi(.L__profc_iswprint), %i0
+	ldd [%i0+%lo(.L__profc_iswprint)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_iswprint)]
 	ld [%fp+-8], %i0
 	cmp	%i0, 254
 	bgu	.LBB26_4
@@ -1275,6 +2217,17 @@ iswprint:                               ! @iswprint
 	ba .LBB26_1
 	nop
 .LBB26_1:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	and %i0, 127, %i1
@@ -1289,18 +2242,29 @@ iswprint:                               ! @iswprint
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB26_3:
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB26_12
+	ba .LBB26_15
 	st %i0, [%fp+-4]
 .LBB26_4:
 	ld [%fp+-8], %i0
 	sethi 8, %i1
 	or %i1, 40, %i1
 	cmp	%i0, %i1
-	bcs	.LBB26_7
+	bcs	.LBB26_9
 	nop
 	ba .LBB26_5
 	nop
 .LBB26_5:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	sethi 4194295, %i1
 	or %i1, 982, %i1
@@ -1308,26 +2272,74 @@ iswprint:                               ! @iswprint
 	sethi 45, %i1
 	or %i1, 982, %i1
 	cmp	%i0, %i1
-	bcs	.LBB26_7
+	bcs	.LBB26_9
 	nop
 	ba .LBB26_6
 	nop
 .LBB26_6:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB26_7
+	std %i2, [%i0+48]
+.LBB26_7:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	sethi 4194248, %i1
 	add %i0, %i1, %i0
 	sethi 7, %i1
-	or %i1, 1016, %i1
+	or %i1, 1017, %i1
 	cmp	%i0, %i1
-	bgu	.LBB26_8
+	bcs	.LBB26_9
 	nop
-	ba .LBB26_7
+	ba .LBB26_8
 	nop
-.LBB26_7:
-	mov	1, %i0
-	ba .LBB26_12
-	st %i0, [%fp+-4]
 .LBB26_8:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB26_10
+	std %i2, [%i0+32]
+.LBB26_9:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	mov	1, %i0
+	ba .LBB26_15
+	st %i0, [%fp+-4]
+.LBB26_10:
 	ld [%fp+-8], %i0
 	sethi 4194240, %i1
 	or %i1, 4, %i1
@@ -1335,28 +2347,63 @@ iswprint:                               ! @iswprint
 	sethi 1024, %i1
 	or %i1, 3, %i1
 	cmp	%i0, %i1
-	bgu	.LBB26_10
+	bgu	.LBB26_13
 	nop
-	ba .LBB26_9
+	ba .LBB26_11
 	nop
-.LBB26_9:
+.LBB26_11:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
 	ld [%fp+-8], %i0
 	sethi 63, %i1
 	or %i1, 1022, %i1
 	and %i0, %i1, %i0
 	cmp	%i0, %i1
-	bne	.LBB26_11
+	be	.LBB26_13
 	nop
-	ba .LBB26_10
+	ba .LBB26_12
 	nop
-.LBB26_10:
-	ba .LBB26_12
-	st %g0, [%fp+-4]
-.LBB26_11:
-	mov	1, %i0
-	ba .LBB26_12
-	st %i0, [%fp+-4]
 .LBB26_12:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+72], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB26_14
+	std %i2, [%i0+72]
+.LBB26_13:
+	sethi %hi(.L__profc_iswprint), %i0
+	add %i0, %lo(.L__profc_iswprint), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
+	ba .LBB26_15
+	st %g0, [%fp+-4]
+.LBB26_14:
+	mov	1, %i0
+	ba .LBB26_15
+	st %i0, [%fp+-4]
+.LBB26_15:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -1368,20 +2415,42 @@ iswprint:                               ! @iswprint
 	.type	iswxdigit,@function
 iswxdigit:                              ! @iswxdigit
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_iswxdigit), %i0
+	ldd [%i0+%lo(.L__profc_iswxdigit)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_iswxdigit)]
 	ld [%fp+-4], %i0
 	add %i0, -48, %i1
 	mov	1, %i0
 	cmp	%i1, 10
-	bcs	.LBB27_4
+	bcs	.LBB27_5
 	st %i0, [%fp+-8]
 	ba .LBB27_1
 	nop
 .LBB27_1:
+	sethi %hi(.L__profc_iswxdigit), %i0
+	add %i0, %lo(.L__profc_iswxdigit), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	or %i0, 32, %i0
 	add %i0, -97, %i1
+	st %i1, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -1392,10 +2461,30 @@ iswxdigit:                              ! @iswxdigit
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB27_3:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB27_4
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 6
+	bcs	.LBB27_5
 	st %i0, [%fp+-8]
+	ba .LBB27_4
+	nop
 .LBB27_4:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_iswxdigit), %i1
+	add %i1, %lo(.L__profc_iswxdigit), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB27_5
+	st %i0, [%fp+-8]
+.LBB27_5:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -1410,6 +2499,16 @@ toascii:                                ! @toascii
 ! %bb.0:
 	save %sp, -96, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_toascii), %i0
+	ldd [%i0+%lo(.L__profc_toascii)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_toascii)]
 	ld [%fp+-4], %i0
 	and %i0, 127, %i0
 	ret
@@ -1437,6 +2536,16 @@ fdim:                                   ! @fdim
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_fdim), %i0
+	ldd [%i0+%lo(.L__profc_fdim)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fdim)]
 	ldd [%fp+-16], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -1487,6 +2596,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_7
 	nop
 .LBB29_7:
+	sethi %hi(.L__profc_fdim), %i0
+	add %i0, %lo(.L__profc_fdim), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-16], %i0
 	ba .LBB29_20
 	std %i0, [%fp+-8]
@@ -1541,6 +2661,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_15
 	nop
 .LBB29_15:
+	sethi %hi(.L__profc_fdim), %i0
+	add %i0, %lo(.L__profc_fdim), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-24], %i0
 	ba .LBB29_20
 	std %i0, [%fp+-8]
@@ -1558,6 +2689,17 @@ fdim:                                   ! @fdim
 	ba .LBB29_17
 	nop
 .LBB29_17:
+	sethi %hi(.L__profc_fdim), %i0
+	add %i0, %lo(.L__profc_fdim), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-16], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -1602,6 +2744,16 @@ fdimf:                                  ! @fdimf
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc_fdimf), %i0
+	ldd [%i0+%lo(.L__profc_fdimf)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fdimf)]
 	ld [%fp+-8], %i0
 	sethi 2097152, %i1
 	andn %i0, %i1, %i0
@@ -1613,6 +2765,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_1
 	nop
 .LBB30_1:
+	sethi %hi(.L__profc_fdimf), %i0
+	add %i0, %lo(.L__profc_fdimf), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	ba .LBB30_8
 	st %i0, [%fp+-4]
@@ -1628,6 +2791,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_3
 	nop
 .LBB30_3:
+	sethi %hi(.L__profc_fdimf), %i0
+	add %i0, %lo(.L__profc_fdimf), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	ba .LBB30_8
 	st %i0, [%fp+-4]
@@ -1641,6 +2815,17 @@ fdimf:                                  ! @fdimf
 	ba .LBB30_5
 	nop
 .LBB30_5:
+	sethi %hi(.L__profc_fdimf), %i0
+	add %i0, %lo(.L__profc_fdimf), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %o0
 	call __subsf3
 	ld [%fp+-12], %o1
@@ -1682,6 +2867,16 @@ fmax:                                   ! @fmax
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_fmax), %i0
+	ldd [%i0+%lo(.L__profc_fmax)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fmax)]
 	ldd [%fp+-16], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -1732,6 +2927,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_7
 	nop
 .LBB31_7:
+	sethi %hi(.L__profc_fmax), %i0
+	add %i0, %lo(.L__profc_fmax), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-24], %i0
 	ba .LBB31_25
 	std %i0, [%fp+-8]
@@ -1786,6 +2992,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_15
 	nop
 .LBB31_15:
+	sethi %hi(.L__profc_fmax), %i0
+	add %i0, %lo(.L__profc_fmax), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB31_25
 	std %i0, [%fp+-8]
@@ -1804,6 +3021,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_17
 	nop
 .LBB31_17:
+	sethi %hi(.L__profc_fmax), %i0
+	add %i0, %lo(.L__profc_fmax), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	add %fp, -16, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i0
@@ -1813,6 +3041,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_18
 	nop
 .LBB31_18:
+	sethi %hi(.L__profc_fmax), %i0
+	add %i0, %lo(.L__profc_fmax), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -1848,6 +3087,17 @@ fmax:                                   ! @fmax
 	ba .LBB31_22
 	nop
 .LBB31_22:
+	sethi %hi(.L__profc_fmax), %i0
+	add %i0, %lo(.L__profc_fmax), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -1887,6 +3137,16 @@ fmaxf:                                  ! @fmaxf
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc_fmaxf), %i0
+	ldd [%i0+%lo(.L__profc_fmaxf)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fmaxf)]
 	ld [%fp+-8], %i0
 	sethi 2097152, %i1
 	andn %i0, %i1, %i0
@@ -1898,6 +3158,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_1
 	nop
 .LBB32_1:
+	sethi %hi(.L__profc_fmaxf), %i0
+	add %i0, %lo(.L__profc_fmaxf), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	ba .LBB32_13
 	st %i0, [%fp+-4]
@@ -1913,6 +3184,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_3
 	nop
 .LBB32_3:
+	sethi %hi(.L__profc_fmaxf), %i0
+	add %i0, %lo(.L__profc_fmaxf), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ba .LBB32_13
 	st %i0, [%fp+-4]
@@ -1927,6 +3209,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_5
 	nop
 .LBB32_5:
+	sethi %hi(.L__profc_fmaxf), %i0
+	add %i0, %lo(.L__profc_fmaxf), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	cmp	%i0, -1
 	bg	.LBB32_7
@@ -1934,6 +3227,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_6
 	nop
 .LBB32_6:
+	sethi %hi(.L__profc_fmaxf), %i0
+	add %i0, %lo(.L__profc_fmaxf), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-12], %i0
 	ba .LBB32_8
 	st %i0, [%fp+-16]
@@ -1955,6 +3259,17 @@ fmaxf:                                  ! @fmaxf
 	ba .LBB32_10
 	nop
 .LBB32_10:
+	sethi %hi(.L__profc_fmaxf), %i0
+	add %i0, %lo(.L__profc_fmaxf), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-12], %i0
 	ba .LBB32_12
 	st %i0, [%fp+-20]
@@ -1993,6 +3308,16 @@ fmaxl:                                  ! @fmaxl
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_fmaxl), %i0
+	ldd [%i0+%lo(.L__profc_fmaxl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fmaxl)]
 	ldd [%fp+-16], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -2043,6 +3368,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_7
 	nop
 .LBB33_7:
+	sethi %hi(.L__profc_fmaxl), %i0
+	add %i0, %lo(.L__profc_fmaxl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-24], %i0
 	ba .LBB33_25
 	std %i0, [%fp+-8]
@@ -2097,6 +3433,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_15
 	nop
 .LBB33_15:
+	sethi %hi(.L__profc_fmaxl), %i0
+	add %i0, %lo(.L__profc_fmaxl), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB33_25
 	std %i0, [%fp+-8]
@@ -2115,6 +3462,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_17
 	nop
 .LBB33_17:
+	sethi %hi(.L__profc_fmaxl), %i0
+	add %i0, %lo(.L__profc_fmaxl), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	add %fp, -16, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i0
@@ -2124,6 +3482,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_18
 	nop
 .LBB33_18:
+	sethi %hi(.L__profc_fmaxl), %i0
+	add %i0, %lo(.L__profc_fmaxl), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2159,6 +3528,17 @@ fmaxl:                                  ! @fmaxl
 	ba .LBB33_22
 	nop
 .LBB33_22:
+	sethi %hi(.L__profc_fmaxl), %i0
+	add %i0, %lo(.L__profc_fmaxl), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-24], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2208,6 +3588,16 @@ fmin:                                   ! @fmin
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_fmin), %i0
+	ldd [%i0+%lo(.L__profc_fmin)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fmin)]
 	ldd [%fp+-16], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -2258,6 +3648,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_7
 	nop
 .LBB34_7:
+	sethi %hi(.L__profc_fmin), %i0
+	add %i0, %lo(.L__profc_fmin), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-24], %i0
 	ba .LBB34_25
 	std %i0, [%fp+-8]
@@ -2312,6 +3713,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_15
 	nop
 .LBB34_15:
+	sethi %hi(.L__profc_fmin), %i0
+	add %i0, %lo(.L__profc_fmin), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB34_25
 	std %i0, [%fp+-8]
@@ -2330,6 +3742,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_17
 	nop
 .LBB34_17:
+	sethi %hi(.L__profc_fmin), %i0
+	add %i0, %lo(.L__profc_fmin), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	add %fp, -16, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i0
@@ -2339,6 +3762,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_18
 	nop
 .LBB34_18:
+	sethi %hi(.L__profc_fmin), %i0
+	add %i0, %lo(.L__profc_fmin), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2374,6 +3808,17 @@ fmin:                                   ! @fmin
 	ba .LBB34_22
 	nop
 .LBB34_22:
+	sethi %hi(.L__profc_fmin), %i0
+	add %i0, %lo(.L__profc_fmin), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2413,6 +3858,16 @@ fminf:                                  ! @fminf
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc_fminf), %i0
+	ldd [%i0+%lo(.L__profc_fminf)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fminf)]
 	ld [%fp+-8], %i0
 	sethi 2097152, %i1
 	andn %i0, %i1, %i0
@@ -2424,6 +3879,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_1
 	nop
 .LBB35_1:
+	sethi %hi(.L__profc_fminf), %i0
+	add %i0, %lo(.L__profc_fminf), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	ba .LBB35_13
 	st %i0, [%fp+-4]
@@ -2439,6 +3905,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_3
 	nop
 .LBB35_3:
+	sethi %hi(.L__profc_fminf), %i0
+	add %i0, %lo(.L__profc_fminf), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ba .LBB35_13
 	st %i0, [%fp+-4]
@@ -2453,6 +3930,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_5
 	nop
 .LBB35_5:
+	sethi %hi(.L__profc_fminf), %i0
+	add %i0, %lo(.L__profc_fminf), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	cmp	%i0, -1
 	bg	.LBB35_7
@@ -2460,6 +3948,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_6
 	nop
 .LBB35_6:
+	sethi %hi(.L__profc_fminf), %i0
+	add %i0, %lo(.L__profc_fminf), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-8], %i0
 	ba .LBB35_8
 	st %i0, [%fp+-16]
@@ -2481,6 +3980,17 @@ fminf:                                  ! @fminf
 	ba .LBB35_10
 	nop
 .LBB35_10:
+	sethi %hi(.L__profc_fminf), %i0
+	add %i0, %lo(.L__profc_fminf), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	ba .LBB35_12
 	st %i0, [%fp+-20]
@@ -2519,6 +4029,16 @@ fminl:                                  ! @fminl
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_fminl), %i0
+	ldd [%i0+%lo(.L__profc_fminl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_fminl)]
 	ldd [%fp+-16], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -2569,6 +4089,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_7
 	nop
 .LBB36_7:
+	sethi %hi(.L__profc_fminl), %i0
+	add %i0, %lo(.L__profc_fminl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-24], %i0
 	ba .LBB36_25
 	std %i0, [%fp+-8]
@@ -2623,6 +4154,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_15
 	nop
 .LBB36_15:
+	sethi %hi(.L__profc_fminl), %i0
+	add %i0, %lo(.L__profc_fminl), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB36_25
 	std %i0, [%fp+-8]
@@ -2641,6 +4183,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_17
 	nop
 .LBB36_17:
+	sethi %hi(.L__profc_fminl), %i0
+	add %i0, %lo(.L__profc_fminl), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	add %fp, -16, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i0
@@ -2650,6 +4203,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_18
 	nop
 .LBB36_18:
+	sethi %hi(.L__profc_fminl), %i0
+	add %i0, %lo(.L__profc_fminl), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2685,6 +4249,17 @@ fminl:                                  ! @fminl
 	ba .LBB36_22
 	nop
 .LBB36_22:
+	sethi %hi(.L__profc_fminl), %i0
+	add %i0, %lo(.L__profc_fminl), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -2721,6 +4296,16 @@ l64a:                                   ! @l64a
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_l64a), %i0
+	ldd [%i0+%lo(.L__profc_l64a)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_l64a)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-12]
 	sethi %hi(l64a.s), %i0
@@ -2735,6 +4320,17 @@ l64a:                                   ! @l64a
 	ba .LBB37_2
 	nop
 .LBB37_2:                               !   in Loop: Header=BB37_1 Depth=1
+	sethi %hi(.L__profc_l64a), %i0
+	add %i0, %lo(.L__profc_l64a), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	and %i0, 63, %i1
 	sethi %hi(digits), %i0
@@ -2768,6 +4364,16 @@ srand:                                  ! @srand
 ! %bb.0:
 	save %sp, -96, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_srand), %i0
+	ldd [%i0+%lo(.L__profc_srand)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_srand)]
 	ld [%fp+-4], %i0
 	add %i0, -1, %i0
                                         ! implicit-def: $i2_i3
@@ -2787,6 +4393,16 @@ srand:                                  ! @srand
 rand:                                   ! @rand
 ! %bb.0:
 	save %sp, -96, %sp
+	sethi %hi(.L__profc_rand), %i0
+	ldd [%i0+%lo(.L__profc_rand)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rand)]
 	sethi %hi(seed), %i1
 	add %i1, %lo(seed), %i0
 	ldd [%i1+%lo(seed)], %i2
@@ -2823,6 +4439,16 @@ insque:                                 ! @insque
 	save %sp, -112, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_insque), %i0
+	ldd [%i0+%lo(.L__profc_insque)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_insque)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-12]
 	ld [%fp+-8], %i0
@@ -2834,6 +4460,17 @@ insque:                                 ! @insque
 	ba .LBB40_1
 	nop
 .LBB40_1:
+	sethi %hi(.L__profc_insque), %i0
+	add %i0, %lo(.L__profc_insque), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	st %g0, [%i0+4]
 	ld [%fp+-12], %i0
@@ -2858,6 +4495,17 @@ insque:                                 ! @insque
 	ba .LBB40_3
 	nop
 .LBB40_3:
+	sethi %hi(.L__profc_insque), %i0
+	add %i0, %lo(.L__profc_insque), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i1
 	ld [%i1], %i0
 	ba .LBB40_4
@@ -2875,6 +4523,16 @@ remque:                                 ! @remque
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_remque), %i0
+	ldd [%i0+%lo(.L__profc_remque)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_remque)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-8]
 	ld [%fp+-8], %i0
@@ -2885,6 +4543,17 @@ remque:                                 ! @remque
 	ba .LBB41_1
 	nop
 .LBB41_1:
+	sethi %hi(.L__profc_remque), %i0
+	add %i0, %lo(.L__profc_remque), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	ld [%i0+4], %i1
 	ld [%i0], %i0
@@ -2899,6 +4568,17 @@ remque:                                 ! @remque
 	ba .LBB41_3
 	nop
 .LBB41_3:
+	sethi %hi(.L__profc_remque), %i0
+	add %i0, %lo(.L__profc_remque), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ld [%i0], %i1
 	ld [%i0+4], %i0
@@ -2921,6 +4601,16 @@ lsearch:                                ! @lsearch
 	st %i2, [%fp+-16]
 	st %i3, [%fp+-20]
 	st %i4, [%fp+-24]
+	sethi %hi(.L__profc_lsearch), %i0
+	ldd [%i0+%lo(.L__profc_lsearch)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_lsearch)]
 	ld [%fp+-20], %i0
 	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
 	ld [%fp+-12], %i0
@@ -2940,6 +4630,17 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_2:                               !   in Loop: Header=BB42_1 Depth=1
 	ld [%fp+-40], %i3                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_lsearch), %i0
+	add %i0, %lo(.L__profc_lsearch), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+8]
 	ld [%fp+-24], %i0
 	ld [%fp+-8], %o0
 	ld [%fp+-28], %i1
@@ -2954,6 +4655,17 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_3:
 	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_lsearch), %i0
+	add %i0, %lo(.L__profc_lsearch), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i1
+	addcc %i3, 1, %i3
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i3, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+16]
 	ld [%fp+-28], %i0
 	ld [%fp+-36], %i1
 	smul %i1, %i2, %i1
@@ -3002,6 +4714,16 @@ lfind:                                  ! @lfind
 	st %i2, [%fp+-16]
 	st %i3, [%fp+-20]
 	st %i4, [%fp+-24]
+	sethi %hi(.L__profc_lfind), %i0
+	ldd [%i0+%lo(.L__profc_lfind)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_lfind)]
 	ld [%fp+-20], %i0
 	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
 	ld [%fp+-12], %i0
@@ -3021,6 +4743,17 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_2:                               !   in Loop: Header=BB43_1 Depth=1
 	ld [%fp+-40], %i3                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_lfind), %i0
+	add %i0, %lo(.L__profc_lfind), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i2
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i2, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+8]
 	ld [%fp+-24], %i0
 	ld [%fp+-8], %o0
 	ld [%fp+-28], %i1
@@ -3035,6 +4768,17 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_3:
 	ld [%fp+-40], %i2                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_lfind), %i0
+	add %i0, %lo(.L__profc_lfind), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i1
+	addcc %i3, 1, %i3
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i4_i5
+	mov	%i3, %i4
+	mov	%i1, %i5
+	std %i4, [%i0+16]
 	ld [%fp+-28], %i0
 	ld [%fp+-36], %i1
 	smul %i1, %i2, %i1
@@ -3066,6 +4810,16 @@ abs:                                    ! @abs
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_abs), %i0
+	ldd [%i0+%lo(.L__profc_abs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_abs)]
 	ld [%fp+-4], %i0
 	cmp	%i0, 1
 	bl	.LBB44_2
@@ -3073,6 +4827,17 @@ abs:                                    ! @abs
 	ba .LBB44_1
 	nop
 .LBB44_1:
+	sethi %hi(.L__profc_abs), %i0
+	add %i0, %lo(.L__profc_abs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	ba .LBB44_3
 	st %i0, [%fp+-8]
@@ -3096,6 +4861,16 @@ atoi:                                   ! @atoi
 ! %bb.0:
 	save %sp, -112, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_atoi), %i0
+	ldd [%i0+%lo(.L__profc_atoi)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_atoi)]
 	st %g0, [%fp+-8]
 	ba .LBB45_1
 	st %g0, [%fp+-12]
@@ -3109,6 +4884,17 @@ atoi:                                   ! @atoi
 	ba .LBB45_2
 	nop
 .LBB45_2:                               !   in Loop: Header=BB45_1 Depth=1
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB45_1
@@ -3124,32 +4910,77 @@ atoi:                                   ! @atoi
 .LBB45_4:
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	cmp	%i0, 45
-	bne	.LBB45_7
+	bne	.LBB45_8
 	nop
 	ba .LBB45_5
 	nop
 .LBB45_5:
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	mov	1, %i0
-	ba .LBB45_6
+	ba .LBB45_7
 	st %i0, [%fp+-12]
 .LBB45_6:
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB45_7
+	std %i2, [%i0+32]
+.LBB45_7:
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
-	ba .LBB45_7
-	st %i0, [%fp+-4]
-.LBB45_7:
 	ba .LBB45_8
-	nop
-.LBB45_8:                               ! =>This Inner Loop Header: Depth=1
+	st %i0, [%fp+-4]
+.LBB45_8:
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB45_9
+	std %i2, [%i0+16]
+.LBB45_9:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	call isdigit
 	ldsb [%i0], %o0
 	cmp	%o0, 0
-	be	.LBB45_10
+	be	.LBB45_11
 	nop
-	ba .LBB45_9
+	ba .LBB45_10
 	nop
-.LBB45_9:                               !   in Loop: Header=BB45_8 Depth=1
+.LBB45_10:                              !   in Loop: Header=BB45_9 Depth=1
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	smul %i0, 10, %i0
 	ld [%fp+-4], %i1
@@ -3158,26 +4989,37 @@ atoi:                                   ! @atoi
 	ldsb [%i1], %i1
 	sub %i0, %i1, %i0
 	add %i0, 48, %i0
-	ba .LBB45_8
+	ba .LBB45_9
 	st %i0, [%fp+-8]
-.LBB45_10:
+.LBB45_11:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB45_12
+	be	.LBB45_13
 	nop
-	ba .LBB45_11
+	ba .LBB45_12
 	nop
-.LBB45_11:
-	ld [%fp+-8], %i0
-	ba .LBB45_13
-	st %i0, [%fp+-20]
 .LBB45_12:
+	sethi %hi(.L__profc_atoi), %i0
+	add %i0, %lo(.L__profc_atoi), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
+	ld [%fp+-8], %i0
+	ba .LBB45_14
+	st %i0, [%fp+-20]
+.LBB45_13:
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
-	ba .LBB45_13
+	ba .LBB45_14
 	st %i0, [%fp+-20]
-.LBB45_13:
+.LBB45_14:
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
@@ -3191,6 +5033,16 @@ atol:                                   ! @atol
 ! %bb.0:
 	save %sp, -112, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_atol), %i0
+	ldd [%i0+%lo(.L__profc_atol)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_atol)]
 	st %g0, [%fp+-8]
 	ba .LBB46_1
 	st %g0, [%fp+-12]
@@ -3204,6 +5056,17 @@ atol:                                   ! @atol
 	ba .LBB46_2
 	nop
 .LBB46_2:                               !   in Loop: Header=BB46_1 Depth=1
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB46_1
@@ -3219,32 +5082,77 @@ atol:                                   ! @atol
 .LBB46_4:
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	cmp	%i0, 45
-	bne	.LBB46_7
+	bne	.LBB46_8
 	nop
 	ba .LBB46_5
 	nop
 .LBB46_5:
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	mov	1, %i0
-	ba .LBB46_6
+	ba .LBB46_7
 	st %i0, [%fp+-12]
 .LBB46_6:
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB46_7
+	std %i2, [%i0+32]
+.LBB46_7:
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
-	ba .LBB46_7
-	st %i0, [%fp+-4]
-.LBB46_7:
 	ba .LBB46_8
-	nop
-.LBB46_8:                               ! =>This Inner Loop Header: Depth=1
+	st %i0, [%fp+-4]
+.LBB46_8:
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB46_9
+	std %i2, [%i0+16]
+.LBB46_9:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	call isdigit
 	ldsb [%i0], %o0
 	cmp	%o0, 0
-	be	.LBB46_10
+	be	.LBB46_11
 	nop
-	ba .LBB46_9
+	ba .LBB46_10
 	nop
-.LBB46_9:                               !   in Loop: Header=BB46_8 Depth=1
+.LBB46_10:                              !   in Loop: Header=BB46_9 Depth=1
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	smul %i0, 10, %i0
 	ld [%fp+-4], %i1
@@ -3253,26 +5161,37 @@ atol:                                   ! @atol
 	ldsb [%i1], %i1
 	sub %i0, %i1, %i0
 	add %i0, 48, %i0
-	ba .LBB46_8
+	ba .LBB46_9
 	st %i0, [%fp+-8]
-.LBB46_10:
+.LBB46_11:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB46_12
+	be	.LBB46_13
 	nop
-	ba .LBB46_11
+	ba .LBB46_12
 	nop
-.LBB46_11:
-	ld [%fp+-8], %i0
-	ba .LBB46_13
-	st %i0, [%fp+-20]
 .LBB46_12:
+	sethi %hi(.L__profc_atol), %i0
+	add %i0, %lo(.L__profc_atol), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
+	ld [%fp+-8], %i0
+	ba .LBB46_14
+	st %i0, [%fp+-20]
+.LBB46_13:
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
-	ba .LBB46_13
+	ba .LBB46_14
 	st %i0, [%fp+-20]
-.LBB46_13:
+.LBB46_14:
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
@@ -3286,6 +5205,16 @@ atoll:                                  ! @atoll
 ! %bb.0:
 	save %sp, -128, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_atoll), %i0
+	ldd [%i0+%lo(.L__profc_atoll)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_atoll)]
 	mov	%g0, %i2
                                         ! implicit-def: $i0_i1
 	mov	%i2, %i0
@@ -3304,6 +5233,17 @@ atoll:                                  ! @atoll
 	ba .LBB47_2
 	nop
 .LBB47_2:                               !   in Loop: Header=BB47_1 Depth=1
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
 	ba .LBB47_1
@@ -3319,32 +5259,77 @@ atoll:                                  ! @atoll
 .LBB47_4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	cmp	%i0, 45
-	bne	.LBB47_7
+	bne	.LBB47_8
 	nop
 	ba .LBB47_5
 	nop
 .LBB47_5:
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	mov	1, %i0
-	ba .LBB47_6
+	ba .LBB47_7
 	st %i0, [%fp+-20]
 .LBB47_6:
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB47_7
+	std %i2, [%i0+32]
+.LBB47_7:
 	ld [%fp+-4], %i0
 	add %i0, 1, %i0
-	ba .LBB47_7
-	st %i0, [%fp+-4]
-.LBB47_7:
 	ba .LBB47_8
-	nop
-.LBB47_8:                               ! =>This Inner Loop Header: Depth=1
+	st %i0, [%fp+-4]
+.LBB47_8:
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB47_9
+	std %i2, [%i0+16]
+.LBB47_9:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	call isdigit
 	ldsb [%i0], %o0
 	cmp	%o0, 0
-	be	.LBB47_10
+	be	.LBB47_11
 	nop
-	ba .LBB47_9
+	ba .LBB47_10
 	nop
-.LBB47_9:                               !   in Loop: Header=BB47_8 Depth=1
+.LBB47_10:                              !   in Loop: Header=BB47_9 Depth=1
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-16], %i2
 	mov	%i2, %i0
 	mov	%i3, %i1
@@ -3363,23 +5348,34 @@ atoll:                                  ! @atoll
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
-	ba .LBB47_8
+	ba .LBB47_9
 	std %i0, [%fp+-16]
-.LBB47_10:
+.LBB47_11:
 	ld [%fp+-20], %i0
 	cmp	%i0, 0
-	be	.LBB47_12
+	be	.LBB47_13
 	nop
-	ba .LBB47_11
+	ba .LBB47_12
 	nop
-.LBB47_11:
+.LBB47_12:
+	sethi %hi(.L__profc_atoll), %i0
+	add %i0, %lo(.L__profc_atoll), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ldd [%fp+-16], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
-	ba .LBB47_13
+	ba .LBB47_14
 	st %i0, [%fp+-28]
-.LBB47_12:
+.LBB47_13:
 	ldd [%fp+-16], %i2
 	mov	%i2, %i1
 	mov	%i3, %i2
@@ -3387,9 +5383,9 @@ atoll:                                  ! @atoll
 	subcc %i0, %i1, %i1
 	subxcc %i0, %i2, %i0
 	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
-	ba .LBB47_13
+	ba .LBB47_14
 	st %i0, [%fp+-28]
-.LBB47_13:
+.LBB47_14:
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
 	ld [%fp+-28], %i1                       ! 4-byte Folded Reload
 	ret
@@ -3407,8 +5403,18 @@ bsearch:                                ! @bsearch
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
 	st %i3, [%fp+-20]
-	ba .LBB48_1
 	st %i4, [%fp+-24]
+	sethi %hi(.L__profc_bsearch), %i0
+	ldd [%i0+%lo(.L__profc_bsearch)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB48_1
+	std %i2, [%i0+%lo(.L__profc_bsearch)]
 .LBB48_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
@@ -3417,6 +5423,17 @@ bsearch:                                ! @bsearch
 	ba .LBB48_2
 	nop
 .LBB48_2:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(.L__profc_bsearch), %i0
+	add %i0, %lo(.L__profc_bsearch), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	ld [%fp+-20], %i1
 	ld [%fp+-16], %i2
@@ -3436,6 +5453,17 @@ bsearch:                                ! @bsearch
 	ba .LBB48_3
 	nop
 .LBB48_3:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(.L__profc_bsearch), %i0
+	add %i0, %lo(.L__profc_bsearch), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	srl %i0, 1, %i0
 	ba .LBB48_8
@@ -3448,6 +5476,17 @@ bsearch:                                ! @bsearch
 	ba .LBB48_5
 	nop
 .LBB48_5:                               !   in Loop: Header=BB48_1 Depth=1
+	sethi %hi(.L__profc_bsearch), %i0
+	add %i0, %lo(.L__profc_bsearch), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-28], %i0
 	ld [%fp+-20], %i1
 	add %i0, %i1, %i0
@@ -3490,6 +5529,16 @@ bsearch_r:                              ! @bsearch_r
 	st %i3, [%fp+-20]
 	st %i4, [%fp+-24]
 	st %i5, [%fp+-28]
+	sethi %hi(.L__profc_bsearch_r), %i0
+	ldd [%i0+%lo(.L__profc_bsearch_r)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_bsearch_r)]
 	ld [%fp+-12], %i0
 	st %i0, [%fp+-32]
 	ld [%fp+-16], %i0
@@ -3503,6 +5552,17 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_2
 	nop
 .LBB49_2:                               !   in Loop: Header=BB49_1 Depth=1
+	sethi %hi(.L__profc_bsearch_r), %i0
+	add %i0, %lo(.L__profc_bsearch_r), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-32], %i0
 	ld [%fp+-36], %i1
 	sra %i1, 1, %i1
@@ -3523,6 +5583,17 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_3
 	nop
 .LBB49_3:
+	sethi %hi(.L__profc_bsearch_r), %i0
+	add %i0, %lo(.L__profc_bsearch_r), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-44], %i0
 	ba .LBB49_9
 	st %i0, [%fp+-4]
@@ -3534,6 +5605,17 @@ bsearch_r:                              ! @bsearch_r
 	ba .LBB49_5
 	nop
 .LBB49_5:                               !   in Loop: Header=BB49_1 Depth=1
+	sethi %hi(.L__profc_bsearch_r), %i0
+	add %i0, %lo(.L__profc_bsearch_r), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-44], %i0
 	ld [%fp+-20], %i1
 	add %i0, %i1, %i0
@@ -3572,6 +5654,16 @@ div:                                    ! @div
 	mov	%i1, %i0
 	st %i3, [%fp+-4]
 	st %i2, [%fp+-8]
+	sethi %hi(.L__profc_div), %i2
+	ldd [%i2+%lo(.L__profc_div)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(.L__profc_div)]
 	ld [%fp+-4], %i2
 	ld [%fp+-8], %i3
 	sra %i2, 31, %i4
@@ -3605,6 +5697,16 @@ imaxabs:                                ! @imaxabs
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc_imaxabs), %i0
+	ldd [%i0+%lo(.L__profc_imaxabs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_imaxabs)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %i2
 	st %i2, [%fp+-28]                       ! 4-byte Folded Spill
@@ -3648,6 +5750,17 @@ imaxabs:                                ! @imaxabs
 	ba .LBB51_7
 	nop
 .LBB51_7:
+	sethi %hi(.L__profc_imaxabs), %i0
+	add %i0, %lo(.L__profc_imaxabs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3696,6 +5809,16 @@ imaxdiv:                                ! @imaxdiv
 	mov	%i5, %i2
 	mov	%i4, %i3
 	std %i2, [%fp+-16]
+	sethi %hi(.L__profc_imaxdiv), %i2
+	ldd [%i2+%lo(.L__profc_imaxdiv)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(.L__profc_imaxdiv)]
 	ldd [%fp+-8], %i2
 	mov	%i2, %o0
 	mov	%i3, %o1
@@ -3730,6 +5853,16 @@ labs:                                   ! @labs
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_labs), %i0
+	ldd [%i0+%lo(.L__profc_labs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_labs)]
 	ld [%fp+-4], %i0
 	cmp	%i0, 1
 	bl	.LBB53_2
@@ -3737,6 +5870,17 @@ labs:                                   ! @labs
 	ba .LBB53_1
 	nop
 .LBB53_1:
+	sethi %hi(.L__profc_labs), %i0
+	add %i0, %lo(.L__profc_labs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i0
 	ba .LBB53_3
 	st %i0, [%fp+-8]
@@ -3765,6 +5909,16 @@ ldiv:                                   ! @ldiv
 	mov	%i1, %i0
 	st %i3, [%fp+-4]
 	st %i2, [%fp+-8]
+	sethi %hi(.L__profc_ldiv), %i2
+	ldd [%i2+%lo(.L__profc_ldiv)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(.L__profc_ldiv)]
 	ld [%fp+-4], %i2
 	ld [%fp+-8], %i3
 	sra %i2, 31, %i4
@@ -3798,6 +5952,16 @@ llabs:                                  ! @llabs
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc_llabs), %i0
+	ldd [%i0+%lo(.L__profc_llabs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_llabs)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %i2
 	st %i2, [%fp+-28]                       ! 4-byte Folded Spill
@@ -3841,6 +6005,17 @@ llabs:                                  ! @llabs
 	ba .LBB55_7
 	nop
 .LBB55_7:
+	sethi %hi(.L__profc_llabs), %i0
+	add %i0, %lo(.L__profc_llabs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i2
 	mov	%i3, %i0
 	mov	%i2, %i1
@@ -3889,6 +6064,16 @@ lldiv:                                  ! @lldiv
 	mov	%i5, %i2
 	mov	%i4, %i3
 	std %i2, [%fp+-16]
+	sethi %hi(.L__profc_lldiv), %i2
+	ldd [%i2+%lo(.L__profc_lldiv)], %g2
+	mov	%g2, %i4
+	mov	%g3, %i3
+	addcc %i4, 1, %g2
+	addxcc %i3, 0, %i3
+                                        ! implicit-def: $i4_i5
+	mov	%g2, %i4
+	mov	%i3, %i5
+	std %i4, [%i2+%lo(.L__profc_lldiv)]
 	ldd [%fp+-8], %i2
 	mov	%i2, %o0
 	mov	%i3, %o1
@@ -3921,23 +6106,46 @@ lldiv:                                  ! @lldiv
 	.type	wcschr,@function
 wcschr:                                 ! @wcschr
 ! %bb.0:
-	save %sp, -120, %sp
+	save %sp, -128, %sp
 	st %i0, [%fp+-4]
-	ba .LBB57_1
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_wcschr), %i0
+	ldd [%i0+%lo(.L__profc_wcschr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB57_1
+	std %i2, [%i0+%lo(.L__profc_wcschr)]
 .LBB57_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB57_5
+	be	.LBB57_6
 	st %i0, [%fp+-12]
 	ba .LBB57_2
 	nop
 .LBB57_2:                               !   in Loop: Header=BB57_1 Depth=1
+	sethi %hi(.L__profc_wcschr), %i0
+	add %i0, %lo(.L__profc_wcschr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
+	st %i1, [%fp+-28]                       ! 4-byte Folded Spill
 	ld [%fp+-8], %i2
+	st %i2, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -3948,43 +6156,85 @@ wcschr:                                 ! @wcschr
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 .LBB57_4:                               !   in Loop: Header=BB57_1 Depth=1
+	ld [%fp+-28], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-24], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB57_5
+	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	be	.LBB57_6
 	st %i0, [%fp+-12]
+	ba .LBB57_5
+	nop
 .LBB57_5:                               !   in Loop: Header=BB57_1 Depth=1
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_wcschr), %i1
+	add %i1, %lo(.L__profc_wcschr), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB57_6
+	st %i0, [%fp+-12]
+.LBB57_6:                               !   in Loop: Header=BB57_1 Depth=1
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB57_8
+	be	.LBB57_9
 	nop
-	ba .LBB57_6
-	nop
-.LBB57_6:                               !   in Loop: Header=BB57_1 Depth=1
 	ba .LBB57_7
 	nop
 .LBB57_7:                               !   in Loop: Header=BB57_1 Depth=1
+	sethi %hi(.L__profc_wcschr), %i0
+	add %i0, %lo(.L__profc_wcschr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB57_8
+	std %i2, [%i0+8]
+.LBB57_8:                               !   in Loop: Header=BB57_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
 	ba .LBB57_1
 	st %i0, [%fp+-4]
-.LBB57_8:
+.LBB57_9:
 	ld [%fp+-4], %i0
 	ld [%i0], %i0
 	cmp	%i0, 0
-	be	.LBB57_10
+	be	.LBB57_11
 	nop
-	ba .LBB57_9
+	ba .LBB57_10
 	nop
-.LBB57_9:
-	ld [%fp+-4], %i0
-	ba .LBB57_11
-	st %i0, [%fp+-24]
 .LBB57_10:
-	mov	%g0, %i0
-	ba .LBB57_11
-	st %i0, [%fp+-24]
+	sethi %hi(.L__profc_wcschr), %i0
+	add %i0, %lo(.L__profc_wcschr), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
+	ld [%fp+-4], %i0
+	ba .LBB57_12
+	st %i0, [%fp+-36]
 .LBB57_11:
-	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	mov	%g0, %i0
+	ba .LBB57_12
+	st %i0, [%fp+-36]
+.LBB57_12:
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end57:
@@ -3995,10 +6245,20 @@ wcschr:                                 ! @wcschr
 	.type	wcscmp,@function
 wcscmp:                                 ! @wcscmp
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-4]
-	ba .LBB58_1
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_wcscmp), %i0
+	ldd [%i0+%lo(.L__profc_wcscmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB58_1
+	std %i2, [%i0+%lo(.L__profc_wcscmp)]
 .LBB58_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
@@ -4006,47 +6266,113 @@ wcscmp:                                 ! @wcscmp
 	ld [%i0], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bne	.LBB58_6
+	bne	.LBB58_8
 	st %i0, [%fp+-12]
 	ba .LBB58_2
 	nop
 .LBB58_2:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(.L__profc_wcscmp), %i0
+	add %i0, %lo(.L__profc_wcscmp), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB58_6
+	be	.LBB58_8
 	st %i0, [%fp+-12]
 	ba .LBB58_3
 	nop
 .LBB58_3:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(.L__profc_wcscmp), %i0
+	add %i0, %lo(.L__profc_wcscmp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB58_4
+	std %i2, [%i0+40]
+.LBB58_4:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(.L__profc_wcscmp), %i0
+	add %i0, %lo(.L__profc_wcscmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ld [%i0], %i1
+	st %i1, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	bne	.LBB58_5
+	bne	.LBB58_6
 	st %i0, [%fp+-16]
-! %bb.4:                                !   in Loop: Header=BB58_1 Depth=1
+! %bb.5:                                !   in Loop: Header=BB58_1 Depth=1
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
-.LBB58_5:                               !   in Loop: Header=BB58_1 Depth=1
-	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB58_6
-	st %i0, [%fp+-12]
 .LBB58_6:                               !   in Loop: Header=BB58_1 Depth=1
-	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB58_9
-	nop
+	ld [%fp+-24], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	be	.LBB58_8
+	st %i0, [%fp+-12]
 	ba .LBB58_7
 	nop
 .LBB58_7:                               !   in Loop: Header=BB58_1 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_wcscmp), %i1
+	add %i1, %lo(.L__profc_wcscmp), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
 	ba .LBB58_8
-	nop
+	st %i0, [%fp+-12]
 .LBB58_8:                               !   in Loop: Header=BB58_1 Depth=1
+	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB58_11
+	nop
+	ba .LBB58_9
+	nop
+.LBB58_9:                               !   in Loop: Header=BB58_1 Depth=1
+	sethi %hi(.L__profc_wcscmp), %i0
+	add %i0, %lo(.L__profc_wcscmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB58_10
+	std %i2, [%i0+8]
+.LBB58_10:                              !   in Loop: Header=BB58_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
 	st %i0, [%fp+-4]
@@ -4054,40 +6380,51 @@ wcscmp:                                 ! @wcscmp
 	add %i0, 4, %i0
 	ba .LBB58_1
 	st %i0, [%fp+-8]
-.LBB58_9:
+.LBB58_11:
 	ld [%fp+-4], %i0
 	ld [%i0], %i0
 	ld [%fp+-8], %i1
 	ld [%i1], %i1
 	cmp	%i0, %i1
-	bge	.LBB58_11
+	bge	.LBB58_13
 	nop
-	ba .LBB58_10
+	ba .LBB58_12
 	nop
-.LBB58_10:
+.LBB58_12:
+	sethi %hi(.L__profc_wcscmp), %i0
+	add %i0, %lo(.L__profc_wcscmp), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	mov	-1, %i0
-	ba .LBB58_14
-	st %i0, [%fp+-24]
-.LBB58_11:
+	ba .LBB58_16
+	st %i0, [%fp+-32]
+.LBB58_13:
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
 	ld [%i0], %i2
 	mov	%g0, %i0
-	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
+	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, %i2
-	bg	.LBB58_13
-	st %i0, [%fp+-28]
-! %bb.12:
+	bg	.LBB58_15
+	st %i0, [%fp+-36]
+! %bb.14:
+	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+.LBB58_15:
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	ba .LBB58_16
+	st %i0, [%fp+-32]
+.LBB58_16:
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
-.LBB58_13:
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	ba .LBB58_14
-	st %i0, [%fp+-24]
-.LBB58_14:
-	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end58:
@@ -4101,6 +6438,16 @@ wcscpy:                                 ! @wcscpy
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_wcscpy), %i0
+	ldd [%i0+%lo(.L__profc_wcscpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_wcscpy)]
 	ld [%fp+-4], %i0
 	ba .LBB59_1
 	st %i0, [%fp+-12]
@@ -4119,8 +6466,18 @@ wcscpy:                                 ! @wcscpy
 	ba .LBB59_2
 	nop
 .LBB59_2:                               !   in Loop: Header=BB59_1 Depth=1
+	sethi %hi(.L__profc_wcscpy), %i0
+	add %i0, %lo(.L__profc_wcscpy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB59_1
-	nop
+	std %i2, [%i0+8]
 .LBB59_3:
 	ld [%fp+-12], %i0
 	ret
@@ -4135,6 +6492,16 @@ wcslen:                                 ! @wcslen
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_wcslen), %i0
+	ldd [%i0+%lo(.L__profc_wcslen)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_wcslen)]
 	ld [%fp+-4], %i0
 	ba .LBB60_1
 	st %i0, [%fp+-8]
@@ -4147,8 +6514,18 @@ wcslen:                                 ! @wcslen
 	ba .LBB60_2
 	nop
 .LBB60_2:                               !   in Loop: Header=BB60_1 Depth=1
+	sethi %hi(.L__profc_wcslen), %i0
+	add %i0, %lo(.L__profc_wcslen), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB60_3
-	nop
+	std %i2, [%i0+8]
 .LBB60_3:                               !   in Loop: Header=BB60_1 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 4, %i0
@@ -4169,67 +6546,167 @@ wcslen:                                 ! @wcslen
 	.type	wcsncmp,@function
 wcsncmp:                                ! @wcsncmp
 ! %bb.0:
-	save %sp, -136, %sp
+	save %sp, -144, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
-	ba .LBB61_1
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_wcsncmp), %i0
+	ldd [%i0+%lo(.L__profc_wcsncmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB61_1
+	std %i2, [%i0+%lo(.L__profc_wcsncmp)]
 .LBB61_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB61_7
+	be	.LBB61_10
 	st %i0, [%fp+-16]
 	ba .LBB61_2
 	nop
 .LBB61_2:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
 	ld [%i0], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bne	.LBB61_7
+	bne	.LBB61_10
 	st %i0, [%fp+-16]
 	ba .LBB61_3
 	nop
 .LBB61_3:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB61_4
+	std %i2, [%i0+56]
+.LBB61_4:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB61_7
+	be	.LBB61_10
 	st %i0, [%fp+-16]
-	ba .LBB61_4
+	ba .LBB61_5
 	nop
-.LBB61_4:                               !   in Loop: Header=BB61_1 Depth=1
+.LBB61_5:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB61_6
+	std %i2, [%i0+40]
+.LBB61_6:                               !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ld [%i0], %i1
+	st %i1, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	bne	.LBB61_6
+	bne	.LBB61_8
 	st %i0, [%fp+-20]
-! %bb.5:                                !   in Loop: Header=BB61_1 Depth=1
+! %bb.7:                                !   in Loop: Header=BB61_1 Depth=1
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
-.LBB61_6:                               !   in Loop: Header=BB61_1 Depth=1
-	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	ba .LBB61_7
-	st %i0, [%fp+-16]
-.LBB61_7:                               !   in Loop: Header=BB61_1 Depth=1
-	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB61_10
-	nop
-	ba .LBB61_8
-	nop
 .LBB61_8:                               !   in Loop: Header=BB61_1 Depth=1
+	ld [%fp+-28], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	be	.LBB61_10
+	st %i0, [%fp+-16]
 	ba .LBB61_9
 	nop
 .LBB61_9:                               !   in Loop: Header=BB61_1 Depth=1
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_wcsncmp), %i1
+	add %i1, %lo(.L__profc_wcsncmp), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB61_10
+	st %i0, [%fp+-16]
+.LBB61_10:                              !   in Loop: Header=BB61_1 Depth=1
+	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB61_13
+	nop
+	ba .LBB61_11
+	nop
+.LBB61_11:                              !   in Loop: Header=BB61_1 Depth=1
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB61_12
+	std %i2, [%i0+8]
+.LBB61_12:                              !   in Loop: Header=BB61_1 Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -4240,55 +6717,77 @@ wcsncmp:                                ! @wcsncmp
 	add %i0, 4, %i0
 	ba .LBB61_1
 	st %i0, [%fp+-8]
-.LBB61_10:
+.LBB61_13:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB61_17
+	be	.LBB61_20
 	nop
-	ba .LBB61_11
+	ba .LBB61_14
 	nop
-.LBB61_11:
+.LBB61_14:
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
 	ld [%fp+-4], %i0
 	ld [%i0], %i0
 	ld [%fp+-8], %i1
 	ld [%i1], %i1
 	cmp	%i0, %i1
-	bge	.LBB61_13
+	bge	.LBB61_16
 	nop
-	ba .LBB61_12
+	ba .LBB61_15
 	nop
-.LBB61_12:
+.LBB61_15:
+	sethi %hi(.L__profc_wcsncmp), %i0
+	add %i0, %lo(.L__profc_wcsncmp), %i0
+	ldd [%i0+72], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+72]
 	mov	-1, %i0
-	ba .LBB61_16
-	st %i0, [%fp+-28]
-.LBB61_13:
+	ba .LBB61_19
+	st %i0, [%fp+-36]
+.LBB61_16:
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
 	ld [%i0], %i2
 	mov	%g0, %i0
-	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, %i2
-	bg	.LBB61_15
-	st %i0, [%fp+-32]
-! %bb.14:
-	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
-	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB61_15:
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB61_16
-	st %i0, [%fp+-28]
-.LBB61_16:
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	ba .LBB61_18
+	bg	.LBB61_18
 	st %i0, [%fp+-40]
-.LBB61_17:
-	mov	%g0, %i0
-	ba .LBB61_18
-	st %i0, [%fp+-40]
+! %bb.17:
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
 .LBB61_18:
 	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	ba .LBB61_19
+	st %i0, [%fp+-36]
+.LBB61_19:
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	ba .LBB61_21
+	st %i0, [%fp+-48]
+.LBB61_20:
+	mov	%g0, %i0
+	ba .LBB61_21
+	st %i0, [%fp+-48]
+.LBB61_21:
+	ld [%fp+-48], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end61:
@@ -4299,23 +6798,46 @@ wcsncmp:                                ! @wcsncmp
 	.type	wmemchr,@function
 wmemchr:                                ! @wmemchr
 ! %bb.0:
-	save %sp, -120, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
-	ba .LBB62_1
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_wmemchr), %i0
+	ldd [%i0+%lo(.L__profc_wmemchr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB62_1
+	std %i2, [%i0+%lo(.L__profc_wmemchr)]
 .LBB62_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB62_5
+	be	.LBB62_6
 	st %i0, [%fp+-16]
 	ba .LBB62_2
 	nop
 .LBB62_2:                               !   in Loop: Header=BB62_1 Depth=1
+	sethi %hi(.L__profc_wmemchr), %i0
+	add %i0, %lo(.L__profc_wmemchr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
+	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
 	ld [%fp+-8], %i2
+	st %i2, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -4326,21 +6848,52 @@ wmemchr:                                ! @wmemchr
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 .LBB62_4:                               !   in Loop: Header=BB62_1 Depth=1
+	ld [%fp+-32], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-28], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	ba .LBB62_5
+	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	be	.LBB62_6
 	st %i0, [%fp+-16]
+	ba .LBB62_5
+	nop
 .LBB62_5:                               !   in Loop: Header=BB62_1 Depth=1
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_wmemchr), %i1
+	add %i1, %lo(.L__profc_wmemchr), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB62_6
+	st %i0, [%fp+-16]
+.LBB62_6:                               !   in Loop: Header=BB62_1 Depth=1
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB62_8
+	be	.LBB62_9
 	nop
-	ba .LBB62_6
-	nop
-.LBB62_6:                               !   in Loop: Header=BB62_1 Depth=1
 	ba .LBB62_7
 	nop
 .LBB62_7:                               !   in Loop: Header=BB62_1 Depth=1
+	sethi %hi(.L__profc_wmemchr), %i0
+	add %i0, %lo(.L__profc_wmemchr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB62_8
+	std %i2, [%i0+8]
+.LBB62_8:                               !   in Loop: Header=BB62_1 Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -4348,23 +6901,34 @@ wmemchr:                                ! @wmemchr
 	add %i0, 4, %i0
 	ba .LBB62_1
 	st %i0, [%fp+-4]
-.LBB62_8:
+.LBB62_9:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB62_10
+	be	.LBB62_11
 	nop
-	ba .LBB62_9
+	ba .LBB62_10
 	nop
-.LBB62_9:
-	ld [%fp+-4], %i0
-	ba .LBB62_11
-	st %i0, [%fp+-28]
 .LBB62_10:
-	mov	%g0, %i0
-	ba .LBB62_11
-	st %i0, [%fp+-28]
+	sethi %hi(.L__profc_wmemchr), %i0
+	add %i0, %lo(.L__profc_wmemchr), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
+	ld [%fp+-4], %i0
+	ba .LBB62_12
+	st %i0, [%fp+-40]
 .LBB62_11:
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	mov	%g0, %i0
+	ba .LBB62_12
+	st %i0, [%fp+-40]
+.LBB62_12:
+	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end62:
@@ -4375,24 +6939,47 @@ wmemchr:                                ! @wmemchr
 	.type	wmemcmp,@function
 wmemcmp:                                ! @wmemcmp
 ! %bb.0:
-	save %sp, -136, %sp
+	save %sp, -144, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
-	ba .LBB63_1
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_wmemcmp), %i0
+	ldd [%i0+%lo(.L__profc_wmemcmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB63_1
+	std %i2, [%i0+%lo(.L__profc_wmemcmp)]
 .LBB63_1:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB63_5
+	be	.LBB63_6
 	st %i0, [%fp+-16]
 	ba .LBB63_2
 	nop
 .LBB63_2:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(.L__profc_wmemcmp), %i0
+	add %i0, %lo(.L__profc_wmemcmp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
+	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
 	ld [%fp+-8], %i0
 	ld [%i0], %i2
+	st %i2, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -4403,21 +6990,52 @@ wmemcmp:                                ! @wmemcmp
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 .LBB63_4:                               !   in Loop: Header=BB63_1 Depth=1
+	ld [%fp+-32], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-28], %i2                       ! 4-byte Folded Reload
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	ba .LBB63_5
+	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	cmp	%i1, %i2
+	bne	.LBB63_6
 	st %i0, [%fp+-16]
+	ba .LBB63_5
+	nop
 .LBB63_5:                               !   in Loop: Header=BB63_1 Depth=1
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_wmemcmp), %i1
+	add %i1, %lo(.L__profc_wmemcmp), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB63_6
+	st %i0, [%fp+-16]
+.LBB63_6:                               !   in Loop: Header=BB63_1 Depth=1
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB63_8
+	be	.LBB63_9
 	nop
-	ba .LBB63_6
-	nop
-.LBB63_6:                               !   in Loop: Header=BB63_1 Depth=1
 	ba .LBB63_7
 	nop
 .LBB63_7:                               !   in Loop: Header=BB63_1 Depth=1
+	sethi %hi(.L__profc_wmemcmp), %i0
+	add %i0, %lo(.L__profc_wmemcmp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB63_8
+	std %i2, [%i0+8]
+.LBB63_8:                               !   in Loop: Header=BB63_1 Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-12]
@@ -4428,55 +7046,77 @@ wmemcmp:                                ! @wmemcmp
 	add %i0, 4, %i0
 	ba .LBB63_1
 	st %i0, [%fp+-8]
-.LBB63_8:
+.LBB63_9:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB63_15
+	be	.LBB63_16
 	nop
-	ba .LBB63_9
+	ba .LBB63_10
 	nop
-.LBB63_9:
+.LBB63_10:
+	sethi %hi(.L__profc_wmemcmp), %i0
+	add %i0, %lo(.L__profc_wmemcmp), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-4], %i0
 	ld [%i0], %i0
 	ld [%fp+-8], %i1
 	ld [%i1], %i1
 	cmp	%i0, %i1
-	bge	.LBB63_11
+	bge	.LBB63_12
 	nop
-	ba .LBB63_10
+	ba .LBB63_11
 	nop
-.LBB63_10:
-	mov	-1, %i0
-	ba .LBB63_14
-	st %i0, [%fp+-28]
 .LBB63_11:
+	sethi %hi(.L__profc_wmemcmp), %i0
+	add %i0, %lo(.L__profc_wmemcmp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
+	mov	-1, %i0
+	ba .LBB63_15
+	st %i0, [%fp+-40]
+.LBB63_12:
 	ld [%fp+-4], %i0
 	ld [%i0], %i1
 	ld [%fp+-8], %i0
 	ld [%i0], %i2
 	mov	%g0, %i0
-	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	st %i0, [%fp+-48]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, %i2
-	bg	.LBB63_13
-	st %i0, [%fp+-32]
-! %bb.12:
-	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
-	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB63_13:
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB63_14
-	st %i0, [%fp+-28]
+	bg	.LBB63_14
+	st %i0, [%fp+-44]
+! %bb.13:
+	ld [%fp+-48], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
 .LBB63_14:
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	ba .LBB63_16
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	ba .LBB63_15
 	st %i0, [%fp+-40]
 .LBB63_15:
-	mov	%g0, %i0
-	ba .LBB63_16
-	st %i0, [%fp+-40]
-.LBB63_16:
 	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	ba .LBB63_17
+	st %i0, [%fp+-52]
+.LBB63_16:
+	mov	%g0, %i0
+	ba .LBB63_17
+	st %i0, [%fp+-52]
+.LBB63_17:
+	ld [%fp+-52], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end63:
@@ -4491,6 +7131,16 @@ wmemcpy:                                ! @wmemcpy
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_wmemcpy), %i0
+	ldd [%i0+%lo(.L__profc_wmemcpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_wmemcpy)]
 	ld [%fp+-4], %i0
 	ba .LBB64_1
 	st %i0, [%fp+-16]
@@ -4503,6 +7153,17 @@ wmemcpy:                                ! @wmemcpy
 	ba .LBB64_2
 	nop
 .LBB64_2:                               !   in Loop: Header=BB64_1 Depth=1
+	sethi %hi(.L__profc_wmemcpy), %i0
+	add %i0, %lo(.L__profc_wmemcpy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	add %i0, 4, %i1
 	st %i1, [%fp+-8]
@@ -4528,6 +7189,16 @@ wmemmove:                               ! @wmemmove
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc_wmemmove), %i0
+	ldd [%i0+%lo(.L__profc_wmemmove)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_wmemmove)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-20]
 	ld [%fp+-8], %i0
@@ -4538,6 +7209,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_1
 	nop
 .LBB65_1:
+	sethi %hi(.L__profc_wmemmove), %i0
+	add %i0, %lo(.L__profc_wmemmove), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	ba .LBB65_12
 	st %i0, [%fp+-4]
@@ -4553,8 +7235,18 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_3
 	nop
 .LBB65_3:
+	sethi %hi(.L__profc_wmemmove), %i0
+	add %i0, %lo(.L__profc_wmemmove), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB65_4
-	nop
+	std %i2, [%i0+16]
 .LBB65_4:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-16], %i0
 	add %i0, -1, %i1
@@ -4564,6 +7256,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_5
 	nop
 .LBB65_5:                               !   in Loop: Header=BB65_4 Depth=1
+	sethi %hi(.L__profc_wmemmove), %i0
+	add %i0, %lo(.L__profc_wmemmove), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-12], %i0
 	ld [%fp+-16], %i1
 	sll %i1, 2, %i1
@@ -4586,6 +7289,17 @@ wmemmove:                               ! @wmemmove
 	ba .LBB65_9
 	nop
 .LBB65_9:                               !   in Loop: Header=BB65_8 Depth=1
+	sethi %hi(.L__profc_wmemmove), %i0
+	add %i0, %lo(.L__profc_wmemmove), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-12], %i0
 	add %i0, 4, %i1
 	st %i1, [%fp+-12]
@@ -4618,6 +7332,16 @@ wmemset:                                ! @wmemset
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_wmemset), %i0
+	ldd [%i0+%lo(.L__profc_wmemset)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_wmemset)]
 	ld [%fp+-4], %i0
 	ba .LBB66_1
 	st %i0, [%fp+-16]
@@ -4630,6 +7354,17 @@ wmemset:                                ! @wmemset
 	ba .LBB66_2
 	nop
 .LBB66_2:                               !   in Loop: Header=BB66_1 Depth=1
+	sethi %hi(.L__profc_wmemset), %i0
+	add %i0, %lo(.L__profc_wmemset), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i1
 	ld [%fp+-4], %i0
 	add %i0, 4, %i2
@@ -4652,6 +7387,16 @@ bcopy:                                  ! @bcopy
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_bcopy), %i0
+	ldd [%i0+%lo(.L__profc_bcopy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_bcopy)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-8], %i0
@@ -4664,6 +7409,17 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_1
 	nop
 .LBB67_1:
+	sethi %hi(.L__profc_bcopy), %i0
+	add %i0, %lo(.L__profc_bcopy), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i1
 	ld [%fp+-16], %i0
 	add %i0, %i1, %i0
@@ -4681,6 +7437,17 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_3
 	nop
 .LBB67_3:                               !   in Loop: Header=BB67_2 Depth=1
+	sethi %hi(.L__profc_bcopy), %i0
+	add %i0, %lo(.L__profc_bcopy), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	add %i0, -1, %i1
 	st %i1, [%fp+-16]
@@ -4707,8 +7474,18 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_7
 	nop
 .LBB67_7:
+	sethi %hi(.L__profc_bcopy), %i0
+	add %i0, %lo(.L__profc_bcopy), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB67_8
-	nop
+	std %i2, [%i0+24]
 .LBB67_8:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
@@ -4717,6 +7494,17 @@ bcopy:                                  ! @bcopy
 	ba .LBB67_9
 	nop
 .LBB67_9:                               !   in Loop: Header=BB67_8 Depth=1
+	sethi %hi(.L__profc_bcopy), %i0
+	add %i0, %lo(.L__profc_bcopy), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-16]
@@ -4758,6 +7546,16 @@ rotl64:                                 ! @rotl64
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_rotl64), %i0
+	ldd [%i0+%lo(.L__profc_rotl64)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotl64)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	st %o0, [%fp+-28]                       ! 4-byte Folded Spill
@@ -4801,6 +7599,16 @@ rotr64:                                 ! @rotr64
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_rotr64), %i0
+	ldd [%i0+%lo(.L__profc_rotr64)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotr64)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	st %o0, [%fp+-28]                       ! 4-byte Folded Spill
@@ -4837,6 +7645,16 @@ rotl32:                                 ! @rotl32
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotl32), %i0
+	ldd [%i0+%lo(.L__profc_rotl32)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotl32)]
 	ld [%fp+-4], %i1
 	ld [%fp+-8], %i3
 	sll %i1, %i3, %i0
@@ -4857,6 +7675,16 @@ rotr32:                                 ! @rotr32
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotr32), %i0
+	ldd [%i0+%lo(.L__profc_rotr32)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotr32)]
 	ld [%fp+-4], %i1
 	ld [%fp+-8], %i3
 	srl %i1, %i3, %i0
@@ -4877,6 +7705,16 @@ rotl_sz:                                ! @rotl_sz
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotl_sz), %i0
+	ldd [%i0+%lo(.L__profc_rotl_sz)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotl_sz)]
 	ld [%fp+-4], %i1
 	ld [%fp+-8], %i3
 	sll %i1, %i3, %i0
@@ -4897,6 +7735,16 @@ rotr_sz:                                ! @rotr_sz
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotr_sz), %i0
+	ldd [%i0+%lo(.L__profc_rotr_sz)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotr_sz)]
 	ld [%fp+-4], %i1
 	ld [%fp+-8], %i3
 	srl %i1, %i3, %i0
@@ -4918,6 +7766,16 @@ rotl16:                                 ! @rotl16
                                         ! kill: def $i2 killed $i0
 	sth %i0, [%fp+-2]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotl16), %i0
+	ldd [%i0+%lo(.L__profc_rotl16)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotl16)]
 	lduh [%fp+-2], %i1
 	ld [%fp+-8], %i3
 	sll %i1, %i3, %i0
@@ -4941,6 +7799,16 @@ rotr16:                                 ! @rotr16
                                         ! kill: def $i2 killed $i0
 	sth %i0, [%fp+-2]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotr16), %i0
+	ldd [%i0+%lo(.L__profc_rotr16)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotr16)]
 	lduh [%fp+-2], %i1
 	ld [%fp+-8], %i3
 	srl %i1, %i3, %i0
@@ -4964,6 +7832,16 @@ rotl8:                                  ! @rotl8
                                         ! kill: def $i2 killed $i0
 	stb %i0, [%fp+-1]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotl8), %i0
+	ldd [%i0+%lo(.L__profc_rotl8)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotl8)]
 	ldub [%fp+-1], %i1
 	ld [%fp+-8], %i3
 	sll %i1, %i3, %i0
@@ -4986,6 +7864,16 @@ rotr8:                                  ! @rotr8
                                         ! kill: def $i2 killed $i0
 	stb %i0, [%fp+-1]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_rotr8), %i0
+	ldd [%i0+%lo(.L__profc_rotr8)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_rotr8)]
 	ldub [%fp+-1], %i1
 	ld [%fp+-8], %i3
 	srl %i1, %i3, %i0
@@ -5007,6 +7895,16 @@ bswap_16:                               ! @bswap_16
 	save %sp, -96, %sp
                                         ! kill: def $i1 killed $i0
 	sth %i0, [%fp+-2]
+	sethi %hi(.L__profc_bswap_16), %i0
+	ldd [%i0+%lo(.L__profc_bswap_16)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_bswap_16)]
 	mov	255, %i0
 	sth %i0, [%fp+-4]
 	lduh [%fp+-2], %i1
@@ -5031,6 +7929,16 @@ bswap_32:                               ! @bswap_32
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_bswap_32), %i0
+	ldd [%i0+%lo(.L__profc_bswap_32)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_bswap_32)]
 	mov	255, %i0
 	st %i0, [%fp+-8]
 	ld [%fp+-4], %i1
@@ -5067,6 +7975,16 @@ bswap_64:                               ! @bswap_64
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc_bswap_64), %i0
+	ldd [%i0+%lo(.L__profc_bswap_64)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_bswap_64)]
 	mov	255, %i2
                                         ! implicit-def: $i0_i1
 	mov	%i2, %i0
@@ -5122,6 +8040,16 @@ ffs:                                    ! @ffs
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-8]
+	sethi %hi(.L__profc_ffs), %i0
+	ldd [%i0+%lo(.L__profc_ffs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_ffs)]
 	ba .LBB81_1
 	st %g0, [%fp+-12]
 .LBB81_1:                               ! =>This Inner Loop Header: Depth=1
@@ -5132,6 +8060,17 @@ ffs:                                    ! @ffs
 	ba .LBB81_2
 	nop
 .LBB81_2:                               !   in Loop: Header=BB81_1 Depth=1
+	sethi %hi(.L__profc_ffs), %i0
+	add %i0, %lo(.L__profc_ffs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	ld [%fp+-12], %i1
 	srl %i0, %i1, %i0
@@ -5142,6 +8081,17 @@ ffs:                                    ! @ffs
 	ba .LBB81_3
 	nop
 .LBB81_3:
+	sethi %hi(.L__profc_ffs), %i0
+	add %i0, %lo(.L__profc_ffs), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB81_7
@@ -5171,6 +8121,16 @@ libiberty_ffs:                          ! @libiberty_ffs
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-8]
+	sethi %hi(.L__profc_libiberty_ffs), %i0
+	ldd [%i0+%lo(.L__profc_libiberty_ffs)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_libiberty_ffs)]
 	ld [%fp+-8], %i0
 	cmp	%i0, 0
 	bne	.LBB82_2
@@ -5178,6 +8138,17 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB82_1
 	nop
 .LBB82_1:
+	sethi %hi(.L__profc_libiberty_ffs), %i0
+	add %i0, %lo(.L__profc_libiberty_ffs), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ba .LBB82_7
 	st %g0, [%fp+-4]
 .LBB82_2:
@@ -5193,6 +8164,17 @@ libiberty_ffs:                          ! @libiberty_ffs
 	ba .LBB82_4
 	nop
 .LBB82_4:                               !   in Loop: Header=BB82_3 Depth=1
+	sethi %hi(.L__profc_libiberty_ffs), %i0
+	add %i0, %lo(.L__profc_libiberty_ffs), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	sra %i0, 1, %i0
 	ba .LBB82_5
@@ -5218,24 +8200,46 @@ libiberty_ffs:                          ! @libiberty_ffs
 	.type	gl_isinff,@function
 gl_isinff:                              ! @gl_isinff
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
                                         ! kill: def $i1 killed $i0
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc_gl_isinff), %i0
+	ldd [%i0+%lo(.L__profc_gl_isinff)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_gl_isinff)]
 	ld [%fp+-4], %o0
 	sethi 4186111, %i0
 	call __ltsf2
 	or %i0, 1023, %o1
 	mov	1, %i0
 	cmp	%o0, 0
-	bl	.LBB83_4
+	bl	.LBB83_5
 	st %i0, [%fp+-8]
 	ba .LBB83_1
 	nop
 .LBB83_1:
+	sethi %hi(.L__profc_gl_isinff), %i0
+	add %i0, %lo(.L__profc_gl_isinff), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %o0
 	sethi 2088959, %i0
 	call __gtsf2
 	or %i0, 1023, %o1
+	st %o0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -5246,10 +8250,30 @@ gl_isinff:                              ! @gl_isinff
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-12]                       ! 4-byte Folded Spill
 .LBB83_3:
+	ld [%fp+-20], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
-	ba .LBB83_4
+	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bg	.LBB83_5
 	st %i0, [%fp+-8]
+	ba .LBB83_4
+	nop
 .LBB83_4:
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_gl_isinff), %i1
+	add %i1, %lo(.L__profc_gl_isinff), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB83_5
+	st %i0, [%fp+-8]
+.LBB83_5:
 	ld [%fp+-8], %i0                        ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -5262,7 +8286,7 @@ gl_isinff:                              ! @gl_isinff
 	.type	gl_isinfd,@function
 gl_isinfd:                              ! @gl_isinfd
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	mov	%i1, %i2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
@@ -5271,6 +8295,16 @@ gl_isinfd:                              ! @gl_isinfd
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc_gl_isinfd), %i0
+	ldd [%i0+%lo(.L__profc_gl_isinfd)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_gl_isinfd)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -5280,11 +8314,22 @@ gl_isinfd:                              ! @gl_isinfd
 	mov	-1, %o2
 	mov	1, %i0
 	cmp	%o0, 0
-	bl	.LBB84_4
+	bl	.LBB84_5
 	st %i0, [%fp+-12]
 	ba .LBB84_1
 	nop
 .LBB84_1:
+	sethi %hi(.L__profc_gl_isinfd), %i0
+	add %i0, %lo(.L__profc_gl_isinfd), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -5292,6 +8337,7 @@ gl_isinfd:                              ! @gl_isinfd
 	or %i0, 1023, %o3
 	call __gtdf2
 	mov	-1, %o2
+	st %o0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -5302,10 +8348,30 @@ gl_isinfd:                              ! @gl_isinfd
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 .LBB84_3:
+	ld [%fp+-24], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB84_4
+	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bg	.LBB84_5
 	st %i0, [%fp+-12]
+	ba .LBB84_4
+	nop
 .LBB84_4:
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_gl_isinfd), %i1
+	add %i1, %lo(.L__profc_gl_isinfd), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB84_5
+	st %i0, [%fp+-12]
+.LBB84_5:
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -5318,7 +8384,7 @@ gl_isinfd:                              ! @gl_isinfd
 	.type	gl_isinfl,@function
 gl_isinfl:                              ! @gl_isinfl
 ! %bb.0:
-	save %sp, -112, %sp
+	save %sp, -120, %sp
 	mov	%i1, %i2
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i2
@@ -5327,6 +8393,16 @@ gl_isinfl:                              ! @gl_isinfl
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc_gl_isinfl), %i0
+	ldd [%i0+%lo(.L__profc_gl_isinfl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_gl_isinfl)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -5336,11 +8412,22 @@ gl_isinfl:                              ! @gl_isinfl
 	mov	-1, %o2
 	mov	1, %i0
 	cmp	%o0, 0
-	bl	.LBB85_4
+	bl	.LBB85_5
 	st %i0, [%fp+-12]
 	ba .LBB85_1
 	nop
 .LBB85_1:
+	sethi %hi(.L__profc_gl_isinfl), %i0
+	add %i0, %lo(.L__profc_gl_isinfl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -5348,6 +8435,7 @@ gl_isinfl:                              ! @gl_isinfl
 	or %i0, 1023, %o3
 	call __gtdf2
 	mov	-1, %o2
+	st %o0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -5358,10 +8446,30 @@ gl_isinfl:                              ! @gl_isinfl
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-16]                       ! 4-byte Folded Spill
 .LBB85_3:
+	ld [%fp+-24], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
-	ba .LBB85_4
+	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bg	.LBB85_5
 	st %i0, [%fp+-12]
+	ba .LBB85_4
+	nop
 .LBB85_4:
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_gl_isinfl), %i1
+	add %i1, %lo(.L__profc_gl_isinfl), %i1
+	ldd [%i1+16], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+16]
+	ba .LBB85_5
+	st %i0, [%fp+-12]
+.LBB85_5:
 	ld [%fp+-12], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	ret
@@ -5377,6 +8485,16 @@ _Qp_itoq:                               ! @_Qp_itoq
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc__Qp_itoq), %i0
+	ldd [%i0+%lo(.L__profc__Qp_itoq)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc__Qp_itoq)]
 	call __floatsidf
 	ld [%fp+-8], %o0
 	ld [%fp+-4], %i0
@@ -5398,16 +8516,37 @@ ldexpf:                                 ! @ldexpf
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_ldexpf), %i0
+	ldd [%i0+%lo(.L__profc_ldexpf)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_ldexpf)]
 	ld [%fp+-4], %i0
 	sethi 2097152, %i1
 	andn %i0, %i1, %i0
 	sethi 2088960, %i1
 	cmp	%i0, %i1
-	bg	.LBB87_11
+	bg	.LBB87_12
 	nop
 	ba .LBB87_1
 	nop
 .LBB87_1:
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %o1
 	st %o1, [%fp+-16]                       ! 4-byte Folded Spill
 	call __addsf3
@@ -5415,43 +8554,99 @@ ldexpf:                                 ! @ldexpf
 	call __eqsf2
 	ld [%fp+-16], %o1
 	cmp	%o0, 0
-	be	.LBB87_11
+	be	.LBB87_12
 	nop
 	ba .LBB87_2
 	nop
 .LBB87_2:
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB87_3
+	std %i2, [%i0+24]
+.LBB87_3:
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i1
+	srl %i1, 31, %i4
+	ldd [%i0+32], %g2
+	mov	%g2, %i3
+	mov	%g3, %i2
+	addcc %i3, %i4, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i0+32]
 	sethi 1048576, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 	sethi 1032192, %i0
 	cmp	%i1, 0
-	bl	.LBB87_4
+	bl	.LBB87_5
 	st %i0, [%fp+-20]
-! %bb.3:
+! %bb.4:
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
-.LBB87_4:
+.LBB87_5:
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	ba .LBB87_5
+	ba .LBB87_6
 	st %i0, [%fp+-12]
-.LBB87_5:                               ! =>This Inner Loop Header: Depth=1
+.LBB87_6:                               ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-8], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i1
 	and %i1, -2, %i1
 	sub %i0, %i1, %i0
 	cmp	%i0, 0
-	be	.LBB87_7
+	be	.LBB87_8
 	nop
-	ba .LBB87_6
+	ba .LBB87_7
 	nop
-.LBB87_6:                               !   in Loop: Header=BB87_5 Depth=1
+.LBB87_7:                               !   in Loop: Header=BB87_6 Depth=1
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-12], %o1
 	call __mulsf3
 	ld [%fp+-4], %o0
-	ba .LBB87_7
+	ba .LBB87_8
 	st %o0, [%fp+-4]
-.LBB87_7:                               !   in Loop: Header=BB87_5 Depth=1
+.LBB87_8:                               !   in Loop: Header=BB87_6 Depth=1
 	ld [%fp+-8], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i0
@@ -5459,23 +8654,33 @@ ldexpf:                                 ! @ldexpf
 	st %i0, [%fp+-8]
 	ld [%fp+-8], %i0
 	cmp	%i0, 0
-	bne	.LBB87_9
+	bne	.LBB87_10
 	nop
-	ba .LBB87_8
+	ba .LBB87_9
 	nop
-.LBB87_8:
-	ba .LBB87_10
-	nop
-.LBB87_9:                               !   in Loop: Header=BB87_5 Depth=1
+.LBB87_9:
+	sethi %hi(.L__profc_ldexpf), %i0
+	add %i0, %lo(.L__profc_ldexpf), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB87_11
+	std %i2, [%i0+56]
+.LBB87_10:                              !   in Loop: Header=BB87_6 Depth=1
 	ld [%fp+-12], %o1
 	call __mulsf3
 	mov	%o1, %o0
-	ba .LBB87_5
+	ba .LBB87_6
 	st %o0, [%fp+-12]
-.LBB87_10:
-	ba .LBB87_11
-	nop
 .LBB87_11:
+	ba .LBB87_12
+	nop
+.LBB87_12:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -5497,6 +8702,16 @@ ldexp:                                  ! @ldexp
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_ldexp), %i0
+	ldd [%i0+%lo(.L__profc_ldexp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_ldexp)]
 	ldd [%fp+-8], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -5542,11 +8757,22 @@ ldexp:                                  ! @ldexp
 .LBB88_6:
 	ld [%fp+-60], %i0                       ! 4-byte Folded Reload
 	cmp	%i0, 0
-	bne	.LBB88_17
+	bne	.LBB88_18
 	nop
 	ba .LBB88_7
 	nop
 .LBB88_7:
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o2
 	st %o2, [%fp+-72]                       ! 4-byte Folded Spill
@@ -5559,41 +8785,97 @@ ldexp:                                  ! @ldexp
 	call __eqdf2
 	ld [%fp+-68], %o3
 	cmp	%o0, 0
-	be	.LBB88_17
+	be	.LBB88_18
 	nop
 	ba .LBB88_8
 	nop
 .LBB88_8:
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB88_9
+	std %i2, [%i0+24]
+.LBB88_9:
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i1
+	srl %i1, 31, %i4
+	ldd [%i0+32], %g2
+	mov	%g2, %i3
+	mov	%g3, %i2
+	addcc %i3, %i4, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i0+32]
 	sethi 1048576, %i0
 	st %i0, [%fp+-80]                       ! 4-byte Folded Spill
 	sethi 1046528, %i0
 	cmp	%i1, 0
-	bl	.LBB88_10
+	bl	.LBB88_11
 	st %i0, [%fp+-76]
-! %bb.9:
+! %bb.10:
 	ld [%fp+-80], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-76]                       ! 4-byte Folded Spill
-.LBB88_10:
+.LBB88_11:
 	ld [%fp+-76], %i2                       ! 4-byte Folded Reload
 	mov	%g0, %i3
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
-	ba .LBB88_11
+	ba .LBB88_12
 	std %i0, [%fp+-24]
-.LBB88_11:                              ! =>This Inner Loop Header: Depth=1
+.LBB88_12:                              ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-12], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i1
 	and %i1, -2, %i1
 	sub %i0, %i1, %i0
 	cmp	%i0, 0
-	be	.LBB88_13
+	be	.LBB88_14
 	nop
-	ba .LBB88_12
+	ba .LBB88_13
 	nop
-.LBB88_12:                              !   in Loop: Header=BB88_11 Depth=1
+.LBB88_13:                              !   in Loop: Header=BB88_12 Depth=1
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -5604,9 +8886,9 @@ ldexp:                                  ! @ldexp
                                         ! implicit-def: $i0_i1
 	mov	%o0, %i0
 	mov	%o1, %i1
-	ba .LBB88_13
+	ba .LBB88_14
 	std %i0, [%fp+-8]
-.LBB88_13:                              !   in Loop: Header=BB88_11 Depth=1
+.LBB88_14:                              !   in Loop: Header=BB88_12 Depth=1
 	ld [%fp+-12], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i0
@@ -5614,14 +8896,24 @@ ldexp:                                  ! @ldexp
 	st %i0, [%fp+-12]
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	bne	.LBB88_15
+	bne	.LBB88_16
 	nop
-	ba .LBB88_14
+	ba .LBB88_15
 	nop
-.LBB88_14:
-	ba .LBB88_16
-	nop
-.LBB88_15:                              !   in Loop: Header=BB88_11 Depth=1
+.LBB88_15:
+	sethi %hi(.L__profc_ldexp), %i0
+	add %i0, %lo(.L__profc_ldexp), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB88_17
+	std %i2, [%i0+56]
+.LBB88_16:                              !   in Loop: Header=BB88_12 Depth=1
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -5631,12 +8923,12 @@ ldexp:                                  ! @ldexp
                                         ! implicit-def: $i0_i1
 	mov	%o0, %i0
 	mov	%o1, %i1
-	ba .LBB88_11
+	ba .LBB88_12
 	std %i0, [%fp+-24]
-.LBB88_16:
-	ba .LBB88_17
-	nop
 .LBB88_17:
+	ba .LBB88_18
+	nop
+.LBB88_18:
 	ldd [%fp+-8], %i2
 	mov	%i2, %i0
 	ret
@@ -5659,6 +8951,16 @@ ldexpl:                                 ! @ldexpl
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_ldexpl), %i0
+	ldd [%i0+%lo(.L__profc_ldexpl)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_ldexpl)]
 	ldd [%fp+-8], %i0
 	mov	%i1, %i2
 	st %i2, [%fp+-40]                       ! 4-byte Folded Spill
@@ -5704,11 +9006,22 @@ ldexpl:                                 ! @ldexpl
 .LBB89_6:
 	ld [%fp+-60], %i0                       ! 4-byte Folded Reload
 	cmp	%i0, 0
-	bne	.LBB89_17
+	bne	.LBB89_18
 	nop
 	ba .LBB89_7
 	nop
 .LBB89_7:
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o2
 	st %o2, [%fp+-72]                       ! 4-byte Folded Spill
@@ -5721,41 +9034,97 @@ ldexpl:                                 ! @ldexpl
 	call __eqdf2
 	ld [%fp+-68], %o3
 	cmp	%o0, 0
-	be	.LBB89_17
+	be	.LBB89_18
 	nop
 	ba .LBB89_8
 	nop
 .LBB89_8:
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB89_9
+	std %i2, [%i0+24]
+.LBB89_9:
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i1
+	srl %i1, 31, %i4
+	ldd [%i0+32], %g2
+	mov	%g2, %i3
+	mov	%g3, %i2
+	addcc %i3, %i4, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i0+32]
 	sethi 1048576, %i0
 	st %i0, [%fp+-80]                       ! 4-byte Folded Spill
 	sethi 1046528, %i0
 	cmp	%i1, 0
-	bl	.LBB89_10
+	bl	.LBB89_11
 	st %i0, [%fp+-76]
-! %bb.9:
+! %bb.10:
 	ld [%fp+-80], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-76]                       ! 4-byte Folded Spill
-.LBB89_10:
+.LBB89_11:
 	ld [%fp+-76], %i2                       ! 4-byte Folded Reload
 	mov	%g0, %i3
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
-	ba .LBB89_11
+	ba .LBB89_12
 	std %i0, [%fp+-24]
-.LBB89_11:                              ! =>This Inner Loop Header: Depth=1
+.LBB89_12:                              ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-12], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i1
 	and %i1, -2, %i1
 	sub %i0, %i1, %i0
 	cmp	%i0, 0
-	be	.LBB89_13
+	be	.LBB89_14
 	nop
-	ba .LBB89_12
+	ba .LBB89_13
 	nop
-.LBB89_12:                              !   in Loop: Header=BB89_11 Depth=1
+.LBB89_13:                              !   in Loop: Header=BB89_12 Depth=1
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -5766,9 +9135,9 @@ ldexpl:                                 ! @ldexpl
                                         ! implicit-def: $i0_i1
 	mov	%o0, %i0
 	mov	%o1, %i1
-	ba .LBB89_13
+	ba .LBB89_14
 	std %i0, [%fp+-8]
-.LBB89_13:                              !   in Loop: Header=BB89_11 Depth=1
+.LBB89_14:                              !   in Loop: Header=BB89_12 Depth=1
 	ld [%fp+-12], %i0
 	srl %i0, 31, %i1
 	add %i0, %i1, %i0
@@ -5776,14 +9145,24 @@ ldexpl:                                 ! @ldexpl
 	st %i0, [%fp+-12]
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	bne	.LBB89_15
+	bne	.LBB89_16
 	nop
-	ba .LBB89_14
+	ba .LBB89_15
 	nop
-.LBB89_14:
-	ba .LBB89_16
-	nop
-.LBB89_15:                              !   in Loop: Header=BB89_11 Depth=1
+.LBB89_15:
+	sethi %hi(.L__profc_ldexpl), %i0
+	add %i0, %lo(.L__profc_ldexpl), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB89_17
+	std %i2, [%i0+56]
+.LBB89_16:                              !   in Loop: Header=BB89_12 Depth=1
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -5793,12 +9172,12 @@ ldexpl:                                 ! @ldexpl
                                         ! implicit-def: $i0_i1
 	mov	%o0, %i0
 	mov	%o1, %i1
-	ba .LBB89_11
+	ba .LBB89_12
 	std %i0, [%fp+-24]
-.LBB89_16:
-	ba .LBB89_17
-	nop
 .LBB89_17:
+	ba .LBB89_18
+	nop
+.LBB89_18:
 	ldd [%fp+-8], %i2
 	mov	%i2, %i0
 	ret
@@ -5815,6 +9194,16 @@ memxor:                                 ! @memxor
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_memxor), %i0
+	ldd [%i0+%lo(.L__profc_memxor)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memxor)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-16]
 	ld [%fp+-4], %i0
@@ -5828,6 +9217,17 @@ memxor:                                 ! @memxor
 	ba .LBB90_2
 	nop
 .LBB90_2:                               !   in Loop: Header=BB90_1 Depth=1
+	sethi %hi(.L__profc_memxor), %i0
+	add %i0, %lo(.L__profc_memxor), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-16]
@@ -5856,10 +9256,20 @@ memxor:                                 ! @memxor
 	.type	strncat,@function
 strncat:                                ! @strncat
 ! %bb.0:
-	save %sp, -120, %sp
+	save %sp, -128, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_strncat), %i0
+	ldd [%i0+%lo(.L__profc_strncat)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strncat)]
 	ld [%fp+-4], %i0
 	call strlen
 	mov	%i0, %o0
@@ -5870,13 +9280,25 @@ strncat:                                ! @strncat
 	ld [%fp+-12], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB91_5
+	be	.LBB91_6
 	st %i0, [%fp+-20]
 	ba .LBB91_2
 	nop
 .LBB91_2:                               !   in Loop: Header=BB91_1 Depth=1
+	sethi %hi(.L__profc_strncat), %i0
+	add %i0, %lo(.L__profc_strncat), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i0
 	ldub [%i0], %i1
+	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
 	ld [%fp+-16], %i0
 	stb %i1, [%i0]
 	mov	%g0, %i0
@@ -5889,21 +9311,51 @@ strncat:                                ! @strncat
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 .LBB91_4:                               !   in Loop: Header=BB91_1 Depth=1
+	ld [%fp+-32], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
-	ba .LBB91_5
+	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	be	.LBB91_6
 	st %i0, [%fp+-20]
+	ba .LBB91_5
+	nop
 .LBB91_5:                               !   in Loop: Header=BB91_1 Depth=1
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_strncat), %i1
+	add %i1, %lo(.L__profc_strncat), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB91_6
+	st %i0, [%fp+-20]
+.LBB91_6:                               !   in Loop: Header=BB91_1 Depth=1
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB91_8
+	be	.LBB91_9
 	nop
-	ba .LBB91_6
-	nop
-.LBB91_6:                               !   in Loop: Header=BB91_1 Depth=1
 	ba .LBB91_7
 	nop
 .LBB91_7:                               !   in Loop: Header=BB91_1 Depth=1
+	sethi %hi(.L__profc_strncat), %i0
+	add %i0, %lo(.L__profc_strncat), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB91_8
+	std %i2, [%i0+8]
+.LBB91_8:                               !   in Loop: Header=BB91_1 Depth=1
 	ld [%fp+-8], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-8]
@@ -5914,19 +9366,30 @@ strncat:                                ! @strncat
 	add %i0, -1, %i0
 	ba .LBB91_1
 	st %i0, [%fp+-12]
-.LBB91_8:
+.LBB91_9:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	bne	.LBB91_10
+	bne	.LBB91_11
 	nop
-	ba .LBB91_9
+	ba .LBB91_10
 	nop
-.LBB91_9:
+.LBB91_10:
+	sethi %hi(.L__profc_strncat), %i0
+	add %i0, %lo(.L__profc_strncat), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-16], %i0
 	mov	%g0, %i1
-	ba .LBB91_10
+	ba .LBB91_11
 	stb %i1, [%i0]
-.LBB91_10:
+.LBB91_11:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -5938,9 +9401,19 @@ strncat:                                ! @strncat
 	.type	strnlen,@function
 strnlen:                                ! @strnlen
 ! %bb.0:
-	save %sp, -120, %sp
+	save %sp, -128, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc_strnlen), %i0
+	ldd [%i0+%lo(.L__profc_strnlen)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strnlen)]
 	ba .LBB92_1
 	st %g0, [%fp+-12]
 .LBB92_1:                               ! =>This Inner Loop Header: Depth=1
@@ -5948,14 +9421,26 @@ strnlen:                                ! @strnlen
 	ld [%fp+-8], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bcc	.LBB92_5
+	bcc	.LBB92_6
 	st %i0, [%fp+-16]
 	ba .LBB92_2
 	nop
 .LBB92_2:                               !   in Loop: Header=BB92_1 Depth=1
+	sethi %hi(.L__profc_strnlen), %i0
+	add %i0, %lo(.L__profc_strnlen), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %i0
 	ld [%fp+-12], %i1
 	ldsb [%i0+%i1], %i1
+	st %i1, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -5966,26 +9451,56 @@ strnlen:                                ! @strnlen
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-20]                       ! 4-byte Folded Spill
 .LBB92_4:                               !   in Loop: Header=BB92_1 Depth=1
+	ld [%fp+-28], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	ba .LBB92_5
+	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	be	.LBB92_6
 	st %i0, [%fp+-16]
+	ba .LBB92_5
+	nop
 .LBB92_5:                               !   in Loop: Header=BB92_1 Depth=1
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_strnlen), %i1
+	add %i1, %lo(.L__profc_strnlen), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB92_6
+	st %i0, [%fp+-16]
+.LBB92_6:                               !   in Loop: Header=BB92_1 Depth=1
 	ld [%fp+-16], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB92_8
+	be	.LBB92_9
 	nop
-	ba .LBB92_6
-	nop
-.LBB92_6:                               !   in Loop: Header=BB92_1 Depth=1
 	ba .LBB92_7
 	nop
 .LBB92_7:                               !   in Loop: Header=BB92_1 Depth=1
+	sethi %hi(.L__profc_strnlen), %i0
+	add %i0, %lo(.L__profc_strnlen), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB92_8
+	std %i2, [%i0+8]
+.LBB92_8:                               !   in Loop: Header=BB92_1 Depth=1
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB92_1
 	st %i0, [%fp+-12]
-.LBB92_8:
+.LBB92_9:
 	ld [%fp+-12], %i0
 	ret
 	restore
@@ -5999,8 +9514,18 @@ strpbrk:                                ! @strpbrk
 ! %bb.0:
 	save %sp, -112, %sp
 	st %i0, [%fp+-8]
-	ba .LBB93_1
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc_strpbrk), %i0
+	ldd [%i0+%lo(.L__profc_strpbrk)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB93_1
+	std %i2, [%i0+%lo(.L__profc_strpbrk)]
 .LBB93_1:                               ! =>This Loop Header: Depth=1
                                         !     Child Loop BB93_3 Depth 2
 	ld [%fp+-8], %i0
@@ -6011,6 +9536,17 @@ strpbrk:                                ! @strpbrk
 	ba .LBB93_2
 	nop
 .LBB93_2:                               !   in Loop: Header=BB93_1 Depth=1
+	sethi %hi(.L__profc_strpbrk), %i0
+	add %i0, %lo(.L__profc_strpbrk), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	ba .LBB93_3
 	st %i0, [%fp+-16]
@@ -6024,6 +9560,17 @@ strpbrk:                                ! @strpbrk
 	ba .LBB93_4
 	nop
 .LBB93_4:                               !   in Loop: Header=BB93_3 Depth=2
+	sethi %hi(.L__profc_strpbrk), %i0
+	add %i0, %lo(.L__profc_strpbrk), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-16]
@@ -6036,6 +9583,17 @@ strpbrk:                                ! @strpbrk
 	ba .LBB93_5
 	nop
 .LBB93_5:
+	sethi %hi(.L__profc_strpbrk), %i0
+	add %i0, %lo(.L__profc_strpbrk), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i0
 	ba .LBB93_9
 	st %i0, [%fp+-4]
@@ -6065,25 +9623,59 @@ strrchr:                                ! @strrchr
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
-	ba .LBB94_1
+	sethi %hi(.L__profc_strrchr), %i0
+	ldd [%i0+%lo(.L__profc_strrchr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strrchr)]
+	ba .LBB94_2
 	st %g0, [%fp+-12]
-.LBB94_1:                               ! =>This Inner Loop Header: Depth=1
+.LBB94_1:                               !   in Loop: Header=BB94_2 Depth=1
+	sethi %hi(.L__profc_strrchr), %i0
+	add %i0, %lo(.L__profc_strrchr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB94_2
+	std %i2, [%i0+8]
+.LBB94_2:                               ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-4], %i0
 	ldsb [%i0], %i0
 	ld [%fp+-8], %i1
 	cmp	%i0, %i1
-	bne	.LBB94_3
+	bne	.LBB94_4
 	nop
-	ba .LBB94_2
-	nop
-.LBB94_2:                               !   in Loop: Header=BB94_1 Depth=1
-	ld [%fp+-4], %i0
 	ba .LBB94_3
-	st %i0, [%fp+-12]
-.LBB94_3:                               !   in Loop: Header=BB94_1 Depth=1
-	ba .LBB94_4
 	nop
-.LBB94_4:                               !   in Loop: Header=BB94_1 Depth=1
+.LBB94_3:                               !   in Loop: Header=BB94_2 Depth=1
+	sethi %hi(.L__profc_strrchr), %i0
+	add %i0, %lo(.L__profc_strrchr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ld [%fp+-4], %i0
+	ba .LBB94_4
+	st %i0, [%fp+-12]
+.LBB94_4:                               !   in Loop: Header=BB94_2 Depth=1
+	ba .LBB94_5
+	nop
+.LBB94_5:                               !   in Loop: Header=BB94_2 Depth=1
 	ld [%fp+-4], %i0
 	add %i0, 1, %i1
 	st %i1, [%fp+-4]
@@ -6091,9 +9683,9 @@ strrchr:                                ! @strrchr
 	cmp	%i0, 0
 	bne	.LBB94_1
 	nop
-	ba .LBB94_5
+	ba .LBB94_6
 	nop
-.LBB94_5:
+.LBB94_6:
 	ld [%fp+-12], %i0
 	ret
 	restore
@@ -6108,6 +9700,16 @@ strstr:                                 ! @strstr
 	save %sp, -112, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc_strstr), %i0
+	ldd [%i0+%lo(.L__profc_strstr)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_strstr)]
 	ld [%fp+-8], %i0
 	st %i0, [%fp+-16]
 	call strlen
@@ -6120,6 +9722,17 @@ strstr:                                 ! @strstr
 	ba .LBB95_1
 	nop
 .LBB95_1:
+	sethi %hi(.L__profc_strstr), %i0
+	add %i0, %lo(.L__profc_strstr), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
 	ba .LBB95_9
 	st %i0, [%fp+-4]
@@ -6137,6 +9750,17 @@ strstr:                                 ! @strstr
 	ba .LBB95_4
 	nop
 .LBB95_4:                               !   in Loop: Header=BB95_3 Depth=1
+	sethi %hi(.L__profc_strstr), %i0
+	add %i0, %lo(.L__profc_strstr), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-16], %o0
 	ld [%fp+-12], %o1
 	call strncmp
@@ -6147,6 +9771,17 @@ strstr:                                 ! @strstr
 	ba .LBB95_5
 	nop
 .LBB95_5:
+	sethi %hi(.L__profc_strstr), %i0
+	add %i0, %lo(.L__profc_strstr), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-16], %i0
 	ba .LBB95_9
 	st %i0, [%fp+-4]
@@ -6188,6 +9823,16 @@ copysign:                               ! @copysign
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc_copysign), %i0
+	ldd [%i0+%lo(.L__profc_copysign)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_copysign)]
 	ldd [%fp+-16], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -6195,23 +9840,58 @@ copysign:                               ! @copysign
 	call __ltdf2
 	mov	%o3, %o2
 	cmp	%o0, -1
-	bg	.LBB96_2
+	bg	.LBB96_3
 	nop
 	ba .LBB96_1
 	nop
 .LBB96_1:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
 	mov	%g0, %o3
 	call __gtdf2
 	mov	%o3, %o2
-	cmp	%o0, 0
-	bg	.LBB96_4
+	cmp	%o0, 1
+	bl	.LBB96_3
 	nop
 	ba .LBB96_2
 	nop
 .LBB96_2:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB96_6
+	std %i2, [%i0+32]
+.LBB96_3:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -6219,11 +9899,22 @@ copysign:                               ! @copysign
 	call __gtdf2
 	mov	%o3, %o2
 	cmp	%o0, 1
-	bl	.LBB96_5
+	bl	.LBB96_7
 	nop
-	ba .LBB96_3
+	ba .LBB96_4
 	nop
-.LBB96_3:
+.LBB96_4:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -6231,11 +9922,35 @@ copysign:                               ! @copysign
 	call __ltdf2
 	mov	%o3, %o2
 	cmp	%o0, -1
-	bg	.LBB96_5
+	bg	.LBB96_7
 	nop
-	ba .LBB96_4
+	ba .LBB96_5
 	nop
-.LBB96_4:
+.LBB96_5:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB96_6
+	std %i2, [%i0+48]
+.LBB96_6:
+	sethi %hi(.L__profc_copysign), %i0
+	add %i0, %lo(.L__profc_copysign), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-16], %i0
 	mov	%i0, %i3
 	mov	%i1, %i0
@@ -6244,13 +9959,13 @@ copysign:                               ! @copysign
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
-	ba .LBB96_6
+	ba .LBB96_8
 	std %i0, [%fp+-8]
-.LBB96_5:
+.LBB96_7:
 	ldd [%fp+-16], %i0
-	ba .LBB96_6
+	ba .LBB96_8
 	std %i0, [%fp+-8]
-.LBB96_6:
+.LBB96_8:
 	ldd [%fp+-8], %i2
 	mov	%i2, %i0
 	ret
@@ -6268,6 +9983,16 @@ memmem:                                 ! @memmem
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
 	st %i3, [%fp+-20]
+	sethi %hi(.L__profc_memmem), %i0
+	ldd [%i0+%lo(.L__profc_memmem)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_memmem)]
 	ld [%fp+-8], %i0
 	ld [%fp+-12], %i1
 	add %i0, %i1, %i0
@@ -6281,8 +10006,19 @@ memmem:                                 ! @memmem
 	ba .LBB97_1
 	nop
 .LBB97_1:
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i0
-	ba .LBB97_12
+	ba .LBB97_13
 	st %i0, [%fp+-4]
 .LBB97_2:
 	ld [%fp+-12], %i0
@@ -6293,7 +10029,18 @@ memmem:                                 ! @memmem
 	ba .LBB97_3
 	nop
 .LBB97_3:
-	ba .LBB97_12
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ba .LBB97_13
 	st %g0, [%fp+-4]
 .LBB97_4:
 	ld [%fp+-8], %i0
@@ -6303,21 +10050,43 @@ memmem:                                 ! @memmem
 	ld [%fp+-24], %i0
 	ld [%fp+-28], %i1
 	cmp	%i0, %i1
-	bgu	.LBB97_11
+	bgu	.LBB97_12
 	nop
 	ba .LBB97_6
 	nop
 .LBB97_6:                               !   in Loop: Header=BB97_5 Depth=1
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-24], %i0
 	ldsb [%i0], %i0
 	ld [%fp+-16], %i1
 	ldsb [%i1], %i1
 	cmp	%i0, %i1
-	bne	.LBB97_9
+	bne	.LBB97_10
 	nop
 	ba .LBB97_7
 	nop
 .LBB97_7:                               !   in Loop: Header=BB97_5 Depth=1
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-24], %i0
 	add %i0, 1, %o0
 	ld [%fp+-16], %i0
@@ -6326,26 +10095,50 @@ memmem:                                 ! @memmem
 	call memcmp
 	add %i0, -1, %o2
 	cmp	%o0, 0
-	bne	.LBB97_9
+	bne	.LBB97_10
 	nop
 	ba .LBB97_8
 	nop
 .LBB97_8:
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB97_9
+	std %i2, [%i0+48]
+.LBB97_9:
+	sethi %hi(.L__profc_memmem), %i0
+	add %i0, %lo(.L__profc_memmem), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-24], %i0
-	ba .LBB97_12
+	ba .LBB97_13
 	st %i0, [%fp+-4]
-.LBB97_9:                               !   in Loop: Header=BB97_5 Depth=1
-	ba .LBB97_10
-	nop
 .LBB97_10:                              !   in Loop: Header=BB97_5 Depth=1
+	ba .LBB97_11
+	nop
+.LBB97_11:                              !   in Loop: Header=BB97_5 Depth=1
 	ld [%fp+-24], %i0
 	add %i0, 1, %i0
 	ba .LBB97_5
 	st %i0, [%fp+-24]
-.LBB97_11:
-	ba .LBB97_12
-	st %g0, [%fp+-4]
 .LBB97_12:
+	ba .LBB97_13
+	st %g0, [%fp+-4]
+.LBB97_13:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -6361,6 +10154,16 @@ mempcpy:                                ! @mempcpy
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_mempcpy), %i0
+	ldd [%i0+%lo(.L__profc_mempcpy)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_mempcpy)]
 	ld [%fp+-4], %i0
 	ld [%fp+-8], %o1
 	ld [%fp+-12], %o2
@@ -6387,6 +10190,16 @@ frexp:                                  ! @frexp
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc_frexp), %i0
+	ldd [%i0+%lo(.L__profc_frexp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_frexp)]
 	st %g0, [%fp+-20]
 	st %g0, [%fp+-16]
 	ldd [%fp+-8], %i0
@@ -6401,6 +10214,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_1
 	nop
 .LBB99_1:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-8], %i0
 	mov	%i0, %i3
 	mov	%i1, %i0
@@ -6426,8 +10250,18 @@ frexp:                                  ! @frexp
 	ba .LBB99_3
 	nop
 .LBB99_3:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB99_4
-	nop
+	std %i2, [%i0+16]
 .LBB99_4:                               ! =>This Inner Loop Header: Depth=1
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
@@ -6441,6 +10275,17 @@ frexp:                                  ! @frexp
 	ba .LBB99_5
 	nop
 .LBB99_5:                               !   in Loop: Header=BB99_4 Depth=1
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-20], %i0
 	add %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -6456,7 +10301,7 @@ frexp:                                  ! @frexp
 	ba .LBB99_4
 	std %i0, [%fp+-8]
 .LBB99_6:
-	ba .LBB99_14
+	ba .LBB99_15
 	nop
 .LBB99_7:
 	ldd [%fp+-8], %i0
@@ -6466,11 +10311,22 @@ frexp:                                  ! @frexp
 	call __ltdf2
 	sethi 1046528, %o3
 	cmp	%o0, -1
-	bg	.LBB99_13
+	bg	.LBB99_14
 	nop
 	ba .LBB99_8
 	nop
 .LBB99_8:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -6478,14 +10334,37 @@ frexp:                                  ! @frexp
 	call __eqdf2
 	mov	%o3, %o2
 	cmp	%o0, 0
-	be	.LBB99_13
+	be	.LBB99_14
 	nop
 	ba .LBB99_9
 	nop
 .LBB99_9:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB99_10
-	nop
-.LBB99_10:                              ! =>This Inner Loop Header: Depth=1
+	std %i2, [%i0+48]
+.LBB99_10:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB99_11
+	std %i2, [%i0+32]
+.LBB99_11:                              ! =>This Inner Loop Header: Depth=1
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -6493,11 +10372,22 @@ frexp:                                  ! @frexp
 	call __ltdf2
 	sethi 1046528, %o3
 	cmp	%o0, -1
-	bg	.LBB99_12
+	bg	.LBB99_13
 	nop
-	ba .LBB99_11
+	ba .LBB99_12
 	nop
-.LBB99_11:                              !   in Loop: Header=BB99_10 Depth=1
+.LBB99_12:                              !   in Loop: Header=BB99_11 Depth=1
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-20], %i0
 	add %i0, -1, %i0
 	st %i0, [%fp+-20]
@@ -6510,25 +10400,36 @@ frexp:                                  ! @frexp
                                         ! implicit-def: $i0_i1
 	mov	%o0, %i0
 	mov	%o1, %i1
-	ba .LBB99_10
+	ba .LBB99_11
 	std %i0, [%fp+-8]
-.LBB99_12:
-	ba .LBB99_13
-	nop
 .LBB99_13:
 	ba .LBB99_14
 	nop
 .LBB99_14:
+	ba .LBB99_15
+	nop
+.LBB99_15:
 	ld [%fp+-20], %i1
 	ld [%fp+-12], %i0
 	st %i1, [%i0]
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
-	be	.LBB99_16
+	be	.LBB99_17
 	nop
-	ba .LBB99_15
+	ba .LBB99_16
 	nop
-.LBB99_15:
+.LBB99_16:
+	sethi %hi(.L__profc_frexp), %i0
+	add %i0, %lo(.L__profc_frexp), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
 	ldd [%fp+-8], %i0
 	mov	%i0, %i3
 	mov	%i1, %i0
@@ -6537,9 +10438,9 @@ frexp:                                  ! @frexp
                                         ! implicit-def: $i0_i1
 	mov	%i3, %i0
 	mov	%i2, %i1
-	ba .LBB99_16
+	ba .LBB99_17
 	std %i0, [%fp+-8]
-.LBB99_16:
+.LBB99_17:
 	ldd [%fp+-8], %i2
 	mov	%i2, %i0
 	ret
@@ -6567,6 +10468,16 @@ __muldi3:                               ! @__muldi3
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
+	sethi %hi(.L__profc___muldi3), %i0
+	ldd [%i0+%lo(.L__profc___muldi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___muldi3)]
 	mov	%g0, %i2
                                         ! implicit-def: $i0_i1
 	mov	%i2, %i0
@@ -6587,6 +10498,17 @@ __muldi3:                               ! @__muldi3
 	ba .LBB100_2
 	nop
 .LBB100_2:                              !   in Loop: Header=BB100_1 Depth=1
+	sethi %hi(.L__profc___muldi3), %i0
+	add %i0, %lo(.L__profc___muldi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-32], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -6595,6 +10517,17 @@ __muldi3:                               ! @__muldi3
 	ba .LBB100_3
 	nop
 .LBB100_3:                              !   in Loop: Header=BB100_1 Depth=1
+	sethi %hi(.L__profc___muldi3), %i0
+	add %i0, %lo(.L__profc___muldi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	mov	%i0, %i3
                                         ! kill: def $i1 killed $i1 killed $i0_i1
@@ -6645,10 +10578,20 @@ __muldi3:                               ! @__muldi3
 	.type	udivmodsi4,@function
 udivmodsi4:                             ! @udivmodsi4
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	ldd [%i0+%lo(.L__profc_udivmodsi4)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc_udivmodsi4)]
 	mov	1, %i0
 	st %i0, [%fp+-20]
 	ba .LBB101_1
@@ -6658,45 +10601,111 @@ udivmodsi4:                             ! @udivmodsi4
 	ld [%fp+-8], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bcc	.LBB101_6
+	bcc	.LBB101_8
 	st %i0, [%fp+-28]
 	ba .LBB101_2
 	nop
 .LBB101_2:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-20], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB101_6
+	be	.LBB101_8
 	st %i0, [%fp+-28]
 	ba .LBB101_3
 	nop
 .LBB101_3:                              !   in Loop: Header=BB101_1 Depth=1
-	add %fp, -12, %i0
-	or %i0, 3, %i0
-	ldub [%i0], %i0
-	and %i0, 128, %i1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB101_4
+	std %i2, [%i0+40]
+.LBB101_4:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ld [%fp+-12], %i0
+	sethi 2097152, %i1
+	and %i0, %i1, %i1
+	st %i1, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	be	.LBB101_5
+	be	.LBB101_6
 	st %i0, [%fp+-32]
-! %bb.4:                                !   in Loop: Header=BB101_1 Depth=1
+! %bb.5:                                !   in Loop: Header=BB101_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB101_5:                              !   in Loop: Header=BB101_1 Depth=1
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB101_6
-	st %i0, [%fp+-28]
 .LBB101_6:                              !   in Loop: Header=BB101_1 Depth=1
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB101_8
-	nop
+	ld [%fp+-40], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bne	.LBB101_8
+	st %i0, [%fp+-28]
 	ba .LBB101_7
 	nop
 .LBB101_7:                              !   in Loop: Header=BB101_1 Depth=1
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc_udivmodsi4), %i1
+	add %i1, %lo(.L__profc_udivmodsi4), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB101_8
+	st %i0, [%fp+-28]
+.LBB101_8:                              !   in Loop: Header=BB101_1 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB101_10
+	nop
+	ba .LBB101_9
+	nop
+.LBB101_9:                              !   in Loop: Header=BB101_1 Depth=1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+-12]
@@ -6704,25 +10713,47 @@ udivmodsi4:                             ! @udivmodsi4
 	sll %i0, 1, %i0
 	ba .LBB101_1
 	st %i0, [%fp+-20]
-.LBB101_8:
-	ba .LBB101_9
+.LBB101_10:
+	ba .LBB101_11
 	nop
-.LBB101_9:                              ! =>This Inner Loop Header: Depth=1
+.LBB101_11:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-20], %i0
 	cmp	%i0, 0
-	be	.LBB101_13
+	be	.LBB101_15
 	nop
-	ba .LBB101_10
+	ba .LBB101_12
 	nop
-.LBB101_10:                             !   in Loop: Header=BB101_9 Depth=1
+.LBB101_12:                             !   in Loop: Header=BB101_11 Depth=1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-8], %i0
 	ld [%fp+-12], %i1
 	cmp	%i0, %i1
-	bcs	.LBB101_12
+	bcs	.LBB101_14
 	nop
-	ba .LBB101_11
+	ba .LBB101_13
 	nop
-.LBB101_11:                             !   in Loop: Header=BB101_9 Depth=1
+.LBB101_13:                             !   in Loop: Header=BB101_11 Depth=1
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-12], %i1
 	ld [%fp+-8], %i0
 	sub %i0, %i1, %i0
@@ -6730,32 +10761,43 @@ udivmodsi4:                             ! @udivmodsi4
 	ld [%fp+-20], %i1
 	ld [%fp+-24], %i0
 	or %i0, %i1, %i0
-	ba .LBB101_12
+	ba .LBB101_14
 	st %i0, [%fp+-24]
-.LBB101_12:                             !   in Loop: Header=BB101_9 Depth=1
+.LBB101_14:                             !   in Loop: Header=BB101_11 Depth=1
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
 	ld [%fp+-12], %i0
 	srl %i0, 1, %i0
-	ba .LBB101_9
+	ba .LBB101_11
 	st %i0, [%fp+-12]
-.LBB101_13:
+.LBB101_15:
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
-	be	.LBB101_15
+	be	.LBB101_17
 	nop
-	ba .LBB101_14
+	ba .LBB101_16
 	nop
-.LBB101_14:
-	ld [%fp+-8], %i0
-	ba .LBB101_16
-	st %i0, [%fp+-4]
-.LBB101_15:
-	ld [%fp+-24], %i0
-	ba .LBB101_16
-	st %i0, [%fp+-4]
 .LBB101_16:
+	sethi %hi(.L__profc_udivmodsi4), %i0
+	add %i0, %lo(.L__profc_udivmodsi4), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
+	ld [%fp+-8], %i0
+	ba .LBB101_18
+	st %i0, [%fp+-4]
+.LBB101_17:
+	ld [%fp+-24], %i0
+	ba .LBB101_18
+	st %i0, [%fp+-4]
+.LBB101_18:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -6770,6 +10812,16 @@ __clrsbqi2:                             ! @__clrsbqi2
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	stb %i0, [%fp+-5]
+	sethi %hi(.L__profc___clrsbqi2), %i0
+	ldd [%i0+%lo(.L__profc___clrsbqi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___clrsbqi2)]
 	ldsb [%fp+-5], %i0
 	cmp	%i0, -1
 	bg	.LBB102_2
@@ -6777,6 +10829,17 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB102_1
 	nop
 .LBB102_1:
+	sethi %hi(.L__profc___clrsbqi2), %i0
+	add %i0, %lo(.L__profc___clrsbqi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-5], %i0
 	xor %i0, -1, %i0
 	ba .LBB102_2
@@ -6789,6 +10852,17 @@ __clrsbqi2:                             ! @__clrsbqi2
 	ba .LBB102_3
 	nop
 .LBB102_3:
+	sethi %hi(.L__profc___clrsbqi2), %i0
+	add %i0, %lo(.L__profc___clrsbqi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	7, %i0
 	ba .LBB102_5
 	st %i0, [%fp+-4]
@@ -6853,6 +10927,16 @@ __clrsbdi2:                             ! @__clrsbdi2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-16]
+	sethi %hi(.L__profc___clrsbdi2), %i0
+	ldd [%i0+%lo(.L__profc___clrsbdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___clrsbdi2)]
 	add %fp, -16, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i0
@@ -6862,6 +10946,17 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB103_1
 	nop
 .LBB103_1:
+	sethi %hi(.L__profc___clrsbdi2), %i0
+	add %i0, %lo(.L__profc___clrsbdi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldd [%fp+-16], %i2
 	mov	%i2, %i0
 	mov	%i3, %i1
@@ -6883,6 +10978,17 @@ __clrsbdi2:                             ! @__clrsbdi2
 	ba .LBB103_3
 	nop
 .LBB103_3:
+	sethi %hi(.L__profc___clrsbdi2), %i0
+	add %i0, %lo(.L__profc___clrsbdi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	63, %i0
 	ba .LBB103_7
 	st %i0, [%fp+-4]
@@ -6978,6 +11084,16 @@ __mulsi3:                               ! @__mulsi3
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___mulsi3), %i0
+	ldd [%i0+%lo(.L__profc___mulsi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mulsi3)]
 	ba .LBB104_1
 	st %g0, [%fp+-12]
 .LBB104_1:                              ! =>This Inner Loop Header: Depth=1
@@ -6988,6 +11104,17 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB104_2
 	nop
 .LBB104_2:                              !   in Loop: Header=BB104_1 Depth=1
+	sethi %hi(.L__profc___mulsi3), %i0
+	add %i0, %lo(.L__profc___mulsi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-4], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -6996,6 +11123,17 @@ __mulsi3:                               ! @__mulsi3
 	ba .LBB104_3
 	nop
 .LBB104_3:                              !   in Loop: Header=BB104_1 Depth=1
+	sethi %hi(.L__profc___mulsi3), %i0
+	add %i0, %lo(.L__profc___mulsi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i1
 	ld [%fp+-12], %i0
 	add %i0, %i1, %i0
@@ -7025,6 +11163,16 @@ __cmovd:                                ! @__cmovd
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc___cmovd), %i0
+	ldd [%i0+%lo(.L__profc___cmovd)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___cmovd)]
 	ld [%fp+-12], %i0
 	srl %i0, 3, %i0
 	st %i0, [%fp+-20]
@@ -7038,56 +11186,113 @@ __cmovd:                                ! @__cmovd
 	ld [%fp+-28], %i0
 	ld [%fp+-32], %i1
 	cmp	%i0, %i1
-	bcs	.LBB105_2
+	bcs	.LBB105_3
 	nop
 	ba .LBB105_1
 	nop
 .LBB105_1:
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-28], %i0
 	ld [%fp+-32], %i1
 	ld [%fp+-12], %i2
 	add %i1, %i2, %i1
 	cmp	%i0, %i1
-	bleu	.LBB105_10
+	bgu	.LBB105_3
 	nop
 	ba .LBB105_2
 	nop
 .LBB105_2:
-	ba .LBB105_3
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB105_11
+	std %i2, [%i0+24]
+.LBB105_3:
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
+	ba .LBB105_4
 	st %g0, [%fp+-16]
-.LBB105_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB105_4:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-16], %i0
 	ld [%fp+-20], %i1
 	cmp	%i0, %i1
-	bcc	.LBB105_6
+	bcc	.LBB105_7
 	nop
-	ba .LBB105_4
+	ba .LBB105_5
 	nop
-.LBB105_4:                              !   in Loop: Header=BB105_3 Depth=1
+.LBB105_5:                              !   in Loop: Header=BB105_4 Depth=1
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-8], %i0
 	ld [%fp+-16], %i1
 	sll %i1, 3, %i1
 	ldd [%i0+%i1], %i2
 	ld [%fp+-4], %i0
-	ba .LBB105_5
+	ba .LBB105_6
 	std %i2, [%i0+%i1]
-.LBB105_5:                              !   in Loop: Header=BB105_3 Depth=1
+.LBB105_6:                              !   in Loop: Header=BB105_4 Depth=1
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
-	ba .LBB105_3
+	ba .LBB105_4
 	st %i0, [%fp+-16]
-.LBB105_6:
-	ba .LBB105_7
+.LBB105_7:
+	ba .LBB105_8
 	nop
-.LBB105_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB105_8:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	ld [%fp+-24], %i1
 	cmp	%i0, %i1
-	bleu	.LBB105_9
+	bleu	.LBB105_10
 	nop
-	ba .LBB105_8
+	ba .LBB105_9
 	nop
-.LBB105_8:                              !   in Loop: Header=BB105_7 Depth=1
+.LBB105_9:                              !   in Loop: Header=BB105_8 Depth=1
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-32], %i0
 	ld [%fp+-24], %i1
 	ldub [%i0+%i1], %i2
@@ -7095,33 +11300,44 @@ __cmovd:                                ! @__cmovd
 	stb %i2, [%i0+%i1]
 	ld [%fp+-24], %i0
 	add %i0, 1, %i0
-	ba .LBB105_7
+	ba .LBB105_8
 	st %i0, [%fp+-24]
-.LBB105_9:
-	ba .LBB105_14
-	nop
 .LBB105_10:
-	ba .LBB105_11
+	ba .LBB105_15
 	nop
-.LBB105_11:                             ! =>This Inner Loop Header: Depth=1
+.LBB105_11:
+	ba .LBB105_12
+	nop
+.LBB105_12:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i1
 	cmp	%i0, 0
-	be	.LBB105_13
+	be	.LBB105_14
 	st %i1, [%fp+-12]
-	ba .LBB105_12
+	ba .LBB105_13
 	nop
-.LBB105_12:                             !   in Loop: Header=BB105_11 Depth=1
+.LBB105_13:                             !   in Loop: Header=BB105_12 Depth=1
+	sethi %hi(.L__profc___cmovd), %i0
+	add %i0, %lo(.L__profc___cmovd), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-32], %i0
 	ld [%fp+-12], %i1
 	ldub [%i0+%i1], %i2
 	ld [%fp+-28], %i0
-	ba .LBB105_11
+	ba .LBB105_12
 	stb %i2, [%i0+%i1]
-.LBB105_13:
-	ba .LBB105_14
-	nop
 .LBB105_14:
+	ba .LBB105_15
+	nop
+.LBB105_15:
 	ret
 	restore
 .Lfunc_end105:
@@ -7136,6 +11352,16 @@ __cmovh:                                ! @__cmovh
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc___cmovh), %i0
+	ldd [%i0+%lo(.L__profc___cmovh)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___cmovh)]
 	ld [%fp+-12], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
@@ -7146,85 +11372,153 @@ __cmovh:                                ! @__cmovh
 	ld [%fp+-24], %i0
 	ld [%fp+-28], %i1
 	cmp	%i0, %i1
-	bcs	.LBB106_2
+	bcs	.LBB106_3
 	nop
 	ba .LBB106_1
 	nop
 .LBB106_1:
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-24], %i0
 	ld [%fp+-28], %i1
 	ld [%fp+-12], %i2
 	add %i1, %i2, %i1
 	cmp	%i0, %i1
-	bleu	.LBB106_9
+	bgu	.LBB106_3
 	nop
 	ba .LBB106_2
 	nop
 .LBB106_2:
-	ba .LBB106_3
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB106_10
+	std %i2, [%i0+24]
+.LBB106_3:
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
+	ba .LBB106_4
 	st %g0, [%fp+-16]
-.LBB106_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB106_4:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-16], %i0
 	ld [%fp+-20], %i1
 	cmp	%i0, %i1
-	bcc	.LBB106_6
+	bcc	.LBB106_7
 	nop
-	ba .LBB106_4
+	ba .LBB106_5
 	nop
-.LBB106_4:                              !   in Loop: Header=BB106_3 Depth=1
+.LBB106_5:                              !   in Loop: Header=BB106_4 Depth=1
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-8], %i0
 	ld [%fp+-16], %i1
 	sll %i1, 1, %i1
 	lduh [%i0+%i1], %i2
 	ld [%fp+-4], %i0
-	ba .LBB106_5
+	ba .LBB106_6
 	sth %i2, [%i0+%i1]
-.LBB106_5:                              !   in Loop: Header=BB106_3 Depth=1
+.LBB106_6:                              !   in Loop: Header=BB106_4 Depth=1
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
-	ba .LBB106_3
+	ba .LBB106_4
 	st %i0, [%fp+-16]
-.LBB106_6:
+.LBB106_7:
 	ldub [%fp+-12], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB106_8
+	be	.LBB106_9
 	nop
-	ba .LBB106_7
+	ba .LBB106_8
 	nop
-.LBB106_7:
+.LBB106_8:
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-28], %i0
 	ld [%fp+-12], %i1
 	add %i1, -1, %i1
 	ldub [%i0+%i1], %i2
 	ld [%fp+-24], %i0
-	ba .LBB106_8
+	ba .LBB106_9
 	stb %i2, [%i0+%i1]
-.LBB106_8:
-	ba .LBB106_13
-	nop
 .LBB106_9:
-	ba .LBB106_10
+	ba .LBB106_14
 	nop
-.LBB106_10:                             ! =>This Inner Loop Header: Depth=1
+.LBB106_10:
+	ba .LBB106_11
+	nop
+.LBB106_11:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i1
 	cmp	%i0, 0
-	be	.LBB106_12
+	be	.LBB106_13
 	st %i1, [%fp+-12]
-	ba .LBB106_11
+	ba .LBB106_12
 	nop
-.LBB106_11:                             !   in Loop: Header=BB106_10 Depth=1
+.LBB106_12:                             !   in Loop: Header=BB106_11 Depth=1
+	sethi %hi(.L__profc___cmovh), %i0
+	add %i0, %lo(.L__profc___cmovh), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-28], %i0
 	ld [%fp+-12], %i1
 	ldub [%i0+%i1], %i2
 	ld [%fp+-24], %i0
-	ba .LBB106_10
+	ba .LBB106_11
 	stb %i2, [%i0+%i1]
-.LBB106_12:
-	ba .LBB106_13
-	nop
 .LBB106_13:
+	ba .LBB106_14
+	nop
+.LBB106_14:
 	ret
 	restore
 .Lfunc_end106:
@@ -7239,6 +11533,16 @@ __cmovw:                                ! @__cmovw
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc___cmovw), %i0
+	ldd [%i0+%lo(.L__profc___cmovw)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___cmovw)]
 	ld [%fp+-12], %i0
 	srl %i0, 2, %i0
 	st %i0, [%fp+-20]
@@ -7252,56 +11556,113 @@ __cmovw:                                ! @__cmovw
 	ld [%fp+-28], %i0
 	ld [%fp+-32], %i1
 	cmp	%i0, %i1
-	bcs	.LBB107_2
+	bcs	.LBB107_3
 	nop
 	ba .LBB107_1
 	nop
 .LBB107_1:
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-28], %i0
 	ld [%fp+-32], %i1
 	ld [%fp+-12], %i2
 	add %i1, %i2, %i1
 	cmp	%i0, %i1
-	bleu	.LBB107_10
+	bgu	.LBB107_3
 	nop
 	ba .LBB107_2
 	nop
 .LBB107_2:
-	ba .LBB107_3
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB107_11
+	std %i2, [%i0+24]
+.LBB107_3:
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
+	ba .LBB107_4
 	st %g0, [%fp+-16]
-.LBB107_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB107_4:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-16], %i0
 	ld [%fp+-20], %i1
 	cmp	%i0, %i1
-	bcc	.LBB107_6
+	bcc	.LBB107_7
 	nop
-	ba .LBB107_4
+	ba .LBB107_5
 	nop
-.LBB107_4:                              !   in Loop: Header=BB107_3 Depth=1
+.LBB107_5:                              !   in Loop: Header=BB107_4 Depth=1
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-8], %i0
 	ld [%fp+-16], %i1
 	sll %i1, 2, %i1
 	ld [%i0+%i1], %i2
 	ld [%fp+-4], %i0
-	ba .LBB107_5
+	ba .LBB107_6
 	st %i2, [%i0+%i1]
-.LBB107_5:                              !   in Loop: Header=BB107_3 Depth=1
+.LBB107_6:                              !   in Loop: Header=BB107_4 Depth=1
 	ld [%fp+-16], %i0
 	add %i0, 1, %i0
-	ba .LBB107_3
+	ba .LBB107_4
 	st %i0, [%fp+-16]
-.LBB107_6:
-	ba .LBB107_7
+.LBB107_7:
+	ba .LBB107_8
 	nop
-.LBB107_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB107_8:                              ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	ld [%fp+-24], %i1
 	cmp	%i0, %i1
-	bleu	.LBB107_9
+	bleu	.LBB107_10
 	nop
-	ba .LBB107_8
+	ba .LBB107_9
 	nop
-.LBB107_8:                              !   in Loop: Header=BB107_7 Depth=1
+.LBB107_9:                              !   in Loop: Header=BB107_8 Depth=1
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-32], %i0
 	ld [%fp+-24], %i1
 	ldub [%i0+%i1], %i2
@@ -7309,33 +11670,44 @@ __cmovw:                                ! @__cmovw
 	stb %i2, [%i0+%i1]
 	ld [%fp+-24], %i0
 	add %i0, 1, %i0
-	ba .LBB107_7
+	ba .LBB107_8
 	st %i0, [%fp+-24]
-.LBB107_9:
-	ba .LBB107_14
-	nop
 .LBB107_10:
-	ba .LBB107_11
+	ba .LBB107_15
 	nop
-.LBB107_11:                             ! =>This Inner Loop Header: Depth=1
+.LBB107_11:
+	ba .LBB107_12
+	nop
+.LBB107_12:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-12], %i0
 	add %i0, -1, %i1
 	cmp	%i0, 0
-	be	.LBB107_13
+	be	.LBB107_14
 	st %i1, [%fp+-12]
-	ba .LBB107_12
+	ba .LBB107_13
 	nop
-.LBB107_12:                             !   in Loop: Header=BB107_11 Depth=1
+.LBB107_13:                             !   in Loop: Header=BB107_12 Depth=1
+	sethi %hi(.L__profc___cmovw), %i0
+	add %i0, %lo(.L__profc___cmovw), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-32], %i0
 	ld [%fp+-12], %i1
 	ldub [%i0+%i1], %i2
 	ld [%fp+-28], %i0
-	ba .LBB107_11
+	ba .LBB107_12
 	stb %i2, [%i0+%i1]
-.LBB107_13:
-	ba .LBB107_14
-	nop
 .LBB107_14:
+	ba .LBB107_15
+	nop
+.LBB107_15:
 	ret
 	restore
 .Lfunc_end107:
@@ -7349,6 +11721,16 @@ __modi:                                 ! @__modi
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___modi), %i0
+	ldd [%i0+%lo(.L__profc___modi)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___modi)]
 	ld [%fp+-4], %i0
 	ld [%fp+-8], %i2
 	sra %i0, 31, %i1
@@ -7368,6 +11750,16 @@ __uitod:                                ! @__uitod
 ! %bb.0:
 	save %sp, -96, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___uitod), %i0
+	ldd [%i0+%lo(.L__profc___uitod)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___uitod)]
 	call __floatunsidf
 	ld [%fp+-4], %o0
 	mov	%o0, %i0
@@ -7383,6 +11775,16 @@ __uitof:                                ! @__uitof
 ! %bb.0:
 	save %sp, -96, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___uitof), %i0
+	ldd [%i0+%lo(.L__profc___uitof)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___uitof)]
 	call __floatunsisf
 	ld [%fp+-4], %o0
 	ret
@@ -7404,6 +11806,16 @@ __ulltod:                               ! @__ulltod
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___ulltod), %i0
+	ldd [%i0+%lo(.L__profc___ulltod)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ulltod)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	call __floatundidf
@@ -7428,6 +11840,16 @@ __ulltof:                               ! @__ulltof
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___ulltof), %i0
+	ldd [%i0+%lo(.L__profc___ulltof)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ulltof)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	call __floatundisf
@@ -7445,6 +11867,16 @@ __umodi:                                ! @__umodi
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___umodi), %i0
+	ldd [%i0+%lo(.L__profc___umodi)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___umodi)]
 	ld [%fp+-4], %i0
 	ld [%fp+-8], %i2
 	wr %g0, %g0, %y
@@ -7464,6 +11896,16 @@ __clzhi2:                               ! @__clzhi2
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	sth %i0, [%fp+-2]
+	sethi %hi(.L__profc___clzhi2), %i0
+	ldd [%i0+%lo(.L__profc___clzhi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___clzhi2)]
 	ba .LBB114_1
 	st %g0, [%fp+-8]
 .LBB114_1:                              ! =>This Inner Loop Header: Depth=1
@@ -7474,6 +11916,17 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB114_2
 	nop
 .LBB114_2:                              !   in Loop: Header=BB114_1 Depth=1
+	sethi %hi(.L__profc___clzhi2), %i0
+	add %i0, %lo(.L__profc___clzhi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	lduh [%fp+-2], %i0
 	ld [%fp+-8], %i2
 	mov	15, %i1
@@ -7486,8 +11939,18 @@ __clzhi2:                               ! @__clzhi2
 	ba .LBB114_3
 	nop
 .LBB114_3:
+	sethi %hi(.L__profc___clzhi2), %i0
+	add %i0, %lo(.L__profc___clzhi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB114_6
-	nop
+	std %i2, [%i0+16]
 .LBB114_4:                              !   in Loop: Header=BB114_1 Depth=1
 	ba .LBB114_5
 	nop
@@ -7511,6 +11974,16 @@ __ctzhi2:                               ! @__ctzhi2
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	sth %i0, [%fp+-2]
+	sethi %hi(.L__profc___ctzhi2), %i0
+	ldd [%i0+%lo(.L__profc___ctzhi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ctzhi2)]
 	ba .LBB115_1
 	st %g0, [%fp+-8]
 .LBB115_1:                              ! =>This Inner Loop Header: Depth=1
@@ -7521,6 +11994,17 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB115_2
 	nop
 .LBB115_2:                              !   in Loop: Header=BB115_1 Depth=1
+	sethi %hi(.L__profc___ctzhi2), %i0
+	add %i0, %lo(.L__profc___ctzhi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	lduh [%fp+-2], %i0
 	ld [%fp+-8], %i1
 	srl %i0, %i1, %i0
@@ -7531,8 +12015,18 @@ __ctzhi2:                               ! @__ctzhi2
 	ba .LBB115_3
 	nop
 .LBB115_3:
+	sethi %hi(.L__profc___ctzhi2), %i0
+	add %i0, %lo(.L__profc___ctzhi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB115_6
-	nop
+	std %i2, [%i0+16]
 .LBB115_4:                              !   in Loop: Header=BB115_1 Depth=1
 	ba .LBB115_5
 	nop
@@ -7556,6 +12050,16 @@ __fixunssfsi:                           ! @__fixunssfsi
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	st %i0, [%fp+-8]
+	sethi %hi(.L__profc___fixunssfsi), %i0
+	ldd [%i0+%lo(.L__profc___fixunssfsi)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___fixunssfsi)]
 	ld [%fp+-8], %o0
 	call __gesf2
 	sethi 1163264, %o1
@@ -7565,6 +12069,17 @@ __fixunssfsi:                           ! @__fixunssfsi
 	ba .LBB116_1
 	nop
 .LBB116_1:
+	sethi %hi(.L__profc___fixunssfsi), %i0
+	add %i0, %lo(.L__profc___fixunssfsi), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %o0
 	call __addsf3
 	sethi 3260416, %o1
@@ -7594,6 +12109,16 @@ __parityhi2:                            ! @__parityhi2
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	sth %i0, [%fp+-2]
+	sethi %hi(.L__profc___parityhi2), %i0
+	ldd [%i0+%lo(.L__profc___parityhi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___parityhi2)]
 	st %g0, [%fp+-12]
 	ba .LBB117_1
 	st %g0, [%fp+-8]
@@ -7605,6 +12130,17 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB117_2
 	nop
 .LBB117_2:                              !   in Loop: Header=BB117_1 Depth=1
+	sethi %hi(.L__profc___parityhi2), %i0
+	add %i0, %lo(.L__profc___parityhi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	lduh [%fp+-2], %i0
 	ld [%fp+-8], %i1
 	srl %i0, %i1, %i0
@@ -7615,6 +12151,17 @@ __parityhi2:                            ! @__parityhi2
 	ba .LBB117_3
 	nop
 .LBB117_3:                              !   in Loop: Header=BB117_1 Depth=1
+	sethi %hi(.L__profc___parityhi2), %i0
+	add %i0, %lo(.L__profc___parityhi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB117_4
@@ -7643,6 +12190,16 @@ __popcounthi2:                          ! @__popcounthi2
 	save %sp, -104, %sp
                                         ! kill: def $i1 killed $i0
 	sth %i0, [%fp+-2]
+	sethi %hi(.L__profc___popcounthi2), %i0
+	ldd [%i0+%lo(.L__profc___popcounthi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___popcounthi2)]
 	st %g0, [%fp+-12]
 	ba .LBB118_1
 	st %g0, [%fp+-8]
@@ -7654,6 +12211,17 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB118_2
 	nop
 .LBB118_2:                              !   in Loop: Header=BB118_1 Depth=1
+	sethi %hi(.L__profc___popcounthi2), %i0
+	add %i0, %lo(.L__profc___popcounthi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	lduh [%fp+-2], %i0
 	ld [%fp+-8], %i1
 	srl %i0, %i1, %i0
@@ -7664,6 +12232,17 @@ __popcounthi2:                          ! @__popcounthi2
 	ba .LBB118_3
 	nop
 .LBB118_3:                              !   in Loop: Header=BB118_1 Depth=1
+	sethi %hi(.L__profc___popcounthi2), %i0
+	add %i0, %lo(.L__profc___popcounthi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-12], %i0
 	add %i0, 1, %i0
 	ba .LBB118_4
@@ -7691,6 +12270,16 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___mulsi3_iq2000), %i0
+	ldd [%i0+%lo(.L__profc___mulsi3_iq2000)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mulsi3_iq2000)]
 	ba .LBB119_1
 	st %g0, [%fp+-12]
 .LBB119_1:                              ! =>This Inner Loop Header: Depth=1
@@ -7701,6 +12290,17 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB119_2
 	nop
 .LBB119_2:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(.L__profc___mulsi3_iq2000), %i0
+	add %i0, %lo(.L__profc___mulsi3_iq2000), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-4], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -7709,6 +12309,17 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	ba .LBB119_3
 	nop
 .LBB119_3:                              !   in Loop: Header=BB119_1 Depth=1
+	sethi %hi(.L__profc___mulsi3_iq2000), %i0
+	add %i0, %lo(.L__profc___mulsi3_iq2000), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i1
 	ld [%fp+-12], %i0
 	add %i0, %i1, %i0
@@ -7737,6 +12348,16 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	save %sp, -112, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc___mulsi3_lm32), %i0
+	ldd [%i0+%lo(.L__profc___mulsi3_lm32)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mulsi3_lm32)]
 	st %g0, [%fp+-16]
 	ld [%fp+-8], %i0
 	cmp	%i0, 0
@@ -7745,6 +12366,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_1
 	nop
 .LBB120_1:
+	sethi %hi(.L__profc___mulsi3_lm32), %i0
+	add %i0, %lo(.L__profc___mulsi3_lm32), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ba .LBB120_8
 	st %g0, [%fp+-4]
 .LBB120_2:
@@ -7758,6 +12390,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_4
 	nop
 .LBB120_4:                              !   in Loop: Header=BB120_3 Depth=1
+	sethi %hi(.L__profc___mulsi3_lm32), %i0
+	add %i0, %lo(.L__profc___mulsi3_lm32), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldub [%fp+-12], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -7766,6 +12409,17 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	ba .LBB120_5
 	nop
 .LBB120_5:                              !   in Loop: Header=BB120_3 Depth=1
+	sethi %hi(.L__profc___mulsi3_lm32), %i0
+	add %i0, %lo(.L__profc___mulsi3_lm32), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-8], %i1
 	ld [%fp+-16], %i0
 	add %i0, %i1, %i0
@@ -7795,10 +12449,20 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	.type	__udivmodsi4,@function
 __udivmodsi4:                           ! @__udivmodsi4
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	ldd [%i0+%lo(.L__profc___udivmodsi4)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___udivmodsi4)]
 	mov	1, %i0
 	st %i0, [%fp+-20]
 	ba .LBB121_1
@@ -7808,45 +12472,111 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ld [%fp+-8], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bcc	.LBB121_6
+	bcc	.LBB121_8
 	st %i0, [%fp+-28]
 	ba .LBB121_2
 	nop
 .LBB121_2:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-20], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB121_6
+	be	.LBB121_8
 	st %i0, [%fp+-28]
 	ba .LBB121_3
 	nop
 .LBB121_3:                              !   in Loop: Header=BB121_1 Depth=1
-	add %fp, -12, %i0
-	or %i0, 3, %i0
-	ldub [%i0], %i0
-	and %i0, 128, %i1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB121_4
+	std %i2, [%i0+40]
+.LBB121_4:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ld [%fp+-12], %i0
+	sethi 2097152, %i1
+	and %i0, %i1, %i1
+	st %i1, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	be	.LBB121_5
+	be	.LBB121_6
 	st %i0, [%fp+-32]
-! %bb.4:                                !   in Loop: Header=BB121_1 Depth=1
+! %bb.5:                                !   in Loop: Header=BB121_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB121_5:                              !   in Loop: Header=BB121_1 Depth=1
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB121_6
-	st %i0, [%fp+-28]
 .LBB121_6:                              !   in Loop: Header=BB121_1 Depth=1
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB121_8
-	nop
+	ld [%fp+-40], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bne	.LBB121_8
+	st %i0, [%fp+-28]
 	ba .LBB121_7
 	nop
 .LBB121_7:                              !   in Loop: Header=BB121_1 Depth=1
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc___udivmodsi4), %i1
+	add %i1, %lo(.L__profc___udivmodsi4), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB121_8
+	st %i0, [%fp+-28]
+.LBB121_8:                              !   in Loop: Header=BB121_1 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB121_10
+	nop
+	ba .LBB121_9
+	nop
+.LBB121_9:                              !   in Loop: Header=BB121_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+-12]
@@ -7854,25 +12584,47 @@ __udivmodsi4:                           ! @__udivmodsi4
 	sll %i0, 1, %i0
 	ba .LBB121_1
 	st %i0, [%fp+-20]
-.LBB121_8:
-	ba .LBB121_9
+.LBB121_10:
+	ba .LBB121_11
 	nop
-.LBB121_9:                              ! =>This Inner Loop Header: Depth=1
+.LBB121_11:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-20], %i0
 	cmp	%i0, 0
-	be	.LBB121_13
+	be	.LBB121_15
 	nop
-	ba .LBB121_10
+	ba .LBB121_12
 	nop
-.LBB121_10:                             !   in Loop: Header=BB121_9 Depth=1
+.LBB121_12:                             !   in Loop: Header=BB121_11 Depth=1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-8], %i0
 	ld [%fp+-12], %i1
 	cmp	%i0, %i1
-	bcs	.LBB121_12
+	bcs	.LBB121_14
 	nop
-	ba .LBB121_11
+	ba .LBB121_13
 	nop
-.LBB121_11:                             !   in Loop: Header=BB121_9 Depth=1
+.LBB121_13:                             !   in Loop: Header=BB121_11 Depth=1
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-12], %i1
 	ld [%fp+-8], %i0
 	sub %i0, %i1, %i0
@@ -7880,32 +12632,43 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ld [%fp+-20], %i1
 	ld [%fp+-24], %i0
 	or %i0, %i1, %i0
-	ba .LBB121_12
+	ba .LBB121_14
 	st %i0, [%fp+-24]
-.LBB121_12:                             !   in Loop: Header=BB121_9 Depth=1
+.LBB121_14:                             !   in Loop: Header=BB121_11 Depth=1
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
 	ld [%fp+-12], %i0
 	srl %i0, 1, %i0
-	ba .LBB121_9
+	ba .LBB121_11
 	st %i0, [%fp+-12]
-.LBB121_13:
+.LBB121_15:
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
-	be	.LBB121_15
+	be	.LBB121_17
 	nop
-	ba .LBB121_14
+	ba .LBB121_16
 	nop
-.LBB121_14:
-	ld [%fp+-8], %i0
-	ba .LBB121_16
-	st %i0, [%fp+-4]
-.LBB121_15:
-	ld [%fp+-24], %i0
-	ba .LBB121_16
-	st %i0, [%fp+-4]
 .LBB121_16:
+	sethi %hi(.L__profc___udivmodsi4), %i0
+	add %i0, %lo(.L__profc___udivmodsi4), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
+	ld [%fp+-8], %i0
+	ba .LBB121_18
+	st %i0, [%fp+-4]
+.LBB121_17:
+	ld [%fp+-24], %i0
+	ba .LBB121_18
+	st %i0, [%fp+-4]
+.LBB121_18:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -7922,6 +12685,16 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
+	sethi %hi(.L__profc___mspabi_cmpf), %i0
+	ldd [%i0+%lo(.L__profc___mspabi_cmpf)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mspabi_cmpf)]
 	ld [%fp+-8], %o0
 	call __ltsf2
 	ld [%fp+-12], %o1
@@ -7931,6 +12704,17 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB122_1
 	nop
 .LBB122_1:
+	sethi %hi(.L__profc___mspabi_cmpf), %i0
+	add %i0, %lo(.L__profc___mspabi_cmpf), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	mov	-1, %i0
 	ba .LBB122_5
 	st %i0, [%fp+-4]
@@ -7944,6 +12728,17 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	ba .LBB122_3
 	nop
 .LBB122_3:
+	sethi %hi(.L__profc___mspabi_cmpf), %i0
+	add %i0, %lo(.L__profc___mspabi_cmpf), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	1, %i0
 	ba .LBB122_5
 	st %i0, [%fp+-4]
@@ -7977,6 +12772,16 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc___mspabi_cmpd), %i0
+	ldd [%i0+%lo(.L__profc___mspabi_cmpd)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mspabi_cmpd)]
 	ldd [%fp+-16], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -7990,6 +12795,17 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB123_1
 	nop
 .LBB123_1:
+	sethi %hi(.L__profc___mspabi_cmpd), %i0
+	add %i0, %lo(.L__profc___mspabi_cmpd), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	mov	-1, %i0
 	ba .LBB123_5
 	st %i0, [%fp+-4]
@@ -8007,6 +12823,17 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	ba .LBB123_3
 	nop
 .LBB123_3:
+	sethi %hi(.L__profc___mspabi_cmpd), %i0
+	add %i0, %lo(.L__profc___mspabi_cmpd), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	1, %i0
 	ba .LBB123_5
 	st %i0, [%fp+-4]
@@ -8028,6 +12855,16 @@ __mspabi_mpysll:                        ! @__mspabi_mpysll
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___mspabi_mpysll), %i0
+	ldd [%i0+%lo(.L__profc___mspabi_mpysll)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mspabi_mpysll)]
 	ld [%fp+-4], %i0
 	ld [%fp+-8], %i1
 	smul %i0, %i1, %i0
@@ -8045,6 +12882,16 @@ __mspabi_mpyull:                        ! @__mspabi_mpyull
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___mspabi_mpyull), %i0
+	ldd [%i0+%lo(.L__profc___mspabi_mpyull)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mspabi_mpyull)]
 	ld [%fp+-4], %i0
 	ld [%fp+-8], %i1
 	umul %i0, %i1, %i0
@@ -8059,9 +12906,19 @@ __mspabi_mpyull:                        ! @__mspabi_mpyull
 	.type	__mulhi3,@function
 __mulhi3:                               ! @__mulhi3
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___mulhi3), %i0
+	ldd [%i0+%lo(.L__profc___mulhi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___mulhi3)]
 	st %g0, [%fp+-16]
 	st %g0, [%fp+-20]
 	ld [%fp+-8], %i0
@@ -8071,6 +12928,17 @@ __mulhi3:                               ! @__mulhi3
 	ba .LBB126_1
 	nop
 .LBB126_1:
+	sethi %hi(.L__profc___mulhi3), %i0
+	add %i0, %lo(.L__profc___mulhi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -8086,12 +12954,24 @@ __mulhi3:                               ! @__mulhi3
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB126_7
+	be	.LBB126_8
 	st %i0, [%fp+-24]
 	ba .LBB126_4
 	nop
 .LBB126_4:                              !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(.L__profc___mulhi3), %i0
+	add %i0, %lo(.L__profc___mulhi3), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ldsb [%fp+-9], %i1
+	st %i1, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
 	mov	1, %i0
@@ -8102,63 +12982,116 @@ __mulhi3:                               ! @__mulhi3
 	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
 .LBB126_6:                              !   in Loop: Header=BB126_3 Depth=1
+	ld [%fp+-36], %i1                       ! 4-byte Folded Reload
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	ba .LBB126_7
+	st %i0, [%fp+-40]                       ! 4-byte Folded Spill
+	cmp	%i1, 31
+	bgu	.LBB126_8
 	st %i0, [%fp+-24]
+	ba .LBB126_7
+	nop
 .LBB126_7:                              !   in Loop: Header=BB126_3 Depth=1
+	ld [%fp+-40], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc___mulhi3), %i1
+	add %i1, %lo(.L__profc___mulhi3), %i1
+	ldd [%i1+32], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+32]
+	ba .LBB126_8
+	st %i0, [%fp+-24]
+.LBB126_8:                              !   in Loop: Header=BB126_3 Depth=1
 	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
 	and %i0, 1, %i0
 	cmp	%i0, 0
-	be	.LBB126_12
-	nop
-	ba .LBB126_8
-	nop
-.LBB126_8:                              !   in Loop: Header=BB126_3 Depth=1
-	ldub [%fp+-8], %i0
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB126_10
+	be	.LBB126_13
 	nop
 	ba .LBB126_9
 	nop
 .LBB126_9:                              !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(.L__profc___mulhi3), %i0
+	add %i0, %lo(.L__profc___mulhi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ldub [%fp+-8], %i0
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB126_11
+	nop
+	ba .LBB126_10
+	nop
+.LBB126_10:                             !   in Loop: Header=BB126_3 Depth=1
+	sethi %hi(.L__profc___mulhi3), %i0
+	add %i0, %lo(.L__profc___mulhi3), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+40]
 	ld [%fp+-4], %i1
 	ld [%fp+-20], %i0
 	add %i0, %i1, %i0
-	ba .LBB126_10
+	ba .LBB126_11
 	st %i0, [%fp+-20]
-.LBB126_10:                             !   in Loop: Header=BB126_3 Depth=1
+.LBB126_11:                             !   in Loop: Header=BB126_3 Depth=1
 	ld [%fp+-4], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+-4]
 	ld [%fp+-8], %i0
 	sra %i0, 1, %i0
-	ba .LBB126_11
+	ba .LBB126_12
 	st %i0, [%fp+-8]
-.LBB126_11:                             !   in Loop: Header=BB126_3 Depth=1
+.LBB126_12:                             !   in Loop: Header=BB126_3 Depth=1
 	ldub [%fp+-9], %i0
 	add %i0, 1, %i0
 	ba .LBB126_3
 	stb %i0, [%fp+-9]
-.LBB126_12:
+.LBB126_13:
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
-	be	.LBB126_14
+	be	.LBB126_15
 	nop
-	ba .LBB126_13
+	ba .LBB126_14
 	nop
-.LBB126_13:
+.LBB126_14:
+	sethi %hi(.L__profc___mulhi3), %i0
+	add %i0, %lo(.L__profc___mulhi3), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-20], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
-	ba .LBB126_15
-	st %i0, [%fp+-36]
-.LBB126_14:
-	ld [%fp+-20], %i0
-	ba .LBB126_15
-	st %i0, [%fp+-36]
+	ba .LBB126_16
+	st %i0, [%fp+-44]
 .LBB126_15:
-	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	ld [%fp+-20], %i0
+	ba .LBB126_16
+	st %i0, [%fp+-44]
+.LBB126_16:
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
 	ret
 	restore
 .Lfunc_end126:
@@ -8172,6 +13105,16 @@ __divsi3:                               ! @__divsi3
 	save %sp, -128, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___divsi3), %i0
+	ldd [%i0+%lo(.L__profc___divsi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___divsi3)]
 	st %g0, [%fp+-12]
 	ld [%fp+-4], %i0
 	cmp	%i0, -1
@@ -8180,6 +13123,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_1
 	nop
 .LBB127_1:
+	sethi %hi(.L__profc___divsi3), %i0
+	add %i0, %lo(.L__profc___divsi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
 	mov	%g0, %i0
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
@@ -8205,6 +13159,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_5
 	nop
 .LBB127_5:
+	sethi %hi(.L__profc___divsi3), %i0
+	add %i0, %lo(.L__profc___divsi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
@@ -8235,6 +13200,17 @@ __divsi3:                               ! @__divsi3
 	ba .LBB127_9
 	nop
 .LBB127_9:
+	sethi %hi(.L__profc___divsi3), %i0
+	add %i0, %lo(.L__profc___divsi3), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-16], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -8255,6 +13231,16 @@ __modsi3:                               ! @__modsi3
 	save %sp, -112, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___modsi3), %i0
+	ldd [%i0+%lo(.L__profc___modsi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___modsi3)]
 	st %g0, [%fp+-12]
 	ld [%fp+-4], %i0
 	cmp	%i0, -1
@@ -8263,6 +13249,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_1
 	nop
 .LBB128_1:
+	sethi %hi(.L__profc___modsi3), %i0
+	add %i0, %lo(.L__profc___modsi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-4], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -8278,6 +13275,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_3
 	nop
 .LBB128_3:
+	sethi %hi(.L__profc___modsi3), %i0
+	add %i0, %lo(.L__profc___modsi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-8], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -8296,6 +13304,17 @@ __modsi3:                               ! @__modsi3
 	ba .LBB128_5
 	nop
 .LBB128_5:
+	sethi %hi(.L__profc___modsi3), %i0
+	add %i0, %lo(.L__profc___modsi3), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ld [%fp+-16], %i1
 	mov	%g0, %i0
 	sub %i0, %i1, %i0
@@ -8313,12 +13332,22 @@ __modsi3:                               ! @__modsi3
 	.type	__udivmodhi4,@function
 __udivmodhi4:                           ! @__udivmodhi4
 ! %bb.0:
-	save %sp, -120, %sp
+	save %sp, -128, %sp
                                         ! kill: def $i3 killed $i1
                                         ! kill: def $i3 killed $i0
 	sth %i0, [%fp+-4]
 	sth %i1, [%fp+-6]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	ldd [%i0+%lo(.L__profc___udivmodhi4)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___udivmodhi4)]
 	mov	1, %i0
 	sth %i0, [%fp+-14]
 	mov	%g0, %i0
@@ -8329,44 +13358,111 @@ __udivmodhi4:                           ! @__udivmodhi4
 	lduh [%fp+-4], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bge	.LBB129_6
+	bge	.LBB129_8
 	st %i0, [%fp+-20]
 	ba .LBB129_2
 	nop
 .LBB129_2:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	lduh [%fp+-14], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB129_6
+	be	.LBB129_8
 	st %i0, [%fp+-20]
 	ba .LBB129_3
 	nop
 .LBB129_3:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB129_4
+	std %i2, [%i0+40]
+.LBB129_4:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	lduh [%fp+-6], %i0
 	sethi 32, %i1
 	and %i0, %i1, %i1
+	st %i1, [%fp+-32]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-28]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	be	.LBB129_5
+	be	.LBB129_6
 	st %i0, [%fp+-24]
-! %bb.4:                                !   in Loop: Header=BB129_1 Depth=1
+! %bb.5:                                !   in Loop: Header=BB129_1 Depth=1
 	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-24]                       ! 4-byte Folded Spill
-.LBB129_5:                              !   in Loop: Header=BB129_1 Depth=1
-	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
-	ba .LBB129_6
-	st %i0, [%fp+-20]
 .LBB129_6:                              !   in Loop: Header=BB129_1 Depth=1
-	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB129_8
-	nop
+	ld [%fp+-32], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-24], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bne	.LBB129_8
+	st %i0, [%fp+-20]
 	ba .LBB129_7
 	nop
 .LBB129_7:                              !   in Loop: Header=BB129_1 Depth=1
+	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc___udivmodhi4), %i1
+	add %i1, %lo(.L__profc___udivmodhi4), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB129_8
+	st %i0, [%fp+-20]
+.LBB129_8:                              !   in Loop: Header=BB129_1 Depth=1
+	ld [%fp+-20], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB129_10
+	nop
+	ba .LBB129_9
+	nop
+.LBB129_9:                              !   in Loop: Header=BB129_1 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	lduh [%fp+-6], %i0
 	sll %i0, 1, %i0
 	sth %i0, [%fp+-6]
@@ -8374,25 +13470,47 @@ __udivmodhi4:                           ! @__udivmodhi4
 	sll %i0, 1, %i0
 	ba .LBB129_1
 	sth %i0, [%fp+-14]
-.LBB129_8:
-	ba .LBB129_9
+.LBB129_10:
+	ba .LBB129_11
 	nop
-.LBB129_9:                              ! =>This Inner Loop Header: Depth=1
+.LBB129_11:                             ! =>This Inner Loop Header: Depth=1
 	lduh [%fp+-14], %i0
 	cmp	%i0, 0
-	be	.LBB129_13
+	be	.LBB129_15
 	nop
-	ba .LBB129_10
+	ba .LBB129_12
 	nop
-.LBB129_10:                             !   in Loop: Header=BB129_9 Depth=1
+.LBB129_12:                             !   in Loop: Header=BB129_11 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	lduh [%fp+-4], %i0
 	lduh [%fp+-6], %i1
 	cmp	%i0, %i1
-	bl	.LBB129_12
+	bl	.LBB129_14
 	nop
-	ba .LBB129_11
+	ba .LBB129_13
 	nop
-.LBB129_11:                             !   in Loop: Header=BB129_9 Depth=1
+.LBB129_13:                             !   in Loop: Header=BB129_11 Depth=1
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	lduh [%fp+-6], %i1
 	lduh [%fp+-4], %i0
 	sub %i0, %i1, %i0
@@ -8400,32 +13518,43 @@ __udivmodhi4:                           ! @__udivmodhi4
 	lduh [%fp+-14], %i1
 	lduh [%fp+-16], %i0
 	or %i0, %i1, %i0
-	ba .LBB129_12
+	ba .LBB129_14
 	sth %i0, [%fp+-16]
-.LBB129_12:                             !   in Loop: Header=BB129_9 Depth=1
+.LBB129_14:                             !   in Loop: Header=BB129_11 Depth=1
 	lduh [%fp+-14], %i0
 	srl %i0, 1, %i0
 	sth %i0, [%fp+-14]
 	lduh [%fp+-6], %i0
 	srl %i0, 1, %i0
-	ba .LBB129_9
+	ba .LBB129_11
 	sth %i0, [%fp+-6]
-.LBB129_13:
+.LBB129_15:
 	ld [%fp+-12], %i0
 	cmp	%i0, 0
-	be	.LBB129_15
+	be	.LBB129_17
 	nop
-	ba .LBB129_14
+	ba .LBB129_16
 	nop
-.LBB129_14:
-	lduh [%fp+-4], %i0
-	ba .LBB129_16
-	sth %i0, [%fp+-2]
-.LBB129_15:
-	lduh [%fp+-16], %i0
-	ba .LBB129_16
-	sth %i0, [%fp+-2]
 .LBB129_16:
+	sethi %hi(.L__profc___udivmodhi4), %i0
+	add %i0, %lo(.L__profc___udivmodhi4), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
+	lduh [%fp+-4], %i0
+	ba .LBB129_18
+	sth %i0, [%fp+-2]
+.LBB129_17:
+	lduh [%fp+-16], %i0
+	ba .LBB129_18
+	sth %i0, [%fp+-2]
+.LBB129_18:
 	lduh [%fp+-2], %i0
 	ret
 	restore
@@ -8437,10 +13566,20 @@ __udivmodhi4:                           ! @__udivmodhi4
 	.type	__udivmodsi4_libgcc,@function
 __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 ! %bb.0:
-	save %sp, -128, %sp
+	save %sp, -136, %sp
 	st %i0, [%fp+-8]
 	st %i1, [%fp+-12]
 	st %i2, [%fp+-16]
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+%lo(.L__profc___udivmodsi4_libgcc)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___udivmodsi4_libgcc)]
 	mov	1, %i0
 	st %i0, [%fp+-20]
 	ba .LBB130_1
@@ -8450,45 +13589,111 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ld [%fp+-8], %i2
 	mov	%g0, %i0
 	cmp	%i1, %i2
-	bcc	.LBB130_6
+	bcc	.LBB130_8
 	st %i0, [%fp+-28]
 	ba .LBB130_2
 	nop
 .LBB130_2:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-20], %i1
 	mov	%g0, %i0
 	cmp	%i1, 0
-	be	.LBB130_6
+	be	.LBB130_8
 	st %i0, [%fp+-28]
 	ba .LBB130_3
 	nop
 .LBB130_3:                              !   in Loop: Header=BB130_1 Depth=1
-	add %fp, -12, %i0
-	or %i0, 3, %i0
-	ldub [%i0], %i0
-	and %i0, 128, %i1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+40], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	ba .LBB130_4
+	std %i2, [%i0+40]
+.LBB130_4:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
+	ld [%fp+-12], %i0
+	sethi 2097152, %i1
+	and %i0, %i1, %i1
+	st %i1, [%fp+-40]                       ! 4-byte Folded Spill
 	mov	%g0, %i0
 	st %i0, [%fp+-36]                       ! 4-byte Folded Spill
 	mov	1, %i0
 	cmp	%i1, 0
-	be	.LBB130_5
+	be	.LBB130_6
 	st %i0, [%fp+-32]
-! %bb.4:                                !   in Loop: Header=BB130_1 Depth=1
+! %bb.5:                                !   in Loop: Header=BB130_1 Depth=1
 	ld [%fp+-36], %i0                       ! 4-byte Folded Reload
 	st %i0, [%fp+-32]                       ! 4-byte Folded Spill
-.LBB130_5:                              !   in Loop: Header=BB130_1 Depth=1
-	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
-	ba .LBB130_6
-	st %i0, [%fp+-28]
 .LBB130_6:                              !   in Loop: Header=BB130_1 Depth=1
-	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
-	and %i0, 1, %i0
-	cmp	%i0, 0
-	be	.LBB130_8
-	nop
+	ld [%fp+-40], %i1                       ! 4-byte Folded Reload
+	ld [%fp+-32], %i0                       ! 4-byte Folded Reload
+	st %i0, [%fp+-44]                       ! 4-byte Folded Spill
+	cmp	%i1, 0
+	bne	.LBB130_8
+	st %i0, [%fp+-28]
 	ba .LBB130_7
 	nop
 .LBB130_7:                              !   in Loop: Header=BB130_1 Depth=1
+	ld [%fp+-44], %i0                       ! 4-byte Folded Reload
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i1
+	add %i1, %lo(.L__profc___udivmodsi4_libgcc), %i1
+	ldd [%i1+24], %i4
+	mov	%i4, %i3
+	mov	%i5, %i2
+	addcc %i3, 1, %i5
+	addxcc %i2, 0, %i4
+                                        ! implicit-def: $i2_i3
+	mov	%i5, %i2
+	mov	%i4, %i3
+	std %i2, [%i1+24]
+	ba .LBB130_8
+	st %i0, [%fp+-28]
+.LBB130_8:                              !   in Loop: Header=BB130_1 Depth=1
+	ld [%fp+-28], %i0                       ! 4-byte Folded Reload
+	and %i0, 1, %i0
+	cmp	%i0, 0
+	be	.LBB130_10
+	nop
+	ba .LBB130_9
+	nop
+.LBB130_9:                              !   in Loop: Header=BB130_1 Depth=1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ld [%fp+-12], %i0
 	sll %i0, 1, %i0
 	st %i0, [%fp+-12]
@@ -8496,25 +13701,47 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	sll %i0, 1, %i0
 	ba .LBB130_1
 	st %i0, [%fp+-20]
-.LBB130_8:
-	ba .LBB130_9
+.LBB130_10:
+	ba .LBB130_11
 	nop
-.LBB130_9:                              ! =>This Inner Loop Header: Depth=1
+.LBB130_11:                             ! =>This Inner Loop Header: Depth=1
 	ld [%fp+-20], %i0
 	cmp	%i0, 0
-	be	.LBB130_13
+	be	.LBB130_15
 	nop
-	ba .LBB130_10
+	ba .LBB130_12
 	nop
-.LBB130_10:                             !   in Loop: Header=BB130_9 Depth=1
+.LBB130_12:                             !   in Loop: Header=BB130_11 Depth=1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+48], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+48]
 	ld [%fp+-8], %i0
 	ld [%fp+-12], %i1
 	cmp	%i0, %i1
-	bcs	.LBB130_12
+	bcs	.LBB130_14
 	nop
-	ba .LBB130_11
+	ba .LBB130_13
 	nop
-.LBB130_11:                             !   in Loop: Header=BB130_9 Depth=1
+.LBB130_13:                             !   in Loop: Header=BB130_11 Depth=1
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+56], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+56]
 	ld [%fp+-12], %i1
 	ld [%fp+-8], %i0
 	sub %i0, %i1, %i0
@@ -8522,32 +13749,43 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ld [%fp+-20], %i1
 	ld [%fp+-24], %i0
 	or %i0, %i1, %i0
-	ba .LBB130_12
+	ba .LBB130_14
 	st %i0, [%fp+-24]
-.LBB130_12:                             !   in Loop: Header=BB130_9 Depth=1
+.LBB130_14:                             !   in Loop: Header=BB130_11 Depth=1
 	ld [%fp+-20], %i0
 	srl %i0, 1, %i0
 	st %i0, [%fp+-20]
 	ld [%fp+-12], %i0
 	srl %i0, 1, %i0
-	ba .LBB130_9
+	ba .LBB130_11
 	st %i0, [%fp+-12]
-.LBB130_13:
+.LBB130_15:
 	ld [%fp+-16], %i0
 	cmp	%i0, 0
-	be	.LBB130_15
+	be	.LBB130_17
 	nop
-	ba .LBB130_14
+	ba .LBB130_16
 	nop
-.LBB130_14:
-	ld [%fp+-8], %i0
-	ba .LBB130_16
-	st %i0, [%fp+-4]
-.LBB130_15:
-	ld [%fp+-24], %i0
-	ba .LBB130_16
-	st %i0, [%fp+-4]
 .LBB130_16:
+	sethi %hi(.L__profc___udivmodsi4_libgcc), %i0
+	add %i0, %lo(.L__profc___udivmodsi4_libgcc), %i0
+	ldd [%i0+64], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+64]
+	ld [%fp+-8], %i0
+	ba .LBB130_18
+	st %i0, [%fp+-4]
+.LBB130_17:
+	ld [%fp+-24], %i0
+	ba .LBB130_18
+	st %i0, [%fp+-4]
+.LBB130_18:
 	ld [%fp+-4], %i0
 	ret
 	restore
@@ -8569,6 +13807,16 @@ __ashldi3:                              ! @__ashldi3
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
 	st %i2, [%fp+-20]
+	sethi %hi(.L__profc___ashldi3), %i0
+	ldd [%i0+%lo(.L__profc___ashldi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ashldi3)]
 	mov	32, %i0
 	st %i0, [%fp+-24]
 	ldd [%fp+-16], %i0
@@ -8581,6 +13829,17 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB131_1
 	nop
 .LBB131_1:
+	sethi %hi(.L__profc___ashldi3), %i0
+	add %i0, %lo(.L__profc___ashldi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	st %g0, [%fp+-40]
 	ld [%fp+-32], %i0
 	ld [%fp+-20], %i1
@@ -8598,6 +13857,17 @@ __ashldi3:                              ! @__ashldi3
 	ba .LBB131_3
 	nop
 .LBB131_3:
+	sethi %hi(.L__profc___ashldi3), %i0
+	add %i0, %lo(.L__profc___ashldi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB131_6
 	std %i0, [%fp+-8]
@@ -8647,6 +13917,16 @@ __ashrdi3:                              ! @__ashrdi3
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
 	st %i2, [%fp+-20]
+	sethi %hi(.L__profc___ashrdi3), %i0
+	ldd [%i0+%lo(.L__profc___ashrdi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ashrdi3)]
 	mov	32, %i0
 	st %i0, [%fp+-24]
 	ldd [%fp+-16], %i0
@@ -8659,6 +13939,17 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB132_1
 	nop
 .LBB132_1:
+	sethi %hi(.L__profc___ashrdi3), %i0
+	add %i0, %lo(.L__profc___ashrdi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	add %fp, -32, %i0
 	or %i0, 4, %i0
 	ld [%i0], %i1
@@ -8680,6 +13971,17 @@ __ashrdi3:                              ! @__ashrdi3
 	ba .LBB132_3
 	nop
 .LBB132_3:
+	sethi %hi(.L__profc___ashrdi3), %i0
+	add %i0, %lo(.L__profc___ashrdi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB132_6
 	std %i0, [%fp+-8]
@@ -8728,6 +14030,16 @@ __bswapdi2:                             ! @__bswapdi2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___bswapdi2), %i0
+	ldd [%i0+%lo(.L__profc___bswapdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___bswapdi2)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %i2
                                         ! kill: def $i1 killed $i1 killed $i0_i1
@@ -8764,6 +14076,16 @@ __bswapsi2:                             ! @__bswapsi2
 ! %bb.0:
 	save %sp, -96, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___bswapsi2), %i0
+	ldd [%i0+%lo(.L__profc___bswapsi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___bswapsi2)]
 	ld [%fp+-4], %i1
 	srl %i1, 24, %i0
 	sethi 16320, %i2
@@ -8789,6 +14111,16 @@ __clzsi2:                               ! @__clzsi2
 ! %bb.0:
 	save %sp, -152, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___clzsi2), %i0
+	ldd [%i0+%lo(.L__profc___clzsi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___clzsi2)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-8]
 	add %fp, -8, %i0
@@ -8934,6 +14266,16 @@ __cmpdi2:                               ! @__cmpdi2
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc___cmpdi2), %i0
+	ldd [%i0+%lo(.L__profc___cmpdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___cmpdi2)]
 	ldd [%fp+-16], %i0
 	std %i0, [%fp+-32]
 	ldd [%fp+-24], %i0
@@ -8950,6 +14292,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_1
 	nop
 .LBB136_1:
+	sethi %hi(.L__profc___cmpdi2), %i0
+	add %i0, %lo(.L__profc___cmpdi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ba .LBB136_9
 	st %g0, [%fp+-4]
 .LBB136_2:
@@ -8965,6 +14318,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_3
 	nop
 .LBB136_3:
+	sethi %hi(.L__profc___cmpdi2), %i0
+	add %i0, %lo(.L__profc___cmpdi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	2, %i0
 	ba .LBB136_9
 	st %i0, [%fp+-4]
@@ -8977,6 +14341,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_5
 	nop
 .LBB136_5:
+	sethi %hi(.L__profc___cmpdi2), %i0
+	add %i0, %lo(.L__profc___cmpdi2), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ba .LBB136_9
 	st %g0, [%fp+-4]
 .LBB136_6:
@@ -8988,6 +14363,17 @@ __cmpdi2:                               ! @__cmpdi2
 	ba .LBB136_7
 	nop
 .LBB136_7:
+	sethi %hi(.L__profc___cmpdi2), %i0
+	add %i0, %lo(.L__profc___cmpdi2), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	2, %i0
 	ba .LBB136_9
 	st %i0, [%fp+-4]
@@ -9022,6 +14408,16 @@ __aeabi_lcmp:                           ! @__aeabi_lcmp
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
+	sethi %hi(.L__profc___aeabi_lcmp), %i0
+	ldd [%i0+%lo(.L__profc___aeabi_lcmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___aeabi_lcmp)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -9041,6 +14437,16 @@ __ctzsi2:                               ! @__ctzsi2
 ! %bb.0:
 	save %sp, -136, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___ctzsi2), %i0
+	ldd [%i0+%lo(.L__profc___ctzsi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ctzsi2)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-8]
 	lduh [%fp+-8], %i1
@@ -9157,6 +14563,16 @@ __lshrdi3:                              ! @__lshrdi3
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
 	st %i2, [%fp+-20]
+	sethi %hi(.L__profc___lshrdi3), %i0
+	ldd [%i0+%lo(.L__profc___lshrdi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___lshrdi3)]
 	mov	32, %i0
 	st %i0, [%fp+-24]
 	ldd [%fp+-16], %i0
@@ -9169,6 +14585,17 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB139_1
 	nop
 .LBB139_1:
+	sethi %hi(.L__profc___lshrdi3), %i0
+	add %i0, %lo(.L__profc___lshrdi3), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	add %fp, -40, %i0
 	or %i0, 4, %i0
 	st %g0, [%i0]
@@ -9188,6 +14615,17 @@ __lshrdi3:                              ! @__lshrdi3
 	ba .LBB139_3
 	nop
 .LBB139_3:
+	sethi %hi(.L__profc___lshrdi3), %i0
+	add %i0, %lo(.L__profc___lshrdi3), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-16], %i0
 	ba .LBB139_6
 	std %i0, [%fp+-8]
@@ -9230,6 +14668,16 @@ __muldsi3:                              ! @__muldsi3
 	save %sp, -120, %sp
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___muldsi3), %i0
+	ldd [%i0+%lo(.L__profc___muldsi3)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___muldsi3)]
 	mov	16, %i0
 	st %i0, [%fp+-20]
 	sethi 63, %i0
@@ -9317,6 +14765,16 @@ __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
+	sethi %hi(.L__profc___muldi3_compiler_rt), %i0
+	ldd [%i0+%lo(.L__profc___muldi3_compiler_rt)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___muldi3_compiler_rt)]
 	ldd [%fp+-8], %i0
 	std %i0, [%fp+-24]
 	ldd [%fp+-16], %i0
@@ -9365,6 +14823,16 @@ __negdi2:                               ! @__negdi2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___negdi2), %i0
+	ldd [%i0+%lo(.L__profc___negdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___negdi2)]
 	ldd [%fp+-8], %i2
 	mov	%i2, %i0
 	mov	%i3, %i2
@@ -9390,6 +14858,16 @@ __paritydi2:                            ! @__paritydi2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___paritydi2), %i0
+	ldd [%i0+%lo(.L__profc___paritydi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___paritydi2)]
 	ldd [%fp+-8], %i0
 	std %i0, [%fp+-16]
 	add %fp, -16, %i0
@@ -9428,6 +14906,16 @@ __paritysi2:                            ! @__paritysi2
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___paritysi2), %i0
+	ldd [%i0+%lo(.L__profc___paritysi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___paritysi2)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-8]
 	ld [%fp+-8], %i0
@@ -9467,6 +14955,16 @@ __popcountdi2:                          ! @__popcountdi2
 	mov	%i3, %i0
 	mov	%i2, %i1
 	std %i0, [%fp+-8]
+	sethi %hi(.L__profc___popcountdi2), %i0
+	ldd [%i0+%lo(.L__profc___popcountdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___popcountdi2)]
 	ldd [%fp+-8], %i0
 	std %i0, [%fp+-16]
 	ldd [%fp+-16], %i0
@@ -9543,6 +15041,16 @@ __popcountsi2:                          ! @__popcountsi2
 ! %bb.0:
 	save %sp, -104, %sp
 	st %i0, [%fp+-4]
+	sethi %hi(.L__profc___popcountsi2), %i0
+	ldd [%i0+%lo(.L__profc___popcountsi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___popcountsi2)]
 	ld [%fp+-4], %i0
 	st %i0, [%fp+-8]
 	ld [%fp+-8], %i0
@@ -9595,6 +15103,16 @@ __powidf2:                              ! @__powidf2
 	mov	%i3, %i1
 	std %i0, [%fp+-8]
 	st %i2, [%fp+-12]
+	sethi %hi(.L__profc___powidf2), %i0
+	ldd [%i0+%lo(.L__profc___powidf2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___powidf2)]
 	ld [%fp+-12], %i0
 	srl %i0, 31, %i0
 	st %i0, [%fp+-16]
@@ -9605,6 +15123,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_1
 	st %g0, [%fp+-24]
 .LBB147_1:                              ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc___powidf2), %i0
+	add %i0, %lo(.L__profc___powidf2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-12], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -9613,6 +15142,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_2
 	nop
 .LBB147_2:                              !   in Loop: Header=BB147_1 Depth=1
+	sethi %hi(.L__profc___powidf2), %i0
+	add %i0, %lo(.L__profc___powidf2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -9638,8 +15178,18 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_4
 	nop
 .LBB147_4:
+	sethi %hi(.L__profc___powidf2), %i0
+	add %i0, %lo(.L__profc___powidf2), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB147_6
-	nop
+	std %i2, [%i0+24]
 .LBB147_5:                              !   in Loop: Header=BB147_1 Depth=1
 	ldd [%fp+-8], %i0
 	mov	%i0, %o2
@@ -9660,6 +15210,17 @@ __powidf2:                              ! @__powidf2
 	ba .LBB147_7
 	nop
 .LBB147_7:
+	sethi %hi(.L__profc___powidf2), %i0
+	add %i0, %lo(.L__profc___powidf2), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ldd [%fp+-24], %i0
 	mov	%i0, %o2
 	mov	%i1, %o3
@@ -9693,6 +15254,16 @@ __powisf2:                              ! @__powisf2
                                         ! kill: def $i2 killed $i0
 	st %i0, [%fp+-4]
 	st %i1, [%fp+-8]
+	sethi %hi(.L__profc___powisf2), %i0
+	ldd [%i0+%lo(.L__profc___powisf2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___powisf2)]
 	ld [%fp+-8], %i0
 	srl %i0, 31, %i0
 	st %i0, [%fp+-12]
@@ -9700,6 +15271,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_1
 	st %i0, [%fp+-16]
 .LBB148_1:                              ! =>This Inner Loop Header: Depth=1
+	sethi %hi(.L__profc___powisf2), %i0
+	add %i0, %lo(.L__profc___powisf2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ldub [%fp+-8], %i0
 	and %i0, 1, %i0
 	cmp	%i0, 0
@@ -9708,6 +15290,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_2
 	nop
 .LBB148_2:                              !   in Loop: Header=BB148_1 Depth=1
+	sethi %hi(.L__profc___powisf2), %i0
+	add %i0, %lo(.L__profc___powisf2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	ld [%fp+-4], %o1
 	call __mulsf3
 	ld [%fp+-16], %o0
@@ -9726,8 +15319,18 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_4
 	nop
 .LBB148_4:
+	sethi %hi(.L__profc___powisf2), %i0
+	add %i0, %lo(.L__profc___powisf2), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
 	ba .LBB148_6
-	nop
+	std %i2, [%i0+24]
 .LBB148_5:                              !   in Loop: Header=BB148_1 Depth=1
 	ld [%fp+-4], %o1
 	call __mulsf3
@@ -9742,6 +15345,17 @@ __powisf2:                              ! @__powisf2
 	ba .LBB148_7
 	nop
 .LBB148_7:
+	sethi %hi(.L__profc___powisf2), %i0
+	add %i0, %lo(.L__profc___powisf2), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	ld [%fp+-16], %o1
 	call __divsf3
 	sethi 1040384, %o0
@@ -9778,6 +15392,16 @@ __ucmpdi2:                              ! @__ucmpdi2
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-24]
+	sethi %hi(.L__profc___ucmpdi2), %i0
+	ldd [%i0+%lo(.L__profc___ucmpdi2)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___ucmpdi2)]
 	ldd [%fp+-16], %i0
 	std %i0, [%fp+-32]
 	ldd [%fp+-24], %i0
@@ -9794,6 +15418,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_1
 	nop
 .LBB149_1:
+	sethi %hi(.L__profc___ucmpdi2), %i0
+	add %i0, %lo(.L__profc___ucmpdi2), %i0
+	ldd [%i0+8], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+8]
 	ba .LBB149_9
 	st %g0, [%fp+-4]
 .LBB149_2:
@@ -9809,6 +15444,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_3
 	nop
 .LBB149_3:
+	sethi %hi(.L__profc___ucmpdi2), %i0
+	add %i0, %lo(.L__profc___ucmpdi2), %i0
+	ldd [%i0+16], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+16]
 	mov	2, %i0
 	ba .LBB149_9
 	st %i0, [%fp+-4]
@@ -9821,6 +15467,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_5
 	nop
 .LBB149_5:
+	sethi %hi(.L__profc___ucmpdi2), %i0
+	add %i0, %lo(.L__profc___ucmpdi2), %i0
+	ldd [%i0+24], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+24]
 	ba .LBB149_9
 	st %g0, [%fp+-4]
 .LBB149_6:
@@ -9832,6 +15489,17 @@ __ucmpdi2:                              ! @__ucmpdi2
 	ba .LBB149_7
 	nop
 .LBB149_7:
+	sethi %hi(.L__profc___ucmpdi2), %i0
+	add %i0, %lo(.L__profc___ucmpdi2), %i0
+	ldd [%i0+32], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+32]
 	mov	2, %i0
 	ba .LBB149_9
 	st %i0, [%fp+-4]
@@ -9866,6 +15534,16 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
 	mov	%i2, %i0
 	mov	%i3, %i1
 	std %i0, [%fp+-16]
+	sethi %hi(.L__profc___aeabi_ulcmp), %i0
+	ldd [%i0+%lo(.L__profc___aeabi_ulcmp)], %i4
+	mov	%i4, %i2
+	mov	%i5, %i1
+	addcc %i2, 1, %i4
+	addxcc %i1, 0, %i1
+                                        ! implicit-def: $i2_i3
+	mov	%i4, %i2
+	mov	%i1, %i3
+	std %i2, [%i0+%lo(.L__profc___aeabi_ulcmp)]
 	ldd [%fp+-8], %i0
 	mov	%i0, %o0
 	mov	%i1, %o1
@@ -9890,6 +15568,3788 @@ digits:
 	.type	seed,@object                    ! @seed
 	.local	seed
 	.comm	seed,8,8
+	.hidden	__llvm_profile_runtime
+	.type	.L__profc_memmove,@object       ! @__profc_memmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profc_memmove:
+	.skip	40
+	.size	.L__profc_memmove, 40
+
+	.type	.L__profd_memmove,@object       ! @__profd_memmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profd_memmove:
+	.word	3815148669                      ! 0xfbc09422e3668c7d
+	.word	4223702050
+	.word	1334589160                      ! 0xc7a1f0194f8c36e8
+	.word	3349278745
+	.word	.L__profc_memmove-.L__profd_memmove
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memmove, 48
+
+	.type	.L__profc_memccpy,@object       ! @__profc_memccpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profc_memccpy:
+	.skip	40
+	.size	.L__profc_memccpy, 40
+
+	.type	.L__profd_memccpy,@object       ! @__profd_memccpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profd_memccpy:
+	.word	3842140814                      ! 0xe9ec1dd5e5026a8e
+	.word	3924565461
+	.word	1246331992                      ! 0x43a044a498458
+	.word	276996
+	.word	.L__profc_memccpy-.L__profd_memccpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memccpy, 48
+
+	.type	.L__profc_memchr,@object        ! @__profc_memchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profc_memchr:
+	.skip	40
+	.size	.L__profc_memchr, 40
+
+	.type	.L__profd_memchr,@object        ! @__profd_memchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profd_memchr:
+	.word	503472520                       ! 0x4f3941a01e026188
+	.word	1329152416
+	.word	243340813                       ! 0x10e81160d
+	.word	1
+	.word	.L__profc_memchr-.L__profd_memchr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memchr, 48
+
+	.type	.L__profc_memcmp,@object        ! @__profc_memcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profc_memcmp:
+	.skip	40
+	.size	.L__profc_memcmp, 40
+
+	.type	.L__profd_memcmp,@object        ! @__profd_memcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profd_memcmp:
+	.word	3752101698                      ! 0xbf0ee54adfa48742
+	.word	3205424458
+	.word	243078669                       ! 0x10e7d160d
+	.word	1
+	.word	.L__profc_memcmp-.L__profd_memcmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memcmp, 48
+
+	.type	.L__profc_memcpy,@object        ! @__profc_memcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profc_memcpy:
+	.skip	16
+	.size	.L__profc_memcpy, 16
+
+	.type	.L__profd_memcpy,@object        ! @__profd_memcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profd_memcpy:
+	.word	314430578                       ! 0x3607cad612bdd472
+	.word	906480342
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_memcpy-.L__profd_memcpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memcpy, 48
+
+	.type	.L__profc_memrchr,@object       ! @__profc_memrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profc_memrchr:
+	.skip	24
+	.size	.L__profc_memrchr, 24
+
+	.type	.L__profd_memrchr,@object       ! @__profd_memrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profd_memrchr:
+	.word	1963431520                      ! 0xf863ecbf75079660
+	.word	4167298239
+	.word	3529577560                      ! 0x8a7d2611458
+	.word	2215
+	.word	.L__profc_memrchr-.L__profd_memrchr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memrchr, 48
+
+	.type	.L__profc_memset,@object        ! @__profc_memset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profc_memset:
+	.skip	16
+	.size	.L__profc_memset, 16
+
+	.type	.L__profd_memset,@object        ! @__profd_memset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profd_memset:
+	.word	116615793                       ! 0xd9f3f85506f36a71
+	.word	3656644693
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_memset-.L__profd_memset
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memset, 48
+
+	.type	.L__profc_stpcpy,@object        ! @__profc_stpcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profc_stpcpy:
+	.skip	16
+	.size	.L__profc_stpcpy, 16
+
+	.type	.L__profd_stpcpy,@object        ! @__profd_stpcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profd_stpcpy:
+	.word	2693264965                      ! 0x3dd2bf47a087f645
+	.word	1037221703
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_stpcpy-.L__profd_stpcpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_stpcpy, 48
+
+	.type	.L__profc_strchrnul,@object     ! @__profc_strchrnul
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profc_strchrnul:
+	.skip	32
+	.size	.L__profc_strchrnul, 32
+
+	.type	.L__profd_strchrnul,@object     ! @__profd_strchrnul
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profd_strchrnul:
+	.word	3359708469                      ! 0x45eedd8fc8411535
+	.word	1173282191
+	.word	70911064                        ! 0x43a0458
+	.word	0
+	.word	.L__profc_strchrnul-.L__profd_strchrnul
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strchrnul, 48
+
+	.type	.L__profc_strchr,@object        ! @__profc_strchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profc_strchr:
+	.skip	24
+	.size	.L__profc_strchr, 24
+
+	.type	.L__profd_strchr,@object        ! @__profd_strchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profd_strchr:
+	.word	1273642115                      ! 0xb14ab4664bea3c83
+	.word	2974463078
+	.word	3529577560                      ! 0xca7d2611458
+	.word	3239
+	.word	.L__profc_strchr-.L__profd_strchr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strchr, 48
+
+	.type	.L__profc_strcmp,@object        ! @__profc_strcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profc_strcmp:
+	.skip	32
+	.size	.L__profc_strcmp, 32
+
+	.type	.L__profd_strcmp,@object        ! @__profd_strcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profd_strcmp:
+	.word	53592868                        ! 0xe0f9b060331c324
+	.word	235903750
+	.word	70906968                        ! 0x439f458
+	.word	0
+	.word	.L__profc_strcmp-.L__profd_strcmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strcmp, 48
+
+	.type	.L__profc_strlen,@object        ! @__profc_strlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profc_strlen:
+	.skip	16
+	.size	.L__profc_strlen, 16
+
+	.type	.L__profd_strlen,@object        ! @__profd_strlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profd_strlen:
+	.word	44553075                        ! 0x292647db02a7d373
+	.word	690374619
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_strlen-.L__profd_strlen
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strlen, 48
+
+	.type	.L__profc_strncmp,@object       ! @__profc_strncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profc_strncmp:
+	.skip	72
+	.size	.L__profc_strncmp, 72
+
+	.type	.L__profd_strncmp,@object       ! @__profd_strncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profd_strncmp:
+	.word	1018521786                      ! 0xabebe6233cb568ba
+	.word	2884363811
+	.word	3409360719                      ! 0x6405aa43cb36b74f
+	.word	1678092867
+	.word	.L__profc_strncmp-.L__profd_strncmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strncmp, 48
+
+	.type	.L__profc_swab,@object          ! @__profc_swab
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profc_swab:
+	.skip	16
+	.size	.L__profc_swab, 16
+
+	.type	.L__profd_swab,@object          ! @__profd_swab
+	.section	__llvm_prf_data,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profd_swab:
+	.word	63675239                        ! 0xe984c77503cb9b67
+	.word	3917793141
+	.word	18193                           ! 0x4711
+	.word	0
+	.word	.L__profc_swab-.L__profd_swab
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_swab, 48
+
+	.type	.L__profc_isalpha,@object       ! @__profc_isalpha
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profc_isalpha:
+	.skip	8
+	.size	.L__profc_isalpha, 8
+
+	.type	.L__profd_isalpha,@object       ! @__profd_isalpha
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profd_isalpha:
+	.word	4268055388                      ! 0xec27bc96fe655b5c
+	.word	3962027158
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_isalpha-.L__profd_isalpha
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isalpha, 48
+
+	.type	.L__profc_isascii,@object       ! @__profc_isascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profc_isascii:
+	.skip	8
+	.size	.L__profc_isascii, 8
+
+	.type	.L__profd_isascii,@object       ! @__profd_isascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profd_isascii:
+	.word	3299371601                      ! 0xbd7e8203c4a86a51
+	.word	3179184643
+	.word	1562                            ! 0x61a
+	.word	0
+	.word	.L__profc_isascii-.L__profd_isascii
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isascii, 48
+
+	.type	.L__profc_isblank,@object       ! @__profc_isblank
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profc_isblank:
+	.skip	24
+	.size	.L__profc_isblank, 24
+
+	.type	.L__profd_isblank,@object       ! @__profd_isblank
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profd_isblank:
+	.word	2601843714                      ! 0x223626e59b14fc02
+	.word	573974245
+	.word	6354911                         ! 0x60f7df
+	.word	0
+	.word	.L__profc_isblank-.L__profd_isblank
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isblank, 48
+
+	.type	.L__profc_iscntrl,@object       ! @__profc_iscntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profc_iscntrl:
+	.skip	24
+	.size	.L__profc_iscntrl, 24
+
+	.type	.L__profd_iscntrl,@object       ! @__profd_iscntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profd_iscntrl:
+	.word	3367402719                      ! 0x7b7b182cc8b67cdf
+	.word	2071664684
+	.word	6354655                         ! 0x60f6df
+	.word	0
+	.word	.L__profc_iscntrl-.L__profd_iscntrl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_iscntrl, 48
+
+	.type	.L__profc_isdigit,@object       ! @__profc_isdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profc_isdigit:
+	.skip	8
+	.size	.L__profc_isdigit, 8
+
+	.type	.L__profd_isdigit,@object       ! @__profd_isdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profd_isdigit:
+	.word	1824746341                      ! 0x30599a7e6cc36b65
+	.word	811178622
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_isdigit-.L__profd_isdigit
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isdigit, 48
+
+	.type	.L__profc_isgraph,@object       ! @__profc_isgraph
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profc_isgraph:
+	.skip	8
+	.size	.L__profc_isgraph, 8
+
+	.type	.L__profd_isgraph,@object       ! @__profd_isgraph
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profd_isgraph:
+	.word	2312090716                      ! 0xfe3bff7489cfb45c
+	.word	4265344884
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_isgraph-.L__profd_isgraph
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isgraph, 48
+
+	.type	.L__profc_islower,@object       ! @__profc_islower
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profc_islower:
+	.skip	8
+	.size	.L__profc_islower, 8
+
+	.type	.L__profd_islower,@object       ! @__profd_islower
+	.section	__llvm_prf_data,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profd_islower:
+	.word	1158205281                      ! 0x681c66894508cf61
+	.word	1746691721
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_islower-.L__profd_islower
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_islower, 48
+
+	.type	.L__profc_isprint,@object       ! @__profc_isprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profc_isprint:
+	.skip	8
+	.size	.L__profc_isprint, 8
+
+	.type	.L__profd_isprint,@object       ! @__profd_isprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profd_isprint:
+	.word	341795750                       ! 0x9b074d56145f63a6
+	.word	2600947030
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_isprint-.L__profd_isprint
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isprint, 48
+
+	.type	.L__profc_isspace,@object       ! @__profc_isspace
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profc_isspace:
+	.skip	24
+	.size	.L__profc_isspace, 24
+
+	.type	.L__profd_isspace,@object       ! @__profd_isspace
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profd_isspace:
+	.word	970391827                       ! 0x7d59641d39d70113
+	.word	2103010333
+	.word	6354907                         ! 0x60f7db
+	.word	0
+	.word	.L__profc_isspace-.L__profd_isspace
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isspace, 48
+
+	.type	.L__profc_isupper,@object       ! @__profc_isupper
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profc_isupper:
+	.skip	8
+	.size	.L__profc_isupper, 8
+
+	.type	.L__profd_isupper,@object       ! @__profd_isupper
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profd_isupper:
+	.word	3294401357                      ! 0x39ef9079c45c934d
+	.word	972001401
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_isupper-.L__profd_isupper
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_isupper, 48
+
+	.type	.L__profc_iswcntrl,@object      ! @__profc_iswcntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profc_iswcntrl:
+	.skip	56
+	.size	.L__profc_iswcntrl, 56
+
+	.type	.L__profd_iswcntrl,@object      ! @__profd_iswcntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profd_iswcntrl:
+	.word	1638352188                      ! 0x6125eb3d61a7453c
+	.word	1629875005
+	.word	3480073947                      ! 0x60f3cf6db6db
+	.word	24819
+	.word	.L__profc_iswcntrl-.L__profd_iswcntrl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_iswcntrl, 48
+
+	.type	.L__profc_iswdigit,@object      ! @__profc_iswdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profc_iswdigit:
+	.skip	8
+	.size	.L__profc_iswdigit, 8
+
+	.type	.L__profd_iswdigit,@object      ! @__profd_iswdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profd_iswdigit:
+	.word	425265880                       ! 0x771f9e1919590ad8
+	.word	1998560793
+	.word	1563                            ! 0x61b
+	.word	0
+	.word	.L__profc_iswdigit-.L__profd_iswdigit
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_iswdigit, 48
+
+	.type	.L__profc_iswprint,@object      ! @__profc_iswprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profc_iswprint:
+	.skip	80
+	.size	.L__profc_iswprint, 80
+
+	.type	.L__profd_iswprint,@object      ! @__profd_iswprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profd_iswprint:
+	.word	1234441494                      ! 0xf603a04d49941516
+	.word	4127432781
+	.word	3816038944                      ! 0xdc635031e3742220
+	.word	3697496113
+	.word	.L__profc_iswprint-.L__profd_iswprint
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	10                              ! 0xa
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_iswprint, 48
+
+	.type	.L__profc_iswxdigit,@object     ! @__profc_iswxdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profc_iswxdigit:
+	.skip	24
+	.size	.L__profc_iswxdigit, 24
+
+	.type	.L__profd_iswxdigit,@object     ! @__profd_iswxdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profd_iswxdigit:
+	.word	4035185714                      ! 0x8aba28df0840c32
+	.word	145465997
+	.word	6354651                         ! 0x60f6db
+	.word	0
+	.word	.L__profc_iswxdigit-.L__profd_iswxdigit
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_iswxdigit, 48
+
+	.type	.L__profc_toascii,@object       ! @__profc_toascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profc_toascii:
+	.skip	8
+	.size	.L__profc_toascii, 8
+
+	.type	.L__profd_toascii,@object       ! @__profd_toascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profd_toascii:
+	.word	2787418936                      ! 0x3f1e4f66a624a338
+	.word	1058951014
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_toascii-.L__profd_toascii
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_toascii, 48
+
+	.type	.L__profc_fdim,@object          ! @__profc_fdim
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profc_fdim:
+	.skip	32
+	.size	.L__profc_fdim, 32
+
+	.type	.L__profd_fdim,@object          ! @__profd_fdim
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profd_fdim:
+	.word	42400059                        ! 0xceca8a150286f93b
+	.word	3469380117
+	.word	698703480                       ! 0x6646f46a29a55e78
+	.word	1715926122
+	.word	.L__profc_fdim-.L__profd_fdim
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fdim, 48
+
+	.type	.L__profc_fdimf,@object         ! @__profc_fdimf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profc_fdimf:
+	.skip	32
+	.size	.L__profc_fdimf, 32
+
+	.type	.L__profd_fdimf,@object         ! @__profd_fdimf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profd_fdimf:
+	.word	1666032008                      ! 0xea84dcc6634da188
+	.word	3934575814
+	.word	698703480                       ! 0x6646f46a29a55e78
+	.word	1715926122
+	.word	.L__profc_fdimf-.L__profd_fdimf
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fdimf, 48
+
+	.type	.L__profc_fmax,@object          ! @__profc_fmax
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profc_fmax:
+	.skip	48
+	.size	.L__profc_fmax, 48
+
+	.type	.L__profd_fmax,@object          ! @__profd_fmax
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profd_fmax:
+	.word	996492642                       ! 0xde5ced1d3b654562
+	.word	3730631965
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fmax-.L__profd_fmax
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fmax, 48
+
+	.type	.L__profc_fmaxf,@object         ! @__profc_fmaxf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profc_fmaxf:
+	.skip	48
+	.size	.L__profc_fmaxf, 48
+
+	.type	.L__profd_fmaxf,@object         ! @__profd_fmaxf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profd_fmaxf:
+	.word	2386403996                      ! 0xb8bfa0058e3da29c
+	.word	3099566085
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fmaxf-.L__profd_fmaxf
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fmaxf, 48
+
+	.type	.L__profc_fmaxl,@object         ! @__profc_fmaxl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profc_fmaxl:
+	.skip	48
+	.size	.L__profc_fmaxl, 48
+
+	.type	.L__profd_fmaxl,@object         ! @__profd_fmaxl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profd_fmaxl:
+	.word	3522938444                      ! 0xd471861cd1fbc64c
+	.word	3564209692
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fmaxl-.L__profd_fmaxl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fmaxl, 48
+
+	.type	.L__profc_fmin,@object          ! @__profc_fmin
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profc_fmin:
+	.skip	48
+	.size	.L__profc_fmin, 48
+
+	.type	.L__profd_fmin,@object          ! @__profd_fmin
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profd_fmin:
+	.word	1265219729                      ! 0xd65e3074b69b891
+	.word	224781063
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fmin-.L__profd_fmin
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fmin, 48
+
+	.type	.L__profc_fminf,@object         ! @__profc_fminf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profc_fminf:
+	.skip	48
+	.size	.L__profc_fminf, 48
+
+	.type	.L__profd_fminf,@object         ! @__profd_fminf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profd_fminf:
+	.word	848075867                       ! 0x6b0021b0328c9c5b
+	.word	1795170736
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fminf-.L__profd_fminf
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fminf, 48
+
+	.type	.L__profc_fminl,@object         ! @__profc_fminl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profc_fminl:
+	.skip	48
+	.size	.L__profc_fminl, 48
+
+	.type	.L__profd_fminl,@object         ! @__profd_fminl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profd_fminl:
+	.word	1476992898                      ! 0x2285162058091f82
+	.word	579147296
+	.word	463263937                       ! 0x373422b91b9cd8c1
+	.word	926163641
+	.word	.L__profc_fminl-.L__profd_fminl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_fminl, 48
+
+	.type	.L__profc_l64a,@object          ! @__profc_l64a
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profc_l64a:
+	.skip	16
+	.size	.L__profc_l64a, 16
+
+	.type	.L__profd_l64a,@object          ! @__profd_l64a
+	.section	__llvm_prf_data,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profd_l64a:
+	.word	3141852333                      ! 0xaa87bd26bb44dcad
+	.word	2861022502
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_l64a-.L__profd_l64a
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_l64a, 48
+
+	.type	.L__profc_srand,@object         ! @__profc_srand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profc_srand:
+	.skip	8
+	.size	.L__profc_srand, 8
+
+	.type	.L__profd_srand,@object         ! @__profd_srand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profd_srand:
+	.word	1506720376                      ! 0xe30e668959ceba78
+	.word	3809371785
+	.word	0                               ! 0x0
+	.word	0
+	.word	.L__profc_srand-.L__profd_srand
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_srand, 48
+
+	.type	.L__profc_rand,@object          ! @__profc_rand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profc_rand:
+	.skip	8
+	.size	.L__profc_rand, 8
+
+	.type	.L__profd_rand,@object          ! @__profd_rand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profd_rand:
+	.word	1355010356                      ! 0x6401286350c3d134
+	.word	1677797475
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rand-.L__profd_rand
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rand, 48
+
+	.type	.L__profc_insque,@object        ! @__profc_insque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profc_insque:
+	.skip	24
+	.size	.L__profc_insque, 24
+
+	.type	.L__profd_insque,@object        ! @__profd_insque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profd_insque:
+	.word	3171658647                      ! 0xb97ef903bd0bab97
+	.word	3112106243
+	.word	2554635409                      ! 0x29a49844a491
+	.word	10660
+	.word	.L__profc_insque-.L__profd_insque
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_insque, 48
+
+	.type	.L__profc_remque,@object        ! @__profc_remque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profc_remque:
+	.skip	24
+	.size	.L__profc_remque, 24
+
+	.type	.L__profd_remque,@object        ! @__profd_remque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profd_remque:
+	.word	1424166850                      ! 0x9be1f18d54e30fc2
+	.word	2615275917
+	.word	2453972113                      ! 0x29244a491
+	.word	2
+	.word	.L__profc_remque-.L__profd_remque
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_remque, 48
+
+	.type	.L__profc_lsearch,@object       ! @__profc_lsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profc_lsearch:
+	.skip	24
+	.size	.L__profc_lsearch, 24
+
+	.type	.L__profd_lsearch,@object       ! @__profd_lsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profd_lsearch:
+	.word	4174077742                      ! 0x9e68c5caf8cb5f2e
+	.word	2657666506
+	.word	3529577560                      ! 0x46ca7d2611458
+	.word	289959
+	.word	.L__profc_lsearch-.L__profd_lsearch
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_lsearch, 48
+
+	.type	.L__profc_lfind,@object         ! @__profc_lfind
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profc_lfind:
+	.skip	24
+	.size	.L__profc_lfind, 24
+
+	.type	.L__profd_lfind,@object         ! @__profd_lfind
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profd_lfind:
+	.word	817200365                       ! 0xa7df811e30b57ced
+	.word	2816442654
+	.word	3529577560                      ! 0x46ca7d2611458
+	.word	289959
+	.word	.L__profc_lfind-.L__profd_lfind
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_lfind, 48
+
+	.type	.L__profc_abs,@object           ! @__profc_abs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profc_abs:
+	.skip	16
+	.size	.L__profc_abs, 16
+
+	.type	.L__profd_abs,@object           ! @__profd_abs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profd_abs:
+	.word	90942713                        ! 0xfcb0ccbe056bacf9
+	.word	4239445182
+	.word	99164                           ! 0x1835c
+	.word	0
+	.word	.L__profc_abs-.L__profd_abs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_abs, 48
+
+	.type	.L__profc_atoi,@object          ! @__profc_atoi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profc_atoi:
+	.skip	56
+	.size	.L__profc_atoi, 56
+
+	.type	.L__profd_atoi,@object          ! @__profd_atoi
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profd_atoi:
+	.word	2738380237                      ! 0xa52e4a4ba3385dcd
+	.word	2771274315
+	.word	134813197                       ! 0x244720809160d
+	.word	148594
+	.word	.L__profc_atoi-.L__profd_atoi
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_atoi, 48
+
+	.type	.L__profc_atol,@object          ! @__profc_atol
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profc_atol:
+	.skip	56
+	.size	.L__profc_atol, 56
+
+	.type	.L__profd_atol,@object          ! @__profd_atol
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profd_atol:
+	.word	4002377009                      ! 0x724cc634ee8f6d31
+	.word	1917634100
+	.word	134813197                       ! 0x244720809160d
+	.word	148594
+	.word	.L__profc_atol-.L__profd_atol
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_atol, 48
+
+	.type	.L__profc_atoll,@object         ! @__profc_atoll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profc_atoll:
+	.skip	56
+	.size	.L__profc_atoll, 56
+
+	.type	.L__profd_atoll,@object         ! @__profd_atoll
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profd_atoll:
+	.word	1906768237                      ! 0x32b4ee8971a6f96d
+	.word	850718345
+	.word	134813197                       ! 0x244720809160d
+	.word	148594
+	.word	.L__profc_atoll-.L__profd_atoll
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_atoll, 48
+
+	.type	.L__profc_bsearch,@object       ! @__profc_bsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profc_bsearch:
+	.skip	32
+	.size	.L__profc_bsearch, 32
+
+	.type	.L__profd_bsearch,@object       ! @__profd_bsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profd_bsearch:
+	.word	2054766654                      ! 0x796ea3837a79403e
+	.word	2037293955
+	.word	739949690                       ! 0xf42b29012c1abc7a
+	.word	4096469249
+	.word	.L__profc_bsearch-.L__profd_bsearch
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bsearch, 48
+
+	.type	.L__profc_bsearch_r,@object     ! @__profc_bsearch_r
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profc_bsearch_r:
+	.skip	32
+	.size	.L__profc_bsearch_r, 32
+
+	.type	.L__profd_bsearch_r,@object     ! @__profd_bsearch_r
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profd_bsearch_r:
+	.word	2873519740                      ! 0x13aa8a38ab466e7c
+	.word	329943608
+	.word	2313468942                      ! 0x117a3a2689e4bc0e
+	.word	293222950
+	.word	.L__profc_bsearch_r-.L__profd_bsearch_r
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bsearch_r, 48
+
+	.type	.L__profc_div,@object           ! @__profc_div
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profc_div:
+	.skip	8
+	.size	.L__profc_div, 8
+
+	.type	.L__profd_div,@object           ! @__profd_div
+	.section	__llvm_prf_data,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profd_div:
+	.word	1483041080                      ! 0x4c4998dc58656938
+	.word	1279891676
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_div-.L__profd_div
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_div, 48
+
+	.type	.L__profc_imaxabs,@object       ! @__profc_imaxabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profc_imaxabs:
+	.skip	16
+	.size	.L__profc_imaxabs, 16
+
+	.type	.L__profd_imaxabs,@object       ! @__profd_imaxabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profd_imaxabs:
+	.word	3004042905                      ! 0x7c28f3a3b30e0e99
+	.word	2083058595
+	.word	99164                           ! 0x1835c
+	.word	0
+	.word	.L__profc_imaxabs-.L__profd_imaxabs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_imaxabs, 48
+
+	.type	.L__profc_imaxdiv,@object       ! @__profc_imaxdiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profc_imaxdiv:
+	.skip	8
+	.size	.L__profc_imaxdiv, 8
+
+	.type	.L__profd_imaxdiv,@object       ! @__profd_imaxdiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profd_imaxdiv:
+	.word	2640297140                      ! 0xc97b6cec9d5fbcb4
+	.word	3380309228
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_imaxdiv-.L__profd_imaxdiv
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_imaxdiv, 48
+
+	.type	.L__profc_labs,@object          ! @__profc_labs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profc_labs:
+	.skip	16
+	.size	.L__profc_labs, 16
+
+	.type	.L__profd_labs,@object          ! @__profd_labs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profd_labs:
+	.word	3013844134                      ! 0x9d363762b3a39ca6
+	.word	2637576034
+	.word	99164                           ! 0x1835c
+	.word	0
+	.word	.L__profc_labs-.L__profd_labs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_labs, 48
+
+	.type	.L__profc_ldiv,@object          ! @__profc_ldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profc_ldiv:
+	.skip	8
+	.size	.L__profc_ldiv, 8
+
+	.type	.L__profd_ldiv,@object          ! @__profd_ldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profd_ldiv:
+	.word	1948272233                      ! 0x633951ff74204669
+	.word	1664700927
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_ldiv-.L__profd_ldiv
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_ldiv, 48
+
+	.type	.L__profc_llabs,@object         ! @__profc_llabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profc_llabs:
+	.skip	16
+	.size	.L__profc_llabs, 16
+
+	.type	.L__profd_llabs,@object         ! @__profd_llabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profd_llabs:
+	.word	3146878658                      ! 0x6aa5dafebb918ec2
+	.word	1789254398
+	.word	99164                           ! 0x1835c
+	.word	0
+	.word	.L__profc_llabs-.L__profd_llabs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_llabs, 48
+
+	.type	.L__profc_lldiv,@object         ! @__profc_lldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profc_lldiv:
+	.skip	8
+	.size	.L__profc_lldiv, 8
+
+	.type	.L__profd_lldiv,@object         ! @__profd_lldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profd_lldiv:
+	.word	1376157918                      ! 0xb60b082c520680de
+	.word	3054176300
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_lldiv-.L__profd_lldiv
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_lldiv, 48
+
+	.type	.L__profc_wcschr,@object        ! @__profc_wcschr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profc_wcschr:
+	.skip	40
+	.size	.L__profc_wcschr, 40
+
+	.type	.L__profd_wcschr,@object        ! @__profd_wcschr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profd_wcschr:
+	.word	3278405344                      ! 0xe05c7c36c3687ee0
+	.word	3764157494
+	.word	243340813                       ! 0x10e81160d
+	.word	1
+	.word	.L__profc_wcschr-.L__profd_wcschr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wcschr, 48
+
+	.type	.L__profc_wcscmp,@object        ! @__profc_wcscmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profc_wcscmp:
+	.skip	56
+	.size	.L__profc_wcscmp, 56
+
+	.type	.L__profd_wcscmp,@object        ! @__profd_wcscmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profd_wcscmp:
+	.word	3443918992                      ! 0xcc82c5dbcd460890
+	.word	3431122395
+	.word	3512784604                      ! 0x438e7d160d6dc
+	.word	276711
+	.word	.L__profc_wcscmp-.L__profd_wcscmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wcscmp, 48
+
+	.type	.L__profc_wcscpy,@object        ! @__profc_wcscpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profc_wcscpy:
+	.skip	16
+	.size	.L__profc_wcscpy, 16
+
+	.type	.L__profd_wcscpy,@object        ! @__profd_wcscpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profd_wcscpy:
+	.word	4141681258                      ! 0x8baf660af6dd0a6a
+	.word	2343527946
+	.word	9304                            ! 0x2458
+	.word	0
+	.word	.L__profc_wcscpy-.L__profd_wcscpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wcscpy, 48
+
+	.type	.L__profc_wcslen,@object        ! @__profc_wcslen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profc_wcslen:
+	.skip	16
+	.size	.L__profc_wcslen, 16
+
+	.type	.L__profd_wcslen,@object        ! @__profd_wcslen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profd_wcslen:
+	.word	3359154486                      ! 0x3759acd4c838a136
+	.word	928623828
+	.word	17496                           ! 0x4458
+	.word	0
+	.word	.L__profc_wcslen-.L__profd_wcslen
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wcslen, 48
+
+	.type	.L__profc_wcsncmp,@object       ! @__profc_wcsncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profc_wcsncmp:
+	.skip	80
+	.size	.L__profc_wcsncmp, 80
+
+	.type	.L__profd_wcsncmp,@object       ! @__profd_wcsncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profd_wcsncmp:
+	.word	3384850644                      ! 0xb4b5ef95c9c0b8d4
+	.word	3031822229
+	.word	4248202332                      ! 0x5d218431fd366c5c
+	.word	1562477617
+	.word	.L__profc_wcsncmp-.L__profd_wcsncmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	10                              ! 0xa
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wcsncmp, 48
+
+	.type	.L__profc_wmemchr,@object       ! @__profc_wmemchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profc_wmemchr:
+	.skip	40
+	.size	.L__profc_wmemchr, 40
+
+	.type	.L__profd_wmemchr,@object       ! @__profd_wmemchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profd_wmemchr:
+	.word	1528125668                      ! 0xfde7d69b5b1558e4
+	.word	4259829403
+	.word	243340813                       ! 0x10e81160d
+	.word	1
+	.word	.L__profc_wmemchr-.L__profd_wmemchr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wmemchr, 48
+
+	.type	.L__profc_wmemcmp,@object       ! @__profc_wmemcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profc_wmemcmp:
+	.skip	48
+	.size	.L__profc_wmemcmp, 48
+
+	.type	.L__profd_wmemcmp,@object       ! @__profd_wmemcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profd_wmemcmp:
+	.word	84788312                        ! 0x4abf86f3050dc458
+	.word	1254065907
+	.word	1479857884                      ! 0x439f45834d6dc
+	.word	276980
+	.word	.L__profc_wmemcmp-.L__profd_wmemcmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	6                               ! 0x6
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wmemcmp, 48
+
+	.type	.L__profc_wmemcpy,@object       ! @__profc_wmemcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profc_wmemcpy:
+	.skip	16
+	.size	.L__profc_wmemcpy, 16
+
+	.type	.L__profd_wmemcpy,@object       ! @__profd_wmemcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profd_wmemcpy:
+	.word	2637215827                      ! 0x65ab5c0b9d30b853
+	.word	1705729035
+	.word	9304                            ! 0x2458
+	.word	0
+	.word	.L__profc_wmemcpy-.L__profd_wmemcpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wmemcpy, 48
+
+	.type	.L__profc_wmemmove,@object      ! @__profc_wmemmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profc_wmemmove:
+	.skip	40
+	.size	.L__profc_wmemmove, 40
+
+	.type	.L__profd_wmemmove,@object      ! @__profd_wmemmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profd_wmemmove:
+	.word	1772334517                      ! 0xbf56752a69a3adb5
+	.word	3210114346
+	.word	3244734756                      ! 0xeb2e3281c166b924
+	.word	3945673345
+	.word	.L__profc_wmemmove-.L__profd_wmemmove
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wmemmove, 48
+
+	.type	.L__profc_wmemset,@object       ! @__profc_wmemset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profc_wmemset:
+	.skip	16
+	.size	.L__profc_wmemset, 16
+
+	.type	.L__profd_wmemset,@object       ! @__profd_wmemset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profd_wmemset:
+	.word	4064618063                      ! 0x8ceff224f245264f
+	.word	2364535332
+	.word	9304                            ! 0x2458
+	.word	0
+	.word	.L__profc_wmemset-.L__profd_wmemset
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_wmemset, 48
+
+	.type	.L__profc_bcopy,@object         ! @__profc_bcopy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profc_bcopy:
+	.skip	40
+	.size	.L__profc_bcopy, 40
+
+	.type	.L__profd_bcopy,@object         ! @__profd_bcopy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profd_bcopy:
+	.word	1054661432                      ! 0x8b5328de3edcdb38
+	.word	2337482974
+	.word	975013403                       ! 0x48a34b333a1d861b
+	.word	1218661171
+	.word	.L__profc_bcopy-.L__profd_bcopy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bcopy, 48
+
+	.type	.L__profc_rotl64,@object        ! @__profc_rotl64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profc_rotl64:
+	.skip	8
+	.size	.L__profc_rotl64, 8
+
+	.type	.L__profd_rotl64,@object        ! @__profd_rotl64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profd_rotl64:
+	.word	2229826992                      ! 0x416ddc4e84e875b0
+	.word	1097718862
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotl64-.L__profd_rotl64
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotl64, 48
+
+	.type	.L__profc_rotr64,@object        ! @__profc_rotr64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profc_rotr64:
+	.skip	8
+	.size	.L__profc_rotr64, 8
+
+	.type	.L__profd_rotr64,@object        ! @__profd_rotr64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profd_rotr64:
+	.word	2326512589                      ! 0x8b0aff7e8aabc3cd
+	.word	2332753790
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotr64-.L__profd_rotr64
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotr64, 48
+
+	.type	.L__profc_rotl32,@object        ! @__profc_rotl32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profc_rotl32:
+	.skip	8
+	.size	.L__profc_rotl32, 8
+
+	.type	.L__profd_rotl32,@object        ! @__profd_rotl32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profd_rotl32:
+	.word	3626627460                      ! 0x5910447ed829f184
+	.word	1494238334
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotl32-.L__profd_rotl32
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotl32, 48
+
+	.type	.L__profc_rotr32,@object        ! @__profc_rotr32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profc_rotr32:
+	.skip	8
+	.size	.L__profc_rotr32, 8
+
+	.type	.L__profd_rotr32,@object        ! @__profd_rotr32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profd_rotr32:
+	.word	3418479684                      ! 0xb153fe21cbc1dc44
+	.word	2975071777
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotr32-.L__profd_rotr32
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotr32, 48
+
+	.type	.L__profc_rotl_sz,@object       ! @__profc_rotl_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profc_rotl_sz:
+	.skip	8
+	.size	.L__profc_rotl_sz, 8
+
+	.type	.L__profd_rotl_sz,@object       ! @__profd_rotl_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profd_rotl_sz:
+	.word	3086541338                      ! 0xccd67b43b7f8e21a
+	.word	3436608323
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotl_sz-.L__profd_rotl_sz
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotl_sz, 48
+
+	.type	.L__profc_rotr_sz,@object       ! @__profc_rotr_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profc_rotr_sz:
+	.skip	8
+	.size	.L__profc_rotr_sz, 8
+
+	.type	.L__profd_rotr_sz,@object       ! @__profd_rotr_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profd_rotr_sz:
+	.word	2553665156                      ! 0x2f664ae29835d684
+	.word	795232994
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotr_sz-.L__profd_rotr_sz
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotr_sz, 48
+
+	.type	.L__profc_rotl16,@object        ! @__profc_rotl16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profc_rotl16:
+	.skip	8
+	.size	.L__profc_rotl16, 8
+
+	.type	.L__profd_rotl16,@object        ! @__profd_rotl16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profd_rotl16:
+	.word	244555557                       ! 0x65af538b0e939f25
+	.word	1705989003
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotl16-.L__profd_rotl16
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotl16, 48
+
+	.type	.L__profc_rotr16,@object        ! @__profc_rotr16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profc_rotr16:
+	.skip	8
+	.size	.L__profc_rotr16, 8
+
+	.type	.L__profd_rotr16,@object        ! @__profd_rotr16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profd_rotr16:
+	.word	3877440124                      ! 0x4933b9afe71d0a7c
+	.word	1228126639
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotr16-.L__profd_rotr16
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotr16, 48
+
+	.type	.L__profc_rotl8,@object         ! @__profc_rotl8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profc_rotl8:
+	.skip	8
+	.size	.L__profc_rotl8, 8
+
+	.type	.L__profd_rotl8,@object         ! @__profd_rotl8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profd_rotl8:
+	.word	655336000                       ! 0x3d2ddd93270fa240
+	.word	1026416019
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotl8-.L__profd_rotl8
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotl8, 48
+
+	.type	.L__profc_rotr8,@object         ! @__profc_rotr8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profc_rotr8:
+	.skip	8
+	.size	.L__profc_rotr8, 8
+
+	.type	.L__profd_rotr8,@object         ! @__profd_rotr8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profd_rotr8:
+	.word	1493665568                      ! 0xa54c2aea59078720
+	.word	2773232362
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_rotr8-.L__profd_rotr8
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_rotr8, 48
+
+	.type	.L__profc_bswap_16,@object      ! @__profc_bswap_16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profc_bswap_16:
+	.skip	8
+	.size	.L__profc_bswap_16, 8
+
+	.type	.L__profd_bswap_16,@object      ! @__profd_bswap_16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profd_bswap_16:
+	.word	1268401773                      ! 0x84e47ce04b9a466d
+	.word	2229566688
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_bswap_16-.L__profd_bswap_16
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bswap_16, 48
+
+	.type	.L__profc_bswap_32,@object      ! @__profc_bswap_32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profc_bswap_32:
+	.skip	8
+	.size	.L__profc_bswap_32, 8
+
+	.type	.L__profd_bswap_32,@object      ! @__profd_bswap_32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profd_bswap_32:
+	.word	452808988                       ! 0x655ffb691afd511c
+	.word	1700789097
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_bswap_32-.L__profd_bswap_32
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bswap_32, 48
+
+	.type	.L__profc_bswap_64,@object      ! @__profc_bswap_64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profc_bswap_64:
+	.skip	8
+	.size	.L__profc_bswap_64, 8
+
+	.type	.L__profd_bswap_64,@object      ! @__profd_bswap_64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profd_bswap_64:
+	.word	475245398                       ! 0x27e1fd2c1c53ab56
+	.word	669121836
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_bswap_64-.L__profd_bswap_64
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_bswap_64, 48
+
+	.type	.L__profc_ffs,@object           ! @__profc_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profc_ffs:
+	.skip	24
+	.size	.L__profc_ffs, 24
+
+	.type	.L__profd_ffs,@object           ! @__profd_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profd_ffs:
+	.word	1440366139                      ! 0x7ffbbb6955da3e3b
+	.word	2147203945
+	.word	2455835736                      ! 0x11b292611458
+	.word	4530
+	.word	.L__profc_ffs-.L__profd_ffs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_ffs, 48
+
+	.type	.L__profc_libiberty_ffs,@object ! @__profc_libiberty_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profc_libiberty_ffs:
+	.skip	24
+	.size	.L__profc_libiberty_ffs, 24
+
+	.type	.L__profd_libiberty_ffs,@object ! @__profd_libiberty_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profd_libiberty_ffs:
+	.word	2840574905                      ! 0xe7b1a8a94fbbb9
+	.word	15184296
+	.word	286368856                       ! 0xa7d261111a458
+	.word	687398
+	.word	.L__profc_libiberty_ffs-.L__profd_libiberty_ffs
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_libiberty_ffs, 48
+
+	.type	.L__profc_gl_isinff,@object     ! @__profc_gl_isinff
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profc_gl_isinff:
+	.skip	24
+	.size	.L__profc_gl_isinff, 24
+
+	.type	.L__profd_gl_isinff,@object     ! @__profd_gl_isinff
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profd_gl_isinff:
+	.word	3010385274                      ! 0x5ab10580b36ed57a
+	.word	1521550720
+	.word	6354652                         ! 0x60f6dc
+	.word	0
+	.word	.L__profc_gl_isinff-.L__profd_gl_isinff
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_gl_isinff, 48
+
+	.type	.L__profc_gl_isinfd,@object     ! @__profc_gl_isinfd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profc_gl_isinfd:
+	.skip	24
+	.size	.L__profc_gl_isinfd, 24
+
+	.type	.L__profd_gl_isinfd,@object     ! @__profd_gl_isinfd
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profd_gl_isinfd:
+	.word	444377658                       ! 0x80cc28161a7caa3a
+	.word	2160863254
+	.word	6354652                         ! 0x60f6dc
+	.word	0
+	.word	.L__profc_gl_isinfd-.L__profd_gl_isinfd
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_gl_isinfd, 48
+
+	.type	.L__profc_gl_isinfl,@object     ! @__profc_gl_isinfl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profc_gl_isinfl:
+	.skip	24
+	.size	.L__profc_gl_isinfl, 24
+
+	.type	.L__profd_gl_isinfl,@object     ! @__profd_gl_isinfl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profd_gl_isinfl:
+	.word	2943121403                      ! 0x41a874c2af6c77fb
+	.word	1101558978
+	.word	6354652                         ! 0x60f6dc
+	.word	0
+	.word	.L__profc_gl_isinfl-.L__profd_gl_isinfl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_gl_isinfl, 48
+
+	.type	.L__profc__Qp_itoq,@object      ! @__profc__Qp_itoq
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profc__Qp_itoq:
+	.skip	8
+	.size	.L__profc__Qp_itoq, 8
+
+	.type	.L__profd__Qp_itoq,@object      ! @__profd__Qp_itoq
+	.section	__llvm_prf_data,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profd__Qp_itoq:
+	.word	1257874239                      ! 0xca752ed84af9a33f
+	.word	3396677336
+	.word	0                               ! 0x0
+	.word	0
+	.word	.L__profc__Qp_itoq-.L__profd__Qp_itoq
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd__Qp_itoq, 48
+
+	.type	.L__profc_ldexpf,@object        ! @__profc_ldexpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profc_ldexpf:
+	.skip	64
+	.size	.L__profc_ldexpf, 64
+
+	.type	.L__profd_ldexpf,@object        ! @__profd_ldexpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profd_ldexpf:
+	.word	539537125                       ! 0xdc76cdf42028aee5
+	.word	3698773492
+	.word	14241369                        ! 0xe392b7c600d94e59
+	.word	3818043334
+	.word	.L__profc_ldexpf-.L__profd_ldexpf
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	8                               ! 0x8
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_ldexpf, 48
+
+	.type	.L__profc_ldexp,@object         ! @__profc_ldexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profc_ldexp:
+	.skip	64
+	.size	.L__profc_ldexp, 64
+
+	.type	.L__profd_ldexp,@object         ! @__profd_ldexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profd_ldexp:
+	.word	3111827691                      ! 0xfca965e7b97ab8eb
+	.word	4238960103
+	.word	14241369                        ! 0xe392b7c600d94e59
+	.word	3818043334
+	.word	.L__profc_ldexp-.L__profd_ldexp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	8                               ! 0x8
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_ldexp, 48
+
+	.type	.L__profc_ldexpl,@object        ! @__profc_ldexpl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profc_ldexpl:
+	.skip	64
+	.size	.L__profc_ldexpl, 64
+
+	.type	.L__profd_ldexpl,@object        ! @__profd_ldexpl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profd_ldexpl:
+	.word	178812135                       ! 0xb942e25c0aa874e7
+	.word	3108168284
+	.word	14241369                        ! 0xe392b7c600d94e59
+	.word	3818043334
+	.word	.L__profc_ldexpl-.L__profd_ldexpl
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	8                               ! 0x8
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_ldexpl, 48
+
+	.type	.L__profc_memxor,@object        ! @__profc_memxor
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profc_memxor:
+	.skip	16
+	.size	.L__profc_memxor, 16
+
+	.type	.L__profd_memxor,@object        ! @__profd_memxor
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profd_memxor:
+	.word	2128235242                      ! 0x8bdecd417eda4aea
+	.word	2346634561
+	.word	1164376                         ! 0x11c458
+	.word	0
+	.word	.L__profc_memxor-.L__profd_memxor
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memxor, 48
+
+	.type	.L__profc_strncat,@object       ! @__profc_strncat
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profc_strncat:
+	.skip	40
+	.size	.L__profc_strncat, 40
+
+	.type	.L__profd_strncat,@object       ! @__profd_strncat
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profd_strncat:
+	.word	2636207119                      ! 0xce4875d49d21540f
+	.word	3460855252
+	.word	1249715288                      ! 0x10e72044a7d2458
+	.word	17723908
+	.word	.L__profc_strncat-.L__profd_strncat
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strncat, 48
+
+	.type	.L__profc_strnlen,@object       ! @__profc_strnlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profc_strnlen:
+	.skip	32
+	.size	.L__profc_strnlen, 32
+
+	.type	.L__profd_strnlen,@object       ! @__profd_strnlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profd_strnlen:
+	.word	3690601605                      ! 0x72eda14dbfa1c85
+	.word	120510996
+	.word	242054232                       ! 0x10e6d7458
+	.word	1
+	.word	.L__profc_strnlen-.L__profd_strnlen
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strnlen, 48
+
+	.type	.L__profc_strpbrk,@object       ! @__profc_strpbrk
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profc_strpbrk:
+	.skip	32
+	.size	.L__profc_strpbrk, 32
+
+	.type	.L__profd_strpbrk,@object       ! @__profd_strpbrk
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profd_strpbrk:
+	.word	1100202522                      ! 0xa0b33fed4193c21a
+	.word	2696101869
+	.word	84945426                        ! 0xc250e3b905102a12
+	.word	3260081081
+	.word	.L__profc_strpbrk-.L__profd_strpbrk
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strpbrk, 48
+
+	.type	.L__profc_strrchr,@object       ! @__profc_strrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profc_strrchr:
+	.skip	24
+	.size	.L__profc_strrchr, 24
+
+	.type	.L__profd_strrchr,@object       ! @__profd_strrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profd_strrchr:
+	.word	1003970063                      ! 0x49a93a493bd75e0f
+	.word	1235827273
+	.word	2672366680                      ! 0x329f491458
+	.word	50
+	.word	.L__profc_strrchr-.L__profd_strrchr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strrchr, 48
+
+	.type	.L__profc_strstr,@object        ! @__profc_strstr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profc_strstr:
+	.skip	32
+	.size	.L__profc_strstr, 32
+
+	.type	.L__profd_strstr,@object        ! @__profd_strstr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profd_strstr:
+	.word	1946130763                      ! 0x3169a8a873ff994b
+	.word	829008040
+	.word	4193384452                      ! 0x93c6fcaef9f1f804
+	.word	2479291566
+	.word	.L__profc_strstr-.L__profd_strstr
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_strstr, 48
+
+	.type	.L__profc_copysign,@object      ! @__profc_copysign
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profc_copysign:
+	.skip	56
+	.size	.L__profc_copysign, 56
+
+	.type	.L__profd_copysign,@object      ! @__profd_copysign
+	.section	__llvm_prf_data,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profd_copysign:
+	.word	3933621461                      ! 0x82096d47ea764cd5
+	.word	2181655879
+	.word	1176019055                      ! 0x3a4ce3834618a06f
+	.word	978117507
+	.word	.L__profc_copysign-.L__profd_copysign
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_copysign, 48
+
+	.type	.L__profc_memmem,@object        ! @__profc_memmem
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profc_memmem:
+	.skip	56
+	.size	.L__profc_memmem, 56
+
+	.type	.L__profd_memmem,@object        ! @__profd_memmem
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profd_memmem:
+	.word	1482351504                      ! 0x981e4a4b585ae390
+	.word	2552121931
+	.word	2121957956                      ! 0x4c7092d27e7a8244
+	.word	1282446034
+	.word	.L__profc_memmem-.L__profd_memmem
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_memmem, 48
+
+	.type	.L__profc_mempcpy,@object       ! @__profc_mempcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profc_mempcpy:
+	.skip	8
+	.size	.L__profc_mempcpy, 8
+
+	.type	.L__profd_mempcpy,@object       ! @__profd_mempcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profd_mempcpy:
+	.word	252779458                       ! 0xf5f7b7020f111bc2
+	.word	4126652162
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc_mempcpy-.L__profd_mempcpy
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_mempcpy, 48
+
+	.type	.L__profc_frexp,@object         ! @__profc_frexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profc_frexp:
+	.skip	72
+	.size	.L__profc_frexp, 72
+
+	.type	.L__profd_frexp,@object         ! @__profd_frexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profd_frexp:
+	.word	471787407                       ! 0xd667ea2e1c1ee78f
+	.word	3597134382
+	.word	1008144312                      ! 0xdf0ea1753c170fb8
+	.word	3742278005
+	.word	.L__profc_frexp-.L__profd_frexp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_frexp, 48
+
+	.type	.L__profc___muldi3,@object      ! @__profc___muldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profc___muldi3:
+	.skip	24
+	.size	.L__profc___muldi3, 24
+
+	.type	.L__profd___muldi3,@object      ! @__profd___muldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profd___muldi3:
+	.word	2949618840                      ! 0x3755a22cafcf9c98
+	.word	928358956
+	.word	2320045144                      ! 0x8a491458
+	.word	0
+	.word	.L__profc___muldi3-.L__profd___muldi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___muldi3, 48
+
+	.type	.L__profc_udivmodsi4,@object    ! @__profc_udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profc_udivmodsi4:
+	.skip	72
+	.size	.L__profc_udivmodsi4, 72
+
+	.type	.L__profd_udivmodsi4,@object    ! @__profd_udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profd_udivmodsi4:
+	.word	1024966285                      ! 0x40d2210e3d17be8d
+	.word	1087512846
+	.word	1651402066                      ! 0xbb200b8626e6552
+	.word	196214968
+	.word	.L__profc_udivmodsi4-.L__profd_udivmodsi4
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd_udivmodsi4, 48
+
+	.type	.L__profc___clrsbqi2,@object    ! @__profc___clrsbqi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profc___clrsbqi2:
+	.skip	24
+	.size	.L__profc___clrsbqi2, 24
+
+	.type	.L__profd___clrsbqi2,@object    ! @__profd___clrsbqi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profd___clrsbqi2:
+	.word	921962090                       ! 0x92f2490d36f4066a
+	.word	2465351949
+	.word	2672395352                      ! 0x29b49129f498458
+	.word	43731218
+	.word	.L__profc___clrsbqi2-.L__profd___clrsbqi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___clrsbqi2, 48
+
+	.type	.L__profc___clrsbdi2,@object    ! @__profc___clrsbdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profc___clrsbdi2:
+	.skip	24
+	.size	.L__profc___clrsbdi2, 24
+
+	.type	.L__profd___clrsbdi2,@object    ! @__profd___clrsbdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profd___clrsbdi2:
+	.word	1877498071                      ! 0xeab85aaa6fe858d7
+	.word	3937950378
+	.word	2672395352                      ! 0x29b49129f498458
+	.word	43731218
+	.word	.L__profc___clrsbdi2-.L__profd___clrsbdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___clrsbdi2, 48
+
+	.type	.L__profc___mulsi3,@object      ! @__profc___mulsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profc___mulsi3:
+	.skip	24
+	.size	.L__profc___mulsi3, 24
+
+	.type	.L__profd___mulsi3,@object      ! @__profd___mulsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profd___mulsi3:
+	.word	808585471                       ! 0x472924cf303208ff
+	.word	1193878735
+	.word	2320045144                      ! 0x8a491458
+	.word	0
+	.word	.L__profc___mulsi3-.L__profd___mulsi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mulsi3, 48
+
+	.type	.L__profc___cmovd,@object       ! @__profc___cmovd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profc___cmovd:
+	.skip	56
+	.size	.L__profc___cmovd, 56
+
+	.type	.L__profd___cmovd,@object       ! @__profd___cmovd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profd___cmovd:
+	.word	553465352                       ! 0x143d4c6520fd3608
+	.word	339561573
+	.word	1219219495                      ! 0xa70727df48abd027
+	.word	2802264031
+	.word	.L__profc___cmovd-.L__profd___cmovd
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___cmovd, 48
+
+	.type	.L__profc___cmovh,@object       ! @__profc___cmovh
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profc___cmovh:
+	.skip	56
+	.size	.L__profc___cmovh, 56
+
+	.type	.L__profd___cmovh,@object       ! @__profd___cmovh
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profd___cmovh:
+	.word	1199450638                      ! 0xeec99ab9477e2a0e
+	.word	4006189753
+	.word	2696688615                      ! 0x2b706930a0bc33e7
+	.word	728787248
+	.word	.L__profc___cmovh-.L__profd___cmovh
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___cmovh, 48
+
+	.type	.L__profc___cmovw,@object       ! @__profc___cmovw
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profc___cmovw:
+	.skip	56
+	.size	.L__profc___cmovw, 56
+
+	.type	.L__profd___cmovw,@object       ! @__profd___cmovw
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profd___cmovw:
+	.word	1785275052                      ! 0xa3f7772d6a6922ac
+	.word	2750904109
+	.word	1219219495                      ! 0xa70727df48abd027
+	.word	2802264031
+	.word	.L__profc___cmovw-.L__profd___cmovw
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___cmovw, 48
+
+	.type	.L__profc___modi,@object        ! @__profc___modi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profc___modi:
+	.skip	8
+	.size	.L__profc___modi, 8
+
+	.type	.L__profd___modi,@object        ! @__profd___modi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profd___modi:
+	.word	3464656561                      ! 0x3951c3b1ce8276b1
+	.word	961659825
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___modi-.L__profd___modi
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___modi, 48
+
+	.type	.L__profc___uitod,@object       ! @__profc___uitod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profc___uitod:
+	.skip	8
+	.size	.L__profc___uitod, 8
+
+	.type	.L__profd___uitod,@object       ! @__profd___uitod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profd___uitod:
+	.word	2493213220                      ! 0xcb5bf4b0949b6a24
+	.word	3411801264
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___uitod-.L__profd___uitod
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___uitod, 48
+
+	.type	.L__profc___uitof,@object       ! @__profc___uitof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profc___uitof:
+	.skip	8
+	.size	.L__profc___uitof, 8
+
+	.type	.L__profd___uitof,@object       ! @__profd___uitof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profd___uitof:
+	.word	3986234038                      ! 0x253fdbc7ed991ab6
+	.word	624942023
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___uitof-.L__profd___uitof
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___uitof, 48
+
+	.type	.L__profc___ulltod,@object      ! @__profc___ulltod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profc___ulltod:
+	.skip	8
+	.size	.L__profc___ulltod, 8
+
+	.type	.L__profd___ulltod,@object      ! @__profd___ulltod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profd___ulltod:
+	.word	4219734726                      ! 0x377213c0fb840ac6
+	.word	930223040
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___ulltod-.L__profd___ulltod
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ulltod, 48
+
+	.type	.L__profc___ulltof,@object      ! @__profc___ulltof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profc___ulltof:
+	.skip	8
+	.size	.L__profc___ulltof, 8
+
+	.type	.L__profd___ulltof,@object      ! @__profd___ulltof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profd___ulltof:
+	.word	2547710861                      ! 0xe58a8e7e97dafb8d
+	.word	3851062910
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___ulltof-.L__profd___ulltof
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ulltof, 48
+
+	.type	.L__profc___umodi,@object       ! @__profc___umodi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profc___umodi:
+	.skip	8
+	.size	.L__profc___umodi, 8
+
+	.type	.L__profd___umodi,@object       ! @__profd___umodi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profd___umodi:
+	.word	1073703930                      ! 0x5567a7893fff6bfa
+	.word	1432856457
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___umodi-.L__profd___umodi
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___umodi, 48
+
+	.type	.L__profc___clzhi2,@object      ! @__profc___clzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profc___clzhi2:
+	.skip	24
+	.size	.L__profc___clzhi2, 24
+
+	.type	.L__profd___clzhi2,@object      ! @__profd___clzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profd___clzhi2:
+	.word	1526022046                      ! 0x8005edb05af53f9e
+	.word	2147872176
+	.word	2455311448                      ! 0x11b292591458
+	.word	4530
+	.word	.L__profc___clzhi2-.L__profd___clzhi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___clzhi2, 48
+
+	.type	.L__profc___ctzhi2,@object      ! @__profc___ctzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profc___ctzhi2:
+	.skip	24
+	.size	.L__profc___ctzhi2, 24
+
+	.type	.L__profd___ctzhi2,@object      ! @__profd___ctzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profd___ctzhi2:
+	.word	3617218592                      ! 0xea391231d79a6020
+	.word	3929608753
+	.word	2455311448                      ! 0x11b292591458
+	.word	4530
+	.word	.L__profc___ctzhi2-.L__profd___ctzhi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ctzhi2, 48
+
+	.type	.L__profc___fixunssfsi,@object  ! @__profc___fixunssfsi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profc___fixunssfsi:
+	.skip	16
+	.size	.L__profc___fixunssfsi, 16
+
+	.type	.L__profd___fixunssfsi,@object  ! @__profd___fixunssfsi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profd___fixunssfsi:
+	.word	651704643                       ! 0x93bf2a7226d83943
+	.word	2478778994
+	.word	2655618136                      ! 0x29e498458
+	.word	2
+	.word	.L__profc___fixunssfsi-.L__profd___fixunssfsi
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	2                               ! 0x2
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___fixunssfsi, 48
+
+	.type	.L__profc___parityhi2,@object   ! @__profc___parityhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profc___parityhi2:
+	.skip	24
+	.size	.L__profc___parityhi2, 24
+
+	.type	.L__profd___parityhi2,@object   ! @__profd___parityhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profd___parityhi2:
+	.word	1595267545                      ! 0x10b5167d5f15d9d9
+	.word	280303229
+	.word	3393786968                      ! 0x46ca491458
+	.word	70
+	.word	.L__profc___parityhi2-.L__profd___parityhi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___parityhi2, 48
+
+	.type	.L__profc___popcounthi2,@object ! @__profc___popcounthi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profc___popcounthi2:
+	.skip	24
+	.size	.L__profc___popcounthi2, 24
+
+	.type	.L__profd___popcounthi2,@object ! @__profd___popcounthi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profd___popcounthi2:
+	.word	3021313414                      ! 0x36b9214fb4159586
+	.word	918102351
+	.word	3393786968                      ! 0x46ca491458
+	.word	70
+	.word	.L__profc___popcounthi2-.L__profd___popcounthi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___popcounthi2, 48
+
+	.type	.L__profc___mulsi3_iq2000,@object ! @__profc___mulsi3_iq2000
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profc___mulsi3_iq2000:
+	.skip	24
+	.size	.L__profc___mulsi3_iq2000, 24
+
+	.type	.L__profd___mulsi3_iq2000,@object ! @__profd___mulsi3_iq2000
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profd___mulsi3_iq2000:
+	.word	2418545684                      ! 0xc8d127b190281414
+	.word	3369150385
+	.word	172561496                       ! 0x280a491458
+	.word	40
+	.word	.L__profc___mulsi3_iq2000-.L__profd___mulsi3_iq2000
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mulsi3_iq2000, 48
+
+	.type	.L__profc___mulsi3_lm32,@object ! @__profc___mulsi3_lm32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profc___mulsi3_lm32:
+	.skip	32
+	.size	.L__profc___mulsi3_lm32, 32
+
+	.type	.L__profd___mulsi3_lm32,@object ! @__profd___mulsi3_lm32
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profd___mulsi3_lm32:
+	.word	3669051597                      ! 0x26851843dab148cd
+	.word	646256707
+	.word	903869171                       ! 0xa9cf36c835dff2f3
+	.word	2848929480
+	.word	.L__profc___mulsi3_lm32-.L__profd___mulsi3_lm32
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mulsi3_lm32, 48
+
+	.type	.L__profc___udivmodsi4,@object  ! @__profc___udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profc___udivmodsi4:
+	.skip	72
+	.size	.L__profc___udivmodsi4, 72
+
+	.type	.L__profd___udivmodsi4,@object  ! @__profd___udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profd___udivmodsi4:
+	.word	3214998610                      ! 0xa2bc61cdbfa0fc52
+	.word	2730254797
+	.word	1651402066                      ! 0xbb200b8626e6552
+	.word	196214968
+	.word	.L__profc___udivmodsi4-.L__profd___udivmodsi4
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___udivmodsi4, 48
+
+	.type	.L__profc___mspabi_cmpf,@object ! @__profc___mspabi_cmpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpf:
+	.skip	24
+	.size	.L__profc___mspabi_cmpf, 24
+
+	.type	.L__profd___mspabi_cmpf,@object ! @__profd___mspabi_cmpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpf:
+	.word	4012873975                      ! 0x58d08e7bef2f98f7
+	.word	1490062971
+	.word	3971983684                      ! 0x12c573c0ecbfa944
+	.word	314930112
+	.word	.L__profc___mspabi_cmpf-.L__profd___mspabi_cmpf
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mspabi_cmpf, 48
+
+	.type	.L__profc___mspabi_cmpd,@object ! @__profc___mspabi_cmpd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpd:
+	.skip	24
+	.size	.L__profc___mspabi_cmpd, 24
+
+	.type	.L__profd___mspabi_cmpd,@object ! @__profd___mspabi_cmpd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpd:
+	.word	3823668329                      ! 0xafd9d1e3e3e88c69
+	.word	2950287843
+	.word	3971983684                      ! 0x12c573c0ecbfa944
+	.word	314930112
+	.word	.L__profc___mspabi_cmpd-.L__profd___mspabi_cmpd
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mspabi_cmpd, 48
+
+	.type	.L__profc___mspabi_mpysll,@object ! @__profc___mspabi_mpysll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profc___mspabi_mpysll:
+	.skip	8
+	.size	.L__profc___mspabi_mpysll, 8
+
+	.type	.L__profd___mspabi_mpysll,@object ! @__profd___mspabi_mpysll
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profd___mspabi_mpysll:
+	.word	4195771941                      ! 0xfb03c3bdfa166625
+	.word	4211327933
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___mspabi_mpysll-.L__profd___mspabi_mpysll
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mspabi_mpysll, 48
+
+	.type	.L__profc___mspabi_mpyull,@object ! @__profc___mspabi_mpyull
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profc___mspabi_mpyull:
+	.skip	8
+	.size	.L__profc___mspabi_mpyull, 8
+
+	.type	.L__profd___mspabi_mpyull,@object ! @__profd___mspabi_mpyull
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profd___mspabi_mpyull:
+	.word	3324675637                      ! 0x5c01e284c62a8635
+	.word	1543627396
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___mspabi_mpyull-.L__profd___mspabi_mpyull
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mspabi_mpyull, 48
+
+	.type	.L__profc___mulhi3,@object      ! @__profc___mulhi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profc___mulhi3:
+	.skip	56
+	.size	.L__profc___mulhi3, 56
+
+	.type	.L__profd___mulhi3,@object      ! @__profd___mulhi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profd___mulhi3:
+	.word	1556531068                      ! 0xbf2a9dde5cc6c77c
+	.word	3207241182
+	.word	2703778695                      ! 0xb568b86aa1286387
+	.word	3043539050
+	.word	.L__profc___mulhi3-.L__profd___mulhi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	7                               ! 0x7
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___mulhi3, 48
+
+	.type	.L__profc___divsi3,@object      ! @__profc___divsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profc___divsi3:
+	.skip	32
+	.size	.L__profc___divsi3, 32
+
+	.type	.L__profd___divsi3,@object      ! @__profd___divsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profd___divsi3:
+	.word	296414084                       ! 0x4e26dd1711aaeb84
+	.word	1311169815
+	.word	1867459201                      ! 0x715edbe6f4f2a81
+	.word	118877630
+	.word	.L__profc___divsi3-.L__profd___divsi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___divsi3, 48
+
+	.type	.L__profc___modsi3,@object      ! @__profc___modsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profc___modsi3:
+	.skip	32
+	.size	.L__profc___modsi3, 32
+
+	.type	.L__profd___modsi3,@object      ! @__profd___modsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profd___modsi3:
+	.word	1312834626                      ! 0x8328dd9f4e404442
+	.word	2200493471
+	.word	2245965411                      ! 0x1d6fb85985deb663
+	.word	493860953
+	.word	.L__profc___modsi3-.L__profd___modsi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	4                               ! 0x4
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___modsi3, 48
+
+	.type	.L__profc___udivmodhi4,@object  ! @__profc___udivmodhi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profc___udivmodhi4:
+	.skip	72
+	.size	.L__profc___udivmodhi4, 72
+
+	.type	.L__profd___udivmodhi4,@object  ! @__profd___udivmodhi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profd___udivmodhi4:
+	.word	3037779362                      ! 0x1f1bdf8db510d5a2
+	.word	521920397
+	.word	1651402066                      ! 0xbb200b8626e6552
+	.word	196214968
+	.word	.L__profc___udivmodhi4-.L__profd___udivmodhi4
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___udivmodhi4, 48
+
+	.type	.L__profc___udivmodsi4_libgcc,@object ! @__profc___udivmodsi4_libgcc
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profc___udivmodsi4_libgcc:
+	.skip	72
+	.size	.L__profc___udivmodsi4_libgcc, 72
+
+	.type	.L__profd___udivmodsi4_libgcc,@object ! @__profd___udivmodsi4_libgcc
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profd___udivmodsi4_libgcc:
+	.word	3532769019                      ! 0xeb670aedd291c6fb
+	.word	3949398765
+	.word	1651402066                      ! 0xbb200b8626e6552
+	.word	196214968
+	.word	.L__profc___udivmodsi4_libgcc-.L__profd___udivmodsi4_libgcc
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	9                               ! 0x9
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___udivmodsi4_libgcc, 48
+
+	.type	.L__profc___ashldi3,@object     ! @__profc___ashldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profc___ashldi3:
+	.skip	24
+	.size	.L__profc___ashldi3, 24
+
+	.type	.L__profd___ashldi3,@object     ! @__profd___ashldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profd___ashldi3:
+	.word	978704463                       ! 0x339d4a983a55d84f
+	.word	865946264
+	.word	3529577560                      ! 0x2924ca7d2611458
+	.word	43142311
+	.word	.L__profc___ashldi3-.L__profd___ashldi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ashldi3, 48
+
+	.type	.L__profc___ashrdi3,@object     ! @__profc___ashrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profc___ashrdi3:
+	.skip	24
+	.size	.L__profc___ashrdi3, 24
+
+	.type	.L__profd___ashrdi3,@object     ! @__profd___ashrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profd___ashrdi3:
+	.word	3990118094                      ! 0xe63f2ae7edd45ece
+	.word	3862899431
+	.word	3529577560                      ! 0x2924ca7d2611458
+	.word	43142311
+	.word	.L__profc___ashrdi3-.L__profd___ashrdi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ashrdi3, 48
+
+	.type	.L__profc___bswapdi2,@object    ! @__profc___bswapdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profc___bswapdi2:
+	.skip	8
+	.size	.L__profc___bswapdi2, 8
+
+	.type	.L__profd___bswapdi2,@object    ! @__profd___bswapdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profd___bswapdi2:
+	.word	2913318844                      ! 0x7ef907d7ada5b7bc
+	.word	2130249687
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___bswapdi2-.L__profd___bswapdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___bswapdi2, 48
+
+	.type	.L__profc___bswapsi2,@object    ! @__profc___bswapsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profc___bswapsi2:
+	.skip	8
+	.size	.L__profc___bswapsi2, 8
+
+	.type	.L__profd___bswapsi2,@object    ! @__profd___bswapsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profd___bswapsi2:
+	.word	4268972970                      ! 0xd129c8a2fe735baa
+	.word	3509176482
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___bswapsi2-.L__profd___bswapsi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___bswapsi2, 48
+
+	.type	.L__profc___clzsi2,@object      ! @__profc___clzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profc___clzsi2:
+	.skip	8
+	.size	.L__profc___clzsi2, 8
+
+	.type	.L__profd___clzsi2,@object      ! @__profd___clzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profd___clzsi2:
+	.word	847417603                       ! 0x1330458b32829103
+	.word	321930635
+	.word	3749574175                      ! 0x7df7df61f
+	.word	7
+	.word	.L__profc___clzsi2-.L__profd___clzsi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___clzsi2, 48
+
+	.type	.L__profc___cmpdi2,@object      ! @__profc___cmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profc___cmpdi2:
+	.skip	40
+	.size	.L__profc___cmpdi2, 40
+
+	.type	.L__profd___cmpdi2,@object      ! @__profd___cmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profd___cmpdi2:
+	.word	2900396552                      ! 0xb3ad5632ace08a08
+	.word	3014481458
+	.word	1422139388                      ! 0x993642a254c41ffc
+	.word	2570470050
+	.word	.L__profc___cmpdi2-.L__profd___cmpdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___cmpdi2, 48
+
+	.type	.L__profc___aeabi_lcmp,@object  ! @__profc___aeabi_lcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_lcmp:
+	.skip	8
+	.size	.L__profc___aeabi_lcmp, 8
+
+	.type	.L__profd___aeabi_lcmp,@object  ! @__profd___aeabi_lcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_lcmp:
+	.word	1053938860                      ! 0x6215aec83ed1d4ac
+	.word	1645588168
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___aeabi_lcmp-.L__profd___aeabi_lcmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___aeabi_lcmp, 48
+
+	.type	.L__profc___ctzsi2,@object      ! @__profc___ctzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profc___ctzsi2:
+	.skip	8
+	.size	.L__profc___ctzsi2, 8
+
+	.type	.L__profd___ctzsi2,@object      ! @__profd___ctzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profd___ctzsi2:
+	.word	1006971543                      ! 0xb3a5ef643c052a97
+	.word	3013996388
+	.word	3749574175                      ! 0x7df7df61f
+	.word	7
+	.word	.L__profc___ctzsi2-.L__profd___ctzsi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ctzsi2, 48
+
+	.type	.L__profc___lshrdi3,@object     ! @__profc___lshrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profc___lshrdi3:
+	.skip	24
+	.size	.L__profc___lshrdi3, 24
+
+	.type	.L__profd___lshrdi3,@object     ! @__profd___lshrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profd___lshrdi3:
+	.word	471342677                       ! 0x2518bb1c181e55
+	.word	2431163
+	.word	3529577560                      ! 0x2924ca7d2611458
+	.word	43142311
+	.word	.L__profc___lshrdi3-.L__profd___lshrdi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	3                               ! 0x3
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___lshrdi3, 48
+
+	.type	.L__profc___muldsi3,@object     ! @__profc___muldsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profc___muldsi3:
+	.skip	8
+	.size	.L__profc___muldsi3, 8
+
+	.type	.L__profd___muldsi3,@object     ! @__profd___muldsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profd___muldsi3:
+	.word	2728610976                      ! 0x42031a08a2a34ca0
+	.word	1107499528
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___muldsi3-.L__profd___muldsi3
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___muldsi3, 48
+
+	.type	.L__profc___muldi3_compiler_rt,@object ! @__profc___muldi3_compiler_rt
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profc___muldi3_compiler_rt:
+	.skip	8
+	.size	.L__profc___muldi3_compiler_rt, 8
+
+	.type	.L__profd___muldi3_compiler_rt,@object ! @__profd___muldi3_compiler_rt
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profd___muldi3_compiler_rt:
+	.word	3866746773                      ! 0xf5c319bbe679df95
+	.word	4123204027
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___muldi3_compiler_rt-.L__profd___muldi3_compiler_rt
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___muldi3_compiler_rt, 48
+
+	.type	.L__profc___negdi2,@object      ! @__profc___negdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profc___negdi2:
+	.skip	8
+	.size	.L__profc___negdi2, 8
+
+	.type	.L__profd___negdi2,@object      ! @__profd___negdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profd___negdi2:
+	.word	3064379771                      ! 0xd9312c7bb6a6b97b
+	.word	3643878523
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___negdi2-.L__profd___negdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___negdi2, 48
+
+	.type	.L__profc___paritydi2,@object   ! @__profc___paritydi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profc___paritydi2:
+	.skip	8
+	.size	.L__profc___paritydi2, 8
+
+	.type	.L__profd___paritydi2,@object   ! @__profd___paritydi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profd___paritydi2:
+	.word	1043989739                      ! 0xb92eea643e3a04eb
+	.word	3106859620
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___paritydi2-.L__profd___paritydi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___paritydi2, 48
+
+	.type	.L__profc___paritysi2,@object   ! @__profc___paritysi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profc___paritysi2:
+	.skip	8
+	.size	.L__profc___paritysi2, 8
+
+	.type	.L__profd___paritysi2,@object   ! @__profd___paritysi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profd___paritysi2:
+	.word	2433766622                      ! 0x75e730a6911054de
+	.word	1978085542
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___paritysi2-.L__profd___paritysi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___paritysi2, 48
+
+	.type	.L__profc___popcountdi2,@object ! @__profc___popcountdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profc___popcountdi2:
+	.skip	8
+	.size	.L__profc___popcountdi2, 8
+
+	.type	.L__profd___popcountdi2,@object ! @__profd___popcountdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profd___popcountdi2:
+	.word	220067820                       ! 0x3c43a5910d1df7ec
+	.word	1011066257
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___popcountdi2-.L__profd___popcountdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___popcountdi2, 48
+
+	.type	.L__profc___popcountsi2,@object ! @__profc___popcountsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profc___popcountsi2:
+	.skip	8
+	.size	.L__profc___popcountsi2, 8
+
+	.type	.L__profd___popcountsi2,@object ! @__profd___popcountsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profd___popcountsi2:
+	.word	1866676599                      ! 0xe22c3cbb6f433977
+	.word	3794549947
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___popcountsi2-.L__profd___popcountsi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___popcountsi2, 48
+
+	.type	.L__profc___powidf2,@object     ! @__profc___powidf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profc___powidf2:
+	.skip	40
+	.size	.L__profc___powidf2, 40
+
+	.type	.L__profd___powidf2,@object     ! @__profd___powidf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profd___powidf2:
+	.word	3451548981                      ! 0xe7adb92dcdba7535
+	.word	3886922029
+	.word	3026146526                      ! 0xbc6e6995b45f54de
+	.word	3161352597
+	.word	.L__profc___powidf2-.L__profd___powidf2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___powidf2, 48
+
+	.type	.L__profc___powisf2,@object     ! @__profc___powisf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profc___powisf2:
+	.skip	40
+	.size	.L__profc___powisf2, 40
+
+	.type	.L__profd___powisf2,@object     ! @__profd___powisf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profd___powisf2:
+	.word	3233246232                      ! 0xcb298a26c0b76c18
+	.word	3408497190
+	.word	3026146526                      ! 0xbc6e6995b45f54de
+	.word	3161352597
+	.word	.L__profc___powisf2-.L__profd___powisf2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___powisf2, 48
+
+	.type	.L__profc___ucmpdi2,@object     ! @__profc___ucmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profc___ucmpdi2:
+	.skip	40
+	.size	.L__profc___ucmpdi2, 40
+
+	.type	.L__profd___ucmpdi2,@object     ! @__profd___ucmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profd___ucmpdi2:
+	.word	627836813                       ! 0xe3a10322256c078d
+	.word	3818980130
+	.word	1422139388                      ! 0x993642a254c41ffc
+	.word	2570470050
+	.word	.L__profc___ucmpdi2-.L__profd___ucmpdi2
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	5                               ! 0x5
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___ucmpdi2, 48
+
+	.type	.L__profc___aeabi_ulcmp,@object ! @__profc___aeabi_ulcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_ulcmp:
+	.skip	8
+	.size	.L__profc___aeabi_ulcmp, 8
+
+	.type	.L__profd___aeabi_ulcmp,@object ! @__profd___aeabi_ulcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_ulcmp:
+	.word	2182691887                      ! 0x639ff8782193c2f
+	.word	104464263
+	.word	24                              ! 0x18
+	.word	0
+	.word	.L__profc___aeabi_ulcmp-.L__profd___aeabi_ulcmp
+	.word	0                               ! 0x0
+	.word	0
+	.word	0
+	.word	1                               ! 0x1
+	.skip	6
+	.skip	2
+	.word	0                               ! 0x0
+	.size	.L__profd___aeabi_ulcmp, 48
+
+	.type	.L__llvm_prf_nm,@object         ! @__llvm_prf_nm
+	.section	__llvm_prf_names,"aR",@progbits,unique,1
+.L__llvm_prf_nm:
+	.ascii	"\225\n\246\004x\332]\223\tn\3430\fE\241\033e\222\242\3505\346\004\206\254%&J-\221\344*\355\351\207\244\344\244\031\300\340\373\244VRtp!\244/\247\202\013\306\344o\341V\004!\013F\260\314huM\325\2269Z\033\007\343\216S\th\021\001]dDq\273^\025T\215y\323\314j\000\210+\352\370I4\221\246\023-\\\241\021\257E\347\215\210\251\273B\314\005\"\307k\326\306\021\367\234%\336\217\205\375X\331\217\251\375>B-\215\303\274\205 \306+\037\364]\314\220H\026\242\030/\026\025\276\277iU\213\216V\211\201Xo\273S\305\005\006V\247)W\205\036hL\257U\351\226\200\r\212A\265\316\031\223KQ\026\276\024\320a<\233\311>\262\203\242\206\024\335M\345:2\250p\f*3\201\313I\220r\366\371B}>Q\237o\304\224\227\354\363\225V\223(\\R\243\214\030e\000/g\361\006p\251?\342N\342\237wq\007\360C\234\017J\246\353\274Pp\bZ;\004m\351=\335\036VX]i\337\013{W\\\240RA\375C\331\207B\265\374\315\013\264t\243\354\335=\373\201a\221\033\354\236\312h\035\335\204\263\225\362Z>\231G\243\321\2478\301\n\327\310\313\350cHc\372\302[.K\330\251\252\027\265SiC\262\025\336(f\260\324\365\006\347CZ\2214\263\322L\212Q\t\355\3446\331yB\262@\330\351\346v\3223\021g\200\205D\346L\203?\3338\245M\341\341\276\307Z}\345\341\254\013\264\3571\220S6i\217m\373u\225\005n\347\323\351\364\3641\\x\364%\227@\377\304\nt\307\354_<\373\364\002U\210\232\362\267\277\017\177\307M2\246\rG\352\262\355\345y\306&g<\017\\\350\225\257\306PL\327M\n+\252\f%\3750\212)\262\316\022\377L\021\346\240v|\r\344\316\225\332\214a|\354\303oV\037\212\0227)d@W\226\322(\030\335u\3543\n\370[\327\227b\332\027\357\030\353`\375\241\252\250\375\277\233\355|\265\177\337\f\323w"
+	.size	.L__llvm_prf_nm, 554
+
 	.ident	"clang version 19.1.5 (Fedora 19.1.5-1.fc41)"
 	.section	".note.GNU-stack","",@progbits
 	.addrsig
@@ -9906,3 +19366,307 @@ digits:
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_profile_runtime
+	.addrsig_sym .L__profc_memmove
+	.addrsig_sym .L__profd_memmove
+	.addrsig_sym .L__profc_memccpy
+	.addrsig_sym .L__profd_memccpy
+	.addrsig_sym .L__profc_memchr
+	.addrsig_sym .L__profd_memchr
+	.addrsig_sym .L__profc_memcmp
+	.addrsig_sym .L__profd_memcmp
+	.addrsig_sym .L__profc_memcpy
+	.addrsig_sym .L__profd_memcpy
+	.addrsig_sym .L__profc_memrchr
+	.addrsig_sym .L__profd_memrchr
+	.addrsig_sym .L__profc_memset
+	.addrsig_sym .L__profd_memset
+	.addrsig_sym .L__profc_stpcpy
+	.addrsig_sym .L__profd_stpcpy
+	.addrsig_sym .L__profc_strchrnul
+	.addrsig_sym .L__profd_strchrnul
+	.addrsig_sym .L__profc_strchr
+	.addrsig_sym .L__profd_strchr
+	.addrsig_sym .L__profc_strcmp
+	.addrsig_sym .L__profd_strcmp
+	.addrsig_sym .L__profc_strlen
+	.addrsig_sym .L__profd_strlen
+	.addrsig_sym .L__profc_strncmp
+	.addrsig_sym .L__profd_strncmp
+	.addrsig_sym .L__profc_swab
+	.addrsig_sym .L__profd_swab
+	.addrsig_sym .L__profc_isalpha
+	.addrsig_sym .L__profd_isalpha
+	.addrsig_sym .L__profc_isascii
+	.addrsig_sym .L__profd_isascii
+	.addrsig_sym .L__profc_isblank
+	.addrsig_sym .L__profd_isblank
+	.addrsig_sym .L__profc_iscntrl
+	.addrsig_sym .L__profd_iscntrl
+	.addrsig_sym .L__profc_isdigit
+	.addrsig_sym .L__profd_isdigit
+	.addrsig_sym .L__profc_isgraph
+	.addrsig_sym .L__profd_isgraph
+	.addrsig_sym .L__profc_islower
+	.addrsig_sym .L__profd_islower
+	.addrsig_sym .L__profc_isprint
+	.addrsig_sym .L__profd_isprint
+	.addrsig_sym .L__profc_isspace
+	.addrsig_sym .L__profd_isspace
+	.addrsig_sym .L__profc_isupper
+	.addrsig_sym .L__profd_isupper
+	.addrsig_sym .L__profc_iswcntrl
+	.addrsig_sym .L__profd_iswcntrl
+	.addrsig_sym .L__profc_iswdigit
+	.addrsig_sym .L__profd_iswdigit
+	.addrsig_sym .L__profc_iswprint
+	.addrsig_sym .L__profd_iswprint
+	.addrsig_sym .L__profc_iswxdigit
+	.addrsig_sym .L__profd_iswxdigit
+	.addrsig_sym .L__profc_toascii
+	.addrsig_sym .L__profd_toascii
+	.addrsig_sym .L__profc_fdim
+	.addrsig_sym .L__profd_fdim
+	.addrsig_sym .L__profc_fdimf
+	.addrsig_sym .L__profd_fdimf
+	.addrsig_sym .L__profc_fmax
+	.addrsig_sym .L__profd_fmax
+	.addrsig_sym .L__profc_fmaxf
+	.addrsig_sym .L__profd_fmaxf
+	.addrsig_sym .L__profc_fmaxl
+	.addrsig_sym .L__profd_fmaxl
+	.addrsig_sym .L__profc_fmin
+	.addrsig_sym .L__profd_fmin
+	.addrsig_sym .L__profc_fminf
+	.addrsig_sym .L__profd_fminf
+	.addrsig_sym .L__profc_fminl
+	.addrsig_sym .L__profd_fminl
+	.addrsig_sym .L__profc_l64a
+	.addrsig_sym .L__profd_l64a
+	.addrsig_sym .L__profc_srand
+	.addrsig_sym .L__profd_srand
+	.addrsig_sym .L__profc_rand
+	.addrsig_sym .L__profd_rand
+	.addrsig_sym .L__profc_insque
+	.addrsig_sym .L__profd_insque
+	.addrsig_sym .L__profc_remque
+	.addrsig_sym .L__profd_remque
+	.addrsig_sym .L__profc_lsearch
+	.addrsig_sym .L__profd_lsearch
+	.addrsig_sym .L__profc_lfind
+	.addrsig_sym .L__profd_lfind
+	.addrsig_sym .L__profc_abs
+	.addrsig_sym .L__profd_abs
+	.addrsig_sym .L__profc_atoi
+	.addrsig_sym .L__profd_atoi
+	.addrsig_sym .L__profc_atol
+	.addrsig_sym .L__profd_atol
+	.addrsig_sym .L__profc_atoll
+	.addrsig_sym .L__profd_atoll
+	.addrsig_sym .L__profc_bsearch
+	.addrsig_sym .L__profd_bsearch
+	.addrsig_sym .L__profc_bsearch_r
+	.addrsig_sym .L__profd_bsearch_r
+	.addrsig_sym .L__profc_div
+	.addrsig_sym .L__profd_div
+	.addrsig_sym .L__profc_imaxabs
+	.addrsig_sym .L__profd_imaxabs
+	.addrsig_sym .L__profc_imaxdiv
+	.addrsig_sym .L__profd_imaxdiv
+	.addrsig_sym .L__profc_labs
+	.addrsig_sym .L__profd_labs
+	.addrsig_sym .L__profc_ldiv
+	.addrsig_sym .L__profd_ldiv
+	.addrsig_sym .L__profc_llabs
+	.addrsig_sym .L__profd_llabs
+	.addrsig_sym .L__profc_lldiv
+	.addrsig_sym .L__profd_lldiv
+	.addrsig_sym .L__profc_wcschr
+	.addrsig_sym .L__profd_wcschr
+	.addrsig_sym .L__profc_wcscmp
+	.addrsig_sym .L__profd_wcscmp
+	.addrsig_sym .L__profc_wcscpy
+	.addrsig_sym .L__profd_wcscpy
+	.addrsig_sym .L__profc_wcslen
+	.addrsig_sym .L__profd_wcslen
+	.addrsig_sym .L__profc_wcsncmp
+	.addrsig_sym .L__profd_wcsncmp
+	.addrsig_sym .L__profc_wmemchr
+	.addrsig_sym .L__profd_wmemchr
+	.addrsig_sym .L__profc_wmemcmp
+	.addrsig_sym .L__profd_wmemcmp
+	.addrsig_sym .L__profc_wmemcpy
+	.addrsig_sym .L__profd_wmemcpy
+	.addrsig_sym .L__profc_wmemmove
+	.addrsig_sym .L__profd_wmemmove
+	.addrsig_sym .L__profc_wmemset
+	.addrsig_sym .L__profd_wmemset
+	.addrsig_sym .L__profc_bcopy
+	.addrsig_sym .L__profd_bcopy
+	.addrsig_sym .L__profc_rotl64
+	.addrsig_sym .L__profd_rotl64
+	.addrsig_sym .L__profc_rotr64
+	.addrsig_sym .L__profd_rotr64
+	.addrsig_sym .L__profc_rotl32
+	.addrsig_sym .L__profd_rotl32
+	.addrsig_sym .L__profc_rotr32
+	.addrsig_sym .L__profd_rotr32
+	.addrsig_sym .L__profc_rotl_sz
+	.addrsig_sym .L__profd_rotl_sz
+	.addrsig_sym .L__profc_rotr_sz
+	.addrsig_sym .L__profd_rotr_sz
+	.addrsig_sym .L__profc_rotl16
+	.addrsig_sym .L__profd_rotl16
+	.addrsig_sym .L__profc_rotr16
+	.addrsig_sym .L__profd_rotr16
+	.addrsig_sym .L__profc_rotl8
+	.addrsig_sym .L__profd_rotl8
+	.addrsig_sym .L__profc_rotr8
+	.addrsig_sym .L__profd_rotr8
+	.addrsig_sym .L__profc_bswap_16
+	.addrsig_sym .L__profd_bswap_16
+	.addrsig_sym .L__profc_bswap_32
+	.addrsig_sym .L__profd_bswap_32
+	.addrsig_sym .L__profc_bswap_64
+	.addrsig_sym .L__profd_bswap_64
+	.addrsig_sym .L__profc_ffs
+	.addrsig_sym .L__profd_ffs
+	.addrsig_sym .L__profc_libiberty_ffs
+	.addrsig_sym .L__profd_libiberty_ffs
+	.addrsig_sym .L__profc_gl_isinff
+	.addrsig_sym .L__profd_gl_isinff
+	.addrsig_sym .L__profc_gl_isinfd
+	.addrsig_sym .L__profd_gl_isinfd
+	.addrsig_sym .L__profc_gl_isinfl
+	.addrsig_sym .L__profd_gl_isinfl
+	.addrsig_sym .L__profc__Qp_itoq
+	.addrsig_sym .L__profd__Qp_itoq
+	.addrsig_sym .L__profc_ldexpf
+	.addrsig_sym .L__profd_ldexpf
+	.addrsig_sym .L__profc_ldexp
+	.addrsig_sym .L__profd_ldexp
+	.addrsig_sym .L__profc_ldexpl
+	.addrsig_sym .L__profd_ldexpl
+	.addrsig_sym .L__profc_memxor
+	.addrsig_sym .L__profd_memxor
+	.addrsig_sym .L__profc_strncat
+	.addrsig_sym .L__profd_strncat
+	.addrsig_sym .L__profc_strnlen
+	.addrsig_sym .L__profd_strnlen
+	.addrsig_sym .L__profc_strpbrk
+	.addrsig_sym .L__profd_strpbrk
+	.addrsig_sym .L__profc_strrchr
+	.addrsig_sym .L__profd_strrchr
+	.addrsig_sym .L__profc_strstr
+	.addrsig_sym .L__profd_strstr
+	.addrsig_sym .L__profc_copysign
+	.addrsig_sym .L__profd_copysign
+	.addrsig_sym .L__profc_memmem
+	.addrsig_sym .L__profd_memmem
+	.addrsig_sym .L__profc_mempcpy
+	.addrsig_sym .L__profd_mempcpy
+	.addrsig_sym .L__profc_frexp
+	.addrsig_sym .L__profd_frexp
+	.addrsig_sym .L__profc___muldi3
+	.addrsig_sym .L__profd___muldi3
+	.addrsig_sym .L__profc_udivmodsi4
+	.addrsig_sym .L__profd_udivmodsi4
+	.addrsig_sym .L__profc___clrsbqi2
+	.addrsig_sym .L__profd___clrsbqi2
+	.addrsig_sym .L__profc___clrsbdi2
+	.addrsig_sym .L__profd___clrsbdi2
+	.addrsig_sym .L__profc___mulsi3
+	.addrsig_sym .L__profd___mulsi3
+	.addrsig_sym .L__profc___cmovd
+	.addrsig_sym .L__profd___cmovd
+	.addrsig_sym .L__profc___cmovh
+	.addrsig_sym .L__profd___cmovh
+	.addrsig_sym .L__profc___cmovw
+	.addrsig_sym .L__profd___cmovw
+	.addrsig_sym .L__profc___modi
+	.addrsig_sym .L__profd___modi
+	.addrsig_sym .L__profc___uitod
+	.addrsig_sym .L__profd___uitod
+	.addrsig_sym .L__profc___uitof
+	.addrsig_sym .L__profd___uitof
+	.addrsig_sym .L__profc___ulltod
+	.addrsig_sym .L__profd___ulltod
+	.addrsig_sym .L__profc___ulltof
+	.addrsig_sym .L__profd___ulltof
+	.addrsig_sym .L__profc___umodi
+	.addrsig_sym .L__profd___umodi
+	.addrsig_sym .L__profc___clzhi2
+	.addrsig_sym .L__profd___clzhi2
+	.addrsig_sym .L__profc___ctzhi2
+	.addrsig_sym .L__profd___ctzhi2
+	.addrsig_sym .L__profc___fixunssfsi
+	.addrsig_sym .L__profd___fixunssfsi
+	.addrsig_sym .L__profc___parityhi2
+	.addrsig_sym .L__profd___parityhi2
+	.addrsig_sym .L__profc___popcounthi2
+	.addrsig_sym .L__profd___popcounthi2
+	.addrsig_sym .L__profc___mulsi3_iq2000
+	.addrsig_sym .L__profd___mulsi3_iq2000
+	.addrsig_sym .L__profc___mulsi3_lm32
+	.addrsig_sym .L__profd___mulsi3_lm32
+	.addrsig_sym .L__profc___udivmodsi4
+	.addrsig_sym .L__profd___udivmodsi4
+	.addrsig_sym .L__profc___mspabi_cmpf
+	.addrsig_sym .L__profd___mspabi_cmpf
+	.addrsig_sym .L__profc___mspabi_cmpd
+	.addrsig_sym .L__profd___mspabi_cmpd
+	.addrsig_sym .L__profc___mspabi_mpysll
+	.addrsig_sym .L__profd___mspabi_mpysll
+	.addrsig_sym .L__profc___mspabi_mpyull
+	.addrsig_sym .L__profd___mspabi_mpyull
+	.addrsig_sym .L__profc___mulhi3
+	.addrsig_sym .L__profd___mulhi3
+	.addrsig_sym .L__profc___divsi3
+	.addrsig_sym .L__profd___divsi3
+	.addrsig_sym .L__profc___modsi3
+	.addrsig_sym .L__profd___modsi3
+	.addrsig_sym .L__profc___udivmodhi4
+	.addrsig_sym .L__profd___udivmodhi4
+	.addrsig_sym .L__profc___udivmodsi4_libgcc
+	.addrsig_sym .L__profd___udivmodsi4_libgcc
+	.addrsig_sym .L__profc___ashldi3
+	.addrsig_sym .L__profd___ashldi3
+	.addrsig_sym .L__profc___ashrdi3
+	.addrsig_sym .L__profd___ashrdi3
+	.addrsig_sym .L__profc___bswapdi2
+	.addrsig_sym .L__profd___bswapdi2
+	.addrsig_sym .L__profc___bswapsi2
+	.addrsig_sym .L__profd___bswapsi2
+	.addrsig_sym .L__profc___clzsi2
+	.addrsig_sym .L__profd___clzsi2
+	.addrsig_sym .L__profc___cmpdi2
+	.addrsig_sym .L__profd___cmpdi2
+	.addrsig_sym .L__profc___aeabi_lcmp
+	.addrsig_sym .L__profd___aeabi_lcmp
+	.addrsig_sym .L__profc___ctzsi2
+	.addrsig_sym .L__profd___ctzsi2
+	.addrsig_sym .L__profc___lshrdi3
+	.addrsig_sym .L__profd___lshrdi3
+	.addrsig_sym .L__profc___muldsi3
+	.addrsig_sym .L__profd___muldsi3
+	.addrsig_sym .L__profc___muldi3_compiler_rt
+	.addrsig_sym .L__profd___muldi3_compiler_rt
+	.addrsig_sym .L__profc___negdi2
+	.addrsig_sym .L__profd___negdi2
+	.addrsig_sym .L__profc___paritydi2
+	.addrsig_sym .L__profd___paritydi2
+	.addrsig_sym .L__profc___paritysi2
+	.addrsig_sym .L__profd___paritysi2
+	.addrsig_sym .L__profc___popcountdi2
+	.addrsig_sym .L__profd___popcountdi2
+	.addrsig_sym .L__profc___popcountsi2
+	.addrsig_sym .L__profd___popcountsi2
+	.addrsig_sym .L__profc___powidf2
+	.addrsig_sym .L__profd___powidf2
+	.addrsig_sym .L__profc___powisf2
+	.addrsig_sym .L__profd___powisf2
+	.addrsig_sym .L__profc___ucmpdi2
+	.addrsig_sym .L__profd___ucmpdi2
+	.addrsig_sym .L__profc___aeabi_ulcmp
+	.addrsig_sym .L__profd___aeabi_ulcmp
+	.addrsig_sym .L__llvm_prf_nm

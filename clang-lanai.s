@@ -10,6 +10,18 @@ memmove:                                ! @memmove
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memmove), %r3
+	or	%r3, lo(.L__profc_memmove), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmove+4), %r12
+	or	%r12, lo(.L__profc_memmove+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -22,6 +34,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_1
 	nop
 .LBB0_1:
+	mov	hi(.L__profc_memmove+8), %r3
+	or	%r3, lo(.L__profc_memmove+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmove+12), %r12
+	or	%r12, lo(.L__profc_memmove+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	ld	-28[%fp], %r3
 	add	%r3, %r9, %r3
@@ -39,6 +63,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_3
 	nop
 .LBB0_3:                                !   in Loop: Header=BB0_2 Depth=1
+	mov	hi(.L__profc_memmove+16), %r3
+	or	%r3, lo(.L__profc_memmove+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmove+20), %r12
+	or	%r12, lo(.L__profc_memmove+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sub	%r3, 0x1, %r9
 	st	%r9, -28[%fp]
@@ -65,8 +101,19 @@ memmove:                                ! @memmove
 	bt	.LBB0_7
 	nop
 .LBB0_7:
+	mov	hi(.L__profc_memmove+24), %r3
+	or	%r3, lo(.L__profc_memmove+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmove+28), %r12
+	or	%r12, lo(.L__profc_memmove+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB0_8
-	nop
+	st	%r3, 0[%r9]
 .LBB0_8:                                ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
@@ -75,6 +122,18 @@ memmove:                                ! @memmove
 	bt	.LBB0_9
 	nop
 .LBB0_9:                                !   in Loop: Header=BB0_8 Depth=1
+	mov	hi(.L__profc_memmove+32), %r3
+	or	%r3, lo(.L__profc_memmove+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmove+36), %r12
+	or	%r12, lo(.L__profc_memmove+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -28[%fp]
@@ -110,11 +169,23 @@ memccpy:                                ! @memccpy
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x28, %sp
+	sub	%sp, 0x30, %sp
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_memccpy), %r3
+	or	%r3, lo(.L__profc_memccpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memccpy+4), %r12
+	or	%r12, lo(.L__profc_memccpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -32[%fp]
 	ld	-20[%fp], %r3
@@ -128,33 +199,76 @@ memccpy:                                ! @memccpy
 	ld	-28[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB1_3
+	beq	.LBB1_4
 	st	%r3, -40[%fp]
 	bt	.LBB1_2
 	nop
 .LBB1_2:                                !   in Loop: Header=BB1_1 Depth=1
+	mov	hi(.L__profc_memccpy+16), %r3
+	or	%r3, lo(.L__profc_memccpy+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memccpy+20), %r12
+	or	%r12, lo(.L__profc_memccpy+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-32[%fp], %r9
-	st.b	%r3, 0[%r9]
-	ld	-24[%fp], %r9
-	sub.f	%r3, %r9, %r0
+	uld.b	0[%r3], %r9
+	ld	-32[%fp], %r3
+	st.b	%r9, 0[%r3]
+	ld	-24[%fp], %r12
+	sub.f	%r9, %r12, %r0
 	sne	%r3
-	bt	.LBB1_3
+	st	%r3, -44[%fp]
+	sub.f	%r9, %r12, %r0
+	beq	.LBB1_4
 	st	%r3, -40[%fp]
+	bt	.LBB1_3
+	nop
 .LBB1_3:                                !   in Loop: Header=BB1_1 Depth=1
+	ld	-44[%fp], %r3
+	mov	hi(.L__profc_memccpy+24), %r9
+	or	%r9, lo(.L__profc_memccpy+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_memccpy+28), %r13
+	or	%r13, lo(.L__profc_memccpy+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB1_4
+	st	%r3, -40[%fp]
+.LBB1_4:                                !   in Loop: Header=BB1_1 Depth=1
 	ld	-40[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB1_6
+	beq	.LBB1_7
 	nop
-	bt	.LBB1_4
-	nop
-.LBB1_4:                                !   in Loop: Header=BB1_1 Depth=1
 	bt	.LBB1_5
 	nop
 .LBB1_5:                                !   in Loop: Header=BB1_1 Depth=1
+	mov	hi(.L__profc_memccpy+8), %r3
+	or	%r3, lo(.L__profc_memccpy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memccpy+12), %r12
+	or	%r12, lo(.L__profc_memccpy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB1_6
+	st	%r3, 0[%r9]
+.LBB1_6:                                !   in Loop: Header=BB1_1 Depth=1
 	ld	-28[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -165,23 +279,35 @@ memccpy:                                ! @memccpy
 	add	%r3, 0x1, %r3
 	bt	.LBB1_1
 	st	%r3, -32[%fp]
-.LBB1_6:
+.LBB1_7:
 	ld	-28[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB1_8
+	beq	.LBB1_9
 	nop
-	bt	.LBB1_7
+	bt	.LBB1_8
 	nop
-.LBB1_7:
+.LBB1_8:
+	mov	hi(.L__profc_memccpy+32), %r3
+	or	%r3, lo(.L__profc_memccpy+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memccpy+36), %r12
+	or	%r12, lo(.L__profc_memccpy+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB1_9
-	st	%r3, -12[%fp]
-.LBB1_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB1_9
+	bt	.LBB1_10
 	st	%r3, -12[%fp]
 .LBB1_9:
+	or	%r0, 0x0, %r3
+	bt	.LBB1_10
+	st	%r3, -12[%fp]
+.LBB1_10:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -196,10 +322,22 @@ memchr:                                 ! @memchr
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x20, %sp
+	sub	%sp, 0x28, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memchr), %r3
+	or	%r3, lo(.L__profc_memchr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memchr+4), %r12
+	or	%r12, lo(.L__profc_memchr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	sub	%fp, 0x10, %r3
@@ -211,31 +349,74 @@ memchr:                                 ! @memchr
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB2_3
+	beq	.LBB2_4
 	st	%r3, -28[%fp]
 	bt	.LBB2_2
 	nop
 .LBB2_2:                                !   in Loop: Header=BB2_1 Depth=1
+	mov	hi(.L__profc_memchr+16), %r3
+	or	%r3, lo(.L__profc_memchr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memchr+20), %r12
+	or	%r12, lo(.L__profc_memchr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-16[%fp], %r9
-	sub.f	%r3, %r9, %r0
+	uld.b	0[%r3], %r9
+	ld	-16[%fp], %r12
+	sub.f	%r9, %r12, %r0
 	sne	%r3
-	bt	.LBB2_3
+	st	%r3, -32[%fp]
+	sub.f	%r9, %r12, %r0
+	beq	.LBB2_4
 	st	%r3, -28[%fp]
+	bt	.LBB2_3
+	nop
 .LBB2_3:                                !   in Loop: Header=BB2_1 Depth=1
+	ld	-32[%fp], %r3
+	mov	hi(.L__profc_memchr+24), %r9
+	or	%r9, lo(.L__profc_memchr+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_memchr+28), %r13
+	or	%r13, lo(.L__profc_memchr+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB2_4
+	st	%r3, -28[%fp]
+.LBB2_4:                                !   in Loop: Header=BB2_1 Depth=1
 	ld	-28[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB2_6
+	beq	.LBB2_7
 	nop
-	bt	.LBB2_4
-	nop
-.LBB2_4:                                !   in Loop: Header=BB2_1 Depth=1
 	bt	.LBB2_5
 	nop
 .LBB2_5:                                !   in Loop: Header=BB2_1 Depth=1
+	mov	hi(.L__profc_memchr+8), %r3
+	or	%r3, lo(.L__profc_memchr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memchr+12), %r12
+	or	%r12, lo(.L__profc_memchr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB2_6
+	st	%r3, 0[%r9]
+.LBB2_6:                                !   in Loop: Header=BB2_1 Depth=1
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -24[%fp]
@@ -243,23 +424,35 @@ memchr:                                 ! @memchr
 	sub	%r3, 0x1, %r3
 	bt	.LBB2_1
 	st	%r3, -20[%fp]
-.LBB2_6:
+.LBB2_7:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB2_8
+	beq	.LBB2_9
 	nop
-	bt	.LBB2_7
+	bt	.LBB2_8
 	nop
-.LBB2_7:
-	ld	-24[%fp], %r3
-	bt	.LBB2_9
-	st	%r3, -32[%fp]
 .LBB2_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB2_9
-	st	%r3, -32[%fp]
+	mov	hi(.L__profc_memchr+32), %r3
+	or	%r3, lo(.L__profc_memchr+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memchr+36), %r12
+	or	%r12, lo(.L__profc_memchr+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-24[%fp], %r3
+	bt	.LBB2_10
+	st	%r3, -36[%fp]
 .LBB2_9:
-	ld	-32[%fp], %rv
+	or	%r0, 0x0, %r3
+	bt	.LBB2_10
+	st	%r3, -36[%fp]
+.LBB2_10:
+	ld	-36[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -277,6 +470,18 @@ memcmp:                                 ! @memcmp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memcmp), %r3
+	or	%r3, lo(.L__profc_memcmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcmp+4), %r12
+	or	%r12, lo(.L__profc_memcmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -286,32 +491,75 @@ memcmp:                                 ! @memcmp
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB3_3
+	beq	.LBB3_4
 	st	%r3, -32[%fp]
 	bt	.LBB3_2
 	nop
 .LBB3_2:                                !   in Loop: Header=BB3_1 Depth=1
+	mov	hi(.L__profc_memcmp+16), %r3
+	or	%r3, lo(.L__profc_memcmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcmp+20), %r12
+	or	%r12, lo(.L__profc_memcmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-28[%fp], %r9
-	uld.b	0[%r9], %r9
-	sub.f	%r3, %r9, %r0
+	uld.b	0[%r3], %r9
+	ld	-28[%fp], %r3
+	uld.b	0[%r3], %r12
+	sub.f	%r9, %r12, %r0
 	seq	%r3
-	bt	.LBB3_3
+	st	%r3, -36[%fp]
+	sub.f	%r9, %r12, %r0
+	bne	.LBB3_4
 	st	%r3, -32[%fp]
+	bt	.LBB3_3
+	nop
 .LBB3_3:                                !   in Loop: Header=BB3_1 Depth=1
+	ld	-36[%fp], %r3
+	mov	hi(.L__profc_memcmp+24), %r9
+	or	%r9, lo(.L__profc_memcmp+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_memcmp+28), %r13
+	or	%r13, lo(.L__profc_memcmp+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB3_4
+	st	%r3, -32[%fp]
+.LBB3_4:                                !   in Loop: Header=BB3_1 Depth=1
 	ld	-32[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB3_6
+	beq	.LBB3_7
 	nop
-	bt	.LBB3_4
-	nop
-.LBB3_4:                                !   in Loop: Header=BB3_1 Depth=1
 	bt	.LBB3_5
 	nop
 .LBB3_5:                                !   in Loop: Header=BB3_1 Depth=1
+	mov	hi(.L__profc_memcmp+8), %r3
+	or	%r3, lo(.L__profc_memcmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcmp+12), %r12
+	or	%r12, lo(.L__profc_memcmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB3_6
+	st	%r3, 0[%r9]
+.LBB3_6:                                !   in Loop: Header=BB3_1 Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -322,27 +570,39 @@ memcmp:                                 ! @memcmp
 	add	%r3, 0x1, %r3
 	bt	.LBB3_1
 	st	%r3, -28[%fp]
-.LBB3_6:
+.LBB3_7:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB3_8
+	beq	.LBB3_9
 	nop
-	bt	.LBB3_7
+	bt	.LBB3_8
 	nop
-.LBB3_7:
+.LBB3_8:
+	mov	hi(.L__profc_memcmp+32), %r3
+	or	%r3, lo(.L__profc_memcmp+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcmp+36), %r12
+	or	%r12, lo(.L__profc_memcmp+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	uld.b	0[%r3], %r3
 	ld	-28[%fp], %r9
 	uld.b	0[%r9], %r9
 	sub	%r3, %r9, %r3
-	bt	.LBB3_9
-	st	%r3, -36[%fp]
-.LBB3_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB3_9
-	st	%r3, -36[%fp]
+	bt	.LBB3_10
+	st	%r3, -40[%fp]
 .LBB3_9:
-	ld	-36[%fp], %rv
+	or	%r0, 0x0, %r3
+	bt	.LBB3_10
+	st	%r3, -40[%fp]
+.LBB3_10:
+	ld	-40[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -360,6 +620,18 @@ memcpy:                                 ! @memcpy
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memcpy), %r3
+	or	%r3, lo(.L__profc_memcpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcpy+4), %r12
+	or	%r12, lo(.L__profc_memcpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -373,6 +645,18 @@ memcpy:                                 ! @memcpy
 	bt	.LBB4_2
 	nop
 .LBB4_2:                                !   in Loop: Header=BB4_1 Depth=1
+	mov	hi(.L__profc_memcpy+8), %r3
+	or	%r3, lo(.L__profc_memcpy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memcpy+12), %r12
+	or	%r12, lo(.L__profc_memcpy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -28[%fp]
@@ -406,6 +690,18 @@ memrchr:                                ! @memrchr
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_memrchr), %r3
+	or	%r3, lo(.L__profc_memrchr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memrchr+4), %r12
+	or	%r12, lo(.L__profc_memrchr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -28[%fp]
 	sub	%fp, 0x14, %r3
@@ -422,6 +718,18 @@ memrchr:                                ! @memrchr
 	bt	.LBB5_2
 	nop
 .LBB5_2:                                !   in Loop: Header=BB5_1 Depth=1
+	mov	hi(.L__profc_memrchr+8), %r3
+	or	%r3, lo(.L__profc_memrchr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memrchr+12), %r12
+	or	%r12, lo(.L__profc_memrchr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	ld	-24[%fp], %r9
 	uld.b	[%r3 add %r9], %r3
@@ -432,6 +740,18 @@ memrchr:                                ! @memrchr
 	bt	.LBB5_3
 	nop
 .LBB5_3:
+	mov	hi(.L__profc_memrchr+16), %r3
+	or	%r3, lo(.L__profc_memrchr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memrchr+20), %r12
+	or	%r12, lo(.L__profc_memrchr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	ld	-24[%fp], %r9
 	add	%r3, %r9, %r3
@@ -463,6 +783,18 @@ memset:                                 ! @memset
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memset), %r3
+	or	%r3, lo(.L__profc_memset), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memset+4), %r12
+	or	%r12, lo(.L__profc_memset+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB6_1
 	st	%r3, -24[%fp]
@@ -474,6 +806,18 @@ memset:                                 ! @memset
 	bt	.LBB6_2
 	nop
 .LBB6_2:                                !   in Loop: Header=BB6_1 Depth=1
+	mov	hi(.L__profc_memset+8), %r3
+	or	%r3, lo(.L__profc_memset+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memset+12), %r12
+	or	%r12, lo(.L__profc_memset+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-24[%fp], %r9
 	bt	.LBB6_3
@@ -503,8 +847,20 @@ stpcpy:                                 ! @stpcpy
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
-	bt	.LBB7_1
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_stpcpy), %r3
+	or	%r3, lo(.L__profc_stpcpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_stpcpy+4), %r12
+	or	%r12, lo(.L__profc_stpcpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB7_1
+	st	%r3, 0[%r9]
 .LBB7_1:                                ! =>This Inner Loop Header: Depth=1
 	ld	-16[%fp], %r3
 	uld.b	0[%r3], %r3
@@ -515,8 +871,19 @@ stpcpy:                                 ! @stpcpy
 	bt	.LBB7_2
 	nop
 .LBB7_2:                                !   in Loop: Header=BB7_1 Depth=1
+	mov	hi(.L__profc_stpcpy+8), %r3
+	or	%r3, lo(.L__profc_stpcpy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_stpcpy+12), %r12
+	or	%r12, lo(.L__profc_stpcpy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB7_3
-	nop
+	st	%r3, 0[%r9]
 .LBB7_3:                                !   in Loop: Header=BB7_1 Depth=1
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
@@ -543,6 +910,18 @@ strchrnul:                              ! @strchrnul
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_strchrnul), %r3
+	or	%r3, lo(.L__profc_strchrnul), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchrnul+4), %r12
+	or	%r12, lo(.L__profc_strchrnul+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -553,36 +932,79 @@ strchrnul:                              ! @strchrnul
 	ld.b	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB8_3
+	beq	.LBB8_4
 	st	%r3, -20[%fp]
 	bt	.LBB8_2
 	nop
 .LBB8_2:                                !   in Loop: Header=BB8_1 Depth=1
+	mov	hi(.L__profc_strchrnul+16), %r3
+	or	%r3, lo(.L__profc_strchrnul+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchrnul+20), %r12
+	or	%r12, lo(.L__profc_strchrnul+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-16[%fp], %r9
-	sub.f	%r3, %r9, %r0
+	uld.b	0[%r3], %r9
+	ld	-16[%fp], %r12
+	sub.f	%r9, %r12, %r0
 	sne	%r3
-	bt	.LBB8_3
+	st	%r3, -24[%fp]
+	sub.f	%r9, %r12, %r0
+	beq	.LBB8_4
 	st	%r3, -20[%fp]
+	bt	.LBB8_3
+	nop
 .LBB8_3:                                !   in Loop: Header=BB8_1 Depth=1
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_strchrnul+24), %r9
+	or	%r9, lo(.L__profc_strchrnul+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_strchrnul+28), %r13
+	or	%r13, lo(.L__profc_strchrnul+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB8_4
+	st	%r3, -20[%fp]
+.LBB8_4:                                !   in Loop: Header=BB8_1 Depth=1
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB8_6
+	beq	.LBB8_7
 	nop
-	bt	.LBB8_4
-	nop
-.LBB8_4:                                !   in Loop: Header=BB8_1 Depth=1
 	bt	.LBB8_5
 	nop
 .LBB8_5:                                !   in Loop: Header=BB8_1 Depth=1
+	mov	hi(.L__profc_strchrnul+8), %r3
+	or	%r3, lo(.L__profc_strchrnul+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchrnul+12), %r12
+	or	%r12, lo(.L__profc_strchrnul+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB8_6
+	st	%r3, 0[%r9]
+.LBB8_6:                                !   in Loop: Header=BB8_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB8_1
 	st	%r3, -12[%fp]
-.LBB8_6:
+.LBB8_7:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -599,25 +1021,63 @@ strchr:                                 ! @strchr
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -16[%fp]
-	bt	.LBB9_1
 	st	%r7, -20[%fp]
-.LBB9_1:                                ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc_strchr), %r3
+	or	%r3, lo(.L__profc_strchr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchr+4), %r12
+	or	%r12, lo(.L__profc_strchr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB9_2
+	st	%r3, 0[%r9]
+.LBB9_1:                                !   in Loop: Header=BB9_2 Depth=1
+	mov	hi(.L__profc_strchr+8), %r3
+	or	%r3, lo(.L__profc_strchr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchr+12), %r12
+	or	%r12, lo(.L__profc_strchr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB9_2
+	st	%r3, 0[%r9]
+.LBB9_2:                                ! =>This Inner Loop Header: Depth=1
 	ld	-16[%fp], %r3
 	ld.b	0[%r3], %r3
 	ld	-20[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bne	.LBB9_3
+	bne	.LBB9_4
 	nop
-	bt	.LBB9_2
+	bt	.LBB9_3
 	nop
-.LBB9_2:
+.LBB9_3:
+	mov	hi(.L__profc_strchr+16), %r3
+	or	%r3, lo(.L__profc_strchr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strchr+20), %r12
+	or	%r12, lo(.L__profc_strchr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
-	bt	.LBB9_6
+	bt	.LBB9_7
 	st	%r3, -12[%fp]
-.LBB9_3:                                !   in Loop: Header=BB9_1 Depth=1
-	bt	.LBB9_4
+.LBB9_4:                                !   in Loop: Header=BB9_2 Depth=1
+	bt	.LBB9_5
 	nop
-.LBB9_4:                                !   in Loop: Header=BB9_1 Depth=1
+.LBB9_5:                                !   in Loop: Header=BB9_2 Depth=1
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -16[%fp]
@@ -625,13 +1085,13 @@ strchr:                                 ! @strchr
 	sub.f	%r3, 0x0, %r0
 	bne	.LBB9_1
 	nop
-	bt	.LBB9_5
-	nop
-.LBB9_5:
-	or	%r0, 0x0, %r3
 	bt	.LBB9_6
-	st	%r3, -12[%fp]
+	nop
 .LBB9_6:
+	or	%r0, 0x0, %r3
+	bt	.LBB9_7
+	st	%r3, -12[%fp]
+.LBB9_7:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -648,8 +1108,20 @@ strcmp:                                 ! @strcmp
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
-	bt	.LBB10_1
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_strcmp), %r3
+	or	%r3, lo(.L__profc_strcmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strcmp+4), %r12
+	or	%r12, lo(.L__profc_strcmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB10_1
+	st	%r3, 0[%r9]
 .LBB10_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	ld.b	0[%r3], %r9
@@ -657,30 +1129,73 @@ strcmp:                                 ! @strcmp
 	ld.b	0[%r3], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	bne	.LBB10_3
+	bne	.LBB10_4
 	st	%r3, -20[%fp]
 	bt	.LBB10_2
 	nop
 .LBB10_2:                               !   in Loop: Header=BB10_1 Depth=1
+	mov	hi(.L__profc_strcmp+16), %r3
+	or	%r3, lo(.L__profc_strcmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strcmp+20), %r12
+	or	%r12, lo(.L__profc_strcmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	ld.b	0[%r3], %r3
-	sub.f	%r3, 0x0, %r0
+	ld.b	0[%r3], %r9
+	sub.f	%r9, 0x0, %r0
 	sne	%r3
-	bt	.LBB10_3
+	st	%r3, -24[%fp]
+	sub.f	%r9, 0x0, %r0
+	beq	.LBB10_4
 	st	%r3, -20[%fp]
+	bt	.LBB10_3
+	nop
 .LBB10_3:                               !   in Loop: Header=BB10_1 Depth=1
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_strcmp+24), %r9
+	or	%r9, lo(.L__profc_strcmp+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_strcmp+28), %r13
+	or	%r13, lo(.L__profc_strcmp+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB10_4
+	st	%r3, -20[%fp]
+.LBB10_4:                               !   in Loop: Header=BB10_1 Depth=1
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB10_6
+	beq	.LBB10_7
 	nop
-	bt	.LBB10_4
-	nop
-.LBB10_4:                               !   in Loop: Header=BB10_1 Depth=1
 	bt	.LBB10_5
 	nop
 .LBB10_5:                               !   in Loop: Header=BB10_1 Depth=1
+	mov	hi(.L__profc_strcmp+8), %r3
+	or	%r3, lo(.L__profc_strcmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strcmp+12), %r12
+	or	%r12, lo(.L__profc_strcmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB10_6
+	st	%r3, 0[%r9]
+.LBB10_6:                               !   in Loop: Header=BB10_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -12[%fp]
@@ -688,7 +1203,7 @@ strcmp:                                 ! @strcmp
 	add	%r3, 0x1, %r3
 	bt	.LBB10_1
 	st	%r3, -16[%fp]
-.LBB10_6:
+.LBB10_7:
 	ld	-12[%fp], %r3
 	uld.b	0[%r3], %r3
 	ld	-16[%fp], %r9
@@ -709,6 +1224,18 @@ strlen:                                 ! @strlen
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_strlen), %r3
+	or	%r3, lo(.L__profc_strlen), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strlen+4), %r12
+	or	%r12, lo(.L__profc_strlen+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB11_1
 	st	%r3, -16[%fp]
@@ -721,8 +1248,19 @@ strlen:                                 ! @strlen
 	bt	.LBB11_2
 	nop
 .LBB11_2:                               !   in Loop: Header=BB11_1 Depth=1
+	mov	hi(.L__profc_strlen+8), %r3
+	or	%r3, lo(.L__profc_strlen+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strlen+12), %r12
+	or	%r12, lo(.L__profc_strlen+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB11_3
-	nop
+	st	%r3, 0[%r9]
 .LBB11_3:                               !   in Loop: Header=BB11_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
@@ -749,6 +1287,18 @@ strncmp:                                ! @strncmp
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_strncmp), %r3
+	or	%r3, lo(.L__profc_strncmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+4), %r12
+	or	%r12, lo(.L__profc_strncmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -28[%fp]
 	ld	-20[%fp], %r3
@@ -761,8 +1311,20 @@ strncmp:                                ! @strncmp
 	bt	.LBB12_1
 	nop
 .LBB12_1:
+	mov	hi(.L__profc_strncmp+8), %r3
+	or	%r3, lo(.L__profc_strncmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+12), %r12
+	or	%r12, lo(.L__profc_strncmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB12_11
+	bt	.LBB12_14
 	st	%r3, -12[%fp]
 .LBB12_2:
 	bt	.LBB12_3
@@ -772,49 +1334,144 @@ strncmp:                                ! @strncmp
 	uld.b	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB12_7
+	beq	.LBB12_10
 	st	%r3, -36[%fp]
 	bt	.LBB12_4
 	nop
 .LBB12_4:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+56), %r3
+	or	%r3, lo(.L__profc_strncmp+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+60), %r12
+	or	%r12, lo(.L__profc_strncmp+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	uld.b	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB12_7
+	beq	.LBB12_10
 	st	%r3, -36[%fp]
 	bt	.LBB12_5
 	nop
 .LBB12_5:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+64), %r3
+	or	%r3, lo(.L__profc_strncmp+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+68), %r12
+	or	%r12, lo(.L__profc_strncmp+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB12_6
+	st	%r3, 0[%r9]
+.LBB12_6:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+40), %r3
+	or	%r3, lo(.L__profc_strncmp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+44), %r12
+	or	%r12, lo(.L__profc_strncmp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB12_7
+	beq	.LBB12_10
 	st	%r3, -36[%fp]
-	bt	.LBB12_6
-	nop
-.LBB12_6:                               !   in Loop: Header=BB12_3 Depth=1
-	ld	-28[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-32[%fp], %r9
-	uld.b	0[%r9], %r9
-	sub.f	%r3, %r9, %r0
-	seq	%r3
 	bt	.LBB12_7
-	st	%r3, -36[%fp]
+	nop
 .LBB12_7:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+48), %r3
+	or	%r3, lo(.L__profc_strncmp+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+52), %r12
+	or	%r12, lo(.L__profc_strncmp+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB12_8
+	st	%r3, 0[%r9]
+.LBB12_8:                               !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+24), %r3
+	or	%r3, lo(.L__profc_strncmp+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+28), %r12
+	or	%r12, lo(.L__profc_strncmp+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-28[%fp], %r3
+	uld.b	0[%r3], %r9
+	ld	-32[%fp], %r3
+	uld.b	0[%r3], %r12
+	sub.f	%r9, %r12, %r0
+	seq	%r3
+	st	%r3, -40[%fp]
+	sub.f	%r9, %r12, %r0
+	bne	.LBB12_10
+	st	%r3, -36[%fp]
+	bt	.LBB12_9
+	nop
+.LBB12_9:                               !   in Loop: Header=BB12_3 Depth=1
+	ld	-40[%fp], %r3
+	mov	hi(.L__profc_strncmp+32), %r9
+	or	%r9, lo(.L__profc_strncmp+32), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_strncmp+36), %r13
+	or	%r13, lo(.L__profc_strncmp+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB12_10
+	st	%r3, -36[%fp]
+.LBB12_10:                              !   in Loop: Header=BB12_3 Depth=1
 	ld	-36[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB12_10
+	beq	.LBB12_13
 	nop
-	bt	.LBB12_8
+	bt	.LBB12_11
 	nop
-.LBB12_8:                               !   in Loop: Header=BB12_3 Depth=1
-	bt	.LBB12_9
-	nop
-.LBB12_9:                               !   in Loop: Header=BB12_3 Depth=1
+.LBB12_11:                              !   in Loop: Header=BB12_3 Depth=1
+	mov	hi(.L__profc_strncmp+16), %r3
+	or	%r3, lo(.L__profc_strncmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncmp+20), %r12
+	or	%r12, lo(.L__profc_strncmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB12_12
+	st	%r3, 0[%r9]
+.LBB12_12:                              !   in Loop: Header=BB12_3 Depth=1
 	ld	-28[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -825,15 +1482,15 @@ strncmp:                                ! @strncmp
 	sub	%r3, 0x1, %r3
 	bt	.LBB12_3
 	st	%r3, -24[%fp]
-.LBB12_10:
+.LBB12_13:
 	ld	-28[%fp], %r3
 	uld.b	0[%r3], %r3
 	ld	-32[%fp], %r9
 	uld.b	0[%r9], %r9
 	sub	%r3, %r9, %r3
-	bt	.LBB12_11
+	bt	.LBB12_14
 	st	%r3, -12[%fp]
-.LBB12_11:
+.LBB12_14:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -852,6 +1509,18 @@ swab:                                   ! @swab
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_swab), %r3
+	or	%r3, lo(.L__profc_swab), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_swab+4), %r12
+	or	%r12, lo(.L__profc_swab+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -865,6 +1534,18 @@ swab:                                   ! @swab
 	bt	.LBB13_2
 	nop
 .LBB13_2:                               !   in Loop: Header=BB13_1 Depth=1
+	mov	hi(.L__profc_swab+8), %r3
+	or	%r3, lo(.L__profc_swab+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_swab+12), %r12
+	or	%r12, lo(.L__profc_swab+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	uld.b	1[%r3], %r3
 	ld	-28[%fp], %r9
@@ -901,6 +1582,18 @@ isalpha:                                ! @isalpha
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isalpha), %r3
+	or	%r3, lo(.L__profc_isalpha), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isalpha+4), %r12
+	or	%r12, lo(.L__profc_isalpha+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	or	%r3, 0x20, %r3
 	sub	%r3, 0x61, %r3
@@ -921,6 +1614,18 @@ isascii:                                ! @isascii
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isascii), %r3
+	or	%r3, lo(.L__profc_isascii), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isascii+4), %r12
+	or	%r12, lo(.L__profc_isascii+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	and	%r3, 0xffffff80, %r3
 	sub.f	%r3, 0x0, %r0
@@ -938,22 +1643,66 @@ isblank:                                ! @isblank
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isblank), %r3
+	or	%r3, lo(.L__profc_isblank), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isblank+4), %r12
+	or	%r12, lo(.L__profc_isblank+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x20, %r0
-	beq	.LBB16_2
+	beq	.LBB16_3
 	st	%r3, -16[%fp]
 	bt	.LBB16_1
 	nop
 .LBB16_1:
-	ld	-12[%fp], %r3
-	sub.f	%r3, 0x9, %r0
+	mov	hi(.L__profc_isblank+8), %r3
+	or	%r3, lo(.L__profc_isblank+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isblank+12), %r12
+	or	%r12, lo(.L__profc_isblank+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-12[%fp], %r9
+	sub.f	%r9, 0x9, %r0
 	seq	%r3
-	bt	.LBB16_2
+	st	%r3, -20[%fp]
+	sub.f	%r9, 0x9, %r0
+	beq	.LBB16_3
 	st	%r3, -16[%fp]
+	bt	.LBB16_2
+	nop
 .LBB16_2:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_isblank+16), %r9
+	or	%r9, lo(.L__profc_isblank+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_isblank+20), %r13
+	or	%r13, lo(.L__profc_isblank+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB16_3
+	st	%r3, -16[%fp]
+.LBB16_3:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -970,22 +1719,66 @@ iscntrl:                                ! @iscntrl
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_iscntrl), %r3
+	or	%r3, lo(.L__profc_iscntrl), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iscntrl+4), %r12
+	or	%r12, lo(.L__profc_iscntrl+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x20, %r0
-	bult	.LBB17_2
+	bult	.LBB17_3
 	st	%r3, -16[%fp]
 	bt	.LBB17_1
 	nop
 .LBB17_1:
-	ld	-12[%fp], %r3
-	sub.f	%r3, 0x7f, %r0
+	mov	hi(.L__profc_iscntrl+8), %r3
+	or	%r3, lo(.L__profc_iscntrl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iscntrl+12), %r12
+	or	%r12, lo(.L__profc_iscntrl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-12[%fp], %r9
+	sub.f	%r9, 0x7f, %r0
 	seq	%r3
-	bt	.LBB17_2
+	st	%r3, -20[%fp]
+	sub.f	%r9, 0x7f, %r0
+	beq	.LBB17_3
 	st	%r3, -16[%fp]
+	bt	.LBB17_2
+	nop
 .LBB17_2:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_iscntrl+16), %r9
+	or	%r9, lo(.L__profc_iscntrl+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_iscntrl+20), %r13
+	or	%r13, lo(.L__profc_iscntrl+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB17_3
+	st	%r3, -16[%fp]
+.LBB17_3:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -1004,6 +1797,18 @@ isdigit:                                ! @isdigit
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isdigit), %r3
+	or	%r3, lo(.L__profc_isdigit), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isdigit+4), %r12
+	or	%r12, lo(.L__profc_isdigit+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x30, %r3
 	sub.f	%r3, 0xa, %r0
@@ -1023,6 +1828,18 @@ isgraph:                                ! @isgraph
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isgraph), %r3
+	or	%r3, lo(.L__profc_isgraph), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isgraph+4), %r12
+	or	%r12, lo(.L__profc_isgraph+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x21, %r3
 	sub.f	%r3, 0x5e, %r0
@@ -1042,6 +1859,18 @@ islower:                                ! @islower
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_islower), %r3
+	or	%r3, lo(.L__profc_islower), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_islower+4), %r12
+	or	%r12, lo(.L__profc_islower+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x61, %r3
 	sub.f	%r3, 0x1a, %r0
@@ -1061,6 +1890,18 @@ isprint:                                ! @isprint
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isprint), %r3
+	or	%r3, lo(.L__profc_isprint), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isprint+4), %r12
+	or	%r12, lo(.L__profc_isprint+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x20, %r3
 	sub.f	%r3, 0x5f, %r0
@@ -1078,23 +1919,67 @@ isspace:                                ! @isspace
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isspace), %r3
+	or	%r3, lo(.L__profc_isspace), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isspace+4), %r12
+	or	%r12, lo(.L__profc_isspace+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x20, %r0
-	beq	.LBB22_2
+	beq	.LBB22_3
 	st	%r3, -16[%fp]
 	bt	.LBB22_1
 	nop
 .LBB22_1:
+	mov	hi(.L__profc_isspace+8), %r3
+	or	%r3, lo(.L__profc_isspace+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isspace+12), %r12
+	or	%r12, lo(.L__profc_isspace+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	sub	%r3, 0x9, %r3
-	sub.f	%r3, 0x5, %r0
+	sub	%r3, 0x9, %r9
+	sub.f	%r9, 0x5, %r0
 	sult	%r3
-	bt	.LBB22_2
+	st	%r3, -20[%fp]
+	sub.f	%r9, 0x5, %r0
+	bult	.LBB22_3
 	st	%r3, -16[%fp]
+	bt	.LBB22_2
+	nop
 .LBB22_2:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_isspace+16), %r9
+	or	%r9, lo(.L__profc_isspace+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_isspace+20), %r13
+	or	%r13, lo(.L__profc_isspace+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB22_3
+	st	%r3, -16[%fp]
+.LBB22_3:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -1113,6 +1998,18 @@ isupper:                                ! @isupper
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_isupper), %r3
+	or	%r3, lo(.L__profc_isupper), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_isupper+4), %r12
+	or	%r12, lo(.L__profc_isupper+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x41, %r3
 	sub.f	%r3, 0x1a, %r0
@@ -1130,42 +2027,138 @@ iswcntrl:                               ! @iswcntrl
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_iswcntrl), %r3
+	or	%r3, lo(.L__profc_iswcntrl), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+4), %r12
+	or	%r12, lo(.L__profc_iswcntrl+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x20, %r0
-	bult	.LBB24_4
+	bult	.LBB24_7
 	st	%r3, -16[%fp]
 	bt	.LBB24_1
 	nop
 .LBB24_1:
+	mov	hi(.L__profc_iswcntrl+40), %r3
+	or	%r3, lo(.L__profc_iswcntrl+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+44), %r12
+	or	%r12, lo(.L__profc_iswcntrl+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x7f, %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x21, %r0
-	bult	.LBB24_4
+	bult	.LBB24_7
 	st	%r3, -16[%fp]
 	bt	.LBB24_2
 	nop
 .LBB24_2:
+	mov	hi(.L__profc_iswcntrl+48), %r3
+	or	%r3, lo(.L__profc_iswcntrl+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+52), %r12
+	or	%r12, lo(.L__profc_iswcntrl+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB24_3
+	st	%r3, 0[%r9]
+.LBB24_3:
+	mov	hi(.L__profc_iswcntrl+24), %r3
+	or	%r3, lo(.L__profc_iswcntrl+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+28), %r12
+	or	%r12, lo(.L__profc_iswcntrl+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x2028, %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0x2, %r0
-	bult	.LBB24_4
+	bult	.LBB24_7
 	st	%r3, -16[%fp]
-	bt	.LBB24_3
+	bt	.LBB24_4
 	nop
-.LBB24_3:
+.LBB24_4:
+	mov	hi(.L__profc_iswcntrl+32), %r3
+	or	%r3, lo(.L__profc_iswcntrl+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+36), %r12
+	or	%r12, lo(.L__profc_iswcntrl+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB24_5
+	st	%r3, 0[%r9]
+.LBB24_5:
+	mov	hi(.L__profc_iswcntrl+8), %r3
+	or	%r3, lo(.L__profc_iswcntrl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswcntrl+12), %r12
+	or	%r12, lo(.L__profc_iswcntrl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	mov	0xffff0007, %r9
-	add	%r3, %r9, %r3
-	sub.f	%r3, 0x3, %r0
+	add	%r3, %r9, %r9
+	sub.f	%r9, 0x3, %r0
 	sult	%r3
-	bt	.LBB24_4
+	st	%r3, -20[%fp]
+	sub.f	%r9, 0x3, %r0
+	bult	.LBB24_7
 	st	%r3, -16[%fp]
-.LBB24_4:
+	bt	.LBB24_6
+	nop
+.LBB24_6:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_iswcntrl+16), %r9
+	or	%r9, lo(.L__profc_iswcntrl+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_iswcntrl+20), %r13
+	or	%r13, lo(.L__profc_iswcntrl+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB24_7
+	st	%r3, -16[%fp]
+.LBB24_7:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -1184,6 +2177,18 @@ iswdigit:                               ! @iswdigit
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_iswdigit), %r3
+	or	%r3, lo(.L__profc_iswdigit), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswdigit+4), %r12
+	or	%r12, lo(.L__profc_iswdigit+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x30, %r3
 	sub.f	%r3, 0xa, %r0
@@ -1202,6 +2207,18 @@ iswprint:                               ! @iswprint
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_iswprint), %r3
+	or	%r3, lo(.L__profc_iswprint), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+4), %r12
+	or	%r12, lo(.L__profc_iswprint+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0xfe, %r0
 	bugt	.LBB26_2
@@ -1209,70 +2226,184 @@ iswprint:                               ! @iswprint
 	bt	.LBB26_1
 	nop
 .LBB26_1:
+	mov	hi(.L__profc_iswprint+8), %r3
+	or	%r3, lo(.L__profc_iswprint+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+12), %r12
+	or	%r12, lo(.L__profc_iswprint+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	mov	0x7f, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x20, %r0
 	sgt	%r3
-	bt	.LBB26_10
+	bt	.LBB26_13
 	st	%r3, -12[%fp]
 .LBB26_2:
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0x2028, %r0
-	bult	.LBB26_5
+	bult	.LBB26_7
 	nop
 	bt	.LBB26_3
 	nop
 .LBB26_3:
+	mov	hi(.L__profc_iswprint+40), %r3
+	or	%r3, lo(.L__profc_iswprint+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+44), %r12
+	or	%r12, lo(.L__profc_iswprint+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sub	%r3, 0x202a, %r3
 	sub.f	%r3, 0xb7d6, %r0
-	bult	.LBB26_5
+	bult	.LBB26_7
 	nop
 	bt	.LBB26_4
 	nop
 .LBB26_4:
+	mov	hi(.L__profc_iswprint+48), %r3
+	or	%r3, lo(.L__profc_iswprint+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+52), %r12
+	or	%r12, lo(.L__profc_iswprint+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB26_5
+	st	%r3, 0[%r9]
+.LBB26_5:
+	mov	hi(.L__profc_iswprint+24), %r3
+	or	%r3, lo(.L__profc_iswprint+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+28), %r12
+	or	%r12, lo(.L__profc_iswprint+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	mov	0xffff2000, %r9
 	add	%r3, %r9, %r3
-	sub.f	%r3, 0x1ff8, %r0
-	bugt	.LBB26_6
+	sub.f	%r3, 0x1ff9, %r0
+	bult	.LBB26_7
 	nop
-	bt	.LBB26_5
+	bt	.LBB26_6
 	nop
-.LBB26_5:
-	mov	0x1, %r3
-	bt	.LBB26_10
-	st	%r3, -12[%fp]
 .LBB26_6:
+	mov	hi(.L__profc_iswprint+32), %r3
+	or	%r3, lo(.L__profc_iswprint+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+36), %r12
+	or	%r12, lo(.L__profc_iswprint+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB26_8
+	st	%r3, 0[%r9]
+.LBB26_7:
+	mov	hi(.L__profc_iswprint+16), %r3
+	or	%r3, lo(.L__profc_iswprint+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+20), %r12
+	or	%r12, lo(.L__profc_iswprint+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	mov	0x1, %r3
+	bt	.LBB26_13
+	st	%r3, -12[%fp]
+.LBB26_8:
 	ld	-16[%fp], %r3
 	mov	0xffff0004, %r9
 	add	%r3, %r9, %r3
 	mov	0x100003, %r9
 	sub.f	%r3, %r9, %r0
-	bugt	.LBB26_8
+	bugt	.LBB26_11
 	nop
-	bt	.LBB26_7
+	bt	.LBB26_9
 	nop
-.LBB26_7:
+.LBB26_9:
+	mov	hi(.L__profc_iswprint+64), %r3
+	or	%r3, lo(.L__profc_iswprint+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+68), %r12
+	or	%r12, lo(.L__profc_iswprint+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	mov	0xfffe, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0xfffe, %r0
-	bne	.LBB26_9
+	beq	.LBB26_11
 	nop
-	bt	.LBB26_8
+	bt	.LBB26_10
 	nop
-.LBB26_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB26_10
-	st	%r3, -12[%fp]
-.LBB26_9:
-	mov	0x1, %r3
-	bt	.LBB26_10
-	st	%r3, -12[%fp]
 .LBB26_10:
+	mov	hi(.L__profc_iswprint+72), %r3
+	or	%r3, lo(.L__profc_iswprint+72), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+76), %r12
+	or	%r12, lo(.L__profc_iswprint+76), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB26_12
+	st	%r3, 0[%r9]
+.LBB26_11:
+	mov	hi(.L__profc_iswprint+56), %r3
+	or	%r3, lo(.L__profc_iswprint+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswprint+60), %r12
+	or	%r12, lo(.L__profc_iswprint+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	or	%r0, 0x0, %r3
+	bt	.LBB26_13
+	st	%r3, -12[%fp]
+.LBB26_12:
+	mov	0x1, %r3
+	bt	.LBB26_13
+	st	%r3, -12[%fp]
+.LBB26_13:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -1287,25 +2418,69 @@ iswxdigit:                              ! @iswxdigit
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_iswxdigit), %r3
+	or	%r3, lo(.L__profc_iswxdigit), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswxdigit+4), %r12
+	or	%r12, lo(.L__profc_iswxdigit+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x30, %r9
 	mov	0x1, %r3
 	sub.f	%r9, 0xa, %r0
-	bult	.LBB27_2
+	bult	.LBB27_3
 	st	%r3, -16[%fp]
 	bt	.LBB27_1
 	nop
 .LBB27_1:
+	mov	hi(.L__profc_iswxdigit+8), %r3
+	or	%r3, lo(.L__profc_iswxdigit+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_iswxdigit+12), %r12
+	or	%r12, lo(.L__profc_iswxdigit+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	or	%r3, 0x20, %r3
-	sub	%r3, 0x61, %r3
-	sub.f	%r3, 0x6, %r0
+	sub	%r3, 0x61, %r9
+	sub.f	%r9, 0x6, %r0
 	sult	%r3
-	bt	.LBB27_2
+	st	%r3, -20[%fp]
+	sub.f	%r9, 0x6, %r0
+	bult	.LBB27_3
 	st	%r3, -16[%fp]
+	bt	.LBB27_2
+	nop
 .LBB27_2:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_iswxdigit+16), %r9
+	or	%r9, lo(.L__profc_iswxdigit+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_iswxdigit+20), %r13
+	or	%r13, lo(.L__profc_iswxdigit+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB27_3
+	st	%r3, -16[%fp]
+.LBB27_3:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -1324,6 +2499,18 @@ toascii:                                ! @toascii
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_toascii), %r3
+	or	%r3, lo(.L__profc_toascii), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_toascii+4), %r12
+	or	%r12, lo(.L__profc_toascii+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	mov	0x7f, %r9
 	and	%r3, %r9, %rv
@@ -1353,6 +2540,18 @@ fdim:                                   ! @fdim
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_fdim), %r9
+	or	%r9, lo(.L__profc_fdim), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_fdim+4), %r13
+	or	%r13, lo(.L__profc_fdim+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -1368,6 +2567,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_1
 	nop
 .LBB29_1:
+	mov	hi(.L__profc_fdim+8), %r3
+	or	%r3, lo(.L__profc_fdim+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdim+12), %r12
+	or	%r12, lo(.L__profc_fdim+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1395,6 +2606,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_3
 	nop
 .LBB29_3:
+	mov	hi(.L__profc_fdim+16), %r3
+	or	%r3, lo(.L__profc_fdim+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdim+20), %r12
+	or	%r12, lo(.L__profc_fdim+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1422,6 +2645,18 @@ fdim:                                   ! @fdim
 	bt	.LBB29_5
 	nop
 .LBB29_5:
+	mov	hi(.L__profc_fdim+24), %r3
+	or	%r3, lo(.L__profc_fdim+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdim+28), %r12
+	or	%r12, lo(.L__profc_fdim+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -1476,6 +2711,18 @@ fdimf:                                  ! @fdimf
                                         ! kill: def $r3 killed $r6
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc_fdimf), %r3
+	or	%r3, lo(.L__profc_fdimf), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdimf+4), %r12
+	or	%r12, lo(.L__profc_fdimf+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	and	%r3, 0x7fffffff, %r3
 	mov	0x7f800000, %r9
@@ -1486,6 +2733,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_1
 	nop
 .LBB30_1:
+	mov	hi(.L__profc_fdimf+8), %r3
+	or	%r3, lo(.L__profc_fdimf+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdimf+12), %r12
+	or	%r12, lo(.L__profc_fdimf+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB30_8
 	st	%r3, -12[%fp]
@@ -1500,6 +2759,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_3
 	nop
 .LBB30_3:
+	mov	hi(.L__profc_fdimf+16), %r3
+	or	%r3, lo(.L__profc_fdimf+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdimf+20), %r12
+	or	%r12, lo(.L__profc_fdimf+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB30_8
 	st	%r3, -12[%fp]
@@ -1515,6 +2786,18 @@ fdimf:                                  ! @fdimf
 	bt	.LBB30_5
 	nop
 .LBB30_5:
+	mov	hi(.L__profc_fdimf+24), %r3
+	or	%r3, lo(.L__profc_fdimf+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fdimf+28), %r12
+	or	%r12, lo(.L__profc_fdimf+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -1559,6 +2842,18 @@ fmax:                                   ! @fmax
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_fmax), %r9
+	or	%r9, lo(.L__profc_fmax), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_fmax+4), %r13
+	or	%r13, lo(.L__profc_fmax+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -1574,6 +2869,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_1
 	nop
 .LBB31_1:
+	mov	hi(.L__profc_fmax+8), %r3
+	or	%r3, lo(.L__profc_fmax+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmax+12), %r12
+	or	%r12, lo(.L__profc_fmax+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1601,6 +2908,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_3
 	nop
 .LBB31_3:
+	mov	hi(.L__profc_fmax+16), %r3
+	or	%r3, lo(.L__profc_fmax+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmax+20), %r12
+	or	%r12, lo(.L__profc_fmax+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1621,6 +2940,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_5
 	nop
 .LBB31_5:
+	mov	hi(.L__profc_fmax+24), %r3
+	or	%r3, lo(.L__profc_fmax+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmax+28), %r12
+	or	%r12, lo(.L__profc_fmax+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB31_7
@@ -1628,6 +2959,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_6
 	nop
 .LBB31_6:
+	mov	hi(.L__profc_fmax+32), %r3
+	or	%r3, lo(.L__profc_fmax+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmax+36), %r12
+	or	%r12, lo(.L__profc_fmax+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -1669,6 +3012,18 @@ fmax:                                   ! @fmax
 	bt	.LBB31_10
 	nop
 .LBB31_10:
+	mov	hi(.L__profc_fmax+40), %r3
+	or	%r3, lo(.L__profc_fmax+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmax+44), %r12
+	or	%r12, lo(.L__profc_fmax+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -1715,6 +3070,18 @@ fmaxf:                                  ! @fmaxf
                                         ! kill: def $r3 killed $r6
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc_fmaxf), %r3
+	or	%r3, lo(.L__profc_fmaxf), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+4), %r12
+	or	%r12, lo(.L__profc_fmaxf+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	and	%r3, 0x7fffffff, %r3
 	mov	0x7f800000, %r9
@@ -1725,6 +3092,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_1
 	nop
 .LBB32_1:
+	mov	hi(.L__profc_fmaxf+8), %r3
+	or	%r3, lo(.L__profc_fmaxf+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+12), %r12
+	or	%r12, lo(.L__profc_fmaxf+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB32_13
 	st	%r3, -12[%fp]
@@ -1739,6 +3118,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_3
 	nop
 .LBB32_3:
+	mov	hi(.L__profc_fmaxf+16), %r3
+	or	%r3, lo(.L__profc_fmaxf+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+20), %r12
+	or	%r12, lo(.L__profc_fmaxf+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB32_13
 	st	%r3, -12[%fp]
@@ -1753,6 +3144,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_5
 	nop
 .LBB32_5:
+	mov	hi(.L__profc_fmaxf+24), %r3
+	or	%r3, lo(.L__profc_fmaxf+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+28), %r12
+	or	%r12, lo(.L__profc_fmaxf+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB32_7
@@ -1760,6 +3163,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_6
 	nop
 .LBB32_6:
+	mov	hi(.L__profc_fmaxf+32), %r3
+	or	%r3, lo(.L__profc_fmaxf+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+36), %r12
+	or	%r12, lo(.L__profc_fmaxf+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB32_8
 	st	%r3, -24[%fp]
@@ -1783,6 +3198,18 @@ fmaxf:                                  ! @fmaxf
 	bt	.LBB32_10
 	nop
 .LBB32_10:
+	mov	hi(.L__profc_fmaxf+40), %r3
+	or	%r3, lo(.L__profc_fmaxf+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxf+44), %r12
+	or	%r12, lo(.L__profc_fmaxf+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB32_12
 	st	%r3, -28[%fp]
@@ -1822,6 +3249,18 @@ fmaxl:                                  ! @fmaxl
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_fmaxl), %r9
+	or	%r9, lo(.L__profc_fmaxl), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_fmaxl+4), %r13
+	or	%r13, lo(.L__profc_fmaxl+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -1837,6 +3276,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_1
 	nop
 .LBB33_1:
+	mov	hi(.L__profc_fmaxl+8), %r3
+	or	%r3, lo(.L__profc_fmaxl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxl+12), %r12
+	or	%r12, lo(.L__profc_fmaxl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1864,6 +3315,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_3
 	nop
 .LBB33_3:
+	mov	hi(.L__profc_fmaxl+16), %r3
+	or	%r3, lo(.L__profc_fmaxl+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxl+20), %r12
+	or	%r12, lo(.L__profc_fmaxl+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -1884,6 +3347,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_5
 	nop
 .LBB33_5:
+	mov	hi(.L__profc_fmaxl+24), %r3
+	or	%r3, lo(.L__profc_fmaxl+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxl+28), %r12
+	or	%r12, lo(.L__profc_fmaxl+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB33_7
@@ -1891,6 +3366,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_6
 	nop
 .LBB33_6:
+	mov	hi(.L__profc_fmaxl+32), %r3
+	or	%r3, lo(.L__profc_fmaxl+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxl+36), %r12
+	or	%r12, lo(.L__profc_fmaxl+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -1932,6 +3419,18 @@ fmaxl:                                  ! @fmaxl
 	bt	.LBB33_10
 	nop
 .LBB33_10:
+	mov	hi(.L__profc_fmaxl+40), %r3
+	or	%r3, lo(.L__profc_fmaxl+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmaxl+44), %r12
+	or	%r12, lo(.L__profc_fmaxl+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -1986,6 +3485,18 @@ fmin:                                   ! @fmin
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_fmin), %r9
+	or	%r9, lo(.L__profc_fmin), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_fmin+4), %r13
+	or	%r13, lo(.L__profc_fmin+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -2001,6 +3512,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_1
 	nop
 .LBB34_1:
+	mov	hi(.L__profc_fmin+8), %r3
+	or	%r3, lo(.L__profc_fmin+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmin+12), %r12
+	or	%r12, lo(.L__profc_fmin+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -2028,6 +3551,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_3
 	nop
 .LBB34_3:
+	mov	hi(.L__profc_fmin+16), %r3
+	or	%r3, lo(.L__profc_fmin+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmin+20), %r12
+	or	%r12, lo(.L__profc_fmin+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -2048,6 +3583,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_5
 	nop
 .LBB34_5:
+	mov	hi(.L__profc_fmin+24), %r3
+	or	%r3, lo(.L__profc_fmin+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmin+28), %r12
+	or	%r12, lo(.L__profc_fmin+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB34_7
@@ -2055,6 +3602,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_6
 	nop
 .LBB34_6:
+	mov	hi(.L__profc_fmin+32), %r3
+	or	%r3, lo(.L__profc_fmin+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmin+36), %r12
+	or	%r12, lo(.L__profc_fmin+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -2096,6 +3655,18 @@ fmin:                                   ! @fmin
 	bt	.LBB34_10
 	nop
 .LBB34_10:
+	mov	hi(.L__profc_fmin+40), %r3
+	or	%r3, lo(.L__profc_fmin+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fmin+44), %r12
+	or	%r12, lo(.L__profc_fmin+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -2142,6 +3713,18 @@ fminf:                                  ! @fminf
                                         ! kill: def $r3 killed $r6
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc_fminf), %r3
+	or	%r3, lo(.L__profc_fminf), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+4), %r12
+	or	%r12, lo(.L__profc_fminf+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	and	%r3, 0x7fffffff, %r3
 	mov	0x7f800000, %r9
@@ -2152,6 +3735,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_1
 	nop
 .LBB35_1:
+	mov	hi(.L__profc_fminf+8), %r3
+	or	%r3, lo(.L__profc_fminf+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+12), %r12
+	or	%r12, lo(.L__profc_fminf+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB35_13
 	st	%r3, -12[%fp]
@@ -2166,6 +3761,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_3
 	nop
 .LBB35_3:
+	mov	hi(.L__profc_fminf+16), %r3
+	or	%r3, lo(.L__profc_fminf+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+20), %r12
+	or	%r12, lo(.L__profc_fminf+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB35_13
 	st	%r3, -12[%fp]
@@ -2180,6 +3787,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_5
 	nop
 .LBB35_5:
+	mov	hi(.L__profc_fminf+24), %r3
+	or	%r3, lo(.L__profc_fminf+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+28), %r12
+	or	%r12, lo(.L__profc_fminf+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB35_7
@@ -2187,6 +3806,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_6
 	nop
 .LBB35_6:
+	mov	hi(.L__profc_fminf+32), %r3
+	or	%r3, lo(.L__profc_fminf+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+36), %r12
+	or	%r12, lo(.L__profc_fminf+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB35_8
 	st	%r3, -24[%fp]
@@ -2210,6 +3841,18 @@ fminf:                                  ! @fminf
 	bt	.LBB35_10
 	nop
 .LBB35_10:
+	mov	hi(.L__profc_fminf+40), %r3
+	or	%r3, lo(.L__profc_fminf+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminf+44), %r12
+	or	%r12, lo(.L__profc_fminf+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB35_12
 	st	%r3, -28[%fp]
@@ -2249,6 +3892,18 @@ fminl:                                  ! @fminl
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_fminl), %r9
+	or	%r9, lo(.L__profc_fminl), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_fminl+4), %r13
+	or	%r13, lo(.L__profc_fminl+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -2264,6 +3919,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_1
 	nop
 .LBB36_1:
+	mov	hi(.L__profc_fminl+8), %r3
+	or	%r3, lo(.L__profc_fminl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminl+12), %r12
+	or	%r12, lo(.L__profc_fminl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -2291,6 +3958,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_3
 	nop
 .LBB36_3:
+	mov	hi(.L__profc_fminl+16), %r3
+	or	%r3, lo(.L__profc_fminl+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminl+20), %r12
+	or	%r12, lo(.L__profc_fminl+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -2311,6 +3990,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_5
 	nop
 .LBB36_5:
+	mov	hi(.L__profc_fminl+24), %r3
+	or	%r3, lo(.L__profc_fminl+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminl+28), %r12
+	or	%r12, lo(.L__profc_fminl+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB36_7
@@ -2318,6 +4009,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_6
 	nop
 .LBB36_6:
+	mov	hi(.L__profc_fminl+32), %r3
+	or	%r3, lo(.L__profc_fminl+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminl+36), %r12
+	or	%r12, lo(.L__profc_fminl+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -2359,6 +4062,18 @@ fminl:                                  ! @fminl
 	bt	.LBB36_10
 	nop
 .LBB36_10:
+	mov	hi(.L__profc_fminl+40), %r3
+	or	%r3, lo(.L__profc_fminl+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_fminl+44), %r12
+	or	%r12, lo(.L__profc_fminl+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -2402,6 +4117,18 @@ l64a:                                   ! @l64a
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_l64a), %r3
+	or	%r3, lo(.L__profc_l64a), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_l64a+4), %r12
+	or	%r12, lo(.L__profc_l64a+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -20[%fp]
 	mov	hi(l64a.s), %r3
@@ -2416,6 +4143,18 @@ l64a:                                   ! @l64a
 	bt	.LBB37_2
 	nop
 .LBB37_2:                               !   in Loop: Header=BB37_1 Depth=1
+	mov	hi(.L__profc_l64a+8), %r3
+	or	%r3, lo(.L__profc_l64a+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_l64a+12), %r12
+	or	%r12, lo(.L__profc_l64a+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	mov	0x3f, %r9
 	and	%r3, %r9, %r3
@@ -2455,6 +4194,18 @@ srand:                                  ! @srand
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_srand), %r3
+	or	%r3, lo(.L__profc_srand), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_srand+4), %r12
+	or	%r12, lo(.L__profc_srand+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub	%r3, 0x1, %r3
 	mov	hi(seed), %r9
@@ -2478,6 +4229,18 @@ rand:                                   ! @rand
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
+	mov	hi(.L__profc_rand), %r3
+	or	%r3, lo(.L__profc_rand), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rand+4), %r12
+	or	%r12, lo(.L__profc_rand+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	hi(seed), %r3
 	or	%r3, lo(seed), %r3
 	st	%r3, -12[%fp]
@@ -2518,6 +4281,18 @@ insque:                                 ! @insque
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_insque), %r3
+	or	%r3, lo(.L__profc_insque), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_insque+4), %r12
+	or	%r12, lo(.L__profc_insque+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -20[%fp]
 	ld	-16[%fp], %r3
@@ -2529,6 +4304,18 @@ insque:                                 ! @insque
 	bt	.LBB40_1
 	nop
 .LBB40_1:
+	mov	hi(.L__profc_insque+8), %r3
+	or	%r3, lo(.L__profc_insque+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_insque+12), %r12
+	or	%r12, lo(.L__profc_insque+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	st	%r3, 4[%r9]
@@ -2554,6 +4341,18 @@ insque:                                 ! @insque
 	bt	.LBB40_3
 	nop
 .LBB40_3:
+	mov	hi(.L__profc_insque+16), %r3
+	or	%r3, lo(.L__profc_insque+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_insque+20), %r12
+	or	%r12, lo(.L__profc_insque+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	ld	0[%r3], %r9
 	bt	.LBB40_4
@@ -2573,6 +4372,18 @@ remque:                                 ! @remque
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_remque), %r3
+	or	%r3, lo(.L__profc_remque), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_remque+4), %r12
+	or	%r12, lo(.L__profc_remque+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -16[%fp]
 	ld	-16[%fp], %r3
@@ -2583,6 +4394,18 @@ remque:                                 ! @remque
 	bt	.LBB41_1
 	nop
 .LBB41_1:
+	mov	hi(.L__profc_remque+8), %r3
+	or	%r3, lo(.L__profc_remque+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_remque+12), %r12
+	or	%r12, lo(.L__profc_remque+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	ld	4[%r9], %r3
 	ld	0[%r9], %r9
@@ -2597,6 +4420,18 @@ remque:                                 ! @remque
 	bt	.LBB41_3
 	nop
 .LBB41_3:
+	mov	hi(.L__profc_remque+16), %r3
+	or	%r3, lo(.L__profc_remque+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_remque+20), %r12
+	or	%r12, lo(.L__profc_remque+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r3
 	ld	4[%r9], %r9
@@ -2622,6 +4457,18 @@ lsearch:                                ! @lsearch
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_lsearch), %r3
+	or	%r3, lo(.L__profc_lsearch), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lsearch+4), %r12
+	or	%r12, lo(.L__profc_lsearch+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	st	%r3, -44[%fp]
 	ld	-20[%fp], %r3
@@ -2642,6 +4489,18 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_2:                               !   in Loop: Header=BB42_1 Depth=1
 	ld	-44[%fp], %r7
+	mov	hi(.L__profc_lsearch+8), %r3
+	or	%r3, lo(.L__profc_lsearch+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lsearch+12), %r12
+	or	%r12, lo(.L__profc_lsearch+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	0[%fp], %r3
 	st	%r3, -48[%fp]
 	ld	-16[%fp], %r3
@@ -2666,6 +4525,18 @@ lsearch:                                ! @lsearch
 	nop
 .LBB42_3:
 	ld	-44[%fp], %r7
+	mov	hi(.L__profc_lsearch+16), %r3
+	or	%r3, lo(.L__profc_lsearch+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lsearch+20), %r12
+	or	%r12, lo(.L__profc_lsearch+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	st	%r3, -60[%fp]
 	add	%pc, 0x10, %rca
@@ -2728,6 +4599,18 @@ lfind:                                  ! @lfind
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_lfind), %r3
+	or	%r3, lo(.L__profc_lfind), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lfind+4), %r12
+	or	%r12, lo(.L__profc_lfind+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	st	%r3, -44[%fp]
 	ld	-20[%fp], %r3
@@ -2748,6 +4631,18 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_2:                               !   in Loop: Header=BB43_1 Depth=1
 	ld	-44[%fp], %r7
+	mov	hi(.L__profc_lfind+8), %r3
+	or	%r3, lo(.L__profc_lfind+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lfind+12), %r12
+	or	%r12, lo(.L__profc_lfind+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	0[%fp], %r3
 	st	%r3, -48[%fp]
 	ld	-16[%fp], %r3
@@ -2772,6 +4667,18 @@ lfind:                                  ! @lfind
 	nop
 .LBB43_3:
 	ld	-44[%fp], %r7
+	mov	hi(.L__profc_lfind+16), %r3
+	or	%r3, lo(.L__profc_lfind+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_lfind+20), %r12
+	or	%r12, lo(.L__profc_lfind+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	st	%r3, -60[%fp]
 	add	%pc, 0x10, %rca
@@ -2810,6 +4717,18 @@ abs:                                    ! @abs
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_abs), %r3
+	or	%r3, lo(.L__profc_abs), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_abs+4), %r12
+	or	%r12, lo(.L__profc_abs+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub.f	%r3, 0x1, %r0
 	blt	.LBB44_2
@@ -2817,6 +4736,18 @@ abs:                                    ! @abs
 	bt	.LBB44_1
 	nop
 .LBB44_1:
+	mov	hi(.L__profc_abs+8), %r3
+	or	%r3, lo(.L__profc_abs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_abs+12), %r12
+	or	%r12, lo(.L__profc_abs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB44_3
 	st	%r3, -16[%fp]
@@ -2843,6 +4774,18 @@ atoi:                                   ! @atoi
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_atoi), %r3
+	or	%r3, lo(.L__profc_atoi), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+4), %r12
+	or	%r12, lo(.L__profc_atoi+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -16[%fp]
 	bt	.LBB45_1
@@ -2859,6 +4802,18 @@ atoi:                                   ! @atoi
 	bt	.LBB45_2
 	nop
 .LBB45_2:                               !   in Loop: Header=BB45_1 Depth=1
+	mov	hi(.L__profc_atoi+8), %r3
+	or	%r3, lo(.L__profc_atoi+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+12), %r12
+	or	%r12, lo(.L__profc_atoi+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB45_1
@@ -2869,39 +4824,88 @@ atoi:                                   ! @atoi
 	sub.f	%r3, 0x2b, %r0
 	beq	.LBB45_5
 	st	%r3, -24[%fp]
-	bt	.LBB45_13
+	bt	.LBB45_14
 	nop
-.LBB45_13:
+.LBB45_14:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x2d, %r0
-	bne	.LBB45_6
+	bne	.LBB45_7
 	nop
 	bt	.LBB45_4
 	nop
 .LBB45_4:
+	mov	hi(.L__profc_atoi+24), %r3
+	or	%r3, lo(.L__profc_atoi+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+28), %r12
+	or	%r12, lo(.L__profc_atoi+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
-	bt	.LBB45_5
+	bt	.LBB45_6
 	st	%r3, -20[%fp]
 .LBB45_5:
+	mov	hi(.L__profc_atoi+32), %r3
+	or	%r3, lo(.L__profc_atoi+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+36), %r12
+	or	%r12, lo(.L__profc_atoi+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB45_6
+	st	%r3, 0[%r9]
+.LBB45_6:
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB45_6
-	st	%r3, -12[%fp]
-.LBB45_6:
 	bt	.LBB45_7
-	nop
-.LBB45_7:                               ! =>This Inner Loop Header: Depth=1
+	st	%r3, -12[%fp]
+.LBB45_7:
+	mov	hi(.L__profc_atoi+16), %r3
+	or	%r3, lo(.L__profc_atoi+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+20), %r12
+	or	%r12, lo(.L__profc_atoi+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB45_8
+	st	%r3, 0[%r9]
+.LBB45_8:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	isdigit
 	ld.b	0[%r3], %r6
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB45_9
+	beq	.LBB45_10
 	nop
-	bt	.LBB45_8
+	bt	.LBB45_9
 	nop
-.LBB45_8:                               !   in Loop: Header=BB45_7 Depth=1
+.LBB45_9:                               !   in Loop: Header=BB45_8 Depth=1
+	mov	hi(.L__profc_atoi+40), %r3
+	or	%r3, lo(.L__profc_atoi+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+44), %r12
+	or	%r12, lo(.L__profc_atoi+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sh	%r3, 0x1, %r9
 	sh	%r3, 0x3, %r3
@@ -2912,26 +4916,38 @@ atoi:                                   ! @atoi
 	ld.b	0[%r9], %r9
 	sub	%r3, %r9, %r3
 	add	%r3, 0x30, %r3
-	bt	.LBB45_7
+	bt	.LBB45_8
 	st	%r3, -16[%fp]
-.LBB45_9:
+.LBB45_10:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB45_11
+	beq	.LBB45_12
 	nop
-	bt	.LBB45_10
+	bt	.LBB45_11
 	nop
-.LBB45_10:
-	ld	-16[%fp], %r3
-	bt	.LBB45_12
-	st	%r3, -28[%fp]
 .LBB45_11:
+	mov	hi(.L__profc_atoi+48), %r3
+	or	%r3, lo(.L__profc_atoi+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoi+52), %r12
+	or	%r12, lo(.L__profc_atoi+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	bt	.LBB45_13
+	st	%r3, -28[%fp]
+.LBB45_12:
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
-	bt	.LBB45_12
+	bt	.LBB45_13
 	st	%r3, -28[%fp]
-.LBB45_12:
+.LBB45_13:
 	ld	-28[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -2948,6 +4964,18 @@ atol:                                   ! @atol
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_atol), %r3
+	or	%r3, lo(.L__profc_atol), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+4), %r12
+	or	%r12, lo(.L__profc_atol+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -16[%fp]
 	bt	.LBB46_1
@@ -2964,6 +4992,18 @@ atol:                                   ! @atol
 	bt	.LBB46_2
 	nop
 .LBB46_2:                               !   in Loop: Header=BB46_1 Depth=1
+	mov	hi(.L__profc_atol+8), %r3
+	or	%r3, lo(.L__profc_atol+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+12), %r12
+	or	%r12, lo(.L__profc_atol+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB46_1
@@ -2974,39 +5014,88 @@ atol:                                   ! @atol
 	sub.f	%r3, 0x2b, %r0
 	beq	.LBB46_5
 	st	%r3, -24[%fp]
-	bt	.LBB46_13
+	bt	.LBB46_14
 	nop
-.LBB46_13:
+.LBB46_14:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x2d, %r0
-	bne	.LBB46_6
+	bne	.LBB46_7
 	nop
 	bt	.LBB46_4
 	nop
 .LBB46_4:
+	mov	hi(.L__profc_atol+24), %r3
+	or	%r3, lo(.L__profc_atol+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+28), %r12
+	or	%r12, lo(.L__profc_atol+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
-	bt	.LBB46_5
+	bt	.LBB46_6
 	st	%r3, -20[%fp]
 .LBB46_5:
+	mov	hi(.L__profc_atol+32), %r3
+	or	%r3, lo(.L__profc_atol+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+36), %r12
+	or	%r12, lo(.L__profc_atol+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB46_6
+	st	%r3, 0[%r9]
+.LBB46_6:
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB46_6
-	st	%r3, -12[%fp]
-.LBB46_6:
 	bt	.LBB46_7
-	nop
-.LBB46_7:                               ! =>This Inner Loop Header: Depth=1
+	st	%r3, -12[%fp]
+.LBB46_7:
+	mov	hi(.L__profc_atol+16), %r3
+	or	%r3, lo(.L__profc_atol+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+20), %r12
+	or	%r12, lo(.L__profc_atol+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB46_8
+	st	%r3, 0[%r9]
+.LBB46_8:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	isdigit
 	ld.b	0[%r3], %r6
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB46_9
+	beq	.LBB46_10
 	nop
-	bt	.LBB46_8
+	bt	.LBB46_9
 	nop
-.LBB46_8:                               !   in Loop: Header=BB46_7 Depth=1
+.LBB46_9:                               !   in Loop: Header=BB46_8 Depth=1
+	mov	hi(.L__profc_atol+40), %r3
+	or	%r3, lo(.L__profc_atol+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+44), %r12
+	or	%r12, lo(.L__profc_atol+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sh	%r3, 0x1, %r9
 	sh	%r3, 0x3, %r3
@@ -3017,26 +5106,38 @@ atol:                                   ! @atol
 	ld.b	0[%r9], %r9
 	sub	%r3, %r9, %r3
 	add	%r3, 0x30, %r3
-	bt	.LBB46_7
+	bt	.LBB46_8
 	st	%r3, -16[%fp]
-.LBB46_9:
+.LBB46_10:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB46_11
+	beq	.LBB46_12
 	nop
-	bt	.LBB46_10
+	bt	.LBB46_11
 	nop
-.LBB46_10:
-	ld	-16[%fp], %r3
-	bt	.LBB46_12
-	st	%r3, -28[%fp]
 .LBB46_11:
+	mov	hi(.L__profc_atol+48), %r3
+	or	%r3, lo(.L__profc_atol+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atol+52), %r12
+	or	%r12, lo(.L__profc_atol+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	bt	.LBB46_13
+	st	%r3, -28[%fp]
+.LBB46_12:
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
-	bt	.LBB46_12
+	bt	.LBB46_13
 	st	%r3, -28[%fp]
-.LBB46_12:
+.LBB46_13:
 	ld	-28[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -3053,6 +5154,18 @@ atoll:                                  ! @atoll
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x30, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_atoll), %r3
+	or	%r3, lo(.L__profc_atoll), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+4), %r12
+	or	%r12, lo(.L__profc_atoll+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r9
 	or	%r0, 0x0, %r3
@@ -3072,6 +5185,18 @@ atoll:                                  ! @atoll
 	bt	.LBB47_2
 	nop
 .LBB47_2:                               !   in Loop: Header=BB47_1 Depth=1
+	mov	hi(.L__profc_atoll+8), %r3
+	or	%r3, lo(.L__profc_atoll+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+12), %r12
+	or	%r12, lo(.L__profc_atoll+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB47_1
@@ -3082,39 +5207,88 @@ atoll:                                  ! @atoll
 	sub.f	%r3, 0x2b, %r0
 	beq	.LBB47_5
 	st	%r3, -32[%fp]
-	bt	.LBB47_13
+	bt	.LBB47_14
 	nop
-.LBB47_13:
+.LBB47_14:
 	ld	-32[%fp], %r3
 	sub.f	%r3, 0x2d, %r0
-	bne	.LBB47_6
+	bne	.LBB47_7
 	nop
 	bt	.LBB47_4
 	nop
 .LBB47_4:
+	mov	hi(.L__profc_atoll+24), %r3
+	or	%r3, lo(.L__profc_atoll+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+28), %r12
+	or	%r12, lo(.L__profc_atoll+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
-	bt	.LBB47_5
+	bt	.LBB47_6
 	st	%r3, -28[%fp]
 .LBB47_5:
+	mov	hi(.L__profc_atoll+32), %r3
+	or	%r3, lo(.L__profc_atoll+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+36), %r12
+	or	%r12, lo(.L__profc_atoll+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB47_6
+	st	%r3, 0[%r9]
+.LBB47_6:
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB47_6
-	st	%r3, -12[%fp]
-.LBB47_6:
 	bt	.LBB47_7
-	nop
-.LBB47_7:                               ! =>This Inner Loop Header: Depth=1
+	st	%r3, -12[%fp]
+.LBB47_7:
+	mov	hi(.L__profc_atoll+16), %r3
+	or	%r3, lo(.L__profc_atoll+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+20), %r12
+	or	%r12, lo(.L__profc_atoll+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB47_8
+	st	%r3, 0[%r9]
+.LBB47_8:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	isdigit
 	ld.b	0[%r3], %r6
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB47_9
+	beq	.LBB47_10
 	nop
-	bt	.LBB47_8
+	bt	.LBB47_9
 	nop
-.LBB47_8:                               !   in Loop: Header=BB47_7 Depth=1
+.LBB47_9:                               !   in Loop: Header=BB47_8 Depth=1
+	mov	hi(.L__profc_atoll+40), %r3
+	or	%r3, lo(.L__profc_atoll+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+44), %r12
+	or	%r12, lo(.L__profc_atoll+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -36[%fp]
@@ -3138,24 +5312,36 @@ atoll:                                  ! @atoll
 	sub	%r3, %r14, %r3
 	sub	%r9, %r13, %r9
 	st	%r9, 0[%r12]
-	bt	.LBB47_7
+	bt	.LBB47_8
 	st	%r3, -24[%fp]
-.LBB47_9:
+.LBB47_10:
 	ld	-28[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB47_11
+	beq	.LBB47_12
 	nop
-	bt	.LBB47_10
+	bt	.LBB47_11
 	nop
-.LBB47_10:
+.LBB47_11:
+	mov	hi(.L__profc_atoll+48), %r3
+	or	%r3, lo(.L__profc_atoll+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_atoll+52), %r12
+	or	%r12, lo(.L__profc_atoll+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
 	ld	-24[%fp], %r9
 	st	%r9, -44[%fp]
-	bt	.LBB47_12
+	bt	.LBB47_13
 	st	%r3, -40[%fp]
-.LBB47_11:
+.LBB47_12:
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r13
@@ -3167,9 +5353,9 @@ atoll:                                  ! @atoll
 	add	%r12, %r13, %r12
 	sub	%r9, %r12, %r9
 	st	%r9, -44[%fp]
-	bt	.LBB47_12
+	bt	.LBB47_13
 	st	%r3, -40[%fp]
-.LBB47_12:
+.LBB47_13:
 	ld	-44[%fp], %rv
 	ld	-40[%fp], %r9
 	ld	-4[%fp], %pc ! return
@@ -3190,8 +5376,20 @@ bsearch:                                ! @bsearch
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
-	bt	.LBB48_1
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_bsearch), %r3
+	or	%r3, lo(.L__profc_bsearch), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch+4), %r12
+	or	%r12, lo(.L__profc_bsearch+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB48_1
+	st	%r3, 0[%r9]
 .LBB48_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
@@ -3200,6 +5398,18 @@ bsearch:                                ! @bsearch
 	bt	.LBB48_2
 	nop
 .LBB48_2:                               !   in Loop: Header=BB48_1 Depth=1
+	mov	hi(.L__profc_bsearch+8), %r3
+	or	%r3, lo(.L__profc_bsearch+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch+12), %r12
+	or	%r12, lo(.L__profc_bsearch+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	st	%r3, -40[%fp]
 	ld	-28[%fp], %r6
@@ -3225,6 +5435,18 @@ bsearch:                                ! @bsearch
 	bt	.LBB48_3
 	nop
 .LBB48_3:                               !   in Loop: Header=BB48_1 Depth=1
+	mov	hi(.L__profc_bsearch+16), %r3
+	or	%r3, lo(.L__profc_bsearch+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch+20), %r12
+	or	%r12, lo(.L__profc_bsearch+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sh	%r3, -0x1, %r3
 	bt	.LBB48_8
@@ -3237,6 +5459,18 @@ bsearch:                                ! @bsearch
 	bt	.LBB48_5
 	nop
 .LBB48_5:                               !   in Loop: Header=BB48_1 Depth=1
+	mov	hi(.L__profc_bsearch+24), %r3
+	or	%r3, lo(.L__profc_bsearch+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch+28), %r12
+	or	%r12, lo(.L__profc_bsearch+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	ld	-28[%fp], %r9
 	add	%r3, %r9, %r3
@@ -3284,6 +5518,18 @@ bsearch_r:                              ! @bsearch_r
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_bsearch_r), %r3
+	or	%r3, lo(.L__profc_bsearch_r), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch_r+4), %r12
+	or	%r12, lo(.L__profc_bsearch_r+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	st	%r3, -32[%fp]
 	ld	-24[%fp], %r3
@@ -3297,6 +5543,18 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_2
 	nop
 .LBB49_2:                               !   in Loop: Header=BB49_1 Depth=1
+	mov	hi(.L__profc_bsearch_r+8), %r3
+	or	%r3, lo(.L__profc_bsearch_r+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch_r+12), %r12
+	or	%r12, lo(.L__profc_bsearch_r+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	st	%r3, -48[%fp]
 	ld	-36[%fp], %r3
@@ -3323,6 +5581,18 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_3
 	nop
 .LBB49_3:
+	mov	hi(.L__profc_bsearch_r+16), %r3
+	or	%r3, lo(.L__profc_bsearch_r+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch_r+20), %r12
+	or	%r12, lo(.L__profc_bsearch_r+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-44[%fp], %r3
 	bt	.LBB49_9
 	st	%r3, -12[%fp]
@@ -3334,6 +5604,18 @@ bsearch_r:                              ! @bsearch_r
 	bt	.LBB49_5
 	nop
 .LBB49_5:                               !   in Loop: Header=BB49_1 Depth=1
+	mov	hi(.L__profc_bsearch_r+24), %r3
+	or	%r3, lo(.L__profc_bsearch_r+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bsearch_r+28), %r12
+	or	%r12, lo(.L__profc_bsearch_r+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-44[%fp], %r3
 	ld	-28[%fp], %r9
 	add	%r3, %r9, %r3
@@ -3375,6 +5657,18 @@ div:                                    ! @div
 	st	%r3, -20[%fp]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_div), %r3
+	or	%r3, lo(.L__profc_div), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_div+4), %r12
+	or	%r12, lo(.L__profc_div+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -3411,6 +5705,18 @@ imaxabs:                                ! @imaxabs
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_imaxabs), %r9
+	or	%r9, lo(.L__profc_imaxabs), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_imaxabs+4), %r13
+	or	%r13, lo(.L__profc_imaxabs+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r12
 	sub.f	%r12, 0x0, %r0
@@ -3425,6 +5731,18 @@ imaxabs:                                ! @imaxabs
 	bt	.LBB51_1
 	nop
 .LBB51_1:
+	mov	hi(.L__profc_imaxabs+8), %r3
+	or	%r3, lo(.L__profc_imaxabs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_imaxabs+12), %r12
+	or	%r12, lo(.L__profc_imaxabs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3480,6 +5798,18 @@ imaxdiv:                                ! @imaxdiv
 	st	%r3, -40[%fp]
 	st	%r19, 0[%r3]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_imaxdiv), %r12
+	or	%r12, lo(.L__profc_imaxdiv), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc_imaxdiv+4), %r14
+	or	%r14, lo(.L__profc_imaxdiv+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r7
 	ld	-16[%fp], %r6
 	ld	0[%r3], %r19
@@ -3520,6 +5850,18 @@ labs:                                   ! @labs
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_labs), %r3
+	or	%r3, lo(.L__profc_labs), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_labs+4), %r12
+	or	%r12, lo(.L__profc_labs+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	sub.f	%r3, 0x1, %r0
 	blt	.LBB53_2
@@ -3527,6 +5869,18 @@ labs:                                   ! @labs
 	bt	.LBB53_1
 	nop
 .LBB53_1:
+	mov	hi(.L__profc_labs+8), %r3
+	or	%r3, lo(.L__profc_labs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_labs+12), %r12
+	or	%r12, lo(.L__profc_labs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB53_3
 	st	%r3, -16[%fp]
@@ -3557,6 +5911,18 @@ ldiv:                                   ! @ldiv
 	st	%r3, -20[%fp]
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_ldiv), %r3
+	or	%r3, lo(.L__profc_ldiv), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldiv+4), %r12
+	or	%r12, lo(.L__profc_ldiv+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -3593,6 +5959,18 @@ llabs:                                  ! @llabs
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_llabs), %r9
+	or	%r9, lo(.L__profc_llabs), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_llabs+4), %r13
+	or	%r13, lo(.L__profc_llabs+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r12
 	sub.f	%r12, 0x0, %r0
@@ -3607,6 +5985,18 @@ llabs:                                  ! @llabs
 	bt	.LBB55_1
 	nop
 .LBB55_1:
+	mov	hi(.L__profc_llabs+8), %r3
+	or	%r3, lo(.L__profc_llabs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_llabs+12), %r12
+	or	%r12, lo(.L__profc_llabs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r3
@@ -3662,6 +6052,18 @@ lldiv:                                  ! @lldiv
 	st	%r3, -40[%fp]
 	st	%r19, 0[%r3]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_lldiv), %r12
+	or	%r12, lo(.L__profc_lldiv), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc_lldiv+4), %r14
+	or	%r14, lo(.L__profc_lldiv+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r7
 	ld	-16[%fp], %r6
 	ld	0[%r3], %r19
@@ -3701,62 +6103,129 @@ wcschr:                                 ! @wcschr
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x18, %sp
+	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
-	bt	.LBB57_1
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_wcschr), %r3
+	or	%r3, lo(.L__profc_wcschr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcschr+4), %r12
+	or	%r12, lo(.L__profc_wcschr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB57_1
+	st	%r3, 0[%r9]
 .LBB57_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB57_3
+	beq	.LBB57_4
 	st	%r3, -20[%fp]
 	bt	.LBB57_2
 	nop
 .LBB57_2:                               !   in Loop: Header=BB57_1 Depth=1
+	mov	hi(.L__profc_wcschr+16), %r3
+	or	%r3, lo(.L__profc_wcschr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcschr+20), %r12
+	or	%r12, lo(.L__profc_wcschr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	ld	0[%r3], %r3
-	ld	-16[%fp], %r9
-	sub.f	%r3, %r9, %r0
+	ld	0[%r3], %r9
+	ld	-16[%fp], %r12
+	sub.f	%r9, %r12, %r0
 	sne	%r3
-	bt	.LBB57_3
+	st	%r3, -24[%fp]
+	sub.f	%r9, %r12, %r0
+	beq	.LBB57_4
 	st	%r3, -20[%fp]
+	bt	.LBB57_3
+	nop
 .LBB57_3:                               !   in Loop: Header=BB57_1 Depth=1
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_wcschr+24), %r9
+	or	%r9, lo(.L__profc_wcschr+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_wcschr+28), %r13
+	or	%r13, lo(.L__profc_wcschr+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB57_4
+	st	%r3, -20[%fp]
+.LBB57_4:                               !   in Loop: Header=BB57_1 Depth=1
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB57_6
+	beq	.LBB57_7
 	nop
-	bt	.LBB57_4
-	nop
-.LBB57_4:                               !   in Loop: Header=BB57_1 Depth=1
 	bt	.LBB57_5
 	nop
 .LBB57_5:                               !   in Loop: Header=BB57_1 Depth=1
+	mov	hi(.L__profc_wcschr+8), %r3
+	or	%r3, lo(.L__profc_wcschr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcschr+12), %r12
+	or	%r12, lo(.L__profc_wcschr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB57_6
+	st	%r3, 0[%r9]
+.LBB57_6:                               !   in Loop: Header=BB57_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
 	bt	.LBB57_1
 	st	%r3, -12[%fp]
-.LBB57_6:
+.LBB57_7:
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB57_8
+	beq	.LBB57_9
 	nop
-	bt	.LBB57_7
+	bt	.LBB57_8
 	nop
-.LBB57_7:
-	ld	-12[%fp], %r3
-	bt	.LBB57_9
-	st	%r3, -24[%fp]
 .LBB57_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB57_9
-	st	%r3, -24[%fp]
+	mov	hi(.L__profc_wcschr+32), %r3
+	or	%r3, lo(.L__profc_wcschr+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcschr+36), %r12
+	or	%r12, lo(.L__profc_wcschr+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-12[%fp], %r3
+	bt	.LBB57_10
+	st	%r3, -28[%fp]
 .LBB57_9:
-	ld	-24[%fp], %rv
+	or	%r0, 0x0, %r3
+	bt	.LBB57_10
+	st	%r3, -28[%fp]
+.LBB57_10:
+	ld	-28[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -3770,10 +6239,22 @@ wcscmp:                                 ! @wcscmp
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x18, %sp
+	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
-	bt	.LBB58_1
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_wcscmp), %r3
+	or	%r3, lo(.L__profc_wcscmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+4), %r12
+	or	%r12, lo(.L__profc_wcscmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB58_1
+	st	%r3, 0[%r9]
 .LBB58_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r9
@@ -3781,39 +6262,108 @@ wcscmp:                                 ! @wcscmp
 	ld	0[%r3], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	bne	.LBB58_4
+	bne	.LBB58_6
 	st	%r3, -20[%fp]
 	bt	.LBB58_2
 	nop
 .LBB58_2:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(.L__profc_wcscmp+32), %r3
+	or	%r3, lo(.L__profc_wcscmp+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+36), %r12
+	or	%r12, lo(.L__profc_wcscmp+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB58_4
+	beq	.LBB58_6
 	st	%r3, -20[%fp]
 	bt	.LBB58_3
 	nop
 .LBB58_3:                               !   in Loop: Header=BB58_1 Depth=1
-	ld	-16[%fp], %r3
-	ld	0[%r3], %r3
-	sub.f	%r3, 0x0, %r0
-	sne	%r3
+	mov	hi(.L__profc_wcscmp+40), %r3
+	or	%r3, lo(.L__profc_wcscmp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+44), %r12
+	or	%r12, lo(.L__profc_wcscmp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB58_4
-	st	%r3, -20[%fp]
+	st	%r3, 0[%r9]
 .LBB58_4:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(.L__profc_wcscmp+16), %r3
+	or	%r3, lo(.L__profc_wcscmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+20), %r12
+	or	%r12, lo(.L__profc_wcscmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	ld	0[%r3], %r9
+	sub.f	%r9, 0x0, %r0
+	sne	%r3
+	st	%r3, -24[%fp]
+	sub.f	%r9, 0x0, %r0
+	beq	.LBB58_6
+	st	%r3, -20[%fp]
+	bt	.LBB58_5
+	nop
+.LBB58_5:                               !   in Loop: Header=BB58_1 Depth=1
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_wcscmp+24), %r9
+	or	%r9, lo(.L__profc_wcscmp+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_wcscmp+28), %r13
+	or	%r13, lo(.L__profc_wcscmp+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB58_6
+	st	%r3, -20[%fp]
+.LBB58_6:                               !   in Loop: Header=BB58_1 Depth=1
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB58_7
+	beq	.LBB58_9
 	nop
-	bt	.LBB58_5
+	bt	.LBB58_7
 	nop
-.LBB58_5:                               !   in Loop: Header=BB58_1 Depth=1
-	bt	.LBB58_6
-	nop
-.LBB58_6:                               !   in Loop: Header=BB58_1 Depth=1
+.LBB58_7:                               !   in Loop: Header=BB58_1 Depth=1
+	mov	hi(.L__profc_wcscmp+8), %r3
+	or	%r3, lo(.L__profc_wcscmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+12), %r12
+	or	%r12, lo(.L__profc_wcscmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB58_8
+	st	%r3, 0[%r9]
+.LBB58_8:                               !   in Loop: Header=BB58_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
 	st	%r3, -12[%fp]
@@ -3821,31 +6371,43 @@ wcscmp:                                 ! @wcscmp
 	add	%r3, 0x4, %r3
 	bt	.LBB58_1
 	st	%r3, -16[%fp]
-.LBB58_7:
-	ld	-12[%fp], %r3
-	ld	0[%r3], %r3
-	ld	-16[%fp], %r9
-	ld	0[%r9], %r9
-	sub.f	%r3, %r9, %r0
-	bge	.LBB58_9
-	nop
-	bt	.LBB58_8
-	nop
-.LBB58_8:
-	or	%r1, 0x0, %r3
-	bt	.LBB58_10
-	st	%r3, -24[%fp]
 .LBB58_9:
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
-	sgt	%r3
+	bge	.LBB58_11
+	nop
 	bt	.LBB58_10
-	st	%r3, -24[%fp]
+	nop
 .LBB58_10:
-	ld	-24[%fp], %rv
+	mov	hi(.L__profc_wcscmp+48), %r3
+	or	%r3, lo(.L__profc_wcscmp+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscmp+52), %r12
+	or	%r12, lo(.L__profc_wcscmp+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	or	%r1, 0x0, %r3
+	bt	.LBB58_12
+	st	%r3, -28[%fp]
+.LBB58_11:
+	ld	-12[%fp], %r3
+	ld	0[%r3], %r3
+	ld	-16[%fp], %r9
+	ld	0[%r9], %r9
+	sub.f	%r3, %r9, %r0
+	sgt	%r3
+	bt	.LBB58_12
+	st	%r3, -28[%fp]
+.LBB58_12:
+	ld	-28[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -3862,6 +6424,18 @@ wcscpy:                                 ! @wcscpy
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_wcscpy), %r3
+	or	%r3, lo(.L__profc_wcscpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscpy+4), %r12
+	or	%r12, lo(.L__profc_wcscpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB59_1
 	st	%r3, -20[%fp]
@@ -3879,8 +6453,19 @@ wcscpy:                                 ! @wcscpy
 	bt	.LBB59_2
 	nop
 .LBB59_2:                               !   in Loop: Header=BB59_1 Depth=1
+	mov	hi(.L__profc_wcscpy+8), %r3
+	or	%r3, lo(.L__profc_wcscpy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcscpy+12), %r12
+	or	%r12, lo(.L__profc_wcscpy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB59_1
-	nop
+	st	%r3, 0[%r9]
 .LBB59_3:
 	ld	-20[%fp], %rv
 	ld	-4[%fp], %pc ! return
@@ -3898,6 +6483,18 @@ wcslen:                                 ! @wcslen
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_wcslen), %r3
+	or	%r3, lo(.L__profc_wcslen), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcslen+4), %r12
+	or	%r12, lo(.L__profc_wcslen+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB60_1
 	st	%r3, -16[%fp]
@@ -3910,8 +6507,19 @@ wcslen:                                 ! @wcslen
 	bt	.LBB60_2
 	nop
 .LBB60_2:                               !   in Loop: Header=BB60_1 Depth=1
+	mov	hi(.L__profc_wcslen+8), %r3
+	or	%r3, lo(.L__profc_wcslen+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcslen+12), %r12
+	or	%r12, lo(.L__profc_wcslen+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB60_3
-	nop
+	st	%r3, 0[%r9]
 .LBB60_3:                               !   in Loop: Header=BB60_1 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x4, %r3
@@ -3935,59 +6543,166 @@ wcsncmp:                                ! @wcsncmp
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x20, %sp
+	sub	%sp, 0x28, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
-	bt	.LBB61_1
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_wcsncmp), %r3
+	or	%r3, lo(.L__profc_wcsncmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+4), %r12
+	or	%r12, lo(.L__profc_wcsncmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB61_1
+	st	%r3, 0[%r9]
 .LBB61_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB61_5
+	beq	.LBB61_8
 	st	%r3, -24[%fp]
 	bt	.LBB61_2
 	nop
 .LBB61_2:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+48), %r3
+	or	%r3, lo(.L__profc_wcsncmp+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+52), %r12
+	or	%r12, lo(.L__profc_wcsncmp+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r9
 	ld	-16[%fp], %r3
 	ld	0[%r3], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	bne	.LBB61_5
+	bne	.LBB61_8
 	st	%r3, -24[%fp]
 	bt	.LBB61_3
 	nop
 .LBB61_3:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+56), %r3
+	or	%r3, lo(.L__profc_wcsncmp+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+60), %r12
+	or	%r12, lo(.L__profc_wcsncmp+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB61_4
+	st	%r3, 0[%r9]
+.LBB61_4:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+32), %r3
+	or	%r3, lo(.L__profc_wcsncmp+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+36), %r12
+	or	%r12, lo(.L__profc_wcsncmp+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB61_5
+	beq	.LBB61_8
 	st	%r3, -24[%fp]
-	bt	.LBB61_4
-	nop
-.LBB61_4:                               !   in Loop: Header=BB61_1 Depth=1
-	ld	-16[%fp], %r3
-	ld	0[%r3], %r3
-	sub.f	%r3, 0x0, %r0
-	sne	%r3
 	bt	.LBB61_5
-	st	%r3, -24[%fp]
+	nop
 .LBB61_5:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+40), %r3
+	or	%r3, lo(.L__profc_wcsncmp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+44), %r12
+	or	%r12, lo(.L__profc_wcsncmp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB61_6
+	st	%r3, 0[%r9]
+.LBB61_6:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+16), %r3
+	or	%r3, lo(.L__profc_wcsncmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+20), %r12
+	or	%r12, lo(.L__profc_wcsncmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	ld	0[%r3], %r9
+	sub.f	%r9, 0x0, %r0
+	sne	%r3
+	st	%r3, -28[%fp]
+	sub.f	%r9, 0x0, %r0
+	beq	.LBB61_8
+	st	%r3, -24[%fp]
+	bt	.LBB61_7
+	nop
+.LBB61_7:                               !   in Loop: Header=BB61_1 Depth=1
+	ld	-28[%fp], %r3
+	mov	hi(.L__profc_wcsncmp+24), %r9
+	or	%r9, lo(.L__profc_wcsncmp+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_wcsncmp+28), %r13
+	or	%r13, lo(.L__profc_wcsncmp+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB61_8
+	st	%r3, -24[%fp]
+.LBB61_8:                               !   in Loop: Header=BB61_1 Depth=1
 	ld	-24[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB61_8
+	beq	.LBB61_11
 	nop
-	bt	.LBB61_6
+	bt	.LBB61_9
 	nop
-.LBB61_6:                               !   in Loop: Header=BB61_1 Depth=1
-	bt	.LBB61_7
-	nop
-.LBB61_7:                               !   in Loop: Header=BB61_1 Depth=1
+.LBB61_9:                               !   in Loop: Header=BB61_1 Depth=1
+	mov	hi(.L__profc_wcsncmp+8), %r3
+	or	%r3, lo(.L__profc_wcsncmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+12), %r12
+	or	%r12, lo(.L__profc_wcsncmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB61_10
+	st	%r3, 0[%r9]
+.LBB61_10:                              !   in Loop: Header=BB61_1 Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -3998,46 +6713,70 @@ wcsncmp:                                ! @wcsncmp
 	add	%r3, 0x4, %r3
 	bt	.LBB61_1
 	st	%r3, -16[%fp]
-.LBB61_8:
+.LBB61_11:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB61_13
+	beq	.LBB61_16
 	nop
-	bt	.LBB61_9
+	bt	.LBB61_12
 	nop
-.LBB61_9:
+.LBB61_12:
+	mov	hi(.L__profc_wcsncmp+64), %r3
+	or	%r3, lo(.L__profc_wcsncmp+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+68), %r12
+	or	%r12, lo(.L__profc_wcsncmp+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
-	bge	.LBB61_11
+	bge	.LBB61_14
 	nop
-	bt	.LBB61_10
+	bt	.LBB61_13
 	nop
-.LBB61_10:
+.LBB61_13:
+	mov	hi(.L__profc_wcsncmp+72), %r3
+	or	%r3, lo(.L__profc_wcsncmp+72), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wcsncmp+76), %r12
+	or	%r12, lo(.L__profc_wcsncmp+76), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r1, 0x0, %r3
-	bt	.LBB61_12
-	st	%r3, -28[%fp]
-.LBB61_11:
+	bt	.LBB61_15
+	st	%r3, -32[%fp]
+.LBB61_14:
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
 	sgt	%r3
-	bt	.LBB61_12
-	st	%r3, -28[%fp]
-.LBB61_12:
-	ld	-28[%fp], %r3
-	bt	.LBB61_14
+	bt	.LBB61_15
 	st	%r3, -32[%fp]
-.LBB61_13:
+.LBB61_15:
+	ld	-32[%fp], %r3
+	bt	.LBB61_17
+	st	%r3, -36[%fp]
+.LBB61_16:
 	or	%r0, 0x0, %r3
-	bt	.LBB61_14
-	st	%r3, -32[%fp]
-.LBB61_14:
-	ld	-32[%fp], %rv
+	bt	.LBB61_17
+	st	%r3, -36[%fp]
+.LBB61_17:
+	ld	-36[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -4054,37 +6793,92 @@ wmemchr:                                ! @wmemchr
 	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
-	bt	.LBB62_1
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_wmemchr), %r3
+	or	%r3, lo(.L__profc_wmemchr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemchr+4), %r12
+	or	%r12, lo(.L__profc_wmemchr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB62_1
+	st	%r3, 0[%r9]
 .LBB62_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB62_3
+	beq	.LBB62_4
 	st	%r3, -24[%fp]
 	bt	.LBB62_2
 	nop
 .LBB62_2:                               !   in Loop: Header=BB62_1 Depth=1
+	mov	hi(.L__profc_wmemchr+16), %r3
+	or	%r3, lo(.L__profc_wmemchr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemchr+20), %r12
+	or	%r12, lo(.L__profc_wmemchr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	ld	0[%r3], %r3
-	ld	-16[%fp], %r9
-	sub.f	%r3, %r9, %r0
+	ld	0[%r3], %r9
+	ld	-16[%fp], %r12
+	sub.f	%r9, %r12, %r0
 	sne	%r3
-	bt	.LBB62_3
+	st	%r3, -28[%fp]
+	sub.f	%r9, %r12, %r0
+	beq	.LBB62_4
 	st	%r3, -24[%fp]
+	bt	.LBB62_3
+	nop
 .LBB62_3:                               !   in Loop: Header=BB62_1 Depth=1
+	ld	-28[%fp], %r3
+	mov	hi(.L__profc_wmemchr+24), %r9
+	or	%r9, lo(.L__profc_wmemchr+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_wmemchr+28), %r13
+	or	%r13, lo(.L__profc_wmemchr+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB62_4
+	st	%r3, -24[%fp]
+.LBB62_4:                               !   in Loop: Header=BB62_1 Depth=1
 	ld	-24[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB62_6
+	beq	.LBB62_7
 	nop
-	bt	.LBB62_4
-	nop
-.LBB62_4:                               !   in Loop: Header=BB62_1 Depth=1
 	bt	.LBB62_5
 	nop
 .LBB62_5:                               !   in Loop: Header=BB62_1 Depth=1
+	mov	hi(.L__profc_wmemchr+8), %r3
+	or	%r3, lo(.L__profc_wmemchr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemchr+12), %r12
+	or	%r12, lo(.L__profc_wmemchr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB62_6
+	st	%r3, 0[%r9]
+.LBB62_6:                               !   in Loop: Header=BB62_1 Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -4092,23 +6886,35 @@ wmemchr:                                ! @wmemchr
 	add	%r3, 0x4, %r3
 	bt	.LBB62_1
 	st	%r3, -12[%fp]
-.LBB62_6:
+.LBB62_7:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB62_8
+	beq	.LBB62_9
 	nop
-	bt	.LBB62_7
+	bt	.LBB62_8
 	nop
-.LBB62_7:
-	ld	-12[%fp], %r3
-	bt	.LBB62_9
-	st	%r3, -28[%fp]
 .LBB62_8:
-	or	%r0, 0x0, %r3
-	bt	.LBB62_9
-	st	%r3, -28[%fp]
+	mov	hi(.L__profc_wmemchr+32), %r3
+	or	%r3, lo(.L__profc_wmemchr+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemchr+36), %r12
+	or	%r12, lo(.L__profc_wmemchr+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-12[%fp], %r3
+	bt	.LBB62_10
+	st	%r3, -32[%fp]
 .LBB62_9:
-	ld	-28[%fp], %rv
+	or	%r0, 0x0, %r3
+	bt	.LBB62_10
+	st	%r3, -32[%fp]
+.LBB62_10:
+	ld	-32[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -4122,41 +6928,96 @@ wmemcmp:                                ! @wmemcmp
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x20, %sp
+	sub	%sp, 0x28, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
-	bt	.LBB63_1
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_wmemcmp), %r3
+	or	%r3, lo(.L__profc_wmemcmp), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcmp+4), %r12
+	or	%r12, lo(.L__profc_wmemcmp+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB63_1
+	st	%r3, 0[%r9]
 .LBB63_1:                               ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB63_3
+	beq	.LBB63_4
 	st	%r3, -24[%fp]
 	bt	.LBB63_2
 	nop
 .LBB63_2:                               !   in Loop: Header=BB63_1 Depth=1
+	mov	hi(.L__profc_wmemcmp+16), %r3
+	or	%r3, lo(.L__profc_wmemcmp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcmp+20), %r12
+	or	%r12, lo(.L__profc_wmemcmp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
-	ld	0[%r3], %r3
-	ld	-16[%fp], %r9
-	ld	0[%r9], %r9
-	sub.f	%r3, %r9, %r0
+	ld	0[%r3], %r9
+	ld	-16[%fp], %r3
+	ld	0[%r3], %r12
+	sub.f	%r9, %r12, %r0
 	seq	%r3
-	bt	.LBB63_3
+	st	%r3, -28[%fp]
+	sub.f	%r9, %r12, %r0
+	bne	.LBB63_4
 	st	%r3, -24[%fp]
+	bt	.LBB63_3
+	nop
 .LBB63_3:                               !   in Loop: Header=BB63_1 Depth=1
+	ld	-28[%fp], %r3
+	mov	hi(.L__profc_wmemcmp+24), %r9
+	or	%r9, lo(.L__profc_wmemcmp+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_wmemcmp+28), %r13
+	or	%r13, lo(.L__profc_wmemcmp+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB63_4
+	st	%r3, -24[%fp]
+.LBB63_4:                               !   in Loop: Header=BB63_1 Depth=1
 	ld	-24[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB63_6
+	beq	.LBB63_7
 	nop
-	bt	.LBB63_4
-	nop
-.LBB63_4:                               !   in Loop: Header=BB63_1 Depth=1
 	bt	.LBB63_5
 	nop
 .LBB63_5:                               !   in Loop: Header=BB63_1 Depth=1
+	mov	hi(.L__profc_wmemcmp+8), %r3
+	or	%r3, lo(.L__profc_wmemcmp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcmp+12), %r12
+	or	%r12, lo(.L__profc_wmemcmp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB63_6
+	st	%r3, 0[%r9]
+.LBB63_6:                               !   in Loop: Header=BB63_1 Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -4167,46 +7028,70 @@ wmemcmp:                                ! @wmemcmp
 	add	%r3, 0x4, %r3
 	bt	.LBB63_1
 	st	%r3, -16[%fp]
-.LBB63_6:
+.LBB63_7:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB63_11
+	beq	.LBB63_12
 	nop
-	bt	.LBB63_7
+	bt	.LBB63_8
 	nop
-.LBB63_7:
+.LBB63_8:
+	mov	hi(.L__profc_wmemcmp+32), %r3
+	or	%r3, lo(.L__profc_wmemcmp+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcmp+36), %r12
+	or	%r12, lo(.L__profc_wmemcmp+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
-	bge	.LBB63_9
+	bge	.LBB63_10
 	nop
-	bt	.LBB63_8
+	bt	.LBB63_9
 	nop
-.LBB63_8:
-	or	%r1, 0x0, %r3
-	bt	.LBB63_10
-	st	%r3, -28[%fp]
 .LBB63_9:
+	mov	hi(.L__profc_wmemcmp+40), %r3
+	or	%r3, lo(.L__profc_wmemcmp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcmp+44), %r12
+	or	%r12, lo(.L__profc_wmemcmp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	or	%r1, 0x0, %r3
+	bt	.LBB63_11
+	st	%r3, -32[%fp]
+.LBB63_10:
 	ld	-12[%fp], %r3
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	ld	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
 	sgt	%r3
-	bt	.LBB63_10
-	st	%r3, -28[%fp]
-.LBB63_10:
-	ld	-28[%fp], %r3
-	bt	.LBB63_12
+	bt	.LBB63_11
 	st	%r3, -32[%fp]
 .LBB63_11:
-	or	%r0, 0x0, %r3
-	bt	.LBB63_12
-	st	%r3, -32[%fp]
+	ld	-32[%fp], %r3
+	bt	.LBB63_13
+	st	%r3, -36[%fp]
 .LBB63_12:
-	ld	-32[%fp], %rv
+	or	%r0, 0x0, %r3
+	bt	.LBB63_13
+	st	%r3, -36[%fp]
+.LBB63_13:
+	ld	-36[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -4224,6 +7109,18 @@ wmemcpy:                                ! @wmemcpy
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_wmemcpy), %r3
+	or	%r3, lo(.L__profc_wmemcpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcpy+4), %r12
+	or	%r12, lo(.L__profc_wmemcpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB64_1
 	st	%r3, -24[%fp]
@@ -4236,6 +7133,18 @@ wmemcpy:                                ! @wmemcpy
 	bt	.LBB64_2
 	nop
 .LBB64_2:                               !   in Loop: Header=BB64_1 Depth=1
+	mov	hi(.L__profc_wmemcpy+8), %r3
+	or	%r3, lo(.L__profc_wmemcpy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemcpy+12), %r12
+	or	%r12, lo(.L__profc_wmemcpy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	add	%r3, 0x4, %r9
 	st	%r9, -16[%fp]
@@ -4263,6 +7172,18 @@ wmemmove:                               ! @wmemmove
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_wmemmove), %r3
+	or	%r3, lo(.L__profc_wmemmove), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemmove+4), %r12
+	or	%r12, lo(.L__profc_wmemmove+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -28[%fp]
 	ld	-16[%fp], %r3
@@ -4273,6 +7194,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_1
 	nop
 .LBB65_1:
+	mov	hi(.L__profc_wmemmove+8), %r3
+	or	%r3, lo(.L__profc_wmemmove+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemmove+12), %r12
+	or	%r12, lo(.L__profc_wmemmove+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB65_12
 	st	%r3, -12[%fp]
@@ -4288,8 +7221,19 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_3
 	nop
 .LBB65_3:
+	mov	hi(.L__profc_wmemmove+16), %r3
+	or	%r3, lo(.L__profc_wmemmove+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemmove+20), %r12
+	or	%r12, lo(.L__profc_wmemmove+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB65_4
-	nop
+	st	%r3, 0[%r9]
 .LBB65_4:                               ! =>This Inner Loop Header: Depth=1
 	ld	-24[%fp], %r3
 	sub	%r3, 0x1, %r9
@@ -4299,6 +7243,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_5
 	nop
 .LBB65_5:                               !   in Loop: Header=BB65_4 Depth=1
+	mov	hi(.L__profc_wmemmove+24), %r3
+	or	%r3, lo(.L__profc_wmemmove+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemmove+28), %r12
+	or	%r12, lo(.L__profc_wmemmove+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	ld	-24[%fp], %r9
 	sh	%r9, 0x2, %r12
@@ -4322,6 +7278,18 @@ wmemmove:                               ! @wmemmove
 	bt	.LBB65_9
 	nop
 .LBB65_9:                               !   in Loop: Header=BB65_8 Depth=1
+	mov	hi(.L__profc_wmemmove+32), %r3
+	or	%r3, lo(.L__profc_wmemmove+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemmove+36), %r12
+	or	%r12, lo(.L__profc_wmemmove+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x4, %r9
 	st	%r9, -20[%fp]
@@ -4357,6 +7325,18 @@ wmemset:                                ! @wmemset
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_wmemset), %r3
+	or	%r3, lo(.L__profc_wmemset), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemset+4), %r12
+	or	%r12, lo(.L__profc_wmemset+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	bt	.LBB66_1
 	st	%r3, -24[%fp]
@@ -4369,6 +7349,18 @@ wmemset:                                ! @wmemset
 	bt	.LBB66_2
 	nop
 .LBB66_2:                               !   in Loop: Header=BB66_1 Depth=1
+	mov	hi(.L__profc_wmemset+8), %r3
+	or	%r3, lo(.L__profc_wmemset+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_wmemset+12), %r12
+	or	%r12, lo(.L__profc_wmemset+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-12[%fp], %r9
 	add	%r9, 0x4, %r12
@@ -4393,6 +7385,18 @@ bcopy:                                  ! @bcopy
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_bcopy), %r3
+	or	%r3, lo(.L__profc_bcopy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bcopy+4), %r12
+	or	%r12, lo(.L__profc_bcopy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -4405,6 +7409,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_1
 	nop
 .LBB67_1:
+	mov	hi(.L__profc_bcopy+8), %r3
+	or	%r3, lo(.L__profc_bcopy+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bcopy+12), %r12
+	or	%r12, lo(.L__profc_bcopy+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	ld	-24[%fp], %r3
 	add	%r3, %r9, %r3
@@ -4422,6 +7438,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_3
 	nop
 .LBB67_3:                               !   in Loop: Header=BB67_2 Depth=1
+	mov	hi(.L__profc_bcopy+16), %r3
+	or	%r3, lo(.L__profc_bcopy+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bcopy+20), %r12
+	or	%r12, lo(.L__profc_bcopy+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub	%r3, 0x1, %r9
 	st	%r9, -24[%fp]
@@ -4448,8 +7476,19 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_7
 	nop
 .LBB67_7:
+	mov	hi(.L__profc_bcopy+24), %r3
+	or	%r3, lo(.L__profc_bcopy+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bcopy+28), %r12
+	or	%r12, lo(.L__profc_bcopy+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB67_8
-	nop
+	st	%r3, 0[%r9]
 .LBB67_8:                               ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
@@ -4458,6 +7497,18 @@ bcopy:                                  ! @bcopy
 	bt	.LBB67_9
 	nop
 .LBB67_9:                               !   in Loop: Header=BB67_8 Depth=1
+	mov	hi(.L__profc_bcopy+32), %r3
+	or	%r3, lo(.L__profc_bcopy+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bcopy+36), %r12
+	or	%r12, lo(.L__profc_bcopy+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -24[%fp]
@@ -4500,6 +7551,18 @@ rotl64:                                 ! @rotl64
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_rotl64), %r9
+	or	%r9, lo(.L__profc_rotl64), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_rotl64+4), %r13
+	or	%r13, lo(.L__profc_rotl64+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r9
 	ld	-16[%fp], %r14
 	ld	-20[%fp], %r20
@@ -4556,6 +7619,18 @@ rotr64:                                 ! @rotr64
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_rotr64), %r9
+	or	%r9, lo(.L__profc_rotr64), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_rotr64+4), %r13
+	or	%r13, lo(.L__profc_rotr64+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r14
 	ld	-16[%fp], %r20
 	ld	-20[%fp], %r21
@@ -4606,6 +7681,18 @@ rotl32:                                 ! @rotl32
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotl32), %r3
+	or	%r3, lo(.L__profc_rotl32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotl32+4), %r12
+	or	%r12, lo(.L__profc_rotl32+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	ld	-16[%fp], %r13
 	sh	%r9, %r13, %r3
@@ -4630,6 +7717,18 @@ rotr32:                                 ! @rotr32
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotr32), %r3
+	or	%r3, lo(.L__profc_rotr32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotr32+4), %r12
+	or	%r12, lo(.L__profc_rotr32+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	ld	-16[%fp], %r13
 	sub	%r0, %r13, %r3
@@ -4654,6 +7753,18 @@ rotl_sz:                                ! @rotl_sz
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotl_sz), %r3
+	or	%r3, lo(.L__profc_rotl_sz), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotl_sz+4), %r12
+	or	%r12, lo(.L__profc_rotl_sz+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	ld	-16[%fp], %r13
 	sh	%r9, %r13, %r3
@@ -4678,6 +7789,18 @@ rotr_sz:                                ! @rotr_sz
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotr_sz), %r3
+	or	%r3, lo(.L__profc_rotr_sz), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotr_sz+4), %r12
+	or	%r12, lo(.L__profc_rotr_sz+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	ld	-16[%fp], %r13
 	sub	%r0, %r13, %r3
@@ -4703,6 +7826,18 @@ rotl16:                                 ! @rotl16
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotl16), %r3
+	or	%r3, lo(.L__profc_rotl16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotl16+4), %r12
+	or	%r12, lo(.L__profc_rotl16+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r9
 	ld	-16[%fp], %r13
 	sh	%r9, %r13, %r3
@@ -4729,6 +7864,18 @@ rotr16:                                 ! @rotr16
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotr16), %r3
+	or	%r3, lo(.L__profc_rotr16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotr16+4), %r12
+	or	%r12, lo(.L__profc_rotr16+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r9
 	ld	-16[%fp], %r13
 	sub	%r0, %r13, %r3
@@ -4755,6 +7902,18 @@ rotl8:                                  ! @rotl8
                                         ! kill: def $r3 killed $r6
 	st.b	%r6, -9[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotl8), %r3
+	or	%r3, lo(.L__profc_rotl8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotl8+4), %r12
+	or	%r12, lo(.L__profc_rotl8+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.b	-9[%fp], %r9
 	ld	-16[%fp], %r13
 	sh	%r9, %r13, %r3
@@ -4782,6 +7941,18 @@ rotr8:                                  ! @rotr8
                                         ! kill: def $r3 killed $r6
 	st.b	%r6, -9[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_rotr8), %r3
+	or	%r3, lo(.L__profc_rotr8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_rotr8+4), %r12
+	or	%r12, lo(.L__profc_rotr8+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.b	-9[%fp], %r9
 	ld	-16[%fp], %r13
 	sub	%r0, %r13, %r3
@@ -4808,6 +7979,18 @@ bswap_16:                               ! @bswap_16
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
+	mov	hi(.L__profc_bswap_16), %r3
+	or	%r3, lo(.L__profc_bswap_16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bswap_16+4), %r12
+	or	%r12, lo(.L__profc_bswap_16+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0xff, %r3
 	st.h	%r3, -12[%fp]
 	uld.h	-10[%fp], %r9
@@ -4834,6 +8017,18 @@ bswap_32:                               ! @bswap_32
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_bswap_32), %r3
+	or	%r3, lo(.L__profc_bswap_32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_bswap_32+4), %r12
+	or	%r12, lo(.L__profc_bswap_32+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0xff, %r3
 	st	%r3, -16[%fp]
 	ld	-12[%fp], %r9
@@ -4871,6 +8066,18 @@ bswap_64:                               ! @bswap_64
 	or	%r3, 0x4, %r9
 	st	%r7, 0[%r9]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_bswap_64), %r3
+	or	%r3, lo(.L__profc_bswap_64), %r12
+	ld	0[%r12], %r3
+	mov	hi(.L__profc_bswap_64+4), %r13
+	or	%r13, lo(.L__profc_bswap_64+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r3, %r16, %r3
+	st	%r13, 0[%r14]
+	st	%r3, 0[%r12]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	mov	0xff, %r12
@@ -4928,6 +8135,18 @@ ffs:                                    ! @ffs
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_ffs), %r3
+	or	%r3, lo(.L__profc_ffs), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ffs+4), %r12
+	or	%r12, lo(.L__profc_ffs+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB81_1
 	st	%r3, -20[%fp]
@@ -4939,6 +8158,18 @@ ffs:                                    ! @ffs
 	bt	.LBB81_2
 	nop
 .LBB81_2:                               !   in Loop: Header=BB81_1 Depth=1
+	mov	hi(.L__profc_ffs+8), %r3
+	or	%r3, lo(.L__profc_ffs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ffs+12), %r12
+	or	%r12, lo(.L__profc_ffs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-20[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -4951,6 +8182,18 @@ ffs:                                    ! @ffs
 	bt	.LBB81_3
 	nop
 .LBB81_3:
+	mov	hi(.L__profc_ffs+16), %r3
+	or	%r3, lo(.L__profc_ffs+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ffs+20), %r12
+	or	%r12, lo(.L__profc_ffs+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB81_7
@@ -4983,6 +8226,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_libiberty_ffs), %r3
+	or	%r3, lo(.L__profc_libiberty_ffs), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_libiberty_ffs+4), %r12
+	or	%r12, lo(.L__profc_libiberty_ffs+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bne	.LBB82_2
@@ -4990,6 +8245,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	bt	.LBB82_1
 	nop
 .LBB82_1:
+	mov	hi(.L__profc_libiberty_ffs+8), %r3
+	or	%r3, lo(.L__profc_libiberty_ffs+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_libiberty_ffs+12), %r12
+	or	%r12, lo(.L__profc_libiberty_ffs+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB82_7
 	st	%r3, -12[%fp]
@@ -5009,6 +8276,18 @@ libiberty_ffs:                          ! @libiberty_ffs
 	bt	.LBB82_4
 	nop
 .LBB82_4:                               !   in Loop: Header=BB82_3 Depth=1
+	mov	hi(.L__profc_libiberty_ffs+16), %r3
+	or	%r3, lo(.L__profc_libiberty_ffs+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_libiberty_ffs+20), %r12
+	or	%r12, lo(.L__profc_libiberty_ffs+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sha	%r3, -0x1, %r3
 	bt	.LBB82_5
@@ -5037,9 +8316,21 @@ gl_isinff:                              ! @gl_isinff
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x10, %sp
+	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc_gl_isinff), %r3
+	or	%r3, lo(.L__profc_gl_isinff), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_gl_isinff+4), %r12
+	or	%r12, lo(.L__profc_gl_isinff+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -5047,11 +8338,23 @@ gl_isinff:                              ! @gl_isinff
 	mov	0xff7fffff, %r7
 	mov	0x1, %r3
 	sub.f	%rv, 0x0, %r0
-	bmi	.LBB83_2
+	bmi	.LBB83_3
 	st	%r3, -16[%fp]
 	bt	.LBB83_1
 	nop
 .LBB83_1:
+	mov	hi(.L__profc_gl_isinff+8), %r3
+	or	%r3, lo(.L__profc_gl_isinff+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_gl_isinff+12), %r12
+	or	%r12, lo(.L__profc_gl_isinff+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -5059,9 +8362,29 @@ gl_isinff:                              ! @gl_isinff
 	mov	0x7f7fffff, %r7
 	sub.f	%rv, 0x0, %r0
 	sgt	%r3
-	bt	.LBB83_2
+	st	%r3, -20[%fp]
+	sub.f	%rv, 0x0, %r0
+	bgt	.LBB83_3
 	st	%r3, -16[%fp]
+	bt	.LBB83_2
+	nop
 .LBB83_2:
+	ld	-20[%fp], %r3
+	mov	hi(.L__profc_gl_isinff+16), %r9
+	or	%r9, lo(.L__profc_gl_isinff+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_gl_isinff+20), %r13
+	or	%r13, lo(.L__profc_gl_isinff+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB83_3
+	st	%r3, -16[%fp]
+.LBB83_3:
 	ld	-16[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -5085,6 +8408,18 @@ gl_isinfd:                              ! @gl_isinfd
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_gl_isinfd), %r9
+	or	%r9, lo(.L__profc_gl_isinfd), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_gl_isinfd+4), %r13
+	or	%r13, lo(.L__profc_gl_isinfd+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r7
 	ld	-16[%fp], %r6
 	mov	0xffefffff, %r18
@@ -5094,11 +8429,23 @@ gl_isinfd:                              ! @gl_isinfd
 	or	%r1, 0x0, %r19
 	mov	0x1, %r3
 	sub.f	%rv, 0x0, %r0
-	bmi	.LBB84_2
+	bmi	.LBB84_3
 	st	%r3, -20[%fp]
 	bt	.LBB84_1
 	nop
 .LBB84_1:
+	mov	hi(.L__profc_gl_isinfd+8), %r3
+	or	%r3, lo(.L__profc_gl_isinfd+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_gl_isinfd+12), %r12
+	or	%r12, lo(.L__profc_gl_isinfd+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -5110,9 +8457,29 @@ gl_isinfd:                              ! @gl_isinfd
 	or	%r1, 0x0, %r19
 	sub.f	%rv, 0x0, %r0
 	sgt	%r3
-	bt	.LBB84_2
+	st	%r3, -24[%fp]
+	sub.f	%rv, 0x0, %r0
+	bgt	.LBB84_3
 	st	%r3, -20[%fp]
+	bt	.LBB84_2
+	nop
 .LBB84_2:
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_gl_isinfd+16), %r9
+	or	%r9, lo(.L__profc_gl_isinfd+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_gl_isinfd+20), %r13
+	or	%r13, lo(.L__profc_gl_isinfd+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB84_3
+	st	%r3, -20[%fp]
+.LBB84_3:
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -5136,6 +8503,18 @@ gl_isinfl:                              ! @gl_isinfl
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc_gl_isinfl), %r9
+	or	%r9, lo(.L__profc_gl_isinfl), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_gl_isinfl+4), %r13
+	or	%r13, lo(.L__profc_gl_isinfl+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r7
 	ld	-16[%fp], %r6
 	mov	0xffefffff, %r18
@@ -5145,11 +8524,23 @@ gl_isinfl:                              ! @gl_isinfl
 	or	%r1, 0x0, %r19
 	mov	0x1, %r3
 	sub.f	%rv, 0x0, %r0
-	bmi	.LBB85_2
+	bmi	.LBB85_3
 	st	%r3, -20[%fp]
 	bt	.LBB85_1
 	nop
 .LBB85_1:
+	mov	hi(.L__profc_gl_isinfl+8), %r3
+	or	%r3, lo(.L__profc_gl_isinfl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_gl_isinfl+12), %r12
+	or	%r12, lo(.L__profc_gl_isinfl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -5161,9 +8552,29 @@ gl_isinfl:                              ! @gl_isinfl
 	or	%r1, 0x0, %r19
 	sub.f	%rv, 0x0, %r0
 	sgt	%r3
-	bt	.LBB85_2
+	st	%r3, -24[%fp]
+	sub.f	%rv, 0x0, %r0
+	bgt	.LBB85_3
 	st	%r3, -20[%fp]
+	bt	.LBB85_2
+	nop
 .LBB85_2:
+	ld	-24[%fp], %r3
+	mov	hi(.L__profc_gl_isinfl+16), %r9
+	or	%r9, lo(.L__profc_gl_isinfl+16), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_gl_isinfl+20), %r13
+	or	%r13, lo(.L__profc_gl_isinfl+20), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB85_3
+	st	%r3, -20[%fp]
+.LBB85_3:
 	ld	-20[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %rv
@@ -5183,6 +8594,18 @@ _Qp_itoq:                               ! @_Qp_itoq
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc__Qp_itoq), %r3
+	or	%r3, lo(.L__profc__Qp_itoq), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc__Qp_itoq+4), %r12
+	or	%r12, lo(.L__profc__Qp_itoq+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__floatsidf
@@ -5207,14 +8630,38 @@ ldexpf:                                 ! @ldexpf
                                         ! kill: def $r3 killed $r6
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_ldexpf), %r3
+	or	%r3, lo(.L__profc_ldexpf), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+4), %r12
+	or	%r12, lo(.L__profc_ldexpf+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	and	%r3, 0x7fffffff, %r3
 	sub.f	%r3, 0x7f800000, %r0
-	bgt	.LBB87_9
+	bgt	.LBB87_10
 	nop
 	bt	.LBB87_1
 	nop
 .LBB87_1:
+	mov	hi(.L__profc_ldexpf+16), %r3
+	or	%r3, lo(.L__profc_ldexpf+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+20), %r12
+	or	%r12, lo(.L__profc_ldexpf+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r7
 	st	%r7, -24[%fp]
 	add	%pc, 0x10, %rca
@@ -5227,38 +8674,104 @@ ldexpf:                                 ! @ldexpf
 	bt	__eqsf2
 	or	%rv, 0x0, %r6
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB87_9
+	beq	.LBB87_10
 	nop
 	bt	.LBB87_2
 	nop
 .LBB87_2:
+	mov	hi(.L__profc_ldexpf+24), %r3
+	or	%r3, lo(.L__profc_ldexpf+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+28), %r12
+	or	%r12, lo(.L__profc_ldexpf+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB87_3
+	st	%r3, 0[%r9]
+.LBB87_3:
+	mov	hi(.L__profc_ldexpf+8), %r3
+	or	%r3, lo(.L__profc_ldexpf+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+12), %r12
+	or	%r12, lo(.L__profc_ldexpf+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r12
+	mov	hi(.L__profc_ldexpf+32), %r3
+	or	%r3, lo(.L__profc_ldexpf+32), %r9
+	ld	0[%r9], %r16
+	mov	hi(.L__profc_ldexpf+36), %r3
+	or	%r3, lo(.L__profc_ldexpf+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r13, %r13
+	sub.f	%r3, 0x0, %r0
+	seq	%r3
+	add	%r16, %r3, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r16, %r3
+	st	%r13, 0[%r14]
+	st	%r3, 0[%r9]
 	mov	0x40000000, %r9
 	mov	0x3f000000, %r3
 	sub.f	%r12, 0x0, %r0
 	sel.mi %r3, %r9, %r3
-	bt	.LBB87_3
+	bt	.LBB87_4
 	st	%r3, -20[%fp]
-.LBB87_3:                               ! =>This Inner Loop Header: Depth=1
+.LBB87_4:                               ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc_ldexpf+40), %r3
+	or	%r3, lo(.L__profc_ldexpf+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+44), %r12
+	or	%r12, lo(.L__profc_ldexpf+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r9
 	and	%r9, 0xfffffffe, %r9
 	sub	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB87_5
+	beq	.LBB87_6
 	nop
-	bt	.LBB87_4
+	bt	.LBB87_5
 	nop
-.LBB87_4:                               !   in Loop: Header=BB87_3 Depth=1
+.LBB87_5:                               !   in Loop: Header=BB87_4 Depth=1
+	mov	hi(.L__profc_ldexpf+48), %r3
+	or	%r3, lo(.L__profc_ldexpf+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+52), %r12
+	or	%r12, lo(.L__profc_ldexpf+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__mulsf3
 	ld	-12[%fp], %r6
-	bt	.LBB87_5
+	bt	.LBB87_6
 	st	%rv, -12[%fp]
-.LBB87_5:                               !   in Loop: Header=BB87_3 Depth=1
+.LBB87_6:                               !   in Loop: Header=BB87_4 Depth=1
 	ld	-16[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r3
@@ -5266,25 +8779,36 @@ ldexpf:                                 ! @ldexpf
 	st	%r3, -16[%fp]
 	ld	-16[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB87_7
+	bne	.LBB87_8
 	nop
-	bt	.LBB87_6
+	bt	.LBB87_7
 	nop
-.LBB87_6:
-	bt	.LBB87_8
-	nop
-.LBB87_7:                               !   in Loop: Header=BB87_3 Depth=1
+.LBB87_7:
+	mov	hi(.L__profc_ldexpf+56), %r3
+	or	%r3, lo(.L__profc_ldexpf+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpf+60), %r12
+	or	%r12, lo(.L__profc_ldexpf+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB87_9
+	st	%r3, 0[%r9]
+.LBB87_8:                               !   in Loop: Header=BB87_4 Depth=1
 	ld	-20[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__mulsf3
 	or	%r7, 0x0, %r6
-	bt	.LBB87_3
+	bt	.LBB87_4
 	st	%rv, -20[%fp]
-.LBB87_8:
-	bt	.LBB87_9
-	nop
 .LBB87_9:
+	bt	.LBB87_10
+	nop
+.LBB87_10:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -5307,6 +8831,18 @@ ldexp:                                  ! @ldexp
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_ldexp), %r9
+	or	%r9, lo(.L__profc_ldexp), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_ldexp+4), %r13
+	or	%r13, lo(.L__profc_ldexp+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -5317,11 +8853,23 @@ ldexp:                                  ! @ldexp
 	sub.f	%r12, 0x7ff00000, %r0
 	sel.eq %r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB88_9
+	bne	.LBB88_10
 	nop
 	bt	.LBB88_1
 	nop
 .LBB88_1:
+	mov	hi(.L__profc_ldexp+16), %r3
+	or	%r3, lo(.L__profc_ldexp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+20), %r12
+	or	%r12, lo(.L__profc_ldexp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -5341,12 +8889,54 @@ ldexp:                                  ! @ldexp
 	bt	__eqdf2
 	or	%r9, 0x0, %r7
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB88_9
+	beq	.LBB88_10
 	nop
 	bt	.LBB88_2
 	nop
 .LBB88_2:
+	mov	hi(.L__profc_ldexp+24), %r3
+	or	%r3, lo(.L__profc_ldexp+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+28), %r12
+	or	%r12, lo(.L__profc_ldexp+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB88_3
+	st	%r3, 0[%r9]
+.LBB88_3:
+	mov	hi(.L__profc_ldexp+8), %r3
+	or	%r3, lo(.L__profc_ldexp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+12), %r12
+	or	%r12, lo(.L__profc_ldexp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r12
+	mov	hi(.L__profc_ldexp+32), %r3
+	or	%r3, lo(.L__profc_ldexp+32), %r9
+	ld	0[%r9], %r16
+	mov	hi(.L__profc_ldexp+36), %r3
+	or	%r3, lo(.L__profc_ldexp+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r13, %r13
+	sub.f	%r3, 0x0, %r0
+	seq	%r3
+	add	%r16, %r3, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r16, %r3
+	st	%r13, 0[%r14]
+	st	%r3, 0[%r9]
 	mov	0x40000000, %r9
 	mov	0x3fe00000, %r3
 	sub.f	%r12, 0x0, %r0
@@ -5355,20 +8945,44 @@ ldexp:                                  ! @ldexp
 	or	%r9, 0x4, %r12
 	or	%r0, 0x0, %r9
 	st	%r9, 0[%r12]
-	bt	.LBB88_3
+	bt	.LBB88_4
 	st	%r3, -32[%fp]
-.LBB88_3:                               ! =>This Inner Loop Header: Depth=1
+.LBB88_4:                               ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc_ldexp+40), %r3
+	or	%r3, lo(.L__profc_ldexp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+44), %r12
+	or	%r12, lo(.L__profc_ldexp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r9
 	and	%r9, 0xfffffffe, %r9
 	sub	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB88_5
+	beq	.LBB88_6
 	nop
-	bt	.LBB88_4
+	bt	.LBB88_5
 	nop
-.LBB88_4:                               !   in Loop: Header=BB88_3 Depth=1
+.LBB88_5:                               !   in Loop: Header=BB88_4 Depth=1
+	mov	hi(.L__profc_ldexp+48), %r3
+	or	%r3, lo(.L__profc_ldexp+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+52), %r12
+	or	%r12, lo(.L__profc_ldexp+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -5383,9 +8997,9 @@ ldexp:                                  ! @ldexp
 	ld	-16[%fp], %r6
 	ld	-44[%fp], %r3
 	st	%r9, 0[%r3]
-	bt	.LBB88_5
+	bt	.LBB88_6
 	st	%rv, -16[%fp]
-.LBB88_5:                               !   in Loop: Header=BB88_3 Depth=1
+.LBB88_6:                               !   in Loop: Header=BB88_4 Depth=1
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r3
@@ -5393,14 +9007,25 @@ ldexp:                                  ! @ldexp
 	st	%r3, -20[%fp]
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB88_7
+	bne	.LBB88_8
 	nop
-	bt	.LBB88_6
+	bt	.LBB88_7
 	nop
-.LBB88_6:
-	bt	.LBB88_8
-	nop
-.LBB88_7:                               !   in Loop: Header=BB88_3 Depth=1
+.LBB88_7:
+	mov	hi(.L__profc_ldexp+56), %r3
+	or	%r3, lo(.L__profc_ldexp+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexp+60), %r12
+	or	%r12, lo(.L__profc_ldexp+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB88_9
+	st	%r3, 0[%r9]
+.LBB88_8:                               !   in Loop: Header=BB88_4 Depth=1
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -48[%fp]
@@ -5413,12 +9038,12 @@ ldexp:                                  ! @ldexp
 	or	%r19, 0x0, %r7
 	ld	-48[%fp], %r3
 	st	%r9, 0[%r3]
-	bt	.LBB88_3
+	bt	.LBB88_4
 	st	%rv, -32[%fp]
-.LBB88_8:
-	bt	.LBB88_9
-	nop
 .LBB88_9:
+	bt	.LBB88_10
+	nop
+.LBB88_10:
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -5444,6 +9069,18 @@ ldexpl:                                 ! @ldexpl
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_ldexpl), %r9
+	or	%r9, lo(.L__profc_ldexpl), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_ldexpl+4), %r13
+	or	%r13, lo(.L__profc_ldexpl+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r3
 	ld	-16[%fp], %r9
 	sub.f	%r3, 0x0, %r0
@@ -5454,11 +9091,23 @@ ldexpl:                                 ! @ldexpl
 	sub.f	%r12, 0x7ff00000, %r0
 	sel.eq %r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB89_9
+	bne	.LBB89_10
 	nop
 	bt	.LBB89_1
 	nop
 .LBB89_1:
+	mov	hi(.L__profc_ldexpl+16), %r3
+	or	%r3, lo(.L__profc_ldexpl+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+20), %r12
+	or	%r12, lo(.L__profc_ldexpl+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -5478,12 +9127,54 @@ ldexpl:                                 ! @ldexpl
 	bt	__eqdf2
 	or	%r9, 0x0, %r7
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB89_9
+	beq	.LBB89_10
 	nop
 	bt	.LBB89_2
 	nop
 .LBB89_2:
+	mov	hi(.L__profc_ldexpl+24), %r3
+	or	%r3, lo(.L__profc_ldexpl+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+28), %r12
+	or	%r12, lo(.L__profc_ldexpl+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB89_3
+	st	%r3, 0[%r9]
+.LBB89_3:
+	mov	hi(.L__profc_ldexpl+8), %r3
+	or	%r3, lo(.L__profc_ldexpl+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+12), %r12
+	or	%r12, lo(.L__profc_ldexpl+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r12
+	mov	hi(.L__profc_ldexpl+32), %r3
+	or	%r3, lo(.L__profc_ldexpl+32), %r9
+	ld	0[%r9], %r16
+	mov	hi(.L__profc_ldexpl+36), %r3
+	or	%r3, lo(.L__profc_ldexpl+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r13, %r13
+	sub.f	%r3, 0x0, %r0
+	seq	%r3
+	add	%r16, %r3, %r3
+	sub.f	%r12, 0x0, %r0
+	sel.mi %r3, %r16, %r3
+	st	%r13, 0[%r14]
+	st	%r3, 0[%r9]
 	mov	0x40000000, %r9
 	mov	0x3fe00000, %r3
 	sub.f	%r12, 0x0, %r0
@@ -5492,20 +9183,44 @@ ldexpl:                                 ! @ldexpl
 	or	%r9, 0x4, %r12
 	or	%r0, 0x0, %r9
 	st	%r9, 0[%r12]
-	bt	.LBB89_3
+	bt	.LBB89_4
 	st	%r3, -32[%fp]
-.LBB89_3:                               ! =>This Inner Loop Header: Depth=1
+.LBB89_4:                               ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc_ldexpl+40), %r3
+	or	%r3, lo(.L__profc_ldexpl+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+44), %r12
+	or	%r12, lo(.L__profc_ldexpl+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r9
 	and	%r9, 0xfffffffe, %r9
 	sub	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB89_5
+	beq	.LBB89_6
 	nop
-	bt	.LBB89_4
+	bt	.LBB89_5
 	nop
-.LBB89_4:                               !   in Loop: Header=BB89_3 Depth=1
+.LBB89_5:                               !   in Loop: Header=BB89_4 Depth=1
+	mov	hi(.L__profc_ldexpl+48), %r3
+	or	%r3, lo(.L__profc_ldexpl+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+52), %r12
+	or	%r12, lo(.L__profc_ldexpl+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -5520,9 +9235,9 @@ ldexpl:                                 ! @ldexpl
 	ld	-16[%fp], %r6
 	ld	-44[%fp], %r3
 	st	%r9, 0[%r3]
-	bt	.LBB89_5
+	bt	.LBB89_6
 	st	%rv, -16[%fp]
-.LBB89_5:                               !   in Loop: Header=BB89_3 Depth=1
+.LBB89_6:                               !   in Loop: Header=BB89_4 Depth=1
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1f, %r9
 	add	%r3, %r9, %r3
@@ -5530,14 +9245,25 @@ ldexpl:                                 ! @ldexpl
 	st	%r3, -20[%fp]
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB89_7
+	bne	.LBB89_8
 	nop
-	bt	.LBB89_6
+	bt	.LBB89_7
 	nop
-.LBB89_6:
-	bt	.LBB89_8
-	nop
-.LBB89_7:                               !   in Loop: Header=BB89_3 Depth=1
+.LBB89_7:
+	mov	hi(.L__profc_ldexpl+56), %r3
+	or	%r3, lo(.L__profc_ldexpl+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_ldexpl+60), %r12
+	or	%r12, lo(.L__profc_ldexpl+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB89_9
+	st	%r3, 0[%r9]
+.LBB89_8:                               !   in Loop: Header=BB89_4 Depth=1
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	st	%r3, -48[%fp]
@@ -5550,12 +9276,12 @@ ldexpl:                                 ! @ldexpl
 	or	%r19, 0x0, %r7
 	ld	-48[%fp], %r3
 	st	%r9, 0[%r3]
-	bt	.LBB89_3
+	bt	.LBB89_4
 	st	%rv, -32[%fp]
-.LBB89_8:
-	bt	.LBB89_9
-	nop
 .LBB89_9:
+	bt	.LBB89_10
+	nop
+.LBB89_10:
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -5577,6 +9303,18 @@ memxor:                                 ! @memxor
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_memxor), %r3
+	or	%r3, lo(.L__profc_memxor), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memxor+4), %r12
+	or	%r12, lo(.L__profc_memxor+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -24[%fp]
 	ld	-12[%fp], %r3
@@ -5590,6 +9328,18 @@ memxor:                                 ! @memxor
 	bt	.LBB90_2
 	nop
 .LBB90_2:                               !   in Loop: Header=BB90_1 Depth=1
+	mov	hi(.L__profc_memxor+8), %r3
+	or	%r3, lo(.L__profc_memxor+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memxor+12), %r12
+	or	%r12, lo(.L__profc_memxor+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -24[%fp]
@@ -5621,10 +9371,22 @@ strncat:                                ! @strncat
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x20, %sp
+	sub	%sp, 0x28, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_strncat), %r3
+	or	%r3, lo(.L__profc_strncat), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncat+4), %r12
+	or	%r12, lo(.L__profc_strncat+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -5638,32 +9400,75 @@ strncat:                                ! @strncat
 	ld	-20[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB91_3
+	beq	.LBB91_4
 	st	%r3, -32[%fp]
 	bt	.LBB91_2
 	nop
 .LBB91_2:                               !   in Loop: Header=BB91_1 Depth=1
+	mov	hi(.L__profc_strncat+16), %r3
+	or	%r3, lo(.L__profc_strncat+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncat+20), %r12
+	or	%r12, lo(.L__profc_strncat+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
-	uld.b	0[%r3], %r3
-	ld	-24[%fp], %r9
-	st.b	%r3, 0[%r9]
-	sub.f	%r3, 0x0, %r0
+	uld.b	0[%r3], %r9
+	ld	-24[%fp], %r3
+	st.b	%r9, 0[%r3]
+	sub.f	%r9, 0x0, %r0
 	sne	%r3
-	bt	.LBB91_3
+	st	%r3, -36[%fp]
+	sub.f	%r9, 0x0, %r0
+	beq	.LBB91_4
 	st	%r3, -32[%fp]
+	bt	.LBB91_3
+	nop
 .LBB91_3:                               !   in Loop: Header=BB91_1 Depth=1
+	ld	-36[%fp], %r3
+	mov	hi(.L__profc_strncat+24), %r9
+	or	%r9, lo(.L__profc_strncat+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_strncat+28), %r13
+	or	%r13, lo(.L__profc_strncat+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB91_4
+	st	%r3, -32[%fp]
+.LBB91_4:                               !   in Loop: Header=BB91_1 Depth=1
 	ld	-32[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB91_6
+	beq	.LBB91_7
 	nop
-	bt	.LBB91_4
-	nop
-.LBB91_4:                               !   in Loop: Header=BB91_1 Depth=1
 	bt	.LBB91_5
 	nop
 .LBB91_5:                               !   in Loop: Header=BB91_1 Depth=1
+	mov	hi(.L__profc_strncat+8), %r3
+	or	%r3, lo(.L__profc_strncat+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncat+12), %r12
+	or	%r12, lo(.L__profc_strncat+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB91_6
+	st	%r3, 0[%r9]
+.LBB91_6:                               !   in Loop: Header=BB91_1 Depth=1
 	ld	-16[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -16[%fp]
@@ -5674,19 +9479,31 @@ strncat:                                ! @strncat
 	sub	%r3, 0x1, %r3
 	bt	.LBB91_1
 	st	%r3, -20[%fp]
-.LBB91_6:
+.LBB91_7:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	bne	.LBB91_8
+	bne	.LBB91_9
 	nop
-	bt	.LBB91_7
+	bt	.LBB91_8
 	nop
-.LBB91_7:
+.LBB91_8:
+	mov	hi(.L__profc_strncat+32), %r3
+	or	%r3, lo(.L__profc_strncat+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strncat+36), %r12
+	or	%r12, lo(.L__profc_strncat+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r9
 	or	%r0, 0x0, %r3
-	bt	.LBB91_8
+	bt	.LBB91_9
 	st.b	%r3, 0[%r9]
-.LBB91_8:
+.LBB91_9:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -5701,9 +9518,21 @@ strnlen:                                ! @strnlen
 ! %bb.0:
 	st	%fp, [--%sp]
 	add	%sp, 0x8, %fp
-	sub	%sp, 0x18, %sp
+	sub	%sp, 0x20, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_strnlen), %r3
+	or	%r3, lo(.L__profc_strnlen), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strnlen+4), %r12
+	or	%r12, lo(.L__profc_strnlen+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB92_1
 	st	%r3, -20[%fp]
@@ -5712,36 +9541,79 @@ strnlen:                                ! @strnlen
 	ld	-16[%fp], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	buge	.LBB92_3
+	buge	.LBB92_4
 	st	%r3, -24[%fp]
 	bt	.LBB92_2
 	nop
 .LBB92_2:                               !   in Loop: Header=BB92_1 Depth=1
+	mov	hi(.L__profc_strnlen+16), %r3
+	or	%r3, lo(.L__profc_strnlen+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strnlen+20), %r12
+	or	%r12, lo(.L__profc_strnlen+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	ld	-20[%fp], %r9
-	ld.b	[%r3 add %r9], %r3
-	sub.f	%r3, 0x0, %r0
+	ld.b	[%r3 add %r9], %r9
+	sub.f	%r9, 0x0, %r0
 	sne	%r3
-	bt	.LBB92_3
+	st	%r3, -28[%fp]
+	sub.f	%r9, 0x0, %r0
+	beq	.LBB92_4
 	st	%r3, -24[%fp]
+	bt	.LBB92_3
+	nop
 .LBB92_3:                               !   in Loop: Header=BB92_1 Depth=1
+	ld	-28[%fp], %r3
+	mov	hi(.L__profc_strnlen+24), %r9
+	or	%r9, lo(.L__profc_strnlen+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_strnlen+28), %r13
+	or	%r13, lo(.L__profc_strnlen+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB92_4
+	st	%r3, -24[%fp]
+.LBB92_4:                               !   in Loop: Header=BB92_1 Depth=1
 	ld	-24[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB92_6
+	beq	.LBB92_7
 	nop
-	bt	.LBB92_4
-	nop
-.LBB92_4:                               !   in Loop: Header=BB92_1 Depth=1
 	bt	.LBB92_5
 	nop
 .LBB92_5:                               !   in Loop: Header=BB92_1 Depth=1
+	mov	hi(.L__profc_strnlen+8), %r3
+	or	%r3, lo(.L__profc_strnlen+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strnlen+12), %r12
+	or	%r12, lo(.L__profc_strnlen+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB92_6
+	st	%r3, 0[%r9]
+.LBB92_6:                               !   in Loop: Header=BB92_1 Depth=1
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB92_1
 	st	%r3, -20[%fp]
-.LBB92_6:
+.LBB92_7:
 	ld	-20[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -5758,8 +9630,20 @@ strpbrk:                                ! @strpbrk
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -16[%fp]
-	bt	.LBB93_1
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc_strpbrk), %r3
+	or	%r3, lo(.L__profc_strpbrk), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strpbrk+4), %r12
+	or	%r12, lo(.L__profc_strpbrk+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB93_1
+	st	%r3, 0[%r9]
 .LBB93_1:                               ! =>This Loop Header: Depth=1
                                         !     Child Loop BB93_3 Depth 2
 	ld	-16[%fp], %r3
@@ -5770,6 +9654,18 @@ strpbrk:                                ! @strpbrk
 	bt	.LBB93_2
 	nop
 .LBB93_2:                               !   in Loop: Header=BB93_1 Depth=1
+	mov	hi(.L__profc_strpbrk+8), %r3
+	or	%r3, lo(.L__profc_strpbrk+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strpbrk+12), %r12
+	or	%r12, lo(.L__profc_strpbrk+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	bt	.LBB93_3
 	st	%r3, -24[%fp]
@@ -5783,6 +9679,18 @@ strpbrk:                                ! @strpbrk
 	bt	.LBB93_4
 	nop
 .LBB93_4:                               !   in Loop: Header=BB93_3 Depth=2
+	mov	hi(.L__profc_strpbrk+16), %r3
+	or	%r3, lo(.L__profc_strpbrk+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strpbrk+20), %r12
+	or	%r12, lo(.L__profc_strpbrk+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -24[%fp]
@@ -5795,6 +9703,18 @@ strpbrk:                                ! @strpbrk
 	bt	.LBB93_5
 	nop
 .LBB93_5:
+	mov	hi(.L__profc_strpbrk+24), %r3
+	or	%r3, lo(.L__profc_strpbrk+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strpbrk+28), %r12
+	or	%r12, lo(.L__profc_strpbrk+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB93_9
 	st	%r3, -12[%fp]
@@ -5828,26 +9748,64 @@ strrchr:                                ! @strrchr
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc_strrchr), %r3
+	or	%r3, lo(.L__profc_strrchr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strrchr+4), %r12
+	or	%r12, lo(.L__profc_strrchr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB94_1
+	bt	.LBB94_2
 	st	%r3, -20[%fp]
-.LBB94_1:                               ! =>This Inner Loop Header: Depth=1
+.LBB94_1:                               !   in Loop: Header=BB94_2 Depth=1
+	mov	hi(.L__profc_strrchr+8), %r3
+	or	%r3, lo(.L__profc_strrchr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strrchr+12), %r12
+	or	%r12, lo(.L__profc_strrchr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB94_2
+	st	%r3, 0[%r9]
+.LBB94_2:                               ! =>This Inner Loop Header: Depth=1
 	ld	-12[%fp], %r3
 	ld.b	0[%r3], %r3
 	ld	-16[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bne	.LBB94_3
+	bne	.LBB94_4
 	nop
-	bt	.LBB94_2
-	nop
-.LBB94_2:                               !   in Loop: Header=BB94_1 Depth=1
-	ld	-12[%fp], %r3
 	bt	.LBB94_3
-	st	%r3, -20[%fp]
-.LBB94_3:                               !   in Loop: Header=BB94_1 Depth=1
-	bt	.LBB94_4
 	nop
-.LBB94_4:                               !   in Loop: Header=BB94_1 Depth=1
+.LBB94_3:                               !   in Loop: Header=BB94_2 Depth=1
+	mov	hi(.L__profc_strrchr+16), %r3
+	or	%r3, lo(.L__profc_strrchr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strrchr+20), %r12
+	or	%r12, lo(.L__profc_strrchr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-12[%fp], %r3
+	bt	.LBB94_4
+	st	%r3, -20[%fp]
+.LBB94_4:                               !   in Loop: Header=BB94_2 Depth=1
+	bt	.LBB94_5
+	nop
+.LBB94_5:                               !   in Loop: Header=BB94_2 Depth=1
 	ld	-12[%fp], %r3
 	add	%r3, 0x1, %r9
 	st	%r9, -12[%fp]
@@ -5855,9 +9813,9 @@ strrchr:                                ! @strrchr
 	sub.f	%r3, 0x0, %r0
 	bne	.LBB94_1
 	nop
-	bt	.LBB94_5
+	bt	.LBB94_6
 	nop
-.LBB94_5:
+.LBB94_6:
 	ld	-20[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -5875,6 +9833,18 @@ strstr:                                 ! @strstr
 	sub	%sp, 0x20, %sp
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc_strstr), %r3
+	or	%r3, lo(.L__profc_strstr), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strstr+4), %r12
+	or	%r12, lo(.L__profc_strstr+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	st	%r3, -24[%fp]
 	add	%pc, 0x10, %rca
@@ -5889,6 +9859,18 @@ strstr:                                 ! @strstr
 	bt	.LBB95_1
 	nop
 .LBB95_1:
+	mov	hi(.L__profc_strstr+8), %r3
+	or	%r3, lo(.L__profc_strstr+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strstr+12), %r12
+	or	%r12, lo(.L__profc_strstr+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	bt	.LBB95_9
 	st	%r3, -12[%fp]
@@ -5908,6 +9890,18 @@ strstr:                                 ! @strstr
 	bt	.LBB95_4
 	nop
 .LBB95_4:                               !   in Loop: Header=BB95_3 Depth=1
+	mov	hi(.L__profc_strstr+16), %r3
+	or	%r3, lo(.L__profc_strstr+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strstr+20), %r12
+	or	%r12, lo(.L__profc_strstr+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r6
 	ld	-20[%fp], %r7
 	add	%pc, 0x10, %rca
@@ -5920,6 +9914,18 @@ strstr:                                 ! @strstr
 	bt	.LBB95_5
 	nop
 .LBB95_5:
+	mov	hi(.L__profc_strstr+24), %r3
+	or	%r3, lo(.L__profc_strstr+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_strstr+28), %r12
+	or	%r12, lo(.L__profc_strstr+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	bt	.LBB95_9
 	st	%r3, -12[%fp]
@@ -5963,6 +9969,18 @@ copysign:                               ! @copysign
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc_copysign), %r9
+	or	%r9, lo(.L__profc_copysign), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_copysign+4), %r13
+	or	%r13, lo(.L__profc_copysign+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r7
 	ld	-24[%fp], %r6
 	or	%r0, 0x0, %r19
@@ -5971,11 +9989,23 @@ copysign:                               ! @copysign
 	bt	__ltdf2
 	or	%r19, 0x0, %r18
 	sub.f	%rv, 0x0, %r0
-	bpl	.LBB96_2
+	bpl	.LBB96_3
 	nop
 	bt	.LBB96_1
 	nop
 .LBB96_1:
+	mov	hi(.L__profc_copysign+24), %r3
+	or	%r3, lo(.L__profc_copysign+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+28), %r12
+	or	%r12, lo(.L__profc_copysign+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -5985,12 +10015,38 @@ copysign:                               ! @copysign
 	st	%rca, [--%sp]
 	bt	__gtdf2
 	or	%r19, 0x0, %r18
-	sub.f	%rv, 0x0, %r0
-	bgt	.LBB96_4
+	sub.f	%rv, 0x1, %r0
+	blt	.LBB96_3
 	nop
 	bt	.LBB96_2
 	nop
 .LBB96_2:
+	mov	hi(.L__profc_copysign+32), %r3
+	or	%r3, lo(.L__profc_copysign+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+36), %r12
+	or	%r12, lo(.L__profc_copysign+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB96_6
+	st	%r3, 0[%r9]
+.LBB96_3:
+	mov	hi(.L__profc_copysign+16), %r3
+	or	%r3, lo(.L__profc_copysign+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+20), %r12
+	or	%r12, lo(.L__profc_copysign+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -6001,11 +10057,23 @@ copysign:                               ! @copysign
 	bt	__gtdf2
 	or	%r19, 0x0, %r18
 	sub.f	%rv, 0x1, %r0
-	blt	.LBB96_5
+	blt	.LBB96_7
 	nop
-	bt	.LBB96_3
+	bt	.LBB96_4
 	nop
-.LBB96_3:
+.LBB96_4:
+	mov	hi(.L__profc_copysign+40), %r3
+	or	%r3, lo(.L__profc_copysign+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+44), %r12
+	or	%r12, lo(.L__profc_copysign+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -6016,11 +10084,37 @@ copysign:                               ! @copysign
 	bt	__ltdf2
 	or	%r19, 0x0, %r18
 	sub.f	%rv, 0x0, %r0
-	bpl	.LBB96_5
+	bpl	.LBB96_7
 	nop
-	bt	.LBB96_4
+	bt	.LBB96_5
 	nop
-.LBB96_4:
+.LBB96_5:
+	mov	hi(.L__profc_copysign+48), %r3
+	or	%r3, lo(.L__profc_copysign+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+52), %r12
+	or	%r12, lo(.L__profc_copysign+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB96_6
+	st	%r3, 0[%r9]
+.LBB96_6:
+	mov	hi(.L__profc_copysign+8), %r3
+	or	%r3, lo(.L__profc_copysign+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_copysign+12), %r12
+	or	%r12, lo(.L__profc_copysign+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -6029,9 +10123,9 @@ copysign:                               ! @copysign
 	sub	%fp, 0x10, %r12
 	or	%r12, 0x4, %r12
 	st	%r9, 0[%r12]
-	bt	.LBB96_6
+	bt	.LBB96_8
 	st	%r3, -16[%fp]
-.LBB96_5:
+.LBB96_7:
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -6039,9 +10133,9 @@ copysign:                               ! @copysign
 	sub	%fp, 0x10, %r12
 	or	%r12, 0x4, %r12
 	st	%r9, 0[%r12]
-	bt	.LBB96_6
+	bt	.LBB96_8
 	st	%r3, -16[%fp]
-.LBB96_6:
+.LBB96_8:
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -6063,6 +10157,18 @@ memmem:                                 ! @memmem
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
 	st	%r19, -28[%fp]
+	mov	hi(.L__profc_memmem), %r3
+	or	%r3, lo(.L__profc_memmem), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+4), %r12
+	or	%r12, lo(.L__profc_memmem+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-20[%fp], %r9
 	add	%r3, %r9, %r3
@@ -6076,8 +10182,20 @@ memmem:                                 ! @memmem
 	bt	.LBB97_1
 	nop
 .LBB97_1:
+	mov	hi(.L__profc_memmem+8), %r3
+	or	%r3, lo(.L__profc_memmem+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+12), %r12
+	or	%r12, lo(.L__profc_memmem+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
-	bt	.LBB97_12
+	bt	.LBB97_13
 	st	%r3, -12[%fp]
 .LBB97_2:
 	ld	-20[%fp], %r3
@@ -6088,8 +10206,20 @@ memmem:                                 ! @memmem
 	bt	.LBB97_3
 	nop
 .LBB97_3:
+	mov	hi(.L__profc_memmem+16), %r3
+	or	%r3, lo(.L__profc_memmem+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+20), %r12
+	or	%r12, lo(.L__profc_memmem+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB97_12
+	bt	.LBB97_13
 	st	%r3, -12[%fp]
 .LBB97_4:
 	ld	-16[%fp], %r3
@@ -6099,21 +10229,45 @@ memmem:                                 ! @memmem
 	ld	-32[%fp], %r3
 	ld	-36[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bugt	.LBB97_11
+	bugt	.LBB97_12
 	nop
 	bt	.LBB97_6
 	nop
 .LBB97_6:                               !   in Loop: Header=BB97_5 Depth=1
+	mov	hi(.L__profc_memmem+24), %r3
+	or	%r3, lo(.L__profc_memmem+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+28), %r12
+	or	%r12, lo(.L__profc_memmem+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	ld.b	0[%r3], %r3
 	ld	-24[%fp], %r9
 	ld.b	0[%r9], %r9
 	sub.f	%r3, %r9, %r0
-	bne	.LBB97_9
+	bne	.LBB97_10
 	nop
 	bt	.LBB97_7
 	nop
 .LBB97_7:                               !   in Loop: Header=BB97_5 Depth=1
+	mov	hi(.L__profc_memmem+40), %r3
+	or	%r3, lo(.L__profc_memmem+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+44), %r12
+	or	%r12, lo(.L__profc_memmem+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r6
 	ld	-24[%fp], %r3
@@ -6124,27 +10278,53 @@ memmem:                                 ! @memmem
 	bt	memcmp
 	sub	%r3, 0x1, %r18
 	sub.f	%rv, 0x0, %r0
-	bne	.LBB97_9
+	bne	.LBB97_10
 	nop
 	bt	.LBB97_8
 	nop
 .LBB97_8:
+	mov	hi(.L__profc_memmem+48), %r3
+	or	%r3, lo(.L__profc_memmem+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+52), %r12
+	or	%r12, lo(.L__profc_memmem+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB97_9
+	st	%r3, 0[%r9]
+.LBB97_9:
+	mov	hi(.L__profc_memmem+32), %r3
+	or	%r3, lo(.L__profc_memmem+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_memmem+36), %r12
+	or	%r12, lo(.L__profc_memmem+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
-	bt	.LBB97_12
+	bt	.LBB97_13
 	st	%r3, -12[%fp]
-.LBB97_9:                               !   in Loop: Header=BB97_5 Depth=1
-	bt	.LBB97_10
-	nop
 .LBB97_10:                              !   in Loop: Header=BB97_5 Depth=1
+	bt	.LBB97_11
+	nop
+.LBB97_11:                              !   in Loop: Header=BB97_5 Depth=1
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB97_5
 	st	%r3, -32[%fp]
-.LBB97_11:
-	or	%r0, 0x0, %r3
-	bt	.LBB97_12
-	st	%r3, -12[%fp]
 .LBB97_12:
+	or	%r0, 0x0, %r3
+	bt	.LBB97_13
+	st	%r3, -12[%fp]
+.LBB97_13:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -6163,6 +10343,18 @@ mempcpy:                                ! @mempcpy
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_mempcpy), %r3
+	or	%r3, lo(.L__profc_mempcpy), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_mempcpy+4), %r12
+	or	%r12, lo(.L__profc_mempcpy+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	st	%r6, -24[%fp]
 	ld	-16[%fp], %r7
@@ -6194,6 +10386,18 @@ frexp:                                  ! @frexp
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc_frexp), %r9
+	or	%r9, lo(.L__profc_frexp), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_frexp+4), %r13
+	or	%r13, lo(.L__profc_frexp+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	or	%r0, 0x0, %r19
 	st	%r19, -28[%fp]
 	st	%r19, -24[%fp]
@@ -6209,6 +10413,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_1
 	nop
 .LBB99_1:
+	mov	hi(.L__profc_frexp+8), %r3
+	or	%r3, lo(.L__profc_frexp+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+12), %r12
+	or	%r12, lo(.L__profc_frexp+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	xor	%r3, 0x80000000, %r3
 	st	%r3, -16[%fp]
@@ -6231,8 +10447,19 @@ frexp:                                  ! @frexp
 	bt	.LBB99_3
 	nop
 .LBB99_3:
+	mov	hi(.L__profc_frexp+16), %r3
+	or	%r3, lo(.L__profc_frexp+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+20), %r12
+	or	%r12, lo(.L__profc_frexp+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB99_4
-	nop
+	st	%r3, 0[%r9]
 .LBB99_4:                               ! =>This Inner Loop Header: Depth=1
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
@@ -6249,6 +10476,18 @@ frexp:                                  ! @frexp
 	bt	.LBB99_5
 	nop
 .LBB99_5:                               !   in Loop: Header=BB99_4 Depth=1
+	mov	hi(.L__profc_frexp+24), %r3
+	or	%r3, lo(.L__profc_frexp+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+28), %r12
+	or	%r12, lo(.L__profc_frexp+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	add	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -6267,7 +10506,7 @@ frexp:                                  ! @frexp
 	bt	.LBB99_4
 	st	%rv, -16[%fp]
 .LBB99_6:
-	bt	.LBB99_14
+	bt	.LBB99_15
 	nop
 .LBB99_7:
 	sub	%fp, 0x10, %r3
@@ -6280,11 +10519,23 @@ frexp:                                  ! @frexp
 	bt	__ltdf2
 	or	%r0, 0x0, %r19
 	sub.f	%rv, 0x0, %r0
-	bpl	.LBB99_13
+	bpl	.LBB99_14
 	nop
 	bt	.LBB99_8
 	nop
 .LBB99_8:
+	mov	hi(.L__profc_frexp+40), %r3
+	or	%r3, lo(.L__profc_frexp+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+44), %r12
+	or	%r12, lo(.L__profc_frexp+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -6295,14 +10546,39 @@ frexp:                                  ! @frexp
 	bt	__eqdf2
 	or	%r19, 0x0, %r18
 	sub.f	%rv, 0x0, %r0
-	beq	.LBB99_13
+	beq	.LBB99_14
 	nop
 	bt	.LBB99_9
 	nop
 .LBB99_9:
+	mov	hi(.L__profc_frexp+48), %r3
+	or	%r3, lo(.L__profc_frexp+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+52), %r12
+	or	%r12, lo(.L__profc_frexp+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB99_10
-	nop
-.LBB99_10:                              ! =>This Inner Loop Header: Depth=1
+	st	%r3, 0[%r9]
+.LBB99_10:
+	mov	hi(.L__profc_frexp+32), %r3
+	or	%r3, lo(.L__profc_frexp+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+36), %r12
+	or	%r12, lo(.L__profc_frexp+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB99_11
+	st	%r3, 0[%r9]
+.LBB99_11:                              ! =>This Inner Loop Header: Depth=1
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r7
@@ -6313,11 +10589,23 @@ frexp:                                  ! @frexp
 	bt	__ltdf2
 	or	%r0, 0x0, %r19
 	sub.f	%rv, 0x0, %r0
-	bpl	.LBB99_12
+	bpl	.LBB99_13
 	nop
-	bt	.LBB99_11
+	bt	.LBB99_12
 	nop
-.LBB99_11:                              !   in Loop: Header=BB99_10 Depth=1
+.LBB99_12:                              !   in Loop: Header=BB99_11 Depth=1
+	mov	hi(.L__profc_frexp+56), %r3
+	or	%r3, lo(.L__profc_frexp+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+60), %r12
+	or	%r12, lo(.L__profc_frexp+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r3
 	sub	%r3, 0x1, %r3
 	st	%r3, -28[%fp]
@@ -6333,30 +10621,42 @@ frexp:                                  ! @frexp
 	or	%r19, 0x0, %r7
 	ld	-36[%fp], %r3
 	st	%r9, 0[%r3]
-	bt	.LBB99_10
+	bt	.LBB99_11
 	st	%rv, -16[%fp]
-.LBB99_12:
-	bt	.LBB99_13
-	nop
 .LBB99_13:
 	bt	.LBB99_14
 	nop
 .LBB99_14:
+	bt	.LBB99_15
+	nop
+.LBB99_15:
 	ld	-28[%fp], %r3
 	ld	-20[%fp], %r9
 	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB99_16
+	beq	.LBB99_17
 	nop
-	bt	.LBB99_15
+	bt	.LBB99_16
 	nop
-.LBB99_15:
+.LBB99_16:
+	mov	hi(.L__profc_frexp+64), %r3
+	or	%r3, lo(.L__profc_frexp+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_frexp+68), %r12
+	or	%r12, lo(.L__profc_frexp+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	xor	%r3, 0x80000000, %r3
-	bt	.LBB99_16
+	bt	.LBB99_17
 	st	%r3, -16[%fp]
-.LBB99_16:
+.LBB99_17:
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -6387,6 +10687,18 @@ __muldi3:                               ! @__muldi3
 	or	%r9, 0x4, %r9
 	st	%r19, 0[%r9]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___muldi3), %r9
+	or	%r9, lo(.L__profc___muldi3), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___muldi3+4), %r13
+	or	%r13, lo(.L__profc___muldi3+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	sub	%fp, 0x20, %r9
 	or	%r9, 0x4, %r12
 	or	%r0, 0x0, %r9
@@ -6411,6 +10723,18 @@ __muldi3:                               ! @__muldi3
 	bt	.LBB100_2
 	nop
 .LBB100_2:                              !   in Loop: Header=BB100_1 Depth=1
+	mov	hi(.L__profc___muldi3+8), %r3
+	or	%r3, lo(.L__profc___muldi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___muldi3+12), %r12
+	or	%r12, lo(.L__profc___muldi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x28, %r3
 	or	%r3, 0x7, %r3
 	uld.b	0[%r3], %r3
@@ -6422,6 +10746,18 @@ __muldi3:                               ! @__muldi3
 	bt	.LBB100_3
 	nop
 .LBB100_3:                              !   in Loop: Header=BB100_1 Depth=1
+	mov	hi(.L__profc___muldi3+16), %r3
+	or	%r3, lo(.L__profc___muldi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___muldi3+20), %r12
+	or	%r12, lo(.L__profc___muldi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -6482,6 +10818,18 @@ udivmodsi4:                             ! @udivmodsi4
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc_udivmodsi4), %r3
+	or	%r3, lo(.L__profc_udivmodsi4), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+4), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	st	%r3, -28[%fp]
 	or	%r0, 0x0, %r3
@@ -6492,36 +10840,106 @@ udivmodsi4:                             ! @udivmodsi4
 	ld	-16[%fp], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	buge	.LBB101_4
+	buge	.LBB101_6
 	st	%r3, -36[%fp]
 	bt	.LBB101_2
 	nop
 .LBB101_2:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(.L__profc_udivmodsi4+32), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+36), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB101_4
+	beq	.LBB101_6
 	st	%r3, -36[%fp]
 	bt	.LBB101_3
 	nop
 .LBB101_3:                              !   in Loop: Header=BB101_1 Depth=1
-	uld.b	-20[%fp], %r3
-	mov	0x80, %r9
-	and	%r3, %r9, %r3
-	sub.f	%r3, 0x0, %r0
-	seq	%r3
+	mov	hi(.L__profc_udivmodsi4+40), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+44), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB101_4
-	st	%r3, -36[%fp]
+	st	%r3, 0[%r9]
 .LBB101_4:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(.L__profc_udivmodsi4+16), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+20), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-20[%fp], %r3
+	mov	0x80000000, %r9
+	and	%r3, %r9, %r9
+	sub.f	%r9, 0x0, %r0
+	seq	%r3
+	st	%r3, -40[%fp]
+	sub.f	%r9, 0x0, %r0
+	bne	.LBB101_6
+	st	%r3, -36[%fp]
+	bt	.LBB101_5
+	nop
+.LBB101_5:                              !   in Loop: Header=BB101_1 Depth=1
+	ld	-40[%fp], %r3
+	mov	hi(.L__profc_udivmodsi4+24), %r9
+	or	%r9, lo(.L__profc_udivmodsi4+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc_udivmodsi4+28), %r13
+	or	%r13, lo(.L__profc_udivmodsi4+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB101_6
+	st	%r3, -36[%fp]
+.LBB101_6:                              !   in Loop: Header=BB101_1 Depth=1
 	ld	-36[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB101_6
+	beq	.LBB101_8
 	nop
-	bt	.LBB101_5
+	bt	.LBB101_7
 	nop
-.LBB101_5:                              !   in Loop: Header=BB101_1 Depth=1
+.LBB101_7:                              !   in Loop: Header=BB101_1 Depth=1
+	mov	hi(.L__profc_udivmodsi4+8), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+12), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -6529,25 +10947,49 @@ udivmodsi4:                             ! @udivmodsi4
 	sh	%r3, 0x1, %r3
 	bt	.LBB101_1
 	st	%r3, -28[%fp]
-.LBB101_6:
-	bt	.LBB101_7
+.LBB101_8:
+	bt	.LBB101_9
 	nop
-.LBB101_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB101_9:                              ! =>This Inner Loop Header: Depth=1
 	ld	-28[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB101_11
+	beq	.LBB101_13
 	nop
-	bt	.LBB101_8
+	bt	.LBB101_10
 	nop
-.LBB101_8:                              !   in Loop: Header=BB101_7 Depth=1
+.LBB101_10:                             !   in Loop: Header=BB101_9 Depth=1
+	mov	hi(.L__profc_udivmodsi4+48), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+52), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-20[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB101_10
+	bult	.LBB101_12
 	nop
-	bt	.LBB101_9
+	bt	.LBB101_11
 	nop
-.LBB101_9:                              !   in Loop: Header=BB101_7 Depth=1
+.LBB101_11:                             !   in Loop: Header=BB101_9 Depth=1
+	mov	hi(.L__profc_udivmodsi4+56), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+60), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	ld	-16[%fp], %r3
 	sub	%r3, %r9, %r3
@@ -6555,32 +10997,44 @@ udivmodsi4:                             ! @udivmodsi4
 	ld	-28[%fp], %r9
 	ld	-32[%fp], %r3
 	or	%r3, %r9, %r3
-	bt	.LBB101_10
+	bt	.LBB101_12
 	st	%r3, -32[%fp]
-.LBB101_10:                             !   in Loop: Header=BB101_7 Depth=1
+.LBB101_12:                             !   in Loop: Header=BB101_9 Depth=1
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1, %r3
-	bt	.LBB101_7
+	bt	.LBB101_9
 	st	%r3, -20[%fp]
-.LBB101_11:
+.LBB101_13:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB101_13
+	beq	.LBB101_15
 	nop
-	bt	.LBB101_12
+	bt	.LBB101_14
 	nop
-.LBB101_12:
-	ld	-16[%fp], %r3
-	bt	.LBB101_14
-	st	%r3, -12[%fp]
-.LBB101_13:
-	ld	-32[%fp], %r3
-	bt	.LBB101_14
-	st	%r3, -12[%fp]
 .LBB101_14:
+	mov	hi(.L__profc_udivmodsi4+64), %r3
+	or	%r3, lo(.L__profc_udivmodsi4+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc_udivmodsi4+68), %r12
+	or	%r12, lo(.L__profc_udivmodsi4+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	bt	.LBB101_16
+	st	%r3, -12[%fp]
+.LBB101_15:
+	ld	-32[%fp], %r3
+	bt	.LBB101_16
+	st	%r3, -12[%fp]
+.LBB101_16:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -6598,6 +11052,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
 	st.b	%r6, -13[%fp]
+	mov	hi(.L__profc___clrsbqi2), %r3
+	or	%r3, lo(.L__profc___clrsbqi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbqi2+4), %r12
+	or	%r12, lo(.L__profc___clrsbqi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld.b	-13[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB102_2
@@ -6605,6 +11071,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	bt	.LBB102_1
 	nop
 .LBB102_1:
+	mov	hi(.L__profc___clrsbqi2+8), %r3
+	or	%r3, lo(.L__profc___clrsbqi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbqi2+12), %r12
+	or	%r12, lo(.L__profc___clrsbqi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.b	-13[%fp], %r3
 	or	%r1, 0x0, %r9
 	xor	%r3, %r9, %r3
@@ -6618,6 +11096,18 @@ __clrsbqi2:                             ! @__clrsbqi2
 	bt	.LBB102_3
 	nop
 .LBB102_3:
+	mov	hi(.L__profc___clrsbqi2+16), %r3
+	or	%r3, lo(.L__profc___clrsbqi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbqi2+20), %r12
+	or	%r12, lo(.L__profc___clrsbqi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x7, %r3
 	bt	.LBB102_5
 	st	%r3, -12[%fp]
@@ -6652,6 +11142,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -24[%fp]
+	mov	hi(.L__profc___clrsbdi2), %r3
+	or	%r3, lo(.L__profc___clrsbdi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbdi2+4), %r12
+	or	%r12, lo(.L__profc___clrsbdi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
 	bpl	.LBB103_2
@@ -6659,6 +11161,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	bt	.LBB103_1
 	nop
 .LBB103_1:
+	mov	hi(.L__profc___clrsbdi2+8), %r3
+	or	%r3, lo(.L__profc___clrsbdi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbdi2+12), %r12
+	or	%r12, lo(.L__profc___clrsbdi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r12
 	ld	0[%r12], %r9
@@ -6681,6 +11195,18 @@ __clrsbdi2:                             ! @__clrsbdi2
 	bt	.LBB103_3
 	nop
 .LBB103_3:
+	mov	hi(.L__profc___clrsbdi2+16), %r3
+	or	%r3, lo(.L__profc___clrsbdi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clrsbdi2+20), %r12
+	or	%r12, lo(.L__profc___clrsbdi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x3f, %r3
 	bt	.LBB103_5
 	st	%r3, -12[%fp]
@@ -6717,6 +11243,18 @@ __mulsi3:                               ! @__mulsi3
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___mulsi3), %r3
+	or	%r3, lo(.L__profc___mulsi3), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3+4), %r12
+	or	%r12, lo(.L__profc___mulsi3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB104_1
 	st	%r3, -20[%fp]
@@ -6728,6 +11266,18 @@ __mulsi3:                               ! @__mulsi3
 	bt	.LBB104_2
 	nop
 .LBB104_2:                              !   in Loop: Header=BB104_1 Depth=1
+	mov	hi(.L__profc___mulsi3+8), %r3
+	or	%r3, lo(.L__profc___mulsi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3+12), %r12
+	or	%r12, lo(.L__profc___mulsi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0xc, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -6739,6 +11289,18 @@ __mulsi3:                               ! @__mulsi3
 	bt	.LBB104_3
 	nop
 .LBB104_3:                              !   in Loop: Header=BB104_1 Depth=1
+	mov	hi(.L__profc___mulsi3+16), %r3
+	or	%r3, lo(.L__profc___mulsi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3+20), %r12
+	or	%r12, lo(.L__profc___mulsi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	ld	-20[%fp], %r3
 	add	%r3, %r9, %r3
@@ -6770,6 +11332,18 @@ __cmovd:                                ! @__cmovd
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc___cmovd), %r3
+	or	%r3, lo(.L__profc___cmovd), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+4), %r12
+	or	%r12, lo(.L__profc___cmovd+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x3, %r3
 	st	%r3, -28[%fp]
@@ -6783,33 +11357,83 @@ __cmovd:                                ! @__cmovd
 	ld	-36[%fp], %r3
 	ld	-40[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB105_2
+	bult	.LBB105_3
 	sub	%sp, 0x28, %sp
 	bt	.LBB105_1
 	nop
 .LBB105_1:
+	mov	hi(.L__profc___cmovd+16), %r3
+	or	%r3, lo(.L__profc___cmovd+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+20), %r12
+	or	%r12, lo(.L__profc___cmovd+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	ld	-40[%fp], %r9
 	ld	-20[%fp], %r12
 	add	%r9, %r12, %r9
 	sub.f	%r3, %r9, %r0
-	bule	.LBB105_10
+	bugt	.LBB105_3
 	nop
 	bt	.LBB105_2
 	nop
 .LBB105_2:
+	mov	hi(.L__profc___cmovd+24), %r3
+	or	%r3, lo(.L__profc___cmovd+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+28), %r12
+	or	%r12, lo(.L__profc___cmovd+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB105_11
+	st	%r3, 0[%r9]
+.LBB105_3:
+	mov	hi(.L__profc___cmovd+8), %r3
+	or	%r3, lo(.L__profc___cmovd+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+12), %r12
+	or	%r12, lo(.L__profc___cmovd+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB105_3
+	bt	.LBB105_4
 	st	%r3, -24[%fp]
-.LBB105_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB105_4:                              ! =>This Inner Loop Header: Depth=1
 	ld	-24[%fp], %r3
 	ld	-28[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	buge	.LBB105_6
+	buge	.LBB105_7
 	nop
-	bt	.LBB105_4
+	bt	.LBB105_5
 	nop
-.LBB105_4:                              !   in Loop: Header=BB105_3 Depth=1
+.LBB105_5:                              !   in Loop: Header=BB105_4 Depth=1
+	mov	hi(.L__profc___cmovd+32), %r3
+	or	%r3, lo(.L__profc___cmovd+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+36), %r12
+	or	%r12, lo(.L__profc___cmovd+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-24[%fp], %r9
 	sh	%r9, 0x3, %r14
@@ -6819,25 +11443,37 @@ __cmovd:                                ! @__cmovd
 	ld	-12[%fp], %r13
 	add	%r13, %r14, %r9
 	st	%r12, [%r13 add %r14]
-	bt	.LBB105_5
+	bt	.LBB105_6
 	st	%r3, 4[%r9]
-.LBB105_5:                              !   in Loop: Header=BB105_3 Depth=1
+.LBB105_6:                              !   in Loop: Header=BB105_4 Depth=1
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB105_3
+	bt	.LBB105_4
 	st	%r3, -24[%fp]
-.LBB105_6:
-	bt	.LBB105_7
+.LBB105_7:
+	bt	.LBB105_8
 	nop
-.LBB105_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB105_8:                              ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	ld	-32[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bule	.LBB105_9
+	bule	.LBB105_10
 	nop
-	bt	.LBB105_8
+	bt	.LBB105_9
 	nop
-.LBB105_8:                              !   in Loop: Header=BB105_7 Depth=1
+.LBB105_9:                              !   in Loop: Header=BB105_8 Depth=1
+	mov	hi(.L__profc___cmovd+40), %r3
+	or	%r3, lo(.L__profc___cmovd+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+44), %r12
+	or	%r12, lo(.L__profc___cmovd+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-32[%fp], %r12
 	add	%r3, %r12, %r3
@@ -6846,34 +11482,46 @@ __cmovd:                                ! @__cmovd
 	st.b	%r3, [%r9 add %r12]
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB105_7
+	bt	.LBB105_8
 	st	%r3, -32[%fp]
-.LBB105_9:
-	bt	.LBB105_14
-	nop
 .LBB105_10:
-	bt	.LBB105_11
+	bt	.LBB105_15
 	nop
-.LBB105_11:                             ! =>This Inner Loop Header: Depth=1
+.LBB105_11:
+	bt	.LBB105_12
+	nop
+.LBB105_12:                             ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r9
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB105_13
+	beq	.LBB105_14
 	st	%r9, -20[%fp]
-	bt	.LBB105_12
+	bt	.LBB105_13
 	nop
-.LBB105_12:                             !   in Loop: Header=BB105_11 Depth=1
+.LBB105_13:                             !   in Loop: Header=BB105_12 Depth=1
+	mov	hi(.L__profc___cmovd+48), %r3
+	or	%r3, lo(.L__profc___cmovd+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovd+52), %r12
+	or	%r12, lo(.L__profc___cmovd+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-20[%fp], %r12
 	add	%r3, %r12, %r3
 	uld.b	0[%r3], %r3
 	ld	-36[%fp], %r9
-	bt	.LBB105_11
+	bt	.LBB105_12
 	st.b	%r3, [%r9 add %r12]
-.LBB105_13:
-	bt	.LBB105_14
-	nop
 .LBB105_14:
+	bt	.LBB105_15
+	nop
+.LBB105_15:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -6890,6 +11538,18 @@ __cmovh:                                ! @__cmovh
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc___cmovh), %r3
+	or	%r3, lo(.L__profc___cmovh), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+4), %r12
+	or	%r12, lo(.L__profc___cmovh+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
@@ -6900,92 +11560,166 @@ __cmovh:                                ! @__cmovh
 	ld	-32[%fp], %r3
 	ld	-36[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB106_2
+	bult	.LBB106_3
 	sub	%sp, 0x28, %sp
 	bt	.LBB106_1
 	nop
 .LBB106_1:
+	mov	hi(.L__profc___cmovh+16), %r3
+	or	%r3, lo(.L__profc___cmovh+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+20), %r12
+	or	%r12, lo(.L__profc___cmovh+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-32[%fp], %r3
 	ld	-36[%fp], %r9
 	ld	-20[%fp], %r12
 	add	%r9, %r12, %r9
 	sub.f	%r3, %r9, %r0
-	bule	.LBB106_9
+	bugt	.LBB106_3
 	nop
 	bt	.LBB106_2
 	nop
 .LBB106_2:
+	mov	hi(.L__profc___cmovh+24), %r3
+	or	%r3, lo(.L__profc___cmovh+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+28), %r12
+	or	%r12, lo(.L__profc___cmovh+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB106_10
+	st	%r3, 0[%r9]
+.LBB106_3:
+	mov	hi(.L__profc___cmovh+8), %r3
+	or	%r3, lo(.L__profc___cmovh+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+12), %r12
+	or	%r12, lo(.L__profc___cmovh+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB106_3
+	bt	.LBB106_4
 	st	%r3, -24[%fp]
-.LBB106_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB106_4:                              ! =>This Inner Loop Header: Depth=1
 	ld	-24[%fp], %r3
 	ld	-28[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	buge	.LBB106_6
+	buge	.LBB106_7
 	nop
-	bt	.LBB106_4
+	bt	.LBB106_5
 	nop
-.LBB106_4:                              !   in Loop: Header=BB106_3 Depth=1
+.LBB106_5:                              !   in Loop: Header=BB106_4 Depth=1
+	mov	hi(.L__profc___cmovh+32), %r3
+	or	%r3, lo(.L__profc___cmovh+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+36), %r12
+	or	%r12, lo(.L__profc___cmovh+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-24[%fp], %r9
 	sh	%r9, 0x1, %r12
 	add	%r3, %r12, %r3
 	uld.h	0[%r3], %r3
 	ld	-12[%fp], %r9
-	bt	.LBB106_5
+	bt	.LBB106_6
 	st.h	%r3, [%r9 add %r12]
-.LBB106_5:                              !   in Loop: Header=BB106_3 Depth=1
+.LBB106_6:                              !   in Loop: Header=BB106_4 Depth=1
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB106_3
+	bt	.LBB106_4
 	st	%r3, -24[%fp]
-.LBB106_6:
+.LBB106_7:
 	sub	%fp, 0x14, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB106_8
+	beq	.LBB106_9
 	nop
-	bt	.LBB106_7
+	bt	.LBB106_8
 	nop
-.LBB106_7:
+.LBB106_8:
+	mov	hi(.L__profc___cmovh+40), %r3
+	or	%r3, lo(.L__profc___cmovh+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+44), %r12
+	or	%r12, lo(.L__profc___cmovh+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	ld	-20[%fp], %r9
 	sub	%r9, 0x1, %r12
 	add	%r3, %r12, %r3
 	uld.b	0[%r3], %r3
 	ld	-32[%fp], %r9
-	bt	.LBB106_8
+	bt	.LBB106_9
 	st.b	%r3, [%r9 add %r12]
-.LBB106_8:
-	bt	.LBB106_13
-	nop
 .LBB106_9:
-	bt	.LBB106_10
+	bt	.LBB106_14
 	nop
-.LBB106_10:                             ! =>This Inner Loop Header: Depth=1
+.LBB106_10:
+	bt	.LBB106_11
+	nop
+.LBB106_11:                             ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r9
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB106_12
+	beq	.LBB106_13
 	st	%r9, -20[%fp]
-	bt	.LBB106_11
+	bt	.LBB106_12
 	nop
-.LBB106_11:                             !   in Loop: Header=BB106_10 Depth=1
+.LBB106_12:                             !   in Loop: Header=BB106_11 Depth=1
+	mov	hi(.L__profc___cmovh+48), %r3
+	or	%r3, lo(.L__profc___cmovh+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovh+52), %r12
+	or	%r12, lo(.L__profc___cmovh+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	ld	-20[%fp], %r12
 	add	%r3, %r12, %r3
 	uld.b	0[%r3], %r3
 	ld	-32[%fp], %r9
-	bt	.LBB106_10
+	bt	.LBB106_11
 	st.b	%r3, [%r9 add %r12]
-.LBB106_12:
-	bt	.LBB106_13
-	nop
 .LBB106_13:
+	bt	.LBB106_14
+	nop
+.LBB106_14:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -7002,6 +11736,18 @@ __cmovw:                                ! @__cmovw
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc___cmovw), %r3
+	or	%r3, lo(.L__profc___cmovw), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+4), %r12
+	or	%r12, lo(.L__profc___cmovw+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x2, %r3
 	st	%r3, -28[%fp]
@@ -7015,58 +11761,120 @@ __cmovw:                                ! @__cmovw
 	ld	-36[%fp], %r3
 	ld	-40[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB107_2
+	bult	.LBB107_3
 	sub	%sp, 0x28, %sp
 	bt	.LBB107_1
 	nop
 .LBB107_1:
+	mov	hi(.L__profc___cmovw+16), %r3
+	or	%r3, lo(.L__profc___cmovw+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+20), %r12
+	or	%r12, lo(.L__profc___cmovw+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-36[%fp], %r3
 	ld	-40[%fp], %r9
 	ld	-20[%fp], %r12
 	add	%r9, %r12, %r9
 	sub.f	%r3, %r9, %r0
-	bule	.LBB107_10
+	bugt	.LBB107_3
 	nop
 	bt	.LBB107_2
 	nop
 .LBB107_2:
+	mov	hi(.L__profc___cmovw+24), %r3
+	or	%r3, lo(.L__profc___cmovw+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+28), %r12
+	or	%r12, lo(.L__profc___cmovw+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB107_11
+	st	%r3, 0[%r9]
+.LBB107_3:
+	mov	hi(.L__profc___cmovw+8), %r3
+	or	%r3, lo(.L__profc___cmovw+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+12), %r12
+	or	%r12, lo(.L__profc___cmovw+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
-	bt	.LBB107_3
+	bt	.LBB107_4
 	st	%r3, -24[%fp]
-.LBB107_3:                              ! =>This Inner Loop Header: Depth=1
+.LBB107_4:                              ! =>This Inner Loop Header: Depth=1
 	ld	-24[%fp], %r3
 	ld	-28[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	buge	.LBB107_6
+	buge	.LBB107_7
 	nop
-	bt	.LBB107_4
+	bt	.LBB107_5
 	nop
-.LBB107_4:                              !   in Loop: Header=BB107_3 Depth=1
+.LBB107_5:                              !   in Loop: Header=BB107_4 Depth=1
+	mov	hi(.L__profc___cmovw+32), %r3
+	or	%r3, lo(.L__profc___cmovw+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+36), %r12
+	or	%r12, lo(.L__profc___cmovw+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-24[%fp], %r9
 	sh	%r9, 0x2, %r12
 	add	%r3, %r12, %r3
 	ld	0[%r3], %r3
 	ld	-12[%fp], %r9
-	bt	.LBB107_5
+	bt	.LBB107_6
 	st	%r3, [%r9 add %r12]
-.LBB107_5:                              !   in Loop: Header=BB107_3 Depth=1
+.LBB107_6:                              !   in Loop: Header=BB107_4 Depth=1
 	ld	-24[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB107_3
+	bt	.LBB107_4
 	st	%r3, -24[%fp]
-.LBB107_6:
-	bt	.LBB107_7
+.LBB107_7:
+	bt	.LBB107_8
 	nop
-.LBB107_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB107_8:                              ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	ld	-32[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bule	.LBB107_9
+	bule	.LBB107_10
 	nop
-	bt	.LBB107_8
+	bt	.LBB107_9
 	nop
-.LBB107_8:                              !   in Loop: Header=BB107_7 Depth=1
+.LBB107_9:                              !   in Loop: Header=BB107_8 Depth=1
+	mov	hi(.L__profc___cmovw+40), %r3
+	or	%r3, lo(.L__profc___cmovw+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+44), %r12
+	or	%r12, lo(.L__profc___cmovw+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-32[%fp], %r12
 	add	%r3, %r12, %r3
@@ -7075,34 +11883,46 @@ __cmovw:                                ! @__cmovw
 	st.b	%r3, [%r9 add %r12]
 	ld	-32[%fp], %r3
 	add	%r3, 0x1, %r3
-	bt	.LBB107_7
+	bt	.LBB107_8
 	st	%r3, -32[%fp]
-.LBB107_9:
-	bt	.LBB107_14
-	nop
 .LBB107_10:
-	bt	.LBB107_11
+	bt	.LBB107_15
 	nop
-.LBB107_11:                             ! =>This Inner Loop Header: Depth=1
+.LBB107_11:
+	bt	.LBB107_12
+	nop
+.LBB107_12:                             ! =>This Inner Loop Header: Depth=1
 	ld	-20[%fp], %r3
 	sub	%r3, 0x1, %r9
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB107_13
+	beq	.LBB107_14
 	st	%r9, -20[%fp]
-	bt	.LBB107_12
+	bt	.LBB107_13
 	nop
-.LBB107_12:                             !   in Loop: Header=BB107_11 Depth=1
+.LBB107_13:                             !   in Loop: Header=BB107_12 Depth=1
+	mov	hi(.L__profc___cmovw+48), %r3
+	or	%r3, lo(.L__profc___cmovw+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmovw+52), %r12
+	or	%r12, lo(.L__profc___cmovw+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	ld	-20[%fp], %r12
 	add	%r3, %r12, %r3
 	uld.b	0[%r3], %r3
 	ld	-36[%fp], %r9
-	bt	.LBB107_11
+	bt	.LBB107_12
 	st.b	%r3, [%r9 add %r12]
-.LBB107_13:
-	bt	.LBB107_14
-	nop
 .LBB107_14:
+	bt	.LBB107_15
+	nop
+.LBB107_15:
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -7119,6 +11939,18 @@ __modi:                                 ! @__modi
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___modi), %r3
+	or	%r3, lo(.L__profc___modi), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___modi+4), %r12
+	or	%r12, lo(.L__profc___modi+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7139,6 +11971,18 @@ __uitod:                                ! @__uitod
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___uitod), %r3
+	or	%r3, lo(.L__profc___uitod), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___uitod+4), %r12
+	or	%r12, lo(.L__profc___uitod+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__floatunsidf
@@ -7158,6 +12002,18 @@ __uitof:                                ! @__uitof
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___uitof), %r3
+	or	%r3, lo(.L__profc___uitof), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___uitof+4), %r12
+	or	%r12, lo(.L__profc___uitof+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
 	bt	__floatunsisf
@@ -7182,6 +12038,18 @@ __ulltod:                               ! @__ulltod
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___ulltod), %r9
+	or	%r9, lo(.L__profc___ulltod), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___ulltod+4), %r13
+	or	%r13, lo(.L__profc___ulltod+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7207,6 +12075,18 @@ __ulltof:                               ! @__ulltof
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___ulltof), %r9
+	or	%r9, lo(.L__profc___ulltof), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___ulltof+4), %r13
+	or	%r13, lo(.L__profc___ulltof+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7228,6 +12108,18 @@ __umodi:                                ! @__umodi
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___umodi), %r3
+	or	%r3, lo(.L__profc___umodi), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___umodi+4), %r12
+	or	%r12, lo(.L__profc___umodi+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7249,6 +12141,18 @@ __clzhi2:                               ! @__clzhi2
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
+	mov	hi(.L__profc___clzhi2), %r3
+	or	%r3, lo(.L__profc___clzhi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clzhi2+4), %r12
+	or	%r12, lo(.L__profc___clzhi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB114_1
 	st	%r3, -16[%fp]
@@ -7260,6 +12164,18 @@ __clzhi2:                               ! @__clzhi2
 	bt	.LBB114_2
 	nop
 .LBB114_2:                              !   in Loop: Header=BB114_1 Depth=1
+	mov	hi(.L__profc___clzhi2+8), %r3
+	or	%r3, lo(.L__profc___clzhi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clzhi2+12), %r12
+	or	%r12, lo(.L__profc___clzhi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r3
 	ld	-16[%fp], %r12
 	mov	0xf, %r9
@@ -7274,8 +12190,19 @@ __clzhi2:                               ! @__clzhi2
 	bt	.LBB114_3
 	nop
 .LBB114_3:
+	mov	hi(.L__profc___clzhi2+16), %r3
+	or	%r3, lo(.L__profc___clzhi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clzhi2+20), %r12
+	or	%r12, lo(.L__profc___clzhi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB114_6
-	nop
+	st	%r3, 0[%r9]
 .LBB114_4:                              !   in Loop: Header=BB114_1 Depth=1
 	bt	.LBB114_5
 	nop
@@ -7302,6 +12229,18 @@ __ctzhi2:                               ! @__ctzhi2
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
+	mov	hi(.L__profc___ctzhi2), %r3
+	or	%r3, lo(.L__profc___ctzhi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ctzhi2+4), %r12
+	or	%r12, lo(.L__profc___ctzhi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB115_1
 	st	%r3, -16[%fp]
@@ -7313,6 +12252,18 @@ __ctzhi2:                               ! @__ctzhi2
 	bt	.LBB115_2
 	nop
 .LBB115_2:                              !   in Loop: Header=BB115_1 Depth=1
+	mov	hi(.L__profc___ctzhi2+8), %r3
+	or	%r3, lo(.L__profc___ctzhi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ctzhi2+12), %r12
+	or	%r12, lo(.L__profc___ctzhi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r3
 	ld	-16[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -7325,8 +12276,19 @@ __ctzhi2:                               ! @__ctzhi2
 	bt	.LBB115_3
 	nop
 .LBB115_3:
+	mov	hi(.L__profc___ctzhi2+16), %r3
+	or	%r3, lo(.L__profc___ctzhi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ctzhi2+20), %r12
+	or	%r12, lo(.L__profc___ctzhi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB115_6
-	nop
+	st	%r3, 0[%r9]
 .LBB115_4:                              !   in Loop: Header=BB115_1 Depth=1
 	bt	.LBB115_5
 	nop
@@ -7353,6 +12315,18 @@ __fixunssfsi:                           ! @__fixunssfsi
 	sub	%sp, 0x10, %sp
                                         ! kill: def $r3 killed $r6
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___fixunssfsi), %r3
+	or	%r3, lo(.L__profc___fixunssfsi), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___fixunssfsi+4), %r12
+	or	%r12, lo(.L__profc___fixunssfsi+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7364,6 +12338,18 @@ __fixunssfsi:                           ! @__fixunssfsi
 	bt	.LBB116_1
 	nop
 .LBB116_1:
+	mov	hi(.L__profc___fixunssfsi+8), %r3
+	or	%r3, lo(.L__profc___fixunssfsi+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___fixunssfsi+12), %r12
+	or	%r12, lo(.L__profc___fixunssfsi+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7401,6 +12387,18 @@ __parityhi2:                            ! @__parityhi2
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
+	mov	hi(.L__profc___parityhi2), %r3
+	or	%r3, lo(.L__profc___parityhi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___parityhi2+4), %r12
+	or	%r12, lo(.L__profc___parityhi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -20[%fp]
 	bt	.LBB117_1
@@ -7413,6 +12411,18 @@ __parityhi2:                            ! @__parityhi2
 	bt	.LBB117_2
 	nop
 .LBB117_2:                              !   in Loop: Header=BB117_1 Depth=1
+	mov	hi(.L__profc___parityhi2+8), %r3
+	or	%r3, lo(.L__profc___parityhi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___parityhi2+12), %r12
+	or	%r12, lo(.L__profc___parityhi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r3
 	ld	-16[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -7425,6 +12435,18 @@ __parityhi2:                            ! @__parityhi2
 	bt	.LBB117_3
 	nop
 .LBB117_3:                              !   in Loop: Header=BB117_1 Depth=1
+	mov	hi(.L__profc___parityhi2+16), %r3
+	or	%r3, lo(.L__profc___parityhi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___parityhi2+20), %r12
+	or	%r12, lo(.L__profc___parityhi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB117_4
@@ -7457,6 +12479,18 @@ __popcounthi2:                          ! @__popcounthi2
 	sub	%sp, 0x18, %sp
                                         ! kill: def $r3 killed $r6
 	st.h	%r6, -10[%fp]
+	mov	hi(.L__profc___popcounthi2), %r3
+	or	%r3, lo(.L__profc___popcounthi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___popcounthi2+4), %r12
+	or	%r12, lo(.L__profc___popcounthi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -20[%fp]
 	bt	.LBB118_1
@@ -7469,6 +12503,18 @@ __popcounthi2:                          ! @__popcounthi2
 	bt	.LBB118_2
 	nop
 .LBB118_2:                              !   in Loop: Header=BB118_1 Depth=1
+	mov	hi(.L__profc___popcounthi2+8), %r3
+	or	%r3, lo(.L__profc___popcounthi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___popcounthi2+12), %r12
+	or	%r12, lo(.L__profc___popcounthi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-10[%fp], %r3
 	ld	-16[%fp], %r9
 	sub	%r0, %r9, %r9
@@ -7481,6 +12527,18 @@ __popcounthi2:                          ! @__popcounthi2
 	bt	.LBB118_3
 	nop
 .LBB118_3:                              !   in Loop: Header=BB118_1 Depth=1
+	mov	hi(.L__profc___popcounthi2+16), %r3
+	or	%r3, lo(.L__profc___popcounthi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___popcounthi2+20), %r12
+	or	%r12, lo(.L__profc___popcounthi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB118_4
@@ -7511,6 +12569,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___mulsi3_iq2000), %r3
+	or	%r3, lo(.L__profc___mulsi3_iq2000), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_iq2000+4), %r12
+	or	%r12, lo(.L__profc___mulsi3_iq2000+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB119_1
 	st	%r3, -20[%fp]
@@ -7522,6 +12592,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	bt	.LBB119_2
 	nop
 .LBB119_2:                              !   in Loop: Header=BB119_1 Depth=1
+	mov	hi(.L__profc___mulsi3_iq2000+8), %r3
+	or	%r3, lo(.L__profc___mulsi3_iq2000+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_iq2000+12), %r12
+	or	%r12, lo(.L__profc___mulsi3_iq2000+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0xc, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -7533,6 +12615,18 @@ __mulsi3_iq2000:                        ! @__mulsi3_iq2000
 	bt	.LBB119_3
 	nop
 .LBB119_3:                              !   in Loop: Header=BB119_1 Depth=1
+	mov	hi(.L__profc___mulsi3_iq2000+16), %r3
+	or	%r3, lo(.L__profc___mulsi3_iq2000+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_iq2000+20), %r12
+	or	%r12, lo(.L__profc___mulsi3_iq2000+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	ld	-20[%fp], %r3
 	add	%r3, %r9, %r3
@@ -7563,6 +12657,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	add	%sp, 0x8, %fp
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc___mulsi3_lm32), %r3
+	or	%r3, lo(.L__profc___mulsi3_lm32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_lm32+4), %r12
+	or	%r12, lo(.L__profc___mulsi3_lm32+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -24[%fp]
 	ld	-16[%fp], %r3
@@ -7572,6 +12678,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_1
 	nop
 .LBB120_1:
+	mov	hi(.L__profc___mulsi3_lm32+8), %r3
+	or	%r3, lo(.L__profc___mulsi3_lm32+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_lm32+12), %r12
+	or	%r12, lo(.L__profc___mulsi3_lm32+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB120_8
 	st	%r3, -12[%fp]
@@ -7586,6 +12704,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_4
 	nop
 .LBB120_4:                              !   in Loop: Header=BB120_3 Depth=1
+	mov	hi(.L__profc___mulsi3_lm32+16), %r3
+	or	%r3, lo(.L__profc___mulsi3_lm32+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_lm32+20), %r12
+	or	%r12, lo(.L__profc___mulsi3_lm32+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x14, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -7597,6 +12727,18 @@ __mulsi3_lm32:                          ! @__mulsi3_lm32
 	bt	.LBB120_5
 	nop
 .LBB120_5:                              !   in Loop: Header=BB120_3 Depth=1
+	mov	hi(.L__profc___mulsi3_lm32+24), %r3
+	or	%r3, lo(.L__profc___mulsi3_lm32+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulsi3_lm32+28), %r12
+	or	%r12, lo(.L__profc___mulsi3_lm32+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	ld	-24[%fp], %r3
 	add	%r3, %r9, %r3
@@ -7633,6 +12775,18 @@ __udivmodsi4:                           ! @__udivmodsi4
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___udivmodsi4), %r3
+	or	%r3, lo(.L__profc___udivmodsi4), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+4), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	st	%r3, -28[%fp]
 	or	%r0, 0x0, %r3
@@ -7643,36 +12797,106 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ld	-16[%fp], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	buge	.LBB121_4
+	buge	.LBB121_6
 	st	%r3, -36[%fp]
 	bt	.LBB121_2
 	nop
 .LBB121_2:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4+32), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+36), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB121_4
+	beq	.LBB121_6
 	st	%r3, -36[%fp]
 	bt	.LBB121_3
 	nop
 .LBB121_3:                              !   in Loop: Header=BB121_1 Depth=1
-	uld.b	-20[%fp], %r3
-	mov	0x80, %r9
-	and	%r3, %r9, %r3
-	sub.f	%r3, 0x0, %r0
-	seq	%r3
+	mov	hi(.L__profc___udivmodsi4+40), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+44), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB121_4
-	st	%r3, -36[%fp]
+	st	%r3, 0[%r9]
 .LBB121_4:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4+16), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+20), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-20[%fp], %r3
+	mov	0x80000000, %r9
+	and	%r3, %r9, %r9
+	sub.f	%r9, 0x0, %r0
+	seq	%r3
+	st	%r3, -40[%fp]
+	sub.f	%r9, 0x0, %r0
+	bne	.LBB121_6
+	st	%r3, -36[%fp]
+	bt	.LBB121_5
+	nop
+.LBB121_5:                              !   in Loop: Header=BB121_1 Depth=1
+	ld	-40[%fp], %r3
+	mov	hi(.L__profc___udivmodsi4+24), %r9
+	or	%r9, lo(.L__profc___udivmodsi4+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___udivmodsi4+28), %r13
+	or	%r13, lo(.L__profc___udivmodsi4+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB121_6
+	st	%r3, -36[%fp]
+.LBB121_6:                              !   in Loop: Header=BB121_1 Depth=1
 	ld	-36[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB121_6
+	beq	.LBB121_8
 	nop
-	bt	.LBB121_5
+	bt	.LBB121_7
 	nop
-.LBB121_5:                              !   in Loop: Header=BB121_1 Depth=1
+.LBB121_7:                              !   in Loop: Header=BB121_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4+8), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+12), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -7680,25 +12904,49 @@ __udivmodsi4:                           ! @__udivmodsi4
 	sh	%r3, 0x1, %r3
 	bt	.LBB121_1
 	st	%r3, -28[%fp]
-.LBB121_6:
-	bt	.LBB121_7
+.LBB121_8:
+	bt	.LBB121_9
 	nop
-.LBB121_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB121_9:                              ! =>This Inner Loop Header: Depth=1
 	ld	-28[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB121_11
+	beq	.LBB121_13
 	nop
-	bt	.LBB121_8
+	bt	.LBB121_10
 	nop
-.LBB121_8:                              !   in Loop: Header=BB121_7 Depth=1
+.LBB121_10:                             !   in Loop: Header=BB121_9 Depth=1
+	mov	hi(.L__profc___udivmodsi4+48), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+52), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-20[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB121_10
+	bult	.LBB121_12
 	nop
-	bt	.LBB121_9
+	bt	.LBB121_11
 	nop
-.LBB121_9:                              !   in Loop: Header=BB121_7 Depth=1
+.LBB121_11:                             !   in Loop: Header=BB121_9 Depth=1
+	mov	hi(.L__profc___udivmodsi4+56), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+60), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	ld	-16[%fp], %r3
 	sub	%r3, %r9, %r3
@@ -7706,32 +12954,44 @@ __udivmodsi4:                           ! @__udivmodsi4
 	ld	-28[%fp], %r9
 	ld	-32[%fp], %r3
 	or	%r3, %r9, %r3
-	bt	.LBB121_10
+	bt	.LBB121_12
 	st	%r3, -32[%fp]
-.LBB121_10:                             !   in Loop: Header=BB121_7 Depth=1
+.LBB121_12:                             !   in Loop: Header=BB121_9 Depth=1
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1, %r3
-	bt	.LBB121_7
+	bt	.LBB121_9
 	st	%r3, -20[%fp]
-.LBB121_11:
+.LBB121_13:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB121_13
+	beq	.LBB121_15
 	nop
-	bt	.LBB121_12
+	bt	.LBB121_14
 	nop
-.LBB121_12:
-	ld	-16[%fp], %r3
-	bt	.LBB121_14
-	st	%r3, -12[%fp]
-.LBB121_13:
-	ld	-32[%fp], %r3
-	bt	.LBB121_14
-	st	%r3, -12[%fp]
 .LBB121_14:
+	mov	hi(.L__profc___udivmodsi4+64), %r3
+	or	%r3, lo(.L__profc___udivmodsi4+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4+68), %r12
+	or	%r12, lo(.L__profc___udivmodsi4+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	bt	.LBB121_16
+	st	%r3, -12[%fp]
+.LBB121_15:
+	ld	-32[%fp], %r3
+	bt	.LBB121_16
+	st	%r3, -12[%fp]
+.LBB121_16:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -7751,6 +13011,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
                                         ! kill: def $r3 killed $r6
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
+	mov	hi(.L__profc___mspabi_cmpf), %r3
+	or	%r3, lo(.L__profc___mspabi_cmpf), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_cmpf+4), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpf+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r6
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -7762,6 +13034,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	bt	.LBB122_1
 	nop
 .LBB122_1:
+	mov	hi(.L__profc___mspabi_cmpf+8), %r3
+	or	%r3, lo(.L__profc___mspabi_cmpf+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_cmpf+12), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpf+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r1, 0x0, %r3
 	bt	.LBB122_5
 	st	%r3, -12[%fp]
@@ -7777,6 +13061,18 @@ __mspabi_cmpf:                          ! @__mspabi_cmpf
 	bt	.LBB122_3
 	nop
 .LBB122_3:
+	mov	hi(.L__profc___mspabi_cmpf+16), %r3
+	or	%r3, lo(.L__profc___mspabi_cmpf+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_cmpf+20), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpf+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB122_5
 	st	%r3, -12[%fp]
@@ -7812,6 +13108,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc___mspabi_cmpd), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpd), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___mspabi_cmpd+4), %r14
+	or	%r14, lo(.L__profc___mspabi_cmpd+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r7
 	ld	-24[%fp], %r6
 	ld	0[%r3], %r19
@@ -7825,6 +13133,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	bt	.LBB123_1
 	nop
 .LBB123_1:
+	mov	hi(.L__profc___mspabi_cmpd+8), %r3
+	or	%r3, lo(.L__profc___mspabi_cmpd+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_cmpd+12), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpd+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r1, 0x0, %r3
 	bt	.LBB123_5
 	st	%r3, -12[%fp]
@@ -7846,6 +13166,18 @@ __mspabi_cmpd:                          ! @__mspabi_cmpd
 	bt	.LBB123_3
 	nop
 .LBB123_3:
+	mov	hi(.L__profc___mspabi_cmpd+16), %r3
+	or	%r3, lo(.L__profc___mspabi_cmpd+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_cmpd+20), %r12
+	or	%r12, lo(.L__profc___mspabi_cmpd+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	bt	.LBB123_5
 	st	%r3, -12[%fp]
@@ -7871,6 +13203,18 @@ __mspabi_mpysll:                        ! @__mspabi_mpysll
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___mspabi_mpysll), %r3
+	or	%r3, lo(.L__profc___mspabi_mpysll), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_mpysll+4), %r12
+	or	%r12, lo(.L__profc___mspabi_mpysll+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r7
 	sha	%r7, -0x1f, %r6
 	ld	-16[%fp], %r19
@@ -7894,6 +13238,18 @@ __mspabi_mpyull:                        ! @__mspabi_mpyull
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___mspabi_mpyull), %r3
+	or	%r3, lo(.L__profc___mspabi_mpyull), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mspabi_mpyull+4), %r12
+	or	%r12, lo(.L__profc___mspabi_mpyull+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r7
 	ld	-16[%fp], %r19
 	or	%r0, 0x0, %r18
@@ -7916,6 +13272,18 @@ __mulhi3:                               ! @__mulhi3
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___mulhi3), %r3
+	or	%r3, lo(.L__profc___mulhi3), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+4), %r12
+	or	%r12, lo(.L__profc___mulhi3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -24[%fp]
 	st	%r3, -28[%fp]
@@ -7926,6 +13294,18 @@ __mulhi3:                               ! @__mulhi3
 	bt	.LBB126_1
 	nop
 .LBB126_1:
+	mov	hi(.L__profc___mulhi3+8), %r3
+	or	%r3, lo(.L__profc___mulhi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+12), %r12
+	or	%r12, lo(.L__profc___mulhi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -7941,74 +13321,142 @@ __mulhi3:                               ! @__mulhi3
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB126_5
+	beq	.LBB126_6
 	st	%r3, -32[%fp]
 	bt	.LBB126_4
 	nop
 .LBB126_4:                              !   in Loop: Header=BB126_3 Depth=1
-	ld.b	-17[%fp], %r3
-	sub.f	%r3, 0x20, %r0
+	mov	hi(.L__profc___mulhi3+24), %r3
+	or	%r3, lo(.L__profc___mulhi3+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+28), %r12
+	or	%r12, lo(.L__profc___mulhi3+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld.b	-17[%fp], %r9
+	sub.f	%r9, 0x20, %r0
 	sult	%r3
-	bt	.LBB126_5
+	st	%r3, -36[%fp]
+	sub.f	%r9, 0x1f, %r0
+	bugt	.LBB126_6
 	st	%r3, -32[%fp]
+	bt	.LBB126_5
+	nop
 .LBB126_5:                              !   in Loop: Header=BB126_3 Depth=1
+	ld	-36[%fp], %r3
+	mov	hi(.L__profc___mulhi3+32), %r9
+	or	%r9, lo(.L__profc___mulhi3+32), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___mulhi3+36), %r13
+	or	%r13, lo(.L__profc___mulhi3+36), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB126_6
+	st	%r3, -32[%fp]
+.LBB126_6:                              !   in Loop: Header=BB126_3 Depth=1
 	ld	-32[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB126_10
+	beq	.LBB126_11
 	nop
-	bt	.LBB126_6
+	bt	.LBB126_7
 	nop
-.LBB126_6:                              !   in Loop: Header=BB126_3 Depth=1
+.LBB126_7:                              !   in Loop: Header=BB126_3 Depth=1
+	mov	hi(.L__profc___mulhi3+16), %r3
+	or	%r3, lo(.L__profc___mulhi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+20), %r12
+	or	%r12, lo(.L__profc___mulhi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB126_8
+	beq	.LBB126_9
 	nop
-	bt	.LBB126_7
+	bt	.LBB126_8
 	nop
-.LBB126_7:                              !   in Loop: Header=BB126_3 Depth=1
+.LBB126_8:                              !   in Loop: Header=BB126_3 Depth=1
+	mov	hi(.L__profc___mulhi3+40), %r3
+	or	%r3, lo(.L__profc___mulhi3+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+44), %r12
+	or	%r12, lo(.L__profc___mulhi3+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	ld	-28[%fp], %r3
 	add	%r3, %r9, %r3
-	bt	.LBB126_8
+	bt	.LBB126_9
 	st	%r3, -28[%fp]
-.LBB126_8:                              !   in Loop: Header=BB126_3 Depth=1
+.LBB126_9:                              !   in Loop: Header=BB126_3 Depth=1
 	ld	-12[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st	%r3, -12[%fp]
 	ld	-16[%fp], %r3
 	sha	%r3, -0x1, %r3
-	bt	.LBB126_9
+	bt	.LBB126_10
 	st	%r3, -16[%fp]
-.LBB126_9:                              !   in Loop: Header=BB126_3 Depth=1
+.LBB126_10:                             !   in Loop: Header=BB126_3 Depth=1
 	uld.b	-17[%fp], %r3
 	add	%r3, 0x1, %r3
 	bt	.LBB126_3
 	st.b	%r3, -17[%fp]
-.LBB126_10:
+.LBB126_11:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB126_12
+	beq	.LBB126_13
 	nop
-	bt	.LBB126_11
+	bt	.LBB126_12
 	nop
-.LBB126_11:
+.LBB126_12:
+	mov	hi(.L__profc___mulhi3+48), %r3
+	or	%r3, lo(.L__profc___mulhi3+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___mulhi3+52), %r12
+	or	%r12, lo(.L__profc___mulhi3+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
-	bt	.LBB126_13
-	st	%r3, -36[%fp]
-.LBB126_12:
-	ld	-28[%fp], %r3
-	bt	.LBB126_13
-	st	%r3, -36[%fp]
+	bt	.LBB126_14
+	st	%r3, -40[%fp]
 .LBB126_13:
-	ld	-36[%fp], %rv
+	ld	-28[%fp], %r3
+	bt	.LBB126_14
+	st	%r3, -40[%fp]
+.LBB126_14:
+	ld	-40[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
 	ld	-8[%fp], %fp
@@ -8024,6 +13472,18 @@ __divsi3:                               ! @__divsi3
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___divsi3), %r3
+	or	%r3, lo(.L__profc___divsi3), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___divsi3+4), %r12
+	or	%r12, lo(.L__profc___divsi3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -20[%fp]
 	ld	-12[%fp], %r3
@@ -8033,6 +13493,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_1
 	nop
 .LBB127_1:
+	mov	hi(.L__profc___divsi3+8), %r3
+	or	%r3, lo(.L__profc___divsi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___divsi3+12), %r12
+	or	%r12, lo(.L__profc___divsi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8050,6 +13522,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_3
 	nop
 .LBB127_3:
+	mov	hi(.L__profc___divsi3+16), %r3
+	or	%r3, lo(.L__profc___divsi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___divsi3+20), %r12
+	or	%r12, lo(.L__profc___divsi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8074,6 +13558,18 @@ __divsi3:                               ! @__divsi3
 	bt	.LBB127_5
 	nop
 .LBB127_5:
+	mov	hi(.L__profc___divsi3+24), %r3
+	or	%r3, lo(.L__profc___divsi3+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___divsi3+28), %r12
+	or	%r12, lo(.L__profc___divsi3+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8096,6 +13592,18 @@ __modsi3:                               ! @__modsi3
 	add	%sp, 0x8, %fp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___modsi3), %r3
+	or	%r3, lo(.L__profc___modsi3), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___modsi3+4), %r12
+	or	%r12, lo(.L__profc___modsi3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -20[%fp]
 	ld	-12[%fp], %r3
@@ -8105,6 +13613,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_1
 	nop
 .LBB128_1:
+	mov	hi(.L__profc___modsi3+8), %r3
+	or	%r3, lo(.L__profc___modsi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___modsi3+12), %r12
+	or	%r12, lo(.L__profc___modsi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8120,6 +13640,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_3
 	nop
 .LBB128_3:
+	mov	hi(.L__profc___modsi3+16), %r3
+	or	%r3, lo(.L__profc___modsi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___modsi3+20), %r12
+	or	%r12, lo(.L__profc___modsi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8140,6 +13672,18 @@ __modsi3:                               ! @__modsi3
 	bt	.LBB128_5
 	nop
 .LBB128_5:
+	mov	hi(.L__profc___modsi3+24), %r3
+	or	%r3, lo(.L__profc___modsi3+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___modsi3+28), %r12
+	or	%r12, lo(.L__profc___modsi3+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub	%r3, %r9, %r3
@@ -8166,6 +13710,18 @@ __udivmodhi4:                           ! @__udivmodhi4
 	st.h	%r6, -12[%fp]
 	st.h	%r7, -14[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc___udivmodhi4), %r3
+	or	%r3, lo(.L__profc___udivmodhi4), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+4), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	st.h	%r3, -22[%fp]
 	or	%r0, 0x0, %r3
@@ -8176,36 +13732,106 @@ __udivmodhi4:                           ! @__udivmodhi4
 	uld.h	-12[%fp], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	bge	.LBB129_4
+	bge	.LBB129_6
 	st	%r3, -28[%fp]
 	bt	.LBB129_2
 	nop
 .LBB129_2:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(.L__profc___udivmodhi4+32), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+36), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-22[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB129_4
+	beq	.LBB129_6
 	st	%r3, -28[%fp]
 	bt	.LBB129_3
 	nop
 .LBB129_3:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(.L__profc___udivmodhi4+40), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+44), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	bt	.LBB129_4
+	st	%r3, 0[%r9]
+.LBB129_4:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(.L__profc___udivmodhi4+16), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+20), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-14[%fp], %r3
 	mov	0x8000, %r9
-	and	%r3, %r9, %r3
-	sub.f	%r3, 0x0, %r0
+	and	%r3, %r9, %r9
+	sub.f	%r9, 0x0, %r0
 	seq	%r3
-	bt	.LBB129_4
+	st	%r3, -32[%fp]
+	sub.f	%r9, 0x0, %r0
+	bne	.LBB129_6
 	st	%r3, -28[%fp]
-.LBB129_4:                              !   in Loop: Header=BB129_1 Depth=1
+	bt	.LBB129_5
+	nop
+.LBB129_5:                              !   in Loop: Header=BB129_1 Depth=1
+	ld	-32[%fp], %r3
+	mov	hi(.L__profc___udivmodhi4+24), %r9
+	or	%r9, lo(.L__profc___udivmodhi4+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___udivmodhi4+28), %r13
+	or	%r13, lo(.L__profc___udivmodhi4+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB129_6
+	st	%r3, -28[%fp]
+.LBB129_6:                              !   in Loop: Header=BB129_1 Depth=1
 	ld	-28[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB129_6
+	beq	.LBB129_8
 	nop
-	bt	.LBB129_5
+	bt	.LBB129_7
 	nop
-.LBB129_5:                              !   in Loop: Header=BB129_1 Depth=1
+.LBB129_7:                              !   in Loop: Header=BB129_1 Depth=1
+	mov	hi(.L__profc___udivmodhi4+8), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+12), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-14[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st.h	%r3, -14[%fp]
@@ -8213,25 +13839,49 @@ __udivmodhi4:                           ! @__udivmodhi4
 	sh	%r3, 0x1, %r3
 	bt	.LBB129_1
 	st.h	%r3, -22[%fp]
-.LBB129_6:
-	bt	.LBB129_7
+.LBB129_8:
+	bt	.LBB129_9
 	nop
-.LBB129_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB129_9:                              ! =>This Inner Loop Header: Depth=1
 	uld.h	-22[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB129_11
+	beq	.LBB129_13
 	nop
-	bt	.LBB129_8
+	bt	.LBB129_10
 	nop
-.LBB129_8:                              !   in Loop: Header=BB129_7 Depth=1
+.LBB129_10:                             !   in Loop: Header=BB129_9 Depth=1
+	mov	hi(.L__profc___udivmodhi4+48), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+52), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-12[%fp], %r3
 	uld.h	-14[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	blt	.LBB129_10
+	blt	.LBB129_12
 	nop
-	bt	.LBB129_9
+	bt	.LBB129_11
 	nop
-.LBB129_9:                              !   in Loop: Header=BB129_7 Depth=1
+.LBB129_11:                             !   in Loop: Header=BB129_9 Depth=1
+	mov	hi(.L__profc___udivmodhi4+56), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+60), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	uld.h	-14[%fp], %r9
 	uld.h	-12[%fp], %r3
 	sub	%r3, %r9, %r3
@@ -8239,32 +13889,44 @@ __udivmodhi4:                           ! @__udivmodhi4
 	uld.h	-22[%fp], %r9
 	uld.h	-24[%fp], %r3
 	or	%r3, %r9, %r3
-	bt	.LBB129_10
+	bt	.LBB129_12
 	st.h	%r3, -24[%fp]
-.LBB129_10:                             !   in Loop: Header=BB129_7 Depth=1
+.LBB129_12:                             !   in Loop: Header=BB129_9 Depth=1
 	uld.h	-22[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st.h	%r3, -22[%fp]
 	uld.h	-14[%fp], %r3
 	sh	%r3, -0x1, %r3
-	bt	.LBB129_7
+	bt	.LBB129_9
 	st.h	%r3, -14[%fp]
-.LBB129_11:
+.LBB129_13:
 	ld	-20[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB129_13
+	beq	.LBB129_15
 	nop
-	bt	.LBB129_12
+	bt	.LBB129_14
 	nop
-.LBB129_12:
-	uld.h	-12[%fp], %r3
-	bt	.LBB129_14
-	st.h	%r3, -10[%fp]
-.LBB129_13:
-	uld.h	-24[%fp], %r3
-	bt	.LBB129_14
-	st.h	%r3, -10[%fp]
 .LBB129_14:
+	mov	hi(.L__profc___udivmodhi4+64), %r3
+	or	%r3, lo(.L__profc___udivmodhi4+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodhi4+68), %r12
+	or	%r12, lo(.L__profc___udivmodhi4+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	uld.h	-12[%fp], %r3
+	bt	.LBB129_16
+	st.h	%r3, -10[%fp]
+.LBB129_15:
+	uld.h	-24[%fp], %r3
+	bt	.LBB129_16
+	st.h	%r3, -10[%fp]
+.LBB129_16:
 	uld.h	-10[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -8283,6 +13945,18 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	st	%r6, -16[%fp]
 	st	%r7, -20[%fp]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___udivmodsi4_libgcc), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+4), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x1, %r3
 	st	%r3, -28[%fp]
 	or	%r0, 0x0, %r3
@@ -8293,36 +13967,106 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ld	-16[%fp], %r12
 	or	%r0, 0x0, %r3
 	sub.f	%r9, %r12, %r0
-	buge	.LBB130_4
+	buge	.LBB130_6
 	st	%r3, -36[%fp]
 	bt	.LBB130_2
 	nop
 .LBB130_2:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4_libgcc+32), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+36), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-28[%fp], %r9
 	or	%r0, 0x0, %r3
 	sub.f	%r9, 0x0, %r0
-	beq	.LBB130_4
+	beq	.LBB130_6
 	st	%r3, -36[%fp]
 	bt	.LBB130_3
 	nop
 .LBB130_3:                              !   in Loop: Header=BB130_1 Depth=1
-	uld.b	-20[%fp], %r3
-	mov	0x80, %r9
-	and	%r3, %r9, %r3
-	sub.f	%r3, 0x0, %r0
-	seq	%r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+40), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+40), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+44), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+44), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB130_4
-	st	%r3, -36[%fp]
+	st	%r3, 0[%r9]
 .LBB130_4:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4_libgcc+16), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+20), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-20[%fp], %r3
+	mov	0x80000000, %r9
+	and	%r3, %r9, %r9
+	sub.f	%r9, 0x0, %r0
+	seq	%r3
+	st	%r3, -40[%fp]
+	sub.f	%r9, 0x0, %r0
+	bne	.LBB130_6
+	st	%r3, -36[%fp]
+	bt	.LBB130_5
+	nop
+.LBB130_5:                              !   in Loop: Header=BB130_1 Depth=1
+	ld	-40[%fp], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+24), %r9
+	or	%r9, lo(.L__profc___udivmodsi4_libgcc+24), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___udivmodsi4_libgcc+28), %r13
+	or	%r13, lo(.L__profc___udivmodsi4_libgcc+28), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
+	bt	.LBB130_6
+	st	%r3, -36[%fp]
+.LBB130_6:                              !   in Loop: Header=BB130_1 Depth=1
 	ld	-36[%fp], %r3
 	mov	0x1, %r9
 	and	%r3, %r9, %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB130_6
+	beq	.LBB130_8
 	nop
-	bt	.LBB130_5
+	bt	.LBB130_7
 	nop
-.LBB130_5:                              !   in Loop: Header=BB130_1 Depth=1
+.LBB130_7:                              !   in Loop: Header=BB130_1 Depth=1
+	mov	hi(.L__profc___udivmodsi4_libgcc+8), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+12), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, 0x1, %r3
 	st	%r3, -20[%fp]
@@ -8330,25 +14074,49 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	sh	%r3, 0x1, %r3
 	bt	.LBB130_1
 	st	%r3, -28[%fp]
-.LBB130_6:
-	bt	.LBB130_7
+.LBB130_8:
+	bt	.LBB130_9
 	nop
-.LBB130_7:                              ! =>This Inner Loop Header: Depth=1
+.LBB130_9:                              ! =>This Inner Loop Header: Depth=1
 	ld	-28[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB130_11
+	beq	.LBB130_13
 	nop
-	bt	.LBB130_8
+	bt	.LBB130_10
 	nop
-.LBB130_8:                              !   in Loop: Header=BB130_7 Depth=1
+.LBB130_10:                             !   in Loop: Header=BB130_9 Depth=1
+	mov	hi(.L__profc___udivmodsi4_libgcc+48), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+48), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+52), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+52), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	ld	-20[%fp], %r9
 	sub.f	%r3, %r9, %r0
-	bult	.LBB130_10
+	bult	.LBB130_12
 	nop
-	bt	.LBB130_9
+	bt	.LBB130_11
 	nop
-.LBB130_9:                              !   in Loop: Header=BB130_7 Depth=1
+.LBB130_11:                             !   in Loop: Header=BB130_9 Depth=1
+	mov	hi(.L__profc___udivmodsi4_libgcc+56), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+56), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+60), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+60), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r9
 	ld	-16[%fp], %r3
 	sub	%r3, %r9, %r3
@@ -8356,32 +14124,44 @@ __udivmodsi4_libgcc:                    ! @__udivmodsi4_libgcc
 	ld	-28[%fp], %r9
 	ld	-32[%fp], %r3
 	or	%r3, %r9, %r3
-	bt	.LBB130_10
+	bt	.LBB130_12
 	st	%r3, -32[%fp]
-.LBB130_10:                             !   in Loop: Header=BB130_7 Depth=1
+.LBB130_12:                             !   in Loop: Header=BB130_9 Depth=1
 	ld	-28[%fp], %r3
 	sh	%r3, -0x1, %r3
 	st	%r3, -28[%fp]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1, %r3
-	bt	.LBB130_7
+	bt	.LBB130_9
 	st	%r3, -20[%fp]
-.LBB130_11:
+.LBB130_13:
 	ld	-24[%fp], %r3
 	sub.f	%r3, 0x0, %r0
-	beq	.LBB130_13
+	beq	.LBB130_15
 	nop
-	bt	.LBB130_12
+	bt	.LBB130_14
 	nop
-.LBB130_12:
-	ld	-16[%fp], %r3
-	bt	.LBB130_14
-	st	%r3, -12[%fp]
-.LBB130_13:
-	ld	-32[%fp], %r3
-	bt	.LBB130_14
-	st	%r3, -12[%fp]
 .LBB130_14:
+	mov	hi(.L__profc___udivmodsi4_libgcc+64), %r3
+	or	%r3, lo(.L__profc___udivmodsi4_libgcc+64), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___udivmodsi4_libgcc+68), %r12
+	or	%r12, lo(.L__profc___udivmodsi4_libgcc+68), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
+	ld	-16[%fp], %r3
+	bt	.LBB130_16
+	st	%r3, -12[%fp]
+.LBB130_15:
+	ld	-32[%fp], %r3
+	bt	.LBB130_16
+	st	%r3, -12[%fp]
+.LBB130_16:
 	ld	-12[%fp], %rv
 	ld	-4[%fp], %pc ! return
 	add	%fp, 0x0, %sp
@@ -8404,6 +14184,18 @@ __ashldi3:                              ! @__ashldi3
 	st	%r7, 0[%r3]
 	st	%r6, -24[%fp]
 	st	%r18, -28[%fp]
+	mov	hi(.L__profc___ashldi3), %r9
+	or	%r9, lo(.L__profc___ashldi3), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___ashldi3+4), %r13
+	or	%r13, lo(.L__profc___ashldi3+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	0x20, %r9
 	st	%r9, -32[%fp]
 	ld	0[%r3], %r12
@@ -8422,6 +14214,18 @@ __ashldi3:                              ! @__ashldi3
 	bt	.LBB131_1
 	nop
 .LBB131_1:
+	mov	hi(.L__profc___ashldi3+8), %r3
+	or	%r3, lo(.L__profc___ashldi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ashldi3+12), %r12
+	or	%r12, lo(.L__profc___ashldi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x30, %r3
 	or	%r3, 0x4, %r9
 	or	%r0, 0x0, %r3
@@ -8442,6 +14246,18 @@ __ashldi3:                              ! @__ashldi3
 	bt	.LBB131_3
 	nop
 .LBB131_3:
+	mov	hi(.L__profc___ashldi3+16), %r3
+	or	%r3, lo(.L__profc___ashldi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ashldi3+20), %r12
+	or	%r12, lo(.L__profc___ashldi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -8507,6 +14323,18 @@ __ashrdi3:                              ! @__ashrdi3
 	st	%r7, 0[%r3]
 	st	%r6, -24[%fp]
 	st	%r18, -28[%fp]
+	mov	hi(.L__profc___ashrdi3), %r9
+	or	%r9, lo(.L__profc___ashrdi3), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___ashrdi3+4), %r13
+	or	%r13, lo(.L__profc___ashrdi3+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	0x20, %r9
 	st	%r9, -32[%fp]
 	ld	0[%r3], %r12
@@ -8525,6 +14353,18 @@ __ashrdi3:                              ! @__ashrdi3
 	bt	.LBB132_1
 	nop
 .LBB132_1:
+	mov	hi(.L__profc___ashrdi3+8), %r3
+	or	%r3, lo(.L__profc___ashrdi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ashrdi3+12), %r12
+	or	%r12, lo(.L__profc___ashrdi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-40[%fp], %r3
 	sha	%r3, -0x1f, %r3
 	st	%r3, -48[%fp]
@@ -8545,6 +14385,18 @@ __ashrdi3:                              ! @__ashrdi3
 	bt	.LBB132_3
 	nop
 .LBB132_3:
+	mov	hi(.L__profc___ashrdi3+16), %r3
+	or	%r3, lo(.L__profc___ashrdi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ashrdi3+20), %r12
+	or	%r12, lo(.L__profc___ashrdi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -8610,6 +14462,18 @@ __bswapdi2:                             ! @__bswapdi2
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___bswapdi2), %r9
+	or	%r9, lo(.L__profc___bswapdi2), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___bswapdi2+4), %r13
+	or	%r13, lo(.L__profc___bswapdi2+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r12
 	ld	-16[%fp], %r9
 	sh	%r9, -0x18, %r3
@@ -8647,6 +14511,18 @@ __bswapsi2:                             ! @__bswapsi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___bswapsi2), %r3
+	or	%r3, lo(.L__profc___bswapsi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___bswapsi2+4), %r12
+	or	%r12, lo(.L__profc___bswapsi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r9
 	sh	%r9, -0x18, %r3
 	mov	0xff0000, %r12
@@ -8674,6 +14550,18 @@ __clzsi2:                               ! @__clzsi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___clzsi2), %r3
+	or	%r3, lo(.L__profc___clzsi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___clzsi2+4), %r12
+	or	%r12, lo(.L__profc___clzsi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -16[%fp]
 	uld.h	-16[%fp], %r3
@@ -8782,6 +14670,18 @@ __cmpdi2:                               ! @__cmpdi2
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc___cmpdi2), %r12
+	or	%r12, lo(.L__profc___cmpdi2), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___cmpdi2+4), %r14
+	or	%r14, lo(.L__profc___cmpdi2+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r12
 	ld	-24[%fp], %r9
 	sub	%fp, 0x28, %r13
@@ -8802,6 +14702,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_1
 	nop
 .LBB136_1:
+	mov	hi(.L__profc___cmpdi2+8), %r3
+	or	%r3, lo(.L__profc___cmpdi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmpdi2+12), %r12
+	or	%r12, lo(.L__profc___cmpdi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
@@ -8814,6 +14726,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_3
 	nop
 .LBB136_3:
+	mov	hi(.L__profc___cmpdi2+16), %r3
+	or	%r3, lo(.L__profc___cmpdi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmpdi2+20), %r12
+	or	%r12, lo(.L__profc___cmpdi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x2, %r3
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
@@ -8830,6 +14754,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_5
 	nop
 .LBB136_5:
+	mov	hi(.L__profc___cmpdi2+24), %r3
+	or	%r3, lo(.L__profc___cmpdi2+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmpdi2+28), %r12
+	or	%r12, lo(.L__profc___cmpdi2+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
@@ -8846,6 +14782,18 @@ __cmpdi2:                               ! @__cmpdi2
 	bt	.LBB136_7
 	nop
 .LBB136_7:
+	mov	hi(.L__profc___cmpdi2+32), %r3
+	or	%r3, lo(.L__profc___cmpdi2+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___cmpdi2+36), %r12
+	or	%r12, lo(.L__profc___cmpdi2+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x2, %r3
 	bt	.LBB136_9
 	st	%r3, -12[%fp]
@@ -8881,6 +14829,18 @@ __aeabi_lcmp:                           ! @__aeabi_lcmp
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___aeabi_lcmp), %r12
+	or	%r12, lo(.L__profc___aeabi_lcmp), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___aeabi_lcmp+4), %r14
+	or	%r14, lo(.L__profc___aeabi_lcmp+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r7
 	ld	-16[%fp], %r6
 	ld	0[%r3], %r19
@@ -8904,6 +14864,18 @@ __ctzsi2:                               ! @__ctzsi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x18, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___ctzsi2), %r3
+	or	%r3, lo(.L__profc___ctzsi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ctzsi2+4), %r12
+	or	%r12, lo(.L__profc___ctzsi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -16[%fp]
 	sub	%fp, 0x10, %r3
@@ -9001,6 +14973,18 @@ __lshrdi3:                              ! @__lshrdi3
 	st	%r7, 0[%r3]
 	st	%r6, -24[%fp]
 	st	%r18, -28[%fp]
+	mov	hi(.L__profc___lshrdi3), %r9
+	or	%r9, lo(.L__profc___lshrdi3), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___lshrdi3+4), %r13
+	or	%r13, lo(.L__profc___lshrdi3+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	mov	0x20, %r9
 	st	%r9, -32[%fp]
 	ld	0[%r3], %r12
@@ -9019,6 +15003,18 @@ __lshrdi3:                              ! @__lshrdi3
 	bt	.LBB139_1
 	nop
 .LBB139_1:
+	mov	hi(.L__profc___lshrdi3+8), %r3
+	or	%r3, lo(.L__profc___lshrdi3+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___lshrdi3+12), %r12
+	or	%r12, lo(.L__profc___lshrdi3+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	st	%r3, -48[%fp]
 	ld	-40[%fp], %r3
@@ -9038,6 +15034,18 @@ __lshrdi3:                              ! @__lshrdi3
 	bt	.LBB139_3
 	nop
 .LBB139_3:
+	mov	hi(.L__profc___lshrdi3+16), %r3
+	or	%r3, lo(.L__profc___lshrdi3+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___lshrdi3+20), %r12
+	or	%r12, lo(.L__profc___lshrdi3+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x18, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r9
@@ -9099,6 +15107,18 @@ __muldsi3:                              ! @__muldsi3
 	sub	%sp, 0x38, %sp
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___muldsi3), %r3
+	or	%r3, lo(.L__profc___muldsi3), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___muldsi3+4), %r12
+	or	%r12, lo(.L__profc___muldsi3+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x10, %r3
 	st	%r3, -28[%fp]
 	mov	0xffff, %r3
@@ -9202,6 +15222,18 @@ __muldi3_compiler_rt:                   ! @__muldi3_compiler_rt
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___muldi3_compiler_rt), %r12
+	or	%r12, lo(.L__profc___muldi3_compiler_rt), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___muldi3_compiler_rt+4), %r14
+	or	%r14, lo(.L__profc___muldi3_compiler_rt+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r13
 	ld	-16[%fp], %r12
 	sub	%fp, 0x20, %r9
@@ -9268,6 +15300,18 @@ __negdi2:                               ! @__negdi2
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___negdi2), %r9
+	or	%r9, lo(.L__profc___negdi2), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___negdi2+4), %r13
+	or	%r13, lo(.L__profc___negdi2+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r13
 	ld	-16[%fp], %r12
 	or	%r0, 0x0, %r3
@@ -9296,6 +15340,18 @@ __paritydi2:                            ! @__paritydi2
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___paritydi2), %r9
+	or	%r9, lo(.L__profc___paritydi2), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___paritydi2+4), %r13
+	or	%r13, lo(.L__profc___paritydi2+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r12
 	ld	-16[%fp], %r3
 	sub	%fp, 0x18, %r9
@@ -9341,6 +15397,18 @@ __paritysi2:                            ! @__paritysi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___paritysi2), %r3
+	or	%r3, lo(.L__profc___paritysi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___paritysi2+4), %r12
+	or	%r12, lo(.L__profc___paritysi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -16[%fp]
 	ld	-16[%fp], %r3
@@ -9383,6 +15451,18 @@ __popcountdi2:                          ! @__popcountdi2
 	or	%r3, 0x4, %r3
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
+	mov	hi(.L__profc___popcountdi2), %r9
+	or	%r9, lo(.L__profc___popcountdi2), %r12
+	ld	0[%r12], %r9
+	mov	hi(.L__profc___popcountdi2+4), %r13
+	or	%r13, lo(.L__profc___popcountdi2+4), %r14
+	ld	0[%r14], %r13
+	add	%r13, 0x1, %r13
+	sub.f	%r13, 0x0, %r0
+	seq	%r16
+	add	%r9, %r16, %r9
+	st	%r13, 0[%r14]
+	st	%r9, 0[%r12]
 	ld	0[%r3], %r12
 	ld	-16[%fp], %r9
 	sub	%fp, 0x18, %r3
@@ -9466,6 +15546,18 @@ __popcountsi2:                          ! @__popcountsi2
 	add	%sp, 0x8, %fp
 	sub	%sp, 0x10, %sp
 	st	%r6, -12[%fp]
+	mov	hi(.L__profc___popcountsi2), %r3
+	or	%r3, lo(.L__profc___popcountsi2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___popcountsi2+4), %r12
+	or	%r12, lo(.L__profc___popcountsi2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r3
 	st	%r3, -16[%fp]
 	ld	-16[%fp], %r3
@@ -9520,6 +15612,18 @@ __powidf2:                              ! @__powidf2
 	st	%r7, 0[%r3]
 	st	%r6, -16[%fp]
 	st	%r18, -20[%fp]
+	mov	hi(.L__profc___powidf2), %r3
+	or	%r3, lo(.L__profc___powidf2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powidf2+4), %r12
+	or	%r12, lo(.L__profc___powidf2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-20[%fp], %r3
 	sh	%r3, -0x1f, %r3
 	st	%r3, -24[%fp]
@@ -9531,6 +15635,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_1
 	st	%r3, -32[%fp]
 .LBB147_1:                              ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc___powidf2+8), %r3
+	or	%r3, lo(.L__profc___powidf2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powidf2+12), %r12
+	or	%r12, lo(.L__profc___powidf2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x14, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -9542,6 +15658,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_2
 	nop
 .LBB147_2:                              !   in Loop: Header=BB147_1 Depth=1
+	mov	hi(.L__profc___powidf2+16), %r3
+	or	%r3, lo(.L__profc___powidf2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powidf2+20), %r12
+	or	%r12, lo(.L__profc___powidf2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -9571,8 +15699,19 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_4
 	nop
 .LBB147_4:
+	mov	hi(.L__profc___powidf2+24), %r3
+	or	%r3, lo(.L__profc___powidf2+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powidf2+28), %r12
+	or	%r12, lo(.L__profc___powidf2+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB147_6
-	nop
+	st	%r3, 0[%r9]
 .LBB147_5:                              !   in Loop: Header=BB147_1 Depth=1
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x4, %r3
@@ -9596,6 +15735,18 @@ __powidf2:                              ! @__powidf2
 	bt	.LBB147_7
 	nop
 .LBB147_7:
+	mov	hi(.L__profc___powidf2+32), %r3
+	or	%r3, lo(.L__profc___powidf2+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powidf2+36), %r12
+	or	%r12, lo(.L__profc___powidf2+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x20, %r3
 	or	%r3, 0x4, %r3
 	ld	0[%r3], %r19
@@ -9636,6 +15787,18 @@ __powisf2:                              ! @__powisf2
                                         ! kill: def $r3 killed $r6
 	st	%r6, -12[%fp]
 	st	%r7, -16[%fp]
+	mov	hi(.L__profc___powisf2), %r3
+	or	%r3, lo(.L__profc___powisf2), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powisf2+4), %r12
+	or	%r12, lo(.L__profc___powisf2+4), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-16[%fp], %r3
 	sh	%r3, -0x1f, %r3
 	st	%r3, -20[%fp]
@@ -9643,6 +15806,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_1
 	st	%r3, -24[%fp]
 .LBB148_1:                              ! =>This Inner Loop Header: Depth=1
+	mov	hi(.L__profc___powisf2+8), %r3
+	or	%r3, lo(.L__profc___powisf2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powisf2+12), %r12
+	or	%r12, lo(.L__profc___powisf2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	sub	%fp, 0x10, %r3
 	or	%r3, 0x3, %r3
 	uld.b	0[%r3], %r3
@@ -9654,6 +15829,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_2
 	nop
 .LBB148_2:                              !   in Loop: Header=BB148_1 Depth=1
+	mov	hi(.L__profc___powisf2+16), %r3
+	or	%r3, lo(.L__profc___powisf2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powisf2+20), %r12
+	or	%r12, lo(.L__profc___powisf2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-12[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -9674,8 +15861,19 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_4
 	nop
 .LBB148_4:
+	mov	hi(.L__profc___powisf2+24), %r3
+	or	%r3, lo(.L__profc___powisf2+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powisf2+28), %r12
+	or	%r12, lo(.L__profc___powisf2+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
 	bt	.LBB148_6
-	nop
+	st	%r3, 0[%r9]
 .LBB148_5:                              !   in Loop: Header=BB148_1 Depth=1
 	ld	-12[%fp], %r7
 	add	%pc, 0x10, %rca
@@ -9692,6 +15890,18 @@ __powisf2:                              ! @__powisf2
 	bt	.LBB148_7
 	nop
 .LBB148_7:
+	mov	hi(.L__profc___powisf2+32), %r3
+	or	%r3, lo(.L__profc___powisf2+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___powisf2+36), %r12
+	or	%r12, lo(.L__profc___powisf2+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	ld	-24[%fp], %r7
 	add	%pc, 0x10, %rca
 	st	%rca, [--%sp]
@@ -9731,6 +15941,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -32[%fp]
+	mov	hi(.L__profc___ucmpdi2), %r12
+	or	%r12, lo(.L__profc___ucmpdi2), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___ucmpdi2+4), %r14
+	or	%r14, lo(.L__profc___ucmpdi2+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r12
 	ld	-24[%fp], %r9
 	sub	%fp, 0x28, %r13
@@ -9751,6 +15973,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_1
 	nop
 .LBB149_1:
+	mov	hi(.L__profc___ucmpdi2+8), %r3
+	or	%r3, lo(.L__profc___ucmpdi2+8), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ucmpdi2+12), %r12
+	or	%r12, lo(.L__profc___ucmpdi2+12), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
@@ -9763,6 +15997,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_3
 	nop
 .LBB149_3:
+	mov	hi(.L__profc___ucmpdi2+16), %r3
+	or	%r3, lo(.L__profc___ucmpdi2+16), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ucmpdi2+20), %r12
+	or	%r12, lo(.L__profc___ucmpdi2+20), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x2, %r3
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
@@ -9779,6 +16025,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_5
 	nop
 .LBB149_5:
+	mov	hi(.L__profc___ucmpdi2+24), %r3
+	or	%r3, lo(.L__profc___ucmpdi2+24), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ucmpdi2+28), %r12
+	or	%r12, lo(.L__profc___ucmpdi2+28), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	or	%r0, 0x0, %r3
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
@@ -9795,6 +16053,18 @@ __ucmpdi2:                              ! @__ucmpdi2
 	bt	.LBB149_7
 	nop
 .LBB149_7:
+	mov	hi(.L__profc___ucmpdi2+32), %r3
+	or	%r3, lo(.L__profc___ucmpdi2+32), %r9
+	ld	0[%r9], %r3
+	mov	hi(.L__profc___ucmpdi2+36), %r12
+	or	%r12, lo(.L__profc___ucmpdi2+36), %r13
+	ld	0[%r13], %r12
+	add	%r12, 0x1, %r12
+	sub.f	%r12, 0x0, %r0
+	seq	%r14
+	add	%r3, %r14, %r3
+	st	%r12, 0[%r13]
+	st	%r3, 0[%r9]
 	mov	0x2, %r3
 	bt	.LBB149_9
 	st	%r3, -12[%fp]
@@ -9830,6 +16100,18 @@ __aeabi_ulcmp:                          ! @__aeabi_ulcmp
 	or	%r3, 0x4, %r3
 	st	%r19, 0[%r3]
 	st	%r18, -24[%fp]
+	mov	hi(.L__profc___aeabi_ulcmp), %r12
+	or	%r12, lo(.L__profc___aeabi_ulcmp), %r13
+	ld	0[%r13], %r12
+	mov	hi(.L__profc___aeabi_ulcmp+4), %r14
+	or	%r14, lo(.L__profc___aeabi_ulcmp+4), %r16
+	ld	0[%r16], %r14
+	add	%r14, 0x1, %r14
+	sub.f	%r14, 0x0, %r0
+	seq	%r17
+	add	%r12, %r17, %r12
+	st	%r14, 0[%r16]
+	st	%r12, 0[%r13]
 	ld	0[%r9], %r7
 	ld	-16[%fp], %r6
 	ld	0[%r3], %r19
@@ -9857,6 +16139,3486 @@ digits:
 	.type	seed,@object                    ! @seed
 	.local	seed
 	.comm	seed,8,8
+	.hidden	__llvm_profile_runtime
+	.type	.L__profc_memmove,@object       ! @__profc_memmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profc_memmove:
+	.zero	40
+	.size	.L__profc_memmove, 40
+
+	.type	.L__profd_memmove,@object       ! @__profd_memmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profd_memmove:
+	.quad	-306081897096246147             ! 0xfbc09422e3668c7d
+	.quad	-4061701397412038936            ! 0xc7a1f0194f8c36e8
+	.long	.L__profc_memmove-.L__profd_memmove
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memmove, 48
+
+	.type	.L__profc_memccpy,@object       ! @__profc_memccpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profc_memccpy:
+	.zero	40
+	.size	.L__profc_memccpy, 40
+
+	.type	.L__profd_memccpy,@object       ! @__profd_memccpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profd_memccpy:
+	.quad	-1590863763861247346            ! 0xe9ec1dd5e5026a8e
+	.quad	1189690007454808                ! 0x43a044a498458
+	.long	.L__profc_memccpy-.L__profd_memccpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memccpy, 48
+
+	.type	.L__profc_memchr,@object        ! @__profc_memchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profc_memchr:
+	.zero	40
+	.size	.L__profc_memchr, 40
+
+	.type	.L__profd_memchr,@object        ! @__profd_memchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profd_memchr:
+	.quad	5708666158622859656             ! 0x4f3941a01e026188
+	.quad	4538308109                      ! 0x10e81160d
+	.long	.L__profc_memchr-.L__profd_memchr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memchr, 48
+
+	.type	.L__profc_memcmp,@object        ! @__profc_memcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profc_memcmp:
+	.zero	40
+	.size	.L__profc_memcmp, 40
+
+	.type	.L__profd_memcmp,@object        ! @__profd_memcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profd_memcmp:
+	.quad	-4679550853048924350            ! 0xbf0ee54adfa48742
+	.quad	4538045965                      ! 0x10e7d160d
+	.long	.L__profc_memcmp-.L__profd_memcmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memcmp, 48
+
+	.type	.L__profc_memcpy,@object        ! @__profc_memcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profc_memcpy:
+	.zero	16
+	.size	.L__profc_memcpy, 16
+
+	.type	.L__profd_memcpy,@object        ! @__profd_memcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profd_memcpy:
+	.quad	3893303423671325810             ! 0x3607cad612bdd472
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_memcpy-.L__profd_memcpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memcpy, 48
+
+	.type	.L__profc_memrchr,@object       ! @__profc_memrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profc_memrchr:
+	.zero	24
+	.size	.L__profc_memrchr, 24
+
+	.type	.L__profd_memrchr,@object       ! @__profd_memrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profd_memrchr:
+	.quad	-548334422562728352             ! 0xf863ecbf75079660
+	.quad	9516882138200                   ! 0x8a7d2611458
+	.long	.L__profc_memrchr-.L__profd_memrchr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memrchr, 48
+
+	.type	.L__profc_memset,@object        ! @__profc_memset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profc_memset:
+	.zero	16
+	.size	.L__profc_memset, 16
+
+	.type	.L__profd_memset,@object        ! @__profd_memset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profd_memset:
+	.quad	-2741574704065975695            ! 0xd9f3f85506f36a71
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_memset-.L__profd_memset
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memset, 48
+
+	.type	.L__profc_stpcpy,@object        ! @__profc_stpcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profc_stpcpy:
+	.zero	16
+	.size	.L__profc_stpcpy, 16
+
+	.type	.L__profd_stpcpy,@object        ! @__profd_stpcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profd_stpcpy:
+	.quad	4454833295779690053             ! 0x3dd2bf47a087f645
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_stpcpy-.L__profd_stpcpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_stpcpy, 48
+
+	.type	.L__profc_strchrnul,@object     ! @__profc_strchrnul
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profc_strchrnul:
+	.zero	32
+	.size	.L__profc_strchrnul, 32
+
+	.type	.L__profd_strchrnul,@object     ! @__profd_strchrnul
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profd_strchrnul:
+	.quad	5039208642683934005             ! 0x45eedd8fc8411535
+	.quad	70911064                        ! 0x43a0458
+	.long	.L__profc_strchrnul-.L__profd_strchrnul
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strchrnul, 48
+
+	.type	.L__profc_strchr,@object        ! @__profc_strchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profc_strchr:
+	.zero	24
+	.size	.L__profc_strchr, 24
+
+	.type	.L__profd_strchr,@object        ! @__profd_strchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profd_strchr:
+	.quad	-5671522429266412413            ! 0xb14ab4664bea3c83
+	.quad	13914928649304                  ! 0xca7d2611458
+	.long	.L__profc_strchr-.L__profd_strchr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strchr, 48
+
+	.type	.L__profc_strcmp,@object        ! @__profc_strcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profc_strcmp:
+	.zero	32
+	.size	.L__profc_strcmp, 32
+
+	.type	.L__profd_strcmp,@object        ! @__profd_strcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profd_strcmp:
+	.quad	1013198891307352868             ! 0xe0f9b060331c324
+	.quad	70906968                        ! 0x439f458
+	.long	.L__profc_strcmp-.L__profd_strcmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strcmp, 48
+
+	.type	.L__profc_strlen,@object        ! @__profc_strlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profc_strlen:
+	.zero	16
+	.size	.L__profc_strlen, 16
+
+	.type	.L__profd_strlen,@object        ! @__profd_strlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profd_strlen:
+	.quad	2965136410638013299             ! 0x292647db02a7d373
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_strlen-.L__profd_strlen
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strlen, 48
+
+	.type	.L__profc_strncmp,@object       ! @__profc_strncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profc_strncmp:
+	.zero	72
+	.size	.L__profc_strncmp, 72
+
+	.type	.L__profd_strncmp,@object       ! @__profd_strncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profd_strncmp:
+	.quad	-6058495834680104774            ! 0xabebe6233cb568ba
+	.quad	7207353986825238351             ! 0x6405aa43cb36b74f
+	.long	.L__profc_strncmp-.L__profd_strncmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strncmp, 48
+
+	.type	.L__profc_swab,@object          ! @__profc_swab
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profc_swab:
+	.zero	16
+	.size	.L__profc_swab, 16
+
+	.type	.L__profd_swab,@object          ! @__profd_swab
+	.section	__llvm_prf_data,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profd_swab:
+	.quad	-1619950660557759641            ! 0xe984c77503cb9b67
+	.quad	18193                           ! 0x4711
+	.long	.L__profc_swab-.L__profd_swab
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_swab, 48
+
+	.type	.L__profc_isalpha,@object       ! @__profc_isalpha
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profc_isalpha:
+	.zero	8
+	.size	.L__profc_isalpha, 8
+
+	.type	.L__profd_isalpha,@object       ! @__profd_isalpha
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profd_isalpha:
+	.quad	-1429966999967671460            ! 0xec27bc96fe655b5c
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_isalpha-.L__profd_isalpha
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isalpha, 48
+
+	.type	.L__profc_isascii,@object       ! @__profc_isascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profc_isascii:
+	.zero	8
+	.size	.L__profc_isascii, 8
+
+	.type	.L__profd_isascii,@object       ! @__profd_isascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profd_isascii:
+	.quad	-4792250000779744687            ! 0xbd7e8203c4a86a51
+	.quad	1562                            ! 0x61a
+	.long	.L__profc_isascii-.L__profd_isascii
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isascii, 48
+
+	.type	.L__profc_isblank,@object       ! @__profc_isblank
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profc_isblank:
+	.zero	24
+	.size	.L__profc_isblank, 24
+
+	.type	.L__profd_isblank,@object       ! @__profd_isblank
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profd_isblank:
+	.quad	2465200613623135234             ! 0x223626e59b14fc02
+	.quad	6354911                         ! 0x60f7df
+	.long	.L__profc_isblank-.L__profd_isblank
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isblank, 48
+
+	.type	.L__profc_iscntrl,@object       ! @__profc_iscntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profc_iscntrl:
+	.zero	24
+	.size	.L__profc_iscntrl, 24
+
+	.type	.L__profd_iscntrl,@object       ! @__profd_iscntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profd_iscntrl:
+	.quad	8897732069425577183             ! 0x7b7b182cc8b67cdf
+	.quad	6354655                         ! 0x60f6df
+	.long	.L__profc_iscntrl-.L__profd_iscntrl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_iscntrl, 48
+
+	.type	.L__profc_isdigit,@object       ! @__profc_isdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profc_isdigit:
+	.zero	8
+	.size	.L__profc_isdigit, 8
+
+	.type	.L__profd_isdigit,@object       ! @__profd_isdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profd_isdigit:
+	.quad	3483985654529092453             ! 0x30599a7e6cc36b65
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_isdigit-.L__profd_isdigit
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isdigit, 48
+
+	.type	.L__profc_isgraph,@object       ! @__profc_isgraph
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profc_isgraph:
+	.zero	8
+	.size	.L__profc_isgraph, 8
+
+	.type	.L__profd_isgraph,@object       ! @__profd_isgraph
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profd_isgraph:
+	.quad	-127227288456547236             ! 0xfe3bff7489cfb45c
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_isgraph-.L__profd_isgraph
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isgraph, 48
+
+	.type	.L__profc_islower,@object       ! @__profc_islower
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profc_islower:
+	.zero	8
+	.size	.L__profc_islower, 8
+
+	.type	.L__profd_islower,@object       ! @__profd_islower
+	.section	__llvm_prf_data,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profd_islower:
+	.quad	7501983819047161697             ! 0x681c66894508cf61
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_islower-.L__profd_islower
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_islower, 48
+
+	.type	.L__profc_isprint,@object       ! @__profc_isprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profc_isprint:
+	.zero	8
+	.size	.L__profc_isprint, 8
+
+	.type	.L__profd_isprint,@object       ! @__profd_isprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profd_isprint:
+	.quad	-7275761640889424986            ! 0x9b074d56145f63a6
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_isprint-.L__profd_isprint
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isprint, 48
+
+	.type	.L__profc_isspace,@object       ! @__profc_isspace
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profc_isspace:
+	.zero	24
+	.size	.L__profc_isspace, 24
+
+	.type	.L__profd_isspace,@object       ! @__profd_isspace
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profd_isspace:
+	.quad	9032360604355461395             ! 0x7d59641d39d70113
+	.quad	6354907                         ! 0x60f7db
+	.long	.L__profc_isspace-.L__profd_isspace
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isspace, 48
+
+	.type	.L__profc_isupper,@object       ! @__profc_isupper
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profc_isupper:
+	.zero	8
+	.size	.L__profc_isupper, 8
+
+	.type	.L__profd_isupper,@object       ! @__profd_isupper
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profd_isupper:
+	.quad	4174714232255583053             ! 0x39ef9079c45c934d
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_isupper-.L__profd_isupper
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_isupper, 48
+
+	.type	.L__profc_iswcntrl,@object      ! @__profc_iswcntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profc_iswcntrl:
+	.zero	56
+	.size	.L__profc_iswcntrl, 56
+
+	.type	.L__profd_iswcntrl,@object      ! @__profd_iswcntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profd_iswcntrl:
+	.quad	7000259844681188668             ! 0x6125eb3d61a7453c
+	.quad	106600273393371                 ! 0x60f3cf6db6db
+	.long	.L__profc_iswcntrl-.L__profd_iswcntrl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_iswcntrl, 48
+
+	.type	.L__profc_iswdigit,@object      ! @__profc_iswdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profc_iswdigit:
+	.zero	8
+	.size	.L__profc_iswdigit, 8
+
+	.type	.L__profd_iswdigit,@object      ! @__profd_iswdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profd_iswdigit:
+	.quad	8583753245428091608             ! 0x771f9e1919590ad8
+	.quad	1563                            ! 0x61b
+	.long	.L__profc_iswdigit-.L__profd_iswdigit
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_iswdigit, 48
+
+	.type	.L__profc_iswprint,@object      ! @__profc_iswprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profc_iswprint:
+	.zero	80
+	.size	.L__profc_iswprint, 80
+
+	.type	.L__profd_iswprint,@object      ! @__profd_iswprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profd_iswprint:
+	.quad	-719555261641779946             ! 0xf603a04d49941516
+	.quad	-2566119187471392224            ! 0xdc635031e3742220
+	.long	.L__profc_iswprint-.L__profd_iswprint
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	10                              ! 0xa
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_iswprint, 48
+
+	.type	.L__profc_iswxdigit,@object     ! @__profc_iswxdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profc_iswxdigit:
+	.zero	24
+	.size	.L__profc_iswxdigit, 24
+
+	.type	.L__profd_iswxdigit,@object     ! @__profd_iswxdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profd_iswxdigit:
+	.quad	624771703830219826              ! 0x8aba28df0840c32
+	.quad	6354651                         ! 0x60f6db
+	.long	.L__profc_iswxdigit-.L__profd_iswxdigit
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_iswxdigit, 48
+
+	.type	.L__profc_toascii,@object       ! @__profc_toascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profc_toascii:
+	.zero	8
+	.size	.L__profc_toascii, 8
+
+	.type	.L__profd_toascii,@object       ! @__profd_toascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profd_toascii:
+	.quad	4548159975983457080             ! 0x3f1e4f66a624a338
+	.quad	24                              ! 0x18
+	.long	.L__profc_toascii-.L__profd_toascii
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_toascii, 48
+
+	.type	.L__profc_fdim,@object          ! @__profc_fdim
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profc_fdim:
+	.zero	32
+	.size	.L__profc_fdim, 32
+
+	.type	.L__profd_fdim,@object          ! @__profd_fdim
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profd_fdim:
+	.quad	-3545869933759497925            ! 0xceca8a150286f93b
+	.quad	7369846577040809592             ! 0x6646f46a29a55e78
+	.long	.L__profc_fdim-.L__profd_fdim
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fdim, 48
+
+	.type	.L__profc_fdimf,@object         ! @__profc_fdimf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profc_fdimf:
+	.zero	32
+	.size	.L__profc_fdimf, 32
+
+	.type	.L__profd_fdimf,@object         ! @__profd_fdimf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profd_fdimf:
+	.quad	-1547869627280940664            ! 0xea84dcc6634da188
+	.quad	7369846577040809592             ! 0x6646f46a29a55e78
+	.long	.L__profc_fdimf-.L__profd_fdimf
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fdimf, 48
+
+	.type	.L__profc_fmax,@object          ! @__profc_fmax
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profc_fmax:
+	.zero	48
+	.size	.L__profc_fmax, 48
+
+	.type	.L__profd_fmax,@object          ! @__profd_fmax
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profd_fmax:
+	.quad	-2423801789625842334            ! 0xde5ced1d3b654562
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fmax-.L__profd_fmax
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fmax, 48
+
+	.type	.L__profc_fmaxf,@object         ! @__profc_fmaxf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profc_fmaxf:
+	.zero	48
+	.size	.L__profc_fmaxf, 48
+
+	.type	.L__profd_fmaxf,@object         ! @__profd_fmaxf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profd_fmaxf:
+	.quad	-5134209104457391460            ! 0xb8bfa0058e3da29c
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fmaxf-.L__profd_fmaxf
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fmaxf, 48
+
+	.type	.L__profc_fmaxl,@object         ! @__profc_fmaxl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profc_fmaxl:
+	.zero	48
+	.size	.L__profc_fmaxl, 48
+
+	.type	.L__profd_fmaxl,@object         ! @__profd_fmaxl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profd_fmaxl:
+	.quad	-3138580006960380340            ! 0xd471861cd1fbc64c
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fmaxl-.L__profd_fmaxl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fmaxl, 48
+
+	.type	.L__profc_fmin,@object          ! @__profc_fmin
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profc_fmin:
+	.zero	48
+	.size	.L__profc_fmin, 48
+
+	.type	.L__profd_fmin,@object          ! @__profd_fmin
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profd_fmin:
+	.quad	965427315610335377              ! 0xd65e3074b69b891
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fmin-.L__profd_fmin
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fmin, 48
+
+	.type	.L__profc_fminf,@object         ! @__profc_fminf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profc_fminf:
+	.zero	48
+	.size	.L__profc_fminf, 48
+
+	.type	.L__profd_fminf,@object         ! @__profd_fminf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profd_fminf:
+	.quad	7710199602704325723             ! 0x6b0021b0328c9c5b
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fminf-.L__profd_fminf
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fminf, 48
+
+	.type	.L__profc_fminl,@object         ! @__profc_fminl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profc_fminl:
+	.zero	48
+	.size	.L__profc_fminl, 48
+
+	.type	.L__profd_fminl,@object         ! @__profd_fminl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profd_fminl:
+	.quad	2487418697363824514             ! 0x2285162058091f82
+	.quad	3977842549302548673             ! 0x373422b91b9cd8c1
+	.long	.L__profc_fminl-.L__profd_fminl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_fminl, 48
+
+	.type	.L__profc_l64a,@object          ! @__profc_l64a
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profc_l64a:
+	.zero	16
+	.size	.L__profc_l64a, 16
+
+	.type	.L__profd_l64a,@object          ! @__profd_l64a
+	.section	__llvm_prf_data,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profd_l64a:
+	.quad	-6158745991357604691            ! 0xaa87bd26bb44dcad
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_l64a-.L__profd_l64a
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_l64a, 48
+
+	.type	.L__profc_srand,@object         ! @__profc_srand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profc_srand:
+	.zero	8
+	.size	.L__profc_srand, 8
+
+	.type	.L__profd_srand,@object         ! @__profd_srand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profd_srand:
+	.quad	-2085616837322687880            ! 0xe30e668959ceba78
+	.quad	0                               ! 0x0
+	.long	.L__profc_srand-.L__profd_srand
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_srand, 48
+
+	.type	.L__profc_rand,@object          ! @__profc_rand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profc_rand:
+	.zero	8
+	.size	.L__profc_rand, 8
+
+	.type	.L__profd_rand,@object          ! @__profd_rand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profd_rand:
+	.quad	7206085285791387956             ! 0x6401286350c3d134
+	.quad	24                              ! 0x18
+	.long	.L__profc_rand-.L__profd_rand
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rand, 48
+
+	.type	.L__profc_insque,@object        ! @__profc_insque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profc_insque:
+	.zero	24
+	.size	.L__profc_insque, 24
+
+	.type	.L__profd_insque,@object        ! @__profd_insque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profd_insque:
+	.quad	-5080349535175464041            ! 0xb97ef903bd0bab97
+	.quad	45786906010769                  ! 0x29a49844a491
+	.long	.L__profc_insque-.L__profd_insque
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_insque, 48
+
+	.type	.L__profc_remque,@object        ! @__profc_remque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profc_remque:
+	.zero	24
+	.size	.L__profc_remque, 24
+
+	.type	.L__profd_remque,@object        ! @__profd_remque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profd_remque:
+	.quad	-7214219538753974334            ! 0x9be1f18d54e30fc2
+	.quad	11043906705                     ! 0x29244a491
+	.long	.L__profc_remque-.L__profd_remque
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_remque, 48
+
+	.type	.L__profc_lsearch,@object       ! @__profc_lsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profc_lsearch:
+	.zero	24
+	.size	.L__profc_lsearch, 24
+
+	.type	.L__profd_lsearch,@object       ! @__profd_lsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profd_lsearch:
+	.quad	-7032153342590886098            ! 0x9e68c5caf8cb5f2e
+	.quad	1245367951758424                ! 0x46ca7d2611458
+	.long	.L__profc_lsearch-.L__profd_lsearch
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_lsearch, 48
+
+	.type	.L__profc_lfind,@object         ! @__profc_lfind
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profc_lfind:
+	.zero	24
+	.size	.L__profc_lfind, 24
+
+	.type	.L__profd_lfind,@object         ! @__profd_lfind
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profd_lfind:
+	.quad	-6350214982902907667            ! 0xa7df811e30b57ced
+	.quad	1245367951758424                ! 0x46ca7d2611458
+	.long	.L__profc_lfind-.L__profd_lfind
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_lfind, 48
+
+	.type	.L__profc_abs,@object           ! @__profc_abs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profc_abs:
+	.zero	16
+	.size	.L__profc_abs, 16
+
+	.type	.L__profd_abs,@object           ! @__profd_abs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profd_abs:
+	.quad	-238465663743841031             ! 0xfcb0ccbe056bacf9
+	.quad	99164                           ! 0x1835c
+	.long	.L__profc_abs-.L__profd_abs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_abs, 48
+
+	.type	.L__profc_atoi,@object          ! @__profc_atoi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profc_atoi:
+	.zero	56
+	.size	.L__profc_atoi, 56
+
+	.type	.L__profd_atoi,@object          ! @__profd_atoi
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profd_atoi:
+	.quad	-6544211519801369139            ! 0xa52e4a4ba3385dcd
+	.quad	638206505195021                 ! 0x244720809160d
+	.long	.L__profc_atoi-.L__profd_atoi
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_atoi, 48
+
+	.type	.L__profc_atol,@object          ! @__profc_atol
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profc_atol:
+	.zero	56
+	.size	.L__profc_atol, 56
+
+	.type	.L__profd_atol,@object          ! @__profd_atol
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profd_atol:
+	.quad	8236175749196770609             ! 0x724cc634ee8f6d31
+	.quad	638206505195021                 ! 0x244720809160d
+	.long	.L__profc_atol-.L__profd_atol
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_atol, 48
+
+	.type	.L__profc_atoll,@object         ! @__profc_atoll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profc_atoll:
+	.zero	56
+	.size	.L__profc_atoll, 56
+
+	.type	.L__profd_atoll,@object         ! @__profd_atoll
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profd_atoll:
+	.quad	3653807471789013357             ! 0x32b4ee8971a6f96d
+	.quad	638206505195021                 ! 0x244720809160d
+	.long	.L__profc_atoll-.L__profd_atoll
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_atoll, 48
+
+	.type	.L__profc_bsearch,@object       ! @__profc_bsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profc_bsearch:
+	.zero	32
+	.size	.L__profc_bsearch, 32
+
+	.type	.L__profd_bsearch,@object       ! @__profd_bsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profd_bsearch:
+	.quad	8750110911118262334             ! 0x796ea3837a79403e
+	.quad	-852542619444921222             ! 0xf42b29012c1abc7a
+	.long	.L__profc_bsearch-.L__profd_bsearch
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bsearch, 48
+
+	.type	.L__profc_bsearch_r,@object     ! @__profc_bsearch_r
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profc_bsearch_r:
+	.zero	32
+	.size	.L__profc_bsearch_r, 32
+
+	.type	.L__profd_bsearch_r,@object     ! @__profd_bsearch_r
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profd_bsearch_r:
+	.quad	1417097008757763708             ! 0x13aa8a38ab466e7c
+	.quad	1259382983000112142             ! 0x117a3a2689e4bc0e
+	.long	.L__profc_bsearch_r-.L__profd_bsearch_r
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bsearch_r, 48
+
+	.type	.L__profc_div,@object           ! @__profc_div
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profc_div:
+	.zero	8
+	.size	.L__profc_div, 8
+
+	.type	.L__profd_div,@object           ! @__profd_div
+	.section	__llvm_prf_data,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profd_div:
+	.quad	5497092892325669176             ! 0x4c4998dc58656938
+	.quad	24                              ! 0x18
+	.long	.L__profc_div-.L__profd_div
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_div, 48
+
+	.type	.L__profc_imaxabs,@object       ! @__profc_imaxabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profc_imaxabs:
+	.zero	16
+	.size	.L__profc_imaxabs, 16
+
+	.type	.L__profd_imaxabs,@object       ! @__profd_imaxabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profd_imaxabs:
+	.quad	8946668544180752025             ! 0x7c28f3a3b30e0e99
+	.quad	99164                           ! 0x1835c
+	.long	.L__profc_imaxabs-.L__profd_imaxabs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_imaxabs, 48
+
+	.type	.L__profc_imaxdiv,@object       ! @__profc_imaxdiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profc_imaxdiv:
+	.zero	8
+	.size	.L__profc_imaxdiv, 8
+
+	.type	.L__profd_imaxdiv,@object       ! @__profd_imaxdiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profd_imaxdiv:
+	.quad	-3928426486442246988            ! 0xc97b6cec9d5fbcb4
+	.quad	24                              ! 0x18
+	.long	.L__profc_imaxdiv-.L__profd_imaxdiv
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_imaxdiv, 48
+
+	.type	.L__profc_labs,@object          ! @__profc_labs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profc_labs:
+	.zero	16
+	.size	.L__profc_labs, 16
+
+	.type	.L__profd_labs,@object          ! @__profd_labs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profd_labs:
+	.quad	-7118441263952323418            ! 0x9d363762b3a39ca6
+	.quad	99164                           ! 0x1835c
+	.long	.L__profc_labs-.L__profd_labs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_labs, 48
+
+	.type	.L__profc_ldiv,@object          ! @__profc_ldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profc_ldiv:
+	.zero	8
+	.size	.L__profc_ldiv, 8
+
+	.type	.L__profd_ldiv,@object          ! @__profd_ldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profd_ldiv:
+	.quad	7149836041034155625             ! 0x633951ff74204669
+	.quad	24                              ! 0x18
+	.long	.L__profc_ldiv-.L__profd_ldiv
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_ldiv, 48
+
+	.type	.L__profc_llabs,@object         ! @__profc_llabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profc_llabs:
+	.zero	16
+	.size	.L__profc_llabs, 16
+
+	.type	.L__profd_llabs,@object         ! @__profd_llabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profd_llabs:
+	.quad	7684789126781046466             ! 0x6aa5dafebb918ec2
+	.quad	99164                           ! 0x1835c
+	.long	.L__profc_llabs-.L__profd_llabs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_llabs, 48
+
+	.type	.L__profc_lldiv,@object         ! @__profc_lldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profc_lldiv:
+	.zero	8
+	.size	.L__profc_lldiv, 8
+
+	.type	.L__profd_lldiv,@object         ! @__profd_lldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profd_lldiv:
+	.quad	-5329156747615108898            ! 0xb60b082c520680de
+	.quad	24                              ! 0x18
+	.long	.L__profc_lldiv-.L__profd_lldiv
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_lldiv, 48
+
+	.type	.L__profc_wcschr,@object        ! @__profc_wcschr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profc_wcschr:
+	.zero	40
+	.size	.L__profc_wcschr, 40
+
+	.type	.L__profd_wcschr,@object        ! @__profd_wcschr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profd_wcschr:
+	.quad	-2279810736707830048            ! 0xe05c7c36c3687ee0
+	.quad	4538308109                      ! 0x10e81160d
+	.long	.L__profc_wcschr-.L__profd_wcschr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wcschr, 48
+
+	.type	.L__profc_wcscmp,@object        ! @__profc_wcscmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profc_wcscmp:
+	.zero	56
+	.size	.L__profc_wcscmp, 56
+
+	.type	.L__profd_wcscmp,@object        ! @__profd_wcscmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profd_wcscmp:
+	.quad	-3710185595167438704            ! 0xcc82c5dbcd460890
+	.quad	1188468208228060                ! 0x438e7d160d6dc
+	.long	.L__profc_wcscmp-.L__profd_wcscmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wcscmp, 48
+
+	.type	.L__profc_wcscpy,@object        ! @__profc_wcscpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profc_wcscpy:
+	.zero	16
+	.size	.L__profc_wcscpy, 16
+
+	.type	.L__profd_wcscpy,@object        ! @__profd_wcscpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profd_wcscpy:
+	.quad	-8381368184235816342            ! 0x8baf660af6dd0a6a
+	.quad	9304                            ! 0x2458
+	.long	.L__profc_wcscpy-.L__profd_wcscpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wcscpy, 48
+
+	.type	.L__profc_wcslen,@object        ! @__profc_wcslen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profc_wcslen:
+	.zero	16
+	.size	.L__profc_wcslen, 16
+
+	.type	.L__profd_wcslen,@object        ! @__profd_wcslen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profd_wcslen:
+	.quad	3988408974905483574             ! 0x3759acd4c838a136
+	.quad	17496                           ! 0x4458
+	.long	.L__profc_wcslen-.L__profd_wcslen
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wcslen, 48
+
+	.type	.L__profc_wcsncmp,@object       ! @__profc_wcsncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profc_wcsncmp:
+	.zero	80
+	.size	.L__profc_wcsncmp, 80
+
+	.type	.L__profd_wcsncmp,@object       ! @__profd_wcsncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profd_wcsncmp:
+	.quad	-5425166749483878188            ! 0xb4b5ef95c9c0b8d4
+	.quad	6710790269995215964             ! 0x5d218431fd366c5c
+	.long	.L__profc_wcsncmp-.L__profd_wcsncmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	10                              ! 0xa
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wcsncmp, 48
+
+	.type	.L__profc_wmemchr,@object       ! @__profc_wmemchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profc_wmemchr:
+	.zero	40
+	.size	.L__profc_wmemchr, 40
+
+	.type	.L__profd_wmemchr,@object       ! @__profd_wmemchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profd_wmemchr:
+	.quad	-150916099757221660             ! 0xfde7d69b5b1558e4
+	.quad	4538308109                      ! 0x10e81160d
+	.long	.L__profc_wmemchr-.L__profd_wmemchr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wmemchr, 48
+
+	.type	.L__profc_wmemcmp,@object       ! @__profc_wmemcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profc_wmemcmp:
+	.zero	48
+	.size	.L__profc_wmemcmp, 48
+
+	.type	.L__profd_wmemcmp,@object       ! @__profd_wmemcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profd_wmemcmp:
+	.quad	5386172057678365784             ! 0x4abf86f3050dc458
+	.quad	1189621521503964                ! 0x439f45834d6dc
+	.long	.L__profc_wmemcmp-.L__profd_wmemcmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	6                               ! 0x6
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wmemcmp, 48
+
+	.type	.L__profc_wmemcpy,@object       ! @__profc_wmemcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profc_wmemcpy:
+	.zero	16
+	.size	.L__profc_wmemcpy, 16
+
+	.type	.L__profd_wmemcpy,@object       ! @__profd_wmemcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profd_wmemcpy:
+	.quad	7326050423799855187             ! 0x65ab5c0b9d30b853
+	.quad	9304                            ! 0x2458
+	.long	.L__profc_wmemcpy-.L__profd_wmemcpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wmemcpy, 48
+
+	.type	.L__profc_wmemmove,@object      ! @__profc_wmemmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profc_wmemmove:
+	.zero	40
+	.size	.L__profc_wmemmove, 40
+
+	.type	.L__profd_wmemmove,@object      ! @__profd_wmemmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profd_wmemmove:
+	.quad	-4659407939446788683            ! 0xbf56752a69a3adb5
+	.quad	-1500206092990891740            ! 0xeb2e3281c166b924
+	.long	.L__profc_wmemmove-.L__profd_wmemmove
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wmemmove, 48
+
+	.type	.L__profc_wmemset,@object       ! @__profc_wmemset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profc_wmemset:
+	.zero	16
+	.size	.L__profc_wmemset, 16
+
+	.type	.L__profd_wmemset,@object       ! @__profd_wmemset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profd_wmemset:
+	.quad	-8291142148468431281            ! 0x8ceff224f245264f
+	.quad	9304                            ! 0x2458
+	.long	.L__profc_wmemset-.L__profd_wmemset
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_wmemset, 48
+
+	.type	.L__profc_bcopy,@object         ! @__profc_bcopy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profc_bcopy:
+	.zero	40
+	.size	.L__profc_bcopy, 40
+
+	.type	.L__profd_bcopy,@object         ! @__profd_bcopy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profd_bcopy:
+	.quad	-8407331144368071880            ! 0x8b5328de3edcdb38
+	.quad	5234109875325077019             ! 0x48a34b333a1d861b
+	.long	.L__profc_bcopy-.L__profd_bcopy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bcopy, 48
+
+	.type	.L__profc_rotl64,@object        ! @__profc_rotl64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profc_rotl64:
+	.zero	8
+	.size	.L__profc_rotl64, 8
+
+	.type	.L__profd_rotl64,@object        ! @__profd_rotl64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profd_rotl64:
+	.quad	4714666614722164144             ! 0x416ddc4e84e875b0
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotl64-.L__profd_rotl64
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotl64, 48
+
+	.type	.L__profc_rotr64,@object        ! @__profc_rotr64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profc_rotr64:
+	.zero	8
+	.size	.L__profc_rotr64, 8
+
+	.type	.L__profd_rotr64,@object        ! @__profd_rotr64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profd_rotr64:
+	.quad	-8427642833712987187            ! 0x8b0aff7e8aabc3cd
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotr64-.L__profd_rotr64
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotr64, 48
+
+	.type	.L__profc_rotl32,@object        ! @__profc_rotl32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profc_rotl32:
+	.zero	8
+	.size	.L__profc_rotl32, 8
+
+	.type	.L__profd_rotl32,@object        ! @__profd_rotl32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profd_rotl32:
+	.quad	6417704780586152324             ! 0x5910447ed829f184
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotl32-.L__profd_rotl32
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotl32, 48
+
+	.type	.L__profc_rotr32,@object        ! @__profc_rotr32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profc_rotr32:
+	.zero	8
+	.size	.L__profc_rotr32, 8
+
+	.type	.L__profd_rotr32,@object        ! @__profd_rotr32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profd_rotr32:
+	.quad	-5668908084823466940            ! 0xb153fe21cbc1dc44
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotr32-.L__profd_rotr32
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotr32, 48
+
+	.type	.L__profc_rotl_sz,@object       ! @__profc_rotl_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profc_rotl_sz:
+	.zero	8
+	.size	.L__profc_rotl_sz, 8
+
+	.type	.L__profd_rotl_sz,@object       ! @__profd_rotl_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profd_rotl_sz:
+	.quad	-3686623714176605670            ! 0xccd67b43b7f8e21a
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotl_sz-.L__profd_rotl_sz
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotl_sz, 48
+
+	.type	.L__profc_rotr_sz,@object       ! @__profc_rotr_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profc_rotr_sz:
+	.zero	8
+	.size	.L__profc_rotr_sz, 8
+
+	.type	.L__profd_rotr_sz,@object       ! @__profd_rotr_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profd_rotr_sz:
+	.quad	3415499704483829380             ! 0x2f664ae29835d684
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotr_sz-.L__profd_rotr_sz
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotr_sz, 48
+
+	.type	.L__profc_rotl16,@object        ! @__profc_rotl16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profc_rotl16:
+	.zero	8
+	.size	.L__profc_rotl16, 8
+
+	.type	.L__profd_rotl16,@object        ! @__profd_rotl16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profd_rotl16:
+	.quad	7327166975465201445             ! 0x65af538b0e939f25
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotl16-.L__profd_rotl16
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotl16, 48
+
+	.type	.L__profc_rotr16,@object        ! @__profc_rotr16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profc_rotr16:
+	.zero	8
+	.size	.L__profc_rotr16, 8
+
+	.type	.L__profd_rotr16,@object        ! @__profd_rotr16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profd_rotr16:
+	.quad	5274763753728838268             ! 0x4933b9afe71d0a7c
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotr16-.L__profd_rotr16
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotr16, 48
+
+	.type	.L__profc_rotl8,@object         ! @__profc_rotl8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profc_rotl8:
+	.zero	8
+	.size	.L__profc_rotl8, 8
+
+	.type	.L__profd_rotl8,@object         ! @__profd_rotl8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profd_rotl8:
+	.quad	4408423234350850624             ! 0x3d2ddd93270fa240
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotl8-.L__profd_rotl8
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotl8, 48
+
+	.type	.L__profc_rotr8,@object         ! @__profc_rotr8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profc_rotr8:
+	.zero	8
+	.size	.L__profc_rotr8, 8
+
+	.type	.L__profd_rotr8,@object         ! @__profd_rotr8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profd_rotr8:
+	.quad	-6535801773217052896            ! 0xa54c2aea59078720
+	.quad	24                              ! 0x18
+	.long	.L__profc_rotr8-.L__profd_rotr8
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_rotr8, 48
+
+	.type	.L__profc_bswap_16,@object      ! @__profc_bswap_16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profc_bswap_16:
+	.zero	8
+	.size	.L__profc_bswap_16, 8
+
+	.type	.L__profd_bswap_16,@object      ! @__profd_bswap_16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profd_bswap_16:
+	.quad	-8870828063230114195            ! 0x84e47ce04b9a466d
+	.quad	24                              ! 0x18
+	.long	.L__profc_bswap_16-.L__profd_bswap_16
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bswap_16, 48
+
+	.type	.L__profc_bswap_32,@object      ! @__profc_bswap_32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profc_bswap_32:
+	.zero	8
+	.size	.L__profc_bswap_32, 8
+
+	.type	.L__profd_bswap_32,@object      ! @__profd_bswap_32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profd_bswap_32:
+	.quad	7304833549461180700             ! 0x655ffb691afd511c
+	.quad	24                              ! 0x18
+	.long	.L__profc_bswap_32-.L__profd_bswap_32
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bswap_32, 48
+
+	.type	.L__profc_bswap_64,@object      ! @__profc_bswap_64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profc_bswap_64:
+	.zero	8
+	.size	.L__profc_bswap_64, 8
+
+	.type	.L__profd_bswap_64,@object      ! @__profd_bswap_64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profd_bswap_64:
+	.quad	2873856403134720854             ! 0x27e1fd2c1c53ab56
+	.quad	24                              ! 0x18
+	.long	.L__profc_bswap_64-.L__profd_bswap_64
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_bswap_64, 48
+
+	.type	.L__profc_ffs,@object           ! @__profc_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profc_ffs:
+	.zero	24
+	.size	.L__profc_ffs, 24
+
+	.type	.L__profd_ffs,@object           ! @__profd_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profd_ffs:
+	.quad	9222170723057548859             ! 0x7ffbbb6955da3e3b
+	.quad	19458657686616                  ! 0x11b292611458
+	.long	.L__profc_ffs-.L__profd_ffs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_ffs, 48
+
+	.type	.L__profc_libiberty_ffs,@object ! @__profc_libiberty_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profc_libiberty_ffs:
+	.zero	24
+	.size	.L__profc_libiberty_ffs, 24
+
+	.type	.L__profd_libiberty_ffs,@object ! @__profd_libiberty_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profd_libiberty_ffs:
+	.quad	65216057573358521               ! 0xe7b1a8a94fbbb9
+	.quad	2952352215704664                ! 0xa7d261111a458
+	.long	.L__profc_libiberty_ffs-.L__profd_libiberty_ffs
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_libiberty_ffs, 48
+
+	.type	.L__profc_gl_isinff,@object     ! @__profc_gl_isinff
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profc_gl_isinff:
+	.zero	24
+	.size	.L__profc_gl_isinff, 24
+
+	.type	.L__profd_gl_isinff,@object     ! @__profd_gl_isinff
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profd_gl_isinff:
+	.quad	6535010584615638394             ! 0x5ab10580b36ed57a
+	.quad	6354652                         ! 0x60f6dc
+	.long	.L__profc_gl_isinff-.L__profd_gl_isinff
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_gl_isinff, 48
+
+	.type	.L__profc_gl_isinfd,@object     ! @__profc_gl_isinfd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profc_gl_isinfd:
+	.zero	24
+	.size	.L__profc_gl_isinfd, 24
+
+	.type	.L__profd_gl_isinfd,@object     ! @__profd_gl_isinfd
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profd_gl_isinfd:
+	.quad	-9165907066207032774            ! 0x80cc28161a7caa3a
+	.quad	6354652                         ! 0x60f6dc
+	.long	.L__profc_gl_isinfd-.L__profd_gl_isinfd
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_gl_isinfd, 48
+
+	.type	.L__profc_gl_isinfl,@object     ! @__profc_gl_isinfl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profc_gl_isinfl:
+	.zero	24
+	.size	.L__profc_gl_isinfl, 24
+
+	.type	.L__profd_gl_isinfl,@object     ! @__profd_gl_isinfl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profd_gl_isinfl:
+	.quad	4731159788068304891             ! 0x41a874c2af6c77fb
+	.quad	6354652                         ! 0x60f6dc
+	.long	.L__profc_gl_isinfl-.L__profd_gl_isinfl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_gl_isinfl, 48
+
+	.type	.L__profc__Qp_itoq,@object      ! @__profc__Qp_itoq
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profc__Qp_itoq:
+	.zero	8
+	.size	.L__profc__Qp_itoq, 8
+
+	.type	.L__profd__Qp_itoq,@object      ! @__profd__Qp_itoq
+	.section	__llvm_prf_data,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profd__Qp_itoq:
+	.quad	-3858125999267273921            ! 0xca752ed84af9a33f
+	.quad	0                               ! 0x0
+	.long	.L__profc__Qp_itoq-.L__profd__Qp_itoq
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd__Qp_itoq, 48
+
+	.type	.L__profc_ldexpf,@object        ! @__profc_ldexpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profc_ldexpf:
+	.zero	64
+	.size	.L__profc_ldexpf, 64
+
+	.type	.L__profd_ldexpf,@object        ! @__profd_ldexpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profd_ldexpf:
+	.quad	-2560632889718296859            ! 0xdc76cdf42028aee5
+	.quad	-2048372819454505383            ! 0xe392b7c600d94e59
+	.long	.L__profc_ldexpf-.L__profd_ldexpf
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	8                               ! 0x8
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_ldexpf, 48
+
+	.type	.L__profc_ldexp,@object         ! @__profc_ldexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profc_ldexp:
+	.zero	64
+	.size	.L__profc_ldexp, 64
+
+	.type	.L__profd_ldexp,@object         ! @__profd_ldexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profd_ldexp:
+	.quad	-240549059163932437             ! 0xfca965e7b97ab8eb
+	.quad	-2048372819454505383            ! 0xe392b7c600d94e59
+	.long	.L__profc_ldexp-.L__profd_ldexp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	8                               ! 0x8
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_ldexp, 48
+
+	.type	.L__profc_ldexpl,@object        ! @__profc_ldexpl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profc_ldexpl:
+	.zero	64
+	.size	.L__profc_ldexpl, 64
+
+	.type	.L__profd_ldexpl,@object        ! @__profd_ldexpl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profd_ldexpl:
+	.quad	-5097262943286299417            ! 0xb942e25c0aa874e7
+	.quad	-2048372819454505383            ! 0xe392b7c600d94e59
+	.long	.L__profc_ldexpl-.L__profd_ldexpl
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	8                               ! 0x8
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_ldexpl, 48
+
+	.type	.L__profc_memxor,@object        ! @__profc_memxor
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profc_memxor:
+	.zero	16
+	.size	.L__profc_memxor, 16
+
+	.type	.L__profd_memxor,@object        ! @__profd_memxor
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profd_memxor:
+	.quad	-8368025376422999318            ! 0x8bdecd417eda4aea
+	.quad	1164376                         ! 0x11c458
+	.long	.L__profc_memxor-.L__profd_memxor
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memxor, 48
+
+	.type	.L__profc_strncat,@object       ! @__profc_strncat
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profc_strncat:
+	.zero	40
+	.size	.L__profc_strncat, 40
+
+	.type	.L__profd_strncat,@object       ! @__profd_strncat
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profd_strncat:
+	.quad	-3582483947543505905            ! 0xce4875d49d21540f
+	.quad	76123606467028056               ! 0x10e72044a7d2458
+	.long	.L__profc_strncat-.L__profd_strncat
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strncat, 48
+
+	.type	.L__profc_strnlen,@object       ! @__profc_strnlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profc_strnlen:
+	.zero	32
+	.size	.L__profc_strnlen, 32
+
+	.type	.L__profd_strnlen,@object       ! @__profd_strnlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profd_strnlen:
+	.quad	517590790318988421              ! 0x72eda14dbfa1c85
+	.quad	4537021528                      ! 0x10e6d7458
+	.long	.L__profc_strnlen-.L__profd_strnlen
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strnlen, 48
+
+	.type	.L__profc_strpbrk,@object       ! @__profc_strpbrk
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profc_strpbrk:
+	.zero	32
+	.size	.L__profc_strpbrk, 32
+
+	.type	.L__profd_strpbrk,@object       ! @__profd_strpbrk
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profd_strpbrk:
+	.quad	-6867074718569872870            ! 0xa0b33fed4193c21a
+	.quad	-4444802448421279214            ! 0xc250e3b905102a12
+	.long	.L__profc_strpbrk-.L__profd_strpbrk
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strpbrk, 48
+
+	.type	.L__profc_strrchr,@object       ! @__profc_strrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profc_strrchr:
+	.zero	24
+	.size	.L__profc_strrchr, 24
+
+	.type	.L__profd_strrchr,@object       ! @__profd_strrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profd_strrchr:
+	.quad	5307837722043833871             ! 0x49a93a493bd75e0f
+	.quad	217420731480                    ! 0x329f491458
+	.long	.L__profc_strrchr-.L__profd_strrchr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strrchr, 48
+
+	.type	.L__profc_strstr,@object        ! @__profc_strstr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profc_strstr:
+	.zero	32
+	.size	.L__profc_strstr, 32
+
+	.type	.L__profd_strstr,@object        ! @__profd_strstr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profd_strstr:
+	.quad	3560562421867190603             ! 0x3169a8a873ff994b
+	.quad	-7798267876297541628            ! 0x93c6fcaef9f1f804
+	.long	.L__profc_strstr-.L__profd_strstr
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_strstr, 48
+
+	.type	.L__profc_copysign,@object      ! @__profc_copysign
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profc_copysign:
+	.zero	56
+	.size	.L__profc_copysign, 56
+
+	.type	.L__profd_copysign,@object      ! @__profd_copysign
+	.section	__llvm_prf_data,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profd_copysign:
+	.quad	-9076603418344796971            ! 0x82096d47ea764cd5
+	.quad	4200982705386070127             ! 0x3a4ce3834618a06f
+	.long	.L__profc_copysign-.L__profd_copysign
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_copysign, 48
+
+	.type	.L__profc_memmem,@object        ! @__profc_memmem
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profc_memmem:
+	.zero	56
+	.size	.L__profc_memmem, 56
+
+	.type	.L__profd_memmem,@object        ! @__profd_memmem
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profd_memmem:
+	.quad	-7485463843177831536            ! 0x981e4a4b585ae390
+	.quad	5508063777036862020             ! 0x4c7092d27e7a8244
+	.long	.L__profc_memmem-.L__profd_memmem
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_memmem, 48
+
+	.type	.L__profc_mempcpy,@object       ! @__profc_mempcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profc_mempcpy:
+	.zero	8
+	.size	.L__profc_mempcpy, 8
+
+	.type	.L__profd_mempcpy,@object       ! @__profd_mempcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profd_mempcpy:
+	.quad	-722907995699078206             ! 0xf5f7b7020f111bc2
+	.quad	24                              ! 0x18
+	.long	.L__profc_mempcpy-.L__profd_mempcpy
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_mempcpy, 48
+
+	.type	.L__profc_frexp,@object         ! @__profc_frexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profc_frexp:
+	.zero	72
+	.size	.L__profc_frexp, 72
+
+	.type	.L__profd_frexp,@object         ! @__profd_frexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profd_frexp:
+	.quad	-2997169543230593137            ! 0xd667ea2e1c1ee78f
+	.quad	-2373782428686282824            ! 0xdf0ea1753c170fb8
+	.long	.L__profc_frexp-.L__profd_frexp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_frexp, 48
+
+	.type	.L__profc___muldi3,@object      ! @__profc___muldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profc___muldi3:
+	.zero	24
+	.size	.L__profc___muldi3, 24
+
+	.type	.L__profd___muldi3,@object      ! @__profd___muldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profd___muldi3:
+	.quad	3987271357918321816             ! 0x3755a22cafcf9c98
+	.quad	2320045144                      ! 0x8a491458
+	.long	.L__profc___muldi3-.L__profd___muldi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___muldi3, 48
+
+	.type	.L__profc_udivmodsi4,@object    ! @__profc_udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profc_udivmodsi4:
+	.zero	72
+	.size	.L__profc_udivmodsi4, 72
+
+	.type	.L__profd_udivmodsi4,@object    ! @__profd_udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profd_udivmodsi4:
+	.quad	4670832108574850701             ! 0x40d2210e3d17be8d
+	.quad	842736872197088594              ! 0xbb200b8626e6552
+	.long	.L__profc_udivmodsi4-.L__profd_udivmodsi4
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd_udivmodsi4, 48
+
+	.type	.L__profc___clrsbqi2,@object    ! @__profc___clrsbqi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profc___clrsbqi2:
+	.zero	24
+	.size	.L__profc___clrsbqi2, 24
+
+	.type	.L__profd___clrsbqi2,@object    ! @__profd___clrsbqi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profd___clrsbqi2:
+	.quad	-7858138078702729622            ! 0x92f2490d36f4066a
+	.quad	187824153796641880              ! 0x29b49129f498458
+	.long	.L__profc___clrsbqi2-.L__profd___clrsbqi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___clrsbqi2, 48
+
+	.type	.L__profc___clrsbdi2,@object    ! @__profc___clrsbdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profc___clrsbdi2:
+	.zero	24
+	.size	.L__profc___clrsbdi2, 24
+
+	.type	.L__profd___clrsbdi2,@object    ! @__profd___clrsbdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profd___clrsbdi2:
+	.quad	-1533375985051215657            ! 0xeab85aaa6fe858d7
+	.quad	187824153796641880              ! 0x29b49129f498458
+	.long	.L__profc___clrsbdi2-.L__profd___clrsbdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___clrsbdi2, 48
+
+	.type	.L__profc___mulsi3,@object      ! @__profc___mulsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profc___mulsi3:
+	.zero	24
+	.size	.L__profc___mulsi3, 24
+
+	.type	.L__profd___mulsi3,@object      ! @__profd___mulsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profd___mulsi3:
+	.quad	5127670123023436031             ! 0x472924cf303208ff
+	.quad	2320045144                      ! 0x8a491458
+	.long	.L__profc___mulsi3-.L__profd___mulsi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mulsi3, 48
+
+	.type	.L__profc___cmovd,@object       ! @__profc___cmovd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profc___cmovd:
+	.zero	56
+	.size	.L__profc___cmovd, 56
+
+	.type	.L__profd___cmovd,@object       ! @__profd___cmovd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profd___cmovd:
+	.quad	1458405851566781960             ! 0x143d4c6520fd3608
+	.quad	-6411111704588201945            ! 0xa70727df48abd027
+	.long	.L__profc___cmovd-.L__profd___cmovd
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___cmovd, 48
+
+	.type	.L__profc___cmovh,@object       ! @__profc___cmovh
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profc___cmovh:
+	.zero	56
+	.size	.L__profc___cmovh, 56
+
+	.type	.L__profd___cmovh,@object       ! @__profd___cmovh
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profd___cmovh:
+	.quad	-1240290101804783090            ! 0xeec99ab9477e2a0e
+	.quad	3130117398598530023             ! 0x2b706930a0bc33e7
+	.long	.L__profc___cmovh-.L__profd___cmovh
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___cmovh, 48
+
+	.type	.L__profc___cmovw,@object       ! @__profc___cmovw
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profc___cmovw:
+	.zero	56
+	.size	.L__profc___cmovw, 56
+
+	.type	.L__profd___cmovw,@object       ! @__profd___cmovw
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profd___cmovw:
+	.quad	-6631700889337257300            ! 0xa3f7772d6a6922ac
+	.quad	-6411111704588201945            ! 0xa70727df48abd027
+	.long	.L__profc___cmovw-.L__profd___cmovw
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___cmovw, 48
+
+	.type	.L__profc___modi,@object        ! @__profc___modi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profc___modi:
+	.zero	8
+	.size	.L__profc___modi, 8
+
+	.type	.L__profd___modi,@object        ! @__profd___modi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profd___modi:
+	.quad	4130297501716739761             ! 0x3951c3b1ce8276b1
+	.quad	24                              ! 0x18
+	.long	.L__profc___modi-.L__profd___modi
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___modi, 48
+
+	.type	.L__profc___uitod,@object       ! @__profc___uitod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profc___uitod:
+	.zero	8
+	.size	.L__profc___uitod, 8
+
+	.type	.L__profd___uitod,@object       ! @__profd___uitod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profd___uitod:
+	.quad	-3793169221884876252            ! 0xcb5bf4b0949b6a24
+	.quad	24                              ! 0x18
+	.long	.L__profc___uitod-.L__profd___uitod
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___uitod, 48
+
+	.type	.L__profc___uitof,@object       ! @__profc___uitof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profc___uitof:
+	.zero	8
+	.size	.L__profc___uitof, 8
+
+	.type	.L__profd___uitof,@object       ! @__profd___uitof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profd___uitof:
+	.quad	2684105554667313846             ! 0x253fdbc7ed991ab6
+	.quad	24                              ! 0x18
+	.long	.L__profc___uitof-.L__profd___uitof
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___uitof, 48
+
+	.type	.L__profc___ulltod,@object      ! @__profc___ulltod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profc___ulltod:
+	.zero	8
+	.size	.L__profc___ulltod, 8
+
+	.type	.L__profd___ulltod,@object      ! @__profd___ulltod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profd___ulltod:
+	.quad	3995277539005434566             ! 0x377213c0fb840ac6
+	.quad	24                              ! 0x18
+	.long	.L__profc___ulltod-.L__profd___ulltod
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ulltod, 48
+
+	.type	.L__profc___ulltof,@object      ! @__profc___ulltof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profc___ulltof:
+	.zero	8
+	.size	.L__profc___ulltof, 8
+
+	.type	.L__profd___ulltof,@object      ! @__profd___ulltof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profd___ulltof:
+	.quad	-1906554817873249395            ! 0xe58a8e7e97dafb8d
+	.quad	24                              ! 0x18
+	.long	.L__profc___ulltof-.L__profd___ulltof
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ulltof, 48
+
+	.type	.L__profc___umodi,@object       ! @__profc___umodi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profc___umodi:
+	.zero	8
+	.size	.L__profc___umodi, 8
+
+	.type	.L__profd___umodi,@object       ! @__profd___umodi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profd___umodi:
+	.quad	6154071623751134202             ! 0x5567a7893fff6bfa
+	.quad	24                              ! 0x18
+	.long	.L__profc___umodi-.L__profd___umodi
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___umodi, 48
+
+	.type	.L__profc___clzhi2,@object      ! @__profc___clzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profc___clzhi2:
+	.zero	24
+	.size	.L__profc___clzhi2, 24
+
+	.type	.L__profd___clzhi2,@object      ! @__profd___clzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profd___clzhi2:
+	.quad	-9221703320275173474            ! 0x8005edb05af53f9e
+	.quad	19458657162328                  ! 0x11b292591458
+	.long	.L__profc___clzhi2-.L__profd___clzhi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___clzhi2, 48
+
+	.type	.L__profc___ctzhi2,@object      ! @__profc___ctzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profc___ctzhi2:
+	.zero	24
+	.size	.L__profc___ctzhi2, 24
+
+	.type	.L__profd___ctzhi2,@object      ! @__profd___ctzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profd___ctzhi2:
+	.quad	-1569202989881991136            ! 0xea391231d79a6020
+	.quad	19458657162328                  ! 0x11b292591458
+	.long	.L__profc___ctzhi2-.L__profd___ctzhi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ctzhi2, 48
+
+	.type	.L__profc___fixunssfsi,@object  ! @__profc___fixunssfsi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profc___fixunssfsi:
+	.zero	16
+	.size	.L__profc___fixunssfsi, 16
+
+	.type	.L__profd___fixunssfsi,@object  ! @__profd___fixunssfsi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profd___fixunssfsi:
+	.quad	-7800469359816066749            ! 0x93bf2a7226d83943
+	.quad	11245552728                     ! 0x29e498458
+	.long	.L__profc___fixunssfsi-.L__profd___fixunssfsi
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	2                               ! 0x2
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___fixunssfsi, 48
+
+	.type	.L__profc___parityhi2,@object   ! @__profc___parityhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profc___parityhi2:
+	.zero	24
+	.size	.L__profc___parityhi2, 24
+
+	.type	.L__profd___parityhi2,@object   ! @__profd___parityhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profd___parityhi2:
+	.quad	1203893203113466329             ! 0x10b5167d5f15d9d9
+	.quad	304041497688                    ! 0x46ca491458
+	.long	.L__profc___parityhi2-.L__profd___parityhi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___parityhi2, 48
+
+	.type	.L__profc___popcounthi2,@object ! @__profc___popcounthi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profc___popcounthi2:
+	.zero	24
+	.size	.L__profc___popcounthi2, 24
+
+	.type	.L__profd___popcounthi2,@object ! @__profd___popcounthi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profd___popcounthi2:
+	.quad	3943219574947026310             ! 0x36b9214fb4159586
+	.quad	304041497688                    ! 0x46ca491458
+	.long	.L__profc___popcounthi2-.L__profd___popcounthi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___popcounthi2, 48
+
+	.type	.L__profc___mulsi3_iq2000,@object ! @__profc___mulsi3_iq2000
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profc___mulsi3_iq2000:
+	.zero	24
+	.size	.L__profc___mulsi3_iq2000, 24
+
+	.type	.L__profd___mulsi3_iq2000,@object ! @__profd___mulsi3_iq2000
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profd___mulsi3_iq2000:
+	.quad	-3976353352410196972            ! 0xc8d127b190281414
+	.quad	171971253336                    ! 0x280a491458
+	.long	.L__profc___mulsi3_iq2000-.L__profd___mulsi3_iq2000
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mulsi3_iq2000, 48
+
+	.type	.L__profc___mulsi3_lm32,@object ! @__profc___mulsi3_lm32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profc___mulsi3_lm32:
+	.zero	32
+	.size	.L__profc___mulsi3_lm32, 32
+
+	.type	.L__profd___mulsi3_lm32,@object ! @__profd___mulsi3_lm32
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profd___mulsi3_lm32:
+	.quad	2775651425054705869             ! 0x26851843dab148cd
+	.quad	-6210685127595396365            ! 0xa9cf36c835dff2f3
+	.long	.L__profc___mulsi3_lm32-.L__profd___mulsi3_lm32
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mulsi3_lm32, 48
+
+	.type	.L__profc___udivmodsi4,@object  ! @__profc___udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profc___udivmodsi4:
+	.zero	72
+	.size	.L__profc___udivmodsi4, 72
+
+	.type	.L__profd___udivmodsi4,@object  ! @__profd___udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profd___udivmodsi4:
+	.quad	-6720389007632434094            ! 0xa2bc61cdbfa0fc52
+	.quad	842736872197088594              ! 0xbb200b8626e6552
+	.long	.L__profc___udivmodsi4-.L__profd___udivmodsi4
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___udivmodsi4, 48
+
+	.type	.L__profc___mspabi_cmpf,@object ! @__profc___mspabi_cmpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpf:
+	.zero	24
+	.size	.L__profc___mspabi_cmpf, 24
+
+	.type	.L__profd___mspabi_cmpf,@object ! @__profd___mspabi_cmpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpf:
+	.quad	6399771733438470391             ! 0x58d08e7bef2f98f7
+	.quad	1352614535537600836             ! 0x12c573c0ecbfa944
+	.long	.L__profc___mspabi_cmpf-.L__profd___mspabi_cmpf
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mspabi_cmpf, 48
+
+	.type	.L__profc___mspabi_cmpd,@object ! @__profc___mspabi_cmpd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpd:
+	.zero	24
+	.size	.L__profc___mspabi_cmpd, 24
+
+	.type	.L__profd___mspabi_cmpd,@object ! @__profd___mspabi_cmpd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpd:
+	.quad	-5775354270414500759            ! 0xafd9d1e3e3e88c69
+	.quad	1352614535537600836             ! 0x12c573c0ecbfa944
+	.long	.L__profc___mspabi_cmpd-.L__profd___mspabi_cmpd
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mspabi_cmpd, 48
+
+	.type	.L__profc___mspabi_mpysll,@object ! @__profc___mspabi_mpysll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profc___mspabi_mpysll:
+	.zero	8
+	.size	.L__profc___mspabi_mpysll, 8
+
+	.type	.L__profd___mspabi_mpysll,@object ! @__profd___mspabi_mpysll
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profd___mspabi_mpysll:
+	.quad	-359228324547500507             ! 0xfb03c3bdfa166625
+	.quad	24                              ! 0x18
+	.long	.L__profc___mspabi_mpysll-.L__profd___mspabi_mpysll
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mspabi_mpysll, 48
+
+	.type	.L__profc___mspabi_mpyull,@object ! @__profc___mspabi_mpyull
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profc___mspabi_mpyull:
+	.zero	8
+	.size	.L__profc___mspabi_mpyull, 8
+
+	.type	.L__profd___mspabi_mpyull,@object ! @__profd___mspabi_mpyull
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profd___mspabi_mpyull:
+	.quad	6629829186354316853             ! 0x5c01e284c62a8635
+	.quad	24                              ! 0x18
+	.long	.L__profc___mspabi_mpyull-.L__profd___mspabi_mpyull
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mspabi_mpyull, 48
+
+	.type	.L__profc___mulhi3,@object      ! @__profc___mulhi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profc___mulhi3:
+	.zero	56
+	.size	.L__profc___mulhi3, 56
+
+	.type	.L__profd___mulhi3,@object      ! @__profd___mulhi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profd___mulhi3:
+	.quad	-4671748085078636676            ! 0xbf2a9dde5cc6c77c
+	.quad	-5374843387156864121            ! 0xb568b86aa1286387
+	.long	.L__profc___mulhi3-.L__profd___mulhi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	7                               ! 0x7
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___mulhi3, 48
+
+	.type	.L__profc___divsi3,@object      ! @__profc___divsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profc___divsi3:
+	.zero	32
+	.size	.L__profc___divsi3, 32
+
+	.type	.L__profd___divsi3,@object      ! @__profd___divsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profd___divsi3:
+	.quad	5631431475223784324             ! 0x4e26dd1711aaeb84
+	.quad	510575534943447681              ! 0x715edbe6f4f2a81
+	.long	.L__profc___divsi3-.L__profd___divsi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___divsi3, 48
+
+	.type	.L__profc___modsi3,@object      ! @__profc___modsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profc___modsi3:
+	.zero	32
+	.size	.L__profc___modsi3, 32
+
+	.type	.L__profd___modsi3,@object      ! @__profd___modsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profd___modsi3:
+	.quad	-8995696579390192574            ! 0x8328dd9f4e404442
+	.quad	2121116644152358499             ! 0x1d6fb85985deb663
+	.long	.L__profc___modsi3-.L__profd___modsi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	4                               ! 0x4
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___modsi3, 48
+
+	.type	.L__profc___udivmodhi4,@object  ! @__profc___udivmodhi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profc___udivmodhi4:
+	.zero	72
+	.size	.L__profc___udivmodhi4, 72
+
+	.type	.L__profd___udivmodhi4,@object  ! @__profd___udivmodhi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profd___udivmodhi4:
+	.quad	2241631039268115874             ! 0x1f1bdf8db510d5a2
+	.quad	842736872197088594              ! 0xbb200b8626e6552
+	.long	.L__profc___udivmodhi4-.L__profd___udivmodhi4
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___udivmodhi4, 48
+
+	.type	.L__profc___udivmodsi4_libgcc,@object ! @__profc___udivmodsi4_libgcc
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profc___udivmodsi4_libgcc:
+	.zero	72
+	.size	.L__profc___udivmodsi4_libgcc, 72
+
+	.type	.L__profd___udivmodsi4_libgcc,@object ! @__profd___udivmodsi4_libgcc
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profd___udivmodsi4_libgcc:
+	.quad	-1484205535638993157            ! 0xeb670aedd291c6fb
+	.quad	842736872197088594              ! 0xbb200b8626e6552
+	.long	.L__profc___udivmodsi4_libgcc-.L__profd___udivmodsi4_libgcc
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	9                               ! 0x9
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___udivmodsi4_libgcc, 48
+
+	.type	.L__profc___ashldi3,@object     ! @__profc___ashldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profc___ashldi3:
+	.zero	24
+	.size	.L__profc___ashldi3, 24
+
+	.type	.L__profd___ashldi3,@object     ! @__profd___ashldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profd___ashldi3:
+	.quad	3719210884952086607             ! 0x339d4a983a55d84f
+	.quad	185294818348438616              ! 0x2924ca7d2611458
+	.long	.L__profc___ashldi3-.L__profd___ashldi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ashldi3, 48
+
+	.type	.L__profc___ashrdi3,@object     ! @__profc___ashrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profc___ashrdi3:
+	.zero	24
+	.size	.L__profc___ashrdi3, 24
+
+	.type	.L__profd___ashrdi3,@object     ! @__profd___ashrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profd___ashrdi3:
+	.quad	-1855717345837424946            ! 0xe63f2ae7edd45ece
+	.quad	185294818348438616              ! 0x2924ca7d2611458
+	.long	.L__profc___ashrdi3-.L__profd___ashrdi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ashrdi3, 48
+
+	.type	.L__profc___bswapdi2,@object    ! @__profc___bswapdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profc___bswapdi2:
+	.zero	8
+	.size	.L__profc___bswapdi2, 8
+
+	.type	.L__profd___bswapdi2,@object    ! @__profd___bswapdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profd___bswapdi2:
+	.quad	9149352740892555196             ! 0x7ef907d7ada5b7bc
+	.quad	24                              ! 0x18
+	.long	.L__profc___bswapdi2-.L__profd___bswapdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___bswapdi2, 48
+
+	.type	.L__profc___bswapsi2,@object    ! @__profc___bswapsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profc___bswapsi2:
+	.zero	8
+	.size	.L__profc___bswapsi2, 8
+
+	.type	.L__profd___bswapsi2,@object    ! @__profd___bswapsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profd___bswapsi2:
+	.quad	-3374945843358245974            ! 0xd129c8a2fe735baa
+	.quad	24                              ! 0x18
+	.long	.L__profc___bswapsi2-.L__profd___bswapsi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___bswapsi2, 48
+
+	.type	.L__profc___clzsi2,@object      ! @__profc___clzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profc___clzsi2:
+	.zero	8
+	.size	.L__profc___clzsi2, 8
+
+	.type	.L__profd___clzsi2,@object      ! @__profd___clzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profd___clzsi2:
+	.quad	1382681549752930563             ! 0x1330458b32829103
+	.quad	33814345247                     ! 0x7df7df61f
+	.long	.L__profc___clzsi2-.L__profd___clzsi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___clzsi2, 48
+
+	.type	.L__profc___cmpdi2,@object      ! @__profc___cmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profc___cmpdi2:
+	.zero	40
+	.size	.L__profc___cmpdi2, 40
+
+	.type	.L__profd___cmpdi2,@object      ! @__profd___cmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profd___cmpdi2:
+	.quad	-5499644794300757496            ! 0xb3ad5632ace08a08
+	.quad	-7406659272189927428            ! 0x993642a254c41ffc
+	.long	.L__profc___cmpdi2-.L__profd___cmpdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___cmpdi2, 48
+
+	.type	.L__profc___aeabi_lcmp,@object  ! @__profc___aeabi_lcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_lcmp:
+	.zero	8
+	.size	.L__profc___aeabi_lcmp, 8
+
+	.type	.L__profd___aeabi_lcmp,@object  ! @__profd___aeabi_lcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_lcmp:
+	.quad	7067747365298492588             ! 0x6215aec83ed1d4ac
+	.quad	24                              ! 0x18
+	.long	.L__profc___aeabi_lcmp-.L__profd___aeabi_lcmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___aeabi_lcmp, 48
+
+	.type	.L__profc___ctzsi2,@object      ! @__profc___ctzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profc___ctzsi2:
+	.zero	8
+	.size	.L__profc___ctzsi2, 8
+
+	.type	.L__profd___ctzsi2,@object      ! @__profd___ctzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profd___ctzsi2:
+	.quad	-5501728155980453225            ! 0xb3a5ef643c052a97
+	.quad	33814345247                     ! 0x7df7df61f
+	.long	.L__profc___ctzsi2-.L__profd___ctzsi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ctzsi2, 48
+
+	.type	.L__profc___lshrdi3,@object     ! @__profc___lshrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profc___lshrdi3:
+	.zero	24
+	.size	.L__profc___lshrdi3, 24
+
+	.type	.L__profd___lshrdi3,@object     ! @__profd___lshrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profd___lshrdi3:
+	.quad	10441766047587925               ! 0x2518bb1c181e55
+	.quad	185294818348438616              ! 0x2924ca7d2611458
+	.long	.L__profc___lshrdi3-.L__profd___lshrdi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	3                               ! 0x3
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___lshrdi3, 48
+
+	.type	.L__profc___muldsi3,@object     ! @__profc___muldsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profc___muldsi3:
+	.zero	8
+	.size	.L__profc___muldsi3, 8
+
+	.type	.L__profd___muldsi3,@object     ! @__profd___muldsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profd___muldsi3:
+	.quad	4756674255824047264             ! 0x42031a08a2a34ca0
+	.quad	24                              ! 0x18
+	.long	.L__profc___muldsi3-.L__profd___muldsi3
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___muldsi3, 48
+
+	.type	.L__profc___muldi3_compiler_rt,@object ! @__profc___muldi3_compiler_rt
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profc___muldi3_compiler_rt:
+	.zero	8
+	.size	.L__profc___muldi3_compiler_rt, 8
+
+	.type	.L__profd___muldi3_compiler_rt,@object ! @__profd___muldi3_compiler_rt
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profd___muldi3_compiler_rt:
+	.quad	-737717619142303851             ! 0xf5c319bbe679df95
+	.quad	24                              ! 0x18
+	.long	.L__profc___muldi3_compiler_rt-.L__profd___muldi3_compiler_rt
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___muldi3_compiler_rt, 48
+
+	.type	.L__profc___negdi2,@object      ! @__profc___negdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profc___negdi2:
+	.zero	8
+	.size	.L__profc___negdi2, 8
+
+	.type	.L__profd___negdi2,@object      ! @__profd___negdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profd___negdi2:
+	.quad	-2796404983763388037            ! 0xd9312c7bb6a6b97b
+	.quad	24                              ! 0x18
+	.long	.L__profc___negdi2-.L__profd___negdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___negdi2, 48
+
+	.type	.L__profc___paritydi2,@object   ! @__profc___paritydi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profc___paritydi2:
+	.zero	8
+	.size	.L__profc___paritydi2, 8
+
+	.type	.L__profd___paritydi2,@object   ! @__profd___paritydi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profd___paritydi2:
+	.quad	-5102883611502574357            ! 0xb92eea643e3a04eb
+	.quad	24                              ! 0x18
+	.long	.L__profc___paritydi2-.L__profd___paritydi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___paritydi2, 48
+
+	.type	.L__profc___paritysi2,@object   ! @__profc___paritysi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profc___paritysi2:
+	.zero	8
+	.size	.L__profc___paritysi2, 8
+
+	.type	.L__profd___paritysi2,@object   ! @__profd___paritysi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profd___paritysi2:
+	.quad	8495812714014201054             ! 0x75e730a6911054de
+	.quad	24                              ! 0x18
+	.long	.L__profc___paritysi2-.L__profd___paritysi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___paritysi2, 48
+
+	.type	.L__profc___popcountdi2,@object ! @__profc___popcountdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profc___popcountdi2:
+	.zero	8
+	.size	.L__profc___popcountdi2, 8
+
+	.type	.L__profd___popcountdi2,@object ! @__profd___popcountdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profd___popcountdi2:
+	.quad	4342496508124198892             ! 0x3c43a5910d1df7ec
+	.quad	24                              ! 0x18
+	.long	.L__profc___popcountdi2-.L__profd___popcountdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___popcountdi2, 48
+
+	.type	.L__profc___popcountsi2,@object ! @__profc___popcountsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profc___popcountsi2:
+	.zero	8
+	.size	.L__profc___popcountsi2, 8
+
+	.type	.L__profd___popcountsi2,@object ! @__profd___popcountsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profd___popcountsi2:
+	.quad	-2149276146439341705            ! 0xe22c3cbb6f433977
+	.quad	24                              ! 0x18
+	.long	.L__profc___popcountsi2-.L__profd___popcountsi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___popcountsi2, 48
+
+	.type	.L__profc___powidf2,@object     ! @__profc___powidf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profc___powidf2:
+	.zero	40
+	.size	.L__profc___powidf2, 40
+
+	.type	.L__profd___powidf2,@object     ! @__profd___powidf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profd___powidf2:
+	.quad	-1752541073601039051            ! 0xe7adb92dcdba7535
+	.quad	-4868838055443737378            ! 0xbc6e6995b45f54de
+	.long	.L__profc___powidf2-.L__profd___powidf2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___powidf2, 48
+
+	.type	.L__profc___powisf2,@object     ! @__profc___powisf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profc___powisf2:
+	.zero	40
+	.size	.L__profc___powisf2, 40
+
+	.type	.L__profd___powisf2,@object     ! @__profd___powisf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profd___powisf2:
+	.quad	-3807360110918407144            ! 0xcb298a26c0b76c18
+	.quad	-4868838055443737378            ! 0xbc6e6995b45f54de
+	.long	.L__profc___powisf2-.L__profd___powisf2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___powisf2, 48
+
+	.type	.L__profc___ucmpdi2,@object     ! @__profc___ucmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profc___ucmpdi2:
+	.zero	40
+	.size	.L__profc___ucmpdi2, 40
+
+	.type	.L__profd___ucmpdi2,@object     ! @__profd___ucmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profd___ucmpdi2:
+	.quad	-2044349310657886323            ! 0xe3a10322256c078d
+	.quad	-7406659272189927428            ! 0x993642a254c41ffc
+	.long	.L__profc___ucmpdi2-.L__profd___ucmpdi2
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	5                               ! 0x5
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___ucmpdi2, 48
+
+	.type	.L__profc___aeabi_ulcmp,@object ! @__profc___aeabi_ulcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_ulcmp:
+	.zero	8
+	.size	.L__profc___aeabi_ulcmp, 8
+
+	.type	.L__profd___aeabi_ulcmp,@object ! @__profd___aeabi_ulcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_ulcmp:
+	.quad	448670595368434735              ! 0x639ff8782193c2f
+	.quad	24                              ! 0x18
+	.long	.L__profc___aeabi_ulcmp-.L__profd___aeabi_ulcmp
+	.long	0                               ! 0x0
+	.long	0
+	.long	0
+	.long	1                               ! 0x1
+	.zero	6
+	.zero	2
+	.long	0                               ! 0x0
+	.size	.L__profd___aeabi_ulcmp, 48
+
+	.type	.L__llvm_prf_nm,@object         ! @__llvm_prf_nm
+	.section	__llvm_prf_names,"aR",@progbits,unique,1
+.L__llvm_prf_nm:
+	.ascii	"\225\n\246\004x\332]\223\tn\3430\fE\241\033e\222\242\3505\346\004\206\254%&J-\221\344*\355\351\207\244\344\244\031\300\340\373\244VRtp!\244/\247\202\013\306\344o\341V\004!\013F\260\314huM\325\2269Z\033\007\343\216S\th\021\001]dDq\273^\025T\215y\323\314j\000\210+\352\370I4\221\246\023-\\\241\021\257E\347\215\210\251\273B\314\005\"\307k\326\306\021\367\234%\336\217\205\375X\331\217\251\375>B-\215\303\274\205 \306+\037\364]\314\220H\026\242\030/\026\025\276\277iU\213\216V\211\201Xo\273S\305\005\006V\247)W\205\036hL\257U\351\226\200\r\212A\265\316\031\223KQ\026\276\024\320a<\233\311>\262\203\242\206\024\335M\345:2\250p\f*3\201\313I\220r\366\371B}>Q\237o\304\224\227\354\363\225V\223(\\R\243\214\030e\000/g\361\006p\251?\342N\342\237wq\007\360C\234\017J\246\353\274Pp\bZ;\004m\351=\335\036VX]i\337\013{W\\\240RA\375C\331\207B\265\374\315\013\264t\243\354\335=\373\201a\221\033\354\236\312h\035\335\204\263\225\362Z>\231G\243\321\2478\301\n\327\310\313\350cHc\372\302[.K\330\251\252\027\265SiC\262\025\336(f\260\324\365\006\347CZ\2214\263\322L\212Q\t\355\3446\331yB\262@\330\351\346v\3223\021g\200\205D\346L\203?\3338\245M\341\341\276\307Z}\345\341\254\013\264\3571\220S6i\217m\373u\225\005n\347\323\351\364\3641\\x\364%\227@\377\304\nt\307\354_<\373\364\002U\210\232\362\267\277\017\177\307M2\246\rG\352\262\355\345y\306&g<\017\\\350\225\257\306PL\327M\n+\252\f%\3750\212)\262\316\022\377L\021\346\240v|\r\344\316\225\332\214a|\354\303oV\037\212\0227)d@W\226\322(\030\335u\3543\n\370[\327\227b\332\027\357\030\353`\375\241\252\250\375\277\233\355|\265\177\337\f\323w"
+	.size	.L__llvm_prf_nm, 554
+
 	.ident	"clang version 19.1.5 (Fedora 19.1.5-1.fc41)"
 	.section	".note.GNU-stack","",@progbits
 	.addrsig
@@ -9873,3 +19635,307 @@ digits:
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_profile_runtime
+	.addrsig_sym .L__profc_memmove
+	.addrsig_sym .L__profd_memmove
+	.addrsig_sym .L__profc_memccpy
+	.addrsig_sym .L__profd_memccpy
+	.addrsig_sym .L__profc_memchr
+	.addrsig_sym .L__profd_memchr
+	.addrsig_sym .L__profc_memcmp
+	.addrsig_sym .L__profd_memcmp
+	.addrsig_sym .L__profc_memcpy
+	.addrsig_sym .L__profd_memcpy
+	.addrsig_sym .L__profc_memrchr
+	.addrsig_sym .L__profd_memrchr
+	.addrsig_sym .L__profc_memset
+	.addrsig_sym .L__profd_memset
+	.addrsig_sym .L__profc_stpcpy
+	.addrsig_sym .L__profd_stpcpy
+	.addrsig_sym .L__profc_strchrnul
+	.addrsig_sym .L__profd_strchrnul
+	.addrsig_sym .L__profc_strchr
+	.addrsig_sym .L__profd_strchr
+	.addrsig_sym .L__profc_strcmp
+	.addrsig_sym .L__profd_strcmp
+	.addrsig_sym .L__profc_strlen
+	.addrsig_sym .L__profd_strlen
+	.addrsig_sym .L__profc_strncmp
+	.addrsig_sym .L__profd_strncmp
+	.addrsig_sym .L__profc_swab
+	.addrsig_sym .L__profd_swab
+	.addrsig_sym .L__profc_isalpha
+	.addrsig_sym .L__profd_isalpha
+	.addrsig_sym .L__profc_isascii
+	.addrsig_sym .L__profd_isascii
+	.addrsig_sym .L__profc_isblank
+	.addrsig_sym .L__profd_isblank
+	.addrsig_sym .L__profc_iscntrl
+	.addrsig_sym .L__profd_iscntrl
+	.addrsig_sym .L__profc_isdigit
+	.addrsig_sym .L__profd_isdigit
+	.addrsig_sym .L__profc_isgraph
+	.addrsig_sym .L__profd_isgraph
+	.addrsig_sym .L__profc_islower
+	.addrsig_sym .L__profd_islower
+	.addrsig_sym .L__profc_isprint
+	.addrsig_sym .L__profd_isprint
+	.addrsig_sym .L__profc_isspace
+	.addrsig_sym .L__profd_isspace
+	.addrsig_sym .L__profc_isupper
+	.addrsig_sym .L__profd_isupper
+	.addrsig_sym .L__profc_iswcntrl
+	.addrsig_sym .L__profd_iswcntrl
+	.addrsig_sym .L__profc_iswdigit
+	.addrsig_sym .L__profd_iswdigit
+	.addrsig_sym .L__profc_iswprint
+	.addrsig_sym .L__profd_iswprint
+	.addrsig_sym .L__profc_iswxdigit
+	.addrsig_sym .L__profd_iswxdigit
+	.addrsig_sym .L__profc_toascii
+	.addrsig_sym .L__profd_toascii
+	.addrsig_sym .L__profc_fdim
+	.addrsig_sym .L__profd_fdim
+	.addrsig_sym .L__profc_fdimf
+	.addrsig_sym .L__profd_fdimf
+	.addrsig_sym .L__profc_fmax
+	.addrsig_sym .L__profd_fmax
+	.addrsig_sym .L__profc_fmaxf
+	.addrsig_sym .L__profd_fmaxf
+	.addrsig_sym .L__profc_fmaxl
+	.addrsig_sym .L__profd_fmaxl
+	.addrsig_sym .L__profc_fmin
+	.addrsig_sym .L__profd_fmin
+	.addrsig_sym .L__profc_fminf
+	.addrsig_sym .L__profd_fminf
+	.addrsig_sym .L__profc_fminl
+	.addrsig_sym .L__profd_fminl
+	.addrsig_sym .L__profc_l64a
+	.addrsig_sym .L__profd_l64a
+	.addrsig_sym .L__profc_srand
+	.addrsig_sym .L__profd_srand
+	.addrsig_sym .L__profc_rand
+	.addrsig_sym .L__profd_rand
+	.addrsig_sym .L__profc_insque
+	.addrsig_sym .L__profd_insque
+	.addrsig_sym .L__profc_remque
+	.addrsig_sym .L__profd_remque
+	.addrsig_sym .L__profc_lsearch
+	.addrsig_sym .L__profd_lsearch
+	.addrsig_sym .L__profc_lfind
+	.addrsig_sym .L__profd_lfind
+	.addrsig_sym .L__profc_abs
+	.addrsig_sym .L__profd_abs
+	.addrsig_sym .L__profc_atoi
+	.addrsig_sym .L__profd_atoi
+	.addrsig_sym .L__profc_atol
+	.addrsig_sym .L__profd_atol
+	.addrsig_sym .L__profc_atoll
+	.addrsig_sym .L__profd_atoll
+	.addrsig_sym .L__profc_bsearch
+	.addrsig_sym .L__profd_bsearch
+	.addrsig_sym .L__profc_bsearch_r
+	.addrsig_sym .L__profd_bsearch_r
+	.addrsig_sym .L__profc_div
+	.addrsig_sym .L__profd_div
+	.addrsig_sym .L__profc_imaxabs
+	.addrsig_sym .L__profd_imaxabs
+	.addrsig_sym .L__profc_imaxdiv
+	.addrsig_sym .L__profd_imaxdiv
+	.addrsig_sym .L__profc_labs
+	.addrsig_sym .L__profd_labs
+	.addrsig_sym .L__profc_ldiv
+	.addrsig_sym .L__profd_ldiv
+	.addrsig_sym .L__profc_llabs
+	.addrsig_sym .L__profd_llabs
+	.addrsig_sym .L__profc_lldiv
+	.addrsig_sym .L__profd_lldiv
+	.addrsig_sym .L__profc_wcschr
+	.addrsig_sym .L__profd_wcschr
+	.addrsig_sym .L__profc_wcscmp
+	.addrsig_sym .L__profd_wcscmp
+	.addrsig_sym .L__profc_wcscpy
+	.addrsig_sym .L__profd_wcscpy
+	.addrsig_sym .L__profc_wcslen
+	.addrsig_sym .L__profd_wcslen
+	.addrsig_sym .L__profc_wcsncmp
+	.addrsig_sym .L__profd_wcsncmp
+	.addrsig_sym .L__profc_wmemchr
+	.addrsig_sym .L__profd_wmemchr
+	.addrsig_sym .L__profc_wmemcmp
+	.addrsig_sym .L__profd_wmemcmp
+	.addrsig_sym .L__profc_wmemcpy
+	.addrsig_sym .L__profd_wmemcpy
+	.addrsig_sym .L__profc_wmemmove
+	.addrsig_sym .L__profd_wmemmove
+	.addrsig_sym .L__profc_wmemset
+	.addrsig_sym .L__profd_wmemset
+	.addrsig_sym .L__profc_bcopy
+	.addrsig_sym .L__profd_bcopy
+	.addrsig_sym .L__profc_rotl64
+	.addrsig_sym .L__profd_rotl64
+	.addrsig_sym .L__profc_rotr64
+	.addrsig_sym .L__profd_rotr64
+	.addrsig_sym .L__profc_rotl32
+	.addrsig_sym .L__profd_rotl32
+	.addrsig_sym .L__profc_rotr32
+	.addrsig_sym .L__profd_rotr32
+	.addrsig_sym .L__profc_rotl_sz
+	.addrsig_sym .L__profd_rotl_sz
+	.addrsig_sym .L__profc_rotr_sz
+	.addrsig_sym .L__profd_rotr_sz
+	.addrsig_sym .L__profc_rotl16
+	.addrsig_sym .L__profd_rotl16
+	.addrsig_sym .L__profc_rotr16
+	.addrsig_sym .L__profd_rotr16
+	.addrsig_sym .L__profc_rotl8
+	.addrsig_sym .L__profd_rotl8
+	.addrsig_sym .L__profc_rotr8
+	.addrsig_sym .L__profd_rotr8
+	.addrsig_sym .L__profc_bswap_16
+	.addrsig_sym .L__profd_bswap_16
+	.addrsig_sym .L__profc_bswap_32
+	.addrsig_sym .L__profd_bswap_32
+	.addrsig_sym .L__profc_bswap_64
+	.addrsig_sym .L__profd_bswap_64
+	.addrsig_sym .L__profc_ffs
+	.addrsig_sym .L__profd_ffs
+	.addrsig_sym .L__profc_libiberty_ffs
+	.addrsig_sym .L__profd_libiberty_ffs
+	.addrsig_sym .L__profc_gl_isinff
+	.addrsig_sym .L__profd_gl_isinff
+	.addrsig_sym .L__profc_gl_isinfd
+	.addrsig_sym .L__profd_gl_isinfd
+	.addrsig_sym .L__profc_gl_isinfl
+	.addrsig_sym .L__profd_gl_isinfl
+	.addrsig_sym .L__profc__Qp_itoq
+	.addrsig_sym .L__profd__Qp_itoq
+	.addrsig_sym .L__profc_ldexpf
+	.addrsig_sym .L__profd_ldexpf
+	.addrsig_sym .L__profc_ldexp
+	.addrsig_sym .L__profd_ldexp
+	.addrsig_sym .L__profc_ldexpl
+	.addrsig_sym .L__profd_ldexpl
+	.addrsig_sym .L__profc_memxor
+	.addrsig_sym .L__profd_memxor
+	.addrsig_sym .L__profc_strncat
+	.addrsig_sym .L__profd_strncat
+	.addrsig_sym .L__profc_strnlen
+	.addrsig_sym .L__profd_strnlen
+	.addrsig_sym .L__profc_strpbrk
+	.addrsig_sym .L__profd_strpbrk
+	.addrsig_sym .L__profc_strrchr
+	.addrsig_sym .L__profd_strrchr
+	.addrsig_sym .L__profc_strstr
+	.addrsig_sym .L__profd_strstr
+	.addrsig_sym .L__profc_copysign
+	.addrsig_sym .L__profd_copysign
+	.addrsig_sym .L__profc_memmem
+	.addrsig_sym .L__profd_memmem
+	.addrsig_sym .L__profc_mempcpy
+	.addrsig_sym .L__profd_mempcpy
+	.addrsig_sym .L__profc_frexp
+	.addrsig_sym .L__profd_frexp
+	.addrsig_sym .L__profc___muldi3
+	.addrsig_sym .L__profd___muldi3
+	.addrsig_sym .L__profc_udivmodsi4
+	.addrsig_sym .L__profd_udivmodsi4
+	.addrsig_sym .L__profc___clrsbqi2
+	.addrsig_sym .L__profd___clrsbqi2
+	.addrsig_sym .L__profc___clrsbdi2
+	.addrsig_sym .L__profd___clrsbdi2
+	.addrsig_sym .L__profc___mulsi3
+	.addrsig_sym .L__profd___mulsi3
+	.addrsig_sym .L__profc___cmovd
+	.addrsig_sym .L__profd___cmovd
+	.addrsig_sym .L__profc___cmovh
+	.addrsig_sym .L__profd___cmovh
+	.addrsig_sym .L__profc___cmovw
+	.addrsig_sym .L__profd___cmovw
+	.addrsig_sym .L__profc___modi
+	.addrsig_sym .L__profd___modi
+	.addrsig_sym .L__profc___uitod
+	.addrsig_sym .L__profd___uitod
+	.addrsig_sym .L__profc___uitof
+	.addrsig_sym .L__profd___uitof
+	.addrsig_sym .L__profc___ulltod
+	.addrsig_sym .L__profd___ulltod
+	.addrsig_sym .L__profc___ulltof
+	.addrsig_sym .L__profd___ulltof
+	.addrsig_sym .L__profc___umodi
+	.addrsig_sym .L__profd___umodi
+	.addrsig_sym .L__profc___clzhi2
+	.addrsig_sym .L__profd___clzhi2
+	.addrsig_sym .L__profc___ctzhi2
+	.addrsig_sym .L__profd___ctzhi2
+	.addrsig_sym .L__profc___fixunssfsi
+	.addrsig_sym .L__profd___fixunssfsi
+	.addrsig_sym .L__profc___parityhi2
+	.addrsig_sym .L__profd___parityhi2
+	.addrsig_sym .L__profc___popcounthi2
+	.addrsig_sym .L__profd___popcounthi2
+	.addrsig_sym .L__profc___mulsi3_iq2000
+	.addrsig_sym .L__profd___mulsi3_iq2000
+	.addrsig_sym .L__profc___mulsi3_lm32
+	.addrsig_sym .L__profd___mulsi3_lm32
+	.addrsig_sym .L__profc___udivmodsi4
+	.addrsig_sym .L__profd___udivmodsi4
+	.addrsig_sym .L__profc___mspabi_cmpf
+	.addrsig_sym .L__profd___mspabi_cmpf
+	.addrsig_sym .L__profc___mspabi_cmpd
+	.addrsig_sym .L__profd___mspabi_cmpd
+	.addrsig_sym .L__profc___mspabi_mpysll
+	.addrsig_sym .L__profd___mspabi_mpysll
+	.addrsig_sym .L__profc___mspabi_mpyull
+	.addrsig_sym .L__profd___mspabi_mpyull
+	.addrsig_sym .L__profc___mulhi3
+	.addrsig_sym .L__profd___mulhi3
+	.addrsig_sym .L__profc___divsi3
+	.addrsig_sym .L__profd___divsi3
+	.addrsig_sym .L__profc___modsi3
+	.addrsig_sym .L__profd___modsi3
+	.addrsig_sym .L__profc___udivmodhi4
+	.addrsig_sym .L__profd___udivmodhi4
+	.addrsig_sym .L__profc___udivmodsi4_libgcc
+	.addrsig_sym .L__profd___udivmodsi4_libgcc
+	.addrsig_sym .L__profc___ashldi3
+	.addrsig_sym .L__profd___ashldi3
+	.addrsig_sym .L__profc___ashrdi3
+	.addrsig_sym .L__profd___ashrdi3
+	.addrsig_sym .L__profc___bswapdi2
+	.addrsig_sym .L__profd___bswapdi2
+	.addrsig_sym .L__profc___bswapsi2
+	.addrsig_sym .L__profd___bswapsi2
+	.addrsig_sym .L__profc___clzsi2
+	.addrsig_sym .L__profd___clzsi2
+	.addrsig_sym .L__profc___cmpdi2
+	.addrsig_sym .L__profd___cmpdi2
+	.addrsig_sym .L__profc___aeabi_lcmp
+	.addrsig_sym .L__profd___aeabi_lcmp
+	.addrsig_sym .L__profc___ctzsi2
+	.addrsig_sym .L__profd___ctzsi2
+	.addrsig_sym .L__profc___lshrdi3
+	.addrsig_sym .L__profd___lshrdi3
+	.addrsig_sym .L__profc___muldsi3
+	.addrsig_sym .L__profd___muldsi3
+	.addrsig_sym .L__profc___muldi3_compiler_rt
+	.addrsig_sym .L__profd___muldi3_compiler_rt
+	.addrsig_sym .L__profc___negdi2
+	.addrsig_sym .L__profd___negdi2
+	.addrsig_sym .L__profc___paritydi2
+	.addrsig_sym .L__profd___paritydi2
+	.addrsig_sym .L__profc___paritysi2
+	.addrsig_sym .L__profd___paritysi2
+	.addrsig_sym .L__profc___popcountdi2
+	.addrsig_sym .L__profd___popcountdi2
+	.addrsig_sym .L__profc___popcountsi2
+	.addrsig_sym .L__profd___popcountsi2
+	.addrsig_sym .L__profc___powidf2
+	.addrsig_sym .L__profd___powidf2
+	.addrsig_sym .L__profc___powisf2
+	.addrsig_sym .L__profd___powisf2
+	.addrsig_sym .L__profc___ucmpdi2
+	.addrsig_sym .L__profd___ucmpdi2
+	.addrsig_sym .L__profc___aeabi_ulcmp
+	.addrsig_sym .L__profd___aeabi_ulcmp
+	.addrsig_sym .L__llvm_prf_nm

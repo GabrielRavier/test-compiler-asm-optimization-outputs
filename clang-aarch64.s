@@ -15,6 +15,13 @@ make_ti:                                // @make_ti
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_make_ti
+	movk	x16, #:abs_g1_nc:.L__profc_make_ti
+	movk	x16, #:abs_g2_nc:.L__profc_make_ti
+	movk	x16, #:abs_g3:.L__profc_make_ti
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #8]
 	ldr	x8, [sp, #16]
@@ -82,6 +89,13 @@ make_tu:                                // @make_tu
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_make_tu
+	movk	x16, #:abs_g1_nc:.L__profc_make_tu
+	movk	x16, #:abs_g2_nc:.L__profc_make_tu
+	movk	x16, #:abs_g3:.L__profc_make_tu
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #8]
 	ldr	x8, [sp, #16]
@@ -150,6 +164,13 @@ memmove:                                // @memmove
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memmove
+	movk	x16, #:abs_g1_nc:.L__profc_memmove
+	movk	x16, #:abs_g2_nc:.L__profc_memmove
+	movk	x16, #:abs_g3:.L__profc_memmove
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-16]
@@ -160,6 +181,13 @@ memmove:                                // @memmove
 	b.hs	.LBB2_6
 	b	.LBB2_1
 .LBB2_1:
+	movz	x16, #:abs_g0_nc:.L__profc_memmove+8
+	movk	x16, #:abs_g1_nc:.L__profc_memmove+8
+	movk	x16, #:abs_g2_nc:.L__profc_memmove+8
+	movk	x16, #:abs_g3:.L__profc_memmove+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #24]
 	ldr	x8, [sp, #8]
 	add	x8, x8, x16
@@ -174,6 +202,13 @@ memmove:                                // @memmove
 	cbz	x8, .LBB2_5
 	b	.LBB2_3
 .LBB2_3:                                //   in Loop: Header=BB2_2 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memmove+16
+	movk	x16, #:abs_g1_nc:.L__profc_memmove+16
+	movk	x16, #:abs_g2_nc:.L__profc_memmove+16
+	movk	x16, #:abs_g3:.L__profc_memmove+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	subs	x16, x8, #1
 	str	x16, [sp, #8]
@@ -197,12 +232,26 @@ memmove:                                // @memmove
 	b.eq	.LBB2_12
 	b	.LBB2_7
 .LBB2_7:
+	movz	x16, #:abs_g0_nc:.L__profc_memmove+24
+	movk	x16, #:abs_g1_nc:.L__profc_memmove+24
+	movk	x16, #:abs_g2_nc:.L__profc_memmove+24
+	movk	x16, #:abs_g3:.L__profc_memmove+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB2_8
 .LBB2_8:                                // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
 	cbz	x8, .LBB2_11
 	b	.LBB2_9
 .LBB2_9:                                //   in Loop: Header=BB2_8 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memmove+32
+	movk	x16, #:abs_g1_nc:.L__profc_memmove+32
+	movk	x16, #:abs_g2_nc:.L__profc_memmove+32
+	movk	x16, #:abs_g3:.L__profc_memmove+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	add	x16, x8, #1
 	str	x16, [sp, #8]
@@ -287,6 +336,13 @@ memccpy:                                // @memccpy
 	stur	x1, [x29, #-24]
 	stur	w2, [x29, #-28]
 	str	x3, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memccpy
+	movk	x16, #:abs_g1_nc:.L__profc_memccpy
+	movk	x16, #:abs_g2_nc:.L__profc_memccpy
+	movk	x16, #:abs_g3:.L__profc_memccpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-24]
@@ -298,9 +354,16 @@ memccpy:                                // @memccpy
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #4]                   // 4-byte Folded Spill
-	cbz	x8, .LBB3_3
+	cbz	x8, .LBB3_4
 	b	.LBB3_2
 .LBB3_2:                                //   in Loop: Header=BB3_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memccpy+16
+	movk	x16, #:abs_g1_nc:.L__profc_memccpy+16
+	movk	x16, #:abs_g2_nc:.L__profc_memccpy+16
+	movk	x16, #:abs_g3:.L__profc_memccpy+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #16]
@@ -308,15 +371,35 @@ memccpy:                                // @memccpy
 	ldur	w16, [x29, #-28]
 	subs	w8, w8, w16
 	cset	w8, ne
+	str	w8, [sp]                        // 4-byte Folded Spill
 	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	b.eq	.LBB3_4
 	b	.LBB3_3
 .LBB3_3:                                //   in Loop: Header=BB3_1 Depth=1
-	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB3_6
+	ldr	w8, [sp]                        // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_memccpy+24
+	movk	x17, #:abs_g1_nc:.L__profc_memccpy+24
+	movk	x17, #:abs_g2_nc:.L__profc_memccpy+24
+	movk	x17, #:abs_g3:.L__profc_memccpy+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	b	.LBB3_4
 .LBB3_4:                                //   in Loop: Header=BB3_1 Depth=1
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	tbz	w8, #0, .LBB3_7
 	b	.LBB3_5
 .LBB3_5:                                //   in Loop: Header=BB3_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memccpy+8
+	movk	x16, #:abs_g1_nc:.L__profc_memccpy+8
+	movk	x16, #:abs_g2_nc:.L__profc_memccpy+8
+	movk	x16, #:abs_g3:.L__profc_memccpy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB3_6
+.LBB3_6:                                //   in Loop: Header=BB3_1 Depth=1
 	ldr	x8, [sp, #24]
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
@@ -327,20 +410,27 @@ memccpy:                                // @memccpy
 	add	x8, x8, #1
 	str	x8, [sp, #16]
 	b	.LBB3_1
-.LBB3_6:
-	ldr	x8, [sp, #24]
-	cbz	x8, .LBB3_8
-	b	.LBB3_7
 .LBB3_7:
+	ldr	x8, [sp, #24]
+	cbz	x8, .LBB3_9
+	b	.LBB3_8
+.LBB3_8:
+	movz	x16, #:abs_g0_nc:.L__profc_memccpy+32
+	movk	x16, #:abs_g1_nc:.L__profc_memccpy+32
+	movk	x16, #:abs_g2_nc:.L__profc_memccpy+32
+	movk	x16, #:abs_g3:.L__profc_memccpy+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
-	b	.LBB3_9
-.LBB3_8:
+	b	.LBB3_10
+.LBB3_9:
 	mov	x8, xzr
 	stur	x8, [x29, #-8]
-	b	.LBB3_9
-.LBB3_9:
+	b	.LBB3_10
+.LBB3_10:
 	ldur	x0, [x29, #-8]
 	.cfi_def_cfa wsp, 80
 	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
@@ -405,6 +495,13 @@ memchr:                                 // @memchr
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memchr
+	movk	x16, #:abs_g1_nc:.L__profc_memchr
+	movk	x16, #:abs_g2_nc:.L__profc_memchr
+	movk	x16, #:abs_g3:.L__profc_memchr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldurb	w8, [x29, #-12]
@@ -414,23 +511,50 @@ memchr:                                 // @memchr
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	x8, .LBB4_3
+	cbz	x8, .LBB4_4
 	b	.LBB4_2
 .LBB4_2:                                //   in Loop: Header=BB4_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memchr+16
+	movk	x16, #:abs_g1_nc:.L__profc_memchr+16
+	movk	x16, #:abs_g2_nc:.L__profc_memchr+16
+	movk	x16, #:abs_g3:.L__profc_memchr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldrb	w8, [x8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
 	cset	w8, ne
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	b.eq	.LBB4_4
 	b	.LBB4_3
 .LBB4_3:                                //   in Loop: Header=BB4_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB4_6
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_memchr+24
+	movk	x17, #:abs_g1_nc:.L__profc_memchr+24
+	movk	x17, #:abs_g2_nc:.L__profc_memchr+24
+	movk	x17, #:abs_g3:.L__profc_memchr+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
 	b	.LBB4_4
 .LBB4_4:                                //   in Loop: Header=BB4_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB4_7
 	b	.LBB4_5
 .LBB4_5:                                //   in Loop: Header=BB4_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memchr+8
+	movk	x16, #:abs_g1_nc:.L__profc_memchr+8
+	movk	x16, #:abs_g2_nc:.L__profc_memchr+8
+	movk	x16, #:abs_g3:.L__profc_memchr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB4_6
+.LBB4_6:                                //   in Loop: Header=BB4_1 Depth=1
 	ldr	x8, [sp, #16]
 	add	x8, x8, #1
 	str	x8, [sp, #16]
@@ -438,19 +562,26 @@ memchr:                                 // @memchr
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
 	b	.LBB4_1
-.LBB4_6:
-	ldr	x8, [sp, #24]
-	cbz	x8, .LBB4_8
-	b	.LBB4_7
 .LBB4_7:
+	ldr	x8, [sp, #24]
+	cbz	x8, .LBB4_9
+	b	.LBB4_8
+.LBB4_8:
+	movz	x16, #:abs_g0_nc:.L__profc_memchr+32
+	movk	x16, #:abs_g1_nc:.L__profc_memchr+32
+	movk	x16, #:abs_g2_nc:.L__profc_memchr+32
+	movk	x16, #:abs_g3:.L__profc_memchr+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #16]
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB4_9
-.LBB4_8:
+	b	.LBB4_10
+.LBB4_9:
 	mov	x0, xzr
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB4_9
-.LBB4_9:
+	b	.LBB4_10
+.LBB4_10:
 	ldr	x0, [sp]                        // 8-byte Folded Reload
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
@@ -505,74 +636,115 @@ memchr:                                 // @memchr
 memcmp:                                 // @memcmp
 	.cfi_startproc
 // %bb.0:
-	sub	sp, sp, #64
-	.cfi_def_cfa_offset 64
-	stp	x29, x30, [sp, #48]             // 16-byte Folded Spill
-	add	x29, sp, #48
+	sub	sp, sp, #80
+	.cfi_def_cfa_offset 80
+	stp	x29, x30, [sp, #64]             // 16-byte Folded Spill
+	add	x29, sp, #64
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
-	str	x2, [sp, #24]
+	stur	x2, [x29, #-24]
+	movz	x16, #:abs_g0_nc:.L__profc_memcmp
+	movk	x16, #:abs_g1_nc:.L__profc_memcmp
+	movk	x16, #:abs_g2_nc:.L__profc_memcmp
+	movk	x16, #:abs_g3:.L__profc_memcmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
-	str	x8, [sp, #16]
+	str	x8, [sp, #32]
 	ldur	x8, [x29, #-16]
-	str	x8, [sp, #8]
+	str	x8, [sp, #24]
 	b	.LBB5_1
 .LBB5_1:                                // =>This Inner Loop Header: Depth=1
-	ldr	x8, [sp, #24]
+	ldur	x8, [x29, #-24]
 	mov	w16, wzr
-	str	w16, [sp, #4]                   // 4-byte Folded Spill
-	cbz	x8, .LBB5_3
+	str	w16, [sp, #20]                  // 4-byte Folded Spill
+	cbz	x8, .LBB5_4
 	b	.LBB5_2
 .LBB5_2:                                //   in Loop: Header=BB5_1 Depth=1
-	ldr	x8, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_memcmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_memcmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_memcmp+16
+	movk	x16, #:abs_g3:.L__profc_memcmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldr	x8, [sp, #32]
 	ldrb	w8, [x8]
-	ldr	x16, [sp, #8]
+	ldr	x16, [sp, #24]
 	ldrb	w16, [x16]
 	subs	w8, w8, w16
 	cset	w8, eq
-	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
+	str	w8, [sp, #20]                   // 4-byte Folded Spill
+	b.ne	.LBB5_4
 	b	.LBB5_3
 .LBB5_3:                                //   in Loop: Header=BB5_1 Depth=1
-	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB5_6
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_memcmp+24
+	movk	x17, #:abs_g1_nc:.L__profc_memcmp+24
+	movk	x17, #:abs_g2_nc:.L__profc_memcmp+24
+	movk	x17, #:abs_g3:.L__profc_memcmp+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #20]                   // 4-byte Folded Spill
 	b	.LBB5_4
 .LBB5_4:                                //   in Loop: Header=BB5_1 Depth=1
+	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB5_7
 	b	.LBB5_5
 .LBB5_5:                                //   in Loop: Header=BB5_1 Depth=1
-	ldr	x8, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memcmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_memcmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_memcmp+8
+	movk	x16, #:abs_g3:.L__profc_memcmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB5_6
+.LBB5_6:                                //   in Loop: Header=BB5_1 Depth=1
+	ldur	x8, [x29, #-24]
 	subs	x8, x8, #1
-	str	x8, [sp, #24]
-	ldr	x8, [sp, #16]
+	stur	x8, [x29, #-24]
+	ldr	x8, [sp, #32]
 	add	x8, x8, #1
-	str	x8, [sp, #16]
-	ldr	x8, [sp, #8]
-	add	x8, x8, #1
-	str	x8, [sp, #8]
-	b	.LBB5_1
-.LBB5_6:
+	str	x8, [sp, #32]
 	ldr	x8, [sp, #24]
-	cbz	x8, .LBB5_8
-	b	.LBB5_7
+	add	x8, x8, #1
+	str	x8, [sp, #24]
+	b	.LBB5_1
 .LBB5_7:
-	ldr	x8, [sp, #16]
+	ldur	x8, [x29, #-24]
+	cbz	x8, .LBB5_9
+	b	.LBB5_8
+.LBB5_8:
+	movz	x16, #:abs_g0_nc:.L__profc_memcmp+32
+	movk	x16, #:abs_g1_nc:.L__profc_memcmp+32
+	movk	x16, #:abs_g2_nc:.L__profc_memcmp+32
+	movk	x16, #:abs_g3:.L__profc_memcmp+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldr	x8, [sp, #32]
 	ldrb	w8, [x8]
-	ldr	x16, [sp, #8]
+	ldr	x16, [sp, #24]
 	ldrb	w16, [x16]
 	subs	w0, w8, w16
-	str	w0, [sp]                        // 4-byte Folded Spill
-	b	.LBB5_9
-.LBB5_8:
-	mov	w0, wzr
-	str	w0, [sp]                        // 4-byte Folded Spill
-	b	.LBB5_9
+	str	w0, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB5_10
 .LBB5_9:
-	ldr	w0, [sp]                        // 4-byte Folded Reload
-	.cfi_def_cfa wsp, 64
-	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
-	add	sp, sp, #64
+	mov	w0, wzr
+	str	w0, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB5_10
+.LBB5_10:
+	ldr	w0, [sp, #12]                   // 4-byte Folded Reload
+	.cfi_def_cfa wsp, 80
+	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
+	add	sp, sp, #80
 	.cfi_def_cfa_offset 0
 	.cfi_restore w30
 	.cfi_restore w29
@@ -633,6 +805,13 @@ memcpy:                                 // @memcpy
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memcpy
+	movk	x16, #:abs_g1_nc:.L__profc_memcpy
+	movk	x16, #:abs_g2_nc:.L__profc_memcpy
+	movk	x16, #:abs_g3:.L__profc_memcpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-16]
@@ -643,6 +822,13 @@ memcpy:                                 // @memcpy
 	cbz	x8, .LBB6_4
 	b	.LBB6_2
 .LBB6_2:                                //   in Loop: Header=BB6_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memcpy+8
+	movk	x16, #:abs_g1_nc:.L__profc_memcpy+8
+	movk	x16, #:abs_g2_nc:.L__profc_memcpy+8
+	movk	x16, #:abs_g3:.L__profc_memcpy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	add	x16, x8, #1
 	str	x16, [sp, #8]
@@ -722,6 +908,13 @@ memrchr:                                // @memrchr
 	stur	x0, [x29, #-16]
 	stur	w1, [x29, #-20]
 	str	x2, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_memrchr
+	movk	x16, #:abs_g1_nc:.L__profc_memrchr
+	movk	x16, #:abs_g2_nc:.L__profc_memrchr
+	movk	x16, #:abs_g3:.L__profc_memrchr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #8]
 	ldurb	w8, [x29, #-20]
@@ -734,6 +927,13 @@ memrchr:                                // @memrchr
 	cbz	x8, .LBB7_5
 	b	.LBB7_2
 .LBB7_2:                                //   in Loop: Header=BB7_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memrchr+8
+	movk	x16, #:abs_g1_nc:.L__profc_memrchr+8
+	movk	x16, #:abs_g2_nc:.L__profc_memrchr+8
+	movk	x16, #:abs_g3:.L__profc_memrchr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp, #16]
 	ldrb	w8, [x8, x16]
@@ -742,6 +942,13 @@ memrchr:                                // @memrchr
 	b.ne	.LBB7_4
 	b	.LBB7_3
 .LBB7_3:
+	movz	x16, #:abs_g0_nc:.L__profc_memrchr+16
+	movk	x16, #:abs_g1_nc:.L__profc_memrchr+16
+	movk	x16, #:abs_g2_nc:.L__profc_memrchr+16
+	movk	x16, #:abs_g3:.L__profc_memrchr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp, #16]
 	add	x8, x8, x16
@@ -818,6 +1025,13 @@ memset:                                 // @memset
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memset
+	movk	x16, #:abs_g1_nc:.L__profc_memset
+	movk	x16, #:abs_g2_nc:.L__profc_memset
+	movk	x16, #:abs_g3:.L__profc_memset
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	b	.LBB8_1
@@ -826,6 +1040,13 @@ memset:                                 // @memset
 	cbz	x8, .LBB8_4
 	b	.LBB8_2
 .LBB8_2:                                //   in Loop: Header=BB8_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memset+8
+	movk	x16, #:abs_g1_nc:.L__profc_memset+8
+	movk	x16, #:abs_g2_nc:.L__profc_memset+8
+	movk	x16, #:abs_g3:.L__profc_memset+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	ldr	x16, [sp, #16]
 	strb	w8, [x16]
@@ -902,6 +1123,13 @@ stpcpy:                                 // @stpcpy
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc_stpcpy
+	movk	x16, #:abs_g1_nc:.L__profc_stpcpy
+	movk	x16, #:abs_g2_nc:.L__profc_stpcpy
+	movk	x16, #:abs_g3:.L__profc_stpcpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB9_1
 .LBB9_1:                                // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp]
@@ -911,6 +1139,13 @@ stpcpy:                                 // @stpcpy
 	cbz	w8, .LBB9_4
 	b	.LBB9_2
 .LBB9_2:                                //   in Loop: Header=BB9_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_stpcpy+8
+	movk	x16, #:abs_g1_nc:.L__profc_stpcpy+8
+	movk	x16, #:abs_g2_nc:.L__profc_stpcpy+8
+	movk	x16, #:abs_g3:.L__profc_stpcpy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB9_3
 .LBB9_3:                                //   in Loop: Header=BB9_1 Depth=1
 	ldr	x8, [sp]
@@ -975,49 +1210,83 @@ stpcpy:                                 // @stpcpy
 strchrnul:                              // @strchrnul
 	.cfi_startproc
 // %bb.0:
-	sub	sp, sp, #32
-	.cfi_def_cfa_offset 32
-	stp	x29, x30, [sp, #16]             // 16-byte Folded Spill
-	add	x29, sp, #16
+	sub	sp, sp, #48
+	.cfi_def_cfa_offset 48
+	stp	x29, x30, [sp, #32]             // 16-byte Folded Spill
+	add	x29, sp, #32
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
-	str	x0, [sp, #8]
-	str	w1, [sp, #4]
-	ldrb	w8, [sp, #4]
-	str	w8, [sp, #4]
+	stur	x0, [x29, #-8]
+	stur	w1, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_strchrnul
+	movk	x16, #:abs_g1_nc:.L__profc_strchrnul
+	movk	x16, #:abs_g2_nc:.L__profc_strchrnul
+	movk	x16, #:abs_g3:.L__profc_strchrnul
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldurb	w8, [x29, #-12]
+	stur	w8, [x29, #-12]
 	b	.LBB10_1
 .LBB10_1:                               // =>This Inner Loop Header: Depth=1
-	ldr	x8, [sp, #8]
+	ldur	x8, [x29, #-8]
 	ldrb	w8, [x8]
 	mov	w16, wzr
-	str	w16, [sp]                       // 4-byte Folded Spill
-	cbz	w8, .LBB10_3
+	str	w16, [sp, #16]                  // 4-byte Folded Spill
+	cbz	w8, .LBB10_4
 	b	.LBB10_2
 .LBB10_2:                               //   in Loop: Header=BB10_1 Depth=1
-	ldr	x8, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_strchrnul+16
+	movk	x16, #:abs_g1_nc:.L__profc_strchrnul+16
+	movk	x16, #:abs_g2_nc:.L__profc_strchrnul+16
+	movk	x16, #:abs_g3:.L__profc_strchrnul+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	x8, [x29, #-8]
 	ldrb	w8, [x8]
-	ldr	w16, [sp, #4]
+	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
 	cset	w8, ne
-	str	w8, [sp]                        // 4-byte Folded Spill
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
+	b.eq	.LBB10_4
 	b	.LBB10_3
 .LBB10_3:                               //   in Loop: Header=BB10_1 Depth=1
-	ldr	w8, [sp]                        // 4-byte Folded Reload
-	tbz	w8, #0, .LBB10_6
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_strchrnul+24
+	movk	x17, #:abs_g1_nc:.L__profc_strchrnul+24
+	movk	x17, #:abs_g2_nc:.L__profc_strchrnul+24
+	movk	x17, #:abs_g3:.L__profc_strchrnul+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
 	b	.LBB10_4
 .LBB10_4:                               //   in Loop: Header=BB10_1 Depth=1
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB10_7
 	b	.LBB10_5
 .LBB10_5:                               //   in Loop: Header=BB10_1 Depth=1
-	ldr	x8, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_strchrnul+8
+	movk	x16, #:abs_g1_nc:.L__profc_strchrnul+8
+	movk	x16, #:abs_g2_nc:.L__profc_strchrnul+8
+	movk	x16, #:abs_g3:.L__profc_strchrnul+8
+	ldr	x8, [x16]
 	add	x8, x8, #1
-	str	x8, [sp, #8]
+	str	x8, [x16]
+	b	.LBB10_6
+.LBB10_6:                               //   in Loop: Header=BB10_1 Depth=1
+	ldur	x8, [x29, #-8]
+	add	x8, x8, #1
+	stur	x8, [x29, #-8]
 	b	.LBB10_1
-.LBB10_6:
-	ldr	x0, [sp, #8]
-	.cfi_def_cfa wsp, 32
-	ldp	x29, x30, [sp, #16]             // 16-byte Folded Reload
-	add	sp, sp, #32
+.LBB10_7:
+	ldur	x0, [x29, #-8]
+	.cfi_def_cfa wsp, 48
+	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
+	add	sp, sp, #48
 	.cfi_def_cfa_offset 0
 	.cfi_restore w30
 	.cfi_restore w29
@@ -1077,32 +1346,55 @@ strchr:                                 // @strchr
 	.cfi_offset w29, -16
 	str	x0, [sp, #16]
 	str	w1, [sp, #12]
-	b	.LBB11_1
-.LBB11_1:                               // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strchr
+	movk	x16, #:abs_g1_nc:.L__profc_strchr
+	movk	x16, #:abs_g2_nc:.L__profc_strchr
+	movk	x16, #:abs_g3:.L__profc_strchr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB11_2
+.LBB11_1:                               //   in Loop: Header=BB11_2 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strchr+8
+	movk	x16, #:abs_g1_nc:.L__profc_strchr+8
+	movk	x16, #:abs_g2_nc:.L__profc_strchr+8
+	movk	x16, #:abs_g3:.L__profc_strchr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB11_2
+.LBB11_2:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #16]
 	ldrb	w8, [x8]
 	ldr	w16, [sp, #12]
 	subs	w8, w8, w16
-	b.ne	.LBB11_3
-	b	.LBB11_2
-.LBB11_2:
+	b.ne	.LBB11_4
+	b	.LBB11_3
+.LBB11_3:
+	movz	x16, #:abs_g0_nc:.L__profc_strchr+16
+	movk	x16, #:abs_g1_nc:.L__profc_strchr+16
+	movk	x16, #:abs_g2_nc:.L__profc_strchr+16
+	movk	x16, #:abs_g3:.L__profc_strchr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	stur	x8, [x29, #-8]
-	b	.LBB11_6
-.LBB11_3:                               //   in Loop: Header=BB11_1 Depth=1
-	b	.LBB11_4
-.LBB11_4:                               //   in Loop: Header=BB11_1 Depth=1
+	b	.LBB11_7
+.LBB11_4:                               //   in Loop: Header=BB11_2 Depth=1
+	b	.LBB11_5
+.LBB11_5:                               //   in Loop: Header=BB11_2 Depth=1
 	ldr	x8, [sp, #16]
 	add	x16, x8, #1
 	str	x16, [sp, #16]
 	ldrb	w8, [x8]
 	cbnz	w8, .LBB11_1
-	b	.LBB11_5
-.LBB11_5:
-	mov	x8, xzr
-	stur	x8, [x29, #-8]
 	b	.LBB11_6
 .LBB11_6:
+	mov	x8, xzr
+	stur	x8, [x29, #-8]
+	b	.LBB11_7
+.LBB11_7:
 	ldur	x0, [x29, #-8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -1166,6 +1458,13 @@ strcmp:                                 // @strcmp
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_strcmp
+	movk	x16, #:abs_g1_nc:.L__profc_strcmp
+	movk	x16, #:abs_g2_nc:.L__profc_strcmp
+	movk	x16, #:abs_g3:.L__profc_strcmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB12_1
 .LBB12_1:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
@@ -1175,22 +1474,49 @@ strcmp:                                 // @strcmp
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b.ne	.LBB12_3
+	b.ne	.LBB12_4
 	b	.LBB12_2
 .LBB12_2:                               //   in Loop: Header=BB12_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strcmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_strcmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_strcmp+16
+	movk	x16, #:abs_g3:.L__profc_strcmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldrb	w8, [x8]
-	subs	w8, w8, #0
-	cset	w8, ne
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	subs	w16, w8, #0
+	cset	w16, ne
+	str	w16, [sp, #8]                   // 4-byte Folded Spill
+	str	w16, [sp, #12]                  // 4-byte Folded Spill
+	cbz	w8, .LBB12_4
 	b	.LBB12_3
 .LBB12_3:                               //   in Loop: Header=BB12_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB12_6
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_strcmp+24
+	movk	x17, #:abs_g1_nc:.L__profc_strcmp+24
+	movk	x17, #:abs_g2_nc:.L__profc_strcmp+24
+	movk	x17, #:abs_g3:.L__profc_strcmp+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
 	b	.LBB12_4
 .LBB12_4:                               //   in Loop: Header=BB12_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB12_7
 	b	.LBB12_5
 .LBB12_5:                               //   in Loop: Header=BB12_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strcmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_strcmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_strcmp+8
+	movk	x16, #:abs_g3:.L__profc_strcmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB12_6
+.LBB12_6:                               //   in Loop: Header=BB12_1 Depth=1
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
@@ -1198,7 +1524,7 @@ strcmp:                                 // @strcmp
 	add	x8, x8, #1
 	str	x8, [sp, #16]
 	b	.LBB12_1
-.LBB12_6:
+.LBB12_7:
 	ldur	x8, [x29, #-8]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #16]
@@ -1265,6 +1591,13 @@ strlen:                                 // @strlen
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_strlen
+	movk	x16, #:abs_g1_nc:.L__profc_strlen
+	movk	x16, #:abs_g2_nc:.L__profc_strlen
+	movk	x16, #:abs_g3:.L__profc_strlen
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	str	x8, [sp]
 	b	.LBB13_1
@@ -1274,6 +1607,13 @@ strlen:                                 // @strlen
 	cbz	w8, .LBB13_4
 	b	.LBB13_2
 .LBB13_2:                               //   in Loop: Header=BB13_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strlen+8
+	movk	x16, #:abs_g1_nc:.L__profc_strlen+8
+	movk	x16, #:abs_g2_nc:.L__profc_strlen+8
+	movk	x16, #:abs_g3:.L__profc_strlen+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB13_3
 .LBB13_3:                               //   in Loop: Header=BB13_1 Depth=1
 	ldr	x8, [sp, #8]
@@ -1347,6 +1687,13 @@ strncmp:                                // @strncmp
 	stur	x0, [x29, #-16]
 	stur	x1, [x29, #-24]
 	str	x2, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp
+	movk	x16, #:abs_g3:.L__profc_strncmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #24]
 	ldur	x8, [x29, #-24]
@@ -1357,9 +1704,16 @@ strncmp:                                // @strncmp
 	cbnz	x8, .LBB14_2
 	b	.LBB14_1
 .LBB14_1:
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+8
+	movk	x16, #:abs_g3:.L__profc_strncmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
-	b	.LBB14_11
+	b	.LBB14_14
 .LBB14_2:
 	b	.LBB14_3
 .LBB14_3:                               // =>This Inner Loop Header: Depth=1
@@ -1367,37 +1721,96 @@ strncmp:                                // @strncmp
 	ldrb	w8, [x8]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	w8, .LBB14_7
+	cbz	w8, .LBB14_10
 	b	.LBB14_4
 .LBB14_4:                               //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+56
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+56
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+56
+	movk	x16, #:abs_g3:.L__profc_strncmp+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldrb	w8, [x8]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	w8, .LBB14_7
+	cbz	w8, .LBB14_10
 	b	.LBB14_5
 .LBB14_5:                               //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+64
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+64
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+64
+	movk	x16, #:abs_g3:.L__profc_strncmp+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB14_6
+.LBB14_6:                               //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+40
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+40
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+40
+	movk	x16, #:abs_g3:.L__profc_strncmp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #32]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	x8, .LBB14_7
-	b	.LBB14_6
-.LBB14_6:                               //   in Loop: Header=BB14_3 Depth=1
+	cbz	x8, .LBB14_10
+	b	.LBB14_7
+.LBB14_7:                               //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+48
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+48
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+48
+	movk	x16, #:abs_g3:.L__profc_strncmp+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB14_8
+.LBB14_8:                               //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+24
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+24
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+24
+	movk	x16, #:abs_g3:.L__profc_strncmp+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #16]
 	ldrb	w16, [x16]
 	subs	w8, w8, w16
 	cset	w8, eq
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b	.LBB14_7
-.LBB14_7:                               //   in Loop: Header=BB14_3 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB14_10
-	b	.LBB14_8
-.LBB14_8:                               //   in Loop: Header=BB14_3 Depth=1
+	b.ne	.LBB14_10
 	b	.LBB14_9
 .LBB14_9:                               //   in Loop: Header=BB14_3 Depth=1
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_strncmp+32
+	movk	x17, #:abs_g1_nc:.L__profc_strncmp+32
+	movk	x17, #:abs_g2_nc:.L__profc_strncmp+32
+	movk	x17, #:abs_g3:.L__profc_strncmp+32
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB14_10
+.LBB14_10:                              //   in Loop: Header=BB14_3 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB14_13
+	b	.LBB14_11
+.LBB14_11:                              //   in Loop: Header=BB14_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_strncmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_strncmp+16
+	movk	x16, #:abs_g3:.L__profc_strncmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB14_12
+.LBB14_12:                              //   in Loop: Header=BB14_3 Depth=1
 	ldr	x8, [sp, #24]
 	add	x8, x8, #1
 	str	x8, [sp, #24]
@@ -1408,15 +1821,15 @@ strncmp:                                // @strncmp
 	subs	x8, x8, #1
 	str	x8, [sp, #32]
 	b	.LBB14_3
-.LBB14_10:
+.LBB14_13:
 	ldr	x8, [sp, #24]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #16]
 	ldrb	w16, [x16]
 	subs	w8, w8, w16
 	stur	w8, [x29, #-4]
-	b	.LBB14_11
-.LBB14_11:
+	b	.LBB14_14
+.LBB14_14:
 	ldur	w0, [x29, #-4]
 	.cfi_def_cfa wsp, 80
 	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
@@ -1481,6 +1894,13 @@ swab:                                   // @swab
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_swab
+	movk	x16, #:abs_g1_nc:.L__profc_swab
+	movk	x16, #:abs_g2_nc:.L__profc_swab
+	movk	x16, #:abs_g3:.L__profc_swab
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-16]
@@ -1492,6 +1912,13 @@ swab:                                   // @swab
 	b.lt	.LBB15_4
 	b	.LBB15_2
 .LBB15_2:                               //   in Loop: Header=BB15_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_swab+8
+	movk	x16, #:abs_g1_nc:.L__profc_swab+8
+	movk	x16, #:abs_g2_nc:.L__profc_swab+8
+	movk	x16, #:abs_g3:.L__profc_swab+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldrb	w8, [x8, #1]
 	ldr	x16, [sp, #8]
@@ -1575,6 +2002,13 @@ isalpha:                                // @isalpha
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isalpha
+	movk	x16, #:abs_g1_nc:.L__profc_isalpha
+	movk	x16, #:abs_g2_nc:.L__profc_isalpha
+	movk	x16, #:abs_g3:.L__profc_isalpha
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	orr	w8, w8, #0x20
 	subs	w8, w8, #97
@@ -1641,6 +2075,13 @@ isascii:                                // @isascii
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isascii
+	movk	x16, #:abs_g1_nc:.L__profc_isascii
+	movk	x16, #:abs_g2_nc:.L__profc_isascii
+	movk	x16, #:abs_g3:.L__profc_isascii
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ands	w8, w8, #0xffffff80
 	cset	w0, eq
@@ -1705,19 +2146,46 @@ isblank:                                // @isblank
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isblank
+	movk	x16, #:abs_g1_nc:.L__profc_isblank
+	movk	x16, #:abs_g2_nc:.L__profc_isblank
+	movk	x16, #:abs_g3:.L__profc_isblank
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #32
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.eq	.LBB18_2
+	b.eq	.LBB18_3
 	b	.LBB18_1
 .LBB18_1:
+	movz	x16, #:abs_g0_nc:.L__profc_isblank+8
+	movk	x16, #:abs_g1_nc:.L__profc_isblank+8
+	movk	x16, #:abs_g2_nc:.L__profc_isblank+8
+	movk	x16, #:abs_g3:.L__profc_isblank+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #9
 	cset	w8, eq
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.eq	.LBB18_3
 	b	.LBB18_2
 .LBB18_2:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_isblank+16
+	movk	x17, #:abs_g1_nc:.L__profc_isblank+16
+	movk	x17, #:abs_g2_nc:.L__profc_isblank+16
+	movk	x17, #:abs_g3:.L__profc_isblank+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB18_3
+.LBB18_3:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -1781,19 +2249,46 @@ iscntrl:                                // @iscntrl
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_iscntrl
+	movk	x16, #:abs_g1_nc:.L__profc_iscntrl
+	movk	x16, #:abs_g2_nc:.L__profc_iscntrl
+	movk	x16, #:abs_g3:.L__profc_iscntrl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #32
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.lo	.LBB19_2
+	b.lo	.LBB19_3
 	b	.LBB19_1
 .LBB19_1:
+	movz	x16, #:abs_g0_nc:.L__profc_iscntrl+8
+	movk	x16, #:abs_g1_nc:.L__profc_iscntrl+8
+	movk	x16, #:abs_g2_nc:.L__profc_iscntrl+8
+	movk	x16, #:abs_g3:.L__profc_iscntrl+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #127
 	cset	w8, eq
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.eq	.LBB19_3
 	b	.LBB19_2
 .LBB19_2:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_iscntrl+16
+	movk	x17, #:abs_g1_nc:.L__profc_iscntrl+16
+	movk	x17, #:abs_g2_nc:.L__profc_iscntrl+16
+	movk	x17, #:abs_g3:.L__profc_iscntrl+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB19_3
+.LBB19_3:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -1857,6 +2352,13 @@ isdigit:                                // @isdigit
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isdigit
+	movk	x16, #:abs_g1_nc:.L__profc_isdigit
+	movk	x16, #:abs_g2_nc:.L__profc_isdigit
+	movk	x16, #:abs_g3:.L__profc_isdigit
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #48
 	subs	w8, w8, #10
@@ -1922,6 +2424,13 @@ isgraph:                                // @isgraph
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isgraph
+	movk	x16, #:abs_g1_nc:.L__profc_isgraph
+	movk	x16, #:abs_g2_nc:.L__profc_isgraph
+	movk	x16, #:abs_g3:.L__profc_isgraph
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #33
 	subs	w8, w8, #94
@@ -1987,6 +2496,13 @@ islower:                                // @islower
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_islower
+	movk	x16, #:abs_g1_nc:.L__profc_islower
+	movk	x16, #:abs_g2_nc:.L__profc_islower
+	movk	x16, #:abs_g3:.L__profc_islower
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #97
 	subs	w8, w8, #26
@@ -2052,6 +2568,13 @@ isprint:                                // @isprint
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isprint
+	movk	x16, #:abs_g1_nc:.L__profc_isprint
+	movk	x16, #:abs_g2_nc:.L__profc_isprint
+	movk	x16, #:abs_g3:.L__profc_isprint
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #32
 	subs	w8, w8, #95
@@ -2117,20 +2640,47 @@ isspace:                                // @isspace
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isspace
+	movk	x16, #:abs_g1_nc:.L__profc_isspace
+	movk	x16, #:abs_g2_nc:.L__profc_isspace
+	movk	x16, #:abs_g3:.L__profc_isspace
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #32
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.eq	.LBB24_2
+	b.eq	.LBB24_3
 	b	.LBB24_1
 .LBB24_1:
+	movz	x16, #:abs_g0_nc:.L__profc_isspace+8
+	movk	x16, #:abs_g1_nc:.L__profc_isspace+8
+	movk	x16, #:abs_g2_nc:.L__profc_isspace+8
+	movk	x16, #:abs_g3:.L__profc_isspace+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #9
 	subs	w8, w8, #5
 	cset	w8, lo
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.lo	.LBB24_3
 	b	.LBB24_2
 .LBB24_2:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_isspace+16
+	movk	x17, #:abs_g1_nc:.L__profc_isspace+16
+	movk	x17, #:abs_g2_nc:.L__profc_isspace+16
+	movk	x17, #:abs_g3:.L__profc_isspace+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB24_3
+.LBB24_3:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -2194,6 +2744,13 @@ isupper:                                // @isupper
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_isupper
+	movk	x16, #:abs_g1_nc:.L__profc_isupper
+	movk	x16, #:abs_g2_nc:.L__profc_isupper
+	movk	x16, #:abs_g3:.L__profc_isupper
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #65
 	subs	w8, w8, #26
@@ -2259,38 +2816,97 @@ iswcntrl:                               // @iswcntrl
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl
+	movk	x16, #:abs_g3:.L__profc_iswcntrl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #32
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.lo	.LBB26_4
+	b.lo	.LBB26_7
 	b	.LBB26_1
 .LBB26_1:
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl+40
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl+40
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl+40
+	movk	x16, #:abs_g3:.L__profc_iswcntrl+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w16, w8, #127
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #33
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.lo	.LBB26_4
+	b.lo	.LBB26_7
 	b	.LBB26_2
 .LBB26_2:
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl+48
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl+48
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl+48
+	movk	x16, #:abs_g3:.L__profc_iswcntrl+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB26_3
+.LBB26_3:
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl+24
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl+24
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl+24
+	movk	x16, #:abs_g3:.L__profc_iswcntrl+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	mov	w16, #-8232                     // =0xffffdfd8
 	add	w16, w8, w16
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #2
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.lo	.LBB26_4
-	b	.LBB26_3
-.LBB26_3:
+	b.lo	.LBB26_7
+	b	.LBB26_4
+.LBB26_4:
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl+32
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl+32
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl+32
+	movk	x16, #:abs_g3:.L__profc_iswcntrl+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB26_5
+.LBB26_5:
+	movz	x16, #:abs_g0_nc:.L__profc_iswcntrl+8
+	movk	x16, #:abs_g1_nc:.L__profc_iswcntrl+8
+	movk	x16, #:abs_g2_nc:.L__profc_iswcntrl+8
+	movk	x16, #:abs_g3:.L__profc_iswcntrl+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	mov	w16, #-65529                    // =0xffff0007
 	add	w8, w8, w16
 	subs	w8, w8, #3
 	cset	w8, lo
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b	.LBB26_4
-.LBB26_4:
+	b.lo	.LBB26_7
+	b	.LBB26_6
+.LBB26_6:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_iswcntrl+16
+	movk	x17, #:abs_g1_nc:.L__profc_iswcntrl+16
+	movk	x17, #:abs_g2_nc:.L__profc_iswcntrl+16
+	movk	x17, #:abs_g3:.L__profc_iswcntrl+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB26_7
+.LBB26_7:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -2354,6 +2970,13 @@ iswdigit:                               // @iswdigit
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_iswdigit
+	movk	x16, #:abs_g1_nc:.L__profc_iswdigit
+	movk	x16, #:abs_g2_nc:.L__profc_iswdigit
+	movk	x16, #:abs_g3:.L__profc_iswdigit
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #48
 	subs	w8, w8, #10
@@ -2419,67 +3042,143 @@ iswprint:                               // @iswprint
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	w0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint
+	movk	x16, #:abs_g3:.L__profc_iswprint
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	subs	w8, w8, #254
 	b.hi	.LBB28_2
 	b	.LBB28_1
 .LBB28_1:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+8
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+8
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+8
+	movk	x16, #:abs_g3:.L__profc_iswprint+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	add	w8, w8, #1
 	and	w8, w8, #0x7f
 	subs	w8, w8, #32
 	cset	w8, gt
 	stur	w8, [x29, #-4]
-	b	.LBB28_10
+	b	.LBB28_13
 .LBB28_2:
 	ldr	w8, [sp, #8]
 	lsr	w8, w8, #3
 	subs	w8, w8, #1029
-	b.lo	.LBB28_5
+	b.lo	.LBB28_7
 	b	.LBB28_3
 .LBB28_3:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+40
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+40
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+40
+	movk	x16, #:abs_g3:.L__profc_iswprint+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	mov	w16, #-8234                     // =0xffffdfd6
 	add	w8, w8, w16
 	mov	w16, #47062                     // =0xb7d6
 	subs	w8, w8, w16
-	b.lo	.LBB28_5
+	b.lo	.LBB28_7
 	b	.LBB28_4
 .LBB28_4:
-	ldr	w8, [sp, #8]
-	subs	w8, w8, #14, lsl #12            // =57344
-	mov	w16, #8184                      // =0x1ff8
-	subs	w8, w8, w16
-	b.hi	.LBB28_6
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+48
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+48
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+48
+	movk	x16, #:abs_g3:.L__profc_iswprint+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB28_5
 .LBB28_5:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+24
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+24
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+24
+	movk	x16, #:abs_g3:.L__profc_iswprint+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldr	w8, [sp, #8]
+	subs	w8, w8, #14, lsl #12            // =57344
+	mov	w16, #8185                      // =0x1ff9
+	subs	w8, w8, w16
+	b.lo	.LBB28_7
+	b	.LBB28_6
+.LBB28_6:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+32
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+32
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+32
+	movk	x16, #:abs_g3:.L__profc_iswprint+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB28_8
+.LBB28_7:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+16
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+16
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+16
+	movk	x16, #:abs_g3:.L__profc_iswprint+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	stur	w8, [x29, #-4]
-	b	.LBB28_10
-.LBB28_6:
+	b	.LBB28_13
+.LBB28_8:
 	ldr	w8, [sp, #8]
 	mov	w16, #-65532                    // =0xffff0004
 	add	w8, w8, w16
 	mov	w16, #3                         // =0x3
 	movk	w16, #16, lsl #16
 	subs	w8, w8, w16
-	b.hi	.LBB28_8
-	b	.LBB28_7
-.LBB28_7:
+	b.hi	.LBB28_11
+	b	.LBB28_9
+.LBB28_9:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+64
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+64
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+64
+	movk	x16, #:abs_g3:.L__profc_iswprint+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #8]
 	mov	w8, #65534                      // =0xfffe
 	bic	w8, w8, w16
-	cbnz	w8, .LBB28_9
-	b	.LBB28_8
-.LBB28_8:
-	mov	w8, wzr
-	stur	w8, [x29, #-4]
-	b	.LBB28_10
-.LBB28_9:
-	mov	w8, #1                          // =0x1
-	stur	w8, [x29, #-4]
+	cbz	w8, .LBB28_11
 	b	.LBB28_10
 .LBB28_10:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+72
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+72
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+72
+	movk	x16, #:abs_g3:.L__profc_iswprint+72
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB28_12
+.LBB28_11:
+	movz	x16, #:abs_g0_nc:.L__profc_iswprint+56
+	movk	x16, #:abs_g1_nc:.L__profc_iswprint+56
+	movk	x16, #:abs_g2_nc:.L__profc_iswprint+56
+	movk	x16, #:abs_g3:.L__profc_iswprint+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	mov	w8, wzr
+	stur	w8, [x29, #-4]
+	b	.LBB28_13
+.LBB28_12:
+	mov	w8, #1                          // =0x1
+	stur	w8, [x29, #-4]
+	b	.LBB28_13
+.LBB28_13:
 	ldur	w0, [x29, #-4]
 	.cfi_def_cfa wsp, 32
 	ldp	x29, x30, [sp, #16]             // 16-byte Folded Reload
@@ -2542,22 +3241,49 @@ iswxdigit:                              // @iswxdigit
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_iswxdigit
+	movk	x16, #:abs_g1_nc:.L__profc_iswxdigit
+	movk	x16, #:abs_g2_nc:.L__profc_iswxdigit
+	movk	x16, #:abs_g3:.L__profc_iswxdigit
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w16, w8, #48
 	mov	w8, #1                          // =0x1
 	subs	w16, w16, #10
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.lo	.LBB29_2
+	b.lo	.LBB29_3
 	b	.LBB29_1
 .LBB29_1:
+	movz	x16, #:abs_g0_nc:.L__profc_iswxdigit+8
+	movk	x16, #:abs_g1_nc:.L__profc_iswxdigit+8
+	movk	x16, #:abs_g2_nc:.L__profc_iswxdigit+8
+	movk	x16, #:abs_g3:.L__profc_iswxdigit+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	orr	w8, w8, #0x20
 	subs	w8, w8, #97
 	subs	w8, w8, #6
 	cset	w8, lo
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.lo	.LBB29_3
 	b	.LBB29_2
 .LBB29_2:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_iswxdigit+16
+	movk	x17, #:abs_g1_nc:.L__profc_iswxdigit+16
+	movk	x17, #:abs_g2_nc:.L__profc_iswxdigit+16
+	movk	x17, #:abs_g3:.L__profc_iswxdigit+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB29_3
+.LBB29_3:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -2621,6 +3347,13 @@ toascii:                                // @toascii
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_toascii
+	movk	x16, #:abs_g1_nc:.L__profc_toascii
+	movk	x16, #:abs_g2_nc:.L__profc_toascii
+	movk	x16, #:abs_g3:.L__profc_toascii
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	and	w0, w8, #0x7f
 	.cfi_def_cfa wsp, 32
@@ -2685,11 +3418,25 @@ fdim:                                   // @fdim
 	.cfi_offset w29, -16
 	str	d0, [sp, #16]
 	str	d1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_fdim
+	movk	x16, #:abs_g1_nc:.L__profc_fdim
+	movk	x16, #:abs_g2_nc:.L__profc_fdim
+	movk	x16, #:abs_g3:.L__profc_fdim
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	fcmp	d0, d0
 	b.vc	.LBB31_2
 	b	.LBB31_1
 .LBB31_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fdim+8
+	movk	x16, #:abs_g1_nc:.L__profc_fdim+8
+	movk	x16, #:abs_g2_nc:.L__profc_fdim+8
+	movk	x16, #:abs_g3:.L__profc_fdim+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	stur	d0, [x29, #-8]
 	b	.LBB31_8
@@ -2699,6 +3446,13 @@ fdim:                                   // @fdim
 	b.vc	.LBB31_4
 	b	.LBB31_3
 .LBB31_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fdim+16
+	movk	x16, #:abs_g1_nc:.L__profc_fdim+16
+	movk	x16, #:abs_g2_nc:.L__profc_fdim+16
+	movk	x16, #:abs_g3:.L__profc_fdim+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #8]
 	stur	d0, [x29, #-8]
 	b	.LBB31_8
@@ -2709,6 +3463,13 @@ fdim:                                   // @fdim
 	b.le	.LBB31_6
 	b	.LBB31_5
 .LBB31_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fdim+24
+	movk	x16, #:abs_g1_nc:.L__profc_fdim+24
+	movk	x16, #:abs_g2_nc:.L__profc_fdim+24
+	movk	x16, #:abs_g3:.L__profc_fdim+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	ldr	d1, [sp, #8]
 	fsub	d0, d0, d1
@@ -2786,11 +3547,25 @@ fdimf:                                  // @fdimf
 	.cfi_offset w29, -16
 	str	s0, [sp, #8]
 	str	s1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc_fdimf
+	movk	x16, #:abs_g1_nc:.L__profc_fdimf
+	movk	x16, #:abs_g2_nc:.L__profc_fdimf
+	movk	x16, #:abs_g3:.L__profc_fdimf
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #8]
 	fcmp	s0, s0
 	b.vc	.LBB32_2
 	b	.LBB32_1
 .LBB32_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fdimf+8
+	movk	x16, #:abs_g1_nc:.L__profc_fdimf+8
+	movk	x16, #:abs_g2_nc:.L__profc_fdimf+8
+	movk	x16, #:abs_g3:.L__profc_fdimf+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #8]
 	stur	s0, [x29, #-4]
 	b	.LBB32_8
@@ -2800,6 +3575,13 @@ fdimf:                                  // @fdimf
 	b.vc	.LBB32_4
 	b	.LBB32_3
 .LBB32_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fdimf+16
+	movk	x16, #:abs_g1_nc:.L__profc_fdimf+16
+	movk	x16, #:abs_g2_nc:.L__profc_fdimf+16
+	movk	x16, #:abs_g3:.L__profc_fdimf+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #4]
 	stur	s0, [x29, #-4]
 	b	.LBB32_8
@@ -2810,6 +3592,13 @@ fdimf:                                  // @fdimf
 	b.le	.LBB32_6
 	b	.LBB32_5
 .LBB32_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fdimf+24
+	movk	x16, #:abs_g1_nc:.L__profc_fdimf+24
+	movk	x16, #:abs_g2_nc:.L__profc_fdimf+24
+	movk	x16, #:abs_g3:.L__profc_fdimf+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #8]
 	ldr	s1, [sp, #4]
 	fsub	s0, s0, s1
@@ -2887,11 +3676,25 @@ fmax:                                   // @fmax
 	.cfi_offset w29, -16
 	stur	d0, [x29, #-16]
 	str	d1, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_fmax
+	movk	x16, #:abs_g1_nc:.L__profc_fmax
+	movk	x16, #:abs_g2_nc:.L__profc_fmax
+	movk	x16, #:abs_g3:.L__profc_fmax
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	fcmp	d0, d0
 	b.vc	.LBB33_2
 	b	.LBB33_1
 .LBB33_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fmax+8
+	movk	x16, #:abs_g1_nc:.L__profc_fmax+8
+	movk	x16, #:abs_g2_nc:.L__profc_fmax+8
+	movk	x16, #:abs_g3:.L__profc_fmax+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #24]
 	stur	d0, [x29, #-8]
 	b	.LBB33_13
@@ -2901,6 +3704,13 @@ fmax:                                   // @fmax
 	b.vc	.LBB33_4
 	b	.LBB33_3
 .LBB33_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fmax+16
+	movk	x16, #:abs_g1_nc:.L__profc_fmax+16
+	movk	x16, #:abs_g2_nc:.L__profc_fmax+16
+	movk	x16, #:abs_g3:.L__profc_fmax+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	stur	d0, [x29, #-8]
 	b	.LBB33_13
@@ -2915,10 +3725,24 @@ fmax:                                   // @fmax
 	b.eq	.LBB33_9
 	b	.LBB33_5
 .LBB33_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fmax+24
+	movk	x16, #:abs_g1_nc:.L__profc_fmax+24
+	movk	x16, #:abs_g2_nc:.L__profc_fmax+24
+	movk	x16, #:abs_g3:.L__profc_fmax+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	tbz	x8, #63, .LBB33_7
 	b	.LBB33_6
 .LBB33_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fmax+32
+	movk	x16, #:abs_g1_nc:.L__profc_fmax+32
+	movk	x16, #:abs_g2_nc:.L__profc_fmax+32
+	movk	x16, #:abs_g3:.L__profc_fmax+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #24]
 	str	d0, [sp, #16]                   // 8-byte Folded Spill
 	b	.LBB33_8
@@ -2937,6 +3761,13 @@ fmax:                                   // @fmax
 	b.pl	.LBB33_11
 	b	.LBB33_10
 .LBB33_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fmax+40
+	movk	x16, #:abs_g1_nc:.L__profc_fmax+40
+	movk	x16, #:abs_g2_nc:.L__profc_fmax+40
+	movk	x16, #:abs_g3:.L__profc_fmax+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #24]
 	str	d0, [sp, #8]                    // 8-byte Folded Spill
 	b	.LBB33_12
@@ -3012,11 +3843,25 @@ fmaxf:                                  // @fmaxf
 	.cfi_offset w29, -16
 	stur	s0, [x29, #-8]
 	stur	s1, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf
+	movk	x16, #:abs_g3:.L__profc_fmaxf
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	fcmp	s0, s0
 	b.vc	.LBB34_2
 	b	.LBB34_1
 .LBB34_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf+8
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf+8
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf+8
+	movk	x16, #:abs_g3:.L__profc_fmaxf+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-12]
 	stur	s0, [x29, #-4]
 	b	.LBB34_13
@@ -3026,6 +3871,13 @@ fmaxf:                                  // @fmaxf
 	b.vc	.LBB34_4
 	b	.LBB34_3
 .LBB34_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf+16
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf+16
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf+16
+	movk	x16, #:abs_g3:.L__profc_fmaxf+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	stur	s0, [x29, #-4]
 	b	.LBB34_13
@@ -3037,10 +3889,24 @@ fmaxf:                                  // @fmaxf
 	b.eq	.LBB34_9
 	b	.LBB34_5
 .LBB34_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf+24
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf+24
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf+24
+	movk	x16, #:abs_g3:.L__profc_fmaxf+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-8]
 	tbz	w8, #31, .LBB34_7
 	b	.LBB34_6
 .LBB34_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf+32
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf+32
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf+32
+	movk	x16, #:abs_g3:.L__profc_fmaxf+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-12]
 	str	s0, [sp, #16]                   // 4-byte Folded Spill
 	b	.LBB34_8
@@ -3059,6 +3925,13 @@ fmaxf:                                  // @fmaxf
 	b.pl	.LBB34_11
 	b	.LBB34_10
 .LBB34_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxf+40
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxf+40
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxf+40
+	movk	x16, #:abs_g3:.L__profc_fmaxf+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-12]
 	str	s0, [sp, #12]                   // 4-byte Folded Spill
 	b	.LBB34_12
@@ -3134,6 +4007,13 @@ fmaxl:                                  // @fmaxl
 	.cfi_offset w29, -16
 	stur	q0, [x29, #-32]
 	str	q1, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl
+	movk	x16, #:abs_g3:.L__profc_fmaxl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q1, [x29, #-32]
 	str	q1, [sp, #-16]!
 	ldr	q0, [sp], #16
@@ -3141,6 +4021,13 @@ fmaxl:                                  // @fmaxl
 	cbz	w0, .LBB35_2
 	b	.LBB35_1
 .LBB35_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl+8
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl+8
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl+8
+	movk	x16, #:abs_g3:.L__profc_fmaxl+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	q0, [sp, #32]
 	stur	q0, [x29, #-16]
 	b	.LBB35_13
@@ -3152,6 +4039,13 @@ fmaxl:                                  // @fmaxl
 	cbz	w0, .LBB35_4
 	b	.LBB35_3
 .LBB35_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl+16
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl+16
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl+16
+	movk	x16, #:abs_g3:.L__profc_fmaxl+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q0, [x29, #-32]
 	stur	q0, [x29, #-16]
 	b	.LBB35_13
@@ -3166,10 +4060,24 @@ fmaxl:                                  // @fmaxl
 	b.eq	.LBB35_9
 	b	.LBB35_5
 .LBB35_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl+24
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl+24
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl+24
+	movk	x16, #:abs_g3:.L__profc_fmaxl+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-24]
 	tbz	x8, #63, .LBB35_7
 	b	.LBB35_6
 .LBB35_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl+32
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl+32
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl+32
+	movk	x16, #:abs_g3:.L__profc_fmaxl+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	q0, [sp, #32]
 	str	q0, [sp, #16]                   // 16-byte Folded Spill
 	b	.LBB35_8
@@ -3189,6 +4097,13 @@ fmaxl:                                  // @fmaxl
 	b.ge	.LBB35_11
 	b	.LBB35_10
 .LBB35_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fmaxl+40
+	movk	x16, #:abs_g1_nc:.L__profc_fmaxl+40
+	movk	x16, #:abs_g2_nc:.L__profc_fmaxl+40
+	movk	x16, #:abs_g3:.L__profc_fmaxl+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	q0, [sp, #32]
 	str	q0, [sp]                        // 16-byte Folded Spill
 	b	.LBB35_12
@@ -3264,11 +4179,25 @@ fmin:                                   // @fmin
 	.cfi_offset w29, -16
 	stur	d0, [x29, #-16]
 	str	d1, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_fmin
+	movk	x16, #:abs_g1_nc:.L__profc_fmin
+	movk	x16, #:abs_g2_nc:.L__profc_fmin
+	movk	x16, #:abs_g3:.L__profc_fmin
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	fcmp	d0, d0
 	b.vc	.LBB36_2
 	b	.LBB36_1
 .LBB36_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fmin+8
+	movk	x16, #:abs_g1_nc:.L__profc_fmin+8
+	movk	x16, #:abs_g2_nc:.L__profc_fmin+8
+	movk	x16, #:abs_g3:.L__profc_fmin+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #24]
 	stur	d0, [x29, #-8]
 	b	.LBB36_13
@@ -3278,6 +4207,13 @@ fmin:                                   // @fmin
 	b.vc	.LBB36_4
 	b	.LBB36_3
 .LBB36_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fmin+16
+	movk	x16, #:abs_g1_nc:.L__profc_fmin+16
+	movk	x16, #:abs_g2_nc:.L__profc_fmin+16
+	movk	x16, #:abs_g3:.L__profc_fmin+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	stur	d0, [x29, #-8]
 	b	.LBB36_13
@@ -3292,10 +4228,24 @@ fmin:                                   // @fmin
 	b.eq	.LBB36_9
 	b	.LBB36_5
 .LBB36_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fmin+24
+	movk	x16, #:abs_g1_nc:.L__profc_fmin+24
+	movk	x16, #:abs_g2_nc:.L__profc_fmin+24
+	movk	x16, #:abs_g3:.L__profc_fmin+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	tbz	x8, #63, .LBB36_7
 	b	.LBB36_6
 .LBB36_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fmin+32
+	movk	x16, #:abs_g1_nc:.L__profc_fmin+32
+	movk	x16, #:abs_g2_nc:.L__profc_fmin+32
+	movk	x16, #:abs_g3:.L__profc_fmin+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	str	d0, [sp, #16]                   // 8-byte Folded Spill
 	b	.LBB36_8
@@ -3314,6 +4264,13 @@ fmin:                                   // @fmin
 	b.pl	.LBB36_11
 	b	.LBB36_10
 .LBB36_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fmin+40
+	movk	x16, #:abs_g1_nc:.L__profc_fmin+40
+	movk	x16, #:abs_g2_nc:.L__profc_fmin+40
+	movk	x16, #:abs_g3:.L__profc_fmin+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-16]
 	str	d0, [sp, #8]                    // 8-byte Folded Spill
 	b	.LBB36_12
@@ -3389,11 +4346,25 @@ fminf:                                  // @fminf
 	.cfi_offset w29, -16
 	stur	s0, [x29, #-8]
 	stur	s1, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_fminf
+	movk	x16, #:abs_g1_nc:.L__profc_fminf
+	movk	x16, #:abs_g2_nc:.L__profc_fminf
+	movk	x16, #:abs_g3:.L__profc_fminf
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	fcmp	s0, s0
 	b.vc	.LBB37_2
 	b	.LBB37_1
 .LBB37_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fminf+8
+	movk	x16, #:abs_g1_nc:.L__profc_fminf+8
+	movk	x16, #:abs_g2_nc:.L__profc_fminf+8
+	movk	x16, #:abs_g3:.L__profc_fminf+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-12]
 	stur	s0, [x29, #-4]
 	b	.LBB37_13
@@ -3403,6 +4374,13 @@ fminf:                                  // @fminf
 	b.vc	.LBB37_4
 	b	.LBB37_3
 .LBB37_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fminf+16
+	movk	x16, #:abs_g1_nc:.L__profc_fminf+16
+	movk	x16, #:abs_g2_nc:.L__profc_fminf+16
+	movk	x16, #:abs_g3:.L__profc_fminf+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	stur	s0, [x29, #-4]
 	b	.LBB37_13
@@ -3414,10 +4392,24 @@ fminf:                                  // @fminf
 	b.eq	.LBB37_9
 	b	.LBB37_5
 .LBB37_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fminf+24
+	movk	x16, #:abs_g1_nc:.L__profc_fminf+24
+	movk	x16, #:abs_g2_nc:.L__profc_fminf+24
+	movk	x16, #:abs_g3:.L__profc_fminf+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-8]
 	tbz	w8, #31, .LBB37_7
 	b	.LBB37_6
 .LBB37_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fminf+32
+	movk	x16, #:abs_g1_nc:.L__profc_fminf+32
+	movk	x16, #:abs_g2_nc:.L__profc_fminf+32
+	movk	x16, #:abs_g3:.L__profc_fminf+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	str	s0, [sp, #16]                   // 4-byte Folded Spill
 	b	.LBB37_8
@@ -3436,6 +4428,13 @@ fminf:                                  // @fminf
 	b.pl	.LBB37_11
 	b	.LBB37_10
 .LBB37_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fminf+40
+	movk	x16, #:abs_g1_nc:.L__profc_fminf+40
+	movk	x16, #:abs_g2_nc:.L__profc_fminf+40
+	movk	x16, #:abs_g3:.L__profc_fminf+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-8]
 	str	s0, [sp, #12]                   // 4-byte Folded Spill
 	b	.LBB37_12
@@ -3511,6 +4510,13 @@ fminl:                                  // @fminl
 	.cfi_offset w29, -16
 	stur	q0, [x29, #-32]
 	str	q1, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc_fminl
+	movk	x16, #:abs_g1_nc:.L__profc_fminl
+	movk	x16, #:abs_g2_nc:.L__profc_fminl
+	movk	x16, #:abs_g3:.L__profc_fminl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q1, [x29, #-32]
 	str	q1, [sp, #-16]!
 	ldr	q0, [sp], #16
@@ -3518,6 +4524,13 @@ fminl:                                  // @fminl
 	cbz	w0, .LBB38_2
 	b	.LBB38_1
 .LBB38_1:
+	movz	x16, #:abs_g0_nc:.L__profc_fminl+8
+	movk	x16, #:abs_g1_nc:.L__profc_fminl+8
+	movk	x16, #:abs_g2_nc:.L__profc_fminl+8
+	movk	x16, #:abs_g3:.L__profc_fminl+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	q0, [sp, #32]
 	stur	q0, [x29, #-16]
 	b	.LBB38_13
@@ -3529,6 +4542,13 @@ fminl:                                  // @fminl
 	cbz	w0, .LBB38_4
 	b	.LBB38_3
 .LBB38_3:
+	movz	x16, #:abs_g0_nc:.L__profc_fminl+16
+	movk	x16, #:abs_g1_nc:.L__profc_fminl+16
+	movk	x16, #:abs_g2_nc:.L__profc_fminl+16
+	movk	x16, #:abs_g3:.L__profc_fminl+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q0, [x29, #-32]
 	stur	q0, [x29, #-16]
 	b	.LBB38_13
@@ -3543,10 +4563,24 @@ fminl:                                  // @fminl
 	b.eq	.LBB38_9
 	b	.LBB38_5
 .LBB38_5:
+	movz	x16, #:abs_g0_nc:.L__profc_fminl+24
+	movk	x16, #:abs_g1_nc:.L__profc_fminl+24
+	movk	x16, #:abs_g2_nc:.L__profc_fminl+24
+	movk	x16, #:abs_g3:.L__profc_fminl+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-24]
 	tbz	x8, #63, .LBB38_7
 	b	.LBB38_6
 .LBB38_6:
+	movz	x16, #:abs_g0_nc:.L__profc_fminl+32
+	movk	x16, #:abs_g1_nc:.L__profc_fminl+32
+	movk	x16, #:abs_g2_nc:.L__profc_fminl+32
+	movk	x16, #:abs_g3:.L__profc_fminl+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q0, [x29, #-32]
 	str	q0, [sp, #16]                   // 16-byte Folded Spill
 	b	.LBB38_8
@@ -3566,6 +4600,13 @@ fminl:                                  // @fminl
 	b.ge	.LBB38_11
 	b	.LBB38_10
 .LBB38_10:
+	movz	x16, #:abs_g0_nc:.L__profc_fminl+40
+	movk	x16, #:abs_g1_nc:.L__profc_fminl+40
+	movk	x16, #:abs_g2_nc:.L__profc_fminl+40
+	movk	x16, #:abs_g3:.L__profc_fminl+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q0, [x29, #-32]
 	str	q0, [sp]                        // 16-byte Folded Spill
 	b	.LBB38_12
@@ -3640,6 +4681,13 @@ l64a:                                   // @l64a
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc_l64a
+	movk	x16, #:abs_g1_nc:.L__profc_l64a
+	movk	x16, #:abs_g2_nc:.L__profc_l64a
+	movk	x16, #:abs_g3:.L__profc_l64a
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
                                         // kill: def $w8 killed $w8 killed $x8
 	str	w8, [sp, #12]
@@ -3654,6 +4702,13 @@ l64a:                                   // @l64a
 	cbz	w8, .LBB39_4
 	b	.LBB39_2
 .LBB39_2:                               //   in Loop: Header=BB39_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_l64a+8
+	movk	x16, #:abs_g1_nc:.L__profc_l64a+8
+	movk	x16, #:abs_g2_nc:.L__profc_l64a+8
+	movk	x16, #:abs_g3:.L__profc_l64a+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #12]
 	and	w16, w8, #0x3f
 	movz	x8, #:abs_g0_nc:digits
@@ -3741,6 +4796,13 @@ srand:                                  // @srand
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_srand
+	movk	x16, #:abs_g1_nc:.L__profc_srand
+	movk	x16, #:abs_g2_nc:.L__profc_srand
+	movk	x16, #:abs_g3:.L__profc_srand
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #1
 	mov	w8, w8
@@ -3810,6 +4872,13 @@ rand:                                   // @rand
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
+	movz	x16, #:abs_g0_nc:.L__profc_rand
+	movk	x16, #:abs_g1_nc:.L__profc_rand
+	movk	x16, #:abs_g2_nc:.L__profc_rand
+	movk	x16, #:abs_g3:.L__profc_rand
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	movz	x8, #:abs_g0_nc:seed
 	movk	x8, #:abs_g1_nc:seed
 	movk	x8, #:abs_g2_nc:seed
@@ -3886,6 +4955,13 @@ insque:                                 // @insque
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_insque
+	movk	x16, #:abs_g1_nc:.L__profc_insque
+	movk	x16, #:abs_g2_nc:.L__profc_insque
+	movk	x16, #:abs_g3:.L__profc_insque
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #8]
 	ldr	x8, [sp, #16]
@@ -3894,6 +4970,13 @@ insque:                                 // @insque
 	cbnz	x8, .LBB42_2
 	b	.LBB42_1
 .LBB42_1:
+	movz	x16, #:abs_g0_nc:.L__profc_insque+8
+	movk	x16, #:abs_g1_nc:.L__profc_insque+8
+	movk	x16, #:abs_g2_nc:.L__profc_insque+8
+	movk	x16, #:abs_g3:.L__profc_insque+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	mov	x8, xzr
 	str	x8, [x16, #8]
@@ -3916,6 +4999,13 @@ insque:                                 // @insque
 	cbz	x8, .LBB42_4
 	b	.LBB42_3
 .LBB42_3:
+	movz	x16, #:abs_g0_nc:.L__profc_insque+16
+	movk	x16, #:abs_g1_nc:.L__profc_insque+16
+	movk	x16, #:abs_g2_nc:.L__profc_insque+16
+	movk	x16, #:abs_g3:.L__profc_insque+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [x8]
 	str	x8, [x16, #8]
@@ -3983,6 +5073,13 @@ remque:                                 // @remque
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_remque
+	movk	x16, #:abs_g1_nc:.L__profc_remque
+	movk	x16, #:abs_g2_nc:.L__profc_remque
+	movk	x16, #:abs_g3:.L__profc_remque
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	str	x8, [sp]
 	ldr	x8, [sp]
@@ -3990,6 +5087,13 @@ remque:                                 // @remque
 	cbz	x8, .LBB43_2
 	b	.LBB43_1
 .LBB43_1:
+	movz	x16, #:abs_g0_nc:.L__profc_remque+8
+	movk	x16, #:abs_g1_nc:.L__profc_remque+8
+	movk	x16, #:abs_g2_nc:.L__profc_remque+8
+	movk	x16, #:abs_g3:.L__profc_remque+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp]
 	ldr	x8, [x16, #8]
 	ldr	x16, [x16]
@@ -4001,6 +5105,13 @@ remque:                                 // @remque
 	cbz	x8, .LBB43_4
 	b	.LBB43_3
 .LBB43_3:
+	movz	x16, #:abs_g0_nc:.L__profc_remque+16
+	movk	x16, #:abs_g1_nc:.L__profc_remque+16
+	movk	x16, #:abs_g2_nc:.L__profc_remque+16
+	movk	x16, #:abs_g3:.L__profc_remque+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp]
 	ldr	x8, [x16]
 	ldr	x16, [x16, #8]
@@ -4073,6 +5184,13 @@ lsearch:                                // @lsearch
 	stur	x2, [x29, #-32]
 	stur	x3, [x29, #-40]
 	str	x4, [sp, #48]
+	movz	x16, #:abs_g0_nc:.L__profc_lsearch
+	movk	x16, #:abs_g1_nc:.L__profc_lsearch
+	movk	x16, #:abs_g2_nc:.L__profc_lsearch
+	movk	x16, #:abs_g3:.L__profc_lsearch
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-40]
 	str	x8, [sp, #16]                   // 8-byte Folded Spill
 	ldur	x8, [x29, #-24]
@@ -4091,6 +5209,13 @@ lsearch:                                // @lsearch
 	b	.LBB44_2
 .LBB44_2:                               //   in Loop: Header=BB44_1 Depth=1
 	ldr	x1, [sp, #16]                   // 8-byte Folded Reload
+	movz	x16, #:abs_g0_nc:.L__profc_lsearch+8
+	movk	x16, #:abs_g1_nc:.L__profc_lsearch+8
+	movk	x16, #:abs_g2_nc:.L__profc_lsearch+8
+	movk	x16, #:abs_g3:.L__profc_lsearch+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #48]
 	ldur	x0, [x29, #-16]
 	ldr	x16, [sp, #40]
@@ -4102,6 +5227,13 @@ lsearch:                                // @lsearch
 	b	.LBB44_3
 .LBB44_3:
 	ldr	x17, [sp, #16]                  // 8-byte Folded Reload
+	movz	x16, #:abs_g0_nc:.L__profc_lsearch+16
+	movk	x16, #:abs_g1_nc:.L__profc_lsearch+16
+	movk	x16, #:abs_g2_nc:.L__profc_lsearch+16
+	movk	x16, #:abs_g3:.L__profc_lsearch+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #40]
 	ldr	x16, [sp, #24]
 	mul	x16, x16, x17
@@ -4199,6 +5331,13 @@ lfind:                                  // @lfind
 	stur	x2, [x29, #-32]
 	str	x3, [sp, #40]
 	str	x4, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc_lfind
+	movk	x16, #:abs_g1_nc:.L__profc_lfind
+	movk	x16, #:abs_g2_nc:.L__profc_lfind
+	movk	x16, #:abs_g3:.L__profc_lfind
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #40]
 	str	x8, [sp]                        // 8-byte Folded Spill
 	ldur	x8, [x29, #-24]
@@ -4217,6 +5356,13 @@ lfind:                                  // @lfind
 	b	.LBB46_2
 .LBB46_2:                               //   in Loop: Header=BB46_1 Depth=1
 	ldr	x1, [sp]                        // 8-byte Folded Reload
+	movz	x16, #:abs_g0_nc:.L__profc_lfind+8
+	movk	x16, #:abs_g1_nc:.L__profc_lfind+8
+	movk	x16, #:abs_g2_nc:.L__profc_lfind+8
+	movk	x16, #:abs_g3:.L__profc_lfind+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #32]
 	ldur	x0, [x29, #-16]
 	ldr	x16, [sp, #24]
@@ -4228,6 +5374,13 @@ lfind:                                  // @lfind
 	b	.LBB46_3
 .LBB46_3:
 	ldr	x17, [sp]                       // 8-byte Folded Reload
+	movz	x16, #:abs_g0_nc:.L__profc_lfind+16
+	movk	x16, #:abs_g1_nc:.L__profc_lfind+16
+	movk	x16, #:abs_g2_nc:.L__profc_lfind+16
+	movk	x16, #:abs_g3:.L__profc_lfind+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	ldr	x16, [sp, #8]
 	mul	x16, x16, x17
@@ -4308,11 +5461,25 @@ abs:                                    // @abs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_abs
+	movk	x16, #:abs_g1_nc:.L__profc_abs
+	movk	x16, #:abs_g2_nc:.L__profc_abs
+	movk	x16, #:abs_g3:.L__profc_abs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	subs	w8, w8, #1
 	b.lt	.LBB47_2
 	b	.LBB47_1
 .LBB47_1:
+	movz	x16, #:abs_g0_nc:.L__profc_abs+8
+	movk	x16, #:abs_g1_nc:.L__profc_abs+8
+	movk	x16, #:abs_g2_nc:.L__profc_abs+8
+	movk	x16, #:abs_g3:.L__profc_abs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w0, [x29, #-4]
 	str	w0, [sp, #8]                    // 4-byte Folded Spill
 	b	.LBB47_3
@@ -4385,6 +5552,13 @@ atoi:                                   // @atoi
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc_atoi
+	movk	x16, #:abs_g1_nc:.L__profc_atoi
+	movk	x16, #:abs_g2_nc:.L__profc_atoi
+	movk	x16, #:abs_g3:.L__profc_atoi
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-12]
 	str	w8, [sp, #16]
@@ -4396,6 +5570,13 @@ atoi:                                   // @atoi
 	cbz	w0, .LBB48_3
 	b	.LBB48_2
 .LBB48_2:                               //   in Loop: Header=BB48_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+8
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+8
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+8
+	movk	x16, #:abs_g3:.L__profc_atoi+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
@@ -4411,26 +5592,56 @@ atoi:                                   // @atoi
 .LBB48_4:
 	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
 	subs	w8, w8, #45
-	b.ne	.LBB48_7
+	b.ne	.LBB48_8
 	b	.LBB48_5
 .LBB48_5:
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+24
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+24
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+24
+	movk	x16, #:abs_g3:.L__profc_atoi+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	str	w8, [sp, #16]
-	b	.LBB48_6
+	b	.LBB48_7
 .LBB48_6:
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+32
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+32
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+32
+	movk	x16, #:abs_g3:.L__profc_atoi+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB48_7
+.LBB48_7:
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
-	b	.LBB48_7
-.LBB48_7:
 	b	.LBB48_8
-.LBB48_8:                               // =>This Inner Loop Header: Depth=1
+.LBB48_8:
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+16
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+16
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+16
+	movk	x16, #:abs_g3:.L__profc_atoi+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB48_9
+.LBB48_9:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
 	ldrb	w0, [x8]
 	bl	isdigit
-	cbz	w0, .LBB48_10
-	b	.LBB48_9
-.LBB48_9:                               //   in Loop: Header=BB48_8 Depth=1
+	cbz	w0, .LBB48_11
+	b	.LBB48_10
+.LBB48_10:                              //   in Loop: Header=BB48_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+40
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+40
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+40
+	movk	x16, #:abs_g3:.L__profc_atoi+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	mov	w16, #10                        // =0xa
 	mul	w8, w8, w16
@@ -4441,22 +5652,29 @@ atoi:                                   // @atoi
 	subs	w8, w8, w16
 	add	w8, w8, #48
 	stur	w8, [x29, #-12]
-	b	.LBB48_8
-.LBB48_10:
-	ldr	w8, [sp, #16]
-	cbz	w8, .LBB48_12
-	b	.LBB48_11
+	b	.LBB48_9
 .LBB48_11:
+	ldr	w8, [sp, #16]
+	cbz	w8, .LBB48_13
+	b	.LBB48_12
+.LBB48_12:
+	movz	x16, #:abs_g0_nc:.L__profc_atoi+48
+	movk	x16, #:abs_g1_nc:.L__profc_atoi+48
+	movk	x16, #:abs_g2_nc:.L__profc_atoi+48
+	movk	x16, #:abs_g3:.L__profc_atoi+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w0, [x29, #-12]
 	str	w0, [sp, #8]                    // 4-byte Folded Spill
-	b	.LBB48_13
-.LBB48_12:
+	b	.LBB48_14
+.LBB48_13:
 	ldur	w16, [x29, #-12]
 	mov	w8, wzr
 	subs	w0, w8, w16
 	str	w0, [sp, #8]                    // 4-byte Folded Spill
-	b	.LBB48_13
-.LBB48_13:
+	b	.LBB48_14
+.LBB48_14:
 	ldr	w0, [sp, #8]                    // 4-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -4519,6 +5737,13 @@ atol:                                   // @atol
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc_atol
+	movk	x16, #:abs_g1_nc:.L__profc_atol
+	movk	x16, #:abs_g2_nc:.L__profc_atol
+	movk	x16, #:abs_g3:.L__profc_atol
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #16]
 	mov	w8, wzr
@@ -4531,6 +5756,13 @@ atol:                                   // @atol
 	cbz	w0, .LBB49_3
 	b	.LBB49_2
 .LBB49_2:                               //   in Loop: Header=BB49_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atol+8
+	movk	x16, #:abs_g1_nc:.L__profc_atol+8
+	movk	x16, #:abs_g2_nc:.L__profc_atol+8
+	movk	x16, #:abs_g3:.L__profc_atol+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
@@ -4546,26 +5778,56 @@ atol:                                   // @atol
 .LBB49_4:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	subs	w8, w8, #45
-	b.ne	.LBB49_7
+	b.ne	.LBB49_8
 	b	.LBB49_5
 .LBB49_5:
+	movz	x16, #:abs_g0_nc:.L__profc_atol+24
+	movk	x16, #:abs_g1_nc:.L__profc_atol+24
+	movk	x16, #:abs_g2_nc:.L__profc_atol+24
+	movk	x16, #:abs_g3:.L__profc_atol+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	str	w8, [sp, #12]
-	b	.LBB49_6
+	b	.LBB49_7
 .LBB49_6:
+	movz	x16, #:abs_g0_nc:.L__profc_atol+32
+	movk	x16, #:abs_g1_nc:.L__profc_atol+32
+	movk	x16, #:abs_g2_nc:.L__profc_atol+32
+	movk	x16, #:abs_g3:.L__profc_atol+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB49_7
+.LBB49_7:
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
-	b	.LBB49_7
-.LBB49_7:
 	b	.LBB49_8
-.LBB49_8:                               // =>This Inner Loop Header: Depth=1
+.LBB49_8:
+	movz	x16, #:abs_g0_nc:.L__profc_atol+16
+	movk	x16, #:abs_g1_nc:.L__profc_atol+16
+	movk	x16, #:abs_g2_nc:.L__profc_atol+16
+	movk	x16, #:abs_g3:.L__profc_atol+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB49_9
+.LBB49_9:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
 	ldrb	w0, [x8]
 	bl	isdigit
-	cbz	w0, .LBB49_10
-	b	.LBB49_9
-.LBB49_9:                               //   in Loop: Header=BB49_8 Depth=1
+	cbz	w0, .LBB49_11
+	b	.LBB49_10
+.LBB49_10:                              //   in Loop: Header=BB49_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atol+40
+	movk	x16, #:abs_g1_nc:.L__profc_atol+40
+	movk	x16, #:abs_g2_nc:.L__profc_atol+40
+	movk	x16, #:abs_g3:.L__profc_atol+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	mov	w16, #10                        // =0xa
                                         // kill: def $x16 killed $w16
@@ -4577,22 +5839,29 @@ atol:                                   // @atol
 	subs	w16, w16, #48
 	subs	x8, x8, w16, sxtw
 	str	x8, [sp, #16]
-	b	.LBB49_8
-.LBB49_10:
-	ldr	w8, [sp, #12]
-	cbz	w8, .LBB49_12
-	b	.LBB49_11
+	b	.LBB49_9
 .LBB49_11:
+	ldr	w8, [sp, #12]
+	cbz	w8, .LBB49_13
+	b	.LBB49_12
+.LBB49_12:
+	movz	x16, #:abs_g0_nc:.L__profc_atol+48
+	movk	x16, #:abs_g1_nc:.L__profc_atol+48
+	movk	x16, #:abs_g2_nc:.L__profc_atol+48
+	movk	x16, #:abs_g3:.L__profc_atol+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #16]
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB49_13
-.LBB49_12:
+	b	.LBB49_14
+.LBB49_13:
 	ldr	x16, [sp, #16]
 	mov	x8, xzr
 	subs	x0, x8, x16
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB49_13
-.LBB49_13:
+	b	.LBB49_14
+.LBB49_14:
 	ldr	x0, [sp]                        // 8-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -4655,6 +5924,13 @@ atoll:                                  // @atoll
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc_atoll
+	movk	x16, #:abs_g1_nc:.L__profc_atoll
+	movk	x16, #:abs_g2_nc:.L__profc_atoll
+	movk	x16, #:abs_g3:.L__profc_atoll
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #16]
 	mov	w8, wzr
@@ -4667,6 +5943,13 @@ atoll:                                  // @atoll
 	cbz	w0, .LBB50_3
 	b	.LBB50_2
 .LBB50_2:                               //   in Loop: Header=BB50_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+8
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+8
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+8
+	movk	x16, #:abs_g3:.L__profc_atoll+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
@@ -4682,26 +5965,56 @@ atoll:                                  // @atoll
 .LBB50_4:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	subs	w8, w8, #45
-	b.ne	.LBB50_7
+	b.ne	.LBB50_8
 	b	.LBB50_5
 .LBB50_5:
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+24
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+24
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+24
+	movk	x16, #:abs_g3:.L__profc_atoll+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	str	w8, [sp, #12]
-	b	.LBB50_6
+	b	.LBB50_7
 .LBB50_6:
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+32
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+32
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+32
+	movk	x16, #:abs_g3:.L__profc_atoll+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB50_7
+.LBB50_7:
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #1
 	stur	x8, [x29, #-8]
-	b	.LBB50_7
-.LBB50_7:
 	b	.LBB50_8
-.LBB50_8:                               // =>This Inner Loop Header: Depth=1
+.LBB50_8:
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+16
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+16
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+16
+	movk	x16, #:abs_g3:.L__profc_atoll+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB50_9
+.LBB50_9:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
 	ldrb	w0, [x8]
 	bl	isdigit
-	cbz	w0, .LBB50_10
-	b	.LBB50_9
-.LBB50_9:                               //   in Loop: Header=BB50_8 Depth=1
+	cbz	w0, .LBB50_11
+	b	.LBB50_10
+.LBB50_10:                              //   in Loop: Header=BB50_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+40
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+40
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+40
+	movk	x16, #:abs_g3:.L__profc_atoll+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	mov	w16, #10                        // =0xa
                                         // kill: def $x16 killed $w16
@@ -4713,22 +6026,29 @@ atoll:                                  // @atoll
 	subs	w16, w16, #48
 	subs	x8, x8, w16, sxtw
 	str	x8, [sp, #16]
-	b	.LBB50_8
-.LBB50_10:
-	ldr	w8, [sp, #12]
-	cbz	w8, .LBB50_12
-	b	.LBB50_11
+	b	.LBB50_9
 .LBB50_11:
+	ldr	w8, [sp, #12]
+	cbz	w8, .LBB50_13
+	b	.LBB50_12
+.LBB50_12:
+	movz	x16, #:abs_g0_nc:.L__profc_atoll+48
+	movk	x16, #:abs_g1_nc:.L__profc_atoll+48
+	movk	x16, #:abs_g2_nc:.L__profc_atoll+48
+	movk	x16, #:abs_g3:.L__profc_atoll+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #16]
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB50_13
-.LBB50_12:
+	b	.LBB50_14
+.LBB50_13:
 	ldr	x16, [sp, #16]
 	mov	x8, xzr
 	subs	x0, x8, x16
 	str	x0, [sp]                        // 8-byte Folded Spill
-	b	.LBB50_13
-.LBB50_13:
+	b	.LBB50_14
+.LBB50_14:
 	ldr	x0, [sp]                        // 8-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -4795,12 +6115,26 @@ bsearch:                                // @bsearch
 	str	x2, [sp, #32]
 	str	x3, [sp, #24]
 	str	x4, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch
+	movk	x16, #:abs_g3:.L__profc_bsearch
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB51_1
 .LBB51_1:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #32]
 	cbz	x8, .LBB51_9
 	b	.LBB51_2
 .LBB51_2:                               //   in Loop: Header=BB51_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch+8
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch+8
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch+8
+	movk	x16, #:abs_g3:.L__profc_bsearch+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-24]
 	ldr	x16, [sp, #24]
 	ldr	x17, [sp, #32]
@@ -4817,6 +6151,13 @@ bsearch:                                // @bsearch
 	tbz	w8, #31, .LBB51_4
 	b	.LBB51_3
 .LBB51_3:                               //   in Loop: Header=BB51_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch+16
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch+16
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch+16
+	movk	x16, #:abs_g3:.L__profc_bsearch+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #32]
 	lsr	x8, x8, #1
 	str	x8, [sp, #32]
@@ -4827,6 +6168,13 @@ bsearch:                                // @bsearch
 	b.lt	.LBB51_6
 	b	.LBB51_5
 .LBB51_5:                               //   in Loop: Header=BB51_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch+24
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch+24
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch+24
+	movk	x16, #:abs_g3:.L__profc_bsearch+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp, #24]
 	add	x8, x8, x16
@@ -4917,6 +6265,13 @@ bsearch_r:                              // @bsearch_r
 	str	x3, [sp, #40]
 	str	x4, [sp, #32]
 	str	x5, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch_r
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch_r
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch_r
+	movk	x16, #:abs_g3:.L__profc_bsearch_r
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-24]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-32]
@@ -4928,6 +6283,13 @@ bsearch_r:                              // @bsearch_r
 	cbz	w8, .LBB52_8
 	b	.LBB52_2
 .LBB52_2:                               //   in Loop: Header=BB52_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch_r+8
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch_r+8
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch_r+8
+	movk	x16, #:abs_g3:.L__profc_bsearch_r+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldr	w17, [sp, #12]
                                         // implicit-def: $x16
@@ -4947,6 +6309,13 @@ bsearch_r:                              // @bsearch_r
 	cbnz	w8, .LBB52_4
 	b	.LBB52_3
 .LBB52_3:
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch_r+16
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch_r+16
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch_r+16
+	movk	x16, #:abs_g3:.L__profc_bsearch_r+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	stur	x8, [x29, #-8]
 	b	.LBB52_9
@@ -4956,6 +6325,13 @@ bsearch_r:                              // @bsearch_r
 	b.lt	.LBB52_6
 	b	.LBB52_5
 .LBB52_5:                               //   in Loop: Header=BB52_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bsearch_r+24
+	movk	x16, #:abs_g1_nc:.L__profc_bsearch_r+24
+	movk	x16, #:abs_g2_nc:.L__profc_bsearch_r+24
+	movk	x16, #:abs_g3:.L__profc_bsearch_r+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldr	x16, [sp, #40]
 	add	x8, x8, x16
@@ -5039,6 +6415,13 @@ div:                                    // @div
 	.cfi_offset w29, -16
 	str	w0, [sp, #4]
 	str	w1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc_div
+	movk	x16, #:abs_g1_nc:.L__profc_div
+	movk	x16, #:abs_g2_nc:.L__profc_div
+	movk	x16, #:abs_g3:.L__profc_div
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #4]
 	ldr	w16, [sp]
 	sdiv	w8, w8, w16
@@ -5115,11 +6498,25 @@ imaxabs:                                // @imaxabs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_imaxabs
+	movk	x16, #:abs_g1_nc:.L__profc_imaxabs
+	movk	x16, #:abs_g2_nc:.L__profc_imaxabs
+	movk	x16, #:abs_g3:.L__profc_imaxabs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	subs	x8, x8, #1
 	b.lt	.LBB54_2
 	b	.LBB54_1
 .LBB54_1:
+	movz	x16, #:abs_g0_nc:.L__profc_imaxabs+8
+	movk	x16, #:abs_g1_nc:.L__profc_imaxabs+8
+	movk	x16, #:abs_g2_nc:.L__profc_imaxabs+8
+	movk	x16, #:abs_g3:.L__profc_imaxabs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #8]
 	str	x0, [sp]                        // 8-byte Folded Spill
 	b	.LBB54_3
@@ -5193,6 +6590,13 @@ imaxdiv:                                // @imaxdiv
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc_imaxdiv
+	movk	x16, #:abs_g1_nc:.L__profc_imaxdiv
+	movk	x16, #:abs_g2_nc:.L__profc_imaxdiv
+	movk	x16, #:abs_g3:.L__profc_imaxdiv
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	sdiv	x8, x8, x16
@@ -5265,11 +6669,25 @@ labs:                                   // @labs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_labs
+	movk	x16, #:abs_g1_nc:.L__profc_labs
+	movk	x16, #:abs_g2_nc:.L__profc_labs
+	movk	x16, #:abs_g3:.L__profc_labs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	subs	x8, x8, #1
 	b.lt	.LBB56_2
 	b	.LBB56_1
 .LBB56_1:
+	movz	x16, #:abs_g0_nc:.L__profc_labs+8
+	movk	x16, #:abs_g1_nc:.L__profc_labs+8
+	movk	x16, #:abs_g2_nc:.L__profc_labs+8
+	movk	x16, #:abs_g3:.L__profc_labs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #8]
 	str	x0, [sp]                        // 8-byte Folded Spill
 	b	.LBB56_3
@@ -5343,6 +6761,13 @@ ldiv:                                   // @ldiv
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc_ldiv
+	movk	x16, #:abs_g1_nc:.L__profc_ldiv
+	movk	x16, #:abs_g2_nc:.L__profc_ldiv
+	movk	x16, #:abs_g3:.L__profc_ldiv
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	sdiv	x8, x8, x16
@@ -5415,11 +6840,25 @@ llabs:                                  // @llabs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_llabs
+	movk	x16, #:abs_g1_nc:.L__profc_llabs
+	movk	x16, #:abs_g2_nc:.L__profc_llabs
+	movk	x16, #:abs_g3:.L__profc_llabs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	subs	x8, x8, #1
 	b.lt	.LBB58_2
 	b	.LBB58_1
 .LBB58_1:
+	movz	x16, #:abs_g0_nc:.L__profc_llabs+8
+	movk	x16, #:abs_g1_nc:.L__profc_llabs+8
+	movk	x16, #:abs_g2_nc:.L__profc_llabs+8
+	movk	x16, #:abs_g3:.L__profc_llabs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #8]
 	str	x0, [sp]                        // 8-byte Folded Spill
 	b	.LBB58_3
@@ -5493,6 +6932,13 @@ lldiv:                                  // @lldiv
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc_lldiv
+	movk	x16, #:abs_g1_nc:.L__profc_lldiv
+	movk	x16, #:abs_g2_nc:.L__profc_lldiv
+	movk	x16, #:abs_g3:.L__profc_lldiv
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	sdiv	x8, x8, x16
@@ -5566,48 +7012,89 @@ wcschr:                                 // @wcschr
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_wcschr
+	movk	x16, #:abs_g1_nc:.L__profc_wcschr
+	movk	x16, #:abs_g2_nc:.L__profc_wcschr
+	movk	x16, #:abs_g3:.L__profc_wcschr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB60_1
 .LBB60_1:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	mov	w16, wzr
 	str	w16, [sp, #16]                  // 4-byte Folded Spill
-	cbz	w8, .LBB60_3
+	cbz	w8, .LBB60_4
 	b	.LBB60_2
 .LBB60_2:                               //   in Loop: Header=BB60_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcschr+16
+	movk	x16, #:abs_g1_nc:.L__profc_wcschr+16
+	movk	x16, #:abs_g2_nc:.L__profc_wcschr+16
+	movk	x16, #:abs_g3:.L__profc_wcschr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
 	cset	w8, ne
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
 	str	w8, [sp, #16]                   // 4-byte Folded Spill
+	b.eq	.LBB60_4
 	b	.LBB60_3
 .LBB60_3:                               //   in Loop: Header=BB60_1 Depth=1
-	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB60_6
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_wcschr+24
+	movk	x17, #:abs_g1_nc:.L__profc_wcschr+24
+	movk	x17, #:abs_g2_nc:.L__profc_wcschr+24
+	movk	x17, #:abs_g3:.L__profc_wcschr+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
 	b	.LBB60_4
 .LBB60_4:                               //   in Loop: Header=BB60_1 Depth=1
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB60_7
 	b	.LBB60_5
 .LBB60_5:                               //   in Loop: Header=BB60_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcschr+8
+	movk	x16, #:abs_g1_nc:.L__profc_wcschr+8
+	movk	x16, #:abs_g2_nc:.L__profc_wcschr+8
+	movk	x16, #:abs_g3:.L__profc_wcschr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB60_6
+.LBB60_6:                               //   in Loop: Header=BB60_1 Depth=1
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #4
 	stur	x8, [x29, #-8]
 	b	.LBB60_1
-.LBB60_6:
+.LBB60_7:
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
-	cbz	w8, .LBB60_8
-	b	.LBB60_7
-.LBB60_7:
-	ldur	x0, [x29, #-8]
-	str	x0, [sp, #8]                    // 8-byte Folded Spill
-	b	.LBB60_9
+	cbz	w8, .LBB60_9
+	b	.LBB60_8
 .LBB60_8:
-	mov	x0, xzr
-	str	x0, [sp, #8]                    // 8-byte Folded Spill
-	b	.LBB60_9
+	movz	x16, #:abs_g0_nc:.L__profc_wcschr+32
+	movk	x16, #:abs_g1_nc:.L__profc_wcschr+32
+	movk	x16, #:abs_g2_nc:.L__profc_wcschr+32
+	movk	x16, #:abs_g3:.L__profc_wcschr+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	x0, [x29, #-8]
+	str	x0, [sp]                        // 8-byte Folded Spill
+	b	.LBB60_10
 .LBB60_9:
-	ldr	x0, [sp, #8]                    // 8-byte Folded Reload
+	mov	x0, xzr
+	str	x0, [sp]                        // 8-byte Folded Spill
+	b	.LBB60_10
+.LBB60_10:
+	ldr	x0, [sp]                        // 8-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
 	add	sp, sp, #48
@@ -5670,6 +7157,13 @@ wcscmp:                                 // @wcscmp
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp
+	movk	x16, #:abs_g3:.L__profc_wcscmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB61_1
 .LBB61_1:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
@@ -5679,29 +7173,72 @@ wcscmp:                                 // @wcscmp
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b.ne	.LBB61_4
+	b.ne	.LBB61_6
 	b	.LBB61_2
 .LBB61_2:                               //   in Loop: Header=BB61_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp+32
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp+32
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp+32
+	movk	x16, #:abs_g3:.L__profc_wcscmp+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	w8, .LBB61_4
+	cbz	w8, .LBB61_6
 	b	.LBB61_3
 .LBB61_3:                               //   in Loop: Header=BB61_1 Depth=1
-	ldr	x8, [sp, #16]
-	ldr	w8, [x8]
-	subs	w8, w8, #0
-	cset	w8, ne
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp+40
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp+40
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp+40
+	movk	x16, #:abs_g3:.L__profc_wcscmp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB61_4
 .LBB61_4:                               //   in Loop: Header=BB61_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB61_7
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp+16
+	movk	x16, #:abs_g3:.L__profc_wcscmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldr	x8, [sp, #16]
+	ldr	w8, [x8]
+	subs	w16, w8, #0
+	cset	w16, ne
+	str	w16, [sp, #8]                   // 4-byte Folded Spill
+	str	w16, [sp, #12]                  // 4-byte Folded Spill
+	cbz	w8, .LBB61_6
 	b	.LBB61_5
 .LBB61_5:                               //   in Loop: Header=BB61_1 Depth=1
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_wcscmp+24
+	movk	x17, #:abs_g1_nc:.L__profc_wcscmp+24
+	movk	x17, #:abs_g2_nc:.L__profc_wcscmp+24
+	movk	x17, #:abs_g3:.L__profc_wcscmp+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
 	b	.LBB61_6
 .LBB61_6:                               //   in Loop: Header=BB61_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB61_9
+	b	.LBB61_7
+.LBB61_7:                               //   in Loop: Header=BB61_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp+8
+	movk	x16, #:abs_g3:.L__profc_wcscmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB61_8
+.LBB61_8:                               //   in Loop: Header=BB61_1 Depth=1
 	ldur	x8, [x29, #-8]
 	add	x8, x8, #4
 	stur	x8, [x29, #-8]
@@ -5709,29 +7246,36 @@ wcscmp:                                 // @wcscmp
 	add	x8, x8, #4
 	str	x8, [sp, #16]
 	b	.LBB61_1
-.LBB61_7:
-	ldur	x8, [x29, #-8]
-	ldr	w8, [x8]
-	ldr	x16, [sp, #16]
-	ldr	w16, [x16]
-	subs	w8, w8, w16
-	b.hs	.LBB61_9
-	b	.LBB61_8
-.LBB61_8:
-	mov	w0, #-1                         // =0xffffffff
-	str	w0, [sp, #8]                    // 4-byte Folded Spill
-	b	.LBB61_10
 .LBB61_9:
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldr	x16, [sp, #16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
-	cset	w0, hi
-	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	b.hs	.LBB61_11
 	b	.LBB61_10
 .LBB61_10:
-	ldr	w0, [sp, #8]                    // 4-byte Folded Reload
+	movz	x16, #:abs_g0_nc:.L__profc_wcscmp+48
+	movk	x16, #:abs_g1_nc:.L__profc_wcscmp+48
+	movk	x16, #:abs_g2_nc:.L__profc_wcscmp+48
+	movk	x16, #:abs_g3:.L__profc_wcscmp+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	mov	w0, #-1                         // =0xffffffff
+	str	w0, [sp, #4]                    // 4-byte Folded Spill
+	b	.LBB61_12
+.LBB61_11:
+	ldur	x8, [x29, #-8]
+	ldr	w8, [x8]
+	ldr	x16, [sp, #16]
+	ldr	w16, [x16]
+	subs	w8, w8, w16
+	cset	w0, hi
+	str	w0, [sp, #4]                    // 4-byte Folded Spill
+	b	.LBB61_12
+.LBB61_12:
+	ldr	w0, [sp, #4]                    // 4-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
 	add	sp, sp, #48
@@ -5794,6 +7338,13 @@ wcscpy:                                 // @wcscpy
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_wcscpy
+	movk	x16, #:abs_g1_nc:.L__profc_wcscpy
+	movk	x16, #:abs_g2_nc:.L__profc_wcscpy
+	movk	x16, #:abs_g3:.L__profc_wcscpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #8]
 	b	.LBB62_1
@@ -5809,6 +7360,13 @@ wcscpy:                                 // @wcscpy
 	cbz	w8, .LBB62_3
 	b	.LBB62_2
 .LBB62_2:                               //   in Loop: Header=BB62_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcscpy+8
+	movk	x16, #:abs_g1_nc:.L__profc_wcscpy+8
+	movk	x16, #:abs_g2_nc:.L__profc_wcscpy+8
+	movk	x16, #:abs_g3:.L__profc_wcscpy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB62_1
 .LBB62_3:
 	ldr	x0, [sp, #8]
@@ -5873,6 +7431,13 @@ wcslen:                                 // @wcslen
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_wcslen
+	movk	x16, #:abs_g1_nc:.L__profc_wcslen
+	movk	x16, #:abs_g2_nc:.L__profc_wcslen
+	movk	x16, #:abs_g3:.L__profc_wcslen
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	str	x8, [sp]
 	b	.LBB63_1
@@ -5882,6 +7447,13 @@ wcslen:                                 // @wcslen
 	cbz	w8, .LBB63_4
 	b	.LBB63_2
 .LBB63_2:                               //   in Loop: Header=BB63_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcslen+8
+	movk	x16, #:abs_g1_nc:.L__profc_wcslen+8
+	movk	x16, #:abs_g2_nc:.L__profc_wcslen+8
+	movk	x16, #:abs_g3:.L__profc_wcslen+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB63_3
 .LBB63_3:                               //   in Loop: Header=BB63_1 Depth=1
 	ldr	x8, [sp, #8]
@@ -5956,14 +7528,28 @@ wcsncmp:                                // @wcsncmp
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp
+	movk	x16, #:abs_g3:.L__profc_wcsncmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB64_1
 .LBB64_1:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #20]                  // 4-byte Folded Spill
-	cbz	x8, .LBB64_5
+	cbz	x8, .LBB64_8
 	b	.LBB64_2
 .LBB64_2:                               //   in Loop: Header=BB64_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+48
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+48
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+48
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w16, [x8]
 	ldur	x8, [x29, #-16]
@@ -5971,29 +7557,81 @@ wcsncmp:                                // @wcsncmp
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #20]                   // 4-byte Folded Spill
-	b.ne	.LBB64_5
+	b.ne	.LBB64_8
 	b	.LBB64_3
 .LBB64_3:                               //   in Loop: Header=BB64_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+56
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+56
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+56
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB64_4
+.LBB64_4:                               //   in Loop: Header=BB64_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+32
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+32
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+32
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	mov	w16, wzr
 	str	w16, [sp, #20]                  // 4-byte Folded Spill
-	cbz	w8, .LBB64_5
-	b	.LBB64_4
-.LBB64_4:                               //   in Loop: Header=BB64_1 Depth=1
-	ldur	x8, [x29, #-16]
-	ldr	w8, [x8]
-	subs	w8, w8, #0
-	cset	w8, ne
-	str	w8, [sp, #20]                   // 4-byte Folded Spill
+	cbz	w8, .LBB64_8
 	b	.LBB64_5
 .LBB64_5:                               //   in Loop: Header=BB64_1 Depth=1
-	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB64_8
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+40
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+40
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+40
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB64_6
 .LBB64_6:                               //   in Loop: Header=BB64_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+16
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	x8, [x29, #-16]
+	ldr	w8, [x8]
+	subs	w16, w8, #0
+	cset	w16, ne
+	str	w16, [sp, #16]                  // 4-byte Folded Spill
+	str	w16, [sp, #20]                  // 4-byte Folded Spill
+	cbz	w8, .LBB64_8
 	b	.LBB64_7
 .LBB64_7:                               //   in Loop: Header=BB64_1 Depth=1
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_wcsncmp+24
+	movk	x17, #:abs_g1_nc:.L__profc_wcsncmp+24
+	movk	x17, #:abs_g2_nc:.L__profc_wcsncmp+24
+	movk	x17, #:abs_g3:.L__profc_wcsncmp+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #20]                   // 4-byte Folded Spill
+	b	.LBB64_8
+.LBB64_8:                               //   in Loop: Header=BB64_1 Depth=1
+	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB64_11
+	b	.LBB64_9
+.LBB64_9:                               //   in Loop: Header=BB64_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+8
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB64_10
+.LBB64_10:                              //   in Loop: Header=BB64_1 Depth=1
 	ldr	x8, [sp, #24]
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
@@ -6004,41 +7642,55 @@ wcsncmp:                                // @wcsncmp
 	add	x8, x8, #4
 	stur	x8, [x29, #-16]
 	b	.LBB64_1
-.LBB64_8:
+.LBB64_11:
 	ldr	x8, [sp, #24]
-	cbz	x8, .LBB64_13
-	b	.LBB64_9
-.LBB64_9:
+	cbz	x8, .LBB64_16
+	b	.LBB64_12
+.LBB64_12:
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+64
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+64
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+64
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	x16, [x29, #-16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
-	b.hs	.LBB64_11
-	b	.LBB64_10
-.LBB64_10:
+	b.hs	.LBB64_14
+	b	.LBB64_13
+.LBB64_13:
+	movz	x16, #:abs_g0_nc:.L__profc_wcsncmp+72
+	movk	x16, #:abs_g1_nc:.L__profc_wcsncmp+72
+	movk	x16, #:abs_g2_nc:.L__profc_wcsncmp+72
+	movk	x16, #:abs_g3:.L__profc_wcsncmp+72
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w0, #-1                         // =0xffffffff
-	str	w0, [sp, #16]                   // 4-byte Folded Spill
-	b	.LBB64_12
-.LBB64_11:
+	str	w0, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB64_15
+.LBB64_14:
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	x16, [x29, #-16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
 	cset	w0, hi
-	str	w0, [sp, #16]                   // 4-byte Folded Spill
-	b	.LBB64_12
-.LBB64_12:
-	ldr	w0, [sp, #16]                   // 4-byte Folded Reload
 	str	w0, [sp, #12]                   // 4-byte Folded Spill
-	b	.LBB64_14
-.LBB64_13:
-	mov	w0, wzr
-	str	w0, [sp, #12]                   // 4-byte Folded Spill
-	b	.LBB64_14
-.LBB64_14:
+	b	.LBB64_15
+.LBB64_15:
 	ldr	w0, [sp, #12]                   // 4-byte Folded Reload
+	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB64_17
+.LBB64_16:
+	mov	w0, wzr
+	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB64_17
+.LBB64_17:
+	ldr	w0, [sp, #8]                    // 4-byte Folded Reload
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
 	add	sp, sp, #64
@@ -6102,28 +7754,62 @@ wmemchr:                                // @wmemchr
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_wmemchr
+	movk	x16, #:abs_g1_nc:.L__profc_wmemchr
+	movk	x16, #:abs_g2_nc:.L__profc_wmemchr
+	movk	x16, #:abs_g3:.L__profc_wmemchr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB65_1
 .LBB65_1:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #20]                  // 4-byte Folded Spill
-	cbz	x8, .LBB65_3
+	cbz	x8, .LBB65_4
 	b	.LBB65_2
 .LBB65_2:                               //   in Loop: Header=BB65_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemchr+16
+	movk	x16, #:abs_g1_nc:.L__profc_wmemchr+16
+	movk	x16, #:abs_g2_nc:.L__profc_wmemchr+16
+	movk	x16, #:abs_g3:.L__profc_wmemchr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
 	cset	w8, ne
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
 	str	w8, [sp, #20]                   // 4-byte Folded Spill
+	b.eq	.LBB65_4
 	b	.LBB65_3
 .LBB65_3:                               //   in Loop: Header=BB65_1 Depth=1
-	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB65_6
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_wmemchr+24
+	movk	x17, #:abs_g1_nc:.L__profc_wmemchr+24
+	movk	x17, #:abs_g2_nc:.L__profc_wmemchr+24
+	movk	x17, #:abs_g3:.L__profc_wmemchr+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #20]                   // 4-byte Folded Spill
 	b	.LBB65_4
 .LBB65_4:                               //   in Loop: Header=BB65_1 Depth=1
+	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB65_7
 	b	.LBB65_5
 .LBB65_5:                               //   in Loop: Header=BB65_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemchr+8
+	movk	x16, #:abs_g1_nc:.L__profc_wmemchr+8
+	movk	x16, #:abs_g2_nc:.L__profc_wmemchr+8
+	movk	x16, #:abs_g3:.L__profc_wmemchr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB65_6
+.LBB65_6:                               //   in Loop: Header=BB65_1 Depth=1
 	ldr	x8, [sp, #24]
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
@@ -6131,19 +7817,26 @@ wmemchr:                                // @wmemchr
 	add	x8, x8, #4
 	stur	x8, [x29, #-8]
 	b	.LBB65_1
-.LBB65_6:
-	ldr	x8, [sp, #24]
-	cbz	x8, .LBB65_8
-	b	.LBB65_7
 .LBB65_7:
+	ldr	x8, [sp, #24]
+	cbz	x8, .LBB65_9
+	b	.LBB65_8
+.LBB65_8:
+	movz	x16, #:abs_g0_nc:.L__profc_wmemchr+32
+	movk	x16, #:abs_g1_nc:.L__profc_wmemchr+32
+	movk	x16, #:abs_g2_nc:.L__profc_wmemchr+32
+	movk	x16, #:abs_g3:.L__profc_wmemchr+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x0, [x29, #-8]
 	str	x0, [sp, #8]                    // 8-byte Folded Spill
-	b	.LBB65_9
-.LBB65_8:
+	b	.LBB65_10
+.LBB65_9:
 	mov	x0, xzr
 	str	x0, [sp, #8]                    // 8-byte Folded Spill
-	b	.LBB65_9
-.LBB65_9:
+	b	.LBB65_10
+.LBB65_10:
 	ldr	x0, [sp, #8]                    // 8-byte Folded Reload
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
@@ -6208,29 +7901,63 @@ wmemcmp:                                // @wmemcmp
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcmp
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcmp
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcmp
+	movk	x16, #:abs_g3:.L__profc_wmemcmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB66_1
 .LBB66_1:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #20]                  // 4-byte Folded Spill
-	cbz	x8, .LBB66_3
+	cbz	x8, .LBB66_4
 	b	.LBB66_2
 .LBB66_2:                               //   in Loop: Header=BB66_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcmp+16
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcmp+16
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcmp+16
+	movk	x16, #:abs_g3:.L__profc_wmemcmp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	x16, [x29, #-16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
 	cset	w8, eq
+	str	w8, [sp, #16]                   // 4-byte Folded Spill
 	str	w8, [sp, #20]                   // 4-byte Folded Spill
+	b.ne	.LBB66_4
 	b	.LBB66_3
 .LBB66_3:                               //   in Loop: Header=BB66_1 Depth=1
-	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB66_6
+	ldr	w8, [sp, #16]                   // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_wmemcmp+24
+	movk	x17, #:abs_g1_nc:.L__profc_wmemcmp+24
+	movk	x17, #:abs_g2_nc:.L__profc_wmemcmp+24
+	movk	x17, #:abs_g3:.L__profc_wmemcmp+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #20]                   // 4-byte Folded Spill
 	b	.LBB66_4
 .LBB66_4:                               //   in Loop: Header=BB66_1 Depth=1
+	ldr	w8, [sp, #20]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB66_7
 	b	.LBB66_5
 .LBB66_5:                               //   in Loop: Header=BB66_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcmp+8
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcmp+8
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcmp+8
+	movk	x16, #:abs_g3:.L__profc_wmemcmp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB66_6
+.LBB66_6:                               //   in Loop: Header=BB66_1 Depth=1
 	ldr	x8, [sp, #24]
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
@@ -6241,41 +7968,55 @@ wmemcmp:                                // @wmemcmp
 	add	x8, x8, #4
 	stur	x8, [x29, #-16]
 	b	.LBB66_1
-.LBB66_6:
-	ldr	x8, [sp, #24]
-	cbz	x8, .LBB66_11
-	b	.LBB66_7
 .LBB66_7:
+	ldr	x8, [sp, #24]
+	cbz	x8, .LBB66_12
+	b	.LBB66_8
+.LBB66_8:
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcmp+32
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcmp+32
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcmp+32
+	movk	x16, #:abs_g3:.L__profc_wmemcmp+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	x16, [x29, #-16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
-	b.hs	.LBB66_9
-	b	.LBB66_8
-.LBB66_8:
-	mov	w0, #-1                         // =0xffffffff
-	str	w0, [sp, #16]                   // 4-byte Folded Spill
-	b	.LBB66_10
+	b.hs	.LBB66_10
+	b	.LBB66_9
 .LBB66_9:
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcmp+40
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcmp+40
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcmp+40
+	movk	x16, #:abs_g3:.L__profc_wmemcmp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	mov	w0, #-1                         // =0xffffffff
+	str	w0, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB66_11
+.LBB66_10:
 	ldur	x8, [x29, #-8]
 	ldr	w8, [x8]
 	ldur	x16, [x29, #-16]
 	ldr	w16, [x16]
 	subs	w8, w8, w16
 	cset	w0, hi
-	str	w0, [sp, #16]                   // 4-byte Folded Spill
-	b	.LBB66_10
-.LBB66_10:
-	ldr	w0, [sp, #16]                   // 4-byte Folded Reload
 	str	w0, [sp, #12]                   // 4-byte Folded Spill
-	b	.LBB66_12
+	b	.LBB66_11
 .LBB66_11:
-	mov	w0, wzr
-	str	w0, [sp, #12]                   // 4-byte Folded Spill
-	b	.LBB66_12
-.LBB66_12:
 	ldr	w0, [sp, #12]                   // 4-byte Folded Reload
+	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB66_13
+.LBB66_12:
+	mov	w0, wzr
+	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB66_13
+.LBB66_13:
+	ldr	w0, [sp, #8]                    // 4-byte Folded Reload
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
 	add	sp, sp, #64
@@ -6339,6 +8080,13 @@ wmemcpy:                                // @wmemcpy
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
 	str	x2, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcpy
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcpy
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcpy
+	movk	x16, #:abs_g3:.L__profc_wmemcpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp]
 	b	.LBB67_1
@@ -6349,6 +8097,13 @@ wmemcpy:                                // @wmemcpy
 	cbz	x8, .LBB67_3
 	b	.LBB67_2
 .LBB67_2:                               //   in Loop: Header=BB67_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemcpy+8
+	movk	x16, #:abs_g1_nc:.L__profc_wmemcpy+8
+	movk	x16, #:abs_g2_nc:.L__profc_wmemcpy+8
+	movk	x16, #:abs_g3:.L__profc_wmemcpy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	add	x16, x8, #4
 	str	x16, [sp, #16]
@@ -6423,6 +8178,13 @@ wmemmove:                               // @wmemmove
 	stur	x0, [x29, #-16]
 	str	x1, [sp, #24]
 	str	x2, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_wmemmove
+	movk	x16, #:abs_g1_nc:.L__profc_wmemmove
+	movk	x16, #:abs_g2_nc:.L__profc_wmemmove
+	movk	x16, #:abs_g3:.L__profc_wmemmove
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #8]
 	ldur	x8, [x29, #-16]
@@ -6431,6 +8193,13 @@ wmemmove:                               // @wmemmove
 	b.ne	.LBB68_2
 	b	.LBB68_1
 .LBB68_1:
+	movz	x16, #:abs_g0_nc:.L__profc_wmemmove+8
+	movk	x16, #:abs_g1_nc:.L__profc_wmemmove+8
+	movk	x16, #:abs_g2_nc:.L__profc_wmemmove+8
+	movk	x16, #:abs_g3:.L__profc_wmemmove+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
 	b	.LBB68_12
@@ -6443,6 +8212,13 @@ wmemmove:                               // @wmemmove
 	b.hs	.LBB68_7
 	b	.LBB68_3
 .LBB68_3:
+	movz	x16, #:abs_g0_nc:.L__profc_wmemmove+16
+	movk	x16, #:abs_g1_nc:.L__profc_wmemmove+16
+	movk	x16, #:abs_g2_nc:.L__profc_wmemmove+16
+	movk	x16, #:abs_g3:.L__profc_wmemmove+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB68_4
 .LBB68_4:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #16]
@@ -6451,6 +8227,13 @@ wmemmove:                               // @wmemmove
 	cbz	x8, .LBB68_6
 	b	.LBB68_5
 .LBB68_5:                               //   in Loop: Header=BB68_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemmove+24
+	movk	x16, #:abs_g1_nc:.L__profc_wmemmove+24
+	movk	x16, #:abs_g2_nc:.L__profc_wmemmove+24
+	movk	x16, #:abs_g3:.L__profc_wmemmove+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	ldr	x17, [sp, #16]
 	ldr	w8, [x8, x17, lsl #2]
@@ -6468,6 +8251,13 @@ wmemmove:                               // @wmemmove
 	cbz	x8, .LBB68_10
 	b	.LBB68_9
 .LBB68_9:                               //   in Loop: Header=BB68_8 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemmove+32
+	movk	x16, #:abs_g1_nc:.L__profc_wmemmove+32
+	movk	x16, #:abs_g2_nc:.L__profc_wmemmove+32
+	movk	x16, #:abs_g3:.L__profc_wmemmove+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	add	x16, x8, #4
 	str	x16, [sp, #24]
@@ -6548,6 +8338,13 @@ wmemset:                                // @wmemset
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	x2, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_wmemset
+	movk	x16, #:abs_g1_nc:.L__profc_wmemset
+	movk	x16, #:abs_g2_nc:.L__profc_wmemset
+	movk	x16, #:abs_g3:.L__profc_wmemset
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp]
 	b	.LBB69_1
@@ -6558,6 +8355,13 @@ wmemset:                                // @wmemset
 	cbz	x8, .LBB69_3
 	b	.LBB69_2
 .LBB69_2:                               //   in Loop: Header=BB69_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_wmemset+8
+	movk	x16, #:abs_g1_nc:.L__profc_wmemset+8
+	movk	x16, #:abs_g2_nc:.L__profc_wmemset+8
+	movk	x16, #:abs_g3:.L__profc_wmemset+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	ldur	x16, [x29, #-8]
 	add	x17, x16, #4
@@ -6629,6 +8433,13 @@ bcopy:                                  // @bcopy
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_bcopy
+	movk	x16, #:abs_g1_nc:.L__profc_bcopy
+	movk	x16, #:abs_g2_nc:.L__profc_bcopy
+	movk	x16, #:abs_g3:.L__profc_bcopy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-16]
@@ -6639,6 +8450,13 @@ bcopy:                                  // @bcopy
 	b.hs	.LBB70_6
 	b	.LBB70_1
 .LBB70_1:
+	movz	x16, #:abs_g0_nc:.L__profc_bcopy+8
+	movk	x16, #:abs_g1_nc:.L__profc_bcopy+8
+	movk	x16, #:abs_g2_nc:.L__profc_bcopy+8
+	movk	x16, #:abs_g3:.L__profc_bcopy+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #24]
 	ldr	x8, [sp, #16]
 	add	x8, x8, x16
@@ -6653,6 +8471,13 @@ bcopy:                                  // @bcopy
 	cbz	x8, .LBB70_5
 	b	.LBB70_3
 .LBB70_3:                               //   in Loop: Header=BB70_2 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bcopy+16
+	movk	x16, #:abs_g1_nc:.L__profc_bcopy+16
+	movk	x16, #:abs_g2_nc:.L__profc_bcopy+16
+	movk	x16, #:abs_g3:.L__profc_bcopy+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	subs	x16, x8, #1
 	str	x16, [sp, #16]
@@ -6676,12 +8501,26 @@ bcopy:                                  // @bcopy
 	b.eq	.LBB70_12
 	b	.LBB70_7
 .LBB70_7:
+	movz	x16, #:abs_g0_nc:.L__profc_bcopy+24
+	movk	x16, #:abs_g1_nc:.L__profc_bcopy+24
+	movk	x16, #:abs_g2_nc:.L__profc_bcopy+24
+	movk	x16, #:abs_g3:.L__profc_bcopy+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB70_8
 .LBB70_8:                               // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
 	cbz	x8, .LBB70_11
 	b	.LBB70_9
 .LBB70_9:                               //   in Loop: Header=BB70_8 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_bcopy+32
+	movk	x16, #:abs_g1_nc:.L__profc_bcopy+32
+	movk	x16, #:abs_g2_nc:.L__profc_bcopy+32
+	movk	x16, #:abs_g3:.L__profc_bcopy+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	add	x16, x8, #1
 	str	x16, [sp, #16]
@@ -6764,6 +8603,13 @@ rotl64:                                 // @rotl64
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc_rotl64
+	movk	x16, #:abs_g1_nc:.L__profc_rotl64
+	movk	x16, #:abs_g2_nc:.L__profc_rotl64
+	movk	x16, #:abs_g3:.L__profc_rotl64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	w17, [sp, #4]
 	mov	w16, wzr
@@ -6832,6 +8678,13 @@ rotr64:                                 // @rotr64
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc_rotr64
+	movk	x16, #:abs_g1_nc:.L__profc_rotr64
+	movk	x16, #:abs_g2_nc:.L__profc_rotr64
+	movk	x16, #:abs_g3:.L__profc_rotr64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	w16, [sp, #4]
                                         // kill: def $x16 killed $w16
@@ -6898,6 +8751,13 @@ rotl32:                                 // @rotl32
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotl32
+	movk	x16, #:abs_g1_nc:.L__profc_rotl32
+	movk	x16, #:abs_g2_nc:.L__profc_rotl32
+	movk	x16, #:abs_g3:.L__profc_rotl32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ldr	w17, [sp, #8]
 	mov	w16, wzr
@@ -6965,6 +8825,13 @@ rotr32:                                 // @rotr32
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotr32
+	movk	x16, #:abs_g1_nc:.L__profc_rotr32
+	movk	x16, #:abs_g2_nc:.L__profc_rotr32
+	movk	x16, #:abs_g3:.L__profc_rotr32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ldr	w16, [sp, #8]
 	mov	w0, w16
@@ -7032,6 +8899,13 @@ rotl_sz:                                // @rotl_sz
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc_rotl_sz
+	movk	x16, #:abs_g1_nc:.L__profc_rotl_sz
+	movk	x16, #:abs_g2_nc:.L__profc_rotl_sz
+	movk	x16, #:abs_g3:.L__profc_rotl_sz
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	ldrsw	x0, [sp, #4]
 	lsl	x8, x16, x0
@@ -7101,6 +8975,13 @@ rotr_sz:                                // @rotr_sz
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc_rotr_sz
+	movk	x16, #:abs_g1_nc:.L__profc_rotr_sz
+	movk	x16, #:abs_g2_nc:.L__profc_rotr_sz
+	movk	x16, #:abs_g3:.L__profc_rotr_sz
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	ldrsw	x0, [sp, #4]
 	lsr	x8, x16, x0
@@ -7170,6 +9051,13 @@ rotl16:                                 // @rotl16
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotl16
+	movk	x16, #:abs_g1_nc:.L__profc_rotl16
+	movk	x16, #:abs_g2_nc:.L__profc_rotl16
+	movk	x16, #:abs_g3:.L__profc_rotl16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w16, [x29, #-2]
 	ldr	w8, [sp, #8]
 	mov	w0, w8
@@ -7242,6 +9130,13 @@ rotr16:                                 // @rotr16
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotr16
+	movk	x16, #:abs_g1_nc:.L__profc_rotr16
+	movk	x16, #:abs_g2_nc:.L__profc_rotr16
+	movk	x16, #:abs_g3:.L__profc_rotr16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w16, [x29, #-2]
 	ldr	w8, [sp, #8]
 	mov	w0, w8
@@ -7314,6 +9209,13 @@ rotl8:                                  // @rotl8
 	.cfi_offset w29, -16
 	sturb	w0, [x29, #-1]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotl8
+	movk	x16, #:abs_g1_nc:.L__profc_rotl8
+	movk	x16, #:abs_g2_nc:.L__profc_rotl8
+	movk	x16, #:abs_g3:.L__profc_rotl8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w16, [x29, #-1]
 	ldr	w8, [sp, #8]
 	mov	w0, w8
@@ -7386,6 +9288,13 @@ rotr8:                                  // @rotr8
 	.cfi_offset w29, -16
 	sturb	w0, [x29, #-1]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_rotr8
+	movk	x16, #:abs_g1_nc:.L__profc_rotr8
+	movk	x16, #:abs_g2_nc:.L__profc_rotr8
+	movk	x16, #:abs_g3:.L__profc_rotr8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w16, [x29, #-1]
 	ldr	w8, [sp, #8]
 	mov	w0, w8
@@ -7457,6 +9366,13 @@ bswap_16:                               // @bswap_16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
+	movz	x16, #:abs_g0_nc:.L__profc_bswap_16
+	movk	x16, #:abs_g1_nc:.L__profc_bswap_16
+	movk	x16, #:abs_g2_nc:.L__profc_bswap_16
+	movk	x16, #:abs_g3:.L__profc_bswap_16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #255                        // =0xff
 	sturh	w8, [x29, #-4]
 	ldurh	w16, [x29, #-2]
@@ -7526,6 +9442,13 @@ bswap_32:                               // @bswap_32
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_bswap_32
+	movk	x16, #:abs_g1_nc:.L__profc_bswap_32
+	movk	x16, #:abs_g2_nc:.L__profc_bswap_32
+	movk	x16, #:abs_g3:.L__profc_bswap_32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #255                        // =0xff
 	str	w8, [sp, #8]
 	ldur	w16, [x29, #-4]
@@ -7600,6 +9523,13 @@ bswap_64:                               // @bswap_64
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_bswap_64
+	movk	x16, #:abs_g1_nc:.L__profc_bswap_64
+	movk	x16, #:abs_g2_nc:.L__profc_bswap_64
+	movk	x16, #:abs_g3:.L__profc_bswap_64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #255                        // =0xff
                                         // kill: def $x8 killed $w8
 	str	x8, [sp]
@@ -7690,6 +9620,13 @@ ffs:                                    // @ffs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	w0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_ffs
+	movk	x16, #:abs_g1_nc:.L__profc_ffs
+	movk	x16, #:abs_g2_nc:.L__profc_ffs
+	movk	x16, #:abs_g3:.L__profc_ffs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #4]
 	b	.LBB84_1
@@ -7699,6 +9636,13 @@ ffs:                                    // @ffs
 	b.hi	.LBB84_6
 	b	.LBB84_2
 .LBB84_2:                               //   in Loop: Header=BB84_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ffs+8
+	movk	x16, #:abs_g1_nc:.L__profc_ffs+8
+	movk	x16, #:abs_g2_nc:.L__profc_ffs+8
+	movk	x16, #:abs_g3:.L__profc_ffs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	ldr	w16, [sp, #4]
 	mov	w0, w16
@@ -7707,6 +9651,13 @@ ffs:                                    // @ffs
 	tbz	w8, #0, .LBB84_4
 	b	.LBB84_3
 .LBB84_3:
+	movz	x16, #:abs_g0_nc:.L__profc_ffs+16
+	movk	x16, #:abs_g1_nc:.L__profc_ffs+16
+	movk	x16, #:abs_g2_nc:.L__profc_ffs+16
+	movk	x16, #:abs_g3:.L__profc_ffs+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #4]
 	add	w8, w8, #1
 	stur	w8, [x29, #-4]
@@ -7785,10 +9736,24 @@ libiberty_ffs:                          // @libiberty_ffs
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	w0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_libiberty_ffs
+	movk	x16, #:abs_g1_nc:.L__profc_libiberty_ffs
+	movk	x16, #:abs_g2_nc:.L__profc_libiberty_ffs
+	movk	x16, #:abs_g3:.L__profc_libiberty_ffs
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	cbnz	w8, .LBB85_2
 	b	.LBB85_1
 .LBB85_1:
+	movz	x16, #:abs_g0_nc:.L__profc_libiberty_ffs+8
+	movk	x16, #:abs_g1_nc:.L__profc_libiberty_ffs+8
+	movk	x16, #:abs_g2_nc:.L__profc_libiberty_ffs+8
+	movk	x16, #:abs_g3:.L__profc_libiberty_ffs+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB85_7
@@ -7801,6 +9766,13 @@ libiberty_ffs:                          // @libiberty_ffs
 	tbnz	w8, #0, .LBB85_6
 	b	.LBB85_4
 .LBB85_4:                               //   in Loop: Header=BB85_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_libiberty_ffs+16
+	movk	x16, #:abs_g1_nc:.L__profc_libiberty_ffs+16
+	movk	x16, #:abs_g2_nc:.L__profc_libiberty_ffs+16
+	movk	x16, #:abs_g3:.L__profc_libiberty_ffs+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	asr	w8, w8, #1
 	str	w8, [sp, #8]
@@ -7877,23 +9849,50 @@ gl_isinff:                              // @gl_isinff
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	s0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinff
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinff
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinff
+	movk	x16, #:abs_g3:.L__profc_gl_isinff
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-4]
 	mov	w8, #1                          // =0x1
 	mov	w16, #-8388609                  // =0xff7fffff
 	fmov	s1, w16
 	fcmp	s0, s1
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
-	b.mi	.LBB86_2
+	b.mi	.LBB86_3
 	b	.LBB86_1
 .LBB86_1:
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinff+8
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinff+8
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinff+8
+	movk	x16, #:abs_g3:.L__profc_gl_isinff+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-4]
 	mov	w8, #2139095039                 // =0x7f7fffff
 	fmov	s1, w8
 	fcmp	s0, s1
 	cset	w8, gt
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.gt	.LBB86_3
 	b	.LBB86_2
 .LBB86_2:
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_gl_isinff+16
+	movk	x17, #:abs_g1_nc:.L__profc_gl_isinff+16
+	movk	x17, #:abs_g2_nc:.L__profc_gl_isinff+16
+	movk	x17, #:abs_g3:.L__profc_gl_isinff+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b	.LBB86_3
+.LBB86_3:
 	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -7957,23 +9956,50 @@ gl_isinfd:                              // @gl_isinfd
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	d0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinfd
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinfd
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinfd
+	movk	x16, #:abs_g3:.L__profc_gl_isinfd
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #8]
 	mov	w8, #1                          // =0x1
 	mov	x16, #-4503599627370497         // =0xffefffffffffffff
 	fmov	d1, x16
 	fcmp	d0, d1
 	str	w8, [sp, #4]                    // 4-byte Folded Spill
-	b.mi	.LBB87_2
+	b.mi	.LBB87_3
 	b	.LBB87_1
 .LBB87_1:
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinfd+8
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinfd+8
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinfd+8
+	movk	x16, #:abs_g3:.L__profc_gl_isinfd+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #8]
 	mov	x8, #9218868437227405311        // =0x7fefffffffffffff
 	fmov	d1, x8
 	fcmp	d0, d1
 	cset	w8, gt
+	str	w8, [sp]                        // 4-byte Folded Spill
 	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	b.gt	.LBB87_3
 	b	.LBB87_2
 .LBB87_2:
+	ldr	w8, [sp]                        // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_gl_isinfd+16
+	movk	x17, #:abs_g1_nc:.L__profc_gl_isinfd+16
+	movk	x17, #:abs_g2_nc:.L__profc_gl_isinfd+16
+	movk	x17, #:abs_g3:.L__profc_gl_isinfd+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	b	.LBB87_3
+.LBB87_3:
 	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
 	and	w0, w8, #0x1
 	.cfi_def_cfa wsp, 32
@@ -8038,45 +10064,79 @@ gl_isinfd:                              // @gl_isinfd
 gl_isinfl:                              // @gl_isinfl
 	.cfi_startproc
 // %bb.0:
-	sub	sp, sp, #48
-	.cfi_def_cfa_offset 48
-	stp	x29, x30, [sp, #32]             // 16-byte Folded Spill
-	add	x29, sp, #32
+	sub	sp, sp, #80
+	.cfi_def_cfa_offset 80
+	stp	x29, x30, [sp, #64]             // 16-byte Folded Spill
+	add	x29, sp, #64
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
-	str	q0, [sp, #16]
-	ldr	q0, [sp, #16]
+	stur	q0, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinfl
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinfl
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinfl
+	movk	x16, #:abs_g3:.L__profc_gl_isinfl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	q0, [x29, #-16]
 	mov	w0, #1                          // =0x1
-	str	w0, [sp, #8]                    // 4-byte Folded Spill
+	stur	w0, [x29, #-24]                 // 4-byte Folded Spill
 	movz	x8, #:abs_g0_nc:.LCPI88_0
 	movk	x8, #:abs_g1_nc:.LCPI88_0
 	movk	x8, #:abs_g2_nc:.LCPI88_0
 	movk	x8, #:abs_g3:.LCPI88_0
 	ldr	q1, [x8]
 	bl	__lttf2
-	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	tbnz	w0, #31, .LBB88_2
+	ldur	w8, [x29, #-24]                 // 4-byte Folded Reload
+	stur	w8, [x29, #-20]                 // 4-byte Folded Spill
+	tbnz	w0, #31, .LBB88_3
 	b	.LBB88_1
 .LBB88_1:
-	ldr	q0, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_gl_isinfl+8
+	movk	x16, #:abs_g1_nc:.L__profc_gl_isinfl+8
+	movk	x16, #:abs_g2_nc:.L__profc_gl_isinfl+8
+	movk	x16, #:abs_g3:.L__profc_gl_isinfl+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	q0, [x29, #-16]
+	str	q0, [sp]                        // 16-byte Folded Spill
 	movz	x8, #:abs_g0_nc:.LCPI88_1
 	movk	x8, #:abs_g1_nc:.LCPI88_1
 	movk	x8, #:abs_g2_nc:.LCPI88_1
 	movk	x8, #:abs_g3:.LCPI88_1
 	ldr	q1, [x8]
+	str	q1, [sp, #16]                   // 16-byte Folded Spill
 	bl	__gttf2
+	ldr	q0, [sp]                        // 16-byte Folded Reload
+	ldr	q1, [sp, #16]                   // 16-byte Folded Reload
 	subs	w8, w0, #0
-	cset	w8, gt
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	cset	w0, gt
+	stur	w0, [x29, #-28]                 // 4-byte Folded Spill
+	bl	__gttf2
+	ldur	w8, [x29, #-28]                 // 4-byte Folded Reload
+	subs	w16, w0, #0
+	stur	w8, [x29, #-20]                 // 4-byte Folded Spill
+	b.gt	.LBB88_3
 	b	.LBB88_2
 .LBB88_2:
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	ldur	w8, [x29, #-28]                 // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_gl_isinfl+16
+	movk	x17, #:abs_g1_nc:.L__profc_gl_isinfl+16
+	movk	x17, #:abs_g2_nc:.L__profc_gl_isinfl+16
+	movk	x17, #:abs_g3:.L__profc_gl_isinfl+16
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	stur	w8, [x29, #-20]                 // 4-byte Folded Spill
+	b	.LBB88_3
+.LBB88_3:
+	ldur	w8, [x29, #-20]                 // 4-byte Folded Reload
 	and	w0, w8, #0x1
-	.cfi_def_cfa wsp, 48
-	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
-	add	sp, sp, #48
+	.cfi_def_cfa wsp, 80
+	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
+	add	sp, sp, #80
 	.cfi_def_cfa_offset 0
 	.cfi_restore w30
 	.cfi_restore w29
@@ -8136,6 +10196,13 @@ _Qp_itoq:                               // @_Qp_itoq
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc__Qp_itoq
+	movk	x16, #:abs_g1_nc:.L__profc__Qp_itoq
+	movk	x16, #:abs_g2_nc:.L__profc__Qp_itoq
+	movk	x16, #:abs_g3:.L__profc__Qp_itoq
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #4]
 	scvtf	d0, w8
 	bl	__extenddftf2
@@ -8204,55 +10271,112 @@ ldexpf:                                 // @ldexpf
 	.cfi_offset w29, -16
 	stur	s0, [x29, #-4]
 	str	w0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf
+	movk	x16, #:abs_g3:.L__profc_ldexpf
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s0, [x29, #-4]
 	fcmp	s0, s0
-	b.vs	.LBB90_9
+	b.vs	.LBB90_10
 	b	.LBB90_1
 .LBB90_1:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf+16
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf+16
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf+16
+	movk	x16, #:abs_g3:.L__profc_ldexpf+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s1, [x29, #-4]
 	fadd	s0, s1, s1
 	fcmp	s0, s1
-	b.eq	.LBB90_9
+	b.eq	.LBB90_10
 	b	.LBB90_2
 .LBB90_2:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf+24
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf+24
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf+24
+	movk	x16, #:abs_g3:.L__profc_ldexpf+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB90_3
+.LBB90_3:
+	movz	x17, #:abs_g0_nc:.L__profc_ldexpf+8
+	movk	x17, #:abs_g1_nc:.L__profc_ldexpf+8
+	movk	x17, #:abs_g2_nc:.L__profc_ldexpf+8
+	movk	x17, #:abs_g3:.L__profc_ldexpf+8
+	ldr	x8, [x17]
+	add	x8, x8, #1
+	str	x8, [x17]
 	ldr	w8, [sp, #8]
+	lsr	w16, w8, #31
+	mov	w16, w16
+	mov	w0, w16
+	ldr	x16, [x17, #24]
+	add	x16, x16, x0
+	str	x16, [x17, #24]
 	subs	w8, w8, #0
 	fmov	s1, #2.00000000
 	fmov	s0, #0.50000000
 	fcsel	s0, s0, s1, lt
 	str	s0, [sp, #4]
-	b	.LBB90_3
-.LBB90_3:                               // =>This Inner Loop Header: Depth=1
+	b	.LBB90_4
+.LBB90_4:                               // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf+40
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf+40
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf+40
+	movk	x16, #:abs_g3:.L__profc_ldexpf+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #8]
 	and	w8, w16, #0x1
 	subs	w16, w16, #0
 	cneg	w8, w8, lt
-	cbz	w8, .LBB90_5
-	b	.LBB90_4
-.LBB90_4:                               //   in Loop: Header=BB90_3 Depth=1
+	cbz	w8, .LBB90_6
+	b	.LBB90_5
+.LBB90_5:                               //   in Loop: Header=BB90_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf+48
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf+48
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf+48
+	movk	x16, #:abs_g3:.L__profc_ldexpf+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s1, [sp, #4]
 	ldur	s0, [x29, #-4]
 	fmul	s0, s0, s1
 	stur	s0, [x29, #-4]
-	b	.LBB90_5
-.LBB90_5:                               //   in Loop: Header=BB90_3 Depth=1
+	b	.LBB90_6
+.LBB90_6:                               //   in Loop: Header=BB90_4 Depth=1
 	ldr	w8, [sp, #8]
 	add	w8, w8, w8, lsr #31
 	asr	w8, w8, #1
 	str	w8, [sp, #8]
 	ldr	w8, [sp, #8]
-	cbnz	w8, .LBB90_7
-	b	.LBB90_6
-.LBB90_6:
-	b	.LBB90_8
-.LBB90_7:                               //   in Loop: Header=BB90_3 Depth=1
+	cbnz	w8, .LBB90_8
+	b	.LBB90_7
+.LBB90_7:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpf+56
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpf+56
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpf+56
+	movk	x16, #:abs_g3:.L__profc_ldexpf+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB90_9
+.LBB90_8:                               //   in Loop: Header=BB90_4 Depth=1
 	ldr	s0, [sp, #4]
 	fmul	s0, s0, s0
 	str	s0, [sp, #4]
-	b	.LBB90_3
-.LBB90_8:
-	b	.LBB90_9
+	b	.LBB90_4
 .LBB90_9:
+	b	.LBB90_10
+.LBB90_10:
 	ldur	s0, [x29, #-4]
 	.cfi_def_cfa wsp, 32
 	ldp	x29, x30, [sp, #16]             // 16-byte Folded Reload
@@ -8316,55 +10440,112 @@ ldexp:                                  // @ldexp
 	.cfi_offset w29, -16
 	stur	d0, [x29, #-8]
 	stur	w0, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp
+	movk	x16, #:abs_g3:.L__profc_ldexp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-8]
 	fcmp	d0, d0
-	b.vs	.LBB91_9
+	b.vs	.LBB91_10
 	b	.LBB91_1
 .LBB91_1:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp+16
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp+16
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp+16
+	movk	x16, #:abs_g3:.L__profc_ldexp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d1, [x29, #-8]
 	fadd	d0, d1, d1
 	fcmp	d0, d1
-	b.eq	.LBB91_9
+	b.eq	.LBB91_10
 	b	.LBB91_2
 .LBB91_2:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp+24
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp+24
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp+24
+	movk	x16, #:abs_g3:.L__profc_ldexp+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB91_3
+.LBB91_3:
+	movz	x17, #:abs_g0_nc:.L__profc_ldexp+8
+	movk	x17, #:abs_g1_nc:.L__profc_ldexp+8
+	movk	x17, #:abs_g2_nc:.L__profc_ldexp+8
+	movk	x17, #:abs_g3:.L__profc_ldexp+8
+	ldr	x8, [x17]
+	add	x8, x8, #1
+	str	x8, [x17]
 	ldur	w8, [x29, #-12]
+	lsr	w16, w8, #31
+	mov	w16, w16
+	mov	w0, w16
+	ldr	x16, [x17, #24]
+	add	x16, x16, x0
+	str	x16, [x17, #24]
 	subs	w8, w8, #0
 	fmov	d1, #2.00000000
 	fmov	d0, #0.50000000
 	fcsel	d0, d0, d1, lt
 	str	d0, [sp, #8]
-	b	.LBB91_3
-.LBB91_3:                               // =>This Inner Loop Header: Depth=1
+	b	.LBB91_4
+.LBB91_4:                               // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp+40
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp+40
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp+40
+	movk	x16, #:abs_g3:.L__profc_ldexp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-12]
 	and	w8, w16, #0x1
 	subs	w16, w16, #0
 	cneg	w8, w8, lt
-	cbz	w8, .LBB91_5
-	b	.LBB91_4
-.LBB91_4:                               //   in Loop: Header=BB91_3 Depth=1
+	cbz	w8, .LBB91_6
+	b	.LBB91_5
+.LBB91_5:                               //   in Loop: Header=BB91_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp+48
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp+48
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp+48
+	movk	x16, #:abs_g3:.L__profc_ldexp+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d1, [sp, #8]
 	ldur	d0, [x29, #-8]
 	fmul	d0, d0, d1
 	stur	d0, [x29, #-8]
-	b	.LBB91_5
-.LBB91_5:                               //   in Loop: Header=BB91_3 Depth=1
+	b	.LBB91_6
+.LBB91_6:                               //   in Loop: Header=BB91_4 Depth=1
 	ldur	w8, [x29, #-12]
 	add	w8, w8, w8, lsr #31
 	asr	w8, w8, #1
 	stur	w8, [x29, #-12]
 	ldur	w8, [x29, #-12]
-	cbnz	w8, .LBB91_7
-	b	.LBB91_6
-.LBB91_6:
-	b	.LBB91_8
-.LBB91_7:                               //   in Loop: Header=BB91_3 Depth=1
+	cbnz	w8, .LBB91_8
+	b	.LBB91_7
+.LBB91_7:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexp+56
+	movk	x16, #:abs_g1_nc:.L__profc_ldexp+56
+	movk	x16, #:abs_g2_nc:.L__profc_ldexp+56
+	movk	x16, #:abs_g3:.L__profc_ldexp+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB91_9
+.LBB91_8:                               //   in Loop: Header=BB91_4 Depth=1
 	ldr	d0, [sp, #8]
 	fmul	d0, d0, d0
 	str	d0, [sp, #8]
-	b	.LBB91_3
-.LBB91_8:
-	b	.LBB91_9
+	b	.LBB91_4
 .LBB91_9:
+	b	.LBB91_10
+.LBB91_10:
 	ldur	d0, [x29, #-8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -8436,13 +10617,27 @@ ldexpl:                                 // @ldexpl
 	.cfi_offset w29, -16
 	stur	q0, [x29, #-16]
 	stur	w0, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl
+	movk	x16, #:abs_g3:.L__profc_ldexpl
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q1, [x29, #-16]
 	str	q1, [sp, #-16]!
 	ldr	q0, [sp], #16
 	bl	__unordtf2
-	cbnz	w0, .LBB92_9
+	cbnz	w0, .LBB92_10
 	b	.LBB92_1
 .LBB92_1:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl+16
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl+16
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl+16
+	movk	x16, #:abs_g3:.L__profc_ldexpl+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	q1, [x29, #-16]
 	str	q1, [sp]                        // 16-byte Folded Spill
 	str	q1, [sp, #-16]!
@@ -8450,51 +10645,93 @@ ldexpl:                                 // @ldexpl
 	bl	__addtf3
 	ldr	q1, [sp]                        // 16-byte Folded Reload
 	bl	__eqtf2
-	cbz	w0, .LBB92_9
+	cbz	w0, .LBB92_10
 	b	.LBB92_2
 .LBB92_2:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl+24
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl+24
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl+24
+	movk	x16, #:abs_g3:.L__profc_ldexpl+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB92_3
+.LBB92_3:
+	movz	x17, #:abs_g0_nc:.L__profc_ldexpl+8
+	movk	x17, #:abs_g1_nc:.L__profc_ldexpl+8
+	movk	x17, #:abs_g2_nc:.L__profc_ldexpl+8
+	movk	x17, #:abs_g3:.L__profc_ldexpl+8
+	ldr	x8, [x17]
+	add	x8, x8, #1
+	str	x8, [x17]
 	ldur	w8, [x29, #-20]
 	lsr	w16, w8, #31
+	mov	w8, w16
+	mov	w0, w8
+	ldr	x8, [x17, #24]
+	add	x8, x8, x0
+	str	x8, [x17, #24]
 	movz	x8, #:abs_g0_nc:.LCPI92_0
 	movk	x8, #:abs_g1_nc:.LCPI92_0
 	movk	x8, #:abs_g2_nc:.LCPI92_0
 	movk	x8, #:abs_g3:.LCPI92_0
 	ldr	q0, [x8, w16, uxtw #4]
 	str	q0, [sp, #16]
-	b	.LBB92_3
-.LBB92_3:                               // =>This Inner Loop Header: Depth=1
+	b	.LBB92_4
+.LBB92_4:                               // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl+40
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl+40
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl+40
+	movk	x16, #:abs_g3:.L__profc_ldexpl+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-20]
 	and	w8, w16, #0x1
 	subs	w16, w16, #0
 	cneg	w8, w8, lt
-	cbz	w8, .LBB92_5
-	b	.LBB92_4
-.LBB92_4:                               //   in Loop: Header=BB92_3 Depth=1
+	cbz	w8, .LBB92_6
+	b	.LBB92_5
+.LBB92_5:                               //   in Loop: Header=BB92_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl+48
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl+48
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl+48
+	movk	x16, #:abs_g3:.L__profc_ldexpl+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	q1, [sp, #16]
 	ldur	q0, [x29, #-16]
 	bl	__multf3
 	stur	q0, [x29, #-16]
-	b	.LBB92_5
-.LBB92_5:                               //   in Loop: Header=BB92_3 Depth=1
+	b	.LBB92_6
+.LBB92_6:                               //   in Loop: Header=BB92_4 Depth=1
 	ldur	w8, [x29, #-20]
 	add	w8, w8, w8, lsr #31
 	asr	w8, w8, #1
 	stur	w8, [x29, #-20]
 	ldur	w8, [x29, #-20]
-	cbnz	w8, .LBB92_7
-	b	.LBB92_6
-.LBB92_6:
-	b	.LBB92_8
-.LBB92_7:                               //   in Loop: Header=BB92_3 Depth=1
+	cbnz	w8, .LBB92_8
+	b	.LBB92_7
+.LBB92_7:
+	movz	x16, #:abs_g0_nc:.L__profc_ldexpl+56
+	movk	x16, #:abs_g1_nc:.L__profc_ldexpl+56
+	movk	x16, #:abs_g2_nc:.L__profc_ldexpl+56
+	movk	x16, #:abs_g3:.L__profc_ldexpl+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB92_9
+.LBB92_8:                               //   in Loop: Header=BB92_4 Depth=1
 	ldr	q1, [sp, #16]
 	str	q1, [sp, #-16]!
 	ldr	q0, [sp], #16
 	bl	__multf3
 	str	q0, [sp, #16]
-	b	.LBB92_3
-.LBB92_8:
-	b	.LBB92_9
+	b	.LBB92_4
 .LBB92_9:
+	b	.LBB92_10
+.LBB92_10:
 	ldur	q0, [x29, #-16]
 	.cfi_def_cfa wsp, 80
 	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
@@ -8559,6 +10796,13 @@ memxor:                                 // @memxor
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memxor
+	movk	x16, #:abs_g1_nc:.L__profc_memxor
+	movk	x16, #:abs_g2_nc:.L__profc_memxor
+	movk	x16, #:abs_g3:.L__profc_memxor
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
 	ldur	x8, [x29, #-8]
@@ -8569,6 +10813,13 @@ memxor:                                 // @memxor
 	cbz	x8, .LBB93_4
 	b	.LBB93_2
 .LBB93_2:                               //   in Loop: Header=BB93_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memxor+8
+	movk	x16, #:abs_g1_nc:.L__profc_memxor+8
+	movk	x16, #:abs_g2_nc:.L__profc_memxor+8
+	movk	x16, #:abs_g3:.L__profc_memxor+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	add	x16, x8, #1
 	str	x16, [sp, #16]
@@ -8650,6 +10901,13 @@ strncat:                                // @strncat
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_strncat
+	movk	x16, #:abs_g1_nc:.L__profc_strncat
+	movk	x16, #:abs_g2_nc:.L__profc_strncat
+	movk	x16, #:abs_g3:.L__profc_strncat
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x0, [x29, #-8]
 	str	x0, [sp, #8]                    // 8-byte Folded Spill
 	bl	strlen
@@ -8661,24 +10919,51 @@ strncat:                                // @strncat
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #4]                   // 4-byte Folded Spill
-	cbz	x8, .LBB94_3
+	cbz	x8, .LBB94_4
 	b	.LBB94_2
 .LBB94_2:                               //   in Loop: Header=BB94_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncat+16
+	movk	x16, #:abs_g1_nc:.L__profc_strncat+16
+	movk	x16, #:abs_g2_nc:.L__profc_strncat+16
+	movk	x16, #:abs_g3:.L__profc_strncat+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #16]
 	strb	w8, [x16]
-	subs	w8, w8, #0
-	cset	w8, ne
-	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	subs	w16, w8, #0
+	cset	w16, ne
+	str	w16, [sp]                       // 4-byte Folded Spill
+	str	w16, [sp, #4]                   // 4-byte Folded Spill
+	cbz	w8, .LBB94_4
 	b	.LBB94_3
 .LBB94_3:                               //   in Loop: Header=BB94_1 Depth=1
-	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB94_6
+	ldr	w8, [sp]                        // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_strncat+24
+	movk	x17, #:abs_g1_nc:.L__profc_strncat+24
+	movk	x17, #:abs_g2_nc:.L__profc_strncat+24
+	movk	x17, #:abs_g3:.L__profc_strncat+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	b	.LBB94_4
 .LBB94_4:                               //   in Loop: Header=BB94_1 Depth=1
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	tbz	w8, #0, .LBB94_7
 	b	.LBB94_5
 .LBB94_5:                               //   in Loop: Header=BB94_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strncat+8
+	movk	x16, #:abs_g1_nc:.L__profc_strncat+8
+	movk	x16, #:abs_g2_nc:.L__profc_strncat+8
+	movk	x16, #:abs_g3:.L__profc_strncat+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB94_6
+.LBB94_6:                               //   in Loop: Header=BB94_1 Depth=1
 	ldur	x8, [x29, #-16]
 	add	x8, x8, #1
 	stur	x8, [x29, #-16]
@@ -8689,16 +10974,23 @@ strncat:                                // @strncat
 	subs	x8, x8, #1
 	str	x8, [sp, #24]
 	b	.LBB94_1
-.LBB94_6:
-	ldr	x8, [sp, #24]
-	cbnz	x8, .LBB94_8
-	b	.LBB94_7
 .LBB94_7:
+	ldr	x8, [sp, #24]
+	cbnz	x8, .LBB94_9
+	b	.LBB94_8
+.LBB94_8:
+	movz	x16, #:abs_g0_nc:.L__profc_strncat+32
+	movk	x16, #:abs_g1_nc:.L__profc_strncat+32
+	movk	x16, #:abs_g2_nc:.L__profc_strncat+32
+	movk	x16, #:abs_g3:.L__profc_strncat+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #16]
 	mov	w8, wzr
 	strb	w8, [x16]
-	b	.LBB94_8
-.LBB94_8:
+	b	.LBB94_9
+.LBB94_9:
 	ldur	x0, [x29, #-8]
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
@@ -8762,6 +11054,13 @@ strnlen:                                // @strnlen
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_strnlen
+	movk	x16, #:abs_g1_nc:.L__profc_strnlen
+	movk	x16, #:abs_g2_nc:.L__profc_strnlen
+	movk	x16, #:abs_g3:.L__profc_strnlen
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #8]
 	b	.LBB95_1
@@ -8771,28 +11070,55 @@ strnlen:                                // @strnlen
 	mov	w8, wzr
 	subs	x16, x16, x17
 	str	w8, [sp, #4]                    // 4-byte Folded Spill
-	b.hs	.LBB95_3
+	b.hs	.LBB95_4
 	b	.LBB95_2
 .LBB95_2:                               //   in Loop: Header=BB95_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strnlen+16
+	movk	x16, #:abs_g1_nc:.L__profc_strnlen+16
+	movk	x16, #:abs_g2_nc:.L__profc_strnlen+16
+	movk	x16, #:abs_g3:.L__profc_strnlen+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	ldr	x16, [sp, #8]
 	ldrb	w8, [x8, x16]
-	subs	w8, w8, #0
-	cset	w8, ne
-	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	subs	w16, w8, #0
+	cset	w16, ne
+	str	w16, [sp]                       // 4-byte Folded Spill
+	str	w16, [sp, #4]                   // 4-byte Folded Spill
+	cbz	w8, .LBB95_4
 	b	.LBB95_3
 .LBB95_3:                               //   in Loop: Header=BB95_1 Depth=1
-	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB95_6
+	ldr	w8, [sp]                        // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_strnlen+24
+	movk	x17, #:abs_g1_nc:.L__profc_strnlen+24
+	movk	x17, #:abs_g2_nc:.L__profc_strnlen+24
+	movk	x17, #:abs_g3:.L__profc_strnlen+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
 	b	.LBB95_4
 .LBB95_4:                               //   in Loop: Header=BB95_1 Depth=1
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	tbz	w8, #0, .LBB95_7
 	b	.LBB95_5
 .LBB95_5:                               //   in Loop: Header=BB95_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strnlen+8
+	movk	x16, #:abs_g1_nc:.L__profc_strnlen+8
+	movk	x16, #:abs_g2_nc:.L__profc_strnlen+8
+	movk	x16, #:abs_g3:.L__profc_strnlen+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB95_6
+.LBB95_6:                               //   in Loop: Header=BB95_1 Depth=1
 	ldr	x8, [sp, #8]
 	add	x8, x8, #1
 	str	x8, [sp, #8]
 	b	.LBB95_1
-.LBB95_6:
+.LBB95_7:
 	ldr	x0, [sp, #8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -8856,6 +11182,13 @@ strpbrk:                                // @strpbrk
 	.cfi_offset w29, -16
 	str	x0, [sp, #16]
 	str	x1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_strpbrk
+	movk	x16, #:abs_g1_nc:.L__profc_strpbrk
+	movk	x16, #:abs_g2_nc:.L__profc_strpbrk
+	movk	x16, #:abs_g3:.L__profc_strpbrk
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB96_1
 .LBB96_1:                               // =>This Loop Header: Depth=1
                                         //     Child Loop BB96_3 Depth 2
@@ -8864,6 +11197,13 @@ strpbrk:                                // @strpbrk
 	cbz	w8, .LBB96_8
 	b	.LBB96_2
 .LBB96_2:                               //   in Loop: Header=BB96_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strpbrk+8
+	movk	x16, #:abs_g1_nc:.L__profc_strpbrk+8
+	movk	x16, #:abs_g2_nc:.L__profc_strpbrk+8
+	movk	x16, #:abs_g3:.L__profc_strpbrk+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	str	x8, [sp]
 	b	.LBB96_3
@@ -8874,6 +11214,13 @@ strpbrk:                                // @strpbrk
 	cbz	w8, .LBB96_7
 	b	.LBB96_4
 .LBB96_4:                               //   in Loop: Header=BB96_3 Depth=2
+	movz	x16, #:abs_g0_nc:.L__profc_strpbrk+16
+	movk	x16, #:abs_g1_nc:.L__profc_strpbrk+16
+	movk	x16, #:abs_g2_nc:.L__profc_strpbrk+16
+	movk	x16, #:abs_g3:.L__profc_strpbrk+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	add	x16, x8, #1
 	str	x16, [sp]
@@ -8884,6 +11231,13 @@ strpbrk:                                // @strpbrk
 	b.ne	.LBB96_6
 	b	.LBB96_5
 .LBB96_5:
+	movz	x16, #:abs_g0_nc:.L__profc_strpbrk+24
+	movk	x16, #:abs_g1_nc:.L__profc_strpbrk+24
+	movk	x16, #:abs_g2_nc:.L__profc_strpbrk+24
+	movk	x16, #:abs_g3:.L__profc_strpbrk+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	stur	x8, [x29, #-8]
 	b	.LBB96_9
@@ -8962,30 +11316,53 @@ strrchr:                                // @strrchr
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc_strrchr
+	movk	x16, #:abs_g1_nc:.L__profc_strrchr
+	movk	x16, #:abs_g2_nc:.L__profc_strrchr
+	movk	x16, #:abs_g3:.L__profc_strrchr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #8]
-	b	.LBB97_1
-.LBB97_1:                               // =>This Inner Loop Header: Depth=1
+	b	.LBB97_2
+.LBB97_1:                               //   in Loop: Header=BB97_2 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strrchr+8
+	movk	x16, #:abs_g1_nc:.L__profc_strrchr+8
+	movk	x16, #:abs_g2_nc:.L__profc_strrchr+8
+	movk	x16, #:abs_g3:.L__profc_strrchr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB97_2
+.LBB97_2:                               // =>This Inner Loop Header: Depth=1
 	ldur	x8, [x29, #-8]
 	ldrb	w8, [x8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
-	b.ne	.LBB97_3
-	b	.LBB97_2
-.LBB97_2:                               //   in Loop: Header=BB97_1 Depth=1
+	b.ne	.LBB97_4
+	b	.LBB97_3
+.LBB97_3:                               //   in Loop: Header=BB97_2 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strrchr+16
+	movk	x16, #:abs_g1_nc:.L__profc_strrchr+16
+	movk	x16, #:abs_g2_nc:.L__profc_strrchr+16
+	movk	x16, #:abs_g3:.L__profc_strrchr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #8]
-	b	.LBB97_3
-.LBB97_3:                               //   in Loop: Header=BB97_1 Depth=1
 	b	.LBB97_4
-.LBB97_4:                               //   in Loop: Header=BB97_1 Depth=1
+.LBB97_4:                               //   in Loop: Header=BB97_2 Depth=1
+	b	.LBB97_5
+.LBB97_5:                               //   in Loop: Header=BB97_2 Depth=1
 	ldur	x8, [x29, #-8]
 	add	x16, x8, #1
 	stur	x16, [x29, #-8]
 	ldrb	w8, [x8]
 	cbnz	w8, .LBB97_1
-	b	.LBB97_5
-.LBB97_5:
+	b	.LBB97_6
+.LBB97_6:
 	ldr	x0, [sp, #8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -9049,6 +11426,13 @@ strstr:                                 // @strstr
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	str	x1, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_strstr
+	movk	x16, #:abs_g1_nc:.L__profc_strstr
+	movk	x16, #:abs_g2_nc:.L__profc_strstr
+	movk	x16, #:abs_g3:.L__profc_strstr
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
 	ldr	x0, [sp, #24]
@@ -9058,6 +11442,13 @@ strstr:                                 // @strstr
 	cbnz	x8, .LBB98_2
 	b	.LBB98_1
 .LBB98_1:
+	movz	x16, #:abs_g0_nc:.L__profc_strstr+8
+	movk	x16, #:abs_g1_nc:.L__profc_strstr+8
+	movk	x16, #:abs_g2_nc:.L__profc_strstr+8
+	movk	x16, #:abs_g3:.L__profc_strstr+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
 	b	.LBB98_9
@@ -9072,6 +11463,13 @@ strstr:                                 // @strstr
 	cbz	x0, .LBB98_8
 	b	.LBB98_4
 .LBB98_4:                               //   in Loop: Header=BB98_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_strstr+16
+	movk	x16, #:abs_g1_nc:.L__profc_strstr+16
+	movk	x16, #:abs_g2_nc:.L__profc_strstr+16
+	movk	x16, #:abs_g3:.L__profc_strstr+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #16]
 	ldr	x1, [sp, #24]
 	ldr	x2, [sp, #8]
@@ -9079,6 +11477,13 @@ strstr:                                 // @strstr
 	cbnz	w0, .LBB98_6
 	b	.LBB98_5
 .LBB98_5:
+	movz	x16, #:abs_g0_nc:.L__profc_strstr+24
+	movk	x16, #:abs_g1_nc:.L__profc_strstr+24
+	movk	x16, #:abs_g2_nc:.L__profc_strstr+24
+	movk	x16, #:abs_g3:.L__profc_strstr+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	stur	x8, [x29, #-8]
 	b	.LBB98_9
@@ -9157,35 +11562,88 @@ copysign:                               // @copysign
 	.cfi_offset w29, -16
 	str	d0, [sp, #16]
 	str	d1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_copysign
+	movk	x16, #:abs_g1_nc:.L__profc_copysign
+	movk	x16, #:abs_g2_nc:.L__profc_copysign
+	movk	x16, #:abs_g3:.L__profc_copysign
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	fcmp	d0, #0.0
-	b.pl	.LBB99_2
+	b.pl	.LBB99_3
 	b	.LBB99_1
 .LBB99_1:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+24
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+24
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+24
+	movk	x16, #:abs_g3:.L__profc_copysign+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #8]
 	fcmp	d0, #0.0
-	b.gt	.LBB99_4
+	b.le	.LBB99_3
 	b	.LBB99_2
 .LBB99_2:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+32
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+32
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+32
+	movk	x16, #:abs_g3:.L__profc_copysign+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB99_6
+.LBB99_3:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+16
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+16
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+16
+	movk	x16, #:abs_g3:.L__profc_copysign+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	fcmp	d0, #0.0
-	b.le	.LBB99_5
-	b	.LBB99_3
-.LBB99_3:
-	ldr	d0, [sp, #8]
-	fcmp	d0, #0.0
-	b.pl	.LBB99_5
+	b.le	.LBB99_7
 	b	.LBB99_4
 .LBB99_4:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+40
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+40
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+40
+	movk	x16, #:abs_g3:.L__profc_copysign+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldr	d0, [sp, #8]
+	fcmp	d0, #0.0
+	b.pl	.LBB99_7
+	b	.LBB99_5
+.LBB99_5:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+48
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+48
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+48
+	movk	x16, #:abs_g3:.L__profc_copysign+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB99_6
+.LBB99_6:
+	movz	x16, #:abs_g0_nc:.L__profc_copysign+8
+	movk	x16, #:abs_g1_nc:.L__profc_copysign+8
+	movk	x16, #:abs_g2_nc:.L__profc_copysign+8
+	movk	x16, #:abs_g3:.L__profc_copysign+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	fneg	d0, d0
 	stur	d0, [x29, #-8]
-	b	.LBB99_6
-.LBB99_5:
+	b	.LBB99_8
+.LBB99_7:
 	ldr	d0, [sp, #16]
 	stur	d0, [x29, #-8]
-	b	.LBB99_6
-.LBB99_6:
+	b	.LBB99_8
+.LBB99_8:
 	ldur	d0, [x29, #-8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -9251,6 +11709,13 @@ memmem:                                 // @memmem
 	stur	x1, [x29, #-24]
 	str	x2, [sp, #32]
 	str	x3, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_memmem
+	movk	x16, #:abs_g1_nc:.L__profc_memmem
+	movk	x16, #:abs_g2_nc:.L__profc_memmem
+	movk	x16, #:abs_g3:.L__profc_memmem
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-24]
 	add	x8, x8, x16
@@ -9261,9 +11726,16 @@ memmem:                                 // @memmem
 	cbnz	x8, .LBB100_2
 	b	.LBB100_1
 .LBB100_1:
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+8
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+8
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+8
+	movk	x16, #:abs_g3:.L__profc_memmem+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
-	b	.LBB100_12
+	b	.LBB100_13
 .LBB100_2:
 	ldur	x8, [x29, #-24]
 	ldr	x16, [sp, #24]
@@ -9271,9 +11743,16 @@ memmem:                                 // @memmem
 	b.hs	.LBB100_4
 	b	.LBB100_3
 .LBB100_3:
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+16
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+16
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+16
+	movk	x16, #:abs_g3:.L__profc_memmem+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	stur	x8, [x29, #-8]
-	b	.LBB100_12
+	b	.LBB100_13
 .LBB100_4:
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
@@ -9282,17 +11761,31 @@ memmem:                                 // @memmem
 	ldr	x8, [sp, #16]
 	ldr	x16, [sp, #8]
 	subs	x8, x8, x16
-	b.hi	.LBB100_11
+	b.hi	.LBB100_12
 	b	.LBB100_6
 .LBB100_6:                              //   in Loop: Header=BB100_5 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+24
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+24
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+24
+	movk	x16, #:abs_g3:.L__profc_memmem+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldrb	w8, [x8]
 	ldr	x16, [sp, #32]
 	ldrb	w16, [x16]
 	subs	w8, w8, w16
-	b.ne	.LBB100_9
+	b.ne	.LBB100_10
 	b	.LBB100_7
 .LBB100_7:                              //   in Loop: Header=BB100_5 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+40
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+40
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+40
+	movk	x16, #:abs_g3:.L__profc_memmem+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	add	x0, x8, #1
 	ldr	x8, [sp, #32]
@@ -9300,24 +11793,40 @@ memmem:                                 // @memmem
 	ldr	x8, [sp, #24]
 	subs	x2, x8, #1
 	bl	memcmp
-	cbnz	w0, .LBB100_9
+	cbnz	w0, .LBB100_10
 	b	.LBB100_8
 .LBB100_8:
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+48
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+48
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+48
+	movk	x16, #:abs_g3:.L__profc_memmem+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB100_9
+.LBB100_9:
+	movz	x16, #:abs_g0_nc:.L__profc_memmem+32
+	movk	x16, #:abs_g1_nc:.L__profc_memmem+32
+	movk	x16, #:abs_g2_nc:.L__profc_memmem+32
+	movk	x16, #:abs_g3:.L__profc_memmem+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	stur	x8, [x29, #-8]
-	b	.LBB100_12
-.LBB100_9:                              //   in Loop: Header=BB100_5 Depth=1
-	b	.LBB100_10
+	b	.LBB100_13
 .LBB100_10:                             //   in Loop: Header=BB100_5 Depth=1
+	b	.LBB100_11
+.LBB100_11:                             //   in Loop: Header=BB100_5 Depth=1
 	ldr	x8, [sp, #16]
 	add	x8, x8, #1
 	str	x8, [sp, #16]
 	b	.LBB100_5
-.LBB100_11:
+.LBB100_12:
 	mov	x8, xzr
 	stur	x8, [x29, #-8]
-	b	.LBB100_12
-.LBB100_12:
+	b	.LBB100_13
+.LBB100_13:
 	ldur	x0, [x29, #-8]
 	.cfi_def_cfa wsp, 80
 	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
@@ -9382,6 +11891,13 @@ mempcpy:                                // @mempcpy
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
 	str	x2, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc_mempcpy
+	movk	x16, #:abs_g1_nc:.L__profc_mempcpy
+	movk	x16, #:abs_g2_nc:.L__profc_mempcpy
+	movk	x16, #:abs_g3:.L__profc_mempcpy
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x0, [x29, #-8]
 	str	x0, [sp]                        // 8-byte Folded Spill
 	ldr	x1, [sp, #16]
@@ -9452,6 +11968,13 @@ frexp:                                  // @frexp
 	.cfi_offset w29, -16
 	stur	d0, [x29, #-8]
 	str	x0, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc_frexp
+	movk	x16, #:abs_g1_nc:.L__profc_frexp
+	movk	x16, #:abs_g2_nc:.L__profc_frexp
+	movk	x16, #:abs_g3:.L__profc_frexp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #8]
 	str	w8, [sp, #12]
@@ -9460,6 +11983,13 @@ frexp:                                  // @frexp
 	b.pl	.LBB102_2
 	b	.LBB102_1
 .LBB102_1:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+8
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+8
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+8
+	movk	x16, #:abs_g3:.L__profc_frexp+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-8]
 	fneg	d0, d0
 	stur	d0, [x29, #-8]
@@ -9473,6 +12003,13 @@ frexp:                                  // @frexp
 	b.lt	.LBB102_7
 	b	.LBB102_3
 .LBB102_3:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+16
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+16
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+16
+	movk	x16, #:abs_g3:.L__profc_frexp+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB102_4
 .LBB102_4:                              // =>This Inner Loop Header: Depth=1
 	ldur	d0, [x29, #-8]
@@ -9481,6 +12018,13 @@ frexp:                                  // @frexp
 	b.lt	.LBB102_6
 	b	.LBB102_5
 .LBB102_5:                              //   in Loop: Header=BB102_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+24
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+24
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+24
+	movk	x16, #:abs_g3:.L__profc_frexp+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	add	w8, w8, #1
 	str	w8, [sp, #8]
@@ -9490,51 +12034,88 @@ frexp:                                  // @frexp
 	stur	d0, [x29, #-8]
 	b	.LBB102_4
 .LBB102_6:
-	b	.LBB102_14
+	b	.LBB102_15
 .LBB102_7:
 	ldur	d0, [x29, #-8]
 	fmov	d1, #0.50000000
 	fcmp	d0, d1
-	b.pl	.LBB102_13
+	b.pl	.LBB102_14
 	b	.LBB102_8
 .LBB102_8:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+40
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+40
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+40
+	movk	x16, #:abs_g3:.L__profc_frexp+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-8]
 	fcmp	d0, #0.0
-	b.eq	.LBB102_13
+	b.eq	.LBB102_14
 	b	.LBB102_9
 .LBB102_9:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+48
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+48
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+48
+	movk	x16, #:abs_g3:.L__profc_frexp+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB102_10
-.LBB102_10:                             // =>This Inner Loop Header: Depth=1
+.LBB102_10:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+32
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+32
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+32
+	movk	x16, #:abs_g3:.L__profc_frexp+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB102_11
+.LBB102_11:                             // =>This Inner Loop Header: Depth=1
 	ldur	d0, [x29, #-8]
 	fmov	d1, #0.50000000
 	fcmp	d0, d1
-	b.pl	.LBB102_12
-	b	.LBB102_11
-.LBB102_11:                             //   in Loop: Header=BB102_10 Depth=1
+	b.pl	.LBB102_13
+	b	.LBB102_12
+.LBB102_12:                             //   in Loop: Header=BB102_11 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+56
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+56
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+56
+	movk	x16, #:abs_g3:.L__profc_frexp+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #8]
 	subs	w8, w8, #1
 	str	w8, [sp, #8]
 	ldur	d0, [x29, #-8]
 	fadd	d0, d0, d0
 	stur	d0, [x29, #-8]
-	b	.LBB102_10
-.LBB102_12:
-	b	.LBB102_13
+	b	.LBB102_11
 .LBB102_13:
 	b	.LBB102_14
 .LBB102_14:
+	b	.LBB102_15
+.LBB102_15:
 	ldr	w8, [sp, #8]
 	ldr	x16, [sp, #16]
 	str	w8, [x16]
 	ldr	w8, [sp, #12]
-	cbz	w8, .LBB102_16
-	b	.LBB102_15
-.LBB102_15:
+	cbz	w8, .LBB102_17
+	b	.LBB102_16
+.LBB102_16:
+	movz	x16, #:abs_g0_nc:.L__profc_frexp+64
+	movk	x16, #:abs_g1_nc:.L__profc_frexp+64
+	movk	x16, #:abs_g2_nc:.L__profc_frexp+64
+	movk	x16, #:abs_g3:.L__profc_frexp+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d0, [x29, #-8]
 	fneg	d0, d0
 	stur	d0, [x29, #-8]
-	b	.LBB102_16
-.LBB102_16:
+	b	.LBB102_17
+.LBB102_17:
 	ldur	d0, [x29, #-8]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -9598,6 +12179,13 @@ __muldi3:                               // @__muldi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___muldi3
+	movk	x16, #:abs_g1_nc:.L__profc___muldi3
+	movk	x16, #:abs_g2_nc:.L__profc___muldi3
+	movk	x16, #:abs_g3:.L__profc___muldi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #8]
 	ldur	x8, [x29, #-8]
@@ -9608,10 +12196,24 @@ __muldi3:                               // @__muldi3
 	cbz	x8, .LBB103_5
 	b	.LBB103_2
 .LBB103_2:                              //   in Loop: Header=BB103_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___muldi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___muldi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___muldi3+8
+	movk	x16, #:abs_g3:.L__profc___muldi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldrb	w8, [sp]
 	tbz	w8, #0, .LBB103_4
 	b	.LBB103_3
 .LBB103_3:                              //   in Loop: Header=BB103_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___muldi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___muldi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___muldi3+16
+	movk	x16, #:abs_g3:.L__profc___muldi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #16]
 	ldr	x8, [sp, #8]
 	add	x8, x8, x16
@@ -9690,6 +12292,13 @@ udivmodsi4:                             // @udivmodsi4
 	stur	w0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	x2, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	str	w8, [sp, #20]
 	mov	w8, wzr
@@ -9701,25 +12310,70 @@ udivmodsi4:                             // @udivmodsi4
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b.hs	.LBB104_4
+	b.hs	.LBB104_6
 	b	.LBB104_2
 .LBB104_2:                              //   in Loop: Header=BB104_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+32
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+32
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+32
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #20]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	w8, .LBB104_4
+	cbz	w8, .LBB104_6
 	b	.LBB104_3
 .LBB104_3:                              //   in Loop: Header=BB104_1 Depth=1
-	ldur	w8, [x29, #-12]
-	mvn	w8, w8
-	lsr	w8, w8, #31
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+40
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+40
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+40
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB104_4
 .LBB104_4:                              //   in Loop: Header=BB104_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB104_6
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+16
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+16
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+16
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	w8, [x29, #-12]
+                                        // kill: def $x8 killed $w8
+	ands	x16, x8, #0x80000000
+	cset	w16, eq
+	str	w16, [sp, #8]                   // 4-byte Folded Spill
+                                        // kill: def $w8 killed $w8 killed $x8
+	str	w16, [sp, #12]                  // 4-byte Folded Spill
+	tbnz	w8, #31, .LBB104_6
 	b	.LBB104_5
 .LBB104_5:                              //   in Loop: Header=BB104_1 Depth=1
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc_udivmodsi4+24
+	movk	x17, #:abs_g1_nc:.L__profc_udivmodsi4+24
+	movk	x17, #:abs_g2_nc:.L__profc_udivmodsi4+24
+	movk	x17, #:abs_g3:.L__profc_udivmodsi4+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB104_6
+.LBB104_6:                              //   in Loop: Header=BB104_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB104_8
+	b	.LBB104_7
+.LBB104_7:                              //   in Loop: Header=BB104_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+8
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+8
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+8
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	lsl	w8, w8, #1
 	stur	w8, [x29, #-12]
@@ -9727,19 +12381,33 @@ udivmodsi4:                             // @udivmodsi4
 	lsl	w8, w8, #1
 	str	w8, [sp, #20]
 	b	.LBB104_1
-.LBB104_6:
-	b	.LBB104_7
-.LBB104_7:                              // =>This Inner Loop Header: Depth=1
+.LBB104_8:
+	b	.LBB104_9
+.LBB104_9:                              // =>This Inner Loop Header: Depth=1
 	ldr	w8, [sp, #20]
-	cbz	w8, .LBB104_11
-	b	.LBB104_8
-.LBB104_8:                              //   in Loop: Header=BB104_7 Depth=1
+	cbz	w8, .LBB104_13
+	b	.LBB104_10
+.LBB104_10:                             //   in Loop: Header=BB104_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+48
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+48
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+48
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
-	b.lo	.LBB104_10
-	b	.LBB104_9
-.LBB104_9:                              //   in Loop: Header=BB104_7 Depth=1
+	b.lo	.LBB104_12
+	b	.LBB104_11
+.LBB104_11:                             //   in Loop: Header=BB104_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+56
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+56
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+56
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-12]
 	ldur	w8, [x29, #-8]
 	subs	w8, w8, w16
@@ -9748,28 +12416,35 @@ udivmodsi4:                             // @udivmodsi4
 	ldr	w8, [sp, #16]
 	orr	w8, w8, w16
 	str	w8, [sp, #16]
-	b	.LBB104_10
-.LBB104_10:                             //   in Loop: Header=BB104_7 Depth=1
+	b	.LBB104_12
+.LBB104_12:                             //   in Loop: Header=BB104_9 Depth=1
 	ldr	w8, [sp, #20]
 	lsr	w8, w8, #1
 	str	w8, [sp, #20]
 	ldur	w8, [x29, #-12]
 	lsr	w8, w8, #1
 	stur	w8, [x29, #-12]
-	b	.LBB104_7
-.LBB104_11:
-	ldr	x8, [sp, #24]
-	cbz	x8, .LBB104_13
-	b	.LBB104_12
-.LBB104_12:
-	ldur	w8, [x29, #-8]
-	stur	w8, [x29, #-4]
-	b	.LBB104_14
+	b	.LBB104_9
 .LBB104_13:
-	ldr	w8, [sp, #16]
-	stur	w8, [x29, #-4]
+	ldr	x8, [sp, #24]
+	cbz	x8, .LBB104_15
 	b	.LBB104_14
 .LBB104_14:
+	movz	x16, #:abs_g0_nc:.L__profc_udivmodsi4+64
+	movk	x16, #:abs_g1_nc:.L__profc_udivmodsi4+64
+	movk	x16, #:abs_g2_nc:.L__profc_udivmodsi4+64
+	movk	x16, #:abs_g3:.L__profc_udivmodsi4+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	w8, [x29, #-8]
+	stur	w8, [x29, #-4]
+	b	.LBB104_16
+.LBB104_15:
+	ldr	w8, [sp, #16]
+	stur	w8, [x29, #-4]
+	b	.LBB104_16
+.LBB104_16:
 	ldur	w0, [x29, #-4]
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
@@ -9832,10 +12507,24 @@ __clrsbqi2:                             // @__clrsbqi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturb	w0, [x29, #-5]
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbqi2
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbqi2
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbqi2
+	movk	x16, #:abs_g3:.L__profc___clrsbqi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-5]
 	tbz	w8, #31, .LBB105_2
 	b	.LBB105_1
 .LBB105_1:
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbqi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbqi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbqi2+8
+	movk	x16, #:abs_g3:.L__profc___clrsbqi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-5]
 	mvn	w8, w8
 	sturb	w8, [x29, #-5]
@@ -9845,6 +12534,13 @@ __clrsbqi2:                             // @__clrsbqi2
 	cbnz	w8, .LBB105_4
 	b	.LBB105_3
 .LBB105_3:
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbqi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbqi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbqi2+16
+	movk	x16, #:abs_g3:.L__profc___clrsbqi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #7                          // =0x7
 	stur	w8, [x29, #-4]
 	b	.LBB105_5
@@ -9920,10 +12616,24 @@ __clrsbdi2:                             // @__clrsbdi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbdi2
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbdi2
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbdi2
+	movk	x16, #:abs_g3:.L__profc___clrsbdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	tbz	x8, #63, .LBB106_2
 	b	.LBB106_1
 .LBB106_1:
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbdi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbdi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbdi2+8
+	movk	x16, #:abs_g3:.L__profc___clrsbdi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	mvn	x8, x8
 	str	x8, [sp, #16]
@@ -9933,6 +12643,13 @@ __clrsbdi2:                             // @__clrsbdi2
 	cbnz	x8, .LBB106_4
 	b	.LBB106_3
 .LBB106_3:
+	movz	x16, #:abs_g0_nc:.L__profc___clrsbdi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___clrsbdi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___clrsbdi2+16
+	movk	x16, #:abs_g3:.L__profc___clrsbdi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #63                         // =0x3f
 	stur	w8, [x29, #-4]
 	b	.LBB106_5
@@ -10009,6 +12726,13 @@ __mulsi3:                               // @__mulsi3
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3
+	movk	x16, #:abs_g3:.L__profc___mulsi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #4]
 	b	.LBB107_1
@@ -10017,10 +12741,24 @@ __mulsi3:                               // @__mulsi3
 	cbz	w8, .LBB107_5
 	b	.LBB107_2
 .LBB107_2:                              //   in Loop: Header=BB107_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3+8
+	movk	x16, #:abs_g3:.L__profc___mulsi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-4]
 	tbz	w8, #0, .LBB107_4
 	b	.LBB107_3
 .LBB107_3:                              //   in Loop: Header=BB107_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3+16
+	movk	x16, #:abs_g3:.L__profc___mulsi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #8]
 	ldr	w8, [sp, #4]
 	add	w8, w8, w16
@@ -10099,6 +12837,13 @@ __cmovd:                                // @__cmovd
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	stur	w2, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd
+	movk	x16, #:abs_g3:.L__profc___cmovd
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-20]
 	lsr	w8, w8, #3
 	str	w8, [sp, #20]
@@ -10112,49 +12857,86 @@ __cmovd:                                // @__cmovd
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	subs	x8, x8, x16
-	b.lo	.LBB108_2
+	b.lo	.LBB108_3
 	b	.LBB108_1
 .LBB108_1:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+16
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+16
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+16
+	movk	x16, #:abs_g3:.L__profc___cmovd+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	ldur	w17, [x29, #-20]
                                         // kill: def $x17 killed $w17
 	add	x16, x16, x17
 	subs	x8, x8, x16
-	b.ls	.LBB108_10
+	b.hi	.LBB108_3
 	b	.LBB108_2
 .LBB108_2:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+24
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+24
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+24
+	movk	x16, #:abs_g3:.L__profc___cmovd+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB108_11
+.LBB108_3:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+8
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+8
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+8
+	movk	x16, #:abs_g3:.L__profc___cmovd+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #24]
-	b	.LBB108_3
-.LBB108_3:                              // =>This Inner Loop Header: Depth=1
+	b	.LBB108_4
+.LBB108_4:                              // =>This Inner Loop Header: Depth=1
 	ldr	w8, [sp, #24]
 	ldr	w16, [sp, #20]
 	subs	w8, w8, w16
-	b.hs	.LBB108_6
-	b	.LBB108_4
-.LBB108_4:                              //   in Loop: Header=BB108_3 Depth=1
+	b.hs	.LBB108_7
+	b	.LBB108_5
+.LBB108_5:                              //   in Loop: Header=BB108_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+32
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+32
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+32
+	movk	x16, #:abs_g3:.L__profc___cmovd+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldr	w16, [sp, #24]
 	mov	w17, w16
 	ldr	x8, [x8, x17, lsl #3]
 	ldur	x16, [x29, #-8]
 	str	x8, [x16, x17, lsl #3]
-	b	.LBB108_5
-.LBB108_5:                              //   in Loop: Header=BB108_3 Depth=1
+	b	.LBB108_6
+.LBB108_6:                              //   in Loop: Header=BB108_4 Depth=1
 	ldr	w8, [sp, #24]
 	add	w8, w8, #1
 	str	w8, [sp, #24]
-	b	.LBB108_3
-.LBB108_6:
-	b	.LBB108_7
-.LBB108_7:                              // =>This Inner Loop Header: Depth=1
+	b	.LBB108_4
+.LBB108_7:
+	b	.LBB108_8
+.LBB108_8:                              // =>This Inner Loop Header: Depth=1
 	ldur	w8, [x29, #-20]
 	ldr	w16, [sp, #16]
 	subs	w8, w8, w16
-	b.ls	.LBB108_9
-	b	.LBB108_8
-.LBB108_8:                              //   in Loop: Header=BB108_7 Depth=1
+	b.ls	.LBB108_10
+	b	.LBB108_9
+.LBB108_9:                              //   in Loop: Header=BB108_8 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+40
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+40
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+40
+	movk	x16, #:abs_g3:.L__profc___cmovd+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldr	w16, [sp, #16]
 	mov	w17, w16
@@ -10164,28 +12946,35 @@ __cmovd:                                // @__cmovd
 	ldr	w8, [sp, #16]
 	add	w8, w8, #1
 	str	w8, [sp, #16]
-	b	.LBB108_7
-.LBB108_9:
-	b	.LBB108_14
+	b	.LBB108_8
 .LBB108_10:
-	b	.LBB108_11
-.LBB108_11:                             // =>This Inner Loop Header: Depth=1
+	b	.LBB108_15
+.LBB108_11:
+	b	.LBB108_12
+.LBB108_12:                             // =>This Inner Loop Header: Depth=1
 	ldur	w8, [x29, #-20]
 	subs	w16, w8, #1
 	stur	w16, [x29, #-20]
-	cbz	w8, .LBB108_13
-	b	.LBB108_12
-.LBB108_12:                             //   in Loop: Header=BB108_11 Depth=1
+	cbz	w8, .LBB108_14
+	b	.LBB108_13
+.LBB108_13:                             //   in Loop: Header=BB108_12 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovd+48
+	movk	x16, #:abs_g1_nc:.L__profc___cmovd+48
+	movk	x16, #:abs_g2_nc:.L__profc___cmovd+48
+	movk	x16, #:abs_g3:.L__profc___cmovd+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldur	w16, [x29, #-20]
 	mov	w17, w16
 	ldrb	w8, [x8, x17]
 	ldr	x16, [sp, #8]
 	strb	w8, [x16, x17]
-	b	.LBB108_11
-.LBB108_13:
-	b	.LBB108_14
+	b	.LBB108_12
 .LBB108_14:
+	b	.LBB108_15
+.LBB108_15:
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
 	add	sp, sp, #64
@@ -10250,6 +13039,13 @@ __cmovh:                                // @__cmovh
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	stur	w2, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh
+	movk	x16, #:abs_g3:.L__profc___cmovh
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-20]
 	lsr	w8, w8, #1
 	str	w8, [sp, #20]
@@ -10260,45 +13056,82 @@ __cmovh:                                // @__cmovh
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	subs	x8, x8, x16
-	b.lo	.LBB109_2
+	b.lo	.LBB109_3
 	b	.LBB109_1
 .LBB109_1:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+16
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+16
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+16
+	movk	x16, #:abs_g3:.L__profc___cmovh+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	ldur	w17, [x29, #-20]
                                         // kill: def $x17 killed $w17
 	add	x16, x16, x17
 	subs	x8, x8, x16
-	b.ls	.LBB109_9
+	b.hi	.LBB109_3
 	b	.LBB109_2
 .LBB109_2:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+24
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+24
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+24
+	movk	x16, #:abs_g3:.L__profc___cmovh+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB109_10
+.LBB109_3:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+8
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+8
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+8
+	movk	x16, #:abs_g3:.L__profc___cmovh+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #24]
-	b	.LBB109_3
-.LBB109_3:                              // =>This Inner Loop Header: Depth=1
+	b	.LBB109_4
+.LBB109_4:                              // =>This Inner Loop Header: Depth=1
 	ldr	w8, [sp, #24]
 	ldr	w16, [sp, #20]
 	subs	w8, w8, w16
-	b.hs	.LBB109_6
-	b	.LBB109_4
-.LBB109_4:                              //   in Loop: Header=BB109_3 Depth=1
+	b.hs	.LBB109_7
+	b	.LBB109_5
+.LBB109_5:                              //   in Loop: Header=BB109_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+32
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+32
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+32
+	movk	x16, #:abs_g3:.L__profc___cmovh+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldr	w16, [sp, #24]
 	mov	w17, w16
 	ldrh	w8, [x8, x17, lsl #1]
 	ldur	x16, [x29, #-8]
 	strh	w8, [x16, x17, lsl #1]
-	b	.LBB109_5
-.LBB109_5:                              //   in Loop: Header=BB109_3 Depth=1
+	b	.LBB109_6
+.LBB109_6:                              //   in Loop: Header=BB109_4 Depth=1
 	ldr	w8, [sp, #24]
 	add	w8, w8, #1
 	str	w8, [sp, #24]
-	b	.LBB109_3
-.LBB109_6:
-	ldurb	w8, [x29, #-20]
-	tbz	w8, #0, .LBB109_8
-	b	.LBB109_7
+	b	.LBB109_4
 .LBB109_7:
+	ldurb	w8, [x29, #-20]
+	tbz	w8, #0, .LBB109_9
+	b	.LBB109_8
+.LBB109_8:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+40
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+40
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+40
+	movk	x16, #:abs_g3:.L__profc___cmovh+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldur	w16, [x29, #-20]
 	subs	w16, w16, #1
@@ -10307,28 +13140,35 @@ __cmovh:                                // @__cmovh
 	ldrb	w8, [x8, x17]
 	ldr	x16, [sp, #8]
 	strb	w8, [x16, x17]
-	b	.LBB109_8
-.LBB109_8:
-	b	.LBB109_13
+	b	.LBB109_9
 .LBB109_9:
-	b	.LBB109_10
-.LBB109_10:                             // =>This Inner Loop Header: Depth=1
+	b	.LBB109_14
+.LBB109_10:
+	b	.LBB109_11
+.LBB109_11:                             // =>This Inner Loop Header: Depth=1
 	ldur	w8, [x29, #-20]
 	subs	w16, w8, #1
 	stur	w16, [x29, #-20]
-	cbz	w8, .LBB109_12
-	b	.LBB109_11
-.LBB109_11:                             //   in Loop: Header=BB109_10 Depth=1
+	cbz	w8, .LBB109_13
+	b	.LBB109_12
+.LBB109_12:                             //   in Loop: Header=BB109_11 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovh+48
+	movk	x16, #:abs_g1_nc:.L__profc___cmovh+48
+	movk	x16, #:abs_g2_nc:.L__profc___cmovh+48
+	movk	x16, #:abs_g3:.L__profc___cmovh+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldur	w16, [x29, #-20]
 	mov	w17, w16
 	ldrb	w8, [x8, x17]
 	ldr	x16, [sp, #8]
 	strb	w8, [x16, x17]
-	b	.LBB109_10
-.LBB109_12:
-	b	.LBB109_13
+	b	.LBB109_11
 .LBB109_13:
+	b	.LBB109_14
+.LBB109_14:
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
 	add	sp, sp, #64
@@ -10393,6 +13233,13 @@ __cmovw:                                // @__cmovw
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
 	stur	w2, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw
+	movk	x16, #:abs_g3:.L__profc___cmovw
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-20]
 	lsr	w8, w8, #2
 	str	w8, [sp, #20]
@@ -10406,49 +13253,86 @@ __cmovw:                                // @__cmovw
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	subs	x8, x8, x16
-	b.lo	.LBB110_2
+	b.lo	.LBB110_3
 	b	.LBB110_1
 .LBB110_1:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+16
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+16
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+16
+	movk	x16, #:abs_g3:.L__profc___cmovw+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	ldur	w17, [x29, #-20]
                                         // kill: def $x17 killed $w17
 	add	x16, x16, x17
 	subs	x8, x8, x16
-	b.ls	.LBB110_10
+	b.hi	.LBB110_3
 	b	.LBB110_2
 .LBB110_2:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+24
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+24
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+24
+	movk	x16, #:abs_g3:.L__profc___cmovw+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	b	.LBB110_11
+.LBB110_3:
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+8
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+8
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+8
+	movk	x16, #:abs_g3:.L__profc___cmovw+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #24]
-	b	.LBB110_3
-.LBB110_3:                              // =>This Inner Loop Header: Depth=1
+	b	.LBB110_4
+.LBB110_4:                              // =>This Inner Loop Header: Depth=1
 	ldr	w8, [sp, #24]
 	ldr	w16, [sp, #20]
 	subs	w8, w8, w16
-	b.hs	.LBB110_6
-	b	.LBB110_4
-.LBB110_4:                              //   in Loop: Header=BB110_3 Depth=1
+	b.hs	.LBB110_7
+	b	.LBB110_5
+.LBB110_5:                              //   in Loop: Header=BB110_4 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+32
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+32
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+32
+	movk	x16, #:abs_g3:.L__profc___cmovw+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldr	w16, [sp, #24]
 	mov	w17, w16
 	ldr	w8, [x8, x17, lsl #2]
 	ldur	x16, [x29, #-8]
 	str	w8, [x16, x17, lsl #2]
-	b	.LBB110_5
-.LBB110_5:                              //   in Loop: Header=BB110_3 Depth=1
+	b	.LBB110_6
+.LBB110_6:                              //   in Loop: Header=BB110_4 Depth=1
 	ldr	w8, [sp, #24]
 	add	w8, w8, #1
 	str	w8, [sp, #24]
-	b	.LBB110_3
-.LBB110_6:
-	b	.LBB110_7
-.LBB110_7:                              // =>This Inner Loop Header: Depth=1
+	b	.LBB110_4
+.LBB110_7:
+	b	.LBB110_8
+.LBB110_8:                              // =>This Inner Loop Header: Depth=1
 	ldur	w8, [x29, #-20]
 	ldr	w16, [sp, #16]
 	subs	w8, w8, w16
-	b.ls	.LBB110_9
-	b	.LBB110_8
-.LBB110_8:                              //   in Loop: Header=BB110_7 Depth=1
+	b.ls	.LBB110_10
+	b	.LBB110_9
+.LBB110_9:                              //   in Loop: Header=BB110_8 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+40
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+40
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+40
+	movk	x16, #:abs_g3:.L__profc___cmovw+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldr	w16, [sp, #16]
 	mov	w17, w16
@@ -10458,28 +13342,35 @@ __cmovw:                                // @__cmovw
 	ldr	w8, [sp, #16]
 	add	w8, w8, #1
 	str	w8, [sp, #16]
-	b	.LBB110_7
-.LBB110_9:
-	b	.LBB110_14
+	b	.LBB110_8
 .LBB110_10:
-	b	.LBB110_11
-.LBB110_11:                             // =>This Inner Loop Header: Depth=1
+	b	.LBB110_15
+.LBB110_11:
+	b	.LBB110_12
+.LBB110_12:                             // =>This Inner Loop Header: Depth=1
 	ldur	w8, [x29, #-20]
 	subs	w16, w8, #1
 	stur	w16, [x29, #-20]
-	cbz	w8, .LBB110_13
-	b	.LBB110_12
-.LBB110_12:                             //   in Loop: Header=BB110_11 Depth=1
+	cbz	w8, .LBB110_14
+	b	.LBB110_13
+.LBB110_13:                             //   in Loop: Header=BB110_12 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___cmovw+48
+	movk	x16, #:abs_g1_nc:.L__profc___cmovw+48
+	movk	x16, #:abs_g2_nc:.L__profc___cmovw+48
+	movk	x16, #:abs_g3:.L__profc___cmovw+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp]
 	ldur	w16, [x29, #-20]
 	mov	w17, w16
 	ldrb	w8, [x8, x17]
 	ldr	x16, [sp, #8]
 	strb	w8, [x16, x17]
-	b	.LBB110_11
-.LBB110_13:
-	b	.LBB110_14
+	b	.LBB110_12
 .LBB110_14:
+	b	.LBB110_15
+.LBB110_15:
 	.cfi_def_cfa wsp, 64
 	ldp	x29, x30, [sp, #48]             // 16-byte Folded Reload
 	add	sp, sp, #64
@@ -10543,6 +13434,13 @@ __modi:                                 // @__modi
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___modi
+	movk	x16, #:abs_g1_nc:.L__profc___modi
+	movk	x16, #:abs_g2_nc:.L__profc___modi
+	movk	x16, #:abs_g3:.L__profc___modi
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ldr	w17, [sp, #8]
 	sdiv	w16, w8, w17
@@ -10609,6 +13507,13 @@ __uitod:                                // @__uitod
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___uitod
+	movk	x16, #:abs_g1_nc:.L__profc___uitod
+	movk	x16, #:abs_g2_nc:.L__profc___uitod
+	movk	x16, #:abs_g3:.L__profc___uitod
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ucvtf	d0, w8
 	.cfi_def_cfa wsp, 32
@@ -10672,6 +13577,13 @@ __uitof:                                // @__uitof
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___uitof
+	movk	x16, #:abs_g1_nc:.L__profc___uitof
+	movk	x16, #:abs_g2_nc:.L__profc___uitof
+	movk	x16, #:abs_g3:.L__profc___uitof
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ucvtf	s0, w8
 	.cfi_def_cfa wsp, 32
@@ -10735,6 +13647,13 @@ __ulltod:                               // @__ulltod
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___ulltod
+	movk	x16, #:abs_g1_nc:.L__profc___ulltod
+	movk	x16, #:abs_g2_nc:.L__profc___ulltod
+	movk	x16, #:abs_g3:.L__profc___ulltod
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ucvtf	d0, x8
 	.cfi_def_cfa wsp, 32
@@ -10798,6 +13717,13 @@ __ulltof:                               // @__ulltof
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___ulltof
+	movk	x16, #:abs_g1_nc:.L__profc___ulltof
+	movk	x16, #:abs_g2_nc:.L__profc___ulltof
+	movk	x16, #:abs_g3:.L__profc___ulltof
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ucvtf	s0, x8
 	.cfi_def_cfa wsp, 32
@@ -10862,6 +13788,13 @@ __umodi:                                // @__umodi
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___umodi
+	movk	x16, #:abs_g1_nc:.L__profc___umodi
+	movk	x16, #:abs_g2_nc:.L__profc___umodi
+	movk	x16, #:abs_g3:.L__profc___umodi
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	ldr	w17, [sp, #8]
 	udiv	w16, w8, w17
@@ -10928,6 +13861,13 @@ __clzhi2:                               // @__clzhi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
+	movz	x16, #:abs_g0_nc:.L__profc___clzhi2
+	movk	x16, #:abs_g1_nc:.L__profc___clzhi2
+	movk	x16, #:abs_g2_nc:.L__profc___clzhi2
+	movk	x16, #:abs_g3:.L__profc___clzhi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #8]
 	b	.LBB117_1
@@ -10937,6 +13877,13 @@ __clzhi2:                               // @__clzhi2
 	b.gt	.LBB117_6
 	b	.LBB117_2
 .LBB117_2:                              //   in Loop: Header=BB117_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___clzhi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___clzhi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___clzhi2+8
+	movk	x16, #:abs_g3:.L__profc___clzhi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-2]
 	ldr	w17, [sp, #8]
 	mov	w16, #15                        // =0xf
@@ -10945,6 +13892,13 @@ __clzhi2:                               // @__clzhi2
 	tbz	w8, #0, .LBB117_4
 	b	.LBB117_3
 .LBB117_3:
+	movz	x16, #:abs_g0_nc:.L__profc___clzhi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___clzhi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___clzhi2+16
+	movk	x16, #:abs_g3:.L__profc___clzhi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB117_6
 .LBB117_4:                              //   in Loop: Header=BB117_1 Depth=1
 	b	.LBB117_5
@@ -11016,6 +13970,13 @@ __ctzhi2:                               // @__ctzhi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
+	movz	x16, #:abs_g0_nc:.L__profc___ctzhi2
+	movk	x16, #:abs_g1_nc:.L__profc___ctzhi2
+	movk	x16, #:abs_g2_nc:.L__profc___ctzhi2
+	movk	x16, #:abs_g3:.L__profc___ctzhi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #8]
 	b	.LBB118_1
@@ -11025,6 +13986,13 @@ __ctzhi2:                               // @__ctzhi2
 	b.gt	.LBB118_6
 	b	.LBB118_2
 .LBB118_2:                              //   in Loop: Header=BB118_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___ctzhi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___ctzhi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___ctzhi2+8
+	movk	x16, #:abs_g3:.L__profc___ctzhi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-2]
 	ldr	w16, [sp, #8]
 	mov	w0, w16
@@ -11033,6 +14001,13 @@ __ctzhi2:                               // @__ctzhi2
 	tbz	w8, #0, .LBB118_4
 	b	.LBB118_3
 .LBB118_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ctzhi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___ctzhi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___ctzhi2+16
+	movk	x16, #:abs_g3:.L__profc___ctzhi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB118_6
 .LBB118_4:                              //   in Loop: Header=BB118_1 Depth=1
 	b	.LBB118_5
@@ -11104,6 +14079,13 @@ __fixunssfsi:                           // @__fixunssfsi
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	s0, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc___fixunssfsi
+	movk	x16, #:abs_g1_nc:.L__profc___fixunssfsi
+	movk	x16, #:abs_g2_nc:.L__profc___fixunssfsi
+	movk	x16, #:abs_g3:.L__profc___fixunssfsi
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #4]
 	mov	w8, #1191182336                 // =0x47000000
 	fmov	s1, w8
@@ -11111,6 +14093,13 @@ __fixunssfsi:                           // @__fixunssfsi
 	b.lt	.LBB119_2
 	b	.LBB119_1
 .LBB119_1:
+	movz	x16, #:abs_g0_nc:.L__profc___fixunssfsi+8
+	movk	x16, #:abs_g1_nc:.L__profc___fixunssfsi+8
+	movk	x16, #:abs_g2_nc:.L__profc___fixunssfsi+8
+	movk	x16, #:abs_g3:.L__profc___fixunssfsi+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #4]
 	mov	w8, #-956301312                 // =0xc7000000
 	fmov	s1, w8
@@ -11187,6 +14176,13 @@ __parityhi2:                            // @__parityhi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
+	movz	x16, #:abs_g0_nc:.L__profc___parityhi2
+	movk	x16, #:abs_g1_nc:.L__profc___parityhi2
+	movk	x16, #:abs_g2_nc:.L__profc___parityhi2
+	movk	x16, #:abs_g3:.L__profc___parityhi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #4]
 	str	w8, [sp, #8]
@@ -11197,6 +14193,13 @@ __parityhi2:                            // @__parityhi2
 	b.gt	.LBB120_6
 	b	.LBB120_2
 .LBB120_2:                              //   in Loop: Header=BB120_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___parityhi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___parityhi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___parityhi2+8
+	movk	x16, #:abs_g3:.L__profc___parityhi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-2]
 	ldr	w16, [sp, #8]
 	mov	w0, w16
@@ -11205,6 +14208,13 @@ __parityhi2:                            // @__parityhi2
 	tbz	w8, #0, .LBB120_4
 	b	.LBB120_3
 .LBB120_3:                              //   in Loop: Header=BB120_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___parityhi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___parityhi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___parityhi2+16
+	movk	x16, #:abs_g3:.L__profc___parityhi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #4]
 	add	w8, w8, #1
 	str	w8, [sp, #4]
@@ -11280,6 +14290,13 @@ __popcounthi2:                          // @__popcounthi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	sturh	w0, [x29, #-2]
+	movz	x16, #:abs_g0_nc:.L__profc___popcounthi2
+	movk	x16, #:abs_g1_nc:.L__profc___popcounthi2
+	movk	x16, #:abs_g2_nc:.L__profc___popcounthi2
+	movk	x16, #:abs_g3:.L__profc___popcounthi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #4]
 	str	w8, [sp, #8]
@@ -11290,6 +14307,13 @@ __popcounthi2:                          // @__popcounthi2
 	b.gt	.LBB121_6
 	b	.LBB121_2
 .LBB121_2:                              //   in Loop: Header=BB121_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___popcounthi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___popcounthi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___popcounthi2+8
+	movk	x16, #:abs_g3:.L__profc___popcounthi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-2]
 	ldr	w16, [sp, #8]
 	mov	w0, w16
@@ -11298,6 +14322,13 @@ __popcounthi2:                          // @__popcounthi2
 	tbz	w8, #0, .LBB121_4
 	b	.LBB121_3
 .LBB121_3:                              //   in Loop: Header=BB121_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___popcounthi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___popcounthi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___popcounthi2+16
+	movk	x16, #:abs_g3:.L__profc___popcounthi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #4]
 	add	w8, w8, #1
 	str	w8, [sp, #4]
@@ -11373,6 +14404,13 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	str	w1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_iq2000
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_iq2000
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_iq2000
+	movk	x16, #:abs_g3:.L__profc___mulsi3_iq2000
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #4]
 	b	.LBB122_1
@@ -11381,10 +14419,24 @@ __mulsi3_iq2000:                        // @__mulsi3_iq2000
 	cbz	w8, .LBB122_5
 	b	.LBB122_2
 .LBB122_2:                              //   in Loop: Header=BB122_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_iq2000+8
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_iq2000+8
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_iq2000+8
+	movk	x16, #:abs_g3:.L__profc___mulsi3_iq2000+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-4]
 	tbz	w8, #0, .LBB122_4
 	b	.LBB122_3
 .LBB122_3:                              //   in Loop: Header=BB122_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_iq2000+16
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_iq2000+16
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_iq2000+16
+	movk	x16, #:abs_g3:.L__profc___mulsi3_iq2000+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #8]
 	ldr	w8, [sp, #4]
 	add	w8, w8, w16
@@ -11462,12 +14514,26 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 	.cfi_offset w29, -16
 	str	w0, [sp, #8]
 	str	w1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_lm32
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_lm32
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_lm32
+	movk	x16, #:abs_g3:.L__profc___mulsi3_lm32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp]
 	ldr	w8, [sp, #8]
 	cbnz	w8, .LBB123_2
 	b	.LBB123_1
 .LBB123_1:
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_lm32+8
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_lm32+8
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_lm32+8
+	movk	x16, #:abs_g3:.L__profc___mulsi3_lm32+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB123_8
@@ -11478,10 +14544,24 @@ __mulsi3_lm32:                          // @__mulsi3_lm32
 	cbz	w8, .LBB123_7
 	b	.LBB123_4
 .LBB123_4:                              //   in Loop: Header=BB123_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_lm32+16
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_lm32+16
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_lm32+16
+	movk	x16, #:abs_g3:.L__profc___mulsi3_lm32+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldrb	w8, [sp, #4]
 	tbz	w8, #0, .LBB123_6
 	b	.LBB123_5
 .LBB123_5:                              //   in Loop: Header=BB123_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulsi3_lm32+24
+	movk	x16, #:abs_g1_nc:.L__profc___mulsi3_lm32+24
+	movk	x16, #:abs_g2_nc:.L__profc___mulsi3_lm32+24
+	movk	x16, #:abs_g3:.L__profc___mulsi3_lm32+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #8]
 	ldr	w8, [sp]
 	add	w8, w8, w16
@@ -11564,6 +14644,13 @@ __udivmodsi4:                           // @__udivmodsi4
 	stur	w0, [x29, #-8]
 	stur	w1, [x29, #-12]
 	str	w2, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	str	w8, [sp, #12]
 	mov	w8, wzr
@@ -11575,25 +14662,70 @@ __udivmodsi4:                           // @__udivmodsi4
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #4]                    // 4-byte Folded Spill
-	b.hs	.LBB124_4
+	b.hs	.LBB124_6
 	b	.LBB124_2
 .LBB124_2:                              //   in Loop: Header=BB124_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+32
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+32
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+32
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #12]
 	mov	w16, wzr
 	str	w16, [sp, #4]                   // 4-byte Folded Spill
-	cbz	w8, .LBB124_4
+	cbz	w8, .LBB124_6
 	b	.LBB124_3
 .LBB124_3:                              //   in Loop: Header=BB124_1 Depth=1
-	ldur	w8, [x29, #-12]
-	mvn	w8, w8
-	lsr	w8, w8, #31
-	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+40
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+40
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+40
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB124_4
 .LBB124_4:                              //   in Loop: Header=BB124_1 Depth=1
-	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB124_6
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+16
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+16
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+16
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	w8, [x29, #-12]
+                                        // kill: def $x8 killed $w8
+	ands	x16, x8, #0x80000000
+	cset	w16, eq
+	str	w16, [sp]                       // 4-byte Folded Spill
+                                        // kill: def $w8 killed $w8 killed $x8
+	str	w16, [sp, #4]                   // 4-byte Folded Spill
+	tbnz	w8, #31, .LBB124_6
 	b	.LBB124_5
 .LBB124_5:                              //   in Loop: Header=BB124_1 Depth=1
+	ldr	w8, [sp]                        // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc___udivmodsi4+24
+	movk	x17, #:abs_g1_nc:.L__profc___udivmodsi4+24
+	movk	x17, #:abs_g2_nc:.L__profc___udivmodsi4+24
+	movk	x17, #:abs_g3:.L__profc___udivmodsi4+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	b	.LBB124_6
+.LBB124_6:                              //   in Loop: Header=BB124_1 Depth=1
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	tbz	w8, #0, .LBB124_8
+	b	.LBB124_7
+.LBB124_7:                              //   in Loop: Header=BB124_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+8
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+8
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+8
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	lsl	w8, w8, #1
 	stur	w8, [x29, #-12]
@@ -11601,19 +14733,33 @@ __udivmodsi4:                           // @__udivmodsi4
 	lsl	w8, w8, #1
 	str	w8, [sp, #12]
 	b	.LBB124_1
-.LBB124_6:
-	b	.LBB124_7
-.LBB124_7:                              // =>This Inner Loop Header: Depth=1
+.LBB124_8:
+	b	.LBB124_9
+.LBB124_9:                              // =>This Inner Loop Header: Depth=1
 	ldr	w8, [sp, #12]
-	cbz	w8, .LBB124_11
-	b	.LBB124_8
-.LBB124_8:                              //   in Loop: Header=BB124_7 Depth=1
+	cbz	w8, .LBB124_13
+	b	.LBB124_10
+.LBB124_10:                             //   in Loop: Header=BB124_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+48
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+48
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+48
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-8]
 	ldur	w16, [x29, #-12]
 	subs	w8, w8, w16
-	b.lo	.LBB124_10
-	b	.LBB124_9
-.LBB124_9:                              //   in Loop: Header=BB124_7 Depth=1
+	b.lo	.LBB124_12
+	b	.LBB124_11
+.LBB124_11:                             //   in Loop: Header=BB124_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+56
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+56
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+56
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-12]
 	ldur	w8, [x29, #-8]
 	subs	w8, w8, w16
@@ -11622,28 +14768,35 @@ __udivmodsi4:                           // @__udivmodsi4
 	ldr	w8, [sp, #8]
 	orr	w8, w8, w16
 	str	w8, [sp, #8]
-	b	.LBB124_10
-.LBB124_10:                             //   in Loop: Header=BB124_7 Depth=1
+	b	.LBB124_12
+.LBB124_12:                             //   in Loop: Header=BB124_9 Depth=1
 	ldr	w8, [sp, #12]
 	lsr	w8, w8, #1
 	str	w8, [sp, #12]
 	ldur	w8, [x29, #-12]
 	lsr	w8, w8, #1
 	stur	w8, [x29, #-12]
-	b	.LBB124_7
-.LBB124_11:
-	ldr	w8, [sp, #16]
-	cbz	w8, .LBB124_13
-	b	.LBB124_12
-.LBB124_12:
-	ldur	w8, [x29, #-8]
-	stur	w8, [x29, #-4]
-	b	.LBB124_14
+	b	.LBB124_9
 .LBB124_13:
-	ldr	w8, [sp, #8]
-	stur	w8, [x29, #-4]
+	ldr	w8, [sp, #16]
+	cbz	w8, .LBB124_15
 	b	.LBB124_14
 .LBB124_14:
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4+64
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4+64
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4+64
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	w8, [x29, #-8]
+	stur	w8, [x29, #-4]
+	b	.LBB124_16
+.LBB124_15:
+	ldr	w8, [sp, #8]
+	stur	w8, [x29, #-4]
+	b	.LBB124_16
+.LBB124_16:
 	ldur	w0, [x29, #-4]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -11707,12 +14860,26 @@ __mspabi_cmpf:                          // @__mspabi_cmpf
 	.cfi_offset w29, -16
 	str	s0, [sp, #8]
 	str	s1, [sp, #4]
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpf
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpf
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpf
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpf
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s0, [sp, #8]
 	ldr	s1, [sp, #4]
 	fcmp	s0, s1
 	b.pl	.LBB125_2
 	b	.LBB125_1
 .LBB125_1:
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpf+8
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpf+8
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpf+8
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpf+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #-1                         // =0xffffffff
 	stur	w8, [x29, #-4]
 	b	.LBB125_5
@@ -11723,6 +14890,13 @@ __mspabi_cmpf:                          // @__mspabi_cmpf
 	b.le	.LBB125_4
 	b	.LBB125_3
 .LBB125_3:
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpf+16
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpf+16
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpf+16
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpf+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	stur	w8, [x29, #-4]
 	b	.LBB125_5
@@ -11794,12 +14968,26 @@ __mspabi_cmpd:                          // @__mspabi_cmpd
 	.cfi_offset w29, -16
 	str	d0, [sp, #16]
 	str	d1, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpd
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpd
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpd
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpd
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d0, [sp, #16]
 	ldr	d1, [sp, #8]
 	fcmp	d0, d1
 	b.pl	.LBB126_2
 	b	.LBB126_1
 .LBB126_1:
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpd+8
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpd+8
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpd+8
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpd+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #-1                         // =0xffffffff
 	stur	w8, [x29, #-4]
 	b	.LBB126_5
@@ -11810,6 +14998,13 @@ __mspabi_cmpd:                          // @__mspabi_cmpd
 	b.le	.LBB126_4
 	b	.LBB126_3
 .LBB126_3:
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_cmpd+16
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_cmpd+16
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_cmpd+16
+	movk	x16, #:abs_g3:.L__profc___mspabi_cmpd+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	stur	w8, [x29, #-4]
 	b	.LBB126_5
@@ -11881,6 +15076,13 @@ __mspabi_mpysll:                        // @__mspabi_mpysll
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_mpysll
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_mpysll
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_mpysll
+	movk	x16, #:abs_g3:.L__profc___mspabi_mpysll
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	mul	x0, x8, x16
@@ -11946,6 +15148,13 @@ __mspabi_mpyull:                        // @__mspabi_mpyull
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc___mspabi_mpyull
+	movk	x16, #:abs_g1_nc:.L__profc___mspabi_mpyull
+	movk	x16, #:abs_g2_nc:.L__profc___mspabi_mpyull
+	movk	x16, #:abs_g3:.L__profc___mspabi_mpyull
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	ldr	x16, [sp]
 	mul	x0, x8, x16
@@ -12011,6 +15220,13 @@ __mulhi3:                               // @__mulhi3
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	stur	w1, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3
+	movk	x16, #:abs_g3:.L__profc___mulhi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #16]
 	str	w8, [sp, #12]
@@ -12018,6 +15234,13 @@ __mulhi3:                               // @__mulhi3
 	tbz	w8, #31, .LBB129_2
 	b	.LBB129_1
 .LBB129_1:
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3+8
+	movk	x16, #:abs_g3:.L__profc___mulhi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-8]
 	mov	w8, wzr
 	subs	w8, w8, w16
@@ -12033,57 +15256,99 @@ __mulhi3:                               // @__mulhi3
 	ldur	w8, [x29, #-8]
 	mov	w16, wzr
 	str	w16, [sp, #8]                   // 4-byte Folded Spill
-	cbz	w8, .LBB129_5
+	cbz	w8, .LBB129_6
 	b	.LBB129_4
 .LBB129_4:                              //   in Loop: Header=BB129_3 Depth=1
-	ldurb	w8, [x29, #-9]
-	subs	w8, w8, #32
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3+24
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3+24
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3+24
+	movk	x16, #:abs_g3:.L__profc___mulhi3+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldurb	w16, [x29, #-9]
+	subs	w8, w16, #32
 	cset	w8, lo
+	str	w8, [sp, #4]                    // 4-byte Folded Spill
+	subs	w16, w16, #31
 	str	w8, [sp, #8]                    // 4-byte Folded Spill
+	b.hi	.LBB129_6
 	b	.LBB129_5
 .LBB129_5:                              //   in Loop: Header=BB129_3 Depth=1
-	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
-	tbz	w8, #0, .LBB129_10
+	ldr	w8, [sp, #4]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc___mulhi3+32
+	movk	x17, #:abs_g1_nc:.L__profc___mulhi3+32
+	movk	x17, #:abs_g2_nc:.L__profc___mulhi3+32
+	movk	x17, #:abs_g3:.L__profc___mulhi3+32
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #8]                    // 4-byte Folded Spill
 	b	.LBB129_6
 .LBB129_6:                              //   in Loop: Header=BB129_3 Depth=1
-	ldurb	w8, [x29, #-8]
-	tbz	w8, #0, .LBB129_8
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	tbz	w8, #0, .LBB129_11
 	b	.LBB129_7
 .LBB129_7:                              //   in Loop: Header=BB129_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3+16
+	movk	x16, #:abs_g3:.L__profc___mulhi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldurb	w8, [x29, #-8]
+	tbz	w8, #0, .LBB129_9
+	b	.LBB129_8
+.LBB129_8:                              //   in Loop: Header=BB129_3 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3+40
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3+40
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3+40
+	movk	x16, #:abs_g3:.L__profc___mulhi3+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	ldr	w8, [sp, #12]
 	add	w8, w8, w16
 	str	w8, [sp, #12]
-	b	.LBB129_8
-.LBB129_8:                              //   in Loop: Header=BB129_3 Depth=1
+	b	.LBB129_9
+.LBB129_9:                              //   in Loop: Header=BB129_3 Depth=1
 	ldur	w8, [x29, #-4]
 	lsl	w8, w8, #1
 	stur	w8, [x29, #-4]
 	ldur	w8, [x29, #-8]
 	asr	w8, w8, #1
 	stur	w8, [x29, #-8]
-	b	.LBB129_9
-.LBB129_9:                              //   in Loop: Header=BB129_3 Depth=1
+	b	.LBB129_10
+.LBB129_10:                             //   in Loop: Header=BB129_3 Depth=1
 	ldurb	w8, [x29, #-9]
 	add	w8, w8, #1
 	sturb	w8, [x29, #-9]
 	b	.LBB129_3
-.LBB129_10:
-	ldr	w8, [sp, #16]
-	cbz	w8, .LBB129_12
-	b	.LBB129_11
 .LBB129_11:
+	ldr	w8, [sp, #16]
+	cbz	w8, .LBB129_13
+	b	.LBB129_12
+.LBB129_12:
+	movz	x16, #:abs_g0_nc:.L__profc___mulhi3+48
+	movk	x16, #:abs_g1_nc:.L__profc___mulhi3+48
+	movk	x16, #:abs_g2_nc:.L__profc___mulhi3+48
+	movk	x16, #:abs_g3:.L__profc___mulhi3+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w16, [sp, #12]
 	mov	w8, wzr
 	subs	w0, w8, w16
-	str	w0, [sp, #4]                    // 4-byte Folded Spill
-	b	.LBB129_13
-.LBB129_12:
-	ldr	w0, [sp, #12]
-	str	w0, [sp, #4]                    // 4-byte Folded Spill
-	b	.LBB129_13
+	str	w0, [sp]                        // 4-byte Folded Spill
+	b	.LBB129_14
 .LBB129_13:
-	ldr	w0, [sp, #4]                    // 4-byte Folded Reload
+	ldr	w0, [sp, #12]
+	str	w0, [sp]                        // 4-byte Folded Spill
+	b	.LBB129_14
+.LBB129_14:
+	ldr	w0, [sp]                        // 4-byte Folded Reload
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
 	add	sp, sp, #48
@@ -12146,12 +15411,26 @@ __divsi3:                               // @__divsi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___divsi3
+	movk	x16, #:abs_g1_nc:.L__profc___divsi3
+	movk	x16, #:abs_g2_nc:.L__profc___divsi3
+	movk	x16, #:abs_g3:.L__profc___divsi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #12]
 	ldur	x8, [x29, #-8]
 	tbz	x8, #63, .LBB130_2
 	b	.LBB130_1
 .LBB130_1:
+	movz	x16, #:abs_g0_nc:.L__profc___divsi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___divsi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___divsi3+8
+	movk	x16, #:abs_g3:.L__profc___divsi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x16, [x29, #-8]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12166,6 +15445,13 @@ __divsi3:                               // @__divsi3
 	tbz	x8, #63, .LBB130_4
 	b	.LBB130_3
 .LBB130_3:
+	movz	x16, #:abs_g0_nc:.L__profc___divsi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___divsi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___divsi3+16
+	movk	x16, #:abs_g3:.L__profc___divsi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #16]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12187,6 +15473,13 @@ __divsi3:                               // @__divsi3
 	cbz	w8, .LBB130_6
 	b	.LBB130_5
 .LBB130_5:
+	movz	x16, #:abs_g0_nc:.L__profc___divsi3+24
+	movk	x16, #:abs_g1_nc:.L__profc___divsi3+24
+	movk	x16, #:abs_g2_nc:.L__profc___divsi3+24
+	movk	x16, #:abs_g3:.L__profc___divsi3+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12256,12 +15549,26 @@ __modsi3:                               // @__modsi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	str	x1, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___modsi3
+	movk	x16, #:abs_g1_nc:.L__profc___modsi3
+	movk	x16, #:abs_g2_nc:.L__profc___modsi3
+	movk	x16, #:abs_g3:.L__profc___modsi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #12]
 	ldur	x8, [x29, #-8]
 	tbz	x8, #63, .LBB131_2
 	b	.LBB131_1
 .LBB131_1:
+	movz	x16, #:abs_g0_nc:.L__profc___modsi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___modsi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___modsi3+8
+	movk	x16, #:abs_g3:.L__profc___modsi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x16, [x29, #-8]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12274,6 +15581,13 @@ __modsi3:                               // @__modsi3
 	tbz	x8, #63, .LBB131_4
 	b	.LBB131_3
 .LBB131_3:
+	movz	x16, #:abs_g0_nc:.L__profc___modsi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___modsi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___modsi3+16
+	movk	x16, #:abs_g3:.L__profc___modsi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #16]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12291,6 +15605,13 @@ __modsi3:                               // @__modsi3
 	cbz	w8, .LBB131_6
 	b	.LBB131_5
 .LBB131_5:
+	movz	x16, #:abs_g0_nc:.L__profc___modsi3+24
+	movk	x16, #:abs_g1_nc:.L__profc___modsi3+24
+	movk	x16, #:abs_g2_nc:.L__profc___modsi3+24
+	movk	x16, #:abs_g3:.L__profc___modsi3+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp]
 	mov	x8, xzr
 	subs	x8, x8, x16
@@ -12361,6 +15682,13 @@ __udivmodhi4:                           // @__udivmodhi4
 	sturh	w0, [x29, #-4]
 	sturh	w1, [x29, #-6]
 	stur	w2, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
 	sturh	w8, [x29, #-14]
 	mov	w8, wzr
@@ -12372,25 +15700,68 @@ __udivmodhi4:                           // @__udivmodhi4
 	mov	w8, wzr
 	subs	w16, w16, w17
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b.ge	.LBB132_4
+	b.ge	.LBB132_6
 	b	.LBB132_2
 .LBB132_2:                              //   in Loop: Header=BB132_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+32
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+32
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+32
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-14]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	w8, .LBB132_4
+	cbz	w8, .LBB132_6
 	b	.LBB132_3
 .LBB132_3:                              //   in Loop: Header=BB132_1 Depth=1
-	ldurh	w8, [x29, #-6]
-	ands	w8, w8, #0x8000
-	cset	w8, eq
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+40
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+40
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+40
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB132_4
 .LBB132_4:                              //   in Loop: Header=BB132_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB132_6
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+16
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+16
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+16
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldurh	w8, [x29, #-6]
+	ands	w16, w8, #0x8000
+	cset	w16, eq
+	str	w16, [sp, #8]                   // 4-byte Folded Spill
+	str	w16, [sp, #12]                  // 4-byte Folded Spill
+	tbnz	w8, #15, .LBB132_6
 	b	.LBB132_5
 .LBB132_5:                              //   in Loop: Header=BB132_1 Depth=1
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc___udivmodhi4+24
+	movk	x17, #:abs_g1_nc:.L__profc___udivmodhi4+24
+	movk	x17, #:abs_g2_nc:.L__profc___udivmodhi4+24
+	movk	x17, #:abs_g3:.L__profc___udivmodhi4+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB132_6
+.LBB132_6:                              //   in Loop: Header=BB132_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB132_8
+	b	.LBB132_7
+.LBB132_7:                              //   in Loop: Header=BB132_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+8
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+8
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+8
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-6]
 	lsl	w8, w8, #1
 	sturh	w8, [x29, #-6]
@@ -12398,19 +15769,33 @@ __udivmodhi4:                           // @__udivmodhi4
 	lsl	w8, w8, #1
 	sturh	w8, [x29, #-14]
 	b	.LBB132_1
-.LBB132_6:
-	b	.LBB132_7
-.LBB132_7:                              // =>This Inner Loop Header: Depth=1
+.LBB132_8:
+	b	.LBB132_9
+.LBB132_9:                              // =>This Inner Loop Header: Depth=1
 	ldurh	w8, [x29, #-14]
-	cbz	w8, .LBB132_11
-	b	.LBB132_8
-.LBB132_8:                              //   in Loop: Header=BB132_7 Depth=1
+	cbz	w8, .LBB132_13
+	b	.LBB132_10
+.LBB132_10:                             //   in Loop: Header=BB132_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+48
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+48
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+48
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w8, [x29, #-4]
 	ldurh	w16, [x29, #-6]
 	subs	w8, w8, w16
-	b.lt	.LBB132_10
-	b	.LBB132_9
-.LBB132_9:                              //   in Loop: Header=BB132_7 Depth=1
+	b.lt	.LBB132_12
+	b	.LBB132_11
+.LBB132_11:                             //   in Loop: Header=BB132_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+56
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+56
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+56
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurh	w16, [x29, #-6]
 	ldurh	w8, [x29, #-4]
 	subs	w8, w8, w16
@@ -12419,28 +15804,35 @@ __udivmodhi4:                           // @__udivmodhi4
 	ldrh	w8, [sp, #16]
 	orr	w8, w8, w16
 	strh	w8, [sp, #16]
-	b	.LBB132_10
-.LBB132_10:                             //   in Loop: Header=BB132_7 Depth=1
+	b	.LBB132_12
+.LBB132_12:                             //   in Loop: Header=BB132_9 Depth=1
 	ldurh	w8, [x29, #-14]
 	lsr	w8, w8, #1
 	sturh	w8, [x29, #-14]
 	ldurh	w8, [x29, #-6]
 	lsr	w8, w8, #1
 	sturh	w8, [x29, #-6]
-	b	.LBB132_7
-.LBB132_11:
-	ldur	w8, [x29, #-12]
-	cbz	w8, .LBB132_13
-	b	.LBB132_12
-.LBB132_12:
-	ldurh	w8, [x29, #-4]
-	sturh	w8, [x29, #-2]
-	b	.LBB132_14
+	b	.LBB132_9
 .LBB132_13:
-	ldrh	w8, [sp, #16]
-	sturh	w8, [x29, #-2]
+	ldur	w8, [x29, #-12]
+	cbz	w8, .LBB132_15
 	b	.LBB132_14
 .LBB132_14:
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodhi4+64
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodhi4+64
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodhi4+64
+	movk	x16, #:abs_g3:.L__profc___udivmodhi4+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldurh	w8, [x29, #-4]
+	sturh	w8, [x29, #-2]
+	b	.LBB132_16
+.LBB132_15:
+	ldrh	w8, [sp, #16]
+	sturh	w8, [x29, #-2]
+	b	.LBB132_16
+.LBB132_16:
 	ldurh	w0, [x29, #-2]
 	.cfi_def_cfa wsp, 48
 	ldp	x29, x30, [sp, #32]             // 16-byte Folded Reload
@@ -12505,6 +15897,13 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	stur	x0, [x29, #-16]
 	stur	x1, [x29, #-24]
 	stur	w2, [x29, #-28]
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #1                          // =0x1
                                         // kill: def $x8 killed $w8
 	str	x8, [sp, #24]
@@ -12517,25 +15916,69 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	mov	w8, wzr
 	subs	x16, x16, x17
 	str	w8, [sp, #12]                   // 4-byte Folded Spill
-	b.hs	.LBB133_4
+	b.hs	.LBB133_6
 	b	.LBB133_2
 .LBB133_2:                              //   in Loop: Header=BB133_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+32
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+32
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+32
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	mov	w16, wzr
 	str	w16, [sp, #12]                  // 4-byte Folded Spill
-	cbz	x8, .LBB133_4
+	cbz	x8, .LBB133_6
 	b	.LBB133_3
 .LBB133_3:                              //   in Loop: Header=BB133_1 Depth=1
-	ldurb	w8, [x29, #-21]
-	ands	w8, w8, #0x80
-	cset	w8, eq
-	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+40
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+40
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+40
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+40
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB133_4
 .LBB133_4:                              //   in Loop: Header=BB133_1 Depth=1
-	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
-	tbz	w8, #0, .LBB133_6
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+16
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+16
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+16
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	x8, [x29, #-24]
+	ands	x16, x8, #0x80000000
+	cset	w16, eq
+	str	w16, [sp, #8]                   // 4-byte Folded Spill
+                                        // kill: def $w8 killed $w8 killed $x8
+	str	w16, [sp, #12]                  // 4-byte Folded Spill
+	tbnz	w8, #31, .LBB133_6
 	b	.LBB133_5
 .LBB133_5:                              //   in Loop: Header=BB133_1 Depth=1
+	ldr	w8, [sp, #8]                    // 4-byte Folded Reload
+	movz	x17, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+24
+	movk	x17, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+24
+	movk	x17, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+24
+	movk	x17, #:abs_g3:.L__profc___udivmodsi4_libgcc+24
+	ldr	x16, [x17]
+	add	x16, x16, #1
+	str	x16, [x17]
+	str	w8, [sp, #12]                   // 4-byte Folded Spill
+	b	.LBB133_6
+.LBB133_6:                              //   in Loop: Header=BB133_1 Depth=1
+	ldr	w8, [sp, #12]                   // 4-byte Folded Reload
+	tbz	w8, #0, .LBB133_8
+	b	.LBB133_7
+.LBB133_7:                              //   in Loop: Header=BB133_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+8
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+8
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+8
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-24]
 	lsl	x8, x8, #1
 	stur	x8, [x29, #-24]
@@ -12543,19 +15986,33 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	lsl	x8, x8, #1
 	str	x8, [sp, #24]
 	b	.LBB133_1
-.LBB133_6:
-	b	.LBB133_7
-.LBB133_7:                              // =>This Inner Loop Header: Depth=1
+.LBB133_8:
+	b	.LBB133_9
+.LBB133_9:                              // =>This Inner Loop Header: Depth=1
 	ldr	x8, [sp, #24]
-	cbz	x8, .LBB133_11
-	b	.LBB133_8
-.LBB133_8:                              //   in Loop: Header=BB133_7 Depth=1
+	cbz	x8, .LBB133_13
+	b	.LBB133_10
+.LBB133_10:                             //   in Loop: Header=BB133_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+48
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+48
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+48
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+48
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-24]
 	subs	x8, x8, x16
-	b.lo	.LBB133_10
-	b	.LBB133_9
-.LBB133_9:                              //   in Loop: Header=BB133_7 Depth=1
+	b.lo	.LBB133_12
+	b	.LBB133_11
+.LBB133_11:                             //   in Loop: Header=BB133_9 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+56
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+56
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+56
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+56
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x16, [x29, #-24]
 	ldur	x8, [x29, #-16]
 	subs	x8, x8, x16
@@ -12564,28 +16021,35 @@ __udivmodsi4_libgcc:                    // @__udivmodsi4_libgcc
 	ldr	x8, [sp, #16]
 	orr	x8, x8, x16
 	str	x8, [sp, #16]
-	b	.LBB133_10
-.LBB133_10:                             //   in Loop: Header=BB133_7 Depth=1
+	b	.LBB133_12
+.LBB133_12:                             //   in Loop: Header=BB133_9 Depth=1
 	ldr	x8, [sp, #24]
 	lsr	x8, x8, #1
 	str	x8, [sp, #24]
 	ldur	x8, [x29, #-24]
 	lsr	x8, x8, #1
 	stur	x8, [x29, #-24]
-	b	.LBB133_7
-.LBB133_11:
-	ldur	w8, [x29, #-28]
-	cbz	w8, .LBB133_13
-	b	.LBB133_12
-.LBB133_12:
-	ldur	x8, [x29, #-16]
-	stur	x8, [x29, #-8]
-	b	.LBB133_14
+	b	.LBB133_9
 .LBB133_13:
-	ldr	x8, [sp, #16]
-	stur	x8, [x29, #-8]
+	ldur	w8, [x29, #-28]
+	cbz	w8, .LBB133_15
 	b	.LBB133_14
 .LBB133_14:
+	movz	x16, #:abs_g0_nc:.L__profc___udivmodsi4_libgcc+64
+	movk	x16, #:abs_g1_nc:.L__profc___udivmodsi4_libgcc+64
+	movk	x16, #:abs_g2_nc:.L__profc___udivmodsi4_libgcc+64
+	movk	x16, #:abs_g3:.L__profc___udivmodsi4_libgcc+64
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
+	ldur	x8, [x29, #-16]
+	stur	x8, [x29, #-8]
+	b	.LBB133_16
+.LBB133_15:
+	ldr	x8, [sp, #16]
+	stur	x8, [x29, #-8]
+	b	.LBB133_16
+.LBB133_16:
 	ldur	x0, [x29, #-8]
 	.cfi_def_cfa wsp, 80
 	ldp	x29, x30, [sp, #64]             // 16-byte Folded Reload
@@ -12649,6 +16113,13 @@ __ashldi3:                              // @__ashldi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	stur	w1, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___ashldi3
+	movk	x16, #:abs_g1_nc:.L__profc___ashldi3
+	movk	x16, #:abs_g2_nc:.L__profc___ashldi3
+	movk	x16, #:abs_g3:.L__profc___ashldi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #32                         // =0x20
 	str	w8, [sp, #24]
 	ldur	x8, [x29, #-16]
@@ -12657,6 +16128,13 @@ __ashldi3:                              // @__ashldi3
 	tbz	w8, #5, .LBB134_2
 	b	.LBB134_1
 .LBB134_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ashldi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___ashldi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___ashldi3+8
+	movk	x16, #:abs_g3:.L__profc___ashldi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #8]
 	ldr	w8, [sp, #16]
@@ -12669,6 +16147,13 @@ __ashldi3:                              // @__ashldi3
 	cbnz	w8, .LBB134_4
 	b	.LBB134_3
 .LBB134_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ashldi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___ashldi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___ashldi3+16
+	movk	x16, #:abs_g3:.L__profc___ashldi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
 	b	.LBB134_6
@@ -12763,6 +16248,13 @@ __ashlti3:                              // @__ashlti3
 	stur	x1, [x29, #-24]
 	stur	x0, [x29, #-32]
 	stur	w2, [x29, #-36]
+	movz	x16, #:abs_g0_nc:.L__profc___ashlti3
+	movk	x16, #:abs_g1_nc:.L__profc___ashlti3
+	movk	x16, #:abs_g2_nc:.L__profc___ashlti3
+	movk	x16, #:abs_g3:.L__profc___ashlti3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #64                         // =0x40
 	str	w8, [sp, #40]
 	ldur	x8, [x29, #-32]
@@ -12773,6 +16265,13 @@ __ashlti3:                              // @__ashlti3
 	tbz	w8, #6, .LBB135_2
 	b	.LBB135_1
 .LBB135_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ashlti3+8
+	movk	x16, #:abs_g1_nc:.L__profc___ashlti3+8
+	movk	x16, #:abs_g2_nc:.L__profc___ashlti3+8
+	movk	x16, #:abs_g3:.L__profc___ashlti3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp]
 	ldr	x8, [sp, #16]
@@ -12786,6 +16285,13 @@ __ashlti3:                              // @__ashlti3
 	cbnz	w8, .LBB135_4
 	b	.LBB135_3
 .LBB135_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ashlti3+16
+	movk	x16, #:abs_g1_nc:.L__profc___ashlti3+16
+	movk	x16, #:abs_g2_nc:.L__profc___ashlti3+16
+	movk	x16, #:abs_g3:.L__profc___ashlti3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-32]
 	ldur	x16, [x29, #-24]
 	stur	x16, [x29, #-8]
@@ -12881,6 +16387,13 @@ __ashrdi3:                              // @__ashrdi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	stur	w1, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___ashrdi3
+	movk	x16, #:abs_g1_nc:.L__profc___ashrdi3
+	movk	x16, #:abs_g2_nc:.L__profc___ashrdi3
+	movk	x16, #:abs_g3:.L__profc___ashrdi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #32                         // =0x20
 	str	w8, [sp, #24]
 	ldur	x8, [x29, #-16]
@@ -12889,6 +16402,13 @@ __ashrdi3:                              // @__ashrdi3
 	tbz	w8, #5, .LBB136_2
 	b	.LBB136_1
 .LBB136_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ashrdi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___ashrdi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___ashrdi3+8
+	movk	x16, #:abs_g3:.L__profc___ashrdi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	w8, [sp, #20]
 	asr	w8, w8, #31
 	str	w8, [sp, #12]
@@ -12902,6 +16422,13 @@ __ashrdi3:                              // @__ashrdi3
 	cbnz	w8, .LBB136_4
 	b	.LBB136_3
 .LBB136_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ashrdi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___ashrdi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___ashrdi3+16
+	movk	x16, #:abs_g3:.L__profc___ashrdi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
 	b	.LBB136_6
@@ -12996,6 +16523,13 @@ __ashrti3:                              // @__ashrti3
 	stur	x1, [x29, #-24]
 	stur	x0, [x29, #-32]
 	stur	w2, [x29, #-36]
+	movz	x16, #:abs_g0_nc:.L__profc___ashrti3
+	movk	x16, #:abs_g1_nc:.L__profc___ashrti3
+	movk	x16, #:abs_g2_nc:.L__profc___ashrti3
+	movk	x16, #:abs_g3:.L__profc___ashrti3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #64                         // =0x40
 	str	w8, [sp, #40]
 	ldur	x8, [x29, #-32]
@@ -13006,6 +16540,13 @@ __ashrti3:                              // @__ashrti3
 	tbz	w8, #6, .LBB137_2
 	b	.LBB137_1
 .LBB137_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ashrti3+8
+	movk	x16, #:abs_g1_nc:.L__profc___ashrti3+8
+	movk	x16, #:abs_g2_nc:.L__profc___ashrti3+8
+	movk	x16, #:abs_g3:.L__profc___ashrti3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #24]
 	asr	x8, x8, #63
 	str	x8, [sp, #8]
@@ -13020,6 +16561,13 @@ __ashrti3:                              // @__ashrti3
 	cbnz	w8, .LBB137_4
 	b	.LBB137_3
 .LBB137_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ashrti3+16
+	movk	x16, #:abs_g1_nc:.L__profc___ashrti3+16
+	movk	x16, #:abs_g2_nc:.L__profc___ashrti3+16
+	movk	x16, #:abs_g3:.L__profc___ashrti3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-32]
 	ldur	x16, [x29, #-24]
 	stur	x16, [x29, #-8]
@@ -13114,6 +16662,13 @@ __bswapdi2:                             // @__bswapdi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___bswapdi2
+	movk	x16, #:abs_g1_nc:.L__profc___bswapdi2
+	movk	x16, #:abs_g2_nc:.L__profc___bswapdi2
+	movk	x16, #:abs_g3:.L__profc___bswapdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	and	x8, x16, #0xff000000000000
 	lsr	x8, x8, #40
@@ -13196,6 +16751,13 @@ __bswapsi2:                             // @__bswapsi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___bswapsi2
+	movk	x16, #:abs_g1_nc:.L__profc___bswapsi2
+	movk	x16, #:abs_g2_nc:.L__profc___bswapsi2
+	movk	x16, #:abs_g3:.L__profc___bswapsi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w16, [x29, #-4]
 	and	w8, w16, #0xff0000
 	lsr	w8, w8, #8
@@ -13265,6 +16827,13 @@ __clzsi2:                               // @__clzsi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___clzsi2
+	movk	x16, #:abs_g1_nc:.L__profc___clzsi2
+	movk	x16, #:abs_g2_nc:.L__profc___clzsi2
+	movk	x16, #:abs_g3:.L__profc___clzsi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	str	w8, [sp, #8]
 	ldrh	w8, [sp, #10]
@@ -13398,6 +16967,13 @@ __clzti2:                               // @__clzti2
 	.cfi_offset w29, -16
 	stur	x1, [x29, #-8]
 	stur	x0, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___clzti2
+	movk	x16, #:abs_g1_nc:.L__profc___clzti2
+	movk	x16, #:abs_g2_nc:.L__profc___clzti2
+	movk	x16, #:abs_g3:.L__profc___clzti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-8]
 	str	x16, [sp, #24]
@@ -13483,6 +17059,13 @@ __cmpdi2:                               // @__cmpdi2
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	str	x1, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc___cmpdi2
+	movk	x16, #:abs_g1_nc:.L__profc___cmpdi2
+	movk	x16, #:abs_g2_nc:.L__profc___cmpdi2
+	movk	x16, #:abs_g3:.L__profc___cmpdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
 	ldr	x8, [sp, #24]
@@ -13493,6 +17076,13 @@ __cmpdi2:                               // @__cmpdi2
 	b.ge	.LBB142_2
 	b	.LBB142_1
 .LBB142_1:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpdi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___cmpdi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___cmpdi2+8
+	movk	x16, #:abs_g3:.L__profc___cmpdi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB142_9
@@ -13503,6 +17093,13 @@ __cmpdi2:                               // @__cmpdi2
 	b.le	.LBB142_4
 	b	.LBB142_3
 .LBB142_3:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpdi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___cmpdi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___cmpdi2+16
+	movk	x16, #:abs_g3:.L__profc___cmpdi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB142_9
@@ -13513,6 +17110,13 @@ __cmpdi2:                               // @__cmpdi2
 	b.hs	.LBB142_6
 	b	.LBB142_5
 .LBB142_5:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpdi2+24
+	movk	x16, #:abs_g1_nc:.L__profc___cmpdi2+24
+	movk	x16, #:abs_g2_nc:.L__profc___cmpdi2+24
+	movk	x16, #:abs_g3:.L__profc___cmpdi2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB142_9
@@ -13523,6 +17127,13 @@ __cmpdi2:                               // @__cmpdi2
 	b.ls	.LBB142_8
 	b	.LBB142_7
 .LBB142_7:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpdi2+32
+	movk	x16, #:abs_g1_nc:.L__profc___cmpdi2+32
+	movk	x16, #:abs_g2_nc:.L__profc___cmpdi2+32
+	movk	x16, #:abs_g3:.L__profc___cmpdi2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB142_9
@@ -13594,6 +17205,13 @@ __aeabi_lcmp:                           // @__aeabi_lcmp
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc___aeabi_lcmp
+	movk	x16, #:abs_g1_nc:.L__profc___aeabi_lcmp
+	movk	x16, #:abs_g2_nc:.L__profc___aeabi_lcmp
+	movk	x16, #:abs_g3:.L__profc___aeabi_lcmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #8]
 	ldr	x1, [sp]
 	bl	__cmpdi2
@@ -13662,6 +17280,13 @@ __cmpti2:                               // @__cmpti2
 	stur	x0, [x29, #-32]
 	str	x3, [sp, #40]
 	str	x2, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc___cmpti2
+	movk	x16, #:abs_g1_nc:.L__profc___cmpti2
+	movk	x16, #:abs_g2_nc:.L__profc___cmpti2
+	movk	x16, #:abs_g3:.L__profc___cmpti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-32]
 	ldur	x16, [x29, #-24]
 	str	x16, [sp, #24]
@@ -13676,6 +17301,13 @@ __cmpti2:                               // @__cmpti2
 	b.ge	.LBB144_2
 	b	.LBB144_1
 .LBB144_1:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpti2+8
+	movk	x16, #:abs_g1_nc:.L__profc___cmpti2+8
+	movk	x16, #:abs_g2_nc:.L__profc___cmpti2+8
+	movk	x16, #:abs_g3:.L__profc___cmpti2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB144_9
@@ -13686,6 +17318,13 @@ __cmpti2:                               // @__cmpti2
 	b.le	.LBB144_4
 	b	.LBB144_3
 .LBB144_3:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpti2+16
+	movk	x16, #:abs_g1_nc:.L__profc___cmpti2+16
+	movk	x16, #:abs_g2_nc:.L__profc___cmpti2+16
+	movk	x16, #:abs_g3:.L__profc___cmpti2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB144_9
@@ -13696,6 +17335,13 @@ __cmpti2:                               // @__cmpti2
 	b.hs	.LBB144_6
 	b	.LBB144_5
 .LBB144_5:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpti2+24
+	movk	x16, #:abs_g1_nc:.L__profc___cmpti2+24
+	movk	x16, #:abs_g2_nc:.L__profc___cmpti2+24
+	movk	x16, #:abs_g3:.L__profc___cmpti2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB144_9
@@ -13706,6 +17352,13 @@ __cmpti2:                               // @__cmpti2
 	b.ls	.LBB144_8
 	b	.LBB144_7
 .LBB144_7:
+	movz	x16, #:abs_g0_nc:.L__profc___cmpti2+32
+	movk	x16, #:abs_g1_nc:.L__profc___cmpti2+32
+	movk	x16, #:abs_g2_nc:.L__profc___cmpti2+32
+	movk	x16, #:abs_g3:.L__profc___cmpti2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB144_9
@@ -13776,6 +17429,13 @@ __ctzsi2:                               // @__ctzsi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___ctzsi2
+	movk	x16, #:abs_g1_nc:.L__profc___ctzsi2
+	movk	x16, #:abs_g2_nc:.L__profc___ctzsi2
+	movk	x16, #:abs_g3:.L__profc___ctzsi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	str	w8, [sp, #8]
 	ldrh	w8, [sp, #8]
@@ -13909,6 +17569,13 @@ __ctzti2:                               // @__ctzti2
 	.cfi_offset w29, -16
 	stur	x1, [x29, #-8]
 	stur	x0, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___ctzti2
+	movk	x16, #:abs_g1_nc:.L__profc___ctzti2
+	movk	x16, #:abs_g2_nc:.L__profc___ctzti2
+	movk	x16, #:abs_g3:.L__profc___ctzti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-8]
 	str	x16, [sp, #24]
@@ -13995,6 +17662,13 @@ __ffsti2:                               // @__ffsti2
 	.cfi_offset w29, -16
 	str	x1, [sp, #24]
 	str	x0, [sp, #16]
+	movz	x16, #:abs_g0_nc:.L__profc___ffsti2
+	movk	x16, #:abs_g1_nc:.L__profc___ffsti2
+	movk	x16, #:abs_g2_nc:.L__profc___ffsti2
+	movk	x16, #:abs_g3:.L__profc___ffsti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #16]
 	ldr	x16, [sp, #24]
 	str	x16, [sp, #8]
@@ -14003,10 +17677,24 @@ __ffsti2:                               // @__ffsti2
 	cbnz	x8, .LBB147_4
 	b	.LBB147_1
 .LBB147_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ffsti2+8
+	movk	x16, #:abs_g1_nc:.L__profc___ffsti2+8
+	movk	x16, #:abs_g2_nc:.L__profc___ffsti2+8
+	movk	x16, #:abs_g3:.L__profc___ffsti2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x8, [sp, #8]
 	cbnz	x8, .LBB147_3
 	b	.LBB147_2
 .LBB147_2:
+	movz	x16, #:abs_g0_nc:.L__profc___ffsti2+16
+	movk	x16, #:abs_g1_nc:.L__profc___ffsti2+16
+	movk	x16, #:abs_g2_nc:.L__profc___ffsti2+16
+	movk	x16, #:abs_g3:.L__profc___ffsti2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB147_5
@@ -14090,6 +17778,13 @@ __lshrdi3:                              // @__lshrdi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	stur	w1, [x29, #-20]
+	movz	x16, #:abs_g0_nc:.L__profc___lshrdi3
+	movk	x16, #:abs_g1_nc:.L__profc___lshrdi3
+	movk	x16, #:abs_g2_nc:.L__profc___lshrdi3
+	movk	x16, #:abs_g3:.L__profc___lshrdi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #32                         // =0x20
 	str	w8, [sp, #24]
 	ldur	x8, [x29, #-16]
@@ -14098,6 +17793,13 @@ __lshrdi3:                              // @__lshrdi3
 	tbz	w8, #5, .LBB148_2
 	b	.LBB148_1
 .LBB148_1:
+	movz	x16, #:abs_g0_nc:.L__profc___lshrdi3+8
+	movk	x16, #:abs_g1_nc:.L__profc___lshrdi3+8
+	movk	x16, #:abs_g2_nc:.L__profc___lshrdi3+8
+	movk	x16, #:abs_g3:.L__profc___lshrdi3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	str	w8, [sp, #12]
 	ldr	w8, [sp, #20]
@@ -14110,6 +17812,13 @@ __lshrdi3:                              // @__lshrdi3
 	cbnz	w8, .LBB148_4
 	b	.LBB148_3
 .LBB148_3:
+	movz	x16, #:abs_g0_nc:.L__profc___lshrdi3+16
+	movk	x16, #:abs_g1_nc:.L__profc___lshrdi3+16
+	movk	x16, #:abs_g2_nc:.L__profc___lshrdi3+16
+	movk	x16, #:abs_g3:.L__profc___lshrdi3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	stur	x8, [x29, #-8]
 	b	.LBB148_6
@@ -14204,6 +17913,13 @@ __lshrti3:                              // @__lshrti3
 	stur	x1, [x29, #-24]
 	stur	x0, [x29, #-32]
 	stur	w2, [x29, #-36]
+	movz	x16, #:abs_g0_nc:.L__profc___lshrti3
+	movk	x16, #:abs_g1_nc:.L__profc___lshrti3
+	movk	x16, #:abs_g2_nc:.L__profc___lshrti3
+	movk	x16, #:abs_g3:.L__profc___lshrti3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #64                         // =0x40
 	str	w8, [sp, #40]
 	ldur	x8, [x29, #-32]
@@ -14214,6 +17930,13 @@ __lshrti3:                              // @__lshrti3
 	tbz	w8, #6, .LBB149_2
 	b	.LBB149_1
 .LBB149_1:
+	movz	x16, #:abs_g0_nc:.L__profc___lshrti3+8
+	movk	x16, #:abs_g1_nc:.L__profc___lshrti3+8
+	movk	x16, #:abs_g2_nc:.L__profc___lshrti3+8
+	movk	x16, #:abs_g3:.L__profc___lshrti3+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	x8, xzr
 	str	x8, [sp, #8]
 	ldr	x8, [sp, #24]
@@ -14227,6 +17950,13 @@ __lshrti3:                              // @__lshrti3
 	cbnz	w8, .LBB149_4
 	b	.LBB149_3
 .LBB149_3:
+	movz	x16, #:abs_g0_nc:.L__profc___lshrti3+16
+	movk	x16, #:abs_g1_nc:.L__profc___lshrti3+16
+	movk	x16, #:abs_g2_nc:.L__profc___lshrti3+16
+	movk	x16, #:abs_g3:.L__profc___lshrti3+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-32]
 	ldur	x16, [x29, #-24]
 	stur	x16, [x29, #-8]
@@ -14322,6 +18052,13 @@ __muldsi3:                              // @__muldsi3
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
 	stur	w1, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc___muldsi3
+	movk	x16, #:abs_g1_nc:.L__profc___muldsi3
+	movk	x16, #:abs_g2_nc:.L__profc___muldsi3
+	movk	x16, #:abs_g3:.L__profc___muldsi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #16                         // =0x10
 	str	w8, [sp, #12]
 	mov	w8, #65535                      // =0xffff
@@ -14433,6 +18170,13 @@ __muldi3_compiler_rt:                   // @__muldi3_compiler_rt
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___muldi3_compiler_rt
+	movk	x16, #:abs_g1_nc:.L__profc___muldi3_compiler_rt
+	movk	x16, #:abs_g2_nc:.L__profc___muldi3_compiler_rt
+	movk	x16, #:abs_g3:.L__profc___muldi3_compiler_rt
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #24]
 	ldur	x8, [x29, #-16]
@@ -14514,6 +18258,13 @@ __mulddi3:                              // @__mulddi3
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	x1, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___mulddi3
+	movk	x16, #:abs_g1_nc:.L__profc___mulddi3
+	movk	x16, #:abs_g2_nc:.L__profc___mulddi3
+	movk	x16, #:abs_g3:.L__profc___mulddi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #32                         // =0x20
 	str	w8, [sp, #28]
 	mov	w8, #-1                         // =0xffffffff
@@ -14647,6 +18398,13 @@ __multi3:                               // @__multi3
 	stur	x0, [x29, #-16]
 	stur	x3, [x29, #-24]
 	stur	x2, [x29, #-32]
+	movz	x16, #:abs_g0_nc:.L__profc___multi3
+	movk	x16, #:abs_g1_nc:.L__profc___multi3
+	movk	x16, #:abs_g2_nc:.L__profc___multi3
+	movk	x16, #:abs_g3:.L__profc___multi3
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-8]
 	str	x16, [sp, #40]
@@ -14732,6 +18490,13 @@ __negdi2:                               // @__negdi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
+	movz	x16, #:abs_g0_nc:.L__profc___negdi2
+	movk	x16, #:abs_g1_nc:.L__profc___negdi2
+	movk	x16, #:abs_g2_nc:.L__profc___negdi2
+	movk	x16, #:abs_g3:.L__profc___negdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	mov	x8, xzr
 	subs	x0, x8, x16
@@ -14797,6 +18562,13 @@ __negti2:                               // @__negti2
 	.cfi_offset w29, -16
 	str	x1, [sp, #8]
 	str	x0, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc___negti2
+	movk	x16, #:abs_g1_nc:.L__profc___negti2
+	movk	x16, #:abs_g2_nc:.L__profc___negti2
+	movk	x16, #:abs_g3:.L__profc___negti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x16, [sp, #8]
 	ldr	x17, [sp]
 	mov	x8, xzr
@@ -14862,6 +18634,13 @@ __paritydi2:                            // @__paritydi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc___paritydi2
+	movk	x16, #:abs_g1_nc:.L__profc___paritydi2
+	movk	x16, #:abs_g2_nc:.L__profc___paritydi2
+	movk	x16, #:abs_g3:.L__profc___paritydi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldr	w8, [sp, #20]
@@ -14944,6 +18723,13 @@ __parityti2:                            // @__parityti2
 	.cfi_offset w29, -16
 	stur	x1, [x29, #-8]
 	stur	x0, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___parityti2
+	movk	x16, #:abs_g1_nc:.L__profc___parityti2
+	movk	x16, #:abs_g2_nc:.L__profc___parityti2
+	movk	x16, #:abs_g3:.L__profc___parityti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-8]
 	str	x16, [sp, #24]
@@ -15031,6 +18817,13 @@ __paritysi2:                            // @__paritysi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___paritysi2
+	movk	x16, #:abs_g1_nc:.L__profc___paritysi2
+	movk	x16, #:abs_g2_nc:.L__profc___paritysi2
+	movk	x16, #:abs_g3:.L__profc___paritysi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	str	w8, [sp, #8]
 	ldr	w8, [sp, #8]
@@ -15108,6 +18901,13 @@ __popcountdi2:                          // @__popcountdi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc___popcountdi2
+	movk	x16, #:abs_g1_nc:.L__profc___popcountdi2
+	movk	x16, #:abs_g2_nc:.L__profc___popcountdi2
+	movk	x16, #:abs_g3:.L__profc___popcountdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-8]
 	str	x8, [sp, #16]
 	ldr	x8, [sp, #16]
@@ -15196,6 +18996,13 @@ __popcountsi2:                          // @__popcountsi2
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	stur	w0, [x29, #-4]
+	movz	x16, #:abs_g0_nc:.L__profc___popcountsi2
+	movk	x16, #:abs_g1_nc:.L__profc___popcountsi2
+	movk	x16, #:abs_g2_nc:.L__profc___popcountsi2
+	movk	x16, #:abs_g3:.L__profc___popcountsi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-4]
 	str	w8, [sp, #8]
 	ldr	w8, [sp, #8]
@@ -15281,6 +19088,13 @@ __popcountti2:                          // @__popcountti2
 	.cfi_offset w29, -16
 	stur	x1, [x29, #-8]
 	stur	x0, [x29, #-16]
+	movz	x16, #:abs_g0_nc:.L__profc___popcountti2
+	movk	x16, #:abs_g1_nc:.L__profc___popcountti2
+	movk	x16, #:abs_g2_nc:.L__profc___popcountti2
+	movk	x16, #:abs_g3:.L__profc___popcountti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	ldur	x16, [x29, #-8]
 	str	x16, [sp, #24]
@@ -15393,6 +19207,13 @@ __powidf2:                              // @__powidf2
 	.cfi_offset w29, -16
 	stur	d0, [x29, #-8]
 	stur	w0, [x29, #-12]
+	movz	x16, #:abs_g0_nc:.L__profc___powidf2
+	movk	x16, #:abs_g1_nc:.L__profc___powidf2
+	movk	x16, #:abs_g2_nc:.L__profc___powidf2
+	movk	x16, #:abs_g3:.L__profc___powidf2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-12]
 	lsr	w8, w8, #31
 	str	w8, [sp, #16]
@@ -15400,10 +19221,24 @@ __powidf2:                              // @__powidf2
 	str	x8, [sp, #8]
 	b	.LBB162_1
 .LBB162_1:                              // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___powidf2+8
+	movk	x16, #:abs_g1_nc:.L__profc___powidf2+8
+	movk	x16, #:abs_g2_nc:.L__profc___powidf2+8
+	movk	x16, #:abs_g3:.L__profc___powidf2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-12]
 	tbz	w8, #0, .LBB162_3
 	b	.LBB162_2
 .LBB162_2:                              //   in Loop: Header=BB162_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___powidf2+16
+	movk	x16, #:abs_g1_nc:.L__profc___powidf2+16
+	movk	x16, #:abs_g2_nc:.L__profc___powidf2+16
+	movk	x16, #:abs_g3:.L__profc___powidf2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	d1, [x29, #-8]
 	ldr	d0, [sp, #8]
 	fmul	d0, d0, d1
@@ -15418,6 +19253,13 @@ __powidf2:                              // @__powidf2
 	cbnz	w8, .LBB162_5
 	b	.LBB162_4
 .LBB162_4:
+	movz	x16, #:abs_g0_nc:.L__profc___powidf2+24
+	movk	x16, #:abs_g1_nc:.L__profc___powidf2+24
+	movk	x16, #:abs_g2_nc:.L__profc___powidf2+24
+	movk	x16, #:abs_g3:.L__profc___powidf2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB162_6
 .LBB162_5:                              //   in Loop: Header=BB162_1 Depth=1
 	ldur	d0, [x29, #-8]
@@ -15429,6 +19271,13 @@ __powidf2:                              // @__powidf2
 	cbz	w8, .LBB162_8
 	b	.LBB162_7
 .LBB162_7:
+	movz	x16, #:abs_g0_nc:.L__profc___powidf2+32
+	movk	x16, #:abs_g1_nc:.L__profc___powidf2+32
+	movk	x16, #:abs_g2_nc:.L__profc___powidf2+32
+	movk	x16, #:abs_g3:.L__profc___powidf2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	d1, [sp, #8]
 	fmov	d0, #1.00000000
 	fdiv	d0, d0, d1
@@ -15502,6 +19351,13 @@ __powisf2:                              // @__powisf2
 	.cfi_offset w29, -16
 	stur	s0, [x29, #-4]
 	stur	w0, [x29, #-8]
+	movz	x16, #:abs_g0_nc:.L__profc___powisf2
+	movk	x16, #:abs_g1_nc:.L__profc___powisf2
+	movk	x16, #:abs_g2_nc:.L__profc___powisf2
+	movk	x16, #:abs_g3:.L__profc___powisf2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	w8, [x29, #-8]
 	lsr	w8, w8, #31
 	stur	w8, [x29, #-12]
@@ -15509,10 +19365,24 @@ __powisf2:                              // @__powisf2
 	str	w8, [sp, #16]
 	b	.LBB163_1
 .LBB163_1:                              // =>This Inner Loop Header: Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___powisf2+8
+	movk	x16, #:abs_g1_nc:.L__profc___powisf2+8
+	movk	x16, #:abs_g2_nc:.L__profc___powisf2+8
+	movk	x16, #:abs_g3:.L__profc___powisf2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldurb	w8, [x29, #-8]
 	tbz	w8, #0, .LBB163_3
 	b	.LBB163_2
 .LBB163_2:                              //   in Loop: Header=BB163_1 Depth=1
+	movz	x16, #:abs_g0_nc:.L__profc___powisf2+16
+	movk	x16, #:abs_g1_nc:.L__profc___powisf2+16
+	movk	x16, #:abs_g2_nc:.L__profc___powisf2+16
+	movk	x16, #:abs_g3:.L__profc___powisf2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	s1, [x29, #-4]
 	ldr	s0, [sp, #16]
 	fmul	s0, s0, s1
@@ -15527,6 +19397,13 @@ __powisf2:                              // @__powisf2
 	cbnz	w8, .LBB163_5
 	b	.LBB163_4
 .LBB163_4:
+	movz	x16, #:abs_g0_nc:.L__profc___powisf2+24
+	movk	x16, #:abs_g1_nc:.L__profc___powisf2+24
+	movk	x16, #:abs_g2_nc:.L__profc___powisf2+24
+	movk	x16, #:abs_g3:.L__profc___powisf2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	b	.LBB163_6
 .LBB163_5:                              //   in Loop: Header=BB163_1 Depth=1
 	ldur	s0, [x29, #-4]
@@ -15538,6 +19415,13 @@ __powisf2:                              // @__powisf2
 	cbz	w8, .LBB163_8
 	b	.LBB163_7
 .LBB163_7:
+	movz	x16, #:abs_g0_nc:.L__profc___powisf2+32
+	movk	x16, #:abs_g1_nc:.L__profc___powisf2+32
+	movk	x16, #:abs_g2_nc:.L__profc___powisf2+32
+	movk	x16, #:abs_g3:.L__profc___powisf2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	s1, [sp, #16]
 	fmov	s0, #1.00000000
 	fdiv	s0, s0, s1
@@ -15611,6 +19495,13 @@ __ucmpdi2:                              // @__ucmpdi2
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-16]
 	str	x1, [sp, #24]
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpdi2
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpdi2
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpdi2
+	movk	x16, #:abs_g3:.L__profc___ucmpdi2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-16]
 	str	x8, [sp, #16]
 	ldr	x8, [sp, #24]
@@ -15621,6 +19512,13 @@ __ucmpdi2:                              // @__ucmpdi2
 	b.hs	.LBB164_2
 	b	.LBB164_1
 .LBB164_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpdi2+8
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpdi2+8
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpdi2+8
+	movk	x16, #:abs_g3:.L__profc___ucmpdi2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB164_9
@@ -15631,6 +19529,13 @@ __ucmpdi2:                              // @__ucmpdi2
 	b.ls	.LBB164_4
 	b	.LBB164_3
 .LBB164_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpdi2+16
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpdi2+16
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpdi2+16
+	movk	x16, #:abs_g3:.L__profc___ucmpdi2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB164_9
@@ -15641,6 +19546,13 @@ __ucmpdi2:                              // @__ucmpdi2
 	b.hs	.LBB164_6
 	b	.LBB164_5
 .LBB164_5:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpdi2+24
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpdi2+24
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpdi2+24
+	movk	x16, #:abs_g3:.L__profc___ucmpdi2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB164_9
@@ -15651,6 +19563,13 @@ __ucmpdi2:                              // @__ucmpdi2
 	b.ls	.LBB164_8
 	b	.LBB164_7
 .LBB164_7:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpdi2+32
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpdi2+32
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpdi2+32
+	movk	x16, #:abs_g3:.L__profc___ucmpdi2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB164_9
@@ -15722,6 +19641,13 @@ __aeabi_ulcmp:                          // @__aeabi_ulcmp
 	.cfi_offset w29, -16
 	str	x0, [sp, #8]
 	str	x1, [sp]
+	movz	x16, #:abs_g0_nc:.L__profc___aeabi_ulcmp
+	movk	x16, #:abs_g1_nc:.L__profc___aeabi_ulcmp
+	movk	x16, #:abs_g2_nc:.L__profc___aeabi_ulcmp
+	movk	x16, #:abs_g3:.L__profc___aeabi_ulcmp
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldr	x0, [sp, #8]
 	ldr	x1, [sp]
 	bl	__ucmpdi2
@@ -15790,6 +19716,13 @@ __ucmpti2:                              // @__ucmpti2
 	stur	x0, [x29, #-32]
 	str	x3, [sp, #40]
 	str	x2, [sp, #32]
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpti2
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpti2
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpti2
+	movk	x16, #:abs_g3:.L__profc___ucmpti2
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	ldur	x8, [x29, #-32]
 	ldur	x16, [x29, #-24]
 	str	x16, [sp, #24]
@@ -15804,6 +19737,13 @@ __ucmpti2:                              // @__ucmpti2
 	b.hs	.LBB166_2
 	b	.LBB166_1
 .LBB166_1:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpti2+8
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpti2+8
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpti2+8
+	movk	x16, #:abs_g3:.L__profc___ucmpti2+8
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB166_9
@@ -15814,6 +19754,13 @@ __ucmpti2:                              // @__ucmpti2
 	b.ls	.LBB166_4
 	b	.LBB166_3
 .LBB166_3:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpti2+16
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpti2+16
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpti2+16
+	movk	x16, #:abs_g3:.L__profc___ucmpti2+16
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB166_9
@@ -15824,6 +19771,13 @@ __ucmpti2:                              // @__ucmpti2
 	b.hs	.LBB166_6
 	b	.LBB166_5
 .LBB166_5:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpti2+24
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpti2+24
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpti2+24
+	movk	x16, #:abs_g3:.L__profc___ucmpti2+24
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, wzr
 	stur	w8, [x29, #-4]
 	b	.LBB166_9
@@ -15834,6 +19788,13 @@ __ucmpti2:                              // @__ucmpti2
 	b.ls	.LBB166_8
 	b	.LBB166_7
 .LBB166_7:
+	movz	x16, #:abs_g0_nc:.L__profc___ucmpti2+32
+	movk	x16, #:abs_g1_nc:.L__profc___ucmpti2+32
+	movk	x16, #:abs_g2_nc:.L__profc___ucmpti2+32
+	movk	x16, #:abs_g3:.L__profc___ucmpti2+32
+	ldr	x8, [x16]
+	add	x8, x8, #1
+	str	x8, [x16]
 	mov	w8, #2                          // =0x2
 	stur	w8, [x29, #-4]
 	b	.LBB166_9
@@ -15916,6 +19877,3831 @@ digits:
 	.type	seed,@object                    // @seed
 	.local	seed
 	.comm	seed,8,8
+	.hidden	__llvm_profile_runtime
+	.type	.L__profc_make_ti,@object       // @__profc_make_ti
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_ti
+	.p2align	3, 0x0
+.L__profc_make_ti:
+	.zero	8
+	.size	.L__profc_make_ti, 8
+
+	.type	.L__profd_make_ti,@object       // @__profd_make_ti
+	.section	__llvm_prf_data,"awG",@progbits,__profc_make_ti
+	.p2align	3, 0x0
+.L__profd_make_ti:
+	.xword	-5001490222628474638            // 0xba9723243ca3f0f2
+	.xword	24                              // 0x18
+	.xword	.L__profc_make_ti-.L__profd_make_ti
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_make_ti, 64
+
+	.type	.L__profc_make_tu,@object       // @__profc_make_tu
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_make_tu
+	.p2align	3, 0x0
+.L__profc_make_tu:
+	.zero	8
+	.size	.L__profc_make_tu, 8
+
+	.type	.L__profd_make_tu,@object       // @__profd_make_tu
+	.section	__llvm_prf_data,"awG",@progbits,__profc_make_tu
+	.p2align	3, 0x0
+.L__profd_make_tu:
+	.xword	-8857068571906375875            // 0x85155f0f843e7f3d
+	.xword	24                              // 0x18
+	.xword	.L__profc_make_tu-.L__profd_make_tu
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_make_tu, 64
+
+	.type	.L__profc_memmove,@object       // @__profc_memmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profc_memmove:
+	.zero	40
+	.size	.L__profc_memmove, 40
+
+	.type	.L__profd_memmove,@object       // @__profd_memmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmove
+	.p2align	3, 0x0
+.L__profd_memmove:
+	.xword	-306081897096246147             // 0xfbc09422e3668c7d
+	.xword	-4061701397412038936            // 0xc7a1f0194f8c36e8
+	.xword	.L__profc_memmove-.L__profd_memmove
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memmove, 64
+
+	.type	.L__profc_memccpy,@object       // @__profc_memccpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profc_memccpy:
+	.zero	40
+	.size	.L__profc_memccpy, 40
+
+	.type	.L__profd_memccpy,@object       // @__profd_memccpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memccpy
+	.p2align	3, 0x0
+.L__profd_memccpy:
+	.xword	-1590863763861247346            // 0xe9ec1dd5e5026a8e
+	.xword	1189690007454808                // 0x43a044a498458
+	.xword	.L__profc_memccpy-.L__profd_memccpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memccpy, 64
+
+	.type	.L__profc_memchr,@object        // @__profc_memchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profc_memchr:
+	.zero	40
+	.size	.L__profc_memchr, 40
+
+	.type	.L__profd_memchr,@object        // @__profd_memchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memchr
+	.p2align	3, 0x0
+.L__profd_memchr:
+	.xword	5708666158622859656             // 0x4f3941a01e026188
+	.xword	4538308109                      // 0x10e81160d
+	.xword	.L__profc_memchr-.L__profd_memchr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memchr, 64
+
+	.type	.L__profc_memcmp,@object        // @__profc_memcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profc_memcmp:
+	.zero	40
+	.size	.L__profc_memcmp, 40
+
+	.type	.L__profd_memcmp,@object        // @__profd_memcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcmp
+	.p2align	3, 0x0
+.L__profd_memcmp:
+	.xword	-4679550853048924350            // 0xbf0ee54adfa48742
+	.xword	4538045965                      // 0x10e7d160d
+	.xword	.L__profc_memcmp-.L__profd_memcmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memcmp, 64
+
+	.type	.L__profc_memcpy,@object        // @__profc_memcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profc_memcpy:
+	.zero	16
+	.size	.L__profc_memcpy, 16
+
+	.type	.L__profd_memcpy,@object        // @__profd_memcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memcpy
+	.p2align	3, 0x0
+.L__profd_memcpy:
+	.xword	3893303423671325810             // 0x3607cad612bdd472
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_memcpy-.L__profd_memcpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memcpy, 64
+
+	.type	.L__profc_memrchr,@object       // @__profc_memrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profc_memrchr:
+	.zero	24
+	.size	.L__profc_memrchr, 24
+
+	.type	.L__profd_memrchr,@object       // @__profd_memrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memrchr
+	.p2align	3, 0x0
+.L__profd_memrchr:
+	.xword	-548334422562728352             // 0xf863ecbf75079660
+	.xword	9516882138200                   // 0x8a7d2611458
+	.xword	.L__profc_memrchr-.L__profd_memrchr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memrchr, 64
+
+	.type	.L__profc_memset,@object        // @__profc_memset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profc_memset:
+	.zero	16
+	.size	.L__profc_memset, 16
+
+	.type	.L__profd_memset,@object        // @__profd_memset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memset
+	.p2align	3, 0x0
+.L__profd_memset:
+	.xword	-2741574704065975695            // 0xd9f3f85506f36a71
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_memset-.L__profd_memset
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memset, 64
+
+	.type	.L__profc_stpcpy,@object        // @__profc_stpcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profc_stpcpy:
+	.zero	16
+	.size	.L__profc_stpcpy, 16
+
+	.type	.L__profd_stpcpy,@object        // @__profd_stpcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_stpcpy
+	.p2align	3, 0x0
+.L__profd_stpcpy:
+	.xword	4454833295779690053             // 0x3dd2bf47a087f645
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_stpcpy-.L__profd_stpcpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_stpcpy, 64
+
+	.type	.L__profc_strchrnul,@object     // @__profc_strchrnul
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profc_strchrnul:
+	.zero	32
+	.size	.L__profc_strchrnul, 32
+
+	.type	.L__profd_strchrnul,@object     // @__profd_strchrnul
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchrnul
+	.p2align	3, 0x0
+.L__profd_strchrnul:
+	.xword	5039208642683934005             // 0x45eedd8fc8411535
+	.xword	70911064                        // 0x43a0458
+	.xword	.L__profc_strchrnul-.L__profd_strchrnul
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strchrnul, 64
+
+	.type	.L__profc_strchr,@object        // @__profc_strchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profc_strchr:
+	.zero	24
+	.size	.L__profc_strchr, 24
+
+	.type	.L__profd_strchr,@object        // @__profd_strchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strchr
+	.p2align	3, 0x0
+.L__profd_strchr:
+	.xword	-5671522429266412413            // 0xb14ab4664bea3c83
+	.xword	13914928649304                  // 0xca7d2611458
+	.xword	.L__profc_strchr-.L__profd_strchr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strchr, 64
+
+	.type	.L__profc_strcmp,@object        // @__profc_strcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profc_strcmp:
+	.zero	32
+	.size	.L__profc_strcmp, 32
+
+	.type	.L__profd_strcmp,@object        // @__profd_strcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strcmp
+	.p2align	3, 0x0
+.L__profd_strcmp:
+	.xword	1013198891307352868             // 0xe0f9b060331c324
+	.xword	70906968                        // 0x439f458
+	.xword	.L__profc_strcmp-.L__profd_strcmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strcmp, 64
+
+	.type	.L__profc_strlen,@object        // @__profc_strlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profc_strlen:
+	.zero	16
+	.size	.L__profc_strlen, 16
+
+	.type	.L__profd_strlen,@object        // @__profd_strlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strlen
+	.p2align	3, 0x0
+.L__profd_strlen:
+	.xword	2965136410638013299             // 0x292647db02a7d373
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_strlen-.L__profd_strlen
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strlen, 64
+
+	.type	.L__profc_strncmp,@object       // @__profc_strncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profc_strncmp:
+	.zero	72
+	.size	.L__profc_strncmp, 72
+
+	.type	.L__profd_strncmp,@object       // @__profd_strncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncmp
+	.p2align	3, 0x0
+.L__profd_strncmp:
+	.xword	-6058495834680104774            // 0xabebe6233cb568ba
+	.xword	7207353986825238351             // 0x6405aa43cb36b74f
+	.xword	.L__profc_strncmp-.L__profd_strncmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strncmp, 64
+
+	.type	.L__profc_swab,@object          // @__profc_swab
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profc_swab:
+	.zero	16
+	.size	.L__profc_swab, 16
+
+	.type	.L__profd_swab,@object          // @__profd_swab
+	.section	__llvm_prf_data,"awG",@progbits,__profc_swab
+	.p2align	3, 0x0
+.L__profd_swab:
+	.xword	-1619950660557759641            // 0xe984c77503cb9b67
+	.xword	18193                           // 0x4711
+	.xword	.L__profc_swab-.L__profd_swab
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_swab, 64
+
+	.type	.L__profc_isalpha,@object       // @__profc_isalpha
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profc_isalpha:
+	.zero	8
+	.size	.L__profc_isalpha, 8
+
+	.type	.L__profd_isalpha,@object       // @__profd_isalpha
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isalpha
+	.p2align	3, 0x0
+.L__profd_isalpha:
+	.xword	-1429966999967671460            // 0xec27bc96fe655b5c
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_isalpha-.L__profd_isalpha
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isalpha, 64
+
+	.type	.L__profc_isascii,@object       // @__profc_isascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profc_isascii:
+	.zero	8
+	.size	.L__profc_isascii, 8
+
+	.type	.L__profd_isascii,@object       // @__profd_isascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isascii
+	.p2align	3, 0x0
+.L__profd_isascii:
+	.xword	-4792250000779744687            // 0xbd7e8203c4a86a51
+	.xword	1562                            // 0x61a
+	.xword	.L__profc_isascii-.L__profd_isascii
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isascii, 64
+
+	.type	.L__profc_isblank,@object       // @__profc_isblank
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profc_isblank:
+	.zero	24
+	.size	.L__profc_isblank, 24
+
+	.type	.L__profd_isblank,@object       // @__profd_isblank
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isblank
+	.p2align	3, 0x0
+.L__profd_isblank:
+	.xword	2465200613623135234             // 0x223626e59b14fc02
+	.xword	6354911                         // 0x60f7df
+	.xword	.L__profc_isblank-.L__profd_isblank
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isblank, 64
+
+	.type	.L__profc_iscntrl,@object       // @__profc_iscntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profc_iscntrl:
+	.zero	24
+	.size	.L__profc_iscntrl, 24
+
+	.type	.L__profd_iscntrl,@object       // @__profd_iscntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iscntrl
+	.p2align	3, 0x0
+.L__profd_iscntrl:
+	.xword	8897732069425577183             // 0x7b7b182cc8b67cdf
+	.xword	6354655                         // 0x60f6df
+	.xword	.L__profc_iscntrl-.L__profd_iscntrl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_iscntrl, 64
+
+	.type	.L__profc_isdigit,@object       // @__profc_isdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profc_isdigit:
+	.zero	8
+	.size	.L__profc_isdigit, 8
+
+	.type	.L__profd_isdigit,@object       // @__profd_isdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isdigit
+	.p2align	3, 0x0
+.L__profd_isdigit:
+	.xword	3483985654529092453             // 0x30599a7e6cc36b65
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_isdigit-.L__profd_isdigit
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isdigit, 64
+
+	.type	.L__profc_isgraph,@object       // @__profc_isgraph
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profc_isgraph:
+	.zero	8
+	.size	.L__profc_isgraph, 8
+
+	.type	.L__profd_isgraph,@object       // @__profd_isgraph
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isgraph
+	.p2align	3, 0x0
+.L__profd_isgraph:
+	.xword	-127227288456547236             // 0xfe3bff7489cfb45c
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_isgraph-.L__profd_isgraph
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isgraph, 64
+
+	.type	.L__profc_islower,@object       // @__profc_islower
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profc_islower:
+	.zero	8
+	.size	.L__profc_islower, 8
+
+	.type	.L__profd_islower,@object       // @__profd_islower
+	.section	__llvm_prf_data,"awG",@progbits,__profc_islower
+	.p2align	3, 0x0
+.L__profd_islower:
+	.xword	7501983819047161697             // 0x681c66894508cf61
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_islower-.L__profd_islower
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_islower, 64
+
+	.type	.L__profc_isprint,@object       // @__profc_isprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profc_isprint:
+	.zero	8
+	.size	.L__profc_isprint, 8
+
+	.type	.L__profd_isprint,@object       // @__profd_isprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isprint
+	.p2align	3, 0x0
+.L__profd_isprint:
+	.xword	-7275761640889424986            // 0x9b074d56145f63a6
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_isprint-.L__profd_isprint
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isprint, 64
+
+	.type	.L__profc_isspace,@object       // @__profc_isspace
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profc_isspace:
+	.zero	24
+	.size	.L__profc_isspace, 24
+
+	.type	.L__profd_isspace,@object       // @__profd_isspace
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isspace
+	.p2align	3, 0x0
+.L__profd_isspace:
+	.xword	9032360604355461395             // 0x7d59641d39d70113
+	.xword	6354907                         // 0x60f7db
+	.xword	.L__profc_isspace-.L__profd_isspace
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isspace, 64
+
+	.type	.L__profc_isupper,@object       // @__profc_isupper
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profc_isupper:
+	.zero	8
+	.size	.L__profc_isupper, 8
+
+	.type	.L__profd_isupper,@object       // @__profd_isupper
+	.section	__llvm_prf_data,"awG",@progbits,__profc_isupper
+	.p2align	3, 0x0
+.L__profd_isupper:
+	.xword	4174714232255583053             // 0x39ef9079c45c934d
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_isupper-.L__profd_isupper
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_isupper, 64
+
+	.type	.L__profc_iswcntrl,@object      // @__profc_iswcntrl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profc_iswcntrl:
+	.zero	56
+	.size	.L__profc_iswcntrl, 56
+
+	.type	.L__profd_iswcntrl,@object      // @__profd_iswcntrl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswcntrl
+	.p2align	3, 0x0
+.L__profd_iswcntrl:
+	.xword	7000259844681188668             // 0x6125eb3d61a7453c
+	.xword	106600273393371                 // 0x60f3cf6db6db
+	.xword	.L__profc_iswcntrl-.L__profd_iswcntrl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_iswcntrl, 64
+
+	.type	.L__profc_iswdigit,@object      // @__profc_iswdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profc_iswdigit:
+	.zero	8
+	.size	.L__profc_iswdigit, 8
+
+	.type	.L__profd_iswdigit,@object      // @__profd_iswdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswdigit
+	.p2align	3, 0x0
+.L__profd_iswdigit:
+	.xword	8583753245428091608             // 0x771f9e1919590ad8
+	.xword	1563                            // 0x61b
+	.xword	.L__profc_iswdigit-.L__profd_iswdigit
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_iswdigit, 64
+
+	.type	.L__profc_iswprint,@object      // @__profc_iswprint
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profc_iswprint:
+	.zero	80
+	.size	.L__profc_iswprint, 80
+
+	.type	.L__profd_iswprint,@object      // @__profd_iswprint
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswprint
+	.p2align	3, 0x0
+.L__profd_iswprint:
+	.xword	-719555261641779946             // 0xf603a04d49941516
+	.xword	-2566119187471392224            // 0xdc635031e3742220
+	.xword	.L__profc_iswprint-.L__profd_iswprint
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	10                              // 0xa
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_iswprint, 64
+
+	.type	.L__profc_iswxdigit,@object     // @__profc_iswxdigit
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profc_iswxdigit:
+	.zero	24
+	.size	.L__profc_iswxdigit, 24
+
+	.type	.L__profd_iswxdigit,@object     // @__profd_iswxdigit
+	.section	__llvm_prf_data,"awG",@progbits,__profc_iswxdigit
+	.p2align	3, 0x0
+.L__profd_iswxdigit:
+	.xword	624771703830219826              // 0x8aba28df0840c32
+	.xword	6354651                         // 0x60f6db
+	.xword	.L__profc_iswxdigit-.L__profd_iswxdigit
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_iswxdigit, 64
+
+	.type	.L__profc_toascii,@object       // @__profc_toascii
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profc_toascii:
+	.zero	8
+	.size	.L__profc_toascii, 8
+
+	.type	.L__profd_toascii,@object       // @__profd_toascii
+	.section	__llvm_prf_data,"awG",@progbits,__profc_toascii
+	.p2align	3, 0x0
+.L__profd_toascii:
+	.xword	4548159975983457080             // 0x3f1e4f66a624a338
+	.xword	24                              // 0x18
+	.xword	.L__profc_toascii-.L__profd_toascii
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_toascii, 64
+
+	.type	.L__profc_fdim,@object          // @__profc_fdim
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profc_fdim:
+	.zero	32
+	.size	.L__profc_fdim, 32
+
+	.type	.L__profd_fdim,@object          // @__profd_fdim
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdim
+	.p2align	3, 0x0
+.L__profd_fdim:
+	.xword	-3545869933759497925            // 0xceca8a150286f93b
+	.xword	7369846577040809592             // 0x6646f46a29a55e78
+	.xword	.L__profc_fdim-.L__profd_fdim
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fdim, 64
+
+	.type	.L__profc_fdimf,@object         // @__profc_fdimf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profc_fdimf:
+	.zero	32
+	.size	.L__profc_fdimf, 32
+
+	.type	.L__profd_fdimf,@object         // @__profd_fdimf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fdimf
+	.p2align	3, 0x0
+.L__profd_fdimf:
+	.xword	-1547869627280940664            // 0xea84dcc6634da188
+	.xword	7369846577040809592             // 0x6646f46a29a55e78
+	.xword	.L__profc_fdimf-.L__profd_fdimf
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fdimf, 64
+
+	.type	.L__profc_fmax,@object          // @__profc_fmax
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profc_fmax:
+	.zero	48
+	.size	.L__profc_fmax, 48
+
+	.type	.L__profd_fmax,@object          // @__profd_fmax
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmax
+	.p2align	3, 0x0
+.L__profd_fmax:
+	.xword	-2423801789625842334            // 0xde5ced1d3b654562
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fmax-.L__profd_fmax
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fmax, 64
+
+	.type	.L__profc_fmaxf,@object         // @__profc_fmaxf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profc_fmaxf:
+	.zero	48
+	.size	.L__profc_fmaxf, 48
+
+	.type	.L__profd_fmaxf,@object         // @__profd_fmaxf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxf
+	.p2align	3, 0x0
+.L__profd_fmaxf:
+	.xword	-5134209104457391460            // 0xb8bfa0058e3da29c
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fmaxf-.L__profd_fmaxf
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fmaxf, 64
+
+	.type	.L__profc_fmaxl,@object         // @__profc_fmaxl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profc_fmaxl:
+	.zero	48
+	.size	.L__profc_fmaxl, 48
+
+	.type	.L__profd_fmaxl,@object         // @__profd_fmaxl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmaxl
+	.p2align	3, 0x0
+.L__profd_fmaxl:
+	.xword	-3138580006960380340            // 0xd471861cd1fbc64c
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fmaxl-.L__profd_fmaxl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fmaxl, 64
+
+	.type	.L__profc_fmin,@object          // @__profc_fmin
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profc_fmin:
+	.zero	48
+	.size	.L__profc_fmin, 48
+
+	.type	.L__profd_fmin,@object          // @__profd_fmin
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fmin
+	.p2align	3, 0x0
+.L__profd_fmin:
+	.xword	965427315610335377              // 0xd65e3074b69b891
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fmin-.L__profd_fmin
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fmin, 64
+
+	.type	.L__profc_fminf,@object         // @__profc_fminf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profc_fminf:
+	.zero	48
+	.size	.L__profc_fminf, 48
+
+	.type	.L__profd_fminf,@object         // @__profd_fminf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminf
+	.p2align	3, 0x0
+.L__profd_fminf:
+	.xword	7710199602704325723             // 0x6b0021b0328c9c5b
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fminf-.L__profd_fminf
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fminf, 64
+
+	.type	.L__profc_fminl,@object         // @__profc_fminl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profc_fminl:
+	.zero	48
+	.size	.L__profc_fminl, 48
+
+	.type	.L__profd_fminl,@object         // @__profd_fminl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_fminl
+	.p2align	3, 0x0
+.L__profd_fminl:
+	.xword	2487418697363824514             // 0x2285162058091f82
+	.xword	3977842549302548673             // 0x373422b91b9cd8c1
+	.xword	.L__profc_fminl-.L__profd_fminl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_fminl, 64
+
+	.type	.L__profc_l64a,@object          // @__profc_l64a
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profc_l64a:
+	.zero	16
+	.size	.L__profc_l64a, 16
+
+	.type	.L__profd_l64a,@object          // @__profd_l64a
+	.section	__llvm_prf_data,"awG",@progbits,__profc_l64a
+	.p2align	3, 0x0
+.L__profd_l64a:
+	.xword	-6158745991357604691            // 0xaa87bd26bb44dcad
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_l64a-.L__profd_l64a
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_l64a, 64
+
+	.type	.L__profc_srand,@object         // @__profc_srand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profc_srand:
+	.zero	8
+	.size	.L__profc_srand, 8
+
+	.type	.L__profd_srand,@object         // @__profd_srand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_srand
+	.p2align	3, 0x0
+.L__profd_srand:
+	.xword	-2085616837322687880            // 0xe30e668959ceba78
+	.xword	0                               // 0x0
+	.xword	.L__profc_srand-.L__profd_srand
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_srand, 64
+
+	.type	.L__profc_rand,@object          // @__profc_rand
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profc_rand:
+	.zero	8
+	.size	.L__profc_rand, 8
+
+	.type	.L__profd_rand,@object          // @__profd_rand
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rand
+	.p2align	3, 0x0
+.L__profd_rand:
+	.xword	7206085285791387956             // 0x6401286350c3d134
+	.xword	24                              // 0x18
+	.xword	.L__profc_rand-.L__profd_rand
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rand, 64
+
+	.type	.L__profc_insque,@object        // @__profc_insque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profc_insque:
+	.zero	24
+	.size	.L__profc_insque, 24
+
+	.type	.L__profd_insque,@object        // @__profd_insque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_insque
+	.p2align	3, 0x0
+.L__profd_insque:
+	.xword	-5080349535175464041            // 0xb97ef903bd0bab97
+	.xword	45786906010769                  // 0x29a49844a491
+	.xword	.L__profc_insque-.L__profd_insque
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_insque, 64
+
+	.type	.L__profc_remque,@object        // @__profc_remque
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profc_remque:
+	.zero	24
+	.size	.L__profc_remque, 24
+
+	.type	.L__profd_remque,@object        // @__profd_remque
+	.section	__llvm_prf_data,"awG",@progbits,__profc_remque
+	.p2align	3, 0x0
+.L__profd_remque:
+	.xword	-7214219538753974334            // 0x9be1f18d54e30fc2
+	.xword	11043906705                     // 0x29244a491
+	.xword	.L__profc_remque-.L__profd_remque
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_remque, 64
+
+	.type	.L__profc_lsearch,@object       // @__profc_lsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profc_lsearch:
+	.zero	24
+	.size	.L__profc_lsearch, 24
+
+	.type	.L__profd_lsearch,@object       // @__profd_lsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lsearch
+	.p2align	3, 0x0
+.L__profd_lsearch:
+	.xword	-7032153342590886098            // 0x9e68c5caf8cb5f2e
+	.xword	1245367951758424                // 0x46ca7d2611458
+	.xword	.L__profc_lsearch-.L__profd_lsearch
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_lsearch, 64
+
+	.type	.L__profc_lfind,@object         // @__profc_lfind
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profc_lfind:
+	.zero	24
+	.size	.L__profc_lfind, 24
+
+	.type	.L__profd_lfind,@object         // @__profd_lfind
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lfind
+	.p2align	3, 0x0
+.L__profd_lfind:
+	.xword	-6350214982902907667            // 0xa7df811e30b57ced
+	.xword	1245367951758424                // 0x46ca7d2611458
+	.xword	.L__profc_lfind-.L__profd_lfind
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_lfind, 64
+
+	.type	.L__profc_abs,@object           // @__profc_abs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profc_abs:
+	.zero	16
+	.size	.L__profc_abs, 16
+
+	.type	.L__profd_abs,@object           // @__profd_abs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_abs
+	.p2align	3, 0x0
+.L__profd_abs:
+	.xword	-238465663743841031             // 0xfcb0ccbe056bacf9
+	.xword	99164                           // 0x1835c
+	.xword	.L__profc_abs-.L__profd_abs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_abs, 64
+
+	.type	.L__profc_atoi,@object          // @__profc_atoi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profc_atoi:
+	.zero	56
+	.size	.L__profc_atoi, 56
+
+	.type	.L__profd_atoi,@object          // @__profd_atoi
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoi
+	.p2align	3, 0x0
+.L__profd_atoi:
+	.xword	-6544211519801369139            // 0xa52e4a4ba3385dcd
+	.xword	638206505195021                 // 0x244720809160d
+	.xword	.L__profc_atoi-.L__profd_atoi
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_atoi, 64
+
+	.type	.L__profc_atol,@object          // @__profc_atol
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profc_atol:
+	.zero	56
+	.size	.L__profc_atol, 56
+
+	.type	.L__profd_atol,@object          // @__profd_atol
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atol
+	.p2align	3, 0x0
+.L__profd_atol:
+	.xword	8236175749196770609             // 0x724cc634ee8f6d31
+	.xword	638206505195021                 // 0x244720809160d
+	.xword	.L__profc_atol-.L__profd_atol
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_atol, 64
+
+	.type	.L__profc_atoll,@object         // @__profc_atoll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profc_atoll:
+	.zero	56
+	.size	.L__profc_atoll, 56
+
+	.type	.L__profd_atoll,@object         // @__profd_atoll
+	.section	__llvm_prf_data,"awG",@progbits,__profc_atoll
+	.p2align	3, 0x0
+.L__profd_atoll:
+	.xword	3653807471789013357             // 0x32b4ee8971a6f96d
+	.xword	638206505195021                 // 0x244720809160d
+	.xword	.L__profc_atoll-.L__profd_atoll
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_atoll, 64
+
+	.type	.L__profc_bsearch,@object       // @__profc_bsearch
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profc_bsearch:
+	.zero	32
+	.size	.L__profc_bsearch, 32
+
+	.type	.L__profd_bsearch,@object       // @__profd_bsearch
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch
+	.p2align	3, 0x0
+.L__profd_bsearch:
+	.xword	8750110911118262334             // 0x796ea3837a79403e
+	.xword	-852542619444921222             // 0xf42b29012c1abc7a
+	.xword	.L__profc_bsearch-.L__profd_bsearch
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bsearch, 64
+
+	.type	.L__profc_bsearch_r,@object     // @__profc_bsearch_r
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profc_bsearch_r:
+	.zero	32
+	.size	.L__profc_bsearch_r, 32
+
+	.type	.L__profd_bsearch_r,@object     // @__profd_bsearch_r
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bsearch_r
+	.p2align	3, 0x0
+.L__profd_bsearch_r:
+	.xword	1417097008757763708             // 0x13aa8a38ab466e7c
+	.xword	1259382983000112142             // 0x117a3a2689e4bc0e
+	.xword	.L__profc_bsearch_r-.L__profd_bsearch_r
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bsearch_r, 64
+
+	.type	.L__profc_div,@object           // @__profc_div
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profc_div:
+	.zero	8
+	.size	.L__profc_div, 8
+
+	.type	.L__profd_div,@object           // @__profd_div
+	.section	__llvm_prf_data,"awG",@progbits,__profc_div
+	.p2align	3, 0x0
+.L__profd_div:
+	.xword	5497092892325669176             // 0x4c4998dc58656938
+	.xword	24                              // 0x18
+	.xword	.L__profc_div-.L__profd_div
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_div, 64
+
+	.type	.L__profc_imaxabs,@object       // @__profc_imaxabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profc_imaxabs:
+	.zero	16
+	.size	.L__profc_imaxabs, 16
+
+	.type	.L__profd_imaxabs,@object       // @__profd_imaxabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxabs
+	.p2align	3, 0x0
+.L__profd_imaxabs:
+	.xword	8946668544180752025             // 0x7c28f3a3b30e0e99
+	.xword	99164                           // 0x1835c
+	.xword	.L__profc_imaxabs-.L__profd_imaxabs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_imaxabs, 64
+
+	.type	.L__profc_imaxdiv,@object       // @__profc_imaxdiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profc_imaxdiv:
+	.zero	8
+	.size	.L__profc_imaxdiv, 8
+
+	.type	.L__profd_imaxdiv,@object       // @__profd_imaxdiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_imaxdiv
+	.p2align	3, 0x0
+.L__profd_imaxdiv:
+	.xword	-3928426486442246988            // 0xc97b6cec9d5fbcb4
+	.xword	24                              // 0x18
+	.xword	.L__profc_imaxdiv-.L__profd_imaxdiv
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_imaxdiv, 64
+
+	.type	.L__profc_labs,@object          // @__profc_labs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profc_labs:
+	.zero	16
+	.size	.L__profc_labs, 16
+
+	.type	.L__profd_labs,@object          // @__profd_labs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_labs
+	.p2align	3, 0x0
+.L__profd_labs:
+	.xword	-7118441263952323418            // 0x9d363762b3a39ca6
+	.xword	99164                           // 0x1835c
+	.xword	.L__profc_labs-.L__profd_labs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_labs, 64
+
+	.type	.L__profc_ldiv,@object          // @__profc_ldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profc_ldiv:
+	.zero	8
+	.size	.L__profc_ldiv, 8
+
+	.type	.L__profd_ldiv,@object          // @__profd_ldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldiv
+	.p2align	3, 0x0
+.L__profd_ldiv:
+	.xword	7149836041034155625             // 0x633951ff74204669
+	.xword	24                              // 0x18
+	.xword	.L__profc_ldiv-.L__profd_ldiv
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_ldiv, 64
+
+	.type	.L__profc_llabs,@object         // @__profc_llabs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profc_llabs:
+	.zero	16
+	.size	.L__profc_llabs, 16
+
+	.type	.L__profd_llabs,@object         // @__profd_llabs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_llabs
+	.p2align	3, 0x0
+.L__profd_llabs:
+	.xword	7684789126781046466             // 0x6aa5dafebb918ec2
+	.xword	99164                           // 0x1835c
+	.xword	.L__profc_llabs-.L__profd_llabs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_llabs, 64
+
+	.type	.L__profc_lldiv,@object         // @__profc_lldiv
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profc_lldiv:
+	.zero	8
+	.size	.L__profc_lldiv, 8
+
+	.type	.L__profd_lldiv,@object         // @__profd_lldiv
+	.section	__llvm_prf_data,"awG",@progbits,__profc_lldiv
+	.p2align	3, 0x0
+.L__profd_lldiv:
+	.xword	-5329156747615108898            // 0xb60b082c520680de
+	.xword	24                              // 0x18
+	.xword	.L__profc_lldiv-.L__profd_lldiv
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_lldiv, 64
+
+	.type	.L__profc_wcschr,@object        // @__profc_wcschr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profc_wcschr:
+	.zero	40
+	.size	.L__profc_wcschr, 40
+
+	.type	.L__profd_wcschr,@object        // @__profd_wcschr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcschr
+	.p2align	3, 0x0
+.L__profd_wcschr:
+	.xword	-2279810736707830048            // 0xe05c7c36c3687ee0
+	.xword	4538308109                      // 0x10e81160d
+	.xword	.L__profc_wcschr-.L__profd_wcschr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wcschr, 64
+
+	.type	.L__profc_wcscmp,@object        // @__profc_wcscmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profc_wcscmp:
+	.zero	56
+	.size	.L__profc_wcscmp, 56
+
+	.type	.L__profd_wcscmp,@object        // @__profd_wcscmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscmp
+	.p2align	3, 0x0
+.L__profd_wcscmp:
+	.xword	-3710185595167438704            // 0xcc82c5dbcd460890
+	.xword	1188468208228060                // 0x438e7d160d6dc
+	.xword	.L__profc_wcscmp-.L__profd_wcscmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wcscmp, 64
+
+	.type	.L__profc_wcscpy,@object        // @__profc_wcscpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profc_wcscpy:
+	.zero	16
+	.size	.L__profc_wcscpy, 16
+
+	.type	.L__profd_wcscpy,@object        // @__profd_wcscpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcscpy
+	.p2align	3, 0x0
+.L__profd_wcscpy:
+	.xword	-8381368184235816342            // 0x8baf660af6dd0a6a
+	.xword	9304                            // 0x2458
+	.xword	.L__profc_wcscpy-.L__profd_wcscpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wcscpy, 64
+
+	.type	.L__profc_wcslen,@object        // @__profc_wcslen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profc_wcslen:
+	.zero	16
+	.size	.L__profc_wcslen, 16
+
+	.type	.L__profd_wcslen,@object        // @__profd_wcslen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcslen
+	.p2align	3, 0x0
+.L__profd_wcslen:
+	.xword	3988408974905483574             // 0x3759acd4c838a136
+	.xword	17496                           // 0x4458
+	.xword	.L__profc_wcslen-.L__profd_wcslen
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wcslen, 64
+
+	.type	.L__profc_wcsncmp,@object       // @__profc_wcsncmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profc_wcsncmp:
+	.zero	80
+	.size	.L__profc_wcsncmp, 80
+
+	.type	.L__profd_wcsncmp,@object       // @__profd_wcsncmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wcsncmp
+	.p2align	3, 0x0
+.L__profd_wcsncmp:
+	.xword	-5425166749483878188            // 0xb4b5ef95c9c0b8d4
+	.xword	6710790269995215964             // 0x5d218431fd366c5c
+	.xword	.L__profc_wcsncmp-.L__profd_wcsncmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	10                              // 0xa
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wcsncmp, 64
+
+	.type	.L__profc_wmemchr,@object       // @__profc_wmemchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profc_wmemchr:
+	.zero	40
+	.size	.L__profc_wmemchr, 40
+
+	.type	.L__profd_wmemchr,@object       // @__profd_wmemchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemchr
+	.p2align	3, 0x0
+.L__profd_wmemchr:
+	.xword	-150916099757221660             // 0xfde7d69b5b1558e4
+	.xword	4538308109                      // 0x10e81160d
+	.xword	.L__profc_wmemchr-.L__profd_wmemchr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wmemchr, 64
+
+	.type	.L__profc_wmemcmp,@object       // @__profc_wmemcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profc_wmemcmp:
+	.zero	48
+	.size	.L__profc_wmemcmp, 48
+
+	.type	.L__profd_wmemcmp,@object       // @__profd_wmemcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcmp
+	.p2align	3, 0x0
+.L__profd_wmemcmp:
+	.xword	5386172057678365784             // 0x4abf86f3050dc458
+	.xword	1189621521503964                // 0x439f45834d6dc
+	.xword	.L__profc_wmemcmp-.L__profd_wmemcmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	6                               // 0x6
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wmemcmp, 64
+
+	.type	.L__profc_wmemcpy,@object       // @__profc_wmemcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profc_wmemcpy:
+	.zero	16
+	.size	.L__profc_wmemcpy, 16
+
+	.type	.L__profd_wmemcpy,@object       // @__profd_wmemcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemcpy
+	.p2align	3, 0x0
+.L__profd_wmemcpy:
+	.xword	7326050423799855187             // 0x65ab5c0b9d30b853
+	.xword	9304                            // 0x2458
+	.xword	.L__profc_wmemcpy-.L__profd_wmemcpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wmemcpy, 64
+
+	.type	.L__profc_wmemmove,@object      // @__profc_wmemmove
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profc_wmemmove:
+	.zero	40
+	.size	.L__profc_wmemmove, 40
+
+	.type	.L__profd_wmemmove,@object      // @__profd_wmemmove
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemmove
+	.p2align	3, 0x0
+.L__profd_wmemmove:
+	.xword	-4659407939446788683            // 0xbf56752a69a3adb5
+	.xword	-1500206092990891740            // 0xeb2e3281c166b924
+	.xword	.L__profc_wmemmove-.L__profd_wmemmove
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wmemmove, 64
+
+	.type	.L__profc_wmemset,@object       // @__profc_wmemset
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profc_wmemset:
+	.zero	16
+	.size	.L__profc_wmemset, 16
+
+	.type	.L__profd_wmemset,@object       // @__profd_wmemset
+	.section	__llvm_prf_data,"awG",@progbits,__profc_wmemset
+	.p2align	3, 0x0
+.L__profd_wmemset:
+	.xword	-8291142148468431281            // 0x8ceff224f245264f
+	.xword	9304                            // 0x2458
+	.xword	.L__profc_wmemset-.L__profd_wmemset
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_wmemset, 64
+
+	.type	.L__profc_bcopy,@object         // @__profc_bcopy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profc_bcopy:
+	.zero	40
+	.size	.L__profc_bcopy, 40
+
+	.type	.L__profd_bcopy,@object         // @__profd_bcopy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bcopy
+	.p2align	3, 0x0
+.L__profd_bcopy:
+	.xword	-8407331144368071880            // 0x8b5328de3edcdb38
+	.xword	5234109875325077019             // 0x48a34b333a1d861b
+	.xword	.L__profc_bcopy-.L__profd_bcopy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bcopy, 64
+
+	.type	.L__profc_rotl64,@object        // @__profc_rotl64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profc_rotl64:
+	.zero	8
+	.size	.L__profc_rotl64, 8
+
+	.type	.L__profd_rotl64,@object        // @__profd_rotl64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl64
+	.p2align	3, 0x0
+.L__profd_rotl64:
+	.xword	4714666614722164144             // 0x416ddc4e84e875b0
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotl64-.L__profd_rotl64
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotl64, 64
+
+	.type	.L__profc_rotr64,@object        // @__profc_rotr64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profc_rotr64:
+	.zero	8
+	.size	.L__profc_rotr64, 8
+
+	.type	.L__profd_rotr64,@object        // @__profd_rotr64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr64
+	.p2align	3, 0x0
+.L__profd_rotr64:
+	.xword	-8427642833712987187            // 0x8b0aff7e8aabc3cd
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotr64-.L__profd_rotr64
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotr64, 64
+
+	.type	.L__profc_rotl32,@object        // @__profc_rotl32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profc_rotl32:
+	.zero	8
+	.size	.L__profc_rotl32, 8
+
+	.type	.L__profd_rotl32,@object        // @__profd_rotl32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl32
+	.p2align	3, 0x0
+.L__profd_rotl32:
+	.xword	6417704780586152324             // 0x5910447ed829f184
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotl32-.L__profd_rotl32
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotl32, 64
+
+	.type	.L__profc_rotr32,@object        // @__profc_rotr32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profc_rotr32:
+	.zero	8
+	.size	.L__profc_rotr32, 8
+
+	.type	.L__profd_rotr32,@object        // @__profd_rotr32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr32
+	.p2align	3, 0x0
+.L__profd_rotr32:
+	.xword	-5668908084823466940            // 0xb153fe21cbc1dc44
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotr32-.L__profd_rotr32
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotr32, 64
+
+	.type	.L__profc_rotl_sz,@object       // @__profc_rotl_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profc_rotl_sz:
+	.zero	8
+	.size	.L__profc_rotl_sz, 8
+
+	.type	.L__profd_rotl_sz,@object       // @__profd_rotl_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl_sz
+	.p2align	3, 0x0
+.L__profd_rotl_sz:
+	.xword	-3686623714176605670            // 0xccd67b43b7f8e21a
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotl_sz-.L__profd_rotl_sz
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotl_sz, 64
+
+	.type	.L__profc_rotr_sz,@object       // @__profc_rotr_sz
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profc_rotr_sz:
+	.zero	8
+	.size	.L__profc_rotr_sz, 8
+
+	.type	.L__profd_rotr_sz,@object       // @__profd_rotr_sz
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr_sz
+	.p2align	3, 0x0
+.L__profd_rotr_sz:
+	.xword	3415499704483829380             // 0x2f664ae29835d684
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotr_sz-.L__profd_rotr_sz
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotr_sz, 64
+
+	.type	.L__profc_rotl16,@object        // @__profc_rotl16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profc_rotl16:
+	.zero	8
+	.size	.L__profc_rotl16, 8
+
+	.type	.L__profd_rotl16,@object        // @__profd_rotl16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl16
+	.p2align	3, 0x0
+.L__profd_rotl16:
+	.xword	7327166975465201445             // 0x65af538b0e939f25
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotl16-.L__profd_rotl16
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotl16, 64
+
+	.type	.L__profc_rotr16,@object        // @__profc_rotr16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profc_rotr16:
+	.zero	8
+	.size	.L__profc_rotr16, 8
+
+	.type	.L__profd_rotr16,@object        // @__profd_rotr16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr16
+	.p2align	3, 0x0
+.L__profd_rotr16:
+	.xword	5274763753728838268             // 0x4933b9afe71d0a7c
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotr16-.L__profd_rotr16
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotr16, 64
+
+	.type	.L__profc_rotl8,@object         // @__profc_rotl8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profc_rotl8:
+	.zero	8
+	.size	.L__profc_rotl8, 8
+
+	.type	.L__profd_rotl8,@object         // @__profd_rotl8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotl8
+	.p2align	3, 0x0
+.L__profd_rotl8:
+	.xword	4408423234350850624             // 0x3d2ddd93270fa240
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotl8-.L__profd_rotl8
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotl8, 64
+
+	.type	.L__profc_rotr8,@object         // @__profc_rotr8
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profc_rotr8:
+	.zero	8
+	.size	.L__profc_rotr8, 8
+
+	.type	.L__profd_rotr8,@object         // @__profd_rotr8
+	.section	__llvm_prf_data,"awG",@progbits,__profc_rotr8
+	.p2align	3, 0x0
+.L__profd_rotr8:
+	.xword	-6535801773217052896            // 0xa54c2aea59078720
+	.xword	24                              // 0x18
+	.xword	.L__profc_rotr8-.L__profd_rotr8
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_rotr8, 64
+
+	.type	.L__profc_bswap_16,@object      // @__profc_bswap_16
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profc_bswap_16:
+	.zero	8
+	.size	.L__profc_bswap_16, 8
+
+	.type	.L__profd_bswap_16,@object      // @__profd_bswap_16
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_16
+	.p2align	3, 0x0
+.L__profd_bswap_16:
+	.xword	-8870828063230114195            // 0x84e47ce04b9a466d
+	.xword	24                              // 0x18
+	.xword	.L__profc_bswap_16-.L__profd_bswap_16
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bswap_16, 64
+
+	.type	.L__profc_bswap_32,@object      // @__profc_bswap_32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profc_bswap_32:
+	.zero	8
+	.size	.L__profc_bswap_32, 8
+
+	.type	.L__profd_bswap_32,@object      // @__profd_bswap_32
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_32
+	.p2align	3, 0x0
+.L__profd_bswap_32:
+	.xword	7304833549461180700             // 0x655ffb691afd511c
+	.xword	24                              // 0x18
+	.xword	.L__profc_bswap_32-.L__profd_bswap_32
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bswap_32, 64
+
+	.type	.L__profc_bswap_64,@object      // @__profc_bswap_64
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profc_bswap_64:
+	.zero	8
+	.size	.L__profc_bswap_64, 8
+
+	.type	.L__profd_bswap_64,@object      // @__profd_bswap_64
+	.section	__llvm_prf_data,"awG",@progbits,__profc_bswap_64
+	.p2align	3, 0x0
+.L__profd_bswap_64:
+	.xword	2873856403134720854             // 0x27e1fd2c1c53ab56
+	.xword	24                              // 0x18
+	.xword	.L__profc_bswap_64-.L__profd_bswap_64
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_bswap_64, 64
+
+	.type	.L__profc_ffs,@object           // @__profc_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profc_ffs:
+	.zero	24
+	.size	.L__profc_ffs, 24
+
+	.type	.L__profd_ffs,@object           // @__profd_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ffs
+	.p2align	3, 0x0
+.L__profd_ffs:
+	.xword	9222170723057548859             // 0x7ffbbb6955da3e3b
+	.xword	19458657686616                  // 0x11b292611458
+	.xword	.L__profc_ffs-.L__profd_ffs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_ffs, 64
+
+	.type	.L__profc_libiberty_ffs,@object // @__profc_libiberty_ffs
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profc_libiberty_ffs:
+	.zero	24
+	.size	.L__profc_libiberty_ffs, 24
+
+	.type	.L__profd_libiberty_ffs,@object // @__profd_libiberty_ffs
+	.section	__llvm_prf_data,"awG",@progbits,__profc_libiberty_ffs
+	.p2align	3, 0x0
+.L__profd_libiberty_ffs:
+	.xword	65216057573358521               // 0xe7b1a8a94fbbb9
+	.xword	2952352215704664                // 0xa7d261111a458
+	.xword	.L__profc_libiberty_ffs-.L__profd_libiberty_ffs
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_libiberty_ffs, 64
+
+	.type	.L__profc_gl_isinff,@object     // @__profc_gl_isinff
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profc_gl_isinff:
+	.zero	24
+	.size	.L__profc_gl_isinff, 24
+
+	.type	.L__profd_gl_isinff,@object     // @__profd_gl_isinff
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinff
+	.p2align	3, 0x0
+.L__profd_gl_isinff:
+	.xword	6535010584615638394             // 0x5ab10580b36ed57a
+	.xword	6354652                         // 0x60f6dc
+	.xword	.L__profc_gl_isinff-.L__profd_gl_isinff
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_gl_isinff, 64
+
+	.type	.L__profc_gl_isinfd,@object     // @__profc_gl_isinfd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profc_gl_isinfd:
+	.zero	24
+	.size	.L__profc_gl_isinfd, 24
+
+	.type	.L__profd_gl_isinfd,@object     // @__profd_gl_isinfd
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfd
+	.p2align	3, 0x0
+.L__profd_gl_isinfd:
+	.xword	-9165907066207032774            // 0x80cc28161a7caa3a
+	.xword	6354652                         // 0x60f6dc
+	.xword	.L__profc_gl_isinfd-.L__profd_gl_isinfd
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_gl_isinfd, 64
+
+	.type	.L__profc_gl_isinfl,@object     // @__profc_gl_isinfl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profc_gl_isinfl:
+	.zero	24
+	.size	.L__profc_gl_isinfl, 24
+
+	.type	.L__profd_gl_isinfl,@object     // @__profd_gl_isinfl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_gl_isinfl
+	.p2align	3, 0x0
+.L__profd_gl_isinfl:
+	.xword	4731159788068304891             // 0x41a874c2af6c77fb
+	.xword	6354652                         // 0x60f6dc
+	.xword	.L__profc_gl_isinfl-.L__profd_gl_isinfl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_gl_isinfl, 64
+
+	.type	.L__profc__Qp_itoq,@object      // @__profc__Qp_itoq
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profc__Qp_itoq:
+	.zero	8
+	.size	.L__profc__Qp_itoq, 8
+
+	.type	.L__profd__Qp_itoq,@object      // @__profd__Qp_itoq
+	.section	__llvm_prf_data,"awG",@progbits,__profc__Qp_itoq
+	.p2align	3, 0x0
+.L__profd__Qp_itoq:
+	.xword	-3858125999267273921            // 0xca752ed84af9a33f
+	.xword	0                               // 0x0
+	.xword	.L__profc__Qp_itoq-.L__profd__Qp_itoq
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd__Qp_itoq, 64
+
+	.type	.L__profc_ldexpf,@object        // @__profc_ldexpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profc_ldexpf:
+	.zero	64
+	.size	.L__profc_ldexpf, 64
+
+	.type	.L__profd_ldexpf,@object        // @__profd_ldexpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpf
+	.p2align	3, 0x0
+.L__profd_ldexpf:
+	.xword	-2560632889718296859            // 0xdc76cdf42028aee5
+	.xword	-2048372819454505383            // 0xe392b7c600d94e59
+	.xword	.L__profc_ldexpf-.L__profd_ldexpf
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	8                               // 0x8
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_ldexpf, 64
+
+	.type	.L__profc_ldexp,@object         // @__profc_ldexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profc_ldexp:
+	.zero	64
+	.size	.L__profc_ldexp, 64
+
+	.type	.L__profd_ldexp,@object         // @__profd_ldexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexp
+	.p2align	3, 0x0
+.L__profd_ldexp:
+	.xword	-240549059163932437             // 0xfca965e7b97ab8eb
+	.xword	-2048372819454505383            // 0xe392b7c600d94e59
+	.xword	.L__profc_ldexp-.L__profd_ldexp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	8                               // 0x8
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_ldexp, 64
+
+	.type	.L__profc_ldexpl,@object        // @__profc_ldexpl
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profc_ldexpl:
+	.zero	64
+	.size	.L__profc_ldexpl, 64
+
+	.type	.L__profd_ldexpl,@object        // @__profd_ldexpl
+	.section	__llvm_prf_data,"awG",@progbits,__profc_ldexpl
+	.p2align	3, 0x0
+.L__profd_ldexpl:
+	.xword	-5097262943286299417            // 0xb942e25c0aa874e7
+	.xword	-2048372819454505383            // 0xe392b7c600d94e59
+	.xword	.L__profc_ldexpl-.L__profd_ldexpl
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	8                               // 0x8
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_ldexpl, 64
+
+	.type	.L__profc_memxor,@object        // @__profc_memxor
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profc_memxor:
+	.zero	16
+	.size	.L__profc_memxor, 16
+
+	.type	.L__profd_memxor,@object        // @__profd_memxor
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memxor
+	.p2align	3, 0x0
+.L__profd_memxor:
+	.xword	-8368025376422999318            // 0x8bdecd417eda4aea
+	.xword	1164376                         // 0x11c458
+	.xword	.L__profc_memxor-.L__profd_memxor
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memxor, 64
+
+	.type	.L__profc_strncat,@object       // @__profc_strncat
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profc_strncat:
+	.zero	40
+	.size	.L__profc_strncat, 40
+
+	.type	.L__profd_strncat,@object       // @__profd_strncat
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strncat
+	.p2align	3, 0x0
+.L__profd_strncat:
+	.xword	-3582483947543505905            // 0xce4875d49d21540f
+	.xword	76123606467028056               // 0x10e72044a7d2458
+	.xword	.L__profc_strncat-.L__profd_strncat
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strncat, 64
+
+	.type	.L__profc_strnlen,@object       // @__profc_strnlen
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profc_strnlen:
+	.zero	32
+	.size	.L__profc_strnlen, 32
+
+	.type	.L__profd_strnlen,@object       // @__profd_strnlen
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strnlen
+	.p2align	3, 0x0
+.L__profd_strnlen:
+	.xword	517590790318988421              // 0x72eda14dbfa1c85
+	.xword	4537021528                      // 0x10e6d7458
+	.xword	.L__profc_strnlen-.L__profd_strnlen
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strnlen, 64
+
+	.type	.L__profc_strpbrk,@object       // @__profc_strpbrk
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profc_strpbrk:
+	.zero	32
+	.size	.L__profc_strpbrk, 32
+
+	.type	.L__profd_strpbrk,@object       // @__profd_strpbrk
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strpbrk
+	.p2align	3, 0x0
+.L__profd_strpbrk:
+	.xword	-6867074718569872870            // 0xa0b33fed4193c21a
+	.xword	-4444802448421279214            // 0xc250e3b905102a12
+	.xword	.L__profc_strpbrk-.L__profd_strpbrk
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strpbrk, 64
+
+	.type	.L__profc_strrchr,@object       // @__profc_strrchr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profc_strrchr:
+	.zero	24
+	.size	.L__profc_strrchr, 24
+
+	.type	.L__profd_strrchr,@object       // @__profd_strrchr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strrchr
+	.p2align	3, 0x0
+.L__profd_strrchr:
+	.xword	5307837722043833871             // 0x49a93a493bd75e0f
+	.xword	217420731480                    // 0x329f491458
+	.xword	.L__profc_strrchr-.L__profd_strrchr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strrchr, 64
+
+	.type	.L__profc_strstr,@object        // @__profc_strstr
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profc_strstr:
+	.zero	32
+	.size	.L__profc_strstr, 32
+
+	.type	.L__profd_strstr,@object        // @__profd_strstr
+	.section	__llvm_prf_data,"awG",@progbits,__profc_strstr
+	.p2align	3, 0x0
+.L__profd_strstr:
+	.xword	3560562421867190603             // 0x3169a8a873ff994b
+	.xword	-7798267876297541628            // 0x93c6fcaef9f1f804
+	.xword	.L__profc_strstr-.L__profd_strstr
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_strstr, 64
+
+	.type	.L__profc_copysign,@object      // @__profc_copysign
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profc_copysign:
+	.zero	56
+	.size	.L__profc_copysign, 56
+
+	.type	.L__profd_copysign,@object      // @__profd_copysign
+	.section	__llvm_prf_data,"awG",@progbits,__profc_copysign
+	.p2align	3, 0x0
+.L__profd_copysign:
+	.xword	-9076603418344796971            // 0x82096d47ea764cd5
+	.xword	4200982705386070127             // 0x3a4ce3834618a06f
+	.xword	.L__profc_copysign-.L__profd_copysign
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_copysign, 64
+
+	.type	.L__profc_memmem,@object        // @__profc_memmem
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profc_memmem:
+	.zero	56
+	.size	.L__profc_memmem, 56
+
+	.type	.L__profd_memmem,@object        // @__profd_memmem
+	.section	__llvm_prf_data,"awG",@progbits,__profc_memmem
+	.p2align	3, 0x0
+.L__profd_memmem:
+	.xword	-7485463843177831536            // 0x981e4a4b585ae390
+	.xword	5508063777036862020             // 0x4c7092d27e7a8244
+	.xword	.L__profc_memmem-.L__profd_memmem
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_memmem, 64
+
+	.type	.L__profc_mempcpy,@object       // @__profc_mempcpy
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profc_mempcpy:
+	.zero	8
+	.size	.L__profc_mempcpy, 8
+
+	.type	.L__profd_mempcpy,@object       // @__profd_mempcpy
+	.section	__llvm_prf_data,"awG",@progbits,__profc_mempcpy
+	.p2align	3, 0x0
+.L__profd_mempcpy:
+	.xword	-722907995699078206             // 0xf5f7b7020f111bc2
+	.xword	24                              // 0x18
+	.xword	.L__profc_mempcpy-.L__profd_mempcpy
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_mempcpy, 64
+
+	.type	.L__profc_frexp,@object         // @__profc_frexp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profc_frexp:
+	.zero	72
+	.size	.L__profc_frexp, 72
+
+	.type	.L__profd_frexp,@object         // @__profd_frexp
+	.section	__llvm_prf_data,"awG",@progbits,__profc_frexp
+	.p2align	3, 0x0
+.L__profd_frexp:
+	.xword	-2997169543230593137            // 0xd667ea2e1c1ee78f
+	.xword	-2373782428686282824            // 0xdf0ea1753c170fb8
+	.xword	.L__profc_frexp-.L__profd_frexp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_frexp, 64
+
+	.type	.L__profc___muldi3,@object      // @__profc___muldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profc___muldi3:
+	.zero	24
+	.size	.L__profc___muldi3, 24
+
+	.type	.L__profd___muldi3,@object      // @__profd___muldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3
+	.p2align	3, 0x0
+.L__profd___muldi3:
+	.xword	3987271357918321816             // 0x3755a22cafcf9c98
+	.xword	2320045144                      // 0x8a491458
+	.xword	.L__profc___muldi3-.L__profd___muldi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___muldi3, 64
+
+	.type	.L__profc_udivmodsi4,@object    // @__profc_udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profc_udivmodsi4:
+	.zero	72
+	.size	.L__profc_udivmodsi4, 72
+
+	.type	.L__profd_udivmodsi4,@object    // @__profd_udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc_udivmodsi4
+	.p2align	3, 0x0
+.L__profd_udivmodsi4:
+	.xword	4670832108574850701             // 0x40d2210e3d17be8d
+	.xword	842736872197088594              // 0xbb200b8626e6552
+	.xword	.L__profc_udivmodsi4-.L__profd_udivmodsi4
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd_udivmodsi4, 64
+
+	.type	.L__profc___clrsbqi2,@object    // @__profc___clrsbqi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profc___clrsbqi2:
+	.zero	24
+	.size	.L__profc___clrsbqi2, 24
+
+	.type	.L__profd___clrsbqi2,@object    // @__profd___clrsbqi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbqi2
+	.p2align	3, 0x0
+.L__profd___clrsbqi2:
+	.xword	-7858138078702729622            // 0x92f2490d36f4066a
+	.xword	187824153796641880              // 0x29b49129f498458
+	.xword	.L__profc___clrsbqi2-.L__profd___clrsbqi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___clrsbqi2, 64
+
+	.type	.L__profc___clrsbdi2,@object    // @__profc___clrsbdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profc___clrsbdi2:
+	.zero	24
+	.size	.L__profc___clrsbdi2, 24
+
+	.type	.L__profd___clrsbdi2,@object    // @__profd___clrsbdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clrsbdi2
+	.p2align	3, 0x0
+.L__profd___clrsbdi2:
+	.xword	-1533375985051215657            // 0xeab85aaa6fe858d7
+	.xword	187824153796641880              // 0x29b49129f498458
+	.xword	.L__profc___clrsbdi2-.L__profd___clrsbdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___clrsbdi2, 64
+
+	.type	.L__profc___mulsi3,@object      // @__profc___mulsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profc___mulsi3:
+	.zero	24
+	.size	.L__profc___mulsi3, 24
+
+	.type	.L__profd___mulsi3,@object      // @__profd___mulsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3
+	.p2align	3, 0x0
+.L__profd___mulsi3:
+	.xword	5127670123023436031             // 0x472924cf303208ff
+	.xword	2320045144                      // 0x8a491458
+	.xword	.L__profc___mulsi3-.L__profd___mulsi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mulsi3, 64
+
+	.type	.L__profc___cmovd,@object       // @__profc___cmovd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profc___cmovd:
+	.zero	56
+	.size	.L__profc___cmovd, 56
+
+	.type	.L__profd___cmovd,@object       // @__profd___cmovd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovd
+	.p2align	3, 0x0
+.L__profd___cmovd:
+	.xword	1458405851566781960             // 0x143d4c6520fd3608
+	.xword	-6411111704588201945            // 0xa70727df48abd027
+	.xword	.L__profc___cmovd-.L__profd___cmovd
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___cmovd, 64
+
+	.type	.L__profc___cmovh,@object       // @__profc___cmovh
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profc___cmovh:
+	.zero	56
+	.size	.L__profc___cmovh, 56
+
+	.type	.L__profd___cmovh,@object       // @__profd___cmovh
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovh
+	.p2align	3, 0x0
+.L__profd___cmovh:
+	.xword	-1240290101804783090            // 0xeec99ab9477e2a0e
+	.xword	3130117398598530023             // 0x2b706930a0bc33e7
+	.xword	.L__profc___cmovh-.L__profd___cmovh
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___cmovh, 64
+
+	.type	.L__profc___cmovw,@object       // @__profc___cmovw
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profc___cmovw:
+	.zero	56
+	.size	.L__profc___cmovw, 56
+
+	.type	.L__profd___cmovw,@object       // @__profd___cmovw
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmovw
+	.p2align	3, 0x0
+.L__profd___cmovw:
+	.xword	-6631700889337257300            // 0xa3f7772d6a6922ac
+	.xword	-6411111704588201945            // 0xa70727df48abd027
+	.xword	.L__profc___cmovw-.L__profd___cmovw
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___cmovw, 64
+
+	.type	.L__profc___modi,@object        // @__profc___modi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profc___modi:
+	.zero	8
+	.size	.L__profc___modi, 8
+
+	.type	.L__profd___modi,@object        // @__profd___modi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modi
+	.p2align	3, 0x0
+.L__profd___modi:
+	.xword	4130297501716739761             // 0x3951c3b1ce8276b1
+	.xword	24                              // 0x18
+	.xword	.L__profc___modi-.L__profd___modi
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___modi, 64
+
+	.type	.L__profc___uitod,@object       // @__profc___uitod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profc___uitod:
+	.zero	8
+	.size	.L__profc___uitod, 8
+
+	.type	.L__profd___uitod,@object       // @__profd___uitod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitod
+	.p2align	3, 0x0
+.L__profd___uitod:
+	.xword	-3793169221884876252            // 0xcb5bf4b0949b6a24
+	.xword	24                              // 0x18
+	.xword	.L__profc___uitod-.L__profd___uitod
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___uitod, 64
+
+	.type	.L__profc___uitof,@object       // @__profc___uitof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profc___uitof:
+	.zero	8
+	.size	.L__profc___uitof, 8
+
+	.type	.L__profd___uitof,@object       // @__profd___uitof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___uitof
+	.p2align	3, 0x0
+.L__profd___uitof:
+	.xword	2684105554667313846             // 0x253fdbc7ed991ab6
+	.xword	24                              // 0x18
+	.xword	.L__profc___uitof-.L__profd___uitof
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___uitof, 64
+
+	.type	.L__profc___ulltod,@object      // @__profc___ulltod
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profc___ulltod:
+	.zero	8
+	.size	.L__profc___ulltod, 8
+
+	.type	.L__profd___ulltod,@object      // @__profd___ulltod
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltod
+	.p2align	3, 0x0
+.L__profd___ulltod:
+	.xword	3995277539005434566             // 0x377213c0fb840ac6
+	.xword	24                              // 0x18
+	.xword	.L__profc___ulltod-.L__profd___ulltod
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ulltod, 64
+
+	.type	.L__profc___ulltof,@object      // @__profc___ulltof
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profc___ulltof:
+	.zero	8
+	.size	.L__profc___ulltof, 8
+
+	.type	.L__profd___ulltof,@object      // @__profd___ulltof
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ulltof
+	.p2align	3, 0x0
+.L__profd___ulltof:
+	.xword	-1906554817873249395            // 0xe58a8e7e97dafb8d
+	.xword	24                              // 0x18
+	.xword	.L__profc___ulltof-.L__profd___ulltof
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ulltof, 64
+
+	.type	.L__profc___umodi,@object       // @__profc___umodi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profc___umodi:
+	.zero	8
+	.size	.L__profc___umodi, 8
+
+	.type	.L__profd___umodi,@object       // @__profd___umodi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___umodi
+	.p2align	3, 0x0
+.L__profd___umodi:
+	.xword	6154071623751134202             // 0x5567a7893fff6bfa
+	.xword	24                              // 0x18
+	.xword	.L__profc___umodi-.L__profd___umodi
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___umodi, 64
+
+	.type	.L__profc___clzhi2,@object      // @__profc___clzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profc___clzhi2:
+	.zero	24
+	.size	.L__profc___clzhi2, 24
+
+	.type	.L__profd___clzhi2,@object      // @__profd___clzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzhi2
+	.p2align	3, 0x0
+.L__profd___clzhi2:
+	.xword	-9221703320275173474            // 0x8005edb05af53f9e
+	.xword	19458657162328                  // 0x11b292591458
+	.xword	.L__profc___clzhi2-.L__profd___clzhi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___clzhi2, 64
+
+	.type	.L__profc___ctzhi2,@object      // @__profc___ctzhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profc___ctzhi2:
+	.zero	24
+	.size	.L__profc___ctzhi2, 24
+
+	.type	.L__profd___ctzhi2,@object      // @__profd___ctzhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzhi2
+	.p2align	3, 0x0
+.L__profd___ctzhi2:
+	.xword	-1569202989881991136            // 0xea391231d79a6020
+	.xword	19458657162328                  // 0x11b292591458
+	.xword	.L__profc___ctzhi2-.L__profd___ctzhi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ctzhi2, 64
+
+	.type	.L__profc___fixunssfsi,@object  // @__profc___fixunssfsi
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profc___fixunssfsi:
+	.zero	16
+	.size	.L__profc___fixunssfsi, 16
+
+	.type	.L__profd___fixunssfsi,@object  // @__profd___fixunssfsi
+	.section	__llvm_prf_data,"awG",@progbits,__profc___fixunssfsi
+	.p2align	3, 0x0
+.L__profd___fixunssfsi:
+	.xword	-7800469359816066749            // 0x93bf2a7226d83943
+	.xword	11245552728                     // 0x29e498458
+	.xword	.L__profc___fixunssfsi-.L__profd___fixunssfsi
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	2                               // 0x2
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___fixunssfsi, 64
+
+	.type	.L__profc___parityhi2,@object   // @__profc___parityhi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profc___parityhi2:
+	.zero	24
+	.size	.L__profc___parityhi2, 24
+
+	.type	.L__profd___parityhi2,@object   // @__profd___parityhi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___parityhi2
+	.p2align	3, 0x0
+.L__profd___parityhi2:
+	.xword	1203893203113466329             // 0x10b5167d5f15d9d9
+	.xword	304041497688                    // 0x46ca491458
+	.xword	.L__profc___parityhi2-.L__profd___parityhi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___parityhi2, 64
+
+	.type	.L__profc___popcounthi2,@object // @__profc___popcounthi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profc___popcounthi2:
+	.zero	24
+	.size	.L__profc___popcounthi2, 24
+
+	.type	.L__profd___popcounthi2,@object // @__profd___popcounthi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcounthi2
+	.p2align	3, 0x0
+.L__profd___popcounthi2:
+	.xword	3943219574947026310             // 0x36b9214fb4159586
+	.xword	304041497688                    // 0x46ca491458
+	.xword	.L__profc___popcounthi2-.L__profd___popcounthi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___popcounthi2, 64
+
+	.type	.L__profc___mulsi3_iq2000,@object // @__profc___mulsi3_iq2000
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profc___mulsi3_iq2000:
+	.zero	24
+	.size	.L__profc___mulsi3_iq2000, 24
+
+	.type	.L__profd___mulsi3_iq2000,@object // @__profd___mulsi3_iq2000
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_iq2000
+	.p2align	3, 0x0
+.L__profd___mulsi3_iq2000:
+	.xword	-3976353352410196972            // 0xc8d127b190281414
+	.xword	171971253336                    // 0x280a491458
+	.xword	.L__profc___mulsi3_iq2000-.L__profd___mulsi3_iq2000
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mulsi3_iq2000, 64
+
+	.type	.L__profc___mulsi3_lm32,@object // @__profc___mulsi3_lm32
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profc___mulsi3_lm32:
+	.zero	32
+	.size	.L__profc___mulsi3_lm32, 32
+
+	.type	.L__profd___mulsi3_lm32,@object // @__profd___mulsi3_lm32
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulsi3_lm32
+	.p2align	3, 0x0
+.L__profd___mulsi3_lm32:
+	.xword	2775651425054705869             // 0x26851843dab148cd
+	.xword	-6210685127595396365            // 0xa9cf36c835dff2f3
+	.xword	.L__profc___mulsi3_lm32-.L__profd___mulsi3_lm32
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mulsi3_lm32, 64
+
+	.type	.L__profc___udivmodsi4,@object  // @__profc___udivmodsi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profc___udivmodsi4:
+	.zero	72
+	.size	.L__profc___udivmodsi4, 72
+
+	.type	.L__profd___udivmodsi4,@object  // @__profd___udivmodsi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4
+	.p2align	3, 0x0
+.L__profd___udivmodsi4:
+	.xword	-6720389007632434094            // 0xa2bc61cdbfa0fc52
+	.xword	842736872197088594              // 0xbb200b8626e6552
+	.xword	.L__profc___udivmodsi4-.L__profd___udivmodsi4
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___udivmodsi4, 64
+
+	.type	.L__profc___mspabi_cmpf,@object // @__profc___mspabi_cmpf
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpf:
+	.zero	24
+	.size	.L__profc___mspabi_cmpf, 24
+
+	.type	.L__profd___mspabi_cmpf,@object // @__profd___mspabi_cmpf
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpf
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpf:
+	.xword	6399771733438470391             // 0x58d08e7bef2f98f7
+	.xword	1352614535537600836             // 0x12c573c0ecbfa944
+	.xword	.L__profc___mspabi_cmpf-.L__profd___mspabi_cmpf
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mspabi_cmpf, 64
+
+	.type	.L__profc___mspabi_cmpd,@object // @__profc___mspabi_cmpd
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profc___mspabi_cmpd:
+	.zero	24
+	.size	.L__profc___mspabi_cmpd, 24
+
+	.type	.L__profd___mspabi_cmpd,@object // @__profd___mspabi_cmpd
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_cmpd
+	.p2align	3, 0x0
+.L__profd___mspabi_cmpd:
+	.xword	-5775354270414500759            // 0xafd9d1e3e3e88c69
+	.xword	1352614535537600836             // 0x12c573c0ecbfa944
+	.xword	.L__profc___mspabi_cmpd-.L__profd___mspabi_cmpd
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mspabi_cmpd, 64
+
+	.type	.L__profc___mspabi_mpysll,@object // @__profc___mspabi_mpysll
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profc___mspabi_mpysll:
+	.zero	8
+	.size	.L__profc___mspabi_mpysll, 8
+
+	.type	.L__profd___mspabi_mpysll,@object // @__profd___mspabi_mpysll
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpysll
+	.p2align	3, 0x0
+.L__profd___mspabi_mpysll:
+	.xword	-359228324547500507             // 0xfb03c3bdfa166625
+	.xword	24                              // 0x18
+	.xword	.L__profc___mspabi_mpysll-.L__profd___mspabi_mpysll
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mspabi_mpysll, 64
+
+	.type	.L__profc___mspabi_mpyull,@object // @__profc___mspabi_mpyull
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profc___mspabi_mpyull:
+	.zero	8
+	.size	.L__profc___mspabi_mpyull, 8
+
+	.type	.L__profd___mspabi_mpyull,@object // @__profd___mspabi_mpyull
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mspabi_mpyull
+	.p2align	3, 0x0
+.L__profd___mspabi_mpyull:
+	.xword	6629829186354316853             // 0x5c01e284c62a8635
+	.xword	24                              // 0x18
+	.xword	.L__profc___mspabi_mpyull-.L__profd___mspabi_mpyull
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mspabi_mpyull, 64
+
+	.type	.L__profc___mulhi3,@object      // @__profc___mulhi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profc___mulhi3:
+	.zero	56
+	.size	.L__profc___mulhi3, 56
+
+	.type	.L__profd___mulhi3,@object      // @__profd___mulhi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulhi3
+	.p2align	3, 0x0
+.L__profd___mulhi3:
+	.xword	-4671748085078636676            // 0xbf2a9dde5cc6c77c
+	.xword	-5374843387156864121            // 0xb568b86aa1286387
+	.xword	.L__profc___mulhi3-.L__profd___mulhi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	7                               // 0x7
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mulhi3, 64
+
+	.type	.L__profc___divsi3,@object      // @__profc___divsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profc___divsi3:
+	.zero	32
+	.size	.L__profc___divsi3, 32
+
+	.type	.L__profd___divsi3,@object      // @__profd___divsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___divsi3
+	.p2align	3, 0x0
+.L__profd___divsi3:
+	.xword	5631431475223784324             // 0x4e26dd1711aaeb84
+	.xword	510575534943447681              // 0x715edbe6f4f2a81
+	.xword	.L__profc___divsi3-.L__profd___divsi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___divsi3, 64
+
+	.type	.L__profc___modsi3,@object      // @__profc___modsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profc___modsi3:
+	.zero	32
+	.size	.L__profc___modsi3, 32
+
+	.type	.L__profd___modsi3,@object      // @__profd___modsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___modsi3
+	.p2align	3, 0x0
+.L__profd___modsi3:
+	.xword	-8995696579390192574            // 0x8328dd9f4e404442
+	.xword	2121116644152358499             // 0x1d6fb85985deb663
+	.xword	.L__profc___modsi3-.L__profd___modsi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	4                               // 0x4
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___modsi3, 64
+
+	.type	.L__profc___udivmodhi4,@object  // @__profc___udivmodhi4
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profc___udivmodhi4:
+	.zero	72
+	.size	.L__profc___udivmodhi4, 72
+
+	.type	.L__profd___udivmodhi4,@object  // @__profd___udivmodhi4
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodhi4
+	.p2align	3, 0x0
+.L__profd___udivmodhi4:
+	.xword	2241631039268115874             // 0x1f1bdf8db510d5a2
+	.xword	842736872197088594              // 0xbb200b8626e6552
+	.xword	.L__profc___udivmodhi4-.L__profd___udivmodhi4
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___udivmodhi4, 64
+
+	.type	.L__profc___udivmodsi4_libgcc,@object // @__profc___udivmodsi4_libgcc
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profc___udivmodsi4_libgcc:
+	.zero	72
+	.size	.L__profc___udivmodsi4_libgcc, 72
+
+	.type	.L__profd___udivmodsi4_libgcc,@object // @__profd___udivmodsi4_libgcc
+	.section	__llvm_prf_data,"awG",@progbits,__profc___udivmodsi4_libgcc
+	.p2align	3, 0x0
+.L__profd___udivmodsi4_libgcc:
+	.xword	-1484205535638993157            // 0xeb670aedd291c6fb
+	.xword	842736872197088594              // 0xbb200b8626e6552
+	.xword	.L__profc___udivmodsi4_libgcc-.L__profd___udivmodsi4_libgcc
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	9                               // 0x9
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___udivmodsi4_libgcc, 64
+
+	.type	.L__profc___ashldi3,@object     // @__profc___ashldi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profc___ashldi3:
+	.zero	24
+	.size	.L__profc___ashldi3, 24
+
+	.type	.L__profd___ashldi3,@object     // @__profd___ashldi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashldi3
+	.p2align	3, 0x0
+.L__profd___ashldi3:
+	.xword	3719210884952086607             // 0x339d4a983a55d84f
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___ashldi3-.L__profd___ashldi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ashldi3, 64
+
+	.type	.L__profc___ashlti3,@object     // @__profc___ashlti3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashlti3
+	.p2align	3, 0x0
+.L__profc___ashlti3:
+	.zero	24
+	.size	.L__profc___ashlti3, 24
+
+	.type	.L__profd___ashlti3,@object     // @__profd___ashlti3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashlti3
+	.p2align	3, 0x0
+.L__profd___ashlti3:
+	.xword	8422580559269035854             // 0x74e30464d7577f4e
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___ashlti3-.L__profd___ashlti3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ashlti3, 64
+
+	.type	.L__profc___ashrdi3,@object     // @__profc___ashrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profc___ashrdi3:
+	.zero	24
+	.size	.L__profc___ashrdi3, 24
+
+	.type	.L__profd___ashrdi3,@object     // @__profd___ashrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashrdi3
+	.p2align	3, 0x0
+.L__profd___ashrdi3:
+	.xword	-1855717345837424946            // 0xe63f2ae7edd45ece
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___ashrdi3-.L__profd___ashrdi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ashrdi3, 64
+
+	.type	.L__profc___ashrti3,@object     // @__profc___ashrti3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ashrti3
+	.p2align	3, 0x0
+.L__profc___ashrti3:
+	.zero	24
+	.size	.L__profc___ashrti3, 24
+
+	.type	.L__profd___ashrti3,@object     // @__profd___ashrti3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ashrti3
+	.p2align	3, 0x0
+.L__profd___ashrti3:
+	.xword	-1576641649180751463            // 0xea1ea4c6027ec999
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___ashrti3-.L__profd___ashrti3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ashrti3, 64
+
+	.type	.L__profc___bswapdi2,@object    // @__profc___bswapdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profc___bswapdi2:
+	.zero	8
+	.size	.L__profc___bswapdi2, 8
+
+	.type	.L__profd___bswapdi2,@object    // @__profd___bswapdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapdi2
+	.p2align	3, 0x0
+.L__profd___bswapdi2:
+	.xword	9149352740892555196             // 0x7ef907d7ada5b7bc
+	.xword	24                              // 0x18
+	.xword	.L__profc___bswapdi2-.L__profd___bswapdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___bswapdi2, 64
+
+	.type	.L__profc___bswapsi2,@object    // @__profc___bswapsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profc___bswapsi2:
+	.zero	8
+	.size	.L__profc___bswapsi2, 8
+
+	.type	.L__profd___bswapsi2,@object    // @__profd___bswapsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___bswapsi2
+	.p2align	3, 0x0
+.L__profd___bswapsi2:
+	.xword	-3374945843358245974            // 0xd129c8a2fe735baa
+	.xword	24                              // 0x18
+	.xword	.L__profc___bswapsi2-.L__profd___bswapsi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___bswapsi2, 64
+
+	.type	.L__profc___clzsi2,@object      // @__profc___clzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profc___clzsi2:
+	.zero	8
+	.size	.L__profc___clzsi2, 8
+
+	.type	.L__profd___clzsi2,@object      // @__profd___clzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzsi2
+	.p2align	3, 0x0
+.L__profd___clzsi2:
+	.xword	1382681549752930563             // 0x1330458b32829103
+	.xword	33814345247                     // 0x7df7df61f
+	.xword	.L__profc___clzsi2-.L__profd___clzsi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___clzsi2, 64
+
+	.type	.L__profc___clzti2,@object      // @__profc___clzti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___clzti2
+	.p2align	3, 0x0
+.L__profc___clzti2:
+	.zero	8
+	.size	.L__profc___clzti2, 8
+
+	.type	.L__profd___clzti2,@object      // @__profd___clzti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___clzti2
+	.p2align	3, 0x0
+.L__profd___clzti2:
+	.xword	-1806615119558762125            // 0xe6ed9d1ee0d9a173
+	.xword	2008                            // 0x7d8
+	.xword	.L__profc___clzti2-.L__profd___clzti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___clzti2, 64
+
+	.type	.L__profc___cmpdi2,@object      // @__profc___cmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profc___cmpdi2:
+	.zero	40
+	.size	.L__profc___cmpdi2, 40
+
+	.type	.L__profd___cmpdi2,@object      // @__profd___cmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmpdi2
+	.p2align	3, 0x0
+.L__profd___cmpdi2:
+	.xword	-5499644794300757496            // 0xb3ad5632ace08a08
+	.xword	-7406659272189927428            // 0x993642a254c41ffc
+	.xword	.L__profc___cmpdi2-.L__profd___cmpdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___cmpdi2, 64
+
+	.type	.L__profc___aeabi_lcmp,@object  // @__profc___aeabi_lcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_lcmp:
+	.zero	8
+	.size	.L__profc___aeabi_lcmp, 8
+
+	.type	.L__profd___aeabi_lcmp,@object  // @__profd___aeabi_lcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_lcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_lcmp:
+	.xword	7067747365298492588             // 0x6215aec83ed1d4ac
+	.xword	24                              // 0x18
+	.xword	.L__profc___aeabi_lcmp-.L__profd___aeabi_lcmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___aeabi_lcmp, 64
+
+	.type	.L__profc___cmpti2,@object      // @__profc___cmpti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___cmpti2
+	.p2align	3, 0x0
+.L__profc___cmpti2:
+	.zero	40
+	.size	.L__profc___cmpti2, 40
+
+	.type	.L__profd___cmpti2,@object      // @__profd___cmpti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___cmpti2
+	.p2align	3, 0x0
+.L__profd___cmpti2:
+	.xword	-8389943187845644472            // 0x8b90ef1f5ac07f48
+	.xword	-7406659272189927428            // 0x993642a254c41ffc
+	.xword	.L__profc___cmpti2-.L__profd___cmpti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___cmpti2, 64
+
+	.type	.L__profc___ctzsi2,@object      // @__profc___ctzsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profc___ctzsi2:
+	.zero	8
+	.size	.L__profc___ctzsi2, 8
+
+	.type	.L__profd___ctzsi2,@object      // @__profd___ctzsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzsi2
+	.p2align	3, 0x0
+.L__profd___ctzsi2:
+	.xword	-5501728155980453225            // 0xb3a5ef643c052a97
+	.xword	33814345247                     // 0x7df7df61f
+	.xword	.L__profc___ctzsi2-.L__profd___ctzsi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ctzsi2, 64
+
+	.type	.L__profc___ctzti2,@object      // @__profc___ctzti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ctzti2
+	.p2align	3, 0x0
+.L__profc___ctzti2:
+	.zero	8
+	.size	.L__profc___ctzti2, 8
+
+	.type	.L__profd___ctzti2,@object      // @__profd___ctzti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ctzti2
+	.p2align	3, 0x0
+.L__profd___ctzti2:
+	.xword	7226039699906943586             // 0x64480cd265d2da62
+	.xword	2008                            // 0x7d8
+	.xword	.L__profc___ctzti2-.L__profd___ctzti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ctzti2, 64
+
+	.type	.L__profc___ffsti2,@object      // @__profc___ffsti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ffsti2
+	.p2align	3, 0x0
+.L__profc___ffsti2:
+	.zero	24
+	.size	.L__profc___ffsti2, 24
+
+	.type	.L__profd___ffsti2,@object      // @__profd___ffsti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ffsti2
+	.p2align	3, 0x0
+.L__profd___ffsti2:
+	.xword	7347651670313848928             // 0x65f81a43be5cd060
+	.xword	-6109625065311516695            // 0xab36405f8f48c7e9
+	.xword	.L__profc___ffsti2-.L__profd___ffsti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ffsti2, 64
+
+	.type	.L__profc___lshrdi3,@object     // @__profc___lshrdi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profc___lshrdi3:
+	.zero	24
+	.size	.L__profc___lshrdi3, 24
+
+	.type	.L__profd___lshrdi3,@object     // @__profd___lshrdi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___lshrdi3
+	.p2align	3, 0x0
+.L__profd___lshrdi3:
+	.xword	10441766047587925               // 0x2518bb1c181e55
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___lshrdi3-.L__profd___lshrdi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___lshrdi3, 64
+
+	.type	.L__profc___lshrti3,@object     // @__profc___lshrti3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___lshrti3
+	.p2align	3, 0x0
+.L__profc___lshrti3:
+	.zero	24
+	.size	.L__profc___lshrti3, 24
+
+	.type	.L__profd___lshrti3,@object     // @__profd___lshrti3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___lshrti3
+	.p2align	3, 0x0
+.L__profd___lshrti3:
+	.xword	-8202552090810439010            // 0x8e2aae55179b2a9e
+	.xword	185294818348438616              // 0x2924ca7d2611458
+	.xword	.L__profc___lshrti3-.L__profd___lshrti3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	3                               // 0x3
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___lshrti3, 64
+
+	.type	.L__profc___muldsi3,@object     // @__profc___muldsi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profc___muldsi3:
+	.zero	8
+	.size	.L__profc___muldsi3, 8
+
+	.type	.L__profd___muldsi3,@object     // @__profd___muldsi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldsi3
+	.p2align	3, 0x0
+.L__profd___muldsi3:
+	.xword	4756674255824047264             // 0x42031a08a2a34ca0
+	.xword	24                              // 0x18
+	.xword	.L__profc___muldsi3-.L__profd___muldsi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___muldsi3, 64
+
+	.type	.L__profc___muldi3_compiler_rt,@object // @__profc___muldi3_compiler_rt
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profc___muldi3_compiler_rt:
+	.zero	8
+	.size	.L__profc___muldi3_compiler_rt, 8
+
+	.type	.L__profd___muldi3_compiler_rt,@object // @__profd___muldi3_compiler_rt
+	.section	__llvm_prf_data,"awG",@progbits,__profc___muldi3_compiler_rt
+	.p2align	3, 0x0
+.L__profd___muldi3_compiler_rt:
+	.xword	-737717619142303851             // 0xf5c319bbe679df95
+	.xword	24                              // 0x18
+	.xword	.L__profc___muldi3_compiler_rt-.L__profd___muldi3_compiler_rt
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___muldi3_compiler_rt, 64
+
+	.type	.L__profc___mulddi3,@object     // @__profc___mulddi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___mulddi3
+	.p2align	3, 0x0
+.L__profc___mulddi3:
+	.zero	8
+	.size	.L__profc___mulddi3, 8
+
+	.type	.L__profd___mulddi3,@object     // @__profd___mulddi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___mulddi3
+	.p2align	3, 0x0
+.L__profd___mulddi3:
+	.xword	373830907859946247              // 0x5301d3ae50dcb07
+	.xword	24                              // 0x18
+	.xword	.L__profc___mulddi3-.L__profd___mulddi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___mulddi3, 64
+
+	.type	.L__profc___multi3,@object      // @__profc___multi3
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___multi3
+	.p2align	3, 0x0
+.L__profc___multi3:
+	.zero	8
+	.size	.L__profc___multi3, 8
+
+	.type	.L__profd___multi3,@object      // @__profd___multi3
+	.section	__llvm_prf_data,"awG",@progbits,__profc___multi3
+	.p2align	3, 0x0
+.L__profd___multi3:
+	.xword	8967568818272694478             // 0x7c733453f80370ce
+	.xword	24                              // 0x18
+	.xword	.L__profc___multi3-.L__profd___multi3
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___multi3, 64
+
+	.type	.L__profc___negdi2,@object      // @__profc___negdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profc___negdi2:
+	.zero	8
+	.size	.L__profc___negdi2, 8
+
+	.type	.L__profd___negdi2,@object      // @__profd___negdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___negdi2
+	.p2align	3, 0x0
+.L__profd___negdi2:
+	.xword	-2796404983763388037            // 0xd9312c7bb6a6b97b
+	.xword	24                              // 0x18
+	.xword	.L__profc___negdi2-.L__profd___negdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___negdi2, 64
+
+	.type	.L__profc___negti2,@object      // @__profc___negti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___negti2
+	.p2align	3, 0x0
+.L__profc___negti2:
+	.zero	8
+	.size	.L__profc___negti2, 8
+
+	.type	.L__profd___negti2,@object      // @__profd___negti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___negti2
+	.p2align	3, 0x0
+.L__profd___negti2:
+	.xword	8691511294418398176             // 0x789e7379011aabe0
+	.xword	24                              // 0x18
+	.xword	.L__profc___negti2-.L__profd___negti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___negti2, 64
+
+	.type	.L__profc___paritydi2,@object   // @__profc___paritydi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profc___paritydi2:
+	.zero	8
+	.size	.L__profc___paritydi2, 8
+
+	.type	.L__profd___paritydi2,@object   // @__profd___paritydi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritydi2
+	.p2align	3, 0x0
+.L__profd___paritydi2:
+	.xword	-5102883611502574357            // 0xb92eea643e3a04eb
+	.xword	24                              // 0x18
+	.xword	.L__profc___paritydi2-.L__profd___paritydi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___paritydi2, 64
+
+	.type	.L__profc___parityti2,@object   // @__profc___parityti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___parityti2
+	.p2align	3, 0x0
+.L__profc___parityti2:
+	.zero	8
+	.size	.L__profc___parityti2, 8
+
+	.type	.L__profd___parityti2,@object   // @__profd___parityti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___parityti2
+	.p2align	3, 0x0
+.L__profd___parityti2:
+	.xword	-7527016531061130461            // 0x978aaa58479bbb23
+	.xword	24                              // 0x18
+	.xword	.L__profc___parityti2-.L__profd___parityti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___parityti2, 64
+
+	.type	.L__profc___paritysi2,@object   // @__profc___paritysi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profc___paritysi2:
+	.zero	8
+	.size	.L__profc___paritysi2, 8
+
+	.type	.L__profd___paritysi2,@object   // @__profd___paritysi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___paritysi2
+	.p2align	3, 0x0
+.L__profd___paritysi2:
+	.xword	8495812714014201054             // 0x75e730a6911054de
+	.xword	24                              // 0x18
+	.xword	.L__profc___paritysi2-.L__profd___paritysi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___paritysi2, 64
+
+	.type	.L__profc___popcountdi2,@object // @__profc___popcountdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profc___popcountdi2:
+	.zero	8
+	.size	.L__profc___popcountdi2, 8
+
+	.type	.L__profd___popcountdi2,@object // @__profd___popcountdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountdi2
+	.p2align	3, 0x0
+.L__profd___popcountdi2:
+	.xword	4342496508124198892             // 0x3c43a5910d1df7ec
+	.xword	24                              // 0x18
+	.xword	.L__profc___popcountdi2-.L__profd___popcountdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___popcountdi2, 64
+
+	.type	.L__profc___popcountsi2,@object // @__profc___popcountsi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profc___popcountsi2:
+	.zero	8
+	.size	.L__profc___popcountsi2, 8
+
+	.type	.L__profd___popcountsi2,@object // @__profd___popcountsi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountsi2
+	.p2align	3, 0x0
+.L__profd___popcountsi2:
+	.xword	-2149276146439341705            // 0xe22c3cbb6f433977
+	.xword	24                              // 0x18
+	.xword	.L__profc___popcountsi2-.L__profd___popcountsi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___popcountsi2, 64
+
+	.type	.L__profc___popcountti2,@object // @__profc___popcountti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___popcountti2
+	.p2align	3, 0x0
+.L__profc___popcountti2:
+	.zero	8
+	.size	.L__profc___popcountti2, 8
+
+	.type	.L__profd___popcountti2,@object // @__profd___popcountti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___popcountti2
+	.p2align	3, 0x0
+.L__profd___popcountti2:
+	.xword	-26294454666068629              // 0xffa295553210fd6b
+	.xword	24                              // 0x18
+	.xword	.L__profc___popcountti2-.L__profd___popcountti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___popcountti2, 64
+
+	.type	.L__profc___powidf2,@object     // @__profc___powidf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profc___powidf2:
+	.zero	40
+	.size	.L__profc___powidf2, 40
+
+	.type	.L__profd___powidf2,@object     // @__profd___powidf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powidf2
+	.p2align	3, 0x0
+.L__profd___powidf2:
+	.xword	-1752541073601039051            // 0xe7adb92dcdba7535
+	.xword	-4868838055443737378            // 0xbc6e6995b45f54de
+	.xword	.L__profc___powidf2-.L__profd___powidf2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___powidf2, 64
+
+	.type	.L__profc___powisf2,@object     // @__profc___powisf2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profc___powisf2:
+	.zero	40
+	.size	.L__profc___powisf2, 40
+
+	.type	.L__profd___powisf2,@object     // @__profd___powisf2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___powisf2
+	.p2align	3, 0x0
+.L__profd___powisf2:
+	.xword	-3807360110918407144            // 0xcb298a26c0b76c18
+	.xword	-4868838055443737378            // 0xbc6e6995b45f54de
+	.xword	.L__profc___powisf2-.L__profd___powisf2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___powisf2, 64
+
+	.type	.L__profc___ucmpdi2,@object     // @__profc___ucmpdi2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profc___ucmpdi2:
+	.zero	40
+	.size	.L__profc___ucmpdi2, 40
+
+	.type	.L__profd___ucmpdi2,@object     // @__profd___ucmpdi2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ucmpdi2
+	.p2align	3, 0x0
+.L__profd___ucmpdi2:
+	.xword	-2044349310657886323            // 0xe3a10322256c078d
+	.xword	-7406659272189927428            // 0x993642a254c41ffc
+	.xword	.L__profc___ucmpdi2-.L__profd___ucmpdi2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ucmpdi2, 64
+
+	.type	.L__profc___aeabi_ulcmp,@object // @__profc___aeabi_ulcmp
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profc___aeabi_ulcmp:
+	.zero	8
+	.size	.L__profc___aeabi_ulcmp, 8
+
+	.type	.L__profd___aeabi_ulcmp,@object // @__profd___aeabi_ulcmp
+	.section	__llvm_prf_data,"awG",@progbits,__profc___aeabi_ulcmp
+	.p2align	3, 0x0
+.L__profd___aeabi_ulcmp:
+	.xword	448670595368434735              // 0x639ff8782193c2f
+	.xword	24                              // 0x18
+	.xword	.L__profc___aeabi_ulcmp-.L__profd___aeabi_ulcmp
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	1                               // 0x1
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___aeabi_ulcmp, 64
+
+	.type	.L__profc___ucmpti2,@object     // @__profc___ucmpti2
+	.section	__llvm_prf_cnts,"awG",@progbits,__profc___ucmpti2
+	.p2align	3, 0x0
+.L__profc___ucmpti2:
+	.zero	40
+	.size	.L__profc___ucmpti2, 40
+
+	.type	.L__profd___ucmpti2,@object     // @__profd___ucmpti2
+	.section	__llvm_prf_data,"awG",@progbits,__profc___ucmpti2
+	.p2align	3, 0x0
+.L__profd___ucmpti2:
+	.xword	2719998967855154749             // 0x25bf60a66c6f863d
+	.xword	-7406659272189927428            // 0x993642a254c41ffc
+	.xword	.L__profc___ucmpti2-.L__profd___ucmpti2
+	.xword	0                               // 0x0
+	.xword	0
+	.xword	0
+	.word	5                               // 0x5
+	.zero	6
+	.zero	2
+	.word	0                               // 0x0
+	.size	.L__profd___ucmpti2, 64
+
+	.type	.L__llvm_prf_nm,@object         // @__llvm_prf_nm
+	.section	__llvm_prf_names,"aR",@progbits,unique,1
+.L__llvm_prf_nm:
+	.ascii	"\247\013\315\004x\332]\223\013n\343 \020\206\305\215\272MU\365\032{\002\013\033\210G\035\f\001\\\222\236~\347\201\363X)\342\373\347\347\345\031&\321~\373\251\201\211\302\335D\037c\372\361\314e\3117\341Z\0041\013\324,\303\255\276\231\3322\273\265\261\271\3558\224\2006\021\320o\214M\302ng\003\325b^-\263.\000\304\031\355\366M\\6ZNtp\206F<\027\233W\"\246\356\0131\027\330\330\257\331.\236\270\347,~?6\366cg?\226\366\253Z-\351e\301A\224!\230\020\355U\006\225H#l2\004\031\321\340\347\2075\265\330\315\031\031`\253\227\335\233\342#\003\253\267\224\253\301\0004g\347jlK\300\003\312\200f\036+\006\247b\034\374\030\240\313x5\223c\344\000E\251\024\335\227\312udP\341\030Tf\002\227\223 \345\354\343\205\372x\242>\336\250\037/\331\307+\315K\"\273\244F\0311\212\002O\357\022)p\252\277\022\016\342\237O\t\025\370%\301\027%\323m\236\310TA{U\320\221!\320\327\303\f\263/\3556qt\306\t*\0254\334\225\273+4\323\337<AK\027\312\336_sP\350\210\334`\327T\264ul\023\216V\312s\371f\036\215F?\303\tV8o\322\304>2\2441C\341#\247)\356T\325\223\331\251\2641\271\n\037\344-X\352|\201\367C:\221\264\262\322J\362\250\204np\035\354\274 9 \354\364\345n00\021\207\301B\234\261r\301\337UoiC\004\270\356[\255\241\362t\266\005\332M'r\312K\332\267\266>}\312\004\227\367\267\267\267G\214\361\304\263/\271D\372O\314@\337\230\303K\344\036Q\244\nQS>\307\273\306;\256\2221\035\250\251\313\261\247\307\035\253\334\361\270p\242W>/\013y\266\256RXU\355P\345\356\025\365\244G\264\300\"\353(\373\357]4\025q\254\262\236\277\021\271\255\305mG\005\353!\324\241.S\201\367[\361~+\277z\275+*\335\222b\006\364e*m\230\356\230\326\035\233?\353\375$\364\\}\036\367\244\237\375\372\362l\356%z\235\033\273R\007\027\016UE\355\377%\275\217\254wM\373\037[\370\006\333"
+	.size	.L__llvm_prf_nm, 593
+
 	.ident	"clang version 19.1.5 (Fedora 19.1.5-1.fc41)"
 	.section	".note.GNU-stack","",@progbits
 	.addrsig
@@ -15933,3 +23719,337 @@ digits:
 	.addrsig_sym l64a.s
 	.addrsig_sym digits
 	.addrsig_sym seed
+	.addrsig_sym __llvm_profile_runtime
+	.addrsig_sym .L__profc_make_ti
+	.addrsig_sym .L__profd_make_ti
+	.addrsig_sym .L__profc_make_tu
+	.addrsig_sym .L__profd_make_tu
+	.addrsig_sym .L__profc_memmove
+	.addrsig_sym .L__profd_memmove
+	.addrsig_sym .L__profc_memccpy
+	.addrsig_sym .L__profd_memccpy
+	.addrsig_sym .L__profc_memchr
+	.addrsig_sym .L__profd_memchr
+	.addrsig_sym .L__profc_memcmp
+	.addrsig_sym .L__profd_memcmp
+	.addrsig_sym .L__profc_memcpy
+	.addrsig_sym .L__profd_memcpy
+	.addrsig_sym .L__profc_memrchr
+	.addrsig_sym .L__profd_memrchr
+	.addrsig_sym .L__profc_memset
+	.addrsig_sym .L__profd_memset
+	.addrsig_sym .L__profc_stpcpy
+	.addrsig_sym .L__profd_stpcpy
+	.addrsig_sym .L__profc_strchrnul
+	.addrsig_sym .L__profd_strchrnul
+	.addrsig_sym .L__profc_strchr
+	.addrsig_sym .L__profd_strchr
+	.addrsig_sym .L__profc_strcmp
+	.addrsig_sym .L__profd_strcmp
+	.addrsig_sym .L__profc_strlen
+	.addrsig_sym .L__profd_strlen
+	.addrsig_sym .L__profc_strncmp
+	.addrsig_sym .L__profd_strncmp
+	.addrsig_sym .L__profc_swab
+	.addrsig_sym .L__profd_swab
+	.addrsig_sym .L__profc_isalpha
+	.addrsig_sym .L__profd_isalpha
+	.addrsig_sym .L__profc_isascii
+	.addrsig_sym .L__profd_isascii
+	.addrsig_sym .L__profc_isblank
+	.addrsig_sym .L__profd_isblank
+	.addrsig_sym .L__profc_iscntrl
+	.addrsig_sym .L__profd_iscntrl
+	.addrsig_sym .L__profc_isdigit
+	.addrsig_sym .L__profd_isdigit
+	.addrsig_sym .L__profc_isgraph
+	.addrsig_sym .L__profd_isgraph
+	.addrsig_sym .L__profc_islower
+	.addrsig_sym .L__profd_islower
+	.addrsig_sym .L__profc_isprint
+	.addrsig_sym .L__profd_isprint
+	.addrsig_sym .L__profc_isspace
+	.addrsig_sym .L__profd_isspace
+	.addrsig_sym .L__profc_isupper
+	.addrsig_sym .L__profd_isupper
+	.addrsig_sym .L__profc_iswcntrl
+	.addrsig_sym .L__profd_iswcntrl
+	.addrsig_sym .L__profc_iswdigit
+	.addrsig_sym .L__profd_iswdigit
+	.addrsig_sym .L__profc_iswprint
+	.addrsig_sym .L__profd_iswprint
+	.addrsig_sym .L__profc_iswxdigit
+	.addrsig_sym .L__profd_iswxdigit
+	.addrsig_sym .L__profc_toascii
+	.addrsig_sym .L__profd_toascii
+	.addrsig_sym .L__profc_fdim
+	.addrsig_sym .L__profd_fdim
+	.addrsig_sym .L__profc_fdimf
+	.addrsig_sym .L__profd_fdimf
+	.addrsig_sym .L__profc_fmax
+	.addrsig_sym .L__profd_fmax
+	.addrsig_sym .L__profc_fmaxf
+	.addrsig_sym .L__profd_fmaxf
+	.addrsig_sym .L__profc_fmaxl
+	.addrsig_sym .L__profd_fmaxl
+	.addrsig_sym .L__profc_fmin
+	.addrsig_sym .L__profd_fmin
+	.addrsig_sym .L__profc_fminf
+	.addrsig_sym .L__profd_fminf
+	.addrsig_sym .L__profc_fminl
+	.addrsig_sym .L__profd_fminl
+	.addrsig_sym .L__profc_l64a
+	.addrsig_sym .L__profd_l64a
+	.addrsig_sym .L__profc_srand
+	.addrsig_sym .L__profd_srand
+	.addrsig_sym .L__profc_rand
+	.addrsig_sym .L__profd_rand
+	.addrsig_sym .L__profc_insque
+	.addrsig_sym .L__profd_insque
+	.addrsig_sym .L__profc_remque
+	.addrsig_sym .L__profd_remque
+	.addrsig_sym .L__profc_lsearch
+	.addrsig_sym .L__profd_lsearch
+	.addrsig_sym .L__profc_lfind
+	.addrsig_sym .L__profd_lfind
+	.addrsig_sym .L__profc_abs
+	.addrsig_sym .L__profd_abs
+	.addrsig_sym .L__profc_atoi
+	.addrsig_sym .L__profd_atoi
+	.addrsig_sym .L__profc_atol
+	.addrsig_sym .L__profd_atol
+	.addrsig_sym .L__profc_atoll
+	.addrsig_sym .L__profd_atoll
+	.addrsig_sym .L__profc_bsearch
+	.addrsig_sym .L__profd_bsearch
+	.addrsig_sym .L__profc_bsearch_r
+	.addrsig_sym .L__profd_bsearch_r
+	.addrsig_sym .L__profc_div
+	.addrsig_sym .L__profd_div
+	.addrsig_sym .L__profc_imaxabs
+	.addrsig_sym .L__profd_imaxabs
+	.addrsig_sym .L__profc_imaxdiv
+	.addrsig_sym .L__profd_imaxdiv
+	.addrsig_sym .L__profc_labs
+	.addrsig_sym .L__profd_labs
+	.addrsig_sym .L__profc_ldiv
+	.addrsig_sym .L__profd_ldiv
+	.addrsig_sym .L__profc_llabs
+	.addrsig_sym .L__profd_llabs
+	.addrsig_sym .L__profc_lldiv
+	.addrsig_sym .L__profd_lldiv
+	.addrsig_sym .L__profc_wcschr
+	.addrsig_sym .L__profd_wcschr
+	.addrsig_sym .L__profc_wcscmp
+	.addrsig_sym .L__profd_wcscmp
+	.addrsig_sym .L__profc_wcscpy
+	.addrsig_sym .L__profd_wcscpy
+	.addrsig_sym .L__profc_wcslen
+	.addrsig_sym .L__profd_wcslen
+	.addrsig_sym .L__profc_wcsncmp
+	.addrsig_sym .L__profd_wcsncmp
+	.addrsig_sym .L__profc_wmemchr
+	.addrsig_sym .L__profd_wmemchr
+	.addrsig_sym .L__profc_wmemcmp
+	.addrsig_sym .L__profd_wmemcmp
+	.addrsig_sym .L__profc_wmemcpy
+	.addrsig_sym .L__profd_wmemcpy
+	.addrsig_sym .L__profc_wmemmove
+	.addrsig_sym .L__profd_wmemmove
+	.addrsig_sym .L__profc_wmemset
+	.addrsig_sym .L__profd_wmemset
+	.addrsig_sym .L__profc_bcopy
+	.addrsig_sym .L__profd_bcopy
+	.addrsig_sym .L__profc_rotl64
+	.addrsig_sym .L__profd_rotl64
+	.addrsig_sym .L__profc_rotr64
+	.addrsig_sym .L__profd_rotr64
+	.addrsig_sym .L__profc_rotl32
+	.addrsig_sym .L__profd_rotl32
+	.addrsig_sym .L__profc_rotr32
+	.addrsig_sym .L__profd_rotr32
+	.addrsig_sym .L__profc_rotl_sz
+	.addrsig_sym .L__profd_rotl_sz
+	.addrsig_sym .L__profc_rotr_sz
+	.addrsig_sym .L__profd_rotr_sz
+	.addrsig_sym .L__profc_rotl16
+	.addrsig_sym .L__profd_rotl16
+	.addrsig_sym .L__profc_rotr16
+	.addrsig_sym .L__profd_rotr16
+	.addrsig_sym .L__profc_rotl8
+	.addrsig_sym .L__profd_rotl8
+	.addrsig_sym .L__profc_rotr8
+	.addrsig_sym .L__profd_rotr8
+	.addrsig_sym .L__profc_bswap_16
+	.addrsig_sym .L__profd_bswap_16
+	.addrsig_sym .L__profc_bswap_32
+	.addrsig_sym .L__profd_bswap_32
+	.addrsig_sym .L__profc_bswap_64
+	.addrsig_sym .L__profd_bswap_64
+	.addrsig_sym .L__profc_ffs
+	.addrsig_sym .L__profd_ffs
+	.addrsig_sym .L__profc_libiberty_ffs
+	.addrsig_sym .L__profd_libiberty_ffs
+	.addrsig_sym .L__profc_gl_isinff
+	.addrsig_sym .L__profd_gl_isinff
+	.addrsig_sym .L__profc_gl_isinfd
+	.addrsig_sym .L__profd_gl_isinfd
+	.addrsig_sym .L__profc_gl_isinfl
+	.addrsig_sym .L__profd_gl_isinfl
+	.addrsig_sym .L__profc__Qp_itoq
+	.addrsig_sym .L__profd__Qp_itoq
+	.addrsig_sym .L__profc_ldexpf
+	.addrsig_sym .L__profd_ldexpf
+	.addrsig_sym .L__profc_ldexp
+	.addrsig_sym .L__profd_ldexp
+	.addrsig_sym .L__profc_ldexpl
+	.addrsig_sym .L__profd_ldexpl
+	.addrsig_sym .L__profc_memxor
+	.addrsig_sym .L__profd_memxor
+	.addrsig_sym .L__profc_strncat
+	.addrsig_sym .L__profd_strncat
+	.addrsig_sym .L__profc_strnlen
+	.addrsig_sym .L__profd_strnlen
+	.addrsig_sym .L__profc_strpbrk
+	.addrsig_sym .L__profd_strpbrk
+	.addrsig_sym .L__profc_strrchr
+	.addrsig_sym .L__profd_strrchr
+	.addrsig_sym .L__profc_strstr
+	.addrsig_sym .L__profd_strstr
+	.addrsig_sym .L__profc_copysign
+	.addrsig_sym .L__profd_copysign
+	.addrsig_sym .L__profc_memmem
+	.addrsig_sym .L__profd_memmem
+	.addrsig_sym .L__profc_mempcpy
+	.addrsig_sym .L__profd_mempcpy
+	.addrsig_sym .L__profc_frexp
+	.addrsig_sym .L__profd_frexp
+	.addrsig_sym .L__profc___muldi3
+	.addrsig_sym .L__profd___muldi3
+	.addrsig_sym .L__profc_udivmodsi4
+	.addrsig_sym .L__profd_udivmodsi4
+	.addrsig_sym .L__profc___clrsbqi2
+	.addrsig_sym .L__profd___clrsbqi2
+	.addrsig_sym .L__profc___clrsbdi2
+	.addrsig_sym .L__profd___clrsbdi2
+	.addrsig_sym .L__profc___mulsi3
+	.addrsig_sym .L__profd___mulsi3
+	.addrsig_sym .L__profc___cmovd
+	.addrsig_sym .L__profd___cmovd
+	.addrsig_sym .L__profc___cmovh
+	.addrsig_sym .L__profd___cmovh
+	.addrsig_sym .L__profc___cmovw
+	.addrsig_sym .L__profd___cmovw
+	.addrsig_sym .L__profc___modi
+	.addrsig_sym .L__profd___modi
+	.addrsig_sym .L__profc___uitod
+	.addrsig_sym .L__profd___uitod
+	.addrsig_sym .L__profc___uitof
+	.addrsig_sym .L__profd___uitof
+	.addrsig_sym .L__profc___ulltod
+	.addrsig_sym .L__profd___ulltod
+	.addrsig_sym .L__profc___ulltof
+	.addrsig_sym .L__profd___ulltof
+	.addrsig_sym .L__profc___umodi
+	.addrsig_sym .L__profd___umodi
+	.addrsig_sym .L__profc___clzhi2
+	.addrsig_sym .L__profd___clzhi2
+	.addrsig_sym .L__profc___ctzhi2
+	.addrsig_sym .L__profd___ctzhi2
+	.addrsig_sym .L__profc___fixunssfsi
+	.addrsig_sym .L__profd___fixunssfsi
+	.addrsig_sym .L__profc___parityhi2
+	.addrsig_sym .L__profd___parityhi2
+	.addrsig_sym .L__profc___popcounthi2
+	.addrsig_sym .L__profd___popcounthi2
+	.addrsig_sym .L__profc___mulsi3_iq2000
+	.addrsig_sym .L__profd___mulsi3_iq2000
+	.addrsig_sym .L__profc___mulsi3_lm32
+	.addrsig_sym .L__profd___mulsi3_lm32
+	.addrsig_sym .L__profc___udivmodsi4
+	.addrsig_sym .L__profd___udivmodsi4
+	.addrsig_sym .L__profc___mspabi_cmpf
+	.addrsig_sym .L__profd___mspabi_cmpf
+	.addrsig_sym .L__profc___mspabi_cmpd
+	.addrsig_sym .L__profd___mspabi_cmpd
+	.addrsig_sym .L__profc___mspabi_mpysll
+	.addrsig_sym .L__profd___mspabi_mpysll
+	.addrsig_sym .L__profc___mspabi_mpyull
+	.addrsig_sym .L__profd___mspabi_mpyull
+	.addrsig_sym .L__profc___mulhi3
+	.addrsig_sym .L__profd___mulhi3
+	.addrsig_sym .L__profc___divsi3
+	.addrsig_sym .L__profd___divsi3
+	.addrsig_sym .L__profc___modsi3
+	.addrsig_sym .L__profd___modsi3
+	.addrsig_sym .L__profc___udivmodhi4
+	.addrsig_sym .L__profd___udivmodhi4
+	.addrsig_sym .L__profc___udivmodsi4_libgcc
+	.addrsig_sym .L__profd___udivmodsi4_libgcc
+	.addrsig_sym .L__profc___ashldi3
+	.addrsig_sym .L__profd___ashldi3
+	.addrsig_sym .L__profc___ashlti3
+	.addrsig_sym .L__profd___ashlti3
+	.addrsig_sym .L__profc___ashrdi3
+	.addrsig_sym .L__profd___ashrdi3
+	.addrsig_sym .L__profc___ashrti3
+	.addrsig_sym .L__profd___ashrti3
+	.addrsig_sym .L__profc___bswapdi2
+	.addrsig_sym .L__profd___bswapdi2
+	.addrsig_sym .L__profc___bswapsi2
+	.addrsig_sym .L__profd___bswapsi2
+	.addrsig_sym .L__profc___clzsi2
+	.addrsig_sym .L__profd___clzsi2
+	.addrsig_sym .L__profc___clzti2
+	.addrsig_sym .L__profd___clzti2
+	.addrsig_sym .L__profc___cmpdi2
+	.addrsig_sym .L__profd___cmpdi2
+	.addrsig_sym .L__profc___aeabi_lcmp
+	.addrsig_sym .L__profd___aeabi_lcmp
+	.addrsig_sym .L__profc___cmpti2
+	.addrsig_sym .L__profd___cmpti2
+	.addrsig_sym .L__profc___ctzsi2
+	.addrsig_sym .L__profd___ctzsi2
+	.addrsig_sym .L__profc___ctzti2
+	.addrsig_sym .L__profd___ctzti2
+	.addrsig_sym .L__profc___ffsti2
+	.addrsig_sym .L__profd___ffsti2
+	.addrsig_sym .L__profc___lshrdi3
+	.addrsig_sym .L__profd___lshrdi3
+	.addrsig_sym .L__profc___lshrti3
+	.addrsig_sym .L__profd___lshrti3
+	.addrsig_sym .L__profc___muldsi3
+	.addrsig_sym .L__profd___muldsi3
+	.addrsig_sym .L__profc___muldi3_compiler_rt
+	.addrsig_sym .L__profd___muldi3_compiler_rt
+	.addrsig_sym .L__profc___mulddi3
+	.addrsig_sym .L__profd___mulddi3
+	.addrsig_sym .L__profc___multi3
+	.addrsig_sym .L__profd___multi3
+	.addrsig_sym .L__profc___negdi2
+	.addrsig_sym .L__profd___negdi2
+	.addrsig_sym .L__profc___negti2
+	.addrsig_sym .L__profd___negti2
+	.addrsig_sym .L__profc___paritydi2
+	.addrsig_sym .L__profd___paritydi2
+	.addrsig_sym .L__profc___parityti2
+	.addrsig_sym .L__profd___parityti2
+	.addrsig_sym .L__profc___paritysi2
+	.addrsig_sym .L__profd___paritysi2
+	.addrsig_sym .L__profc___popcountdi2
+	.addrsig_sym .L__profd___popcountdi2
+	.addrsig_sym .L__profc___popcountsi2
+	.addrsig_sym .L__profd___popcountsi2
+	.addrsig_sym .L__profc___popcountti2
+	.addrsig_sym .L__profd___popcountti2
+	.addrsig_sym .L__profc___powidf2
+	.addrsig_sym .L__profd___powidf2
+	.addrsig_sym .L__profc___powisf2
+	.addrsig_sym .L__profd___powisf2
+	.addrsig_sym .L__profc___ucmpdi2
+	.addrsig_sym .L__profd___ucmpdi2
+	.addrsig_sym .L__profc___aeabi_ulcmp
+	.addrsig_sym .L__profd___aeabi_ulcmp
+	.addrsig_sym .L__profc___ucmpti2
+	.addrsig_sym .L__profd___ucmpti2
+	.addrsig_sym .L__llvm_prf_nm
